@@ -293,35 +293,34 @@ global Radiobox5QS
 
 IfWinExist, ahk_class POEWindowClass
 {
-    WinGetPos, X, Y, Width, Hight
-	global vX_OnHideout:=X + Round(Width / 1920 * 1241)
-	global vY_OnHideout:=Y + Round(Hight / 1080 * 951)
+    WinGetPos, X, Y, Width, A_ScreenHeight
+	global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+	global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
 	
-	global vX_OnChar:=X + Round(Width / 1920 * 41)
-	global vY_OnChar:=Y + Round(Hight / 1080 * 915)
+	global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 	
-	global vX_Life:=X + Round(Width / 1920 * 95)
-	global vY_Life20:=Y + Round(Hight / 1080 * 1034)
-	global vY_Life30:=Y + Round(Hight / 1080 * 1014)
-	global vY_Life40:=Y + Round(Hight / 1080 * 994)
-	global vY_Life50:=Y + Round(Hight / 1080 * 974)
-	global vY_Life60:=Y + Round(Hight / 1080 * 954)
-	global vY_Life70:=Y + Round(Hight / 1080 * 934)
-	global vY_Life80:=Y + Round(Hight / 1080 * 914)
-	global vY_Life90:=Y + Round(Hight / 1080 * 894)
+	global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+	global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+	global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+	global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+	global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+	global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+	global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+	global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+	global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 	
-	global vX_ES:=X + Round(Width / 1920 * 180)
-	global vY_ES20:=Y + Round(Hight / 1080 * 1034)
-	global vY_ES30:=Y + Round(Hight / 1080 * 1014)
-	global vY_ES40:=Y + Round(Hight / 1080 * 994)
-	global vY_ES50:=Y + Round(Hight / 1080 * 974)
-	global vY_ES60:=Y + Round(Hight / 1080 * 954)
-	global vY_ES70:=Y + Round(Hight / 1080 * 934)
-	global vY_ES80:=Y + Round(Hight / 1080 * 914)
-	global vY_ES90:=Y + Round(Hight / 1080 * 894)
+	global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+	global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+	global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+	global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+	global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+	global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+	global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+	global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+	global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 	
-	global vX_Mana:=X + Round(Width / 1920 * 1825)
-	global vY_Mana10:=Y + Round(Hight / 1080 * 1054)
+	global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+	global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 }
 else
 {
@@ -1244,9 +1243,9 @@ Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
 
 IfWinExist, ahk_class POEWindowClass
 {
-    WinGetPos, X, Y, Width, Hight
+    WinGetPos, X, Y, Width, A_ScreenHeight
 	varX:=X + Round(Width / 1920 * -10)
-	varY:=Y + Round(Hight / 1080 * 1027)
+	varY:=Y + Round(A_ScreenHeight / 1080 * 1027)
 	Gui 2: Show, x%varX% y%varY%, NoActivate 
 }
 }
@@ -2950,31 +2949,31 @@ updateEverything:
 	
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		WinGetPos, X, Y, Width, Hight  ; Uses the window found above.
+		WinGetPos, X, Y, Width, A_ScreenHeight  ; Uses the window found above.
 		
 		vX_Life:=X + Round(Width / 1920 * 95)
 
-		vY_Life20:=Y + Round(Hight / 1080 * 1034)
-		vY_Life30:=Y + Round(Hight / 1080 * 1014)
-		vY_Life40:=Y + Round(Hight / 1080 * 994)
-		vY_Life50:=Y + Round(Hight / 1080 * 974)
-		vY_Life60:=Y + Round(Hight / 1080 * 954)
-		vY_Life70:=Y + Round(Hight / 1080 * 934)
-		vY_Life80:=Y + Round(Hight / 1080 * 914)
-		vY_Life90:=Y + Round(Hight / 1080 * 894)
+		vY_Life20:=Y + Round(A_ScreenHeight / 1080 * 1034)
+		vY_Life30:=Y + Round(A_ScreenHeight / 1080 * 1014)
+		vY_Life40:=Y + Round(A_ScreenHeight / 1080 * 994)
+		vY_Life50:=Y + Round(A_ScreenHeight / 1080 * 974)
+		vY_Life60:=Y + Round(A_ScreenHeight / 1080 * 954)
+		vY_Life70:=Y + Round(A_ScreenHeight / 1080 * 934)
+		vY_Life80:=Y + Round(A_ScreenHeight / 1080 * 914)
+		vY_Life90:=Y + Round(A_ScreenHeight / 1080 * 894)
 		
 		vX_ES:=X + Round(Width / 1920 * 180)
-		vY_ES20:=Y + Round(Hight / 1080 * 1034)
-		vY_ES30:=Y + Round(Hight / 1080 * 1014)
-		vY_ES40:=Y + Round(Hight / 1080 * 994)
-		vY_ES50:=Y + Round(Hight / 1080 * 974)
-		vY_ES60:=Y + Round(Hight / 1080 * 954)
-		vY_ES70:=Y + Round(Hight / 1080 * 934)
-		vY_ES80:=Y + Round(Hight / 1080 * 914)
-		vY_ES90:=Y + Round(Hight / 1080 * 894)
+		vY_ES20:=Y + Round(A_ScreenHeight / 1080 * 1034)
+		vY_ES30:=Y + Round(A_ScreenHeight / 1080 * 1014)
+		vY_ES40:=Y + Round(A_ScreenHeight / 1080 * 994)
+		vY_ES50:=Y + Round(A_ScreenHeight / 1080 * 974)
+		vY_ES60:=Y + Round(A_ScreenHeight / 1080 * 954)
+		vY_ES70:=Y + Round(A_ScreenHeight / 1080 * 934)
+		vY_ES80:=Y + Round(A_ScreenHeight / 1080 * 914)
+		vY_ES90:=Y + Round(A_ScreenHeight / 1080 * 894)
 		
 		vX_Mana:=X + Round(Width / 1920 * 1825)
-		vY_Mana10:=Y + Round(Hight / 1080 * 1054)
+		vY_Mana10:=Y + Round(A_ScreenHeight / 1080 * 1054)
 }
 
 	
@@ -3201,11 +3200,11 @@ updateHideout:
 	Gui, Submit, NoHide
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		WinGetPos, X, Y, Width, Hight  ; Uses the window found above.
+		WinGetPos, X, Y, Width, A_ScreenHeight  ; Uses the window found above.
 		vX_OnHideout:=X + Round(Width / 1920 * 1241)
-		vY_OnHideout:=Y + Round(Hight / 1080 * 951)
+		vY_OnHideout:=Y + Round(A_ScreenHeight / 1080 * 951)
 		vX_OnChar:=X + Round(Width / 1920 * 41)
-		vY_OnChar:=Y + Round(Hight / 1080 * 915)
+		vY_OnChar:=Y + Round(A_ScreenHeight / 1080 * 915)
 	}
 	IfWinActive, ahk_class POEWindowClass 
 	{
@@ -3223,9 +3222,9 @@ updateOnChar:
 	Gui, Submit, NoHide
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		WinGetPos,,, Width, Hight  ; Uses the window found above.
+		WinGetPos,,, Width, A_ScreenHeight  ; Uses the window found above.
 		vX_OnChar:=X + Round(Width / 1920 * 41)
-		vY_OnChar:=Y + Round(Hight / 1080 * 915)
+		vY_OnChar:=Y + Round(A_ScreenHeight / 1080 * 915)
 	}
 	IfWinActive, ahk_class POEWindowClass 
 	{
