@@ -299,8 +299,8 @@ IfWinExist, ahk_class POEWindowClass
 	
 	global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 	global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-	global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 41))
-	global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+	global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+	global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
 	global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
 	global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
 	global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
