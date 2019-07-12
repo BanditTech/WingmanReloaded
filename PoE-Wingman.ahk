@@ -72,9 +72,9 @@ Global ColorKey := { Red: 0xFE2222
 	, Black : 0x222222}
 
 ; Use the colorkey above to choose your background colors. 
-Global LootColors := { 1 : 0xFE2222
-	, 2 : 0xFE2222
-	, 3 : 0xFE2222}
+Global LootColors := { 1 : 0xFFFFFF
+	, 2 : 0xFCDDB2
+	, 3 : 0x222222}
 
 Global ItemProp := {ItemName: ""
 	, Rarity : ""
@@ -3238,8 +3238,8 @@ updateOnChar:
 	IfWinExist, ahk_class POEWindowClass 
 	{
 		WinGetPos,,, Width, Height  ; Uses the window found above.
-		vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41)
-		vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915)
+		vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
 	}
 	IfWinActive, ahk_class POEWindowClass 
 	{
