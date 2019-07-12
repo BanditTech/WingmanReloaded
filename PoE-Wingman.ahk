@@ -293,11 +293,20 @@ global Radiobox5QS
 
 IfWinExist, ahk_class POEWindowClass
 {
-    WinGetPos, X, Y, Width, A_ScreenHeight
+    WinGetPos, X, Y, W, H
 	global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
 	global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
 	
 	global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+	global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+	global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 41))
+	global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+	global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+	global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+	global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+	global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+	global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+	global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
 	
 	global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 	global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
@@ -326,9 +335,16 @@ else
 {
 	global vX_OnHideout:=1241
 	global vY_OnHideout:=951
-	
 	global vX_OnChar:=41
 	global vY_OnChar:=915
+	global vX_OnChat:=41
+	global vY_OnChat:=915
+	global vX_OnInventory:=1583
+	global vY_OnInventory:=36
+	global vX_OnStash:=336
+	global vY_OnStash:=32
+	global vX_OnVendor:=618
+	global vY_OnVendor:=88
 	
 	global vX_Life:=95
 	global vY_Life90:=1034
@@ -2393,7 +2409,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnChar:=False
     }
-    pixelgetcolor, POnChat, 0, 537
+    pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
     If (POnChat=0x3B6288) 
     {
         OnChat:=True
@@ -2402,7 +2418,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnChat:=False
     }
-    pixelgetcolor, POnInventory, 1583, 36
+    pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
     If (POnInventory=0x8CC6DD) 
     {
         OnInventory:=True
@@ -2411,7 +2427,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnInventory:=False
     }
-    pixelgetcolor, POnStash, 336, 32
+    pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
     If (POnStash=0x9BD6E7) 
     {
         OnStash:=True
@@ -2420,7 +2436,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnStash:=False
     }
-    pixelgetcolor, POnVendor, 618, 88
+    pixelgetcolor, POnVendor, vX_OnStash, vY_OnVendor
     If (POnVendor=0x7BB1CC) 
     {
         OnVendor:=True
