@@ -70,15 +70,15 @@ Global YesUltraWide := 1
 ; Choose one of the default background colors with no transparency
 ; These are the mouseover Hex for each of the default colors
 Global ColorKey := { Red: 0xFE2222
-	, Brown : 0xDA8B4D
-	, Tan : 0xFCDDB2
-	, Yellow : 0xEFDB27
-	, Green : 0x22AB22
-	, Baby Blue : 0x45F2F2
-	, Blue : 0x2222FE
-	, Lavender : 0x8F8FFE
-	, White : 0xFFFFFF
-	, Black : 0x222222}
+				, Brown : 0xDA8B4D
+			      , Tan : 0xFCDDB2
+			   , Yellow : 0xEFDB27
+				, Green : 0x22AB22
+			, Baby Blue : 0x45F2F2
+			 	 , Blue : 0x2222FE
+			 , Lavender : 0x8F8FFE
+				, White : 0xFFFFFF
+				, Black : 0x222222}
 
 ; Use the colorkey above to choose your background colors. 
 Global LootColors := { 1 : 0xFFFFFF
@@ -889,8 +889,8 @@ Gui Add, Text, 										x352 	y250, 				Other Functions
 Gui, Font,
 Gui Add, Checkbox, gUpdateExtra	vDetonateMines                        	          , Detonate Mines?
 Gui Add, Checkbox, gUpdateExtra	vLootVacuum                         	          , Loot Vacuum?
-Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	          , Sell at vendor?
-Gui Add, Checkbox, gUpdateExtra	vYesStash                         	          , Deposit at stash?
+Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	              , Sell at vendor?
+Gui Add, Checkbox, gUpdateExtra	vYesStash                         	        	  , Deposit at stash?
 Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
 Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
 Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                         	          , UltraWide Scaling?
@@ -1775,10 +1775,13 @@ Random, Ry, y-45, y-5
 return {"X": Rx, "Y": Ry}
 }
 
-; Scales two resolution quardinates
+; Scales two resolution quardinates -- Currently not being used
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ScaleRes(byRef x, byRef y){
-Rx:=Round(A_ScreenWidth / (1920 / x))
+If (YesUltraWide)
+	Rx:=Round(A_ScreenWidth / (3840 / x))
+Else
+	Rx:=Round(A_ScreenWidth / (1920 / x))
 Ry:=Round(A_ScreenHeight / (1080 / y))
 return {"X": Rx, "Y": Ry}
 }
