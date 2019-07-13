@@ -415,7 +415,6 @@ If FileExist("settings.ini"){
 	IniRead, Speed, settings.ini, General, Speed
 	IniRead, Tick, settings.ini, General, Tick
 	IniRead, QTick, settings.ini, General, QTick
-	IniRead, YesUltraWide, settings.ini, General, YesUltraWide
 	;Coordinates
 	IniRead, GuiX, settings.ini, Coordinates, GuiX
 	IniRead, GuiY, settings.ini, Coordinates, GuiY
@@ -1007,7 +1006,7 @@ IfExist, settings.ini
 		GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
 	}
 
-	Iniread, YesUltraWide, settings.ini, Coordinates, YesUltraWide
+	Iniread, YesUltraWide, settings.ini, General, YesUltraWide
 	valueYesUltraWide := YesUltraWide
 	GuiControl, , YesUltraWide, %valueYesUltraWide%
 
