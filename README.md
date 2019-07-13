@@ -17,7 +17,7 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
 * New key features:
   - Auto Detonate Mines
   - Hotkey to logout instantly
-  - Loot Vacuum while you hold Item Pickup
+  - Loot Vacuum while you hold Item Pickup (requires major lootfilter editing)
   - Automatic Wisdom/Portal scroll restock from currency tab
   - Button to hit all your flasks at once.
   - Passthrough keys for the script to recognize when you manually activate flasks.
