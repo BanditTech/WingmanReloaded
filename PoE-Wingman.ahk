@@ -48,13 +48,15 @@ Global InventoryGridY := [ 637, 690, 743, 796, 848 ]
 Global IdColor := 0x1C0101
 Global UnIdColor := 0x01012A
 Global MOColor := 0x011C01
-;Use this area scale value to change how the pixel search behaves, 0 = 1 pixel search area 
+; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale*AreaScale) 
+; 0 = 1 pixel search area, 1 = 3 pixel , 2 = 5 pixel, 3 = 10 pixel, 4 = 17 pixel 
 Global AreaScale := 0
 Global LootVacuum := 1
 Global YesVendor := 1
 Global YesStash := 1
 Global YesIdentify := 1
 Global YesMapUnid := 1
+Global YesUltraWide := 1
 
 
 ; These colors are from filterblade.xyz filter creator
@@ -188,6 +190,10 @@ global GuiY:=1005
 ;Failsafe Colors
 global varOnHideout
 global varOnChar
+global varOnChat
+global varOnInventory
+global varOnStash
+global varOnVendor
 
 ;Life Colors
 global varLife20
@@ -294,21 +300,37 @@ global Radiobox5QS
 IfWinExist, ahk_class POEWindowClass
 {
     WinGetPos, X, Y, W, H
-	global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+	If (YesUltraWide)
+		{
+		global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+		global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+		global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+		global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+		global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+		global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+		global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+		global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+		global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 3755))
+		}
+	Else
+		{
+		global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+		global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+		global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+		global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+		global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+		global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+		global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+		global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+		}
 	global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-	
-	global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 	global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-	global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
 	global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-	global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
 	global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-	global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
 	global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-	global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
 	global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
 	
-	global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 	global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
 	global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
 	global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
@@ -318,7 +340,6 @@ IfWinExist, ahk_class POEWindowClass
 	global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
 	global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 	
-	global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
 	global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
 	global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
 	global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
@@ -328,7 +349,6 @@ IfWinExist, ahk_class POEWindowClass
 	global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
 	global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 	
-	global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
 	global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 }
 else
@@ -395,6 +415,7 @@ If FileExist("settings.ini"){
 	IniRead, Speed, settings.ini, General, Speed
 	IniRead, Tick, settings.ini, General, Tick
 	IniRead, QTick, settings.ini, General, QTick
+	IniRead, YesUltraWide, settings.ini, General, YesUltraWide
 	;Coordinates
 	IniRead, GuiX, settings.ini, Coordinates, GuiX
 	IniRead, GuiY, settings.ini, Coordinates, GuiY
@@ -406,6 +427,7 @@ If FileExist("settings.ini"){
 	IniWrite, %Speed%, settings.ini, General, Speed
 	IniWrite, %Tick%, settings.ini, General, Tick
 	IniWrite, %QTick%, settings.ini, General, QTick
+	IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide
 	IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
 	IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
 	IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
@@ -810,14 +832,14 @@ Gui, Tab, Failsafe and Extra Settings
 Gui, Font, Bold
 Gui Add, Text, 										x12 	y30, 				Failsafe Instructions:
 Gui, Font,
-Gui Add, Text, 										x12 	y+5, 				The following buttons only need to be dealed with if one of the following is true:
-Gui Add, Text, 										x22 	y+5, 				1) You do run this file for the very first time.
-Gui Add, Text, 										x22 	y+5, 				2) You did change the resolution of PoE.
+Gui Add, Text, 										x12 	y+5, 				The following buttons are for taking a new sample of pixel colors:
+Gui Add, Text, 										x22 	y+5, 				1) You are running this file for the very first time.
+Gui Add, Text, 										x22 	y+5, 				2) You changed the resolution of PoE.
 Gui Add, Text, 										x22 	y+5, 				3) You just aquired your very first Hideout.
-Gui Add, Text, 										x12 	y+10, 				If you do own a Hideout, get in there and press Button A:
+Gui Add, Text, 										x12 	y+10, 				To update OnHideout, OnChar, OnStash and OnInventory:
 ;Update Hideout
 Gui, Add, Button, gupdateHideout vUpdateHideoutBtn	x+10	y+-18	w226 h23, 	%varTextHideout%
-Gui Add, Text, 										x12 	y+10, 				If you got no Hideout yet, go ingame on a Character and press Button B:
+Gui Add, Text, 										x12 	y+10, 				To update OnChar, OnChat and OnVendor:
 ;Update OnChar
 Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	x+10	y+-18 	w154 h23, 	%varTextOnChar%
 
@@ -864,6 +886,7 @@ Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	          , 
 Gui Add, Checkbox, gUpdateExtra	vYesStash                         	          , Deposit at stash?
 Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
 Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
+Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                         	          , UltraWide Scaling?
 
 
 
@@ -983,6 +1006,10 @@ IfExist, settings.ini
 		valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
 		GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
 	}
+
+	Iniread, YesUltraWide, settings.ini, Coordinates, YesUltraWide
+	valueYesUltraWide := YesUltraWide
+	GuiControl, , YesUltraWide, %valueYesUltraWide%
 
 	Iniread, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX
 	valueWisdomScrollX := WisdomScrollX
@@ -1742,6 +1769,14 @@ Random, Ry, y-45, y-5
 return {"X": Rx, "Y": Ry}
 }
 
+; Scales two resolution quardinates
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ScaleRes(byRef x, byRef y){
+Rx:=Round(A_ScreenWidth / (1920 / x))
+Ry:=Round(A_ScreenHeight / (1080 / y))
+return {"X": Rx, "Y": Ry}
+}
+
 ;Toggle Auto-Quit
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 AutoQuit(){
@@ -2409,7 +2444,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
         OnChar:=False
     }
     pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-    If (POnChat=0x3B6288) 
+    If (POnChat=varOnChat) 
     {
         OnChat:=True
     }
@@ -2418,7 +2453,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
         OnChat:=False
     }
     pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-    If (POnInventory=0x8CC6DD) 
+    If (POnInventory=varOnInventory) 
     {
         OnInventory:=True
     }
@@ -2427,7 +2462,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
         OnInventory:=False
     }
     pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-    If (POnStash=0x9BD6E7) 
+    If (POnStash=varOnStash) 
     {
         OnStash:=True
     }
@@ -2435,8 +2470,8 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnStash:=False
     }
-    pixelgetcolor, POnVendor, vX_OnStash, vY_OnVendor
-    If (POnVendor=0x7BB1CC) 
+    pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
+    If (POnVendor=varOnVendor) 
     {
         OnVendor:=True
     }
@@ -2791,6 +2826,10 @@ readFromFile(){
 	;Failsafe Colors
 	IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout %A_Space%
 	IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar %A_Space%
+	IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat %A_Space%
+	IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory %A_Space%
+	IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash %A_Space%
+	IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor %A_Space%
 	
 	;Life Flasks
 	IniRead, varLife20, settings.ini, Life Colors, Life20 %A_Space%
@@ -3216,10 +3255,24 @@ updateHideout:
 	IfWinExist, ahk_class POEWindowClass 
 	{
 		WinGetPos, X, Y, Width, Height  ; Uses the window found above.
-		vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
+		If (YesUltraWide)
+			{
+			vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+			vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+			vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+			vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+			}
+		Else
+			{
+			vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
+			vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+			vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+			vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+			}
 		vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-		vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 		vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
+		vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+		vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
 	}
 	IfWinActive, ahk_class POEWindowClass 
 	{
@@ -3229,16 +3282,31 @@ updateHideout:
 	IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout %A_Space%
 	pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
 	IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar %A_Space%
+	pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+	IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory %A_Space%
+	pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+	IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash %A_Space%
 	readFromFile()
-	MsgBox, All Done! Happy hunting, Exile!
+	MsgBox, OnHideout, OnChar, OnInventory and OnStash Done! Happy hunting, Exile!
 	return
 	
 updateOnChar:
 	Gui, Submit, NoHide
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		WinGetPos,,, Width, Height  ; Uses the window found above.
+		If (YesUltraWide)
+		{
+		vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+		vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+		vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+		}
+		Else
+		{
 		vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+		vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+		}
+		WinGetPos,,, Width, Height  ; Uses the window found above.
 		vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
 	}
 	IfWinActive, ahk_class POEWindowClass 
@@ -3247,8 +3315,12 @@ updateOnChar:
 	}
 	pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
 	IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar %A_Space%
+	pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
+	IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat %A_Space%
+	pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
+	IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor %A_Space%
 	readFromFile()
-	MsgBox, OnChar-Failsafe Done! Remember to return once you aquired your very first Hideout!
+	MsgBox, OnChar, OnVendor and OnChat Done!
 	return
 
 updateCharacterType:
@@ -3375,6 +3447,7 @@ UpdateExtra:
 	IniWrite, %YesStash%, settings.ini, General, YesStash %A_Space%
 	IniWrite, %YesIdentify%, settings.ini, General, YesIdentify %A_Space%
 	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid %A_Space%
+	IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide %A_Space%
 	Return
 
 UpdateDebug:
