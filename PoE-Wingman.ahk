@@ -832,13 +832,13 @@ Gui, Font, Bold
 Gui Add, Text, 										x12 	y30, 				Failsafe Instructions:
 Gui, Font,
 Gui Add, Text, 										x12 	y+5, 				The following buttons are for taking a new sample of pixel colors:
-Gui Add, Text, 										x22 	y+5, 				1) You are running this file for the very first time.
+Gui Add, Text, 										x22 	y+5, 				1) You are running this file for the very first time, or you just aquired your very first Hideout.
 Gui Add, Text, 										x22 	y+5, 				2) You changed the resolution of PoE.
-Gui Add, Text, 										x22 	y+5, 				3) You just aquired your very first Hideout.
-Gui Add, Text, 										x12 	y+10, 				To update OnHideout, OnChar, OnStash and OnInventory:
+Gui Add, Text, 										x22 	y+5, 				3) To use these pixel regrabs, follow the instructions and then press the button. 
+Gui Add, Text, 										x12 	y+10, 				Go to Hideout, and open Stash tab and Inventory panel:
 ;Update Hideout
 Gui, Add, Button, gupdateHideout vUpdateHideoutBtn	x+10	y+-18	w226 h23, 	%varTextHideout%
-Gui Add, Text, 										x12 	y+10, 				To update OnChar, OnChat and OnVendor:
+Gui Add, Text, 										x12 	y+10, 				Open a vendor panel and open Chat panel:
 ;Update OnChar
 Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	x+10	y+-18 	w154 h23, 	%varTextOnChar%
 
