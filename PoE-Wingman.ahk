@@ -318,7 +318,7 @@ IfWinExist, ahk_class POEWindowClass
 		global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
 		global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
 		global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-		global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 3755))
+		global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 3745))
 		}
 	Else
 		{
