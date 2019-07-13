@@ -43,7 +43,14 @@ Run GottaGoFast.ahk
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 If 1{
 ;readFromFile()
-Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
+	If (YesUltraWide)
+		{
+		Global InventoryGridX := [ 3194, 3246, 3299, 3352, 3404, 3457, 3510, 3562, 3615, 3668, 3720, 3773 ]
+		}
+	Else
+		{
+		Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
+		}
 Global InventoryGridY := [ 637, 690, 743, 796, 848 ]  
 Global IdColor := 0x1C0101
 Global UnIdColor := 0x01012A
@@ -96,6 +103,7 @@ Global ItemProp := {ItemName: ""
 	, Amulet : False
 	, Chromatic : False
 	, Jewel : False
+	, AbyssJewel : False
 	, Essence : False
 	, Quality : 0
 	, Sockets : 0
@@ -831,10 +839,10 @@ Gui, Tab, Failsafe and Extra Settings
 Gui, Font, Bold
 Gui Add, Text, 										x12 	y30, 				Failsafe Instructions:
 Gui, Font,
-Gui Add, Text, 										x12 	y+5, 				The following buttons are for taking a new sample of pixel colors:
-Gui Add, Text, 										x22 	y+5, 				1) You are running this file for the very first time, or you just aquired your very first Hideout.
-Gui Add, Text, 										x22 	y+5, 				2) You changed the resolution of PoE.
-Gui Add, Text, 										x22 	y+5, 				3) To use these pixel regrabs, follow the instructions and then press the button. 
+Gui Add, Text, 										x12 	y+5, 				Use the following buttons are for taking a new sample of pixel colors:
+Gui Add, Text, 										x22 	y+5, 				1) If you are running this file for the very first time, or you just aquired your very first Hideout.
+Gui Add, Text, 										x22 	y+5, 				2) If you changed the resolution of PoE.
+Gui Add, Text, 										x22 	y+10, 				To use these pixel regrabs, follow the instructions and then press the button. 
 Gui Add, Text, 										x12 	y+10, 				Go to Hideout, and open Stash tab and Inventory panel:
 ;Update Hideout
 Gui, Add, Button, gupdateHideout vUpdateHideoutBtn	x+10	y+-18	w226 h23, 	%varTextHideout%
@@ -1346,8 +1354,7 @@ ExitApp
 
 ; Loot Scanner for items under cursor pressing Loot button
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LootScan()
-{
+LootScan(){
 LootScanCommand:
     Pressed := GetKeyState(hotkeyLootScan, "P")
     AreaScale:=0
@@ -1371,7 +1378,7 @@ LootScanCommand:
     Return
 }
 
-; Scan item and determine action
+; Scan inventory and determine action
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ItemSort(){
 ItemSortCommand:
@@ -1388,11 +1395,11 @@ ItemSortCommand:
         GuiStatus(OnHideout, OnChar, OnChat, OnInventory, OnStash, OnVendor)
         If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
             Return
-        For k, GridY in InventoryGridY
+        For k, GridX in InventoryGridX
         {
             If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
                 Break
-            For k, GridX in InventoryGridX
+            For k, GridY in InventoryGridY
             {
                 If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
                     Break
@@ -1569,9 +1576,9 @@ ItemSortCommand:
                     {
 						If (ItemProp.RarityCurrency)
 							Continue
-                        If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Jewel||ItemProp.Flask))
+                        If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
                             Continue
-                        If ( ( ItemProp.SpecialType="" ) || ( ItemProp.Jewel && ( ItemProp.RarityMagic || ItemProp.RarityRare ) ) )
+                        If ( ItemProp.SpecialType="" )
                         {
                             Sleep, 30
                             CtrlClick(Grid.X,Grid.Y)
@@ -1981,6 +1988,7 @@ ItemProp := {ItemName: ""
 	, Amulet : False
 	, Chromatic : False
 	, Jewel : False
+	, AbyssJewel : False
 	, Essence : False
 	, Quality : 0
 	, Sockets : 0
@@ -2217,26 +2225,23 @@ ItemProp := {ItemName: ""
 				}
                 IfInString, A_LoopField, Eye Jewel
                 {
+                    ItemProp.AbyssJewel := True
                     ItemProp.Jewel := True
-                    ItemProp.SpecialType := "Abyss Jewel"
                     Continue
 				}
                 IfInString, A_LoopField, Cobalt Jewel
                 {
                     ItemProp.Jewel := True
-                    ItemProp.SpecialType := "Jewel"
                     Continue
 				}
                 IfInString, A_LoopField, Crimson Jewel
                 {
                     ItemProp.Jewel := True
-                    ItemProp.SpecialType := "Jewel"
                     Continue
 				}
                 IfInString, A_LoopField, Viridian Jewel
                 {
                     ItemProp.Jewel := True
-                    ItemProp.SpecialType := "Jewel"
                     Continue
 				}
                 IfInString, A_LoopField, Flask
