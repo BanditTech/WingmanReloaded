@@ -43,33 +43,42 @@ Run GottaGoFast.ahk
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 If 1{
 ;readFromFile()
-Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
+	If (YesUltraWide)
+		{
+		Global InventoryGridX := [ 3194, 3246, 3299, 3352, 3404, 3457, 3510, 3562, 3615, 3668, 3720, 3773 ]
+		}
+	Else
+		{
+		Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
+		}
 Global InventoryGridY := [ 637, 690, 743, 796, 848 ]  
 Global IdColor := 0x1C0101
 Global UnIdColor := 0x01012A
 Global MOColor := 0x011C01
-;Use this area scale value to change how the pixel search behaves, 0 = 1 pixel search area 
+; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale*AreaScale) 
+; 0 = 1 pixel search area, 1 = 3 pixel , 2 = 5 pixel, 3 = 10 pixel, 4 = 17 pixel 
 Global AreaScale := 0
 Global LootVacuum := 1
 Global YesVendor := 1
 Global YesStash := 1
 Global YesIdentify := 1
 Global YesMapUnid := 1
+Global YesUltraWide := 1
 
 
 ; These colors are from filterblade.xyz filter creator
 ; Choose one of the default background colors with no transparency
 ; These are the mouseover Hex for each of the default colors
 Global ColorKey := { Red: 0xFE2222
-	, Brown : 0xDA8B4D
-	, Tan : 0xFCDDB2
-	, Yellow : 0xEFDB27
-	, Green : 0x22AB22
-	, Baby Blue : 0x45F2F2
-	, Blue : 0x2222FE
-	, Lavender : 0x8F8FFE
-	, White : 0xFFFFFF
-	, Black : 0x222222}
+				, Brown : 0xDA8B4D
+			      , Tan : 0xFCDDB2
+			   , Yellow : 0xEFDB27
+				, Green : 0x22AB22
+			, Baby Blue : 0x45F2F2
+			 	 , Blue : 0x2222FE
+			 , Lavender : 0x8F8FFE
+				, White : 0xFFFFFF
+				, Black : 0x222222}
 
 ; Use the colorkey above to choose your background colors. 
 Global LootColors := { 1 : 0xFFFFFF
@@ -94,6 +103,7 @@ Global ItemProp := {ItemName: ""
 	, Amulet : False
 	, Chromatic : False
 	, Jewel : False
+	, AbyssJewel : False
 	, Essence : False
 	, Quality : 0
 	, Sockets : 0
@@ -188,6 +198,10 @@ global GuiY:=1005
 ;Failsafe Colors
 global varOnHideout
 global varOnChar
+global varOnChat
+global varOnInventory
+global varOnStash
+global varOnVendor
 
 ;Life Colors
 global varLife20
@@ -294,21 +308,37 @@ global Radiobox5QS
 IfWinExist, ahk_class POEWindowClass
 {
     WinGetPos, X, Y, W, H
-	global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+	If (YesUltraWide)
+		{
+		global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+		global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+		global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+		global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+		global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+		global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+		global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+		global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+		global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 3745))
+		}
+	Else
+		{
+		global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+		global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+		global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+		global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+		global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+		global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+		global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+		global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+		}
 	global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-	
-	global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 	global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-	global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
 	global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-	global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
 	global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-	global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
 	global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-	global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
 	global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
 	
-	global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 	global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
 	global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
 	global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
@@ -318,7 +348,6 @@ IfWinExist, ahk_class POEWindowClass
 	global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
 	global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 	
-	global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
 	global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
 	global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
 	global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
@@ -328,7 +357,6 @@ IfWinExist, ahk_class POEWindowClass
 	global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
 	global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 	
-	global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
 	global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 }
 else
@@ -406,6 +434,7 @@ If FileExist("settings.ini"){
 	IniWrite, %Speed%, settings.ini, General, Speed
 	IniWrite, %Tick%, settings.ini, General, Tick
 	IniWrite, %QTick%, settings.ini, General, QTick
+	IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide
 	IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
 	IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
 	IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
@@ -810,14 +839,14 @@ Gui, Tab, Failsafe and Extra Settings
 Gui, Font, Bold
 Gui Add, Text, 										x12 	y30, 				Failsafe Instructions:
 Gui, Font,
-Gui Add, Text, 										x12 	y+5, 				The following buttons only need to be dealed with if one of the following is true:
-Gui Add, Text, 										x22 	y+5, 				1) You do run this file for the very first time.
-Gui Add, Text, 										x22 	y+5, 				2) You did change the resolution of PoE.
-Gui Add, Text, 										x22 	y+5, 				3) You just aquired your very first Hideout.
-Gui Add, Text, 										x12 	y+10, 				If you do own a Hideout, get in there and press Button A:
+Gui Add, Text, 										x12 	y+5, 				Use the following buttons are for taking a new sample of pixel colors:
+Gui Add, Text, 										x22 	y+5, 				1) If you are running this file for the very first time, or you just aquired your very first Hideout.
+Gui Add, Text, 										x22 	y+5, 				2) If you changed the resolution of PoE.
+Gui Add, Text, 										x22 	y+10, 				To use these pixel regrabs, follow the instructions and then press the button. 
+Gui Add, Text, 										x12 	y+10, 				Go to Hideout, and open Stash tab and Inventory panel:
 ;Update Hideout
 Gui, Add, Button, gupdateHideout vUpdateHideoutBtn	x+10	y+-18	w226 h23, 	%varTextHideout%
-Gui Add, Text, 										x12 	y+10, 				If you got no Hideout yet, go ingame on a Character and press Button B:
+Gui Add, Text, 										x12 	y+10, 				Open a vendor panel and open Chat panel:
 ;Update OnChar
 Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	x+10	y+-18 	w154 h23, 	%varTextOnChar%
 
@@ -860,10 +889,11 @@ Gui Add, Text, 										x352 	y250, 				Other Functions
 Gui, Font,
 Gui Add, Checkbox, gUpdateExtra	vDetonateMines                        	          , Detonate Mines?
 Gui Add, Checkbox, gUpdateExtra	vLootVacuum                         	          , Loot Vacuum?
-Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	          , Sell at vendor?
-Gui Add, Checkbox, gUpdateExtra	vYesStash                         	          , Deposit at stash?
+Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	              , Sell at vendor?
+Gui Add, Checkbox, gUpdateExtra	vYesStash                         	        	  , Deposit at stash?
 Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
 Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
+Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                         	          , UltraWide Scaling?
 
 
 
@@ -983,6 +1013,10 @@ IfExist, settings.ini
 		valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
 		GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
 	}
+
+	Iniread, YesUltraWide, settings.ini, General, YesUltraWide
+	valueYesUltraWide := YesUltraWide
+	GuiControl, , YesUltraWide, %valueYesUltraWide%
 
 	Iniread, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX
 	valueWisdomScrollX := WisdomScrollX
@@ -1320,8 +1354,7 @@ ExitApp
 
 ; Loot Scanner for items under cursor pressing Loot button
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LootScan()
-{
+LootScan(){
 LootScanCommand:
     Pressed := GetKeyState(hotkeyLootScan, "P")
     AreaScale:=0
@@ -1345,7 +1378,7 @@ LootScanCommand:
     Return
 }
 
-; Scan item and determine action
+; Scan inventory and determine action
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ItemSort(){
 ItemSortCommand:
@@ -1362,11 +1395,11 @@ ItemSortCommand:
         GuiStatus(OnHideout, OnChar, OnChat, OnInventory, OnStash, OnVendor)
         If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
             Return
-        For k, GridY in InventoryGridY
+        For k, GridX in InventoryGridX
         {
             If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
                 Break
-            For k, GridX in InventoryGridX
+            For k, GridY in InventoryGridY
             {
                 If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
                     Break
@@ -1543,9 +1576,9 @@ ItemSortCommand:
                     {
 						If (ItemProp.RarityCurrency)
 							Continue
-                        If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Jewel||ItemProp.Flask))
+                        If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
                             Continue
-                        If ( ( ItemProp.SpecialType="" ) || ( ItemProp.Jewel && ( ItemProp.RarityMagic || ItemProp.RarityRare ) ) )
+                        If ( ItemProp.SpecialType="" )
                         {
                             Sleep, 30
                             CtrlClick(Grid.X,Grid.Y)
@@ -1739,6 +1772,17 @@ ClipItem(byRef x, byRef y){
 RandClick(byRef x, byRef y){
 Random, Rx, x+5, x+45
 Random, Ry, y-45, y-5
+return {"X": Rx, "Y": Ry}
+}
+
+; Scales two resolution quardinates -- Currently not being used
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ScaleRes(byRef x, byRef y){
+If (YesUltraWide)
+	Rx:=Round(A_ScreenWidth / (3840 / x))
+Else
+	Rx:=Round(A_ScreenWidth / (1920 / x))
+Ry:=Round(A_ScreenHeight / (1080 / y))
 return {"X": Rx, "Y": Ry}
 }
 
@@ -1947,6 +1991,7 @@ ItemProp := {ItemName: ""
 	, Amulet : False
 	, Chromatic : False
 	, Jewel : False
+	, AbyssJewel : False
 	, Essence : False
 	, Quality : 0
 	, Sockets : 0
@@ -2183,26 +2228,23 @@ ItemProp := {ItemName: ""
 				}
                 IfInString, A_LoopField, Eye Jewel
                 {
+                    ItemProp.AbyssJewel := True
                     ItemProp.Jewel := True
-                    ItemProp.SpecialType := "Abyss Jewel"
                     Continue
 				}
                 IfInString, A_LoopField, Cobalt Jewel
                 {
                     ItemProp.Jewel := True
-                    ItemProp.SpecialType := "Jewel"
                     Continue
 				}
                 IfInString, A_LoopField, Crimson Jewel
                 {
                     ItemProp.Jewel := True
-                    ItemProp.SpecialType := "Jewel"
                     Continue
 				}
                 IfInString, A_LoopField, Viridian Jewel
                 {
                     ItemProp.Jewel := True
-                    ItemProp.SpecialType := "Jewel"
                     Continue
 				}
                 IfInString, A_LoopField, Flask
@@ -2409,7 +2451,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
         OnChar:=False
     }
     pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-    If (POnChat=0x3B6288) 
+    If (POnChat=varOnChat) 
     {
         OnChat:=True
     }
@@ -2418,7 +2460,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
         OnChat:=False
     }
     pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-    If (POnInventory=0x8CC6DD) 
+    If (POnInventory=varOnInventory) 
     {
         OnInventory:=True
     }
@@ -2427,7 +2469,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
         OnInventory:=False
     }
     pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-    If (POnStash=0x9BD6E7) 
+    If (POnStash=varOnStash) 
     {
         OnStash:=True
     }
@@ -2435,8 +2477,8 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnStash:=False
     }
-    pixelgetcolor, POnVendor, vX_OnStash, vY_OnVendor
-    If (POnVendor=0x7BB1CC) 
+    pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
+    If (POnVendor=varOnVendor) 
     {
         OnVendor:=True
     }
@@ -2791,6 +2833,10 @@ readFromFile(){
 	;Failsafe Colors
 	IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout %A_Space%
 	IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar %A_Space%
+	IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat %A_Space%
+	IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory %A_Space%
+	IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash %A_Space%
+	IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor %A_Space%
 	
 	;Life Flasks
 	IniRead, varLife20, settings.ini, Life Colors, Life20 %A_Space%
@@ -3216,10 +3262,24 @@ updateHideout:
 	IfWinExist, ahk_class POEWindowClass 
 	{
 		WinGetPos, X, Y, Width, Height  ; Uses the window found above.
-		vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
+		If (YesUltraWide)
+			{
+			vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+			vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+			vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+			vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+			}
+		Else
+			{
+			vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
+			vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+			vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+			vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+			}
 		vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-		vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 		vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
+		vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+		vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
 	}
 	IfWinActive, ahk_class POEWindowClass 
 	{
@@ -3229,16 +3289,31 @@ updateHideout:
 	IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout %A_Space%
 	pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
 	IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar %A_Space%
+	pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+	IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory %A_Space%
+	pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+	IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash %A_Space%
 	readFromFile()
-	MsgBox, All Done! Happy hunting, Exile!
+	MsgBox, OnHideout, OnChar, OnInventory and OnStash Done! Happy hunting, Exile!
 	return
 	
 updateOnChar:
 	Gui, Submit, NoHide
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		WinGetPos,,, Width, Height  ; Uses the window found above.
+		If (YesUltraWide)
+		{
+		vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+		vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+		vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+		}
+		Else
+		{
 		vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+		vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+		}
+		WinGetPos,,, Width, Height  ; Uses the window found above.
 		vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
 	}
 	IfWinActive, ahk_class POEWindowClass 
@@ -3247,8 +3322,12 @@ updateOnChar:
 	}
 	pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
 	IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar %A_Space%
+	pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
+	IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat %A_Space%
+	pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
+	IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor %A_Space%
 	readFromFile()
-	MsgBox, OnChar-Failsafe Done! Remember to return once you aquired your very first Hideout!
+	MsgBox, OnChar, OnVendor and OnChat Done!
 	return
 
 updateCharacterType:
@@ -3375,6 +3454,7 @@ UpdateExtra:
 	IniWrite, %YesStash%, settings.ini, General, YesStash %A_Space%
 	IniWrite, %YesIdentify%, settings.ini, General, YesIdentify %A_Space%
 	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid %A_Space%
+	IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide %A_Space%
 	Return
 
 UpdateDebug:
