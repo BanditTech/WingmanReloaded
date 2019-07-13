@@ -2,7 +2,7 @@
 
 PoE-Wingman was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/)
 
-This code is derived from PoE-Wingman by Andoesk at [PoE-Wingman](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html)
+This code is derived from [Andoesk's PoE-Wingman](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html)
 * Andoesk provided this project with:
   - GUI based flask management
   - Auto-Quit
