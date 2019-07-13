@@ -72,9 +72,9 @@ Global ColorKey := { Red: 0xFE2222
 	, Black : 0x222222}
 
 ; Use the colorkey above to choose your background colors. 
-Global LootColors := { 1 : 0xFE2222
-	, 2 : 0xFE2222
-	, 3 : 0xFE2222}
+Global LootColors := { 1 : 0xFFFFFF
+	, 2 : 0xFCDDB2
+	, 3 : 0x222222}
 
 Global ItemProp := {ItemName: ""
 	, Rarity : ""
@@ -293,43 +293,58 @@ global Radiobox5QS
 
 IfWinExist, ahk_class POEWindowClass
 {
-    WinGetPos, X, Y, Width, Hight
-	global vX_OnHideout:=X + Round(Width / 1920 * 1241)
-	global vY_OnHideout:=Y + Round(Hight / 1080 * 951)
+    WinGetPos, X, Y, W, H
+	global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+	global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
 	
-	global vX_OnChar:=X + Round(Width / 1920 * 41)
-	global vY_OnChar:=Y + Round(Hight / 1080 * 915)
+	global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+	global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+	global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+	global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+	global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+	global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+	global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+	global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+	global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+	global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
 	
-	global vX_Life:=X + Round(Width / 1920 * 95)
-	global vY_Life20:=Y + Round(Hight / 1080 * 1034)
-	global vY_Life30:=Y + Round(Hight / 1080 * 1014)
-	global vY_Life40:=Y + Round(Hight / 1080 * 994)
-	global vY_Life50:=Y + Round(Hight / 1080 * 974)
-	global vY_Life60:=Y + Round(Hight / 1080 * 954)
-	global vY_Life70:=Y + Round(Hight / 1080 * 934)
-	global vY_Life80:=Y + Round(Hight / 1080 * 914)
-	global vY_Life90:=Y + Round(Hight / 1080 * 894)
+	global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+	global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+	global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+	global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+	global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+	global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+	global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+	global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+	global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 	
-	global vX_ES:=X + Round(Width / 1920 * 180)
-	global vY_ES20:=Y + Round(Hight / 1080 * 1034)
-	global vY_ES30:=Y + Round(Hight / 1080 * 1014)
-	global vY_ES40:=Y + Round(Hight / 1080 * 994)
-	global vY_ES50:=Y + Round(Hight / 1080 * 974)
-	global vY_ES60:=Y + Round(Hight / 1080 * 954)
-	global vY_ES70:=Y + Round(Hight / 1080 * 934)
-	global vY_ES80:=Y + Round(Hight / 1080 * 914)
-	global vY_ES90:=Y + Round(Hight / 1080 * 894)
+	global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+	global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+	global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+	global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+	global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+	global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+	global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+	global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+	global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 	
-	global vX_Mana:=X + Round(Width / 1920 * 1825)
-	global vY_Mana10:=Y + Round(Hight / 1080 * 1054)
+	global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+	global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 }
 else
 {
 	global vX_OnHideout:=1241
 	global vY_OnHideout:=951
-	
 	global vX_OnChar:=41
 	global vY_OnChar:=915
+	global vX_OnChat:=41
+	global vY_OnChat:=915
+	global vX_OnInventory:=1583
+	global vY_OnInventory:=36
+	global vX_OnStash:=336
+	global vY_OnStash:=32
+	global vX_OnVendor:=618
+	global vY_OnVendor:=88
 	
 	global vX_Life:=95
 	global vY_Life90:=1034
@@ -1245,8 +1260,8 @@ Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
 IfWinExist, ahk_class POEWindowClass
 {
     WinGetPos, X, Y, Width, Hight
-	varX:=X + Round(Width / 1920 * -10)
-	varY:=Y + Round(Hight / 1080 * 1027)
+	varX:=X + Round(A_ScreenWidth / (1920 / -10))
+	varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
 	Gui 2: Show, x%varX% y%varY%, NoActivate 
 }
 }
@@ -2320,7 +2335,6 @@ GetMouseCoordsCommand:
                 }
             }
         TT := TT . "`n"
-            SetFormat, float, 2
         For c, GridX in InventoryGridX
             {
                     TT := TT . "  Start of Column:  " . c . "`n"
@@ -2394,7 +2408,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnChar:=False
     }
-    pixelgetcolor, POnChat, 0, 537
+    pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
     If (POnChat=0x3B6288) 
     {
         OnChat:=True
@@ -2403,7 +2417,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnChat:=False
     }
-    pixelgetcolor, POnInventory, 1583, 36
+    pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
     If (POnInventory=0x8CC6DD) 
     {
         OnInventory:=True
@@ -2412,7 +2426,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnInventory:=False
     }
-    pixelgetcolor, POnStash, 336, 32
+    pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
     If (POnStash=0x9BD6E7) 
     {
         OnStash:=True
@@ -2421,7 +2435,7 @@ GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef 
     {
         OnStash:=False
     }
-    pixelgetcolor, POnVendor, 618, 88
+    pixelgetcolor, POnVendor, vX_OnStash, vY_OnVendor
     If (POnVendor=0x7BB1CC) 
     {
         OnVendor:=True
@@ -2950,31 +2964,31 @@ updateEverything:
 	
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		WinGetPos, X, Y, Width, Hight  ; Uses the window found above.
+		WinGetPos, X, Y, Width, Height  ; Uses the window found above.
 		
-		vX_Life:=X + Round(Width / 1920 * 95)
+		vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 
-		vY_Life20:=Y + Round(Hight / 1080 * 1034)
-		vY_Life30:=Y + Round(Hight / 1080 * 1014)
-		vY_Life40:=Y + Round(Hight / 1080 * 994)
-		vY_Life50:=Y + Round(Hight / 1080 * 974)
-		vY_Life60:=Y + Round(Hight / 1080 * 954)
-		vY_Life70:=Y + Round(Hight / 1080 * 934)
-		vY_Life80:=Y + Round(Hight / 1080 * 914)
-		vY_Life90:=Y + Round(Hight / 1080 * 894)
+		vY_Life20:=Y + Round(A_ScreenHeight / (1080 / 1034))
+		vY_Life30:=Y + Round(A_ScreenHeight / (1080 / 1014))
+		vY_Life40:=Y + Round(A_ScreenHeight / (1080 / 994))
+		vY_Life50:=Y + Round(A_ScreenHeight / (1080 / 974))
+		vY_Life60:=Y + Round(A_ScreenHeight / (1080 / 954))
+		vY_Life70:=Y + Round(A_ScreenHeight / (1080 / 934))
+		vY_Life80:=Y + Round(A_ScreenHeight / (1080 / 914))
+		vY_Life90:=Y + Round(A_ScreenHeight / (1080 / 894))
 		
-		vX_ES:=X + Round(Width / 1920 * 180)
-		vY_ES20:=Y + Round(Hight / 1080 * 1034)
-		vY_ES30:=Y + Round(Hight / 1080 * 1014)
-		vY_ES40:=Y + Round(Hight / 1080 * 994)
-		vY_ES50:=Y + Round(Hight / 1080 * 974)
-		vY_ES60:=Y + Round(Hight / 1080 * 954)
-		vY_ES70:=Y + Round(Hight / 1080 * 934)
-		vY_ES80:=Y + Round(Hight / 1080 * 914)
-		vY_ES90:=Y + Round(Hight / 1080 * 894)
+		vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+		vY_ES20:=Y + Round(A_ScreenHeight / (1080 / 1034))
+		vY_ES30:=Y + Round(A_ScreenHeight / (1080 / 1014))
+		vY_ES40:=Y + Round(A_ScreenHeight / (1080 / 994))
+		vY_ES50:=Y + Round(A_ScreenHeight / (1080 / 974))
+		vY_ES60:=Y + Round(A_ScreenHeight / (1080 / 954))
+		vY_ES70:=Y + Round(A_ScreenHeight / (1080 / 934))
+		vY_ES80:=Y + Round(A_ScreenHeight / (1080 / 914))
+		vY_ES90:=Y + Round(A_ScreenHeight / (1080 / 894))
 		
-		vX_Mana:=X + Round(Width / 1920 * 1825)
-		vY_Mana10:=Y + Round(Hight / 1080 * 1054)
+		vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+		vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 }
 
 	
@@ -3201,11 +3215,11 @@ updateHideout:
 	Gui, Submit, NoHide
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		WinGetPos, X, Y, Width, Hight  ; Uses the window found above.
-		vX_OnHideout:=X + Round(Width / 1920 * 1241)
-		vY_OnHideout:=Y + Round(Hight / 1080 * 951)
-		vX_OnChar:=X + Round(Width / 1920 * 41)
-		vY_OnChar:=Y + Round(Hight / 1080 * 915)
+		WinGetPos, X, Y, Width, Height  ; Uses the window found above.
+		vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
+		vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+		vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
 	}
 	IfWinActive, ahk_class POEWindowClass 
 	{
@@ -3223,9 +3237,9 @@ updateOnChar:
 	Gui, Submit, NoHide
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		WinGetPos,,, Width, Hight  ; Uses the window found above.
-		vX_OnChar:=X + Round(Width / 1920 * 41)
-		vY_OnChar:=Y + Round(Hight / 1080 * 915)
+		WinGetPos,,, Width, Height  ; Uses the window found above.
+		vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
 	}
 	IfWinActive, ahk_class POEWindowClass 
 	{
