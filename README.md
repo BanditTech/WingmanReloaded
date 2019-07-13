@@ -1,16 +1,21 @@
 # WingmanReloaded
 
-PoE-Wingman was originally derived from https://github.com/nidark/Poe-Companion and https://github.com/badplayerr/beta-autopot/releases/
-This code is derived from PoE-Wingman by Andoesk at https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html
+PoE-Wingman was originally derived from 
+
+https://github.com/nidark/Poe-Companion and https://github.com/badplayerr/beta-autopot/releases/
+
+This code is derived from PoE-Wingman by Andoesk at 
+
+https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html
 
 * Andoesk provided this project with:
-- GUI based flask management
-- Auto-Quit
-- Auto-Flask
-- Auto-Quicksilver
-- Gem-Swap
-- Quick-Portal
-- Support for any 16:10/9 aspect ratios
+  - GUI based flask management
+  - Auto-Quit
+  - Auto-Flask
+  - Auto-Quicksilver
+  - Gem-Swap
+  - Quick-Portal
+  - Support for any 16:10/9 aspect ratios
 
 In the same spirit as Andoesk I have been searching for a simple program that has optional keybindings and non intrusive interface. I saw that I might be keen to pick up where he left off and improve upon some of the simple functions that this provides. 
 
