@@ -36,3 +36,5 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
 - Debug Mode with aditional tools when enabled.
 - Hotkeys to Reload (Alt-Esc) or Exit (Win-Esc)
 - Now runs in background on start unless you open settings.
+
+In testing: UltraWide Scaling
