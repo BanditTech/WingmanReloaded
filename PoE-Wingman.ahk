@@ -1429,11 +1429,7 @@ ItemSortCommand:
 							{
 								WisdomScroll(Grid.X,Grid.Y)
 							}
-						Else If (!ItemProp.Chromatic)
-							{
-								WisdomScroll(Grid.X,Grid.Y)
-							}
-						Else If !ItemProp.Jeweler) 
+						Else If (!ItemProp.Chromatic && !ItemProp.Jeweler&&!ItemProp.Map)
 							{
 								WisdomScroll(Grid.X,Grid.Y)
 							}
