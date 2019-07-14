@@ -63,7 +63,7 @@ Global YesVendor := 1
 Global YesStash := 1
 Global YesIdentify := 1
 Global YesMapUnid := 1
-Global YesUltraWide := 1
+Global YesUltraWide := 0
 
 
 ; These colors are from filterblade.xyz filter creator
@@ -1416,12 +1416,28 @@ ItemSortCommand:
                 {
                     ClipItem(Grid.X,Grid.Y)
 					If (!ItemProp.Identified&&YesIdentify)
-					{
-						If ((((!ItemProp.Map&&YesMapUnid)||(ItemProp.Map&&!YesMapUnid)) && !ItemProp.Chromatic && !ItemProp.Jeweler) || (ItemProp.Chromatic && (ItemProp.RarityRare || ItemProp.RarityUnique ) ) || ( ItemProp.Jeweler && ( ItemProp.5Link || ItemProp.6Link || ItemProp.RarityRare || ItemProp.RarityUnique) ) )
 						{
+						If (ItemProp.Map&&!YesMapUnid)
+							{
+							WisdomScroll(Grid.X,Grid.Y)
+							}
+						Else If (ItemProp.Chromatic && (ItemProp.RarityRare || ItemProp.RarityUnique ) ) 
+							{
+							WisdomScroll(Grid.X,Grid.Y)
+							}
+						Else If ( ItemProp.Jeweler && ( ItemProp.5Link || ItemProp.6Link || ItemProp.RarityRare || ItemProp.RarityUnique) )
+							{
 								WisdomScroll(Grid.X,Grid.Y)
+							}
+						Else If (!ItemProp.Chromatic)
+							{
+								WisdomScroll(Grid.X,Grid.Y)
+							}
+						Else If !ItemProp.Jeweler) 
+							{
+								WisdomScroll(Grid.X,Grid.Y)
+							}
 						}
-					}
                     If (OnStash&&YesStash) 
                     {
                         If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
