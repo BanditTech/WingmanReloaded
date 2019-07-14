@@ -34,10 +34,10 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Option to keep maps Unidentified
 
 * Assorted Additions
-- Debug Mode with aditional tools when enabled.
-- Hotkeys to Reload (Alt-Esc) or Exit (Win-Esc)
-- Now runs in background on start unless you open settings.
-- Continued Fine-Tuning the logic of the script
+  - Debug Mode with aditional tools when enabled.
+  - Hotkeys to Reload (Alt-Esc) or Exit (Win-Esc)
+  - Now runs in background on start unless you open settings.
+  - Continued Fine-Tuning the logic of the script
 
 * Feature in testing:
   - UltraWide Scaling
