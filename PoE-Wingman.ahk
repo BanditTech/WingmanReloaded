@@ -1662,12 +1662,14 @@ SwiftClick(x, y){
 ; Right Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RightClick(x, y){
+    BlockInput, MouseMove
 	MouseMove, x, y
 	Sleep 15
     Send {Click, Down x, y, Right}
 	Sleep 30
     Send {Click, Up x, y, Right}
 	Sleep 15
+    BlockInput, MouseMoveOff
     return
 	}
 
@@ -1675,6 +1677,7 @@ RightClick(x, y){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ShiftClick(x, y){
     BlockInput, MouseMove
+	MouseMove, x, y
     Sleep, 15
 	Send {Shift Down}
     Sleep, 30
@@ -1692,6 +1695,7 @@ ShiftClick(x, y){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CtrlClick(x, y){
     BlockInput, MouseMove
+	MouseMove, x, y
     Sleep, 15
 	Send {Ctrl Down}
     Sleep, 30
