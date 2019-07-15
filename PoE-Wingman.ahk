@@ -72,62 +72,62 @@ readFromFile()
 		; Choose one of the default background colors with no transparency
 		; These are the mouseover Hex for each of the default colors
 		Global ColorKey := { Red: 0xFE2222
-						, Brown : 0xDA8B4D
-						, Tan : 0xFCDDB2
-						, Yellow : 0xEFDB27
-						, Green : 0x22AB22
-						, Baby Blue : 0x45F2F2
-						, Blue : 0x2222FE
-						, Lavender : 0x8F8FFE
-						, White : 0xFFFFFF
-						, Black : 0x222222}
+				, Brown : 0xDA8B4D
+				, Tan : 0xFCDDB2
+				, Yellow : 0xEFDB27
+				, Green : 0x22AB22
+				, Baby Blue : 0x45F2F2
+				, Blue : 0x2222FE
+				, Lavender : 0x8F8FFE
+				, White : 0xFFFFFF
+				, Black : 0x222222}
 
 		; Use the colorkey above to choose your background colors. 
 		Global LootColors := { 1 : 0xFFFFFF
-						, 2 : 0xFCDDB2
-						, 3 : 0x222222}
+				, 2 : 0xFCDDB2
+				, 3 : 0x222222}
 
 		Global ItemProp := {ItemName: ""
-							, Rarity : ""
-							, SpecialType : ""
-							, Stack : 0
-							, StackMax : 0
-							, RarityCurrency : False
-							, RarityDivination : False
-							, RarityGem : False
-							, RarityNormal : False
-							, RarityMagic : False
-							, RarityRare : False
-							, RarityUnique : False
-							, Identified : True
-							, Map : False
-							, Ring : False
-							, Amulet : False
-							, Chromatic : False
-							, Jewel : False
-							, AbyssJewel : False
-							, Essence : False
-							, Quality : 0
-							, Sockets : 0
-							, RawSockets : ""
-							, LinkCount : 0
-							, 2Link : False
-							, 3Link : False
-							, 4Link : False
-							, 5Link : False
-							, 6Link : False
-							, Jeweler : False
-							, TimelessSplinter : False
-							, BreachSplinter : False
-							, SacrificeFragment : False
-							, MortalFragment : False
-							, GuardianFragment : False
-							, ProphecyFragment : False
-							, Scarab : False
-							, Offering : False
-							, Vessel : False
-							, Incubator : False
-							, Flask : False}
+				, Rarity : ""
+				, SpecialType : ""
+				, Stack : 0
+				, StackMax : 0
+				, RarityCurrency : False
+				, RarityDivination : False
+				, RarityGem : False
+				, RarityNormal : False
+				, RarityMagic : False
+				, RarityRare : False
+				, RarityUnique : False
+				, Identified : True
+				, Map : False
+				, Ring : False
+				, Amulet : False
+				, Chromatic : False
+				, Jewel : False
+				, AbyssJewel : False
+				, Essence : False
+				, Quality : 0
+				, Sockets : 0
+				, RawSockets : ""
+				, LinkCount : 0
+				, 2Link : False
+				, 3Link : False
+				, 4Link : False
+				, 5Link : False
+				, 6Link : False
+				, Jeweler : False
+				, TimelessSplinter : False
+				, BreachSplinter : False
+				, SacrificeFragment : False
+				, MortalFragment : False
+				, GuardianFragment : False
+				, ProphecyFragment : False
+				, Scarab : False
+				, Offering : False
+				, Vessel : False
+				, Incubator : False
+				, Flask : False}
 		
 		global Detonated := 0
 		global CritQuit := 1
@@ -318,7 +318,7 @@ readFromFile()
 			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
 			global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
 			global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-			global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 3745))
+			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
 			}
 		Else
 			{
@@ -1357,65 +1357,65 @@ readFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LootScan(){
 	LootScanCommand:
-    Pressed := GetKeyState(hotkeyLootScan, "P")
-    AreaScale:=0
-    While (Pressed&&LootVacuum)
-        {
-        For k, ColorHex in LootColors
-            {
-            Pressed := GetKeyState(hotkeyLootScan, "P")
-            MouseGetPos CenterX, CenterY
-            ScanX1:=(CenterX-(AreaScale*AreaScale))
-            ScanY1:=(CenterY-(AreaScale*AreaScale))
-            ScanX2:=(CenterX+(AreaScale*AreaScale))
-            ScanY2:=(CenterY+(AreaScale*AreaScale))
-            PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
-            If (ErrorLevel = 0)
-                SwiftClick(ScanPx, ScanPy)
-            Else If (ErrorLevel = 1)
-                Continue
-            }
-        }
-    Return
+	Pressed := GetKeyState(hotkeyLootScan, "P")
+	AreaScale:=0
+	While (Pressed&&LootVacuum)
+		{
+		For k, ColorHex in LootColors
+			{
+			Pressed := GetKeyState(hotkeyLootScan, "P")
+			MouseGetPos CenterX, CenterY
+			ScanX1:=(CenterX-(AreaScale*AreaScale))
+			ScanY1:=(CenterY-(AreaScale*AreaScale))
+			ScanX2:=(CenterX+(AreaScale*AreaScale))
+			ScanY2:=(CenterY+(AreaScale*AreaScale))
+			PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
+			If (ErrorLevel = 0)
+				SwiftClick(ScanPx, ScanPy)
+			Else If (ErrorLevel = 1)
+				Continue
+			}
+		}
+	Return
 	}
 
 ; Scan inventory and determine action
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ItemSort(){
 	ItemSortCommand:
-    CurrentTab:=0
-    MouseGetPos xx, yy
-    IfWinActive, Path of Exile
-    {
-        If RunningToggle  ; This means an underlying thread is already running the loop below.
-        {
-            RunningToggle := False  ; Signal that thread's loop to stop.
-            return  ; End this thread so that the one underneath will resume and see the change made by the line above.
-        }
-        RunningToggle := True
-        GuiStatus()
-        If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
-            Return
-        For k, GridY in InventoryGridY
-        {
-            If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-                Break
-            For k, GridX in InventoryGridX
-            {
-                If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-                    Break
-                Grid := RandClick(GridX, GridY)
-                If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-                {   
-                    ;Unmark the below lines to check if it is going into scroll area during run
-                    ;MsgBox, Hit Scroll
-                    ;Return
-                    Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-                } 
-                pixelgetcolor, PointColor, GridX, GridY
-                If ((PointColor=UnIdColor) || (PointColor=IdColor))
-                {
-                    ClipItem(Grid.X,Grid.Y)
+	CurrentTab:=0
+	MouseGetPos xx, yy
+	IfWinActive, Path of Exile
+	{
+		If RunningToggle  ; This means an underlying thread is already running the loop below.
+		{
+			RunningToggle := False  ; Signal that thread's loop to stop.
+			return  ; End this thread so that the one underneath will resume and see the change made by the line above.
+		}
+		RunningToggle := True
+		GuiStatus()
+		If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
+			Return
+		For k, GridY in InventoryGridY
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			For k, GridX in InventoryGridX
+			{
+				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+					Break
+				Grid := RandClick(GridX, GridY)
+				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+				{   
+					;Unmark the below lines to check if it is going into scroll area during run
+					;MsgBox, Hit Scroll
+					;Return
+					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+				} 
+				pixelgetcolor, PointColor, GridX, GridY
+				If ((PointColor=UnIdColor) || (PointColor=IdColor))
+				{
+					ClipItem(Grid.X,Grid.Y)
 					If (!ItemProp.Identified&&YesIdentify)
 						{
 						If (ItemProp.Map&&!YesMapUnid)
@@ -1435,76 +1435,76 @@ ItemSort(){
 								WisdomScroll(Grid.X,Grid.Y)
 							}
 						}
-                    If (OnStash&&YesStash) 
-                    {
-                        If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
-                        {
-                            MoveStash(StashTabCurrency)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Map&&StashTabYesMap)
-                        {
-                            MoveStash(StashTabMap)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.BreachSplinter&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.SacrificeFragment&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.MortalFragment&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.GuardianFragment&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.ProphecyFragment&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Offering&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Vessel&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Scarab&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.RarityDivination&&StashTabYesDivination)
-                        {
-                            MoveStash(StashTabDivination)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.RarityUnique&&ItemProp.Ring)
-                        {
+					If (OnStash&&YesStash) 
+					{
+						If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
+						{
+							MoveStash(StashTabCurrency)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Map&&StashTabYesMap)
+						{
+							MoveStash(StashTabMap)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.BreachSplinter&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.SacrificeFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.MortalFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.GuardianFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.ProphecyFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Offering&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Vessel&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Scarab&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.RarityDivination&&StashTabYesDivination)
+						{
+							MoveStash(StashTabDivination)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.RarityUnique&&ItemProp.Ring)
+						{
 							If (StashTabYesCollection)
 							{
 								MoveStash(StashTabCollection)
@@ -1522,10 +1522,10 @@ ItemSort(){
 								MoveStash(StashTabUniqueRing)
 								CtrlClick(Grid.X,Grid.Y)
 							}
-                            Continue
-                        }
-                        Else If (ItemProp.RarityUnique)
-                        {
+							Continue
+						}
+						Else If (ItemProp.RarityUnique)
+						{
 							If (StashTabYesCollection)
 							{
 								MoveStash(StashTabCollection)
@@ -1537,114 +1537,114 @@ ItemSort(){
 										Continue
 									Sleep, 60
 									}
-                            }
+							}
 							If (StashTabYesUniqueDump)
 								{
 								MoveStash(StashTabUniqueDump)
 								CtrlClick(Grid.X,Grid.Y)
 								}
-                            Continue
-                        }
-                        If (ItemProp.Essence&&StashTabYesEssence)
-                        {
-                            MoveStash(StashTabEssence)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
-                        {
-                            MoveStash(StashTabFlaskQuality)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.RarityGem)
-                        {
-                            If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
-                            {
-                                MoveStash(StashTabGemQuality)
-                                CtrlClick(Grid.X,Grid.Y)
-                                Continue
-                            }
-                            Else If (StashTabYesGem)
-                            {
-                                MoveStash(StashTabGem)
-                                CtrlClick(Grid.X,Grid.Y)
-                                Continue
-                            }
-                        }
-                        If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
-                        {
-                            MoveStash(StashTabLinked)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
-                        {
-                            MoveStash(StashTabTimelessSplinter)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                    }
-                    If (OnVendor&&YesVendor)
-                    {
+							Continue
+						}
+						If (ItemProp.Essence&&StashTabYesEssence)
+						{
+							MoveStash(StashTabEssence)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
+						{
+							MoveStash(StashTabFlaskQuality)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.RarityGem)
+						{
+							If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
+							{
+								MoveStash(StashTabGemQuality)
+								CtrlClick(Grid.X,Grid.Y)
+								Continue
+							}
+							Else If (StashTabYesGem)
+							{
+								MoveStash(StashTabGem)
+								CtrlClick(Grid.X,Grid.Y)
+								Continue
+							}
+						}
+						If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
+						{
+							MoveStash(StashTabLinked)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
+						{
+							MoveStash(StashTabTimelessSplinter)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+					}
+					If (OnVendor&&YesVendor)
+					{
 						If (ItemProp.RarityCurrency)
 							Continue
-                        If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
-                            Continue
-                        If ( ItemProp.SpecialType="" )
-                        {
-                            Sleep, 30
-                            CtrlClick(Grid.X,Grid.Y)
-                            Sleep, 10
-                            Continue
-                        }
-                    }
-                }   
-            }
-        }
-        If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-        {
-            StockScrolls()
-        }
-    }
-    RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
-    CurrentTab:=0
-    MouseMove, xx, yy, 0
-    Return
+						If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
+							Continue
+						If ( ItemProp.SpecialType="" )
+						{
+							Sleep, 30
+							CtrlClick(Grid.X,Grid.Y)
+							Sleep, 10
+							Continue
+						}
+					}
+				}   
+			}
+		}
+		If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+		{
+			StockScrolls()
+		}
+	}
+	RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+	CurrentTab:=0
+	MouseMove, xx, yy, 0
+	Return
 	}
 
 ; Input any digit and it will move to that Stash tab, only tested up to 25 tabs
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MoveStash(Tab){
-    If (CurrentTab=Tab)
-        return
-    If (CurrentTab!=Tab)
-    {
-        MouseGetPos MSx, MSy
-        BlockInput, MouseMove
-        Sleep, 30
-        MouseMove, 640, 146, 0
-        Sleep, 30
-        Click, Down, Left, 1
-        Sleep, 30
-        Click, Up, Left, 1
-        Sleep, 15
-        MouseMove, 760, (120 + (Tab*22)), 0
-        Sleep, 45
-        send {Enter}
-        Sleep, 45
-        MouseMove, 640, 146, 0
-        Sleep, 30
-        Click, Down, Left, 1
-        Sleep, 30
-        Click, Up, Left, 1
-        Sleep, 45
-        CurrentTab:=Tab
-        MouseMove, MSx, MSy, 0
-        Sleep, 30
-        BlockInput, MouseMoveOff
-    }
-    return
+	If (CurrentTab=Tab)
+		return
+	If (CurrentTab!=Tab)
+		{
+		MouseGetPos MSx, MSy
+		BlockInput, MouseMove
+		Sleep, 30
+		MouseMove, 640, 146, 0
+		Sleep, 30
+		Click, Down, Left, 1
+		Sleep, 30
+		Click, Up, Left, 1
+		Sleep, 15
+		MouseMove, 760, (120 + (Tab*22)), 0
+		Sleep, 45
+		send {Enter}
+		Sleep, 45
+		MouseMove, 640, 146, 0
+		Sleep, 30
+		Click, Down, Left, 1
+		Sleep, 30
+		Click, Up, Left, 1
+		Sleep, 45
+		CurrentTab:=Tab
+		MouseMove, MSx, MSy, 0
+		Sleep, 30
+		BlockInput, MouseMoveOff
+		}
+	return
 	}
 
 ; Swift Click at Coord
@@ -1652,149 +1652,149 @@ MoveStash(Tab){
 SwiftClick(x, y){
 	MouseMove, x, y	
 	Sleep 15
-    Send {Click, Down x, y }
+	Send {Click, Down x, y }
 	Sleep 30
-    Send {Click, Up x, y }
+	Send {Click, Up x, y }
 	Sleep 15
-    return
+	return
 	}
 
 ; Right Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RightClick(x, y){
-    BlockInput, MouseMove
+	BlockInput, MouseMove
 	MouseMove, x, y
 	Sleep 15
-    Send {Click, Down x, y, Right}
+	Send {Click, Down x, y, Right}
 	Sleep 30
-    Send {Click, Up x, y, Right}
+	Send {Click, Up x, y, Right}
 	Sleep 15
-    BlockInput, MouseMoveOff
-    return
+	BlockInput, MouseMoveOff
+	return
 	}
 
 ; Shift Click +Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ShiftClick(x, y){
-    BlockInput, MouseMove
+	BlockInput, MouseMove
 	MouseMove, x, y
-    Sleep, 15
+	Sleep, 15
 	Send {Shift Down}
-    Sleep, 30
+	Sleep, 30
 	Send {Click, Down, x, y}
-    Sleep, 30
+	Sleep, 30
 	Send {Click, Up, x, y}
-    Sleep, 15
+	Sleep, 15
 	Send {Shift Up}
-    Sleep, 15
-    BlockInput, MouseMoveOff
-    return
+	Sleep, 15
+	BlockInput, MouseMoveOff
+	return
 	}
 
 ; Ctrl Click ^Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CtrlClick(x, y){
-    BlockInput, MouseMove
+	BlockInput, MouseMove
 	MouseMove, x, y
-    Sleep, 15
+	Sleep, 15
 	Send {Ctrl Down}
-    Sleep, 30
+	Sleep, 30
 	Send {Click, Down, x, y}
-    Sleep, 30
+	Sleep, 30
 	Send {Click, Up, x, y}
-    ;Send ^{Click, Up, x, y}
-    Sleep, 15
+	;Send ^{Click, Up, x, y}
+	Sleep, 15
 	Send {Ctrl Up}
-    Sleep, 15
-    BlockInput, MouseMoveOff
-    return
+	Sleep, 15
+	BlockInput, MouseMoveOff
+	return
 	}
 
 ; Identify Item at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 WisdomScroll(x, y){
-    BlockInput, MouseMove
-    Sleep, 30
+	BlockInput, MouseMove
+	Sleep, 30
 	MouseMove %WisdomScrollX%, %WisdomScrollY%
-    Sleep, 30
-    Click, Down, Right, 1
-    Sleep, 30
-    Click, Up, Right, 1
+	Sleep, 30
+	Click, Down, Right, 1
+	Sleep, 30
+	Click, Up, Right, 1
 	Sleep, 15
-    MouseMove %x%, %y%
-    Sleep, 30
-    Click, Down, Left, 1
-    Sleep, 30
-    Click, Up, Left, 1
-    Sleep, 30
-    BlockInput, MouseMoveOff
-    return
+	MouseMove %x%, %y%
+	Sleep, 30
+	Click, Down, Left, 1
+	Sleep, 30
+	Click, Up, Left, 1
+	Sleep, 30
+	BlockInput, MouseMoveOff
+	return
 	}
 
 ; Restock scrolls that have more than 10 missing
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 StockScrolls(){
-    BlockInput, MouseMove
-    If StockWisdom{
-        MouseMove %WisdomScrollX%, %WisdomScrollY%
-        ClipItem(WisdomScrollX, WisdomScrollY)
-        Sleep 20
-        dif := (40 - ItemProp.Stack)
-        If (dif>10)
-        {
-            MoveStash(1)
-            MouseMove 125, 262
-            Sleep 15
-            ShiftClick(125, 262)
-            Sleep 30
-            Send %dif%
-            Sleep 45
-            Send {Enter}
-            Sleep 60
+	BlockInput, MouseMove
+	If StockWisdom{
+		MouseMove %WisdomScrollX%, %WisdomScrollY%
+		ClipItem(WisdomScrollX, WisdomScrollY)
+		Sleep 20
+		dif := (40 - ItemProp.Stack)
+		If (dif>10)
+		{
+			MoveStash(1)
+			MouseMove 125, 262
+			Sleep 15
+			ShiftClick(125, 262)
+			Sleep 30
+			Send %dif%
+			Sleep 45
+			Send {Enter}
+			Sleep 60
 			Send {Click, Down, %WisdomScrollX%, %WisdomScrollY%}
 			Sleep, 30
 			Send {Click, Up, %WisdomScrollX%, %WisdomScrollY%}
 			Sleep, 45
-        }
-        Sleep 20
-    }
-    If StockPortal{
-        MouseMove %PortalScrollX%, %PortalScrollY%
-        ClipItem(PortalScrollX, PortalScrollY)
-        Sleep 20
-        dif := (40 - ItemProp.Stack)
-        If (dif>10)
-        {
-            MoveStash(1)
-            MouseMove 175, 262
-            Sleep 15
-            ShiftClick(175, 262)
-            Sleep 30
-            Send %dif%
-            Sleep 45
-            Send {Enter}
-            Sleep 60
+		}
+		Sleep 20
+	}
+	If StockPortal{
+		MouseMove %PortalScrollX%, %PortalScrollY%
+		ClipItem(PortalScrollX, PortalScrollY)
+		Sleep 20
+		dif := (40 - ItemProp.Stack)
+		If (dif>10)
+		{
+			MoveStash(1)
+			MouseMove 175, 262
+			Sleep 15
+			ShiftClick(175, 262)
+			Sleep 30
+			Send %dif%
+			Sleep 45
+			Send {Enter}
+			Sleep 60
 			Send {Click, Down, %PortalScrollX%, %PortalScrollY%}
 			Sleep, 30
 			Send {Click, Up, %PortalScrollX%, %PortalScrollY%}
 			Sleep, 45
-        }
-    }
-    BlockInput, MouseMoveOff
-    return
+		}
+	}
+	BlockInput, MouseMoveOff
+	return
 	}
 
 ; Capture Clip at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ClipItem(x, y){
-    BlockInput, MouseMove
-    Clipboard := ""
-    MouseMove %x%, %y%
-    Sleep 80
-    Send ^c
-    ClipWait, 0
-    ParseClip()
-    BlockInput, MouseMoveOff
+	BlockInput, MouseMove
+	Clipboard := ""
+	MouseMove %x%, %y%
+	Sleep 80
+	Send ^c
+	ClipWait, 0
+	ParseClip()
+	BlockInput, MouseMoveOff
  }
 
 ; Randomize Click area around middle of cell using Coord
@@ -1822,9 +1822,9 @@ AutoQuit(){
 	AutoQuitCommand:
 	AutoQuit := !AutoQuit
 	if ((!AutoFlask) && (!AutoQuit)) {
-        SetTimer TGameTick, Off
-    } else {
-    }
+		SetTimer TGameTick, Off
+	} else {
+	}
 	GuiUpdate()
 	return
 	}
@@ -1835,10 +1835,10 @@ AutoFlask(){
 	AutoFlaskCommand:	
 	AutoFlask := !AutoFlask
 	if ((!AutoFlask) and (!AutoQuit)) {
-        SetTimer TGameTick, Off
-    } else {
-        SetTimer TGameTick, %Tick%
-    }
+		SetTimer TGameTick, Off
+	} else {
+		SetTimer TGameTick, %Tick%
+	}
 	GuiUpdate()	
 	return
 	}
@@ -1942,31 +1942,31 @@ QuickPortal(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
 	PopFlasksCommand:
-    Send 1
-    OnCoolDown[1]:=1 
-    CoolDown:=CoolDownFlask1
-    settimer, TimmerFlask1, %CoolDown%
+	Send 1
+	OnCoolDown[1]:=1 
+	CoolDown:=CoolDownFlask1
+	settimer, TimmerFlask1, %CoolDown%
 	RandomSleep(-99,99)
-    Send 4
-    OnCoolDown[4]:=1 
-    CoolDown:=CoolDownFlask4
-    settimer, TimmerFlask4, %CoolDown%
+	Send 4
+	OnCoolDown[4]:=1 
+	CoolDown:=CoolDownFlask4
+	settimer, TimmerFlask4, %CoolDown%
 	RandomSleep(-99,99)
-    Send 3
-    OnCoolDown[3]:=1 
-    CoolDown:=CoolDownFlask3
-    settimer, TimmerFlask3, %CoolDown%
+	Send 3
+	OnCoolDown[3]:=1 
+	CoolDown:=CoolDownFlask3
+	settimer, TimmerFlask3, %CoolDown%
 	RandomSleep(-99,99)
-    Send 2
-    OnCoolDown[2]:=1 
-    CoolDown:=CoolDownFlask2
-    settimer, TimmerFlask2, %CoolDown%
+	Send 2
+	OnCoolDown[2]:=1 
+	CoolDown:=CoolDownFlask2
+	settimer, TimmerFlask2, %CoolDown%
 	RandomSleep(-99,99)
-    Send 5
-    OnCoolDown[5]:=1 
-    CoolDown:=CoolDownFlask5
-    settimer, TimmerFlask5, %CoolDown%
-    return
+	Send 5
+	OnCoolDown[5]:=1 
+	CoolDown:=CoolDownFlask5
+	settimer, TimmerFlask5, %CoolDown%
+	return
 	}
 
 ;logout to character selection
@@ -2038,8 +2038,8 @@ ParseClip(){
 				, Vessel : False
 				, Incubator : False
 				, Flask : False}
-    
-	;Begin parsing information    
+	
+	;Begin parsing information	
 	Loop, Parse, Clipboard, `n, `r
 	{
 		; Clipboard must have "Rarity:" in the first line
@@ -2051,44 +2051,44 @@ ParseClip(){
 			}
 			Else
 			{
-                IfInString, A_LoopField, Currency
-                {
-                    ItemProp.RarityCurrency := True
-                    ItemProp.Rarity := "Currency"
-                }
-                IfInString, A_LoopField, Divination Card
-                {
-                    ItemProp.RarityDivination := True
-                    ItemProp.Rarity := "Divination Card"
-                    ItemProp.SpecialType := "Divination Card"
-                }
-                IfInString, A_LoopField, Gem
-                {
-                    ItemProp.RarityGem := True
-                    ItemProp.Rarity := "Gem"
-                    ItemProp.SpecialType := "Gem"
-                }
-                IfInString, A_LoopField, Normal
-                {
-                    ItemProp.RarityNormal := True
-                    ItemProp.Rarity := "Normal"
-                }
-                IfInString, A_LoopField, Magic
-                {
-                    ItemProp.RarityMagic := True
-                    ItemProp.Rarity := "Magic"
-                }
-                IfInString, A_LoopField, Rare
-                {
-                    ItemProp.RarityRare := True
-                    ItemProp.Rarity := "Rare"
-                }
-                IfInString, A_LoopField, Unique
-                {
-                    ItemProp.RarityUnique := True
-                    ItemProp.Rarity := "Unique"
+				IfInString, A_LoopField, Currency
+				{
+					ItemProp.RarityCurrency := True
+					ItemProp.Rarity := "Currency"
 				}
-                Continue
+				IfInString, A_LoopField, Divination Card
+				{
+					ItemProp.RarityDivination := True
+					ItemProp.Rarity := "Divination Card"
+					ItemProp.SpecialType := "Divination Card"
+				}
+				IfInString, A_LoopField, Gem
+				{
+					ItemProp.RarityGem := True
+					ItemProp.Rarity := "Gem"
+					ItemProp.SpecialType := "Gem"
+				}
+				IfInString, A_LoopField, Normal
+				{
+					ItemProp.RarityNormal := True
+					ItemProp.Rarity := "Normal"
+				}
+				IfInString, A_LoopField, Magic
+				{
+					ItemProp.RarityMagic := True
+					ItemProp.Rarity := "Magic"
+				}
+				IfInString, A_LoopField, Rare
+				{
+					ItemProp.RarityRare := True
+					ItemProp.Rarity := "Rare"
+				}
+				IfInString, A_LoopField, Unique
+				{
+					ItemProp.RarityUnique := True
+					ItemProp.Rarity := "Unique"
+				}
+				Continue
 			}
 		}
 
@@ -2101,180 +2101,180 @@ ParseClip(){
 			}
 			Else
 			{
-                ItemProp.ItemName := ItemProp.ItemName . A_LoopField . "`n" ; Add a line of name
-                IfInString, A_LoopField, Ring
-                {
-                    ItemProp.Ring := True
-                    Continue
-                }
-                IfInString, A_LoopField, Amulet
-                {
-                    ItemProp.Amulet := True
-                    Continue
-                }
-                IfInString, A_LoopField, Map
-                {
-                    ItemProp.Map := True
-                    ItemProp.SpecialType := "Map"
-                    Continue
-                }
-                IfInString, A_LoopField, Map
-                {
-                    ItemProp.Map := True
-                    ItemProp.SpecialType := "Map"
-                    Continue
-                }
-                IfInString, A_LoopField, Incubator
-                {
-                    ItemProp.Incubator := True
-                    ItemProp.SpecialType := "Incubator"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Karui Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Eternal Empire Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Vaal Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Templar Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Maraketh Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Splinter of
-                {
-                    ItemProp.BreachSplinter := True
-                    ItemProp.SpecialType := "Breach Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Sacrifice at
-                {
-                    ItemProp.SacrificeFragment := True
-                    ItemProp.SpecialType := "Sacrifice Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Mortal Grief
-                {
-                    ItemProp.MortalFragment := True
-                    ItemProp.SpecialType := "Mortal Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Mortal Hope
-                {
-                    ItemProp.MortalFragment := True
-                    ItemProp.SpecialType := "Mortal Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Mortal Ignorance
-                {
-                    ItemProp.MortalFragment := True
-                    ItemProp.SpecialType := "Mortal Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Mortal Rage
-                {
-                    ItemProp.MortalFragment := True
-                    ItemProp.SpecialType := "Mortal Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Fragment of the
-                {
-                    ItemProp.GuardianFragment := True
-                    ItemProp.SpecialType := "Guardian Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Volkuur's Key
-                {
-                    ItemProp.ProphecyFragment := True
-                    ItemProp.SpecialType := "Prophecy Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Eber's Key
-                {
-                    ItemProp.ProphecyFragment := True
-                    ItemProp.SpecialType := "Prophecy Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Yriel's Key
-                {
-                    ItemProp.ProphecyFragment := True
-                    ItemProp.SpecialType := "Prophecy Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Inya's Key
-                {
-                    ItemProp.ProphecyFragment := True
-                    ItemProp.SpecialType := "Prophecy Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Scarab
-                {
-                    ItemProp.Scarab := True
-                    ItemProp.SpecialType := "Scarab"
-                    Continue
-                }
-                IfInString, A_LoopField, Offering to the Goddess
-                {
-                    ItemProp.Offering := True
-                    ItemProp.SpecialType := "Offering"
-                    Continue
-                }
-                IfInString, A_LoopField, Essence of
-                {
-                    ItemProp.Essence := True
-                    ItemProp.SpecialType := "Essence"
-                    Continue
-                }
-                IfInString, A_LoopField, Divine Vessel
-                {
-                    ItemProp.Vessel := True
-                    ItemProp.SpecialType := "Divine Vessel"
-                    Continue
+				ItemProp.ItemName := ItemProp.ItemName . A_LoopField . "`n" ; Add a line of name
+				IfInString, A_LoopField, Ring
+				{
+					ItemProp.Ring := True
+					Continue
 				}
-                IfInString, A_LoopField, Eye Jewel
-                {
-                    ItemProp.AbyssJewel := True
-                    ItemProp.Jewel := True
-                    Continue
+				IfInString, A_LoopField, Amulet
+				{
+					ItemProp.Amulet := True
+					Continue
 				}
-                IfInString, A_LoopField, Cobalt Jewel
-                {
-                    ItemProp.Jewel := True
-                    Continue
+				IfInString, A_LoopField, Map
+				{
+					ItemProp.Map := True
+					ItemProp.SpecialType := "Map"
+					Continue
 				}
-                IfInString, A_LoopField, Crimson Jewel
-                {
-                    ItemProp.Jewel := True
-                    Continue
+				IfInString, A_LoopField, Map
+				{
+					ItemProp.Map := True
+					ItemProp.SpecialType := "Map"
+					Continue
 				}
-                IfInString, A_LoopField, Viridian Jewel
-                {
-                    ItemProp.Jewel := True
-                    Continue
+				IfInString, A_LoopField, Incubator
+				{
+					ItemProp.Incubator := True
+					ItemProp.SpecialType := "Incubator"
+					Continue
 				}
-                IfInString, A_LoopField, Flask
-                {
-                    ItemProp.Flask := True
-                    Continue
+				IfInString, A_LoopField, Timeless Karui Splinter
+				{
+					ItemProp.TimelessSplinter := True
+					ItemProp.SpecialType := "Timeless Splinter"
+					Continue
+				}
+				IfInString, A_LoopField, Timeless Eternal Empire Splinter
+				{
+					ItemProp.TimelessSplinter := True
+					ItemProp.SpecialType := "Timeless Splinter"
+					Continue
+				}
+				IfInString, A_LoopField, Timeless Vaal Splinter
+				{
+					ItemProp.TimelessSplinter := True
+					ItemProp.SpecialType := "Timeless Splinter"
+					Continue
+				}
+				IfInString, A_LoopField, Timeless Templar Splinter
+				{
+					ItemProp.TimelessSplinter := True
+					ItemProp.SpecialType := "Timeless Splinter"
+					Continue
+				}
+				IfInString, A_LoopField, Timeless Maraketh Splinter
+				{
+					ItemProp.TimelessSplinter := True
+					ItemProp.SpecialType := "Timeless Splinter"
+					Continue
+				}
+				IfInString, A_LoopField, Splinter of
+				{
+					ItemProp.BreachSplinter := True
+					ItemProp.SpecialType := "Breach Splinter"
+					Continue
+				}
+				IfInString, A_LoopField, Sacrifice at
+				{
+					ItemProp.SacrificeFragment := True
+					ItemProp.SpecialType := "Sacrifice Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Mortal Grief
+				{
+					ItemProp.MortalFragment := True
+					ItemProp.SpecialType := "Mortal Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Mortal Hope
+				{
+					ItemProp.MortalFragment := True
+					ItemProp.SpecialType := "Mortal Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Mortal Ignorance
+				{
+					ItemProp.MortalFragment := True
+					ItemProp.SpecialType := "Mortal Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Mortal Rage
+				{
+					ItemProp.MortalFragment := True
+					ItemProp.SpecialType := "Mortal Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Fragment of the
+				{
+					ItemProp.GuardianFragment := True
+					ItemProp.SpecialType := "Guardian Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Volkuur's Key
+				{
+					ItemProp.ProphecyFragment := True
+					ItemProp.SpecialType := "Prophecy Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Eber's Key
+				{
+					ItemProp.ProphecyFragment := True
+					ItemProp.SpecialType := "Prophecy Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Yriel's Key
+				{
+					ItemProp.ProphecyFragment := True
+					ItemProp.SpecialType := "Prophecy Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Inya's Key
+				{
+					ItemProp.ProphecyFragment := True
+					ItemProp.SpecialType := "Prophecy Fragment"
+					Continue
+				}
+				IfInString, A_LoopField, Scarab
+				{
+					ItemProp.Scarab := True
+					ItemProp.SpecialType := "Scarab"
+					Continue
+				}
+				IfInString, A_LoopField, Offering to the Goddess
+				{
+					ItemProp.Offering := True
+					ItemProp.SpecialType := "Offering"
+					Continue
+				}
+				IfInString, A_LoopField, Essence of
+				{
+					ItemProp.Essence := True
+					ItemProp.SpecialType := "Essence"
+					Continue
+				}
+				IfInString, A_LoopField, Divine Vessel
+				{
+					ItemProp.Vessel := True
+					ItemProp.SpecialType := "Divine Vessel"
+					Continue
+				}
+				IfInString, A_LoopField, Eye Jewel
+				{
+					ItemProp.AbyssJewel := True
+					ItemProp.Jewel := True
+					Continue
+				}
+				IfInString, A_LoopField, Cobalt Jewel
+				{
+					ItemProp.Jewel := True
+					Continue
+				}
+				IfInString, A_LoopField, Crimson Jewel
+				{
+					ItemProp.Jewel := True
+					Continue
+				}
+				IfInString, A_LoopField, Viridian Jewel
+				{
+					ItemProp.Jewel := True
+					Continue
+				}
+				IfInString, A_LoopField, Flask
+				{
+					ItemProp.Flask := True
+					Continue
 				}
 			}
 			Continue
@@ -2285,10 +2285,10 @@ ParseClip(){
 		{
 			StringSplit, RawSocketsArray, A_LoopField, %A_Space%
 			ItemProp.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
-            For k, v in StrSplit(ItemProp.RawSockets, " ") 
-                {        
-                if (v ~= "B") && (v ~= "G") && (v ~= "R")
-                    ItemProp.Chromatic := True
+			For k, v in StrSplit(ItemProp.RawSockets, " ") 
+				{		
+				if (v ~= "B") && (v ~= "G") && (v ~= "R")
+					ItemProp.Chromatic := True
 				Loop, Parse, v
 					Counter++
 				If (Counter=11)
@@ -2314,19 +2314,19 @@ ParseClip(){
 					ItemProp.2Link:=True
 					}
 				Counter:=0
-                }
-            Loop, parse, A_LoopField
-                {
+				}
+			Loop, parse, A_LoopField
+				{
 				if (A_LoopField ~= "[-]")
 					ItemProp.LinkCount++
-                }
-            Loop, parse, A_LoopField
-                {
+				}
+			Loop, parse, A_LoopField
+				{
 				if (A_LoopField ~= "[BGR]")
 					ItemProp.Sockets++
-                }
-            If (ItemProp.Sockets = 6)
-                ItemProp.Jeweler:=True
+				}
+			If (ItemProp.Sockets = 6)
+				ItemProp.Jeweler:=True
 			Continue
 		}
 		; Get quality
@@ -2347,11 +2347,11 @@ ParseClip(){
 		; Flag Unidentified
 		IfInString, A_LoopField, Unidentified
 		{
-            ItemProp.Identified := False
-            continue
+			ItemProp.Identified := False
+			continue
 		}
 	}
-    Return
+	Return
 	}
 
 ; Debugging information on Mouse Cursor
@@ -2359,83 +2359,83 @@ ParseClip(){
 GetMouseCoords(){
 	GetMouseCoordsCommand:
 
-    MouseGetPos x, y
+	MouseGetPos x, y
 	PixelGetColor, xycolor , x, y
-    TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
-    
-    If DebugMessages
-        {
-        TT := TT . "`n" . "`n"
-        GuiStatus()
-        TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-        TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
-        If ShowItemInfo
-            {
-            ClipItem(x, y)
-            For key, value in ItemProp
-                TT := TT . key . ":  " . value . "`n"
-            }
-        }
-    MsgBox %TT%
-    If (DebugMessages&&ShowPixelGrid)
-        {
-        TT := ""
+	TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
+	
+	If DebugMessages
+		{
+		TT := TT . "`n" . "`n"
+		GuiStatus()
+		TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
+		TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
+		If ShowItemInfo
+			{
+			ClipItem(x, y)
+			For key, value in ItemProp
+				TT := TT . key . ":  " . value . "`n"
+			}
+		}
+	MsgBox %TT%
+	If (DebugMessages&&ShowPixelGrid)
+		{
+		TT := ""
 
-        For c, GridX in InventoryGridX
-            {
-            For r, GridY in InventoryGridY
-                {
-                pixelgetcolor, PointColor, GridX, GridY
-                If (PointColor=UnIdColor)
-                    {
-                    TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified" . "`n"
-                    }
-                If (PointColor=IdColor)
-                    {
-                    TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified" . "`n"
-                    }
-                If (PointColor=MOColor)
-                    {
-                    TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected Item" . "`n"
-                    }
-                }
-            }
-        TT := TT . "`n"
-        For c, GridX in InventoryGridX
-            {
-                    TT := TT . "  Start of Column:  " . c . "`n"
-            For r, GridY in InventoryGridY
-                {
-                pixelgetcolor, PointColor, GridX, GridY
-                    TT := TT . "  X-" . GridX . "  Y-" . GridY . "  Color: " . PointColor
-                }
-            TT := TT . "`n"
-            }
-        MsgBox %TT%
-        }
-    Return
+		For c, GridX in InventoryGridX
+			{
+			For r, GridY in InventoryGridY
+				{
+				pixelgetcolor, PointColor, GridX, GridY
+				If (PointColor=UnIdColor)
+					{
+					TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified" . "`n"
+					}
+				If (PointColor=IdColor)
+					{
+					TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified" . "`n"
+					}
+				If (PointColor=MOColor)
+					{
+					TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected Item" . "`n"
+					}
+				}
+			}
+		TT := TT . "`n"
+		For c, GridX in InventoryGridX
+			{
+					TT := TT . "  Start of Column:  " . c . "`n"
+			For r, GridY in InventoryGridY
+				{
+				pixelgetcolor, PointColor, GridX, GridY
+					TT := TT . "  X-" . GridX . "  Y-" . GridY . "  Color: " . PointColor
+				}
+			TT := TT . "`n"
+			}
+		MsgBox %TT%
+		}
+	Return
 	}
 
 ; Auto Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 DetonateMines(){
-    pixelgetcolor, Mine, 1542, 901
-    If (Mine = 0x412037){
-        Sendraw, d
-        Detonated:=1
-        Settimer, TDetonated, 500
-        Return
-        }
-    pixelgetcolor, Mine, 1659, 901
-    If (Mine = 0x84A6DA){
-        Sendraw, d
-        Detonated:=1
-        Settimer, TDetonated, 500
-        Return
-        }
-    ;Uncheck the below line to confirm if you should be getting a trigger, move into either two to test
-    ;MsgBox boom
-	Return    
+	pixelgetcolor, Mine, 1542, 901
+	If (Mine = 0x412037){
+		Sendraw, d
+		Detonated:=1
+		Settimer, TDetonated, 500
+		Return
+		}
+	pixelgetcolor, Mine, 1659, 901
+	If (Mine = 0x84A6DA){
+		Sendraw, d
+		Detonated:=1
+		Settimer, TDetonated, 500
+		Return
+		}
+	;Uncheck the below line to confirm if you should be getting a trigger, move into either two to test
+	;MsgBox boom
+	Return	
 	}
 
 ; Update Overlay ON OFF states
@@ -2467,42 +2467,42 @@ GuiStatus(Fetch:=""){
 			}
 		Return
 		}
-    pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-    if (POnHideout=varOnHideout) {
-        OnHideout:=True
-    	} Else {
-        OnHideout:=False
-    	}
-    pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
-    If (POnChar=varOnChar)  {
+	pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+	if (POnHideout=varOnHideout) {
+		OnHideout:=True
+		} Else {
+		OnHideout:=False
+		}
+	pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
+	If (POnChar=varOnChar)  {
 		 OnChar:=True
 		 } Else {
-        OnChar:=False
-    	}
-    pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-    If (POnChat=varOnChat) {
-    	OnChat:=True
+		OnChar:=False
+		}
+	pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
+	If (POnChat=varOnChat) {
+		OnChat:=True
 		} Else {
-        OnChat:=False
-    	}
-    pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-    If (POnInventory=varOnInventory) {
-        OnInventory:=True
-    	} Else {
-        OnInventory:=False
-    	}
-    pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-    If (POnStash=varOnStash) {
-        OnStash:=True
-    	} Else {
-        OnStash:=False
-    	}
-    pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
-    If (POnVendor=varOnVendor) {
-        OnVendor:=True
-    	} Else {
-        OnVendor:=False
-    	}
+		OnChat:=False
+		}
+	pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
+	If (POnInventory=varOnInventory) {
+		OnInventory:=True
+		} Else {
+		OnInventory:=False
+		}
+	pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
+	If (POnStash=varOnStash) {
+		OnStash:=True
+		} Else {
+		OnStash:=False
+		}
+	pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
+	If (POnVendor=varOnVendor) {
+		OnVendor:=True
+		} Else {
+		OnVendor:=False
+		}
 	Return
 	}
 
@@ -2513,9 +2513,9 @@ GuiStatus(Fetch:=""){
 TMineTick(){
 	IfWinActive, Path of Exile
 		{	
-        If (DetonateMines&&!Detonated) {
-        	DetonateMines()
-        	}
+		If (DetonateMines&&!Detonated) {
+			DetonateMines()
+			}
 		}
 	}
 
@@ -2525,9 +2525,9 @@ TGameTick(){
 	IfWinActive, Path of Exile
 	{	
 		; Check what status is your character in the game
-        GuiStatus()
+		GuiStatus()
 		if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
-			GuiUpdate()                                                                                                       
+			GuiUpdate()																									   
 			Exit
 		}
 
@@ -2547,7 +2547,7 @@ TGameTick(){
 			if (Life20!=varLife20) {
 				Trigger:=Trigger+TriggerLife20			
 				if (AutoQuit=1) && (Quit20=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2557,7 +2557,7 @@ TGameTick(){
 			if (Life30!=varLife30) {
 				Trigger:=Trigger+TriggerLife30				
 				if (AutoQuit=1) && (Quit30=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2567,7 +2567,7 @@ TGameTick(){
 			if (Life40!=varLife40) {
 				Trigger:=Trigger+TriggerLife40
 				if (AutoQuit=1) && (Quit40=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2601,7 +2601,7 @@ TGameTick(){
 			if (Life20!=varLife20) {
 				Trigger:=Trigger+TriggerLife20			
 				if (AutoQuit=1) && (Quit20=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2611,7 +2611,7 @@ TGameTick(){
 			if (Life30!=varLife30) {
 				Trigger:=Trigger+TriggerLife30				
 				if (AutoQuit=1) && (Quit30=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2621,7 +2621,7 @@ TGameTick(){
 			if (Life40!=varLife40) {
 				Trigger:=Trigger+TriggerLife40
 				if (AutoQuit=1) && (Quit40=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2687,7 +2687,7 @@ TGameTick(){
 			if (ES20!=varES20) {
 				Trigger:=Trigger+TriggerES20			
 				if (AutoQuit=1) && (Quit20=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2697,7 +2697,7 @@ TGameTick(){
 			if (ES30!=varES30) {
 				Trigger:=Trigger+TriggerES30				
 				if (AutoQuit=1) && (Quit30=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2707,7 +2707,7 @@ TGameTick(){
 			if (ES40!=varES40) {
 				Trigger:=Trigger+TriggerES40
 				if (AutoQuit=1) && (Quit40=1) {
-                    pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
+					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 					if (OnChar=varOnChar)
 					Logout()
 					Exit
@@ -2748,8 +2748,8 @@ TGameTick(){
 		if (AutoFlask=1) {
 			STrigger:= SubStr("00000" Trigger,-4)
 			FL=1
-       
-            loop 5 {
+	   
+			loop 5 {
 				FLVal:=SubStr(STrigger,FL,1)+0
 				if (FLVal > 0) {
 					cd:=OnCoolDown[FL]
@@ -2770,9 +2770,9 @@ TGameTick(){
 ;Clamp Value function
 Clamp( Val, Min, Max) {
   If Val < Min
-    Val := Min
+	Val := Min
   If Val > Max
-    Val := Max
+	Val := Max
 	}
 
 ; Flask Timers
@@ -3034,8 +3034,10 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_class POEWindowClass 
 		{
 			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
-			
-			vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+			If (YesUltraWide)
+				vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+			Else
+				vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 
 			vY_Life20:=Y + Round(A_ScreenHeight / (1080 / 1034))
 			vY_Life30:=Y + Round(A_ScreenHeight / (1080 / 1014))
@@ -3046,7 +3048,11 @@ Clamp( Val, Min, Max) {
 			vY_Life80:=Y + Round(A_ScreenHeight / (1080 / 914))
 			vY_Life90:=Y + Round(A_ScreenHeight / (1080 / 894))
 			
-			vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+			If (YesUltraWide)
+				vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+			Else
+				vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+				
 			vY_ES20:=Y + Round(A_ScreenHeight / (1080 / 1034))
 			vY_ES30:=Y + Round(A_ScreenHeight / (1080 / 1014))
 			vY_ES40:=Y + Round(A_ScreenHeight / (1080 / 994))
@@ -3056,7 +3062,10 @@ Clamp( Val, Min, Max) {
 			vY_ES80:=Y + Round(A_ScreenHeight / (1080 / 914))
 			vY_ES90:=Y + Round(A_ScreenHeight / (1080 / 894))
 			
-			vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+			If (YesUltraWide)
+				vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
+			Else
+				vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
 			vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 		}
 
