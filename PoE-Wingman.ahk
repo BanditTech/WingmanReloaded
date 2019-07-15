@@ -61,7 +61,12 @@ readFromFile()
 		Global YesIdentify := 1
 		Global YesMapUnid := 1
 		Global YesUltraWide := 0
-
+		Global OnHideout := False
+		Global OnChar := False
+		Global OnChat := False
+		Global OnInventory := False
+		Global OnStash := False
+		Global OnVendor := False
 
 		; These colors are from filterblade.xyz filter creator
 		; Choose one of the default background colors with no transparency
@@ -1388,7 +1393,7 @@ ItemSort(){
             return  ; End this thread so that the one underneath will resume and see the change made by the line above.
         }
         RunningToggle := True
-        GuiStatus(OnHideout, OnChar, OnChat, OnInventory, OnStash, OnVendor)
+        GuiStatus()
         If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
             Return
         For k, GridX in InventoryGridX
@@ -1610,7 +1615,7 @@ ItemSort(){
 
 ; Input any digit and it will move to that Stash tab, only tested up to 25 tabs
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MoveStash(byRef Tab){
+MoveStash(Tab){
     If (CurrentTab=Tab)
         return
     If (CurrentTab!=Tab)
@@ -1644,18 +1649,31 @@ MoveStash(byRef Tab){
 
 ; Swift Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SwiftClick(byRef x, byRef y){
+SwiftClick(x, y){
+	MouseMove, x, y	
 	Sleep 15
-    Send {Click, Down x, y, 1}
+    Send {Click, Down x, y }
 	Sleep 30
-    Send {Click, Up x, y, 1}
+    Send {Click, Up x, y }
+	Sleep 15
+    return
+	}
+
+; Right Click at Coord
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RightClick(x, y){
+	MouseMove, x, y
+	Sleep 15
+    Send {Click, Down x, y, Right}
+	Sleep 30
+    Send {Click, Up x, y, Right}
 	Sleep 15
     return
 	}
 
 ; Shift Click +Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ShiftClick(byRef x, byRef y){
+ShiftClick(x, y){
     BlockInput, MouseMove
     Sleep, 15
 	Send {Shift Down}
@@ -1672,7 +1690,7 @@ ShiftClick(byRef x, byRef y){
 
 ; Ctrl Click ^Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CtrlClick(byRef x, byRef y){
+CtrlClick(x, y){
     BlockInput, MouseMove
     Sleep, 15
 	Send {Ctrl Down}
@@ -1690,7 +1708,7 @@ CtrlClick(byRef x, byRef y){
 
 ; Identify Item at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-WisdomScroll(byRef x, byRef y){
+WisdomScroll(x, y){
     BlockInput, MouseMove
     Sleep, 30
 	MouseMove %WisdomScrollX%, %WisdomScrollY%
@@ -1764,7 +1782,7 @@ StockScrolls(){
 
 ; Capture Clip at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ClipItem(byRef x, byRef y){
+ClipItem(x, y){
     BlockInput, MouseMove
     Clipboard := ""
     MouseMove %x%, %y%
@@ -1777,7 +1795,7 @@ ClipItem(byRef x, byRef y){
 
 ; Randomize Click area around middle of cell using Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RandClick(byRef x, byRef y){
+RandClick(x, y){
 	Random, Rx, x+5, x+45
 	Random, Ry, y-45, y-5
 	return {"X": Rx, "Y": Ry}
@@ -1785,7 +1803,7 @@ RandClick(byRef x, byRef y){
 
 ; Scales two resolution quardinates -- Currently not being used
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ScaleRes(byRef x, byRef y){
+ScaleRes(x, y){
 	If (YesUltraWide)
 		Rx:=Round(A_ScreenWidth / (3840 / x))
 	Else
@@ -1856,42 +1874,36 @@ RandomSleep(min,max){
 GemSwap(){
 	GemSwapCommand:
 	Keywait, Alt
-	BlockInput On
+	BlockInput, MouseMove
 	MouseGetPos xx, yy
-	RandomSleep(151,163)
+	RandomSleep(45,60)
 
 	Send {%hotkeyCloseAllUI%} 
-	RandomSleep(56,68)
+	RandomSleep(45,60)
 	
 	Send {%hotkeyInventory%} 
-	RandomSleep(56,68)
-		
-	MouseMove %Gem1X%, %Gem1Y%
-	RandomSleep(56,68)
-	Click, Right 
-	RandomSleep(56,68)
+	RandomSleep(45,60)
+
+	RightClick(CurrentGemX, CurrentGemY)
+	RandomSleep(45,60)
 	
 	if (WeaponSwap==1) 
 		Send {%hotkeyWeaponSwapKey%} 
-	RandomSleep(56,68)
-	
-	MouseMove %Gem2X%, %Gem2Y%
-	RandomSleep(56,68)
-	Click  
-	RandomSleep(56,68)
+	RandomSleep(45,60)
+
+	SwiftClick(AlternateGemX, AlternateGemY)
+	RandomSleep(45,60)
 	
 	if (WeaponSwap==1) 
 		Send {%hotkeyWeaponSwapKey%} 
-	RandomSleep(56,68)
-	
-	MouseMove %Gem1X%, %Gem1Y%
-	RandomSleep(56,68)
-	Click
-	RandomSleep(56,68)
+	RandomSleep(45,60)
+
+	SwiftClick(CurrentGemX, CurrentGemY)
+	RandomSleep(45,60)
 	
 	Send {%hotkeyInventory%} 
 	MouseMove, xx, yy, 0
-	BlockInput Off
+	BlockInput, MouseMoveOff
 	return
 	}
 
@@ -2350,7 +2362,7 @@ GetMouseCoords(){
     If DebugMessages
         {
         TT := TT . "`n" . "`n"
-        GuiStatus(OnHideout, OnChar, OnChat, OnInventory, OnStash, OnVendor)
+        GuiStatus()
         TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
         TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
         If ShowItemInfo
@@ -2440,63 +2452,57 @@ GuiUpdate(){
 
 ; Pixelcheck for different parts of the screen to see what your status is in game. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GuiStatus(byRef OnHideout, byRef OnChar, byRef OnChat, byRef OnInventory, byRef OnStash, byRef OnVendor){
+GuiStatus(Fetch:=""){
+	If !(Fetch="")
+		{
+		pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
+		If (P%Fetch%=var%Fetch%){
+			%Fetch%:=True
+			} Else {
+			%Fetch%:=False
+			}
+		Return
+		}
     pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-    if (POnHideout=varOnHideout) 
-    {
+    if (POnHideout=varOnHideout) {
         OnHideout:=True
-    }
-    Else 
-    {
+    	} Else {
         OnHideout:=False
-    }
+    	}
     pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
-    If (POnChar=varOnChar) 
-    {
-        OnChar:=True
-    }
-    Else 
-    {
+    If (POnChar=varOnChar)  {
+		 OnChar:=True
+		 } Else {
         OnChar:=False
-    }
+    	}
     pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-    If (POnChat=varOnChat) 
-    {
-        OnChat:=True
-    }
-    Else 
-    {
+    If (POnChat=varOnChat) {
+    	OnChat:=True
+		} Else {
         OnChat:=False
-    }
+    	}
     pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-    If (POnInventory=varOnInventory) 
-    {
+    If (POnInventory=varOnInventory) {
         OnInventory:=True
-    }
-    Else 
-    {
+    	} Else {
         OnInventory:=False
-    }
+    	}
     pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-    If (POnStash=varOnStash) 
-    {
+    If (POnStash=varOnStash) {
         OnStash:=True
-    }
-    Else 
-    {
+    	} Else {
         OnStash:=False
-    }
+    	}
     pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
-    If (POnVendor=varOnVendor) 
-    {
+    If (POnVendor=varOnVendor) {
         OnVendor:=True
-    }
-    Else 
-    {
+    	} Else {
         OnVendor:=False
-    }
+    	}
 	Return
 	}
+
+
 
 ; Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2515,7 +2521,7 @@ TGameTick(){
 	IfWinActive, Path of Exile
 	{	
 		; Check what status is your character in the game
-        GuiStatus(OnHideout, OnChar, OnChat, OnInventory, OnStash, OnVendor)
+        GuiStatus()
 		if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
 			GuiUpdate()                                                                                                       
 			Exit
@@ -2758,7 +2764,7 @@ TGameTick(){
 	}
 
 ;Clamp Value function
-Clamp(ByRef Val, Min, Max) {
+Clamp( Val, Min, Max) {
   If Val < Min
     Val := Min
   If Val > Max
