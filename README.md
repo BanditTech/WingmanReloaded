@@ -33,8 +33,11 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Enable or disable any portion of the inventory management. Can only ID, only SELL, only Stash etc
   - Option to keep maps Unidentified
 
-- Debug Mode with aditional tools when enabled.
-- Hotkeys to Reload (Alt-Esc) or Exit (Win-Esc)
-- Now runs in background on start unless you open settings.
+* Assorted Additions
+  - Debug Mode with aditional tools when enabled.
+  - Hotkeys to Reload (Alt-Esc) or Exit (Win-Esc)
+  - Now runs in background on start unless you open settings.
+  - Continued Fine-Tuning the logic of the script
 
-In testing: UltraWide Scaling
+* Feature in testing:
+  - UltraWide Scaling
