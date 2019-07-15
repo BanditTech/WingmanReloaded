@@ -39,5 +39,5 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Now runs in background on start unless you open settings.
   - Continued Fine-Tuning the logic of the script
 
-* Feature in testing:
+* Feature in testing: 
   - UltraWide Scaling
