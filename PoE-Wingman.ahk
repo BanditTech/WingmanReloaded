@@ -284,7 +284,7 @@ readFromFile()
 		global TriggerQuicksilverDelay=0.8
 		global TriggerQuicksilver=00000
 
-	;readFromFile()
+readFromFile()
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra vars - Not in INI
