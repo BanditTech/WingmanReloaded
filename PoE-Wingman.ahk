@@ -31,12 +31,13 @@
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
-	Process, Close, GottaGoFast.exe	
+	CleanUp()
 	if not A_IsAdmin
-		{
-		Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
-		}
-	Run GottaGoFast.exe
+        if A_IsCompiled
+            Run *RunAs "%A_ScriptFullPath%" /restart
+        else
+            Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+	Run GottaGoFast.ahk
 	OnExit("CleanUp")
 
 readFromFile()
@@ -3265,8 +3266,11 @@ Clamp( Val, Min, Max) {
 
 		
 	CleanUp(){
-		DetectHiddenWindows On
-		Process, Close, GottaGoFast.exe
+		DetectHiddenWindows, On
+		SetTitleMatchMode, 2
+
+		WinGet, PID, PID, GottaGoFast.ahk
+		Process, Close, %PID%
 		Return
 		}
 
