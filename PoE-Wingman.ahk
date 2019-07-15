@@ -1396,11 +1396,11 @@ ItemSort(){
         GuiStatus()
         If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
             Return
-        For k, GridX in InventoryGridX
+        For k, GridY in InventoryGridY
         {
             If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
                 Break
-            For k, GridY in InventoryGridY
+            For k, GridX in InventoryGridX
             {
                 If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
                     Break
