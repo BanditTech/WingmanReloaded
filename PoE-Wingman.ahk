@@ -34,10 +34,10 @@
 	CleanUp()
 	if not A_IsAdmin
         if A_IsCompiled
-            Run *RunAs "%A_ScriptFullPath%" /restart
+            Run *RunAs "%A_ScriptFullPath%" /restart, , Hide
         else
-            Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
-	Run GottaGoFast.ahk
+            Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%", , Hide
+	Run GottaGoFast.ahk, "A_ScriptDir", Hide
 	OnExit("CleanUp")
 
 readFromFile()
@@ -901,26 +901,18 @@ readFromFile()
 
 
 	Gui, +LastFound
-	;Gui, Show, Autosize Center, 	PoE-Wingman GUI
-	;Gui, Hide
-	Menu, Tray, Tip, 				WingmanReloaded Dev Version %VersionNumber%
+	;Gui, Show, NoActivate Autosize Center, 	PoE-Wingman
+	Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
 	Menu, Tray, NoStandard
-	Menu, Tray, Add, 				PoE-Wingman GUI, optionsCommand
-	Menu, Tray, Default, 			PoE-Wingman GUI
+	Menu, Tray, Add, 				PoE-Wingman, optionsCommand
+	Menu, Tray, Default, 			PoE-Wingman
 	Menu, Tray, Add
 	Menu, Tray, Standard
+	;Gui, Hide
 	OnMessage(0x200, "WM_MOUSEMOVE")
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of PoE-Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-; Detonate mines timer check
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	If (DetonateMines&&!Detonated)
-		SetTimer, TMineTick, 100
-		Else If (!DetonateMines)
-		SetTimer, TMineTick, off
-
 
 ; GUI ini read / setup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1305,7 +1297,12 @@ readFromFile()
 		Gui 2: Show, x%varX% y%varY%, NoActivate 
 	}
 
-
+; Detonate mines timer check
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	If (DetonateMines&&!Detonated)
+		SetTimer, TMineTick, 100
+		Else If (!DetonateMines)
+		SetTimer, TMineTick, off
 ; Key Passthrough for 1-5
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;Passthrough for manual activation
@@ -3258,7 +3255,7 @@ Clamp( Val, Min, Max) {
 	hotkeys(){
 		global ;processWarningFound, macroVersion
 		;getLeagueListing()
-		Gui,Show ;,, Flask Settings
+		Gui, Show, Autosize Center, 	PoE-Wingman
 		processWarningFound:=0
 		Gui,6:Hide
 		return
