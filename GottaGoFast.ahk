@@ -8,6 +8,7 @@
 #Persistent 
 #InstallMouseHook
 #MaxThreadsPerHotkey 2
+#NoTrayIcon
 ListLines Off
 Process, Priority, , A
 SetBatchLines, -1

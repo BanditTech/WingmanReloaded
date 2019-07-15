@@ -30,19 +30,20 @@
 	I_Icon = shield_charge_skill_icon.ico
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
-	
+
+	Process, Close, GottaGoFast.exe	
 	if not A_IsAdmin
 		{
-	Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+		Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
 		}
-	
-	Run GottaGoFast.ahk
-
+	Run GottaGoFast.exe
+	OnExit("CleanUp")
 
 readFromFile()
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
+		Global VersionNumber := .005
 		If (YesUltraWide){
 			Global InventoryGridX := [ 3194, 3246, 3299, 3352, 3404, 3457, 3510, 3562, 3615, 3668, 3720, 3773 ]
 			} Else {
@@ -901,7 +902,7 @@ readFromFile()
 	Gui, +LastFound
 	;Gui, Show, Autosize Center, 	PoE-Wingman GUI
 	;Gui, Hide
-	Menu, Tray, Tip, 				PoE-Wingman v1.1 Bandit Edit v4.20
+	Menu, Tray, Tip, 				WingmanReloaded Dev Version %VersionNumber%
 	Menu, Tray, NoStandard
 	Menu, Tray, Add, 				PoE-Wingman GUI, optionsCommand
 	Menu, Tray, Default, 			PoE-Wingman GUI
@@ -3260,6 +3261,13 @@ Clamp( Val, Min, Max) {
 		processWarningFound:=0
 		Gui,6:Hide
 		return
+		}
+
+		
+	CleanUp(){
+		DetectHiddenWindows On
+		Process, Close, GottaGoFast.exe
+		Return
 		}
 
 	RefreshGUI:
