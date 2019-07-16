@@ -45,13 +45,18 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .006
+		Global VersionNumber := .007
 		If (YesUltraWide){
-			Global InventoryGridX := [ 3194, 3246, 3299, 3352, 3404, 3457, 3510, 3562, 3615, 3668, 3720, 3773 ]
+			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
+			Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
+			Global DetonateX:=(A_ScreenWidth/(3840/3579))
 			} Else {
-			Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
+			Global InventoryGridX := [ (A_ScreenWidth/(1920/1274)), (A_ScreenWidth/(1920/1326)), (A_ScreenWidth/(1920/1379)), (A_ScreenWidth/(1920/1432)), (A_ScreenWidth/(1920/1484)), (A_ScreenWidth/(1920/1537)), (A_ScreenWidth/(1920/1590)), (A_ScreenWidth/(1920/1642)), (A_ScreenWidth/(1920/1695)), (A_ScreenWidth/(1920/1748)), (A_ScreenWidth/(1920/1800)), (A_ScreenWidth/(1920/1853)) ]
+			Global DetonateDelveX:=(A_ScreenWidth/(1920/1542))
+			Global DetonateX:=(A_ScreenWidth/(1920/1659))
 			}
-		Global InventoryGridY := [ 637, 690, 743, 796, 848 ]  
+		Global DetonateY:=(A_ScreenHeight/(1080/901))
+		Global InventoryGridY := [ (A_ScreenHeight/(1080/637)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
@@ -807,8 +812,8 @@
 	Gui Add, Text, 										x523	y5, 				Debug:
 	Gui Add, Checkbox, 	vShowPixelGrid  gUpdateDebug   	x506 	y5 	w13 h13	
 	Gui Add, Text, 							vPGrid	    x457	y5, 		    	Pixel Grid:
-	Gui Add, Checkbox, 	vParseI  gUpdateDebug  	x440 	y5 	w13 h13	
-	Gui Add, Text, 							vParseIText	    x385	y5, 		        Parse Item:
+	Gui Add, Checkbox, 	vShowItemInfo  gUpdateDebug  	x440 	y5 	w13 h13	
+	Gui Add, Text, 							vParseI	    x385	y5, 		        Parse Item:
 
 	If (DebugMessages=1) {
 		varCoordUtilText := "Coord/Debug"
@@ -2461,14 +2466,14 @@ GetMouseCoords(){
 ; Auto Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 DetonateMines(){
-	pixelgetcolor, Mine, 1542, 901
+	pixelgetcolor, Mine, DetonateDelveX, DetonateY
 	If (Mine = 0x412037){
 		Sendraw, d
 		Detonated:=1
 		Settimer, TDetonated, 500
 		Return
 		}
-	pixelgetcolor, Mine, 1659, 901
+	pixelgetcolor, Mine, DetonateX, DetonateY
 	If (Mine = 0x84A6DA){
 		Sendraw, d
 		Detonated:=1
