@@ -43,16 +43,13 @@ if not A_IsAdmin
 
 ;General
 ; Dont change the speed & the tick unless you know what you are doing
-global Speed=1
-global QTick=250
-
-;Coordinates
-global GuiX=-5
-global GuiY=1005
+global Speed:=1
+global QTick:=250
+global hotkeyPopFlasks:=""
 
 ;Failsafe Colors
-global varOnHideout
-global varOnChar
+global varOnHideout:=0x161114
+global varOnChar:=0x4F6980
 
 ;Flask Cooldowns
 global CoolDownFlask1:=5000
@@ -63,13 +60,13 @@ global CoolDownFlask5:=5000
 global CoolDown:=5000
 
 ;Quicksilver
-global TriggerQuicksilverDelay=0.8
-global TriggerQuicksilver=00000
-global QuicksilverSlot1=0
-global QuicksilverSlot2=0
-global QuicksilverSlot3=0
-global QuicksilverSlot4=0
-global QuicksilverSlot5=0
+global TriggerQuicksilverDelay:= .5 
+global TriggerQuicksilver:=00000
+global QuicksilverSlot1:=0
+global QuicksilverSlot2:=0
+global QuicksilverSlot3:=0
+global QuicksilverSlot4:=0
+global QuicksilverSlot5:=0
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra vars - Not in INI
@@ -99,58 +96,8 @@ else
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-If FileExist("settings.ini"){ 
-
-	;General
-	IniRead, Speed, settings.ini, General, Speed
-	IniRead, QTick, settings.ini, General, QTick
-	;Coordinates
-	IniRead, GuiX, settings.ini, Coordinates, GuiX
-	IniRead, GuiY, settings.ini, Coordinates, GuiY
-	;Failsafe Colors
-	IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
-	IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
-	;Flask Cooldowns
-	IniRead, CoolDownFlask1, settings.ini, Flask Cooldowns, CoolDownFlask1
-	IniRead, CoolDownFlask2, settings.ini, Flask Cooldowns, CoolDownFlask2
-	IniRead, CoolDownFlask3, settings.ini, Flask Cooldowns, CoolDownFlask3
-	IniRead, CoolDownFlask4, settings.ini, Flask Cooldowns, CoolDownFlask4
-	IniRead, CoolDownFlask5, settings.ini, Flask Cooldowns, CoolDownFlask5
-	;Quicksilver
-	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
-	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
-	IniRead, QuicksilverSlot1, settings.ini, Quicksilver, QuicksilverSlot1
-	IniRead, QuicksilverSlot2, settings.ini, Quicksilver, QuicksilverSlot2
-	IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3
-	IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4
-	IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5
-    ;Pop all flasks
-	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks %A_Space%
- 	
-} else {
-	
-	;General
-	IniWrite, %Speed%, settings.ini, General, Speed
-	IniWrite, %QTick%, settings.ini, General, QTick
-	;Coordinates
-	IniWrite, %GuiX%, settings.ini, Coordinates, GuiX
-	IniWrite, %GuiY%, settings.ini, Coordinates, GuiY
-	;Flask Cooldowns
-	IniWrite, %CoolDownFlask1%, settings.ini, Flask Cooldowns, CoolDownFlask1
-	IniWrite, %CoolDownFlask2%, settings.ini, Flask Cooldowns, CoolDownFlask2
-	IniWrite, %CoolDownFlask3%, settings.ini, Flask Cooldowns, CoolDownFlask3
-	IniWrite, %CoolDownFlask4%, settings.ini, Flask Cooldowns, CoolDownFlask4
-	IniWrite, %CoolDownFlask5%, settings.ini, Flask Cooldowns, CoolDownFlask5
-	;Quicksilver
-	IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
-	IniWrite, %TriggerQuicksilver%, settings.ini, Quicksilver, TriggerQuicksilver
-	IniWrite, %QuicksilverSlot1%, settings.ini, Quicksilver, QuicksilverSlot1
-	IniWrite, %QuicksilverSlot2%, settings.ini, Quicksilver, QuicksilverSlot2
-	IniWrite, %QuicksilverSlot3%, settings.ini, Quicksilver, QuicksilverSlot3
-	IniWrite, %QuicksilverSlot4%, settings.ini, Quicksilver, QuicksilverSlot4
-	IniWrite, %QuicksilverSlot5%, settings.ini, Quicksilver, QuicksilverSlot5
-	
-}
+If FileExist("settings.ini") 
+	readFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -169,7 +116,6 @@ IfWinExist, ahk_class POEWindowClass
 }
 
 
-;Gui, Show, x%GuiX% y%GuiY%
 
 If hotkeyPopFlasks
 	hotkey,~%hotkeyPopFlasks%, PopFlasksCommand, On
@@ -180,22 +126,17 @@ If hotkeyPopFlasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;Pop all flasks
 PopFlasksCommand:
-OnCoolDown[1]:=1 
-CoolDown:=CoolDownFlask1
-settimer, TimmerFlask1, %CoolDown%
-OnCoolDown[4]:=1 
-CoolDown:=CoolDownFlask4
-settimer, TimmerFlask4, %CoolDown%
-OnCoolDown[3]:=1 
-CoolDown:=CoolDownFlask3
-settimer, TimmerFlask3, %CoolDown%
-OnCoolDown[2]:=1 
-CoolDown:=CoolDownFlask2
-settimer, TimmerFlask2, %CoolDown%
-OnCoolDown[5]:=1 
-CoolDown:=CoolDownFlask5
-settimer, TimmerFlask5, %CoolDown%
-return
+	OnCoolDown[1]:=1 
+	settimer, TimmerFlask1, %CoolDownFlask1%
+	OnCoolDown[4]:=1 
+	settimer, TimmerFlask4, %CoolDownFlask2%
+	OnCoolDown[3]:=1 
+	settimer, TimmerFlask3, %CoolDownFlask3%
+	OnCoolDown[2]:=1 
+	settimer, TimmerFlask2, %CoolDownFlask4%
+	OnCoolDown[5]:=1 
+	settimer, TimmerFlask5, %CoolDownFlask5%
+	return
 
 ~#Escape::
 ExitApp
@@ -204,36 +145,31 @@ ExitApp
 ~1::
 ; pass-thru and start timer for flask 1
 OnCoolDown[1]:=1 
-CoolDown:=CoolDownFlask1
-settimer, TimmerFlask1, %CoolDown%
+settimer, TimmerFlask1, %CoolDownFlask1%
 return
 
 ~2::
 ; pass-thru and start timer for flask 2
 OnCoolDown[2]:=1 
-CoolDown:=CoolDownFlask2
-settimer, TimmerFlask2, %CoolDown%
+settimer, TimmerFlask2, %CoolDownFlask2%
 return
 
 ~3::
 ; pass-thru and start timer for flask 3
 OnCoolDown[3]:=1 
-CoolDown:=CoolDownFlask3
-settimer, TimmerFlask3, %CoolDown%
+settimer, TimmerFlask3, %CoolDownFlask3%
 return
 
 ~4::
 ; pass-thru and start timer for flask 4
 OnCoolDown[4]:=1 
-CoolDown:=CoolDownFlask4
-settimer, TimmerFlask4, %CoolDown%
+settimer, TimmerFlask4, %CoolDownFlask4%
 return
 
 ~5::
 ; pass-thru and start timer for flask 5
 OnCoolDown[5]:=1 
-CoolDown:=CoolDownFlask5
-settimer, TimmerFlask5, %CoolDown%
+settimer, TimmerFlask5, %CoolDownFlask5%
 return
 
 ;Toggle Auto-Quick
@@ -254,6 +190,32 @@ RandomSleep(min,max){
 	Sleep %r%
 	return
 }
+
+readFromFile(){
+	;General
+	IniRead, Speed, settings.ini, General, Speed
+	IniRead, QTick, settings.ini, General, QTick
+	;Failsafe Colors
+	IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
+	IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
+	;Flask Cooldowns
+	IniRead, CoolDownFlask1, settings.ini, Flask Cooldowns, CoolDownFlask1
+	IniRead, CoolDownFlask2, settings.ini, Flask Cooldowns, CoolDownFlask2
+	IniRead, CoolDownFlask3, settings.ini, Flask Cooldowns, CoolDownFlask3
+	IniRead, CoolDownFlask4, settings.ini, Flask Cooldowns, CoolDownFlask4
+	IniRead, CoolDownFlask5, settings.ini, Flask Cooldowns, CoolDownFlask5
+	;Quicksilver
+	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
+	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
+	IniRead, %QuicksilverSlot1%, settings.ini, Quicksilver, QuicksilverSlot1
+	IniRead, %QuicksilverSlot2%, settings.ini, Quicksilver, QuicksilverSlot2
+	IniRead, %QuicksilverSlot3%, settings.ini, Quicksilver, QuicksilverSlot3
+	IniRead, %QuicksilverSlot4%, settings.ini, Quicksilver, QuicksilverSlot4
+	IniRead, %QuicksilverSlot5%, settings.ini, Quicksilver, QuicksilverSlot5
+    ;Pop all flasks
+	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
+	Return
+	}
 
 GuiUpdate(){
 	if (AutoQuick=1) {
