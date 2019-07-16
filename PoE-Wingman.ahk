@@ -50,11 +50,16 @@
 			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
 			Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
 			Global DetonateX:=(A_ScreenWidth/(3840/3579))
+			Global WisdomStockX:=(A_ScreenWidth/(3840/125))
+			Global PortalStockX:=(A_ScreenWidth/(3840/175))
 			} Else {
 			Global InventoryGridX := [ (A_ScreenWidth/(1920/1274)), (A_ScreenWidth/(1920/1326)), (A_ScreenWidth/(1920/1379)), (A_ScreenWidth/(1920/1432)), (A_ScreenWidth/(1920/1484)), (A_ScreenWidth/(1920/1537)), (A_ScreenWidth/(1920/1590)), (A_ScreenWidth/(1920/1642)), (A_ScreenWidth/(1920/1695)), (A_ScreenWidth/(1920/1748)), (A_ScreenWidth/(1920/1800)), (A_ScreenWidth/(1920/1853)) ]
 			Global DetonateDelveX:=(A_ScreenWidth/(1920/1542))
 			Global DetonateX:=(A_ScreenWidth/(1920/1659))
+			Global WisdomStockX:=(A_ScreenWidth/(1920/125))
+			Global PortalStockX:=(A_ScreenWidth/(1920/175))
 			}
+		Global WPStockY:=(A_ScreenHeight/(1080/262))
 		Global DetonateY:=(A_ScreenHeight/(1080/901))
 		Global InventoryGridY := [ (A_ScreenHeight/(1080/637)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
 		Global IdColor := 0x1C0101
@@ -1790,9 +1795,9 @@ StockScrolls(){
 		If (dif>10)
 		{
 			MoveStash(1)
-			MouseMove 125, 262
+			MouseMove WisdomStockX, WPStockY
 			Sleep 15
-			ShiftClick(125, 262)
+			ShiftClick(WisdomStockX, WPStockY)
 			Sleep 30
 			Send %dif%
 			Sleep 45
@@ -1813,9 +1818,9 @@ StockScrolls(){
 		If (dif>10)
 		{
 			MoveStash(1)
-			MouseMove 175, 262
+			MouseMove PortalStockX, WPStockY
 			Sleep 15
-			ShiftClick(175, 262)
+			ShiftClick(PortalStockX, WPStockY)
 			Sleep 30
 			Send %dif%
 			Sleep 45
