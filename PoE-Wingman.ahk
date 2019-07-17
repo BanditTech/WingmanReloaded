@@ -50,19 +50,20 @@
 		If (YesUltraWide){
 			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
 			Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
-			Global DetonateX:=(A_ScreenWidth/(3840/3579))
+			Global DetonateX:=(A_ScreenWidth/(3840/3578))
 			Global WisdomStockX:=(A_ScreenWidth/(3840/125))
 			Global PortalStockX:=(A_ScreenWidth/(3840/175))
 			} Else {
 			Global InventoryGridX := [ (A_ScreenWidth/(1920/1274)), (A_ScreenWidth/(1920/1326)), (A_ScreenWidth/(1920/1379)), (A_ScreenWidth/(1920/1432)), (A_ScreenWidth/(1920/1484)), (A_ScreenWidth/(1920/1537)), (A_ScreenWidth/(1920/1590)), (A_ScreenWidth/(1920/1642)), (A_ScreenWidth/(1920/1695)), (A_ScreenWidth/(1920/1748)), (A_ScreenWidth/(1920/1800)), (A_ScreenWidth/(1920/1853)) ]
 			Global DetonateDelveX:=(A_ScreenWidth/(1920/1542))
-			Global DetonateX:=(A_ScreenWidth/(1920/1659))
+			Global DetonateX:=(A_ScreenWidth/(1920/1658))
 			Global WisdomStockX:=(A_ScreenWidth/(1920/125))
 			Global PortalStockX:=(A_ScreenWidth/(1920/175))
 			}
 		Global WPStockY:=(A_ScreenHeight/(1080/262))
 		Global DetonateY:=(A_ScreenHeight/(1080/901))
 		Global InventoryGridY := [ (A_ScreenHeight/(1080/637)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
+		Global DetonateHex := 0x412037
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
@@ -859,26 +860,26 @@
 	Gui Add, Text, 										x360 	y+10, 				Pop Flasks
 	Gui Add, Text, 										x360 	y+10, 				ID/Vend/Stash
 
-	Gui,Add,Edit,			 x295 y188 w60 h19 	    vguihotkeyOptions			,%hotkeyOptions%
-	guihotkeyOptions_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4   w60 h19 	vguihotkeyAutoFlask			,%hotkeyAutoFlask%
-	guihotkeyAutoFlask_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4  w60 h19 	vguihotkeyAutoQuit			,%hotkeyAutoQuit%
-	guihotkeyAutoQuit_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4   w60 h19 	vguihotkeyLogout	        ,%hotkeyLogout%
-	guihotkeyLogout_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4   w60 h19 	vguihotkeyAutoQuicksilver	,%hotkeyAutoQuicksilver%
-	guihotkeyAutoQuicksilver_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4   w60 h19 	vguihotkeyGetMouseCoords	,%hotkeyGetMouseCoords%
-	guihotkeyGetMouseCoords_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4   w60 h19 	vguihotkeyQuickPortal		,%hotkeyQuickPortal%
-	guihotkeyQuickPortal_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4   w60 h19 	vguihotkeyGemSwap			,%hotkeyGemSwap%
-	guihotkeyGemSwap_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4   w60 h19 	vguihotkeyPopFlasks	        ,%hotkeyPopFlasks%
-	guihotkeyPopFlasks_TT:="Set your own hotkey here"
-	Gui,Add,Edit,			 		y+4   w60 h19 	vguihotkeyItemSort     ,%hotkeyItemSort%
-	guihotkeyItemSort_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 x295 y188 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
+	hotkeyOptions_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoFlask			,%hotkeyAutoFlask%
+	hotkeyAutoFlask_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4  w60 h19 	vhotkeyAutoQuit			,%hotkeyAutoQuit%
+	hotkeyAutoQuit_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyLogout	        ,%hotkeyLogout%
+	hotkeyLogout_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoQuicksilver	,%hotkeyAutoQuicksilver%
+	hotkeyAutoQuicksilver_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGetMouseCoords	,%hotkeyGetMouseCoords%
+	hotkeyGetMouseCoords_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyQuickPortal		,%hotkeyQuickPortal%
+	hotkeyQuickPortal_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGemSwap			,%hotkeyGemSwap%
+	hotkeyGemSwap_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyPopFlasks	        ,%hotkeyPopFlasks%
+	hotkeyPopFlasks_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
+	hotkeyItemSort_TT:="Set your own hotkey here"
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x440 	y168, 				Ingame:
@@ -1264,6 +1265,66 @@
 		Iniread, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter
 		valueStashTabYesTimelessSplinter := StashTabYesTimelessSplinter
 		GuiControl, , StashTabYesTimelessSplinter, %valueStashTabYesTimelessSplinter%
+
+		Iniread, hotkeyOptions, settings.ini, hotkeys, Options
+		valuehotkeyOptions := hotkeyOptions
+		GuiControl, , vhotkeyOptions, %valuehotkeyOptions%
+
+		Iniread, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask
+		valuehotkeyAutoFlask := hotkeyAutoFlask
+		GuiControl, , vhotkeyAutoFlask, %valuehotkeyAutoFlask%
+
+		Iniread, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit
+		valuehotkeyAutoQuit := hotkeyAutoQuit
+		GuiControl, , vhotkeyAutoQuit, %valuehotkeyAutoQuit%
+
+		Iniread, hotkeyLogout, settings.ini, hotkeys, Logout
+		valuehotkeyLogout := hotkeyLogout
+		GuiControl, , vhotkeyLogout, %valuehotkeyLogout%
+
+		Iniread, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
+		valuehotkeyAutoQuicksilver := hotkeyAutoQuicksilver
+		GuiControl, , vhotkeyAutoQuicksilver, %valuehotkeyAutoQuicksilver%
+
+		Iniread, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords
+		valuehotkeyGetMouseCoords := hotkeyGetMouseCoords
+		GuiControl, , vhotkeyGetMouseCoords, %valuehotkeyGetMouseCoords%
+
+		Iniread, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords
+		valuehotkeyGetMouseCoords := hotkeyGetMouseCoords
+		GuiControl, , vhotkeyGetMouseCoords, %valuehotkeyGetMouseCoords%
+
+		Iniread, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal
+		valuehotkeyQuickPortal := hotkeyQuickPortal
+		GuiControl, , vhotkeyQuickPortal, %valuehotkeyQuickPortal%
+
+		Iniread, hotkeyGemSwap, settings.ini, hotkeys, GemSwap
+		valuehotkeyGemSwap := hotkeyGemSwap
+		GuiControl, , vhotkeyGemSwap, %valuehotkeyGemSwap%
+
+		Iniread, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
+		valuehotkeyPopFlasks := hotkeyPopFlasks
+		GuiControl, , vhotkeyPopFlasks, %valuehotkeyPopFlasks%
+
+		Iniread, hotkeyItemSort, settings.ini, hotkeys, ItemSort
+		valuehotkeyItemSort := hotkeyItemSort
+		GuiControl, , vhotkeyItemSort, %valuehotkeyItemSort%
+
+		Iniread, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI
+		valuehotkeyCloseAllUI := hotkeyCloseAllUI
+		GuiControl, , vhotkeyCloseAllUI, %valuehotkeyCloseAllUI%
+
+		Iniread, hotkeyInventory, settings.ini, hotkeys, Inventory
+		valuehotkeyInventory := hotkeyInventory
+		GuiControl, , vhotkeyInventory, %valuehotkeyInventory%
+
+		Iniread, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey
+		valuehotkeyWeaponSwapKey := hotkeyWeaponSwapKey
+		GuiControl, , vhotkeyWeaponSwapKey, %valuehotkeyWeaponSwapKey%
+
+		Iniread, hotkeyLootScan, settings.ini, hotkeys, LootScan
+		valuehotkeyLootScan := hotkeyLootScan
+		GuiControl, , vhotkeyLootScan, %valuehotkeyLootScan%
 		}
 		
 		IfWinExist, ahk_class POEWindowClass 
@@ -2492,15 +2553,9 @@ GetMouseCoords(){
 ; Auto Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 DetonateMines(){
-	pixelgetcolor, Mine, DetonateDelveX, DetonateY
-	If (Mine = 0x412037){
-		Sendraw, d
-		Detonated:=1
-		Settimer, TDetonated, 500
-		Return
-		}
+	pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
 	pixelgetcolor, Mine, DetonateX, DetonateY
-	If (Mine = 0x84A6DA){
+	If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
 		Sendraw, d
 		Detonated:=1
 		Settimer, TDetonated, 500
