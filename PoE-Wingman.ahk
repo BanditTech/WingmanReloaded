@@ -45,7 +45,8 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .008
+		Global VersionNumber := .009
+		Global Latency := 2
 		If (YesUltraWide){
 			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
 			Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
@@ -95,10 +96,16 @@
 				, White : 0xFFFFFF
 				, Black : 0x222222}
 
-		; Use the colorkey above to choose your background colors. 
+		; Use the colorkey above to choose your background colors.
+		; The example below uses two colors black and white
 		Global LootColors := { 1 : 0xFFFFFF
+				, 2 : 0x222222}
+		
+		; Use this as an example of adding more colors into the loot vacuum (This adds tan and red at postion 2,3)
+		Global ExampleColors := { 1 : 0xFFFFFF
 				, 2 : 0xFCDDB2
-				, 3 : 0x222222}
+				, 3 : 0xFE2222
+				, 4 : 0x222222}
 
 		Global ItemProp := {ItemName: ""
 				, Rarity : ""
@@ -149,6 +156,7 @@
 		global ShowPixelGrid := 0
 		global ShowItemInfo := 0
 		global DetonateMines := 0
+		global Latency := 1
 		; Dont change the speed & the tick unless you know what you are doing
 			global Speed:=1
 			global Tick:=50
@@ -411,7 +419,6 @@
 		global vY_Mana10:=1054
 	}
 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Check presence of cports
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -457,6 +464,7 @@
 		IniWrite, 1, settings.ini, General, YesStash
 		IniWrite, 1, settings.ini, General, YesIdentify
 		IniWrite, 1, settings.ini, General, YesMapUnid
+		IniWrite, 1, settings.ini, General, Latency
 
 		;Stash Tab
 		IniWrite, 1, settings.ini, Stash Tab, StashTabCurrency
@@ -654,8 +662,8 @@
 	GuiControl,, RadioQuit30, %varTextAutoQuit30%
 	GuiControl,, RadioQuit40, %varTextAutoQuit40%
 
-;MAIN Gui Section ------------------------------------------------
-
+; MAIN Gui Section
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Failsafe and Extra Settings
 	;#######################################################################################################Configuration Tab
 	Gui, Tab, Configuration
@@ -955,6 +963,8 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
 	Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                         	          , UltraWide Scaling?
+	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 ,  1|2|3
+	Gui Add, Text, 										x+12 	, 				Adjust Latency
 
 
 
@@ -1134,6 +1144,10 @@
 		Iniread, YesMapUnid, settings.ini, General, YesMapUnid
 		valueYesMapUnid := YesMapUnid
 		GuiControl, , YesMapUnid, %valueYesMapUnid%
+		
+		Iniread, Latency, settings.ini, General, Latency
+		valueLatency := Latency
+		GuiControl, Choose, Latency, %valueLatency%
 		
 		Iniread, CurrentGemX, settings.ini, Gem Swap, CurrentGemX
 		valueCurrentGemX := CurrentGemX
@@ -1438,35 +1452,35 @@ ItemSort(){
 	CurrentTab:=0
 	MouseGetPos xx, yy
 	IfWinActive, Path of Exile
-	{
-		If RunningToggle  ; This means an underlying thread is already running the loop below.
 		{
+		If RunningToggle  ; This means an underlying thread is already running the loop below.
+			{
 			RunningToggle := False  ; Signal that thread's loop to stop.
 			return  ; End this thread so that the one underneath will resume and see the change made by the line above.
-		}
+			}
 		RunningToggle := True
 		GuiStatus()
 		If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
 			Return
 		For k, GridY in InventoryGridY
-		{
+			{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
 			For k, GridX in InventoryGridX
-			{
+				{
 				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 					Break
 				Grid := RandClick(GridX, GridY)
 				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-				{   
+					{   
 					;Unmark the below lines to check if it is going into scroll area during run
 					;MsgBox, Hit Scroll
 					;Return
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-				} 
+					} 
 				pixelgetcolor, PointColor, GridX, GridY
 				If ((PointColor=UnIdColor) || (PointColor=IdColor))
-				{
+					{
 					ClipItem(Grid.X,Grid.Y)
 					If (!ItemProp.Identified&&YesIdentify)
 						{
@@ -1488,75 +1502,75 @@ ItemSort(){
 							}
 						}
 					If (OnStash&&YesStash) 
-					{
-						If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
 						{
+						If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
+							{
 							MoveStash(StashTabCurrency)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.Map&&StashTabYesMap)
-						{
+							{
 							MoveStash(StashTabMap)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.BreachSplinter&&StashTabYesFragment)
-						{
+							{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.SacrificeFragment&&StashTabYesFragment)
-						{
+							{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.MortalFragment&&StashTabYesFragment)
-						{
+							{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.GuardianFragment&&StashTabYesFragment)
-						{
+							{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.ProphecyFragment&&StashTabYesFragment)
-						{
+							{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.Offering&&StashTabYesFragment)
-						{
+							{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.Vessel&&StashTabYesFragment)
-						{
+							{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.Scarab&&StashTabYesFragment)
-						{
+							{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.RarityDivination&&StashTabYesDivination)
-						{
+							{
 							MoveStash(StashTabDivination)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.RarityUnique&&ItemProp.Ring)
-						{
+							{
 							If (StashTabYesCollection)
 							{
 								MoveStash(StashTabCollection)
@@ -1566,7 +1580,7 @@ ItemSort(){
 									pixelgetcolor, Pitem, GridX, GridY
 									if (Pitem!=MOColor)
 										Continue
-									Sleep, 60
+									Sleep, 60*Latency
 								}
 							}
 							If (StashTabYesUniqueRing)
@@ -1575,42 +1589,43 @@ ItemSort(){
 								CtrlClick(Grid.X,Grid.Y)
 							}
 							Continue
-						}
+							}
 						Else If (ItemProp.RarityUnique)
-						{
-							If (StashTabYesCollection)
 							{
+							If (StashTabYesCollection)
+								{
 								MoveStash(StashTabCollection)
 								CtrlClick(Grid.X,Grid.Y)
 								If (StashTabYesUniqueDump)
 									{
+									Sleep, 15*Latency
 									pixelgetcolor, Pitem, GridX, GridY
 									if (Pitem!=MOColor) 
 										Continue
-									Sleep, 60
+									Sleep, 45*Latency
 									}
-							}
+								}
 							If (StashTabYesUniqueDump)
 								{
 								MoveStash(StashTabUniqueDump)
 								CtrlClick(Grid.X,Grid.Y)
 								}
 							Continue
-						}
+							}
 						If (ItemProp.Essence&&StashTabYesEssence)
-						{
+							{
 							MoveStash(StashTabEssence)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
-						{
+							{
 							MoveStash(StashTabFlaskQuality)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.RarityGem)
-						{
+							{
 							If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
 							{
 								MoveStash(StashTabGemQuality)
@@ -1623,42 +1638,42 @@ ItemSort(){
 								CtrlClick(Grid.X,Grid.Y)
 								Continue
 							}
-						}
+							}
 						If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
-						{
+							{
 							MoveStash(StashTabLinked)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
-						}
+							}
 						If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
-						{
+							{
 							MoveStash(StashTabTimelessSplinter)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
+							}
 						}
-					}
 					If (OnVendor&&YesVendor)
-					{
+						{
 						If (ItemProp.RarityCurrency)
 							Continue
 						If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
 							Continue
 						If ( ItemProp.SpecialType="" )
-						{
-							Sleep, 30
+							{
+							Sleep, 30*Latency
 							CtrlClick(Grid.X,Grid.Y)
-							Sleep, 10
+							Sleep, 10*Latency
 							Continue
+							}
 						}
-					}
-				}   
+					}   
+				}
+			}
+		If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+			{
+			StockScrolls()
 			}
 		}
-		If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-		{
-			StockScrolls()
-		}
-	}
 	RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
 	CurrentTab:=0
 	MouseMove, xx, yy, 0
@@ -1674,26 +1689,32 @@ MoveStash(Tab){
 		{
 		MouseGetPos MSx, MSy
 		BlockInput, MouseMove
-		Sleep, 30
-		MouseMove, 640, 146, 0
-		Sleep, 30
+		Sleep, 30*Latency
+		If (YesUltraWide)
+			MouseMove, (A_ScreenWidth/(3840/640)), (A_ScreenHeight/(1080/146)), 0
+		Else
+			MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
+		Sleep, 30*Latency
 		Click, Down, Left, 1
-		Sleep, 30
+		Sleep, 30*Latency
 		Click, Up, Left, 1
-		Sleep, 15
-		MouseMove, 760, (120 + (Tab*22)), 0
-		Sleep, 45
+		Sleep, 15*Latency
+		MouseMove, 760, ((A_ScreenHeight/(1080/120)) + (Tab*(A_ScreenHeight/(1080/22)))), 0
+		Sleep, 45*Latency
 		send {Enter}
-		Sleep, 45
-		MouseMove, 640, 146, 0
-		Sleep, 30
+		Sleep, 45*Latency
+		If (YesUltraWide)
+			MouseMove, (A_ScreenWidth/(3840/640)), (A_ScreenHeight/(1080/146)), 0
+		Else
+			MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
+		Sleep, 30*Latency
 		Click, Down, Left, 1
-		Sleep, 30
+		Sleep, 30*Latency
 		Click, Up, Left, 1
-		Sleep, 45
+		Sleep, 45*Latency
 		CurrentTab:=Tab
 		MouseMove, MSx, MSy, 0
-		Sleep, 30
+		Sleep, 30*Latency
 		BlockInput, MouseMoveOff
 		}
 	return
@@ -1703,11 +1724,11 @@ MoveStash(Tab){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SwiftClick(x, y){
 	MouseMove, x, y	
-	Sleep 15
+	Sleep, 15*Latency
 	Send {Click, Down x, y }
-	Sleep 30
+	Sleep, 30*Latency
 	Send {Click, Up x, y }
-	Sleep 15
+	Sleep, 15*Latency
 	return
 	}
 
@@ -1716,11 +1737,11 @@ SwiftClick(x, y){
 RightClick(x, y){
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep 15
+	Sleep, 15*Latency
 	Send {Click, Down x, y, Right}
-	Sleep 30
+	Sleep, 30*Latency
 	Send {Click, Up x, y, Right}
-	Sleep 15
+	Sleep, 15*Latency
 	BlockInput, MouseMoveOff
 	return
 	}
@@ -1730,15 +1751,15 @@ RightClick(x, y){
 ShiftClick(x, y){
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 15
+	Sleep, 15*Latency
 	Send {Shift Down}
-	Sleep, 30
+	Sleep, 30*Latency
 	Send {Click, Down, x, y}
-	Sleep, 30
+	Sleep, 30*Latency
 	Send {Click, Up, x, y}
-	Sleep, 15
+	Sleep, 15*Latency
 	Send {Shift Up}
-	Sleep, 15
+	Sleep, 15*Latency
 	BlockInput, MouseMoveOff
 	return
 	}
@@ -1748,16 +1769,16 @@ ShiftClick(x, y){
 CtrlClick(x, y){
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 15
+	Sleep, 15*Latency
 	Send {Ctrl Down}
-	Sleep, 30
+	Sleep, 30*Latency
 	Send {Click, Down, x, y}
-	Sleep, 30
+	Sleep, 30*Latency
 	Send {Click, Up, x, y}
 	;Send ^{Click, Up, x, y}
-	Sleep, 15
+	Sleep, 15*Latency
 	Send {Ctrl Up}
-	Sleep, 15
+	Sleep, 15*Latency
 	BlockInput, MouseMoveOff
 	return
 	}
@@ -1766,19 +1787,19 @@ CtrlClick(x, y){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 WisdomScroll(x, y){
 	BlockInput, MouseMove
-	Sleep, 30
+	Sleep, 30*Latency
 	MouseMove %WisdomScrollX%, %WisdomScrollY%
-	Sleep, 30
+	Sleep, 30*Latency
 	Click, Down, Right, 1
-	Sleep, 30
+	Sleep, 30*Latency
 	Click, Up, Right, 1
-	Sleep, 15
+	Sleep, 15*Latency
 	MouseMove %x%, %y%
-	Sleep, 30
+	Sleep, 30*Latency
 	Click, Down, Left, 1
-	Sleep, 30
+	Sleep, 30*Latency
 	Click, Up, Left, 1
-	Sleep, 30
+	Sleep, 30*Latency
 	BlockInput, MouseMoveOff
 	return
 	}
@@ -1790,46 +1811,46 @@ StockScrolls(){
 	If StockWisdom{
 		MouseMove %WisdomScrollX%, %WisdomScrollY%
 		ClipItem(WisdomScrollX, WisdomScrollY)
-		Sleep 20
+		Sleep, 20*Latency
 		dif := (40 - ItemProp.Stack)
 		If (dif>10)
 		{
 			MoveStash(1)
 			MouseMove WisdomStockX, WPStockY
-			Sleep 15
+			Sleep, 15*Latency
 			ShiftClick(WisdomStockX, WPStockY)
-			Sleep 30
+			Sleep, 30*Latency
 			Send %dif%
-			Sleep 45
+			Sleep, 45*Latency
 			Send {Enter}
-			Sleep 60
+			Sleep, 60*Latency
 			Send {Click, Down, %WisdomScrollX%, %WisdomScrollY%}
-			Sleep, 30
+			Sleep, 30*Latency
 			Send {Click, Up, %WisdomScrollX%, %WisdomScrollY%}
-			Sleep, 45
+			Sleep, 45*Latency
 		}
-		Sleep 20
+		Sleep, 20*Latency
 	}
 	If StockPortal{
 		MouseMove %PortalScrollX%, %PortalScrollY%
 		ClipItem(PortalScrollX, PortalScrollY)
-		Sleep 20
+		Sleep, 20*Latency
 		dif := (40 - ItemProp.Stack)
 		If (dif>10)
 		{
 			MoveStash(1)
 			MouseMove PortalStockX, WPStockY
-			Sleep 15
+			Sleep, 15*Latency
 			ShiftClick(PortalStockX, WPStockY)
-			Sleep 30
+			Sleep, 30*Latency
 			Send %dif%
-			Sleep 45
+			Sleep, 45*Latency
 			Send {Enter}
-			Sleep 60
+			Sleep, 60*Latency
 			Send {Click, Down, %PortalScrollX%, %PortalScrollY%}
-			Sleep, 30
+			Sleep, 30*Latency
 			Send {Click, Up, %PortalScrollX%, %PortalScrollY%}
-			Sleep, 45
+			Sleep, 45*Latency
 		}
 	}
 	BlockInput, MouseMoveOff
@@ -1842,7 +1863,7 @@ ClipItem(x, y){
 	BlockInput, MouseMove
 	Clipboard := ""
 	MouseMove %x%, %y%
-	Sleep 80
+	Sleep, 80*Latency
 	Send ^c
 	ClipWait, 0
 	ParseClip()
@@ -1921,7 +1942,7 @@ WM_MOUSEMOVE(){
 RandomSleep(min,max){
 	Random, r, %min%, %max%
 	r:=floor(r/Speed)
-	Sleep %r%
+	Sleep, %r%*Latency
 	return
 	}
 
@@ -2820,6 +2841,7 @@ TGameTick(){
 	}
 
 ;Clamp Value function
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Clamp( Val, Min, Max) {
   If Val < Min
 	Val := Min
@@ -2876,6 +2898,7 @@ Clamp( Val, Min, Max) {
 		IniRead, YesStash, settings.ini, General, YesStash %A_Space%
 		IniRead, YesIdentify, settings.ini, General, YesIdentify %A_Space%
 		IniRead, YesMapUnid, settings.ini, General, YesMapUnid %A_Space%
+		IniRead, Latency, settings.ini, General, Latency %A_Space%
 
 		;Stash Tab Management
 		IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency %A_Space%
@@ -3199,6 +3222,7 @@ Clamp( Val, Min, Max) {
 		IniWrite, %YesStash%, settings.ini, General, YesStash %A_Space%
 		IniWrite, %YesIdentify%, settings.ini, General, YesIdentify %A_Space%
 		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid %A_Space%
+		IniWrite, %Latency%, settings.ini, General, Latency %A_Space%
 		
 		IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10 %A_Space%
 
@@ -3548,6 +3572,7 @@ Clamp( Val, Min, Max) {
 		IniWrite, %YesStash%, settings.ini, General, YesStash %A_Space%
 		IniWrite, %YesIdentify%, settings.ini, General, YesIdentify %A_Space%
 		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid %A_Space%
+		IniWrite, %Latency%, settings.ini, General, Latency %A_Space%
 		IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide %A_Space%
 		If (DetonateMines&&!Detonated)
 			SetTimer, TMineTick, 100
