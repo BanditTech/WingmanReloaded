@@ -33,7 +33,7 @@ IfExist, %I_Icon%
   
 if not A_IsAdmin
 {
-   Run *RunAs "%A_ScriptFullPath%", , Hide
+   Run *RunAs "%A_ScriptFullPath%"
    ExitApp
 }
 
@@ -43,13 +43,16 @@ if not A_IsAdmin
 
 ;General
 ; Dont change the speed & the tick unless you know what you are doing
-global Speed:=1
-global QTick:=250
-global hotkeyPopFlasks:=""
+global Speed=1
+global QTick=250
+
+;Coordinates
+global GuiX=-5
+global GuiY=1005
 
 ;Failsafe Colors
-global varOnHideout:=0x161114
-global varOnChar:=0x4F6980
+global varOnHideout
+global varOnChar
 
 ;Flask Cooldowns
 global CoolDownFlask1:=5000
@@ -60,14 +63,16 @@ global CoolDownFlask5:=5000
 global CoolDown:=5000
 
 ;Quicksilver
-global TriggerQuicksilverDelay:= .5 
-global TriggerQuicksilver:=00000
-global QuicksilverSlot1:=0
-global QuicksilverSlot2:=0
-global QuicksilverSlot3:=0
-global QuicksilverSlot4:=0
-global QuicksilverSlot5:=0
+global TriggerQuicksilverDelay=0.8
+global TriggerQuicksilver=00000
+global QuicksilverSlot1=0
+global QuicksilverSlot2=0
+global QuicksilverSlot3=0
+global QuicksilverSlot4=0
+global QuicksilverSlot5=0
 
+;Hotkeys
+global hotkeyPopFlasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra vars - Not in INI
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -96,8 +101,58 @@ else
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-If FileExist("settings.ini") 
-	readFromFile()
+If FileExist("settings.ini"){ 
+
+	;General
+	IniRead, Speed, settings.ini, General, Speed
+	IniRead, QTick, settings.ini, General, QTick
+	;Coordinates
+	IniRead, GuiX, settings.ini, Coordinates, GuiX
+	IniRead, GuiY, settings.ini, Coordinates, GuiY
+	;Failsafe Colors
+	IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
+	IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
+	;Flask Cooldowns
+	IniRead, CoolDownFlask1, settings.ini, Flask Cooldowns, CoolDownFlask1
+	IniRead, CoolDownFlask2, settings.ini, Flask Cooldowns, CoolDownFlask2
+	IniRead, CoolDownFlask3, settings.ini, Flask Cooldowns, CoolDownFlask3
+	IniRead, CoolDownFlask4, settings.ini, Flask Cooldowns, CoolDownFlask4
+	IniRead, CoolDownFlask5, settings.ini, Flask Cooldowns, CoolDownFlask5
+	;Quicksilver
+	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
+	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
+	IniRead, QuicksilverSlot1, settings.ini, Quicksilver, QuicksilverSlot1
+	IniRead, QuicksilverSlot2, settings.ini, Quicksilver, QuicksilverSlot2
+	IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3
+	IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4
+	IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5
+	;Hotkeys
+	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
+ 	
+} else {
+	
+	;General
+	IniWrite, %Speed%, settings.ini, General, Speed
+	IniWrite, %QTick%, settings.ini, General, QTick
+	;Coordinates
+	IniWrite, %GuiX%, settings.ini, Coordinates, GuiX
+	IniWrite, %GuiY%, settings.ini, Coordinates, GuiY
+	;Flask Cooldowns
+	IniWrite, %CoolDownFlask1%, settings.ini, Flask Cooldowns, CoolDownFlask1
+	IniWrite, %CoolDownFlask2%, settings.ini, Flask Cooldowns, CoolDownFlask2
+	IniWrite, %CoolDownFlask3%, settings.ini, Flask Cooldowns, CoolDownFlask3
+	IniWrite, %CoolDownFlask4%, settings.ini, Flask Cooldowns, CoolDownFlask4
+	IniWrite, %CoolDownFlask5%, settings.ini, Flask Cooldowns, CoolDownFlask5
+	;Quicksilver
+	IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
+	IniWrite, %TriggerQuicksilver%, settings.ini, Quicksilver, TriggerQuicksilver
+	IniWrite, %QuicksilverSlot1%, settings.ini, Quicksilver, QuicksilverSlot1
+	IniWrite, %QuicksilverSlot2%, settings.ini, Quicksilver, QuicksilverSlot2
+	IniWrite, %QuicksilverSlot3%, settings.ini, Quicksilver, QuicksilverSlot3
+	IniWrite, %QuicksilverSlot4%, settings.ini, Quicksilver, QuicksilverSlot4
+	IniWrite, %QuicksilverSlot5%, settings.ini, Quicksilver, QuicksilverSlot5
+	
+}
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -190,32 +245,6 @@ RandomSleep(min,max){
 	Sleep %r%
 	return
 }
-
-readFromFile(){
-	;General
-	IniRead, Speed, settings.ini, General, Speed
-	IniRead, QTick, settings.ini, General, QTick
-	;Failsafe Colors
-	IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
-	IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
-	;Flask Cooldowns
-	IniRead, CoolDownFlask1, settings.ini, Flask Cooldowns, CoolDownFlask1
-	IniRead, CoolDownFlask2, settings.ini, Flask Cooldowns, CoolDownFlask2
-	IniRead, CoolDownFlask3, settings.ini, Flask Cooldowns, CoolDownFlask3
-	IniRead, CoolDownFlask4, settings.ini, Flask Cooldowns, CoolDownFlask4
-	IniRead, CoolDownFlask5, settings.ini, Flask Cooldowns, CoolDownFlask5
-	;Quicksilver
-	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
-	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
-	IniRead, %QuicksilverSlot1%, settings.ini, Quicksilver, QuicksilverSlot1
-	IniRead, %QuicksilverSlot2%, settings.ini, Quicksilver, QuicksilverSlot2
-	IniRead, %QuicksilverSlot3%, settings.ini, Quicksilver, QuicksilverSlot3
-	IniRead, %QuicksilverSlot4%, settings.ini, Quicksilver, QuicksilverSlot4
-	IniRead, %QuicksilverSlot5%, settings.ini, Quicksilver, QuicksilverSlot5
-    ;Pop all flasks
-	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
-	Return
-	}
 
 GuiUpdate(){
 	if (AutoQuick=1) {
