@@ -2001,9 +2001,9 @@ WM_MOUSEMOVE(){
 ; Provides a call for simpler random sleep timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RandomSleep(min,max){
-	Random, r, %min%, %max%
+	Random, r, min, max
 	r:=floor(r/Speed)
-	Sleep, %r%*Latency
+	Sleep, r*Latency
 	return
 	}
 
