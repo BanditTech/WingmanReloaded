@@ -68,8 +68,8 @@
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale*AreaScale) 
-		; 0 = 1 pixel search area, 1 = 3 pixel , 2 = 5 pixel, 3 = 10 pixel, 4 = 17 pixel 
-		Global AreaScale := 2
+		; 0 = 1 pixel search area, 1 = 9 pixel square , 2 = 81 pixel, 3 = 361 pixel, 4 = 1089 pixel 
+		Global AreaScale := 1
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
