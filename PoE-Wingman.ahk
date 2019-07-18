@@ -45,8 +45,8 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .009
-		Global Latency := 2
+		Global VersionNumber := .01.2
+		Global Latency := 1
 		If (YesUltraWide){
 			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
 			Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
@@ -69,13 +69,14 @@
 		Global MOColor := 0x011C01
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale*AreaScale) 
 		; 0 = 1 pixel search area, 1 = 3 pixel , 2 = 5 pixel, 3 = 10 pixel, 4 = 17 pixel 
-		Global AreaScale := 0
+		Global AreaScale := 2
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
 		Global YesIdentify := 1
 		Global YesMapUnid := 1
 		Global YesUltraWide := 0
+		Global YesStashKeys := 1
 		Global OnHideout := False
 		Global OnChar := False
 		Global OnChat := False
@@ -1469,6 +1470,59 @@
 		settimer, TimmerFlask5, %CoolDownFlask5%
 		return
 
+; Move to # stash
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	If (YesStashKeys){
+		!1::
+			Keywait, Alt
+			MoveStash(1)
+			return
+			
+		!2::
+			Keywait, Alt
+			MoveStash(2)
+			return
+			
+		!3::
+			Keywait, Alt
+			MoveStash(3)
+			return
+			
+		!4::
+			Keywait, Alt
+			MoveStash(4)
+			return
+			
+		!5::
+			Keywait, Alt
+			MoveStash(5)
+			return
+			
+		!6::
+			Keywait, Alt
+			MoveStash(6)
+			return
+			
+		!7::
+			Keywait, Alt
+			MoveStash(7)
+			return
+			
+		!8::
+			Keywait, Alt
+			MoveStash(8)
+			return
+			
+		!9::
+			Keywait, Alt
+			MoveStash(9)
+			return
+			
+		!0::
+			Keywait, Alt
+			MoveStash(10)
+			return
+		}
 ;Reload Script with Alt+Escape
 !Escape::
 	Reload
@@ -1761,7 +1815,7 @@ MoveStash(Tab){
 		Click, Up, Left, 1
 		Sleep, 15*Latency
 		MouseMove, 760, ((A_ScreenHeight/(1080/120)) + (Tab*(A_ScreenHeight/(1080/22)))), 0
-		Sleep, 45*Latency
+		Sleep, 60*Latency
 		send {Enter}
 		Sleep, 45*Latency
 		If (YesUltraWide)
