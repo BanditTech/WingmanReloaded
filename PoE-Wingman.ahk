@@ -1510,53 +1510,53 @@
 ; Move to # stash hotkeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	If (YesStashKeys){
-		!1::
-			Keywait, Alt
+		^1::
+			Keywait, Ctrl
 			MoveStash(1)
 			return
 			
-		!2::
-			Keywait, Alt
+		^2::
+			Keywait, Ctrl
 			MoveStash(2)
 			return
 			
-		!3::
-			Keywait, Alt
+		^3::
+			Keywait, Ctrl
 			MoveStash(3)
 			return
 			
-		!4::
-			Keywait, Alt
+		^4::
+			Keywait, Ctrl
 			MoveStash(4)
 			return
 			
-		!5::
-			Keywait, Alt
+		^5::
+			Keywait, Ctrl
 			MoveStash(5)
 			return
 			
-		!6::
-			Keywait, Alt
+		^6::
+			Keywait, Ctrl
 			MoveStash(6)
 			return
 			
-		!7::
-			Keywait, Alt
+		^7::
+			Keywait, Ctrl
 			MoveStash(7)
 			return
 			
-		!8::
-			Keywait, Alt
+		^8::
+			Keywait, Ctrl
 			MoveStash(8)
 			return
 			
-		!9::
-			Keywait, Alt
+		^9::
+			Keywait, Ctrl
 			MoveStash(9)
 			return
 			
-		!0::
-			Keywait, Alt
+		^0::
+			Keywait, Ctrl
 			MoveStash(10)
 			return
 		}
