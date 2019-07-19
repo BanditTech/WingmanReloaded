@@ -100,8 +100,8 @@
 
 		; Use the colorkey above to choose your background colors.
 		; The example below uses two colors black and white
-		Global LootColors := { 1 : 0xFFFFFF
-				, 2 : 0x222222}
+		Global LootColors := { 1 : 0x222222
+				, 2 : 0xFFFFFF}
 		
 		; Use this as an example of adding more colors into the loot vacuum (This adds tan and red at postion 2,3)
 		Global ExampleColors := { 1 : 0xFFFFFF
@@ -457,6 +457,7 @@
 		IniWrite, 50, settings.ini, General, Tick
 		IniWrite, 250, settings.ini, General, QTick
 		IniWrite, 0, settings.ini, General, YesUltraWide
+		IniWrite, 1, settings.ini, General, YesStashKeys
 		IniWrite, 0, settings.ini, General, DebugMessages
 		IniWrite, 0, settings.ini, General, ShowPixelGrid
 		IniWrite, 0, settings.ini, General, ShowItemInfo
@@ -629,18 +630,30 @@
 	IfWinExist, ahk_class POEWindowClass 
 	{
 		varTextSave:="Save"
-		varTextHideout:="Get ALL Failsafe Colors"
-		varTextOnChar:="Get OnChar Failsafe Color"
+		varTextOnHideout:="OnHideout Color"
+		varTextOnChar:="OnChar Color"
+		varTextOnInventory:="OnInventory Color"
+		varTextOnStash:="OnStash Color"
+		varTextOnChat:="OnChat Color"
+		varTextOnVendor:="OnVendor Color"
 	}
 	else
 	{
-		varTextSave:="Save (POE has to be running)"
-		varTextHideout:="(POE has to be running)"
-		varTextOnChar:="(POE has to be running)"
+		varTextSave:="Save (POE not open)"
+		varTextOnHideout:="(POE not open)"
+		varTextOnChar:="(POE not open)"
+		varTextOnInventory:="(POE not open)"
+		varTextOnStash:="(POE not open)"
+		varTextOnChat:="(POE not open)"
+		varTextOnVendor:="(POE not open)"
 	}
 	GuiControl,, SaveBtn, %varTextSave%
-	GuiControl,, UpdateHideoutBtn, %varTextHideout%
+	GuiControl,, UpdateOnHideoutBtn, %varTextOnHideout%
 	GuiControl,, UpdateOnCharBtn, %varTextOnChar%
+	GuiControl,, UpdateOnInventoryBtn, %varTextOnInventory%
+	GuiControl,, UpdateOnStashBtn, %varTextOnStash%
+	GuiControl,, UpdateOnChatBtn, %varTextOnChat%
+	GuiControl,, UpdateOnVendorBtn, %varTextOnVendor%
 
 	if Life=1 
 	{
@@ -897,6 +910,14 @@
 	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
 	hotkeyLootScan_TT:="Put your ingame assigned hotkey here"
+	;~ =========================================================================================== Subgroup: Hints
+	Gui,Font,Bold
+	Gui,Add,GroupBox,Section xs	x450 y330  w120 h89							,Hotkey Modifiers
+	Gui,Font,Norm
+	Gui,Font,s8,Arial
+	Gui,Add,Text,	 		 	x465 y350					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
+	Gui,Add,Text,	 		   		y+9					,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
+	Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything vSaveBtn	 x295 y430	w200 h23, 	%varTextSave%
@@ -908,18 +929,21 @@
 	;#######################################################################################################Failsafe Tab
 	Gui, Tab, Failsafe and Extra Settings
 	Gui, Font, Bold
-	Gui Add, Text, 										x12 	y30, 				Failsafe Instructions:
+	Gui Add, Text, 										x242 	y30, 				Gamestate Calibration Instructions:
 	Gui, Font,
-	Gui Add, Text, 										x12 	y+5, 				Use the following buttons are for taking a new sample of pixel colors:
-	Gui Add, Text, 										x22 	y+5, 				1) If you are running this file for the very first time, or you just aquired your very first Hideout.
-	Gui Add, Text, 										x22 	y+5, 				2) If you changed the resolution of PoE.
-	Gui Add, Text, 										x22 	y+10, 				To use these pixel regrabs, follow the instructions and then press the button. 
-	Gui Add, Text, 										x12 	y+10, 				Go to Hideout, and open Stash tab and Inventory panel:
-	;Update Hideout
-	Gui, Add, Button, gupdateHideout vUpdateHideoutBtn	x+10	y+-18	w226 h23, 	%varTextHideout%
-	Gui Add, Text, 										x12 	y+10, 				Open a vendor panel and open Chat panel:
+	Gui Add, Text, 										x252 	y+5, 				These buttons regrab the gamestate sample color.
+	Gui Add, Text, 										x252 	y+5, 				Each button references a different game state.
+	Gui Add, Text, 										x252 	y+5, 				Make sure the gamestate is true for that button!
+	Gui Add, Text, 										x252 	y+5, 				Click the button once ready to calibrate.
+	;Update OnHideout
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y35	w100, 	%varTextOnHideout%
 	;Update OnChar
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	x+10	y+-18 	w154 h23, 	%varTextOnChar%
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	%varTextOnChar%
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	%varTextOnChat%
+
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y35	w100, 	%varTextOnInventory%
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	%varTextOnStash%
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	%varTextOnVendor%
 
 
 	Gui, Font, Bold
@@ -965,6 +989,7 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
 	Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                         	          , UltraWide Scaling?
+	Gui Add, Checkbox, gUpdateExtra	vYesStashKeys                         	          , Ctrl(1-10) stash tabs?
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 ,  1|2|3
 	Gui Add, Text, 										x+12 	, 				Adjust Latency
 
@@ -1086,6 +1111,10 @@
 		Iniread, YesUltraWide, settings.ini, General, YesUltraWide
 		valueYesUltraWide := YesUltraWide
 		GuiControl, , YesUltraWide, %valueYesUltraWide%
+
+		Iniread, YesStashKeys, settings.ini, General, YesStashKeys
+		valueYesStashKeys := YesStashKeys
+		GuiControl, , YesStashKeys, %valueYesStashKeys%
 
 		Iniread, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX
 		valueWisdomScrollX := WisdomScrollX
@@ -1331,15 +1360,23 @@
 		IfWinExist, ahk_class POEWindowClass 
 			{
 				GuiControl, Enable, SaveBtn
-				GuiControl, Enable, UpdateHideoutBtn
+				GuiControl, Enable, UpdateOnHideoutBtn
 				GuiControl, Enable, UpdateOnCharBtn
+				GuiControl, Enable, UpdateOnInventoryBtn
+				GuiControl, Enable, UpdateOnStashBtn
+				GuiControl, Enable, UpdateOnChatBtn
+				GuiControl, Enable, UpdateOnVendorBtn
 				GuiControl, Hide, RefreshBtn
 			}
 			else
 			{
 				GuiControl, Disable, SaveBtn
-				GuiControl, Disable, UpdateHideoutBtn
+				GuiControl, Disable, UpdateOnHideoutBtn
 				GuiControl, Disable, UpdateOnCharBtn
+				GuiControl, Disable, UpdateOnInventoryBtn
+				GuiControl, Disable, UpdateOnStashBtn
+				GuiControl, Disable, UpdateOnChatBtn
+				GuiControl, Disable, UpdateOnVendorBtn
 			}
 			
 		if(valueLife==1) {
@@ -1470,7 +1507,7 @@
 		settimer, TimmerFlask5, %CoolDownFlask5%
 		return
 
-; Move to # stash
+; Move to # stash hotkeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	If (YesStashKeys){
 		!1::
@@ -1551,8 +1588,12 @@ LootScan(){
 			ScanX2:=(CenterX+(AreaScale*AreaScale))
 			ScanY2:=(CenterY+(AreaScale*AreaScale))
 			PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
-			If (ErrorLevel = 0)
+			If (ErrorLevel = 0){
+				Pressed := GetKeyState(hotkeyLootScan, "P")
+				If !(Pressed)
+					Break
 				SwiftClick(ScanPx, ScanPy)
+				}
 			Else If (ErrorLevel = 1)
 				Continue
 			}
@@ -1577,11 +1618,11 @@ ItemSort(){
 		GuiStatus()
 		If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
 			Return
-		For k, GridY in InventoryGridY
+		For C, GridX in InventoryGridX
 			{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			For k, GridX in InventoryGridX
+			For R, GridY in InventoryGridY
 				{
 				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 					Break
@@ -1783,6 +1824,13 @@ ItemSort(){
 						}
 					}   
 				}
+			MouseGetPos Checkx, Checky
+			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+				MouseMove, RX, RY, 0
+				Sleep, 45*Latency
+				}
 			}
 		If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
 			{
@@ -1841,7 +1889,7 @@ SwiftClick(x, y){
 	MouseMove, x, y	
 	Sleep, 15*Latency
 	Send {Click, Down x, y }
-	Sleep, 30*Latency
+	Sleep, 45*Latency
 	Send {Click, Up x, y }
 	Sleep, 15*Latency
 	return
@@ -1854,7 +1902,7 @@ RightClick(x, y){
 	MouseMove, x, y
 	Sleep, 15*Latency
 	Send {Click, Down x, y, Right}
-	Sleep, 30*Latency
+	Sleep, 45*Latency
 	Send {Click, Up x, y, Right}
 	Sleep, 15*Latency
 	BlockInput, MouseMoveOff
@@ -1870,7 +1918,7 @@ ShiftClick(x, y){
 	Send {Shift Down}
 	Sleep, 30*Latency
 	Send {Click, Down, x, y}
-	Sleep, 30*Latency
+	Sleep, 45*Latency
 	Send {Click, Up, x, y}
 	Sleep, 15*Latency
 	Send {Shift Up}
@@ -1888,7 +1936,7 @@ CtrlClick(x, y){
 	Send {Ctrl Down}
 	Sleep, 30*Latency
 	Send {Click, Down, x, y}
-	Sleep, 30*Latency
+	Sleep, 45*Latency
 	Send {Click, Up, x, y}
 	;Send ^{Click, Up, x, y}
 	Sleep, 15*Latency
@@ -1906,13 +1954,13 @@ WisdomScroll(x, y){
 	MouseMove %WisdomScrollX%, %WisdomScrollY%
 	Sleep, 30*Latency
 	Click, Down, Right, 1
-	Sleep, 30*Latency
+	Sleep, 45*Latency
 	Click, Up, Right, 1
 	Sleep, 15*Latency
 	MouseMove %x%, %y%
 	Sleep, 30*Latency
 	Click, Down, Left, 1
-	Sleep, 30*Latency
+	Sleep, 45*Latency
 	Click, Up, Left, 1
 	Sleep, 30*Latency
 	BlockInput, MouseMoveOff
@@ -3461,30 +3509,50 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_class POEWindowClass 
 		{
 			GuiControl, Enable, SaveBtn
-			GuiControl, Enable, UpdateHideoutBtn
+			GuiControl, Enable, UpdateOnHideoutBtn
 			GuiControl, Enable, UpdateOnCharBtn
+			GuiControl, Enable, UpdateOnInventoryBtn
+			GuiControl, Enable, UpdateOnStashBtn
+			GuiControl, Enable, UpdateOnChatBtn
+			GuiControl, Enable, UpdateOnVendorBtn
 			GuiControl, Hide, RefreshBtn
 			Reload
 			varTextSave:="Save"
-			varTextHideout:="Get ALL Failsafe Colors"
-			varTextOnChar:="Get OnChar Failsafe Color"
+			varTextOnHideout:="OnHideout Color"
+			varTextOnChar:="OnChar Color"
+			varTextOnInventory:="OnInventory Color"
+			varTextOnStash:="OnStash Color"
+			varTextOnChat:="OnChat Color"
+			varTextOnVendor:="OnVendor Color"
 		}
 		else
 		{
 			GuiControl, Disable, SaveBtn
-			GuiControl, Disable, UpdateHideoutBtn
+			GuiControl, Disable, UpdateOnHideoutBtn
 			GuiControl, Disable, UpdateOnCharBtn
+			GuiControl, Disable, UpdateOnInventoryBtn
+			GuiControl, Disable, UpdateOnStashBtn
+			GuiControl, Disable, UpdateOnChatBtn
+			GuiControl, Disable, UpdateOnVendorBtn
 			GuiControl, Enable, ResfreshBtn
-			varTextSave:="Save (POE has to be running)"
-			varTextHideout:="(POE has to be running)"
-			varTextOnChar:="(POE has to be running)"
+			varTextSave:="Save (POE not open)"
+			varTextOnHideout:="(POE not open)"
+			varTextOnChar:="(POE not open)"
+			varTextOnInventory:="(POE not open)"
+			varTextOnStash:="(POE not open)"
+			varTextOnChat:="(POE not open)"
+			varTextOnVendor:="(POE not open)"
 		}
 		GuiControl,, SaveBtn, %varTextSave%
-		GuiControl,, UpdateHideoutBtn, %varTextHideout%
+		GuiControl,, UpdateOnHideoutBtn, %varTextOnHideout%
 		GuiControl,, UpdateOnCharBtn, %varTextOnChar%
+		GuiControl,, UpdateOnInventoryBtn, %varTextOnInventory%
+		GuiControl,, UpdateOnStashBtn, %varTextOnStash%
+		GuiControl,, UpdateOnChatBtn, %varTextOnChat%
+		GuiControl,, UpdateOnVendorBtn, %varTextOnVendor%
 		return
 
-	updateHideout:
+	updateOnHideout:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
@@ -3492,21 +3560,12 @@ Clamp( Val, Min, Max) {
 			If (YesUltraWide)
 				{
 				vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-				vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-				vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-				vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
 				}
 			Else
 				{
 				vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
-				vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-				vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-				vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
 				}
 			vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-			vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
-			vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-			vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
 		}
 		IfWinActive, ahk_class POEWindowClass 
 		{
@@ -3514,16 +3573,10 @@ Clamp( Val, Min, Max) {
 		}
 		pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
 		IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout %A_Space%
-		pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
-		IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar %A_Space%
-		pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
-		IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory %A_Space%
-		pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
-		IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash %A_Space%
 		readFromFile()
-		MsgBox, OnHideout, OnChar, OnInventory and OnStash Done! Happy hunting, Exile!
+		MsgBox, OnHideout Recalibrated!
 		return
-		
+
 	updateOnChar:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
@@ -3531,14 +3584,10 @@ Clamp( Val, Min, Max) {
 			If (YesUltraWide)
 			{
 			vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-			vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-			vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
 			}
 			Else
 			{
 			vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-			vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-			vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
 			}
 			WinGetPos,,, Width, Height  ; Uses the window found above.
 			vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
@@ -3549,12 +3598,107 @@ Clamp( Val, Min, Max) {
 		}
 		pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
 		IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar %A_Space%
+		readFromFile()
+		MsgBox, OnChar Recalibrated!
+		return
+
+	updateOnInventory:
+		Gui, Submit, NoHide
+		IfWinExist, ahk_class POEWindowClass 
+		{
+			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
+			If (YesUltraWide)
+				{
+				vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+				}
+			Else
+				{
+				vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+				}
+			vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+		}
+		IfWinActive, ahk_class POEWindowClass 
+		{
+			WinActivate, ahk_class POEWindowClass
+		}
+		pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+		IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory %A_Space%
+		readFromFile()
+		MsgBox, OnInventory Recalibrated!
+		return
+
+	updateOnStash:
+		Gui, Submit, NoHide
+		IfWinExist, ahk_class POEWindowClass 
+		{
+			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
+			If (YesUltraWide)
+				{
+				vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+				}
+			Else
+				{
+				vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+				}
+			vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+		}
+		IfWinActive, ahk_class POEWindowClass 
+		{
+			WinActivate, ahk_class POEWindowClass
+		}
+		pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+		IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash %A_Space%
+		readFromFile()
+		MsgBox, OnStash Recalibrated!
+		return
+		
+	updateOnChat:
+		Gui, Submit, NoHide
+		IfWinExist, ahk_class POEWindowClass 
+		{
+			If (YesUltraWide)
+			{
+			vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+			}
+			Else
+			{
+			vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+			}
+			WinGetPos,,, Width, Height  ; Uses the window found above.
+			vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
+		}
+		IfWinActive, ahk_class POEWindowClass 
+		{
+			WinActivate, ahk_class POEWindowClass
+		}
 		pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
 		IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat %A_Space%
+		readFromFile()
+		MsgBox, OnChat Recalibrated!
+		return
+
+	updateOnVendor:
+		Gui, Submit, NoHide
+		IfWinExist, ahk_class POEWindowClass 
+		{
+			If (YesUltraWide)
+			{
+			vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+			}
+			Else
+			{
+			vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+			}
+			WinGetPos,,, Width, Height  ; Uses the window found above.
+		}
+		IfWinActive, ahk_class POEWindowClass 
+		{
+			WinActivate, ahk_class POEWindowClass
+		}
 		pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
 		IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor %A_Space%
 		readFromFile()
-		MsgBox, OnChar, OnVendor and OnChat Done!
+		MsgBox, OnVendor Recalibrated!
 		return
 
 	updateCharacterType:
@@ -3683,6 +3827,7 @@ Clamp( Val, Min, Max) {
 		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid %A_Space%
 		IniWrite, %Latency%, settings.ini, General, Latency %A_Space%
 		IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide %A_Space%
+		IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys %A_Space%
 		If (DetonateMines&&!Detonated)
 			SetTimer, TMineTick, 100
 			Else If (!DetonateMines)
