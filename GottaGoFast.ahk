@@ -131,31 +131,7 @@ If FileExist("settings.ini"){
 	;Hotkeys
 	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
  	
-} else {
-	
-	;General
-	IniWrite, %Speed%, settings.ini, General, Speed
-	IniWrite, %QTick%, settings.ini, General, QTick
-	IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
-	;Coordinates
-	IniWrite, %GuiX%, settings.ini, Coordinates, GuiX
-	IniWrite, %GuiY%, settings.ini, Coordinates, GuiY
-	;Flask Cooldowns
-	IniWrite, %CoolDownFlask1%, settings.ini, Flask Cooldowns, CoolDownFlask1
-	IniWrite, %CoolDownFlask2%, settings.ini, Flask Cooldowns, CoolDownFlask2
-	IniWrite, %CoolDownFlask3%, settings.ini, Flask Cooldowns, CoolDownFlask3
-	IniWrite, %CoolDownFlask4%, settings.ini, Flask Cooldowns, CoolDownFlask4
-	IniWrite, %CoolDownFlask5%, settings.ini, Flask Cooldowns, CoolDownFlask5
-	;Quicksilver
-	IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
-	IniWrite, %TriggerQuicksilver%, settings.ini, Quicksilver, TriggerQuicksilver
-	IniWrite, %QuicksilverSlot1%, settings.ini, Quicksilver, QuicksilverSlot1
-	IniWrite, %QuicksilverSlot2%, settings.ini, Quicksilver, QuicksilverSlot2
-	IniWrite, %QuicksilverSlot3%, settings.ini, Quicksilver, QuicksilverSlot3
-	IniWrite, %QuicksilverSlot4%, settings.ini, Quicksilver, QuicksilverSlot4
-	IniWrite, %QuicksilverSlot5%, settings.ini, Quicksilver, QuicksilverSlot5
-	
-}
+	} 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
