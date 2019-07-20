@@ -4,7 +4,7 @@
 	#HotkeyInterval 99000000
 	#KeyHistory 0
 	#SingleInstance force
-	#Warn UseEnv 
+	;#Warn UseEnv 
 	#Persistent 
 	#InstallMouseHook
 	#InstallKeybdHook
