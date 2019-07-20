@@ -47,6 +47,7 @@
 	;General
 		Global VersionNumber := .01.2
 		Global Latency := 1
+		Global PopFlaskRespectCD := 1
 		If (YesUltraWide){
 			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
 			Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
@@ -456,6 +457,7 @@
 		IniWrite, 1, settings.ini, General, Speed
 		IniWrite, 50, settings.ini, General, Tick
 		IniWrite, 250, settings.ini, General, QTick
+		IniWrite, 1, settings.ini, General, PopFlaskRespectCD
 		IniWrite, 0, settings.ini, General, YesUltraWide
 		IniWrite, 1, settings.ini, General, YesStashKeys
 		IniWrite, 0, settings.ini, General, DebugMessages
@@ -927,7 +929,7 @@
 	Gui, Add, Text, 									x+33 		 		h107 0x11
 	Gui, Add, Text, 									x+33 		 		h107 0x11
 	;#######################################################################################################Failsafe Tab
-	Gui, Tab, Failsafe and Extra Settings
+	Gui, Tab, Calibration and Extra Settings
 	Gui, Font, Bold
 	Gui Add, Text, 										x242 	y30, 				Gamestate Calibration Instructions:
 	Gui, Font,
@@ -947,9 +949,9 @@
 
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x12 	y250, 				Stash Management
+	Gui Add, Text, 										x12 	y200, 				Stash Management
 	Gui, Font,
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y270 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y220 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabTimelessSplinter Choose%StashTabTimelessSplinter% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
@@ -957,7 +959,7 @@
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency  x55 y274, Currency Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency  x55 y224, Currency Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter y+14, TSplinter Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap y+14, Map Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment y+14, Fragment Tab
@@ -965,14 +967,14 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCollection y+14, Collection Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence y+14, Essence Tab
 
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y270 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y220 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem x195 y274, Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem x195 y224, Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality y+14, Quality Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality y+14, Quality Flask Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesLinked y+14, Linked Tab
@@ -980,9 +982,10 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing y+14, Unique Ring Tab
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x352 	y250, 				Other Functions
+	Gui Add, Text, 										x352 	y200, 				Other Functions
 	Gui, Font,
 	Gui Add, Checkbox, gUpdateExtra	vDetonateMines                        	          , Detonate Mines?
+	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD                         	      , All-Flasks Respects CD?
 	Gui Add, Checkbox, gUpdateExtra	vLootVacuum                         	          , Loot Vacuum?
 	Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	              , Sell at vendor?
 	Gui Add, Checkbox, gUpdateExtra	vYesStash                         	        	  , Deposit at stash?
@@ -1171,6 +1174,10 @@
 		Iniread, YesIdentify, settings.ini, General, YesIdentify
 		valueYesIdentify := YesIdentify
 		GuiControl, , YesIdentify, %valueYesIdentify%
+		
+		Iniread, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
+		valuePopFlaskRespectCD := PopFlaskRespectCD
+		GuiControl, , PopFlaskRespectCD, %valuePopFlaskRespectCD%
 		
 		Iniread, YesMapUnid, settings.ini, General, YesMapUnid
 		valueYesMapUnid := YesMapUnid
@@ -2178,30 +2185,34 @@ QuickPortal(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
 	PopFlasksCommand:
-	Send 1
-	OnCoolDown[1]:=1 
-	CoolDown:=CoolDownFlask1
-	settimer, TimmerFlask1, %CoolDown%
-	RandomSleep(-99,99)
-	Send 4
-	OnCoolDown[4]:=1 
-	CoolDown:=CoolDownFlask4
-	settimer, TimmerFlask4, %CoolDown%
-	RandomSleep(-99,99)
-	Send 3
-	OnCoolDown[3]:=1 
-	CoolDown:=CoolDownFlask3
-	settimer, TimmerFlask3, %CoolDown%
-	RandomSleep(-99,99)
-	Send 2
-	OnCoolDown[2]:=1 
-	CoolDown:=CoolDownFlask2
-	settimer, TimmerFlask2, %CoolDown%
-	RandomSleep(-99,99)
-	Send 5
-	OnCoolDown[5]:=1 
-	CoolDown:=CoolDownFlask5
-	settimer, TimmerFlask5, %CoolDown%
+	If PopFlaskRespectCD
+		TriggerFlask(11111)
+	Else {
+		Send 1
+		OnCoolDown[1]:=1 
+		CoolDown:=CoolDownFlask1
+		settimer, TimmerFlask1, %CoolDown%
+		RandomSleep(-99,99)
+		Send 4
+		OnCoolDown[4]:=1 
+		CoolDown:=CoolDownFlask4
+		settimer, TimmerFlask4, %CoolDown%
+		RandomSleep(-99,99)
+		Send 3
+		OnCoolDown[3]:=1 
+		CoolDown:=CoolDownFlask3
+		settimer, TimmerFlask3, %CoolDown%
+		RandomSleep(-99,99)
+		Send 2
+		OnCoolDown[2]:=1 
+		CoolDown:=CoolDownFlask2
+		settimer, TimmerFlask2, %CoolDown%
+		RandomSleep(-99,99)
+		Send 5
+		OnCoolDown[5]:=1 
+		CoolDown:=CoolDownFlask5
+		settimer, TimmerFlask5, %CoolDown%
+	}
 	return
 	}
 
@@ -2753,7 +2764,7 @@ TMineTick(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TGameTick(){
 	IfWinActive, Path of Exile
-	{	
+		{	
 		; Check what status is your character in the game
 		GuiStatus()
 		if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
@@ -2765,14 +2776,16 @@ TGameTick(){
 			Trigger:=00000
 			GetKeyState, %MainAttackKey%state, %MainAttackKey%, P
 			if %MainAttackKey%state = D	
-				Trigger:=Trigger+TriggerMainAttack
+				TriggerFlask(TriggerMainAttack)
+				;Trigger:=Trigger+TriggerMainAttack
 			GetKeyState, %SecondaryAttackKey%state, %SecondaryAttackKey%
 			if %SecondaryAttackKey%state = D
-				Trigger:=Trigger+TriggerSecondaryAttack
-		}	
+				TriggerFlask(TriggerSecondaryAttack)
+				;Trigger:=Trigger+TriggerSecondaryAttack
+			}	
 		
 		if (Life=1)
-		{
+			{
 			pixelgetcolor, Life20, vX_Life, vY_Life20 
 			if (Life20!=varLife20) {
 				Trigger:=Trigger+TriggerLife20			
@@ -2823,10 +2836,10 @@ TGameTick(){
 			if (Life90!=varLife90) {
 				Trigger:=Trigger+TriggerLife90	
 			}
-		}
+			}
 		
 		if (Hybrid=1)
-		{
+			{
 			pixelgetcolor, Life20, vX_Life, vY_Life20 
 			if (Life20!=varLife20) {
 				Trigger:=Trigger+TriggerLife20			
@@ -2909,10 +2922,10 @@ TGameTick(){
 			if (ES90!=varES90) {
 				Trigger:=Trigger+TriggerES90	
 			}
-		}
+			}
 		
 		if (Ci=1)
-		{
+			{
 			pixelgetcolor, ES20, vX_ES, vY_ES20 
 			if (ES20!=varES20) {
 				Trigger:=Trigger+TriggerES20			
@@ -2963,12 +2976,12 @@ TGameTick(){
 			if (ES90!=varES90) {
 				Trigger:=Trigger+TriggerES90	
 			}
-		}
+			}
 			
 		pixelgetcolor, Mana10, vX_Mana, vY_Mana10
 		if (Mana10!=varMana10) {
 			Trigger:=Trigger+TriggerMana10
-		}
+			}
 
 		{
 		GuiUpdate()
@@ -2993,10 +3006,27 @@ TGameTick(){
 				}
 				FL:=FL+1
 			}
+			}
 		}
 	}
+; Flask Trigger check
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TriggerFlask(Trigger){
+	FL:=1
+	loop 5 {
+		FLVal:=SubStr(Trigger,FL,1)+0
+		if (FLVal > 0) {
+			if (OnCoolDown[FL]=0) {
+				send %FL%
+				OnCoolDown[FL]:=1 
+				CoolDown:=CoolDownFlask%FL%
+				settimer, TimmerFlask%FL%, %CoolDown%
+				RandomSleep(15,60)			
+				}
+			}
+		++FL
+		}
 	}
-
 ;Clamp Value function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Clamp( Val, Min, Max) {
@@ -3046,142 +3076,143 @@ Clamp( Val, Min, Max) {
 	readFromFile(){
 		global
 		;Hotkey,!F10, optionsCommand, Off
-		IniRead, DebugMessages, settings.ini, General, DebugMessages %A_Space%
-		IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid %A_Space%
-		IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo %A_Space%
-		IniRead, DetonateMines, settings.ini, General, DetonateMines %A_Space%
-		IniRead, LootVacuum, settings.ini, General, LootVacuum %A_Space%
-		IniRead, YesVendor, settings.ini, General, YesVendor %A_Space%
-		IniRead, YesStash, settings.ini, General, YesStash %A_Space%
-		IniRead, YesIdentify, settings.ini, General, YesIdentify %A_Space%
-		IniRead, YesMapUnid, settings.ini, General, YesMapUnid %A_Space%
-		IniRead, Latency, settings.ini, General, Latency %A_Space%
+		IniRead, DebugMessages, settings.ini, General, DebugMessages
+		IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid
+		IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo
+		IniRead, DetonateMines, settings.ini, General, DetonateMines
+		IniRead, LootVacuum, settings.ini, General, LootVacuum
+		IniRead, YesVendor, settings.ini, General, YesVendor
+		IniRead, YesStash, settings.ini, General, YesStash
+		IniRead, YesIdentify, settings.ini, General, YesIdentify
+		IniRead, YesMapUnid, settings.ini, General, YesMapUnid
+		IniRead, Latency, settings.ini, General, Latency
+		IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
 
 		;Stash Tab Management
-		IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency %A_Space%
-		IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap %A_Space%
-		IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination %A_Space%
-		IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem %A_Space%
-		IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality %A_Space%
-		IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality %A_Space%
-		IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked %A_Space%
-		IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection %A_Space%
-		IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing %A_Space%
-		IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump %A_Space%
-		IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment %A_Space%
-		IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence %A_Space%
-		IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter %A_Space%
-		IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency %A_Space%
-		IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap %A_Space%
-		IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination %A_Space%
-		IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem %A_Space%
-		IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality %A_Space%
-		IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality %A_Space%
-		IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked %A_Space%
-		IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection %A_Space%
-		IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing %A_Space%
-		IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump %A_Space%
-		IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment %A_Space%
-		IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence %A_Space%
-		IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter %A_Space%
+		IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency
+		IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap
+		IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination
+		IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem
+		IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality
+		IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality
+		IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked
+		IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection
+		IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing
+		IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump
+		IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment
+		IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence
+		IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter
+		IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency
+		IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap
+		IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination
+		IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem
+		IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality
+		IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality
+		IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked
+		IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection
+		IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing
+		IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump
+		IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment
+		IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence
+		IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter
 		
 		;Failsafe Colors
-		IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout %A_Space%
-		IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar %A_Space%
-		IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat %A_Space%
-		IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory %A_Space%
-		IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash %A_Space%
-		IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor %A_Space%
+		IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
+		IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
+		IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat
+		IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
+		IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
+		IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor
 		
 		;Life Flasks
-		IniRead, varLife20, settings.ini, Life Colors, Life20 %A_Space%
-		IniRead, varLife30, settings.ini, Life Colors, Life30 %A_Space%
-		IniRead, varLife40, settings.ini, Life Colors, Life40 %A_Space%
-		IniRead, varLife50, settings.ini, Life Colors, Life50 %A_Space%
-		IniRead, varLife60, settings.ini, Life Colors, Life60 %A_Space%
-		IniRead, varLife70, settings.ini, Life Colors, Life70 %A_Space%
-		IniRead, varLife80, settings.ini, Life Colors, Life80 %A_Space%
-		IniRead, varLife90, settings.ini, Life Colors, Life90 %A_Space%
+		IniRead, varLife20, settings.ini, Life Colors, Life20
+		IniRead, varLife30, settings.ini, Life Colors, Life30
+		IniRead, varLife40, settings.ini, Life Colors, Life40
+		IniRead, varLife50, settings.ini, Life Colors, Life50
+		IniRead, varLife60, settings.ini, Life Colors, Life60
+		IniRead, varLife70, settings.ini, Life Colors, Life70
+		IniRead, varLife80, settings.ini, Life Colors, Life80
+		IniRead, varLife90, settings.ini, Life Colors, Life90
 		
-		IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20 %A_Space%
-		IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30 %A_Space%
-		IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40 %A_Space%
-		IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50 %A_Space%
-		IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60 %A_Space%
-		IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70 %A_Space%
-		IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80 %A_Space%
-		IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90 %A_Space%
-		IniRead, DisableLife, settings.ini, Life Triggers, DisableLife %A_Space%
+		IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20
+		IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30
+		IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40
+		IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50
+		IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60
+		IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70
+		IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80
+		IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90
+		IniRead, DisableLife, settings.ini, Life Triggers, DisableLife
 
 		;ES Flasks
-		IniRead, varES20, settings.ini, ES Colors, ES20 %A_Space%
-		IniRead, varES30, settings.ini, ES Colors, ES30 %A_Space%
-		IniRead, varES40, settings.ini, ES Colors, ES40 %A_Space%
-		IniRead, varES50, settings.ini, ES Colors, ES50 %A_Space%
-		IniRead, varES60, settings.ini, ES Colors, ES60 %A_Space%
-		IniRead, varES70, settings.ini, ES Colors, ES70 %A_Space%
-		IniRead, varES80, settings.ini, ES Colors, ES80 %A_Space%
-		IniRead, varES90, settings.ini, ES Colors, ES90 %A_Space%
+		IniRead, varES20, settings.ini, ES Colors, ES20
+		IniRead, varES30, settings.ini, ES Colors, ES30
+		IniRead, varES40, settings.ini, ES Colors, ES40
+		IniRead, varES50, settings.ini, ES Colors, ES50
+		IniRead, varES60, settings.ini, ES Colors, ES60
+		IniRead, varES70, settings.ini, ES Colors, ES70
+		IniRead, varES80, settings.ini, ES Colors, ES80
+		IniRead, varES90, settings.ini, ES Colors, ES90
 		
-		IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20 %A_Space%
-		IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30 %A_Space%
-		IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40 %A_Space%
-		IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50 %A_Space%
-		IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60 %A_Space%
-		IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70 %A_Space%
-		IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80 %A_Space%
-		IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90 %A_Space%
-		IniRead, DisableES, settings.ini, ES Triggers, DisableES %A_Space%
+		IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20
+		IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30
+		IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40
+		IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50
+		IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60
+		IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70
+		IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80
+		IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90
+		IniRead, DisableES, settings.ini, ES Triggers, DisableES
 		
 		;Mana Flasks
-		IniRead, varMana10, settings.ini, Mana Colors, Mana10 %A_Space%
+		IniRead, varMana10, settings.ini, Mana Colors, Mana10
 		
-		IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10 %A_Space%
+		IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10
 		
 		;Flask Cooldowns
-		IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1 %A_Space%
-		IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2 %A_Space%
-		IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3 %A_Space%
-		IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4 %A_Space%
-		IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5 %A_Space%
+		IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
+		IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2
+		IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3
+		IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4
+		IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5
 		
 		;Gem Swap
-		IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX %A_Space%
-		IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY %A_Space%
-		IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX %A_Space%
-		IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY %A_Space%
-		IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot %A_Space%
+		IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX
+		IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY
+		IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX
+		IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY
+		IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
 
 		;~ Scroll locations
-		IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX %A_Space%
-		IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY %A_Space%
-		IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX %A_Space%
-		IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY %A_Space%
-		IniRead, StockPortal, settings.ini, Coordinates, StockPortal %A_Space%
-		IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom %A_Space%
+		IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX
+		IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY
+		IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX
+		IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY
+		IniRead, StockPortal, settings.ini, Coordinates, StockPortal
+		IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom
 		
 		;Attack Flasks
-		IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack %A_Space%
-		IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack %A_Space%
+		IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack
+		IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack
 		
 		;Attack Keys
-		IniRead, MainAttackKey, settings.ini, Attack Buttons, MainAttackKey %A_Space%
-		IniRead, SecondaryAttackKey, settings.ini, Attack Buttons, SecondaryAttackKey %A_Space%
+		IniRead, MainAttackKey, settings.ini, Attack Buttons, MainAttackKey
+		IniRead, SecondaryAttackKey, settings.ini, Attack Buttons, SecondaryAttackKey
 		
 		;Quicksilver
-		IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay %A_Space%
-		IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver %A_Space%
+		IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
+		IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
 		
 		;CharacterTypeCheck
-		IniRead, Life, settings.ini, CharacterTypeCheck, Life %A_Space%
-		IniRead, Hybrid, settings.ini, CharacterTypeCheck, Hybrid %A_Space%
-		IniRead, Ci, settings.ini, CharacterTypeCheck, Ci %A_Space%
+		IniRead, Life, settings.ini, CharacterTypeCheck, Life
+		IniRead, Hybrid, settings.ini, CharacterTypeCheck, Hybrid
+		IniRead, Ci, settings.ini, CharacterTypeCheck, Ci
 		
 		;AutoQuit
-		IniRead, Quit20, settings.ini, AutoQuit, Quit20 %A_Space%
-		IniRead, Quit30, settings.ini, AutoQuit, Quit30 %A_Space%
-		IniRead, Quit40, settings.ini, AutoQuit, Quit40 %A_Space%
-		IniRead, CritQuit, settings.ini, AutoQuit, CritQuit %A_Space%
+		IniRead, Quit20, settings.ini, AutoQuit, Quit20
+		IniRead, Quit30, settings.ini, AutoQuit, Quit30
+		IniRead, Quit40, settings.ini, AutoQuit, Quit40
+		IniRead, CritQuit, settings.ini, AutoQuit, CritQuit
 
 		;~ hotkeys reset
 		hotkey, IfWinActive, ahk_class POEWindowClass
@@ -3210,20 +3241,20 @@ Clamp( Val, Min, Max) {
 		hotkey, IfWinActive, ahk_class POEWindowClass
 
 		;~ hotkeys iniread
-		IniRead, hotkeyOptions, settings.ini, hotkeys, Options %A_Space%
-		IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit %A_Space%
-		IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask %A_Space%
-		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver %A_Space%
-		IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal %A_Space%
-		IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap %A_Space%
-		IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords %A_Space%
-		IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks %A_Space%
-		IniRead, hotkeyLogout, settings.ini, hotkeys, Logout %A_Space%
-		IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI %A_Space%
-		IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory %A_Space%
-		IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey %A_Space%
-		IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort %A_Space%
-		IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan %A_Space%
+		IniRead, hotkeyOptions, settings.ini, hotkeys, Options
+		IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit
+		IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask
+		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
+		IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal
+		IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap
+		IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords
+		IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
+		IniRead, hotkeyLogout, settings.ini, hotkeys, Logout
+		IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI
+		IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory
+		IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey
+		IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort
+		IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan
 
 		hotkey, IfWinActive, ahk_class POEWindowClass
 		If hotkeyAutoQuit
@@ -3317,24 +3348,24 @@ Clamp( Val, Min, Max) {
 		pixelgetcolor, varLife80, vX_Life, vY_Life80
 		pixelgetcolor, varLife90, vX_Life, vY_Life90
 		
-		IniWrite, %varLife20%, settings.ini, Life Colors, Life20 %A_Space%
-		IniWrite, %varLife30%, settings.ini, Life Colors, Life30 %A_Space%
-		IniWrite, %varLife40%, settings.ini, Life Colors, Life40 %A_Space%
-		IniWrite, %varLife50%, settings.ini, Life Colors, Life50 %A_Space%
-		IniWrite, %varLife60%, settings.ini, Life Colors, Life60 %A_Space%
-		IniWrite, %varLife70%, settings.ini, Life Colors, Life70 %A_Space%
-		IniWrite, %varLife80%, settings.ini, Life Colors, Life80 %A_Space%
-		IniWrite, %varLife90%, settings.ini, Life Colors, Life90 %A_Space%
+		IniWrite, %varLife20%, settings.ini, Life Colors, Life20
+		IniWrite, %varLife30%, settings.ini, Life Colors, Life30
+		IniWrite, %varLife40%, settings.ini, Life Colors, Life40
+		IniWrite, %varLife50%, settings.ini, Life Colors, Life50
+		IniWrite, %varLife60%, settings.ini, Life Colors, Life60
+		IniWrite, %varLife70%, settings.ini, Life Colors, Life70
+		IniWrite, %varLife80%, settings.ini, Life Colors, Life80
+		IniWrite, %varLife90%, settings.ini, Life Colors, Life90
 		
-		IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20 %A_Space%
-		IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30 %A_Space%
-		IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40 %A_Space%
-		IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50 %A_Space%
-		IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60 %A_Space%
-		IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70 %A_Space%
-		IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80 %A_Space%
-		IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90 %A_Space%
-		IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife %A_Space%
+		IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
+		IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
+		IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
+		IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
+		IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
+		IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
+		IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
+		IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
+		IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
 		
 		;ES Flasks
 		pixelgetcolor, varES20, vX_ES, vY_ES20
@@ -3346,135 +3377,136 @@ Clamp( Val, Min, Max) {
 		pixelgetcolor, varES80, vX_ES, vY_ES80
 		pixelgetcolor, varES90, vX_ES, vY_ES90
 		
-		IniWrite, %varES20%, settings.ini, ES Colors, ES20 %A_Space%
-		IniWrite, %varES30%, settings.ini, ES Colors, ES30 %A_Space%
-		IniWrite, %varES40%, settings.ini, ES Colors, ES40 %A_Space%
-		IniWrite, %varES50%, settings.ini, ES Colors, ES50 %A_Space%
-		IniWrite, %varES60%, settings.ini, ES Colors, ES60 %A_Space%
-		IniWrite, %varES70%, settings.ini, ES Colors, ES70 %A_Space%
-		IniWrite, %varES80%, settings.ini, ES Colors, ES80 %A_Space%
-		IniWrite, %varES90%, settings.ini, ES Colors, ES90 %A_Space%
+		IniWrite, %varES20%, settings.ini, ES Colors, ES20
+		IniWrite, %varES30%, settings.ini, ES Colors, ES30
+		IniWrite, %varES40%, settings.ini, ES Colors, ES40
+		IniWrite, %varES50%, settings.ini, ES Colors, ES50
+		IniWrite, %varES60%, settings.ini, ES Colors, ES60
+		IniWrite, %varES70%, settings.ini, ES Colors, ES70
+		IniWrite, %varES80%, settings.ini, ES Colors, ES80
+		IniWrite, %varES90%, settings.ini, ES Colors, ES90
 		
-		IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, settings.ini, ES Triggers, TriggerES20 %A_Space%
-		IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, settings.ini, ES Triggers, TriggerES30 %A_Space%
-		IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, settings.ini, ES Triggers, TriggerES40 %A_Space%
-		IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, settings.ini, ES Triggers, TriggerES50 %A_Space%
-		IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, settings.ini, ES Triggers, TriggerES60 %A_Space%
-		IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, settings.ini, ES Triggers, TriggerES70 %A_Space%
-		IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, settings.ini, ES Triggers, TriggerES80 %A_Space%
-		IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, settings.ini, ES Triggers, TriggerES90 %A_Space%
-		IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, settings.ini, ES Triggers, DisableES %A_Space%
+		IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, settings.ini, ES Triggers, TriggerES20
+		IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, settings.ini, ES Triggers, TriggerES30
+		IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, settings.ini, ES Triggers, TriggerES40
+		IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, settings.ini, ES Triggers, TriggerES50
+		IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, settings.ini, ES Triggers, TriggerES60
+		IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, settings.ini, ES Triggers, TriggerES70
+		IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, settings.ini, ES Triggers, TriggerES80
+		IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, settings.ini, ES Triggers, TriggerES90
+		IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, settings.ini, ES Triggers, DisableES
 		
 		;Mana Flasks
 		pixelgetcolor, varMana10, vX_Mana, vY_Mana10
 		
-		IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10 %A_Space%
+		IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
 
-		IniWrite, %DebugMessages%, settings.ini, General, DebugMessages %A_Space%
-		IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid %A_Space%
-		IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo %A_Space%
-		IniWrite, %DetonateMines%, settings.ini, General, DetonateMines %A_Space%
-		IniWrite, %LootVacuum%, settings.ini, General, LootVacuum %A_Space%
-		IniWrite, %YesVendor%, settings.ini, General, YesVendor %A_Space%
-		IniWrite, %YesStash%, settings.ini, General, YesStash %A_Space%
-		IniWrite, %YesIdentify%, settings.ini, General, YesIdentify %A_Space%
-		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid %A_Space%
-		IniWrite, %Latency%, settings.ini, General, Latency %A_Space%
+		IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
+		IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
+		IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
+		IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
+		IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
+		IniWrite, %YesVendor%, settings.ini, General, YesVendor
+		IniWrite, %YesStash%, settings.ini, General, YesStash
+		IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+		IniWrite, %Latency%, settings.ini, General, Latency
+		IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 		
-		IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10 %A_Space%
+		IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10
 
 		;~ Hotkeys 
-		IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options %A_Space%
-		IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit %A_Space%
-		IniWrite, %hotkeyAutoFlask%, settings.ini, hotkeys, AutoFlask %A_Space%
-		IniWrite, %hotkeyAutoQuicksilver%, settings.ini, hotkeys, AutoQuicksilver %A_Space%
-		IniWrite, %hotkeyQuickPortal%, settings.ini, hotkeys, QuickPortal %A_Space%
-		IniWrite, %hotkeyGemSwap%, settings.ini, hotkeys, GemSwap %A_Space%
-		IniWrite, %hotkeyGetMouseCoords%, settings.ini, hotkeys, GetMouseCoords %A_Space%
-		IniWrite, %hotkeyPopFlasks%, settings.ini, hotkeys, PopFlasks %A_Space%
-		IniWrite, %hotkeyLogout%, settings.ini, hotkeys, Logout %A_Space%
-		IniWrite, %hotkeyCloseAllUI%, settings.ini, hotkeys, CloseAllUI %A_Space%
-		IniWrite, %hotkeyInventory%, settings.ini, hotkeys, Inventory %A_Space%
-		IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey %A_Space%
-		IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort %A_Space%
-		IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan %A_Space%
+		IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
+		IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit
+		IniWrite, %hotkeyAutoFlask%, settings.ini, hotkeys, AutoFlask
+		IniWrite, %hotkeyAutoQuicksilver%, settings.ini, hotkeys, AutoQuicksilver
+		IniWrite, %hotkeyQuickPortal%, settings.ini, hotkeys, QuickPortal
+		IniWrite, %hotkeyGemSwap%, settings.ini, hotkeys, GemSwap
+		IniWrite, %hotkeyGetMouseCoords%, settings.ini, hotkeys, GetMouseCoords
+		IniWrite, %hotkeyPopFlasks%, settings.ini, hotkeys, PopFlasks
+		IniWrite, %hotkeyLogout%, settings.ini, hotkeys, Logout
+		IniWrite, %hotkeyCloseAllUI%, settings.ini, hotkeys, CloseAllUI
+		IniWrite, %hotkeyInventory%, settings.ini, hotkeys, Inventory
+		IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey
+		IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort
+		IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
 		
 		;Flask Cooldowns
-		IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1 %A_Space%
-		IniWrite, %CooldownFlask2%, settings.ini, Flask Cooldowns, CooldownFlask2 %A_Space%
-		IniWrite, %CooldownFlask3%, settings.ini, Flask Cooldowns, CooldownFlask3 %A_Space%
-		IniWrite, %CooldownFlask4%, settings.ini, Flask Cooldowns, CooldownFlask4 %A_Space%
-		IniWrite, %CooldownFlask5%, settings.ini, Flask Cooldowns, CooldownFlask5 %A_Space%	
+		IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
+		IniWrite, %CooldownFlask2%, settings.ini, Flask Cooldowns, CooldownFlask2
+		IniWrite, %CooldownFlask3%, settings.ini, Flask Cooldowns, CooldownFlask3
+		IniWrite, %CooldownFlask4%, settings.ini, Flask Cooldowns, CooldownFlask4
+		IniWrite, %CooldownFlask5%, settings.ini, Flask Cooldowns, CooldownFlask5	
 		
 		;Gem Swap
-		IniWrite, %CurrentGemX%, settings.ini, Gem Swap, CurrentGemX %A_Space%
-		IniWrite, %CurrentGemY%, settings.ini, Gem Swap, CurrentGemY %A_Space%
-		IniWrite, %AlternateGemX%, settings.ini, Gem Swap, AlternateGemX %A_Space%
-		IniWrite, %AlternateGemY%, settings.ini, Gem Swap, AlternateGemY %A_Space%
-		IniWrite, %AlternateGemOnSecondarySlot%, settings.ini, Gem Swap, AlternateGemOnSecondarySlot %A_Space%
+		IniWrite, %CurrentGemX%, settings.ini, Gem Swap, CurrentGemX
+		IniWrite, %CurrentGemY%, settings.ini, Gem Swap, CurrentGemY
+		IniWrite, %AlternateGemX%, settings.ini, Gem Swap, AlternateGemX
+		IniWrite, %AlternateGemY%, settings.ini, Gem Swap, AlternateGemY
+		IniWrite, %AlternateGemOnSecondarySlot%, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
 
 		;~ Scroll locations
-		IniWrite, %PortalScrollX%, settings.ini, Coordinates, PortalScrollX %A_Space%
-		IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY %A_Space%
-		IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX %A_Space%
-		IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY %A_Space%
+		IniWrite, %PortalScrollX%, settings.ini, Coordinates, PortalScrollX
+		IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY
+		IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX
+		IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY
 
 		;Stash Tab Management
-		IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency %A_Space%
-		IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap %A_Space%
-		IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination %A_Space%
-		IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem %A_Space%
-		IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality %A_Space%
-		IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality %A_Space%
-		IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked %A_Space%
-		IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection %A_Space%
-		IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing %A_Space%
-		IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump %A_Space%
-		IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment %A_Space%
-		IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence %A_Space%
-		IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter %A_Space%
-		IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency %A_Space%
-		IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap %A_Space%
-		IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination %A_Space%
-		IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem %A_Space%
-		IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality %A_Space%
-		IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality %A_Space%
-		IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked %A_Space%
-		IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection %A_Space%
-		IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing %A_Space%
-		IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump %A_Space%
-		IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment %A_Space%
-		IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence %A_Space%
-		IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter %A_Space%
+		IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
+		IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
+		IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
+		IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
+		IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
+		IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
+		IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
+		IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
+		IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
+		IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
+		IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
+		IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
+		IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+		IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
+		IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
+		IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
+		IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
+		IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
+		IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
+		IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
+		IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
+		IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
+		IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
+		IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
+		IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
+		IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
 		
 		;Attack Flasks
-		IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack %A_Space%
-		IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, settings.ini, Attack Triggers, TriggerSecondaryAttack %A_Space%
+		IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
+		IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, settings.ini, Attack Triggers, TriggerSecondaryAttack
 		
 		;Attack Keys
-		IniWrite, %MainAttackKey%, settings.ini, Attack Buttons, MainAttackKey %A_Space%
-		IniWrite, %SecondaryAttackKey%, settings.ini, Attack Buttons, SecondaryAttackKey %A_Space%
+		IniWrite, %MainAttackKey%, settings.ini, Attack Buttons, MainAttackKey
+		IniWrite, %SecondaryAttackKey%, settings.ini, Attack Buttons, SecondaryAttackKey
 		
 		;Quicksilver Flasks
-		IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay %A_Space%
-		IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver %A_Space%
-		IniWrite, %Radiobox1QS%, settings.ini, Quicksilver, QuicksilverSlot1 %A_Space%
-		IniWrite, %Radiobox2QS%, settings.ini, Quicksilver, QuicksilverSlot2 %A_Space%
-		IniWrite, %Radiobox3QS%, settings.ini, Quicksilver, QuicksilverSlot3 %A_Space%
-		IniWrite, %Radiobox4QS%, settings.ini, Quicksilver, QuicksilverSlot4 %A_Space%
-		IniWrite, %Radiobox5QS%, settings.ini, Quicksilver, QuicksilverSlot5 %A_Space%
+		IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
+		IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver
+		IniWrite, %Radiobox1QS%, settings.ini, Quicksilver, QuicksilverSlot1
+		IniWrite, %Radiobox2QS%, settings.ini, Quicksilver, QuicksilverSlot2
+		IniWrite, %Radiobox3QS%, settings.ini, Quicksilver, QuicksilverSlot3
+		IniWrite, %Radiobox4QS%, settings.ini, Quicksilver, QuicksilverSlot4
+		IniWrite, %Radiobox5QS%, settings.ini, Quicksilver, QuicksilverSlot5
 		
 		;CharacterTypeCheck
-		IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life %A_Space%
-		IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid %A_Space%	
-		IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci %A_Space%	
+		IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
+		IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid	
+		IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci	
 		
 		;AutoQuit
-		IniWrite, %RadioQuit20%, settings.ini, AutoQuit, Quit20 %A_Space%
-		IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30 %A_Space%
-		IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40 %A_Space%
-		IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit %A_Space%
-		IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit %A_Space%
+		IniWrite, %RadioQuit20%, settings.ini, AutoQuit, Quit20
+		IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30
+		IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
+		IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
+		IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
 		
 		readFromFile()
 		Run GottaGoFast.ahk
@@ -3572,7 +3604,7 @@ Clamp( Val, Min, Max) {
 			WinActivate, ahk_class POEWindowClass
 		}
 		pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
-		IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout %A_Space%
+		IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
 		readFromFile()
 		MsgBox, OnHideout Recalibrated!
 		return
@@ -3597,7 +3629,7 @@ Clamp( Val, Min, Max) {
 			WinActivate, ahk_class POEWindowClass
 		}
 		pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
-		IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar %A_Space%
+		IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
 		readFromFile()
 		MsgBox, OnChar Recalibrated!
 		return
@@ -3622,7 +3654,7 @@ Clamp( Val, Min, Max) {
 			WinActivate, ahk_class POEWindowClass
 		}
 		pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
-		IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory %A_Space%
+		IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
 		readFromFile()
 		MsgBox, OnInventory Recalibrated!
 		return
@@ -3647,7 +3679,7 @@ Clamp( Val, Min, Max) {
 			WinActivate, ahk_class POEWindowClass
 		}
 		pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
-		IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash %A_Space%
+		IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
 		readFromFile()
 		MsgBox, OnStash Recalibrated!
 		return
@@ -3672,7 +3704,7 @@ Clamp( Val, Min, Max) {
 			WinActivate, ahk_class POEWindowClass
 		}
 		pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
-		IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat %A_Space%
+		IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
 		readFromFile()
 		MsgBox, OnChat Recalibrated!
 		return
@@ -3696,7 +3728,7 @@ Clamp( Val, Min, Max) {
 			WinActivate, ahk_class POEWindowClass
 		}
 		pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
-		IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor %A_Space%
+		IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
 		readFromFile()
 		MsgBox, OnVendor Recalibrated!
 		return
@@ -3789,45 +3821,46 @@ Clamp( Val, Min, Max) {
 	UpdateStash:
 		Gui, Submit, NoHide
 		;Stash Tab Management
-		IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency %A_Space%
-		IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap %A_Space%
-		IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination %A_Space%
-		IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem %A_Space%
-		IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality %A_Space%
-		IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality %A_Space%
-		IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked %A_Space%
-		IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection %A_Space%
-		IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing %A_Space%
-		IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump %A_Space%
-		IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment %A_Space%
-		IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence %A_Space%
-		IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter %A_Space%
-		IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency %A_Space%
-		IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap %A_Space%
-		IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination %A_Space%
-		IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem %A_Space%
-		IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality %A_Space%
-		IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality %A_Space%
-		IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked %A_Space%
-		IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection %A_Space%
-		IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing %A_Space%
-		IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump %A_Space%
-		IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment %A_Space%
-		IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence %A_Space%
-		IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter %A_Space%
+		IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
+		IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
+		IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
+		IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
+		IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
+		IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
+		IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
+		IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
+		IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
+		IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
+		IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
+		IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
+		IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+		IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
+		IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
+		IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
+		IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
+		IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
+		IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
+		IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
+		IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
+		IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
+		IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
+		IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
+		IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
+		IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
 		Return
 
 	UpdateExtra:
 		Gui, Submit, NoHide
-		IniWrite, %DetonateMines%, settings.ini, General, DetonateMines %A_Space%
-		IniWrite, %LootVacuum%, settings.ini, General, LootVacuum %A_Space%
-		IniWrite, %YesVendor%, settings.ini, General, YesVendor %A_Space%
-		IniWrite, %YesStash%, settings.ini, General, YesStash %A_Space%
-		IniWrite, %YesIdentify%, settings.ini, General, YesIdentify %A_Space%
-		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid %A_Space%
-		IniWrite, %Latency%, settings.ini, General, Latency %A_Space%
-		IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide %A_Space%
-		IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys %A_Space%
+		IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
+		IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
+		IniWrite, %YesVendor%, settings.ini, General, YesVendor
+		IniWrite, %YesStash%, settings.ini, General, YesStash
+		IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+		IniWrite, %Latency%, settings.ini, General, Latency
+		IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
+		IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide
+		IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
 		If (DetonateMines&&!Detonated)
 			SetTimer, TMineTick, 100
 			Else If (!DetonateMines)

@@ -45,6 +45,7 @@ if not A_IsAdmin
 ; Dont change the speed & the tick unless you know what you are doing
 global Speed=1
 global QTick=250
+global PopFlaskRespectCD=1
 
 ;Coordinates
 global GuiX=-5
@@ -106,6 +107,7 @@ If FileExist("settings.ini"){
 	;General
 	IniRead, Speed, settings.ini, General, Speed
 	IniRead, QTick, settings.ini, General, QTick
+	IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
 	;Coordinates
 	IniRead, GuiX, settings.ini, Coordinates, GuiX
 	IniRead, GuiY, settings.ini, Coordinates, GuiY
@@ -134,6 +136,7 @@ If FileExist("settings.ini"){
 	;General
 	IniWrite, %Speed%, settings.ini, General, Speed
 	IniWrite, %QTick%, settings.ini, General, QTick
+	IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 	;Coordinates
 	IniWrite, %GuiX%, settings.ini, Coordinates, GuiX
 	IniWrite, %GuiY%, settings.ini, Coordinates, GuiY
@@ -181,16 +184,20 @@ If hotkeyPopFlasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;Pop all flasks
 PopFlasksCommand:
-	OnCoolDown[1]:=1 
-	settimer, TimmerFlask1, %CoolDownFlask1%
-	OnCoolDown[4]:=1 
-	settimer, TimmerFlask4, %CoolDownFlask2%
-	OnCoolDown[3]:=1 
-	settimer, TimmerFlask3, %CoolDownFlask3%
-	OnCoolDown[2]:=1 
-	settimer, TimmerFlask2, %CoolDownFlask4%
-	OnCoolDown[5]:=1 
-	settimer, TimmerFlask5, %CoolDownFlask5%
+	If (PopFlaskRespectCD)
+		TriggerFlaskCD(11111)
+	Else {
+		OnCoolDown[1]:=1 
+		settimer, TimmerFlask1, %CoolDownFlask1%
+		OnCoolDown[4]:=1 
+		settimer, TimmerFlask4, %CoolDownFlask2%
+		OnCoolDown[3]:=1 
+		settimer, TimmerFlask3, %CoolDownFlask3%
+		OnCoolDown[2]:=1 
+		settimer, TimmerFlask2, %CoolDownFlask4%
+		OnCoolDown[5]:=1 
+		settimer, TimmerFlask5, %CoolDownFlask5%
+		}
 	return
 
 ~#Escape::
@@ -291,12 +298,51 @@ TQuickTick(){
 						}					
 					}
 				}
-				QFL:=QFL+1
+				++QFL
 			}
 		}
 	}
 }
 
+TriggerFlask(Trigger){
+	QFL=1
+	loop, 5 {
+		QFLVal:=SubStr(Trigger,QFL,1)+0
+		if (QFLVal > 0) {
+			if (OnCoolDown[QFL]=0) {
+				Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
+				if (ErrorLevel=1) {
+					send %QFL%
+					OnCoolDown[QFL]:=1 
+					CoolDown:=CoolDownFlask%QFL%
+					settimer, TimmerFlask%QFL%, %CoolDown%
+					sleep %CoolDown%
+					RandomSleep(23,59)
+				}					
+			}
+		}
+		++QFL
+	}
+	Return
+}
+
+TriggerFlaskCD(Trigger){
+	QFL=1
+	loop, 5 {
+		QFLVal:=SubStr(Trigger,QFL,1)+0
+		if (QFLVal > 0) {
+			if (OnCoolDown[QFL]=0) {
+				if (ErrorLevel=1) {
+					OnCoolDown[QFL]:=1 
+					CoolDown:=CoolDownFlask%QFL%
+					settimer, TimmerFlask%QFL%, %CoolDown%
+					}					
+				}
+			}
+		++QFL
+		}
+	Return
+}
 TimmerFlask1:
 	OnCoolDown[1]:=0
 	settimer,TimmerFlask1,delete
