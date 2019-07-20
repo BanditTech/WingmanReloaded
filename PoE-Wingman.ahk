@@ -422,22 +422,6 @@
 		global vY_Mana10:=1054
 	}
 
-; Check presence of cports
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-	IfNotExist, cports.exe
-	{
-	UrlDownloadToFile, http://lutbot.com/ahk/cports.exe, cports.exe
-			if ErrorLevel
-					MsgBox, Error ED02 : There was a problem downloading cports.exe
-	UrlDownloadToFile, http://lutbot.com/ahk/cports.chm, cports.chm
-			if ErrorLevel
-					MsgBox, Error ED03 : There was a problem downloading cports.chm 
-	UrlDownloadToFile, http://lutbot.com/ahk/readme.txt, readme.txt
-			if ErrorLevel
-					MsgBox, Error ED04 : There was a problem downloading readme.txt
-	}
-
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	If FileExist("settings.ini"){ 
@@ -678,6 +662,29 @@
 	GuiControl,, RadioQuit20, %varTextAutoQuit20%
 	GuiControl,, RadioQuit30, %varTextAutoQuit30%
 	GuiControl,, RadioQuit40, %varTextAutoQuit40%
+
+; Check presence of cports
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	IfNotExist, cports.exe
+	{
+	UrlDownloadToFile, http://lutbot.com/ahk/cports.exe, cports.exe
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading cports.exe
+	}
+	
+	IfNotExist, cports.chm
+	{
+	UrlDownloadToFile, http://lutbot.com/ahk/cports.chm, cports.chm
+			if ErrorLevel
+					MsgBox, Error ED03 : There was a problem downloading cports.chm 
+	}
+	IfNotExist, cports.txt
+	{
+	UrlDownloadToFile, http://lutbot.com/ahk/readme.txt, cports.txt
+			if ErrorLevel
+					MsgBox, Error ED04 : There was a problem downloading readme.txt
+	}
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
