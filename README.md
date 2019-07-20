@@ -41,3 +41,5 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
 
 * Feature in testing: 
   - UltraWide Scaling
+
+[For install instructions](https://github.com/BanditTech/WingmanReloaded/wiki)
