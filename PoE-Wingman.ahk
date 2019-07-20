@@ -681,7 +681,7 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Failsafe and Extra Settings
+	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Calibration and Extra Settings
 	;#######################################################################################################Configuration Tab
 	Gui, Tab, Configuration
 	Gui, Font, Bold
