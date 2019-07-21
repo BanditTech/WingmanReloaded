@@ -45,7 +45,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .01.3
+		Global VersionNumber := .01.4
 		Global Latency := 1
 		Global PopFlaskRespectCD := 1
 		If (YesUltraWide){
