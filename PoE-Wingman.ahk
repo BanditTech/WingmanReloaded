@@ -821,27 +821,31 @@
 	Gui, Add, Text, 									x+5 	y23		w1	h411 0x7
 	Gui, Add, Text, 									x+1 	y23		w1	h411 0x7
 
+	Gui, Add, Text, 									x376 	y29 		h107 0x11
+	Gui, Add, Text, 									x+33 		 		h107 0x11
+	Gui, Add, Text, 									x+33 		 		h107 0x11
+
 	Gui, Font, Bold
 	Gui Add, Text, 										x292 	y30, 				QoL Settings
 	Gui, Font
 
-	Gui Add, Text, 										x+7 	y+14,				X-Pos
+	Gui Add, Text, 										x+16 	y35,				X-Pos
 	Gui Add, Text, 										x+12, 						Y-Pos
 
-	Gui Add, Text, 										x306	y+6, 				Portal Scroll:
+	Gui Add, Text, 										x314	y+5, 				Portal Scroll:
 	Gui Add, Edit, 			vPortalScrollX 				x+7		y+-15 	w34	h17, 	%PortalScrollX%
 	Gui Add, Edit, 			vPortalScrollY 				x+7			 	w34	h17, 	%PortalScrollY%	
-	Gui Add, Text, 										x298	y+6, 				Wisdm. Scroll:
+	Gui Add, Text, 										x306	y+6, 				Wisdm. Scroll:
 	Gui Add, Edit, 			vWisdomScrollX 				x+7		y+-15 	w34	h17, 	%WisdomScrollX%
 	Gui Add, Edit, 			vWisdomScrollY 				x+7			 	w34	h17, 	%WisdomScrollY%	
-	Gui Add, Text, 										x303	y+6, 				Current Gem:
+	Gui Add, Text, 										x311	y+6, 				Current Gem:
 	Gui Add, Edit, 			vCurrentGemX 				x+7		y+-15 	w34	h17, 	%CurrentGemX%
 	Gui Add, Edit, 			vCurrentGemY 				x+7			 	w34	h17, 	%CurrentGemY%
 		
-	Gui Add, Text, 										x295	y+6, 				Alternate Gem:
+	Gui Add, Text, 										x303	y+6, 				Alternate Gem:
 	Gui Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
 	Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemX%
-	Gui Add, Checkbox, 	    vStockPortal              	x455     	y76	 	            , Stock Portal?
+	Gui Add, Checkbox, 	    vStockPortal              	x465     	y53	 	            , Stock Portal?
 	Gui Add, Checkbox, 	    vStockWisdom              	         y+8                , Stock Wisdom?
 	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot             y+8                , Weapon Swap?
 
@@ -866,7 +870,8 @@
 		GuiControl, Hide, ParseI
 	}
 
-
+	Gui Add, Checkbox, gUpdateExtra	vDetonateMines           x300  y145           	          , Detonate Mines?
+	Gui Add, Checkbox, gUpdateExtra	vYesStashKeys                         	         x+20 , Ctrl(1-10) stash tabs?
 	Gui, Font, Bold
 	Gui Add, Text, 										x295 	y168, 				Keybinds:
 	Gui, Font
@@ -907,11 +912,11 @@
 	Gui, Font, Bold
 	Gui Add, Text, 										x440 	y168, 				Ingame:
 	Gui, Font
-	Gui Add, Text, 										x505 	y+10, 				Close UI
-	Gui Add, Text, 										x505 	y+10, 				Inventory
-	Gui Add, Text, 										x505 	y+10, 				W-Swap
-	Gui Add, Text, 										x505 	y+10, 				Item Pickup
-	Gui,Add,Edit,			  	x440 y188  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
+	Gui Add, Text, 										x500 	y+10, 				Close UI
+	Gui Add, Text, 											 	y+10, 				Inventory
+	Gui Add, Text, 											 	y+10, 				W-Swap
+	Gui Add, Text, 											 	y+10, 				Item Pickup
+	Gui,Add,Edit,			  	x435 y188  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
 	hotkeyCloseAllUI_TT:="Put your ingame assigned hotkey here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyInventory			,%hotkeyInventory%
 	hotkeyInventory_TT:="Put your ingame assigned hotkey here"
@@ -919,9 +924,13 @@
 	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
 	hotkeyLootScan_TT:="Put your ingame assigned hotkey here"
+	Gui Add, Checkbox, gUpdateExtra	vLootVacuum                         	         y+8 , Loot Vacuum?
+	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD                         	     y+8 , Pop Flasks Respect CD?
+
 	;~ =========================================================================================== Subgroup: Hints
 	Gui,Font,Bold
 	Gui,Add,GroupBox,Section xs	x450 y330  w120 h89							,Hotkey Modifiers
+	Gui, Add, Button,  		gLaunchHelp 		x558 y330 w18 h18 , 	?
 	Gui,Font,Norm
 	Gui,Font,s8,Arial
 	Gui,Add,Text,	 		 	x465 y350					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
@@ -929,12 +938,10 @@
 	Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything vSaveBtn	 x295 y430	w200 h23, 	%varTextSave%
+	Gui, Add, Button, default gupdateEverything vSaveBtn	 x295 y430	w180 h23, 	%varTextSave%
 	Gui, Add, Button,  		gRefreshGUI vRefreshBtn		x+5			 		h23, 	Check
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
-	Gui, Add, Text, 									x368 	y58 		h107 0x11
-	Gui, Add, Text, 									x+33 		 		h107 0x11
-	Gui, Add, Text, 									x+33 		 		h107 0x11
 	;#######################################################################################################Failsafe Tab
 	Gui, Tab, Calibration and Extra Settings
 	Gui, Font, Bold
@@ -991,15 +998,11 @@
 	Gui, Font, Bold
 	Gui Add, Text, 										x352 	y200, 				Other Functions
 	Gui, Font,
-	Gui Add, Checkbox, gUpdateExtra	vDetonateMines                        	          , Detonate Mines?
-	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD                         	      , All-Flasks Respects CD?
-	Gui Add, Checkbox, gUpdateExtra	vLootVacuum                         	          , Loot Vacuum?
 	Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	              , Sell at vendor?
 	Gui Add, Checkbox, gUpdateExtra	vYesStash                         	        	  , Deposit at stash?
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
 	Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                         	          , UltraWide Scaling?
-	Gui Add, Checkbox, gUpdateExtra	vYesStashKeys                         	          , Ctrl(1-10) stash tabs?
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 ,  1|2|3
 	Gui Add, Text, 										x+12 	, 				Adjust Latency
 
@@ -1525,52 +1528,52 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	If (YesStashKeys){
 		^1::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(1)
 			return
 			
 		^2::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(2)
 			return
 			
 		^3::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(3)
 			return
 			
 		^4::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(4)
 			return
 			
 		^5::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(5)
 			return
 			
 		^6::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(6)
 			return
 			
 		^7::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(7)
 			return
 			
 		^8::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(8)
 			return
 			
 		^9::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(9)
 			return
 			
 		^0::
-			Keywait, Ctrl
+			;Keywait, Ctrl
 			MoveStash(10)
 			return
 		}
@@ -1866,32 +1869,32 @@ MoveStash(Tab){
 		{
 		MouseGetPos MSx, MSy
 		BlockInput, MouseMove
-		Sleep, 30*Latency
+		Sleep, 45*Latency
 		If (YesUltraWide)
 			MouseMove, (A_ScreenWidth/(3840/640)), (A_ScreenHeight/(1080/146)), 0
 		Else
 			MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
-		Sleep, 30*Latency
+		Sleep, 45*Latency
 		Click, Down, Left, 1
-		Sleep, 30*Latency
+		Sleep, 45*Latency
 		Click, Up, Left, 1
-		Sleep, 15*Latency
+		Sleep, 45*Latency
 		MouseMove, 760, ((A_ScreenHeight/(1080/120)) + (Tab*(A_ScreenHeight/(1080/22)))), 0
-		Sleep, 60*Latency
+		Sleep, 45*Latency
 		send {Enter}
 		Sleep, 45*Latency
 		If (YesUltraWide)
 			MouseMove, (A_ScreenWidth/(3840/640)), (A_ScreenHeight/(1080/146)), 0
 		Else
 			MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
-		Sleep, 30*Latency
+		Sleep, 45*Latency
 		Click, Down, Left, 1
-		Sleep, 30*Latency
+		Sleep, 45*Latency
 		Click, Up, Left, 1
 		Sleep, 45*Latency
 		CurrentTab:=Tab
 		MouseMove, MSx, MSy, 0
-		Sleep, 30*Latency
+		Sleep, 45*Latency
 		BlockInput, MouseMoveOff
 		}
 	return
@@ -3873,6 +3876,14 @@ Clamp( Val, Min, Max) {
 			Else If (!DetonateMines)
 			SetTimer, TMineTick, off
 		Return
+
+	LaunchHelp:
+	Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
+	Return
+
+	LaunchWiki:
+	Run, https://github.com/BanditTech/WingmanReloaded/wiki ; Open the wiki page for the script
+	Return
 
 	UpdateDebug:
 		Gui, Submit, NoHide
