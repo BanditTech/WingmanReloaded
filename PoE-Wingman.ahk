@@ -626,7 +626,7 @@
 		varTextOnChat:="OnChat Color"
 		varTextOnVendor:="OnVendor Color"
 		varTextDetonate:="Detonate Color"
-		varTextDetonateDelve:="Detonate Delve"
+		varTextDetonateDelve:="Detonate in Delve"
 	}
 	else
 	{
@@ -697,7 +697,7 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Calibration and Extra Settings
+	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Calibration|Inventory
 	;#######################################################################################################Configuration Tab
 	Gui, Tab, Configuration
 	Gui, Font, Bold
@@ -951,33 +951,47 @@
 	Gui, Add, Button,  		gRefreshGUI vRefreshBtn		x+5			 		h23, 	Check
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
-	;#######################################################################################################Failsafe Tab
-	Gui, Tab, Calibration and Extra Settings
+	;#######################################################################################################Calibration Tab
+	Gui, Tab, Calibration
 	Gui, Font, Bold
-	Gui Add, Text, 										x242 	y30, 				Gamestate Calibration Instructions:
+	Gui, Add, Text, 										x242 	y35, 				Gamestate Calibration Instructions:
 	Gui, Font,
 	Gui Add, Text, 										x252 	y+5, 				These buttons regrab the gamestate sample color.
 	Gui Add, Text, 										x252 	y+5, 				Each button references a different game state.
 	Gui Add, Text, 										x252 	y+5, 				Make sure the gamestate is true for that button!
 	Gui Add, Text, 										x252 	y+5, 				Click the button once ready to calibrate.
+	Gui, Font, Bold
+	Gui Add, Text, 										x242 	y+10, 				Auto-Detonate Mines Recalibration:
+	Gui, Font,
+	Gui Add, Text, 										x252 	y+3, 				Sample the DetonateHex color in normal or delve.
+	Gui Add, Text, 										x252 	y+3, 				Drop a mine then press the sample button that matches.
+
 	;Update calibration for pixel check
 	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y35	w100, 	%varTextOnHideout%
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	%varTextOnChar%
 	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	%varTextOnChat%
 
 
-	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 	w100, 	%varTextDetonate%
-	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 	w100, 	%varTextDetonateDelve%
+	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+22	w100, 	%varTextDetonate%
+	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	%varTextDetonateDelve%
 
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y35	w100, 	%varTextOnInventory%
 	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	%varTextOnStash%
 	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	%varTextOnVendor%
-
-
 	Gui, Font, Bold
-	Gui Add, Text, 										x12 	y200, 				Stash Management
+	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
+	Gui, Font, 
+
+	Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                          	    , UltraWide Scaling?
+	Gui Add, Checkbox, gUpdateExtra	vShowOnStart                         	          	, Show GUI on startup?
+	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 ,  1|2|3
+	Gui Add, Text, 										x+12 							, Adjust Latency
+	;#######################################################################################################Inventory Tab
+	Gui, Tab, Inventory
+	Gui, Font, Bold
+	Gui Add, Text, 										x12 	y30, 				Stash Management
 	Gui, Font,
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y220 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabTimelessSplinter Choose%StashTabTimelessSplinter% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
@@ -985,7 +999,7 @@
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency  x55 y224, Currency Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency  x+5 y55, Currency Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter y+14, TSplinter Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap y+14, Map Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment y+14, Fragment Tab
@@ -993,14 +1007,14 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCollection y+14, Collection Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence y+14, Essence Tab
 
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y220 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem x195 y224, Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem x195 y55, Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality y+14, Quality Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality y+14, Quality Flask Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesLinked y+14, Linked Tab
@@ -1008,16 +1022,19 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing y+14, Unique Ring Tab
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x352 	y200, 				Other Functions
+	Gui Add, Text, 										x352 	y30, 				ID/Vend/Stash Options:
 	Gui, Font,
-	Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	              , Sell at vendor?
-	Gui Add, Checkbox, gUpdateExtra	vYesStash                         	        	  , Deposit at stash?
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
+	Gui Add, Checkbox, gUpdateExtra	vYesStash                         	        	  , Deposit at stash?
+	Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	              , Sell at vendor?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
-	Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                         	          , UltraWide Scaling?
-	Gui Add, Checkbox, gUpdateExtra	vShowOnStart                         	          , Show GUI on startup?
-	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 ,  1|2|3
-	Gui Add, Text, 										x+12 	, 				Adjust Latency
+
+	Gui, Font, Bold
+	Gui Add, Text, 										x20 	y250, 				Inventory Instructions:
+	Gui, Font,
+	Gui Add, Text, 										x22 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
+	Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
+	Gui Add, Text, 										x22 	y+5, 				The options to the right affect which portion of the script is enabled.
 
 
 
@@ -3594,7 +3611,7 @@ Clamp( Val, Min, Max) {
 			varTextOnChat:="OnChat Color"
 			varTextOnVendor:="OnVendor Color"
 			varTextDetonate:="Detonate Color"
-			varTextDetonateDelve:="Detonate Delve"
+			varTextDetonateDelve:="Detonate in Delve"
 		}
 		else
 		{
