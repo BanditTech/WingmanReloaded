@@ -47,6 +47,7 @@
 	;General
 		Global VersionNumber := .01.4
 		Global Latency := 1
+		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
 		If (YesUltraWide){
 			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
@@ -64,7 +65,6 @@
 		Global WPStockY:=(A_ScreenHeight/(1080/262))
 		Global DetonateY:=(A_ScreenHeight/(1080/901))
 		Global InventoryGridY := [ (A_ScreenHeight/(1080/637)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
-		Global DetonateHex := 0x412037
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
@@ -227,6 +227,7 @@
 		global varOnInventory:=0x8CC6DD
 		global varOnStash:=0x9BD6E7
 		global varOnVendor:=0x7BB1CC
+		Global DetonateHex := 0x412037
 
 	;Life Colors
 		global varLife20
@@ -454,6 +455,7 @@
 		IniWrite, 1, settings.ini, General, YesIdentify
 		IniWrite, 1, settings.ini, General, YesMapUnid
 		IniWrite, 1, settings.ini, General, Latency
+		IniWrite, 0, settings.ini, General, ShowOnStart
 
 		;Stash Tab
 		IniWrite, 1, settings.ini, Stash Tab, StashTabCurrency
@@ -518,6 +520,8 @@
 		IniWrite, 0x8CC6DD, settings.ini, Failsafe Colors, OnInventory
 		IniWrite, 0x9BD6E7, settings.ini, Failsafe Colors, OnStash
 		IniWrite, 0x7BB1CC, settings.ini, Failsafe Colors, OnVendor
+		IniWrite, 0x412037, settings.ini, Failsafe Colors, DetonateHex
+		
 
 		;Life Colors
 		IniWrite, 0x181145, settings.ini, Life Colors, Life20
@@ -607,11 +611,10 @@
 		IniWrite, 1, settings.ini, AutoQuit, CritQuit
 		IniWrite, 0, settings.ini, AutoQuit, NormalQuit
 
-		;readFromFile()
 		Reload
 		}
 
-; PoE-Wingman Gui Variables
+; Wingman Gui Variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	IfWinExist, ahk_class POEWindowClass 
 	{
@@ -622,6 +625,8 @@
 		varTextOnStash:="OnStash Color"
 		varTextOnChat:="OnChat Color"
 		varTextOnVendor:="OnVendor Color"
+		varTextDetonate:="Detonate Color"
+		varTextDetonateDelve:="Detonate Delve"
 	}
 	else
 	{
@@ -632,6 +637,8 @@
 		varTextOnStash:="(POE not open)"
 		varTextOnChat:="(POE not open)"
 		varTextOnVendor:="(POE not open)"
+		varTextDetonate:="(POE not open)"
+		varTextDetonateDelve:="(POE not open)"
 	}
 	GuiControl,, SaveBtn, %varTextSave%
 	GuiControl,, UpdateOnHideoutBtn, %varTextOnHideout%
@@ -640,6 +647,8 @@
 	GuiControl,, UpdateOnStashBtn, %varTextOnStash%
 	GuiControl,, UpdateOnChatBtn, %varTextOnChat%
 	GuiControl,, UpdateOnVendorBtn, %varTextOnVendor%
+	GuiControl,, UpdateDetonateBtn, %varTextDetonate%
+	GuiControl,, UpdateDetonateDelveBtn, %varTextDetonateDelve%
 
 	if Life=1 
 	{
@@ -951,11 +960,14 @@
 	Gui Add, Text, 										x252 	y+5, 				Each button references a different game state.
 	Gui Add, Text, 										x252 	y+5, 				Make sure the gamestate is true for that button!
 	Gui Add, Text, 										x252 	y+5, 				Click the button once ready to calibrate.
-	;Update OnHideout
+	;Update calibration for pixel check
 	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y35	w100, 	%varTextOnHideout%
-	;Update OnChar
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	%varTextOnChar%
 	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	%varTextOnChat%
+
+
+	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 	w100, 	%varTextDetonate%
+	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 	w100, 	%varTextDetonateDelve%
 
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y35	w100, 	%varTextOnInventory%
 	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	%varTextOnStash%
@@ -1003,6 +1015,7 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
 	Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                         	          , UltraWide Scaling?
+	Gui Add, Checkbox, gUpdateExtra	vShowOnStart                         	          , Show GUI on startup?
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 ,  1|2|3
 	Gui Add, Text, 										x+12 	, 				Adjust Latency
 
@@ -1010,17 +1023,18 @@
 
 
 	Gui, +LastFound
-	;Gui, Show, NoActivate Autosize Center, 	PoE-Wingman
+	If (ShowOnStart)
+		Gui, Show, NoActivate Autosize Center, 	WingmanReloaded
 	Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
 	Menu, Tray, NoStandard
-	Menu, Tray, Add, 				PoE-Wingman, optionsCommand
-	Menu, Tray, Default, 			PoE-Wingman
+	Menu, Tray, Add, 				WingmanReloaded, optionsCommand
+	Menu, Tray, Default, 			WingmanReloaded
 	Menu, Tray, Add
 	Menu, Tray, Standard
 	;Gui, Hide
 	OnMessage(0x200, "WM_MOUSEMOVE")
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;~  END of PoE-Wingman Gui Settings
+;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ; GUI ini read / setup
@@ -1196,6 +1210,10 @@
 		Iniread, Latency, settings.ini, General, Latency
 		valueLatency := Latency
 		GuiControl, Choose, Latency, %valueLatency%
+		
+		Iniread, ShowOnStart, settings.ini, General, ShowOnStart
+		valueShowOnStart := ShowOnStart
+		GuiControl, , ShowOnStart, %valueShowOnStart%
 		
 		Iniread, CurrentGemX, settings.ini, Gem Swap, CurrentGemX
 		valueCurrentGemX := CurrentGemX
@@ -1383,6 +1401,8 @@
 				GuiControl, Enable, UpdateOnStashBtn
 				GuiControl, Enable, UpdateOnChatBtn
 				GuiControl, Enable, UpdateOnVendorBtn
+				GuiControl, Enable, UpdateDetonateBtn
+				GuiControl, Enable, UpdateDetonateDelveBtn
 				GuiControl, Hide, RefreshBtn
 			}
 			else
@@ -1394,6 +1414,8 @@
 				GuiControl, Disable, UpdateOnStashBtn
 				GuiControl, Disable, UpdateOnChatBtn
 				GuiControl, Disable, UpdateOnVendorBtn
+				GuiControl, Disable, UpdateDetonateBtn
+				GuiControl, Disable, UpdateDetonateDelveBtn
 			}
 			
 		if(valueLife==1) {
@@ -3096,6 +3118,7 @@ Clamp( Val, Min, Max) {
 		IniRead, YesIdentify, settings.ini, General, YesIdentify
 		IniRead, YesMapUnid, settings.ini, General, YesMapUnid
 		IniRead, Latency, settings.ini, General, Latency
+		IniRead, ShowOnStart, settings.ini, General, ShowOnStart
 		IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
 
 		;Stash Tab Management
@@ -3133,6 +3156,7 @@ Clamp( Val, Min, Max) {
 		IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
 		IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
 		IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor
+		IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex
 		
 		;Life Flasks
 		IniRead, varLife20, settings.ini, Life Colors, Life20
@@ -3421,6 +3445,7 @@ Clamp( Val, Min, Max) {
 		IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
 		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
 		IniWrite, %Latency%, settings.ini, General, Latency
+		IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
 		IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 		
 		IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10
@@ -3531,7 +3556,7 @@ Clamp( Val, Min, Max) {
 	hotkeys(){
 		global ;processWarningFound, macroVersion
 		;getLeagueListing()
-		Gui, Show, Autosize Center, 	PoE-Wingman
+		Gui, Show, Autosize Center, 	WingmanReloaded
 		processWarningFound:=0
 		Gui,6:Hide
 		return
@@ -3557,6 +3582,8 @@ Clamp( Val, Min, Max) {
 			GuiControl, Enable, UpdateOnStashBtn
 			GuiControl, Enable, UpdateOnChatBtn
 			GuiControl, Enable, UpdateOnVendorBtn
+			GuiControl, Enable, UpdateDetonateBtn
+			GuiControl, Enable, UpdateDetonateDelveBtn
 			GuiControl, Hide, RefreshBtn
 			Reload
 			varTextSave:="Save"
@@ -3566,6 +3593,8 @@ Clamp( Val, Min, Max) {
 			varTextOnStash:="OnStash Color"
 			varTextOnChat:="OnChat Color"
 			varTextOnVendor:="OnVendor Color"
+			varTextDetonate:="Detonate Color"
+			varTextDetonateDelve:="Detonate Delve"
 		}
 		else
 		{
@@ -3576,6 +3605,8 @@ Clamp( Val, Min, Max) {
 			GuiControl, Disable, UpdateOnStashBtn
 			GuiControl, Disable, UpdateOnChatBtn
 			GuiControl, Disable, UpdateOnVendorBtn
+			GuiControl, Disable, UpdateDetonateBtn
+			GuiControl, Disable, UpdateDetonateDelveBtn
 			GuiControl, Enable, ResfreshBtn
 			varTextSave:="Save (POE not open)"
 			varTextOnHideout:="(POE not open)"
@@ -3584,6 +3615,8 @@ Clamp( Val, Min, Max) {
 			varTextOnStash:="(POE not open)"
 			varTextOnChat:="(POE not open)"
 			varTextOnVendor:="(POE not open)"
+			varTextDetonate:="(POE not open)"
+			varTextDetonateDelve:="(POE not open)"
 		}
 		GuiControl,, SaveBtn, %varTextSave%
 		GuiControl,, UpdateOnHideoutBtn, %varTextOnHideout%
@@ -3592,6 +3625,8 @@ Clamp( Val, Min, Max) {
 		GuiControl,, UpdateOnStashBtn, %varTextOnStash%
 		GuiControl,, UpdateOnChatBtn, %varTextOnChat%
 		GuiControl,, UpdateOnVendorBtn, %varTextOnVendor%
+		GuiControl,, UpdateDetonateBtn, %varTextDetonate%
+		GuiControl,, UpdateDetonateDelveBtn, %varTextDetonateDelve%
 		return
 
 	updateOnHideout:
@@ -3743,6 +3778,54 @@ Clamp( Val, Min, Max) {
 		MsgBox, OnVendor Recalibrated!
 		return
 
+	updateDetonate:
+		Gui, Submit, NoHide
+		IfWinExist, ahk_class POEWindowClass 
+		{
+			If (YesUltraWide)
+			{
+			DetonateX:=X + Round(A_ScreenWidth / (3840 / 3578))
+			}
+			Else
+			{
+			DetonateX:=X + Round(A_ScreenWidth / (1920 / 1658))
+			}
+			WinGetPos,,, Width, Height  ; Uses the window found above.
+		}
+		IfWinActive, ahk_class POEWindowClass 
+		{
+			WinActivate, ahk_class POEWindowClass
+		}
+		pixelgetcolor, DetonateHex, DetonateX, DetonateY
+		IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+		readFromFile()
+		MsgBox, Detonate Recalibrated!
+		return
+
+	updateDetonateDelve:
+		Gui, Submit, NoHide
+		IfWinExist, ahk_class POEWindowClass 
+		{
+			If (YesUltraWide)
+			{
+			DetonateDelveX:=X + Round(A_ScreenWidth / (3840 / 3578))
+			}
+			Else
+			{
+			DetonateDelveX:=X + Round(A_ScreenWidth / (1920 / 1658))
+			}
+			WinGetPos,,, Width, Height  ; Uses the window found above.
+		}
+		IfWinActive, ahk_class POEWindowClass 
+		{
+			WinActivate, ahk_class POEWindowClass
+		}
+		pixelgetcolor, DetonateHex, DetonateDelveX, DetonateDelveY
+		IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+		readFromFile()
+		MsgBox, DetonateDelve Recalibrated!
+		return
+
 	updateCharacterType:
 		Gui, Submit, NoHide
 		if(RadioLife==1) {
@@ -3871,6 +3954,7 @@ Clamp( Val, Min, Max) {
 		IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 		IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide
 		IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
+		IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
 		If (DetonateMines&&!Detonated)
 			SetTimer, TMineTick, 100
 			Else If (!DetonateMines)
