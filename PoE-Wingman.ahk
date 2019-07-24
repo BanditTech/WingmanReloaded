@@ -45,7 +45,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .01.4
+		Global VersionNumber := .01.5
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
