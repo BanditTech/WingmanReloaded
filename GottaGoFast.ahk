@@ -130,6 +130,7 @@ If FileExist("settings.ini"){
 	IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5
 	;Hotkeys
 	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
+	IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
  	
 	} 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -153,6 +154,8 @@ IfWinExist, ahk_class POEWindowClass
 
 If hotkeyPopFlasks
 	hotkey,~%hotkeyPopFlasks%, PopFlasksCommand, On
+If hotkeyAutoQuicksilver
+	hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -211,7 +214,7 @@ settimer, TimmerFlask5, %CoolDownFlask5%
 return
 
 ;Toggle Auto-Quick
-$!MButton::
+AutoQuicksilverCommand:
     AutoQuick := !AutoQuick	
 	if (!AutoQuick) {
         SetTimer TQuickTick, Off
@@ -220,7 +223,6 @@ $!MButton::
     }
 	GuiUpdate()
 	return
-return
 
 RandomSleep(min,max){
 	Random, r, %min%, %max%
@@ -236,6 +238,7 @@ GuiUpdate(){
 	GuiControl ,, T1, Quicksilver: %AutoQuickToggle%
 	Return
 }
+
 TQuickTick(){
 	IfWinActive, Path of Exile
 	{

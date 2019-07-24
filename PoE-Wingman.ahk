@@ -130,6 +130,9 @@
 				, Jewel : False
 				, AbyssJewel : False
 				, Essence : False
+				, Incubator : False
+				, Fossil : False
+				, Resonator : False
 				, Quality : 0
 				, Sockets : 0
 				, RawSockets : ""
@@ -178,6 +181,8 @@
 		Global StashTabFragment := 1
 		Global StashTabEssence := 1
 		Global StashTabTimelessSplinter := 1
+		Global StashTabFossil := 1
+		Global StashTabResonator := 1
 	;Checkbox to activate each tab
 		Global StashTabYesCurrency := 1
 		Global StashTabYesMap := 1
@@ -192,6 +197,8 @@
 		Global StashTabYesFragment := 1
 		Global StashTabYesEssence := 1
 		Global StashTabYesTimelessSplinter := 1
+		Global StashTabYesFossil := 1
+		Global StashTabYesResonator := 1
 	;~ Hotkeys
 		; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
 		global hotkeyOptions:=!F10
@@ -471,6 +478,8 @@
 		IniWrite, 1, settings.ini, Stash Tab, StashTabFragment
 		IniWrite, 1, settings.ini, Stash Tab, StashTabEssence
 		IniWrite, 1, settings.ini, Stash Tab, StashTabTimelessSplinter
+		IniWrite, 1, settings.ini, Stash Tab, StashTabFossil
+		IniWrite, 1, settings.ini, Stash Tab, StashTabResonator
 		
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesCurrency
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesMap
@@ -485,6 +494,8 @@
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesFragment
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesEssence
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+		IniWrite, 1, settings.ini, Stash Tab, StashTabYesFossil
+		IniWrite, 1, settings.ini, Stash Tab, StashTabYesResonator
 		
 		;Coordinates
 		IniWrite, -10, settings.ini, Coordinates, GuiX
@@ -1013,6 +1024,8 @@
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem x195 y55, Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality y+14, Quality Gem Tab
@@ -1020,6 +1033,8 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesLinked y+14, Linked Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump y+14, Unique Dump Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing y+14, Unique Ring Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFossil y+14, Fossil Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesResonator y+14, Resonator Tab
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x352 	y30, 				ID/Vend/Stash Options:
@@ -1030,7 +1045,7 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x20 	y250, 				Inventory Instructions:
+	Gui Add, Text, 										x20 	y280, 				Inventory Instructions:
 	Gui, Font,
 	Gui Add, Text, 										x22 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
 	Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
@@ -1348,6 +1363,14 @@
 		valueStashTabYesTimelessSplinter := StashTabYesTimelessSplinter
 		GuiControl, , StashTabYesTimelessSplinter, %valueStashTabYesTimelessSplinter%
 
+		Iniread, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil
+		valueStashTabYesFossil := StashTabYesFossil
+		GuiControl, , StashTabYesFossil, %valueStashTabYesFossil%
+
+		Iniread, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator
+		valueStashTabYesResonator := StashTabYesResonator
+		GuiControl, , StashTabYesResonator, %valueStashTabYesResonator%
+
 		Iniread, hotkeyOptions, settings.ini, hotkeys, Options
 		valuehotkeyOptions := hotkeyOptions
 		GuiControl, , vhotkeyOptions, %valuehotkeyOptions%
@@ -1657,7 +1680,7 @@ LootScan(){
 	Return
 	}
 
-; Scan inventory and determine action
+; Sort inventory and determine action
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ItemSort(){
 	ItemSortCommand:
@@ -1736,48 +1759,56 @@ ItemSort(){
 						If (ItemProp.SacrificeFragment&&StashTabYesFragment)
 							{
 							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
 						If (ItemProp.MortalFragment&&StashTabYesFragment)
 							{
 							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
 						If (ItemProp.GuardianFragment&&StashTabYesFragment)
 							{
 							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
 						If (ItemProp.ProphecyFragment&&StashTabYesFragment)
 							{
 							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
 						If (ItemProp.Offering&&StashTabYesFragment)
 							{
 							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
 						If (ItemProp.Vessel&&StashTabYesFragment)
 							{
 							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
 						If (ItemProp.Scarab&&StashTabYesFragment)
 							{
 							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
 						If (ItemProp.RarityDivination&&StashTabYesDivination)
 							{
 							MoveStash(StashTabDivination)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
@@ -1786,6 +1817,7 @@ ItemSort(){
 							If (StashTabYesCollection)
 							{
 								MoveStash(StashTabCollection)
+								RandomSleep(30,45)
 								CtrlClick(Grid.X,Grid.Y)
 								If (StashTabYesUniqueRing)
 								{
@@ -1807,6 +1839,7 @@ ItemSort(){
 							If (StashTabYesCollection)
 								{
 								MoveStash(StashTabCollection)
+								RandomSleep(30,45)
 								CtrlClick(Grid.X,Grid.Y)
 								If (StashTabYesUniqueDump)
 									{
@@ -1827,6 +1860,21 @@ ItemSort(){
 						If (ItemProp.Essence&&StashTabYesEssence)
 							{
 							MoveStash(StashTabEssence)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+							}
+						If (ItemProp.Fossil&&StashTabYesFossil)
+							{
+							MoveStash(StashTabFossil)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+							}
+						If (ItemProp.Resonator&&StashTabYesResonator)
+							{
+							MoveStash(StashTabResonator)
+							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
@@ -2313,6 +2361,9 @@ ParseClip(){
 				, Jewel : False
 				, AbyssJewel : False
 				, Essence : False
+				, Incubator : False
+				, Fossil : False
+				, Resonator : False
 				, Quality : 0
 				, Sockets : 0
 				, RawSockets : ""
@@ -2538,6 +2589,30 @@ ParseClip(){
 				{
 					ItemProp.Essence := True
 					ItemProp.SpecialType := "Essence"
+					Continue
+				}
+				IfInString, A_LoopField, Remnant of Corruption
+				{
+					ItemProp.Essence := True
+					ItemProp.SpecialType := "Essence"
+					Continue
+				}
+				IfInString, A_LoopField, Incubator
+				{
+					ItemProp.Incubator := True
+					ItemProp.SpecialType := "Incubator"
+					Continue
+				}
+				IfInString, A_LoopField, Fossil
+				{
+					ItemProp.Fossil := True
+					ItemProp.SpecialType := "Fossil"
+					Continue
+				}
+				IfInString, A_LoopField, Resonator
+				{
+					ItemProp.Resonator := True
+					ItemProp.SpecialType := "Resonator"
 					Continue
 				}
 				IfInString, A_LoopField, Divine Vessel
@@ -3152,6 +3227,8 @@ Clamp( Val, Min, Max) {
 		IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment
 		IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence
 		IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter
+		IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil
+		IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator
 		IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency
 		IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap
 		IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination
@@ -3165,6 +3242,8 @@ Clamp( Val, Min, Max) {
 		IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment
 		IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence
 		IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+		IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil
+		IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator
 		
 		;Failsafe Colors
 		IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
@@ -3517,6 +3596,8 @@ Clamp( Val, Min, Max) {
 		IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
 		IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
 		IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+		IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
+		IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
 		IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
 		IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
 		IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
@@ -3530,6 +3611,8 @@ Clamp( Val, Min, Max) {
 		IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
 		IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
 		IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+		IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
+		IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
 		
 		;Attack Flasks
 		IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
@@ -3944,6 +4027,8 @@ Clamp( Val, Min, Max) {
 		IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
 		IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
 		IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+		IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
+		IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
 		IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
 		IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
 		IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
@@ -3957,6 +4042,8 @@ Clamp( Val, Min, Max) {
 		IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
 		IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
 		IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+		IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
+		IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
 		Return
 
 	UpdateExtra:
