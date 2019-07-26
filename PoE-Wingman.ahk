@@ -64,7 +64,7 @@
 			}
 		Global WPStockY:=(A_ScreenHeight/(1080/262))
 		Global DetonateY:=(A_ScreenHeight/(1080/901))
-		Global InventoryGridY := [ (A_ScreenHeight/(1080/637)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
+		Global InventoryGridY := [ (A_ScreenHeight/(1080/638)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
@@ -2443,11 +2443,11 @@ ParseClip(){
 		If Not NameIsDone
 		{
 			If A_LoopField = --------
-			{
+				{
 				NameIsDone := True
-			}
+				}
 			Else
-			{
+				{
 				ItemProp.ItemName := ItemProp.ItemName . A_LoopField . "`n" ; Add a line of name
 				IfInString, A_LoopField, Ring
 				{
@@ -2605,9 +2605,12 @@ ParseClip(){
 				}
 				IfInString, A_LoopField, Fossil
 				{
-					ItemProp.Fossil := True
-					ItemProp.SpecialType := "Fossil"
-					Continue
+					IfNotInString, A_LoopField, Fossilised
+						{
+						ItemProp.Fossil := True
+						ItemProp.SpecialType := "Fossil"
+						Continue
+						}
 				}
 				IfInString, A_LoopField, Resonator
 				{
@@ -2647,7 +2650,7 @@ ParseClip(){
 					ItemProp.Flask := True
 					Continue
 				}
-			}
+				}
 			Continue
 		}
 
