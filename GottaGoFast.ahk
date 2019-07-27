@@ -46,6 +46,7 @@ if not A_IsAdmin
 global Speed=1
 global QTick=250
 global PopFlaskRespectCD=1
+global YesUltraWide=1
 
 ;Coordinates
 global GuiX=-5
@@ -84,6 +85,7 @@ If FileExist("settings.ini"){
 	IniRead, Speed, settings.ini, General, Speed
 	IniRead, QTick, settings.ini, General, QTick
 	IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
+	IniRead, YesUltraWide, settings.ini, General, YesUltraWide
 	;Coordinates
 	IniRead, GuiX, settings.ini, Coordinates, GuiX
 	IniRead, GuiY, settings.ini, Coordinates, GuiY
