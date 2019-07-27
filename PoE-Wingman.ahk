@@ -3695,7 +3695,7 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
-			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
+			WinGetPos, X, Y, W, H  ; Uses the window found above.
 			vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
 			vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
 		}
@@ -3731,7 +3731,7 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
-			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
+			WinGetPos, X, Y, W, H  ; Uses the window found above.
 			vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
 			vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
 		}
@@ -3749,7 +3749,7 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
-			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
+			WinGetPos, X, Y, W, H  ; Uses the window found above.
 			vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
 			vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
 		}
