@@ -45,26 +45,10 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .01.6
+		Global VersionNumber := .01.6.1
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
-		If (YesUltraWide){
-			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
-			Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
-			Global DetonateX:=(A_ScreenWidth/(3840/3578))
-			Global WisdomStockX:=(A_ScreenWidth/(3840/125))
-			Global PortalStockX:=(A_ScreenWidth/(3840/175))
-			} Else {
-			Global InventoryGridX := [ (A_ScreenWidth/(1920/1274)), (A_ScreenWidth/(1920/1326)), (A_ScreenWidth/(1920/1379)), (A_ScreenWidth/(1920/1432)), (A_ScreenWidth/(1920/1484)), (A_ScreenWidth/(1920/1537)), (A_ScreenWidth/(1920/1590)), (A_ScreenWidth/(1920/1642)), (A_ScreenWidth/(1920/1695)), (A_ScreenWidth/(1920/1748)), (A_ScreenWidth/(1920/1800)), (A_ScreenWidth/(1920/1853)) ]
-			Global DetonateDelveX:=(A_ScreenWidth/(1920/1542))
-			Global DetonateX:=(A_ScreenWidth/(1920/1658))
-			Global WisdomStockX:=(A_ScreenWidth/(1920/125))
-			Global PortalStockX:=(A_ScreenWidth/(1920/175))
-			}
-		Global WPStockY:=(A_ScreenHeight/(1080/262))
-		Global DetonateY:=(A_ScreenHeight/(1080/901))
-		Global InventoryGridY := [ (A_ScreenHeight/(1080/638)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
@@ -323,113 +307,6 @@
 
 ;readFromFile()
 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Extra vars - Not in INI
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	global Trigger=00000
-	global AutoQuit=0 
-	global AutoFlask=0
-	global OnCoolDown:=[0,0,0,0,0]
-	global Radiobox1QS
-	global Radiobox2QS
-	global Radiobox3QS
-	global Radiobox4QS
-	global Radiobox5QS
-
-
-	IfWinExist, ahk_class POEWindowClass
-	{
-		WinGetPos, X, Y, W, H
-		If (YesUltraWide)
-			{
-			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-			global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-			global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-			}
-		Else
-			{
-			global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
-			global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-			global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-			global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-			global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-			global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-			global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-			global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
-			global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
-			}
-		global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-		global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-		global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-		global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-		global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-		global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-		
-		global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-		global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-		global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-		global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-		global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-		global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-		global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-		global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-		
-		global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-		global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-		global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-		global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-		global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-		global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-		global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-		global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-		
-		global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-	}
-	else
-	{
-		global vX_OnHideout:=1241
-		global vY_OnHideout:=951
-		global vX_OnChar:=41
-		global vY_OnChar:=915
-		global vX_OnChat:=41
-		global vY_OnChat:=915
-		global vX_OnInventory:=1583
-		global vY_OnInventory:=36
-		global vX_OnStash:=336
-		global vY_OnStash:=32
-		global vX_OnVendor:=618
-		global vY_OnVendor:=88
-		
-		global vX_Life:=95
-		global vY_Life90:=1034
-		global vY_Life80:=1014
-		global vY_Life70:=994
-		global vY_Life60:=974
-		global vY_Life50:=954
-		global vY_Life40:=934
-		global vY_Life30:=914
-		global vY_Life20:=894
-		
-		global vX_ES:=180
-		global vY_ES90:=1034
-		global vY_ES80:=1014
-		global vY_ES70:=994
-		global vY_ES60:=974
-		global vY_ES50:=954
-		global vY_ES40:=934
-		global vY_ES30:=914
-		global vY_ES20:=894
-		
-		global vX_Mana:=1825
-		global vY_Mana10:=1054
-	}
-
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	If FileExist("settings.ini"){ 
@@ -624,6 +501,125 @@
 
 		Reload
 		}
+
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Extra vars - Not in INI
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	global Trigger=00000
+	global AutoQuit=0 
+	global AutoFlask=0
+	global OnCoolDown:=[0,0,0,0,0]
+	global Radiobox1QS
+	global Radiobox2QS
+	global Radiobox3QS
+	global Radiobox4QS
+	global Radiobox5QS
+
+	IfWinExist, ahk_class POEWindowClass
+	{
+		WinGetPos, X, Y, W, H
+		If (YesUltraWide)
+			{
+			Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
+			Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
+			Global DetonateX:=(A_ScreenWidth/(3840/3578))
+			Global WisdomStockX:=(A_ScreenWidth/(3840/125))
+			Global PortalStockX:=(A_ScreenWidth/(3840/175))
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+			global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+			global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
+			}
+		Else
+			{
+			Global InventoryGridX := [ (A_ScreenWidth/(1920/1274)), (A_ScreenWidth/(1920/1326)), (A_ScreenWidth/(1920/1379)), (A_ScreenWidth/(1920/1432)), (A_ScreenWidth/(1920/1484)), (A_ScreenWidth/(1920/1537)), (A_ScreenWidth/(1920/1590)), (A_ScreenWidth/(1920/1642)), (A_ScreenWidth/(1920/1695)), (A_ScreenWidth/(1920/1748)), (A_ScreenWidth/(1920/1800)), (A_ScreenWidth/(1920/1853)) ]
+			Global DetonateDelveX:=(A_ScreenWidth/(1920/1542))
+			Global DetonateX:=(A_ScreenWidth/(1920/1658))
+			Global WisdomStockX:=(A_ScreenWidth/(1920/125))
+			Global PortalStockX:=(A_ScreenWidth/(1920/175))
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+			global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+			global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+			global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+			global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+			global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+			global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+			}
+		Global WPStockY:=(A_ScreenHeight/(1080/262))
+		Global DetonateY:=(A_ScreenHeight/(1080/901))
+		Global InventoryGridY := [ (A_ScreenHeight/(1080/638)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
+		global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+		global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+		global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+		global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+		global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+		global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+		
+		global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+		global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+		global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+		global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+		global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+		global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+		global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+		global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+		
+		global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+		global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+		global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+		global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+		global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+		global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+		global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+		global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+		
+		global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+	}
+	else
+	{
+		global vX_OnHideout:=1241
+		global vY_OnHideout:=951
+		global vX_OnChar:=41
+		global vY_OnChar:=915
+		global vX_OnChat:=41
+		global vY_OnChat:=915
+		global vX_OnInventory:=1583
+		global vY_OnInventory:=36
+		global vX_OnStash:=336
+		global vY_OnStash:=32
+		global vX_OnVendor:=618
+		global vY_OnVendor:=88
+		
+		global vX_Life:=95
+		global vY_Life90:=1034
+		global vY_Life80:=1014
+		global vY_Life70:=994
+		global vY_Life60:=974
+		global vY_Life50:=954
+		global vY_Life40:=934
+		global vY_Life30:=914
+		global vY_Life20:=894
+		
+		global vX_ES:=180
+		global vY_ES90:=1034
+		global vY_ES80:=1014
+		global vY_ES70:=994
+		global vY_ES60:=974
+		global vY_ES50:=954
+		global vY_ES40:=934
+		global vY_ES30:=914
+		global vY_ES20:=894
+		
+		global vX_Mana:=1825
+		global vY_Mana10:=1054
+	}
 
 ; Wingman Gui Variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
