@@ -75,30 +75,6 @@ global QuicksilverSlot5=0
 ;Hotkeys
 global hotkeyPopFlasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Extra vars - Not in INI
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-global TriggerQ=00000
-global AutoQuick=0 
-global OnCoolDown:=[0,0,0,0,0]
-
-IfWinExist, ahk_class POEWindowClass
-{
-    WinGetPos, X, Y, Width, Hight  ; Uses the window found above.
-	global vX_OnHideout:=X + Round(Width / 1920 * 1241)
-	global vY_OnHideout:=Y + Round(Hight / 1080 * 951)
-	
-	global vX_OnChar:=X + Round(Width / 1920 * 41)
-	global vY_OnChar:=Y + Round(Hight / 1080 * 915)
-}
-else
-{
-	global vX_OnHideout:=1241
-	global vY_OnHideout:=951
-	
-	global vX_OnChar:=1641
-	global vY_OnChar:=995
-}
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -133,6 +109,35 @@ If FileExist("settings.ini"){
 	IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
  	
 	} 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Extra vars - Not in INI
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+global TriggerQ=00000
+global AutoQuick=0 
+global OnCoolDown:=[0,0,0,0,0]
+
+IfWinExist, ahk_class POEWindowClass
+	{
+    WinGetPos, X, Y, W, H  ; Uses the window found above.
+	If (YesUltraWide)
+		{
+		global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+		global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+		}
+	Else
+		{
+		global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+		global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		}
+
+	global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+	global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+	} Else {
+	global vX_OnHideout:=1241
+	global vY_OnHideout:=951
+	global vX_OnChar:=41
+	global vY_OnChar:=915
+	}
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
