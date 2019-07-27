@@ -870,7 +870,7 @@
 	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
 	Gui, Font, 
 
-	Gui Add, Checkbox, gUpdateScaling	vYesUltraWide                          	    , UltraWide Scaling?
+	Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                          	    , UltraWide Scaling?
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart                         	          	, Show GUI on startup?
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 ,  1|2|3
 	Gui Add, Text, 										x+12 							, Adjust Latency
@@ -1405,7 +1405,6 @@
 				}
 			}
 		
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra vars - Not in INI
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	global Trigger=00000
@@ -1417,7 +1416,93 @@
 	global Radiobox3QS
 	global Radiobox4QS
 	global Radiobox5QS
-	UpdateScaling()
+
+	IfWinExist, ahk_class POEWindowClass
+		{
+		WinGetPos, X, Y, W, H
+
+		Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
+		Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
+		Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
+		Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
+		Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
+		global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+		global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+		global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+		global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+		global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+		global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+		global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+		global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+		global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+
+
+		Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+		Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+		Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+		global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+		global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+		global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+		global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+		global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+		global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+		
+		global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+		global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+		global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+		global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+		global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+		global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+		global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+		global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+		
+		global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+		global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+		global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+		global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+		global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+		global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+		global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+		global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+		
+		global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+		}	else		{
+		global vX_OnHideout:=1241
+		global vY_OnHideout:=951
+		global vX_OnChar:=41
+		global vY_OnChar:=915
+		global vX_OnChat:=41
+		global vY_OnChat:=915
+		global vX_OnInventory:=1583
+		global vY_OnInventory:=36
+		global vX_OnStash:=336
+		global vY_OnStash:=32
+		global vX_OnVendor:=618
+		global vY_OnVendor:=88
+		
+		global vX_Life:=95
+		global vY_Life90:=1034
+		global vY_Life80:=1014
+		global vY_Life70:=994
+		global vY_Life60:=974
+		global vY_Life50:=954
+		global vY_Life40:=934
+		global vY_Life30:=914
+		global vY_Life20:=894
+		
+		global vX_ES:=180
+		global vY_ES90:=1034
+		global vY_ES80:=1014
+		global vY_ES70:=994
+		global vY_ES60:=974
+		global vY_ES50:=954
+		global vY_ES40:=934
+		global vY_ES30:=914
+		global vY_ES20:=894
+		
+		global vX_Mana:=1825
+		global vY_Mana10:=1054
+		}
 
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1848,23 +1933,17 @@ MoveStash(Tab){
 		MouseGetPos MSx, MSy
 		BlockInput, MouseMove
 		Sleep, 45*Latency
-		If (YesUltraWide)
-			MouseMove, (A_ScreenWidth/(3840/640)), (A_ScreenHeight/(1080/146)), 0
-		Else
-			MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
+		MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
 		Sleep, 45*Latency
 		Click, Down, Left, 1
 		Sleep, 45*Latency
 		Click, Up, Left, 1
 		Sleep, 45*Latency
-		MouseMove, 760, ((A_ScreenHeight/(1080/120)) + (Tab*(A_ScreenHeight/(1080/22)))), 0
+		MouseMove, (A_ScreenWidth/(1920/760)), ((A_ScreenHeight/(1080/120)) + (Tab*(A_ScreenHeight/(1080/22)))), 0
 		Sleep, 45*Latency
 		send {Enter}
 		Sleep, 45*Latency
-		If (YesUltraWide)
-			MouseMove, (A_ScreenWidth/(3840/640)), (A_ScreenHeight/(1080/146)), 0
-		Else
-			MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
+		MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
 		Sleep, 45*Latency
 		Click, Down, Left, 1
 		Sleep, 45*Latency
@@ -2039,10 +2118,7 @@ RandClick(x, y){
 ; Scales two resolution quardinates -- Currently not being used
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ScaleRes(x, y){
-	If (YesUltraWide)
-		Rx:=Round(A_ScreenWidth / (3840 / x))
-	Else
-		Rx:=Round(A_ScreenWidth / (1920 / x))
+	Rx:=Round(A_ScreenWidth / (1920 / x))
 	Ry:=Round(A_ScreenHeight / (1080 / y))
 	return {"X": Rx, "Y": Ry}
 	}
@@ -3322,10 +3398,7 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_class POEWindowClass 
 		{
 			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
-			If (YesUltraWide)
-				vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-			Else
-				vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+			vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 
 			vY_Life20:=Y + Round(A_ScreenHeight / (1080 / 1034))
 			vY_Life30:=Y + Round(A_ScreenHeight / (1080 / 1014))
@@ -3336,10 +3409,7 @@ Clamp( Val, Min, Max) {
 			vY_Life80:=Y + Round(A_ScreenHeight / (1080 / 914))
 			vY_Life90:=Y + Round(A_ScreenHeight / (1080 / 894))
 			
-			If (YesUltraWide)
-				vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-			Else
-				vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+			vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
 				
 			vY_ES20:=Y + Round(A_ScreenHeight / (1080 / 1034))
 			vY_ES30:=Y + Round(A_ScreenHeight / (1080 / 1014))
@@ -3350,10 +3420,7 @@ Clamp( Val, Min, Max) {
 			vY_ES80:=Y + Round(A_ScreenHeight / (1080 / 914))
 			vY_ES90:=Y + Round(A_ScreenHeight / (1080 / 894))
 			
-			If (YesUltraWide)
-				vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-			Else
-				vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+			vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
 			vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 		}
 
@@ -3629,14 +3696,7 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_class POEWindowClass 
 		{
 			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
-			If (YesUltraWide)
-				{
-				vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-				}
-			Else
-				{
-				vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
-				}
+			vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
 			vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
 		}
 		IfWinActive, ahk_class POEWindowClass 
@@ -3653,15 +3713,8 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
-			If (YesUltraWide)
-			{
-			vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-			}
-			Else
-			{
+			WinGetPos, X, Y, W, H  ; Uses the window found above.
 			vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-			}
-			WinGetPos,,, Width, Height  ; Uses the window found above.
 			vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
 		}
 		IfWinActive, ahk_class POEWindowClass 
@@ -3679,14 +3732,7 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_class POEWindowClass 
 		{
 			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
-			If (YesUltraWide)
-				{
-				vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-				}
-			Else
-				{
-				vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-				}
+			vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
 			vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
 		}
 		IfWinActive, ahk_class POEWindowClass 
@@ -3704,14 +3750,7 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_class POEWindowClass 
 		{
 			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
-			If (YesUltraWide)
-				{
-				vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-				}
-			Else
-				{
-				vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-				}
+			vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
 			vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
 		}
 		IfWinActive, ahk_class POEWindowClass 
@@ -3728,16 +3767,9 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
-			If (YesUltraWide)
-			{
-			vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-			}
-			Else
-			{
+			WinGetPos, X, Y, W, H  ; Uses the window found above.
 			vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-			}
-			WinGetPos,,, Width, Height  ; Uses the window found above.
-			vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
+			vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
 		}
 		IfWinActive, ahk_class POEWindowClass 
 		{
@@ -3753,15 +3785,9 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
-			If (YesUltraWide)
-			{
-			vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-			}
-			Else
-			{
+			WinGetPos, X, Y, W, H  ; Uses the window found above.
 			vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-			}
-			WinGetPos,,, Width, Height  ; Uses the window found above.
+			vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
 		}
 		IfWinActive, ahk_class POEWindowClass 
 		{
@@ -3777,15 +3803,9 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
-			If (YesUltraWide)
-			{
-			DetonateX:=X + Round(A_ScreenWidth / (3840 / 3578))
-			}
-			Else
-			{
+			WinGetPos, X, Y, W, H  ; Uses the window found above.
 			DetonateX:=X + Round(A_ScreenWidth / (1920 / 1658))
-			}
-			WinGetPos,,, Width, Height  ; Uses the window found above.
+			DetonateY:=Y + Round(A_ScreenHeight / (1080 / 901))
 		}
 		IfWinActive, ahk_class POEWindowClass 
 		{
@@ -3801,21 +3821,15 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
 		{
-			If (YesUltraWide)
-			{
-			DetonateDelveX:=X + Round(A_ScreenWidth / (3840 / 3578))
-			}
-			Else
-			{
-			DetonateDelveX:=X + Round(A_ScreenWidth / (1920 / 1658))
-			}
-			WinGetPos,,, Width, Height  ; Uses the window found above.
+			WinGetPos, X, Y, W, H  ; Uses the window found above.
+			DetonateDelveX:=X + Round(A_ScreenWidth / (1920 / 1542))
+			DetonateY:=Y + Round(A_ScreenHeight / (1080 / 901))
 		}
 		IfWinActive, ahk_class POEWindowClass 
 		{
 			WinActivate, ahk_class POEWindowClass
 		}
-		pixelgetcolor, DetonateHex, DetonateDelveX, DetonateDelveY
+		pixelgetcolor, DetonateHex, DetonateDelveX, DetonateY
 		IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
 		readFromFile()
 		MsgBox, DetonateDelve Recalibrated!
@@ -3940,116 +3954,10 @@ Clamp( Val, Min, Max) {
 		IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
 		IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
 		Return
-UpdateScaling(){
-	UpdateScaling:
-		IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide
-		IfWinExist, ahk_class POEWindowClass
-			{
-			WinGetPos, X, Y, W, H
-			If (YesUltraWide)
-				{
-				Global InventoryGridX := [ (A_ScreenWidth/(3840/3194)), (A_ScreenWidth/(3840/3246)), (A_ScreenWidth/(3840/3299)), (A_ScreenWidth/(3840/3352)), (A_ScreenWidth/(3840/3404)), (A_ScreenWidth/(3840/3457)), (A_ScreenWidth/(3840/3510)), (A_ScreenWidth/(3840/3562)), (A_ScreenWidth/(3840/3615)), (A_ScreenWidth/(3840/3668)), (A_ScreenWidth/(3840/3720)), (A_ScreenWidth/(3840/3773)) ]
-				Global DetonateDelveX:=(A_ScreenWidth/(3840/3462))
-				Global DetonateX:=(A_ScreenWidth/(3840/3578))
-				Global WisdomStockX:=(A_ScreenWidth/(3840/125))
-				Global PortalStockX:=(A_ScreenWidth/(3840/175))
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-				global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-				global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-				global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-				global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-				global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-				global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-				global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-				global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-				}
-			Else
-				{
-				Global InventoryGridX := [ (A_ScreenWidth/(1920/1274)), (A_ScreenWidth/(1920/1326)), (A_ScreenWidth/(1920/1379)), (A_ScreenWidth/(1920/1432)), (A_ScreenWidth/(1920/1484)), (A_ScreenWidth/(1920/1537)), (A_ScreenWidth/(1920/1590)), (A_ScreenWidth/(1920/1642)), (A_ScreenWidth/(1920/1695)), (A_ScreenWidth/(1920/1748)), (A_ScreenWidth/(1920/1800)), (A_ScreenWidth/(1920/1853)) ]
-				Global DetonateDelveX:=(A_ScreenWidth/(1920/1542))
-				Global DetonateX:=(A_ScreenWidth/(1920/1658))
-				Global WisdomStockX:=(A_ScreenWidth/(1920/125))
-				Global PortalStockX:=(A_ScreenWidth/(1920/175))
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
-				global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-				global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-				global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-				global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-				global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-				global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-				global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
-				global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
-				}
-			Global WPStockY:=(A_ScreenHeight/(1080/262))
-			Global DetonateY:=(A_ScreenHeight/(1080/901))
-			Global InventoryGridY := [ (A_ScreenHeight/(1080/638)), (A_ScreenHeight/(1080/690)), (A_ScreenHeight/(1080/743)), (A_ScreenHeight/(1080/796)), (A_ScreenHeight/(1080/848)) ]  
-			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-			
-			global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-			global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-			global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-			global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-			global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-			global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-			global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-			global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-			
-			global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-			global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-			global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-			global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-			global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-			global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-			global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-			global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-			
-			global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-			}	else		{
-			global vX_OnHideout:=1241
-			global vY_OnHideout:=951
-			global vX_OnChar:=41
-			global vY_OnChar:=915
-			global vX_OnChat:=41
-			global vY_OnChat:=915
-			global vX_OnInventory:=1583
-			global vY_OnInventory:=36
-			global vX_OnStash:=336
-			global vY_OnStash:=32
-			global vX_OnVendor:=618
-			global vY_OnVendor:=88
-			
-			global vX_Life:=95
-			global vY_Life90:=1034
-			global vY_Life80:=1014
-			global vY_Life70:=994
-			global vY_Life60:=974
-			global vY_Life50:=954
-			global vY_Life40:=934
-			global vY_Life30:=914
-			global vY_Life20:=894
-			
-			global vX_ES:=180
-			global vY_ES90:=1034
-			global vY_ES80:=1014
-			global vY_ES70:=994
-			global vY_ES60:=974
-			global vY_ES50:=954
-			global vY_ES40:=934
-			global vY_ES30:=914
-			global vY_ES20:=894
-			
-			global vX_Mana:=1825
-			global vY_Mana10:=1054
-			}
-		Return
-	}
+
 	UpdateExtra:
 		Gui, Submit, NoHide
+		IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide
 		IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
 		IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
 		IniWrite, %YesVendor%, settings.ini, General, YesVendor

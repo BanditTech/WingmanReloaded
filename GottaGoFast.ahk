@@ -46,7 +46,7 @@ if not A_IsAdmin
 global Speed=1
 global QTick=250
 global PopFlaskRespectCD=1
-global YesUltraWide=1
+global YesUltraWide=0
 
 ;Coordinates
 global GuiX=-5
@@ -121,16 +121,8 @@ global OnCoolDown:=[0,0,0,0,0]
 IfWinExist, ahk_class POEWindowClass
 	{
     WinGetPos, X, Y, W, H  ; Uses the window found above.
-	If (YesUltraWide)
-		{
-		global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-		global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-		}
-	Else
-		{
-		global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
-		global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-		}
+	global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+	global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 
 	global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
 	global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
