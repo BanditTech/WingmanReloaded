@@ -31,13 +31,28 @@
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
+; Check presence of cports
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	IfNotExist, cports.exe
+		{
+		UrlDownloadToFile, http://lutbot.com/ahk/cports.exe, cports.exe
+		if ErrorLevel
+				MsgBox, Error ED02 : There was a problem downloading cports.exe
+		UrlDownloadToFile, http://lutbot.com/ahk/cports.chm, cports.chm
+		if ErrorLevel
+				MsgBox, Error ED03 : There was a problem downloading cports.chm 
+		UrlDownloadToFile, http://lutbot.com/ahk/readme.txt, cports.txt
+		if ErrorLevel
+				MsgBox, Error ED04 : There was a problem downloading cports.txt
+		}
+
 	CleanUp()
 	if not A_IsAdmin
         if A_IsCompiled
-            Run *RunAs "%A_ScriptFullPath%" /restart, , Hide
+            Run *RunAs "%A_ScriptFullPath%" /restart
         else
-            Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%", , Hide
-	Run GottaGoFast.ahk, "A_ScriptDir", Hide
+            Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+	Run GottaGoFast.ahk, "A_ScriptDir"
 	OnExit("CleanUp")
 
 	If FileExist("settings.ini")
@@ -560,28 +575,6 @@
 	GuiControl,, RadioQuit30, %varTextAutoQuit30%
 	GuiControl,, RadioQuit40, %varTextAutoQuit40%
 
-; Check presence of cports
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-	IfNotExist, cports.exe
-	{
-	UrlDownloadToFile, http://lutbot.com/ahk/cports.exe, cports.exe
-			if ErrorLevel
-					MsgBox, Error ED02 : There was a problem downloading cports.exe
-	}
-	
-	IfNotExist, cports.chm
-	{
-	UrlDownloadToFile, http://lutbot.com/ahk/cports.chm, cports.chm
-			if ErrorLevel
-					MsgBox, Error ED03 : There was a problem downloading cports.chm 
-	}
-	IfNotExist, cports.txt
-	{
-	UrlDownloadToFile, http://lutbot.com/ahk/readme.txt, cports.txt
-			if ErrorLevel
-					MsgBox, Error ED04 : There was a problem downloading readme.txt
-	}
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1642,6 +1635,20 @@
 
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Check presence of cports
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	IfNotExist, cports.exe
+		{
+		UrlDownloadToFile, http://lutbot.com/ahk/cports.exe, cports.exe
+		if ErrorLevel
+				MsgBox, Error ED02 : There was a problem downloading cports.exe
+		UrlDownloadToFile, http://lutbot.com/ahk/cports.chm, cports.chm
+		if ErrorLevel
+				MsgBox, Error ED03 : There was a problem downloading cports.chm 
+		UrlDownloadToFile, http://lutbot.com/ahk/readme.txt, cports.txt
+		if ErrorLevel
+				MsgBox, Error ED04 : There was a problem downloading cports.txt
+		}
 ; Loot Scanner for items under cursor pressing Loot button
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LootScan(){
@@ -2394,7 +2401,7 @@ ClipItem(x, y){
 	BlockInput, MouseMove
 	Clipboard := ""
 	MouseMove %x%, %y%
-	Sleep, 80*Latency
+	Sleep, 75*Latency
 	Send ^c
 	ClipWait, 0
 	ParseClip()
@@ -4789,7 +4796,5 @@ Clamp( Val, Min, Max) {
 		SetTimer, RemoveToolTip, Off
 		ToolTip
 		return
-
-
 
 return
