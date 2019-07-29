@@ -45,7 +45,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .01.7
+		Global VersionNumber := .01.7.1
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
@@ -137,8 +137,9 @@
 				, Offering : False
 				, Vessel : False
 				, Incubator : False
-				, Flask : False}
-		
+				, Flask : False
+				, Veiled : False}
+
 		global Detonated := 0
 		global CritQuit := 1
 		global CurrentTab := 0
@@ -2109,19 +2110,6 @@ StockScrolls(){
 	return
 	}
 
-; Capture Clip at Coord
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ClipItem(x, y){
-	BlockInput, MouseMove
-	Clipboard := ""
-	MouseMove %x%, %y%
-	Sleep, 80*Latency
-	Send ^c
-	ClipWait, 0
-	ParseClip()
-	BlockInput, MouseMoveOff
- }
-
 ; Randomize Click area around middle of cell using Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RandClick(x, y){
@@ -2400,6 +2388,19 @@ Logout(){
 	return
 	}
 
+; Capture Clip at Coord
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ClipItem(x, y){
+	BlockInput, MouseMove
+	Clipboard := ""
+	MouseMove %x%, %y%
+	Sleep, 80*Latency
+	Send ^c
+	ClipWait, 0
+	ParseClip()
+	BlockInput, MouseMoveOff
+ }
+
 ; Checks the contents of the clipboard and parses the information from the tooltip capture
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ParseClip(){
@@ -2449,7 +2450,8 @@ ParseClip(){
 				, Offering : False
 				, Vessel : False
 				, Incubator : False
-				, Flask : False}
+				, Flask : False
+				, Veiled : False}
 	
 	;Begin parsing information	
 	Loop, Parse, Clipboard, `n, `r
@@ -2522,12 +2524,6 @@ ParseClip(){
 				IfInString, A_LoopField, Amulet
 				{
 					ItemProp.Amulet := True
-					Continue
-				}
-				IfInString, A_LoopField, Map
-				{
-					ItemProp.Map := True
-					ItemProp.SpecialType := "Map"
 					Continue
 				}
 				IfInString, A_LoopField, Map
@@ -2775,6 +2771,7 @@ ParseClip(){
 			ItemProp.Quality := QualityArray2
 			Continue
 		}
+		;Stack size
 		IfInString, A_LoopField, Stack Size:
 		{
 			StringSplit, StackArray, A_LoopField, %A_Space%
@@ -2787,6 +2784,13 @@ ParseClip(){
 		IfInString, A_LoopField, Unidentified
 		{
 			ItemProp.Identified := False
+			continue
+		}
+		; Flag Veiled
+		IfInString, A_LoopField, Veiled%A_Space%
+		{
+			ItemProp.Veiled := True
+			ItemProp.SpecialType := "Veiled"
 			continue
 		}
 	}
