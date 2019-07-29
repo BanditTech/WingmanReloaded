@@ -45,7 +45,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .01.6
+		Global VersionNumber := .01.7
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
@@ -1467,54 +1467,17 @@
 
 	IfWinExist, ahk_class POEWindowClass
 		{
-		WinGetPos, X, Y, W, H
+		Rescale()
+		} else {
+		Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
+		Global InventoryGridY := [ 638, 690, 743, 796, 848 ]  
+		Global DetonateDelveX:=1542
+		Global DetonateX:=1658
+		Global DetonateY:=901
+		Global WisdomStockX:=125
+		Global PortalStockX:=175
+		Global WPStockY:=262
 
-		Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
-		Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
-		Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
-		Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
-		Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
-		global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
-		global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-		global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-		global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-		global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-		global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-		global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-		global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
-		global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
-
-
-		Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-		Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-		Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-		global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-		global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-		global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-		global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-		global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-		global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-		
-		global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-		global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-		global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-		global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-		global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-		global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-		global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-		global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-		
-		global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-		global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-		global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-		global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-		global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-		global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-		global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-		global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-		
-		global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-		}	else		{
 		global vX_OnHideout:=1241
 		global vY_OnHideout:=951
 		global vX_OnChar:=41
@@ -1550,6 +1513,12 @@
 		
 		global vX_Mana:=1825
 		global vY_Mana10:=1054
+
+		global vX_StashTabMenu := 640
+		global vY_StashTabMenu := 146
+		global vX_StashTabList := 760
+		global vY_StashTabList := 120
+		global vY_StashTabSize := 22
 		}
 
 ; Ingame Overlay (default bottom left)
@@ -1565,9 +1534,7 @@
 
 	IfWinExist, ahk_class POEWindowClass
 	{
-		WinGetPos, X, Y, Width, Hight
-		varX:=X + Round(A_ScreenWidth / (1920 / -10))
-		varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+		Rescale()
 		Gui 2: Show, x%varX% y%varY%, NoActivate 
 	}
 
@@ -1981,17 +1948,17 @@ MoveStash(Tab){
 		MouseGetPos MSx, MSy
 		BlockInput, MouseMove
 		Sleep, 45*Latency
-		MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
+		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
 		Sleep, 45*Latency
 		Click, Down, Left, 1
 		Sleep, 45*Latency
 		Click, Up, Left, 1
 		Sleep, 45*Latency
-		MouseMove, (A_ScreenWidth/(1920/760)), ((A_ScreenHeight/(1080/120)) + (Tab*(A_ScreenHeight/(1080/22)))), 0
+		MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
 		Sleep, 45*Latency
 		send {Enter}
 		Sleep, 45*Latency
-		MouseMove, (A_ScreenWidth/(1920/640)), (A_ScreenHeight/(1080/146)), 0
+		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
 		Sleep, 45*Latency
 		Click, Down, Left, 1
 		Sleep, 45*Latency
@@ -2169,6 +2136,89 @@ ScaleRes(x, y){
 	Rx:=Round(A_ScreenWidth / (1920 / x))
 	Ry:=Round(A_ScreenHeight / (1080 / y))
 	return {"X": Rx, "Y": Ry}
+	}
+
+; Rescales values for specialty resolutions
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Rescale(){
+	IfWinExist, ahk_class POEWindowClass 
+		{
+		WinGetPos, X, Y, W, H
+		If (YesUltraWide) {
+			Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
+			Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
+			Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
+			Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
+			Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+			global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+			global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
+			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
+			global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
+			global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
+			} Else {
+			Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
+			Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
+			Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
+			Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
+			Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+			global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+			global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+			global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+			global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+			global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+			global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+			global varX:=X + Round(A_ScreenWidth / (1920 / -10))
+			global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
+			global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 760))
+			}
+		Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+		Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+		Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+		global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+		global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+		global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+		global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+		global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+		global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+
+		global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+		global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+		global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+		global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+		global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+		global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+		global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+		global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+		
+		global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+		global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+		global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+		global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+		global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+		global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+		global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+		global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+		
+		global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+
+		global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+
+		global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+		global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+		global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+
+		}
+	return
 	}
 
 ;Toggle Auto-Quit
@@ -2808,6 +2858,9 @@ GetMouseCoords(){
 ; Auto Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 DetonateMines(){
+	GuiStatus("OnChat")
+	If (OnChat)
+		exit
 	pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
 	pixelgetcolor, Mine, DetonateX, DetonateY
 	If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
@@ -2816,8 +2869,6 @@ DetonateMines(){
 		Settimer, TDetonated, 500
 		Return
 		}
-	;Uncheck the below line to confirm if you should be getting a trigger, move into either two to test
-	;MsgBox boom
 	Return	
 	}
 
@@ -2889,16 +2940,13 @@ GuiStatus(Fetch:=""){
 	Return
 	}
 
-
-
 ; Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TMineTick(){
 	IfWinActive, Path of Exile
 		{	
-		If (DetonateMines&&!Detonated) {
+		If (DetonateMines&&!Detonated) 
 			DetonateMines()
-			}
 		}
 	}
 
@@ -2910,7 +2958,7 @@ TGameTick(){
 		; Check what status is your character in the game
 		GuiStatus()
 		if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
-			GuiUpdate()																									   
+			;GuiUpdate()																									   
 			Exit
 		}
 
@@ -2932,9 +2980,9 @@ TGameTick(){
 			if (Life20!=varLife20) {
 				Trigger:=Trigger+TriggerLife20			
 				if (AutoQuit=1) && (Quit20=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -2942,9 +2990,9 @@ TGameTick(){
 			if (Life30!=varLife30) {
 				Trigger:=Trigger+TriggerLife30				
 				if (AutoQuit=1) && (Quit30=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -2952,9 +3000,9 @@ TGameTick(){
 			if (Life40!=varLife40) {
 				Trigger:=Trigger+TriggerLife40
 				if (AutoQuit=1) && (Quit40=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -2986,9 +3034,9 @@ TGameTick(){
 			if (Life20!=varLife20) {
 				Trigger:=Trigger+TriggerLife20			
 				if (AutoQuit=1) && (Quit20=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -2996,9 +3044,9 @@ TGameTick(){
 			if (Life30!=varLife30) {
 				Trigger:=Trigger+TriggerLife30				
 				if (AutoQuit=1) && (Quit30=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -3006,9 +3054,9 @@ TGameTick(){
 			if (Life40!=varLife40) {
 				Trigger:=Trigger+TriggerLife40
 				if (AutoQuit=1) && (Quit40=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -3072,9 +3120,9 @@ TGameTick(){
 			if (ES20!=varES20) {
 				Trigger:=Trigger+TriggerES20			
 				if (AutoQuit=1) && (Quit20=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -3082,9 +3130,9 @@ TGameTick(){
 			if (ES30!=varES30) {
 				Trigger:=Trigger+TriggerES30				
 				if (AutoQuit=1) && (Quit30=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -3092,9 +3140,9 @@ TGameTick(){
 			if (ES40!=varES40) {
 				Trigger:=Trigger+TriggerES40
 				if (AutoQuit=1) && (Quit40=1) {
-					pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-					if (OnChar=varOnChar)
-					Logout()
+					GuiStatus("OnChar")
+					if (OnChar)
+						Logout()
 					Exit
 				}
 			}
@@ -3210,231 +3258,229 @@ Clamp( Val, Min, Max) {
 	TDetonated:
 		Detonated:=0
 		settimer,TDetonated,delete
-		DetonateMines()
 		return
 
 ; Configuration handling, ini updates, Hotkey handling, Utility Gfunctions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	readFromFile(){
 		global
-		;Hotkey,!F10, optionsCommand, Off
-		IniRead, DebugMessages, settings.ini, General, DebugMessages
-		IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid
-		IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo
-		IniRead, DetonateMines, settings.ini, General, DetonateMines
-		IniRead, LootVacuum, settings.ini, General, LootVacuum
-		IniRead, YesVendor, settings.ini, General, YesVendor
-		IniRead, YesStash, settings.ini, General, YesStash
-		IniRead, YesIdentify, settings.ini, General, YesIdentify
-		IniRead, YesMapUnid, settings.ini, General, YesMapUnid
-		IniRead, Latency, settings.ini, General, Latency
-		IniRead, ShowOnStart, settings.ini, General, ShowOnStart
-		IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
-		IniRead, YesUltraWide, settings.ini, General, YesUltraWide
+		;Bandit extra settings
+			IniRead, DebugMessages, settings.ini, General, DebugMessages
+			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid
+			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo
+			IniRead, DetonateMines, settings.ini, General, DetonateMines
+			IniRead, LootVacuum, settings.ini, General, LootVacuum
+			IniRead, YesVendor, settings.ini, General, YesVendor
+			IniRead, YesStash, settings.ini, General, YesStash
+			IniRead, YesIdentify, settings.ini, General, YesIdentify
+			IniRead, YesMapUnid, settings.ini, General, YesMapUnid
+			IniRead, Latency, settings.ini, General, Latency
+			IniRead, ShowOnStart, settings.ini, General, ShowOnStart
+			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
+			IniRead, YesUltraWide, settings.ini, General, YesUltraWide
 
 		;Stash Tab Management
-		IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency
-		IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap
-		IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination
-		IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem
-		IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality
-		IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality
-		IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked
-		IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection
-		IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing
-		IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump
-		IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment
-		IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence
-		IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter
-		IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil
-		IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator
-		IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency
-		IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap
-		IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination
-		IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem
-		IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality
-		IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality
-		IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked
-		IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection
-		IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing
-		IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump
-		IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment
-		IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence
-		IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter
-		IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil
-		IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator
-		
+			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency
+			IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap
+			IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination
+			IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem
+			IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality
+			IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality
+			IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked
+			IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection
+			IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing
+			IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump
+			IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment
+			IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence
+			IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter
+			IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil
+			IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator
+			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency
+			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap
+			IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination
+			IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem
+			IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality
+			IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality
+			IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked
+			IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection
+			IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing
+			IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump
+			IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment
+			IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence
+			IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+			IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil
+			IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator
+			
 		;Failsafe Colors
-		IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
-		IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
-		IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat
-		IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
-		IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
-		IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor
-		IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex
+			IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
+			IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
+			IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat
+			IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
+			IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
+			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor
+			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex
 		
 		;Life Flasks
-		IniRead, varLife20, settings.ini, Life Colors, Life20
-		IniRead, varLife30, settings.ini, Life Colors, Life30
-		IniRead, varLife40, settings.ini, Life Colors, Life40
-		IniRead, varLife50, settings.ini, Life Colors, Life50
-		IniRead, varLife60, settings.ini, Life Colors, Life60
-		IniRead, varLife70, settings.ini, Life Colors, Life70
-		IniRead, varLife80, settings.ini, Life Colors, Life80
-		IniRead, varLife90, settings.ini, Life Colors, Life90
-		
-		IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20
-		IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30
-		IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40
-		IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50
-		IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60
-		IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70
-		IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80
-		IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90
-		IniRead, DisableLife, settings.ini, Life Triggers, DisableLife
+			IniRead, varLife20, settings.ini, Life Colors, Life20
+			IniRead, varLife30, settings.ini, Life Colors, Life30
+			IniRead, varLife40, settings.ini, Life Colors, Life40
+			IniRead, varLife50, settings.ini, Life Colors, Life50
+			IniRead, varLife60, settings.ini, Life Colors, Life60
+			IniRead, varLife70, settings.ini, Life Colors, Life70
+			IniRead, varLife80, settings.ini, Life Colors, Life80
+			IniRead, varLife90, settings.ini, Life Colors, Life90
+			
+			IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20
+			IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30
+			IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40
+			IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50
+			IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60
+			IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70
+			IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80
+			IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90
+			IniRead, DisableLife, settings.ini, Life Triggers, DisableLife
 
 		;ES Flasks
-		IniRead, varES20, settings.ini, ES Colors, ES20
-		IniRead, varES30, settings.ini, ES Colors, ES30
-		IniRead, varES40, settings.ini, ES Colors, ES40
-		IniRead, varES50, settings.ini, ES Colors, ES50
-		IniRead, varES60, settings.ini, ES Colors, ES60
-		IniRead, varES70, settings.ini, ES Colors, ES70
-		IniRead, varES80, settings.ini, ES Colors, ES80
-		IniRead, varES90, settings.ini, ES Colors, ES90
-		
-		IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20
-		IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30
-		IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40
-		IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50
-		IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60
-		IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70
-		IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80
-		IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90
-		IniRead, DisableES, settings.ini, ES Triggers, DisableES
-		
+			IniRead, varES20, settings.ini, ES Colors, ES20
+			IniRead, varES30, settings.ini, ES Colors, ES30
+			IniRead, varES40, settings.ini, ES Colors, ES40
+			IniRead, varES50, settings.ini, ES Colors, ES50
+			IniRead, varES60, settings.ini, ES Colors, ES60
+			IniRead, varES70, settings.ini, ES Colors, ES70
+			IniRead, varES80, settings.ini, ES Colors, ES80
+			IniRead, varES90, settings.ini, ES Colors, ES90
+			
+			IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20
+			IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30
+			IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40
+			IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50
+			IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60
+			IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70
+			IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80
+			IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90
+			IniRead, DisableES, settings.ini, ES Triggers, DisableES
+			
 		;Mana Flasks
-		IniRead, varMana10, settings.ini, Mana Colors, Mana10
-		
-		IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10
-		
+			IniRead, varMana10, settings.ini, Mana Colors, Mana10
+			
+			IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10
+			
 		;Flask Cooldowns
-		IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
-		IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2
-		IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3
-		IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4
-		IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5
+			IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
+			IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2
+			IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3
+			IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4
+			IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5
 		
 		;Gem Swap
-		IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX
-		IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY
-		IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX
-		IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY
-		IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
+			IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX
+			IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY
+			IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX
+			IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY
+			IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
 
 		;~ Scroll locations
-		IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX
-		IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY
-		IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX
-		IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY
-		IniRead, StockPortal, settings.ini, Coordinates, StockPortal
-		IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom
+			IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX
+			IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY
+			IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX
+			IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY
+			IniRead, StockPortal, settings.ini, Coordinates, StockPortal
+			IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom
 		
 		;Attack Flasks
-		IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack
-		IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack
-		
+			IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack
+			IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack
+			
 		;Attack Keys
-		IniRead, MainAttackKey, settings.ini, Attack Buttons, MainAttackKey
-		IniRead, SecondaryAttackKey, settings.ini, Attack Buttons, SecondaryAttackKey
-		
+			IniRead, MainAttackKey, settings.ini, Attack Buttons, MainAttackKey
+			IniRead, SecondaryAttackKey, settings.ini, Attack Buttons, SecondaryAttackKey
+			
 		;Quicksilver
-		IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
-		IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
+			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
+			IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
 		
 		;CharacterTypeCheck
-		IniRead, Life, settings.ini, CharacterTypeCheck, Life
-		IniRead, Hybrid, settings.ini, CharacterTypeCheck, Hybrid
-		IniRead, Ci, settings.ini, CharacterTypeCheck, Ci
+			IniRead, Life, settings.ini, CharacterTypeCheck, Life
+			IniRead, Hybrid, settings.ini, CharacterTypeCheck, Hybrid
+			IniRead, Ci, settings.ini, CharacterTypeCheck, Ci
 		
 		;AutoQuit
-		IniRead, Quit20, settings.ini, AutoQuit, Quit20
-		IniRead, Quit30, settings.ini, AutoQuit, Quit30
-		IniRead, Quit40, settings.ini, AutoQuit, Quit40
-		IniRead, CritQuit, settings.ini, AutoQuit, CritQuit
+			IniRead, Quit20, settings.ini, AutoQuit, Quit20
+			IniRead, Quit30, settings.ini, AutoQuit, Quit30
+			IniRead, Quit40, settings.ini, AutoQuit, Quit40
+			IniRead, CritQuit, settings.ini, AutoQuit, CritQuit
 
 		;~ hotkeys reset
-		hotkey, IfWinActive, ahk_class POEWindowClass
-		If hotkeyAutoQuit
-			hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
-		If hotkeyAutoFlask
-			hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
-		If hotkeyQuickPortal
-			hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
-		If hotkeyGemSwap
-			hotkey,% hotkeyGemSwap, GemSwapCommand, Off
-		If hotkeyGetCoords
-			hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, Off
-		If hotkeyPopFlasks
-			hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
-		If hotkeyLogout
-			hotkey,% hotkeyLogout, LogoutCommand, Off
-		If hotkeyItemSort
-			hotkey,% hotkeyItemSort, ItemSortCommand, Off
-		If hotkeyLootScan
-			hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
-		
-		hotkey, IfWinActive
-		If hotkeyOptions
-			hotkey,% hotkeyOptions, optionsCommand, Off
-		hotkey, IfWinActive, ahk_class POEWindowClass
+			hotkey, IfWinActive, ahk_class POEWindowClass
+			If hotkeyAutoQuit
+				hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
+			If hotkeyAutoFlask
+				hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
+			If hotkeyQuickPortal
+				hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
+			If hotkeyGemSwap
+				hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+			If hotkeyGetCoords
+				hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, Off
+			If hotkeyPopFlasks
+				hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
+			If hotkeyLogout
+				hotkey,% hotkeyLogout, LogoutCommand, Off
+			If hotkeyItemSort
+				hotkey,% hotkeyItemSort, ItemSortCommand, Off
+			If hotkeyLootScan
+				hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+			
+			hotkey, IfWinActive
+			If hotkeyOptions
+				hotkey,% hotkeyOptions, optionsCommand, Off
+			hotkey, IfWinActive, ahk_class POEWindowClass
 
 		;~ hotkeys iniread
-		IniRead, hotkeyOptions, settings.ini, hotkeys, Options
-		IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit
-		IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask
-		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
-		IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal
-		IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap
-		IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords
-		IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
-		IniRead, hotkeyLogout, settings.ini, hotkeys, Logout
-		IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI
-		IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory
-		IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey
-		IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort
-		IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan
+			IniRead, hotkeyOptions, settings.ini, hotkeys, Options
+			IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit
+			IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask
+			IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
+			IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal
+			IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap
+			IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords
+			IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
+			IniRead, hotkeyLogout, settings.ini, hotkeys, Logout
+			IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI
+			IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory
+			IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey
+			IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort
+			IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan
 
-		hotkey, IfWinActive, ahk_class POEWindowClass
-		If hotkeyAutoQuit
-			hotkey,% hotkeyAutoQuit, AutoQuitCommand, On
-		If hotkeyAutoFlask
-			hotkey,% hotkeyAutoFlask, AutoFlaskCommand, On
-		If hotkeyQuickPortal
-			hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
-		If hotkeyGemSwap
-			hotkey,% hotkeyGemSwap, GemSwapCommand, On
-		If hotkeyGetMouseCoords
-			hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, On
-		If hotkeyPopFlasks
-			hotkey,% hotkeyPopFlasks, PopFlasksCommand, On
-		If hotkeyLogout
-			hotkey,% hotkeyLogout, LogoutCommand, On
-		If hotkeyItemSort
-			hotkey,% hotkeyItemSort, ItemSortCommand, On
-		If hotkeyLootScan
-			hotkey, $~%hotkeyLootScan%, LootScanCommand, On
-		
-		hotkey, IfWinActive
-		If hotkeyOptions {
-			hotkey,% hotkeyOptions, optionsCommand, On
-			;GuiControl,, guiSettings, Settings:%hotkeyOptions%
-		}
-		else {
-			hotkey,!F10, optionsCommand, On
-			msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
-			;GuiControl,, guiSettings, Settings:%hotkeyOptions%
-		}
+			hotkey, IfWinActive, ahk_class POEWindowClass
+			If hotkeyAutoQuit
+				hotkey,% hotkeyAutoQuit, AutoQuitCommand, On
+			If hotkeyAutoFlask
+				hotkey,% hotkeyAutoFlask, AutoFlaskCommand, On
+			If hotkeyQuickPortal
+				hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
+			If hotkeyGemSwap
+				hotkey,% hotkeyGemSwap, GemSwapCommand, On
+			If hotkeyGetMouseCoords
+				hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, On
+			If hotkeyPopFlasks
+				hotkey,% hotkeyPopFlasks, PopFlasksCommand, On
+			If hotkeyLogout
+				hotkey,% hotkeyLogout, LogoutCommand, On
+			If hotkeyItemSort
+				hotkey,% hotkeyItemSort, ItemSortCommand, On
+			If hotkeyLootScan
+				hotkey, $~%hotkeyLootScan%, LootScanCommand, On
+			
+			hotkey, IfWinActive
+			If hotkeyOptions {
+				hotkey,% hotkeyOptions, optionsCommand, On
+				;GuiControl,, guiSettings, Settings:%hotkeyOptions%
+				} else {
+				hotkey,!F10, optionsCommand, On
+				msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
+				;GuiControl,, guiSettings, Settings:%hotkeyOptions%
+				}
 		Return
 		}
 
@@ -3444,214 +3490,191 @@ Clamp( Val, Min, Max) {
 		Gui, Submit
 		
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, Width, Height  ; Uses the window found above.
-			vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-
-			vY_Life20:=Y + Round(A_ScreenHeight / (1080 / 1034))
-			vY_Life30:=Y + Round(A_ScreenHeight / (1080 / 1014))
-			vY_Life40:=Y + Round(A_ScreenHeight / (1080 / 994))
-			vY_Life50:=Y + Round(A_ScreenHeight / (1080 / 974))
-			vY_Life60:=Y + Round(A_ScreenHeight / (1080 / 954))
-			vY_Life70:=Y + Round(A_ScreenHeight / (1080 / 934))
-			vY_Life80:=Y + Round(A_ScreenHeight / (1080 / 914))
-			vY_Life90:=Y + Round(A_ScreenHeight / (1080 / 894))
-			
-			vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
-				
-			vY_ES20:=Y + Round(A_ScreenHeight / (1080 / 1034))
-			vY_ES30:=Y + Round(A_ScreenHeight / (1080 / 1014))
-			vY_ES40:=Y + Round(A_ScreenHeight / (1080 / 994))
-			vY_ES50:=Y + Round(A_ScreenHeight / (1080 / 974))
-			vY_ES60:=Y + Round(A_ScreenHeight / (1080 / 954))
-			vY_ES70:=Y + Round(A_ScreenHeight / (1080 / 934))
-			vY_ES80:=Y + Round(A_ScreenHeight / (1080 / 914))
-			vY_ES90:=Y + Round(A_ScreenHeight / (1080 / 894))
-			
-			vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
-			vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-		}
+			{
+			Rescale()
+			}
 
 		
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{
 			WinActivate, ahk_class POEWindowClass
-		}
+			}
 		
 		;Life Flasks
-		pixelgetcolor, varLife20, vX_Life, vY_Life20
-		pixelgetcolor, varLife30, vX_Life, vY_Life30
-		pixelgetcolor, varLife40, vX_Life, vY_Life40
-		pixelgetcolor, varLife50, vX_Life, vY_Life50
-		pixelgetcolor, varLife60, vX_Life, vY_Life60
-		pixelgetcolor, varLife70, vX_Life, vY_Life70
-		pixelgetcolor, varLife80, vX_Life, vY_Life80
-		pixelgetcolor, varLife90, vX_Life, vY_Life90
-		
-		IniWrite, %varLife20%, settings.ini, Life Colors, Life20
-		IniWrite, %varLife30%, settings.ini, Life Colors, Life30
-		IniWrite, %varLife40%, settings.ini, Life Colors, Life40
-		IniWrite, %varLife50%, settings.ini, Life Colors, Life50
-		IniWrite, %varLife60%, settings.ini, Life Colors, Life60
-		IniWrite, %varLife70%, settings.ini, Life Colors, Life70
-		IniWrite, %varLife80%, settings.ini, Life Colors, Life80
-		IniWrite, %varLife90%, settings.ini, Life Colors, Life90
-		
-		IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
-		IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
-		IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
-		IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
-		IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
-		IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
-		IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
-		IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
-		IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
+			pixelgetcolor, varLife20, vX_Life, vY_Life20
+			pixelgetcolor, varLife30, vX_Life, vY_Life30
+			pixelgetcolor, varLife40, vX_Life, vY_Life40
+			pixelgetcolor, varLife50, vX_Life, vY_Life50
+			pixelgetcolor, varLife60, vX_Life, vY_Life60
+			pixelgetcolor, varLife70, vX_Life, vY_Life70
+			pixelgetcolor, varLife80, vX_Life, vY_Life80
+			pixelgetcolor, varLife90, vX_Life, vY_Life90
+			
+			IniWrite, %varLife20%, settings.ini, Life Colors, Life20
+			IniWrite, %varLife30%, settings.ini, Life Colors, Life30
+			IniWrite, %varLife40%, settings.ini, Life Colors, Life40
+			IniWrite, %varLife50%, settings.ini, Life Colors, Life50
+			IniWrite, %varLife60%, settings.ini, Life Colors, Life60
+			IniWrite, %varLife70%, settings.ini, Life Colors, Life70
+			IniWrite, %varLife80%, settings.ini, Life Colors, Life80
+			IniWrite, %varLife90%, settings.ini, Life Colors, Life90
+			
+			IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
+			IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
+			IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
+			IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
+			IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
+			IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
+			IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
+			IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
+			IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
 		
 		;ES Flasks
-		pixelgetcolor, varES20, vX_ES, vY_ES20
-		pixelgetcolor, varES30, vX_ES, vY_ES30
-		pixelgetcolor, varES40, vX_ES, vY_ES40
-		pixelgetcolor, varES50, vX_ES, vY_ES50
-		pixelgetcolor, varES60, vX_ES, vY_ES60
-		pixelgetcolor, varES70, vX_ES, vY_ES70
-		pixelgetcolor, varES80, vX_ES, vY_ES80
-		pixelgetcolor, varES90, vX_ES, vY_ES90
-		
-		IniWrite, %varES20%, settings.ini, ES Colors, ES20
-		IniWrite, %varES30%, settings.ini, ES Colors, ES30
-		IniWrite, %varES40%, settings.ini, ES Colors, ES40
-		IniWrite, %varES50%, settings.ini, ES Colors, ES50
-		IniWrite, %varES60%, settings.ini, ES Colors, ES60
-		IniWrite, %varES70%, settings.ini, ES Colors, ES70
-		IniWrite, %varES80%, settings.ini, ES Colors, ES80
-		IniWrite, %varES90%, settings.ini, ES Colors, ES90
-		
-		IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, settings.ini, ES Triggers, TriggerES20
-		IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, settings.ini, ES Triggers, TriggerES30
-		IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, settings.ini, ES Triggers, TriggerES40
-		IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, settings.ini, ES Triggers, TriggerES50
-		IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, settings.ini, ES Triggers, TriggerES60
-		IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, settings.ini, ES Triggers, TriggerES70
-		IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, settings.ini, ES Triggers, TriggerES80
-		IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, settings.ini, ES Triggers, TriggerES90
-		IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, settings.ini, ES Triggers, DisableES
+			pixelgetcolor, varES20, vX_ES, vY_ES20
+			pixelgetcolor, varES30, vX_ES, vY_ES30
+			pixelgetcolor, varES40, vX_ES, vY_ES40
+			pixelgetcolor, varES50, vX_ES, vY_ES50
+			pixelgetcolor, varES60, vX_ES, vY_ES60
+			pixelgetcolor, varES70, vX_ES, vY_ES70
+			pixelgetcolor, varES80, vX_ES, vY_ES80
+			pixelgetcolor, varES90, vX_ES, vY_ES90
+			
+			IniWrite, %varES20%, settings.ini, ES Colors, ES20
+			IniWrite, %varES30%, settings.ini, ES Colors, ES30
+			IniWrite, %varES40%, settings.ini, ES Colors, ES40
+			IniWrite, %varES50%, settings.ini, ES Colors, ES50
+			IniWrite, %varES60%, settings.ini, ES Colors, ES60
+			IniWrite, %varES70%, settings.ini, ES Colors, ES70
+			IniWrite, %varES80%, settings.ini, ES Colors, ES80
+			IniWrite, %varES90%, settings.ini, ES Colors, ES90
+			
+			IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, settings.ini, ES Triggers, TriggerES20
+			IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, settings.ini, ES Triggers, TriggerES30
+			IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, settings.ini, ES Triggers, TriggerES40
+			IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, settings.ini, ES Triggers, TriggerES50
+			IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, settings.ini, ES Triggers, TriggerES60
+			IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, settings.ini, ES Triggers, TriggerES70
+			IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, settings.ini, ES Triggers, TriggerES80
+			IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, settings.ini, ES Triggers, TriggerES90
+			IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, settings.ini, ES Triggers, DisableES
 		
 		;Mana Flasks
-		pixelgetcolor, varMana10, vX_Mana, vY_Mana10
-		
-		IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
+			pixelgetcolor, varMana10, vX_Mana, vY_Mana10
+			
+			IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
+			IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10
 
-		IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
-		IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
-		IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
-		IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
-		IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
-		IniWrite, %YesVendor%, settings.ini, General, YesVendor
-		IniWrite, %YesStash%, settings.ini, General, YesStash
-		IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
-		IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
-		IniWrite, %Latency%, settings.ini, General, Latency
-		IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
-		IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
+		;Bandit Extra options
+			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
+			IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
+			IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
+			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
+			IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
+			IniWrite, %YesVendor%, settings.ini, General, YesVendor
+			IniWrite, %YesStash%, settings.ini, General, YesStash
+			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+			IniWrite, %Latency%, settings.ini, General, Latency
+			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
+			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 		
-		IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10
 
 		;~ Hotkeys 
-		IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
-		IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit
-		IniWrite, %hotkeyAutoFlask%, settings.ini, hotkeys, AutoFlask
-		IniWrite, %hotkeyAutoQuicksilver%, settings.ini, hotkeys, AutoQuicksilver
-		IniWrite, %hotkeyQuickPortal%, settings.ini, hotkeys, QuickPortal
-		IniWrite, %hotkeyGemSwap%, settings.ini, hotkeys, GemSwap
-		IniWrite, %hotkeyGetMouseCoords%, settings.ini, hotkeys, GetMouseCoords
-		IniWrite, %hotkeyPopFlasks%, settings.ini, hotkeys, PopFlasks
-		IniWrite, %hotkeyLogout%, settings.ini, hotkeys, Logout
-		IniWrite, %hotkeyCloseAllUI%, settings.ini, hotkeys, CloseAllUI
-		IniWrite, %hotkeyInventory%, settings.ini, hotkeys, Inventory
-		IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey
-		IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort
-		IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
-		
+			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
+			IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit
+			IniWrite, %hotkeyAutoFlask%, settings.ini, hotkeys, AutoFlask
+			IniWrite, %hotkeyAutoQuicksilver%, settings.ini, hotkeys, AutoQuicksilver
+			IniWrite, %hotkeyQuickPortal%, settings.ini, hotkeys, QuickPortal
+			IniWrite, %hotkeyGemSwap%, settings.ini, hotkeys, GemSwap
+			IniWrite, %hotkeyGetMouseCoords%, settings.ini, hotkeys, GetMouseCoords
+			IniWrite, %hotkeyPopFlasks%, settings.ini, hotkeys, PopFlasks
+			IniWrite, %hotkeyLogout%, settings.ini, hotkeys, Logout
+			IniWrite, %hotkeyCloseAllUI%, settings.ini, hotkeys, CloseAllUI
+			IniWrite, %hotkeyInventory%, settings.ini, hotkeys, Inventory
+			IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey
+			IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort
+			IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
+			
 		;Flask Cooldowns
-		IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
-		IniWrite, %CooldownFlask2%, settings.ini, Flask Cooldowns, CooldownFlask2
-		IniWrite, %CooldownFlask3%, settings.ini, Flask Cooldowns, CooldownFlask3
-		IniWrite, %CooldownFlask4%, settings.ini, Flask Cooldowns, CooldownFlask4
-		IniWrite, %CooldownFlask5%, settings.ini, Flask Cooldowns, CooldownFlask5	
+			IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
+			IniWrite, %CooldownFlask2%, settings.ini, Flask Cooldowns, CooldownFlask2
+			IniWrite, %CooldownFlask3%, settings.ini, Flask Cooldowns, CooldownFlask3
+			IniWrite, %CooldownFlask4%, settings.ini, Flask Cooldowns, CooldownFlask4
+			IniWrite, %CooldownFlask5%, settings.ini, Flask Cooldowns, CooldownFlask5	
 		
 		;Gem Swap
-		IniWrite, %CurrentGemX%, settings.ini, Gem Swap, CurrentGemX
-		IniWrite, %CurrentGemY%, settings.ini, Gem Swap, CurrentGemY
-		IniWrite, %AlternateGemX%, settings.ini, Gem Swap, AlternateGemX
-		IniWrite, %AlternateGemY%, settings.ini, Gem Swap, AlternateGemY
-		IniWrite, %AlternateGemOnSecondarySlot%, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
+			IniWrite, %CurrentGemX%, settings.ini, Gem Swap, CurrentGemX
+			IniWrite, %CurrentGemY%, settings.ini, Gem Swap, CurrentGemY
+			IniWrite, %AlternateGemX%, settings.ini, Gem Swap, AlternateGemX
+			IniWrite, %AlternateGemY%, settings.ini, Gem Swap, AlternateGemY
+			IniWrite, %AlternateGemOnSecondarySlot%, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
 
 		;~ Scroll locations
-		IniWrite, %PortalScrollX%, settings.ini, Coordinates, PortalScrollX
-		IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY
-		IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX
-		IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY
+			IniWrite, %PortalScrollX%, settings.ini, Coordinates, PortalScrollX
+			IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY
+			IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX
+			IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY
 
 		;Stash Tab Management
-		IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
-		IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
-		IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
-		IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
-		IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
-		IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
-		IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
-		IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
-		IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
-		IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
-		IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
-		IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-		IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
-		IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
-		IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
-		IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
-		IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
-		IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
-		IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
-		IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
-		IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
-		IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
-		IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
-		IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
-		IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
-		IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
-		IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-		IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
-		IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
-		IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
+			IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
+			IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
+			IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
+			IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
+			IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
+			IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
+			IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
+			IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
+			IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
+			IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
+			IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
+			IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
+			IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
+			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
+			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
+			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
+			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
+			IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
+			IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
+			IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
+			IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
+			IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
+			IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
+			IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
+			IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
+			IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
+			IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
+			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
 		
 		;Attack Flasks
-		IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
-		IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, settings.ini, Attack Triggers, TriggerSecondaryAttack
+			IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
+			IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, settings.ini, Attack Triggers, TriggerSecondaryAttack
 		
 		;Attack Keys
-		IniWrite, %MainAttackKey%, settings.ini, Attack Buttons, MainAttackKey
-		IniWrite, %SecondaryAttackKey%, settings.ini, Attack Buttons, SecondaryAttackKey
+			IniWrite, %MainAttackKey%, settings.ini, Attack Buttons, MainAttackKey
+			IniWrite, %SecondaryAttackKey%, settings.ini, Attack Buttons, SecondaryAttackKey
 		
 		;Quicksilver Flasks
-		IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
-		IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver
-		IniWrite, %Radiobox1QS%, settings.ini, Quicksilver, QuicksilverSlot1
-		IniWrite, %Radiobox2QS%, settings.ini, Quicksilver, QuicksilverSlot2
-		IniWrite, %Radiobox3QS%, settings.ini, Quicksilver, QuicksilverSlot3
-		IniWrite, %Radiobox4QS%, settings.ini, Quicksilver, QuicksilverSlot4
-		IniWrite, %Radiobox5QS%, settings.ini, Quicksilver, QuicksilverSlot5
+			IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
+			IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver
+			IniWrite, %Radiobox1QS%, settings.ini, Quicksilver, QuicksilverSlot1
+			IniWrite, %Radiobox2QS%, settings.ini, Quicksilver, QuicksilverSlot2
+			IniWrite, %Radiobox3QS%, settings.ini, Quicksilver, QuicksilverSlot3
+			IniWrite, %Radiobox4QS%, settings.ini, Quicksilver, QuicksilverSlot4
+			IniWrite, %Radiobox5QS%, settings.ini, Quicksilver, QuicksilverSlot5
 		
 		;CharacterTypeCheck
-		IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
-		IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid	
-		IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci	
+			IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
+			IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid	
+			IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci	
 		
 		;AutoQuit
-		IniWrite, %RadioQuit20%, settings.ini, AutoQuit, Quit20
-		IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30
-		IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
-		IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
-		IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
+			IniWrite, %RadioQuit20%, settings.ini, AutoQuit, Quit20
+			IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30
+			IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
+			IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
+			IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
 		
 		readFromFile()
 		Run GottaGoFast.ahk
@@ -4322,7 +4345,6 @@ Clamp( Val, Min, Max) {
 		readProfile(10)
 		Return
 
-
 	optionsCommand:
 		hotkeys()
 		return
@@ -4359,6 +4381,7 @@ Clamp( Val, Min, Max) {
 			GuiControl, Enable, UpdateDetonateBtn
 			GuiControl, Enable, UpdateDetonateDelveBtn
 			GuiControl, Hide, RefreshBtn
+			Rescale()
 			Reload
 			varTextSave:="Save"
 			varTextOnHideout:="OnHideout Color"
@@ -4406,145 +4429,113 @@ Clamp( Val, Min, Max) {
 	updateOnHideout:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, W, H  ; Uses the window found above.
-			vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1241))
-			vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-		}
+			Rescale()
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{	
 			WinActivate, ahk_class POEWindowClass
-		}
-		pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
-		IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
-		readFromFile()
-		MsgBox, OnHideout Recalibrated!
+			pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
+			IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
+			readFromFile()
+			MsgBox, OnHideout Recalibrated!
+			}
 		return
 
 	updateOnChar:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, W, H  ; Uses the window found above.
-			vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-			vY_OnChar:=Y + Round(A_ScreenHeight / (1080 / 915))
-		}
+			Rescale()
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{
 			WinActivate, ahk_class POEWindowClass
-		}
-		pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
-		IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
-		readFromFile()
-		MsgBox, OnChar Recalibrated!
+			pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
+			IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
+			readFromFile()
+			MsgBox, OnChar Recalibrated!
+			}
 		return
 
 	updateOnInventory:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, W, H  ; Uses the window found above.
-			vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-			vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-		}
+			Rescale()
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{
 			WinActivate, ahk_class POEWindowClass
-		}
-		pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
-		IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
-		readFromFile()
-		MsgBox, OnInventory Recalibrated!
+			pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+			IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
+			readFromFile()
+			MsgBox, OnInventory Recalibrated!
+			}
 		return
 
 	updateOnStash:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, W, H  ; Uses the window found above.
-			vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-			vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-		}
+			Rescale()
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{
 			WinActivate, ahk_class POEWindowClass
-		}
-		pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
-		IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
-		readFromFile()
-		MsgBox, OnStash Recalibrated!
+			pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+			IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
+			readFromFile()
+			MsgBox, OnStash Recalibrated!
+			}
 		return
 		
 	updateOnChat:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, W, H  ; Uses the window found above.
-			vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-			vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-		}
+			Rescale()
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{
 			WinActivate, ahk_class POEWindowClass
-		}
-		pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
-		IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
-		readFromFile()
-		MsgBox, OnChat Recalibrated!
+			pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
+			IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
+			readFromFile()
+			MsgBox, OnChat Recalibrated!
+			}
 		return
 
 	updateOnVendor:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, W, H  ; Uses the window found above.
-			vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-			vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-		}
+			Rescale()
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{
 			WinActivate, ahk_class POEWindowClass
-		}
-		pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
-		IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
-		readFromFile()
-		MsgBox, OnVendor Recalibrated!
+			pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
+			IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
+			readFromFile()
+			MsgBox, OnVendor Recalibrated!
+			}
 		return
 
 	updateDetonate:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, W, H  ; Uses the window found above.
-			DetonateX:=X + Round(A_ScreenWidth / (1920 / 1658))
-			DetonateY:=Y + Round(A_ScreenHeight / (1080 / 901))
-		}
+			Rescale()
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{
 			WinActivate, ahk_class POEWindowClass
-		}
-		pixelgetcolor, DetonateHex, DetonateX, DetonateY
-		IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
-		readFromFile()
-		MsgBox, Detonate Recalibrated!
+			pixelgetcolor, DetonateHex, DetonateX, DetonateY
+			IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+			readFromFile()
+			MsgBox, Detonate Recalibrated!
+			}
 		return
 
 	updateDetonateDelve:
 		Gui, Submit, NoHide
 		IfWinExist, ahk_class POEWindowClass 
-		{
-			WinGetPos, X, Y, W, H  ; Uses the window found above.
-			DetonateDelveX:=X + Round(A_ScreenWidth / (1920 / 1542))
-			DetonateY:=Y + Round(A_ScreenHeight / (1080 / 901))
-		}
+			Rescale()
 		IfWinActive, ahk_class POEWindowClass 
-		{
+			{
 			WinActivate, ahk_class POEWindowClass
-		}
-		pixelgetcolor, DetonateHex, DetonateDelveX, DetonateY
-		IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
-		readFromFile()
-		MsgBox, DetonateDelve Recalibrated!
+			pixelgetcolor, DetonateHex, DetonateDelveX, DetonateY
+			IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+			readFromFile()
+			MsgBox, DetonateDelve Recalibrated!
+			}
 		return
 
 	updateCharacterType:
