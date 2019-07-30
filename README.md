@@ -15,6 +15,7 @@ This code is derived from [Andoesk's PoE-Wingman v1.1](https://www.ownedcore.com
 In the same spirit as Andoesk I have been searching for a simple program that has optional keybindings and non intrusive interface. I saw that I might be keen to pick up where he left off and improve upon some of the simple functions that this provides. 
 
 * New key features:
+  - Profile Management for flasks
   - Auto Detonate Mines
   - Hotkey to logout instantly
   - Loot Vacuum while you hold Item Pickup (requires major lootfilter editing)
@@ -23,6 +24,7 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Passthrough keys for the script to recognize when you manually activate flasks.
   - Pauses flasks while you are chatting, at inventory or stash.
   - Smart inventory hotkey
+  - UltraWide Scaling (3840x1080)
 
 * One button Inventory managment:
   - Clipboard Parsing system - Knows what type of items under cursor!
@@ -39,8 +41,8 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Now runs in background on start unless you open settings.
   - Continued Fine-Tuning the logic of the script
 
-* Feature in testing: 
-  - UltraWide Scaling
+
+[Grab the latest release of the project](https://github.com/BanditTech/WingmanReloaded/releases/latest)
 
 [For install instructions](https://github.com/BanditTech/WingmanReloaded/wiki)
 
