@@ -37,13 +37,13 @@
 		{
 		UrlDownloadToFile, http://lutbot.com/ahk/cports.exe, cports.exe
 		if ErrorLevel
-				MsgBox, Error ED02 : There was a problem downloading cports.exe
+			MsgBox, Error ED02 : There was a problem downloading cports.exe
 		UrlDownloadToFile, http://lutbot.com/ahk/cports.chm, cports.chm
 		if ErrorLevel
-				MsgBox, Error ED03 : There was a problem downloading cports.chm 
+			MsgBox, Error ED03 : There was a problem downloading cports.chm 
 		UrlDownloadToFile, http://lutbot.com/ahk/readme.txt, cports.txt
 		if ErrorLevel
-				MsgBox, Error ED04 : There was a problem downloading cports.txt
+			MsgBox, Error ED04 : There was a problem downloading cports.txt
 		}
 
 	CleanUp()
@@ -515,6 +515,7 @@
 		IniWrite, 0, settings.ini, AutoQuit, NormalQuit
 
 		Reload
+		sleep, -1
 		}
 
 ; Wingman Gui Variables
@@ -853,16 +854,16 @@
 	Gui, Add, Button, gsubmitProfile9 w50, Save 9
 	Gui, Add, Button, gsubmitProfile10 w50, Save 10
 
-	Gui, Add, Edit, gUpdateProfileText vProfileText1 x70 y54 w100, %ProfileText1%
-	Gui, Add, Edit, gUpdateProfileText vProfileText2 y+8 w100, %ProfileText2%
-	Gui, Add, Edit, gUpdateProfileText vProfileText3 y+8 w100, %ProfileText3%
-	Gui, Add, Edit, gUpdateProfileText vProfileText4 y+8 w100, %ProfileText4%
-	Gui, Add, Edit, gUpdateProfileText vProfileText5 y+8 w100, %ProfileText5%
-	Gui, Add, Edit, gUpdateProfileText vProfileText6 y+8 w100, %ProfileText6%
-	Gui, Add, Edit, gUpdateProfileText vProfileText7 y+8 w100, %ProfileText7%
-	Gui, Add, Edit, gUpdateProfileText vProfileText8 y+8 w100, %ProfileText8%
-	Gui, Add, Edit, gUpdateProfileText vProfileText9 y+8 w100, %ProfileText9%
-	Gui, Add, Edit, gUpdateProfileText vProfileText10 y+8 w100, %ProfileText10%
+	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x70 y54 w100, %ProfileText1%
+	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w100, %ProfileText2%
+	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w100, %ProfileText3%
+	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w100, %ProfileText4%
+	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w100, %ProfileText5%
+	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 w100, %ProfileText6%
+	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w100, %ProfileText7%
+	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w100, %ProfileText8%
+	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w100, %ProfileText9%
+	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w100, %ProfileText10%
 
 	Gui, Add, Button, greadProfile1 x170 y52 w50, Load 1
 	Gui, Add, Button, greadProfile2 w50, Load 2
@@ -1080,11 +1081,35 @@
 			GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
 		}
 
-		Loop, 10 {
-			Iniread, ProfileText%A_Index%, settings.ini, Profiles, ProfileText%A_index%, Profile %A_Index%
-			PT:=ProfileText%A_Index%
-			GuiControl, , ProfileText%A_Index%, %PT%
-		}
+		Iniread, ProfileText1, settings.ini, Profiles, ProfileText1, Profile 1
+		GuiControl, , ProfileText1, %ProfileText1%
+
+		Iniread, ProfileText2, settings.ini, Profiles, ProfileText2, Profile 2
+		GuiControl, , ProfileText2, %ProfileText2%
+
+		Iniread, ProfileText3, settings.ini, Profiles, ProfileText3, Profile 3
+		GuiControl, , ProfileText3, %ProfileText3%
+
+		Iniread, ProfileText4, settings.ini, Profiles, ProfileText4, Profile 4
+		GuiControl, , ProfileText4, %ProfileText4%
+
+		Iniread, ProfileText5, settings.ini, Profiles, ProfileText5, Profile 5
+		GuiControl, , ProfileText5, %ProfileText5%
+
+		Iniread, ProfileText6, settings.ini, Profiles, ProfileText6, Profile 6
+		GuiControl, , ProfileText6, %ProfileText6%
+
+		Iniread, ProfileText7, settings.ini, Profiles, ProfileText7, Profile 7
+		GuiControl, , ProfileText7, %ProfileText7%
+
+		Iniread, ProfileText8, settings.ini, Profiles, ProfileText8, Profile 8
+		GuiControl, , ProfileText8, %ProfileText8%
+
+		Iniread, ProfileText9, settings.ini, Profiles, ProfileText9, Profile 9
+		GuiControl, , ProfileText9, %ProfileText9%
+
+		Iniread, ProfileText10, settings.ini, Profiles, ProfileText10, Profile 10
+		GuiControl, , ProfileText10, %ProfileText10%
 
 		Iniread, YesUltraWide, settings.ini, General, YesUltraWide
 		valueYesUltraWide := YesUltraWide
@@ -1683,6 +1708,7 @@ LootScan(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ItemSort(){
 	ItemSortCommand:
+	Critical
 	CurrentTab:=0
 	MouseGetPos xx, yy
 	IfWinActive, Path of Exile
@@ -2277,6 +2303,7 @@ RandomSleep(min,max){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GemSwap(){
 	GemSwapCommand:
+	Critical
 	Keywait, Alt
 	BlockInput, MouseMove
 	MouseGetPos xx, yy
@@ -2315,6 +2342,7 @@ GemSwap(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 QuickPortal(){
 	QuickPortalCommand:
+	Critical
 	Keywait, Alt
 	BlockInput On
 	MouseGetPos xx, yy
@@ -2342,6 +2370,7 @@ QuickPortal(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
 	PopFlasksCommand:
+	Critical
 	If PopFlaskRespectCD
 		TriggerFlask(11111)
 	Else {
@@ -4688,17 +4717,53 @@ Clamp( Val, Min, Max) {
 			SetTimer, TMineTick, off
 		Return
 
-	UpdateProfileText:
+	UpdateProfileText1:
 		Gui, Submit, NoHide
 		IniWrite, %ProfileText1%, settings.ini, Profiles, ProfileText1
+		Return
+
+	UpdateProfileText2:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText2%, settings.ini, Profiles, ProfileText2
+		Return
+
+	UpdateProfileText3:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText3%, settings.ini, Profiles, ProfileText3
+		Return
+
+	UpdateProfileText4:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText4%, settings.ini, Profiles, ProfileText4
+		Return
+
+	UpdateProfileText5:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText5%, settings.ini, Profiles, ProfileText5
+		Return
+
+	UpdateProfileText6:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText6%, settings.ini, Profiles, ProfileText6
+		Return
+
+	UpdateProfileText7:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText7%, settings.ini, Profiles, ProfileText7
+		Return
+
+	UpdateProfileText8:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText8%, settings.ini, Profiles, ProfileText8
+		Return
+
+	UpdateProfileText9:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText9%, settings.ini, Profiles, ProfileText9
+		Return
+
+	UpdateProfileText10:
+		Gui, Submit, NoHide
 		IniWrite, %ProfileText10%, settings.ini, Profiles, ProfileText10
 		Return
 
