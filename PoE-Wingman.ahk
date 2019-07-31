@@ -64,12 +64,11 @@
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
-		Global YesUltraWide := 0
+		Global ResolutionScale := Standard
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
-		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale*AreaScale) 
-		; 0 = 1 pixel search area, 1 = 9 pixel square , 2 = 81 pixel, 3 = 361 pixel, 4 = 1089 pixel 
+		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
 		Global AreaScale := 1
 		Global LootVacuum := 1
 		Global YesVendor := 1
@@ -342,7 +341,7 @@
 		IniWrite, 50, settings.ini, General, Tick
 		IniWrite, 250, settings.ini, General, QTick
 		IniWrite, 1, settings.ini, General, PopFlaskRespectCD
-		IniWrite, 0, settings.ini, General, YesUltraWide
+		IniWrite, Standard, settings.ini, General, ResolutionScale
 		IniWrite, 1, settings.ini, General, YesStashKeys
 		IniWrite, 0, settings.ini, General, DebugMessages
 		IniWrite, 0, settings.ini, General, ShowPixelGrid
@@ -907,10 +906,11 @@
 	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
 	Gui, Font, 
 
-	Gui Add, Checkbox, gUpdateExtra	vYesUltraWide                          	    , UltraWide Scaling?
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart                         	          	, Show GUI on startup?
-	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 ,  1|2|3
-	Gui Add, Text, 										x+12 							, Adjust Latency
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale   ChooseString%ResolutionScale%      w80               	    , Standard|UltraWide|QHD
+	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
+	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
+	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 	;#######################################################################################################Inventory Tab
 	Gui, Tab, Inventory
 	Gui, Font, Bold
@@ -1111,9 +1111,9 @@
 		Iniread, ProfileText10, settings.ini, Profiles, ProfileText10, Profile 10
 		GuiControl, , ProfileText10, %ProfileText10%
 
-		Iniread, YesUltraWide, settings.ini, General, YesUltraWide
-		valueYesUltraWide := YesUltraWide
-		GuiControl, , YesUltraWide, %valueYesUltraWide%
+		Iniread, ResolutionScale, settings.ini, General, ResolutionScale
+		valueResolutionScale := ResolutionScale
+		GuiControl, ChooseString, ResolutionScale, %valueResolutionScale%
 
 		Iniread, YesStashKeys, settings.ini, General, YesStashKeys
 		valueYesStashKeys := YesStashKeys
@@ -1649,47 +1649,35 @@
 			MoveStash(10)
 			return
 		}
+
 ;Reload Script with Alt+Escape
 !Escape::
 	Reload
+	Return
 
 ;Exit Script with Win+Escape
 #Escape::
 	ExitApp
+	Return
 
 
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Check presence of cports
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	IfNotExist, cports.exe
-		{
-		UrlDownloadToFile, http://lutbot.com/ahk/cports.exe, cports.exe
-		if ErrorLevel
-				MsgBox, Error ED02 : There was a problem downloading cports.exe
-		UrlDownloadToFile, http://lutbot.com/ahk/cports.chm, cports.chm
-		if ErrorLevel
-				MsgBox, Error ED03 : There was a problem downloading cports.chm 
-		UrlDownloadToFile, http://lutbot.com/ahk/readme.txt, cports.txt
-		if ErrorLevel
-				MsgBox, Error ED04 : There was a problem downloading cports.txt
-		}
 ; Loot Scanner for items under cursor pressing Loot button
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LootScan(){
 	LootScanCommand:
 	Pressed := GetKeyState(hotkeyLootScan, "P")
-	AreaScale:=0
 	While (Pressed&&LootVacuum)
 		{
 		For k, ColorHex in LootColors
 			{
 			Pressed := GetKeyState(hotkeyLootScan, "P")
 			MouseGetPos CenterX, CenterY
-			ScanX1:=(CenterX-(AreaScale*AreaScale))
-			ScanY1:=(CenterY-(AreaScale*AreaScale))
-			ScanX2:=(CenterX+(AreaScale*AreaScale))
-			ScanY2:=(CenterY+(AreaScale*AreaScale))
+			ScanX1:=(CenterX-AreaScale)
+			ScanY1:=(CenterY-AreaScale)
+			ScanX2:=(CenterX+AreaScale)
+			ScanY2:=(CenterY+AreaScale)
 			PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
 			If (ErrorLevel = 0){
 				Pressed := GetKeyState(hotkeyLootScan, "P")
@@ -2165,79 +2153,201 @@ Rescale(){
 	IfWinExist, ahk_class POEWindowClass 
 		{
 		WinGetPos, X, Y, W, H
-		If (YesUltraWide) {
-			Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
-			Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
-			Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
-			Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
-			Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
-			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-			global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-			global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
-			global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
-			global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
-			} Else {
+		If (ResolutionScale="Standard") {
+			; Item Inventory Grid
 			Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
+			Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+			;Detonate Mines
 			Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
 			Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
+			Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+			;Scrolls in currency tab
 			Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
 			Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
+			Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+			;Status Check OnHideout
 			global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+			;Status Check OnChar
 			global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+			;Status Check OnChat
 			global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+			;Status Check OnInventory
 			global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+			;Status Check OnStash
 			global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+			;Status Check OnVendor
 			global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+			;Life %'s
 			global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+			global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+			global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+			global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+			global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+			global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+			global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+			global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+			global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+			;ES %'s
 			global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+			global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+			global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+			global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+			global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+			global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+			global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+			global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+			global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+			;Mana
 			global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+			global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+			;GUI overlay
 			global varX:=X + Round(A_ScreenWidth / (1920 / -10))
+			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			;Stash tabs menu button
 			global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
+			global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+			;Stash tabs menu list
 			global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 760))
+			global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+			;calculate the height of each tab
+			global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
 			}
-		Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-		Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-		Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-		global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-		global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-		global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-		global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-		global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-		global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-
-		global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-		global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-		global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-		global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-		global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-		global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-		global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-		global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-		
-		global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-		global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-		global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-		global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-		global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-		global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-		global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-		global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-		
-		global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-
-		global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-
-		global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-		global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-		global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-
+		Else If (ResolutionScale="UltraWide") {
+			; Item Inventory Grid
+			Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
+			Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+			;Detonate Mines
+			Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
+			Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
+			Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+			;Scrolls in currency tab
+			Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
+			Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
+			Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+			;Status Check OnHideout
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+			;Status Check OnChar
+			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+			;Status Check OnChat
+			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+			;Status Check OnInventory
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+			;Status Check OnStash
+			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+			;Status Check OnVendor
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+			;Life %'s
+			global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+			global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+			global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+			global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+			global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+			global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+			global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+			global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+			global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+			;ES %'s
+			global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+			global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+			global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+			global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+			global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+			global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+			global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+			global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+			global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+			;Mana
+			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
+			global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+			;GUI overlay
+			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
+			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			;Stash tabs menu button
+			global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
+			global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+			;Stash tabs menu list
+			global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
+			global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+			;calculate the height of each tab
+			global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+			} 
+		Else If (ResolutionScale="QHD") {
+			; Item Inventory Grid
+			Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
+			Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+			;Detonate Mines
+			Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
+			Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
+			Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+			;Scrolls in currency tab
+			Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
+			Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
+			Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+			;Status Check OnHideout
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+			;Status Check OnChar
+			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+			;Status Check OnChat
+			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+			;Status Check OnInventory
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+			;Status Check OnStash
+			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+			;Status Check OnVendor
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+			;Life %'s
+			global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+			global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+			global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+			global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+			global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+			global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+			global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+			global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+			global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+			;ES %'s
+			global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+			global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+			global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+			global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+			global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+			global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+			global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+			global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+			global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+			;Mana
+			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
+			global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+			;GUI overlay
+			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
+			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			;Stash tabs menu button
+			global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
+			global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+			;Stash tabs menu list
+			global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
+			global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+			;calculate the height of each tab
+			global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+			} 
 		}
 	return
 	}
@@ -2435,6 +2545,7 @@ ClipItem(x, y){
 	ClipWait, 0
 	ParseClip()
 	BlockInput, MouseMoveOff
+ Return
  }
 
 ; Checks the contents of the clipboard and parses the information from the tooltip capture
@@ -2988,6 +3099,7 @@ TMineTick(){
 		If (DetonateMines&&!Detonated) 
 			DetonateMines()
 		}
+	Return
 	}
 
 ; Flask Logic
@@ -3238,6 +3350,7 @@ TGameTick(){
 			}
 			}
 		}
+	Return
 	}
 ; Flask Trigger check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3256,6 +3369,7 @@ TriggerFlask(Trigger){
 			}
 		++FL
 		}
+	Return
 	}
 ;Clamp Value function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3264,6 +3378,7 @@ Clamp( Val, Min, Max) {
 	Val := Min
   If Val > Max
 	Val := Max
+	Return
 	}
 
 ; Flask Timers
@@ -3317,7 +3432,7 @@ Clamp( Val, Min, Max) {
 			IniRead, Latency, settings.ini, General, Latency
 			IniRead, ShowOnStart, settings.ini, General, ShowOnStart
 			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
-			IniRead, YesUltraWide, settings.ini, General, YesUltraWide
+			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 
 		;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency
@@ -3900,7 +4015,7 @@ Clamp( Val, Min, Max) {
 			IniWrite, %RadioCritQuit%, settings.ini, Profile%Profile%, CritQuit
 			IniWrite, %RadioNormalQuit%, settings.ini, Profile%Profile%, NormalQuit
 			
-		return  
+		return
 		}
 
 	submitProfile1:
@@ -4397,7 +4512,6 @@ Clamp( Val, Min, Max) {
 		Gui,6:Hide
 		return
 		}
-
 		
 	CleanUp(){
 		DetectHiddenWindows, On
@@ -4700,7 +4814,6 @@ Clamp( Val, Min, Max) {
 
 	UpdateExtra:
 		Gui, Submit, NoHide
-		IniWrite, %YesUltraWide%, settings.ini, General, YesUltraWide
 		IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
 		IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
 		IniWrite, %YesVendor%, settings.ini, General, YesVendor
@@ -4717,53 +4830,69 @@ Clamp( Val, Min, Max) {
 			SetTimer, TMineTick, off
 		Return
 
-	UpdateProfileText1:
+	UpdateResolutionScale:
 		Gui, Submit, NoHide
+		IniWrite, %ResolutionScale%, settings.ini, General, ResolutionScale
+		Rescale()
+		Return
+
+	UpdateProfileText1:
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText1, , ProfileText1
 		IniWrite, %ProfileText1%, settings.ini, Profiles, ProfileText1
 		Return
 
 	UpdateProfileText2:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText2, , ProfileText2
 		IniWrite, %ProfileText2%, settings.ini, Profiles, ProfileText2
 		Return
 
 	UpdateProfileText3:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText3, , ProfileText3
 		IniWrite, %ProfileText3%, settings.ini, Profiles, ProfileText3
 		Return
 
 	UpdateProfileText4:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText4, , ProfileText4
 		IniWrite, %ProfileText4%, settings.ini, Profiles, ProfileText4
 		Return
 
 	UpdateProfileText5:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText5, , ProfileText5
 		IniWrite, %ProfileText5%, settings.ini, Profiles, ProfileText5
 		Return
 
 	UpdateProfileText6:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText6, , ProfileText6, 
 		IniWrite, %ProfileText6%, settings.ini, Profiles, ProfileText6
 		Return
 
 	UpdateProfileText7:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText7, , ProfileText7
 		IniWrite, %ProfileText7%, settings.ini, Profiles, ProfileText7
 		Return
 
 	UpdateProfileText8:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText8, , ProfileText8
 		IniWrite, %ProfileText8%, settings.ini, Profiles, ProfileText8
 		Return
 
 	UpdateProfileText9:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText9, , ProfileText9
 		IniWrite, %ProfileText9%, settings.ini, Profiles, ProfileText9
 		Return
 
 	UpdateProfileText10:
-		Gui, Submit, NoHide
+		;Gui, Submit, NoHide
+		GuiControlGet, ProfileText10, , ProfileText10
 		IniWrite, %ProfileText10%, settings.ini, Profiles, ProfileText10
 		Return
 
@@ -4833,6 +4962,7 @@ Clamp( Val, Min, Max) {
 			}
 		}
 		return
+
 	UtilityCheck:
 		Gui, Submit, NoHide
 		loop 5 {
@@ -4856,7 +4986,9 @@ Clamp( Val, Min, Max) {
 				GuiControl,, Radiobox%A_Index%ES20, 0
 				GuiControl,, RadioUncheck%A_Index%ES, 1
 			}
+		Return
 		}
+
 	RemoveToolTip:
 		SetTimer, RemoveToolTip, Off
 		ToolTip
