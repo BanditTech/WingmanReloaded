@@ -2523,8 +2523,8 @@ Logout(){
 		Run, cports.exe /close * * * * PathOfExileCi.exe
 		Run, cports.exe /close * * * * PathOfExile_x64.exe	
 		Run, cports.exe /close * * * * PathOfExile.exe
-		Send {Enter} /exit {Enter}
-	} else {
+		;Send {Enter} /exit {Enter}
+		} else {
 		Send {Enter} /exit {Enter}		
 	}
 	RandomSleep(23,45)
@@ -3125,241 +3125,277 @@ TMineTick(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TGameTick(){
 	IfWinActive, Path of Exile
-		{	
+		{
 		; Check what status is your character in the game
 		GuiStatus()
 		if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
 			;GuiUpdate()																									   
 			Exit
-		}
-
-		if (AutoFlask=1) {
-			Trigger:=00000
-			}	
-		
-		if (Life=1)
-			{
-			pixelgetcolor, Life20, vX_Life, vY_Life20 
-			if (Life20!=varLife20) {
-				Trigger:=Trigger+TriggerLife20			
-				if (AutoQuit=1) && (Quit20=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, Life30, vX_Life, vY_Life30
-			if (Life30!=varLife30) {
-				Trigger:=Trigger+TriggerLife30				
-				if (AutoQuit=1) && (Quit30=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, Life40, vX_Life, vY_Life40
-			if (Life40!=varLife40) {
-				Trigger:=Trigger+TriggerLife40
-				if (AutoQuit=1) && (Quit40=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, Life50, vX_Life, vY_Life50
-			if (Life50!=varLife50) {
-				Trigger:=Trigger+TriggerLife50					
-			}
-			pixelgetcolor, Life60, vX_Life, vY_Life60
-			if (Life60!=varLife60) {
-				Trigger:=Trigger+TriggerLife60					
-			}
-			pixelgetcolor, Life70, vX_Life, vY_Life70
-			if (Life70!=varLife70) {
-				Trigger:=Trigger+TriggerLife70					
-			}
-			pixelgetcolor, Life80, vX_Life, vY_Life80
-			if (Life80!=varLife80) {
-				Trigger:=Trigger+TriggerLife80					
-			}
-			pixelgetcolor, Life90, vX_Life, vY_Life90
-			if (Life90!=varLife90) {
-				Trigger:=Trigger+TriggerLife90	
-			}
 			}
 		
-		if (Hybrid=1)
-			{
-			pixelgetcolor, Life20, vX_Life, vY_Life20 
-			if (Life20!=varLife20) {
-				Trigger:=Trigger+TriggerLife20			
-				if (AutoQuit=1) && (Quit20=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, Life30, vX_Life, vY_Life30
-			if (Life30!=varLife30) {
-				Trigger:=Trigger+TriggerLife30				
-				if (AutoQuit=1) && (Quit30=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, Life40, vX_Life, vY_Life40
-			if (Life40!=varLife40) {
-				Trigger:=Trigger+TriggerLife40
-				if (AutoQuit=1) && (Quit40=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, Life50, vX_Life, vY_Life50
-			if (Life50!=varLife50) {
-				Trigger:=Trigger+TriggerLife50					
-			}
-			pixelgetcolor, Life60, vX_Life, vY_Life60
-			if (Life60!=varLife60) {
-				Trigger:=Trigger+TriggerLife60					
-			}
-			pixelgetcolor, Life70, vX_Life, vY_Life70
-			if (Life70!=varLife70) {
-				Trigger:=Trigger+TriggerLife70					
-			}
-			pixelgetcolor, Life80, vX_Life, vY_Life80
-			if (Life80!=varLife80) {
-				Trigger:=Trigger+TriggerLife80					
-			}
-			pixelgetcolor, Life90, vX_Life, vY_Life90
-			if (Life90!=varLife90) {
-				Trigger:=Trigger+TriggerLife90	
-			}								
-			pixelgetcolor, ES20, vX_ES, vY_ES20 
-			if (ES20!=varES20) {
-				Trigger:=Trigger+TriggerES20			
-			}
-			pixelgetcolor, ES30, vX_ES, vY_ES30
-			if (ES30!=varES30) {
-				Trigger:=Trigger+TriggerES30
-			}
-			pixelgetcolor, ES40, vX_ES, vY_ES40
-			if (ES40!=varES40) {
-				Trigger:=Trigger+TriggerES40
-			}
-			pixelgetcolor, ES50, vX_ES, vY_ES50
-			if (ES50!=varES50) {
-				Trigger:=Trigger+TriggerES50					
-			}
-			pixelgetcolor, ES60, vX_ES, vY_ES60
-			if (ES60!=varES60) {
-				Trigger:=Trigger+TriggerES60					
-			}
-			pixelgetcolor, ES70, vX_ES, vY_ES70
-			if (ES70!=varES70) {
-				Trigger:=Trigger+TriggerES70					
-			}
-			pixelgetcolor, ES80, vX_ES, vY_ES80
-			if (ES80!=varES80) {
-				Trigger:=Trigger+TriggerES80					
-			}
-			pixelgetcolor, ES90, vX_ES, vY_ES90
-			if (ES90!=varES90) {
-				Trigger:=Trigger+TriggerES90	
-			}
-			}
-		
-		if (Ci=1)
-			{
-			pixelgetcolor, ES20, vX_ES, vY_ES20 
-			if (ES20!=varES20) {
-				Trigger:=Trigger+TriggerES20			
-				if (AutoQuit=1) && (Quit20=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, ES30, vX_ES, vY_ES30
-			if (ES30!=varES30) {
-				Trigger:=Trigger+TriggerES30				
-				if (AutoQuit=1) && (Quit30=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, ES40, vX_ES, vY_ES40
-			if (ES40!=varES40) {
-				Trigger:=Trigger+TriggerES40
-				if (AutoQuit=1) && (Quit40=1) {
-					GuiStatus("OnChar")
-					if (OnChar)
-						Logout()
-					Exit
-				}
-			}
-			pixelgetcolor, ES50, vX_ES, vY_ES50
-			if (ES50!=varES50) {
-				Trigger:=Trigger+TriggerES50					
-			}
-			pixelgetcolor, ES60, vX_ES, vY_ES60
-			if (ES60!=varES60) {
-				Trigger:=Trigger+TriggerES60					
-			}
-			pixelgetcolor, ES70, vX_ES, vY_ES70
-			if (ES70!=varES70) {
-				Trigger:=Trigger+TriggerES70					
-			}
-			pixelgetcolor, ES80, vX_ES, vY_ES80
-			if (ES80!=varES80) {
-				Trigger:=Trigger+TriggerES80					
-			}
-			pixelgetcolor, ES90, vX_ES, vY_ES90
-			if (ES90!=varES90) {
-				Trigger:=Trigger+TriggerES90	
-			}
-			}
-			
-		pixelgetcolor, Mana10, vX_Mana, vY_Mana10
-		if (Mana10!=varMana10) {
-			Trigger:=Trigger+TriggerMana10
-			}
-
-		{
-		GuiUpdate()
-		}
-
-		; Trigger the flasks
-		if (AutoFlask=1) {
-			STrigger:= SubStr("00000" Trigger,-4)
-			FL=1
-	   
-			loop 5 {
-				FLVal:=SubStr(STrigger,FL,1)+0
-				if (FLVal > 0) {
-					cd:=OnCoolDown[FL]
-					if (cd=0) {
-						send %FL%
-						OnCoolDown[FL]:=1 
-						CoolDown:=CoolDownFlask%FL%
-						settimer, TimmerFlask%FL%, %CoolDown%
-						sleep=rand(23,59)			
+		if (Life=1)	{
+			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)) {
+				pixelgetcolor, Life20, vX_Life, vY_Life20 
+				if (Life20!=varLife20) {
+					TriggerFlask(TriggerLife20)
+					if (AutoQuit=1) && (Quit20=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
 					}
 				}
-				FL:=FL+1
+			If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)) {
+				pixelgetcolor, Life30, vX_Life, vY_Life30 
+				if (Life30!=varLife30) {
+					TriggerFlask(TriggerLife30)
+					if (AutoQuit=1) && (Quit30=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
+					}
+				}
+			If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)) {
+				pixelgetcolor, Life40, vX_Life, vY_Life40 
+				if (Life40!=varLife40) {
+					TriggerFlask(TriggerLife40)
+					if (AutoQuit=1) && (Quit40=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
+					}
+				}
+			If (TriggerLife50!="00000") {
+				pixelgetcolor, Life50, vX_Life, vY_Life50
+				if (Life50!=varLife50) {
+					TriggerFlask(TriggerLife50)
+					}
+				}
+			If (TriggerLife60!="00000") {
+				pixelgetcolor, Life60, vX_Life, vY_Life60
+				if (Life60!=varLife60) {
+					TriggerFlask(TriggerLife60)
+					}
+				}
+			If (TriggerLife70!="00000") {
+				pixelgetcolor, Life70, vX_Life, vY_Life70
+				if (Life70!=varLife70) {
+					TriggerFlask(TriggerLife70)
+					}
+				}
+			If (TriggerLife80!="00000") {
+				pixelgetcolor, Life80, vX_Life, vY_Life80
+				if (Life80!=varLife80) {
+					TriggerFlask(TriggerLife80)
+					}
+				}
+			If (TriggerLife90!="00000") {
+				pixelgetcolor, Life90, vX_Life, vY_Life90
+				if (Life90!=varLife90) {
+					TriggerFlask(TriggerLife90)
+					}
+				}
 			}
+		
+		if (Hybrid=1) {
+			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)) {
+				pixelgetcolor, Life20, vX_Life, vY_Life20 
+				if (Life20!=varLife20) {
+					TriggerFlask(TriggerLife20)
+					if (AutoQuit=1) && (Quit20=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
+					}
+				}
+			If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)) {
+				pixelgetcolor, Life30, vX_Life, vY_Life30 
+				if (Life30!=varLife30) {
+					TriggerFlask(TriggerLife30)
+					if (AutoQuit=1) && (Quit30=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
+					}
+				}
+			If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)) {
+				pixelgetcolor, Life40, vX_Life, vY_Life40 
+				if (Life40!=varLife40) {
+					TriggerFlask(TriggerLife40)
+					if (AutoQuit=1) && (Quit40=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
+					}
+				}
+			If (TriggerLife50!="00000") {
+				pixelgetcolor, Life50, vX_Life, vY_Life50
+				if (Life50!=varLife50) {
+					TriggerFlask(TriggerLife50)
+					}
+				}
+			If (TriggerLife60!="00000") {
+				pixelgetcolor, Life60, vX_Life, vY_Life60
+				if (Life60!=varLife60) {
+					TriggerFlask(TriggerLife60)
+					}
+				}
+			If (TriggerLife70!="00000") {
+				pixelgetcolor, Life70, vX_Life, vY_Life70
+				if (Life70!=varLife70) {
+					TriggerFlask(TriggerLife70)
+					}
+				}
+			If (TriggerLife80!="00000") {
+				pixelgetcolor, Life80, vX_Life, vY_Life80
+				if (Life80!=varLife80) {
+					TriggerFlask(TriggerLife80)
+					}
+				}
+			If (TriggerLife90!="00000") {
+				pixelgetcolor, Life90, vX_Life, vY_Life90
+				if (Life90!=varLife90) {
+					TriggerFlask(TriggerLife90)
+					}
+				}
+			If (TriggerES20!="00000") {
+				pixelgetcolor, ES20, vX_ES, vY_ES20 
+				if (ES20!=varES20) {
+					TriggerFlask(TriggerES20)
+					}
+				}
+			If (TriggerES30!="00000") {
+				pixelgetcolor, ES30, vX_ES, vY_ES30 
+				if (ES30!=varES30) {
+					TriggerFlask(TriggerES30)
+					}
+				}
+			If (TriggerES40!="00000") {
+				pixelgetcolor, ES40, vX_ES, vY_ES40 
+				if (ES40!=varES40) {
+					TriggerFlask(TriggerES40)
+					}
+				}
+			If (TriggerES50!="00000") {
+				pixelgetcolor, ES50, vX_ES, vY_ES50
+				if (ES50!=varES50) {
+					TriggerFlask(TriggerES50)
+					}
+				}
+			If (TriggerES60!="00000") {
+				pixelgetcolor, ES60, vX_ES, vY_ES60
+				if (ES60!=varES60) {
+					TriggerFlask(TriggerES60)
+					}
+				}
+			If (TriggerES70!="00000") {
+				pixelgetcolor, ES70, vX_ES, vY_ES70
+				if (ES70!=varES70) {
+					TriggerFlask(TriggerES70)
+					}
+				}
+			If (TriggerES80!="00000") {
+				pixelgetcolor, ES80, vX_ES, vY_ES80
+				if (ES80!=varES80) {
+					TriggerFlask(TriggerES80)
+					}
+				}
+			If (TriggerES90!="00000") {
+				pixelgetcolor, ES90, vX_ES, vY_ES90
+				if (ES90!=varES90) {
+					TriggerFlask(TriggerES90)
+					}
+				}
 			}
+		
+		if (Ci=1) {
+			If ((TriggerES20!="00000")||(AutoQuit&&Quit20)) {
+				pixelgetcolor, ES20, vX_ES, vY_ES20 
+				if (ES20!=varES20) {
+					TriggerFlask(TriggerES20)
+					if (AutoQuit=1) && (Quit20=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
+					}
+				}
+			If ((TriggerES30!="00000")||(AutoQuit&&Quit30)) {
+				pixelgetcolor, ES30, vX_ES, vY_ES30 
+				if (ES30!=varES30) {
+					TriggerFlask(TriggerES30)
+					if (AutoQuit=1) && (Quit30=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
+					}
+				}
+			If ((TriggerES40!="00000")||(AutoQuit&&Quit40)) {
+				pixelgetcolor, ES40, vX_ES, vY_ES40 
+				if (ES40!=varES40) {
+					TriggerFlask(TriggerES40)
+					if (AutoQuit=1) && (Quit40=1) {
+						GuiStatus("OnChar")
+						if (OnChar)
+							Logout()
+						Exit
+						}
+					}
+				}
+			If (TriggerES50!="00000") {
+				pixelgetcolor, ES50, vX_ES, vY_ES50
+				if (ES50!=varES50) {
+					TriggerFlask(TriggerES50)
+					}
+				}
+			If (TriggerES60!="00000") {
+				pixelgetcolor, ES60, vX_ES, vY_ES60
+				if (ES60!=varES60) {
+					TriggerFlask(TriggerES60)
+					}
+				}
+			If (TriggerES70!="00000") {
+				pixelgetcolor, ES70, vX_ES, vY_ES70
+				if (ES70!=varES70) {
+					TriggerFlask(TriggerES70)
+					}
+				}
+			If (TriggerES80!="00000") {
+				pixelgetcolor, ES80, vX_ES, vY_ES80
+				if (ES80!=varES80) {
+					TriggerFlask(TriggerES80)
+					}
+				}
+			If (TriggerES90!="00000") {
+				pixelgetcolor, ES90, vX_ES, vY_ES90
+				if (ES90!=varES90) {
+					TriggerFlask(TriggerES90)
+					}
+				}
+			}
+			
+		If (Radiobox1Mana10||Radiobox2Mana10||Radiobox3Mana10||Radiobox4Mana10||Radiobox5Mana10) {
+			pixelgetcolor, Mana10, vX_Mana, vY_Mana10
+			if (Mana10!=varMana10) {
+				TriggerFlask(TriggerMana10)
+				}
+			}
+
+		GuiUpdate()
 		}
 	Return
 	}
