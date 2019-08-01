@@ -60,7 +60,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .01.7.1
+		Global VersionNumber := .01.8
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
@@ -214,6 +214,8 @@
 		global hotkeyCloseAllUI:=Space
 		global hotkeyInventory:=c
 		global hotkeyWeaponSwapKey:=x
+		global hotkeyMainAttack:=RButton
+		global hotkeySecondaryAttack:=W
 
 
 	;Coordinates
@@ -264,10 +266,6 @@
 		global AlternateGemX:=1379 
 		global AlternateGemY:=171
 		global AlternateGemOnSecondarySlot:=1
-
-	;Attack Buttons
-		global MainAttackKey:="Q"
-		global SecondaryAttackKey:="W"
 
 	;Attack Triggers
 		global TriggerMainAttack:=00000
@@ -414,7 +412,9 @@
 		IniWrite, F6, settings.ini, hotkeys, ItemSort
 		IniWrite, f, settings.ini, hotkeys, LootScan
 		IniWrite, LButton, settings.ini, hotkeys, Move
-		
+		IniWrite, RButton, settings.ini, hotkeys, MainAttack
+		IniWrite, W, settings.ini, hotkeys, SecondaryAttack
+
 		;Failsafe Colors
 		IniWrite, 0x161114, settings.ini, Failsafe Colors, OnHideout
 		IniWrite, 0x4F6980, settings.ini, Failsafe Colors, OnChar
@@ -487,11 +487,7 @@
 		;Attack Flasks
 		IniWrite, 00000, settings.ini, Attack Triggers, TriggerMainAttack
 		IniWrite, 00000, settings.ini, Attack Triggers, TriggerSecondaryAttack
-		
-		;Attack Keys
-		IniWrite, RButton, settings.ini, Attack Buttons, MainAttackKey
-		IniWrite, W, settings.ini, Attack Buttons, SecondaryAttackKey
-		
+				
 		;Quicksilver Flasks
 		IniWrite, .5, settings.ini, Quicksilver, TriggerQuicksilverDelay
 		IniWrite, 00000, settings.ini, Quicksilver, TriggerQuicksilver	
@@ -677,7 +673,7 @@
 	vFlask:=vFlask+1
 	}
 
-	Gui Add, Edit, 			vMainAttackKey 				x12 	y+10 	w45 h17, 	%MainAttackKey%
+	Gui Add, Edit, 			vhotkeyMainAttack 				x12 	y+10 	w45 h17, 	%hotkeyMainAttack%
 	Gui Add, Checkbox, 		vMainAttackbox1 			x75 	y+-15 	w13 h13
 	vFlask=2
 	loop 4
@@ -686,7 +682,7 @@
 	vFlask:=vFlask+1
 	} 
 
-	Gui Add, Edit, 			vSecondaryAttackKey 		x12 	y+5 	w45 h17, 	%SecondaryAttackKey%
+	Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+5 	w45 h17, 	%hotkeySecondaryAttack%
 	Gui Add, Checkbox, 		vSecondaryAttackbox1 		x75 	y+-15 	w13 h13
 	vFlask=2
 	loop 4
@@ -1211,13 +1207,13 @@
 		valueAlternateGemOnSecondarySlot := AlternateGemOnSecondarySlot
 		GuiControl, , AlternateGemOnSecondarySlot, %valueAlternateGemOnSecondarySlot%
 
-		Iniread, MainAttackKey, settings.ini, Attack Buttons, MainAttackKey
-		valueMain := MainAttackKey
-		GuiControl, , MainAttackKey, %valueMain%
+		Iniread, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
+		valueMain := hotkeyMainAttack
+		GuiControl, , hotkeyMainAttack, %valueMain%
 		
-		Iniread, SecondaryAttackKey, settings.ini, Attack Buttons, SecondaryAttackKey
-		valueSec := SecondaryAttackKey
-		GuiControl, , SecondaryAttackKey, %valueSec%
+		Iniread, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, W
+		valueSec := hotkeySecondaryAttack
+		GuiControl, , hotkeySecondaryAttack, %valueSec%
 		
 		Iniread, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
 		valueQSDelay := TriggerQuicksilverDelay
@@ -1563,7 +1559,7 @@
 		SetTimer, TMineTick, 100
 		Else If (!DetonateMines)
 		SetTimer, TMineTick, off
-; Key Passthrough for 1-5
+; Key Passthrough for 1-5 & Attack keys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;Passthrough for manual activation
 	; pass-thru and start timer for flask 1
@@ -1673,6 +1669,7 @@ LootScan(){
 		For k, ColorHex in LootColors
 			{
 			Pressed := GetKeyState(hotkeyLootScan, "P")
+			Sleep, -1
 			MouseGetPos CenterX, CenterY
 			ScanX1:=(CenterX-AreaScale)
 			ScanY1:=(CenterY-AreaScale)
@@ -1683,6 +1680,7 @@ LootScan(){
 				Pressed := GetKeyState(hotkeyLootScan, "P")
 				If !(Pressed)
 					Break
+				Sleep, -1
 				SwiftClick(ScanPx, ScanPy)
 				}
 			Else If (ErrorLevel = 1)
@@ -2285,68 +2283,68 @@ Rescale(){
 			} 
 		Else If (ResolutionScale="QHD") {
 			; Item Inventory Grid
-			Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
-			Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+			Global InventoryGridX := [ Round(A_ScreenWidth/(2560/3193)), Round(A_ScreenWidth/(2560/3246)), Round(A_ScreenWidth/(2560/3299)), Round(A_ScreenWidth/(2560/3352)), Round(A_ScreenWidth/(2560/3404)), Round(A_ScreenWidth/(2560/3457)), Round(A_ScreenWidth/(2560/3510)), Round(A_ScreenWidth/(2560/3562)), Round(A_ScreenWidth/(2560/3615)), Round(A_ScreenWidth/(2560/3668)), Round(A_ScreenWidth/(2560/3720)), Round(A_ScreenWidth/(2560/3773)) ]
+			Global InventoryGridY := [ Round(A_ScreenHeight/(1440/638)), Round(A_ScreenHeight/(1440/690)), Round(A_ScreenHeight/(1440/743)), Round(A_ScreenHeight/(1440/796)), Round(A_ScreenHeight/(1440/848)) ]  
 			;Detonate Mines
-			Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
-			Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
-			Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+			Global DetonateDelveX:=X + Round(A_ScreenWidth/(2560/3462))
+			Global DetonateX:=X + Round(A_ScreenWidth/(2560/3578))
+			Global DetonateY:=Y + Round(A_ScreenHeight/(1440/901))
 			;Scrolls in currency tab
-			Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
-			Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
-			Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+			Global WisdomStockX:=X + Round(A_ScreenWidth/(2560/125))
+			Global PortalStockX:=X + Round(A_ScreenWidth/(2560/175))
+			Global WPStockY:=Y + Round(A_ScreenHeight/(1440/262))
 			;Status Check OnHideout
-			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (2560 / 3161))
+			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1440 / 951))
 			;Status Check OnChar
-			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+			global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
+			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1440 / 915))
 			;Status Check OnChat
-			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+			global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
+			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1440 / 653))
 			;Status Check OnInventory
-			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 3503))
+			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1440 / 36))
 			;Status Check OnStash
-			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+			global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
+			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1440 / 32))
 			;Status Check OnVendor
-			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
+			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
 			;Life %'s
-			global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-			global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-			global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-			global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-			global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-			global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-			global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-			global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-			global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+			global vX_Life:=X + Round(A_ScreenWidth / (2560 / 95))
+			global vY_Life20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
+			global vY_Life30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
+			global vY_Life40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
+			global vY_Life50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
+			global vY_Life60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
+			global vY_Life70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
+			global vY_Life80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
+			global vY_Life90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
 			;ES %'s
-			global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-			global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-			global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-			global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-			global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-			global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-			global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-			global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-			global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+			global vX_ES:=X + Round(A_ScreenWidth / (2560 / 180))
+			global vY_ES20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
+			global vY_ES30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
+			global vY_ES40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
+			global vY_ES50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
+			global vY_ES60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
+			global vY_ES70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
+			global vY_ES80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
+			global vY_ES90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
 			;Mana
-			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-			global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+			global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 3745))
+			global vY_Mana10:=Y + Round(A_ScreenHeight / (1440 / 1054))
 			;GUI overlay
-			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
-			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			global varX:=X + Round(A_ScreenWidth / (2560 / -10))
+			global varY:=Y + Round(A_ScreenHeight / (1440 / 1027))
 			;Stash tabs menu button
-			global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
-			global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+			global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
+			global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
 			;Stash tabs menu list
-			global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
-			global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+			global vX_StashTabList := X + Round(A_ScreenWidth / (2560 / 760))
+			global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1440 / 120))
 			;calculate the height of each tab
-			global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+			global vY_StashTabSize := Round(A_ScreenHeight / ( 1440 / 22))
 			} 
 		}
 	return
@@ -3091,6 +3089,27 @@ GuiStatus(Fetch:=""){
 	Return
 	}
 
+; Main attack and secondary attack Flasks
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+AttackFlasks(){
+	MainAttackCommand:
+		if (AutoFlask=1) {
+			GuiStatus()
+			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+				return
+			TriggerFlask(TriggerMainAttack)
+			}
+		Return	
+	SecondaryAttackCommand:
+		if (AutoFlask=1) {
+			GuiStatus()
+			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+				return
+			TriggerFlask(TriggerSecondaryAttack)
+			}
+		Return	
+	}
+
 ; Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TMineTick(){
@@ -3116,14 +3135,6 @@ TGameTick(){
 
 		if (AutoFlask=1) {
 			Trigger:=00000
-			GetKeyState, %MainAttackKey%state, %MainAttackKey%, P
-			if %MainAttackKey%state = D	
-				TriggerFlask(TriggerMainAttack)
-				;Trigger:=Trigger+TriggerMainAttack
-			GetKeyState, %SecondaryAttackKey%state, %SecondaryAttackKey%
-			if %SecondaryAttackKey%state = D
-				TriggerFlask(TriggerSecondaryAttack)
-				;Trigger:=Trigger+TriggerSecondaryAttack
 			}	
 		
 		if (Life=1)
@@ -3547,8 +3558,8 @@ Clamp( Val, Min, Max) {
 			IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack
 			
 		;Attack Keys
-			IniRead, MainAttackKey, settings.ini, Attack Buttons, MainAttackKey
-			IniRead, SecondaryAttackKey, settings.ini, Attack Buttons, SecondaryAttackKey
+			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
+			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, W
 			
 		;Quicksilver
 			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
@@ -3585,6 +3596,10 @@ Clamp( Val, Min, Max) {
 				hotkey,% hotkeyItemSort, ItemSortCommand, Off
 			If hotkeyLootScan
 				hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+			If hotkeyMainAttack
+				hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+			If hotkeySecondaryAttack
+				hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
 			
 			hotkey, IfWinActive
 			If hotkeyOptions
@@ -3606,6 +3621,8 @@ Clamp( Val, Min, Max) {
 			IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey
 			IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort
 			IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan
+			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
+			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, W
 
 			hotkey, IfWinActive, ahk_class POEWindowClass
 			If hotkeyAutoQuit
@@ -3626,6 +3643,10 @@ Clamp( Val, Min, Max) {
 				hotkey,% hotkeyItemSort, ItemSortCommand, On
 			If hotkeyLootScan
 				hotkey, $~%hotkeyLootScan%, LootScanCommand, On
+			If hotkeyMainAttack
+				hotkey, $~%hotkeyMainAttack%, MainAttackCommand, On
+			If hotkeySecondaryAttack
+				hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, On
 			
 			hotkey, IfWinActive
 			If hotkeyOptions {
@@ -3749,6 +3770,8 @@ Clamp( Val, Min, Max) {
 			IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey
 			IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort
 			IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
+			IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
+			IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
 			
 		;Flask Cooldowns
 			IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
@@ -3805,10 +3828,6 @@ Clamp( Val, Min, Max) {
 		;Attack Flasks
 			IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
 			IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, settings.ini, Attack Triggers, TriggerSecondaryAttack
-		
-		;Attack Keys
-			IniWrite, %MainAttackKey%, settings.ini, Attack Buttons, MainAttackKey
-			IniWrite, %SecondaryAttackKey%, settings.ini, Attack Buttons, SecondaryAttackKey
 		
 		;Quicksilver Flasks
 			IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
@@ -3992,8 +4011,8 @@ Clamp( Val, Min, Max) {
 			IniWrite, %SecondaryAttackbox5%, settings.ini, Profile%Profile%, SecondaryAttackbox5
 		
 		;Attack Keys
-			IniWrite, %MainAttackKey%, settings.ini, Profile%Profile%, MainAttackKey
-			IniWrite, %SecondaryAttackKey%, settings.ini, Profile%Profile%, SecondaryAttackKey
+			IniWrite, %hotkeyMainAttack%, settings.ini, Profile%Profile%, MainAttack
+			IniWrite, %hotkeySecondaryAttack%, settings.ini, Profile%Profile%, SecondaryAttack
 			
 		;Quicksilver Flasks
 			IniWrite, %TriggerQuicksilverDelay%, settings.ini, Profile%Profile%, TriggerQuicksilverDelay
@@ -4335,10 +4354,10 @@ Clamp( Val, Min, Max) {
 				GuiControl, , SecondaryAttackbox5, %SecondaryAttackbox5%
 		
 		;Attack Keys
-			IniRead, MainAttackKey, settings.ini, Profile%Profile%, MainAttackKey
-				GuiControl, , MainAttackKey, %MainAttackKey%
-			IniRead, SecondaryAttackKey, settings.ini, Profile%Profile%, SecondaryAttackKey
-				GuiControl, , SecondaryAttackKey, %SecondaryAttackKey%
+			IniRead, hotkeyMainAttack, settings.ini, Profile%Profile%, MainAttack, RButton
+				GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
+			IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, w
+				GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
 		
 		;Quicksilver Flasks
 			IniRead, TriggerQuicksilverDelay, settings.ini, Profile%Profile%, TriggerQuicksilverDelay
