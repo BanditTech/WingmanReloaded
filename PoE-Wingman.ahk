@@ -31,20 +31,15 @@
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
-; Check presence of cports
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	IfNotExist, cports.exe
-		{
-		UrlDownloadToFile, http://lutbot.com/ahk/cports.exe, cports.exe
-		if ErrorLevel
-			MsgBox, Error ED02 : There was a problem downloading cports.exe
-		UrlDownloadToFile, http://lutbot.com/ahk/cports.chm, cports.chm
-		if ErrorLevel
-			MsgBox, Error ED03 : There was a problem downloading cports.chm 
-		UrlDownloadToFile, http://lutbot.com/ahk/readme.txt, cports.txt
-		if ErrorLevel
-			MsgBox, Error ED04 : There was a problem downloading cports.txt
-		}
+	full_command_line := DllCall("GetCommandLine", "str")
+
+	GetTable := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Iphlpapi.dll", "Ptr"), Astr, "GetExtendedTcpTable", "Ptr")
+	SetEntry := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Iphlpapi.dll", "Ptr"), Astr, "SetTcpEntry", "Ptr")
+	EnumProcesses := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Psapi.dll", "Ptr"), Astr, "EnumProcesses", "Ptr")
+	preloadPsapi := DllCall("LoadLibrary", "Str", "Psapi.dll", "Ptr")
+	OpenProcessToken := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "OpenProcessToken", "Ptr")
+	LookupPrivilegeValue := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "LookupPrivilegeValue", "Ptr")
+	AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
 
 	CleanUp()
 	if not A_IsAdmin
@@ -60,7 +55,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .01.8
+		Global VersionNumber := .01.9
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
@@ -162,10 +157,12 @@
 		global ShowItemInfo := 0
 		global DetonateMines := 0
 		global Latency := 1
+		global RunningToggle := False
+		Global Steam := 1
+		Global HighBits := 1
 		; Dont change the speed & the tick unless you know what you are doing
 			global Speed:=1
 			global Tick:=50
-			global RunningToggle := False
 	;Inventory
 		Global StashTabCurrency := 1
 		Global StashTabMap := 1
@@ -352,6 +349,8 @@
 		IniWrite, 1, settings.ini, General, YesMapUnid
 		IniWrite, 1, settings.ini, General, Latency
 		IniWrite, 0, settings.ini, General, ShowOnStart
+		IniWrite, 1, settings.ini, General, Steam
+		IniWrite, 1, settings.ini, General, HighBits
 
 		;Stash Tab
 		IniWrite, 1, settings.ini, Stash Tab, StashTabCurrency
@@ -511,13 +510,14 @@
 
 		Reload
 		sleep, -1
+		return
 		}
 
 ; Wingman Gui Variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	IfWinExist, ahk_class POEWindowClass 
 	{
-		varTextSave:="Save"
+		varTextSave:="Save (Only on Char)"
 		varTextOnHideout:="OnHideout Color"
 		varTextOnChar:="OnChar Color"
 		varTextOnInventory:="OnInventory Color"
@@ -699,7 +699,7 @@
 	Gui Add, Radio, 		vRadioQuit30 				x+5, 						%varTextAutoQuit30%
 	Gui Add, Radio, 		vRadioQuit40 				x+5, 						%varTextAutoQuit40%
 	Gui Add, Text, 										x20 	y+10, 				Quit via:
-	Gui, Add, Radio, Group	vRadioCritQuit					x+5		y+-13,				cports
+	Gui, Add, Radio, Group	vRadioCritQuit					x+5		y+-13,				LutBot Method
 	Gui, Add, Radio, 		vRadioNormalQuit			x+19	,				normal /exit
 
 	;Vertical Grey Lines
@@ -903,6 +903,8 @@
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart                         	          	, Show GUI on startup?
+	Gui Add, Checkbox, gUpdateExtra	vSteam                         	          	, Are you using Steam?
+	Gui Add, Checkbox, gUpdateExtra	vHighBits                         	          	, Are you running 64 bit?
 	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale   ChooseString%ResolutionScale%      w80               	    , Standard|UltraWide|QHD
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
@@ -1187,6 +1189,14 @@
 		valueShowOnStart := ShowOnStart
 		GuiControl, , ShowOnStart, %valueShowOnStart%
 		
+		Iniread, Steam, settings.ini, General, Steam, 1
+		valueSteam := Steam
+		GuiControl, , Steam, %valueSteam%
+		
+		Iniread, HighBits, settings.ini, General, HighBits, 1
+		valueHighBits := HighBits
+		GuiControl, , HighBits, %valueHighBits%
+		
 		Iniread, CurrentGemX, settings.ini, Gem Swap, CurrentGemX
 		valueCurrentGemX := CurrentGemX
 		GuiControl, , CurrentGemX, %valueCurrentGemX%
@@ -1370,6 +1380,20 @@
 		Iniread, hotkeyLootScan, settings.ini, hotkeys, LootScan
 		valuehotkeyLootScan := hotkeyLootScan
 		GuiControl, , vhotkeyLootScan, %valuehotkeyLootScan%
+
+		if ( Steam ) {
+			if ( HighBits ) {
+				executable := "PathOfExile_x64Steam.exe"
+				} else {
+				executable := "PathOfExileSteam.exe"
+				}
+			} else {
+			if ( HighBits ) {
+				executable := "PathOfExile_x64.exe"
+				} else {
+				executable := "PathOfExile.exe"
+				}
+			}
 		}
 		
 		IfWinExist, ahk_class POEWindowClass 
@@ -2510,25 +2534,163 @@ PopFlasks(){
 	return
 	}
 
-;logout to character selection
+; Decide which logout method to use
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Logout(){
+LogoutCommand(){
 	LogoutCommand:
 	Critical
-	BlockInput On
 	if (CritQuit=1) {
-		Run, cports.exe /close * * * * PathOfExile_x64Steam.exe
-		Run, cports.exe /close * * * * PathOfExileSteam.exe
-		Run, cports.exe /close * * * * PathOfExile_x64Ci.exe
-		Run, cports.exe /close * * * * PathOfExileCi.exe
-		Run, cports.exe /close * * * * PathOfExile_x64.exe	
-		Run, cports.exe /close * * * * PathOfExile.exe
-		;Send {Enter} /exit {Enter}
-		} else {
-		Send {Enter} /exit {Enter}		
+		global executable, backupExe
+		succ := logout(executable)
+		if (succ == 0) && backupExe != "" {
+			newSucc := logout(backupExe)
+			error("ED12",executable,backupExe)
+			if (newSucc == 0) {
+				error("ED13")
+				}
+			}
+		} 
+	Else 
+		Send {Enter} /exit {Enter}
+	return
 	}
-	RandomSleep(23,45)
-	BlockInput Off
+
+; Main function of the LutBot logout method
+logout(executable){
+	global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
+	Critical
+	start := A_TickCount
+
+	poePID := Object()
+	s := 4096
+	Process, Exist 
+	h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", ErrorLevel, "Ptr")
+
+	DllCall(OpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", t)
+	VarSetCapacity(ti, 16, 0)
+	NumPut(1, ti, 0, "UInt")
+
+	DllCall(LookupPrivilegeValue, "Ptr", 0, "Str", "SeDebugPrivilege", "Int64P", luid)
+	NumPut(luid, ti, 4, "Int64")
+	NumPut(2, ti, 12, "UInt")
+
+	r := DllCall(AdjustTokenPrivileges, "Ptr", t, "Int", false, "Ptr", &ti, "UInt", 0, "Ptr", 0, "Ptr", 0)
+	DllCall("CloseHandle", "Ptr", t)
+	DllCall("CloseHandle", "Ptr", h)
+
+	try
+	{
+		s := VarSetCapacity(a, s)
+		c := 0
+		DllCall(EnumProcesses, "Ptr", &a, "UInt", s, "UIntP", r)
+		Loop, % r // 4
+		{
+			id := NumGet(a, A_Index * 4, "UInt")
+
+			h := DllCall("OpenProcess", "UInt", 0x0010 | 0x0400, "Int", false, "UInt", id, "Ptr")
+
+			if !h
+				continue
+			VarSetCapacity(n, s, 0)
+			e := DllCall("Psapi\GetModuleBaseName", "Ptr", h, "Ptr", 0, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
+			if !e 
+				if e := DllCall("Psapi\GetProcessImageFileName", "Ptr", h, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
+					SplitPath n, n
+			DllCall("CloseHandle", "Ptr", h)
+			if (n && e)
+				if (n == executable) {
+					poePID.Insert(id)
+				}
+		}
+
+		l := poePID.Length()
+		if ( l = 0 ) {
+			Process, wait, %executable%, 0.2
+			if ( ErrorLevel > 0 ) {
+				poePID.Insert(ErrorLevel)
+			}
+		}
+		
+		VarSetCapacity(dwSize, 4, 0) 
+		result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
+		VarSetCapacity(TcpTable, NumGet(dwSize), 0) 
+
+		result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
+
+		num := NumGet(&TcpTable,0,"UInt")
+
+		IfEqual, num, 0
+		{
+			error("ED11",num,l,executable)
+			return False
+		}
+
+		out := 0
+		Loop %num%
+		{
+			cutby := a_index - 1
+			cutby *= 24
+			ownerPID := NumGet(&TcpTable,cutby+24,"UInt")
+			for index, element in poePID {
+				if ( ownerPID = element )
+				{
+					VarSetCapacity(newEntry, 20, 0) 
+					NumPut(12,&newEntry,0,"UInt")
+					NumPut(NumGet(&TcpTable,cutby+8,"UInt"),&newEntry,4,"UInt")
+					NumPut(NumGet(&TcpTable,cutby+12,"UInt"),&newEntry,8,"UInt")
+					NumPut(NumGet(&TcpTable,cutby+16,"UInt"),&newEntry,12,"UInt")
+					NumPut(NumGet(&TcpTable,cutby+20,"UInt"),&newEntry,16,"UInt")
+					result := DllCall(SetEntry, UInt, &newEntry)
+					IfNotEqual, result, 0
+					{
+						error("TCP" . result,out,result,l,executable)
+						return False
+					}
+					out++
+				}
+			}
+		}
+		if ( out = 0 ) {
+			error("ED10",out,l,executable)
+			return False
+		} else {
+			error(l . ":" . A_TickCount - start,out,l,executable)
+		}
+	} 
+	catch e
+	{
+		error("ED14","catcherror",e)
+		return False
+	}
+	
+	return True
+	}
+
+; Check for backup executable
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+checkActiveType() {
+	global executable, backupExe
+	Process, Exist, %executable%
+	if !ErrorLevel
+		{
+		WinGet, id, list,ahk_class POEWindowClass,, Program Manager
+		Loop, %id%
+			{
+			this_id := id%A_Index%
+			WinGet, this_name, ProcessName, ahk_id %this_id%
+			backupExe := this_name
+			found .= ", " . this_name
+			}
+		}
+	return
+	}
+
+; Error capture from LutLogout to error.txt
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
+	GuiControl,1:, guiErr, %var%
+	print := A_Now . "," . var . "," . var2 . "," . var3 . "," . var4 . "," . var5 . "," . var6 . "," . var7 . "`n"
+	FileAppend, %print%, error.txt, UTF-16
 	return
 	}
 
@@ -3141,7 +3303,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit20=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3153,7 +3315,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit30=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3165,7 +3327,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit40=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3210,7 +3372,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit20=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3222,7 +3384,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit30=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3234,7 +3396,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit40=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3327,7 +3489,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit20=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3339,7 +3501,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit30=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3351,7 +3513,7 @@ TGameTick(){
 					if (AutoQuit=1) && (Quit40=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
-							Logout()
+							LogoutCommand()
 						Exit
 						}
 					}
@@ -3480,6 +3642,8 @@ Clamp( Val, Min, Max) {
 			IniRead, ShowOnStart, settings.ini, General, ShowOnStart
 			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
 			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
+			IniRead, Steam, settings.ini, General, Steam, 1
+			IniRead, HighBits, settings.ini, General, HighBits, 1
 
 		;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency
@@ -3593,10 +3757,6 @@ Clamp( Val, Min, Max) {
 			IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack
 			IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack
 			
-		;Attack Keys
-			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
-			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, W
-			
 		;Quicksilver
 			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
 			IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
@@ -3693,6 +3853,7 @@ Clamp( Val, Min, Max) {
 				msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
 				;GuiControl,, guiSettings, Settings:%hotkeyOptions%
 				}
+		checkActiveType()
 		Return
 		}
 
@@ -3788,6 +3949,8 @@ Clamp( Val, Min, Max) {
 			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
 			IniWrite, %Latency%, settings.ini, General, Latency
 			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
+			IniWrite, %Steam%, settings.ini, General, Steam
+			IniWrite, %HighBits%, settings.ini, General, HighBits
 			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 		
 
@@ -4592,7 +4755,7 @@ Clamp( Val, Min, Max) {
 			GuiControl, Hide, RefreshBtn
 			Rescale()
 			Reload
-			varTextSave:="Save"
+			varTextSave:="Save (Only on Char)"
 			varTextOnHideout:="OnHideout Color"
 			varTextOnChar:="OnChar Color"
 			varTextOnInventory:="OnInventory Color"
@@ -4879,10 +5042,27 @@ Clamp( Val, Min, Max) {
 		IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 		IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
 		IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
+		IniWrite, %Steam%, settings.ini, General, Steam
+		IniWrite, %HighBits%, settings.ini, General, HighBits
+
 		If (DetonateMines&&!Detonated)
 			SetTimer, TMineTick, 100
 			Else If (!DetonateMines)
 			SetTimer, TMineTick, off
+		if ( Steam ) {
+			if ( HighBits ) {
+				executable := "PathOfExile_x64Steam.exe"
+				} else {
+				executable := "PathOfExileSteam.exe"
+				}
+			} else {
+			if ( HighBits ) {
+				executable := "PathOfExile_x64.exe"
+				} else {
+				executable := "PathOfExile.exe"
+				}
+			}
+
 		Return
 
 	UpdateResolutionScale:
