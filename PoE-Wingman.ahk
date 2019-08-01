@@ -3299,37 +3299,37 @@ TGameTick(){
 			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)) {
 				pixelgetcolor, Life20, vX_Life, vY_Life20 
 				if (Life20!=varLife20) {
-					TriggerFlask(TriggerLife20)
 					if (AutoQuit=1) && (Quit20=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerLife20)
 					}
 				}
 			If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)) {
 				pixelgetcolor, Life30, vX_Life, vY_Life30 
 				if (Life30!=varLife30) {
-					TriggerFlask(TriggerLife30)
 					if (AutoQuit=1) && (Quit30=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerLife30)
 					}
 				}
 			If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)) {
 				pixelgetcolor, Life40, vX_Life, vY_Life40 
 				if (Life40!=varLife40) {
-					TriggerFlask(TriggerLife40)
 					if (AutoQuit=1) && (Quit40=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerLife40)
 					}
 				}
 			If (TriggerLife50!="00000") {
@@ -3368,37 +3368,37 @@ TGameTick(){
 			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)) {
 				pixelgetcolor, Life20, vX_Life, vY_Life20 
 				if (Life20!=varLife20) {
-					TriggerFlask(TriggerLife20)
 					if (AutoQuit=1) && (Quit20=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerLife20)
 					}
 				}
 			If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)) {
 				pixelgetcolor, Life30, vX_Life, vY_Life30 
 				if (Life30!=varLife30) {
-					TriggerFlask(TriggerLife30)
 					if (AutoQuit=1) && (Quit30=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerLife30)
 					}
 				}
 			If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)) {
 				pixelgetcolor, Life40, vX_Life, vY_Life40 
 				if (Life40!=varLife40) {
-					TriggerFlask(TriggerLife40)
 					if (AutoQuit=1) && (Quit40=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerLife40)
 					}
 				}
 			If (TriggerLife50!="00000") {
@@ -3485,37 +3485,37 @@ TGameTick(){
 			If ((TriggerES20!="00000")||(AutoQuit&&Quit20)) {
 				pixelgetcolor, ES20, vX_ES, vY_ES20 
 				if (ES20!=varES20) {
-					TriggerFlask(TriggerES20)
 					if (AutoQuit=1) && (Quit20=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerES20)
 					}
 				}
 			If ((TriggerES30!="00000")||(AutoQuit&&Quit30)) {
 				pixelgetcolor, ES30, vX_ES, vY_ES30 
 				if (ES30!=varES30) {
-					TriggerFlask(TriggerES30)
 					if (AutoQuit=1) && (Quit30=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerES30)
 					}
 				}
 			If ((TriggerES40!="00000")||(AutoQuit&&Quit40)) {
 				pixelgetcolor, ES40, vX_ES, vY_ES40 
 				if (ES40!=varES40) {
-					TriggerFlask(TriggerES40)
 					if (AutoQuit=1) && (Quit40=1) {
 						GuiStatus("OnChar")
 						if (OnChar)
 							LogoutCommand()
 						Exit
 						}
+					TriggerFlask(TriggerES40)
 					}
 				}
 			If (TriggerES50!="00000") {
