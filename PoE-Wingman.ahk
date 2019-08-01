@@ -4356,7 +4356,7 @@ Clamp( Val, Min, Max) {
 		;Attack Keys
 			IniRead, hotkeyMainAttack, settings.ini, Profile%Profile%, MainAttack, RButton
 				GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
-			IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, w
+			IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, W
 				GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
 		
 		;Quicksilver Flasks
