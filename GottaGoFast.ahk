@@ -43,14 +43,14 @@ if not A_IsAdmin
 
 	;General
 		; Dont change the speed & the tick unless you know what you are doing
-		global Speed=1
-		global QTick=250
-		global PopFlaskRespectCD=1
-		global YesUltraWide=0
+		global Speed:=1
+		global QTick:=250
+		global PopFlaskRespectCD:=1
+		global ResolutionScale:="Standard"
 
 	;Coordinates
-		global GuiX=-5
-		global GuiY=1005
+		global GuiX:=-5
+		global GuiY:=1005
 
 	;Failsafe Colors
 		global varOnHideout
@@ -69,13 +69,13 @@ if not A_IsAdmin
 		global CoolDown:=5000
 
 	;Quicksilver
-		global TriggerQuicksilverDelay=0.8
-		global TriggerQuicksilver=00000
-		global QuicksilverSlot1=0
-		global QuicksilverSlot2=0
-		global QuicksilverSlot3=0
-		global QuicksilverSlot4=0
-		global QuicksilverSlot5=0
+		global TriggerQuicksilverDelay:=0.8
+		global TriggerQuicksilver:=00000
+		global QuicksilverSlot1:=0
+		global QuicksilverSlot2:=0
+		global QuicksilverSlot3:=0
+		global QuicksilverSlot4:=0
+		global QuicksilverSlot5:=0
 	
 	;Gui Status
 		global OnHideout:=False
@@ -97,7 +97,7 @@ if not A_IsAdmin
 		IniRead, Speed, settings.ini, General, Speed
 		IniRead, QTick, settings.ini, General, QTick
 		IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
-		IniRead, YesUltraWide, settings.ini, General, YesUltraWide
+		IniRead, ResolutionScale, settings.ini, General, ResolutionScale
 		;Coordinates
 		IniRead, GuiX, settings.ini, Coordinates, GuiX
 		IniRead, GuiY, settings.ini, Coordinates, GuiY
@@ -345,31 +345,75 @@ Rescale(){
 	IfWinExist, ahk_class POEWindowClass 
 		{
 		WinGetPos, X, Y, W, H
-		If (YesUltraWide) {
-			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
-			} Else {
+		If (ResolutionScale="Standard") {
+			;Status Check OnHideout
 			global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+			;Status Check OnChar
 			global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+			;Status Check OnChat
 			global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+			;Status Check OnInventory
 			global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+			;Status Check OnStash
 			global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+			;Status Check OnVendor
 			global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+			;GUI overlay
 			global varX:=X + Round(A_ScreenWidth / (1920 / -10))
+			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
 			}
-		global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-		global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-		global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-		global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-		global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-		global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-
-		global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+		Else If (ResolutionScale="UltraWide") {
+			;Status Check OnHideout
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+			;Status Check OnChar
+			global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+			;Status Check OnChat
+			global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+			;Status Check OnInventory
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+			;Status Check OnStash
+			global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+			;Status Check OnVendor
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+			;GUI overlay
+			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
+			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			}
+		Else If (ResolutionScale="QHD") {
+			;Status Check OnHideout
+			global vX_OnHideout:=X + Round(	A_ScreenWidth / (2560 / 3161))
+			global vY_OnHideout:=Y + Round(A_ScreenHeight / (1440 / 951))
+			;Status Check OnChar
+			global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
+			global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1440 / 915))
+			;Status Check OnChat
+			global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
+			global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1440 / 653))
+			;Status Check OnInventory
+			global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 3503))
+			global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1440 / 36))
+			;Status Check OnStash
+			global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
+			global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1440 / 32))
+			;Status Check OnVendor
+			global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
+			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
+			;GUI overlay
+			global varX:=X + Round(A_ScreenWidth / (2560 / -10))
+			global varY:=Y + Round(A_ScreenHeight / (1440 / 1027))
+			}
 		}
 	return
 	}
