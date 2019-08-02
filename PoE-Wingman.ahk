@@ -3575,7 +3575,7 @@ TGameTick(){
 				}
 			}
 			
-		If (Radiobox1Mana10||Radiobox2Mana10||Radiobox3Mana10||Radiobox4Mana10||Radiobox5Mana10) {
+		If (TriggerMana10!="00000") {
 			pixelgetcolor, Mana10, vX_Mana, vY_Mana10
 			if (Mana10!=varMana10) {
 				TriggerFlask(TriggerMana10)
@@ -4829,114 +4829,160 @@ Clamp( Val, Min, Max) {
 
 	updateOnHideout:
 		Gui, Submit, NoHide
-		IfWinExist, ahk_class POEWindowClass 
+		if WinExist(ahk_class POEWindowClass){
 			Rescale()
-		IfWinActive, ahk_class POEWindowClass 
-			{	
 			WinActivate, ahk_class POEWindowClass
+		}else
+			MsgBox, "PoE Window does not exist 'nRecalibrate of OnHideout didnt work"
+
+		if WinActive(ahk_class POEWindowClass){
 			pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
 			IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
 			readFromFile()
-			MsgBox, OnHideout Recalibrated!
-			}
+			MsgBox % "OnHideout recalibrated!`nTook color hex: " . varOnHideout . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideout
+		}else
+			MsgBox, "PoE Window is not active. `nRecalibrate of OnHideout didnt work"
+
+		hotkeys()
+
 		return
 
 	updateOnChar:
 		Gui, Submit, NoHide
-		IfWinExist, ahk_class POEWindowClass 
+		if WinExist(ahk_class POEWindowClass){
 			Rescale()
-		IfWinActive, ahk_class POEWindowClass 
-			{
 			WinActivate, ahk_class POEWindowClass
+		}else
+			MsgBox, "PoE Window does not exist. `nRecalibrate of OnChar didnt work"
+
+		if WinActive(ahk_class POEWindowClass){
 			pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
 			IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
 			readFromFile()
-			MsgBox, OnChar Recalibrated!
-			}
+			MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . vX_OnChar . " and y: " . vY_OnChar
+		}else
+			MsgBox, "PoE Window is not active. `nRecalibrate of OnChar didnt work"
+
+		hotkeys()
+
 		return
 
 	updateOnInventory:
 		Gui, Submit, NoHide
-		IfWinExist, ahk_class POEWindowClass 
+		
+		if WinExist(ahk_class POEWindowClass){
 			Rescale()
-		IfWinActive, ahk_class POEWindowClass 
-			{
 			WinActivate, ahk_class POEWindowClass
+		}else
+			MsgBox, "PoE Window does not exist. `nRecalibrate of OnInventory didnt work"
+
+
+		if WinActive(ahk_class POEWindowClass){
 			pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
 			IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
 			readFromFile()
-			MsgBox, OnInventory Recalibrated!
-			}
+			MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . vX_OnInventory . " and y: " . vY_OnInventory
+		}else
+			MsgBox, "PoE Window is not active. `nRecalibrate of OnInventory didnt work"
+		
+		hotkeys()
+
 		return
 
 	updateOnStash:
 		Gui, Submit, NoHide
-		IfWinExist, ahk_class POEWindowClass 
+		if WinExist(ahk_class POEWindowClass){
 			Rescale()
-		IfWinActive, ahk_class POEWindowClass 
-			{
 			WinActivate, ahk_class POEWindowClass
+		}else
+			MsgBox, "PoE Window does not exist. `nRecalibrate of OnStash didnt work"
+
+		if WinActive(ahk_class POEWindowClass){
 			pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
 			IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
 			readFromFile()
-			MsgBox, OnStash Recalibrated!
-			}
+			MsgBox % "OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . vX_OnStash . " and y: " . vY_OnStash
+		}else
+			MsgBox, "PoE Window is not active. `nRecalibrate of OnStash didnt work"
+		
+		hotkeys()
+
 		return
 		
 	updateOnChat:
 		Gui, Submit, NoHide
-		IfWinExist, ahk_class POEWindowClass 
+		if WinExist(ahk_class POEWindowClass){
 			Rescale()
-		IfWinActive, ahk_class POEWindowClass 
-			{
 			WinActivate, ahk_class POEWindowClass
+		}else
+			MsgBox, "PoE Window does not exist. `nRecalibrate of OnChat didnt work"
+
+
+		if WinActive(ahk_class POEWindowClass){
 			pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
 			IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
 			readFromFile()
-			MsgBox, OnChat Recalibrated!
-			}
+			MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . vX_OnChat . " and y: " . vY_OnChat
+		}else
+			MsgBox, "PoE Window is not active. `nRecalibrate of onChat didnt work"
+
+		hotkeys()
+
 		return
 
 	updateOnVendor:
 		Gui, Submit, NoHide
-		IfWinExist, ahk_class POEWindowClass 
+
+		if WinExist(ahk_class POEWindowClass){
 			Rescale()
-		IfWinActive, ahk_class POEWindowClass 
-			{
 			WinActivate, ahk_class POEWindowClass
+		}else
+			MsgBox, "PoE Window does not exist. `nRecalibrate of OnVendor didnt work"
+
+		if WinActive(ahk_class POEWindowClass){
 			pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
 			IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
 			readFromFile()
-			MsgBox, OnVendor Recalibrated!
-			}
+			MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . vX_OnVendor . " and y: " . vY_OnVendor
+		}else
+			MsgBox, "PoE Window is not active. `nRecalibrate of OnVendor didnt work"
+
+		hotkeys()
+
 		return
 
 	updateDetonate:
 		Gui, Submit, NoHide
-		IfWinExist, ahk_class POEWindowClass 
+		if WinExist(ahk_class POEWindowClass){
 			Rescale()
-		IfWinActive, ahk_class POEWindowClass 
-			{
 			WinActivate, ahk_class POEWindowClass
+		}else 
+			MsgBox, "PoE Window does not exist. `nRecalibrate of DetonateHex didnt work"
+
+		if WinActive(ahk_class POEWindowClass){
 			pixelgetcolor, DetonateHex, DetonateX, DetonateY
 			IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
 			readFromFile()
-			MsgBox, Detonate Recalibrated!
-			}
+			MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateX . " and y: " . DetonateY
+		}else
+			MsgBox, "PoE Window is not active. `nRecalibrate of DetonateHex didnt work"
 		return
 
 	updateDetonateDelve:
 		Gui, Submit, NoHide
-		IfWinExist, ahk_class POEWindowClass 
+		if WinExist(ahk_class POEWindowClass){
 			Rescale()
-		IfWinActive, ahk_class POEWindowClass 
-			{
 			WinActivate, ahk_class POEWindowClass
+		}else 
+			MsgBox, "PoE Window does not exist. `nRecalibrate of DetonateHex didnt work"
+
+		if WinActive(ahk_class POEWindowClass){
 			pixelgetcolor, DetonateHex, DetonateDelveX, DetonateY
 			IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
 			readFromFile()
-			MsgBox, DetonateDelve Recalibrated!
-			}
+			MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateDelveX . " and y: " . DetonateY
+		}else
+			MsgBox, "PoE Window is not active. `nRecalibrate of DetonateHex didnt work"
 		return
 
 	updateCharacterType:
