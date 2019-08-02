@@ -147,7 +147,8 @@
 				, Vessel : False
 				, Incubator : False
 				, Flask : False
-				, Veiled : False}
+				, Veiled : False
+				, Prophecy : False}
 
 		global Detonated := 0
 		global CritQuit := 1
@@ -179,6 +180,7 @@
 		Global StashTabTimelessSplinter := 1
 		Global StashTabFossil := 1
 		Global StashTabResonator := 1
+		Global StashTabProphecy := 1
 	;Checkbox to activate each tab
 		Global StashTabYesCurrency := 1
 		Global StashTabYesMap := 1
@@ -195,6 +197,7 @@
 		Global StashTabYesTimelessSplinter := 1
 		Global StashTabYesFossil := 1
 		Global StashTabYesResonator := 1
+		Global StashTabYesProphecy := 1
 	;~ Hotkeys
 		; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
 		global hotkeyOptions:=!F10
@@ -368,6 +371,7 @@
 		IniWrite, 1, settings.ini, Stash Tab, StashTabTimelessSplinter
 		IniWrite, 1, settings.ini, Stash Tab, StashTabFossil
 		IniWrite, 1, settings.ini, Stash Tab, StashTabResonator
+		IniWrite, 1, settings.ini, Stash Tab, StashTabProphecy
 		
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesCurrency
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesMap
@@ -384,6 +388,7 @@
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesTimelessSplinter
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesFossil
 		IniWrite, 1, settings.ini, Stash Tab, StashTabYesResonator
+		IniWrite, 1, settings.ini, Stash Tab, StashTabYesProphecy
 		
 		;Coordinates
 		IniWrite, -10, settings.ini, Coordinates, GuiX
@@ -921,6 +926,7 @@
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency  x+5 y55, Currency Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter y+14, TSplinter Tab
@@ -929,6 +935,7 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesDivination y+14, Divination Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCollection y+14, Collection Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence y+14, Essence Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy y+14, Prophecy Tab
 
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
@@ -1320,6 +1327,10 @@
 		Iniread, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator
 		valueStashTabYesResonator := StashTabYesResonator
 		GuiControl, , StashTabYesResonator, %valueStashTabYesResonator%
+
+		Iniread, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
+		valueStashTabYesProphecy := StashTabYesProphecy
+		GuiControl, , StashTabYesProphecy, %valueStashTabYesProphecy%
 
 		Iniread, hotkeyOptions, settings.ini, hotkeys, Options
 		valuehotkeyOptions := hotkeyOptions
@@ -1943,6 +1954,12 @@ ItemSort(){
 						If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
 							{
 							MoveStash(StashTabTimelessSplinter)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+							}
+						If (ItemProp.Prophecy&&StashTabYesProphecy)
+							{
+							MoveStash(StashTabProphecy)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 							}
@@ -2758,7 +2775,8 @@ ParseClip(){
 				, Vessel : False
 				, Incubator : False
 				, Flask : False
-				, Veiled : False}
+				, Veiled : False
+				, Prophecy : False}
 	
 	;Begin parsing information	
 	Loop, Parse, Clipboard, `n, `r
@@ -3098,6 +3116,13 @@ ParseClip(){
 		{
 			ItemProp.Veiled := True
 			ItemProp.SpecialType := "Veiled"
+			continue
+		}
+		; Flag Prophecy
+		IfInString, A_LoopField, add this prophecy
+		{
+			ItemProp.Prophecy := True
+			ItemProp.SpecialType := "Prophecy"
 			continue
 		}
 	}
@@ -3628,7 +3653,7 @@ Clamp( Val, Min, Max) {
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	readFromFile(){
 		global
-		;Bandit extra settings
+		;General settings
 			IniRead, DebugMessages, settings.ini, General, DebugMessages
 			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid
 			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo
@@ -3661,6 +3686,7 @@ Clamp( Val, Min, Max) {
 			IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter
 			IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil
 			IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator
+			IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
 			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency
 			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap
 			IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination
@@ -3676,6 +3702,7 @@ Clamp( Val, Min, Max) {
 			IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter
 			IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil
 			IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator
+			IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
 			
 		;Failsafe Colors
 			IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
@@ -4008,6 +4035,7 @@ Clamp( Val, Min, Max) {
 			IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
 			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
 			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
+			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
 			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
 			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
 			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
@@ -4023,6 +4051,7 @@ Clamp( Val, Min, Max) {
 			IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
 			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
 			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
+			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
 		
 		;Attack Flasks
 			IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
@@ -5013,6 +5042,7 @@ Clamp( Val, Min, Max) {
 		IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
 		IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
 		IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
+		IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
 		IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
 		IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
 		IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
@@ -5028,6 +5058,7 @@ Clamp( Val, Min, Max) {
 		IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
 		IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
 		IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
+		IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
 		Return
 
 	UpdateExtra:
