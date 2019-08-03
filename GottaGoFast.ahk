@@ -19,7 +19,12 @@ SetWinDelay, -1
 SetControlDelay, -1
 FileEncoding , UTF-8
 SendMode Input
-Hotkey, IfWinActive, ahk_class POEWindowClass
+
+global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
+for n, exe in POEGameArr {
+	GroupAdd, POEGameGroup, ahk_exe %exe%
+	}
+Hotkey, IfWinActive, ahk_group POEGameGroup
 
 SetTitleMatchMode 3 
 CoordMode, Mouse, Screen
@@ -40,6 +45,10 @@ if not A_IsAdmin
    ExitApp
 }
 
+; Check for window to open
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SetTimer, PoEWindowCheck, 5000
+
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -50,6 +59,8 @@ if not A_IsAdmin
 		global QTick:=250
 		global PopFlaskRespectCD:=1
 		global ResolutionScale:="Standard"
+		Global ToggleExist := False
+		Global RescaleRan := False
 
 	;Coordinates
 		global GuiX:=-5
@@ -137,7 +148,7 @@ if not A_IsAdmin
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Scale positions for status check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-IfWinExist, ahk_class POEWindowClass
+IfWinExist, ahk_group POEGameGroup
 	{
 	Rescale()
 	} Else {
@@ -163,10 +174,10 @@ WinSet, TransColor, 0X130F13
 Gui -Caption
 Gui, Font, bold cFFFFFF S10, Trebuchet MS
 Gui, Add, Text, y+35 BackgroundTrans vT1, Quicksilver: OFF
-IfWinExist, ahk_class POEWindowClass
+IfWinExist, ahk_group POEGameGroup
 	{
 		Rescale()
-		Gui, Show, x%varX% y%varY%, NoActivate 
+		Gui, Show, x%GuiX% y%GuiY%, NoActivate 
 	}
 
 If hotkeyPopFlasks
@@ -244,6 +255,25 @@ MsgMonitor(wParam, lParam, msg)
 		ReadFromFile()
 	Return
 	}
+PoEWindowCheck(){
+	IfWinExist, ahk_group POEGameGroup 
+		{
+		global GuiX, GuiY, RescaleRan, ToggleExist
+		If (!RescaleRan)
+			Rescale()
+		If (!ToggleExist) {
+			Gui 1: Show, x%GuiX% y%GuiY%, NoActivate 
+			ToggleExist := True
+			}
+		} Else {
+		If (ToggleExist){
+			Gui 1: Show, Hide
+			ToggleExist := False
+			}
+		}
+	Return
+	}
+
 ReadFromFile(){
 	Global
 	;General
@@ -278,10 +308,10 @@ ReadFromFile(){
 	;Hotkeys
 	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
 	IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
-	IfWinExist, ahk_class POEWindowClass
+	IfWinExist, ahk_group POEGameGroup
 		{
 			Rescale()
-			Gui, Show, x%varX% y%varY%, NoActivate 
+			Gui, Show, x%GuiX% y%GuiY%, NoActivate 
 		}
 	Return
 	}
@@ -388,7 +418,7 @@ TQuickTick(){
 	}
 
 Rescale(){
-	IfWinExist, ahk_class POEWindowClass 
+	IfWinExist, ahk_group POEGameGroup 
 		{
 		WinGetPos, X, Y, W, H
 		If (ResolutionScale="Standard") {
@@ -411,8 +441,8 @@ Rescale(){
 			global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
 			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
 			;GUI overlay
-			global varX:=X + Round(A_ScreenWidth / (1920 / -10))
-			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
+			global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
 			}
 		Else If (ResolutionScale="UltraWide") {
 			;Status Check OnHideout
@@ -434,8 +464,8 @@ Rescale(){
 			global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
 			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
 			;GUI overlay
-			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
-			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
+			global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
 			}
 		Else If (ResolutionScale="QHD") {
 			;Status Check OnHideout
@@ -457,9 +487,10 @@ Rescale(){
 			global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
 			global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
 			;GUI overlay
-			global varX:=X + Round(A_ScreenWidth / (2560 / -10))
-			global varY:=Y + Round(A_ScreenHeight / (1440 / 1027))
+			global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
+			global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
 			}
+		Global RescaleRan := True
 		}
 	return
 	}

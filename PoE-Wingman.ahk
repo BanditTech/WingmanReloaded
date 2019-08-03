@@ -82,7 +82,8 @@
 		Global OnInventory := False
 		Global OnStash := False
 		Global OnVendor := False
-
+		Global RescaleRan := False
+		Global ToggleExist := False
 		; These colors are from filterblade.xyz filter creator
 		; Choose one of the default background colors with no transparency
 		; These are the mouseover Hex for each of the default colors
@@ -1530,15 +1531,19 @@
 	IfWinExist, ahk_group POEGameGroup
 	{
 		Rescale()
-		Gui 2: Show, x%varX% y%varY%, NoActivate 
+		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 	}
 
+; Check for window to open
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SetTimer, PoEWindowCheck, 5000
 ; Detonate mines timer check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	If (DetonateMines&&!Detonated)
 		SetTimer, TMineTick, 100
 		Else If (!DetonateMines)
 		SetTimer, TMineTick, off
+		
 ; Key Passthrough for 1-5 & Attack keys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;Passthrough for manual activation
@@ -2191,8 +2196,8 @@ Rescale(){
 			global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
 			global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 			;GUI overlay
-			global varX:=X + Round(A_ScreenWidth / (1920 / -10))
-			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
+			global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
 			;Stash tabs menu button
 			global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
 			global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
@@ -2256,8 +2261,8 @@ Rescale(){
 			global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
 			global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
 			;GUI overlay
-			global varX:=X + Round(A_ScreenWidth / (3840 / -10))
-			global varY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+			global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
+			global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
 			;Stash tabs menu button
 			global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
 			global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
@@ -2321,8 +2326,8 @@ Rescale(){
 			global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 3745))
 			global vY_Mana10:=Y + Round(A_ScreenHeight / (1440 / 1054))
 			;GUI overlay
-			global varX:=X + Round(A_ScreenWidth / (2560 / -10))
-			global varY:=Y + Round(A_ScreenHeight / (1440 / 1027))
+			global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
+			global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
 			;Stash tabs menu button
 			global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
 			global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
@@ -2332,6 +2337,7 @@ Rescale(){
 			;calculate the height of each tab
 			global vY_StashTabSize := Round(A_ScreenHeight / ( 1440 / 22))
 			} 
+		Global RescaleRan := True
 		}
 	return
 	}
@@ -3171,6 +3177,26 @@ GuiUpdate(){
 
 ; Pixelcheck for different parts of the screen to see what your status is in game. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PoEWindowCheck(){
+	IfWinExist, ahk_group POEGameGroup 
+		{
+		global GuiX, GuiY, RescaleRan, ToggleExist
+		If (!RescaleRan)
+			Rescale()
+		If (!ToggleExist) {
+			Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+			ToggleExist := True
+			}
+		} Else {
+		If (ToggleExist){
+			Gui 2: Show, Hide
+			ToggleExist := False
+			}
+		}
+	Return
+	}
+; Pixelcheck for different parts of the screen to see what your status is in game. 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GuiStatus(Fetch:=""){
 	If !(Fetch="")
 		{
@@ -3837,7 +3863,7 @@ Clamp( Val, Min, Max) {
 			{
 			Gui, Submit
 			Rescale()
-			Gui 2: Show, x%varX% y%varY%, NoActivate 
+			Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 			WinActivate, ahk_group POEGameGroup
 			;Life Resample
 				pixelgetcolor, varLife20, vX_Life, vY_Life20
