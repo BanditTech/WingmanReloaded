@@ -151,6 +151,7 @@ if not A_IsAdmin
 IfWinExist, ahk_group POEGameGroup
 	{
 	Rescale()
+	WinActivate, ahk_group POEGameGroup
 	} Else {
 	global vX_OnHideout:=1241
 	global vY_OnHideout:=951
@@ -178,6 +179,7 @@ IfWinExist, ahk_group POEGameGroup
 	{
 		Rescale()
 		Gui, Show, x%GuiX% y%GuiY%, NoActivate 
+		WinActivate, ahk_group POEGameGroup
 	}
 
 If hotkeyPopFlasks
@@ -312,6 +314,7 @@ ReadFromFile(){
 		{
 			Rescale()
 			Gui, Show, x%GuiX% y%GuiY%, NoActivate 
+			WinActivate, ahk_group POEGameGroup
 		}
 	Return
 	}

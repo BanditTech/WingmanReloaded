@@ -64,7 +64,7 @@
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
-		Global ResolutionScale := Standard
+		Global ResolutionScale := "Standard"
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
@@ -1532,6 +1532,7 @@
 	{
 		Rescale()
 		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+		WinActivate, ahk_group POEGameGroup
 	}
 
 ; Check for window to open
@@ -3186,6 +3187,7 @@ PoEWindowCheck(){
 		If (!ToggleExist) {
 			Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 			ToggleExist := True
+			WinActivate, ahk_group POEGameGroup
 			}
 		} Else {
 		If (ToggleExist){
@@ -4054,6 +4056,10 @@ Clamp( Val, Min, Max) {
 		readFromFile()
 		GuiUpdate()
 		SetTitleMatchMode 2
+		IfWinExist, ahk_group POEGameGroup
+			{
+			WinActivate, ahk_group POEGameGroup
+			}
 		DetectHiddenWindows On
 		if WinExist("GottaGoFast.ahk ahk_class AutoHotkey")
 			PostMessage, 0x5555, 1  ; The message is sent  to the "last found window" due to WinExist() above.
