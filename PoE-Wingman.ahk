@@ -20,7 +20,12 @@
 	FileEncoding , UTF-8
 	SendMode Input
 	StringCaseSense, On ; Match strings with case.
-	Hotkey, IfWinActive, ahk_class POEWindowClass
+	; Create Executable group for gameHotkey, IfWinActive
+	global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
+	for n, exe in POEGameArr {
+		GroupAdd, POEGameGroup, ahk_exe %exe%
+		}
+	Hotkey, IfWinActive, ahk_group POEGameGroup
 
 	SetTitleMatchMode 3 
 	CoordMode, Mouse, Screen
@@ -42,12 +47,12 @@
 	AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
 
 	CleanUp()
+	Run GottaGoFast.ahk, "A_ScriptDir"
 	if not A_IsAdmin
         if A_IsCompiled
             Run *RunAs "%A_ScriptFullPath%" /restart
         else
             Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
-	Run GottaGoFast.ahk, "A_ScriptDir"
 	OnExit("CleanUp")
 
 	If FileExist("settings.ini")
@@ -317,7 +322,7 @@
 	;Quicksilver
 		global TriggerQuicksilverDelay=0.8
 		global TriggerQuicksilver=00000
-;readFromFile()
+
 
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -520,40 +525,6 @@
 
 ; Wingman Gui Variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	IfWinExist, ahk_class POEWindowClass 
-	{
-		varTextSave:="Save (Only on Char)"
-		varTextOnHideout:="OnHideout Color"
-		varTextOnChar:="OnChar Color"
-		varTextOnInventory:="OnInventory Color"
-		varTextOnStash:="OnStash Color"
-		varTextOnChat:="OnChat Color"
-		varTextOnVendor:="OnVendor Color"
-		varTextDetonate:="Detonate Color"
-		varTextDetonateDelve:="Detonate in Delve"
-	}
-	else
-	{
-		varTextSave:="Save (POE not open)"
-		varTextOnHideout:="(POE not open)"
-		varTextOnChar:="(POE not open)"
-		varTextOnInventory:="(POE not open)"
-		varTextOnStash:="(POE not open)"
-		varTextOnChat:="(POE not open)"
-		varTextOnVendor:="(POE not open)"
-		varTextDetonate:="(POE not open)"
-		varTextDetonateDelve:="(POE not open)"
-	}
-	GuiControl,, SaveBtn, %varTextSave%
-	GuiControl,, UpdateOnHideoutBtn, %varTextOnHideout%
-	GuiControl,, UpdateOnCharBtn, %varTextOnChar%
-	GuiControl,, UpdateOnInventoryBtn, %varTextOnInventory%
-	GuiControl,, UpdateOnStashBtn, %varTextOnStash%
-	GuiControl,, UpdateOnChatBtn, %varTextOnChat%
-	GuiControl,, UpdateOnVendorBtn, %varTextOnVendor%
-	GuiControl,, UpdateDetonateBtn, %varTextDetonate%
-	GuiControl,, UpdateDetonateDelveBtn, %varTextDetonateDelve%
-
 	if Life=1 
 	{
 		varTextAutoQuit20:="20 % Life"
@@ -834,8 +805,7 @@
 	Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything vSaveBtn	 x295 y430	w180 h23, 	%varTextSave%
-	Gui, Add, Button,  		gRefreshGUI vRefreshBtn		x+5			 		h23, 	Check
+	Gui, Add, Button, default gupdateEverything vSaveBtn	 x295 y430	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
 	;#######################################################################################################Profiles Tab
@@ -892,17 +862,17 @@
 	Gui Add, Text, 										x252 	y+3, 				Drop a mine then press the sample button that matches.
 
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y35	w100, 	%varTextOnHideout%
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	%varTextOnChar%
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	%varTextOnChat%
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y35	w100, 	OnHideout Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
 
 
-	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+22	w100, 	%varTextDetonate%
-	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	%varTextDetonateDelve%
+	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+22	w100, 	Detonate Color
+	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
 
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y35	w100, 	%varTextOnInventory%
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	%varTextOnStash%
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	%varTextOnVendor%
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y35	w100, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
 	Gui, Font, Bold
 	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
 	Gui, Font, 
@@ -1407,32 +1377,7 @@
 			}
 		}
 		
-		IfWinExist, ahk_class POEWindowClass 
-			{
-				GuiControl, Enable, SaveBtn
-				GuiControl, Enable, UpdateOnHideoutBtn
-				GuiControl, Enable, UpdateOnCharBtn
-				GuiControl, Enable, UpdateOnInventoryBtn
-				GuiControl, Enable, UpdateOnStashBtn
-				GuiControl, Enable, UpdateOnChatBtn
-				GuiControl, Enable, UpdateOnVendorBtn
-				GuiControl, Enable, UpdateDetonateBtn
-				GuiControl, Enable, UpdateDetonateDelveBtn
-				GuiControl, Hide, RefreshBtn
-			}
-			else
-			{
-				GuiControl, Disable, SaveBtn
-				GuiControl, Disable, UpdateOnHideoutBtn
-				GuiControl, Disable, UpdateOnCharBtn
-				GuiControl, Disable, UpdateOnInventoryBtn
-				GuiControl, Disable, UpdateOnStashBtn
-				GuiControl, Disable, UpdateOnChatBtn
-				GuiControl, Disable, UpdateOnVendorBtn
-				GuiControl, Disable, UpdateDetonateBtn
-				GuiControl, Disable, UpdateDetonateDelveBtn
-			}
-			
+		
 		if(valueLife==1) {
 			loop 5 {
 				GuiControl, Enable, Radiobox%A_Index%Life90
@@ -1515,7 +1460,7 @@
 	global Radiobox4QS
 	global Radiobox5QS
 
-	IfWinExist, ahk_class POEWindowClass
+	IfWinExist, ahk_group POEGameGroup
 		{
 		Rescale()
 		} else {
@@ -1582,7 +1527,7 @@
 	Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
 	Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
 
-	IfWinExist, ahk_class POEWindowClass
+	IfWinExist, ahk_group POEGameGroup
 	{
 		Rescale()
 		Gui 2: Show, x%varX% y%varY%, NoActivate 
@@ -2189,7 +2134,7 @@ ScaleRes(x, y){
 ; Rescales values for specialty resolutions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Rescale(){
-	IfWinExist, ahk_class POEWindowClass 
+	IfWinExist, ahk_group POEGameGroup 
 		{
 		WinGetPos, X, Y, W, H
 		If (ResolutionScale="Standard") {
@@ -2690,7 +2635,7 @@ checkActiveType() {
 	Process, Exist, %executable%
 	if !ErrorLevel
 		{
-		WinGet, id, list,ahk_class POEWindowClass,, Program Manager
+		WinGet, id, list,ahk_group POEGameGroup,, Program Manager
 		Loop, %id%
 			{
 			this_id := id%A_Index%
@@ -3800,7 +3745,7 @@ Clamp( Val, Min, Max) {
 			IniRead, CritQuit, settings.ini, AutoQuit, CritQuit
 
 		;~ hotkeys reset
-			hotkey, IfWinActive, ahk_class POEWindowClass
+			hotkey, IfWinActive, ahk_group POEGameGroup
 			If hotkeyAutoQuit
 				hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
 			If hotkeyAutoFlask
@@ -3827,7 +3772,7 @@ Clamp( Val, Min, Max) {
 			hotkey, IfWinActive
 			If hotkeyOptions
 				hotkey,% hotkeyOptions, optionsCommand, Off
-			hotkey, IfWinActive, ahk_class POEWindowClass
+			hotkey, IfWinActive, ahk_group POEGameGroup
 
 		;~ hotkeys iniread
 			IniRead, hotkeyOptions, settings.ini, hotkeys, Options
@@ -3847,7 +3792,7 @@ Clamp( Val, Min, Max) {
 			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
 			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, W
 
-			hotkey, IfWinActive, ahk_class POEWindowClass
+			hotkey, IfWinActive, ahk_group POEGameGroup
 			If hotkeyAutoQuit
 				hotkey,% hotkeyAutoQuit, AutoQuitCommand, On
 			If hotkeyAutoFlask
@@ -3887,38 +3832,61 @@ Clamp( Val, Min, Max) {
 	submit(){  
 		updateEverything:
 		global
-		Gui, Submit
 		
-		IfWinExist, ahk_class POEWindowClass 
+		IfWinExist, ahk_group POEGameGroup 
 			{
+			Gui, Submit
 			Rescale()
+			Gui 2: Show, x%varX% y%varY%, NoActivate 
+			WinActivate, ahk_group POEGameGroup
+			;Life Resample
+				pixelgetcolor, varLife20, vX_Life, vY_Life20
+				pixelgetcolor, varLife30, vX_Life, vY_Life30
+				pixelgetcolor, varLife40, vX_Life, vY_Life40
+				pixelgetcolor, varLife50, vX_Life, vY_Life50
+				pixelgetcolor, varLife60, vX_Life, vY_Life60
+				pixelgetcolor, varLife70, vX_Life, vY_Life70
+				pixelgetcolor, varLife80, vX_Life, vY_Life80
+				pixelgetcolor, varLife90, vX_Life, vY_Life90
+				
+				IniWrite, %varLife20%, settings.ini, Life Colors, Life20
+				IniWrite, %varLife30%, settings.ini, Life Colors, Life30
+				IniWrite, %varLife40%, settings.ini, Life Colors, Life40
+				IniWrite, %varLife50%, settings.ini, Life Colors, Life50
+				IniWrite, %varLife60%, settings.ini, Life Colors, Life60
+				IniWrite, %varLife70%, settings.ini, Life Colors, Life70
+				IniWrite, %varLife80%, settings.ini, Life Colors, Life80
+				IniWrite, %varLife90%, settings.ini, Life Colors, Life90
+			;ES Resample
+				pixelgetcolor, varES20, vX_ES, vY_ES20
+				pixelgetcolor, varES30, vX_ES, vY_ES30
+				pixelgetcolor, varES40, vX_ES, vY_ES40
+				pixelgetcolor, varES50, vX_ES, vY_ES50
+				pixelgetcolor, varES60, vX_ES, vY_ES60
+				pixelgetcolor, varES70, vX_ES, vY_ES70
+				pixelgetcolor, varES80, vX_ES, vY_ES80
+				pixelgetcolor, varES90, vX_ES, vY_ES90
+				
+				IniWrite, %varES20%, settings.ini, ES Colors, ES20
+				IniWrite, %varES30%, settings.ini, ES Colors, ES30
+				IniWrite, %varES40%, settings.ini, ES Colors, ES40
+				IniWrite, %varES50%, settings.ini, ES Colors, ES50
+				IniWrite, %varES60%, settings.ini, ES Colors, ES60
+				IniWrite, %varES70%, settings.ini, ES Colors, ES70
+				IniWrite, %varES80%, settings.ini, ES Colors, ES80
+				IniWrite, %varES90%, settings.ini, ES Colors, ES90
+			;Mana Resample
+				pixelgetcolor, varMana10, vX_Mana, vY_Mana10
+
+				IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
+			;Messagebox	
+				ToolTip % "Resampled the Life, ES, and Mana colors`nMake sure you were on your character!"
+			} Else {
+				MsgBox % "Game is not Open`nWill not Resample the Life, ES, or Mana colors!`nAll other settings will save."
+				Gui, Submit, NoHide
 			}
 
-		
-		IfWinActive, ahk_class POEWindowClass 
-			{
-			WinActivate, ahk_class POEWindowClass
-			}
-		
 		;Life Flasks
-			pixelgetcolor, varLife20, vX_Life, vY_Life20
-			pixelgetcolor, varLife30, vX_Life, vY_Life30
-			pixelgetcolor, varLife40, vX_Life, vY_Life40
-			pixelgetcolor, varLife50, vX_Life, vY_Life50
-			pixelgetcolor, varLife60, vX_Life, vY_Life60
-			pixelgetcolor, varLife70, vX_Life, vY_Life70
-			pixelgetcolor, varLife80, vX_Life, vY_Life80
-			pixelgetcolor, varLife90, vX_Life, vY_Life90
-			
-			IniWrite, %varLife20%, settings.ini, Life Colors, Life20
-			IniWrite, %varLife30%, settings.ini, Life Colors, Life30
-			IniWrite, %varLife40%, settings.ini, Life Colors, Life40
-			IniWrite, %varLife50%, settings.ini, Life Colors, Life50
-			IniWrite, %varLife60%, settings.ini, Life Colors, Life60
-			IniWrite, %varLife70%, settings.ini, Life Colors, Life70
-			IniWrite, %varLife80%, settings.ini, Life Colors, Life80
-			IniWrite, %varLife90%, settings.ini, Life Colors, Life90
-			
 			IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
 			IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
 			IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
@@ -3929,25 +3897,8 @@ Clamp( Val, Min, Max) {
 			IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
 			IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
 		
+			
 		;ES Flasks
-			pixelgetcolor, varES20, vX_ES, vY_ES20
-			pixelgetcolor, varES30, vX_ES, vY_ES30
-			pixelgetcolor, varES40, vX_ES, vY_ES40
-			pixelgetcolor, varES50, vX_ES, vY_ES50
-			pixelgetcolor, varES60, vX_ES, vY_ES60
-			pixelgetcolor, varES70, vX_ES, vY_ES70
-			pixelgetcolor, varES80, vX_ES, vY_ES80
-			pixelgetcolor, varES90, vX_ES, vY_ES90
-			
-			IniWrite, %varES20%, settings.ini, ES Colors, ES20
-			IniWrite, %varES30%, settings.ini, ES Colors, ES30
-			IniWrite, %varES40%, settings.ini, ES Colors, ES40
-			IniWrite, %varES50%, settings.ini, ES Colors, ES50
-			IniWrite, %varES60%, settings.ini, ES Colors, ES60
-			IniWrite, %varES70%, settings.ini, ES Colors, ES70
-			IniWrite, %varES80%, settings.ini, ES Colors, ES80
-			IniWrite, %varES90%, settings.ini, ES Colors, ES90
-			
 			IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, settings.ini, ES Triggers, TriggerES20
 			IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, settings.ini, ES Triggers, TriggerES30
 			IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, settings.ini, ES Triggers, TriggerES40
@@ -3957,11 +3908,7 @@ Clamp( Val, Min, Max) {
 			IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, settings.ini, ES Triggers, TriggerES80
 			IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, settings.ini, ES Triggers, TriggerES90
 			IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, settings.ini, ES Triggers, DisableES
-		
 		;Mana Flasks
-			pixelgetcolor, varMana10, vX_Mana, vY_Mana10
-			
-			IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
 			IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10
 
 		;Bandit Extra options
@@ -4079,8 +4026,12 @@ Clamp( Val, Min, Max) {
 			IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
 		
 		readFromFile()
-		Run GottaGoFast.ahk
-		
+		GuiUpdate()
+		SetTitleMatchMode 2
+		DetectHiddenWindows On
+		if WinExist("GottaGoFast.ahk ahk_class AutoHotkey")
+			PostMessage, 0x5555, 1  ; The message is sent  to the "last found window" due to WinExist() above.
+		DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
 		return  
 		}
 
@@ -4769,79 +4720,25 @@ Clamp( Val, Min, Max) {
 		Return
 		}
 
-	RefreshGUI:
-		IfWinExist, ahk_class POEWindowClass 
-		{
-			GuiControl, Enable, SaveBtn
-			GuiControl, Enable, UpdateOnHideoutBtn
-			GuiControl, Enable, UpdateOnCharBtn
-			GuiControl, Enable, UpdateOnInventoryBtn
-			GuiControl, Enable, UpdateOnStashBtn
-			GuiControl, Enable, UpdateOnChatBtn
-			GuiControl, Enable, UpdateOnVendorBtn
-			GuiControl, Enable, UpdateDetonateBtn
-			GuiControl, Enable, UpdateDetonateDelveBtn
-			GuiControl, Hide, RefreshBtn
-			Rescale()
-			Reload
-			varTextSave:="Save (Only on Char)"
-			varTextOnHideout:="OnHideout Color"
-			varTextOnChar:="OnChar Color"
-			varTextOnInventory:="OnInventory Color"
-			varTextOnStash:="OnStash Color"
-			varTextOnChat:="OnChat Color"
-			varTextOnVendor:="OnVendor Color"
-			varTextDetonate:="Detonate Color"
-			varTextDetonateDelve:="Detonate in Delve"
-		}
-		else
-		{
-			GuiControl, Disable, SaveBtn
-			GuiControl, Disable, UpdateOnHideoutBtn
-			GuiControl, Disable, UpdateOnCharBtn
-			GuiControl, Disable, UpdateOnInventoryBtn
-			GuiControl, Disable, UpdateOnStashBtn
-			GuiControl, Disable, UpdateOnChatBtn
-			GuiControl, Disable, UpdateOnVendorBtn
-			GuiControl, Disable, UpdateDetonateBtn
-			GuiControl, Disable, UpdateDetonateDelveBtn
-			GuiControl, Enable, ResfreshBtn
-			varTextSave:="Save (POE not open)"
-			varTextOnHideout:="(POE not open)"
-			varTextOnChar:="(POE not open)"
-			varTextOnInventory:="(POE not open)"
-			varTextOnStash:="(POE not open)"
-			varTextOnChat:="(POE not open)"
-			varTextOnVendor:="(POE not open)"
-			varTextDetonate:="(POE not open)"
-			varTextDetonateDelve:="(POE not open)"
-		}
-		GuiControl,, SaveBtn, %varTextSave%
-		GuiControl,, UpdateOnHideoutBtn, %varTextOnHideout%
-		GuiControl,, UpdateOnCharBtn, %varTextOnChar%
-		GuiControl,, UpdateOnInventoryBtn, %varTextOnInventory%
-		GuiControl,, UpdateOnStashBtn, %varTextOnStash%
-		GuiControl,, UpdateOnChatBtn, %varTextOnChat%
-		GuiControl,, UpdateOnVendorBtn, %varTextOnVendor%
-		GuiControl,, UpdateDetonateBtn, %varTextDetonate%
-		GuiControl,, UpdateDetonateDelveBtn, %varTextDetonateDelve%
-		return
-
 	updateOnHideout:
 		Gui, Submit, NoHide
-		if WinExist(ahk_class POEWindowClass){
+		IfWinExist, ahk_group POEGameGroup
+		{
 			Rescale()
-			WinActivate, ahk_class POEWindowClass
-		}else
-			MsgBox, "PoE Window does not exist 'nRecalibrate of OnHideout didnt work"
+			WinActivate, ahk_group POEGameGroup
+		} else {
+			MsgBox % "PoE Window does not exist `nRecalibrate of OnHideout didn't work"
+			Return
+		}
 
-		if WinActive(ahk_class POEWindowClass){
+		if WinActive(ahk_group POEGameGroup){
 			pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
 			IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
 			readFromFile()
 			MsgBox % "OnHideout recalibrated!`nTook color hex: " . varOnHideout . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideout
-		}else
-			MsgBox, "PoE Window is not active. `nRecalibrate of OnHideout didnt work"
+		} else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
+
 
 		hotkeys()
 
@@ -4849,19 +4746,22 @@ Clamp( Val, Min, Max) {
 
 	updateOnChar:
 		Gui, Submit, NoHide
-		if WinExist(ahk_class POEWindowClass){
+		IfWinExist, ahk_group POEGameGroup
+		{
 			Rescale()
-			WinActivate, ahk_class POEWindowClass
-		}else
-			MsgBox, "PoE Window does not exist. `nRecalibrate of OnChar didnt work"
+			WinActivate, ahk_group POEGameGroup
+		} else {
+			MsgBox % "PoE Window does not exist. `nRecalibrate of OnChar didn't work"
+			Return
+		}
 
-		if WinActive(ahk_class POEWindowClass){
+		if WinActive(ahk_group POEGameGroup){
 			pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
 			IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
 			readFromFile()
 			MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . vX_OnChar . " and y: " . vY_OnChar
-		}else
-			MsgBox, "PoE Window is not active. `nRecalibrate of OnChar didnt work"
+		} else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
 
 		hotkeys()
 
@@ -4870,20 +4770,23 @@ Clamp( Val, Min, Max) {
 	updateOnInventory:
 		Gui, Submit, NoHide
 		
-		if WinExist(ahk_class POEWindowClass){
+		IfWinExist, ahk_group POEGameGroup
+		{
 			Rescale()
-			WinActivate, ahk_class POEWindowClass
-		}else
-			MsgBox, "PoE Window does not exist. `nRecalibrate of OnInventory didnt work"
+			WinActivate, ahk_group POEGameGroup
+		} else {
+			MsgBox % "PoE Window does not exist. `nRecalibrate of OnInventory didn't work"
+			Return
+		}
 
 
-		if WinActive(ahk_class POEWindowClass){
+		if WinActive(ahk_group POEGameGroup){
 			pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
 			IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
 			readFromFile()
 			MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . vX_OnInventory . " and y: " . vY_OnInventory
 		}else
-			MsgBox, "PoE Window is not active. `nRecalibrate of OnInventory didnt work"
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
 		
 		hotkeys()
 
@@ -4891,19 +4794,22 @@ Clamp( Val, Min, Max) {
 
 	updateOnStash:
 		Gui, Submit, NoHide
-		if WinExist(ahk_class POEWindowClass){
+		IfWinExist, ahk_group POEGameGroup
+		{
 			Rescale()
-			WinActivate, ahk_class POEWindowClass
-		}else
-			MsgBox, "PoE Window does not exist. `nRecalibrate of OnStash didnt work"
+			WinActivate, ahk_group POEGameGroup
+		} else {
+			MsgBox % "PoE Window does not exist. `nRecalibrate of OnStash didn't work"
+			Return
+		}
 
-		if WinActive(ahk_class POEWindowClass){
+		if WinActive(ahk_group POEGameGroup){
 			pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
 			IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
 			readFromFile()
 			MsgBox % "OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . vX_OnStash . " and y: " . vY_OnStash
 		}else
-			MsgBox, "PoE Window is not active. `nRecalibrate of OnStash didnt work"
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnStash didn't work"
 		
 		hotkeys()
 
@@ -4911,20 +4817,23 @@ Clamp( Val, Min, Max) {
 		
 	updateOnChat:
 		Gui, Submit, NoHide
-		if WinExist(ahk_class POEWindowClass){
+		IfWinExist, ahk_group POEGameGroup
+		{
 			Rescale()
-			WinActivate, ahk_class POEWindowClass
-		}else
-			MsgBox, "PoE Window does not exist. `nRecalibrate of OnChat didnt work"
+			WinActivate, ahk_group POEGameGroup
+		} else {
+			MsgBox % "PoE Window does not exist. `nRecalibrate of OnChat didn't work"
+			Return
+		}
 
 
-		if WinActive(ahk_class POEWindowClass){
+		if WinActive(ahk_group POEGameGroup){
 			pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
 			IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
 			readFromFile()
 			MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . vX_OnChat . " and y: " . vY_OnChat
 		}else
-			MsgBox, "PoE Window is not active. `nRecalibrate of onChat didnt work"
+			MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
 
 		hotkeys()
 
@@ -4933,19 +4842,22 @@ Clamp( Val, Min, Max) {
 	updateOnVendor:
 		Gui, Submit, NoHide
 
-		if WinExist(ahk_class POEWindowClass){
+		IfWinExist, ahk_group POEGameGroup
+		{
 			Rescale()
-			WinActivate, ahk_class POEWindowClass
-		}else
-			MsgBox, "PoE Window does not exist. `nRecalibrate of OnVendor didnt work"
+			WinActivate, ahk_group POEGameGroup
+		} else {
+			MsgBox % "PoE Window does not exist. `nRecalibrate of OnVendor didn't work"
+			Return
+		}
 
-		if WinActive(ahk_class POEWindowClass){
+		if WinActive(ahk_group POEGameGroup){
 			pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
 			IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
 			readFromFile()
 			MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . vX_OnVendor . " and y: " . vY_OnVendor
 		}else
-			MsgBox, "PoE Window is not active. `nRecalibrate of OnVendor didnt work"
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
 
 		hotkeys()
 
@@ -4953,36 +4865,48 @@ Clamp( Val, Min, Max) {
 
 	updateDetonate:
 		Gui, Submit, NoHide
-		if WinExist(ahk_class POEWindowClass){
+		IfWinExist, ahk_group POEGameGroup
+		{
 			Rescale()
-			WinActivate, ahk_class POEWindowClass
-		}else 
-			MsgBox, "PoE Window does not exist. `nRecalibrate of DetonateHex didnt work"
+			WinActivate, ahk_group POEGameGroup
+		} else {
+			MsgBox % "PoE Window does not exist. `nRecalibrate of DetonateHex didn't work"
+			Return
+		}
 
-		if WinActive(ahk_class POEWindowClass){
+		if WinActive(ahk_group POEGameGroup){
 			pixelgetcolor, DetonateHex, DetonateX, DetonateY
 			IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
 			readFromFile()
 			MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateX . " and y: " . DetonateY
 		}else
-			MsgBox, "PoE Window is not active. `nRecalibrate of DetonateHex didnt work"
+			MsgBox % "PoE Window is not active. `nRecalibrate of DetonateHex didn't work"
+
+		hotkeys()
+
 		return
 
 	updateDetonateDelve:
 		Gui, Submit, NoHide
-		if WinExist(ahk_class POEWindowClass){
+		IfWinExist, ahk_group POEGameGroup
+		{
 			Rescale()
-			WinActivate, ahk_class POEWindowClass
-		}else 
-			MsgBox, "PoE Window does not exist. `nRecalibrate of DetonateHex didnt work"
+			WinActivate, ahk_group POEGameGroup
+		} else {
+			MsgBox % "PoE Window does not exist. `nRecalibrate of DetonateHex didn't work"
+			Return
+		}
 
-		if WinActive(ahk_class POEWindowClass){
+		if WinActive(ahk_group POEGameGroup){
 			pixelgetcolor, DetonateHex, DetonateDelveX, DetonateY
 			IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
 			readFromFile()
 			MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateDelveX . " and y: " . DetonateY
 		}else
-			MsgBox, "PoE Window is not active. `nRecalibrate of DetonateHex didnt work"
+			MsgBox % "PoE Window is not active. `nRecalibrate of DetonateHex didn't work"
+
+		hotkeys()
+		
 		return
 
 	updateCharacterType:

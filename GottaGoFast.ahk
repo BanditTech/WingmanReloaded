@@ -27,6 +27,9 @@ CoordMode, Pixel, Screen
 SetWorkingDir %A_ScriptDir%  
 Thread, interrupt, 0
 
+OnMessage(0x5555, "MsgMonitor")
+OnMessage(0x5556, "MsgMonitor")
+
 I_Icon = phase_run_skill_icon.ico
 IfExist, %I_Icon%
   Menu, Tray, Icon, %I_Icon%
@@ -92,7 +95,6 @@ if not A_IsAdmin
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	If FileExist("settings.ini"){ 
-
 		;General
 		IniRead, Speed, settings.ini, General, Speed
 		IniRead, QTick, settings.ini, General, QTick
@@ -125,7 +127,6 @@ if not A_IsAdmin
 		;Hotkeys
 		IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
 		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
-		
 		} 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra vars - Not in INI
@@ -167,8 +168,6 @@ IfWinExist, ahk_class POEWindowClass
 		Rescale()
 		Gui, Show, x%varX% y%varY%, NoActivate 
 	}
-
-
 
 If hotkeyPopFlasks
 	hotkey,~%hotkeyPopFlasks%, PopFlasksCommand, On
@@ -238,7 +237,54 @@ AutoQuicksilverCommand:
     }
 	GuiUpdate()
 	return
-
+MsgMonitor(wParam, lParam, msg)
+	{
+	critical
+    If (wParam=1)
+		ReadFromFile()
+	Return
+	}
+ReadFromFile(){
+	Global
+	;General
+	IniRead, Speed, settings.ini, General, Speed
+	IniRead, QTick, settings.ini, General, QTick
+	IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
+	IniRead, ResolutionScale, settings.ini, General, ResolutionScale
+	;Coordinates
+	IniRead, GuiX, settings.ini, Coordinates, GuiX
+	IniRead, GuiY, settings.ini, Coordinates, GuiY
+	;Failsafe Colors
+	IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
+	IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
+	IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat
+	IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor
+	IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
+	IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
+	;Flask Cooldowns
+	IniRead, CoolDownFlask1, settings.ini, Flask Cooldowns, CoolDownFlask1
+	IniRead, CoolDownFlask2, settings.ini, Flask Cooldowns, CoolDownFlask2
+	IniRead, CoolDownFlask3, settings.ini, Flask Cooldowns, CoolDownFlask3
+	IniRead, CoolDownFlask4, settings.ini, Flask Cooldowns, CoolDownFlask4
+	IniRead, CoolDownFlask5, settings.ini, Flask Cooldowns, CoolDownFlask5
+	;Quicksilver
+	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
+	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
+	IniRead, QuicksilverSlot1, settings.ini, Quicksilver, QuicksilverSlot1
+	IniRead, QuicksilverSlot2, settings.ini, Quicksilver, QuicksilverSlot2
+	IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3
+	IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4
+	IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5
+	;Hotkeys
+	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
+	IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
+	IfWinExist, ahk_class POEWindowClass
+		{
+			Rescale()
+			Gui, Show, x%varX% y%varY%, NoActivate 
+		}
+	Return
+	}
 RandomSleep(min,max){
 	Random, r, %min%, %max%
 	r:=floor(r/Speed)
