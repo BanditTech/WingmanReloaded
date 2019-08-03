@@ -3909,6 +3909,7 @@ Clamp( Val, Min, Max) {
 				IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
 			;Messagebox	
 				ToolTip % "Resampled the Life, ES, and Mana colors`nMake sure you were on your character!"
+				SetTimer, RemoveToolTip, -5000
 			} Else {
 				MsgBox % "Game is not Open`nWill not Resample the Life, ES, or Mana colors!`nAll other settings will save."
 				Gui, Submit, NoHide
