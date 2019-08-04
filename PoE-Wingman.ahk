@@ -20,6 +20,8 @@
 	FileEncoding , UTF-8
 	SendMode Input
 	StringCaseSense, On ; Match strings with case.
+	; Create a container for the sub-script
+	Global scriptGottaGoFast := "GottaGoFast.ahk ahk_class AutoHotkey"
 	; Create Executable group for gameHotkey, IfWinActive
 	global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
 	for n, exe in POEGameArr {
@@ -881,7 +883,7 @@
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart                         	          	, Show GUI on startup?
 	Gui Add, Checkbox, gUpdateExtra	vSteam                         	          	, Are you using Steam?
 	Gui Add, Checkbox, gUpdateExtra	vHighBits                         	          	, Are you running 64 bit?
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale   ChooseString%ResolutionScale%      w80               	    , Standard|UltraWide|QHD
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale   ChooseString%ResolutionScale%      w80               	    , Standard|UltraWide
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
@@ -1552,30 +1554,35 @@
 	~1::
 		OnCoolDown[1]:=1 
 		settimer, TimmerFlask1, %CoolDownFlask1%
+		SendMSG(3, 1, scriptGottaGoFast)
 		return
 
 	; pass-thru and start timer for flask 2
 	~2::
 		OnCoolDown[2]:=1 
 		settimer, TimmerFlask2, %CoolDownFlask2%
+		SendMSG(3, 2, scriptGottaGoFast)
 		return
 
 	; pass-thru and start timer for flask 3
 	~3::
 		OnCoolDown[3]:=1 
 		settimer, TimmerFlask3, %CoolDownFlask3%
+		SendMSG(3, 3, scriptGottaGoFast)
 		return
 
 	; pass-thru and start timer for flask 4
 	~4::
 		OnCoolDown[4]:=1 
 		settimer, TimmerFlask4, %CoolDownFlask4%
+		SendMSG(3, 4, scriptGottaGoFast)
 		return
 
 	; pass-thru and start timer for flask 5
 	~5::
 		OnCoolDown[5]:=1 
 		settimer, TimmerFlask5, %CoolDownFlask5%
+		SendMSG(3, 5, scriptGottaGoFast)
 		return
 
 ; Move to # stash hotkeys
@@ -2343,7 +2350,7 @@ Rescale(){
 	return
 	}
 
-;Toggle Auto-Quit
+; Toggle Auto-Quit
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 AutoQuit(){
 	AutoQuitCommand:
@@ -2356,7 +2363,7 @@ AutoQuit(){
 	return
 	}
 
-;Toggle Auto-Pot
+; Toggle Auto-Pot
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 AutoFlask(){
 	AutoFlaskCommand:	
@@ -2477,26 +2484,31 @@ PopFlasks(){
 	Else {
 		Send 1
 		OnCoolDown[1]:=1 
+		SendMSG(3, 1, scriptGottaGoFast)
 		CoolDown:=CoolDownFlask1
 		settimer, TimmerFlask1, %CoolDown%
 		RandomSleep(-99,99)
 		Send 4
 		OnCoolDown[4]:=1 
 		CoolDown:=CoolDownFlask4
+		SendMSG(3, 4, scriptGottaGoFast)
 		settimer, TimmerFlask4, %CoolDown%
 		RandomSleep(-99,99)
 		Send 3
 		OnCoolDown[3]:=1 
+		SendMSG(3, 3, scriptGottaGoFast)
 		CoolDown:=CoolDownFlask3
 		settimer, TimmerFlask3, %CoolDown%
 		RandomSleep(-99,99)
 		Send 2
 		OnCoolDown[2]:=1 
+		SendMSG(3, 2, scriptGottaGoFast)
 		CoolDown:=CoolDownFlask2
 		settimer, TimmerFlask2, %CoolDown%
 		RandomSleep(-99,99)
 		Send 5
 		OnCoolDown[5]:=1 
+		SendMSG(3, 5, scriptGottaGoFast)
 		CoolDown:=CoolDownFlask5
 		settimer, TimmerFlask5, %CoolDown%
 	}
@@ -2525,6 +2537,7 @@ LogoutCommand(){
 	}
 
 ; Main function of the LutBot logout method
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 logout(executable){
 	global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
 	Critical
@@ -3197,6 +3210,14 @@ PoEWindowCheck(){
 		}
 	Return
 	}
+; Send one or two digits to a sub-script 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SendMSG(wParam:=0, lParam:=0, script:=""){
+	DetectHiddenWindows On
+	if WinExist(script) 
+		PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+	DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
+	}
 ; Pixelcheck for different parts of the screen to see what your status is in game. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GuiStatus(Fetch:=""){
@@ -3568,6 +3589,7 @@ TriggerFlask(Trigger){
 		if (FLVal > 0) {
 			if (OnCoolDown[FL]=0) {
 				send %FL%
+				SendMSG(3, FL, scriptGottaGoFast)
 				OnCoolDown[FL]:=1 
 				CoolDown:=CoolDownFlask%FL%
 				settimer, TimmerFlask%FL%, %CoolDown%
@@ -4061,10 +4083,7 @@ Clamp( Val, Min, Max) {
 			{
 			WinActivate, ahk_group POEGameGroup
 			}
-		DetectHiddenWindows On
-		if WinExist("GottaGoFast.ahk ahk_class AutoHotkey")
-			PostMessage, 0x5555, 1  ; The message is sent  to the "last found window" due to WinExist() above.
-		DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
+		SendMSG(1, , scriptGottaGoFast)
 		return  
 		}
 
