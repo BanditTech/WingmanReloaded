@@ -100,7 +100,7 @@ if not A_IsAdmin
 		global OnVendor:=False
 
 	;Hotkeys
-		global hotkeyPopFlasks
+		global hotkeyAutoQuicksilver
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -136,7 +136,6 @@ if not A_IsAdmin
 		IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4
 		IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5
 		;Hotkeys
-		IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
 		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
 		} 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -182,14 +181,12 @@ IfWinExist, ahk_group POEGameGroup
 		WinActivate, ahk_group POEGameGroup
 	}
 
-If hotkeyPopFlasks
-	hotkey,~%hotkeyPopFlasks%, PopFlasksCommand, On
 If hotkeyAutoQuicksilver
 	hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 
 
 ;Pop all flasks
-PopFlasksCommand:
+PopFlaskCooldowns(){
 	If (PopFlaskRespectCD)
 		TriggerFlaskCD(11111)
 	Else {
@@ -205,40 +202,10 @@ PopFlasksCommand:
 		settimer, TimmerFlask5, %CoolDownFlask5%
 		}
 	return
+	}
 
 ~#Escape::
 	ExitApp
-
-;Passthrough for manual activation
-	; pass-thru and start timer for flask 1
-	~1::
-		OnCoolDown[1]:=1 
-		settimer, TimmerFlask1, %CoolDownFlask1%
-		return
-
-	; pass-thru and start timer for flask 2
-	~2::
-		OnCoolDown[2]:=1 
-		settimer, TimmerFlask2, %CoolDownFlask2%
-		return
-
-	; pass-thru and start timer for flask 3
-	~3::
-		OnCoolDown[3]:=1 
-		settimer, TimmerFlask3, %CoolDownFlask3%
-		return
-
-	; pass-thru and start timer for flask 4
-	~4::
-		OnCoolDown[4]:=1 
-		settimer, TimmerFlask4, %CoolDownFlask4%
-		return
-
-	; pass-thru and start timer for flask 5
-	~5::
-		OnCoolDown[5]:=1 
-		settimer, TimmerFlask5, %CoolDownFlask5%
-		return
 
 ;Toggle Auto-Quick
 AutoQuicksilverCommand:
@@ -250,11 +217,42 @@ AutoQuicksilverCommand:
     }
 	GuiUpdate()
 	return
+; Receive Messages from other scripts
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MsgMonitor(wParam, lParam, msg)
 	{
 	critical
     If (wParam=1)
 		ReadFromFile()
+	Else If (wParam=2)
+		PopFlaskCooldowns()
+	Else If (wParam=3) {
+		If (lParam=1){
+			OnCoolDown[1]:=1 
+			settimer, TimmerFlask1, %CoolDownFlask1%
+			return
+			}		
+		If (lParam=2){
+			OnCoolDown[2]:=1 
+			settimer, TimmerFlask2, %CoolDownFlask2%
+			return
+			}		
+		If (lParam=3){
+			OnCoolDown[3]:=1 
+			settimer, TimmerFlask3, %CoolDownFlask3%
+			return
+			}		
+		If (lParam=4){
+			OnCoolDown[4]:=1 
+			settimer, TimmerFlask4, %CoolDownFlask4%
+			return
+			}		
+		If (lParam=5){
+			OnCoolDown[5]:=1 
+			settimer, TimmerFlask5, %CoolDownFlask5%
+			return
+			}		
+	}
 	Return
 	}
 PoEWindowCheck(){
