@@ -21,13 +21,16 @@
 	SendMode Input
 	StringCaseSense, On ; Match strings with case.
 	; Create a container for the sub-script
-	Global scriptGottaGoFast := "GottaGoFast.ahk ahk_class AutoHotkey"
+	Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
 	; Create Executable group for gameHotkey, IfWinActive
 	global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
 	for n, exe in POEGameArr {
 		GroupAdd, POEGameGroup, ahk_exe %exe%
 		}
 	Hotkey, IfWinActive, ahk_group POEGameGroup
+
+	OnMessage(0x5555, "MsgMonitor")
+	OnMessage(0x5556, "MsgMonitor")
 
 	SetTitleMatchMode 3 
 	CoordMode, Mouse, Screen
@@ -3210,12 +3213,52 @@ PoEWindowCheck(){
 		}
 	Return
 	}
+; Receive Messages from other scripts
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MsgMonitor(wParam, lParam, msg)
+	{
+	critical
+    If (wParam=1)
+		Return
+	Else If (wParam=2)
+		Return
+	Else If (wParam=3) {
+		If (lParam=1){
+			OnCoolDown[1]:=1 
+			settimer, TimmerFlask1, %CoolDownFlask1%
+			return
+			}		
+		If (lParam=2){
+			OnCoolDown[2]:=1 
+			settimer, TimmerFlask2, %CoolDownFlask2%
+			return
+			}		
+		If (lParam=3){
+			OnCoolDown[3]:=1 
+			settimer, TimmerFlask3, %CoolDownFlask3%
+			return
+			}		
+		If (lParam=4){
+			OnCoolDown[4]:=1 
+			settimer, TimmerFlask4, %CoolDownFlask4%
+			return
+			}		
+		If (lParam=5){
+			OnCoolDown[5]:=1 
+			settimer, TimmerFlask5, %CoolDownFlask5%
+			return
+			}		
+	}
+	Return
+	}
 ; Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SendMSG(wParam:=0, lParam:=0, script:=""){
 	DetectHiddenWindows On
 	if WinExist(script) 
 		PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+	else 
+		MsgBox %script% . " Not found"
 	DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
 	}
 ; Pixelcheck for different parts of the screen to see what your status is in game. 

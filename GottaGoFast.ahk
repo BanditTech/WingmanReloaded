@@ -20,6 +20,7 @@ SetControlDelay, -1
 FileEncoding , UTF-8
 SendMode Input
 
+Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
 global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
 for n, exe in POEGameArr {
 	GroupAdd, POEGameGroup, ahk_exe %exe%
@@ -41,8 +42,8 @@ IfExist, %I_Icon%
   
 if not A_IsAdmin
 {
-   Run *RunAs "%A_ScriptFullPath%"
-   ExitApp
+	Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+	ExitApp
 }
 
 ; Check for window to open
@@ -229,6 +230,7 @@ MsgMonitor(wParam, lParam, msg)
 	Else If (wParam=3) {
 		If (lParam=1){
 			OnCoolDown[1]:=1 
+			SendMSG(3, 1, scriptPOEWingman)
 			settimer, TimmerFlask1, %CoolDownFlask1%
 			return
 			}		
@@ -254,6 +256,16 @@ MsgMonitor(wParam, lParam, msg)
 			}		
 	}
 	Return
+	}
+; Send one or two digits to a sub-script 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SendMSG(wParam:=0, lParam:=0, script:=""){
+	DetectHiddenWindows On
+	if WinExist(script) 
+		PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+	else
+		MsgBox, Main Script Window Not Found
+	DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
 	}
 PoEWindowCheck(){
 	IfWinExist, ahk_group POEGameGroup 
@@ -405,6 +417,7 @@ TQuickTick(){
 						if (ErrorLevel=1) {
 							send %QFL%
 							OnCoolDown[QFL]:=1 
+							SendMSG(3, QFL, scriptPOEWingman)
 							CoolDown:=CoolDownFlask%QFL%
 							settimer, TimmerFlask%QFL%, %CoolDown%
 							sleep %CoolDown%
