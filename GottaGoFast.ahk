@@ -21,6 +21,7 @@ FileEncoding , UTF-8
 SendMode Input
 
 Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
+Global scriptPOEWingmanSecondary := "WingmanReloaded ahk_exe AutoHotkey.exe"
 global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
 for n, exe in POEGameArr {
 	GroupAdd, POEGameGroup, ahk_exe %exe%
@@ -62,6 +63,7 @@ if not A_IsAdmin
 		global ResolutionScale:="Standard"
 		Global ToggleExist := False
 		Global RescaleRan := False
+		Global FlaskList := []
 
 	;Coordinates
 		global GuiX:=-5
@@ -223,8 +225,10 @@ AutoQuicksilverCommand:
 MsgMonitor(wParam, lParam, msg)
 	{
 	critical
-    If (wParam=1)
+    If (wParam=1){
 		ReadFromFile()
+		FlaskList:=[]
+	}
 	Else If (wParam=2)
 		PopFlaskCooldowns()
 	Else If (wParam=3) {
@@ -263,8 +267,10 @@ SendMSG(wParam:=0, lParam:=0, script:=""){
 	DetectHiddenWindows On
 	if WinExist(script) 
 		PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+	else if WinExist(scriptPOEWingmanSecondary)
+		PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
 	else
-		MsgBox, Main Script Window Not Found
+		MsgBox, Either Script Window Not Found
 	DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
 	}
 PoEWindowCheck(){
@@ -383,7 +389,7 @@ GuiStatus(Fetch:=""){
 
 TQuickTick(){
 	IfWinActive, Path of Exile
-	{
+		{
 		;pixelgetcolor, OnHideout, vX_OnHideout, vY_OnHideout
 		;pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
 		GuiStatus("OnHideout")
@@ -394,41 +400,39 @@ TQuickTick(){
 		if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
 			GuiUpdate()
 			Exit
-		}
+			}
 
-		if (AutoQuick=1) {
-			TriggerQ:=00000
-		}
-		
-		if (QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1) {
-			TriggerQ:=TriggerQ+TriggerQuicksilver
-		}
-
-		; Trigger the QS flasks
-		if (AutoQuick=1) {
-			STriggerQ:= SubStr("00000" TriggerQ,-4)
-			QFL=1
-			loop, 5 {
-				QFLVal:=SubStr(STriggerQ,QFL,1)+0
-				if (QFLVal > 0) {
-					cd:=OnCoolDown[QFL]
-					if (cd=0) {
-						Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
-						if (ErrorLevel=1) {
-							send %QFL%
-							OnCoolDown[QFL]:=1 
-							SendMSG(3, QFL, scriptPOEWingman)
-							CoolDown:=CoolDownFlask%QFL%
-							settimer, TimmerFlask%QFL%, %CoolDown%
-							sleep %CoolDown%
-							sleep=rand(23,59)
-						}					
-					}
-				}
-				++QFL
+		if ((AutoQuick=1)&&(QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1)) {
+			TriggerFlask(TriggerQuicksilver)
 			}
 		}
 	}
+
+TriggerFlask(Trigger){
+	If ((!FlaskList.Count())&& !( (OnCoolDown[1]) || (OnCoolDown[2]) || (OnCoolDown[3]) || (OnCoolDown[4]) || (OnCoolDown[5]) ) ) {
+		QFL=1
+		loop, 5 {
+			QFLVal:=SubStr(Trigger,QFL,1)+0
+			if (QFLVal > 0) {
+				if (OnCoolDown[QFL]=0)
+					FlaskList.Push(QFL)
+				}
+			++QFL
+			}
+		} 
+	Else If !( (OnCoolDown[1]) || (OnCoolDown[2]) || (OnCoolDown[3]) || (OnCoolDown[4]) || (OnCoolDown[5]) ){
+		Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
+		if (ErrorLevel=1) {
+			QFL:=FlaskList.RemoveAt(1)
+			send %QFL%
+			OnCoolDown[QFL] := 1 
+			CoolDown:=CoolDownFlask%QFL%
+			settimer, TimmerFlask%QFL%, %CoolDown%
+			SendMSG(3, QFL, scriptPOEWingman)
+			RandomSleep(23,59)
+			}
+		}
+	Return
 	}
 
 Rescale(){
@@ -507,28 +511,6 @@ Rescale(){
 		Global RescaleRan := True
 		}
 	return
-	}
-
-TriggerFlask(Trigger){
-	QFL=1
-	loop, 5 {
-		QFLVal:=SubStr(Trigger,QFL,1)+0
-		if (QFLVal > 0) {
-			if (OnCoolDown[QFL]=0) {
-				Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
-				if (ErrorLevel=1) {
-					send %QFL%
-					OnCoolDown[QFL]:=1 
-					CoolDown:=CoolDownFlask%QFL%
-					settimer, TimmerFlask%QFL%, %CoolDown%
-					sleep %CoolDown%
-					RandomSleep(23,59)
-				}					
-			}
-		}
-		++QFL
-	}
-	Return
 	}
 
 TriggerFlaskCD(Trigger){
