@@ -428,14 +428,14 @@ TQuickTick(){
 			Exit
 			}
 
-		if ((AutoQuick=1)&&(QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1)) {
+		if ((AutoQuick=1)&&((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))) {
 			TriggerFlask(TriggerQuicksilver)
 			}
 		}
 	}
 
 TriggerFlask(Trigger){
-	If ((!FlaskList.Count())&& !( (OnCooldown[1]) || (OnCooldown[2]) || (OnCooldown[3]) || (OnCooldown[4]) || (OnCooldown[5]) ) ) {
+	If ((!FlaskList.Count())&& !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
 		QFL=1
 		loop, 5 {
 			QFLVal:=SubStr(Trigger,QFL,1)+0
@@ -446,7 +446,7 @@ TriggerFlask(Trigger){
 			++QFL
 			}
 		} 
-	Else If !( (OnCooldown[1]) || (OnCooldown[2]) || (OnCooldown[3]) || (OnCooldown[4]) || (OnCooldown[5]) ){
+	Else If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ){
 		Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
 		if (ErrorLevel=1) {
 			QFL:=FlaskList.RemoveAt(1)
