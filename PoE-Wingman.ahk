@@ -1583,6 +1583,8 @@
 		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 		ToggleExist := True
 		WinActivate, ahk_group POEGameGroup
+		If (ShowOnStart)
+			Hotkeys()
 	}
 
 ; Check for window to open
@@ -4219,6 +4221,8 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_group POEGameGroup
 			{
 			WinActivate, ahk_group POEGameGroup
+			If (ShowOnStart)
+				Hotkeys()
 			}
 		SendMSG(1, , scriptGottaGoFast)
 		return  
