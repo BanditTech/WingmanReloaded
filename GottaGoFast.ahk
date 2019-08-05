@@ -79,12 +79,15 @@ if not A_IsAdmin
 
 	;Utility Buttons
 		global YesPhaseRun := 1
+		global YesVaalDiscipline:=1
 
 	;Utility Cooldowns
 		global CooldownPhaseRun:=5000
+		global CooldownVaalDiscipline:=60000
 
 	;Utility Keys
 		global utilityPhaseRun
+		global utilityVaalDiscipline
 
 	;Flask Cooldowns
 		global CooldownFlask1:=5000

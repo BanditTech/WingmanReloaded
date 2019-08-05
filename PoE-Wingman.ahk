@@ -65,7 +65,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .02
+		Global VersionNumber := .03
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
@@ -318,12 +318,15 @@
 
 	;Utility Buttons
 		global YesPhaseRun:=1
+		global YesVaalDiscipline:=1
 
 	;Utility Cooldowns
 		global CooldownPhaseRun:=5000
+		global CooldownVaalDiscipline:=60000
 		
 	;Utility Keys
-		global utilityPhaseRun:=e
+		global utilityPhaseRun
+		global utilityVaalDiscipline
 
 	;Flask Cooldowns
 		global CooldownFlask1:=5000
@@ -497,12 +500,15 @@
 
 		;Utility Buttons
 		IniWrite, 1, settings.ini, Utility Buttons, YesPhaseRun
+		IniWrite, 1, settings.ini, Utility Buttons, YesVaalDiscipline
 
 		;Utility Cooldowns
 		IniWrite, 5000, settings.ini, Utility Cooldowns, CooldownPhaseRun
+		IniWrite, 60000, settings.ini, Utility Cooldowns, CooldownVaalDiscipline
 
 		;Utility Keys
 		IniWrite, e, settings.ini, Utility Keys, PhaseRun
+		IniWrite, r, settings.ini, Utility Keys, VaalDiscipline
 
 		;Flask Cooldowns
 		IniWrite, 4800, settings.ini, Flask Cooldowns, CooldownFlask1
@@ -970,9 +976,21 @@
 	Gui, Font, Bold
 	Gui Add, Text, 										x12 	y30, 				Utility Management
 	Gui, Font,
-	Gui,Add,Edit,			  		y+4   w60 h19 gUpdateUtility	vutilityPhaseRun	ChooseString%utilityPhaseRun%			,%utilityPhaseRun%
-	Gui Add, Checkbox, gUpdateUtility	vYesPhaseRun Checked%YesPhaseRun%		x+5 y+-16	, Use Phase Run on Quicksilver? Cooldown:
-	Gui,Add,Edit,			gUpdateUtility  		x+1 y+-16  w60 h19 	vCooldownPhaseRun	ChooseString%CooldownPhaseRun%			,%CooldownPhaseRun%
+
+	Gui,Add,Edit,			gUpdateUtility  		x29 y49  w60 h19 	vCooldownPhaseRun	ChooseString%CooldownPhaseRun%			,%CooldownPhaseRun%
+	Gui,Add,Edit,			gUpdateUtility  		   w60 h19 	vCooldownVaalDiscipline	ChooseString%CooldownVaalDiscipline%			,%CooldownVaalDiscipline%
+
+	Gui,Add,Edit,			  	x+22	y49   w60 h19 gUpdateUtility	vutilityPhaseRun	ChooseString%utilityPhaseRun%			,%utilityPhaseRun%
+	Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vutilityVaalDiscipline	ChooseString%utilityVaalDiscipline%			,%utilityVaalDiscipline%
+
+	Gui Add, Checkbox, gUpdateUtility	vYesPhaseRun Checked%YesPhaseRun%				x+10 y52	, Use Phase Run on Quicksilver?
+	Gui Add, Checkbox, gUpdateUtility	vYesVaalDiscipline Checked%YesVaalDiscipline%		y+13	, Use Vaal Discipline on 50`% ES?
+
+	Gui Add, Text, 										x10 	y50, 	CD:
+	Gui Add, Text, 													, 	CD:
+
+	Gui Add, Text, 										x90 	y50, 	Key:
+	Gui Add, Text, 													, 	Key:
 
 
 	Gui, +LastFound
@@ -3606,10 +3624,13 @@ TGameTick(){
 					TriggerFlask(TriggerES40)
 					}
 				}
-			If (TriggerES50!="00000") {
+			If ((TriggerES50!="00000")||(YesVaalDiscipline)) {
 				pixelgetcolor, ES50, vX_ES, vY_ES50
 				if (ES50!=varES50) {
-					TriggerFlask(TriggerES50)
+					If (YesVaalDiscipline)
+						TriggerUtility("VaalDiscipline")
+					If (TriggerES50!="00000")
+						TriggerFlask(TriggerES50)
 					}
 				}
 			If (TriggerES60!="00000") {
@@ -3649,6 +3670,21 @@ TGameTick(){
 		}
 	Return
 	}
+; Trigger named Utility
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TriggerUtility(Utility:=""){
+	If !(Utility="") {
+		If (!OnCooldown%Utility%)&&(Yes%Utility%){
+			key:=utility%Utility%
+			Send %key%
+			OnCooldown%Utility%:=1
+			Cooldown:=Cooldown%Utility%
+			SetTimer, Timer%Utility%, %Cooldown%
+			}
+		} Else
+			MsgBox, No utility passed to function
+	Return
+	} 
 ; Flask Trigger check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TriggerFlask(Trigger){
@@ -3706,6 +3742,12 @@ Clamp( Val, Min, Max) {
 		settimer,TimmerFlask5,delete
 		return
 
+; Utility Timers
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TimerVaalDiscipline:
+		OnCooldownVaalDiscipline := 0
+		settimer,TimerVaalDiscipline,delete
+		Return
 ; Detonate Timer
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TDetonated:
@@ -3825,12 +3867,15 @@ Clamp( Val, Min, Max) {
 			
 		;Utility Buttons
 			IniRead, YesPhaseRun, settings.ini, Utility Buttons, YesPhaseRun, 1
+			IniRead, YesVaalDiscipline, settings.ini, Utility Buttons, YesVaalDiscipline, 1
 
 		;Utility Cooldowns
 			IniRead, CooldownPhaseRun, settings.ini, Utility Cooldowns, CooldownPhaseRun, 5000
+			IniRead, CooldownVaalDiscipline, settings.ini, Utility Cooldowns, CooldownVaalDiscipline, 60000
 			
 		;Utility Keys
 			IniRead, utilityPhaseRun, settings.ini, Utility Keys, PhaseRun, e
+			IniRead, utilityVaalDiscipline, settings.ini, Utility Keys, VaalDiscipline, r
 
 		;Flask Cooldowns
 			IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
@@ -4077,12 +4122,15 @@ Clamp( Val, Min, Max) {
 
 		;Utility Buttons
 			IniWrite, %YesPhaseRun%, Settings.ini, Utility Buttons, YesPhaseRun
+			IniWrite, %YesVaalDiscipline%, Settings.ini, Utility Buttons, YesVaalDiscipline
 
 		;Utility Keys
 			IniWrite, %utilityPhaseRun%, settings.ini, Utility Keys, PhaseRun
+			IniWrite, %utilityVaalDiscipline%, settings.ini, Utility Keys, VaalDiscipline
 				
 		;Utility Cooldowns
 			IniWrite, %CooldownPhaseRun%, settings.ini, Utility Cooldowns, CooldownPhaseRun
+			IniWrite, %CooldownVaalDiscipline%, settings.ini, Utility Cooldowns, CooldownVaalDiscipline
 
 		;Flask Cooldowns
 			IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
@@ -5304,12 +5352,15 @@ Clamp( Val, Min, Max) {
 		Gui, Submit, NoHide
 		;Utility Buttons
 			IniWrite, %YesPhaseRun%, Settings.ini, Utility Buttons, YesPhaseRun
+			IniWrite, %YesVaalDiscipline%, Settings.ini, Utility Buttons, YesVaalDiscipline
 
 		;Utility Keys
 			IniWrite, %utilityPhaseRun%, settings.ini, Utility Keys, PhaseRun
+			IniWrite, %utilityVaalDiscipline%, settings.ini, Utility Keys, VaalDiscipline
 				
 		;Utility Cooldowns
 			IniWrite, %CooldownPhaseRun%, settings.ini, Utility Cooldowns, CooldownPhaseRun
+			IniWrite, %CooldownVaalDiscipline%, settings.ini, Utility Cooldowns, CooldownVaalDiscipline
 		SendMSG(1, 0, scriptGottaGoFast)
 		Return
 
