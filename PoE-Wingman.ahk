@@ -226,8 +226,7 @@
 		global hotkeyInventory:=c
 		global hotkeyWeaponSwapKey:=x
 		global hotkeyMainAttack:=RButton
-		global hotkeySecondaryAttack:=W
-
+		global hotkeySecondaryAttack:=w
 
 	;Coordinates
 		global PortalScrollX:=1825
@@ -317,13 +316,22 @@
 		global Quit30
 		global Quit40
 
+	;Utility Buttons
+		global YesPhaseRun:=1
+
+	;Utility Cooldowns
+		global CooldownPhaseRun:=5000
+		
+	;Utility Keys
+		global utilityPhaseRun:=e
+
 	;Flask Cooldowns
-		global CoolDownFlask1:=5000
-		global CoolDownFlask2:=5000
-		global CoolDownFlask3:=5000
-		global CoolDownFlask4:=5000
-		global CoolDownFlask5:=5000
-		global CoolDown:=5000
+		global CooldownFlask1:=5000
+		global CooldownFlask2:=5000
+		global CooldownFlask3:=5000
+		global CooldownFlask4:=5000
+		global CooldownFlask5:=5000
+		global Cooldown:=5000
 
 	;Quicksilver
 		global TriggerQuicksilverDelay=0.8
@@ -411,7 +419,7 @@
 		IniWrite, 1, settings.ini, Coordinates, StockPortal
 		IniWrite, 1, settings.ini, Coordinates, StockWisdom
 		
-		;Hotkeys
+		;hotkeys
 		IniWrite, !F10, settings.ini, hotkeys, Options
 		IniWrite, !F12, settings.ini, hotkeys, AutoQuit
 		IniWrite, !F11, settings.ini, hotkeys, AutoFlask
@@ -428,8 +436,8 @@
 		IniWrite, f, settings.ini, hotkeys, LootScan
 		IniWrite, LButton, settings.ini, hotkeys, Move
 		IniWrite, RButton, settings.ini, hotkeys, MainAttack
-		IniWrite, W, settings.ini, hotkeys, SecondaryAttack
-
+		IniWrite, w, settings.ini, hotkeys, SecondaryAttack
+		
 		;Failsafe Colors
 		IniWrite, 0x161114, settings.ini, Failsafe Colors, OnHideout
 		IniWrite, 0x4F6980, settings.ini, Failsafe Colors, OnChar
@@ -439,7 +447,6 @@
 		IniWrite, 0x7BB1CC, settings.ini, Failsafe Colors, OnVendor
 		IniWrite, 0x412037, settings.ini, Failsafe Colors, DetonateHex
 		
-
 		;Life Colors
 		IniWrite, 0x181145, settings.ini, Life Colors, Life20
 		IniWrite, 0x181264, settings.ini, Life Colors, Life30
@@ -450,6 +457,7 @@
 		IniWrite, 0x2B2385, settings.ini, Life Colors, Life80
 		IniWrite, 0x664564, settings.ini, Life Colors, Life90
 		
+		;Life Triggers
 		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife20
 		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife30
 		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife40
@@ -470,6 +478,7 @@
 		IniWrite, 0xE89C5E, settings.ini, ES Colors, ES80
 		IniWrite, 0xE79435, settings.ini, ES Colors, ES90
 		
+		;ES Triggers
 		IniWrite, 00000, settings.ini, ES Triggers, TriggerES20
 		IniWrite, 00000, settings.ini, ES Triggers, TriggerES30
 		IniWrite, 00000, settings.ini, ES Triggers, TriggerES40
@@ -483,8 +492,18 @@
 		;Mana Colors
 		IniWrite, 0x3C201D, settings.ini, Mana Colors, Mana10
 		
+		;Mana Trigger
 		IniWrite, 00000, settings.ini, Mana Triggers, TriggerMana10
-		
+
+		;Utility Buttons
+		IniWrite, 1, settings.ini, Utility Buttons, YesPhaseRun
+
+		;Utility Cooldowns
+		IniWrite, 5000, settings.ini, Utility Cooldowns, CooldownPhaseRun
+
+		;Utility Keys
+		IniWrite, e, settings.ini, Utility Keys, PhaseRun
+
 		;Flask Cooldowns
 		IniWrite, 4800, settings.ini, Flask Cooldowns, CooldownFlask1
 		IniWrite, 4800, settings.ini, Flask Cooldowns, CooldownFlask2
@@ -556,7 +575,7 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Profiles|Calibration|Inventory
+	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Profiles|Calibration|Inventory|Utility
 	;#######################################################################################################Configuration Tab
 	Gui, Tab, Configuration
 	Gui, Font,
@@ -946,7 +965,14 @@
 	Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
 	Gui Add, Text, 										x22 	y+5, 				The options to the right affect which portion of the script is enabled.
 
-
+	;#######################################################################################################Utility Tab
+	Gui, Tab, Utility
+	Gui, Font, Bold
+	Gui Add, Text, 										x12 	y30, 				Utility Management
+	Gui, Font,
+	Gui,Add,Edit,			  		y+4   w60 h19 gUpdateUtility	vutilityPhaseRun	ChooseString%utilityPhaseRun%			,%utilityPhaseRun%
+	Gui Add, Checkbox, gUpdateUtility	vYesPhaseRun Checked%YesPhaseRun%		x+5 y+-16	, Use Phase Run on Quicksilver? Cooldown:
+	Gui,Add,Edit,			gUpdateUtility  		x+1 y+-16  w60 h19 	vCooldownPhaseRun	ChooseString%CooldownPhaseRun%			,%CooldownPhaseRun%
 
 
 	Gui, +LastFound
@@ -969,9 +995,9 @@
 	IfExist, settings.ini 
 		{
 		Loop, 5 {
-			Iniread, CooldownFlask%A_Index%, settings.ini, Flask Cooldowns, CoolDownFlask%A_index%
+			Iniread, CooldownFlask%A_Index%, settings.ini, Flask Cooldowns, CooldownFlask%A_index%
 			valueFlask := CooldownFlask%A_Index%
-			GuiControl, , CoolDownFlask%A_Index%, %valueFlask%
+			GuiControl, , CooldownFlask%A_Index%, %valueFlask%
 			
 			Iniread, TriggerLife20, settings.ini, Life Triggers, TriggerLife20
 			valueLife20 := substr(TriggerLife20, (A_Index), 1)
@@ -1459,7 +1485,7 @@
 	global Trigger=00000
 	global AutoQuit=0 
 	global AutoFlask=0
-	global OnCoolDown:=[0,0,0,0,0]
+	global OnCooldown:=[0,0,0,0,0]
 	global Radiobox1QS
 	global Radiobox2QS
 	global Radiobox3QS
@@ -1555,36 +1581,36 @@
 	;Passthrough for manual activation
 	; pass-thru and start timer for flask 1
 	~1::
-		OnCoolDown[1]:=1 
-		settimer, TimmerFlask1, %CoolDownFlask1%
+		OnCooldown[1]:=1 
+		settimer, TimmerFlask1, %CooldownFlask1%
 		SendMSG(3, 1, scriptGottaGoFast)
 		return
 
 	; pass-thru and start timer for flask 2
 	~2::
-		OnCoolDown[2]:=1 
-		settimer, TimmerFlask2, %CoolDownFlask2%
+		OnCooldown[2]:=1 
+		settimer, TimmerFlask2, %CooldownFlask2%
 		SendMSG(3, 2, scriptGottaGoFast)
 		return
 
 	; pass-thru and start timer for flask 3
 	~3::
-		OnCoolDown[3]:=1 
-		settimer, TimmerFlask3, %CoolDownFlask3%
+		OnCooldown[3]:=1 
+		settimer, TimmerFlask3, %CooldownFlask3%
 		SendMSG(3, 3, scriptGottaGoFast)
 		return
 
 	; pass-thru and start timer for flask 4
 	~4::
-		OnCoolDown[4]:=1 
-		settimer, TimmerFlask4, %CoolDownFlask4%
+		OnCooldown[4]:=1 
+		settimer, TimmerFlask4, %CooldownFlask4%
 		SendMSG(3, 4, scriptGottaGoFast)
 		return
 
 	; pass-thru and start timer for flask 5
 	~5::
-		OnCoolDown[5]:=1 
-		settimer, TimmerFlask5, %CoolDownFlask5%
+		OnCooldown[5]:=1 
+		settimer, TimmerFlask5, %CooldownFlask5%
 		SendMSG(3, 5, scriptGottaGoFast)
 		return
 
@@ -2486,34 +2512,34 @@ PopFlasks(){
 		TriggerFlask(11111)
 	Else {
 		Send 1
-		OnCoolDown[1]:=1 
+		OnCooldown[1]:=1 
 		SendMSG(3, 1, scriptGottaGoFast)
-		CoolDown:=CoolDownFlask1
-		settimer, TimmerFlask1, %CoolDown%
+		Cooldown:=CooldownFlask1
+		settimer, TimmerFlask1, %Cooldown%
 		RandomSleep(-99,99)
 		Send 4
-		OnCoolDown[4]:=1 
-		CoolDown:=CoolDownFlask4
+		OnCooldown[4]:=1 
+		Cooldown:=CooldownFlask4
 		SendMSG(3, 4, scriptGottaGoFast)
-		settimer, TimmerFlask4, %CoolDown%
+		settimer, TimmerFlask4, %Cooldown%
 		RandomSleep(-99,99)
 		Send 3
-		OnCoolDown[3]:=1 
+		OnCooldown[3]:=1 
 		SendMSG(3, 3, scriptGottaGoFast)
-		CoolDown:=CoolDownFlask3
-		settimer, TimmerFlask3, %CoolDown%
+		Cooldown:=CooldownFlask3
+		settimer, TimmerFlask3, %Cooldown%
 		RandomSleep(-99,99)
 		Send 2
-		OnCoolDown[2]:=1 
+		OnCooldown[2]:=1 
 		SendMSG(3, 2, scriptGottaGoFast)
-		CoolDown:=CoolDownFlask2
-		settimer, TimmerFlask2, %CoolDown%
+		Cooldown:=CooldownFlask2
+		settimer, TimmerFlask2, %Cooldown%
 		RandomSleep(-99,99)
 		Send 5
-		OnCoolDown[5]:=1 
+		OnCooldown[5]:=1 
 		SendMSG(3, 5, scriptGottaGoFast)
-		CoolDown:=CoolDownFlask5
-		settimer, TimmerFlask5, %CoolDown%
+		Cooldown:=CooldownFlask5
+		settimer, TimmerFlask5, %Cooldown%
 	}
 	return
 	}
@@ -3224,28 +3250,28 @@ MsgMonitor(wParam, lParam, msg)
 		Return
 	Else If (wParam=3) {
 		If (lParam=1){
-			OnCoolDown[1]:=1 
-			settimer, TimmerFlask1, %CoolDownFlask1%
+			OnCooldown[1]:=1 
+			settimer, TimmerFlask1, %CooldownFlask1%
 			return
 			}		
 		If (lParam=2){
-			OnCoolDown[2]:=1 
-			settimer, TimmerFlask2, %CoolDownFlask2%
+			OnCooldown[2]:=1 
+			settimer, TimmerFlask2, %CooldownFlask2%
 			return
 			}		
 		If (lParam=3){
-			OnCoolDown[3]:=1 
-			settimer, TimmerFlask3, %CoolDownFlask3%
+			OnCooldown[3]:=1 
+			settimer, TimmerFlask3, %CooldownFlask3%
 			return
 			}		
 		If (lParam=4){
-			OnCoolDown[4]:=1 
-			settimer, TimmerFlask4, %CoolDownFlask4%
+			OnCooldown[4]:=1 
+			settimer, TimmerFlask4, %CooldownFlask4%
 			return
 			}		
 		If (lParam=5){
-			OnCoolDown[5]:=1 
-			settimer, TimmerFlask5, %CoolDownFlask5%
+			OnCooldown[5]:=1 
+			settimer, TimmerFlask5, %CooldownFlask5%
 			return
 			}		
 	}
@@ -3630,12 +3656,12 @@ TriggerFlask(Trigger){
 	loop 5 {
 		FLVal:=SubStr(Trigger,FL,1)+0
 		if (FLVal > 0) {
-			if (OnCoolDown[FL]=0) {
+			if (OnCooldown[FL]=0) {
 				send %FL%
 				SendMSG(3, FL, scriptGottaGoFast)
-				OnCoolDown[FL]:=1 
-				CoolDown:=CoolDownFlask%FL%
-				settimer, TimmerFlask%FL%, %CoolDown%
+				OnCooldown[FL]:=1 
+				Cooldown:=CooldownFlask%FL%
+				settimer, TimmerFlask%FL%, %Cooldown%
 				RandomSleep(15,60)			
 				}
 			}
@@ -3656,27 +3682,27 @@ Clamp( Val, Min, Max) {
 ; Flask Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimmerFlask1:
-		OnCoolDown[1]:=0
+		OnCooldown[1]:=0
 		settimer,TimmerFlask1,delete
 		return
 
 	TimmerFlask2:
-		OnCoolDown[2]:=0
+		OnCooldown[2]:=0
 		settimer,TimmerFlask2,delete
 		return
 
 	TimmerFlask3:
-		OnCoolDown[3]:=0
+		OnCooldown[3]:=0
 		settimer,TimmerFlask3,delete
 		return
 
 	TimmerFlask4:
-		OnCoolDown[4]:=0
+		OnCooldown[4]:=0
 		settimer,TimmerFlask4,delete
 		return
 
 	TimmerFlask5:
-		OnCoolDown[5]:=0
+		OnCooldown[5]:=0
 		settimer,TimmerFlask5,delete
 		return
 
@@ -3794,8 +3820,18 @@ Clamp( Val, Min, Max) {
 		;Mana Flasks
 			IniRead, varMana10, settings.ini, Mana Colors, Mana10
 			
+		;Mana Triggers
 			IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10
 			
+		;Utility Buttons
+			IniRead, YesPhaseRun, settings.ini, Utility Buttons, YesPhaseRun, 1
+
+		;Utility Cooldowns
+			IniRead, CooldownPhaseRun, settings.ini, Utility Cooldowns, CooldownPhaseRun, 5000
+			
+		;Utility Keys
+			IniRead, utilityPhaseRun, settings.ini, Utility Keys, PhaseRun, e
+
 		;Flask Cooldowns
 			IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
 			IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2
@@ -4021,7 +4057,6 @@ Clamp( Val, Min, Max) {
 			IniWrite, %HighBits%, settings.ini, General, HighBits
 			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 		
-
 		;~ Hotkeys 
 			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
 			IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit
@@ -4039,7 +4074,16 @@ Clamp( Val, Min, Max) {
 			IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
 			IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
 			IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
-			
+
+		;Utility Buttons
+			IniWrite, %YesPhaseRun%, Settings.ini, Utility Buttons, YesPhaseRun
+
+		;Utility Keys
+			IniWrite, %utilityPhaseRun%, settings.ini, Utility Keys, PhaseRun
+				
+		;Utility Cooldowns
+			IniWrite, %CooldownPhaseRun%, settings.ini, Utility Cooldowns, CooldownPhaseRun
+
 		;Flask Cooldowns
 			IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
 			IniWrite, %CooldownFlask2%, settings.ini, Flask Cooldowns, CooldownFlask2
@@ -5255,7 +5299,20 @@ Clamp( Val, Min, Max) {
 		IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
 		IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
 		Return
-	
+
+	UpdateUtility:
+		Gui, Submit, NoHide
+		;Utility Buttons
+			IniWrite, %YesPhaseRun%, Settings.ini, Utility Buttons, YesPhaseRun
+
+		;Utility Keys
+			IniWrite, %utilityPhaseRun%, settings.ini, Utility Keys, PhaseRun
+				
+		;Utility Cooldowns
+			IniWrite, %CooldownPhaseRun%, settings.ini, Utility Cooldowns, CooldownPhaseRun
+		SendMSG(1, 0, scriptGottaGoFast)
+		Return
+
 	FlaskCheck:
 		Gui, Submit, NoHide
 		loop 5 {

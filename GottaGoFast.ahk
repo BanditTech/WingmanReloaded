@@ -77,13 +77,22 @@ if not A_IsAdmin
 		global varOnStash
 		global varOnVendor
 
+	;Utility Buttons
+		global YesPhaseRun := 1
+
+	;Utility Cooldowns
+		global CooldownPhaseRun:=5000
+
+	;Utility Keys
+		global utilityPhaseRun
+
 	;Flask Cooldowns
-		global CoolDownFlask1:=5000
-		global CoolDownFlask2:=5000
-		global CoolDownFlask3:=5000
-		global CoolDownFlask4:=5000
-		global CoolDownFlask5:=5000
-		global CoolDown:=5000
+		global CooldownFlask1:=5000
+		global CooldownFlask2:=5000
+		global CooldownFlask3:=5000
+		global CooldownFlask4:=5000
+		global CooldownFlask5:=5000
+		global Cooldown:=5000
 
 	;Quicksilver
 		global TriggerQuicksilverDelay:=0.8
@@ -124,12 +133,18 @@ if not A_IsAdmin
 		IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor
 		IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
 		IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
+		;Utility Buttons
+		IniRead, YesPhaseRun, settings.ini, Utility Buttons, YesPhaseRun, 1
+		;Utility Cooldowns
+		IniRead, CooldownPhaseRun, settings.ini, Utility Cooldowns, CooldownPhaseRun, 5000
+		;Utility Keys
+		IniRead, utilityPhaseRun, settings.ini, Utility Keys, PhaseRun, e
 		;Flask Cooldowns
-		IniRead, CoolDownFlask1, settings.ini, Flask Cooldowns, CoolDownFlask1
-		IniRead, CoolDownFlask2, settings.ini, Flask Cooldowns, CoolDownFlask2
-		IniRead, CoolDownFlask3, settings.ini, Flask Cooldowns, CoolDownFlask3
-		IniRead, CoolDownFlask4, settings.ini, Flask Cooldowns, CoolDownFlask4
-		IniRead, CoolDownFlask5, settings.ini, Flask Cooldowns, CoolDownFlask5
+		IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
+		IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2
+		IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3
+		IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4
+		IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5
 		;Quicksilver
 		IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
 		IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
@@ -138,7 +153,7 @@ if not A_IsAdmin
 		IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3
 		IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4
 		IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5
-		;Hotkeys
+		;hotkeys
 		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
 		} 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -146,7 +161,8 @@ if not A_IsAdmin
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	global TriggerQ=00000
 	global AutoQuick=0 
-	global OnCoolDown:=[0,0,0,0,0]
+	global OnCooldown:=[0,0,0,0,0]
+	global OnCooldownPhaseRun := 0
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Scale positions for status check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -193,16 +209,16 @@ PopFlaskCooldowns(){
 	If (PopFlaskRespectCD)
 		TriggerFlaskCD(11111)
 	Else {
-		OnCoolDown[1]:=1 
-		settimer, TimmerFlask1, %CoolDownFlask1%
-		OnCoolDown[4]:=1 
-		settimer, TimmerFlask4, %CoolDownFlask2%
-		OnCoolDown[3]:=1 
-		settimer, TimmerFlask3, %CoolDownFlask3%
-		OnCoolDown[2]:=1 
-		settimer, TimmerFlask2, %CoolDownFlask4%
-		OnCoolDown[5]:=1 
-		settimer, TimmerFlask5, %CoolDownFlask5%
+		OnCooldown[1]:=1 
+		settimer, TimmerFlask1, %CooldownFlask1%
+		OnCooldown[4]:=1 
+		settimer, TimmerFlask4, %CooldownFlask2%
+		OnCooldown[3]:=1 
+		settimer, TimmerFlask3, %CooldownFlask3%
+		OnCooldown[2]:=1 
+		settimer, TimmerFlask2, %CooldownFlask4%
+		OnCooldown[5]:=1 
+		settimer, TimmerFlask5, %CooldownFlask5%
 		}
 	return
 	}
@@ -233,29 +249,29 @@ MsgMonitor(wParam, lParam, msg)
 		PopFlaskCooldowns()
 	Else If (wParam=3) {
 		If (lParam=1){
-			OnCoolDown[1]:=1 
+			OnCooldown[1]:=1 
 			SendMSG(3, 1, scriptPOEWingman)
-			settimer, TimmerFlask1, %CoolDownFlask1%
+			settimer, TimmerFlask1, %CooldownFlask1%
 			return
 			}		
 		If (lParam=2){
-			OnCoolDown[2]:=1 
-			settimer, TimmerFlask2, %CoolDownFlask2%
+			OnCooldown[2]:=1 
+			settimer, TimmerFlask2, %CooldownFlask2%
 			return
 			}		
 		If (lParam=3){
-			OnCoolDown[3]:=1 
-			settimer, TimmerFlask3, %CoolDownFlask3%
+			OnCooldown[3]:=1 
+			settimer, TimmerFlask3, %CooldownFlask3%
 			return
 			}		
 		If (lParam=4){
-			OnCoolDown[4]:=1 
-			settimer, TimmerFlask4, %CoolDownFlask4%
+			OnCooldown[4]:=1 
+			settimer, TimmerFlask4, %CooldownFlask4%
 			return
 			}		
 		If (lParam=5){
-			OnCoolDown[5]:=1 
-			settimer, TimmerFlask5, %CoolDownFlask5%
+			OnCooldown[5]:=1 
+			settimer, TimmerFlask5, %CooldownFlask5%
 			return
 			}		
 	}
@@ -310,11 +326,11 @@ ReadFromFile(){
 	IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
 	IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
 	;Flask Cooldowns
-	IniRead, CoolDownFlask1, settings.ini, Flask Cooldowns, CoolDownFlask1
-	IniRead, CoolDownFlask2, settings.ini, Flask Cooldowns, CoolDownFlask2
-	IniRead, CoolDownFlask3, settings.ini, Flask Cooldowns, CoolDownFlask3
-	IniRead, CoolDownFlask4, settings.ini, Flask Cooldowns, CoolDownFlask4
-	IniRead, CoolDownFlask5, settings.ini, Flask Cooldowns, CoolDownFlask5
+	IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
+	IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2
+	IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3
+	IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4
+	IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5
 	;Quicksilver
 	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
 	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
@@ -323,8 +339,13 @@ ReadFromFile(){
 	IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3
 	IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4
 	IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5
+	;Utility Buttons
+	IniRead, YesPhaseRun, settings.ini, Utility Buttons, YesPhaseRun, 1
+	;Utility Cooldowns
+	IniRead, CooldownPhaseRun, settings.ini, Utility Cooldowns, CooldownPhaseRun, 5000
+	;Utility Keys
+	IniRead, utilityPhaseRun, settings.ini, Utility Keys, PhaseRun, e
 	;Hotkeys
-	IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
 	IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
 	IfWinExist, ahk_group POEGameGroup
 		{
@@ -409,31 +430,46 @@ TQuickTick(){
 	}
 
 TriggerFlask(Trigger){
-	If ((!FlaskList.Count())&& !( (OnCoolDown[1]) || (OnCoolDown[2]) || (OnCoolDown[3]) || (OnCoolDown[4]) || (OnCoolDown[5]) ) ) {
+	If ((!FlaskList.Count())&& !( (OnCooldown[1]) || (OnCooldown[2]) || (OnCooldown[3]) || (OnCooldown[4]) || (OnCooldown[5]) ) ) {
 		QFL=1
 		loop, 5 {
 			QFLVal:=SubStr(Trigger,QFL,1)+0
 			if (QFLVal > 0) {
-				if (OnCoolDown[QFL]=0)
+				if (OnCooldown[QFL]=0)
 					FlaskList.Push(QFL)
 				}
 			++QFL
 			}
 		} 
-	Else If !( (OnCoolDown[1]) || (OnCoolDown[2]) || (OnCoolDown[3]) || (OnCoolDown[4]) || (OnCoolDown[5]) ){
+	Else If !( (OnCooldown[1]) || (OnCooldown[2]) || (OnCooldown[3]) || (OnCooldown[4]) || (OnCooldown[5]) ){
 		Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
 		if (ErrorLevel=1) {
 			QFL:=FlaskList.RemoveAt(1)
 			send %QFL%
-			OnCoolDown[QFL] := 1 
-			CoolDown:=CoolDownFlask%QFL%
-			settimer, TimmerFlask%QFL%, %CoolDown%
+			OnCooldown[QFL] := 1 
+			Cooldown:=CooldownFlask%QFL%
+			settimer, TimmerFlask%QFL%, %Cooldown%
 			SendMSG(3, QFL, scriptPOEWingman)
 			RandomSleep(23,59)
+			TriggerUtility("PhaseRun")
 			}
 		}
 	Return
 	}
+
+TriggerUtility(Utility:=""){
+	If !(Utility="") {
+		If (!OnCooldown%Utility%)&&(Yes%Utility%){
+			key:=utility%Utility%
+			Send %key%
+			OnCooldown%Utility%:=1
+			Cooldown:=Cooldown%Utility%
+			SetTimer, Timer%Utility%, %Cooldown%
+			}
+		} Else
+			MsgBox, No utility passed to function
+	Return
+	} 
 
 Rescale(){
 	IfWinExist, ahk_group POEGameGroup 
@@ -518,11 +554,11 @@ TriggerFlaskCD(Trigger){
 	loop, 5 {
 		QFLVal:=SubStr(Trigger,QFL,1)+0
 		if (QFLVal > 0) {
-			if (OnCoolDown[QFL]=0) {
+			if (OnCooldown[QFL]=0) {
 				if (ErrorLevel=1) {
-					OnCoolDown[QFL]:=1 
-					CoolDown:=CoolDownFlask%QFL%
-					settimer, TimmerFlask%QFL%, %CoolDown%
+					OnCooldown[QFL]:=1 
+					Cooldown:=CooldownFlask%QFL%
+					settimer, TimmerFlask%QFL%, %Cooldown%
 					}					
 				}
 			}
@@ -531,26 +567,30 @@ TriggerFlaskCD(Trigger){
 	Return
 	}
 TimmerFlask1:
-	OnCoolDown[1]:=0
+	OnCooldown[1]:=0
 	settimer,TimmerFlask1,delete
 	return
 
 TimmerFlask2:
-	OnCoolDown[2]:=0
+	OnCooldown[2]:=0
 	settimer,TimmerFlask2,delete
 	return
 
 TimmerFlask3:
-	OnCoolDown[3]:=0
+	OnCooldown[3]:=0
 	settimer,TimmerFlask3,delete
 	return
 
 TimmerFlask4:
-	OnCoolDown[4]:=0
+	OnCooldown[4]:=0
 	settimer,TimmerFlask4,delete
 	return
 
 TimmerFlask5:
-	OnCoolDown[5]:=0
+	OnCooldown[5]:=0
 	settimer,TimmerFlask5,delete
 	return
+TimerPhaseRun:
+	OnCooldownPhaseRun := 0
+	settimer,TimerPhaseRun,delete
+	Return
