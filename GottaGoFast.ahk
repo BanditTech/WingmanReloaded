@@ -79,12 +79,15 @@ if not A_IsAdmin
 
 	;Utility Buttons
 		global YesPhaseRun := 1
+		global YesVaalDiscipline:=1
 
 	;Utility Cooldowns
 		global CooldownPhaseRun:=5000
+		global CooldownVaalDiscipline:=60000
 
 	;Utility Keys
 		global utilityPhaseRun
+		global utilityVaalDiscipline
 
 	;Flask Cooldowns
 		global CooldownFlask1:=5000
@@ -197,6 +200,7 @@ IfWinExist, ahk_group POEGameGroup
 	{
 		Rescale()
 		Gui, Show, x%GuiX% y%GuiY%, NoActivate 
+		ToggleExist := True
 		WinActivate, ahk_group POEGameGroup
 	}
 
@@ -298,6 +302,7 @@ PoEWindowCheck(){
 		If (!ToggleExist) {
 			Gui 1: Show, x%GuiX% y%GuiY%, NoActivate 
 			ToggleExist := True
+			WinActivate, ahk_group POEGameGroup
 			}
 		} Else {
 		If (ToggleExist){
