@@ -1581,6 +1581,7 @@
 	{
 		Rescale()
 		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+		ToggleExist := True
 		WinActivate, ahk_group POEGameGroup
 	}
 
@@ -2392,7 +2393,7 @@ Rescale(){
 			;calculate the height of each tab
 			global vY_StashTabSize := Round(A_ScreenHeight / ( 1440 / 22))
 			} 
-		Global RescaleRan := True
+		RescaleRan := True
 		}
 	return
 	}
@@ -4012,6 +4013,7 @@ Clamp( Val, Min, Max) {
 			Gui, Submit
 			Rescale()
 			Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+			ToggleExist := True
 			WinActivate, ahk_group POEGameGroup
 			;Life Resample
 				pixelgetcolor, varLife20, vX_Life, vY_Life20
