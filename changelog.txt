@@ -1,4 +1,4 @@
-Version .03
+Version .03 August/06/2019
 --------------------------------------------------------------------------------
 Cooldowns from main script will go directly to subscript
     The two scripts now have a way to communicate which flasks are on cooldown.
