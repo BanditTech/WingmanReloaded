@@ -4009,7 +4009,7 @@ Clamp( Val, Min, Max) {
 	submit(){  
 		updateEverything:
 		global
-		
+		critical
 		IfWinExist, ahk_group POEGameGroup 
 			{
 			Gui, Submit
@@ -4221,8 +4221,6 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_group POEGameGroup
 			{
 			WinActivate, ahk_group POEGameGroup
-			If (ShowOnStart)
-				Hotkeys()
 			}
 		SendMSG(1, , scriptGottaGoFast)
 		return  

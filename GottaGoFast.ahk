@@ -355,8 +355,10 @@ ReadFromFile(){
 	IfWinExist, ahk_group POEGameGroup
 		{
 			Rescale()
-			Gui, Show, x%GuiX% y%GuiY%, NoActivate 
-			WinActivate, ahk_group POEGameGroup
+			If (!ToggleExist){
+				Gui, Show, x%GuiX% y%GuiY%, NoActivate 
+				WinActivate, ahk_group POEGameGroup
+				}
 		}
 	Return
 	}
