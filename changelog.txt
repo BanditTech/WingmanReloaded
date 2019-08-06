@@ -1,0 +1,27 @@
+Version .03
+--------------------------------------------------------------------------------
+Cooldowns from main script will go directly to subscript
+    The two scripts now have a way to communicate which flasks are on cooldown.
+
+Created a new utility Function
+    It can now be expanded to support any number of utilities, input name
+    of the Utility to fire and it manages all the cooldowns and keys.
+    I put all the settings together for easily adding more.
+
+As of now, PhaseRun and VaalDiscipline are supported utility skills.
+
+Script will not remove focus from game window.
+    Now when Loading the script or pressing the save button, it will make
+    the game window focused if the window exists.
+
+Fixed the script from stealing focus from game.
+
+added timer to tooltip on save, removes after 5s
+
+Quicksilver flasks now fire sequentially without skipping!
+
+Show on start option is now respected
+
+Added link to Wiki page and donation to tray tip
+
+Added auto-update function, will now be tracking version online.

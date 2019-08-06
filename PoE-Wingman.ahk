@@ -41,6 +41,10 @@
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
+	Global VersionNumber := .03
+
+	checkUpdate()
+
 	full_command_line := DllCall("GetCommandLine", "str")
 
 	GetTable := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Iphlpapi.dll", "Ptr"), Astr, "GetExtendedTcpTable", "Ptr")
@@ -65,7 +69,6 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .03
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
@@ -1000,6 +1003,8 @@
 	Menu, Tray, NoStandard
 	Menu, Tray, Add, 				WingmanReloaded, optionsCommand
 	Menu, Tray, Default, 			WingmanReloaded
+	Menu, Tray, Add, 				Project Wiki, LaunchWiki
+	Menu, Tray, Add, 				Support the Project, LaunchDonate
 	Menu, Tray, Add
 	Menu, Tray, Standard
 	;Gui, Hide
@@ -4894,8 +4899,7 @@ Clamp( Val, Min, Max) {
 		return
 
 	hotkeys(){
-		global ;processWarningFound, macroVersion
-		;getLeagueListing()
+		global
 		Gui, Show, Autosize Center, 	WingmanReloaded
 		processWarningFound:=0
 		Gui,6:Hide
@@ -5331,6 +5335,10 @@ Clamp( Val, Min, Max) {
 		Run, https://github.com/BanditTech/WingmanReloaded/wiki ; Open the wiki page for the script
 		Return
 
+	LaunchDonate:
+		Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&currency_code=USD&source=url ; Open the donation page for the script
+		Return
+
 	UpdateDebug:
 		Gui, Submit, NoHide
 		If (DebugMessages=1) {
@@ -5436,5 +5444,45 @@ Clamp( Val, Min, Max) {
 		SetTimer, RemoveToolTip, Off
 		ToolTip
 		return
+	checkUpdate(){
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/version.html, version.html
+		FileRead, newestVersion, version.html
+
+		if ( VersionNumber < newestVersion ) {
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/changelog.txt, changelog.txt
+					if ErrorLevel
+							GuiControl,1:, guiErr, ED08
+			FileRead, changelog, changelog.txt
+			Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
+			Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
+			Gui, 4:Add, Button, section default grunUpdate, Update to the Newest Version!
+			Gui, 4:Add, Button, ys gLaunchDonate, Support the Project
+			Gui, 4:Add, Button, ys gdontUpdate, Skip Update this time
+			Gui, 4:Show,, WingmanReloaded Update
+			IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
+				{
+				WinWaitClose
+				}
+			}
+		WinGetPos, , , WinWidth, WinHeight
+		Return
+		}
+
+	runUpdate:
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/PoE-Wingman.ahk, PoE-Wingman.ahk
+			if ErrorLevel {
+				error("update","fail",A_ScriptFullPath, macroVersion, A_AhkVersion)
+				error("ED07")
+			}
+			else {
+				error("update","pass",A_ScriptFullPath, macroVersion, A_AhkVersion)
+				Run "%A_ScriptFullPath%"
+			}
+		Sleep 5000 ;This shouldn't ever hit.
+		error("update","uhoh", A_ScriptFullPath, macroVersion, A_AhkVersion)
+	dontUpdate:
+		Gui, 4:Destroy
+		return	
 
 return
