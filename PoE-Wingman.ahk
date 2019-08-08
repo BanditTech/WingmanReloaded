@@ -41,7 +41,7 @@
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
-	Global VersionNumber := .03.1.1
+	Global VersionNumber := .03.2
 
 	checkUpdate()
 
