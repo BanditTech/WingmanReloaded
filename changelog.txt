@@ -1,5 +1,9 @@
 Version .03.2 August/07/2019
 --------------------------------------------------------------------------------
+Added load button to config page to reload saved settings
+
+Version .03.1 August/07/2019
+--------------------------------------------------------------------------------
 Set default INI settings straight into the ReadFromFile()
     This should fix any further issues with loading from incomplete settings.ini
 
@@ -10,9 +14,7 @@ Removed a lot of unnecessary loading and GUI altering.
 
 Added purple color to Hybrid text
 
-Mana Flasks Fire in order
-
-Added load button to config page to reload saved settings
+Mana Flasks Fire sequentially
 
 Version .03 August/06/2019
 --------------------------------------------------------------------------------
