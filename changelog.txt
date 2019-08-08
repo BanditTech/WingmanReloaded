@@ -6,7 +6,6 @@ Re-Organized the Tabs of the GUI, combined several tabs together.
     Hotkey, Calibration, Additional Interface Options, and Debug items moved to "Configuration"
     Added a messagebox for explaining how to use the calibration buttons
         Open by pressing the ?
-    
 
 Version .03.2 August/07/2019
 --------------------------------------------------------------------------------
