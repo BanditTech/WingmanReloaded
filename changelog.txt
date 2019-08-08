@@ -1,14 +1,25 @@
+Version .03.1 August/07/2019
+--------------------------------------------------------------------------------
+Set default INI settings straight into the ReadFromFile()
+    This should fix any further issues with loading from incomplete settings.ini
+
+Removed a lot of unnecessary loading and GUI altering.
+    Several checkboxes have been added default checked state
+    Editboxes do not need second application of the variable text
+    Radiobuttons can be Checked by default as well
+
+Added purple color to Hybrid text
+
 Version .03 August/06/2019
 --------------------------------------------------------------------------------
+Created a new utility Function
+    It can now be expanded to support any number of utilities
+    Input Utility name and it manages all the cooldowns and keys.
+    I put all the settings together for easily adding more.
+    As of now, PhaseRun and VaalDiscipline are supported utility skills.
+
 Cooldowns from main script will go directly to subscript
     The two scripts now have a way to communicate which flasks are on cooldown.
-
-Created a new utility Function
-    It can now be expanded to support any number of utilities, input name
-    of the Utility to fire and it manages all the cooldowns and keys.
-    I put all the settings together for easily adding more.
-
-As of now, PhaseRun and VaalDiscipline are supported utility skills.
 
 Script will not remove focus from game window.
     Now when Loading the script or pressing the save button, it will make
