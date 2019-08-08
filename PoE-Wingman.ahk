@@ -41,7 +41,7 @@
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
-	Global VersionNumber := .03.1
+	Global VersionNumber := .03.1.1
 
 	checkUpdate()
 
@@ -301,7 +301,15 @@
 		global TriggerLife80:=00000
 		global TriggerLife90:=00000
 		global DisableLife:=11111
-
+		global Radiobox1Life20, Radiobox2Life20, Radiobox3Life20, Radiobox4Life20, Radiobox5Life20
+		global Radiobox1Life30, Radiobox2Life30, Radiobox3Life30, Radiobox4Life30, Radiobox5Life30
+		global Radiobox1Life40, Radiobox2Life40, Radiobox3Life40, Radiobox4Life40, Radiobox5Life40
+		global Radiobox1Life50, Radiobox2Life50, Radiobox3Life50, Radiobox4Life50, Radiobox5Life50
+		global Radiobox1Life60, Radiobox2Life60, Radiobox3Life60, Radiobox4Life60, Radiobox5Life60
+		global Radiobox1Life70, Radiobox2Life70, Radiobox3Life70, Radiobox4Life70, Radiobox5Life70
+		global Radiobox1Life80, Radiobox2Life80, Radiobox3Life80, Radiobox4Life80, Radiobox5Life80
+		global Radiobox1Life90, Radiobox2Life90, Radiobox3Life90, Radiobox4Life90, Radiobox5Life90
+		global RadioUncheck1Life, RadioUncheck2Life, RadioUncheck3Life, RadioUncheck4Life, RadioUncheck5Life
 	;ES Triggers
 		global TriggerES20:=00000
 		global TriggerES30:=00000
@@ -312,6 +320,15 @@
 		global TriggerES80:=00000
 		global TriggerES90:=00000
 		global DisableES:=11111
+		global Radiobox1ES20, Radiobox2ES20, Radiobox3ES20, Radiobox4ES20, Radiobox5ES20
+		global Radiobox1ES30, Radiobox2ES30, Radiobox3ES30, Radiobox4ES30, Radiobox5ES30
+		global Radiobox1ES40, Radiobox2ES40, Radiobox3ES40, Radiobox4ES40, Radiobox5ES40
+		global Radiobox1ES50, Radiobox2ES50, Radiobox3ES50, Radiobox4ES50, Radiobox5ES50
+		global Radiobox1ES60, Radiobox2ES60, Radiobox3ES60, Radiobox4ES60, Radiobox5ES60
+		global Radiobox1ES70, Radiobox2ES70, Radiobox3ES70, Radiobox4ES70, Radiobox5ES70
+		global Radiobox1ES80, Radiobox2ES80, Radiobox3ES80, Radiobox4ES80, Radiobox5ES80
+		global Radiobox1ES90, Radiobox2ES90, Radiobox3ES90, Radiobox4ES90, Radiobox5ES90
+		global RadioUncheck1ES, RadioUncheck2ES, RadioUncheck3ES, RadioUncheck4ES, RadioUncheck5ES
 
 	;Mana Triggers
 		global TriggerMana10:=00000
@@ -687,6 +704,7 @@
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything vSaveBtn	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
 	;#######################################################################################################Profiles Tab
@@ -3241,7 +3259,7 @@ Clamp( Val, Min, Max) {
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	readFromFile(){
 		global
-		;General settings
+			;General settings
 			IniRead, Speed, settings.ini, General, Speed, 1
 			IniRead, Tick, settings.ini, General, Tick, 50
 			IniRead, QTick, settings.ini, General, QTick, 250
@@ -3337,6 +3355,26 @@ Clamp( Val, Min, Max) {
 			IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80, 00000
 			IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90, 00000
 			IniRead, DisableLife, settings.ini, Life Triggers, DisableLife, 11111
+			Loop, 5 {
+				valueLife20 := substr(TriggerLife20, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
+				valueLife30 := substr(TriggerLife30, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
+				valueLife40 := substr(TriggerLife40, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
+				valueLife50 := substr(TriggerLife50, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
+				valueLife60 := substr(TriggerLife60, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
+				valueLife70 := substr(TriggerLife70, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
+				valueLife80 := substr(TriggerLife80, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
+				valueLife90 := substr(TriggerLife90, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
+				valueDisableLife := substr(DisableLife, (A_Index), 1)
+				GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
+				}
 			
 		;ES Triggers
 			IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20, 00000
@@ -3348,10 +3386,33 @@ Clamp( Val, Min, Max) {
 			IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80, 00000
 			IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90, 00000
 			IniRead, DisableES, settings.ini, ES Triggers, DisableES, 11111
-			
+			Loop, 5 {
+				valueES20 := substr(TriggerES20, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES20, %valueES20%
+				valueES30 := substr(TriggerES30, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES30, %valueES30%
+				valueES40 := substr(TriggerES40, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES40, %valueES40%
+				valueES50 := substr(TriggerES50, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES50, %valueES50%
+				valueES60 := substr(TriggerES60, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES60, %valueES60%
+				valueES70 := substr(TriggerES70, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES70, %valueES70%
+				valueES80 := substr(TriggerES80, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES80, %valueES80%
+				valueES90 := substr(TriggerES90, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES90, %valueES90%
+				valueDisableES := substr(DisableES, (A_Index), 1)
+				GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
+				}	
+				
 		;Mana Triggers
 			IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10, 00000
-			
+			Loop, 5 {	
+				valueMana10 := substr(TriggerMana10, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
+				}
 		;Utility Buttons
 			IniRead, YesPhaseRun, settings.ini, Utility Buttons, YesPhaseRun, 1
 			IniRead, YesVaalDiscipline, settings.ini, Utility Buttons, YesVaalDiscipline, 1
@@ -3392,19 +3453,20 @@ Clamp( Val, Min, Max) {
 		;Attack Flasks
 			IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack, 00000
 			IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack, 00000
-			Loop, 5 {
-				MainAttackbox%A_Index% := substr(TriggerMainAttack, (A_Index), 1)
-				SecondaryAttackbox%A_Index% := substr(TriggerSecondaryAttack, (A_Index), 1)
+			Loop, 5{	
+				valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
+				GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
+				valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
+				GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
 				}
 			
 		;Quicksilver
 			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
 			IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
-			IniRead, QuicksilverSlot1, settings.ini, Quicksilver, QuicksilverSlot1, 0
-			IniRead, QuicksilverSlot2, settings.ini, Quicksilver, QuicksilverSlot2, 0
-			IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3, 0
-			IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4, 0
-			IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5, 0
+			Loop, 5 {	
+				valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
+				}
 		
 		;CharacterTypeCheck
 			IniRead, RadioLife, settings.ini, CharacterTypeCheck, Life, 1
@@ -3916,45 +3978,45 @@ Clamp( Val, Min, Max) {
 		return
 		}
 
-	submitProfile1:
-		submitProfile(1)
-		Return
+		submitProfile1:
+			submitProfile(1)
+			Return
 
-	submitProfile2:
-		submitProfile(2)
-		Return
+		submitProfile2:
+			submitProfile(2)
+			Return
 
-	submitProfile3:
-		submitProfile(3)
-		Return
+		submitProfile3:
+			submitProfile(3)
+			Return
 
-	submitProfile4:
-		submitProfile(4)
-		Return
+		submitProfile4:
+			submitProfile(4)
+			Return
 
-	submitProfile5:
-		submitProfile(5)
-		Return
+		submitProfile5:
+			submitProfile(5)
+			Return
 
-	submitProfile6:
-		submitProfile(6)
-		Return
+		submitProfile6:
+			submitProfile(6)
+			Return
 
-	submitProfile7:
-		submitProfile(7)
-		Return
+		submitProfile7:
+			submitProfile(7)
+			Return
 
-	submitProfile8:
-		submitProfile(8)
-		Return
+		submitProfile8:
+			submitProfile(8)
+			Return
 
-	submitProfile9:
-		submitProfile(9)
-		Return
+		submitProfile9:
+			submitProfile(9)
+			Return
 
-	submitProfile10:
-		submitProfile(10)
-		Return
+		submitProfile10:
+			submitProfile(10)
+			Return
 
 	readProfile(Profile){  
 		global
@@ -4358,48 +4420,134 @@ Clamp( Val, Min, Max) {
 		return  
 		}
 		
-	readProfile1:
-		readProfile(1)
-		Return
+		readProfile1:
+			readProfile(1)
+			Return
 
-	readProfile2:
-		readProfile(2)
-		Return
+		readProfile2:
+			readProfile(2)
+			Return
 
-	readProfile3:
-		readProfile(3)
-		Return
+		readProfile3:
+			readProfile(3)
+			Return
 
-	readProfile4:
-		readProfile(4)
-		Return
+		readProfile4:
+			readProfile(4)
+			Return
 
-	readProfile5:
-		readProfile(5)
-		Return
+		readProfile5:
+			readProfile(5)
+			Return
 
-	readProfile6:
-		readProfile(6)
-		Return
+		readProfile6:
+			readProfile(6)
+			Return
 
-	readProfile7:
-		readProfile(7)
-		Return
+		readProfile7:
+			readProfile(7)
+			Return
 
-	readProfile8:
-		readProfile(8)
-		Return
+		readProfile8:
+			readProfile(8)
+			Return
 
-	readProfile9:
-		readProfile(9)
-		Return
+		readProfile9:
+			readProfile(9)
+			Return
 
-	readProfile10:
-		readProfile(10)
-		Return
+		readProfile10:
+			readProfile(10)
+			Return
 
 	optionsCommand:
 		hotkeys()
+		return
+
+	loadSaved:
+		readFromFile()
+		;Update UI
+			if(RadioLife==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+					GuiControl, Enable, Radiobox%A_Index%Life80
+					GuiControl, Enable, Radiobox%A_Index%Life70
+					GuiControl, Enable, Radiobox%A_Index%Life60
+					GuiControl, Enable, Radiobox%A_Index%Life50
+					GuiControl, Enable, Radiobox%A_Index%Life40
+					GuiControl, Enable, Radiobox%A_Index%Life30
+					GuiControl, Enable, Radiobox%A_Index%Life20
+					GuiControl, Enable, RadioUncheck%A_Index%Life
+					
+					GuiControl, Disable, Radiobox%A_Index%ES90
+					GuiControl, Disable, Radiobox%A_Index%ES80
+					GuiControl, Disable, Radiobox%A_Index%ES70
+					GuiControl, Disable, Radiobox%A_Index%ES60
+					GuiControl, Disable, Radiobox%A_Index%ES50
+					GuiControl, Disable, Radiobox%A_Index%ES40
+					GuiControl, Disable, Radiobox%A_Index%ES30
+					GuiControl, Disable, Radiobox%A_Index%ES20
+					GuiControl, Disable, RadioUncheck%A_Index%ES
+					}
+				}
+			else if(RadioHybrid==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+					GuiControl, Enable, Radiobox%A_Index%Life80
+					GuiControl, Enable, Radiobox%A_Index%Life70
+					GuiControl, Enable, Radiobox%A_Index%Life60
+					GuiControl, Enable, Radiobox%A_Index%Life50
+					GuiControl, Enable, Radiobox%A_Index%Life40
+					GuiControl, Enable, Radiobox%A_Index%Life30
+					GuiControl, Enable, Radiobox%A_Index%Life20
+					GuiControl, Enable, RadioUncheck%A_Index%Life
+					
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+					}
+				}
+			else if(RadioCi==1) {
+				varTextAutoQuit20:="20 % ES"
+				varTextAutoQuit30:="30 % ES"
+				varTextAutoQuit40:="40 % ES"
+				loop 5 {
+					GuiControl, Disable, Radiobox%A_Index%Life90
+					GuiControl, Disable, Radiobox%A_Index%Life80
+					GuiControl, Disable, Radiobox%A_Index%Life70
+					GuiControl, Disable, Radiobox%A_Index%Life60
+					GuiControl, Disable, Radiobox%A_Index%Life50
+					GuiControl, Disable, Radiobox%A_Index%Life40
+					GuiControl, Disable, Radiobox%A_Index%Life30
+					GuiControl, Disable, Radiobox%A_Index%Life20
+					GuiControl, Disable, RadioUncheck%A_Index%Life
+				
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+					}
+				}
+			GuiControl,, RadioQuit20, %varTextAutoQuit20%
+			GuiControl,, RadioQuit30, %varTextAutoQuit30%
+			GuiControl,, RadioQuit40, %varTextAutoQuit40%
 		return
 
 	hotkeys(){
