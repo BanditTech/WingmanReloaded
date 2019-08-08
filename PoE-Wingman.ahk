@@ -399,13 +399,10 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Profiles|Calibration|Inventory|Utility
-	;#######################################################################################################Configuration Tab
-	Gui, Tab, Configuration
+	Gui Add, Tab2, x1 y1 w620 h465 -wrap, Flasks and Utility|Configuration|Inventory
+	;#######################################################################################################Flasks and Utility Tab
+	Gui, Tab, Flasks and Utility
 	Gui, Font,
-	Gui, Add, Button, greadProfile1 x100 y25 w50, Load 1
-	Gui, Add, Button, greadProfile2 x+1 w50, Load 2
-	Gui, Add, Button, greadProfile3 x+1 w50, Load 3
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x12 	y30, 				Flask Settings
@@ -584,12 +581,115 @@
 	Gui, Add, Text, 									x+33 				h310 0x11
 	Gui, Add, Text, 									x+34 				h310 0x11
 	Gui, Add, Text, 									x+33 				h310 0x11
-	Gui, Add, Text, 									x+5 	y23		w1	h411 0x7
-	Gui, Add, Text, 									x+1 	y23		w1	h411 0x7
+	Gui, Add, Text, 									x+5 	y23		w1	h441 0x7
+	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
+
+	Gui, Add, Text, 									x447 	y53 		h140 0x11
+
+	Gui, Font, Bold
+	Gui, Add, Text, 										x292 	y30, 				Flask Profile Management:
+		Gui, Font
+	Gui, Add, Button, gsubmitProfile1 x290 y52 w50 h23, Save 1
+	Gui, Add, Button, gsubmitProfile2 w50 h23, Save 2
+	Gui, Add, Button, gsubmitProfile3 w50 h23, Save 3
+	Gui, Add, Button, gsubmitProfile4 w50 h23, Save 4
+	Gui, Add, Button, gsubmitProfile5 w50 h23, Save 5
+
+	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x340 y53 w50 h21, %ProfileText1%
+	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h21, %ProfileText2%
+	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h21, %ProfileText3%
+	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h21, %ProfileText4%
+	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h21, %ProfileText5%
+
+	Gui, Add, Button, greadProfile1 x390 y52 w50 h23, Load 1
+	Gui, Add, Button, greadProfile2 w50 h23, Load 2
+	Gui, Add, Button, greadProfile3 w50 h23, Load 3
+	Gui, Add, Button, greadProfile4 w50 h23, Load 4
+	Gui, Add, Button, greadProfile5 w50 h23, Load 5
+
+	Gui, Add, Button, gsubmitProfile6 x455 y52 w50 h23, Save 6
+	Gui, Add, Button, gsubmitProfile7 w50 h23, Save 7
+	Gui, Add, Button, gsubmitProfile8 w50 h23, Save 8
+	Gui, Add, Button, gsubmitProfile9 w50 h23, Save 9
+	Gui, Add, Button, gsubmitProfile10 w50 h23, Save 10
+
+	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x505 y53 w50 h21, %ProfileText6%
+	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h21, %ProfileText7%
+	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h21, %ProfileText8%
+	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h21, %ProfileText9%
+	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h21, %ProfileText10%
+
+	Gui, Add, Button, greadProfile6 x555 y52 w50 h23, Load 6
+	Gui, Add, Button, greadProfile7 w50 h23, Load 7
+	Gui, Add, Button, greadProfile8 w50 h23, Load 8
+	Gui, Add, Button, greadProfile9 w50 h23, Load 9
+	Gui, Add, Button, greadProfile10 w50 h23, Load 10
+
+	Gui, Font, Bold
+	Gui Add, Text, 										x292 	y230, 				Utility Management
+	Gui, Font,
+
+	Gui,Add,Edit,			gUpdateUtility  		x319 y249  w40 h19 	vCooldownPhaseRun				,%CooldownPhaseRun%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownVaalDiscipline				,%CooldownVaalDiscipline%
+
+	Gui,Add,Edit,			  	x+22	y249   w40 h19 gUpdateUtility	vutilityPhaseRun				,%utilityPhaseRun%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vutilityVaalDiscipline				,%utilityVaalDiscipline%
+
+	Gui Add, Checkbox, gUpdateUtility	vYesPhaseRun Checked%YesPhaseRun%				x+5 y252	, Use Phase Run on Quicksilver?
+	Gui Add, Checkbox, gUpdateUtility	vYesVaalDiscipline Checked%YesVaalDiscipline%		y+13	, Use Vaal Discipline on 50`% ES?
+
+	Gui Add, Text, 										x300 	y250, 	CD:
+	Gui Add, Text, 													, 	CD:
+
+	Gui Add, Text, 										x360 	y250, 	Key:
+	Gui Add, Text, 													, 	Key:
+
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
+	;#######################################################################################################Configuration Tab
+	Gui, Tab, Configuration
+	Gui, Add, Text, 									x279 	y23		w1	h441 0x7
+	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
 
 	Gui, Add, Text, 									x376 	y29 		h107 0x11
 	Gui, Add, Text, 									x+33 		 		h107 0x11
 	Gui, Add, Text, 									x+33 		 		h107 0x11
+
+	Gui, Font, Bold
+	Gui, Add, Text, 										x22 	y30, 				Gamestate Calibration:
+	Gui, Font
+	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
+
+	;Update calibration for pixel check
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y50	w100, 	OnHideout Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
+
+	Gui, Font, Bold
+	Gui, Add, Text, 										x22 	y+10, 				AutoDetonate Calibration:
+	Gui, Font
+
+	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+8	w100, 	Detonate Color
+	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
+
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y50	w100, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
+	Gui, Font, Bold
+	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
+	Gui, Font, 
+
+	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
+	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          	, Are you using Steam?
+	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          	, Are you running 64 bit?
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    , Standard|UltraWide
+		GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
+	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
+	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
+	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x292 	y30, 				QoL Settings
@@ -615,12 +715,12 @@
 	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         y+8                , Stock Wisdom?
 	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%             y+8                , Weapon Swap?
 
-	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x560 	y5 	    w13 h13	
-	Gui Add, Text, 										x523	y5, 				Debug:
-	Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x506 	y5 	w13 h13	
-	Gui Add, Text, 							vPGrid	    x457	y5, 		    	Pixel Grid:
-	Gui Add, Checkbox, 	vShowItemInfo Checked%ShowItemInfo%  gUpdateDebug  	x440 	y5 	w13 h13	
-	Gui Add, Text, 							vParseI	    x385	y5, 		        Parse Item:
+	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
+	Gui Add, Text, 										x573	y5, 				Debug:
+	Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x556 	y5 	w13 h13	
+	Gui Add, Text, 							vPGrid	    x507	y5, 		    	Pixel Grid:
+	Gui Add, Checkbox, 	vShowItemInfo Checked%ShowItemInfo%  gUpdateDebug  	x490 	y5 	w13 h13	
+	Gui Add, Text, 							vParseI	    x435	y5, 		        Parse Item:
 
 	If (DebugMessages=1) {
 		varCoordUtilText := "Coord/Debug"
@@ -676,14 +776,6 @@
 	hotkeyItemSort_TT:="Set your own hotkey here"
 
 
-
-
-
-
-
-
-
-
 	Gui, Font, Bold
 	Gui Add, Text, 										x440 	y168, 				Ingame:
 	Gui, Font
@@ -713,87 +805,10 @@
 	Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything vSaveBtn	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
-	;#######################################################################################################Profiles Tab
-	Gui, Tab, Profiles
-	Gui, Font, Bold
-	Gui, Add, Text, 										x12 	y30, 				Flask Profile Management:
-		Gui, Font,
-	Gui, Add, Button, gsubmitProfile1 x20 y52 w50, Save 1
-	Gui, Add, Button, gsubmitProfile2 w50, Save 2
-	Gui, Add, Button, gsubmitProfile3 w50, Save 3
-	Gui, Add, Button, gsubmitProfile4 w50, Save 4
-	Gui, Add, Button, gsubmitProfile5 w50, Save 5
-	Gui, Add, Button, gsubmitProfile6 w50, Save 6
-	Gui, Add, Button, gsubmitProfile7 w50, Save 7
-	Gui, Add, Button, gsubmitProfile8 w50, Save 8
-	Gui, Add, Button, gsubmitProfile9 w50, Save 9
-	Gui, Add, Button, gsubmitProfile10 w50, Save 10
-
-	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x70 y54 w100, %ProfileText1%
-	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w100, %ProfileText2%
-	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w100, %ProfileText3%
-	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w100, %ProfileText4%
-	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w100, %ProfileText5%
-	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 w100, %ProfileText6%
-	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w100, %ProfileText7%
-	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w100, %ProfileText8%
-	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w100, %ProfileText9%
-	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w100, %ProfileText10%
-
-	Gui, Add, Button, greadProfile1 x170 y52 w50, Load 1
-	Gui, Add, Button, greadProfile2 w50, Load 2
-	Gui, Add, Button, greadProfile3 w50, Load 3
-	Gui, Add, Button, greadProfile4 w50, Load 4
-	Gui, Add, Button, greadProfile5 w50, Load 5
-	Gui, Add, Button, greadProfile6 w50, Load 6
-	Gui, Add, Button, greadProfile7 w50, Load 7
-	Gui, Add, Button, greadProfile8 w50, Load 8
-	Gui, Add, Button, greadProfile9 w50, Load 9
-	Gui, Add, Button, greadProfile10 w50, Load 10
-
-	;#######################################################################################################Calibration Tab
-	Gui, Tab, Calibration
-	Gui, Font, Bold
-	Gui, Add, Text, 										x242 	y35, 				Gamestate Calibration Instructions:
-	Gui, Font,
-	Gui Add, Text, 										x252 	y+5, 				These buttons regrab the gamestate sample color.
-	Gui Add, Text, 										x252 	y+5, 				Each button references a different game state.
-	Gui Add, Text, 										x252 	y+5, 				Make sure the gamestate is true for that button!
-	Gui Add, Text, 										x252 	y+5, 				Click the button once ready to calibrate.
-	Gui, Font, Bold
-	Gui Add, Text, 										x242 	y+10, 				Auto-Detonate Mines Recalibration:
-	Gui, Font,
-	Gui Add, Text, 										x252 	y+3, 				Sample the DetonateHex color in normal or delve.
-	Gui Add, Text, 										x252 	y+3, 				Drop a mine then press the sample button that matches.
-
-	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y35	w100, 	OnHideout Color
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
-
-
-	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+22	w100, 	Detonate Color
-	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
-
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y35	w100, 	OnInventory Color
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
-	Gui, Font, Bold
-	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
-	Gui, Font, 
-
-	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
-	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          	, Are you using Steam?
-	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          	, Are you running 64 bit?
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    , Standard|UltraWide
-		GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
-	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
-	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
-	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 	;#######################################################################################################Inventory Tab
 	Gui, Tab, Inventory
 	Gui, Font, Bold
@@ -849,28 +864,6 @@
 	Gui Add, Text, 										x22 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
 	Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
 	Gui Add, Text, 										x22 	y+5, 				The options to the right affect which portion of the script is enabled.
-
-	;#######################################################################################################Utility Tab
-	Gui, Tab, Utility
-	Gui, Font, Bold
-	Gui Add, Text, 										x12 	y30, 				Utility Management
-	Gui, Font,
-
-	Gui,Add,Edit,			gUpdateUtility  		x29 y49  w60 h19 	vCooldownPhaseRun	ChooseString%CooldownPhaseRun%			,%CooldownPhaseRun%
-	Gui,Add,Edit,			gUpdateUtility  		   w60 h19 	vCooldownVaalDiscipline	ChooseString%CooldownVaalDiscipline%			,%CooldownVaalDiscipline%
-
-	Gui,Add,Edit,			  	x+22	y49   w60 h19 gUpdateUtility	vutilityPhaseRun	ChooseString%utilityPhaseRun%			,%utilityPhaseRun%
-	Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vutilityVaalDiscipline	ChooseString%utilityVaalDiscipline%			,%utilityVaalDiscipline%
-
-	Gui Add, Checkbox, gUpdateUtility	vYesPhaseRun Checked%YesPhaseRun%				x+10 y52	, Use Phase Run on Quicksilver?
-	Gui Add, Checkbox, gUpdateUtility	vYesVaalDiscipline Checked%YesVaalDiscipline%		y+13	, Use Vaal Discipline on 50`% ES?
-
-	Gui Add, Text, 										x10 	y50, 	CD:
-	Gui Add, Text, 													, 	CD:
-
-	Gui Add, Text, 										x90 	y50, 	Key:
-	Gui Add, Text, 													, 	Key:
-
 
 	Gui, +LastFound
 	If (ShowOnStart)
@@ -5144,6 +5137,11 @@ Clamp( Val, Min, Max) {
 		SetTimer, RemoveToolTip, Off
 		ToolTip
 		return
+	
+	helpCalibration:
+		MsgBox, Gamestate Calibration Instructions:`n`n  These buttons regrab the gamestate sample color.`n  Each button references a different game state.`n  Make sure the gamestate is true for that button!`n  Click the button once ready to calibrate.`n`nAuto-Detonate Mines Recalibration:`n`n  Sample the DetonateHex color in normal or delve.`n  Drop a mine then press the sample button that matches.
+		Return
+
 	checkUpdate(){
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/version.html, version.html
 		FileRead, newestVersion, version.html
