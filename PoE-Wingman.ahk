@@ -334,9 +334,10 @@
 		global TriggerMana10:=00000
 
 	;AutoQuit
-		global Quit20
-		global Quit30
-		global Quit40
+		global RadioQuit20, RadioQuit30, RadioQuit40, RadioCritQuit, RadioNormalQuit
+
+	;Character Type
+		global RadioCi, RadioHybrid, RadioLife
 
 	;Utility Buttons
 		global YesPhaseRun:=1
@@ -673,6 +674,15 @@
 	hotkeyPopFlasks_TT:="Set your own hotkey here"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
 	hotkeyItemSort_TT:="Set your own hotkey here"
+
+
+
+
+
+
+
+
+
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x440 	y168, 				Ingame:
@@ -4548,6 +4558,44 @@ Clamp( Val, Min, Max) {
 			GuiControl,, RadioQuit20, %varTextAutoQuit20%
 			GuiControl,, RadioQuit30, %varTextAutoQuit30%
 			GuiControl,, RadioQuit40, %varTextAutoQuit40%
+			GuiControl,, RadioQuit20, %RadioQuit20%
+			GuiControl,, RadioQuit30, %RadioQuit30%
+			GuiControl,, RadioQuit40, %RadioQuit40%
+			GuiControl,, CooldownFlask1, %CooldownFlask1%
+			GuiControl,, CooldownFlask2, %CooldownFlask2%
+			GuiControl,, CooldownFlask3, %CooldownFlask3%
+			GuiControl,, CooldownFlask4, %CooldownFlask4%
+			GuiControl,, CooldownFlask5, %CooldownFlask5%
+			GuiControl,, RadioNormalQuit, %RadioNormalQuit%
+			GuiControl,, RadioCritQuit, %RadioCritQuit%
+			GuiControl,, RadioLife, %RadioLife%
+			GuiControl,, RadioHybrid, %RadioHybrid%
+			GuiControl,, RadioCi, %RadioCi%
+			GuiControl,, hotkeyMainAttack, %hotkeyMainAttack%
+			GuiControl,, hotkeySecondaryAttack, %hotkeySecondaryAttack%
+			GuiControl,, TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
+			GuiControl,, hotkeyOptions, %hotkeyOptions%
+			GuiControl,, hotkeyAutoFlask, %hotkeyAutoFlask%
+			GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
+			GuiControl,, hotkeyLogout, %hotkeyLogout%
+			GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
+			GuiControl,, otkeyGetMouseCoords, %otkeyGetMouseCoords%
+			GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
+			GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
+			GuiControl,, vhotkeyPopFlasks, %vhotkeyPopFlasks%
+			GuiControl,, hotkeyItemSort, %hotkeyItemSort%
+			GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
+			GuiControl,, hotkeyInventory, %hotkeyInventory%
+			GuiControl,, hotkeyWeaponSwapKey, %hotkeyWeaponSwapKey%
+			GuiControl,, hotkeyLootScan, %hotkeyLootScan%
+			GuiControl,, PortalScrollX, %PortalScrollX%
+			GuiControl,, PortalScrollY, %PortalScrollY%
+			GuiControl,, WisdomScrollX, %WisdomScrollX%
+			GuiControl,, WisdomScrollY, %WisdomScrollY%
+			GuiControl,, CurrentGemX, %CurrentGemX%
+			GuiControl,, CurrentGemY, %CurrentGemY%
+			GuiControl,, AlternateGemX, %AlternateGemX%
+			GuiControl,, AlternateGemY, %AlternateGemY%
 		return
 
 	hotkeys(){
