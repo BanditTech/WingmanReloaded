@@ -1,3 +1,13 @@
+Version .03.6 August/09/2019
+--------------------------------------------------------------------------------
+Utility Management has been added to profiles
+    Configure Each utility for a specific build!
+
+Profiles which have not been used now act as a blank slate for the GUI
+    Press the load # button on a slot you have not used to unselect everything
+
+Fixed textbox being selected on update Popup
+
 Version .03.5 August/09/2019
 --------------------------------------------------------------------------------
 Sauron-Dev has added:

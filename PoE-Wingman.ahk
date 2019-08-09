@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .03.5
+    Global VersionNumber := .03.6
     
     checkUpdate()
     
@@ -4303,6 +4303,44 @@ submitProfile(Profile){
     IniWrite, %RadioCritQuit%, settings.ini, Profile%Profile%, CritQuit
     IniWrite, %RadioNormalQuit%, settings.ini, Profile%Profile%, NormalQuit
     
+    ;Utility Buttons
+    IniWrite, %YesUtility1%, settings.ini, Profile%Profile%, YesUtility1
+    IniWrite, %YesUtility2%, settings.ini, Profile%Profile%, YesUtility2
+    IniWrite, %YesUtility3%, settings.ini, Profile%Profile%, YesUtility3
+    IniWrite, %YesUtility4%, settings.ini, Profile%Profile%, YesUtility4
+    IniWrite, %YesUtility5%, settings.ini, Profile%Profile%, YesUtility5
+    IniWrite, %YesUtility1Quicksilver%, settings.ini, Profile%Profile%, YesUtility1Quicksilver
+    IniWrite, %YesUtility2Quicksilver%, settings.ini, Profile%Profile%, YesUtility2Quicksilver
+    IniWrite, %YesUtility3Quicksilver%, settings.ini, Profile%Profile%, YesUtility3Quicksilver
+    IniWrite, %YesUtility4Quicksilver%, settings.ini, Profile%Profile%, YesUtility4Quicksilver
+    IniWrite, %YesUtility5Quicksilver%, settings.ini, Profile%Profile%, YesUtility5Quicksilver
+    
+    ;Utility Percents	
+    IniWrite, %YesUtility1LifePercent%, settings.ini, Profile%Profile%, YesUtility1LifePercent
+	IniWrite, %YesUtility2LifePercent%, settings.ini, Profile%Profile%, YesUtility2LifePercent
+	IniWrite, %YesUtility3LifePercent%, settings.ini, Profile%Profile%, YesUtility3LifePercent
+	IniWrite, %YesUtility4LifePercent%, settings.ini, Profile%Profile%, YesUtility4LifePercent
+	IniWrite, %YesUtility5LifePercent%, settings.ini, Profile%Profile%, YesUtility5LifePercent
+	IniWrite, %YesUtility1EsPercent%, settings.ini, Profile%Profile%, YesUtility1EsPercent
+    IniWrite, %YesUtility2EsPercent%, settings.ini, Profile%Profile%, YesUtility2EsPercent
+    IniWrite, %YesUtility3EsPercent%, settings.ini, Profile%Profile%, YesUtility3EsPercent
+    IniWrite, %YesUtility4EsPercent%, settings.ini, Profile%Profile%, YesUtility4EsPercent
+    IniWrite, %YesUtility5EsPercent%, settings.ini, Profile%Profile%, YesUtility5EsPercent
+    
+    ;Utility Cooldowns
+    IniWrite, %CooldownUtility1%, settings.ini, Profile%Profile%, CooldownUtility1
+    IniWrite, %CooldownUtility2%, settings.ini, Profile%Profile%, CooldownUtility2
+    IniWrite, %CooldownUtility3%, settings.ini, Profile%Profile%, CooldownUtility3
+    IniWrite, %CooldownUtility4%, settings.ini, Profile%Profile%, CooldownUtility4
+    IniWrite, %CooldownUtility5%, settings.ini, Profile%Profile%, CooldownUtility5
+    
+    ;Utility Keys
+    IniWrite, %KeyUtility1%, settings.ini, Profile%Profile%, KeyUtility1
+    IniWrite, %KeyUtility2%, settings.ini, Profile%Profile%, KeyUtility2
+    IniWrite, %KeyUtility3%, settings.ini, Profile%Profile%, KeyUtility3
+    IniWrite, %KeyUtility4%, settings.ini, Profile%Profile%, KeyUtility4
+    IniWrite, %KeyUtility5%, settings.ini, Profile%Profile%, KeyUtility5
+    
 return
 }
 
@@ -4348,320 +4386,384 @@ Return
 
 readProfile(Profile){  
     global
-    
-    IniRead, Test, settings.ini, Profile%Profile%, Radiobox1Life20
-	If (Test = "ERROR")
-        Exit
     ;Life Flasks
-    
-	IniRead, Radiobox1Life20, settings.ini, Profile%Profile%, Radiobox1Life20
+	IniRead, Radiobox1Life20, settings.ini, Profile%Profile%, Radiobox1Life20, 0
 	GuiControl, , Radiobox1Life20, %Radiobox1Life20%
-	IniRead, Radiobox2Life20, settings.ini, Profile%Profile%, Radiobox2Life20
+	IniRead, Radiobox2Life20, settings.ini, Profile%Profile%, Radiobox2Life20, 0
 	GuiControl, , Radiobox2Life20, %Radiobox2Life20%
-	IniRead, Radiobox3Life20, settings.ini, Profile%Profile%, Radiobox3Life20
+	IniRead, Radiobox3Life20, settings.ini, Profile%Profile%, Radiobox3Life20, 0
 	GuiControl, , Radiobox3Life20, %Radiobox3Life20%
-	IniRead, Radiobox4Life20, settings.ini, Profile%Profile%, Radiobox4Life20
+	IniRead, Radiobox4Life20, settings.ini, Profile%Profile%, Radiobox4Life20, 0
 	GuiControl, , Radiobox4Life20, %Radiobox4Life20%
-	IniRead, Radiobox5Life20, settings.ini, Profile%Profile%, Radiobox5Life20
+	IniRead, Radiobox5Life20, settings.ini, Profile%Profile%, Radiobox5Life20, 0
 	GuiControl, , Radiobox5Life20, %Radiobox5Life20%
 
-	IniRead, Radiobox1Life30, settings.ini, Profile%Profile%, Radiobox1Life30
+	IniRead, Radiobox1Life30, settings.ini, Profile%Profile%, Radiobox1Life30, 0
 	GuiControl, , Radiobox1Life30, %Radiobox1Life30%
-	IniRead, Radiobox2Life30, settings.ini, Profile%Profile%, Radiobox2Life30
+	IniRead, Radiobox2Life30, settings.ini, Profile%Profile%, Radiobox2Life30, 0
 	GuiControl, , Radiobox2Life30, %Radiobox2Life30%
-	IniRead, Radiobox3Life30, settings.ini, Profile%Profile%, Radiobox3Life30
+	IniRead, Radiobox3Life30, settings.ini, Profile%Profile%, Radiobox3Life30, 0
 	GuiControl, , Radiobox3Life30, %Radiobox3Life30%
-	IniRead, Radiobox4Life30, settings.ini, Profile%Profile%, Radiobox4Life30
+	IniRead, Radiobox4Life30, settings.ini, Profile%Profile%, Radiobox4Life30, 0
 	GuiControl, , Radiobox4Life30, %Radiobox4Life30%
-	IniRead, Radiobox5Life30, settings.ini, Profile%Profile%, Radiobox5Life30
+	IniRead, Radiobox5Life30, settings.ini, Profile%Profile%, Radiobox5Life30, 0
 	GuiControl, , Radiobox5Life30, %Radiobox5Life30%
 
-	IniRead, Radiobox1Life40, settings.ini, Profile%Profile%, Radiobox1Life40
+	IniRead, Radiobox1Life40, settings.ini, Profile%Profile%, Radiobox1Life40, 0
 	GuiControl, , Radiobox1Life40, %Radiobox1Life40%
-	IniRead, Radiobox2Life40, settings.ini, Profile%Profile%, Radiobox2Life40
+	IniRead, Radiobox2Life40, settings.ini, Profile%Profile%, Radiobox2Life40, 0
 	GuiControl, , Radiobox2Life40, %Radiobox2Life40%
-	IniRead, Radiobox3Life40, settings.ini, Profile%Profile%, Radiobox3Life40
+	IniRead, Radiobox3Life40, settings.ini, Profile%Profile%, Radiobox3Life40, 0
 	GuiControl, , Radiobox3Life40, %Radiobox3Life40%
-	IniRead, Radiobox4Life40, settings.ini, Profile%Profile%, Radiobox4Life40
+	IniRead, Radiobox4Life40, settings.ini, Profile%Profile%, Radiobox4Life40, 0
 	GuiControl, , Radiobox4Life40, %Radiobox4Life40%
-	IniRead, Radiobox5Life40, settings.ini, Profile%Profile%, Radiobox5Life40
+	IniRead, Radiobox5Life40, settings.ini, Profile%Profile%, Radiobox5Life40, 0
 	GuiControl, , Radiobox5Life40, %Radiobox5Life40%
 
-	IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50
+	IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50, 0
 	GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-	IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50
+	IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50, 0
 	GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-	IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50
+	IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50, 0
 	GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-	IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50
+	IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50, 0
 	GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-	IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50
+	IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50, 0
 	GuiControl, , Radiobox5Life50, %Radiobox5Life50%
 
-	IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50
+	IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50, 0
 	GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-	IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50
+	IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50, 0
 	GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-	IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50
+	IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50, 0
 	GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-	IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50
+	IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50, 0
 	GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-	IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50
+	IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50, 0
 	GuiControl, , Radiobox5Life50, %Radiobox5Life50%
 
-	IniRead, Radiobox1Life60, settings.ini, Profile%Profile%, Radiobox1Life60
+	IniRead, Radiobox1Life60, settings.ini, Profile%Profile%, Radiobox1Life60, 0
 	GuiControl, , Radiobox1Life60, %Radiobox1Life60%
-	IniRead, Radiobox2Life60, settings.ini, Profile%Profile%, Radiobox2Life60
+	IniRead, Radiobox2Life60, settings.ini, Profile%Profile%, Radiobox2Life60, 0
 	GuiControl, , Radiobox2Life60, %Radiobox2Life60%
-	IniRead, Radiobox3Life60, settings.ini, Profile%Profile%, Radiobox3Life60
+	IniRead, Radiobox3Life60, settings.ini, Profile%Profile%, Radiobox3Life60, 0
 	GuiControl, , Radiobox3Life60, %Radiobox3Life60%
-	IniRead, Radiobox4Life60, settings.ini, Profile%Profile%, Radiobox4Life60
+	IniRead, Radiobox4Life60, settings.ini, Profile%Profile%, Radiobox4Life60, 0
 	GuiControl, , Radiobox4Life60, %Radiobox4Life60%
-	IniRead, Radiobox5Life60, settings.ini, Profile%Profile%, Radiobox5Life60
+	IniRead, Radiobox5Life60, settings.ini, Profile%Profile%, Radiobox5Life60, 0
 	GuiControl, , Radiobox5Life60, %Radiobox5Life60%
 
-	IniRead, Radiobox1Life70, settings.ini, Profile%Profile%, Radiobox1Life70
+	IniRead, Radiobox1Life70, settings.ini, Profile%Profile%, Radiobox1Life70, 0
 	GuiControl, , Radiobox1Life70, %Radiobox1Life70%
-	IniRead, Radiobox2Life70, settings.ini, Profile%Profile%, Radiobox2Life70
+	IniRead, Radiobox2Life70, settings.ini, Profile%Profile%, Radiobox2Life70, 0
 	GuiControl, , Radiobox2Life70, %Radiobox2Life70%
-	IniRead, Radiobox3Life70, settings.ini, Profile%Profile%, Radiobox3Life70
+	IniRead, Radiobox3Life70, settings.ini, Profile%Profile%, Radiobox3Life70, 0
 	GuiControl, , Radiobox3Life70, %Radiobox3Life70%
-	IniRead, Radiobox4Life70, settings.ini, Profile%Profile%, Radiobox4Life70
+	IniRead, Radiobox4Life70, settings.ini, Profile%Profile%, Radiobox4Life70, 0
 	GuiControl, , Radiobox4Life70, %Radiobox4Life70%
-	IniRead, Radiobox5Life70, settings.ini, Profile%Profile%, Radiobox5Life70
+	IniRead, Radiobox5Life70, settings.ini, Profile%Profile%, Radiobox5Life70, 0
 	GuiControl, , Radiobox5Life70, %Radiobox5Life70%
 
-	IniRead, Radiobox1Life80, settings.ini, Profile%Profile%, Radiobox1Life80
+	IniRead, Radiobox1Life80, settings.ini, Profile%Profile%, Radiobox1Life80, 0
 	GuiControl, , Radiobox1Life80, %Radiobox1Life80%
-	IniRead, Radiobox2Life80, settings.ini, Profile%Profile%, Radiobox2Life80
+	IniRead, Radiobox2Life80, settings.ini, Profile%Profile%, Radiobox2Life80, 0
 	GuiControl, , Radiobox2Life80, %Radiobox2Life80%
-	IniRead, Radiobox3Life80, settings.ini, Profile%Profile%, Radiobox3Life80
+	IniRead, Radiobox3Life80, settings.ini, Profile%Profile%, Radiobox3Life80, 0
 	GuiControl, , Radiobox3Life80, %Radiobox3Life80%
-	IniRead, Radiobox4Life80, settings.ini, Profile%Profile%, Radiobox4Life80
+	IniRead, Radiobox4Life80, settings.ini, Profile%Profile%, Radiobox4Life80, 0
 	GuiControl, , Radiobox4Life80, %Radiobox4Life80%
-	IniRead, Radiobox5Life80, settings.ini, Profile%Profile%, Radiobox5Life80
+	IniRead, Radiobox5Life80, settings.ini, Profile%Profile%, Radiobox5Life80, 0
 	GuiControl, , Radiobox5Life80, %Radiobox5Life80%
 
-	IniRead, Radiobox1Life90, settings.ini, Profile%Profile%, Radiobox1Life90
+	IniRead, Radiobox1Life90, settings.ini, Profile%Profile%, Radiobox1Life90, 0
 	GuiControl, , Radiobox1Life90, %Radiobox1Life90%
-	IniRead, Radiobox2Life90, settings.ini, Profile%Profile%, Radiobox2Life90
+	IniRead, Radiobox2Life90, settings.ini, Profile%Profile%, Radiobox2Life90, 0
 	GuiControl, , Radiobox2Life90, %Radiobox2Life90%
-	IniRead, Radiobox3Life90, settings.ini, Profile%Profile%, Radiobox3Life90
+	IniRead, Radiobox3Life90, settings.ini, Profile%Profile%, Radiobox3Life90, 0
 	GuiControl, , Radiobox3Life90, %Radiobox3Life90%
-	IniRead, Radiobox4Life90, settings.ini, Profile%Profile%, Radiobox4Life90
+	IniRead, Radiobox4Life90, settings.ini, Profile%Profile%, Radiobox4Life90, 0
 	GuiControl, , Radiobox4Life90, %Radiobox4Life90%
-	IniRead, Radiobox5Life90, settings.ini, Profile%Profile%, Radiobox5Life90
+	IniRead, Radiobox5Life90, settings.ini, Profile%Profile%, Radiobox5Life90, 0
 	GuiControl, , Radiobox5Life90, %Radiobox5Life90%
 
-	IniRead, RadioUncheck1Life, settings.ini, Profile%Profile%, RadioUncheck1Life
+	IniRead, RadioUncheck1Life, settings.ini, Profile%Profile%, RadioUncheck1Life, 1
 	GuiControl, , RadioUncheck1Life, %RadioUncheck1Life%
-	IniRead, RadioUncheck2Life, settings.ini, Profile%Profile%, RadioUncheck2Life
+	IniRead, RadioUncheck2Life, settings.ini, Profile%Profile%, RadioUncheck2Life, 1
 	GuiControl, , RadioUncheck2Life, %RadioUncheck2Life%
-	IniRead, RadioUncheck3Life, settings.ini, Profile%Profile%, RadioUncheck3Life
+	IniRead, RadioUncheck3Life, settings.ini, Profile%Profile%, RadioUncheck3Life, 1
 	GuiControl, , RadioUncheck3Life, %RadioUncheck3Life%
-	IniRead, RadioUncheck4Life, settings.ini, Profile%Profile%, RadioUncheck4Life
+	IniRead, RadioUncheck4Life, settings.ini, Profile%Profile%, RadioUncheck4Life, 1
 	GuiControl, , RadioUncheck4Life, %RadioUncheck4Life%
-	IniRead, RadioUncheck5Life, settings.ini, Profile%Profile%, RadioUncheck5Life
+	IniRead, RadioUncheck5Life, settings.ini, Profile%Profile%, RadioUncheck5Life, 1
 	GuiControl, , RadioUncheck5Life, %RadioUncheck5Life%
 	
     ;ES Flasks
-    IniRead, Radiobox1ES20, settings.ini, Profile%Profile%, Radiobox1ES20
+    IniRead, Radiobox1ES20, settings.ini, Profile%Profile%, Radiobox1ES20, 0
     GuiControl, , Radiobox1ES20, %Radiobox1ES20%
-    IniRead, Radiobox2ES20, settings.ini, Profile%Profile%, Radiobox2ES20
+    IniRead, Radiobox2ES20, settings.ini, Profile%Profile%, Radiobox2ES20, 0
     GuiControl, , Radiobox2ES20, %Radiobox2ES20%
-    IniRead, Radiobox3ES20, settings.ini, Profile%Profile%, Radiobox3ES20
+    IniRead, Radiobox3ES20, settings.ini, Profile%Profile%, Radiobox3ES20, 0
     GuiControl, , Radiobox3ES20, %Radiobox3ES20%
-    IniRead, Radiobox4ES20, settings.ini, Profile%Profile%, Radiobox4ES20
+    IniRead, Radiobox4ES20, settings.ini, Profile%Profile%, Radiobox4ES20, 0
     GuiControl, , Radiobox4ES20, %Radiobox4ES20%
-    IniRead, Radiobox5ES20, settings.ini, Profile%Profile%, Radiobox5ES20
+    IniRead, Radiobox5ES20, settings.ini, Profile%Profile%, Radiobox5ES20, 0
     GuiControl, , Radiobox5ES20, %Radiobox5ES20%
     
-    IniRead, Radiobox1ES30, settings.ini, Profile%Profile%, Radiobox1ES30
+    IniRead, Radiobox1ES30, settings.ini, Profile%Profile%, Radiobox1ES30, 0
     GuiControl, , Radiobox1ES30, %Radiobox1ES30%
-    IniRead, Radiobox2ES30, settings.ini, Profile%Profile%, Radiobox2ES30
+    IniRead, Radiobox2ES30, settings.ini, Profile%Profile%, Radiobox2ES30, 0
     GuiControl, , Radiobox2ES30, %Radiobox2ES30%
-    IniRead, Radiobox3ES30, settings.ini, Profile%Profile%, Radiobox3ES30
+    IniRead, Radiobox3ES30, settings.ini, Profile%Profile%, Radiobox3ES30, 0
     GuiControl, , Radiobox3ES30, %Radiobox3ES30%
-    IniRead, Radiobox4ES30, settings.ini, Profile%Profile%, Radiobox4ES30
+    IniRead, Radiobox4ES30, settings.ini, Profile%Profile%, Radiobox4ES30, 0
     GuiControl, , Radiobox4ES30, %Radiobox4ES30%
-    IniRead, Radiobox5ES30, settings.ini, Profile%Profile%, Radiobox5ES30
+    IniRead, Radiobox5ES30, settings.ini, Profile%Profile%, Radiobox5ES30, 0
     GuiControl, , Radiobox5ES30, %Radiobox5ES30%
     
-    IniRead, Radiobox1ES40, settings.ini, Profile%Profile%, Radiobox1ES40
+    IniRead, Radiobox1ES40, settings.ini, Profile%Profile%, Radiobox1ES40, 0
     GuiControl, , Radiobox1ES40, %Radiobox1ES40%
-    IniRead, Radiobox2ES40, settings.ini, Profile%Profile%, Radiobox2ES40
+    IniRead, Radiobox2ES40, settings.ini, Profile%Profile%, Radiobox2ES40, 0
     GuiControl, , Radiobox2ES40, %Radiobox2ES40%
-    IniRead, Radiobox3ES40, settings.ini, Profile%Profile%, Radiobox3ES40
+    IniRead, Radiobox3ES40, settings.ini, Profile%Profile%, Radiobox3ES40, 0
     GuiControl, , Radiobox3ES40, %Radiobox3ES40%
-    IniRead, Radiobox4ES40, settings.ini, Profile%Profile%, Radiobox4ES40
+    IniRead, Radiobox4ES40, settings.ini, Profile%Profile%, Radiobox4ES40, 0
     GuiControl, , Radiobox4ES40, %Radiobox4ES40%
-    IniRead, Radiobox5ES40, settings.ini, Profile%Profile%, Radiobox5ES40
+    IniRead, Radiobox5ES40, settings.ini, Profile%Profile%, Radiobox5ES40, 0
     GuiControl, , Radiobox5ES40, %Radiobox5ES40%
     
-    IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50
+    IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50, 0
     GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-    IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50
+    IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50, 0
     GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-    IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50
+    IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50, 0
     GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-    IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50
+    IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50, 0
     GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-    IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50
+    IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50, 0
     GuiControl, , Radiobox5ES50, %Radiobox5ES50%
     
-    IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50
+    IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50, 0
     GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-    IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50
+    IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50, 0
     GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-    IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50
+    IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50, 0
     GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-    IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50
+    IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50, 0
     GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-    IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50
+    IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50, 0
     GuiControl, , Radiobox5ES50, %Radiobox5ES50%
     
-    IniRead, Radiobox1ES60, settings.ini, Profile%Profile%, Radiobox1ES60
+    IniRead, Radiobox1ES60, settings.ini, Profile%Profile%, Radiobox1ES60, 0
     GuiControl, , Radiobox1ES60, %Radiobox1ES60%
-    IniRead, Radiobox2ES60, settings.ini, Profile%Profile%, Radiobox2ES60
+    IniRead, Radiobox2ES60, settings.ini, Profile%Profile%, Radiobox2ES60, 0
     GuiControl, , Radiobox2ES60, %Radiobox2ES60%
-    IniRead, Radiobox3ES60, settings.ini, Profile%Profile%, Radiobox3ES60
+    IniRead, Radiobox3ES60, settings.ini, Profile%Profile%, Radiobox3ES60, 0
     GuiControl, , Radiobox3ES60, %Radiobox3ES60%
-    IniRead, Radiobox4ES60, settings.ini, Profile%Profile%, Radiobox4ES60
+    IniRead, Radiobox4ES60, settings.ini, Profile%Profile%, Radiobox4ES60, 0
     GuiControl, , Radiobox4ES60, %Radiobox4ES60%
-    IniRead, Radiobox5ES60, settings.ini, Profile%Profile%, Radiobox5ES60
+    IniRead, Radiobox5ES60, settings.ini, Profile%Profile%, Radiobox5ES60, 0
     GuiControl, , Radiobox5ES60, %Radiobox5ES60%
     
-    IniRead, Radiobox1ES70, settings.ini, Profile%Profile%, Radiobox1ES70
+    IniRead, Radiobox1ES70, settings.ini, Profile%Profile%, Radiobox1ES70, 0
     GuiControl, , Radiobox1ES70, %Radiobox1ES70%
-    IniRead, Radiobox2ES70, settings.ini, Profile%Profile%, Radiobox2ES70
+    IniRead, Radiobox2ES70, settings.ini, Profile%Profile%, Radiobox2ES70, 0
     GuiControl, , Radiobox2ES70, %Radiobox2ES70%
-    IniRead, Radiobox3ES70, settings.ini, Profile%Profile%, Radiobox3ES70
+    IniRead, Radiobox3ES70, settings.ini, Profile%Profile%, Radiobox3ES70, 0
     GuiControl, , Radiobox3ES70, %Radiobox3ES70%
-    IniRead, Radiobox4ES70, settings.ini, Profile%Profile%, Radiobox4ES70
+    IniRead, Radiobox4ES70, settings.ini, Profile%Profile%, Radiobox4ES70, 0
     GuiControl, , Radiobox4ES70, %Radiobox4ES70%
-    IniRead, Radiobox5ES70, settings.ini, Profile%Profile%, Radiobox5ES70
+    IniRead, Radiobox5ES70, settings.ini, Profile%Profile%, Radiobox5ES70, 0
     GuiControl, , Radiobox5ES70, %Radiobox5ES70%
     
-    IniRead, Radiobox1ES80, settings.ini, Profile%Profile%, Radiobox1ES80
+    IniRead, Radiobox1ES80, settings.ini, Profile%Profile%, Radiobox1ES80, 0
     GuiControl, , Radiobox1ES80, %Radiobox1ES80%
-    IniRead, Radiobox2ES80, settings.ini, Profile%Profile%, Radiobox2ES80
+    IniRead, Radiobox2ES80, settings.ini, Profile%Profile%, Radiobox2ES80, 0
     GuiControl, , Radiobox2ES80, %Radiobox2ES80%
-    IniRead, Radiobox3ES80, settings.ini, Profile%Profile%, Radiobox3ES80
+    IniRead, Radiobox3ES80, settings.ini, Profile%Profile%, Radiobox3ES80, 0
     GuiControl, , Radiobox3ES80, %Radiobox3ES80%
-    IniRead, Radiobox4ES80, settings.ini, Profile%Profile%, Radiobox4ES80
+    IniRead, Radiobox4ES80, settings.ini, Profile%Profile%, Radiobox4ES80, 0
     GuiControl, , Radiobox4ES80, %Radiobox4ES80%
-    IniRead, Radiobox5ES80, settings.ini, Profile%Profile%, Radiobox5ES80
+    IniRead, Radiobox5ES80, settings.ini, Profile%Profile%, Radiobox5ES80, 0
     GuiControl, , Radiobox5ES80, %Radiobox5ES80%
     
-    IniRead, Radiobox1ES90, settings.ini, Profile%Profile%, Radiobox1ES90
+    IniRead, Radiobox1ES90, settings.ini, Profile%Profile%, Radiobox1ES90, 0
     GuiControl, , Radiobox1ES90, %Radiobox1ES90%
-    IniRead, Radiobox2ES90, settings.ini, Profile%Profile%, Radiobox2ES90
+    IniRead, Radiobox2ES90, settings.ini, Profile%Profile%, Radiobox2ES90, 0
     GuiControl, , Radiobox2ES90, %Radiobox2ES90%
-    IniRead, Radiobox3ES90, settings.ini, Profile%Profile%, Radiobox3ES90
+    IniRead, Radiobox3ES90, settings.ini, Profile%Profile%, Radiobox3ES90, 0
     GuiControl, , Radiobox3ES90, %Radiobox3ES90%
-    IniRead, Radiobox4ES90, settings.ini, Profile%Profile%, Radiobox4ES90
+    IniRead, Radiobox4ES90, settings.ini, Profile%Profile%, Radiobox4ES90, 0
     GuiControl, , Radiobox4ES90, %Radiobox4ES90%
-    IniRead, Radiobox5ES90, settings.ini, Profile%Profile%, Radiobox5ES90
+    IniRead, Radiobox5ES90, settings.ini, Profile%Profile%, Radiobox5ES90, 0
     GuiControl, , Radiobox5ES90, %Radiobox5ES90%
     
-    IniRead, RadioUncheck1ES, settings.ini, Profile%Profile%, RadioUncheck1ES
+    IniRead, RadioUncheck1ES, settings.ini, Profile%Profile%, RadioUncheck1ES, 1
     GuiControl, , RadioUncheck1ES, %RadioUncheck1ES%
-    IniRead, RadioUncheck2ES, settings.ini, Profile%Profile%, RadioUncheck2ES
+    IniRead, RadioUncheck2ES, settings.ini, Profile%Profile%, RadioUncheck2ES, 1
     GuiControl, , RadioUncheck2ES, %RadioUncheck2ES%
-    IniRead, RadioUncheck3ES, settings.ini, Profile%Profile%, RadioUncheck3ES
+    IniRead, RadioUncheck3ES, settings.ini, Profile%Profile%, RadioUncheck3ES, 1
     GuiControl, , RadioUncheck3ES, %RadioUncheck3ES%
-    IniRead, RadioUncheck4ES, settings.ini, Profile%Profile%, RadioUncheck4ES
+    IniRead, RadioUncheck4ES, settings.ini, Profile%Profile%, RadioUncheck4ES, 1
     GuiControl, , RadioUncheck4ES, %RadioUncheck4ES%
-    IniRead, RadioUncheck5ES, settings.ini, Profile%Profile%, RadioUncheck5ES
+    IniRead, RadioUncheck5ES, settings.ini, Profile%Profile%, RadioUncheck5ES, 1
     GuiControl, , RadioUncheck5ES, %RadioUncheck5ES%
     
     ;Mana Flasks
-    IniRead, Radiobox1Mana10, settings.ini, Profile%Profile%, Radiobox1Mana10
+    IniRead, Radiobox1Mana10, settings.ini, Profile%Profile%, Radiobox1Mana10, 0
     GuiControl, , Radiobox1Mana10, %Radiobox1Mana10%
-    IniRead, Radiobox2Mana10, settings.ini, Profile%Profile%, Radiobox2Mana10
+    IniRead, Radiobox2Mana10, settings.ini, Profile%Profile%, Radiobox2Mana10, 0
     GuiControl, , Radiobox2Mana10, %Radiobox2Mana10%
-    IniRead, Radiobox3Mana10, settings.ini, Profile%Profile%, Radiobox3Mana10
+    IniRead, Radiobox3Mana10, settings.ini, Profile%Profile%, Radiobox3Mana10, 0
     GuiControl, , Radiobox3Mana10, %Radiobox3Mana10%
-    IniRead, Radiobox4Mana10, settings.ini, Profile%Profile%, Radiobox4Mana10
+    IniRead, Radiobox4Mana10, settings.ini, Profile%Profile%, Radiobox4Mana10, 0
     GuiControl, , Radiobox4Mana10, %Radiobox4Mana10%
-    IniRead, Radiobox5Mana10, settings.ini, Profile%Profile%, Radiobox5Mana10
+    IniRead, Radiobox5Mana10, settings.ini, Profile%Profile%, Radiobox5Mana10, 0
     GuiControl, , Radiobox5Mana10, %Radiobox5Mana10%
     
     ;Flask Cooldowns
-    IniRead, CooldownFlask1, settings.ini, Profile%Profile%, CooldownFlask1
+    IniRead, CooldownFlask1, settings.ini, Profile%Profile%, CooldownFlask1, 4800
     GuiControl, , CooldownFlask1, %CooldownFlask1%
-    IniRead, CooldownFlask2, settings.ini, Profile%Profile%, CooldownFlask2
+    IniRead, CooldownFlask2, settings.ini, Profile%Profile%, CooldownFlask2, 4800
     GuiControl, , CooldownFlask2, %CooldownFlask2%
-    IniRead, CooldownFlask3, settings.ini, Profile%Profile%, CooldownFlask3
+    IniRead, CooldownFlask3, settings.ini, Profile%Profile%, CooldownFlask3, 4800
     GuiControl, , CooldownFlask3, %CooldownFlask3%
-    IniRead, CooldownFlask4, settings.ini, Profile%Profile%, CooldownFlask4
+    IniRead, CooldownFlask4, settings.ini, Profile%Profile%, CooldownFlask4, 4800
     GuiControl, , CooldownFlask4, %CooldownFlask4%
-    IniRead, CooldownFlask5, settings.ini, Profile%Profile%, CooldownFlask5	
+    IniRead, CooldownFlask5, settings.ini, Profile%Profile%, CooldownFlask5	, 4800
     GuiControl, , CooldownFlask5, %CooldownFlask5%
     
     ;Attack Flasks
-    IniRead, MainAttackbox1, settings.ini, Profile%Profile%, MainAttackbox1
+    IniRead, MainAttackbox1, settings.ini, Profile%Profile%, MainAttackbox1, 0
     GuiControl, , MainAttackbox1, %MainAttackbox1%
-    IniRead, MainAttackbox2, settings.ini, Profile%Profile%, MainAttackbox2
+    IniRead, MainAttackbox2, settings.ini, Profile%Profile%, MainAttackbox2, 0
     GuiControl, , MainAttackbox2, %MainAttackbox2%
-    IniRead, MainAttackbox3, settings.ini, Profile%Profile%, MainAttackbox3
+    IniRead, MainAttackbox3, settings.ini, Profile%Profile%, MainAttackbox3, 0
     GuiControl, , MainAttackbox3, %MainAttackbox3%
-    IniRead, MainAttackbox4, settings.ini, Profile%Profile%, MainAttackbox4
+    IniRead, MainAttackbox4, settings.ini, Profile%Profile%, MainAttackbox4, 0
     GuiControl, , MainAttackbox4, %MainAttackbox4%
-    IniRead, MainAttackbox5, settings.ini, Profile%Profile%, MainAttackbox5
+    IniRead, MainAttackbox5, settings.ini, Profile%Profile%, MainAttackbox5, 0
     GuiControl, , MainAttackbox5, %MainAttackbox5%
     
-    IniRead, SecondaryAttackbox1, settings.ini, Profile%Profile%, SecondaryAttackbox1
+    IniRead, SecondaryAttackbox1, settings.ini, Profile%Profile%, SecondaryAttackbox1, 0
     GuiControl, , SecondaryAttackbox1, %SecondaryAttackbox1%
-    IniRead, SecondaryAttackbox2, settings.ini, Profile%Profile%, SecondaryAttackbox2
+    IniRead, SecondaryAttackbox2, settings.ini, Profile%Profile%, SecondaryAttackbox2, 0
     GuiControl, , SecondaryAttackbox2, %SecondaryAttackbox2%
-    IniRead, SecondaryAttackbox3, settings.ini, Profile%Profile%, SecondaryAttackbox3
+    IniRead, SecondaryAttackbox3, settings.ini, Profile%Profile%, SecondaryAttackbox3, 0
     GuiControl, , SecondaryAttackbox3, %SecondaryAttackbox3%
-    IniRead, SecondaryAttackbox4, settings.ini, Profile%Profile%, SecondaryAttackbox4
+    IniRead, SecondaryAttackbox4, settings.ini, Profile%Profile%, SecondaryAttackbox4, 0
     GuiControl, , SecondaryAttackbox4, %SecondaryAttackbox4%
-    IniRead, SecondaryAttackbox5, settings.ini, Profile%Profile%, SecondaryAttackbox5
+    IniRead, SecondaryAttackbox5, settings.ini, Profile%Profile%, SecondaryAttackbox5, 0
     GuiControl, , SecondaryAttackbox5, %SecondaryAttackbox5%
     
     ;Attack Keys
     IniRead, hotkeyMainAttack, settings.ini, Profile%Profile%, MainAttack, RButton
     GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
-    IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, W
+    IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, w
     GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
     
     ;Quicksilver Flasks
-    IniRead, TriggerQuicksilverDelay, settings.ini, Profile%Profile%, TriggerQuicksilverDelay
+    IniRead, TriggerQuicksilverDelay, settings.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
     GuiControl, , TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
-    IniRead, Radiobox1QS, settings.ini, Profile%Profile%, QuicksilverSlot1
+    IniRead, Radiobox1QS, settings.ini, Profile%Profile%, QuicksilverSlot1, 0
     GuiControl, , Radiobox1QS, %Radiobox1QS%
-    IniRead, Radiobox2QS, settings.ini, Profile%Profile%, QuicksilverSlot2
+    IniRead, Radiobox2QS, settings.ini, Profile%Profile%, QuicksilverSlot2, 0
     GuiControl, , Radiobox2QS, %Radiobox2QS%
-    IniRead, Radiobox3QS, settings.ini, Profile%Profile%, QuicksilverSlot3
+    IniRead, Radiobox3QS, settings.ini, Profile%Profile%, QuicksilverSlot3, 0
     GuiControl, , Radiobox3QS, %Radiobox3QS%
-    IniRead, Radiobox4QS, settings.ini, Profile%Profile%, QuicksilverSlot4
+    IniRead, Radiobox4QS, settings.ini, Profile%Profile%, QuicksilverSlot4, 0
     GuiControl, , Radiobox4QS, %Radiobox4QS%
-    IniRead, Radiobox5QS, settings.ini, Profile%Profile%, QuicksilverSlot5
+    IniRead, Radiobox5QS, settings.ini, Profile%Profile%, QuicksilverSlot5, 0
     GuiControl, , Radiobox5QS, %Radiobox5QS%
     
     ;CharacterTypeCheck
-    IniRead, RadioLife, settings.ini, Profile%Profile%, Life
+    IniRead, RadioLife, settings.ini, Profile%Profile%, Life, 1
 	GuiControl, , RadioLife, %RadioLife%
-	IniRead, RadioHybrid, settings.ini, Profile%Profile%, Hybrid	
+	IniRead, RadioHybrid, settings.ini, Profile%Profile%, Hybrid, 0
     GuiControl, , RadioHybrid, %RadioHybrid%
-    IniRead, RadioCi, settings.ini, Profile%Profile%, Ci	
+    IniRead, RadioCi, settings.ini, Profile%Profile%, Ci, 0
     GuiControl, , RadioCi, %RadioCi%
     
     ;AutoQuit
-    IniRead, RadioQuit20, settings.ini, Profile%Profile%, Quit20
+    IniRead, RadioQuit20, settings.ini, Profile%Profile%, Quit20, 1
     GuiControl, , RadioQuit20, %RadioQuit20%
-    IniRead, RadioQuit30, settings.ini, Profile%Profile%, Quit30
+    IniRead, RadioQuit30, settings.ini, Profile%Profile%, Quit30, 0
     GuiControl, , RadioQuit30, %RadioQuit30%
-    IniRead, RadioQuit40, settings.ini, Profile%Profile%, Quit40
+    IniRead, RadioQuit40, settings.ini, Profile%Profile%, Quit40, 0
     GuiControl, , RadioQuit40, %RadioQuit40%
-    IniRead, RadioCritQuit, settings.ini, Profile%Profile%, CritQuit
+    IniRead, RadioCritQuit, settings.ini, Profile%Profile%, CritQuit, 1
     GuiControl, , RadioCritQuit, %RadioCritQuit%
-    IniRead, RadioNormalQuit, settings.ini, Profile%Profile%, NormalQuit
+    IniRead, RadioNormalQuit, settings.ini, Profile%Profile%, NormalQuit, 0
     GuiControl, , RadioNormalQuit, %RadioNormalQuit%
+
+
+    ;Utility Buttons
+    IniRead, YesUtility1, settings.ini, Profile%Profile%, YesUtility1, 0
+    GuiControl, , YesUtility1, %YesUtility1%
+    IniRead, YesUtility2, settings.ini, Profile%Profile%, YesUtility2, 0
+    GuiControl, , YesUtility2, %YesUtility2%
+    IniRead, YesUtility3, settings.ini, Profile%Profile%, YesUtility3, 0
+    GuiControl, , YesUtility3, %YesUtility3%
+    IniRead, YesUtility4, settings.ini, Profile%Profile%, YesUtility4, 0
+    GuiControl, , YesUtility4, %YesUtility4%
+    IniRead, YesUtility5, settings.ini, Profile%Profile%, YesUtility5, 0
+    GuiControl, , YesUtility5, %YesUtility5%
+    IniRead, YesUtility1Quicksilver, settings.ini, Profile%Profile%, YesUtility1Quicksilver, 0
+    GuiControl, , YesUtility1Quicksilver, %YesUtility1Quicksilver%
+    IniRead, YesUtility2Quicksilver, settings.ini, Profile%Profile%, YesUtility2Quicksilver, 0
+    GuiControl, , YesUtility2Quicksilver, %YesUtility2Quicksilver%
+    IniRead, YesUtility3Quicksilver, settings.ini, Profile%Profile%, YesUtility3Quicksilver, 0
+    GuiControl, , YesUtility3Quicksilver, %YesUtility3Quicksilver%
+    IniRead, YesUtility4Quicksilver, settings.ini, Profile%Profile%, YesUtility4Quicksilver, 0
+    GuiControl, , YesUtility4Quicksilver, %YesUtility4Quicksilver%
+    IniRead, YesUtility5Quicksilver, settings.ini, Profile%Profile%, YesUtility5Quicksilver, 0
+    GuiControl, , YesUtility5Quicksilver, %YesUtility5Quicksilver%
     
+    ;Utility Percents	
+    IniRead, YesUtility1LifePercent, settings.ini, Profile%Profile%, YesUtility1LifePercent, Off
+    GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
+	IniRead, YesUtility2LifePercent, settings.ini, Profile%Profile%, YesUtility2LifePercent, Off
+    GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
+	IniRead, YesUtility3LifePercent, settings.ini, Profile%Profile%, YesUtility3LifePercent, Off
+    GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
+	IniRead, YesUtility4LifePercent, settings.ini, Profile%Profile%, YesUtility4LifePercent, Off
+    GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
+	IniRead, YesUtility5LifePercent, settings.ini, Profile%Profile%, YesUtility5LifePercent, Off
+    GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
+	IniRead, YesUtility1EsPercent, settings.ini, Profile%Profile%, YesUtility1EsPercent, Off
+    GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
+    IniRead, YesUtility2EsPercent, settings.ini, Profile%Profile%, YesUtility2EsPercent, Off
+    GuiControl, ChooseString, YesUtility2EsPercent, %YesUtility2EsPercent%
+    IniRead, YesUtility3EsPercent, settings.ini, Profile%Profile%, YesUtility3EsPercent, Off
+    GuiControl, ChooseString, YesUtility3EsPercent, %YesUtility3EsPercent%
+    IniRead, YesUtility4EsPercent, settings.ini, Profile%Profile%, YesUtility4EsPercent, Off
+    GuiControl, ChooseString, YesUtility4EsPercent, %YesUtility4EsPercent%
+    IniRead, YesUtility5EsPercent, settings.ini, Profile%Profile%, YesUtility5EsPercent, Off
+    GuiControl, ChooseString, YesUtility5EsPercent, %YesUtility5EsPercent%
+    
+    ;Utility Cooldowns
+    IniRead, CooldownUtility1, settings.ini, Profile%Profile%, CooldownUtility1, 5000
+    GuiControl, , CooldownUtility1, %CooldownUtility1%
+    IniRead, CooldownUtility2, settings.ini, Profile%Profile%, CooldownUtility2, 5000
+    GuiControl, , CooldownUtility2, %CooldownUtility2%
+    IniRead, CooldownUtility3, settings.ini, Profile%Profile%, CooldownUtility3, 5000
+    GuiControl, , CooldownUtility3, %CooldownUtility3%
+    IniRead, CooldownUtility4, settings.ini, Profile%Profile%, CooldownUtility4, 5000
+    GuiControl, , CooldownUtility4, %CooldownUtility4%
+    IniRead, CooldownUtility5, settings.ini, Profile%Profile%, CooldownUtility5, 5000
+    GuiControl, , CooldownUtility5, %CooldownUtility5%
+    
+    ;Utility Keys
+    IniRead, KeyUtility1, settings.ini, Profile%Profile%, KeyUtility1, q
+    GuiControl, , KeyUtility1, %KeyUtility1%
+    IniRead, KeyUtility2, settings.ini, Profile%Profile%, KeyUtility2, w
+    GuiControl, , KeyUtility2, %KeyUtility2%
+    IniRead, KeyUtility3, settings.ini, Profile%Profile%, KeyUtility3, e
+    GuiControl, , KeyUtility3, %KeyUtility3%
+    IniRead, KeyUtility4, settings.ini, Profile%Profile%, KeyUtility4, r
+    GuiControl, , KeyUtility4, %KeyUtility4%
+    IniRead, KeyUtility5, settings.ini, Profile%Profile%, KeyUtility5, t
+    GuiControl, , KeyUtility5, %KeyUtility5%
+
     ;Update UI
     if(RadioLife==1) {
         varTextAutoQuit20:="20 % Life"
@@ -5644,6 +5746,7 @@ checkUpdate(){
         if ErrorLevel
             GuiControl,1:, guiErr, ED08
         FileRead, changelog, changelog.txt
+		Gui, 4:Add, Button, x0 y0 h1 w1, a
         Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
         Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
         Gui, 4:Add, Button, section default grunUpdate, Update to the Newest Version!
