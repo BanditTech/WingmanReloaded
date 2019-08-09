@@ -709,6 +709,7 @@ Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
 Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y50	w100, 	OnHideout Color
 Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
 Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
+Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn	 	w208, 	Inventory calibration
 
 Gui, Font, Bold
 Gui, Add, Text, 										x22 	y+10, 				AutoDetonate Calibration:
@@ -1262,8 +1263,12 @@ ItemSortCommand:
         }
         RunningToggle := True
         GuiStatus()
-        If ((!OnInventory&&OnChar)||(!OnChar)) ;Need to be on Character and have Inventory Open
-            Return
+        
+        If ((!OnInventory&&OnChar)||(!OnChar)){ ;Need to be on Character and have Inventory Open
+			MsgBox %  "Make sure your inventory is open, doing nothing now."
+			Return
+		}
+
         For C, GridX in InventoryGridX
         {
             If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
@@ -1281,225 +1286,228 @@ ItemSortCommand:
                     Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
                 } 
                 pixelgetcolor, PointColor, GridX, GridY
-                If ((PointColor=UnIdColor) || (PointColor=IdColor))
+                
+                If (indexOf(PointColor, varEmptyInvSlotColor)){
+                    ;Seems to be an empty slot, do not need to clip item info
+					Continue
+				}
+                
+                ClipItem(Grid.X,Grid.Y)
+                If (!ItemProp.Identified&&YesIdentify)
                 {
-                    ClipItem(Grid.X,Grid.Y)
-                    If (!ItemProp.Identified&&YesIdentify)
+                    If (ItemProp.Map&&!YesMapUnid)
                     {
-                        If (ItemProp.Map&&!YesMapUnid)
-                        {
-                            WisdomScroll(Grid.X,Grid.Y)
-                        }
-                        Else If (ItemProp.Chromatic && (ItemProp.RarityRare || ItemProp.RarityUnique ) ) 
-                        {
-                            WisdomScroll(Grid.X,Grid.Y)
-                        }
-                        Else If ( ItemProp.Jeweler && ( ItemProp.5Link || ItemProp.6Link || ItemProp.RarityRare || ItemProp.RarityUnique) )
-                        {
-                            WisdomScroll(Grid.X,Grid.Y)
-                        }
-                        Else If (!ItemProp.Chromatic && !ItemProp.Jeweler&&!ItemProp.Map)
-                        {
-                            WisdomScroll(Grid.X,Grid.Y)
-                        }
+                        WisdomScroll(Grid.X,Grid.Y)
                     }
-                    If (OnStash&&YesStash) 
+                    Else If (ItemProp.Chromatic && (ItemProp.RarityRare || ItemProp.RarityUnique ) ) 
                     {
-                        If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
+                        WisdomScroll(Grid.X,Grid.Y)
+                    }
+                    Else If ( ItemProp.Jeweler && ( ItemProp.5Link || ItemProp.6Link || ItemProp.RarityRare || ItemProp.RarityUnique) )
+                    {
+                        WisdomScroll(Grid.X,Grid.Y)
+                    }
+                    Else If (!ItemProp.Chromatic && !ItemProp.Jeweler&&!ItemProp.Map)
+                    {
+                        WisdomScroll(Grid.X,Grid.Y)
+                    }
+                }
+                If (OnStash&&YesStash) 
+                {
+                    If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
+                    {
+                        MoveStash(StashTabCurrency)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.Map&&StashTabYesMap)
+                    {
+                        MoveStash(StashTabMap)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.BreachSplinter&&StashTabYesFragment)
+                    {
+                        MoveStash(StashTabFragment)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.SacrificeFragment&&StashTabYesFragment)
+                    {
+                        MoveStash(StashTabFragment)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.MortalFragment&&StashTabYesFragment)
+                    {
+                        MoveStash(StashTabFragment)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.GuardianFragment&&StashTabYesFragment)
+                    {
+                        MoveStash(StashTabFragment)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.ProphecyFragment&&StashTabYesFragment)
+                    {
+                        MoveStash(StashTabFragment)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.Offering&&StashTabYesFragment)
+                    {
+                        MoveStash(StashTabFragment)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.Vessel&&StashTabYesFragment)
+                    {
+                        MoveStash(StashTabFragment)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.Scarab&&StashTabYesFragment)
+                    {
+                        MoveStash(StashTabFragment)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.RarityDivination&&StashTabYesDivination)
+                    {
+                        MoveStash(StashTabDivination)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.RarityUnique&&ItemProp.Ring)
+                    {
+                        If (StashTabYesCollection)
                         {
-                            MoveStash(StashTabCurrency)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Map&&StashTabYesMap)
-                        {
-                            MoveStash(StashTabMap)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.BreachSplinter&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.SacrificeFragment&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
+                            MoveStash(StashTabCollection)
                             RandomSleep(30,45)
                             CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.MortalFragment&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.GuardianFragment&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.ProphecyFragment&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Offering&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Vessel&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Scarab&&StashTabYesFragment)
-                        {
-                            MoveStash(StashTabFragment)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.RarityDivination&&StashTabYesDivination)
-                        {
-                            MoveStash(StashTabDivination)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.RarityUnique&&ItemProp.Ring)
-                        {
-                            If (StashTabYesCollection)
-                            {
-                                MoveStash(StashTabCollection)
-                                RandomSleep(30,45)
-                                CtrlClick(Grid.X,Grid.Y)
-                                If (StashTabYesUniqueRing)
-                                {
-                                    pixelgetcolor, Pitem, GridX, GridY
-                                    if (Pitem!=MOColor)
-                                        Continue
-                                    Sleep, 60*Latency
-                                }
-                            }
                             If (StashTabYesUniqueRing)
                             {
-                                MoveStash(StashTabUniqueRing)
-                                CtrlClick(Grid.X,Grid.Y)
+                                pixelgetcolor, Pitem, GridX, GridY
+                                if (Pitem!=MOColor)
+                                    Continue
+                                Sleep, 60*Latency
                             }
-                            Continue
                         }
-                        Else If (ItemProp.RarityUnique)
+                        If (StashTabYesUniqueRing)
                         {
-                            If (StashTabYesCollection)
-                            {
-                                MoveStash(StashTabCollection)
-                                RandomSleep(30,45)
-                                CtrlClick(Grid.X,Grid.Y)
-                                If (StashTabYesUniqueDump)
-                                {
-                                    Sleep, 15*Latency
-                                    pixelgetcolor, Pitem, GridX, GridY
-                                    if (Pitem!=MOColor) 
-                                        Continue
-                                    Sleep, 45*Latency
-                                }
-                            }
+                            MoveStash(StashTabUniqueRing)
+                            CtrlClick(Grid.X,Grid.Y)
+                        }
+                        Continue
+                    }
+                    Else If (ItemProp.RarityUnique)
+                    {
+                        If (StashTabYesCollection)
+                        {
+                            MoveStash(StashTabCollection)
+                            RandomSleep(30,45)
+                            CtrlClick(Grid.X,Grid.Y)
                             If (StashTabYesUniqueDump)
                             {
-                                MoveStash(StashTabUniqueDump)
-                                CtrlClick(Grid.X,Grid.Y)
-                            }
-                            Continue
-                        }
-                        If (ItemProp.Essence&&StashTabYesEssence)
-                        {
-                            MoveStash(StashTabEssence)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Fossil&&StashTabYesFossil)
-                        {
-                            MoveStash(StashTabFossil)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Resonator&&StashTabYesResonator)
-                        {
-                            MoveStash(StashTabResonator)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
-                        {
-                            MoveStash(StashTabFlaskQuality)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.RarityGem)
-                        {
-                            If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
-                            {
-                                MoveStash(StashTabGemQuality)
-                                CtrlClick(Grid.X,Grid.Y)
-                                Continue
-                            }
-                            Else If (StashTabYesGem)
-                            {
-                                MoveStash(StashTabGem)
-                                CtrlClick(Grid.X,Grid.Y)
-                                Continue
+                                Sleep, 15*Latency
+                                pixelgetcolor, Pitem, GridX, GridY
+                                if (Pitem!=MOColor) 
+                                    Continue
+                                Sleep, 45*Latency
                             }
                         }
-                        If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
+                        If (StashTabYesUniqueDump)
                         {
-                            MoveStash(StashTabLinked)
+                            MoveStash(StashTabUniqueDump)
                             CtrlClick(Grid.X,Grid.Y)
-                            Continue
                         }
-                        If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
-                        {
-                            MoveStash(StashTabTimelessSplinter)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        If (ItemProp.Prophecy&&StashTabYesProphecy)
-                        {
-                            MoveStash(StashTabProphecy)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
+                        Continue
                     }
-                    If (OnVendor&&YesVendor)
+                    If (ItemProp.Essence&&StashTabYesEssence)
                     {
-                        If (ItemProp.RarityCurrency)
-                            Continue
-                        If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
-                            Continue
-                        If ( ItemProp.SpecialType="" )
+                        MoveStash(StashTabEssence)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.Fossil&&StashTabYesFossil)
+                    {
+                        MoveStash(StashTabFossil)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.Resonator&&StashTabYesResonator)
+                    {
+                        MoveStash(StashTabResonator)
+                        RandomSleep(30,45)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
+                    {
+                        MoveStash(StashTabFlaskQuality)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.RarityGem)
+                    {
+                        If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
                         {
-                            Sleep, 30*Latency
+                            MoveStash(StashTabGemQuality)
                             CtrlClick(Grid.X,Grid.Y)
-                            Sleep, 10*Latency
+                            Continue
+                        }
+                        Else If (StashTabYesGem)
+                        {
+                            MoveStash(StashTabGem)
+                            CtrlClick(Grid.X,Grid.Y)
                             Continue
                         }
                     }
-                }   
+                    If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
+                    {
+                        MoveStash(StashTabLinked)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
+                    {
+                        MoveStash(StashTabTimelessSplinter)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                    If (ItemProp.Prophecy&&StashTabYesProphecy)
+                    {
+                        MoveStash(StashTabProphecy)
+                        CtrlClick(Grid.X,Grid.Y)
+                        Continue
+                    }
+                }
+                If (OnVendor&&YesVendor)
+                {
+                    If (ItemProp.RarityCurrency)
+                        Continue
+                    If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
+                        Continue
+                    If ( ItemProp.SpecialType="" )
+                    {
+                        Sleep, 30*Latency
+                        CtrlClick(Grid.X,Grid.Y)
+                        Sleep, 10*Latency
+                        Continue
+                    }
+                }
             }
             MouseGetPos Checkx, Checky
             If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
@@ -2260,59 +2268,59 @@ ParseClip(){
     NameIsDone := False
     
     ItemProp := {ItemName: ""
-    , Rarity : ""
-    , SpecialType : ""
-    , Stack : 0
-    , StackMax : 0
-    , RarityCurrency : False
-    , RarityDivination : False
-    , RarityGem : False
-    , RarityNormal : False
-    , RarityMagic : False
-    , RarityRare : False
-    , RarityUnique : False
-    , Identified : True
-        , Map : False
-    , Ring : False
-    , Amulet : False
-    , Chromatic : False
-    , Jewel : False
-    , AbyssJewel : False
-    , Essence : False
-    , Incubator : False
-    , Fossil : False
-    , Resonator : False
-    , Quality : 0
-    , Sockets : 0
-    , RawSockets : ""
-    , LinkCount : 0
-    , 2Link : False
-    , 3Link : False
-    , 4Link : False
-    , 5Link : False
-    , 6Link : False
-    , Jeweler : False
-    , TimelessSplinter : False
-    , BreachSplinter : False
-    , SacrificeFragment : False
-        , MortalFragment : False
-    , GuardianFragment : False
-    , ProphecyFragment : False
-    , Scarab : False
-    , Offering : False
-    , Vessel : False
-    , Incubator : False
-    , Flask : False
-    , Veiled : False
-, Prophecy : False}
+        , Rarity : ""
+        , SpecialType : ""
+        , Stack : 0
+        , StackMax : 0
+        , RarityCurrency : False
+        , RarityDivination : False
+        , RarityGem : False
+        , RarityNormal : False
+        , RarityMagic : False
+        , RarityRare : False
+        , RarityUnique : False
+        , Identified : True
+            , Map : False
+        , Ring : False
+        , Amulet : False
+        , Chromatic : False
+        , Jewel : False
+        , AbyssJewel : False
+        , Essence : False
+        , Incubator : False
+        , Fossil : False
+        , Resonator : False
+        , Quality : 0
+        , Sockets : 0
+        , RawSockets : ""
+        , LinkCount : 0
+        , 2Link : False
+        , 3Link : False
+        , 4Link : False
+        , 5Link : False
+        , 6Link : False
+        , Jeweler : False
+        , TimelessSplinter : False
+        , BreachSplinter : False
+        , SacrificeFragment : False
+            , MortalFragment : False
+        , GuardianFragment : False
+        , ProphecyFragment : False
+        , Scarab : False
+        , Offering : False
+        , Vessel : False
+        , Incubator : False
+        , Flask : False
+        , Veiled : False
+        , Prophecy : False}
 
-;Begin parsing information	
-Loop, Parse, Clipboard, `n, `r
-{
-    ; Clipboard must have "Rarity:" in the first line
-    If A_Index = 1
+    ;Begin parsing information	
+    Loop, Parse, Clipboard, `n, `r
     {
-        IfNotInString, A_LoopField, Rarity:
+        ; Clipboard must have "Rarity:" in the first line
+        If A_Index = 1
+        {
+            IfNotInString, A_LoopField, Rarity:
             {
                 Exit
             }
@@ -2358,7 +2366,7 @@ Loop, Parse, Clipboard, `n, `r
                 Continue
             }
         }
-        
+            
         ; Get name
         If Not NameIsDone
         {
@@ -2567,164 +2575,173 @@ Loop, Parse, Clipboard, `n, `r
             }
             Continue
         }
-        
+            
         ; Get Socket Information
         IfInString, A_LoopField, Sockets:
-            {
-                StringSplit, RawSocketsArray, A_LoopField, %A_Space%
-                    ItemProp.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
-                For k, v in StrSplit(ItemProp.RawSockets, " ") 
-                {		
-                    if (v ~= "B") && (v ~= "G") && (v ~= "R")
-                        ItemProp.Chromatic := True
-                    Loop, Parse, v
-                        Counter++
-                    If (Counter=11)
-                    {
-                        ItemProp.6Link:=True
-                        ItemProp.SpecialType := "6Link"
-                    }
-                    Else If (Counter=9)
-                    {
-                        ItemProp.5Link:=True
-                        ItemProp.SpecialType := "5Link"
-                    }
-                    Else If (Counter=7)
-                    {
-                        ItemProp.4Link:=True
-                    }
-                    Else If (Counter=5)
-                    {
-                        ItemProp.3Link:=True
-                    }
-                    Else If (Counter=3)
-                    {
-                        ItemProp.2Link:=True
-                    }
-                    Counter:=0
-                }
-                Loop, parse, A_LoopField
+        {
+            StringSplit, RawSocketsArray, A_LoopField, %A_Space%
+            ItemProp.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
+            For k, v in StrSplit(ItemProp.RawSockets, " ") 
+            {		
+                if (v ~= "B") && (v ~= "G") && (v ~= "R")
+                    ItemProp.Chromatic := True
+                Loop, Parse, v
+                    Counter++
+                If (Counter=11)
                 {
-                    if (A_LoopField ~= "[-]")
-                        ItemProp.LinkCount++
+                    ItemProp.6Link:=True
+                    ItemProp.SpecialType := "6Link"
                 }
-                Loop, parse, A_LoopField
+                Else If (Counter=9)
                 {
-                    if (A_LoopField ~= "[BGR]")
-                        ItemProp.Sockets++
+                    ItemProp.5Link:=True
+                    ItemProp.SpecialType := "5Link"
                 }
-                If (ItemProp.Sockets = 6)
-                    ItemProp.Jeweler:=True
-                Continue
+                Else If (Counter=7)
+                {
+                    ItemProp.4Link:=True
+                }
+                Else If (Counter=5)
+                {
+                    ItemProp.3Link:=True
+                }
+                Else If (Counter=3)
+                {
+                    ItemProp.2Link:=True
+                }
+                Counter:=0
             }
-            ; Get quality
+            Loop, parse, A_LoopField
+            {
+                if (A_LoopField ~= "[-]")
+                    ItemProp.LinkCount++
+            }
+            Loop, parse, A_LoopField
+            {
+                if (A_LoopField ~= "[BGR]")
+                    ItemProp.Sockets++
+            }
+            If (ItemProp.Sockets = 6)
+                ItemProp.Jeweler:=True
+            Continue
+        }
+
+        ; Get quality
         IfInString, A_LoopField, Quality:
-            {
-                StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
-                    ItemProp.Quality := QualityArray2
-                Continue
-            }
-            ;Stack size
+        {
+            StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
+                ItemProp.Quality := QualityArray2
+            Continue
+        }
+        ;Stack size
         IfInString, A_LoopField, Stack Size:
-            {
-                StringSplit, StackArray, A_LoopField, %A_Space%
-                    StringSplit, StripStackArray, StackArray3, /
-                ItemProp.Stack := StripStackArray1
-                ItemProp.StackMax := StripStackArray2
-                Continue
-            }
-            ; Flag Unidentified
-            IfInString, A_LoopField, Unidentified
-            {
-                ItemProp.Identified := False
-                    continue
-            }
-            ; Flag Veiled
-            IfInString, A_LoopField, Veiled%A_Space%
-            {
-                ItemProp.Veiled := True
-                ItemProp.SpecialType := "Veiled"
-                continue
-            }
-            ; Flag Prophecy
-            IfInString, A_LoopField, add this prophecy
-            {
-                ItemProp.Prophecy := True
-                ItemProp.SpecialType := "Prophecy"
-                continue
+        {
+            StringSplit, StackArray, A_LoopField, %A_Space%
+            StringSplit, StripStackArray, StackArray3, /
+            ItemProp.Stack := StripStackArray1
+            ItemProp.StackMax := StripStackArray2
+            Continue
+        }
+        ; Flag Unidentified
+        IfInString, A_LoopField, Unidentified
+        {
+            ItemProp.Identified := False
+            continue
+        }
+        ; Flag Veiled
+        IfInString, A_LoopField, Veiled%A_Space%
+        {
+            ItemProp.Veiled := True
+            ItemProp.SpecialType := "Veiled"
+            continue
+        }
+        ; Flag Prophecy
+        IfInString, A_LoopField, add this prophecy
+        {
+            ItemProp.Prophecy := True
+            ItemProp.SpecialType := "Prophecy"
+            continue
+        }
+    }
+    Return
+}
+
+; Debugging information on Mouse Cursor
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GetMouseCoords(){
+    GetMouseCoordsCommand:
+        
+        MouseGetPos x, y
+        PixelGetColor, xycolor , x, y
+        TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
+        
+        If DebugMessages{
+            TT := TT . "`n" . "`n"
+            GuiStatus()
+            TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
+            TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
+            If ShowItemInfo {
+                ClipItem(x, y)
+                For key, value in ItemProp
+                    TT := TT . key . ":  " . value . "`n"
             }
         }
-        Return
-    }
-    
-    ; Debugging information on Mouse Cursor
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    GetMouseCoords(){
-        GetMouseCoordsCommand:
+        MsgBox %TT%
+        If (DebugMessages&&ShowPixelGrid){
             
-            MouseGetPos x, y
-            PixelGetColor, xycolor , x, y
-            TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
-            
-            If DebugMessages{
-                TT := TT . "`n" . "`n"
-                GuiStatus()
-                TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-                TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
-                If ShowItemInfo {
-                    ClipItem(x, y)
-                    For key, value in ItemProp
-                        TT := TT . key . ":  " . value . "`n"
-                }
-            }
-            MsgBox %TT%
-            If (DebugMessages&&ShowPixelGrid){
+            ;Check if inventory is open
+            if(!OnInventory){
+                TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+            }else{
                 
-                ;Check if inventory is open
-                if(!OnInventory){
-                    TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
-                }else{
-                    
-                    TT := "Grid information:" . "`n"
-                    
-                    For c, GridX in InventoryGridX	{
-                        For r, GridY in InventoryGridY
-                        {
-                            pixelgetcolor, PointColor, GridX, GridY
-                            
-                            If (PointColor=UnIdColor){
-                                TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified. Color: " . PointColor  .  "`n"
-                            }else if (PointColor=IdColor){
-                                TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified. Color: " . PointColor  .  "`n"
-                            }else if (PointColor=MOColor){
-                                TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected item. Color: " . PointColor  .  "`n"
-                            }else if (indexOf(PointColor, varEmptyInvSlotColor) > 0){				
-                                TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
-                            }else{
-                                TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
-                            }
+                TT := "Grid information:" . "`n"
+                
+                For c, GridX in InventoryGridX	{
+                    For r, GridY in InventoryGridY
+                    {
+                        pixelgetcolor, PointColor, GridX, GridY
+                        
+                        If (PointColor=UnIdColor){
+                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified. Color: " . PointColor  .  "`n"
+                        }else if (PointColor=IdColor){
+                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified. Color: " . PointColor  .  "`n"
+                        }else if (PointColor=MOColor){
+                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected item. Color: " . PointColor  .  "`n"
+                        }else if (indexOf(PointColor, varEmptyInvSlotColor) > 0){				
+                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+                        }else{
+                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
                         }
                     }
                 }
-                MsgBox %TT%	
             }
-        Return
-    }
-    
-    
-    ; Check if a specific value is part of an array and return the index
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    indexOf(var, Arr, fromIndex:=1) {
+            MsgBox %TT%	
+        }
+    Return
+}
+
+
+; Check if a specific value is part of an array and return the index
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+indexOf(var, Arr, fromIndex:=1) {
     for index, value in Arr {
         if (index < fromIndex){
             Continue
         }else if (value = var){
-        return index
+            return index
+        }
     }
 }
-return false
-}
 
+; Transform an array to a comma separated string
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+arrToStr(array){
+    Str := ""
+    For Index, Value In array
+        Str .= "," . Value
+    Str := LTrim(Str, ",")
+    return Str
+}
 ; Auto Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 DetonateMines(){
@@ -5003,6 +5020,74 @@ updateOnStash:
     
     hotkeys()
     
+return
+
+updateEmptyInvSlotColor:
+    Gui, Submit, NoHide
+
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist. `nInventory calibration didn't work"
+        Return
+    }
+
+    
+    
+    if WinActive(ahk_group POEGameGroup){
+        ;Now we need to get the user input for every grid element if its empty or not
+
+        ;First inform the user about the procedure
+        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as empty slot colors.`r`n`r`n"
+        infoMsg .= "  -> Make sure your whole inventory is empty`r`n"
+        infoMsg .= "  -> Make sure your inventory is open`r`n`r`n"
+        infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
+
+        MsgBox, 1,, %infoMsg%
+        IfMsgBox, Cancel
+        {
+            MsgBox Canceled the inventory calibration
+            return
+        }
+
+        varEmptyInvSlotColor := []
+
+        ;Loop through the whole grid, overlay the current grid item and display a box with two buttons "Empty" and "Occupied"
+        ; I couldn't find a fast way to draw an overlay, doing at the moment with manual , might lead to problem if the user doesnt understand
+        ; If the user clicks "Empty" save the pixelcolor and add it to the array of empty inv slot colors
+        For c, GridX in InventoryGridX	{
+            For r, GridY in InventoryGridY
+            {
+                pixelgetcolor, PointColor, GridX, GridY
+
+                if(indexOf(PointColor, varEmptyInvSlotColor)){
+                    ;We have this empty color already, skip this slot
+                    continue
+                }else{
+                    ;Assume that the whole inventory is empty and we just add the color to the array
+                    varEmptyInvSlotColor.Push(PointColor)
+                }
+            }
+        }
+
+        strToSave := arrToStr(varEmptyInvSlotColor)
+
+        IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
+        readFromFile()
+
+        infoMsg := "Empty inventory slot colors calibrated and saved with following color codes:`r`n`r`n"
+        infoMsg .= strToSave
+
+        MsgBox, %infoMsg%
+
+
+    }else{
+        MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
+    }
+
+    hotkeys()
 return
 
 updateOnChat:
