@@ -1,3 +1,14 @@
+Version .03.5 August/09/2019
+--------------------------------------------------------------------------------
+Sauron-Dev has added:
+    New method of determining items in inventory, should now scale without issues
+    New calibration button to determine empty item slots colors
+    New function to return an index of matching values from an array
+
+Using Sauron-Dev's additions
+    Implimented the same changes for Mouseover color
+    Added calibration button to determine Mouseover Colors
+
 Version .03.4 August/09/2019
 --------------------------------------------------------------------------------
 Rework of the utility section
