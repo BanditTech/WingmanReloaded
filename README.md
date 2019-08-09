@@ -40,7 +40,7 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Debug Mode with aditional tools when enabled.
   - Hotkeys to Reload (Alt-Esc) or Exit (Win-Esc)
   - Now runs in background on start unless you open settings.
-    -Detects when game opens or closes and shows overlay
+     - Detects when game opens or closes and shows overlay
   - Continued Fine-Tuning the logic of the script
 
 
