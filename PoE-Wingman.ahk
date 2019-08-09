@@ -2808,7 +2808,34 @@ MsgMonitor(wParam, lParam, msg)
 			settimer, TimmerFlask5, %CooldownFlask5%
 			return
 			}		
-	}
+		}
+	Else If (wParam=4) {
+		If (lParam=1){
+			OnCooldownUtility1:=1 
+			settimer, TimerUtility1, %CooldownUtility1%
+			return
+			}		
+		If (lParam=2){
+			OnCooldownUtility2:=1 
+			settimer, TimerUtility2, %CooldownUtility2%
+			return
+			}		
+		If (lParam=3){
+			OnCooldownUtility3:=1 
+			settimer, TimerUtility3, %CooldownUtility3%
+			return
+			}		
+		If (lParam=4){
+			OnCooldownUtility4:=1 
+			settimer, TimerUtility4, %CooldownUtility4%
+			return
+			}		
+		If (lParam=5){
+			OnCooldownUtility5:=1 
+			settimer, TimerUtility5, %CooldownUtility5%
+			return
+			}		
+		}
 	Return
 	}
 ; Send one or two digits to a sub-script 
@@ -2918,7 +2945,7 @@ TGameTick(){
 			}
 		
 		if (Life=1)	{
-			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)) {
+			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life20, vX_Life, vY_Life20 
 				if (Life20!=varLife20) {
 					if (AutoQuit=1) && (Quit20=1) {
@@ -2927,10 +2954,15 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerLife20)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife20!="00000")
+						TriggerFlask(TriggerLife20)
 					}
 				}
-			If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)) {
+			If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life30, vX_Life, vY_Life30 
 				if (Life30!=varLife30) {
 					if (AutoQuit=1) && (Quit30=1) {
@@ -2939,10 +2971,15 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerLife30)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife30!="00000")
+						TriggerFlask(TriggerLife30)
 					}
 				}
-			If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)) {
+			If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life40, vX_Life, vY_Life40 
 				if (Life40!=varLife40) {
 					if (AutoQuit=1) && (Quit40=1) {
@@ -2951,43 +2988,73 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerLife40)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife40!="00000")
+						TriggerFlask(TriggerLife40)
 					}
 				}
-			If (TriggerLife50!="00000") {
+			If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life50, vX_Life, vY_Life50
 				if (Life50!=varLife50) {
-					TriggerFlask(TriggerLife50)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife50!="00000")
+						TriggerFlask(TriggerLife50)
 					}
 				}
-			If (TriggerLife60!="00000") {
+			If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life60, vX_Life, vY_Life60
 				if (Life60!=varLife60) {
-					TriggerFlask(TriggerLife60)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife60!="00000")
+						TriggerFlask(TriggerLife60)
 					}
 				}
-			If (TriggerLife70!="00000") {
+			If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life70, vX_Life, vY_Life70
 				if (Life70!=varLife70) {
-					TriggerFlask(TriggerLife70)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife70!="00000")
+						TriggerFlask(TriggerLife70)
 					}
 				}
-			If (TriggerLife80!="00000") {
+			If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life80, vX_Life, vY_Life80
 				if (Life80!=varLife80) {
-					TriggerFlask(TriggerLife80)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife80!="00000")
+						TriggerFlask(TriggerLife80)
 					}
 				}
-			If (TriggerLife90!="00000") {
+			If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life90, vX_Life, vY_Life90
 				if (Life90!=varLife90) {
-					TriggerFlask(TriggerLife90)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife90!="00000")
+						TriggerFlask(TriggerLife90)
 					}
 				}
 			}
 		
 		if (Hybrid=1) {
-			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)) {
+			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life20, vX_Life, vY_Life20 
 				if (Life20!=varLife20) {
 					if (AutoQuit=1) && (Quit20=1) {
@@ -2996,10 +3063,15 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerLife20)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife20!="00000")
+						TriggerFlask(TriggerLife20)
 					}
 				}
-			If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)) {
+			If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life30, vX_Life, vY_Life30 
 				if (Life30!=varLife30) {
 					if (AutoQuit=1) && (Quit30=1) {
@@ -3008,10 +3080,15 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerLife30)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife30!="00000")
+						TriggerFlask(TriggerLife30)
 					}
 				}
-			If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)) {
+			If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life40, vX_Life, vY_Life40 
 				if (Life40!=varLife40) {
 					if (AutoQuit=1) && (Quit40=1) {
@@ -3020,91 +3097,161 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerLife40)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife40!="00000")
+						TriggerFlask(TriggerLife40)
 					}
 				}
-			If (TriggerLife50!="00000") {
+			If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life50, vX_Life, vY_Life50
 				if (Life50!=varLife50) {
-					TriggerFlask(TriggerLife50)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife50!="00000")
+						TriggerFlask(TriggerLife50)
 					}
 				}
-			If (TriggerLife60!="00000") {
+			If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life60, vX_Life, vY_Life60
 				if (Life60!=varLife60) {
-					TriggerFlask(TriggerLife60)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife60!="00000")
+						TriggerFlask(TriggerLife60)
 					}
 				}
-			If (TriggerLife70!="00000") {
+			If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life70, vX_Life, vY_Life70
 				if (Life70!=varLife70) {
-					TriggerFlask(TriggerLife70)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife70!="00000")
+						TriggerFlask(TriggerLife70)
 					}
 				}
-			If (TriggerLife80!="00000") {
+			If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life80, vX_Life, vY_Life80
 				if (Life80!=varLife80) {
-					TriggerFlask(TriggerLife80)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife80!="00000")
+						TriggerFlask(TriggerLife80)
 					}
 				}
-			If (TriggerLife90!="00000") {
+			If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life90, vX_Life, vY_Life90
 				if (Life90!=varLife90) {
-					TriggerFlask(TriggerLife90)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerLife90!="00000")
+						TriggerFlask(TriggerLife90)
 					}
 				}
-			If (TriggerES20!="00000") {
+			If ((TriggerES20!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES20, vX_ES, vY_ES20 
 				if (ES20!=varES20) {
-					TriggerFlask(TriggerES20)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES20!="00000")
+						TriggerFlask(TriggerES20)
 					}
 				}
-			If (TriggerES30!="00000") {
+			If ((TriggerES30!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES30, vX_ES, vY_ES30 
 				if (ES30!=varES30) {
-					TriggerFlask(TriggerES30)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES30!="00000")
+						TriggerFlask(TriggerES30)
 					}
 				}
-			If (TriggerES40!="00000") {
+			If ((TriggerES40!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES40, vX_ES, vY_ES40 
 				if (ES40!=varES40) {
-					TriggerFlask(TriggerES40)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES40!="00000")
+						TriggerFlask(TriggerES40)
 					}
 				}
-			If (TriggerES50!="00000") {
+			If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES50, vX_ES, vY_ES50
 				if (ES50!=varES50) {
-					TriggerFlask(TriggerES50)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES50!="00000")
+						TriggerFlask(TriggerES50)
 					}
 				}
-			If (TriggerES60!="00000") {
+			If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES60, vX_ES, vY_ES60
 				if (ES60!=varES60) {
-					TriggerFlask(TriggerES60)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES60!="00000")
+						TriggerFlask(TriggerES60)
 					}
 				}
-			If (TriggerES70!="00000") {
+			If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES70, vX_ES, vY_ES70
 				if (ES70!=varES70) {
-					TriggerFlask(TriggerES70)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES70!="00000")
+						TriggerFlask(TriggerES70)
 					}
 				}
-			If (TriggerES80!="00000") {
+			If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES80, vX_ES, vY_ES80
 				if (ES80!=varES80) {
-					TriggerFlask(TriggerES80)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES80!="00000")
+						TriggerFlask(TriggerES80)
 					}
 				}
-			If (TriggerES90!="00000") {
+			If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES90, vX_ES, vY_ES90
 				if (ES90!=varES90) {
-					TriggerFlask(TriggerES90)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES90!="00000")
+						TriggerFlask(TriggerES90)
 					}
 				}
 			}
 		
 		if (Ci=1) {
-			If ((TriggerES20!="00000")||(AutoQuit&&Quit20)) {
+			If ((TriggerES20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES20, vX_ES, vY_ES20 
 				if (ES20!=varES20) {
 					if (AutoQuit=1) && (Quit20=1) {
@@ -3113,10 +3260,15 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerES20)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES20!="00000")
+						TriggerFlask(TriggerES20)
 					}
 				}
-			If ((TriggerES30!="00000")||(AutoQuit&&Quit30)) {
+			If ((TriggerES30!="00000")||(AutoQuit&&Quit30)|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES30, vX_ES, vY_ES30 
 				if (ES30!=varES30) {
 					if (AutoQuit=1) && (Quit30=1) {
@@ -3125,10 +3277,15 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerES30)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES30!="00000")
+						TriggerFlask(TriggerES30)
 					}
 				}
-			If ((TriggerES40!="00000")||(AutoQuit&&Quit40)) {
+			If ((TriggerES40!="00000")||(AutoQuit&&Quit40)|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES40, vX_ES, vY_ES40 
 				if (ES40!=varES40) {
 					if (AutoQuit=1) && (Quit40=1) {
@@ -3137,40 +3294,67 @@ TGameTick(){
 							LogoutCommand()
 						Exit
 						}
-					TriggerFlask(TriggerES40)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES40!="00000")
+						TriggerFlask(TriggerES40)
 					}
 				}
-			If ((TriggerES50!="00000")||(YesVaalDiscipline)) {
+			If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES50, vX_ES, vY_ES50
 				if (ES50!=varES50) {
-					If (YesVaalDiscipline)
-						TriggerUtility("VaalDiscipline")
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
+							TriggerUtility(A_Index)
+						}
 					If (TriggerES50!="00000")
 						TriggerFlask(TriggerES50)
 					}
 				}
-			If (TriggerES60!="00000") {
+			If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES60, vX_ES, vY_ES60
 				if (ES60!=varES60) {
-					TriggerFlask(TriggerES60)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES60!="00000")
+						TriggerFlask(TriggerES60)
 					}
 				}
-			If (TriggerES70!="00000") {
+			If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES70, vX_ES, vY_ES70
 				if (ES70!=varES70) {
-					TriggerFlask(TriggerES70)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES70!="00000")
+						TriggerFlask(TriggerES70)
 					}
 				}
-			If (TriggerES80!="00000") {
+			If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES80, vX_ES, vY_ES80
 				if (ES80!=varES80) {
-					TriggerFlask(TriggerES80)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES80!="00000")
+						TriggerFlask(TriggerES80)
 					}
 				}
-			If (TriggerES90!="00000") {
+			If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES90, vX_ES, vY_ES90
 				if (ES90!=varES90) {
-					TriggerFlask(TriggerES90)
+					Loop, 5 {
+						If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
+							TriggerUtility(A_Index)
+						}
+					If (TriggerES90!="00000")
+						TriggerFlask(TriggerES90)
 					}
 				}
 			}
@@ -3188,17 +3372,15 @@ TGameTick(){
 	}
 ; Trigger named Utility
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TriggerUtility(Utility:=""){
-	If !(Utility="") {
-		If (!OnCooldown%Utility%)&&(Yes%Utility%){
-			key:=utility%Utility%
-			Send %key%
-			OnCooldown%Utility%:=1
-			Cooldown:=Cooldown%Utility%
-			SetTimer, Timer%Utility%, %Cooldown%
-			}
-		} Else
-			MsgBox, No utility passed to function
+TriggerUtility(Utility){
+	If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
+		key:=KeyUtility%Utility%
+		Send %key%
+		SendMSG(4, Utility, scriptGottaGoFast)
+		OnCooldownUtility%Utility%:=1
+		Cooldown:=CooldownUtility%Utility%
+		SetTimer, TimerUtility%Utility%, %Cooldown%
+		}
 	Return
 	} 
 ; Flask Trigger check

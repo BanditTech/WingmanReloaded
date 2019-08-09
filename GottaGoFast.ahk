@@ -47,10 +47,6 @@ if not A_IsAdmin
 	ExitApp
 }
 
-; Check for window to open
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	SetTimer, PoEWindowCheck, 5000
-
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -125,7 +121,11 @@ if not A_IsAdmin
 
 	;Utility Cooldowns
 		global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
-		global OnCooldownUtility1, OnCooldownUtility2, OnCooldownUtility3, OnCooldownUtility4, OnCooldownUtility5
+		global OnCooldownUtility1 := 0
+		global OnCooldownUtility2 := 0
+		global OnCooldownUtility3 := 0
+		global OnCooldownUtility4 := 0
+		global OnCooldownUtility5 := 0
 		
 	;Utility Keys
 		global KeyUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
@@ -208,7 +208,6 @@ if not A_IsAdmin
 	global TriggerQ=00000
 	global AutoQuick=0 
 	global OnCooldown:=[0,0,0,0,0]
-	global OnCooldownUtility1, OnCooldownUtility2, OnCooldownUtility3, OnCooldownUtility4, OnCooldownUtility5
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Scale positions for status check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -250,6 +249,22 @@ IfWinExist, ahk_group POEGameGroup
 If hotkeyAutoQuicksilver
 	hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 
+; Check for window to open
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SetTimer, PoEWindowCheck, 5000
+
+; Start timer for active Utility that is not triggered by Life, ES, or QS
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Loop, 5 {
+		if ( (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") ){
+			SetTimer, TUtilityTick, 250
+			Break
+		}
+		Else If (YesUtility%A_Index%) && ( (YesUtility%A_Index%Quicksilver) || (YesUtility%A_Index%ESPercent!="Off") || (YesUtility%A_Index%LifePercent!="Off") )
+			SetTimer, TUtilityTick, Off
+		Else
+			SetTimer, TUtilityTick, Off
+		}
 
 ;Pop all flasks
 PopFlaskCooldowns(){
@@ -321,7 +336,34 @@ MsgMonitor(wParam, lParam, msg)
 			settimer, TimmerFlask5, %CooldownFlask5%
 			return
 			}		
-	}
+		}
+	Else If (wParam=4) {
+		If (lParam=1){
+			OnCooldownUtility1:=1 
+			settimer, TimerUtility1, %CooldownUtility1%
+			return
+			}		
+		If (lParam=2){
+			OnCooldownUtility2:=1 
+			settimer, TimerUtility2, %CooldownUtility2%
+			return
+			}		
+		If (lParam=3){
+			OnCooldownUtility3:=1 
+			settimer, TimerUtility3, %CooldownUtility3%
+			return
+			}		
+		If (lParam=4){
+			OnCooldownUtility4:=1 
+			settimer, TimerUtility4, %CooldownUtility4%
+			return
+			}		
+		If (lParam=5){
+			OnCooldownUtility5:=1 
+			settimer, TimerUtility5, %CooldownUtility5%
+			return
+			}		
+		}
 	Return
 	}
 ; Send one or two digits to a sub-script 
@@ -359,50 +401,94 @@ PoEWindowCheck(){
 ReadFromFile(){
 	Global
 	;General
-	IniRead, Speed, settings.ini, General, Speed, 1
-	IniRead, QTick, settings.ini, General, QTick, 250
-	IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
-	IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
+		IniRead, Speed, settings.ini, General, Speed, 1
+		IniRead, QTick, settings.ini, General, QTick, 50
+		IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
+		IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 	;Coordinates
-	IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
-	IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
+		IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
+		IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
 	;Failsafe Colors
-	IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
-	IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
-	IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat
-	IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor
-	IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
-	IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
-	;Flask Cooldowns
-	IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
-	IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2
-	IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3
-	IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4
-	IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5
-	;Quicksilver
-	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
-	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
-	IniRead, QuicksilverSlot1, settings.ini, Quicksilver, QuicksilverSlot1
-	IniRead, QuicksilverSlot2, settings.ini, Quicksilver, QuicksilverSlot2
-	IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3
-	IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4
-	IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5
+		IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
+		IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
+		IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
+		IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
+		IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
+		IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
 	;Utility Buttons
-	IniRead, YesPhaseRun, settings.ini, Utility Buttons, YesPhaseRun, 1
+		IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
+		IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
+		IniRead, YesUtility3, settings.ini, Utility Buttons, YesUtility3, 0
+		IniRead, YesUtility4, settings.ini, Utility Buttons, YesUtility4, 0
+		IniRead, YesUtility5, settings.ini, Utility Buttons, YesUtility5, 0
+		IniRead, YesUtility1Quicksilver, settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
+		IniRead, YesUtility2Quicksilver, settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
+		IniRead, YesUtility3Quicksilver, settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
+		IniRead, YesUtility4Quicksilver, settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
+		IniRead, YesUtility5Quicksilver, settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
+
+	;Utility Percents	
+		IniRead, YesUtility1LifePercent, settings.ini, Utility Buttons, YesUtility1LifePercent, Off
+		IniRead, YesUtility2LifePercent, settings.ini, Utility Buttons, YesUtility2LifePercent, Off
+		IniRead, YesUtility3LifePercent, settings.ini, Utility Buttons, YesUtility3LifePercent, Off
+		IniRead, YesUtility4LifePercent, settings.ini, Utility Buttons, YesUtility4LifePercent, Off
+		IniRead, YesUtility5LifePercent, settings.ini, Utility Buttons, YesUtility5LifePercent, Off
+		IniRead, YesUtility1EsPercent, settings.ini, Utility Buttons, YesUtility1EsPercent, Off
+		IniRead, YesUtility2EsPercent, settings.ini, Utility Buttons, YesUtility2EsPercent, Off
+		IniRead, YesUtility3EsPercent, settings.ini, Utility Buttons, YesUtility3EsPercent, Off
+		IniRead, YesUtility4EsPercent, settings.ini, Utility Buttons, YesUtility4EsPercent, Off
+		IniRead, YesUtility5EsPercent, settings.ini, Utility Buttons, YesUtility5EsPercent, Off
+
 	;Utility Cooldowns
-	IniRead, CooldownUtility1, settings.ini, Utility Cooldowns, CooldownUtility1, 5000
+		IniRead, CooldownUtility1, settings.ini, Utility Cooldowns, CooldownUtility1, 5000
+		IniRead, CooldownUtility2, settings.ini, Utility Cooldowns, CooldownUtility2, 5000
+		IniRead, CooldownUtility3, settings.ini, Utility Cooldowns, CooldownUtility3, 5000
+		IniRead, CooldownUtility4, settings.ini, Utility Cooldowns, CooldownUtility4, 5000
+		IniRead, CooldownUtility5, settings.ini, Utility Cooldowns, CooldownUtility5, 5000
+		
 	;Utility Keys
-	IniRead, utilityPhaseRun, settings.ini, Utility Keys, PhaseRun, e
-	;Hotkeys
-	IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, %A_Space%
+		IniRead, KeyUtility1, settings.ini, Utility Keys, KeyUtility1, q
+		IniRead, KeyUtility2, settings.ini, Utility Keys, KeyUtility2, w
+		IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
+		IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
+		IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
+
+	;Flask Cooldowns
+		IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
+		IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2, 4800
+		IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
+		IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
+		IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
+	;Quicksilver
+		IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
+		IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
+		IniRead, QuicksilverSlot1, settings.ini, Quicksilver, QuicksilverSlot1, 0
+		IniRead, QuicksilverSlot2, settings.ini, Quicksilver, QuicksilverSlot2, 0
+		IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3, 0
+		IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4, 0
+		IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5, 0
+	;hotkeys
+		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, %A_Space%
 	IfWinExist, ahk_group POEGameGroup
 		{
-			Rescale()
-			If (!ToggleExist){
-				Gui, Show, x%GuiX% y%GuiY%, NoActivate 
-				WinActivate, ahk_group POEGameGroup
-				}
+		Rescale()
+		If (!ToggleExist){
+			Gui, Show, x%GuiX% y%GuiY%, NoActivate 
+			WinActivate, ahk_group POEGameGroup
+			}
 		}
+	; Start timer for active Utility that is not triggered by Life, ES, or QS
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Loop, 5 {
+			if ( (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") ){
+				SetTimer, TUtilityTick, 250
+				Break
+			}
+			Else If (YesUtility%A_Index%) && ( (YesUtility%A_Index%Quicksilver) || (YesUtility%A_Index%ESPercent!="Off") || (YesUtility%A_Index%LifePercent!="Off") )
+				SetTimer, TUtilityTick, Off
+			Else
+				SetTimer, TUtilityTick, Off
+			}
 	Return
 	}
 RandomSleep(min,max){
@@ -479,6 +565,28 @@ TQuickTick(){
 		}
 	}
 
+TUtilityTick(){
+	IfWinActive, Path of Exile
+		{
+		GuiStatus("OnHideout")
+		GuiStatus("OnChar")
+		GuiStatus("OnChat")
+		GuiStatus("OnInventory")
+	
+		if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+			GuiUpdate()
+			Exit
+			}
+
+		if ( ( (YesUtility1) && !(YesUtility1Quicksilver) && (YesUtility1LifePercent="Off") && (YesUtility1ESPercent="Off") ) || ( (YesUtility2) && !(YesUtility2Quicksilver) && (YesUtility2LifePercent="Off") && (YesUtility2ESPercent="Off") ) || ( (YesUtility3) && !(YesUtility3Quicksilver) && (YesUtility3LifePercent="Off") && (YesUtility3ESPercent="Off") ) || ( (YesUtility4) && !(YesUtility4Quicksilver) && (YesUtility4LifePercent="Off") && (YesUtility4ESPercent="Off") ) || ( (YesUtility5) && !(YesUtility5Quicksilver) && (YesUtility5LifePercent="Off") && (YesUtility5ESPercent="Off") ) ) {
+			Loop, 5 {
+				If (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && !(YesUtility%A_Index%LifePercent!="Off") && !(YesUtility%A_Index%ESPercent!="Off")
+					TriggerUtility(A_Index)
+				}
+			}
+		}
+	}
+
 TriggerFlask(Trigger){
 	If ((!FlaskList.Count())&& !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
 		QFL=1
@@ -501,23 +609,25 @@ TriggerFlask(Trigger){
 			settimer, TimmerFlask%QFL%, %Cooldown%
 			SendMSG(3, QFL, scriptPOEWingman)
 			RandomSleep(23,59)
-			TriggerUtility("PhaseRun")
+			Loop, 5 {
+				If (YesUtility%A_Index%) && (YesUtility%A_Index%Quicksilver){
+					TriggerUtility(A_Index)
+					}
+				}
 			}
 		}
 	Return
 	}
 
-TriggerUtility(Utility:=""){
-	If !(Utility="") {
-		If (!OnCooldown%Utility%)&&(Yes%Utility%){
-			key:=utility%Utility%
-			Send %key%
-			OnCooldown%Utility%:=1
-			Cooldown:=Cooldown%Utility%
-			SetTimer, Timer%Utility%, %Cooldown%
-			}
-		} Else
-			MsgBox, No utility passed to function
+TriggerUtility(Utility){
+	If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
+		key:=KeyUtility%Utility%
+		Send %key%
+		SendMSG(4, Utility, scriptPOEWingman)
+		OnCooldownUtility%Utility%:=1
+		Cooldown:=CooldownUtility%Utility%
+		SetTimer, TimerUtility%Utility%, %Cooldown%
+		}
 	Return
 	} 
 
