@@ -41,6 +41,10 @@
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
+	Global VersionNumber := .03.3
+
+	checkUpdate()
+
 	full_command_line := DllCall("GetCommandLine", "str")
 
 	GetTable := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Iphlpapi.dll", "Ptr"), Astr, "GetExtendedTcpTable", "Ptr")
@@ -65,7 +69,6 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	;General
-		Global VersionNumber := .03
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
@@ -73,6 +76,7 @@
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
+		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
 		Global AreaScale := 1
 		Global LootVacuum := 1
@@ -280,7 +284,8 @@
 	;Attack Triggers
 		global TriggerMainAttack:=00000
 		global TriggerSecondaryAttack:=00000
-
+		Global MainAttackbox1,MainAttackbox2,MainAttackbox3,MainAttackbox4,MainAttackbox5
+		Global SecondaryAttackbox1,SecondaryAttackbox2,SecondaryAttackbox3,SecondaryAttackbox4,SecondaryAttackbox5
 	;CharacterTypeCheck
 		global Life:=1
 		global Hybrid:=0
@@ -296,7 +301,15 @@
 		global TriggerLife80:=00000
 		global TriggerLife90:=00000
 		global DisableLife:=11111
-
+		global Radiobox1Life20, Radiobox2Life20, Radiobox3Life20, Radiobox4Life20, Radiobox5Life20
+		global Radiobox1Life30, Radiobox2Life30, Radiobox3Life30, Radiobox4Life30, Radiobox5Life30
+		global Radiobox1Life40, Radiobox2Life40, Radiobox3Life40, Radiobox4Life40, Radiobox5Life40
+		global Radiobox1Life50, Radiobox2Life50, Radiobox3Life50, Radiobox4Life50, Radiobox5Life50
+		global Radiobox1Life60, Radiobox2Life60, Radiobox3Life60, Radiobox4Life60, Radiobox5Life60
+		global Radiobox1Life70, Radiobox2Life70, Radiobox3Life70, Radiobox4Life70, Radiobox5Life70
+		global Radiobox1Life80, Radiobox2Life80, Radiobox3Life80, Radiobox4Life80, Radiobox5Life80
+		global Radiobox1Life90, Radiobox2Life90, Radiobox3Life90, Radiobox4Life90, Radiobox5Life90
+		global RadioUncheck1Life, RadioUncheck2Life, RadioUncheck3Life, RadioUncheck4Life, RadioUncheck5Life
 	;ES Triggers
 		global TriggerES20:=00000
 		global TriggerES30:=00000
@@ -307,14 +320,24 @@
 		global TriggerES80:=00000
 		global TriggerES90:=00000
 		global DisableES:=11111
+		global Radiobox1ES20, Radiobox2ES20, Radiobox3ES20, Radiobox4ES20, Radiobox5ES20
+		global Radiobox1ES30, Radiobox2ES30, Radiobox3ES30, Radiobox4ES30, Radiobox5ES30
+		global Radiobox1ES40, Radiobox2ES40, Radiobox3ES40, Radiobox4ES40, Radiobox5ES40
+		global Radiobox1ES50, Radiobox2ES50, Radiobox3ES50, Radiobox4ES50, Radiobox5ES50
+		global Radiobox1ES60, Radiobox2ES60, Radiobox3ES60, Radiobox4ES60, Radiobox5ES60
+		global Radiobox1ES70, Radiobox2ES70, Radiobox3ES70, Radiobox4ES70, Radiobox5ES70
+		global Radiobox1ES80, Radiobox2ES80, Radiobox3ES80, Radiobox4ES80, Radiobox5ES80
+		global Radiobox1ES90, Radiobox2ES90, Radiobox3ES90, Radiobox4ES90, Radiobox5ES90
+		global RadioUncheck1ES, RadioUncheck2ES, RadioUncheck3ES, RadioUncheck4ES, RadioUncheck5ES
 
 	;Mana Triggers
 		global TriggerMana10:=00000
 
 	;AutoQuit
-		global Quit20
-		global Quit30
-		global Quit40
+		global RadioQuit20, RadioQuit30, RadioQuit40, RadioCritQuit, RadioNormalQuit
+
+	;Character Type
+		global RadioCi, RadioHybrid, RadioLife
 
 	;Utility Buttons
 		global YesPhaseRun:=1
@@ -343,216 +366,11 @@
 
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	If FileExist("settings.ini"){ 
-
-		;General
-		IniRead, Speed, settings.ini, General, Speed
-		IniRead, Tick, settings.ini, General, Tick
-		IniRead, QTick, settings.ini, General, QTick
-		;Coordinates
-		IniRead, GuiX, settings.ini, Coordinates, GuiX
-		IniRead, GuiY, settings.ini, Coordinates, GuiY
-		readFromFile()
-		
-		} else {
-		
-		;General
-		IniWrite, 1, settings.ini, General, Speed
-		IniWrite, 50, settings.ini, General, Tick
-		IniWrite, 250, settings.ini, General, QTick
-		IniWrite, 1, settings.ini, General, PopFlaskRespectCD
-		IniWrite, Standard, settings.ini, General, ResolutionScale
-		IniWrite, 1, settings.ini, General, YesStashKeys
-		IniWrite, 0, settings.ini, General, DebugMessages
-		IniWrite, 0, settings.ini, General, ShowPixelGrid
-		IniWrite, 0, settings.ini, General, ShowItemInfo
-		IniWrite, 0, settings.ini, General, DetonateMines
-		IniWrite, 1, settings.ini, General, LootVacuum
-		IniWrite, 1, settings.ini, General, YesVendor
-		IniWrite, 1, settings.ini, General, YesStash
-		IniWrite, 1, settings.ini, General, YesIdentify
-		IniWrite, 1, settings.ini, General, YesMapUnid
-		IniWrite, 1, settings.ini, General, Latency
-		IniWrite, 0, settings.ini, General, ShowOnStart
-		IniWrite, 1, settings.ini, General, Steam
-		IniWrite, 1, settings.ini, General, HighBits
-
-		;Stash Tab
-		IniWrite, 1, settings.ini, Stash Tab, StashTabCurrency
-		IniWrite, 1, settings.ini, Stash Tab, StashTabMap
-		IniWrite, 1, settings.ini, Stash Tab, StashTabDivination
-		IniWrite, 1, settings.ini, Stash Tab, StashTabGem
-		IniWrite, 1, settings.ini, Stash Tab, StashTabGemQuality
-		IniWrite, 1, settings.ini, Stash Tab, StashTabFlaskQuality
-		IniWrite, 1, settings.ini, Stash Tab, StashTabLinked
-		IniWrite, 1, settings.ini, Stash Tab, StashTabCollection
-		IniWrite, 1, settings.ini, Stash Tab, StashTabUniqueRing
-		IniWrite, 1, settings.ini, Stash Tab, StashTabUniqueDump
-		IniWrite, 1, settings.ini, Stash Tab, StashTabFragment
-		IniWrite, 1, settings.ini, Stash Tab, StashTabEssence
-		IniWrite, 1, settings.ini, Stash Tab, StashTabTimelessSplinter
-		IniWrite, 1, settings.ini, Stash Tab, StashTabFossil
-		IniWrite, 1, settings.ini, Stash Tab, StashTabResonator
-		IniWrite, 1, settings.ini, Stash Tab, StashTabProphecy
-		
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesCurrency
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesMap
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesDivination
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesGem
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesGemQuality
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesFlaskQuality
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesLinked
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesCollection
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesUniqueRing
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesUniqueDump
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesFragment
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesEssence
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesTimelessSplinter
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesFossil
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesResonator
-		IniWrite, 1, settings.ini, Stash Tab, StashTabYesProphecy
-		
-		;Coordinates
-		IniWrite, -10, settings.ini, Coordinates, GuiX
-		IniWrite, 1027, settings.ini, Coordinates, GuiY
-		IniWrite, 1825, settings.ini, Coordinates, PortalScrollX
-		IniWrite, 825, settings.ini, Coordinates, PortalScrollY
-		IniWrite, 1875, settings.ini, Coordinates, WisdomScrollX
-		IniWrite, 825, settings.ini, Coordinates, WisdomScrollY
-		IniWrite, 1, settings.ini, Coordinates, StockPortal
-		IniWrite, 1, settings.ini, Coordinates, StockWisdom
-		
-		;hotkeys
-		IniWrite, !F10, settings.ini, hotkeys, Options
-		IniWrite, !F12, settings.ini, hotkeys, AutoQuit
-		IniWrite, !F11, settings.ini, hotkeys, AutoFlask
-		IniWrite, !MButton, settings.ini, hotkeys, AutoQuicksilver
-		IniWrite, !q, settings.ini, hotkeys, QuickPortal
-		IniWrite, !e, settings.ini, hotkeys, GemSwap
-		IniWrite, !o, settings.ini, hotkeys, GetMouseCoords
-		IniWrite, CapsLock, settings.ini, hotkeys, PopFlasks
-		IniWrite, F12, settings.ini, hotkeys, Logout
-		IniWrite, Space, settings.ini, hotkeys, CloseAllUI
-		IniWrite, c, settings.ini, hotkeys, Inventory
-		IniWrite, x, settings.ini, hotkeys, WeaponSwapKey
-		IniWrite, F6, settings.ini, hotkeys, ItemSort
-		IniWrite, f, settings.ini, hotkeys, LootScan
-		IniWrite, LButton, settings.ini, hotkeys, Move
-		IniWrite, RButton, settings.ini, hotkeys, MainAttack
-		IniWrite, w, settings.ini, hotkeys, SecondaryAttack
-		
-		;Failsafe Colors
-		IniWrite, 0x161114, settings.ini, Failsafe Colors, OnHideout
-		IniWrite, 0x4F6980, settings.ini, Failsafe Colors, OnChar
-		IniWrite, 0x3B6288, settings.ini, Failsafe Colors, OnChat
-		IniWrite, 0x8CC6DD, settings.ini, Failsafe Colors, OnInventory
-		IniWrite, 0x9BD6E7, settings.ini, Failsafe Colors, OnStash
-		IniWrite, 0x7BB1CC, settings.ini, Failsafe Colors, OnVendor
-		IniWrite, 0x412037, settings.ini, Failsafe Colors, DetonateHex
-		
-		;Life Colors
-		IniWrite, 0x181145, settings.ini, Life Colors, Life20
-		IniWrite, 0x181264, settings.ini, Life Colors, Life30
-		IniWrite, 0x190F7D, settings.ini, Life Colors, Life40
-		IniWrite, 0x2318A5, settings.ini, Life Colors, Life50
-		IniWrite, 0x2215B4, settings.ini, Life Colors, Life60
-		IniWrite, 0x2413B3, settings.ini, Life Colors, Life70
-		IniWrite, 0x2B2385, settings.ini, Life Colors, Life80
-		IniWrite, 0x664564, settings.ini, Life Colors, Life90
-		
-		;Life Triggers
-		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife20
-		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife30
-		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife40
-		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife50
-		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife60
-		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife70
-		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife80
-		IniWrite, 00000, settings.ini, Life Triggers, TriggerLife90
-		IniWrite, 11111, settings.ini, Life Triggers, DisableLife
-		
-		;ES Colors
-		IniWrite, 0xFFC445, settings.ini, ES Colors, ES20
-		IniWrite, 0xFFCE66, settings.ini, ES Colors, ES30
-		IniWrite, 0xFFFF85, settings.ini, ES Colors, ES40
-		IniWrite, 0xFFFF82, settings.ini, ES Colors, ES50
-		IniWrite, 0xFFFF95, settings.ini, ES Colors, ES60
-		IniWrite, 0xFFD07F, settings.ini, ES Colors, ES70
-		IniWrite, 0xE89C5E, settings.ini, ES Colors, ES80
-		IniWrite, 0xE79435, settings.ini, ES Colors, ES90
-		
-		;ES Triggers
-		IniWrite, 00000, settings.ini, ES Triggers, TriggerES20
-		IniWrite, 00000, settings.ini, ES Triggers, TriggerES30
-		IniWrite, 00000, settings.ini, ES Triggers, TriggerES40
-		IniWrite, 00000, settings.ini, ES Triggers, TriggerES50
-		IniWrite, 00000, settings.ini, ES Triggers, TriggerES60
-		IniWrite, 00000, settings.ini, ES Triggers, TriggerES70
-		IniWrite, 00000, settings.ini, ES Triggers, TriggerES80
-		IniWrite, 00000, settings.ini, ES Triggers, TriggerES90
-		IniWrite, 11111, settings.ini, ES Triggers, DisableES
-		
-		;Mana Colors
-		IniWrite, 0x3C201D, settings.ini, Mana Colors, Mana10
-		
-		;Mana Trigger
-		IniWrite, 00000, settings.ini, Mana Triggers, TriggerMana10
-
-		;Utility Buttons
-		IniWrite, 1, settings.ini, Utility Buttons, YesPhaseRun
-		IniWrite, 1, settings.ini, Utility Buttons, YesVaalDiscipline
-
-		;Utility Cooldowns
-		IniWrite, 5000, settings.ini, Utility Cooldowns, CooldownPhaseRun
-		IniWrite, 60000, settings.ini, Utility Cooldowns, CooldownVaalDiscipline
-
-		;Utility Keys
-		IniWrite, e, settings.ini, Utility Keys, PhaseRun
-		IniWrite, r, settings.ini, Utility Keys, VaalDiscipline
-
-		;Flask Cooldowns
-		IniWrite, 4800, settings.ini, Flask Cooldowns, CooldownFlask1
-		IniWrite, 4800, settings.ini, Flask Cooldowns, CooldownFlask2
-		IniWrite, 4800, settings.ini, Flask Cooldowns, CooldownFlask3
-		IniWrite, 4800, settings.ini, Flask Cooldowns, CooldownFlask4
-		IniWrite, 4800, settings.ini, Flask Cooldowns, CooldownFlask5	
-		
-		;Gem Swap
-		IniWrite, 1353, settings.ini, Gem Swap, CurrentGemX
-		IniWrite, 224, settings.ini, Gem Swap, CurrentGemY
-		IniWrite, 1407, settings.ini, Gem Swap, AlternateGemX
-		IniWrite, 201, settings.ini, Gem Swap, AlternateGemY
-		IniWrite, 0, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
-
-		;Attack Flasks
-		IniWrite, 00000, settings.ini, Attack Triggers, TriggerMainAttack
-		IniWrite, 00000, settings.ini, Attack Triggers, TriggerSecondaryAttack
+	readFromFile()
 				
-		;Quicksilver Flasks
-		IniWrite, .5, settings.ini, Quicksilver, TriggerQuicksilverDelay
-		IniWrite, 00000, settings.ini, Quicksilver, TriggerQuicksilver	
-		IniWrite, 0, settings.ini, Quicksilver, QuicksilverSlot1
-		IniWrite, 0, settings.ini, Quicksilver, QuicksilverSlot2
-		IniWrite, 0, settings.ini, Quicksilver, QuicksilverSlot3
-		IniWrite, 0, settings.ini, Quicksilver, QuicksilverSlot4
-		IniWrite, 0, settings.ini, Quicksilver, QuicksilverSlot5
-		
-		;CharacterTypeCheck
-		IniWrite, 1, settings.ini, CharacterTypeCheck, Life
-		IniWrite, 0, settings.ini, CharacterTypeCheck, Hybrid	
-		IniWrite, 0, settings.ini, CharacterTypeCheck, Ci	
-		
-		;AutoQuit
-		IniWrite, 1, settings.ini, AutoQuit, Quit20
-		IniWrite, 0, settings.ini, AutoQuit, Quit30
-		IniWrite, 0, settings.ini, AutoQuit, Quit40
-		IniWrite, 1, settings.ini, AutoQuit, CritQuit
-		IniWrite, 0, settings.ini, AutoQuit, NormalQuit
 
-		Reload
-		sleep, -1
-		return
-		}
+				
+
 
 ; Wingman Gui Variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -581,13 +399,10 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, x1 y1 w580 h465 -wrap, Configuration|Profiles|Calibration|Inventory|Utility
-	;#######################################################################################################Configuration Tab
-	Gui, Tab, Configuration
+	Gui Add, Tab2, x1 y1 w620 h465 -wrap, Flasks and Utility|Configuration|Inventory
+	;#######################################################################################################Flasks and Utility Tab
+	Gui, Tab, Flasks and Utility
 	Gui, Font,
-	Gui, Add, Button, greadProfile1 x100 y25 w50, Load 1
-	Gui, Add, Button, greadProfile2 x+1 w50, Load 2
-	Gui, Add, Button, greadProfile3 x+1 w50, Load 3
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x12 	y30, 				Flask Settings
@@ -595,11 +410,11 @@
 
 	Gui Add, Text, 										x12 	y+10, 				Character Type:
 	Gui, Font, cRed
-	Gui Add, Radio, Group 	vRadioLife 					x+8 gUpdateCharacterType, 	Life
-	Gui, Font
-	Gui Add, Radio, 		vRadioHybrid 				x+8 gUpdateCharacterType, 	Hybrid
+	Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					x+8 gUpdateCharacterType, 	Life
+	Gui, Font, cPurple
+	Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
 	Gui, Font, cBlue
-	Gui Add, Radio, 		vRadioCi 					x+8 gUpdateCharacterType, 	CI
+	Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	CI
 	Gui, Font
 
 	Gui Add, Text, 										x63 	y+10, 				Flask 1
@@ -667,6 +482,44 @@
 	Gui Add, Radio, 		vRadiobox%A_Index%ES20 gFlaskCheck					y+5		w13 h13
 	Gui Add, Radio, 		vRadioUncheck%A_Index%ES 					y+5 	w13 h13
 	}
+	Loop, 5 {
+		valueLife20 := substr(TriggerLife20, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
+		valueLife30 := substr(TriggerLife30, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
+		valueLife40 := substr(TriggerLife40, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
+		valueLife50 := substr(TriggerLife50, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
+		valueLife60 := substr(TriggerLife60, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
+		valueLife70 := substr(TriggerLife70, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
+		valueLife80 := substr(TriggerLife80, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
+		valueLife90 := substr(TriggerLife90, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
+		valueDisableLife := substr(DisableLife, (A_Index), 1)
+		GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
+		valueES20 := substr(TriggerES20, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES20, %valueES20%
+		valueES30 := substr(TriggerES30, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES30, %valueES30%
+		valueES40 := substr(TriggerES40, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES40, %valueES40%
+		valueES50 := substr(TriggerES50, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES50, %valueES50%
+		valueES60 := substr(TriggerES60, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES60, %valueES60%
+		valueES70 := substr(TriggerES70, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES70, %valueES70%
+		valueES80 := substr(TriggerES80, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES80, %valueES80%
+		valueES90 := substr(TriggerES90, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES90, %valueES90%
+		valueDisableES := substr(DisableES, (A_Index), 1)
+		GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
+		}	
 
 	Gui Add, Text, 													x16 	y+12, 				Quicks.:
 	Gui Add, Text, 													x25 	y+10, 				Mana:
@@ -678,6 +531,12 @@
 	Gui Add, Radio, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	y+-36 	w13 h13
 	Gui Add, Radio, 		vRadiobox%vFlask%Mana10 gUtilityCheck			y+10 	w13 h13
 	vFlask:=vFlask+1
+	}
+	Loop, 5 {	
+		valueMana10 := substr(TriggerMana10, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
+		valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
 	}
 
 	Gui Add, Edit, 			vhotkeyMainAttack 				x12 	y+10 	w45 h17, 	%hotkeyMainAttack%
@@ -697,17 +556,23 @@
 	Gui Add, Checkbox, 		vSecondaryAttackbox%vFlask% x+28 			w13 h13
 	vFlask:=vFlask+1
 	}
+	Loop, 5{	
+		valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
+		GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
+		valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
+		GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
+		}
 
 	Gui Add, Text, 										x12 	y+10, 				Quicksilver Flask Movement Delay (in s):
 	Gui Add, Edit, 			vTriggerQuicksilverDelay	x+31 	y+-15 	w22 h17, 	%TriggerQuicksilverDelay%
 
 	Gui Add, Text, 										x12 	y+10, 				Auto-Quit:
-	Gui Add, Radio, Group 	vRadioQuit20 				x+5, 						%varTextAutoQuit20%
-	Gui Add, Radio, 		vRadioQuit30 				x+5, 						%varTextAutoQuit30%
-	Gui Add, Radio, 		vRadioQuit40 				x+5, 						%varTextAutoQuit40%
+	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				x+5, 						%varTextAutoQuit20%
+	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
+	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
 	Gui Add, Text, 										x20 	y+10, 				Quit via:
-	Gui, Add, Radio, Group	vRadioCritQuit					x+5		y+-13,				LutBot Method
-	Gui, Add, Radio, 		vRadioNormalQuit			x+19	,				normal /exit
+	Gui, Add, Radio, Group	vRadioCritQuit Checked%RadioCritQuit%					x+5		y+-13,				LutBot Method
+	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+19	,				normal /exit
 
 	;Vertical Grey Lines
 	Gui, Add, Text, 									x59 	y77 		h310 0x11
@@ -716,12 +581,115 @@
 	Gui, Add, Text, 									x+33 				h310 0x11
 	Gui, Add, Text, 									x+34 				h310 0x11
 	Gui, Add, Text, 									x+33 				h310 0x11
-	Gui, Add, Text, 									x+5 	y23		w1	h411 0x7
-	Gui, Add, Text, 									x+1 	y23		w1	h411 0x7
+	Gui, Add, Text, 									x+5 	y23		w1	h441 0x7
+	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
+
+	Gui, Add, Text, 									x447 	y53 		h140 0x11
+
+	Gui, Font, Bold
+	Gui, Add, Text, 										x292 	y30, 				Flask Profile Management:
+		Gui, Font
+	Gui, Add, Button, gsubmitProfile1 x290 y52 w50 h23, Save 1
+	Gui, Add, Button, gsubmitProfile2 w50 h23, Save 2
+	Gui, Add, Button, gsubmitProfile3 w50 h23, Save 3
+	Gui, Add, Button, gsubmitProfile4 w50 h23, Save 4
+	Gui, Add, Button, gsubmitProfile5 w50 h23, Save 5
+
+	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x340 y53 w50 h21, %ProfileText1%
+	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h21, %ProfileText2%
+	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h21, %ProfileText3%
+	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h21, %ProfileText4%
+	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h21, %ProfileText5%
+
+	Gui, Add, Button, greadProfile1 x390 y52 w50 h23, Load 1
+	Gui, Add, Button, greadProfile2 w50 h23, Load 2
+	Gui, Add, Button, greadProfile3 w50 h23, Load 3
+	Gui, Add, Button, greadProfile4 w50 h23, Load 4
+	Gui, Add, Button, greadProfile5 w50 h23, Load 5
+
+	Gui, Add, Button, gsubmitProfile6 x455 y52 w50 h23, Save 6
+	Gui, Add, Button, gsubmitProfile7 w50 h23, Save 7
+	Gui, Add, Button, gsubmitProfile8 w50 h23, Save 8
+	Gui, Add, Button, gsubmitProfile9 w50 h23, Save 9
+	Gui, Add, Button, gsubmitProfile10 w50 h23, Save 10
+
+	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x505 y53 w50 h21, %ProfileText6%
+	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h21, %ProfileText7%
+	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h21, %ProfileText8%
+	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h21, %ProfileText9%
+	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h21, %ProfileText10%
+
+	Gui, Add, Button, greadProfile6 x555 y52 w50 h23, Load 6
+	Gui, Add, Button, greadProfile7 w50 h23, Load 7
+	Gui, Add, Button, greadProfile8 w50 h23, Load 8
+	Gui, Add, Button, greadProfile9 w50 h23, Load 9
+	Gui, Add, Button, greadProfile10 w50 h23, Load 10
+
+	Gui, Font, Bold
+	Gui Add, Text, 										x292 	y230, 				Utility Management
+	Gui, Font,
+
+	Gui,Add,Edit,			gUpdateUtility  		x319 y249  w40 h19 	vCooldownPhaseRun				,%CooldownPhaseRun%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownVaalDiscipline				,%CooldownVaalDiscipline%
+
+	Gui,Add,Edit,			  	x+22	y249   w40 h19 gUpdateUtility	vutilityPhaseRun				,%utilityPhaseRun%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vutilityVaalDiscipline				,%utilityVaalDiscipline%
+
+	Gui Add, Checkbox, gUpdateUtility	vYesPhaseRun Checked%YesPhaseRun%				x+5 y252	, Use Phase Run on Quicksilver?
+	Gui Add, Checkbox, gUpdateUtility	vYesVaalDiscipline Checked%YesVaalDiscipline%		y+13	, Use Vaal Discipline on 50`% ES?
+
+	Gui Add, Text, 										x300 	y250, 	CD:
+	Gui Add, Text, 													, 	CD:
+
+	Gui Add, Text, 										x360 	y250, 	Key:
+	Gui Add, Text, 													, 	Key:
+
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
+	;#######################################################################################################Configuration Tab
+	Gui, Tab, Configuration
+	Gui, Add, Text, 									x279 	y23		w1	h441 0x7
+	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
 
 	Gui, Add, Text, 									x376 	y29 		h107 0x11
 	Gui, Add, Text, 									x+33 		 		h107 0x11
 	Gui, Add, Text, 									x+33 		 		h107 0x11
+
+	Gui, Font, Bold
+	Gui, Add, Text, 										x22 	y30, 				Gamestate Calibration:
+	Gui, Font
+	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
+
+	;Update calibration for pixel check
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y50	w100, 	OnHideout Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
+
+	Gui, Font, Bold
+	Gui, Add, Text, 										x22 	y+10, 				AutoDetonate Calibration:
+	Gui, Font
+
+	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+8	w100, 	Detonate Color
+	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
+
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y50	w100, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
+	Gui, Font, Bold
+	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
+	Gui, Font, 
+
+	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
+	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          	, Are you using Steam?
+	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          	, Are you running 64 bit?
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    , Standard|UltraWide
+		GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
+	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
+	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
+	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x292 	y30, 				QoL Settings
@@ -743,16 +711,16 @@
 	Gui Add, Text, 										x303	y+6, 				Alternate Gem:
 	Gui Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
 	Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemX%
-	Gui Add, Checkbox, 	    vStockPortal              	x465     	y53	 	            , Stock Portal?
-	Gui Add, Checkbox, 	    vStockWisdom              	         y+8                , Stock Wisdom?
-	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot             y+8                , Weapon Swap?
+	Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     	y53	 	            , Stock Portal?
+	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         y+8                , Stock Wisdom?
+	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%             y+8                , Weapon Swap?
 
-	Gui Add, Checkbox, 	vDebugMessages  gUpdateDebug   	x560 	y5 	    w13 h13	
-	Gui Add, Text, 										x523	y5, 				Debug:
-	Gui Add, Checkbox, 	vShowPixelGrid  gUpdateDebug   	x506 	y5 	w13 h13	
-	Gui Add, Text, 							vPGrid	    x457	y5, 		    	Pixel Grid:
-	Gui Add, Checkbox, 	vShowItemInfo  gUpdateDebug  	x440 	y5 	w13 h13	
-	Gui Add, Text, 							vParseI	    x385	y5, 		        Parse Item:
+	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
+	Gui Add, Text, 										x573	y5, 				Debug:
+	Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x556 	y5 	w13 h13	
+	Gui Add, Text, 							vPGrid	    x507	y5, 		    	Pixel Grid:
+	Gui Add, Checkbox, 	vShowItemInfo Checked%ShowItemInfo%  gUpdateDebug  	x490 	y5 	w13 h13	
+	Gui Add, Text, 							vParseI	    x435	y5, 		        Parse Item:
 
 	If (DebugMessages=1) {
 		varCoordUtilText := "Coord/Debug"
@@ -768,8 +736,8 @@
 		GuiControl, Hide, ParseI
 	}
 
-	Gui Add, Checkbox, gUpdateExtra	vDetonateMines           x300  y145           	          , Detonate Mines?
-	Gui Add, Checkbox, gUpdateExtra	vYesStashKeys                         	         x+20 , Ctrl(1-10) stash tabs?
+	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           x300  y145           	          , Detonate Mines?
+	Gui Add, Checkbox, gUpdateExtra	vYesStashKeys Checked%YesStashKeys%                         	         x+20 , Ctrl(1-10) stash tabs?
 	Gui, Font, Bold
 	Gui Add, Text, 										x295 	y168, 				Keybinds:
 	Gui, Font
@@ -807,6 +775,7 @@
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
 	hotkeyItemSort_TT:="Set your own hotkey here"
 
+
 	Gui, Font, Bold
 	Gui Add, Text, 										x440 	y168, 				Ingame:
 	Gui, Font
@@ -822,8 +791,8 @@
 	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
 	hotkeyLootScan_TT:="Put your ingame assigned hotkey here"
-	Gui Add, Checkbox, gUpdateExtra	vLootVacuum                         	         y+8 , Loot Vacuum?
-	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD                         	     y+8 , Pop Flasks Respect CD?
+	Gui Add, Checkbox, gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 , Loot Vacuum?
+	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	     y+8 , Pop Flasks Respect CD?
 
 	;~ =========================================================================================== Subgroup: Hints
 	Gui,Font,Bold
@@ -836,85 +805,10 @@
 	Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything vSaveBtn	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
-	;#######################################################################################################Profiles Tab
-	Gui, Tab, Profiles
-	Gui, Font, Bold
-	Gui, Add, Text, 										x12 	y30, 				Flask Profile Management:
-		Gui, Font,
-	Gui, Add, Button, gsubmitProfile1 x20 y52 w50, Save 1
-	Gui, Add, Button, gsubmitProfile2 w50, Save 2
-	Gui, Add, Button, gsubmitProfile3 w50, Save 3
-	Gui, Add, Button, gsubmitProfile4 w50, Save 4
-	Gui, Add, Button, gsubmitProfile5 w50, Save 5
-	Gui, Add, Button, gsubmitProfile6 w50, Save 6
-	Gui, Add, Button, gsubmitProfile7 w50, Save 7
-	Gui, Add, Button, gsubmitProfile8 w50, Save 8
-	Gui, Add, Button, gsubmitProfile9 w50, Save 9
-	Gui, Add, Button, gsubmitProfile10 w50, Save 10
-
-	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x70 y54 w100, %ProfileText1%
-	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w100, %ProfileText2%
-	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w100, %ProfileText3%
-	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w100, %ProfileText4%
-	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w100, %ProfileText5%
-	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 w100, %ProfileText6%
-	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w100, %ProfileText7%
-	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w100, %ProfileText8%
-	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w100, %ProfileText9%
-	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w100, %ProfileText10%
-
-	Gui, Add, Button, greadProfile1 x170 y52 w50, Load 1
-	Gui, Add, Button, greadProfile2 w50, Load 2
-	Gui, Add, Button, greadProfile3 w50, Load 3
-	Gui, Add, Button, greadProfile4 w50, Load 4
-	Gui, Add, Button, greadProfile5 w50, Load 5
-	Gui, Add, Button, greadProfile6 w50, Load 6
-	Gui, Add, Button, greadProfile7 w50, Load 7
-	Gui, Add, Button, greadProfile8 w50, Load 8
-	Gui, Add, Button, greadProfile9 w50, Load 9
-	Gui, Add, Button, greadProfile10 w50, Load 10
-
-	;#######################################################################################################Calibration Tab
-	Gui, Tab, Calibration
-	Gui, Font, Bold
-	Gui, Add, Text, 										x242 	y35, 				Gamestate Calibration Instructions:
-	Gui, Font,
-	Gui Add, Text, 										x252 	y+5, 				These buttons regrab the gamestate sample color.
-	Gui Add, Text, 										x252 	y+5, 				Each button references a different game state.
-	Gui Add, Text, 										x252 	y+5, 				Make sure the gamestate is true for that button!
-	Gui Add, Text, 										x252 	y+5, 				Click the button once ready to calibrate.
-	Gui, Font, Bold
-	Gui Add, Text, 										x242 	y+10, 				Auto-Detonate Mines Recalibration:
-	Gui, Font,
-	Gui Add, Text, 										x252 	y+3, 				Sample the DetonateHex color in normal or delve.
-	Gui Add, Text, 										x252 	y+3, 				Drop a mine then press the sample button that matches.
-
-	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y35	w100, 	OnHideout Color
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
-
-
-	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+22	w100, 	Detonate Color
-	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
-
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y35	w100, 	OnInventory Color
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
-	Gui, Font, Bold
-	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
-	Gui, Font, 
-
-	Gui Add, Checkbox, gUpdateExtra	vShowOnStart                         	          	, Show GUI on startup?
-	Gui Add, Checkbox, gUpdateExtra	vSteam                         	          	, Are you using Steam?
-	Gui Add, Checkbox, gUpdateExtra	vHighBits                         	          	, Are you running 64 bit?
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale   ChooseString%ResolutionScale%      w80               	    , Standard|UltraWide
-	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
-	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
-	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 	;#######################################################################################################Inventory Tab
 	Gui, Tab, Inventory
 	Gui, Font, Bold
@@ -929,14 +823,14 @@
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency  x+5 y55, Currency Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter y+14, TSplinter Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap y+14, Map Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment y+14, Fragment Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesDivination y+14, Divination Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCollection y+14, Collection Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence y+14, Essence Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy y+14, Prophecy Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter Checked%StashTabYesTimelessSplinter% y+14, TSplinter Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% y+14, Map Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% y+14, Fragment Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% y+14, Divination Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% y+14, Collection Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
 
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
@@ -947,22 +841,22 @@
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, R5 gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem x195 y55, Gem Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality y+14, Quality Gem Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality y+14, Quality Flask Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesLinked y+14, Linked Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump y+14, Unique Dump Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing y+14, Unique Ring Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFossil y+14, Fossil Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesResonator y+14, Resonator Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x195 y55, Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% y+14, Quality Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% y+14, Quality Flask Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% y+14, Linked Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% y+14, Unique Dump Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% y+14, Unique Ring Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% y+14, Fossil Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% y+14, Resonator Tab
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x352 	y30, 				ID/Vend/Stash Options:
 	Gui, Font,
-	Gui Add, Checkbox, gUpdateExtra	vYesIdentify                         	          , Identify Items?
-	Gui Add, Checkbox, gUpdateExtra	vYesStash                         	        	  , Deposit at stash?
-	Gui Add, Checkbox, gUpdateExtra	vYesVendor                         	              , Sell at vendor?
-	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid                         	          , Leave Map Un-ID?
+	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%                         	          , Identify Items?
+	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%                         	        	  , Deposit at stash?
+	Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%                         	              , Sell at vendor?
+	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%                         	          , Leave Map Un-ID?
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x20 	y280, 				Inventory Instructions:
@@ -971,28 +865,6 @@
 	Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
 	Gui Add, Text, 										x22 	y+5, 				The options to the right affect which portion of the script is enabled.
 
-	;#######################################################################################################Utility Tab
-	Gui, Tab, Utility
-	Gui, Font, Bold
-	Gui Add, Text, 										x12 	y30, 				Utility Management
-	Gui, Font,
-
-	Gui,Add,Edit,			gUpdateUtility  		x29 y49  w60 h19 	vCooldownPhaseRun	ChooseString%CooldownPhaseRun%			,%CooldownPhaseRun%
-	Gui,Add,Edit,			gUpdateUtility  		   w60 h19 	vCooldownVaalDiscipline	ChooseString%CooldownVaalDiscipline%			,%CooldownVaalDiscipline%
-
-	Gui,Add,Edit,			  	x+22	y49   w60 h19 gUpdateUtility	vutilityPhaseRun	ChooseString%utilityPhaseRun%			,%utilityPhaseRun%
-	Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vutilityVaalDiscipline	ChooseString%utilityVaalDiscipline%			,%utilityVaalDiscipline%
-
-	Gui Add, Checkbox, gUpdateUtility	vYesPhaseRun Checked%YesPhaseRun%				x+10 y52	, Use Phase Run on Quicksilver?
-	Gui Add, Checkbox, gUpdateUtility	vYesVaalDiscipline Checked%YesVaalDiscipline%		y+13	, Use Vaal Discipline on 50`% ES?
-
-	Gui Add, Text, 										x10 	y50, 	CD:
-	Gui Add, Text, 													, 	CD:
-
-	Gui Add, Text, 										x90 	y50, 	Key:
-	Gui Add, Text, 													, 	Key:
-
-
 	Gui, +LastFound
 	If (ShowOnStart)
 		Gui, Show, NoActivate Autosize Center, 	WingmanReloaded
@@ -1000,504 +872,100 @@
 	Menu, Tray, NoStandard
 	Menu, Tray, Add, 				WingmanReloaded, optionsCommand
 	Menu, Tray, Default, 			WingmanReloaded
+	Menu, Tray, Add, 				Project Wiki, LaunchWiki
+	Menu, Tray, Add, 				Support the Project, LaunchDonate
 	Menu, Tray, Add
 	Menu, Tray, Standard
 	;Gui, Hide
 	OnMessage(0x200, "WM_MOUSEMOVE")
+	if ( Steam ) {
+		if ( HighBits ) {
+			executable := "PathOfExile_x64Steam.exe"
+			} else {
+			executable := "PathOfExileSteam.exe"
+			}
+		} else {
+		if ( HighBits ) {
+			executable := "PathOfExile_x64.exe"
+			} else {
+			executable := "PathOfExile.exe"
+			}
+		}
+
+	if(RadioLife==1) {
+		loop 5 {
+			GuiControl, Enable, Radiobox%A_Index%Life90
+			GuiControl, Enable, Radiobox%A_Index%Life80
+			GuiControl, Enable, Radiobox%A_Index%Life70
+			GuiControl, Enable, Radiobox%A_Index%Life60
+			GuiControl, Enable, Radiobox%A_Index%Life50
+			GuiControl, Enable, Radiobox%A_Index%Life40
+			GuiControl, Enable, Radiobox%A_Index%Life30
+			GuiControl, Enable, Radiobox%A_Index%Life20
+			GuiControl, Enable, RadioUncheck%A_Index%Life
+			
+			GuiControl, Disable, Radiobox%A_Index%ES90
+			GuiControl, Disable, Radiobox%A_Index%ES80
+			GuiControl, Disable, Radiobox%A_Index%ES70
+			GuiControl, Disable, Radiobox%A_Index%ES60
+			GuiControl, Disable, Radiobox%A_Index%ES50
+			GuiControl, Disable, Radiobox%A_Index%ES40
+			GuiControl, Disable, Radiobox%A_Index%ES30
+			GuiControl, Disable, Radiobox%A_Index%ES20
+			GuiControl, Disable, RadioUncheck%A_Index%ES
+			}
+		}
+	else if(RadioHybrid==1) {
+		loop 5 {
+			GuiControl, Enable, Radiobox%A_Index%Life90
+			GuiControl, Enable, Radiobox%A_Index%Life80
+			GuiControl, Enable, Radiobox%A_Index%Life70
+			GuiControl, Enable, Radiobox%A_Index%Life60
+			GuiControl, Enable, Radiobox%A_Index%Life50
+			GuiControl, Enable, Radiobox%A_Index%Life40
+			GuiControl, Enable, Radiobox%A_Index%Life30
+			GuiControl, Enable, Radiobox%A_Index%Life20
+			GuiControl, Enable, RadioUncheck%A_Index%Life
+			
+			GuiControl, Enable, Radiobox%A_Index%ES90
+			GuiControl, Enable, Radiobox%A_Index%ES80
+			GuiControl, Enable, Radiobox%A_Index%ES70
+			GuiControl, Enable, Radiobox%A_Index%ES60
+			GuiControl, Enable, Radiobox%A_Index%ES50
+			GuiControl, Enable, Radiobox%A_Index%ES40
+			GuiControl, Enable, Radiobox%A_Index%ES30
+			GuiControl, Enable, Radiobox%A_Index%ES20
+			GuiControl, Enable, RadioUncheck%A_Index%ES
+			}
+		}
+	else if(RadioCi==1) {
+		loop 5 {
+			GuiControl, Disable, Radiobox%A_Index%Life90
+			GuiControl, Disable, Radiobox%A_Index%Life80
+			GuiControl, Disable, Radiobox%A_Index%Life70
+			GuiControl, Disable, Radiobox%A_Index%Life60
+			GuiControl, Disable, Radiobox%A_Index%Life50
+			GuiControl, Disable, Radiobox%A_Index%Life40
+			GuiControl, Disable, Radiobox%A_Index%Life30
+			GuiControl, Disable, Radiobox%A_Index%Life20
+			GuiControl, Disable, RadioUncheck%A_Index%Life
+		
+			GuiControl, Enable, Radiobox%A_Index%ES90
+			GuiControl, Enable, Radiobox%A_Index%ES80
+			GuiControl, Enable, Radiobox%A_Index%ES70
+			GuiControl, Enable, Radiobox%A_Index%ES60
+			GuiControl, Enable, Radiobox%A_Index%ES50
+			GuiControl, Enable, Radiobox%A_Index%ES40
+			GuiControl, Enable, Radiobox%A_Index%ES30
+			GuiControl, Enable, Radiobox%A_Index%ES20
+			GuiControl, Enable, RadioUncheck%A_Index%ES
+			}
+		}
+	
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-; GUI ini read / setup
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	IfExist, settings.ini 
-		{
-		Loop, 5 {
-			Iniread, CooldownFlask%A_Index%, settings.ini, Flask Cooldowns, CooldownFlask%A_index%
-			valueFlask := CooldownFlask%A_Index%
-			GuiControl, , CooldownFlask%A_Index%, %valueFlask%
-			
-			Iniread, TriggerLife20, settings.ini, Life Triggers, TriggerLife20
-			valueLife20 := substr(TriggerLife20, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
-			
-			Iniread, TriggerLife30, settings.ini, Life Triggers, TriggerLife30
-			valueLife30 := substr(TriggerLife30, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
-			
-			Iniread, TriggerLife40, settings.ini, Life Triggers, TriggerLife40
-			valueLife40 := substr(TriggerLife40, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
-			
-			Iniread, TriggerLife50, settings.ini, Life Triggers, TriggerLife50
-			valueLife50 := substr(TriggerLife50, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
-			
-			Iniread, TriggerLife60, settings.ini, Life Triggers, TriggerLife60
-			valueLife60 := substr(TriggerLife60, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
-			
-			Iniread, TriggerLife70, settings.ini, Life Triggers, TriggerLife70
-			valueLife70 := substr(TriggerLife70, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
-			
-			Iniread, TriggerLife80, settings.ini, Life Triggers, TriggerLife80
-			valueLife80 := substr(TriggerLife80, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
-			
-			Iniread, TriggerLife90, settings.ini, Life Triggers, TriggerLife90
-			valueLife90 := substr(TriggerLife90, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
-			
-			Iniread, DisableLife, settings.ini, Life Triggers, DisableLife
-			valueDisableLife := substr(DisableLife, (A_Index), 1)
-			GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
-			
-			Iniread, TriggerES20, settings.ini, ES Triggers, TriggerES20
-			valueES20 := substr(TriggerES20, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%ES20, %valueES20%
-			
-			Iniread, TriggerES30, settings.ini, ES Triggers, TriggerES30
-			valueES30 := substr(TriggerES30, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%ES30, %valueES30%
-			
-			Iniread, TriggerES40, settings.ini, ES Triggers, TriggerES40
-			valueES40 := substr(TriggerES40, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%ES40, %valueES40%
-			
-			Iniread, TriggerES50, settings.ini, ES Triggers, TriggerES50
-			valueES50 := substr(TriggerES50, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%ES50, %valueES50%
-			
-			Iniread, TriggerES60, settings.ini, ES Triggers, TriggerES60
-			valueES60 := substr(TriggerES60, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%ES60, %valueES60%
-			
-			Iniread, TriggerES70, settings.ini, ES Triggers, TriggerES70
-			valueES70 := substr(TriggerES70, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%ES70, %valueES70%
-			
-			Iniread, TriggerES80, settings.ini, ES Triggers, TriggerES80
-			valueES80 := substr(TriggerES80, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%ES80, %valueES80%
-			
-			Iniread, TriggerES90, settings.ini, ES Triggers, TriggerES90
-			valueES90 := substr(TriggerES90, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%ES90, %valueES90%
-			
-			Iniread, DisableES, settings.ini, ES Triggers, DisableES
-			valueDisableES := substr(DisableES, (A_Index), 1)
-			GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
-			
-			Iniread, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10
-			valueMana10 := substr(TriggerMana10, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
-			
-			Iniread, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
-			valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
-			
-			Iniread, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack
-			valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
-			GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
-			
-			Iniread, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack
-			valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
-			GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
-		}
-
-		Iniread, ProfileText1, settings.ini, Profiles, ProfileText1, Profile 1
-		GuiControl, , ProfileText1, %ProfileText1%
-
-		Iniread, ProfileText2, settings.ini, Profiles, ProfileText2, Profile 2
-		GuiControl, , ProfileText2, %ProfileText2%
-
-		Iniread, ProfileText3, settings.ini, Profiles, ProfileText3, Profile 3
-		GuiControl, , ProfileText3, %ProfileText3%
-
-		Iniread, ProfileText4, settings.ini, Profiles, ProfileText4, Profile 4
-		GuiControl, , ProfileText4, %ProfileText4%
-
-		Iniread, ProfileText5, settings.ini, Profiles, ProfileText5, Profile 5
-		GuiControl, , ProfileText5, %ProfileText5%
-
-		Iniread, ProfileText6, settings.ini, Profiles, ProfileText6, Profile 6
-		GuiControl, , ProfileText6, %ProfileText6%
-
-		Iniread, ProfileText7, settings.ini, Profiles, ProfileText7, Profile 7
-		GuiControl, , ProfileText7, %ProfileText7%
-
-		Iniread, ProfileText8, settings.ini, Profiles, ProfileText8, Profile 8
-		GuiControl, , ProfileText8, %ProfileText8%
-
-		Iniread, ProfileText9, settings.ini, Profiles, ProfileText9, Profile 9
-		GuiControl, , ProfileText9, %ProfileText9%
-
-		Iniread, ProfileText10, settings.ini, Profiles, ProfileText10, Profile 10
-		GuiControl, , ProfileText10, %ProfileText10%
-
-		Iniread, ResolutionScale, settings.ini, General, ResolutionScale
-		valueResolutionScale := ResolutionScale
-		GuiControl, ChooseString, ResolutionScale, %valueResolutionScale%
-
-		Iniread, YesStashKeys, settings.ini, General, YesStashKeys
-		valueYesStashKeys := YesStashKeys
-		GuiControl, , YesStashKeys, %valueYesStashKeys%
-
-		Iniread, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX
-		valueWisdomScrollX := WisdomScrollX
-		GuiControl, , WisdomScrollX, %valueWisdomScrollX%
-
-		Iniread, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY
-		valueWisdomScrollY := WisdomScrollY
-		GuiControl, , WisdomScrollY, %valueWisdomScrollY%
-
-		Iniread, PortalScrollX, settings.ini, Coordinates, PortalScrollX
-		valuePortalScrollX := PortalScrollX
-		GuiControl, , PortalScrollX, %valuePortalScrollX%
-
-		Iniread, PortalScrollY, settings.ini, Coordinates, PortalScrollY
-		valuePortalScrollY := PortalScrollY
-		GuiControl, , PortalScrollY, %valuePortalScrollY%
-
-		Iniread, StockPortal, settings.ini, Coordinates, StockPortal
-		valueStockPortal := StockPortal
-		GuiControl, , StockPortal, %valueStockPortal%
-
-		Iniread, StockWisdom, settings.ini, Coordinates, StockWisdom
-		valueStockWisdom := StockWisdom
-		GuiControl, , StockWisdom, %valueStockWisdom%
-
-		Iniread, DebugMessages, settings.ini, General, DebugMessages
-		valueDebugMessages := DebugMessages
-		GuiControl, , DebugMessages, %valueDebugMessages%
-
-		Iniread, ShowPixelGrid, settings.ini, General, ShowPixelGrid
-		valueShowPixelGrid := ShowPixelGrid
-		GuiControl, , ShowPixelGrid, %valueShowPixelGrid%
-		
-		Iniread, ShowItemInfo, settings.ini, General, ShowItemInfo
-		valueShowItemInfo := ShowItemInfo
-		GuiControl, , ShowItemInfo, %valueShowItemInfo%
-		
-		Iniread, DetonateMines, settings.ini, General, DetonateMines
-		valueDetonateMines := DetonateMines
-		GuiControl, , DetonateMines, %valueDetonateMines%
-		
-		Iniread, LootVacuum, settings.ini, General, LootVacuum
-		valueLootVacuum := LootVacuum
-		GuiControl, , LootVacuum, %valueLootVacuum%
-		
-		Iniread, YesVendor, settings.ini, General, YesVendor
-		valueYesVendor := YesVendor
-		GuiControl, , YesVendor, %valueYesVendor%
-		
-		Iniread, YesStash, settings.ini, General, YesStash
-		valueYesStash := YesStash
-		GuiControl, , YesStash, %valueYesStash%
-		
-		Iniread, YesIdentify, settings.ini, General, YesIdentify
-		valueYesIdentify := YesIdentify
-		GuiControl, , YesIdentify, %valueYesIdentify%
-		
-		Iniread, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
-		valuePopFlaskRespectCD := PopFlaskRespectCD
-		GuiControl, , PopFlaskRespectCD, %valuePopFlaskRespectCD%
-		
-		Iniread, YesMapUnid, settings.ini, General, YesMapUnid
-		valueYesMapUnid := YesMapUnid
-		GuiControl, , YesMapUnid, %valueYesMapUnid%
-		
-		Iniread, Latency, settings.ini, General, Latency
-		valueLatency := Latency
-		GuiControl, Choose, Latency, %valueLatency%
-		
-		Iniread, ShowOnStart, settings.ini, General, ShowOnStart
-		valueShowOnStart := ShowOnStart
-		GuiControl, , ShowOnStart, %valueShowOnStart%
-		
-		Iniread, Steam, settings.ini, General, Steam, 1
-		valueSteam := Steam
-		GuiControl, , Steam, %valueSteam%
-		
-		Iniread, HighBits, settings.ini, General, HighBits, 1
-		valueHighBits := HighBits
-		GuiControl, , HighBits, %valueHighBits%
-		
-		Iniread, CurrentGemX, settings.ini, Gem Swap, CurrentGemX
-		valueCurrentGemX := CurrentGemX
-		GuiControl, , CurrentGemX, %valueCurrentGemX%
-		
-		Iniread, CurrentGemY, settings.ini, Gem Swap, CurrentGemY
-		valueCurrentGemY := CurrentGemY
-		GuiControl, , CurrentGemY, %valueCurrentGemY%
-		
-		Iniread, AlternateGemX, settings.ini, Gem Swap, AlternateGemX
-		valueAlternateGemX := AlternateGemX
-		GuiControl, , AlternateGemX, %valueAlternateGemX%
-		
-		Iniread, AlternateGemY, settings.ini, Gem Swap, AlternateGemY
-		valueAlternateGemY := AlternateGemY
-		GuiControl, , AlternateGemY, %valueAlternateGemY%
-		
-		Iniread, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
-		valueAlternateGemOnSecondarySlot := AlternateGemOnSecondarySlot
-		GuiControl, , AlternateGemOnSecondarySlot, %valueAlternateGemOnSecondarySlot%
-
-		Iniread, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
-		valueMain := hotkeyMainAttack
-		GuiControl, , hotkeyMainAttack, %valueMain%
-		
-		Iniread, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, W
-		valueSec := hotkeySecondaryAttack
-		GuiControl, , hotkeySecondaryAttack, %valueSec%
-		
-		Iniread, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
-		valueQSDelay := TriggerQuicksilverDelay
-		GuiControl, , TriggerQuicksilverDelay, %valueQSDelay%
-		
-		Iniread, Life, settings.ini, CharacterTypeCheck, Life
-		valueLife := Life
-		GuiControl, , RadioLife, %valueLife%
-		
-		Iniread, Hybrid, settings.ini, CharacterTypeCheck, Hybrid
-		valueHybrid := Hybrid
-		GuiControl, , RadioHybrid, %valueHybrid%
-		
-		Iniread, Ci, settings.ini, CharacterTypeCheck, Ci
-		valueCi := Ci
-		GuiControl, , RadioCi, %valueCi%
-		
-		Iniread, Quit20, settings.ini, AutoQuit, Quit20
-		valueQuit20 := Quit20
-		GuiControl, , RadioQuit20, %valueQuit20%
-		
-		Iniread, Quit30, settings.ini, AutoQuit, Quit30
-		valueQuit30 := Quit30
-		GuiControl, , RadioQuit30, %valueQuit30%
-		
-		Iniread, Quit40, settings.ini, AutoQuit, Quit40
-		valueQuit40 := Quit40
-		GuiControl, , RadioQuit40, %valueQuit40%
-		
-		Iniread, CritQuit, settings.ini, AutoQuit, CritQuit
-		valueCritQuit := CritQuit
-		GuiControl, , RadioCritQuit, %valueCritQuit%
-		
-		Iniread, NormalQuit, settings.ini, AutoQuit, NormalQuit
-		valueNormalQuit := NormalQuit
-		GuiControl, , RadioNormalQuit, %valueNormalQuit%
-
-		Iniread, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency
-		valueStashTabYesCurrency := StashTabYesCurrency
-		GuiControl, , StashTabYesCurrency, %valueStashTabYesCurrency%
-
-		Iniread, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap
-		valueStashTabYesMap := StashTabYesMap
-		GuiControl, , StashTabYesMap, %valueStashTabYesMap%
-
-		Iniread, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment
-		valueStashTabYesFragment := StashTabYesFragment
-		GuiControl, , StashTabYesFragment, %valueStashTabYesFragment%
-
-		Iniread, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination
-		valueStashTabYesDivination := StashTabYesDivination
-		GuiControl, , StashTabYesDivination, %valueStashTabYesDivination%
-
-		Iniread, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection
-		valueStashTabYesCollection := StashTabYesCollection
-		GuiControl, , StashTabYesCollection, %valueStashTabYesCollection%
-
-		Iniread, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence
-		valueStashTabYesEssence := StashTabYesEssence
-		GuiControl, , StashTabYesEssence, %valueStashTabYesEssence%
-
-		Iniread, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem
-		valueStashTabYesGem := StashTabYesGem
-		GuiControl, , StashTabYesGem, %valueStashTabYesGem%
-
-		Iniread, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality
-		valueStashTabYesGemQuality := StashTabYesGemQuality
-		GuiControl, , StashTabYesGemQuality, %valueStashTabYesGemQuality%
-
-		Iniread, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality
-		valueStashTabYesFlaskQuality := StashTabYesFlaskQuality
-		GuiControl, , StashTabYesFlaskQuality, %valueStashTabYesFlaskQuality%
-
-		Iniread, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked
-		valueStashTabYesLinked := StashTabYesLinked
-		GuiControl, , StashTabYesLinked, %valueStashTabYesLinked%
-
-		Iniread, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump
-		valueStashTabYesUniqueDump := StashTabYesUniqueDump
-		GuiControl, , StashTabYesUniqueDump, %valueStashTabYesUniqueDump%
-
-		Iniread, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing
-		valueStashTabYesUniqueRing := StashTabYesUniqueRing
-		GuiControl, , StashTabYesUniqueRing, %valueStashTabYesUniqueRing%
-
-		Iniread, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter
-		valueStashTabYesTimelessSplinter := StashTabYesTimelessSplinter
-		GuiControl, , StashTabYesTimelessSplinter, %valueStashTabYesTimelessSplinter%
-
-		Iniread, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil
-		valueStashTabYesFossil := StashTabYesFossil
-		GuiControl, , StashTabYesFossil, %valueStashTabYesFossil%
-
-		Iniread, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator
-		valueStashTabYesResonator := StashTabYesResonator
-		GuiControl, , StashTabYesResonator, %valueStashTabYesResonator%
-
-		Iniread, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
-		valueStashTabYesProphecy := StashTabYesProphecy
-		GuiControl, , StashTabYesProphecy, %valueStashTabYesProphecy%
-
-		Iniread, hotkeyOptions, settings.ini, hotkeys, Options
-		valuehotkeyOptions := hotkeyOptions
-		GuiControl, , vhotkeyOptions, %valuehotkeyOptions%
-
-		Iniread, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask
-		valuehotkeyAutoFlask := hotkeyAutoFlask
-		GuiControl, , vhotkeyAutoFlask, %valuehotkeyAutoFlask%
-
-		Iniread, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit
-		valuehotkeyAutoQuit := hotkeyAutoQuit
-		GuiControl, , vhotkeyAutoQuit, %valuehotkeyAutoQuit%
-
-		Iniread, hotkeyLogout, settings.ini, hotkeys, Logout
-		valuehotkeyLogout := hotkeyLogout
-		GuiControl, , vhotkeyLogout, %valuehotkeyLogout%
-
-		Iniread, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
-		valuehotkeyAutoQuicksilver := hotkeyAutoQuicksilver
-		GuiControl, , vhotkeyAutoQuicksilver, %valuehotkeyAutoQuicksilver%
-
-		Iniread, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords
-		valuehotkeyGetMouseCoords := hotkeyGetMouseCoords
-		GuiControl, , vhotkeyGetMouseCoords, %valuehotkeyGetMouseCoords%
-
-		Iniread, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords
-		valuehotkeyGetMouseCoords := hotkeyGetMouseCoords
-		GuiControl, , vhotkeyGetMouseCoords, %valuehotkeyGetMouseCoords%
-
-		Iniread, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal
-		valuehotkeyQuickPortal := hotkeyQuickPortal
-		GuiControl, , vhotkeyQuickPortal, %valuehotkeyQuickPortal%
-
-		Iniread, hotkeyGemSwap, settings.ini, hotkeys, GemSwap
-		valuehotkeyGemSwap := hotkeyGemSwap
-		GuiControl, , vhotkeyGemSwap, %valuehotkeyGemSwap%
-
-		Iniread, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
-		valuehotkeyPopFlasks := hotkeyPopFlasks
-		GuiControl, , vhotkeyPopFlasks, %valuehotkeyPopFlasks%
-
-		Iniread, hotkeyItemSort, settings.ini, hotkeys, ItemSort
-		valuehotkeyItemSort := hotkeyItemSort
-		GuiControl, , vhotkeyItemSort, %valuehotkeyItemSort%
-
-		Iniread, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI
-		valuehotkeyCloseAllUI := hotkeyCloseAllUI
-		GuiControl, , vhotkeyCloseAllUI, %valuehotkeyCloseAllUI%
-
-		Iniread, hotkeyInventory, settings.ini, hotkeys, Inventory
-		valuehotkeyInventory := hotkeyInventory
-		GuiControl, , vhotkeyInventory, %valuehotkeyInventory%
-
-		Iniread, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey
-		valuehotkeyWeaponSwapKey := hotkeyWeaponSwapKey
-		GuiControl, , vhotkeyWeaponSwapKey, %valuehotkeyWeaponSwapKey%
-
-		Iniread, hotkeyLootScan, settings.ini, hotkeys, LootScan
-		valuehotkeyLootScan := hotkeyLootScan
-		GuiControl, , vhotkeyLootScan, %valuehotkeyLootScan%
-
-		if ( Steam ) {
-			if ( HighBits ) {
-				executable := "PathOfExile_x64Steam.exe"
-				} else {
-				executable := "PathOfExileSteam.exe"
-				}
-			} else {
-			if ( HighBits ) {
-				executable := "PathOfExile_x64.exe"
-				} else {
-				executable := "PathOfExile.exe"
-				}
-			}
-		}
-		
-		
-		if(valueLife==1) {
-			loop 5 {
-				GuiControl, Enable, Radiobox%A_Index%Life90
-				GuiControl, Enable, Radiobox%A_Index%Life80
-				GuiControl, Enable, Radiobox%A_Index%Life70
-				GuiControl, Enable, Radiobox%A_Index%Life60
-				GuiControl, Enable, Radiobox%A_Index%Life50
-				GuiControl, Enable, Radiobox%A_Index%Life40
-				GuiControl, Enable, Radiobox%A_Index%Life30
-				GuiControl, Enable, Radiobox%A_Index%Life20
-				GuiControl, Enable, RadioUncheck%A_Index%Life
-				
-				GuiControl, Disable, Radiobox%A_Index%ES90
-				GuiControl, Disable, Radiobox%A_Index%ES80
-				GuiControl, Disable, Radiobox%A_Index%ES70
-				GuiControl, Disable, Radiobox%A_Index%ES60
-				GuiControl, Disable, Radiobox%A_Index%ES50
-				GuiControl, Disable, Radiobox%A_Index%ES40
-				GuiControl, Disable, Radiobox%A_Index%ES30
-				GuiControl, Disable, Radiobox%A_Index%ES20
-				GuiControl, Disable, RadioUncheck%A_Index%ES
-				}
-			}
-		else if(valueHybrid==1) {
-			loop 5 {
-				GuiControl, Enable, Radiobox%A_Index%Life90
-				GuiControl, Enable, Radiobox%A_Index%Life80
-				GuiControl, Enable, Radiobox%A_Index%Life70
-				GuiControl, Enable, Radiobox%A_Index%Life60
-				GuiControl, Enable, Radiobox%A_Index%Life50
-				GuiControl, Enable, Radiobox%A_Index%Life40
-				GuiControl, Enable, Radiobox%A_Index%Life30
-				GuiControl, Enable, Radiobox%A_Index%Life20
-				GuiControl, Enable, RadioUncheck%A_Index%Life
-				
-				GuiControl, Enable, Radiobox%A_Index%ES90
-				GuiControl, Enable, Radiobox%A_Index%ES80
-				GuiControl, Enable, Radiobox%A_Index%ES70
-				GuiControl, Enable, Radiobox%A_Index%ES60
-				GuiControl, Enable, Radiobox%A_Index%ES50
-				GuiControl, Enable, Radiobox%A_Index%ES40
-				GuiControl, Enable, Radiobox%A_Index%ES30
-				GuiControl, Enable, Radiobox%A_Index%ES20
-				GuiControl, Enable, RadioUncheck%A_Index%ES
-				}
-			}
-		else if(valueCi==1) {
-			loop 5 {
-				GuiControl, Disable, Radiobox%A_Index%Life90
-				GuiControl, Disable, Radiobox%A_Index%Life80
-				GuiControl, Disable, Radiobox%A_Index%Life70
-				GuiControl, Disable, Radiobox%A_Index%Life60
-				GuiControl, Disable, Radiobox%A_Index%Life50
-				GuiControl, Disable, Radiobox%A_Index%Life40
-				GuiControl, Disable, Radiobox%A_Index%Life30
-				GuiControl, Disable, Radiobox%A_Index%Life20
-				GuiControl, Disable, RadioUncheck%A_Index%Life
-			
-				GuiControl, Enable, Radiobox%A_Index%ES90
-				GuiControl, Enable, Radiobox%A_Index%ES80
-				GuiControl, Enable, Radiobox%A_Index%ES70
-				GuiControl, Enable, Radiobox%A_Index%ES60
-				GuiControl, Enable, Radiobox%A_Index%ES50
-				GuiControl, Enable, Radiobox%A_Index%ES40
-				GuiControl, Enable, Radiobox%A_Index%ES30
-				GuiControl, Enable, Radiobox%A_Index%ES20
-				GuiControl, Enable, RadioUncheck%A_Index%ES
-				}
-			}
-		
 ; Extra vars - Not in INI
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	global Trigger=00000
@@ -1509,6 +977,12 @@
 	global Radiobox3QS
 	global Radiobox4QS
 	global Radiobox5QS
+	global Radiobox1Mana10
+	global Radiobox2Mana10
+	global Radiobox3Mana10
+	global Radiobox4Mana10
+	global Radiobox5Mana10
+
 
 	IfWinExist, ahk_group POEGameGroup
 		{
@@ -3665,7 +3139,7 @@ TGameTick(){
 		If (TriggerMana10!="00000") {
 			pixelgetcolor, Mana10, vX_Mana, vY_Mana10
 			if (Mana10!=varMana10) {
-				TriggerFlask(TriggerMana10)
+				TriggerMana(TriggerMana10)
 				}
 			}
 
@@ -3708,6 +3182,32 @@ TriggerFlask(Trigger){
 		}
 	Return
 	}
+; Trigger Mana Flasks Sequentially
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TriggerMana(Trigger){
+	If ((!FlaskList.Count())&& !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) ) {
+		FL=1
+		loop, 5 {
+			FLVal:=SubStr(Trigger,FL,1)+0
+			if (FLVal > 0) {
+				if (OnCooldown[FL]=0)
+					FlaskList.Push(FL)
+				}
+			++FL
+			}
+		}
+	Else If !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) {
+		FL:=FlaskList.RemoveAt(1)
+		send %FL%
+		OnCooldown[FL] := 1 
+		Cooldown:=CooldownFlask%FL%
+		settimer, TimmerFlask%FL%, %Cooldown%
+		SendMSG(3, FL, scriptGottaGoFast)
+		RandomSleep(23,59)
+		}
+	Return
+	}
+
 ;Clamp Value function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Clamp( Val, Min, Max) {
@@ -3762,112 +3262,160 @@ Clamp( Val, Min, Max) {
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	readFromFile(){
 		global
-		;General settings
-			IniRead, DebugMessages, settings.ini, General, DebugMessages
-			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid
-			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo
-			IniRead, DetonateMines, settings.ini, General, DetonateMines
-			IniRead, LootVacuum, settings.ini, General, LootVacuum
-			IniRead, YesVendor, settings.ini, General, YesVendor
-			IniRead, YesStash, settings.ini, General, YesStash
-			IniRead, YesIdentify, settings.ini, General, YesIdentify
-			IniRead, YesMapUnid, settings.ini, General, YesMapUnid
-			IniRead, Latency, settings.ini, General, Latency
-			IniRead, ShowOnStart, settings.ini, General, ShowOnStart
-			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD
+			;General settings
+			IniRead, Speed, settings.ini, General, Speed, 1
+			IniRead, Tick, settings.ini, General, Tick, 50
+			IniRead, QTick, settings.ini, General, QTick, 250
+			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
+			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid, 0
+			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo, 0
+			IniRead, DetonateMines, settings.ini, General, DetonateMines, 0
+			IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
+			IniRead, YesVendor, settings.ini, General, YesVendor, 1
+			IniRead, YesStash, settings.ini, General, YesStash, 1
+			IniRead, YesIdentify, settings.ini, General, YesIdentify, 1
+			IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
+			IniRead, Latency, settings.ini, General, Latency, 1
+			IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
+			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
 			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 			IniRead, Steam, settings.ini, General, Steam, 1
 			IniRead, HighBits, settings.ini, General, HighBits, 1
 
 		;Stash Tab Management
-			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency
-			IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap
-			IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination
-			IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem
-			IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality
-			IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality
-			IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked
-			IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection
-			IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing
-			IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump
-			IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment
-			IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence
-			IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter
-			IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil
-			IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator
+			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
+			IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap, 1
+			IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination, 1
+			IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem, 1
+			IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality, 1
+			IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality, 1
+			IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked, 1
+			IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection, 1
+			IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing, 1
+			IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump, 1
+			IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment, 1
+			IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence, 1
+			IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter, 1
+			IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil, 1
+			IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator, 1
 			IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
-			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency
-			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap
-			IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination
-			IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem
-			IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality
-			IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality
-			IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked
-			IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection
-			IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing
-			IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump
-			IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment
-			IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence
-			IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter
-			IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil
-			IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator
+			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency, 1
+			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap, 1
+			IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination, 1
+			IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem, 1
+			IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality, 1
+			IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality, 1
+			IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked, 1
+			IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection, 1
+			IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing, 1
+			IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump, 1
+			IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment, 1
+			IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence, 1
+			IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter, 1
+			IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil, 1
+			IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator, 1
 			IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
 			
 		;Failsafe Colors
-			IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout
-			IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar
-			IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat
-			IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory
-			IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash
-			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor
-			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex
+			IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
+			IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
+			IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
+			IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
+			IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
+			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
+			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
 		
-		;Life Flasks
-			IniRead, varLife20, settings.ini, Life Colors, Life20
-			IniRead, varLife30, settings.ini, Life Colors, Life30
-			IniRead, varLife40, settings.ini, Life Colors, Life40
-			IniRead, varLife50, settings.ini, Life Colors, Life50
-			IniRead, varLife60, settings.ini, Life Colors, Life60
-			IniRead, varLife70, settings.ini, Life Colors, Life70
-			IniRead, varLife80, settings.ini, Life Colors, Life80
-			IniRead, varLife90, settings.ini, Life Colors, Life90
-			
-			IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20
-			IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30
-			IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40
-			IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50
-			IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60
-			IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70
-			IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80
-			IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90
-			IniRead, DisableLife, settings.ini, Life Triggers, DisableLife
+		;Life Colors
+			IniRead, varLife20, settings.ini, Life Colors, Life20, 0x181145
+			IniRead, varLife30, settings.ini, Life Colors, Life30, 0x181264
+			IniRead, varLife40, settings.ini, Life Colors, Life40, 0x190F7D
+			IniRead, varLife50, settings.ini, Life Colors, Life50, 0x2318A5
+			IniRead, varLife60, settings.ini, Life Colors, Life60, 0x2215B4
+			IniRead, varLife70, settings.ini, Life Colors, Life70, 0x2413B3
+			IniRead, varLife80, settings.ini, Life Colors, Life80, 0x2B2385
+			IniRead, varLife90, settings.ini, Life Colors, Life90, 0x664564
 
-		;ES Flasks
-			IniRead, varES20, settings.ini, ES Colors, ES20
-			IniRead, varES30, settings.ini, ES Colors, ES30
-			IniRead, varES40, settings.ini, ES Colors, ES40
-			IniRead, varES50, settings.ini, ES Colors, ES50
-			IniRead, varES60, settings.ini, ES Colors, ES60
-			IniRead, varES70, settings.ini, ES Colors, ES70
-			IniRead, varES80, settings.ini, ES Colors, ES80
-			IniRead, varES90, settings.ini, ES Colors, ES90
+		;ES Colors
+			IniRead, varES20, settings.ini, ES Colors, ES20, 0xFFC445
+			IniRead, varES30, settings.ini, ES Colors, ES30, 0xFFCE66
+			IniRead, varES40, settings.ini, ES Colors, ES40, 0xFFFF85
+			IniRead, varES50, settings.ini, ES Colors, ES50, 0xFFFF82
+			IniRead, varES60, settings.ini, ES Colors, ES60, 0xFFFF95
+			IniRead, varES70, settings.ini, ES Colors, ES70, 0xFFD07F
+			IniRead, varES80, settings.ini, ES Colors, ES80, 0xE89C5E
+			IniRead, varES90, settings.ini, ES Colors, ES90, 0xE79435
 			
-			IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20
-			IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30
-			IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40
-			IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50
-			IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60
-			IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70
-			IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80
-			IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90
-			IniRead, DisableES, settings.ini, ES Triggers, DisableES
+		;Mana Colors
+			IniRead, varMana10, settings.ini, Mana Colors, Mana10, 0x3C201D
 			
-		;Mana Flasks
-			IniRead, varMana10, settings.ini, Mana Colors, Mana10
+		;Life Triggers
+			IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20, 00000
+			IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30, 00000
+			IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40, 00000
+			IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50, 00000
+			IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60, 00000
+			IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70, 00000
+			IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80, 00000
+			IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90, 00000
+			IniRead, DisableLife, settings.ini, Life Triggers, DisableLife, 11111
+			Loop, 5 {
+				valueLife20 := substr(TriggerLife20, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
+				valueLife30 := substr(TriggerLife30, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
+				valueLife40 := substr(TriggerLife40, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
+				valueLife50 := substr(TriggerLife50, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
+				valueLife60 := substr(TriggerLife60, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
+				valueLife70 := substr(TriggerLife70, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
+				valueLife80 := substr(TriggerLife80, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
+				valueLife90 := substr(TriggerLife90, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
+				valueDisableLife := substr(DisableLife, (A_Index), 1)
+				GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
+				}
 			
+		;ES Triggers
+			IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20, 00000
+			IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30, 00000
+			IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40, 00000
+			IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50, 00000
+			IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60, 00000
+			IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70, 00000
+			IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80, 00000
+			IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90, 00000
+			IniRead, DisableES, settings.ini, ES Triggers, DisableES, 11111
+			Loop, 5 {
+				valueES20 := substr(TriggerES20, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES20, %valueES20%
+				valueES30 := substr(TriggerES30, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES30, %valueES30%
+				valueES40 := substr(TriggerES40, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES40, %valueES40%
+				valueES50 := substr(TriggerES50, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES50, %valueES50%
+				valueES60 := substr(TriggerES60, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES60, %valueES60%
+				valueES70 := substr(TriggerES70, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES70, %valueES70%
+				valueES80 := substr(TriggerES80, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES80, %valueES80%
+				valueES90 := substr(TriggerES90, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES90, %valueES90%
+				valueDisableES := substr(DisableES, (A_Index), 1)
+				GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
+				}	
+				
 		;Mana Triggers
-			IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10
-			
+			IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10, 00000
+			Loop, 5 {	
+				valueMana10 := substr(TriggerMana10, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
+				}
 		;Utility Buttons
 			IniRead, YesPhaseRun, settings.ini, Utility Buttons, YesPhaseRun, 1
 			IniRead, YesVaalDiscipline, settings.ini, Utility Buttons, YesVaalDiscipline, 1
@@ -3881,45 +3429,71 @@ Clamp( Val, Min, Max) {
 			IniRead, utilityVaalDiscipline, settings.ini, Utility Keys, VaalDiscipline, r
 
 		;Flask Cooldowns
-			IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1
-			IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2
-			IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3
-			IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4
-			IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5
+			IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
+			IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2, 4800
+			IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
+			IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
+			IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
 		
 		;Gem Swap
-			IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX
-			IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY
-			IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX
-			IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY
-			IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
+			IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX, 1353
+			IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY, 224
+			IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX, 1407
+			IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY, 201
+			IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
 
-		;~ Scroll locations
-			IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX
-			IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY
-			IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX
-			IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY
-			IniRead, StockPortal, settings.ini, Coordinates, StockPortal
-			IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom
+		;Coordinates
+			IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
+			IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
+			IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX, 1825
+			IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY, 825
+			IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX, 1875
+			IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY, 825
+			IniRead, StockPortal, settings.ini, Coordinates, StockPortal, 1
+			IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom, 1
+
 		
 		;Attack Flasks
-			IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack
-			IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack
+			IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack, 00000
+			IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack, 00000
+			Loop, 5{	
+				valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
+				GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
+				valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
+				GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
+				}
 			
 		;Quicksilver
-			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay
-			IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver
+			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
+			IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
+			Loop, 5 {	
+				valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
+				}
 		
 		;CharacterTypeCheck
-			IniRead, Life, settings.ini, CharacterTypeCheck, Life
-			IniRead, Hybrid, settings.ini, CharacterTypeCheck, Hybrid
-			IniRead, Ci, settings.ini, CharacterTypeCheck, Ci
+			IniRead, RadioLife, settings.ini, CharacterTypeCheck, Life, 1
+			IniRead, RadioHybrid, settings.ini, CharacterTypeCheck, Hybrid, 0
+			IniRead, RadioCi, settings.ini, CharacterTypeCheck, Ci, 0
 		
 		;AutoQuit
-			IniRead, Quit20, settings.ini, AutoQuit, Quit20
-			IniRead, Quit30, settings.ini, AutoQuit, Quit30
-			IniRead, Quit40, settings.ini, AutoQuit, Quit40
-			IniRead, CritQuit, settings.ini, AutoQuit, CritQuit
+			IniRead, RadioQuit20, settings.ini, AutoQuit, Quit20, 1
+			IniRead, RadioQuit30, settings.ini, AutoQuit, Quit30, 0
+			IniRead, RadioQuit40, settings.ini, AutoQuit, Quit40, 0
+			IniRead, RadioCritQuit, settings.ini, AutoQuit, CritQuit, 1
+			IniRead, RadioNormalQuit, settings.ini, AutoQuit, NormalQuit, 0
+
+		;Profile Editbox
+			Iniread, ProfileText1, settings.ini, Profiles, ProfileText1, Profile 1
+			Iniread, ProfileText2, settings.ini, Profiles, ProfileText2, Profile 2
+			Iniread, ProfileText3, settings.ini, Profiles, ProfileText3, Profile 3
+			Iniread, ProfileText4, settings.ini, Profiles, ProfileText4, Profile 4
+			Iniread, ProfileText5, settings.ini, Profiles, ProfileText5, Profile 5
+			Iniread, ProfileText6, settings.ini, Profiles, ProfileText6, Profile 6
+			Iniread, ProfileText7, settings.ini, Profiles, ProfileText7, Profile 7
+			Iniread, ProfileText8, settings.ini, Profiles, ProfileText8, Profile 8
+			Iniread, ProfileText9, settings.ini, Profiles, ProfileText9, Profile 9
+			Iniread, ProfileText10, settings.ini, Profiles, ProfileText10, Profile 10
 
 		;~ hotkeys reset
 			hotkey, IfWinActive, ahk_group POEGameGroup
@@ -3952,22 +3526,22 @@ Clamp( Val, Min, Max) {
 			hotkey, IfWinActive, ahk_group POEGameGroup
 
 		;~ hotkeys iniread
-			IniRead, hotkeyOptions, settings.ini, hotkeys, Options
-			IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit
-			IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask
-			IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver
-			IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal
-			IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap
-			IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords
-			IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks
-			IniRead, hotkeyLogout, settings.ini, hotkeys, Logout
-			IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI
-			IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory
-			IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey
-			IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort
-			IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan
+			IniRead, hotkeyOptions, settings.ini, hotkeys, Options, !F10
+			IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit, !F12
+			IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask, !F11
+			IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
+			IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal, !q
+			IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap, !e
+			IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords, !o
+			IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks, CapsLock
+			IniRead, hotkeyLogout, settings.ini, hotkeys, Logout, F12
+			IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
+			IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory, c
+			IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey, x
+			IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort, F6
+			IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
 			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
-			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, W
+			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
 
 			hotkey, IfWinActive, ahk_group POEGameGroup
 			If hotkeyAutoQuit
@@ -4009,7 +3583,7 @@ Clamp( Val, Min, Max) {
 	submit(){  
 		updateEverything:
 		global
-		
+		critical
 		IfWinExist, ahk_group POEGameGroup 
 			{
 			Gui, Submit
@@ -4221,8 +3795,6 @@ Clamp( Val, Min, Max) {
 		IfWinExist, ahk_group POEGameGroup
 			{
 			WinActivate, ahk_group POEGameGroup
-			If (ShowOnStart)
-				Hotkeys()
 			}
 		SendMSG(1, , scriptGottaGoFast)
 		return  
@@ -4409,45 +3981,45 @@ Clamp( Val, Min, Max) {
 		return
 		}
 
-	submitProfile1:
-		submitProfile(1)
-		Return
+		submitProfile1:
+			submitProfile(1)
+			Return
 
-	submitProfile2:
-		submitProfile(2)
-		Return
+		submitProfile2:
+			submitProfile(2)
+			Return
 
-	submitProfile3:
-		submitProfile(3)
-		Return
+		submitProfile3:
+			submitProfile(3)
+			Return
 
-	submitProfile4:
-		submitProfile(4)
-		Return
+		submitProfile4:
+			submitProfile(4)
+			Return
 
-	submitProfile5:
-		submitProfile(5)
-		Return
+		submitProfile5:
+			submitProfile(5)
+			Return
 
-	submitProfile6:
-		submitProfile(6)
-		Return
+		submitProfile6:
+			submitProfile(6)
+			Return
 
-	submitProfile7:
-		submitProfile(7)
-		Return
+		submitProfile7:
+			submitProfile(7)
+			Return
 
-	submitProfile8:
-		submitProfile(8)
-		Return
+		submitProfile8:
+			submitProfile(8)
+			Return
 
-	submitProfile9:
-		submitProfile(9)
-		Return
+		submitProfile9:
+			submitProfile(9)
+			Return
 
-	submitProfile10:
-		submitProfile(10)
-		Return
+		submitProfile10:
+			submitProfile(10)
+			Return
 
 	readProfile(Profile){  
 		global
@@ -4851,53 +4423,176 @@ Clamp( Val, Min, Max) {
 		return  
 		}
 		
-	readProfile1:
-		readProfile(1)
-		Return
+		readProfile1:
+			readProfile(1)
+			Return
 
-	readProfile2:
-		readProfile(2)
-		Return
+		readProfile2:
+			readProfile(2)
+			Return
 
-	readProfile3:
-		readProfile(3)
-		Return
+		readProfile3:
+			readProfile(3)
+			Return
 
-	readProfile4:
-		readProfile(4)
-		Return
+		readProfile4:
+			readProfile(4)
+			Return
 
-	readProfile5:
-		readProfile(5)
-		Return
+		readProfile5:
+			readProfile(5)
+			Return
 
-	readProfile6:
-		readProfile(6)
-		Return
+		readProfile6:
+			readProfile(6)
+			Return
 
-	readProfile7:
-		readProfile(7)
-		Return
+		readProfile7:
+			readProfile(7)
+			Return
 
-	readProfile8:
-		readProfile(8)
-		Return
+		readProfile8:
+			readProfile(8)
+			Return
 
-	readProfile9:
-		readProfile(9)
-		Return
+		readProfile9:
+			readProfile(9)
+			Return
 
-	readProfile10:
-		readProfile(10)
-		Return
+		readProfile10:
+			readProfile(10)
+			Return
 
 	optionsCommand:
 		hotkeys()
 		return
 
+	loadSaved:
+		readFromFile()
+		;Update UI
+			if(RadioLife==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+					GuiControl, Enable, Radiobox%A_Index%Life80
+					GuiControl, Enable, Radiobox%A_Index%Life70
+					GuiControl, Enable, Radiobox%A_Index%Life60
+					GuiControl, Enable, Radiobox%A_Index%Life50
+					GuiControl, Enable, Radiobox%A_Index%Life40
+					GuiControl, Enable, Radiobox%A_Index%Life30
+					GuiControl, Enable, Radiobox%A_Index%Life20
+					GuiControl, Enable, RadioUncheck%A_Index%Life
+					
+					GuiControl, Disable, Radiobox%A_Index%ES90
+					GuiControl, Disable, Radiobox%A_Index%ES80
+					GuiControl, Disable, Radiobox%A_Index%ES70
+					GuiControl, Disable, Radiobox%A_Index%ES60
+					GuiControl, Disable, Radiobox%A_Index%ES50
+					GuiControl, Disable, Radiobox%A_Index%ES40
+					GuiControl, Disable, Radiobox%A_Index%ES30
+					GuiControl, Disable, Radiobox%A_Index%ES20
+					GuiControl, Disable, RadioUncheck%A_Index%ES
+					}
+				}
+			else if(RadioHybrid==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+					GuiControl, Enable, Radiobox%A_Index%Life80
+					GuiControl, Enable, Radiobox%A_Index%Life70
+					GuiControl, Enable, Radiobox%A_Index%Life60
+					GuiControl, Enable, Radiobox%A_Index%Life50
+					GuiControl, Enable, Radiobox%A_Index%Life40
+					GuiControl, Enable, Radiobox%A_Index%Life30
+					GuiControl, Enable, Radiobox%A_Index%Life20
+					GuiControl, Enable, RadioUncheck%A_Index%Life
+					
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+					}
+				}
+			else if(RadioCi==1) {
+				varTextAutoQuit20:="20 % ES"
+				varTextAutoQuit30:="30 % ES"
+				varTextAutoQuit40:="40 % ES"
+				loop 5 {
+					GuiControl, Disable, Radiobox%A_Index%Life90
+					GuiControl, Disable, Radiobox%A_Index%Life80
+					GuiControl, Disable, Radiobox%A_Index%Life70
+					GuiControl, Disable, Radiobox%A_Index%Life60
+					GuiControl, Disable, Radiobox%A_Index%Life50
+					GuiControl, Disable, Radiobox%A_Index%Life40
+					GuiControl, Disable, Radiobox%A_Index%Life30
+					GuiControl, Disable, Radiobox%A_Index%Life20
+					GuiControl, Disable, RadioUncheck%A_Index%Life
+				
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+					}
+				}
+			GuiControl,, RadioQuit20, %varTextAutoQuit20%
+			GuiControl,, RadioQuit30, %varTextAutoQuit30%
+			GuiControl,, RadioQuit40, %varTextAutoQuit40%
+			GuiControl,, RadioQuit20, %RadioQuit20%
+			GuiControl,, RadioQuit30, %RadioQuit30%
+			GuiControl,, RadioQuit40, %RadioQuit40%
+			GuiControl,, CooldownFlask1, %CooldownFlask1%
+			GuiControl,, CooldownFlask2, %CooldownFlask2%
+			GuiControl,, CooldownFlask3, %CooldownFlask3%
+			GuiControl,, CooldownFlask4, %CooldownFlask4%
+			GuiControl,, CooldownFlask5, %CooldownFlask5%
+			GuiControl,, RadioNormalQuit, %RadioNormalQuit%
+			GuiControl,, RadioCritQuit, %RadioCritQuit%
+			GuiControl,, RadioLife, %RadioLife%
+			GuiControl,, RadioHybrid, %RadioHybrid%
+			GuiControl,, RadioCi, %RadioCi%
+			GuiControl,, hotkeyMainAttack, %hotkeyMainAttack%
+			GuiControl,, hotkeySecondaryAttack, %hotkeySecondaryAttack%
+			GuiControl,, TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
+			GuiControl,, hotkeyOptions, %hotkeyOptions%
+			GuiControl,, hotkeyAutoFlask, %hotkeyAutoFlask%
+			GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
+			GuiControl,, hotkeyLogout, %hotkeyLogout%
+			GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
+			GuiControl,, otkeyGetMouseCoords, %otkeyGetMouseCoords%
+			GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
+			GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
+			GuiControl,, vhotkeyPopFlasks, %vhotkeyPopFlasks%
+			GuiControl,, hotkeyItemSort, %hotkeyItemSort%
+			GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
+			GuiControl,, hotkeyInventory, %hotkeyInventory%
+			GuiControl,, hotkeyWeaponSwapKey, %hotkeyWeaponSwapKey%
+			GuiControl,, hotkeyLootScan, %hotkeyLootScan%
+			GuiControl,, PortalScrollX, %PortalScrollX%
+			GuiControl,, PortalScrollY, %PortalScrollY%
+			GuiControl,, WisdomScrollX, %WisdomScrollX%
+			GuiControl,, WisdomScrollY, %WisdomScrollY%
+			GuiControl,, CurrentGemX, %CurrentGemX%
+			GuiControl,, CurrentGemY, %CurrentGemY%
+			GuiControl,, AlternateGemX, %AlternateGemX%
+			GuiControl,, AlternateGemY, %AlternateGemY%
+		return
+
 	hotkeys(){
-		global ;processWarningFound, macroVersion
-		;getLeagueListing()
+		global
 		Gui, Show, Autosize Center, 	WingmanReloaded
 		processWarningFound:=0
 		Gui,6:Hide
@@ -5333,6 +5028,10 @@ Clamp( Val, Min, Max) {
 		Run, https://github.com/BanditTech/WingmanReloaded/wiki ; Open the wiki page for the script
 		Return
 
+	LaunchDonate:
+		Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&currency_code=USD&source=url ; Open the donation page for the script
+		Return
+
 	UpdateDebug:
 		Gui, Submit, NoHide
 		If (DebugMessages=1) {
@@ -5438,5 +5137,50 @@ Clamp( Val, Min, Max) {
 		SetTimer, RemoveToolTip, Off
 		ToolTip
 		return
+	
+	helpCalibration:
+		MsgBox, Gamestate Calibration Instructions:`n`n  These buttons regrab the gamestate sample color.`n  Each button references a different game state.`n  Make sure the gamestate is true for that button!`n  Click the button once ready to calibrate.`n`nAuto-Detonate Mines Recalibration:`n`n  Sample the DetonateHex color in normal or delve.`n  Drop a mine then press the sample button that matches.
+		Return
+
+	checkUpdate(){
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/version.html, version.html
+		FileRead, newestVersion, version.html
+
+		if ( VersionNumber < newestVersion ) {
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/changelog.txt, changelog.txt
+					if ErrorLevel
+							GuiControl,1:, guiErr, ED08
+			FileRead, changelog, changelog.txt
+			Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
+			Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
+			Gui, 4:Add, Button, section default grunUpdate, Update to the Newest Version!
+			Gui, 4:Add, Button, ys gLaunchDonate, Support the Project
+			Gui, 4:Add, Button, ys gdontUpdate, Skip Update this time
+			Gui, 4:Show,, WingmanReloaded Update
+			IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
+				{
+				WinWaitClose
+				}
+			}
+		WinGetPos, , , WinWidth, WinHeight
+		Return
+		}
+
+	runUpdate:
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/PoE-Wingman.ahk, PoE-Wingman.ahk
+			if ErrorLevel {
+				error("update","fail",A_ScriptFullPath, macroVersion, A_AhkVersion)
+				error("ED07")
+			}
+			else {
+				error("update","pass",A_ScriptFullPath, macroVersion, A_AhkVersion)
+				Run "%A_ScriptFullPath%"
+			}
+		Sleep 5000 ;This shouldn't ever hit.
+		error("update","uhoh", A_ScriptFullPath, macroVersion, A_AhkVersion)
+	dontUpdate:
+		Gui, 4:Destroy
+		return	
 
 return
