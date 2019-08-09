@@ -41,7 +41,7 @@
 	IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
-	Global VersionNumber := .03.3
+	Global VersionNumber := .03.4
 
 	checkUpdate()
 
@@ -340,16 +340,17 @@
 		global RadioCi, RadioHybrid, RadioLife
 
 	;Utility Buttons
-		global YesPhaseRun:=1
-		global YesVaalDiscipline:=1
+		global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
+		global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
+		global YesUtility1LifePercent, YesUtility2LifePercent, YesUtility3LifePercent, YesUtility4LifePercent, YesUtility5LifePercent
+		global YesUtility1ESPercent, YesUtility2ESPercent, YesUtility3ESPercent, YesUtility4ESPercent, YesUtility5ESPercent
 
 	;Utility Cooldowns
-		global CooldownPhaseRun:=5000
-		global CooldownVaalDiscipline:=60000
+		global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
+		global OnCooldownUtility1, OnCooldownUtility2, OnCooldownUtility3, OnCooldownUtility4, OnCooldownUtility5
 		
 	;Utility Keys
-		global utilityPhaseRun
-		global utilityVaalDiscipline
+		global KeyUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
 
 	;Flask Cooldowns
 		global CooldownFlask1:=5000
@@ -584,65 +585,103 @@
 	Gui, Add, Text, 									x+5 	y23		w1	h441 0x7
 	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
 
-	Gui, Add, Text, 									x447 	y53 		h140 0x11
+	Gui, Add, Text, 									x447 	y51 		h135 0x11
 
 	Gui, Font, Bold
 	Gui, Add, Text, 										x292 	y30, 				Flask Profile Management:
 		Gui, Font
-	Gui, Add, Button, gsubmitProfile1 x290 y52 w50 h23, Save 1
-	Gui, Add, Button, gsubmitProfile2 w50 h23, Save 2
-	Gui, Add, Button, gsubmitProfile3 w50 h23, Save 3
-	Gui, Add, Button, gsubmitProfile4 w50 h23, Save 4
-	Gui, Add, Button, gsubmitProfile5 w50 h23, Save 5
+	Gui, Add, Button, gsubmitProfile1 x290 y52 w50 h21, Save 1
+	Gui, Add, Button, gsubmitProfile2 w50 h21, Save 2
+	Gui, Add, Button, gsubmitProfile3 w50 h21, Save 3
+	Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
+	Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
 
-	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x340 y53 w50 h21, %ProfileText1%
-	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h21, %ProfileText2%
-	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h21, %ProfileText3%
-	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h21, %ProfileText4%
-	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h21, %ProfileText5%
+	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x340 y53 w50 h19, %ProfileText1%
+	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
+	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
+	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
+	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
 
-	Gui, Add, Button, greadProfile1 x390 y52 w50 h23, Load 1
-	Gui, Add, Button, greadProfile2 w50 h23, Load 2
-	Gui, Add, Button, greadProfile3 w50 h23, Load 3
-	Gui, Add, Button, greadProfile4 w50 h23, Load 4
-	Gui, Add, Button, greadProfile5 w50 h23, Load 5
+	Gui, Add, Button, greadProfile1 x390 y52 w50 h21, Load 1
+	Gui, Add, Button, greadProfile2 w50 h21, Load 2
+	Gui, Add, Button, greadProfile3 w50 h21, Load 3
+	Gui, Add, Button, greadProfile4 w50 h21, Load 4
+	Gui, Add, Button, greadProfile5 w50 h21, Load 5
 
-	Gui, Add, Button, gsubmitProfile6 x455 y52 w50 h23, Save 6
-	Gui, Add, Button, gsubmitProfile7 w50 h23, Save 7
-	Gui, Add, Button, gsubmitProfile8 w50 h23, Save 8
-	Gui, Add, Button, gsubmitProfile9 w50 h23, Save 9
-	Gui, Add, Button, gsubmitProfile10 w50 h23, Save 10
+	Gui, Add, Button, gsubmitProfile6 x455 y52 w50 h21, Save 6
+	Gui, Add, Button, gsubmitProfile7 w50 h21, Save 7
+	Gui, Add, Button, gsubmitProfile8 w50 h21, Save 8
+	Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
+	Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
 
-	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x505 y53 w50 h21, %ProfileText6%
-	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h21, %ProfileText7%
-	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h21, %ProfileText8%
-	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h21, %ProfileText9%
-	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h21, %ProfileText10%
+	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x505 y53 w50 h19, %ProfileText6%
+	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
+	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
+	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
+	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
 
-	Gui, Add, Button, greadProfile6 x555 y52 w50 h23, Load 6
-	Gui, Add, Button, greadProfile7 w50 h23, Load 7
-	Gui, Add, Button, greadProfile8 w50 h23, Load 8
-	Gui, Add, Button, greadProfile9 w50 h23, Load 9
-	Gui, Add, Button, greadProfile10 w50 h23, Load 10
+	Gui, Add, Button, greadProfile6 x555 y52 w50 h21, Load 6
+	Gui, Add, Button, greadProfile7 w50 h21, Load 7
+	Gui, Add, Button, greadProfile8 w50 h21, Load 8
+	Gui, Add, Button, greadProfile9 w50 h21, Load 9
+	Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x292 	y230, 				Utility Management
+	Gui Add, Text, 										x292 	y210, 				Utility Management
 	Gui, Font,
 
-	Gui,Add,Edit,			gUpdateUtility  		x319 y249  w40 h19 	vCooldownPhaseRun				,%CooldownPhaseRun%
-	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownVaalDiscipline				,%CooldownVaalDiscipline%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility1 Checked%YesUtility1%		y+34	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility2 Checked%YesUtility2%		y+12	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility3 Checked%YesUtility3%		y+12	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility4 Checked%YesUtility4%		y+12	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility5 Checked%YesUtility5%		y+12	
 
-	Gui,Add,Edit,			  	x+22	y249   w40 h19 gUpdateUtility	vutilityPhaseRun				,%utilityPhaseRun%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vutilityVaalDiscipline				,%utilityVaalDiscipline%
+	Gui,Add,Edit,			gUpdateUtility  x+1 y254  w40 h19 	vCooldownUtility1				,%CooldownUtility1%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility2				,%CooldownUtility2%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility3				,%CooldownUtility3%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility4				,%CooldownUtility4%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility5				,%CooldownUtility5%
 
-	Gui Add, Checkbox, gUpdateUtility	vYesPhaseRun Checked%YesPhaseRun%				x+5 y252	, Use Phase Run on Quicksilver?
-	Gui Add, Checkbox, gUpdateUtility	vYesVaalDiscipline Checked%YesVaalDiscipline%		y+13	, Use Vaal Discipline on 50`% ES?
+	Gui,Add,Edit,	  	x+15	y254   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility2				,%KeyUtility2%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility3				,%KeyUtility3%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility4				,%KeyUtility4%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility5				,%KeyUtility5%
 
-	Gui Add, Text, 										x300 	y250, 	CD:
-	Gui Add, Text, 													, 	CD:
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver Checked%YesUtility1Quicksilver%	x+15 y257
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver Checked%YesUtility2Quicksilver%		y+12
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver Checked%YesUtility3Quicksilver%		y+12
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver Checked%YesUtility4Quicksilver%		y+12
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver Checked%YesUtility5Quicksilver%		y+12
 
-	Gui Add, Text, 										x360 	y250, 	Key:
-	Gui Add, Text, 													, 	Key:
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+1 	y253,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+		GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
+		GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
+		GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
+		GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
+		GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
+
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+17 	y253,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+		GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
+		GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
+		GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
+		GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
+		GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
+
+	Gui Add, Text, 										x292 	y235, 	ON:
+	Gui Add, Text, 										x+21 	y235, 	CD:
+	Gui Add, Text, 										x+35 	y235, 	Key:
+	Gui Add, Text, 										x+26 	y235, 	QS:
+	Gui Add, Text, 										x+23 	y235, 	Life:
+	Gui Add, Text, 										x+37 	y235, 	ES:
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -3247,9 +3286,25 @@ Clamp( Val, Min, Max) {
 
 ; Utility Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TimerVaalDiscipline:
-		OnCooldownVaalDiscipline := 0
-		settimer,TimerVaalDiscipline,delete
+	TimerUtility1:
+		OnCooldownUtility1 := 0
+		settimer,TimerUtility1,delete
+		Return
+	TimerUtility2:
+		OnCooldownUtility2 := 0
+		settimer,TimerUtility2,delete
+		Return
+	TimerUtility3:
+		OnCooldownUtility3 := 0
+		settimer,TimerUtility3,delete
+		Return
+	TimerUtility4:
+		OnCooldownUtility4 := 0
+		settimer,TimerUtility4,delete
+		Return
+	TimerUtility5:
+		OnCooldownUtility5 := 0
+		settimer,TimerUtility5,delete
 		Return
 ; Detonate Timer
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3416,17 +3471,44 @@ Clamp( Val, Min, Max) {
 				valueMana10 := substr(TriggerMana10, (A_Index), 1)
 				GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
 				}
+
 		;Utility Buttons
-			IniRead, YesPhaseRun, settings.ini, Utility Buttons, YesPhaseRun, 1
-			IniRead, YesVaalDiscipline, settings.ini, Utility Buttons, YesVaalDiscipline, 1
+			IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
+			IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
+			IniRead, YesUtility3, settings.ini, Utility Buttons, YesUtility3, 0
+			IniRead, YesUtility4, settings.ini, Utility Buttons, YesUtility4, 0
+			IniRead, YesUtility5, settings.ini, Utility Buttons, YesUtility5, 0
+			IniRead, YesUtility1Quicksilver, settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
+			IniRead, YesUtility2Quicksilver, settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
+			IniRead, YesUtility3Quicksilver, settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
+			IniRead, YesUtility4Quicksilver, settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
+			IniRead, YesUtility5Quicksilver, settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
+
+		;Utility Percents	
+			IniRead, YesUtility1LifePercent, settings.ini, Utility Buttons, YesUtility1LifePercent, Off
+			IniRead, YesUtility2LifePercent, settings.ini, Utility Buttons, YesUtility2LifePercent, Off
+			IniRead, YesUtility3LifePercent, settings.ini, Utility Buttons, YesUtility3LifePercent, Off
+			IniRead, YesUtility4LifePercent, settings.ini, Utility Buttons, YesUtility4LifePercent, Off
+			IniRead, YesUtility5LifePercent, settings.ini, Utility Buttons, YesUtility5LifePercent, Off
+			IniRead, YesUtility1EsPercent, settings.ini, 	Utility Buttons, YesUtility1EsPercent, Off
+			IniRead, YesUtility2EsPercent, settings.ini, 	Utility Buttons, YesUtility2EsPercent, Off
+			IniRead, YesUtility3EsPercent, settings.ini, 	Utility Buttons, YesUtility3EsPercent, Off
+			IniRead, YesUtility4EsPercent, settings.ini, 	Utility Buttons, YesUtility4EsPercent, Off
+			IniRead, YesUtility5EsPercent, settings.ini, 	Utility Buttons, YesUtility5EsPercent, Off
 
 		;Utility Cooldowns
-			IniRead, CooldownPhaseRun, settings.ini, Utility Cooldowns, CooldownPhaseRun, 5000
-			IniRead, CooldownVaalDiscipline, settings.ini, Utility Cooldowns, CooldownVaalDiscipline, 60000
+			IniRead, CooldownUtility1, settings.ini, Utility Cooldowns, CooldownUtility1, 5000
+			IniRead, CooldownUtility2, settings.ini, Utility Cooldowns, CooldownUtility2, 5000
+			IniRead, CooldownUtility3, settings.ini, Utility Cooldowns, CooldownUtility3, 5000
+			IniRead, CooldownUtility4, settings.ini, Utility Cooldowns, CooldownUtility4, 5000
+			IniRead, CooldownUtility5, settings.ini, Utility Cooldowns, CooldownUtility5, 5000
 			
 		;Utility Keys
-			IniRead, utilityPhaseRun, settings.ini, Utility Keys, PhaseRun, e
-			IniRead, utilityVaalDiscipline, settings.ini, Utility Keys, VaalDiscipline, r
+			IniRead, KeyUtility1, settings.ini, Utility Keys, KeyUtility1, q
+			IniRead, KeyUtility2, settings.ini, Utility Keys, KeyUtility2, w
+			IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
+			IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
+			IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
 
 		;Flask Cooldowns
 			IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
@@ -3698,17 +3780,44 @@ Clamp( Val, Min, Max) {
 			IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
 			IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
 
-		;Utility Buttons
-			IniWrite, %YesPhaseRun%, Settings.ini, Utility Buttons, YesPhaseRun
-			IniWrite, %YesVaalDiscipline%, Settings.ini, Utility Buttons, YesVaalDiscipline
 
-		;Utility Keys
-			IniWrite, %utilityPhaseRun%, settings.ini, Utility Keys, PhaseRun
-			IniWrite, %utilityVaalDiscipline%, settings.ini, Utility Keys, VaalDiscipline
-				
+		;Utility Buttons
+			IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
+			IniWrite, %YesUtility2%, settings.ini, Utility Buttons, YesUtility2
+			IniWrite, %YesUtility3%, settings.ini, Utility Buttons, YesUtility3
+			IniWrite, %YesUtility4%, settings.ini, Utility Buttons, YesUtility4
+			IniWrite, %YesUtility5%, settings.ini, Utility Buttons, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, settings.ini, Utility Buttons, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, settings.ini, Utility Buttons, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, settings.ini, Utility Buttons, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, settings.ini, Utility Buttons, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, settings.ini, Utility Buttons, YesUtility5Quicksilver
+
+		;Utility Percents	
+			IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
+			IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
+			IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
+			IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
+			IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
+			IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, settings.ini, Utility Buttons, YesUtility5EsPercent
+
 		;Utility Cooldowns
-			IniWrite, %CooldownPhaseRun%, settings.ini, Utility Cooldowns, CooldownPhaseRun
-			IniWrite, %CooldownVaalDiscipline%, settings.ini, Utility Cooldowns, CooldownVaalDiscipline
+			IniWrite, %CooldownUtility1%, settings.ini, Utility Cooldowns, CooldownUtility1
+			IniWrite, %CooldownUtility2%, settings.ini, Utility Cooldowns, CooldownUtility2
+			IniWrite, %CooldownUtility3%, settings.ini, Utility Cooldowns, CooldownUtility3
+			IniWrite, %CooldownUtility4%, settings.ini, Utility Cooldowns, CooldownUtility4
+			IniWrite, %CooldownUtility5%, settings.ini, Utility Cooldowns, CooldownUtility5
+			
+		;Utility Keys
+			IniWrite, %KeyUtility1%, settings.ini, Utility Keys, KeyUtility1
+			IniWrite, %KeyUtility2%, settings.ini, Utility Keys, KeyUtility2
+			IniWrite, %KeyUtility3%, settings.ini, Utility Keys, KeyUtility3
+			IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
+			IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
 
 		;Flask Cooldowns
 			IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
@@ -5056,16 +5165,43 @@ Clamp( Val, Min, Max) {
 	UpdateUtility:
 		Gui, Submit, NoHide
 		;Utility Buttons
-			IniWrite, %YesPhaseRun%, Settings.ini, Utility Buttons, YesPhaseRun
-			IniWrite, %YesVaalDiscipline%, Settings.ini, Utility Buttons, YesVaalDiscipline
+			IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
+			IniWrite, %YesUtility2%, settings.ini, Utility Buttons, YesUtility2
+			IniWrite, %YesUtility3%, settings.ini, Utility Buttons, YesUtility3
+			IniWrite, %YesUtility4%, settings.ini, Utility Buttons, YesUtility4
+			IniWrite, %YesUtility5%, settings.ini, Utility Buttons, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, settings.ini, Utility Buttons, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, settings.ini, Utility Buttons, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, settings.ini, Utility Buttons, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, settings.ini, Utility Buttons, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, settings.ini, Utility Buttons, YesUtility5Quicksilver
 
-		;Utility Keys
-			IniWrite, %utilityPhaseRun%, settings.ini, Utility Keys, PhaseRun
-			IniWrite, %utilityVaalDiscipline%, settings.ini, Utility Keys, VaalDiscipline
-				
+		;Utility Percents	
+			IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
+			IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
+			IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
+			IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
+			IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
+			IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, settings.ini, Utility Buttons, YesUtility5EsPercent
+
 		;Utility Cooldowns
-			IniWrite, %CooldownPhaseRun%, settings.ini, Utility Cooldowns, CooldownPhaseRun
-			IniWrite, %CooldownVaalDiscipline%, settings.ini, Utility Cooldowns, CooldownVaalDiscipline
+			IniWrite, %CooldownUtility1%, settings.ini, Utility Cooldowns, CooldownUtility1
+			IniWrite, %CooldownUtility2%, settings.ini, Utility Cooldowns, CooldownUtility2
+			IniWrite, %CooldownUtility3%, settings.ini, Utility Cooldowns, CooldownUtility3
+			IniWrite, %CooldownUtility4%, settings.ini, Utility Cooldowns, CooldownUtility4
+			IniWrite, %CooldownUtility5%, settings.ini, Utility Cooldowns, CooldownUtility5
+			
+		;Utility Keys
+			IniWrite, %KeyUtility1%, settings.ini, Utility Keys, KeyUtility1
+			IniWrite, %KeyUtility2%, settings.ini, Utility Keys, KeyUtility2
+			IniWrite, %KeyUtility3%, settings.ini, Utility Keys, KeyUtility3
+			IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
+			IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
+
 		SendMSG(1, 0, scriptGottaGoFast)
 		Return
 
