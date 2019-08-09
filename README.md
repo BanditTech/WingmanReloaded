@@ -15,7 +15,8 @@ This code is derived from [Andoesk's PoE-Wingman v1.1](https://www.ownedcore.com
 In the same spirit as Andoesk I have been searching for a simple program that has optional keybindings and non intrusive interface. I saw that I might be keen to pick up where he left off and improve upon some of the simple functions that this provides. 
 
 * New key features:
-  - Profile Management for flasks
+  - Profile Management for flasks and utility buttons
+  - Configure 5 utility keys to press on CD, QS, or Life/ES percent
   - Auto Detonate Mines
   - Hotkey to logout instantly
   - Loot Vacuum while you hold Item Pickup (requires major lootfilter editing)
@@ -39,6 +40,7 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Debug Mode with aditional tools when enabled.
   - Hotkeys to Reload (Alt-Esc) or Exit (Win-Esc)
   - Now runs in background on start unless you open settings.
+    -Detects when game opens or closes and shows overlay
   - Continued Fine-Tuning the logic of the script
 
 
