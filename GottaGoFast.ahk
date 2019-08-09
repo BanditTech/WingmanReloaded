@@ -73,18 +73,6 @@ if not A_IsAdmin
 		global varOnStash
 		global varOnVendor
 
-	;Utility Buttons
-		global YesPhaseRun := 1
-		global YesVaalDiscipline:=1
-
-	;Utility Cooldowns
-		global CooldownUtility1:=5000
-		global CooldownVaalDiscipline:=60000
-
-	;Utility Keys
-		global utilityPhaseRun
-		global utilityVaalDiscipline
-
 	;Flask Cooldowns
 		global CooldownFlask1:=5000
 		global CooldownFlask2:=5000
