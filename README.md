@@ -16,7 +16,9 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
 
 * New key features:
   - Profile Management for flasks and utility buttons
-  - Configure 5 utility keys to press on CD, QS, or Life/ES percent
+  - Configure 5 utility keys
+     - press on CD
+     - or on QS and/or Life/ES percent
   - Auto Detonate Mines
   - Hotkey to logout instantly
   - Loot Vacuum while you hold Item Pickup (requires major lootfilter editing)
