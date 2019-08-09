@@ -365,6 +365,7 @@ SendMSG(wParam:=0, lParam:=0, script:=""){
 	else
 		MsgBox, Either Script Window Not Found
 	DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
+	Return
 	}
 PoEWindowCheck(){
 	IfWinExist, ahk_group POEGameGroup 

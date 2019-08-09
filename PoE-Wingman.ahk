@@ -66,312 +66,313 @@
     
     If FileExist("settings.ini")
         readFromFile()
-    ; Global variables
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Global variables
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ;General
-    Global Latency := 1
-    Global ShowOnStart := 0
-    Global PopFlaskRespectCD := 1
-    Global ResolutionScale := "Standard"
-    Global IdColor := 0x1C0101
-    Global UnIdColor := 0x01012A
-    Global MOColor := 0x011C01
-    
-    
-    Global FlaskList := []
-    ; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
-    Global AreaScale := 1
-    Global LootVacuum := 1
-    Global YesVendor := 1
-    Global YesStash := 1
-    Global YesIdentify := 1
-        Global YesMapUnid := 1
-    Global YesStashKeys := 1
-    Global OnHideout := False
-    Global OnChar := False
-    Global OnChat := False
-    Global OnInventory := False
-    Global OnStash := False
-    Global OnVendor := False
-    Global RescaleRan := False
-    Global ToggleExist := False
-    ; These colors are from filterblade.xyz filter creator
-    ; Choose one of the default background colors with no transparency
-    ; These are the mouseover Hex for each of the default colors
-    Global ColorKey := { Red: 0xFE2222
-    , Brown : 0xDA8B4D
-    , Tan : 0xFCDDB2
-    , Yellow : 0xEFDB27
-    , Green : 0x22AB22
-    , Baby Blue : 0x45F2F2
-    , Blue : 0x2222FE
-    , Lavender : 0x8F8FFE
-    , White : 0xFFFFFF
-, Black : 0x222222}
+		Global Latency := 1
+		Global ShowOnStart := 0
+		Global PopFlaskRespectCD := 1
+		Global ResolutionScale := "Standard"
+		Global IdColor := 0x1C0101
+		Global UnIdColor := 0x01012A
+		Global MOColor := 0x011C01
+		
+		
+		Global FlaskList := []
+		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
+		Global AreaScale := 1
+		Global LootVacuum := 1
+		Global YesVendor := 1
+		Global YesStash := 1
+		Global YesIdentify := 1
+		Global YesMapUnid := 1
+		Global YesStashKeys := 1
+		Global OnHideout := False
+		Global OnChar := False
+		Global OnChat := False
+		Global OnInventory := False
+		Global OnStash := False
+		Global OnVendor := False
+		Global RescaleRan := False
+		Global ToggleExist := False
+		; These colors are from filterblade.xyz filter creator
+		; Choose one of the default background colors with no transparency
+		; These are the mouseover Hex for each of the default colors
+		Global ColorKey := { Red: 0xFE2222
+			, Brown : 0xDA8B4D
+			, Tan : 0xFCDDB2
+			, Yellow : 0xEFDB27
+			, Green : 0x22AB22
+			, Baby Blue : 0x45F2F2
+			, Blue : 0x2222FE
+			, Lavender : 0x8F8FFE
+			, White : 0xFFFFFF
+			, Black : 0x222222}
 
-; Use the colorkey above to choose your background colors.
-; The example below uses two colors black and white
-Global LootColors := { 1 : 0x222222
-, 2 : 0xFFFFFF}
+		; Use the colorkey above to choose your background colors.
+		; The example below uses two colors black and white
+			Global LootColors := { 1 : 0x222222
+			, 2 : 0xFFFFFF}
 
-; Use this as an example of adding more colors into the loot vacuum (This adds tan and red at postion 2,3)
-Global ExampleColors := { 1 : 0xFFFFFF
-, 2 : 0xFCDDB2
-, 3 : 0xFE2222
-, 4 : 0x222222}
+		; Use this as an example of adding more colors into the loot vacuum (This adds tan and red at postion 2,3)
+			Global ExampleColors := { 1 : 0xFFFFFF
+				, 2 : 0xFCDDB2
+				, 3 : 0xFE2222
+				, 4 : 0x222222}
+		;Item Property blank Array
+		Global ItemProp := {ItemName: ""
+			, Rarity : ""
+			, SpecialType : ""
+			, Stack : 0
+			, StackMax : 0
+			, RarityCurrency : False
+			, RarityDivination : False
+			, RarityGem : False
+			, RarityNormal : False
+			, RarityMagic : False
+			, RarityRare : False
+			, RarityUnique : False
+			, Identified : True
+			, Map : False
+			, Ring : False
+			, Amulet : False
+			, Chromatic : False
+			, Jewel : False
+			, AbyssJewel : False
+			, Essence : False
+			, Incubator : False
+			, Fossil : False
+			, Resonator : False
+			, Quality : 0
+			, Sockets : 0
+			, RawSockets : ""
+			, LinkCount : 0
+			, 2Link : False
+			, 3Link : False
+			, 4Link : False
+			, 5Link : False
+			, 6Link : False
+			, Jeweler : False
+			, TimelessSplinter : False
+			, BreachSplinter : False
+			, SacrificeFragment : False
+			, MortalFragment : False
+			, GuardianFragment : False
+			, ProphecyFragment : False
+			, Scarab : False
+			, Offering : False
+			, Vessel : False
+			, Incubator : False
+			, Flask : False
+			, Veiled : False
+			, Prophecy : False}
 
-Global ItemProp := {ItemName: ""
-, Rarity : ""
-, SpecialType : ""
-, Stack : 0
-, StackMax : 0
-, RarityCurrency : False
-, RarityDivination : False
-, RarityGem : False
-, RarityNormal : False
-, RarityMagic : False
-, RarityRare : False
-, RarityUnique : False
-, Identified : True
-    , Map : False
-, Ring : False
-, Amulet : False
-, Chromatic : False
-, Jewel : False
-, AbyssJewel : False
-, Essence : False
-, Incubator : False
-, Fossil : False
-, Resonator : False
-, Quality : 0
-, Sockets : 0
-, RawSockets : ""
-, LinkCount : 0
-, 2Link : False
-, 3Link : False
-, 4Link : False
-, 5Link : False
-, 6Link : False
-, Jeweler : False
-, TimelessSplinter : False
-, BreachSplinter : False
-, SacrificeFragment : False
-    , MortalFragment : False
-, GuardianFragment : False
-, ProphecyFragment : False
-, Scarab : False
-, Offering : False
-, Vessel : False
-, Incubator : False
-, Flask : False
-, Veiled : False
-, Prophecy : False}
+		global Detonated := 0
+		global CritQuit := 1
+		global CurrentTab := 0
+		global DebugMessages := 0
+		global ShowPixelGrid := 0
+		global ShowItemInfo := 0
+		global DetonateMines := 0
+		global Latency := 1
+		global RunningToggle := False
+		Global Steam := 1
+		Global HighBits := 1
+		; Dont change the speed & the tick unless you know what you are doing
+			global Speed:=1
+			global Tick:=50
+	;Inventory
+		Global StashTabCurrency := 1
+		Global StashTabMap := 1
+		Global StashTabDivination := 1
+		Global StashTabGem := 1
+		Global StashTabGemQuality := 1
+		Global StashTabFlaskQuality := 1
+		Global StashTabLinked := 1
+		Global StashTabCollection := 1
+		Global StashTabUniqueRing := 1
+		Global StashTabUniqueDump := 1
+		Global StashTabFragment := 1
+		Global StashTabEssence := 1
+		Global StashTabTimelessSplinter := 1
+		Global StashTabFossil := 1
+		Global StashTabResonator := 1
+		Global StashTabProphecy := 1
+	;Checkbox to activate each tab
+		Global StashTabYesCurrency := 1
+		Global StashTabYesMap := 1
+		Global StashTabYesDivination := 1
+		Global StashTabYesGem := 1
+		Global StashTabYesGemQuality := 1
+		Global StashTabYesFlaskQuality := 1
+		Global StashTabYesLinked := 1
+		Global StashTabYesCollection := 1
+		Global StashTabYesUniqueRing := 1
+		Global StashTabYesUniqueDump := 1
+		Global StashTabYesFragment := 1
+		Global StashTabYesEssence := 1
+		Global StashTabYesTimelessSplinter := 1
+		Global StashTabYesFossil := 1
+		Global StashTabYesResonator := 1
+		Global StashTabYesProphecy := 1
+	;~ Hotkeys
+	; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
+		global hotkeyOptions:=!F10
+		global hotkeyAutoFlask:=!F11
+		global hotkeyAutoQuit:=!F12
+		global hotkeyLogout:=F12
+		global hotkeyAutoQuicksilver:=!MButton
+		global hotkeyPopFlasks:=CapsLock
+		global hotkeyItemSort:=F6
+		global hotkeyLootScan:=f
+		global hotkeyQuickPortal:=!q
+		global hotkeyGemSwap:=!e
+		global hotkeyGetMouseCoords:=!o
+		global hotkeyCloseAllUI:=Space
+		global hotkeyInventory:=c
+		global hotkeyWeaponSwapKey:=x
+		global hotkeyMainAttack:=RButton
+		global hotkeySecondaryAttack:=w
 
-global Detonated := 0
-global CritQuit := 1
-global CurrentTab := 0
-global DebugMessages := 0
-global ShowPixelGrid := 0
-global ShowItemInfo := 0
-global DetonateMines := 0
-global Latency := 1
-global RunningToggle := False
-Global Steam := 1
-Global HighBits := 1
-; Dont change the speed & the tick unless you know what you are doing
-global Speed:=1
-global Tick:=50
-;Inventory
-Global StashTabCurrency := 1
-Global StashTabMap := 1
-Global StashTabDivination := 1
-Global StashTabGem := 1
-Global StashTabGemQuality := 1
-Global StashTabFlaskQuality := 1
-Global StashTabLinked := 1
-Global StashTabCollection := 1
-Global StashTabUniqueRing := 1
-Global StashTabUniqueDump := 1
-Global StashTabFragment := 1
-Global StashTabEssence := 1
-Global StashTabTimelessSplinter := 1
-Global StashTabFossil := 1
-Global StashTabResonator := 1
-Global StashTabProphecy := 1
-;Checkbox to activate each tab
-Global StashTabYesCurrency := 1
-Global StashTabYesMap := 1
-Global StashTabYesDivination := 1
-Global StashTabYesGem := 1
-Global StashTabYesGemQuality := 1
-Global StashTabYesFlaskQuality := 1
-Global StashTabYesLinked := 1
-Global StashTabYesCollection := 1
-Global StashTabYesUniqueRing := 1
-Global StashTabYesUniqueDump := 1
-Global StashTabYesFragment := 1
-Global StashTabYesEssence := 1
-Global StashTabYesTimelessSplinter := 1
-Global StashTabYesFossil := 1
-Global StashTabYesResonator := 1
-Global StashTabYesProphecy := 1
-;~ Hotkeys
-; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
-global hotkeyOptions:=!F10
-global hotkeyAutoFlask:=!F11
-global hotkeyAutoQuit:=!F12
-global hotkeyLogout:=F12
-global hotkeyAutoQuicksilver:=!MButton
-global hotkeyPopFlasks:=CapsLock
-global hotkeyItemSort:=F6
-global hotkeyLootScan:=f
-global hotkeyQuickPortal:=!q
-global hotkeyGemSwap:=!e
-global hotkeyGetMouseCoords:=!o
-global hotkeyCloseAllUI:=Space
-global hotkeyInventory:=c
-global hotkeyWeaponSwapKey:=x
-global hotkeyMainAttack:=RButton
-global hotkeySecondaryAttack:=w
+	;Coordinates
+		global PortalScrollX:=1825
+		global PortalScrollY:=825
+		global WisdomScrollX:=1875
+		global WisdomScrollY:=825
+		global StockPortal:=1
+		global StockWisdom:=1
+		global GuiX:=-5
+		global GuiY:=1005
 
-;Coordinates
-global PortalScrollX:=1825
-global PortalScrollY:=825
-global WisdomScrollX:=1875
-global WisdomScrollY:=825
-global StockPortal:=1
-global StockWisdom:=1
-global GuiX:=-5
-global GuiY:=1005
+	;Inventory Colors
+		global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
 
-;Inventory Colors
-global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
+	;Failsafe Colors
+		global varOnHideout:=0x161114
+		global varOnChar:=0x4F6980
+		global varOnChat:=0x3B6288
+		global varOnInventory:=0x8CC6DD
+		global varOnStash:=0x9BD6E7
+		global varOnVendor:=0x7BB1CC
+		Global DetonateHex := 0x412037
 
-;Failsafe Colors
-global varOnHideout:=0x161114
-global varOnChar:=0x4F6980
-global varOnChat:=0x3B6288
-global varOnInventory:=0x8CC6DD
-global varOnStash:=0x9BD6E7
-global varOnVendor:=0x7BB1CC
-Global DetonateHex := 0x412037
+	;Life Colors
+		global varLife20
+		global varLife30
+		global varLife40
+		global varLife50
+		global varLife60
+		global varLife70
+		global varLife80
+		global varLife90
+		
+	;ES Colors
+		global varES20
+		global varES30
+		global varES40
+		global varES50
+		global varES60
+		global varES70
+		global varES80
+		global varES90
 
-;Life Colors
-global varLife20
-    global varLife30
-    global varLife40
-    global varLife50
-    global varLife60
-    global varLife70
-    global varLife80
-    global varLife90
-    
-;ES Colors
-global varES20
-global varES30
-global varES40
-global varES50
-global varES60
-global varES70
-global varES80
-global varES90
+	;Mana Colors
+		global varMana10
 
-;Mana Colors
-global varMana10
+	;Gem Swap
+		global CurrentGemX:=1483
+		global CurrentGemY:=372
+		global AlternateGemX:=1379 
+		global AlternateGemY:=171
+		global AlternateGemOnSecondarySlot:=1
 
-;Gem Swap
-global CurrentGemX:=1483
-global CurrentGemY:=372
-global AlternateGemX:=1379 
-global AlternateGemY:=171
-global AlternateGemOnSecondarySlot:=1
+	;Attack Triggers
+		global TriggerMainAttack:=00000
+		global TriggerSecondaryAttack:=00000
+		Global MainAttackbox1,MainAttackbox2,MainAttackbox3,MainAttackbox4,MainAttackbox5
+		Global SecondaryAttackbox1,SecondaryAttackbox2,SecondaryAttackbox3,SecondaryAttackbox4,SecondaryAttackbox5
 
-;Attack Triggers
-global TriggerMainAttack:=00000
-global TriggerSecondaryAttack:=00000
-Global MainAttackbox1,MainAttackbox2,MainAttackbox3,MainAttackbox4,MainAttackbox5
-Global SecondaryAttackbox1,SecondaryAttackbox2,SecondaryAttackbox3,SecondaryAttackbox4,SecondaryAttackbox5
-;CharacterTypeCheck
-global Life:=1
-    global Hybrid:=0
-global Ci:=0
+	;CharacterTypeCheck
+		global Life:=1
+		global Hybrid:=0
+		global Ci:=0
 
-;Life Triggers
-global TriggerLife20:=00000
-    global TriggerLife30:=00000
-    global TriggerLife40:=00000
-    global TriggerLife50:=00000
-    global TriggerLife60:=00000
-    global TriggerLife70:=00000
-    global TriggerLife80:=00000
-    global TriggerLife90:=00000
-    global DisableLife:=11111
-    global Radiobox1Life20, Radiobox2Life20, Radiobox3Life20, Radiobox4Life20, Radiobox5Life20
-    global Radiobox1Life30, Radiobox2Life30, Radiobox3Life30, Radiobox4Life30, Radiobox5Life30
-    global Radiobox1Life40, Radiobox2Life40, Radiobox3Life40, Radiobox4Life40, Radiobox5Life40
-    global Radiobox1Life50, Radiobox2Life50, Radiobox3Life50, Radiobox4Life50, Radiobox5Life50
-    global Radiobox1Life60, Radiobox2Life60, Radiobox3Life60, Radiobox4Life60, Radiobox5Life60
-    global Radiobox1Life70, Radiobox2Life70, Radiobox3Life70, Radiobox4Life70, Radiobox5Life70
-    global Radiobox1Life80, Radiobox2Life80, Radiobox3Life80, Radiobox4Life80, Radiobox5Life80
-    global Radiobox1Life90, Radiobox2Life90, Radiobox3Life90, Radiobox4Life90, Radiobox5Life90
-    global RadioUncheck1Life, RadioUncheck2Life, RadioUncheck3Life, RadioUncheck4Life, RadioUncheck5Life
-    ;ES Triggers
-global TriggerES20:=00000
-global TriggerES30:=00000
-global TriggerES40:=00000
-global TriggerES50:=00000
-global TriggerES60:=00000
-global TriggerES70:=00000
-global TriggerES80:=00000
-global TriggerES90:=00000
-global DisableES:=11111
-global Radiobox1ES20, Radiobox2ES20, Radiobox3ES20, Radiobox4ES20, Radiobox5ES20
-global Radiobox1ES30, Radiobox2ES30, Radiobox3ES30, Radiobox4ES30, Radiobox5ES30
-global Radiobox1ES40, Radiobox2ES40, Radiobox3ES40, Radiobox4ES40, Radiobox5ES40
-global Radiobox1ES50, Radiobox2ES50, Radiobox3ES50, Radiobox4ES50, Radiobox5ES50
-global Radiobox1ES60, Radiobox2ES60, Radiobox3ES60, Radiobox4ES60, Radiobox5ES60
-global Radiobox1ES70, Radiobox2ES70, Radiobox3ES70, Radiobox4ES70, Radiobox5ES70
-global Radiobox1ES80, Radiobox2ES80, Radiobox3ES80, Radiobox4ES80, Radiobox5ES80
-global Radiobox1ES90, Radiobox2ES90, Radiobox3ES90, Radiobox4ES90, Radiobox5ES90
-global RadioUncheck1ES, RadioUncheck2ES, RadioUncheck3ES, RadioUncheck4ES, RadioUncheck5ES
+	;Life Triggers
+		global TriggerLife20:=00000
+		global TriggerLife30:=00000
+		global TriggerLife40:=00000
+		global TriggerLife50:=00000
+		global TriggerLife60:=00000
+		global TriggerLife70:=00000
+		global TriggerLife80:=00000
+		global TriggerLife90:=00000
+		global DisableLife:=11111
+		global Radiobox1Life20, Radiobox2Life20, Radiobox3Life20, Radiobox4Life20, Radiobox5Life20
+		global Radiobox1Life30, Radiobox2Life30, Radiobox3Life30, Radiobox4Life30, Radiobox5Life30
+		global Radiobox1Life40, Radiobox2Life40, Radiobox3Life40, Radiobox4Life40, Radiobox5Life40
+		global Radiobox1Life50, Radiobox2Life50, Radiobox3Life50, Radiobox4Life50, Radiobox5Life50
+		global Radiobox1Life60, Radiobox2Life60, Radiobox3Life60, Radiobox4Life60, Radiobox5Life60
+		global Radiobox1Life70, Radiobox2Life70, Radiobox3Life70, Radiobox4Life70, Radiobox5Life70
+		global Radiobox1Life80, Radiobox2Life80, Radiobox3Life80, Radiobox4Life80, Radiobox5Life80
+		global Radiobox1Life90, Radiobox2Life90, Radiobox3Life90, Radiobox4Life90, Radiobox5Life90
+		global RadioUncheck1Life, RadioUncheck2Life, RadioUncheck3Life, RadioUncheck4Life, RadioUncheck5Life
+	;ES Triggers
+		global TriggerES20:=00000
+		global TriggerES30:=00000
+		global TriggerES40:=00000
+		global TriggerES50:=00000
+		global TriggerES60:=00000
+		global TriggerES70:=00000
+		global TriggerES80:=00000
+		global TriggerES90:=00000
+		global DisableES:=11111
+		global Radiobox1ES20, Radiobox2ES20, Radiobox3ES20, Radiobox4ES20, Radiobox5ES20
+		global Radiobox1ES30, Radiobox2ES30, Radiobox3ES30, Radiobox4ES30, Radiobox5ES30
+		global Radiobox1ES40, Radiobox2ES40, Radiobox3ES40, Radiobox4ES40, Radiobox5ES40
+		global Radiobox1ES50, Radiobox2ES50, Radiobox3ES50, Radiobox4ES50, Radiobox5ES50
+		global Radiobox1ES60, Radiobox2ES60, Radiobox3ES60, Radiobox4ES60, Radiobox5ES60
+		global Radiobox1ES70, Radiobox2ES70, Radiobox3ES70, Radiobox4ES70, Radiobox5ES70
+		global Radiobox1ES80, Radiobox2ES80, Radiobox3ES80, Radiobox4ES80, Radiobox5ES80
+		global Radiobox1ES90, Radiobox2ES90, Radiobox3ES90, Radiobox4ES90, Radiobox5ES90
+		global RadioUncheck1ES, RadioUncheck2ES, RadioUncheck3ES, RadioUncheck4ES, RadioUncheck5ES
 
-;Mana Triggers
-global TriggerMana10:=00000
+	;Mana Triggers
+		global TriggerMana10:=00000
 
-;AutoQuit
-global RadioQuit20, RadioQuit30, RadioQuit40, RadioCritQuit, RadioNormalQuit
+	;AutoQuit
+		global RadioQuit20, RadioQuit30, RadioQuit40, RadioCritQuit, RadioNormalQuit
 
-;Character Type
-global RadioCi, RadioHybrid, RadioLife
-    
-;Utility Buttons
-global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
-global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
-global YesUtility1LifePercent, YesUtility2LifePercent, YesUtility3LifePercent, YesUtility4LifePercent, YesUtility5LifePercent
-    global YesUtility1ESPercent, YesUtility2ESPercent, YesUtility3ESPercent, YesUtility4ESPercent, YesUtility5ESPercent
+	;Character Type
+		global RadioCi, RadioHybrid, RadioLife
+		
+	;Utility Buttons
+		global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
+		global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
+		global YesUtility1LifePercent, YesUtility2LifePercent, YesUtility3LifePercent, YesUtility4LifePercent, YesUtility5LifePercent
+		global YesUtility1ESPercent, YesUtility2ESPercent, YesUtility3ESPercent, YesUtility4ESPercent, YesUtility5ESPercent
 
-;Utility Cooldowns
-global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
-global OnCooldownUtility1 := 0
-global OnCooldownUtility2 := 0
-global OnCooldownUtility3 := 0
-global OnCooldownUtility4 := 0
-global OnCooldownUtility5 := 0
+	;Utility Cooldowns
+		global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
+		global OnCooldownUtility1 := 0
+		global OnCooldownUtility2 := 0
+		global OnCooldownUtility3 := 0
+		global OnCooldownUtility4 := 0
+		global OnCooldownUtility5 := 0
 
-;Utility Keys
-global KeyUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
+	;Utility Keys
+		global KeyUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
 
-;Flask Cooldowns
-global CooldownFlask1:=5000
-global CooldownFlask2:=5000
-global CooldownFlask3:=5000
-global CooldownFlask4:=5000
-global CooldownFlask5:=5000
-global Cooldown:=5000
+	;Flask Cooldowns
+		global CooldownFlask1:=5000
+		global CooldownFlask2:=5000
+		global CooldownFlask3:=5000
+		global CooldownFlask4:=5000
+		global CooldownFlask5:=5000
+		global Cooldown:=5000
 
-;Quicksilver
-global TriggerQuicksilverDelay=0.8
-global TriggerQuicksilver=00000
+	;Quicksilver
+		global TriggerQuicksilverDelay=0.8
+		global TriggerQuicksilver=00000
 
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -379,630 +380,628 @@ readFromFile()
 
 ; Wingman Gui Variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-if Life=1 
-{
-    varTextAutoQuit20:="20 % Life"
-    varTextAutoQuit30:="30 % Life"
-    varTextAutoQuit40:="40 % Life"
-} 
-else if Hybrid=1 
-{
-    varTextAutoQuit20:="20 % Life"
-    varTextAutoQuit30:="30 % Life"
-    varTextAutoQuit40:="40 % Life"
-}
-else if Ci=1 
-{
-    varTextAutoQuit20:="20 % ES"
-    varTextAutoQuit30:="30 % ES"
-    varTextAutoQuit40:="40 % ES"
-}
-GuiControl,, RadioQuit20, %varTextAutoQuit20%
-GuiControl,, RadioQuit30, %varTextAutoQuit30%
-GuiControl,, RadioQuit40, %varTextAutoQuit40%
+	if RadioLife=1 
+		{
+		varTextAutoQuit20:="20 % Life"
+		varTextAutoQuit30:="30 % Life"
+		varTextAutoQuit40:="40 % Life"
+		} 
+	else if RadioHybrid=1 
+		{
+		varTextAutoQuit20:="20 % Life"
+		varTextAutoQuit30:="30 % Life"
+		varTextAutoQuit40:="40 % Life"
+		}
+	else if RadioCi=1 
+		{
+		varTextAutoQuit20:="20 % ES"
+		varTextAutoQuit30:="30 % ES"
+		varTextAutoQuit40:="40 % ES"
+		}
+	GuiControl,, RadioQuit20, %varTextAutoQuit20%
+	GuiControl,, RadioQuit30, %varTextAutoQuit30%
+	GuiControl,, RadioQuit40, %varTextAutoQuit40%
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Gui Add, Tab2, x1 y1 w620 h465 -wrap, Flasks and Utility|Configuration|Inventory
-;#######################################################################################################Flasks and Utility Tab
-Gui, Tab, Flasks and Utility
-Gui, Font,
+	Gui Add, Tab2, x1 y1 w620 h465 -wrap, Flasks and Utility|Configuration|Inventory
+	;#######################################################################################################Flasks and Utility Tab
+	Gui, Tab, Flasks and Utility
+	Gui, Font,
 
-Gui, Font, Bold
-Gui Add, Text, 										x12 	y30, 				Flask Settings
-Gui, Font,
+	Gui, Font, Bold
+	Gui Add, Text, 										x12 	y30, 				Flask Settings
+	Gui, Font,
 
-Gui Add, Text, 										x12 	y+10, 				Character Type:
-Gui, Font, cRed
-Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					x+8 gUpdateCharacterType, 	Life
-Gui, Font, cPurple
-Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
-Gui, Font, cBlue
-Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	CI
-Gui, Font
+	Gui Add, Text, 										x12 	y+10, 				Character Type:
+	Gui, Font, cRed
+	Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					x+8 gUpdateCharacterType, 	Life
+	Gui, Font, cPurple
+	Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
+	Gui, Font, cBlue
+	Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	CI
+	Gui, Font
 
-Gui Add, Text, 										x63 	y+10, 				Flask 1
-Gui Add, Text, 										x+8, 						Flask 2
-Gui Add, Text, 										x+7, 						Flask 3
-Gui Add, Text, 										x+8, 						Flask 4
-Gui Add, Text, 										x+7, 						Flask 5
+	Gui Add, Text, 										x63 	y+10, 				Flask 1
+	Gui Add, Text, 										x+8, 						Flask 2
+	Gui Add, Text, 										x+7, 						Flask 3
+	Gui Add, Text, 										x+8, 						Flask 4
+	Gui Add, Text, 										x+7, 						Flask 5
 
-Gui Add, Text, 										x12 	y+5, 				Duration:
-Gui Add, Edit, 			vCooldownFlask1 			x63 	y+-15 	w34	h17, 	%CooldownFlask1%
-Gui Add, Edit, 			vCooldownFlask2 			x+8 			w34	h17, 	%CooldownFlask2%
-Gui Add, Edit, 			vCooldownFlask3 			x+7 			w34	h17, 	%CooldownFlask3%
-Gui Add, Edit, 			vCooldownFlask4 			x+8 			w34	h17, 	%CooldownFlask4%
-Gui Add, Edit, 			vCooldownFlask5 			x+7 			w34	h17, 	%CooldownFlask5%
+	Gui Add, Text, 										x12 	y+5, 				Duration:
+	Gui Add, Edit, 			vCooldownFlask1 			x63 	y+-15 	w34	h17, 	%CooldownFlask1%
+	Gui Add, Edit, 			vCooldownFlask2 			x+8 			w34	h17, 	%CooldownFlask2%
+	Gui Add, Edit, 			vCooldownFlask3 			x+7 			w34	h17, 	%CooldownFlask3%
+	Gui Add, Edit, 			vCooldownFlask4 			x+8 			w34	h17, 	%CooldownFlask4%
+	Gui Add, Edit, 			vCooldownFlask5 			x+7 			w34	h17, 	%CooldownFlask5%
 
-Gui, Font, cRed
-Gui Add, Text,										x62	 	y+5, 				Life
-Gui Add, Text,										x+25, 						Life
-Gui Add, Text,										x+24, 						Life
-Gui Add, Text,										x+24, 						Life
-Gui Add, Text,										x+24, 						Life
-Gui, Font
-Gui Add, Text,										x80	 	y+-13,				|
-Gui Add, Text,										x+40, 						|
-Gui Add, Text,										x+39, 						|
-Gui Add, Text,										x+39, 						|
-Gui Add, Text,										x+39, 						|
-Gui, Font, cBlue
-Gui Add, Text,										x83	 	y+-13,				ES
-Gui Add, Text,										x+28, 						ES
-Gui Add, Text,										x+27, 						ES
-Gui Add, Text,										x+27, 						ES
-Gui Add, Text,										x+27, 						ES
-Gui, Font
+	Gui, Font, cRed
+	Gui Add, Text,										x62	 	y+5, 				Life
+	Gui Add, Text,										x+25, 						Life
+	Gui Add, Text,										x+24, 						Life
+	Gui Add, Text,										x+24, 						Life
+	Gui Add, Text,										x+24, 						Life
+	Gui, Font
+	Gui Add, Text,										x80	 	y+-13,				|
+	Gui Add, Text,										x+40, 						|
+	Gui Add, Text,										x+39, 						|
+	Gui Add, Text,										x+39, 						|
+	Gui Add, Text,										x+39, 						|
+	Gui, Font, cBlue
+	Gui Add, Text,										x83	 	y+-13,				ES
+	Gui Add, Text,										x+28, 						ES
+	Gui Add, Text,										x+27, 						ES
+	Gui Add, Text,										x+27, 						ES
+	Gui Add, Text,										x+27, 						ES
+	Gui, Font
 
-Gui Add, Text, 										x23 	y+5, 				< 90`%:
-Gui Add, Text, 												y+5, 				< 80`%:
-Gui Add, Text, 												y+5, 				< 70`%:
-Gui Add, Text, 												y+5, 				< 60`%:
-Gui Add, Text, 												y+5, 				< 50`%:
-Gui Add, Text, 												y+5, 				< 40`%:
-Gui Add, Text, 												y+5, 				< 30`%:
-Gui Add, Text, 												y+5, 				< 20`%:
-Gui Add, Text, 										x17		y+5, 				Disable:
+	Gui Add, Text, 										x23 	y+5, 				< 90`%:
+	Gui Add, Text, 												y+5, 				< 80`%:
+	Gui Add, Text, 												y+5, 				< 70`%:
+	Gui Add, Text, 												y+5, 				< 60`%:
+	Gui Add, Text, 												y+5, 				< 50`%:
+	Gui Add, Text, 												y+5, 				< 40`%:
+	Gui Add, Text, 												y+5, 				< 30`%:
+	Gui Add, Text, 												y+5, 				< 20`%:
+	Gui Add, Text, 										x17		y+5, 				Disable:
 
-loop 5 
-{
-    Gui Add, Radio, Group 	vRadiobox%A_Index%Life90 gFlaskCheck		x+12	y+-157 	w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%Life80 gFlaskCheck				y+5 	w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%Life70 gFlaskCheck				y+5 	w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%Life60 gFlaskCheck				y+5 	w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%Life50 gFlaskCheck				y+5 	w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%Life40 gFlaskCheck				y+5 	w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%Life30 gFlaskCheck				y+5 	w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%Life20 gFlaskCheck				y+5 	w13 h13
-    Gui Add, Radio, 		vRadioUncheck%A_Index%Life 					y+5 	w13 h13
-    
-    Gui Add, Radio, Group 	vRadiobox%A_Index%ES90 gFlaskCheck			x+3 	y+-157 	w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%ES80 gFlaskCheck					y+5		w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%ES70 gFlaskCheck					y+5		w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%ES60 gFlaskCheck					y+5		w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%ES50 gFlaskCheck					y+5		w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%ES40 gFlaskCheck					y+5		w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%ES30 gFlaskCheck					y+5		w13 h13
-    Gui Add, Radio, 		vRadiobox%A_Index%ES20 gFlaskCheck					y+5		w13 h13
-    Gui Add, Radio, 		vRadioUncheck%A_Index%ES 					y+5 	w13 h13
-}
-Loop, 5 {
-    valueLife20 := substr(TriggerLife20, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
-        valueLife30 := substr(TriggerLife30, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
-        valueLife40 := substr(TriggerLife40, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
-        valueLife50 := substr(TriggerLife50, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
-        valueLife60 := substr(TriggerLife60, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
-        valueLife70 := substr(TriggerLife70, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
-        valueLife80 := substr(TriggerLife80, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
-        valueLife90 := substr(TriggerLife90, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
-        valueDisableLife := substr(DisableLife, (A_Index), 1)
-        GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
-        valueES20 := substr(TriggerES20, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%ES20, %valueES20%
-    valueES30 := substr(TriggerES30, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%ES30, %valueES30%
-    valueES40 := substr(TriggerES40, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%ES40, %valueES40%
-    valueES50 := substr(TriggerES50, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%ES50, %valueES50%
-    valueES60 := substr(TriggerES60, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%ES60, %valueES60%
-    valueES70 := substr(TriggerES70, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%ES70, %valueES70%
-    valueES80 := substr(TriggerES80, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%ES80, %valueES80%
-    valueES90 := substr(TriggerES90, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%ES90, %valueES90%
-    valueDisableES := substr(DisableES, (A_Index), 1)
-    GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
-}	
+	loop 5 
+		{
+		Gui Add, Radio, Group 	vRadiobox%A_Index%Life90 gFlaskCheck		x+12	y+-157 	w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%Life80 gFlaskCheck				y+5 	w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%Life70 gFlaskCheck				y+5 	w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%Life60 gFlaskCheck				y+5 	w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%Life50 gFlaskCheck				y+5 	w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%Life40 gFlaskCheck				y+5 	w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%Life30 gFlaskCheck				y+5 	w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%Life20 gFlaskCheck				y+5 	w13 h13
+		Gui Add, Radio, 		vRadioUncheck%A_Index%Life 					y+5 	w13 h13
+		
+		Gui Add, Radio, Group 	vRadiobox%A_Index%ES90 gFlaskCheck			x+3 	y+-157 	w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%ES80 gFlaskCheck					y+5		w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%ES70 gFlaskCheck					y+5		w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%ES60 gFlaskCheck					y+5		w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%ES50 gFlaskCheck					y+5		w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%ES40 gFlaskCheck					y+5		w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%ES30 gFlaskCheck					y+5		w13 h13
+		Gui Add, Radio, 		vRadiobox%A_Index%ES20 gFlaskCheck					y+5		w13 h13
+		Gui Add, Radio, 		vRadioUncheck%A_Index%ES 					y+5 	w13 h13
+		}
+	Loop, 5 {
+		valueLife20 := substr(TriggerLife20, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
+			valueLife30 := substr(TriggerLife30, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
+			valueLife40 := substr(TriggerLife40, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
+			valueLife50 := substr(TriggerLife50, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
+			valueLife60 := substr(TriggerLife60, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
+			valueLife70 := substr(TriggerLife70, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
+			valueLife80 := substr(TriggerLife80, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
+			valueLife90 := substr(TriggerLife90, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
+			valueDisableLife := substr(DisableLife, (A_Index), 1)
+			GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
+			valueES20 := substr(TriggerES20, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES20, %valueES20%
+		valueES30 := substr(TriggerES30, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES30, %valueES30%
+		valueES40 := substr(TriggerES40, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES40, %valueES40%
+		valueES50 := substr(TriggerES50, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES50, %valueES50%
+		valueES60 := substr(TriggerES60, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES60, %valueES60%
+		valueES70 := substr(TriggerES70, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES70, %valueES70%
+		valueES80 := substr(TriggerES80, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES80, %valueES80%
+		valueES90 := substr(TriggerES90, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%ES90, %valueES90%
+		valueDisableES := substr(DisableES, (A_Index), 1)
+		GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
+		}	
 
-Gui Add, Text, 													x16 	y+12, 				Quicks.:
-Gui Add, Text, 													x25 	y+10, 				Mana:
-Gui Add, Radio, Group 	vRadiobox1QS 		gUtilityCheck		x+20 	y+-36 	w13 h13
-Gui Add, Radio, 		vRadiobox1Mana10 	gUtilityCheck				y+10 	w13 h13
-vFlask=2
-loop 4 
-{
-    Gui Add, Radio, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	y+-36 	w13 h13
-    Gui Add, Radio, 		vRadiobox%vFlask%Mana10 gUtilityCheck			y+10 	w13 h13
-    vFlask:=vFlask+1
-}
-Loop, 5 {	
-    valueMana10 := substr(TriggerMana10, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
-    valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
-    GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
-}
+	Gui Add, Text, 													x16 	y+12, 				Quicks.:
+	Gui Add, Text, 													x25 	y+10, 				Mana:
+	Gui Add, Radio, Group 	vRadiobox1QS 		gUtilityCheck		x+20 	y+-36 	w13 h13
+	Gui Add, Radio, 		vRadiobox1Mana10 	gUtilityCheck				y+10 	w13 h13
+	vFlask=2
+	loop 4 {
+		Gui Add, Radio, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	y+-36 	w13 h13
+		Gui Add, Radio, 		vRadiobox%vFlask%Mana10 gUtilityCheck			y+10 	w13 h13
+		vFlask:=vFlask+1
+		}
+	Loop, 5 {	
+		valueMana10 := substr(TriggerMana10, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
+		valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
+		}
 
-Gui Add, Edit, 			vhotkeyMainAttack 				x12 	y+10 	w45 h17, 	%hotkeyMainAttack%
-Gui Add, Checkbox, 		vMainAttackbox1 			x75 	y+-15 	w13 h13
-vFlask=2
-loop 4
-{
-    Gui Add, Checkbox, 		vMainAttackbox%vFlask% 		x+28 			w13 h13
-    vFlask:=vFlask+1
-} 
+	Gui Add, Edit, 			vhotkeyMainAttack 				x12 	y+10 	w45 h17, 	%hotkeyMainAttack%
+	Gui Add, Checkbox, 		vMainAttackbox1 			x75 	y+-15 	w13 h13
+	vFlask=2
+	loop 4 {
+		Gui Add, Checkbox, 		vMainAttackbox%vFlask% 		x+28 			w13 h13
+		vFlask:=vFlask+1
+		} 
 
-Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+5 	w45 h17, 	%hotkeySecondaryAttack%
-Gui Add, Checkbox, 		vSecondaryAttackbox1 		x75 	y+-15 	w13 h13
-vFlask=2
-loop 4
-{
-    Gui Add, Checkbox, 		vSecondaryAttackbox%vFlask% x+28 			w13 h13
-    vFlask:=vFlask+1
-}
-Loop, 5{	
-    valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
-    GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
-    valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
-    GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
-}
+	Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+5 	w45 h17, 	%hotkeySecondaryAttack%
+	Gui Add, Checkbox, 		vSecondaryAttackbox1 		x75 	y+-15 	w13 h13
+	vFlask=2
+	loop 4 {
+		Gui Add, Checkbox, 		vSecondaryAttackbox%vFlask% x+28 			w13 h13
+		vFlask:=vFlask+1
+		}
+	Loop, 5 {	
+		valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
+		GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
+		valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
+		GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
+		}
 
-Gui Add, Text, 										x12 	y+10, 				Quicksilver Flask Movement Delay (in s):
-Gui Add, Edit, 			vTriggerQuicksilverDelay	x+31 	y+-15 	w22 h17, 	%TriggerQuicksilverDelay%
+	Gui Add, Text, 										x12 	y+10, 				Quicksilver Flask Movement Delay (in s):
+	Gui Add, Edit, 			vTriggerQuicksilverDelay	x+31 	y+-15 	w22 h17, 	%TriggerQuicksilverDelay%
 
-Gui Add, Text, 										x12 	y+10, 				Auto-Quit:
-Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				x+5, 						%varTextAutoQuit20%
-Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
-Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
-Gui Add, Text, 										x20 	y+10, 				Quit via:
-Gui, Add, Radio, Group	vRadioCritQuit Checked%RadioCritQuit%					x+5		y+-13,				LutBot Method
-Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+19	,				normal /exit
+	Gui Add, Text, 										x12 	y+10, 				Auto-Quit:
+	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				x+5, 						%varTextAutoQuit20%
+	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
+	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
+	Gui Add, Text, 										x20 	y+10, 				Quit via:
+	Gui, Add, Radio, Group	vRadioCritQuit Checked%RadioCritQuit%					x+5		y+-13,				LutBot Method
+	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+19	,				normal /exit
 
-;Vertical Grey Lines
-Gui, Add, Text, 									x59 	y77 		h310 0x11
-Gui, Add, Text, 									x+33 				h310 0x11
-Gui, Add, Text, 									x+34 				h310 0x11
-Gui, Add, Text, 									x+33 				h310 0x11
-Gui, Add, Text, 									x+34 				h310 0x11
-Gui, Add, Text, 									x+33 				h310 0x11
-Gui, Add, Text, 									x+5 	y23		w1	h441 0x7
-Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
+	;Vertical Grey Lines
+	Gui, Add, Text, 									x59 	y77 		h310 0x11
+	Gui, Add, Text, 									x+33 				h310 0x11
+	Gui, Add, Text, 									x+34 				h310 0x11
+	Gui, Add, Text, 									x+33 				h310 0x11
+	Gui, Add, Text, 									x+34 				h310 0x11
+	Gui, Add, Text, 									x+33 				h310 0x11
+	Gui, Add, Text, 									x+5 	y23		w1	h441 0x7
+	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
 
-Gui, Add, Text, 									x447 	y51 		h135 0x11
+	Gui, Add, Text, 									x447 	y51 		h135 0x11
 
-Gui, Font, Bold
-Gui, Add, Text, 										x292 	y30, 				Flask Profile Management:
-Gui, Font
-Gui, Add, Button, gsubmitProfile1 x290 y52 w50 h21, Save 1
-Gui, Add, Button, gsubmitProfile2 w50 h21, Save 2
-Gui, Add, Button, gsubmitProfile3 w50 h21, Save 3
-Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
-Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
+	Gui, Font, Bold
+	Gui, Add, Text, 										x292 	y30, 				Flask Profile Management:
+	Gui, Font
+	Gui, Add, Button, gsubmitProfile1 x290 y52 w50 h21, Save 1
+	Gui, Add, Button, gsubmitProfile2 w50 h21, Save 2
+	Gui, Add, Button, gsubmitProfile3 w50 h21, Save 3
+	Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
+	Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
 
-Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x340 y53 w50 h19, %ProfileText1%
-Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
-Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
-Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
-Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
+	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x340 y53 w50 h19, %ProfileText1%
+	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
+	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
+	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
+	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
 
-Gui, Add, Button, greadProfile1 x390 y52 w50 h21, Load 1
-Gui, Add, Button, greadProfile2 w50 h21, Load 2
-Gui, Add, Button, greadProfile3 w50 h21, Load 3
-Gui, Add, Button, greadProfile4 w50 h21, Load 4
-Gui, Add, Button, greadProfile5 w50 h21, Load 5
+	Gui, Add, Button, greadProfile1 x390 y52 w50 h21, Load 1
+	Gui, Add, Button, greadProfile2 w50 h21, Load 2
+	Gui, Add, Button, greadProfile3 w50 h21, Load 3
+	Gui, Add, Button, greadProfile4 w50 h21, Load 4
+	Gui, Add, Button, greadProfile5 w50 h21, Load 5
 
-Gui, Add, Button, gsubmitProfile6 x455 y52 w50 h21, Save 6
-Gui, Add, Button, gsubmitProfile7 w50 h21, Save 7
-Gui, Add, Button, gsubmitProfile8 w50 h21, Save 8
-Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
-Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
+	Gui, Add, Button, gsubmitProfile6 x455 y52 w50 h21, Save 6
+	Gui, Add, Button, gsubmitProfile7 w50 h21, Save 7
+	Gui, Add, Button, gsubmitProfile8 w50 h21, Save 8
+	Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
+	Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
 
-Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x505 y53 w50 h19, %ProfileText6%
-Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
-Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
-Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
-Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
+	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x505 y53 w50 h19, %ProfileText6%
+	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
+	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
+	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
+	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
 
-Gui, Add, Button, greadProfile6 x555 y52 w50 h21, Load 6
-Gui, Add, Button, greadProfile7 w50 h21, Load 7
-Gui, Add, Button, greadProfile8 w50 h21, Load 8
-Gui, Add, Button, greadProfile9 w50 h21, Load 9
-Gui, Add, Button, greadProfile10 w50 h21, Load 10
+	Gui, Add, Button, greadProfile6 x555 y52 w50 h21, Load 6
+	Gui, Add, Button, greadProfile7 w50 h21, Load 7
+	Gui, Add, Button, greadProfile8 w50 h21, Load 8
+	Gui, Add, Button, greadProfile9 w50 h21, Load 9
+	Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
-Gui, Font, Bold
-Gui Add, Text, 										x292 	y210, 				Utility Management
-Gui, Font,
+	Gui, Font, Bold
+	Gui Add, Text, 										x292 	y210, 				Utility Management
+	Gui, Font,
 
-Gui Add, Checkbox, gUpdateUtility	vYesUtility1 Checked%YesUtility1%		y+34	
-Gui Add, Checkbox, gUpdateUtility	vYesUtility2 Checked%YesUtility2%		y+12	
-Gui Add, Checkbox, gUpdateUtility	vYesUtility3 Checked%YesUtility3%		y+12	
-Gui Add, Checkbox, gUpdateUtility	vYesUtility4 Checked%YesUtility4%		y+12	
-Gui Add, Checkbox, gUpdateUtility	vYesUtility5 Checked%YesUtility5%		y+12	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility1 Checked%YesUtility1%		y+34	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility2 Checked%YesUtility2%		y+12	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility3 Checked%YesUtility3%		y+12	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility4 Checked%YesUtility4%		y+12	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility5 Checked%YesUtility5%		y+12	
 
-Gui,Add,Edit,			gUpdateUtility  x+1 y254  w40 h19 	vCooldownUtility1				,%CooldownUtility1%
-Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility2				,%CooldownUtility2%
-Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility3				,%CooldownUtility3%
-Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility4				,%CooldownUtility4%
-Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility5				,%CooldownUtility5%
+	Gui,Add,Edit,			gUpdateUtility  x+1 y254  w40 h19 	vCooldownUtility1				,%CooldownUtility1%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility2				,%CooldownUtility2%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility3				,%CooldownUtility3%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility4				,%CooldownUtility4%
+	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility5				,%CooldownUtility5%
 
-Gui,Add,Edit,	  	x+15	y254   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
-Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility2				,%KeyUtility2%
-Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility3				,%KeyUtility3%
-Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility4				,%KeyUtility4%
-Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility5				,%KeyUtility5%
+	Gui,Add,Edit,	  	x+15	y254   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility2				,%KeyUtility2%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility3				,%KeyUtility3%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility4				,%KeyUtility4%
+	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility5				,%KeyUtility5%
 
-Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver Checked%YesUtility1Quicksilver%	x+15 y257
-Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver Checked%YesUtility2Quicksilver%		y+12
-Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver Checked%YesUtility3Quicksilver%		y+12
-Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver Checked%YesUtility4Quicksilver%		y+12
-Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver Checked%YesUtility5Quicksilver%		y+12
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver Checked%YesUtility1Quicksilver%	x+15 y257
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver Checked%YesUtility2Quicksilver%		y+12
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver Checked%YesUtility3Quicksilver%		y+12
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver Checked%YesUtility4Quicksilver%		y+12
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver Checked%YesUtility5Quicksilver%		y+12
 
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+1 	y253,  Off|20|30|40|50|60|70|80|90
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
-    GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
-    GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
-    GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
-    GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
-    
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+17 	y253,  Off|20|30|40|50|60|70|80|90
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
-GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
-GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
-GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+1 	y253,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
+	GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
+	GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
+	GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
+	GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
+		
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+17 	y253,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
+	GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
+	GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
+	GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
+	GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
+	GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
 
-Gui Add, Text, 										x292 	y235, 	ON:
-Gui Add, Text, 										x+21 	y235, 	CD:
-Gui Add, Text, 										x+35 	y235, 	Key:
-Gui Add, Text, 										x+26 	y235, 	QS:
-Gui Add, Text, 										x+23 	y235, 	Life:
-Gui Add, Text, 										x+37 	y235, 	ES:
+	Gui Add, Text, 										x292 	y235, 	ON:
+	Gui Add, Text, 										x+21 	y235, 	CD:
+	Gui Add, Text, 										x+35 	y235, 	Key:
+	Gui Add, Text, 										x+26 	y235, 	QS:
+	Gui Add, Text, 										x+23 	y235, 	Life:
+	Gui Add, Text, 										x+37 	y235, 	ES:
 
-;Save Setting
-Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
-Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
-Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
-;#######################################################################################################Configuration Tab
-Gui, Tab, Configuration
-Gui, Add, Text, 									x279 	y23		w1	h441 0x7
-Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
+	;#######################################################################################################Configuration Tab
+	Gui, Tab, Configuration
+	Gui, Add, Text, 									x279 	y23		w1	h441 0x7
+	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
 
-Gui, Add, Text, 									x376 	y29 		h107 0x11
-Gui, Add, Text, 									x+33 		 		h107 0x11
-Gui, Add, Text, 									x+33 		 		h107 0x11
+	Gui, Add, Text, 									x376 	y29 		h107 0x11
+	Gui, Add, Text, 									x+33 		 		h107 0x11
+	Gui, Add, Text, 									x+33 		 		h107 0x11
 
-Gui, Font, Bold
-Gui, Add, Text, 										x22 	y30, 				Gamestate Calibration:
-Gui, Font
-Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
+	Gui, Font, Bold
+	Gui, Add, Text, 										x22 	y30, 				Gamestate Calibration:
+	Gui, Font
+	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
 
-;Update calibration for pixel check
-Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y50	w100, 	OnHideout Color
-Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
-Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
-Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn	 	w208, 	Inventory calibration
+	;Update calibration for pixel check
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y50	w100, 	OnHideout Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
+	Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn	 	w208, 	Empty Inventory Color
 
-Gui, Font, Bold
-Gui, Add, Text, 										x22 	y+10, 				AutoDetonate Calibration:
-Gui, Font
+	Gui, Font, Bold
+	Gui, Add, Text, 										x22 	y+10, 				AutoDetonate Calibration:
+	Gui, Font
 
-Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+8	w100, 	Detonate Color
-Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
+	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+8	w100, 	Detonate Color
+	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
 
-Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y50	w100, 	OnInventory Color
-Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
-Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
-Gui, Font, Bold
-Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
-Gui, Font, 
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y50	w100, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
+	Gui, Font, Bold
+	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
+	Gui, Font, 
 
-Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
-Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          	, Are you using Steam?
-Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          	, Are you running 64 bit?
-Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    , Standard|UltraWide
-GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
-Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
-Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
-Gui Add, Text, 										x+10 y+-18							, Adjust Latency
+	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
+	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          	, Are you using Steam?
+	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          	, Are you running 64 bit?
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    , Standard|UltraWide
+	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
+	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
+	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
+	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 
-Gui, Font, Bold
-Gui Add, Text, 										x292 	y30, 				QoL Settings
-Gui, Font
+	Gui, Font, Bold
+	Gui Add, Text, 										x292 	y30, 				QoL Settings
+	Gui, Font
 
-Gui Add, Text, 										x+16 	y35,				X-Pos
-Gui Add, Text, 										x+12, 						Y-Pos
+	Gui Add, Text, 										x+16 	y35,				X-Pos
+	Gui Add, Text, 										x+12, 						Y-Pos
 
-Gui Add, Text, 										x314	y+5, 				Portal Scroll:
-Gui Add, Edit, 			vPortalScrollX 				x+7		y+-15 	w34	h17, 	%PortalScrollX%
-Gui Add, Edit, 			vPortalScrollY 				x+7			 	w34	h17, 	%PortalScrollY%	
-Gui Add, Text, 										x306	y+6, 				Wisdm. Scroll:
-Gui Add, Edit, 			vWisdomScrollX 				x+7		y+-15 	w34	h17, 	%WisdomScrollX%
-Gui Add, Edit, 			vWisdomScrollY 				x+7			 	w34	h17, 	%WisdomScrollY%	
-Gui Add, Text, 										x311	y+6, 				Current Gem:
-Gui Add, Edit, 			vCurrentGemX 				x+7		y+-15 	w34	h17, 	%CurrentGemX%
-Gui Add, Edit, 			vCurrentGemY 				x+7			 	w34	h17, 	%CurrentGemY%
+	Gui Add, Text, 										x314	y+5, 				Portal Scroll:
+	Gui Add, Edit, 			vPortalScrollX 				x+7		y+-15 	w34	h17, 	%PortalScrollX%
+	Gui Add, Edit, 			vPortalScrollY 				x+7			 	w34	h17, 	%PortalScrollY%	
+	Gui Add, Text, 										x306	y+6, 				Wisdm. Scroll:
+	Gui Add, Edit, 			vWisdomScrollX 				x+7		y+-15 	w34	h17, 	%WisdomScrollX%
+	Gui Add, Edit, 			vWisdomScrollY 				x+7			 	w34	h17, 	%WisdomScrollY%	
+	Gui Add, Text, 										x311	y+6, 				Current Gem:
+	Gui Add, Edit, 			vCurrentGemX 				x+7		y+-15 	w34	h17, 	%CurrentGemX%
+	Gui Add, Edit, 			vCurrentGemY 				x+7			 	w34	h17, 	%CurrentGemY%
 
-Gui Add, Text, 										x303	y+6, 				Alternate Gem:
-Gui Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
-Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemX%
-Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     	y53	 	            , Stock Portal?
-Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         y+8                , Stock Wisdom?
-Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%             y+8                , Weapon Swap?
+	Gui Add, Text, 										x303	y+6, 				Alternate Gem:
+	Gui Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
+	Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemX%
+	Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     	y53	 	            , Stock Portal?
+	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         y+8                , Stock Wisdom?
+	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%             y+8                , Weapon Swap?
 
-Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
-Gui Add, Text, 										x573	y5, 				Debug:
-Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x556 	y5 	w13 h13	
-Gui Add, Text, 							vPGrid	    x507	y5, 		    	Pixel Grid:
-Gui Add, Checkbox, 	vShowItemInfo Checked%ShowItemInfo%  gUpdateDebug  	x490 	y5 	w13 h13	
-Gui Add, Text, 							vParseI	    x435	y5, 		        Parse Item:
+	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
+	Gui Add, Text, 										x573	y5, 				Debug:
+	Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x556 	y5 	w13 h13	
+	Gui Add, Text, 							vPGrid	    x507	y5, 		    	Pixel Grid:
+	Gui Add, Checkbox, 	vShowItemInfo Checked%ShowItemInfo%  gUpdateDebug  	x490 	y5 	w13 h13	
+	Gui Add, Text, 							vParseI	    x435	y5, 		        Parse Item:
 
-If (DebugMessages=1) {
-    varCoordUtilText := "Coord/Debug"
-    GuiControl, Show, ShowPixelGrid
-    GuiControl, Show, PGrid
-    GuiControl, Show, ShowItemInfo
-    GuiControl, Show, ParseI
-} Else If (DebugMessages=0) {
-    varCoordUtilText := "Coord/Pixel"
-    GuiControl, Hide, ShowPixelGrid
-    GuiControl, Hide, ShowItemInfo
-    GuiControl, Hide, PGrid
-    GuiControl, Hide, ParseI
-}
+	If (DebugMessages=1) {
+		varCoordUtilText := "Coord/Debug"
+		GuiControl, Show, ShowPixelGrid
+		GuiControl, Show, PGrid
+		GuiControl, Show, ShowItemInfo
+		GuiControl, Show, ParseI
+		} 
+	Else If (DebugMessages=0) {
+		varCoordUtilText := "Coord/Pixel"
+		GuiControl, Hide, ShowPixelGrid
+		GuiControl, Hide, ShowItemInfo
+		GuiControl, Hide, PGrid
+		GuiControl, Hide, ParseI
+		}
 
-Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           x300  y145           	          , Detonate Mines?
-Gui Add, Checkbox, gUpdateExtra	vYesStashKeys Checked%YesStashKeys%                         	         x+20 , Ctrl(1-10) stash tabs?
-Gui, Font, Bold
-Gui Add, Text, 										x295 	y168, 				Keybinds:
-Gui, Font
-Gui Add, Text, 										x360 	y+10, 				Open this GUI
-Gui Add, Text, 										x360 	y+10, 				Auto-Flask
-Gui Add, Text, 										x360 	y+10, 				Auto-Quit
-Gui Add, Text, 										x360 	y+10, 				Logout
-Gui Add, Text, 										x360 	y+10, 				Auto-QSilver
-;CoordUtilText:="Mouse Coord"
-Gui Add, Text, 					  	vCoordUtilText	x360 	y+10,               "%varCoordUtilText%" 				
-GuiControl, , CoordUtilText, %varCoordUtilText%
-Gui Add, Text, 										x360 	y+10, 				Quick-Portal
-Gui Add, Text, 										x360 	y+10, 				Gem-Swap
-Gui Add, Text, 										x360 	y+10, 				Pop Flasks
-Gui Add, Text, 										x360 	y+10, 				ID/Vend/Stash
+	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           x300  y145           	          , Detonate Mines?
+	Gui Add, Checkbox, gUpdateExtra	vYesStashKeys Checked%YesStashKeys%                         	         x+20 , Ctrl(1-10) stash tabs?
+	Gui, Font, Bold
+	Gui Add, Text, 										x295 	y168, 				Keybinds:
+	Gui, Font
+	Gui Add, Text, 										x360 	y+10, 				Open this GUI
+	Gui Add, Text, 										x360 	y+10, 				Auto-Flask
+	Gui Add, Text, 										x360 	y+10, 				Auto-Quit
+	Gui Add, Text, 										x360 	y+10, 				Logout
+	Gui Add, Text, 										x360 	y+10, 				Auto-QSilver
+	;CoordUtilText:="Mouse Coord"
+	Gui Add, Text, 					  	vCoordUtilText	x360 	y+10,               "%varCoordUtilText%" 				
+	GuiControl, , CoordUtilText, %varCoordUtilText%
+	Gui Add, Text, 										x360 	y+10, 				Quick-Portal
+	Gui Add, Text, 										x360 	y+10, 				Gem-Swap
+	Gui Add, Text, 										x360 	y+10, 				Pop Flasks
+	Gui Add, Text, 										x360 	y+10, 				ID/Vend/Stash
 
-Gui,Add,Edit,			 x295 y188 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
-hotkeyOptions_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoFlask			,%hotkeyAutoFlask%
-hotkeyAutoFlask_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4  w60 h19 	vhotkeyAutoQuit			,%hotkeyAutoQuit%
-hotkeyAutoQuit_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyLogout	        ,%hotkeyLogout%
-hotkeyLogout_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoQuicksilver	,%hotkeyAutoQuicksilver%
-hotkeyAutoQuicksilver_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGetMouseCoords	,%hotkeyGetMouseCoords%
-hotkeyGetMouseCoords_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyQuickPortal		,%hotkeyQuickPortal%
-hotkeyQuickPortal_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGemSwap			,%hotkeyGemSwap%
-hotkeyGemSwap_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyPopFlasks	        ,%hotkeyPopFlasks%
-hotkeyPopFlasks_TT:="Set your own hotkey here"
-Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
-hotkeyItemSort_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 x295 y188 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
+	hotkeyOptions_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoFlask			,%hotkeyAutoFlask%
+	hotkeyAutoFlask_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4  w60 h19 	vhotkeyAutoQuit			,%hotkeyAutoQuit%
+	hotkeyAutoQuit_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyLogout	        ,%hotkeyLogout%
+	hotkeyLogout_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoQuicksilver	,%hotkeyAutoQuicksilver%
+	hotkeyAutoQuicksilver_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGetMouseCoords	,%hotkeyGetMouseCoords%
+	hotkeyGetMouseCoords_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyQuickPortal		,%hotkeyQuickPortal%
+	hotkeyQuickPortal_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGemSwap			,%hotkeyGemSwap%
+	hotkeyGemSwap_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyPopFlasks	        ,%hotkeyPopFlasks%
+	hotkeyPopFlasks_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
+	hotkeyItemSort_TT:="Set your own hotkey here"
 
-Gui, Font, Bold
-Gui Add, Text, 										x440 	y168, 				Ingame:
-Gui, Font
-Gui Add, Text, 										x500 	y+10, 				Close UI
-Gui Add, Text, 											 	y+10, 				Inventory
-Gui Add, Text, 											 	y+10, 				W-Swap
-Gui Add, Text, 											 	y+10, 				Item Pickup
-Gui,Add,Edit,			  	x435 y188  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
-hotkeyCloseAllUI_TT:="Put your ingame assigned hotkey here"
-Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyInventory			,%hotkeyInventory%
-hotkeyInventory_TT:="Put your ingame assigned hotkey here"
-Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyWeaponSwapKey		,%hotkeyWeaponSwapKey%
-hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey here"
-Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
-hotkeyLootScan_TT:="Put your ingame assigned hotkey here"
-Gui Add, Checkbox, gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 , Loot Vacuum?
-Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	     y+8 , Pop Flasks Respect CD?
+	Gui, Font, Bold
+	Gui Add, Text, 										x440 	y168, 				Ingame:
+	Gui, Font
+	Gui Add, Text, 										x500 	y+10, 				Close UI
+	Gui Add, Text, 											 	y+10, 				Inventory
+	Gui Add, Text, 											 	y+10, 				W-Swap
+	Gui Add, Text, 											 	y+10, 				Item Pickup
+	Gui,Add,Edit,			  	x435 y188  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
+	hotkeyCloseAllUI_TT:="Put your ingame assigned hotkey here"
+	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyInventory			,%hotkeyInventory%
+	hotkeyInventory_TT:="Put your ingame assigned hotkey here"
+	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyWeaponSwapKey		,%hotkeyWeaponSwapKey%
+	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey here"
+	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
+	hotkeyLootScan_TT:="Put your ingame assigned hotkey here"
+	Gui Add, Checkbox, gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 , Loot Vacuum?
+	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	     y+8 , Pop Flasks Respect CD?
 
-;~ =========================================================================================== Subgroup: Hints
-Gui,Font,Bold
-Gui,Add,GroupBox,Section xs	x450 y330  w120 h89							,Hotkey Modifiers
-Gui, Add, Button,  		gLaunchHelp 		x558 y330 w18 h18 , 	?
-Gui,Font,Norm
-Gui,Font,s8,Arial
-Gui,Add,Text,	 		 	x465 y350					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
-Gui,Add,Text,	 		   		y+9					,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
-Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
+	;~ =========================================================================================== Subgroup: Hints
+	Gui,Font,Bold
+	Gui,Add,GroupBox,Section xs	x450 y330  w120 h89							,Hotkey Modifiers
+	Gui, Add, Button,  		gLaunchHelp 		x558 y330 w18 h18 , 	?
+	Gui,Font,Norm
+	Gui,Font,s8,Arial
+	Gui,Add,Text,	 		 	x465 y350					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
+	Gui,Add,Text,	 		   		y+9					,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
+	Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
-;Save Setting
-Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
-Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
-Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
-;#######################################################################################################Inventory Tab
-Gui, Tab, Inventory
-Gui, Font, Bold
-Gui Add, Text, 										x12 	y30, 				Stash Management
-Gui, Font,
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabTimelessSplinter Choose%StashTabTimelessSplinter% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	;#######################################################################################################Inventory Tab
+	Gui, Tab, Inventory
+	Gui, Font, Bold
+	Gui Add, Text, 										x12 	y30, 				Stash Management
+	Gui, Font,
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabTimelessSplinter Choose%StashTabTimelessSplinter% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter Checked%StashTabYesTimelessSplinter% y+14, TSplinter Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% y+14, Map Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% y+14, Fragment Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% y+14, Divination Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% y+14, Collection Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter Checked%StashTabYesTimelessSplinter% y+14, TSplinter Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% y+14, Map Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% y+14, Fragment Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% y+14, Divination Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% y+14, Collection Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
 
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-Gui, Add, DropDownList, R5 gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, R5 gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x195 y55, Gem Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% y+14, Quality Gem Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% y+14, Quality Flask Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% y+14, Linked Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% y+14, Unique Dump Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% y+14, Unique Ring Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% y+14, Fossil Tab
-Gui, Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% y+14, Resonator Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x195 y55, Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% y+14, Quality Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% y+14, Quality Flask Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% y+14, Linked Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% y+14, Unique Dump Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% y+14, Unique Ring Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% y+14, Fossil Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% y+14, Resonator Tab
 
-Gui, Font, Bold
-Gui Add, Text, 										x352 	y30, 				ID/Vend/Stash Options:
-Gui, Font,
-Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%                         	          , Identify Items?
-Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%                         	        	  , Deposit at stash?
-Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%                         	              , Sell at vendor?
-Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%                         	          , Leave Map Un-ID?
+	Gui, Font, Bold
+	Gui Add, Text, 										x352 	y30, 				ID/Vend/Stash Options:
+	Gui, Font,
+	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%                         	          , Identify Items?
+	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%                         	        	  , Deposit at stash?
+	Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%                         	              , Sell at vendor?
+	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%                         	          , Leave Map Un-ID?
 
-Gui, Font, Bold
-Gui Add, Text, 										x20 	y280, 				Inventory Instructions:
-Gui, Font,
-Gui Add, Text, 										x22 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
-Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
-Gui Add, Text, 										x22 	y+5, 				The options to the right affect which portion of the script is enabled.
+	Gui, Font, Bold
+	Gui Add, Text, 										x20 	y280, 				Inventory Instructions:
+	Gui, Font,
+	Gui Add, Text, 										x22 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
+	Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
+	Gui Add, Text, 										x22 	y+5, 				The options to the right affect which portion of the script is enabled.
 
-Gui, +LastFound
-If (ShowOnStart)
-    Gui, Show, NoActivate Autosize Center, 	WingmanReloaded
-Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
-Menu, Tray, NoStandard
-Menu, Tray, Add, 				WingmanReloaded, optionsCommand
-Menu, Tray, Default, 			WingmanReloaded
-Menu, Tray, Add, 				Project Wiki, LaunchWiki
-Menu, Tray, Add, 				Support the Project, LaunchDonate
-Menu, Tray, Add
-Menu, Tray, Standard
-;Gui, Hide
-OnMessage(0x200, "WM_MOUSEMOVE")
-if ( Steam ) {
-    if ( HighBits ) {
-        executable := "PathOfExile_x64Steam.exe"
-    } else {
-        executable := "PathOfExileSteam.exe"
-    }
-} else {
-    if ( HighBits ) {
-        executable := "PathOfExile_x64.exe"
-    } else {
-        executable := "PathOfExile.exe"
-    }
-}
+	Gui, +LastFound
+	If (ShowOnStart)
+		Gui, Show, NoActivate Autosize Center, 	WingmanReloaded
+	Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
+	Menu, Tray, NoStandard
+	Menu, Tray, Add, 				WingmanReloaded, optionsCommand
+	Menu, Tray, Default, 			WingmanReloaded
+	Menu, Tray, Add, 				Project Wiki, LaunchWiki
+	Menu, Tray, Add, 				Support the Project, LaunchDonate
+	Menu, Tray, Add
+	Menu, Tray, Standard
+	;Gui, Hide
+	OnMessage(0x200, "WM_MOUSEMOVE")
+	if ( Steam ) {
+		if ( HighBits ) {
+			executable := "PathOfExile_x64Steam.exe"
+			} else {
+			executable := "PathOfExileSteam.exe"
+			}
+		} else {
+		if ( HighBits ) {
+			executable := "PathOfExile_x64.exe"
+			} else {
+			executable := "PathOfExile.exe"
+			}
+		}
 
-if(RadioLife==1) {
-    loop 5 {
-        GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
-            
-        GuiControl, Disable, Radiobox%A_Index%ES90
-        GuiControl, Disable, Radiobox%A_Index%ES80
-        GuiControl, Disable, Radiobox%A_Index%ES70
-        GuiControl, Disable, Radiobox%A_Index%ES60
-        GuiControl, Disable, Radiobox%A_Index%ES50
-        GuiControl, Disable, Radiobox%A_Index%ES40
-        GuiControl, Disable, Radiobox%A_Index%ES30
-        GuiControl, Disable, Radiobox%A_Index%ES20
-        GuiControl, Disable, RadioUncheck%A_Index%ES
-    }
-}
-else if(RadioHybrid==1) {
-    loop 5 {
-        GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
-            
-        GuiControl, Enable, Radiobox%A_Index%ES90
-        GuiControl, Enable, Radiobox%A_Index%ES80
-        GuiControl, Enable, Radiobox%A_Index%ES70
-        GuiControl, Enable, Radiobox%A_Index%ES60
-        GuiControl, Enable, Radiobox%A_Index%ES50
-        GuiControl, Enable, Radiobox%A_Index%ES40
-        GuiControl, Enable, Radiobox%A_Index%ES30
-        GuiControl, Enable, Radiobox%A_Index%ES20
-        GuiControl, Enable, RadioUncheck%A_Index%ES
-    }
-}
-else if(RadioCi==1) {
-    loop 5 {
-        GuiControl, Disable, Radiobox%A_Index%Life90
-            GuiControl, Disable, Radiobox%A_Index%Life80
-            GuiControl, Disable, Radiobox%A_Index%Life70
-            GuiControl, Disable, Radiobox%A_Index%Life60
-            GuiControl, Disable, Radiobox%A_Index%Life50
-            GuiControl, Disable, Radiobox%A_Index%Life40
-            GuiControl, Disable, Radiobox%A_Index%Life30
-            GuiControl, Disable, Radiobox%A_Index%Life20
-            GuiControl, Disable, RadioUncheck%A_Index%Life
-            
-        GuiControl, Enable, Radiobox%A_Index%ES90
-        GuiControl, Enable, Radiobox%A_Index%ES80
-        GuiControl, Enable, Radiobox%A_Index%ES70
-        GuiControl, Enable, Radiobox%A_Index%ES60
-        GuiControl, Enable, Radiobox%A_Index%ES50
-        GuiControl, Enable, Radiobox%A_Index%ES40
-        GuiControl, Enable, Radiobox%A_Index%ES30
-        GuiControl, Enable, Radiobox%A_Index%ES20
-        GuiControl, Enable, RadioUncheck%A_Index%ES
-    }
-}
+	if(RadioLife==1) {
+		loop 5 {
+			GuiControl, Enable, Radiobox%A_Index%Life90
+				GuiControl, Enable, Radiobox%A_Index%Life80
+				GuiControl, Enable, Radiobox%A_Index%Life70
+				GuiControl, Enable, Radiobox%A_Index%Life60
+				GuiControl, Enable, Radiobox%A_Index%Life50
+				GuiControl, Enable, Radiobox%A_Index%Life40
+				GuiControl, Enable, Radiobox%A_Index%Life30
+				GuiControl, Enable, Radiobox%A_Index%Life20
+				GuiControl, Enable, RadioUncheck%A_Index%Life
+				
+			GuiControl, Disable, Radiobox%A_Index%ES90
+			GuiControl, Disable, Radiobox%A_Index%ES80
+			GuiControl, Disable, Radiobox%A_Index%ES70
+			GuiControl, Disable, Radiobox%A_Index%ES60
+			GuiControl, Disable, Radiobox%A_Index%ES50
+			GuiControl, Disable, Radiobox%A_Index%ES40
+			GuiControl, Disable, Radiobox%A_Index%ES30
+			GuiControl, Disable, Radiobox%A_Index%ES20
+			GuiControl, Disable, RadioUncheck%A_Index%ES
+			}
+		}
+	else if(RadioHybrid==1) {
+		loop 5 {
+			GuiControl, Enable, Radiobox%A_Index%Life90
+				GuiControl, Enable, Radiobox%A_Index%Life80
+				GuiControl, Enable, Radiobox%A_Index%Life70
+				GuiControl, Enable, Radiobox%A_Index%Life60
+				GuiControl, Enable, Radiobox%A_Index%Life50
+				GuiControl, Enable, Radiobox%A_Index%Life40
+				GuiControl, Enable, Radiobox%A_Index%Life30
+				GuiControl, Enable, Radiobox%A_Index%Life20
+				GuiControl, Enable, RadioUncheck%A_Index%Life
+				
+			GuiControl, Enable, Radiobox%A_Index%ES90
+			GuiControl, Enable, Radiobox%A_Index%ES80
+			GuiControl, Enable, Radiobox%A_Index%ES70
+			GuiControl, Enable, Radiobox%A_Index%ES60
+			GuiControl, Enable, Radiobox%A_Index%ES50
+			GuiControl, Enable, Radiobox%A_Index%ES40
+			GuiControl, Enable, Radiobox%A_Index%ES30
+			GuiControl, Enable, Radiobox%A_Index%ES20
+			GuiControl, Enable, RadioUncheck%A_Index%ES
+			}
+		}
+	else if(RadioCi==1) {
+		loop 5 {
+			GuiControl, Disable, Radiobox%A_Index%Life90
+				GuiControl, Disable, Radiobox%A_Index%Life80
+				GuiControl, Disable, Radiobox%A_Index%Life70
+				GuiControl, Disable, Radiobox%A_Index%Life60
+				GuiControl, Disable, Radiobox%A_Index%Life50
+				GuiControl, Disable, Radiobox%A_Index%Life40
+				GuiControl, Disable, Radiobox%A_Index%Life30
+				GuiControl, Disable, Radiobox%A_Index%Life20
+				GuiControl, Disable, RadioUncheck%A_Index%Life
+				
+			GuiControl, Enable, Radiobox%A_Index%ES90
+			GuiControl, Enable, Radiobox%A_Index%ES80
+			GuiControl, Enable, Radiobox%A_Index%ES70
+			GuiControl, Enable, Radiobox%A_Index%ES60
+			GuiControl, Enable, Radiobox%A_Index%ES50
+			GuiControl, Enable, Radiobox%A_Index%ES40
+			GuiControl, Enable, Radiobox%A_Index%ES30
+			GuiControl, Enable, Radiobox%A_Index%ES20
+			GuiControl, Enable, RadioUncheck%A_Index%ES
+			}
+		}
 
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
@@ -1010,1918 +1009,1921 @@ else if(RadioCi==1) {
 
 ; Extra vars - Not in INI
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-global Trigger=00000
-global AutoQuit=0 
-global AutoFlask=0
-global OnCooldown:=[0,0,0,0,0]
-global Radiobox1QS
-global Radiobox2QS
-global Radiobox3QS
-global Radiobox4QS
-global Radiobox5QS
-global Radiobox1Mana10
-global Radiobox2Mana10
-global Radiobox3Mana10
-global Radiobox4Mana10
-global Radiobox5Mana10
+	global Trigger=00000
+	global AutoQuit=0 
+	global AutoFlask=0
+	global OnCooldown:=[0,0,0,0,0]
+	global Radiobox1QS
+	global Radiobox2QS
+	global Radiobox3QS
+	global Radiobox4QS
+	global Radiobox5QS
+	global Radiobox1Mana10
+	global Radiobox2Mana10
+	global Radiobox3Mana10
+	global Radiobox4Mana10
+	global Radiobox5Mana10
 
-IfWinExist, ahk_group POEGameGroup
-{
-    Rescale()
-} else {
-    Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
-    Global InventoryGridY := [ 638, 690, 743, 796, 848 ]  
-    Global DetonateDelveX:=1542
-    Global DetonateX:=1658
-    Global DetonateY:=901
-    Global WisdomStockX:=125
-    Global PortalStockX:=175
-    Global WPStockY:=262
-    
-    global vX_OnHideout:=1241
-    global vY_OnHideout:=951
-    global vX_OnChar:=41
-    global vY_OnChar:=915
-    global vX_OnChat:=41
-    global vY_OnChat:=915
-    global vX_OnInventory:=1583
-    global vY_OnInventory:=36
-    global vX_OnStash:=336
-    global vY_OnStash:=32
-    global vX_OnVendor:=618
-    global vY_OnVendor:=88
-    
-    global vX_Life:=95
-        global vY_Life90:=1034
-        global vY_Life80:=1014
-        global vY_Life70:=994
-        global vY_Life60:=974
-        global vY_Life50:=954
-        global vY_Life40:=934
-        global vY_Life30:=914
-        global vY_Life20:=894
-        
-    global vX_ES:=180
-    global vY_ES90:=1034
-    global vY_ES80:=1014
-    global vY_ES70:=994
-    global vY_ES60:=974
-    global vY_ES50:=954
-    global vY_ES40:=934
-    global vY_ES30:=914
-    global vY_ES20:=894
-    
-    global vX_Mana:=1825
-    global vY_Mana10:=1054
-    
-    global vX_StashTabMenu := 640
-    global vY_StashTabMenu := 146
-    global vX_StashTabList := 760
-    global vY_StashTabList := 120
-    global vY_StashTabSize := 22
-}
+	IfWinExist, ahk_group POEGameGroup
+		{
+		Rescale()
+		} else {
+		Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
+		Global InventoryGridY := [ 638, 690, 743, 796, 848 ]  
+		Global DetonateDelveX:=1542
+		Global DetonateX:=1658
+		Global DetonateY:=901
+		Global WisdomStockX:=125
+		Global PortalStockX:=175
+		Global WPStockY:=262
+		
+		global vX_OnHideout:=1241
+		global vY_OnHideout:=951
+		global vX_OnChar:=41
+		global vY_OnChar:=915
+		global vX_OnChat:=41
+		global vY_OnChat:=915
+		global vX_OnInventory:=1583
+		global vY_OnInventory:=36
+		global vX_OnStash:=336
+		global vY_OnStash:=32
+		global vX_OnVendor:=618
+		global vY_OnVendor:=88
+		
+		global vX_Life:=95
+		global vY_Life90:=1034
+		global vY_Life80:=1014
+		global vY_Life70:=994
+		global vY_Life60:=974
+		global vY_Life50:=954
+		global vY_Life40:=934
+		global vY_Life30:=914
+		global vY_Life20:=894
+			
+		global vX_ES:=180
+		global vY_ES90:=1034
+		global vY_ES80:=1014
+		global vY_ES70:=994
+		global vY_ES60:=974
+		global vY_ES50:=954
+		global vY_ES40:=934
+		global vY_ES30:=914
+		global vY_ES20:=894
+		
+		global vX_Mana:=1825
+		global vY_Mana10:=1054
+		
+		global vX_StashTabMenu := 640
+		global vY_StashTabMenu := 146
+		global vX_StashTabList := 760
+		global vY_StashTabList := 120
+		global vY_StashTabSize := 22
+		}
 
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Gui 2:Color, 0X130F13
-Gui 2:+LastFound +AlwaysOnTop +ToolWindow
-WinSet, TransColor, 0X130F13
-Gui 2: -Caption
-Gui 2:Font, bold cFFFFFF S10, Trebuchet MS
-Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
-Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
+	Gui 2:Color, 0X130F13
+	Gui 2:+LastFound +AlwaysOnTop +ToolWindow
+	WinSet, TransColor, 0X130F13
+	Gui 2: -Caption
+	Gui 2:Font, bold cFFFFFF S10, Trebuchet MS
+	Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
+	Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
 
-IfWinExist, ahk_group POEGameGroup
-{
-    Rescale()
-    Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
-    ToggleExist := True
-    WinActivate, ahk_group POEGameGroup
-    If (ShowOnStart)
-        Hotkeys()
-}
+	IfWinExist, ahk_group POEGameGroup
+		{
+		Rescale()
+		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+		ToggleExist := True
+		WinActivate, ahk_group POEGameGroup
+		If (ShowOnStart)
+			Hotkeys()
+		}
 
 ; Check for window to open
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SetTimer, PoEWindowCheck, 5000
+	SetTimer, PoEWindowCheck, 5000
 ; Detonate mines timer check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-If (DetonateMines&&!Detonated)
-    SetTimer, TMineTick, 100
-Else If (!DetonateMines)
-    SetTimer, TMineTick, off
+	If (DetonateMines&&!Detonated)
+		SetTimer, TMineTick, 100
+	Else If (!DetonateMines)
+		SetTimer, TMineTick, off
 
 ; Key Passthrough for 1-5 & Attack keys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;Passthrough for manual activation
-; pass-thru and start timer for flask 1
-~1::
-    OnCooldown[1]:=1 
-    settimer, TimmerFlask1, %CooldownFlask1%
-    SendMSG(3, 1, scriptGottaGoFast)
-return
+	;Passthrough for manual activation
+	; pass-thru and start timer for flask 1
+	~1::
+		OnCooldown[1]:=1 
+		settimer, TimmerFlask1, %CooldownFlask1%
+		SendMSG(3, 1, scriptGottaGoFast)
+		return
 
-; pass-thru and start timer for flask 2
-~2::
-    OnCooldown[2]:=1 
-    settimer, TimmerFlask2, %CooldownFlask2%
-    SendMSG(3, 2, scriptGottaGoFast)
-return
+	; pass-thru and start timer for flask 2
+	~2::
+		OnCooldown[2]:=1 
+		settimer, TimmerFlask2, %CooldownFlask2%
+		SendMSG(3, 2, scriptGottaGoFast)
+		return
 
-; pass-thru and start timer for flask 3
-~3::
-    OnCooldown[3]:=1 
-    settimer, TimmerFlask3, %CooldownFlask3%
-    SendMSG(3, 3, scriptGottaGoFast)
-return
+	; pass-thru and start timer for flask 3
+	~3::
+		OnCooldown[3]:=1 
+		settimer, TimmerFlask3, %CooldownFlask3%
+		SendMSG(3, 3, scriptGottaGoFast)
+		return
 
-; pass-thru and start timer for flask 4
-~4::
-    OnCooldown[4]:=1 
-    settimer, TimmerFlask4, %CooldownFlask4%
-    SendMSG(3, 4, scriptGottaGoFast)
-return
+	; pass-thru and start timer for flask 4
+	~4::
+		OnCooldown[4]:=1 
+		settimer, TimmerFlask4, %CooldownFlask4%
+		SendMSG(3, 4, scriptGottaGoFast)
+		return
 
-; pass-thru and start timer for flask 5
-~5::
-    OnCooldown[5]:=1 
-    settimer, TimmerFlask5, %CooldownFlask5%
-    SendMSG(3, 5, scriptGottaGoFast)
-return
+	; pass-thru and start timer for flask 5
+	~5::
+		OnCooldown[5]:=1 
+		settimer, TimmerFlask5, %CooldownFlask5%
+		SendMSG(3, 5, scriptGottaGoFast)
+		return
 
 ; Move to # stash hotkeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-If (YesStashKeys){
-^1::
-    ;Keywait, Ctrl
-    MoveStash(1)
-return
+	If (YesStashKeys){
+		^1::
+			;Keywait, Ctrl
+			MoveStash(1)
+			return
 
-^2::
-    ;Keywait, Ctrl
-    MoveStash(2)
-return
+		^2::
+			;Keywait, Ctrl
+			MoveStash(2)
+			return
 
-^3::
-    ;Keywait, Ctrl
-    MoveStash(3)
-return
+		^3::
+			;Keywait, Ctrl
+			MoveStash(3)
+			return
 
-^4::
-    ;Keywait, Ctrl
-    MoveStash(4)
-return
+		^4::
+			;Keywait, Ctrl
+			MoveStash(4)
+			return
 
-^5::
-    ;Keywait, Ctrl
-    MoveStash(5)
-return
+		^5::
+			;Keywait, Ctrl
+			MoveStash(5)
+			return
 
-^6::
-    ;Keywait, Ctrl
-    MoveStash(6)
-return
+		^6::
+			;Keywait, Ctrl
+			MoveStash(6)
+			return
 
-^7::
-    ;Keywait, Ctrl
-    MoveStash(7)
-return
+		^7::
+			;Keywait, Ctrl
+			MoveStash(7)
+			return
 
-^8::
-    ;Keywait, Ctrl
-    MoveStash(8)
-return
+		^8::
+			;Keywait, Ctrl
+			MoveStash(8)
+			return
 
-^9::
-    ;Keywait, Ctrl
-    MoveStash(9)
-return
+		^9::
+			;Keywait, Ctrl
+			MoveStash(9)
+			return
 
-^0::
-    ;Keywait, Ctrl
-    MoveStash(10)
-return
-}
+		^0::
+			;Keywait, Ctrl
+			MoveStash(10)
+			return
+		}
 
 ;Reload Script with Alt+Escape
-!Escape::
-    Reload
-Return
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	!Escape::
+		Reload
+		Return
 
 ;Exit Script with Win+Escape
-#Escape::
-    ExitApp
-Return
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	#Escape::
+		ExitApp
+		Return
 
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Loot Scanner for items under cursor pressing Loot button
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LootScan(){
-LootScanCommand:
-    Pressed := GetKeyState(hotkeyLootScan, "P")
-    While (Pressed&&LootVacuum)
-    {
-        For k, ColorHex in LootColors
-        {
-            Pressed := GetKeyState(hotkeyLootScan, "P")
-            Sleep, -1
-            MouseGetPos CenterX, CenterY
-            ScanX1:=(CenterX-AreaScale)
-            ScanY1:=(CenterY-AreaScale)
-            ScanX2:=(CenterX+AreaScale)
-            ScanY2:=(CenterY+AreaScale)
-            PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
-            If (ErrorLevel = 0){
-                Pressed := GetKeyState(hotkeyLootScan, "P")
-                If !(Pressed)
-                    Break
-                Sleep, -1
-                SwiftClick(ScanPx, ScanPy)
-                }
-            Else If (ErrorLevel = 1)
-                Continue
-        }
-    }
-Return
-}
+	LootScan(){
+	LootScanCommand:
+		Pressed := GetKeyState(hotkeyLootScan, "P")
+		While (Pressed&&LootVacuum)
+		{
+			For k, ColorHex in LootColors
+			{
+				Pressed := GetKeyState(hotkeyLootScan, "P")
+				Sleep, -1
+				MouseGetPos CenterX, CenterY
+				ScanX1:=(CenterX-AreaScale)
+				ScanY1:=(CenterY-AreaScale)
+				ScanX2:=(CenterX+AreaScale)
+				ScanY2:=(CenterY+AreaScale)
+				PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
+				If (ErrorLevel = 0){
+					Pressed := GetKeyState(hotkeyLootScan, "P")
+					If !(Pressed)
+						Break
+					Sleep, -1
+					SwiftClick(ScanPx, ScanPy)
+					}
+				Else If (ErrorLevel = 1)
+					Continue
+			}
+		}
+	Return
+	}
 
 ; Sort inventory and determine action
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ItemSort(){
-ItemSortCommand:
-    Critical
-    CurrentTab:=0
-    MouseGetPos xx, yy
-    IfWinActive, Path of Exile
-    {
-        If RunningToggle  ; This means an underlying thread is already running the loop below.
-        {
-            RunningToggle := False  ; Signal that thread's loop to stop.
-            return  ; End this thread so that the one underneath will resume and see the change made by the line above.
-        }
-        RunningToggle := True
-        GuiStatus()
-        
-        If ((!OnInventory&&OnChar)||(!OnChar)){ ;Need to be on Character and have Inventory Open
-			MsgBox %  "Make sure your inventory is open, doing nothing now."
-			Return
-		}
+	ItemSort(){
+	ItemSortCommand:
+		Critical
+		CurrentTab:=0
+		MouseGetPos xx, yy
+		IfWinActive, Path of Exile
+		{
+			If RunningToggle  ; This means an underlying thread is already running the loop below.
+			{
+				RunningToggle := False  ; Signal that thread's loop to stop.
+				return  ; End this thread so that the one underneath will resume and see the change made by the line above.
+			}
+			RunningToggle := True
+			GuiStatus()
+			
+			If ((!OnInventory&&OnChar)||(!OnChar)){ ;Need to be on Character and have Inventory Open
+				MsgBox %  "Make sure your inventory is open, doing nothing now."
+				Return
+			}
 
-        For C, GridX in InventoryGridX
-        {
-            If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-                Break
-            For R, GridY in InventoryGridY
-            {
-                If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-                    Break
-                Grid := RandClick(GridX, GridY)
-                If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-                {   
-                    ;Unmark the below lines to check if it is going into scroll area during run
-                    ;MsgBox, Hit Scroll
-                    ;Return
-                    Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-                } 
-                pixelgetcolor, PointColor, GridX, GridY
-                
-                If (indexOf(PointColor, varEmptyInvSlotColor)){
-                    ;Seems to be an empty slot, do not need to clip item info
-					Continue
+			For C, GridX in InventoryGridX
+			{
+				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+					Break
+				For R, GridY in InventoryGridY
+				{
+					If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+						Break
+					Grid := RandClick(GridX, GridY)
+					If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+					{   
+						;Unmark the below lines to check if it is going into scroll area during run
+						;MsgBox, Hit Scroll
+						;Return
+						Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+					} 
+					pixelgetcolor, PointColor, GridX, GridY
+					
+					If (indexOf(PointColor, varEmptyInvSlotColor)){
+						;Seems to be an empty slot, do not need to clip item info
+						Continue
+					}
+					
+					ClipItem(Grid.X,Grid.Y)
+					If (!ItemProp.Identified&&YesIdentify)
+					{
+						If (ItemProp.Map&&!YesMapUnid)
+						{
+							WisdomScroll(Grid.X,Grid.Y)
+						}
+						Else If (ItemProp.Chromatic && (ItemProp.RarityRare || ItemProp.RarityUnique ) ) 
+						{
+							WisdomScroll(Grid.X,Grid.Y)
+						}
+						Else If ( ItemProp.Jeweler && ( ItemProp.5Link || ItemProp.6Link || ItemProp.RarityRare || ItemProp.RarityUnique) )
+						{
+							WisdomScroll(Grid.X,Grid.Y)
+						}
+						Else If (!ItemProp.Chromatic && !ItemProp.Jeweler&&!ItemProp.Map)
+						{
+							WisdomScroll(Grid.X,Grid.Y)
+						}
+					}
+					If (OnStash&&YesStash) 
+					{
+						If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
+						{
+							MoveStash(StashTabCurrency)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Map&&StashTabYesMap)
+						{
+							MoveStash(StashTabMap)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.BreachSplinter&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.SacrificeFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.MortalFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.GuardianFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.ProphecyFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Offering&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Vessel&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Scarab&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.RarityDivination&&StashTabYesDivination)
+						{
+							MoveStash(StashTabDivination)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.RarityUnique&&ItemProp.Ring)
+						{
+							If (StashTabYesCollection)
+							{
+								MoveStash(StashTabCollection)
+								RandomSleep(30,45)
+								CtrlClick(Grid.X,Grid.Y)
+								If (StashTabYesUniqueRing)
+								{
+									pixelgetcolor, Pitem, GridX, GridY
+									if (Pitem!=MOColor)
+										Continue
+									Sleep, 60*Latency
+								}
+							}
+							If (StashTabYesUniqueRing)
+							{
+								MoveStash(StashTabUniqueRing)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							Continue
+						}
+						Else If (ItemProp.RarityUnique)
+						{
+							If (StashTabYesCollection)
+							{
+								MoveStash(StashTabCollection)
+								RandomSleep(30,45)
+								CtrlClick(Grid.X,Grid.Y)
+								If (StashTabYesUniqueDump)
+								{
+									Sleep, 15*Latency
+									pixelgetcolor, Pitem, GridX, GridY
+									if (Pitem!=MOColor) 
+										Continue
+									Sleep, 45*Latency
+								}
+							}
+							If (StashTabYesUniqueDump)
+							{
+								MoveStash(StashTabUniqueDump)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							Continue
+						}
+						If (ItemProp.Essence&&StashTabYesEssence)
+						{
+							MoveStash(StashTabEssence)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Fossil&&StashTabYesFossil)
+						{
+							MoveStash(StashTabFossil)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Resonator&&StashTabYesResonator)
+						{
+							MoveStash(StashTabResonator)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
+						{
+							MoveStash(StashTabFlaskQuality)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.RarityGem)
+						{
+							If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
+							{
+								MoveStash(StashTabGemQuality)
+								CtrlClick(Grid.X,Grid.Y)
+								Continue
+							}
+							Else If (StashTabYesGem)
+							{
+								MoveStash(StashTabGem)
+								CtrlClick(Grid.X,Grid.Y)
+								Continue
+							}
+						}
+						If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
+						{
+							MoveStash(StashTabLinked)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
+						{
+							MoveStash(StashTabTimelessSplinter)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (ItemProp.Prophecy&&StashTabYesProphecy)
+						{
+							MoveStash(StashTabProphecy)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+					}
+					If (OnVendor&&YesVendor)
+					{
+						If (ItemProp.RarityCurrency)
+							Continue
+						If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
+							Continue
+						If ( ItemProp.SpecialType="" )
+						{
+							Sleep, 30*Latency
+							CtrlClick(Grid.X,Grid.Y)
+							Sleep, 10*Latency
+							Continue
+						}
+					}
 				}
-                
-                ClipItem(Grid.X,Grid.Y)
-                If (!ItemProp.Identified&&YesIdentify)
-                {
-                    If (ItemProp.Map&&!YesMapUnid)
-                    {
-                        WisdomScroll(Grid.X,Grid.Y)
-                    }
-                    Else If (ItemProp.Chromatic && (ItemProp.RarityRare || ItemProp.RarityUnique ) ) 
-                    {
-                        WisdomScroll(Grid.X,Grid.Y)
-                    }
-                    Else If ( ItemProp.Jeweler && ( ItemProp.5Link || ItemProp.6Link || ItemProp.RarityRare || ItemProp.RarityUnique) )
-                    {
-                        WisdomScroll(Grid.X,Grid.Y)
-                    }
-                    Else If (!ItemProp.Chromatic && !ItemProp.Jeweler&&!ItemProp.Map)
-                    {
-                        WisdomScroll(Grid.X,Grid.Y)
-                    }
-                }
-                If (OnStash&&YesStash) 
-                {
-                    If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
-                    {
-                        MoveStash(StashTabCurrency)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.Map&&StashTabYesMap)
-                    {
-                        MoveStash(StashTabMap)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.BreachSplinter&&StashTabYesFragment)
-                    {
-                        MoveStash(StashTabFragment)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.SacrificeFragment&&StashTabYesFragment)
-                    {
-                        MoveStash(StashTabFragment)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.MortalFragment&&StashTabYesFragment)
-                    {
-                        MoveStash(StashTabFragment)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.GuardianFragment&&StashTabYesFragment)
-                    {
-                        MoveStash(StashTabFragment)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.ProphecyFragment&&StashTabYesFragment)
-                    {
-                        MoveStash(StashTabFragment)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.Offering&&StashTabYesFragment)
-                    {
-                        MoveStash(StashTabFragment)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.Vessel&&StashTabYesFragment)
-                    {
-                        MoveStash(StashTabFragment)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.Scarab&&StashTabYesFragment)
-                    {
-                        MoveStash(StashTabFragment)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.RarityDivination&&StashTabYesDivination)
-                    {
-                        MoveStash(StashTabDivination)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.RarityUnique&&ItemProp.Ring)
-                    {
-                        If (StashTabYesCollection)
-                        {
-                            MoveStash(StashTabCollection)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            If (StashTabYesUniqueRing)
-                            {
-                                pixelgetcolor, Pitem, GridX, GridY
-                                if (Pitem!=MOColor)
-                                    Continue
-                                Sleep, 60*Latency
-                            }
-                        }
-                        If (StashTabYesUniqueRing)
-                        {
-                            MoveStash(StashTabUniqueRing)
-                            CtrlClick(Grid.X,Grid.Y)
-                        }
-                        Continue
-                    }
-                    Else If (ItemProp.RarityUnique)
-                    {
-                        If (StashTabYesCollection)
-                        {
-                            MoveStash(StashTabCollection)
-                            RandomSleep(30,45)
-                            CtrlClick(Grid.X,Grid.Y)
-                            If (StashTabYesUniqueDump)
-                            {
-                                Sleep, 15*Latency
-                                pixelgetcolor, Pitem, GridX, GridY
-                                if (Pitem!=MOColor) 
-                                    Continue
-                                Sleep, 45*Latency
-                            }
-                        }
-                        If (StashTabYesUniqueDump)
-                        {
-                            MoveStash(StashTabUniqueDump)
-                            CtrlClick(Grid.X,Grid.Y)
-                        }
-                        Continue
-                    }
-                    If (ItemProp.Essence&&StashTabYesEssence)
-                    {
-                        MoveStash(StashTabEssence)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.Fossil&&StashTabYesFossil)
-                    {
-                        MoveStash(StashTabFossil)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.Resonator&&StashTabYesResonator)
-                    {
-                        MoveStash(StashTabResonator)
-                        RandomSleep(30,45)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
-                    {
-                        MoveStash(StashTabFlaskQuality)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.RarityGem)
-                    {
-                        If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
-                        {
-                            MoveStash(StashTabGemQuality)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                        Else If (StashTabYesGem)
-                        {
-                            MoveStash(StashTabGem)
-                            CtrlClick(Grid.X,Grid.Y)
-                            Continue
-                        }
-                    }
-                    If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
-                    {
-                        MoveStash(StashTabLinked)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
-                    {
-                        MoveStash(StashTabTimelessSplinter)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                    If (ItemProp.Prophecy&&StashTabYesProphecy)
-                    {
-                        MoveStash(StashTabProphecy)
-                        CtrlClick(Grid.X,Grid.Y)
-                        Continue
-                    }
-                }
-                If (OnVendor&&YesVendor)
-                {
-                    If (ItemProp.RarityCurrency)
-                        Continue
-                    If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
-                        Continue
-                    If ( ItemProp.SpecialType="" )
-                    {
-                        Sleep, 30*Latency
-                        CtrlClick(Grid.X,Grid.Y)
-                        Sleep, 10*Latency
-                        Continue
-                    }
-                }
-            }
-            MouseGetPos Checkx, Checky
-            If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-                Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-                Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
-                MouseMove, RX, RY, 0
-                Sleep, 45*Latency
-            }
-        }
-        If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-        {
-            StockScrolls()
-        }
-    }
-    RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
-    CurrentTab:=0
-    MouseMove, xx, yy, 0
-Return
-}
+				MouseGetPos Checkx, Checky
+				If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+					Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+					Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+					MouseMove, RX, RY, 0
+					Sleep, 45*Latency
+				}
+			}
+			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+			{
+				StockScrolls()
+			}
+		}
+		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+		CurrentTab:=0
+		MouseMove, xx, yy, 0
+	Return
+	}
 
 ; Input any digit and it will move to that Stash tab, only tested up to 25 tabs
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MoveStash(Tab){
-    If (CurrentTab=Tab)
-        return
-    If (CurrentTab!=Tab)
-    {
-        MouseGetPos MSx, MSy
-        BlockInput, MouseMove
-        Sleep, 45*Latency
-        MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-        Sleep, 45*Latency
-        Click, Down, Left, 1
-        Sleep, 45*Latency
-        Click, Up, Left, 1
-        Sleep, 45*Latency
-        MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-        Sleep, 45*Latency
-        send {Enter}
-        Sleep, 45*Latency
-        MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-        Sleep, 45*Latency
-        Click, Down, Left, 1
-        Sleep, 45*Latency
-        Click, Up, Left, 1
-        Sleep, 45*Latency
-        CurrentTab:=Tab
-        MouseMove, MSx, MSy, 0
-        Sleep, 45*Latency
-        BlockInput, MouseMoveOff
-    }
-return
-}
+	MoveStash(Tab){
+		If (CurrentTab=Tab)
+			return
+		If (CurrentTab!=Tab)
+		{
+			MouseGetPos MSx, MSy
+			BlockInput, MouseMove
+			Sleep, 45*Latency
+			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+			Sleep, 45*Latency
+			Click, Down, Left, 1
+			Sleep, 45*Latency
+			Click, Up, Left, 1
+			Sleep, 45*Latency
+			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
+			Sleep, 45*Latency
+			send {Enter}
+			Sleep, 45*Latency
+			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+			Sleep, 45*Latency
+			Click, Down, Left, 1
+			Sleep, 45*Latency
+			Click, Up, Left, 1
+			Sleep, 45*Latency
+			CurrentTab:=Tab
+			MouseMove, MSx, MSy, 0
+			Sleep, 45*Latency
+			BlockInput, MouseMoveOff
+		}
+	return
+	}
 
 ; Swift Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SwiftClick(x, y){
-    MouseMove, x, y	
-    Sleep, 15*Latency
-    Send {Click, Down x, y }
-    Sleep, 45*Latency
-    Send {Click, Up x, y }
-    Sleep, 15*Latency
-return
-}
+	SwiftClick(x, y){
+		MouseMove, x, y	
+		Sleep, 15*Latency
+		Send {Click, Down x, y }
+		Sleep, 45*Latency
+		Send {Click, Up x, y }
+		Sleep, 15*Latency
+	return
+	}
 
 ; Right Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RightClick(x, y){
-    BlockInput, MouseMove
-    MouseMove, x, y
-    Sleep, 15*Latency
-    Send {Click, Down x, y, Right}
-    Sleep, 45*Latency
-    Send {Click, Up x, y, Right}
-    Sleep, 15*Latency
-    BlockInput, MouseMoveOff
-return
-}
+	RightClick(x, y){
+		BlockInput, MouseMove
+		MouseMove, x, y
+		Sleep, 15*Latency
+		Send {Click, Down x, y, Right}
+		Sleep, 45*Latency
+		Send {Click, Up x, y, Right}
+		Sleep, 15*Latency
+		BlockInput, MouseMoveOff
+	return
+	}
 
 ; Shift Click +Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ShiftClick(x, y){
-    BlockInput, MouseMove
-    MouseMove, x, y
-    Sleep, 15*Latency
-    Send {Shift Down}
-        Sleep, 30*Latency
-    Send {Click, Down, x, y}
-    Sleep, 45*Latency
-    Send {Click, Up, x, y}
-    Sleep, 15*Latency
-    Send {Shift Up}
-        Sleep, 15*Latency
-    BlockInput, MouseMoveOff
-return
-}
+	ShiftClick(x, y){
+		BlockInput, MouseMove
+		MouseMove, x, y
+		Sleep, 15*Latency
+		Send {Shift Down}
+			Sleep, 30*Latency
+		Send {Click, Down, x, y}
+		Sleep, 45*Latency
+		Send {Click, Up, x, y}
+		Sleep, 15*Latency
+		Send {Shift Up}
+			Sleep, 15*Latency
+		BlockInput, MouseMoveOff
+	return
+	}
 
 ; Ctrl Click ^Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CtrlClick(x, y){
-    BlockInput, MouseMove
-    MouseMove, x, y
-    Sleep, 15*Latency
-    Send {Ctrl Down}
-    Sleep, 30*Latency
-    Send {Click, Down, x, y}
-    Sleep, 45*Latency
-    Send {Click, Up, x, y}
-    ;Send ^{Click, Up, x, y}
-    Sleep, 15*Latency
-    Send {Ctrl Up}
-    Sleep, 15*Latency
-    BlockInput, MouseMoveOff
-return
-}
+	CtrlClick(x, y){
+		BlockInput, MouseMove
+		MouseMove, x, y
+		Sleep, 15*Latency
+		Send {Ctrl Down}
+		Sleep, 30*Latency
+		Send {Click, Down, x, y}
+		Sleep, 45*Latency
+		Send {Click, Up, x, y}
+		;Send ^{Click, Up, x, y}
+		Sleep, 15*Latency
+		Send {Ctrl Up}
+		Sleep, 15*Latency
+		BlockInput, MouseMoveOff
+	return
+	}
 
 ; Identify Item at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-WisdomScroll(x, y){
-    BlockInput, MouseMove
-    Sleep, 30*Latency
-    MouseMove %WisdomScrollX%, %WisdomScrollY%
-    Sleep, 30*Latency
-    Click, Down, Right, 1
-    Sleep, 45*Latency
-    Click, Up, Right, 1
-    Sleep, 15*Latency
-    MouseMove %x%, %y%
-    Sleep, 30*Latency
-    Click, Down, Left, 1
-    Sleep, 45*Latency
-    Click, Up, Left, 1
-    Sleep, 30*Latency
-    BlockInput, MouseMoveOff
-return
-}
+	WisdomScroll(x, y){
+		BlockInput, MouseMove
+		Sleep, 30*Latency
+		MouseMove %WisdomScrollX%, %WisdomScrollY%
+		Sleep, 30*Latency
+		Click, Down, Right, 1
+		Sleep, 45*Latency
+		Click, Up, Right, 1
+		Sleep, 15*Latency
+		MouseMove %x%, %y%
+		Sleep, 30*Latency
+		Click, Down, Left, 1
+		Sleep, 45*Latency
+		Click, Up, Left, 1
+		Sleep, 30*Latency
+		BlockInput, MouseMoveOff
+	return
+	}
 
 ; Restock scrolls that have more than 10 missing
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-StockScrolls(){
-    BlockInput, MouseMove
-    If StockWisdom{
-        MouseMove %WisdomScrollX%, %WisdomScrollY%
-        ClipItem(WisdomScrollX, WisdomScrollY)
-        Sleep, 20*Latency
-        dif := (40 - ItemProp.Stack)
-            If (dif>10)
-        {
-            MoveStash(1)
-            MouseMove WisdomStockX, WPStockY
-            Sleep, 15*Latency
-            ShiftClick(WisdomStockX, WPStockY)
-                Sleep, 30*Latency
-            Send %dif%
-                Sleep, 45*Latency
-            Send {Enter}
-            Sleep, 60*Latency
-            Send {Click, Down, %WisdomScrollX%, %WisdomScrollY%}
-            Sleep, 30*Latency
-            Send {Click, Up, %WisdomScrollX%, %WisdomScrollY%}
-            Sleep, 45*Latency
-        }
-        Sleep, 20*Latency
-    }
-    If StockPortal{
-        MouseMove %PortalScrollX%, %PortalScrollY%
-        ClipItem(PortalScrollX, PortalScrollY)
-        Sleep, 20*Latency
-        dif := (40 - ItemProp.Stack)
-            If (dif>10)
-        {
-            MoveStash(1)
-            MouseMove PortalStockX, WPStockY
-            Sleep, 15*Latency
-            ShiftClick(PortalStockX, WPStockY)
-                Sleep, 30*Latency
-            Send %dif%
-                Sleep, 45*Latency
-            Send {Enter}
-            Sleep, 60*Latency
-            Send {Click, Down, %PortalScrollX%, %PortalScrollY%}
-            Sleep, 30*Latency
-            Send {Click, Up, %PortalScrollX%, %PortalScrollY%}
-            Sleep, 45*Latency
-        }
-    }
-    BlockInput, MouseMoveOff
-return
-}
+	StockScrolls(){
+		BlockInput, MouseMove
+		If StockWisdom{
+			MouseMove %WisdomScrollX%, %WisdomScrollY%
+			ClipItem(WisdomScrollX, WisdomScrollY)
+			Sleep, 20*Latency
+			dif := (40 - ItemProp.Stack)
+				If (dif>10)
+			{
+				MoveStash(1)
+				MouseMove WisdomStockX, WPStockY
+				Sleep, 15*Latency
+				ShiftClick(WisdomStockX, WPStockY)
+					Sleep, 30*Latency
+				Send %dif%
+					Sleep, 45*Latency
+				Send {Enter}
+				Sleep, 60*Latency
+				Send {Click, Down, %WisdomScrollX%, %WisdomScrollY%}
+				Sleep, 30*Latency
+				Send {Click, Up, %WisdomScrollX%, %WisdomScrollY%}
+				Sleep, 45*Latency
+			}
+			Sleep, 20*Latency
+		}
+		If StockPortal{
+			MouseMove %PortalScrollX%, %PortalScrollY%
+			ClipItem(PortalScrollX, PortalScrollY)
+			Sleep, 20*Latency
+			dif := (40 - ItemProp.Stack)
+				If (dif>10)
+			{
+				MoveStash(1)
+				MouseMove PortalStockX, WPStockY
+				Sleep, 15*Latency
+				ShiftClick(PortalStockX, WPStockY)
+					Sleep, 30*Latency
+				Send %dif%
+					Sleep, 45*Latency
+				Send {Enter}
+				Sleep, 60*Latency
+				Send {Click, Down, %PortalScrollX%, %PortalScrollY%}
+				Sleep, 30*Latency
+				Send {Click, Up, %PortalScrollX%, %PortalScrollY%}
+				Sleep, 45*Latency
+			}
+		}
+		BlockInput, MouseMoveOff
+	return
+	}
 
 ; Randomize Click area around middle of cell using Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RandClick(x, y){
-    Random, Rx, x+5, x+45
-    Random, Ry, y-45, y-5
-return {"X": Rx, "Y": Ry}
-}
+	RandClick(x, y){
+		Random, Rx, x+5, x+45
+		Random, Ry, y-45, y-5
+	return {"X": Rx, "Y": Ry}
+	}
 
 ; Scales two resolution quardinates -- Currently not being used
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ScaleRes(x, y){
-    Rx:=Round(A_ScreenWidth / (1920 / x))
-    Ry:=Round(A_ScreenHeight / (1080 / y))
-return {"X": Rx, "Y": Ry}
-}
+	ScaleRes(x, y){
+		Rx:=Round(A_ScreenWidth / (1920 / x))
+		Ry:=Round(A_ScreenHeight / (1080 / y))
+	return {"X": Rx, "Y": Ry}
+	}
 
 ; Rescales values for specialty resolutions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Rescale(){
-    IfWinExist, ahk_group POEGameGroup 
-    {
-        WinGetPos, X, Y, W, H
-        If (ResolutionScale="Standard") {
-            ; Item Inventory Grid
-            Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
-            Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-            ;Detonate Mines
-            Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
-            Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
-            Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-            ;Scrolls in currency tab
-            Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
-            Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
-            Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-            ;Status Check OnHideout
-            global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
-            global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-            ;Status Check OnChar
-            global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-            global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-            ;Status Check OnChat
-            global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-            global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-            ;Status Check OnInventory
-            global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-            global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-            ;Status Check OnStash
-            global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-            global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-            ;Status Check OnVendor
-            global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-            global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-            ;Life %'s
-            global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-                global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-                global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-                global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-                global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-                global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-                global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-                global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-                global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-                ;ES %'s
-            global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
-            global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-            global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-            global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-            global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-            global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-            global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-            global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-            global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-            ;Mana
-            global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
-            global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-            ;GUI overlay
-            global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
-            global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-            ;Stash tabs menu button
-            global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
-            global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-            ;Stash tabs menu list
-            global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 760))
-            global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-            ;calculate the height of each tab
-            global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-        }
-        Else If (ResolutionScale="UltraWide") {
-            ; Item Inventory Grid
-            Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
-            Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-            ;Detonate Mines
-            Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
-            Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
-            Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-            ;Scrolls in currency tab
-            Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
-            Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
-            Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-            ;Status Check OnHideout
-            global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-            global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
-            ;Status Check OnChar
-            global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-            global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-            ;Status Check OnChat
-            global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-            global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-            ;Status Check OnInventory
-            global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-            global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-            ;Status Check OnStash
-            global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-            global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-            ;Status Check OnVendor
-            global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-            global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-            ;Life %'s
-            global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-                global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-                global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-                global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-                global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-                global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-                global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-                global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-                global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-                ;ES %'s
-            global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-            global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-            global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-            global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-            global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-            global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-            global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-            global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-            global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-            ;Mana
-            global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-            global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-            ;GUI overlay
-            global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
-            global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-            ;Stash tabs menu button
-            global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
-            global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-            ;Stash tabs menu list
-            global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
-            global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-            ;calculate the height of each tab
-            global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-        } 
-        Else If (ResolutionScale="QHD") {
-            ; Item Inventory Grid
-            Global InventoryGridX := [ Round(A_ScreenWidth/(2560/3193)), Round(A_ScreenWidth/(2560/3246)), Round(A_ScreenWidth/(2560/3299)), Round(A_ScreenWidth/(2560/3352)), Round(A_ScreenWidth/(2560/3404)), Round(A_ScreenWidth/(2560/3457)), Round(A_ScreenWidth/(2560/3510)), Round(A_ScreenWidth/(2560/3562)), Round(A_ScreenWidth/(2560/3615)), Round(A_ScreenWidth/(2560/3668)), Round(A_ScreenWidth/(2560/3720)), Round(A_ScreenWidth/(2560/3773)) ]
-            Global InventoryGridY := [ Round(A_ScreenHeight/(1440/638)), Round(A_ScreenHeight/(1440/690)), Round(A_ScreenHeight/(1440/743)), Round(A_ScreenHeight/(1440/796)), Round(A_ScreenHeight/(1440/848)) ]  
-            ;Detonate Mines
-            Global DetonateDelveX:=X + Round(A_ScreenWidth/(2560/3462))
-            Global DetonateX:=X + Round(A_ScreenWidth/(2560/3578))
-            Global DetonateY:=Y + Round(A_ScreenHeight/(1440/901))
-            ;Scrolls in currency tab
-            Global WisdomStockX:=X + Round(A_ScreenWidth/(2560/125))
-            Global PortalStockX:=X + Round(A_ScreenWidth/(2560/175))
-            Global WPStockY:=Y + Round(A_ScreenHeight/(1440/262))
-            ;Status Check OnHideout
-            global vX_OnHideout:=X + Round(	A_ScreenWidth / (2560 / 3161))
-            global vY_OnHideout:=Y + Round(A_ScreenHeight / (1440 / 951))
-            ;Status Check OnChar
-            global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
-            global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1440 / 915))
-            ;Status Check OnChat
-            global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
-            global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1440 / 653))
-            ;Status Check OnInventory
-            global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 3503))
-            global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1440 / 36))
-            ;Status Check OnStash
-            global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
-            global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1440 / 32))
-            ;Status Check OnVendor
-            global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
-            global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
-            ;Life %'s
-            global vX_Life:=X + Round(A_ScreenWidth / (2560 / 95))
-                global vY_Life20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
-                global vY_Life30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
-                global vY_Life40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
-                global vY_Life50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
-                global vY_Life60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
-                global vY_Life70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
-                global vY_Life80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
-                global vY_Life90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
-                ;ES %'s
-            global vX_ES:=X + Round(A_ScreenWidth / (2560 / 180))
-            global vY_ES20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
-            global vY_ES30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
-            global vY_ES40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
-            global vY_ES50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
-            global vY_ES60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
-            global vY_ES70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
-            global vY_ES80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
-            global vY_ES90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
-            ;Mana
-            global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 3745))
-            global vY_Mana10:=Y + Round(A_ScreenHeight / (1440 / 1054))
-            ;GUI overlay
-            global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
-            global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
-            ;Stash tabs menu button
-            global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
-            global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
-            ;Stash tabs menu list
-            global vX_StashTabList := X + Round(A_ScreenWidth / (2560 / 760))
-            global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1440 / 120))
-            ;calculate the height of each tab
-            global vY_StashTabSize := Round(A_ScreenHeight / ( 1440 / 22))
-        } 
-        RescaleRan := True
-    }
-return
-}
+	Rescale(){
+		IfWinExist, ahk_group POEGameGroup 
+		{
+			WinGetPos, X, Y, W, H
+			If (ResolutionScale="Standard") {
+				; Item Inventory Grid
+				Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
+				Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+				;Detonate Mines
+				Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
+				Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
+				Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+				;Scrolls in currency tab
+				Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
+				Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
+				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+				;Status Check OnHideout
+				global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
+				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+				;Status Check OnChar
+				global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+				;Status Check OnChat
+				global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+				global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+				;Status Check OnInventory
+				global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+				global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+				;Status Check OnStash
+				global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+				global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+				;Status Check OnVendor
+				global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Life %'s
+				global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;ES %'s
+				global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+				global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+				global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+				global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+				global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+				global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+				global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+				;Mana
+				global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+				global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+				;GUI overlay
+				global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
+				global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+				;Stash tabs menu button
+				global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
+				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+				;Stash tabs menu list
+				global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 760))
+				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+				;calculate the height of each tab
+				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+			}
+			Else If (ResolutionScale="UltraWide") {
+				; Item Inventory Grid
+				Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
+				Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+				;Detonate Mines
+				Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
+				Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
+				Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+				;Scrolls in currency tab
+				Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
+				Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
+				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+				;Status Check OnHideout
+				global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
+				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+				;Status Check OnChar
+				global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+				;Status Check OnChat
+				global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+				global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+				;Status Check OnInventory
+				global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+				global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+				;Status Check OnStash
+				global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+				global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+				;Status Check OnVendor
+				global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Life %'s
+				global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;ES %'s
+				global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+				global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+				global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+				global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+				global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+				global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+				global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+				;Mana
+				global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
+				global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+				;GUI overlay
+				global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
+				global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+				;Stash tabs menu button
+				global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
+				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+				;Stash tabs menu list
+				global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
+				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+				;calculate the height of each tab
+				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+			} 
+			Else If (ResolutionScale="QHD") {
+				; Item Inventory Grid
+				Global InventoryGridX := [ Round(A_ScreenWidth/(2560/3193)), Round(A_ScreenWidth/(2560/3246)), Round(A_ScreenWidth/(2560/3299)), Round(A_ScreenWidth/(2560/3352)), Round(A_ScreenWidth/(2560/3404)), Round(A_ScreenWidth/(2560/3457)), Round(A_ScreenWidth/(2560/3510)), Round(A_ScreenWidth/(2560/3562)), Round(A_ScreenWidth/(2560/3615)), Round(A_ScreenWidth/(2560/3668)), Round(A_ScreenWidth/(2560/3720)), Round(A_ScreenWidth/(2560/3773)) ]
+				Global InventoryGridY := [ Round(A_ScreenHeight/(1440/638)), Round(A_ScreenHeight/(1440/690)), Round(A_ScreenHeight/(1440/743)), Round(A_ScreenHeight/(1440/796)), Round(A_ScreenHeight/(1440/848)) ]  
+				;Detonate Mines
+				Global DetonateDelveX:=X + Round(A_ScreenWidth/(2560/3462))
+				Global DetonateX:=X + Round(A_ScreenWidth/(2560/3578))
+				Global DetonateY:=Y + Round(A_ScreenHeight/(1440/901))
+				;Scrolls in currency tab
+				Global WisdomStockX:=X + Round(A_ScreenWidth/(2560/125))
+				Global PortalStockX:=X + Round(A_ScreenWidth/(2560/175))
+				Global WPStockY:=Y + Round(A_ScreenHeight/(1440/262))
+				;Status Check OnHideout
+				global vX_OnHideout:=X + Round(	A_ScreenWidth / (2560 / 3161))
+				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1440 / 951))
+				;Status Check OnChar
+				global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
+				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1440 / 915))
+				;Status Check OnChat
+				global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
+				global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1440 / 653))
+				;Status Check OnInventory
+				global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 3503))
+				global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1440 / 36))
+				;Status Check OnStash
+				global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
+				global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1440 / 32))
+				;Status Check OnVendor
+				global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
+				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
+				;Life %'s
+				global vX_Life:=X + Round(A_ScreenWidth / (2560 / 95))
+					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
+					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
+					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
+					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
+					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
+					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
+					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
+					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
+					;ES %'s
+				global vX_ES:=X + Round(A_ScreenWidth / (2560 / 180))
+				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
+				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
+				global vY_ES40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
+				global vY_ES50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
+				global vY_ES60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
+				global vY_ES70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
+				global vY_ES80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
+				global vY_ES90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
+				;Mana
+				global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 3745))
+				global vY_Mana10:=Y + Round(A_ScreenHeight / (1440 / 1054))
+				;GUI overlay
+				global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
+				global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
+				;Stash tabs menu button
+				global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
+				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
+				;Stash tabs menu list
+				global vX_StashTabList := X + Round(A_ScreenWidth / (2560 / 760))
+				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1440 / 120))
+				;calculate the height of each tab
+				global vY_StashTabSize := Round(A_ScreenHeight / ( 1440 / 22))
+			} 
+			RescaleRan := True
+		}
+	return
+	}
 
 ; Toggle Auto-Quit
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-AutoQuit(){
-AutoQuitCommand:
-    AutoQuit := !AutoQuit
-    if ((!AutoFlask) && (!AutoQuit)) {
-        SetTimer TGameTick, Off
-    } else {
-    }
-    GuiUpdate()
-return
-}
+	AutoQuit(){
+	AutoQuitCommand:
+		AutoQuit := !AutoQuit
+		if ((!AutoFlask) && (!AutoQuit)) {
+			SetTimer TGameTick, Off
+		} else {
+		}
+		GuiUpdate()
+	return
+	}
 
 ; Toggle Auto-Pot
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-AutoFlask(){
-AutoFlaskCommand:	
-    AutoFlask := !AutoFlask
-    if ((!AutoFlask) and (!AutoQuit)) {
-        SetTimer TGameTick, Off
-    } else {
-        SetTimer TGameTick, %Tick%
-    }
-    GuiUpdate()	
-return
-}
+	AutoFlask(){
+	AutoFlaskCommand:	
+		AutoFlask := !AutoFlask
+		if ((!AutoFlask) and (!AutoQuit)) {
+			SetTimer TGameTick, Off
+		} else {
+			SetTimer TGameTick, %Tick%
+		}
+		GuiUpdate()	
+	return
+	}
 
 ; Tooltip Management
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-WM_MOUSEMOVE(){
-    static CurrControl, PrevControl, _TT
-    CurrControl := A_GuiControl
-    If (CurrControl <> PrevControl and not InStr(CurrControl, " ")){
-        SetTimer, DisplayToolTip, -300 	; shorter wait, shows the tooltip quicker
-        PrevControl := CurrControl
-    }
-return
+	WM_MOUSEMOVE(){
+		static CurrControl, PrevControl, _TT
+		CurrControl := A_GuiControl
+		If (CurrControl <> PrevControl and not InStr(CurrControl, " ")){
+			SetTimer, DisplayToolTip, -300 	; shorter wait, shows the tooltip quicker
+			PrevControl := CurrControl
+		}
+	return
 
-DisplayToolTip:
-    try
-    ToolTip % %CurrControl%_TT
-    catch
-    ToolTip
-    SetTimer, RemoveToolTip, -2000
-return
-return
-}
+	DisplayToolTip:
+		try
+		ToolTip % %CurrControl%_TT
+		catch
+		ToolTip
+		SetTimer, RemoveToolTip, -2000
+	return
+	return
+	}
 
 ; Provides a call for simpler random sleep timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RandomSleep(min,max){
-    Random, r, min, max
-    r:=floor(r/Speed)
-    Sleep, r*Latency
-return
-}
+	RandomSleep(min,max){
+		Random, r, min, max
+		r:=floor(r/Speed)
+		Sleep, r*Latency
+	return
+	}
 
 ;Gem Swap
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GemSwap(){
-GemSwapCommand:
-    Critical
-    Keywait, Alt
-    BlockInput, MouseMove
-    MouseGetPos xx, yy
-    RandomSleep(45,60)
-    
-    Send {%hotkeyCloseAllUI%} 
-    RandomSleep(45,60)
-    
-    Send {%hotkeyInventory%} 
-    RandomSleep(45,60)
-    
-    RightClick(CurrentGemX, CurrentGemY)
-    RandomSleep(45,60)
-    
-    if (WeaponSwap==1) 
-        Send {%hotkeyWeaponSwapKey%} 
-    RandomSleep(45,60)
-    
-    SwiftClick(AlternateGemX, AlternateGemY)
-        RandomSleep(45,60)
-    
-    if (WeaponSwap==1) 
-        Send {%hotkeyWeaponSwapKey%} 
-    RandomSleep(45,60)
-    
-    SwiftClick(CurrentGemX, CurrentGemY)
-        RandomSleep(45,60)
-    
-    Send {%hotkeyInventory%} 
-    MouseMove, xx, yy, 0
-    BlockInput, MouseMoveOff
-return
-}
+	GemSwap(){
+	GemSwapCommand:
+		Critical
+		Keywait, Alt
+		BlockInput, MouseMove
+		MouseGetPos xx, yy
+		RandomSleep(45,60)
+		
+		Send {%hotkeyCloseAllUI%} 
+		RandomSleep(45,60)
+		
+		Send {%hotkeyInventory%} 
+		RandomSleep(45,60)
+		
+		RightClick(CurrentGemX, CurrentGemY)
+		RandomSleep(45,60)
+		
+		if (WeaponSwap==1) 
+			Send {%hotkeyWeaponSwapKey%} 
+		RandomSleep(45,60)
+		
+		SwiftClick(AlternateGemX, AlternateGemY)
+			RandomSleep(45,60)
+		
+		if (WeaponSwap==1) 
+			Send {%hotkeyWeaponSwapKey%} 
+		RandomSleep(45,60)
+		
+		SwiftClick(CurrentGemX, CurrentGemY)
+			RandomSleep(45,60)
+		
+		Send {%hotkeyInventory%} 
+		MouseMove, xx, yy, 0
+		BlockInput, MouseMoveOff
+	return
+	}
 
 ;Open Town Portal
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-QuickPortal(){
-QuickPortalCommand:
-    Critical
-    Keywait, Alt
-    BlockInput On
-    MouseGetPos xx, yy
-    RandomSleep(53,87)
-    
-    Send {%hotkeyCloseAllUI%} 
-    RandomSleep(53,68)
-    
-    Send {%hotkeyInventory%}
-    RandomSleep(56,68)
-    
-    MouseMove, PortalScrollX, PortalScrollY, 0
-    RandomSleep(56,68)
-    
-    Click Right
-    RandomSleep(56,68)
-    
-    Send {%hotkeyInventory%}
-    MouseMove, xx, yy, 0
-    BlockInput Off
-return
-}
+	QuickPortal(){
+	QuickPortalCommand:
+		Critical
+		Keywait, Alt
+		BlockInput On
+		MouseGetPos xx, yy
+		RandomSleep(53,87)
+		
+		Send {%hotkeyCloseAllUI%} 
+		RandomSleep(53,68)
+		
+		Send {%hotkeyInventory%}
+		RandomSleep(56,68)
+		
+		MouseMove, PortalScrollX, PortalScrollY, 0
+		RandomSleep(56,68)
+		
+		Click Right
+		RandomSleep(56,68)
+		
+		Send {%hotkeyInventory%}
+		MouseMove, xx, yy, 0
+		BlockInput Off
+	return
+	}
 
 ;Pop all flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-PopFlasks(){
-PopFlasksCommand:
-    Critical
-    If PopFlaskRespectCD
-        TriggerFlask(11111)
-    Else {
-        Send 1
-        OnCooldown[1]:=1 
-        SendMSG(3, 1, scriptGottaGoFast)
-        Cooldown:=CooldownFlask1
-        settimer, TimmerFlask1, %Cooldown%
-        RandomSleep(-99,99)
-        Send 4
-        OnCooldown[4]:=1 
-        Cooldown:=CooldownFlask4
-        SendMSG(3, 4, scriptGottaGoFast)
-        settimer, TimmerFlask4, %Cooldown%
-        RandomSleep(-99,99)
-        Send 3
-        OnCooldown[3]:=1 
-        SendMSG(3, 3, scriptGottaGoFast)
-        Cooldown:=CooldownFlask3
-        settimer, TimmerFlask3, %Cooldown%
-        RandomSleep(-99,99)
-        Send 2
-        OnCooldown[2]:=1 
-        SendMSG(3, 2, scriptGottaGoFast)
-        Cooldown:=CooldownFlask2
-        settimer, TimmerFlask2, %Cooldown%
-        RandomSleep(-99,99)
-        Send 5
-        OnCooldown[5]:=1 
-        SendMSG(3, 5, scriptGottaGoFast)
-        Cooldown:=CooldownFlask5
-        settimer, TimmerFlask5, %Cooldown%
-    }
-return
-}
+	PopFlasks(){
+	PopFlasksCommand:
+		Critical
+		If PopFlaskRespectCD
+			TriggerFlask(11111)
+		Else {
+			Send 1
+			OnCooldown[1]:=1 
+			SendMSG(3, 1, scriptGottaGoFast)
+			Cooldown:=CooldownFlask1
+			settimer, TimmerFlask1, %Cooldown%
+			RandomSleep(-99,99)
+			Send 4
+			OnCooldown[4]:=1 
+			Cooldown:=CooldownFlask4
+			SendMSG(3, 4, scriptGottaGoFast)
+			settimer, TimmerFlask4, %Cooldown%
+			RandomSleep(-99,99)
+			Send 3
+			OnCooldown[3]:=1 
+			SendMSG(3, 3, scriptGottaGoFast)
+			Cooldown:=CooldownFlask3
+			settimer, TimmerFlask3, %Cooldown%
+			RandomSleep(-99,99)
+			Send 2
+			OnCooldown[2]:=1 
+			SendMSG(3, 2, scriptGottaGoFast)
+			Cooldown:=CooldownFlask2
+			settimer, TimmerFlask2, %Cooldown%
+			RandomSleep(-99,99)
+			Send 5
+			OnCooldown[5]:=1 
+			SendMSG(3, 5, scriptGottaGoFast)
+			Cooldown:=CooldownFlask5
+			settimer, TimmerFlask5, %Cooldown%
+		}
+	return
+	}
 
 ; Decide which logout method to use
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LogoutCommand(){
-LogoutCommand:
-    Critical
-    if (CritQuit=1) {
-        global executable, backupExe
-        succ := logout(executable)
-        if (succ == 0) && backupExe != "" {
-            newSucc := logout(backupExe)
-            error("ED12",executable,backupExe)
-            if (newSucc == 0) {
-                error("ED13")
-            }
-        }
-    } 
-    Else 
-        Send {Enter} /exit {Enter}
-return
-}
+	LogoutCommand(){
+	LogoutCommand:
+		Critical
+		if (CritQuit=1) {
+			global executable, backupExe
+			succ := logout(executable)
+			if (succ == 0) && backupExe != "" {
+				newSucc := logout(backupExe)
+				error("ED12",executable,backupExe)
+				if (newSucc == 0) {
+					error("ED13")
+				}
+			}
+		} 
+		Else 
+			Send {Enter} /exit {Enter}
+	return
+	}
 
 ; Main function of the LutBot logout method
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-logout(executable){
-    global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
-    Critical
-    start := A_TickCount
-    
-    poePID := Object()
-    s := 4096
-    Process, Exist 
-    h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", ErrorLevel, "Ptr")
-    
-    DllCall(OpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", t)
-    VarSetCapacity(ti, 16, 0)
-    NumPut(1, ti, 0, "UInt")
-    
-    DllCall(LookupPrivilegeValue, "Ptr", 0, "Str", "SeDebugPrivilege", "Int64P", luid)
-    NumPut(luid, ti, 4, "Int64")
-    NumPut(2, ti, 12, "UInt")
-    
-    r := DllCall(AdjustTokenPrivileges, "Ptr", t, "Int", false, "Ptr", &ti, "UInt", 0, "Ptr", 0, "Ptr", 0)
-    DllCall("CloseHandle", "Ptr", t)
-    DllCall("CloseHandle", "Ptr", h)
-    
-    try
-    {
-        s := VarSetCapacity(a, s)
-        c := 0
-        DllCall(EnumProcesses, "Ptr", &a, "UInt", s, "UIntP", r)
-        Loop, % r // 4
-        {
-            id := NumGet(a, A_Index * 4, "UInt")
-            
-            h := DllCall("OpenProcess", "UInt", 0x0010 | 0x0400, "Int", false, "UInt", id, "Ptr")
-            
-            if !h
-                continue
-            VarSetCapacity(n, s, 0)
-            e := DllCall("Psapi\GetModuleBaseName", "Ptr", h, "Ptr", 0, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
-            if !e 
-                if e := DllCall("Psapi\GetProcessImageFileName", "Ptr", h, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
-                SplitPath n, n
-            DllCall("CloseHandle", "Ptr", h)
-            if (n && e)
-            if (n == executable) {
-                poePID.Insert(id)
-            }
-        }
-        
-        l := poePID.Length()
-        if ( l = 0 ) {
-            Process, wait, %executable%, 0.2
-            if ( ErrorLevel > 0 ) {
-                poePID.Insert(ErrorLevel)
-            }
-        }
-        
-        VarSetCapacity(dwSize, 4, 0) 
-        result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
-        VarSetCapacity(TcpTable, NumGet(dwSize), 0) 
-        
-        result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
-        
-        num := NumGet(&TcpTable,0,"UInt")
-        
-        IfEqual, num, 0
-        {
-            error("ED11",num,l,executable)
-            return False
-        }
-        
-        out := 0
-        Loop %num%
-        {
-            cutby := a_index - 1
-            cutby *= 24
-            ownerPID := NumGet(&TcpTable,cutby+24,"UInt")
-            for index, element in poePID {
-                if ( ownerPID = element )
-                {
-                    VarSetCapacity(newEntry, 20, 0) 
-                    NumPut(12,&newEntry,0,"UInt")
-                    NumPut(NumGet(&TcpTable,cutby+8,"UInt"),&newEntry,4,"UInt")
-                    NumPut(NumGet(&TcpTable,cutby+12,"UInt"),&newEntry,8,"UInt")
-                    NumPut(NumGet(&TcpTable,cutby+16,"UInt"),&newEntry,12,"UInt")
-                    NumPut(NumGet(&TcpTable,cutby+20,"UInt"),&newEntry,16,"UInt")
-                    result := DllCall(SetEntry, UInt, &newEntry)
-                    IfNotEqual, result, 0
-                    {
-                        error("TCP" . result,out,result,l,executable)
-                        return False
-                    }
-                    out++
-                }
-            }
-        }
-        if ( out = 0 ) {
-            error("ED10",out,l,executable)
-            return False
-        } else {
-            error(l . ":" . A_TickCount - start,out,l,executable)
-        }
-    } 
-    catch e
-    {
-        error("ED14","catcherror",e)
-        return False
-    }
-    
-return True
-}
+	logout(executable){
+		global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
+		Critical
+		start := A_TickCount
+		
+		poePID := Object()
+		s := 4096
+		Process, Exist 
+		h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", ErrorLevel, "Ptr")
+		
+		DllCall(OpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", t)
+		VarSetCapacity(ti, 16, 0)
+		NumPut(1, ti, 0, "UInt")
+		
+		DllCall(LookupPrivilegeValue, "Ptr", 0, "Str", "SeDebugPrivilege", "Int64P", luid)
+		NumPut(luid, ti, 4, "Int64")
+		NumPut(2, ti, 12, "UInt")
+		
+		r := DllCall(AdjustTokenPrivileges, "Ptr", t, "Int", false, "Ptr", &ti, "UInt", 0, "Ptr", 0, "Ptr", 0)
+		DllCall("CloseHandle", "Ptr", t)
+		DllCall("CloseHandle", "Ptr", h)
+		
+		try
+		{
+			s := VarSetCapacity(a, s)
+			c := 0
+			DllCall(EnumProcesses, "Ptr", &a, "UInt", s, "UIntP", r)
+			Loop, % r // 4
+			{
+				id := NumGet(a, A_Index * 4, "UInt")
+				
+				h := DllCall("OpenProcess", "UInt", 0x0010 | 0x0400, "Int", false, "UInt", id, "Ptr")
+				
+				if !h
+					continue
+				VarSetCapacity(n, s, 0)
+				e := DllCall("Psapi\GetModuleBaseName", "Ptr", h, "Ptr", 0, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
+				if !e 
+					if e := DllCall("Psapi\GetProcessImageFileName", "Ptr", h, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
+					SplitPath n, n
+				DllCall("CloseHandle", "Ptr", h)
+				if (n && e)
+				if (n == executable) {
+					poePID.Insert(id)
+				}
+			}
+			
+			l := poePID.Length()
+			if ( l = 0 ) {
+				Process, wait, %executable%, 0.2
+				if ( ErrorLevel > 0 ) {
+					poePID.Insert(ErrorLevel)
+				}
+			}
+			
+			VarSetCapacity(dwSize, 4, 0) 
+			result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
+			VarSetCapacity(TcpTable, NumGet(dwSize), 0) 
+			
+			result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
+			
+			num := NumGet(&TcpTable,0,"UInt")
+			
+			IfEqual, num, 0
+			{
+				error("ED11",num,l,executable)
+				return False
+			}
+			
+			out := 0
+			Loop %num%
+			{
+				cutby := a_index - 1
+				cutby *= 24
+				ownerPID := NumGet(&TcpTable,cutby+24,"UInt")
+				for index, element in poePID {
+					if ( ownerPID = element )
+					{
+						VarSetCapacity(newEntry, 20, 0) 
+						NumPut(12,&newEntry,0,"UInt")
+						NumPut(NumGet(&TcpTable,cutby+8,"UInt"),&newEntry,4,"UInt")
+						NumPut(NumGet(&TcpTable,cutby+12,"UInt"),&newEntry,8,"UInt")
+						NumPut(NumGet(&TcpTable,cutby+16,"UInt"),&newEntry,12,"UInt")
+						NumPut(NumGet(&TcpTable,cutby+20,"UInt"),&newEntry,16,"UInt")
+						result := DllCall(SetEntry, UInt, &newEntry)
+						IfNotEqual, result, 0
+						{
+							error("TCP" . result,out,result,l,executable)
+							return False
+						}
+						out++
+					}
+				}
+			}
+			if ( out = 0 ) {
+				error("ED10",out,l,executable)
+				return False
+			} else {
+				error(l . ":" . A_TickCount - start,out,l,executable)
+			}
+		} 
+		catch e
+		{
+			error("ED14","catcherror",e)
+			return False
+		}
+		
+	return True
+	}
 
 ; Check for backup executable
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-checkActiveType() {
-    global executable, backupExe
-    Process, Exist, %executable%
-    if !ErrorLevel
-    {
-        WinGet, id, list,ahk_group POEGameGroup,, Program Manager
-        Loop, %id%
-        {
-            this_id := id%A_Index%
-            WinGet, this_name, ProcessName, ahk_id %this_id%
-            backupExe := this_name
-            found .= ", " . this_name
-        }
-    }
-return
-}
+	checkActiveType() {
+		global executable, backupExe
+		Process, Exist, %executable%
+		if !ErrorLevel
+		{
+			WinGet, id, list,ahk_group POEGameGroup,, Program Manager
+			Loop, %id%
+			{
+				this_id := id%A_Index%
+				WinGet, this_name, ProcessName, ahk_id %this_id%
+				backupExe := this_name
+				found .= ", " . this_name
+			}
+		}
+	return
+	}
 
 ; Error capture from LutLogout to error.txt
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
-GuiControl,1:, guiErr, %var%
-print := A_Now . "," . var . "," . var2 . "," . var3 . "," . var4 . "," . var5 . "," . var6 . "," . var7 . "`n"
-FileAppend, %print%, error.txt, UTF-16
-return
-}
+	error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
+	GuiControl,1:, guiErr, %var%
+	print := A_Now . "," . var . "," . var2 . "," . var3 . "," . var4 . "," . var5 . "," . var6 . "," . var7 . "`n"
+	FileAppend, %print%, error.txt, UTF-16
+	return
+	}
 
 ; Capture Clip at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ClipItem(x, y){
-    BlockInput, MouseMove
-    Clipboard := ""
-    MouseMove %x%, %y%
-    Sleep, 75*Latency
-    Send ^c
-    ClipWait, 0
-    ParseClip()
-    BlockInput, MouseMoveOff
-Return
-}
+	ClipItem(x, y){
+		BlockInput, MouseMove
+		Clipboard := ""
+		MouseMove %x%, %y%
+		Sleep, 75*Latency
+		Send ^c
+		ClipWait, 0
+		ParseClip()
+		BlockInput, MouseMoveOff
+	Return
+	}
 
 ; Checks the contents of the clipboard and parses the information from the tooltip capture
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ParseClip(){
-    ;Reset Variables
-    NameIsDone := False
-    
-    ItemProp := {ItemName: ""
-        , Rarity : ""
-        , SpecialType : ""
-        , Stack : 0
-        , StackMax : 0
-        , RarityCurrency : False
-        , RarityDivination : False
-        , RarityGem : False
-        , RarityNormal : False
-        , RarityMagic : False
-        , RarityRare : False
-        , RarityUnique : False
-        , Identified : True
-            , Map : False
-        , Ring : False
-        , Amulet : False
-        , Chromatic : False
-        , Jewel : False
-        , AbyssJewel : False
-        , Essence : False
-        , Incubator : False
-        , Fossil : False
-        , Resonator : False
-        , Quality : 0
-        , Sockets : 0
-        , RawSockets : ""
-        , LinkCount : 0
-        , 2Link : False
-        , 3Link : False
-        , 4Link : False
-        , 5Link : False
-        , 6Link : False
-        , Jeweler : False
-        , TimelessSplinter : False
-        , BreachSplinter : False
-        , SacrificeFragment : False
-            , MortalFragment : False
-        , GuardianFragment : False
-        , ProphecyFragment : False
-        , Scarab : False
-        , Offering : False
-        , Vessel : False
-        , Incubator : False
-        , Flask : False
-        , Veiled : False
-        , Prophecy : False}
+	ParseClip(){
+		;Reset Variables
+		NameIsDone := False
+		
+		ItemProp := {ItemName: ""
+			, Rarity : ""
+			, SpecialType : ""
+			, Stack : 0
+			, StackMax : 0
+			, RarityCurrency : False
+			, RarityDivination : False
+			, RarityGem : False
+			, RarityNormal : False
+			, RarityMagic : False
+			, RarityRare : False
+			, RarityUnique : False
+			, Identified : True
+				, Map : False
+			, Ring : False
+			, Amulet : False
+			, Chromatic : False
+			, Jewel : False
+			, AbyssJewel : False
+			, Essence : False
+			, Incubator : False
+			, Fossil : False
+			, Resonator : False
+			, Quality : 0
+			, Sockets : 0
+			, RawSockets : ""
+			, LinkCount : 0
+			, 2Link : False
+			, 3Link : False
+			, 4Link : False
+			, 5Link : False
+			, 6Link : False
+			, Jeweler : False
+			, TimelessSplinter : False
+			, BreachSplinter : False
+			, SacrificeFragment : False
+				, MortalFragment : False
+			, GuardianFragment : False
+			, ProphecyFragment : False
+			, Scarab : False
+			, Offering : False
+			, Vessel : False
+			, Incubator : False
+			, Flask : False
+			, Veiled : False
+			, Prophecy : False}
 
-    ;Begin parsing information	
-    Loop, Parse, Clipboard, `n, `r
-    {
-        ; Clipboard must have "Rarity:" in the first line
-        If A_Index = 1
-        {
-            IfNotInString, A_LoopField, Rarity:
-            {
-                Exit
-            }
-            Else
-            {
-                IfInString, A_LoopField, Currency
-                {
-                    ItemProp.RarityCurrency := True
-                    ItemProp.Rarity := "Currency"
-                }
-                IfInString, A_LoopField, Divination Card
-                {
-                    ItemProp.RarityDivination := True
-                    ItemProp.Rarity := "Divination Card"
-                    ItemProp.SpecialType := "Divination Card"
-                }
-                IfInString, A_LoopField, Gem
-                {
-                    ItemProp.RarityGem := True
-                    ItemProp.Rarity := "Gem"
-                    ItemProp.SpecialType := "Gem"
-                }
-                IfInString, A_LoopField, Normal
-                {
-                    ItemProp.RarityNormal := True
-                    ItemProp.Rarity := "Normal"
-                }
-                IfInString, A_LoopField, Magic
-                {
-                    ItemProp.RarityMagic := True
-                    ItemProp.Rarity := "Magic"
-                }
-                IfInString, A_LoopField, Rare
-                {
-                    ItemProp.RarityRare := True
-                    ItemProp.Rarity := "Rare"
-                }
-                IfInString, A_LoopField, Unique
-                {
-                    ItemProp.RarityUnique := True
-                    ItemProp.Rarity := "Unique"
-                }
-                Continue
-            }
-        }
-            
-        ; Get name
-        If Not NameIsDone
-        {
-            If A_LoopField = --------
-            {
-                NameIsDone := True
-            }
-            Else
-            {
-                ItemProp.ItemName := ItemProp.ItemName . A_LoopField . "`n" ; Add a line of name
-                IfInString, A_LoopField, Ring
-                {
-                    ItemProp.Ring := True
-                    Continue
-                }
-                IfInString, A_LoopField, Amulet
-                {
-                    ItemProp.Amulet := True
-                    Continue
-                }
-                IfInString, A_LoopField, Map
-                {
-                    ItemProp.Map := True
-                    ItemProp.SpecialType := "Map"
-                    Continue
-                }
-                IfInString, A_LoopField, Incubator
-                {
-                    ItemProp.Incubator := True
-                    ItemProp.SpecialType := "Incubator"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Karui Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Eternal Empire Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Vaal Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Templar Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Timeless Maraketh Splinter
-                {
-                    ItemProp.TimelessSplinter := True
-                    ItemProp.SpecialType := "Timeless Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Splinter of
-                {
-                    ItemProp.BreachSplinter := True
-                    ItemProp.SpecialType := "Breach Splinter"
-                    Continue
-                }
-                IfInString, A_LoopField, Sacrifice at
-                {
-                    ItemProp.SacrificeFragment := True
-                        ItemProp.SpecialType := "Sacrifice Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Mortal Grief
-                {
-                    ItemProp.MortalFragment := True
-                    ItemProp.SpecialType := "Mortal Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Mortal Hope
-                {
-                    ItemProp.MortalFragment := True
-                    ItemProp.SpecialType := "Mortal Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Mortal Ignorance
-                {
-                    ItemProp.MortalFragment := True
-                    ItemProp.SpecialType := "Mortal Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Mortal Rage
-                {
-                    ItemProp.MortalFragment := True
-                    ItemProp.SpecialType := "Mortal Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Fragment of the
-                {
-                    ItemProp.GuardianFragment := True
-                    ItemProp.SpecialType := "Guardian Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Volkuur's Key
-                {
-                    ItemProp.ProphecyFragment := True
-                    ItemProp.SpecialType := "Prophecy Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Eber's Key
-                {
-                    ItemProp.ProphecyFragment := True
-                    ItemProp.SpecialType := "Prophecy Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Yriel's Key
-                {
-                    ItemProp.ProphecyFragment := True
-                    ItemProp.SpecialType := "Prophecy Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Inya's Key
-                {
-                    ItemProp.ProphecyFragment := True
-                    ItemProp.SpecialType := "Prophecy Fragment"
-                    Continue
-                }
-                IfInString, A_LoopField, Scarab
-                {
-                    ItemProp.Scarab := True
-                    ItemProp.SpecialType := "Scarab"
-                    Continue
-                }
-                IfInString, A_LoopField, Offering to the Goddess
-                {
-                    ItemProp.Offering := True
-                    ItemProp.SpecialType := "Offering"
-                    Continue
-                }
-                IfInString, A_LoopField, Essence of
-                {
-                    ItemProp.Essence := True
-                    ItemProp.SpecialType := "Essence"
-                    Continue
-                }
-                IfInString, A_LoopField, Remnant of Corruption
-                {
-                    ItemProp.Essence := True
-                    ItemProp.SpecialType := "Essence"
-                    Continue
-                }
-                IfInString, A_LoopField, Incubator
-                {
-                    ItemProp.Incubator := True
-                    ItemProp.SpecialType := "Incubator"
-                    Continue
-                }
-                IfInString, A_LoopField, Fossil
-                {
-                    IfNotInString, A_LoopField, Fossilised
-                    {
-                        ItemProp.Fossil := True
-                        ItemProp.SpecialType := "Fossil"
-                        Continue
-                    }
-                }
-                IfInString, A_LoopField, Resonator
-                {
-                    ItemProp.Resonator := True
-                    ItemProp.SpecialType := "Resonator"
-                    Continue
-                }
-                IfInString, A_LoopField, Divine Vessel
-                {
-                    ItemProp.Vessel := True
-                    ItemProp.SpecialType := "Divine Vessel"
-                    Continue
-                }
-                IfInString, A_LoopField, Eye Jewel
-                {
-                    ItemProp.AbyssJewel := True
-                    ItemProp.Jewel := True
-                    Continue
-                }
-                IfInString, A_LoopField, Cobalt Jewel
-                {
-                    ItemProp.Jewel := True
-                    Continue
-                }
-                IfInString, A_LoopField, Crimson Jewel
-                {
-                    ItemProp.Jewel := True
-                    Continue
-                }
-                IfInString, A_LoopField, Viridian Jewel
-                {
-                    ItemProp.Jewel := True
-                    Continue
-                }
-                IfInString, A_LoopField, Flask
-                {
-                    ItemProp.Flask := True
-                    Continue
-                }
-            }
-            Continue
-        }
-            
-        ; Get Socket Information
-        IfInString, A_LoopField, Sockets:
-        {
-            StringSplit, RawSocketsArray, A_LoopField, %A_Space%
-            ItemProp.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
-            For k, v in StrSplit(ItemProp.RawSockets, " ") 
-            {		
-                if (v ~= "B") && (v ~= "G") && (v ~= "R")
-                    ItemProp.Chromatic := True
-                Loop, Parse, v
-                    Counter++
-                If (Counter=11)
-                {
-                    ItemProp.6Link:=True
-                    ItemProp.SpecialType := "6Link"
-                }
-                Else If (Counter=9)
-                {
-                    ItemProp.5Link:=True
-                    ItemProp.SpecialType := "5Link"
-                }
-                Else If (Counter=7)
-                {
-                    ItemProp.4Link:=True
-                }
-                Else If (Counter=5)
-                {
-                    ItemProp.3Link:=True
-                }
-                Else If (Counter=3)
-                {
-                    ItemProp.2Link:=True
-                }
-                Counter:=0
-            }
-            Loop, parse, A_LoopField
-            {
-                if (A_LoopField ~= "[-]")
-                    ItemProp.LinkCount++
-            }
-            Loop, parse, A_LoopField
-            {
-                if (A_LoopField ~= "[BGR]")
-                    ItemProp.Sockets++
-            }
-            If (ItemProp.Sockets = 6)
-                ItemProp.Jeweler:=True
-            Continue
-        }
+		;Begin parsing information	
+		Loop, Parse, Clipboard, `n, `r
+		{
+			; Clipboard must have "Rarity:" in the first line
+			If A_Index = 1
+			{
+				IfNotInString, A_LoopField, Rarity:
+				{
+					Exit
+				}
+				Else
+				{
+					IfInString, A_LoopField, Currency
+					{
+						ItemProp.RarityCurrency := True
+						ItemProp.Rarity := "Currency"
+					}
+					IfInString, A_LoopField, Divination Card
+					{
+						ItemProp.RarityDivination := True
+						ItemProp.Rarity := "Divination Card"
+						ItemProp.SpecialType := "Divination Card"
+					}
+					IfInString, A_LoopField, Gem
+					{
+						ItemProp.RarityGem := True
+						ItemProp.Rarity := "Gem"
+						ItemProp.SpecialType := "Gem"
+					}
+					IfInString, A_LoopField, Normal
+					{
+						ItemProp.RarityNormal := True
+						ItemProp.Rarity := "Normal"
+					}
+					IfInString, A_LoopField, Magic
+					{
+						ItemProp.RarityMagic := True
+						ItemProp.Rarity := "Magic"
+					}
+					IfInString, A_LoopField, Rare
+					{
+						ItemProp.RarityRare := True
+						ItemProp.Rarity := "Rare"
+					}
+					IfInString, A_LoopField, Unique
+					{
+						ItemProp.RarityUnique := True
+						ItemProp.Rarity := "Unique"
+					}
+					Continue
+				}
+			}
+				
+			; Get name
+			If Not NameIsDone
+			{
+				If A_LoopField = --------
+				{
+					NameIsDone := True
+				}
+				Else
+				{
+					ItemProp.ItemName := ItemProp.ItemName . A_LoopField . "`n" ; Add a line of name
+					IfInString, A_LoopField, Ring
+					{
+						ItemProp.Ring := True
+						Continue
+					}
+					IfInString, A_LoopField, Amulet
+					{
+						ItemProp.Amulet := True
+						Continue
+					}
+					IfInString, A_LoopField, Map
+					{
+						ItemProp.Map := True
+						ItemProp.SpecialType := "Map"
+						Continue
+					}
+					IfInString, A_LoopField, Incubator
+					{
+						ItemProp.Incubator := True
+						ItemProp.SpecialType := "Incubator"
+						Continue
+					}
+					IfInString, A_LoopField, Timeless Karui Splinter
+					{
+						ItemProp.TimelessSplinter := True
+						ItemProp.SpecialType := "Timeless Splinter"
+						Continue
+					}
+					IfInString, A_LoopField, Timeless Eternal Empire Splinter
+					{
+						ItemProp.TimelessSplinter := True
+						ItemProp.SpecialType := "Timeless Splinter"
+						Continue
+					}
+					IfInString, A_LoopField, Timeless Vaal Splinter
+					{
+						ItemProp.TimelessSplinter := True
+						ItemProp.SpecialType := "Timeless Splinter"
+						Continue
+					}
+					IfInString, A_LoopField, Timeless Templar Splinter
+					{
+						ItemProp.TimelessSplinter := True
+						ItemProp.SpecialType := "Timeless Splinter"
+						Continue
+					}
+					IfInString, A_LoopField, Timeless Maraketh Splinter
+					{
+						ItemProp.TimelessSplinter := True
+						ItemProp.SpecialType := "Timeless Splinter"
+						Continue
+					}
+					IfInString, A_LoopField, Splinter of
+					{
+						ItemProp.BreachSplinter := True
+						ItemProp.SpecialType := "Breach Splinter"
+						Continue
+					}
+					IfInString, A_LoopField, Sacrifice at
+					{
+						ItemProp.SacrificeFragment := True
+							ItemProp.SpecialType := "Sacrifice Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Mortal Grief
+					{
+						ItemProp.MortalFragment := True
+						ItemProp.SpecialType := "Mortal Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Mortal Hope
+					{
+						ItemProp.MortalFragment := True
+						ItemProp.SpecialType := "Mortal Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Mortal Ignorance
+					{
+						ItemProp.MortalFragment := True
+						ItemProp.SpecialType := "Mortal Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Mortal Rage
+					{
+						ItemProp.MortalFragment := True
+						ItemProp.SpecialType := "Mortal Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Fragment of the
+					{
+						ItemProp.GuardianFragment := True
+						ItemProp.SpecialType := "Guardian Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Volkuur's Key
+					{
+						ItemProp.ProphecyFragment := True
+						ItemProp.SpecialType := "Prophecy Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Eber's Key
+					{
+						ItemProp.ProphecyFragment := True
+						ItemProp.SpecialType := "Prophecy Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Yriel's Key
+					{
+						ItemProp.ProphecyFragment := True
+						ItemProp.SpecialType := "Prophecy Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Inya's Key
+					{
+						ItemProp.ProphecyFragment := True
+						ItemProp.SpecialType := "Prophecy Fragment"
+						Continue
+					}
+					IfInString, A_LoopField, Scarab
+					{
+						ItemProp.Scarab := True
+						ItemProp.SpecialType := "Scarab"
+						Continue
+					}
+					IfInString, A_LoopField, Offering to the Goddess
+					{
+						ItemProp.Offering := True
+						ItemProp.SpecialType := "Offering"
+						Continue
+					}
+					IfInString, A_LoopField, Essence of
+					{
+						ItemProp.Essence := True
+						ItemProp.SpecialType := "Essence"
+						Continue
+					}
+					IfInString, A_LoopField, Remnant of Corruption
+					{
+						ItemProp.Essence := True
+						ItemProp.SpecialType := "Essence"
+						Continue
+					}
+					IfInString, A_LoopField, Incubator
+					{
+						ItemProp.Incubator := True
+						ItemProp.SpecialType := "Incubator"
+						Continue
+					}
+					IfInString, A_LoopField, Fossil
+					{
+						IfNotInString, A_LoopField, Fossilised
+						{
+							ItemProp.Fossil := True
+							ItemProp.SpecialType := "Fossil"
+							Continue
+						}
+					}
+					IfInString, A_LoopField, Resonator
+					{
+						ItemProp.Resonator := True
+						ItemProp.SpecialType := "Resonator"
+						Continue
+					}
+					IfInString, A_LoopField, Divine Vessel
+					{
+						ItemProp.Vessel := True
+						ItemProp.SpecialType := "Divine Vessel"
+						Continue
+					}
+					IfInString, A_LoopField, Eye Jewel
+					{
+						ItemProp.AbyssJewel := True
+						ItemProp.Jewel := True
+						Continue
+					}
+					IfInString, A_LoopField, Cobalt Jewel
+					{
+						ItemProp.Jewel := True
+						Continue
+					}
+					IfInString, A_LoopField, Crimson Jewel
+					{
+						ItemProp.Jewel := True
+						Continue
+					}
+					IfInString, A_LoopField, Viridian Jewel
+					{
+						ItemProp.Jewel := True
+						Continue
+					}
+					IfInString, A_LoopField, Flask
+					{
+						ItemProp.Flask := True
+						Continue
+					}
+				}
+				Continue
+			}
+				
+			; Get Socket Information
+			IfInString, A_LoopField, Sockets:
+			{
+				StringSplit, RawSocketsArray, A_LoopField, %A_Space%
+				ItemProp.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
+				For k, v in StrSplit(ItemProp.RawSockets, " ") 
+				{		
+					if (v ~= "B") && (v ~= "G") && (v ~= "R")
+						ItemProp.Chromatic := True
+					Loop, Parse, v
+						Counter++
+					If (Counter=11)
+					{
+						ItemProp.6Link:=True
+						ItemProp.SpecialType := "6Link"
+					}
+					Else If (Counter=9)
+					{
+						ItemProp.5Link:=True
+						ItemProp.SpecialType := "5Link"
+					}
+					Else If (Counter=7)
+					{
+						ItemProp.4Link:=True
+					}
+					Else If (Counter=5)
+					{
+						ItemProp.3Link:=True
+					}
+					Else If (Counter=3)
+					{
+						ItemProp.2Link:=True
+					}
+					Counter:=0
+				}
+				Loop, parse, A_LoopField
+				{
+					if (A_LoopField ~= "[-]")
+						ItemProp.LinkCount++
+				}
+				Loop, parse, A_LoopField
+				{
+					if (A_LoopField ~= "[BGR]")
+						ItemProp.Sockets++
+				}
+				If (ItemProp.Sockets = 6)
+					ItemProp.Jeweler:=True
+				Continue
+			}
 
-        ; Get quality
-        IfInString, A_LoopField, Quality:
-        {
-            StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
-                ItemProp.Quality := QualityArray2
-            Continue
-        }
-        ;Stack size
-        IfInString, A_LoopField, Stack Size:
-        {
-            StringSplit, StackArray, A_LoopField, %A_Space%
-            StringSplit, StripStackArray, StackArray3, /
-            ItemProp.Stack := StripStackArray1
-            ItemProp.StackMax := StripStackArray2
-            Continue
-        }
-        ; Flag Unidentified
-        IfInString, A_LoopField, Unidentified
-        {
-            ItemProp.Identified := False
-            continue
-        }
-        ; Flag Veiled
-        IfInString, A_LoopField, Veiled%A_Space%
-        {
-            ItemProp.Veiled := True
-            ItemProp.SpecialType := "Veiled"
-            continue
-        }
-        ; Flag Prophecy
-        IfInString, A_LoopField, add this prophecy
-        {
-            ItemProp.Prophecy := True
-            ItemProp.SpecialType := "Prophecy"
-            continue
-        }
-    }
-    Return
-}
+			; Get quality
+			IfInString, A_LoopField, Quality:
+			{
+				StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
+					ItemProp.Quality := QualityArray2
+				Continue
+			}
+			;Stack size
+			IfInString, A_LoopField, Stack Size:
+			{
+				StringSplit, StackArray, A_LoopField, %A_Space%
+				StringSplit, StripStackArray, StackArray3, /
+				ItemProp.Stack := StripStackArray1
+				ItemProp.StackMax := StripStackArray2
+				Continue
+			}
+			; Flag Unidentified
+			IfInString, A_LoopField, Unidentified
+			{
+				ItemProp.Identified := False
+				continue
+			}
+			; Flag Veiled
+			IfInString, A_LoopField, Veiled%A_Space%
+			{
+				ItemProp.Veiled := True
+				ItemProp.SpecialType := "Veiled"
+				continue
+			}
+			; Flag Prophecy
+			IfInString, A_LoopField, add this prophecy
+			{
+				ItemProp.Prophecy := True
+				ItemProp.SpecialType := "Prophecy"
+				continue
+			}
+		}
+		Return
+	}
 
 ; Debugging information on Mouse Cursor
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GetMouseCoords(){
-    GetMouseCoordsCommand:
-        
-        MouseGetPos x, y
-        PixelGetColor, xycolor , x, y
-        TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
-        
-        If DebugMessages{
-            TT := TT . "`n" . "`n"
-            GuiStatus()
-            TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-            TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
-            If ShowItemInfo {
-                ClipItem(x, y)
-                For key, value in ItemProp
-                    TT := TT . key . ":  " . value . "`n"
-            }
-        }
-        MsgBox %TT%
-        If (DebugMessages&&ShowPixelGrid){
-            
-            ;Check if inventory is open
-            if(!OnInventory){
-                TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
-            }else{
-                
-                TT := "Grid information:" . "`n"
-                
-                For c, GridX in InventoryGridX	{
-                    For r, GridY in InventoryGridY
-                    {
-                        pixelgetcolor, PointColor, GridX, GridY
-                        
-                        If (PointColor=UnIdColor){
-                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified. Color: " . PointColor  .  "`n"
-                        }else if (PointColor=IdColor){
-                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified. Color: " . PointColor  .  "`n"
-                        }else if (PointColor=MOColor){
-                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected item. Color: " . PointColor  .  "`n"
-                        }else if (indexOf(PointColor, varEmptyInvSlotColor) > 0){				
-                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
-                        }else{
-                            TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
-                        }
-                    }
-                }
-            }
-            MsgBox %TT%	
-        }
-    Return
-}
+	GetMouseCoords(){
+		GetMouseCoordsCommand:
+			
+			MouseGetPos x, y
+			PixelGetColor, xycolor , x, y
+			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
+			
+			If DebugMessages{
+				TT := TT . "`n" . "`n"
+				GuiStatus()
+				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
+				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
+				If ShowItemInfo {
+					ClipItem(x, y)
+					For key, value in ItemProp
+						TT := TT . key . ":  " . value . "`n"
+				}
+			}
+			MsgBox %TT%
+			If (DebugMessages&&ShowPixelGrid){
+				
+				;Check if inventory is open
+				if(!OnInventory){
+					TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+				}else{
+					
+					TT := "Grid information:" . "`n"
+					
+					For c, GridX in InventoryGridX	{
+						For r, GridY in InventoryGridY
+						{
+							pixelgetcolor, PointColor, GridX, GridY
+							
+							If (PointColor=UnIdColor){
+								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified. Color: " . PointColor  .  "`n"
+							}else if (PointColor=IdColor){
+								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified. Color: " . PointColor  .  "`n"
+							}else if (PointColor=MOColor){
+								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected item. Color: " . PointColor  .  "`n"
+							}else if (indexOf(PointColor, varEmptyInvSlotColor) > 0){				
+								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+							}else{
+								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
+							}
+						}
+					}
+				}
+				MsgBox %TT%	
+			}
+		Return
+	}
 
 
 ; Check if a specific value is part of an array and return the index
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-indexOf(var, Arr, fromIndex:=1) {
-    for index, value in Arr {
-        if (index < fromIndex){
-            Continue
-        }else if (value = var){
-            return index
-        }
-    }
-}
+	indexOf(var, Arr, fromIndex:=1) {
+		for index, value in Arr {
+			if (index < fromIndex){
+				Continue
+			}else if (value = var){
+				return index
+			}
+		}
+	}
 
 ; Transform an array to a comma separated string
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-arrToStr(array){
-    Str := ""
-    For Index, Value In array
-        Str .= "," . Value
-    Str := LTrim(Str, ",")
-    return Str
-}
+	arrToStr(array){
+		Str := ""
+		For Index, Value In array
+			Str .= "," . Value
+		Str := LTrim(Str, ",")
+		return Str
+	}
 ; Auto Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-DetonateMines(){
-    GuiStatus("OnChat")
-    If (OnChat)
-        exit
-    pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
-    pixelgetcolor, Mine, DetonateX, DetonateY
-    If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
-        Sendraw, d
-        Detonated:=1
-        Settimer, TDetonated, 500
-        Return
-    }
-    Return	
-}
+	DetonateMines(){
+		GuiStatus("OnChat")
+		If (OnChat)
+			exit
+		pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
+		pixelgetcolor, Mine, DetonateX, DetonateY
+		If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
+			Sendraw, d
+			Detonated:=1
+			Settimer, TDetonated, 500
+			Return
+		}
+		Return	
+	}
 
 ; Update Overlay ON OFF states
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GuiUpdate(){
-    if (AutoFlask=1) {
-        AutoFlaskToggle:="ON" 
-    } else AutoFlaskToggle:="OFF" 
-    
-    if (AutoQuit=1) {
-        AutoQuitToggle:="ON" 
-    }else AutoQuitToggle:="OFF" 
-    
-    GuiControl, 2:, T1, Quit: %AutoQuitToggle%
-    GuiControl, 2:, T2, Flasks: %AutoFlaskToggle%
-    Return
-}
+	GuiUpdate(){
+		if (AutoFlask=1) {
+			AutoFlaskToggle:="ON" 
+		} else AutoFlaskToggle:="OFF" 
+		
+		if (AutoQuit=1) {
+			AutoQuitToggle:="ON" 
+		}else AutoQuitToggle:="OFF" 
+		
+		GuiControl, 2:, T1, Quit: %AutoQuitToggle%
+		GuiControl, 2:, T2, Flasks: %AutoFlaskToggle%
+		Return
+	}
 
 ; Pixelcheck for different parts of the screen to see what your status is in game. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-PoEWindowCheck(){
-    IfWinExist, ahk_group POEGameGroup 
-    {
-        global GuiX, GuiY, RescaleRan, ToggleExist
-        If (!RescaleRan)
-            Rescale()
-        If (!ToggleExist) {
-            Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
-            ToggleExist := True
-            WinActivate, ahk_group POEGameGroup
-        }
-    } Else {
-        If (ToggleExist){
-            Gui 2: Show, Hide
-            ToggleExist := False
-        }
-    }
-    Return
-}
+	PoEWindowCheck(){
+		IfWinExist, ahk_group POEGameGroup 
+		{
+			global GuiX, GuiY, RescaleRan, ToggleExist
+			If (!RescaleRan)
+				Rescale()
+			If (!ToggleExist) {
+				Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+				ToggleExist := True
+				WinActivate, ahk_group POEGameGroup
+			}
+		} Else {
+			If (ToggleExist){
+				Gui 2: Show, Hide
+				ToggleExist := False
+			}
+		}
+		Return
+	}
 ; Receive Messages from other scripts
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MsgMonitor(wParam, lParam, msg)
-{
-    critical
-    If (wParam=1)
-        Return
-    Else If (wParam=2)
-        Return
-    Else If (wParam=3) {
-        If (lParam=1){
-            OnCooldown[1]:=1 
-            settimer, TimmerFlask1, %CooldownFlask1%
-        return
-    }		
-    If (lParam=2){
-        OnCooldown[2]:=1 
-        settimer, TimmerFlask2, %CooldownFlask2%
-        return
-    }		
-    If (lParam=3){
-        OnCooldown[3]:=1 
-        settimer, TimmerFlask3, %CooldownFlask3%
-        return
-    }		
-    If (lParam=4){
-        OnCooldown[4]:=1 
-        settimer, TimmerFlask4, %CooldownFlask4%
-        return
-    }		
-    If (lParam=5){
-        OnCooldown[5]:=1 
-        settimer, TimmerFlask5, %CooldownFlask5%
-        return
-    }		
-}
-Else If (wParam=4) {
-    If (lParam=1){
-        OnCooldownUtility1:=1 
-        settimer, TimerUtility1, %CooldownUtility1%
-        return
-    }		
-    If (lParam=2){
-        OnCooldownUtility2:=1 
-        settimer, TimerUtility2, %CooldownUtility2%
-        return
-    }		
-    If (lParam=3){
-        OnCooldownUtility3:=1 
-        settimer, TimerUtility3, %CooldownUtility3%
-        return
-    }		
-    If (lParam=4){
-        OnCooldownUtility4:=1 
-        settimer, TimerUtility4, %CooldownUtility4%
-        return
-    }		
-    If (lParam=5){
-        OnCooldownUtility5:=1 
-        settimer, TimerUtility5, %CooldownUtility5%
-        return
-    }		
-}
-Return
-}
+	MsgMonitor(wParam, lParam, msg)
+		{
+		critical
+		If (wParam=1)
+			Return
+		Else If (wParam=2)
+			Return
+		Else If (wParam=3) {
+			If (lParam=1){
+				OnCooldown[1]:=1 
+				settimer, TimmerFlask1, %CooldownFlask1%
+				return
+				}		
+			If (lParam=2){
+				OnCooldown[2]:=1 
+				settimer, TimmerFlask2, %CooldownFlask2%
+				return
+				}		
+			If (lParam=3){
+				OnCooldown[3]:=1 
+				settimer, TimmerFlask3, %CooldownFlask3%
+				return
+				}		
+			If (lParam=4){
+				OnCooldown[4]:=1 
+				settimer, TimmerFlask4, %CooldownFlask4%
+				return
+				}		
+			If (lParam=5){
+				OnCooldown[5]:=1 
+				settimer, TimmerFlask5, %CooldownFlask5%
+				return
+				}		
+			}
+		Else If (wParam=4) {
+			If (lParam=1){
+				OnCooldownUtility1:=1 
+				settimer, TimerUtility1, %CooldownUtility1%
+				return
+				}		
+			If (lParam=2){
+				OnCooldownUtility2:=1 
+				settimer, TimerUtility2, %CooldownUtility2%
+				return
+				}		
+			If (lParam=3){
+				OnCooldownUtility3:=1 
+				settimer, TimerUtility3, %CooldownUtility3%
+				return
+				}		
+			If (lParam=4){
+				OnCooldownUtility4:=1 
+				settimer, TimerUtility4, %CooldownUtility4%
+				return
+				}		
+			If (lParam=5){
+				OnCooldownUtility5:=1 
+				settimer, TimerUtility5, %CooldownUtility5%
+				return
+				}		
+			}
+		Return
+		}
 ; Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SendMSG(wParam:=0, lParam:=0, script:=""){
-DetectHiddenWindows On
-if WinExist(script) 
-    PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
-else 
-    MsgBox %script% . " Not found"
-DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
-}
+	SendMSG(wParam:=0, lParam:=0, script:=""){
+	DetectHiddenWindows On
+	if WinExist(script) 
+		PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+	else 
+		MsgBox %script% . " Not found"
+	DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
+	Return
+	}
 ; Pixelcheck for different parts of the screen to see what your status is in game. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GuiStatus(Fetch:=""){
-If !(Fetch="")
-{
-    pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
-    If (P%Fetch%=var%Fetch%){
-        %Fetch%:=True
-    } Else {
-        %Fetch%:=False
-    }
-    Return
-}
-pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-if (POnHideout=varOnHideout) {
-    OnHideout:=True
-} Else {
-    OnHideout:=False
-}
-pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
-If (POnChar=varOnChar)  {
-    OnChar:=True
-} Else {
-    OnChar:=False
-}
-pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-If (POnChat=varOnChat) {
-    OnChat:=True
-} Else {
-    OnChat:=False
-}
-pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-If (POnInventory=varOnInventory) {
-    OnInventory:=True
-} Else {
-    OnInventory:=False
-}
-pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-If (POnStash=varOnStash) {
-    OnStash:=True
-} Else {
-    OnStash:=False
-}
-pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
-If (POnVendor=varOnVendor) {
-    OnVendor:=True
-} Else {
-    OnVendor:=False
-}
-Return
-}
+	If !(Fetch="")
+		{
+		pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
+		If (P%Fetch%=var%Fetch%){
+			%Fetch%:=True
+			} Else {
+			%Fetch%:=False
+			}
+		Return
+		}
+	pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+	if (POnHideout=varOnHideout) {
+		OnHideout:=True
+		} Else {
+		OnHideout:=False
+		}
+	pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
+	If (POnChar=varOnChar)  {
+		OnChar:=True
+		} Else {
+		OnChar:=False
+		}
+	pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
+	If (POnChat=varOnChat) {
+		OnChat:=True
+		} Else {
+		OnChat:=False
+		}
+	pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
+	If (POnInventory=varOnInventory) {
+		OnInventory:=True
+		} Else {
+		OnInventory:=False
+		}
+	pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
+	If (POnStash=varOnStash) {
+		OnStash:=True
+		} Else {
+		OnStash:=False
+		}
+	pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
+	If (POnVendor=varOnVendor) {
+		OnVendor:=True
+		} Else {
+		OnVendor:=False
+		}
+	Return
+	}
 
 ; Main attack and secondary attack Flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2942,7 +2944,7 @@ AttackFlasks(){
             TriggerFlask(TriggerSecondaryAttack)
         }
     Return	
-}
+	}
 
 ; Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2953,7 +2955,7 @@ TMineTick(){
             DetonateMines()
     }
     Return
-}
+	}
 
 ; Flask Logic
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3392,7 +3394,7 @@ TGameTick(){
         GuiUpdate()
     }
     Return
-}
+	}
 ; Trigger named Utility
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TriggerUtility(Utility){
@@ -3405,7 +3407,7 @@ TriggerUtility(Utility){
         SetTimer, TimerUtility%Utility%, %Cooldown%
     }
     Return
-} 
+	} 
 ; Flask Trigger check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TriggerFlask(Trigger){
@@ -3425,7 +3427,7 @@ TriggerFlask(Trigger){
         ++FL
     }
     Return
-}
+	}
 ; Trigger Mana Flasks Sequentially
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TriggerMana(Trigger){
@@ -3450,7 +3452,7 @@ TriggerMana(Trigger){
         RandomSleep(23,59)
     }
     Return
-}
+	}
 
 ;Clamp Value function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3460,63 +3462,63 @@ Clamp( Val, Min, Max) {
     If Val > Max
         Val := Max
     Return
-}
+	}
 
 ; Flask Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TimmerFlask1:
-    OnCooldown[1]:=0
-    settimer,TimmerFlask1,delete
-return
+	TimmerFlask1:
+		OnCooldown[1]:=0
+		settimer,TimmerFlask1,delete
+	return
 
-TimmerFlask2:
-    OnCooldown[2]:=0
-    settimer,TimmerFlask2,delete
-return
+	TimmerFlask2:
+		OnCooldown[2]:=0
+		settimer,TimmerFlask2,delete
+	return
 
-TimmerFlask3:
-    OnCooldown[3]:=0
-    settimer,TimmerFlask3,delete
-return
+	TimmerFlask3:
+		OnCooldown[3]:=0
+		settimer,TimmerFlask3,delete
+	return
 
-TimmerFlask4:
-    OnCooldown[4]:=0
-    settimer,TimmerFlask4,delete
-return
+	TimmerFlask4:
+		OnCooldown[4]:=0
+		settimer,TimmerFlask4,delete
+	return
 
-TimmerFlask5:
-    OnCooldown[5]:=0
-    settimer,TimmerFlask5,delete
-return
+	TimmerFlask5:
+		OnCooldown[5]:=0
+		settimer,TimmerFlask5,delete
+	return
 
 ; Utility Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TimerUtility1:
-    OnCooldownUtility1 := 0
-    settimer,TimerUtility1,delete
-Return
-TimerUtility2:
-    OnCooldownUtility2 := 0
-    settimer,TimerUtility2,delete
-Return
-TimerUtility3:
-    OnCooldownUtility3 := 0
-    settimer,TimerUtility3,delete
-Return
-TimerUtility4:
-    OnCooldownUtility4 := 0
-    settimer,TimerUtility4,delete
-Return
-TimerUtility5:
-    OnCooldownUtility5 := 0
-    settimer,TimerUtility5,delete
-Return
+	TimerUtility1:
+		OnCooldownUtility1 := 0
+		settimer,TimerUtility1,delete
+	Return
+	TimerUtility2:
+		OnCooldownUtility2 := 0
+		settimer,TimerUtility2,delete
+	Return
+	TimerUtility3:
+		OnCooldownUtility3 := 0
+		settimer,TimerUtility3,delete
+	Return
+	TimerUtility4:
+		OnCooldownUtility4 := 0
+		settimer,TimerUtility4,delete
+	Return
+	TimerUtility5:
+		OnCooldownUtility5 := 0
+		settimer,TimerUtility5,delete
+	Return
 ; Detonate Timer
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TDetonated:
-    Detonated:=0
-    settimer,TDetonated,delete
-return
+	TDetonated:
+		Detonated:=0
+		settimer,TDetonated,delete
+	return
 
 ; Configuration handling, ini updates, Hotkey handling, Utility Gfunctions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5053,6 +5055,7 @@ updateEmptyInvSlotColor:
         }
 
         varEmptyInvSlotColor := []
+        WinActivate, ahk_group POEGameGroup
 
         ;Loop through the whole grid, overlay the current grid item and display a box with two buttons "Empty" and "Occupied"
         ; I couldn't find a fast way to draw an overlay, doing at the moment with manual , might lead to problem if the user doesnt understand
@@ -5526,15 +5529,15 @@ UtilityCheck:
     loop 5 {
         if(Radiobox%A_Index%QS==1) || (Radiobox%A_Index%Mana10==1) {
             GuiControl,, Radiobox%A_Index%Life90, 0
-                GuiControl,, Radiobox%A_Index%Life80, 0
-                GuiControl,, Radiobox%A_Index%Life70, 0
-                GuiControl,, Radiobox%A_Index%Life60, 0
-                GuiControl,, Radiobox%A_Index%Life50, 0
-                GuiControl,, Radiobox%A_Index%Life40, 0
-                GuiControl,, Radiobox%A_Index%Life30, 0
-                GuiControl,, Radiobox%A_Index%Life20, 0
-                GuiControl,, RadioUncheck%A_Index%Life, 1
-                GuiControl,, Radiobox%A_Index%ES90, 0
+			GuiControl,, Radiobox%A_Index%Life80, 0
+			GuiControl,, Radiobox%A_Index%Life70, 0
+			GuiControl,, Radiobox%A_Index%Life60, 0
+			GuiControl,, Radiobox%A_Index%Life50, 0
+			GuiControl,, Radiobox%A_Index%Life40, 0
+			GuiControl,, Radiobox%A_Index%Life30, 0
+			GuiControl,, Radiobox%A_Index%Life20, 0
+			GuiControl,, RadioUncheck%A_Index%Life, 1
+			GuiControl,, Radiobox%A_Index%ES90, 0
             GuiControl,, Radiobox%A_Index%ES80, 0
             GuiControl,, Radiobox%A_Index%ES70, 0
             GuiControl,, Radiobox%A_Index%ES60, 0
@@ -5543,9 +5546,9 @@ UtilityCheck:
             GuiControl,, Radiobox%A_Index%ES30, 0
             GuiControl,, Radiobox%A_Index%ES20, 0
             GuiControl,, RadioUncheck%A_Index%ES, 1
-        }
-        Return
-    }
+        	}
+    	}
+	Return
     
 RemoveToolTip:
     SetTimer, RemoveToolTip, Off
@@ -5577,8 +5580,8 @@ checkUpdate(){
         }
     }
     WinGetPos, , , WinWidth, WinHeight
-Return
-}
+	Return
+	}
 
 runUpdate:
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
@@ -5593,6 +5596,8 @@ runUpdate:
     }
     Sleep 5000 ;This shouldn't ever hit.
     error("update","uhoh", A_ScriptFullPath, macroVersion, A_AhkVersion)
+	Return
+
 dontUpdate:
     Gui, 4:Destroy
 return	
