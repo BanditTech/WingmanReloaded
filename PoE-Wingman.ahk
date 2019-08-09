@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .03.4
+    Global VersionNumber := .03.5
     
     checkUpdate()
     
@@ -246,6 +246,7 @@
 
 	;Inventory Colors
 		global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
+		global varMouseoverColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905]
 
 	;Failsafe Colors
 		global varOnHideout:=0x161114
@@ -707,7 +708,7 @@ readFromFile()
 	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y50	w100, 	OnHideout Color
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
 	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
-	Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn	 	w208, 	Empty Inventory Color
+	Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn	 	w100, 	Empty Color
 
 	Gui, Font, Bold
 	Gui, Add, Text, 										x22 	y+10, 				AutoDetonate Calibration:
@@ -719,6 +720,7 @@ readFromFile()
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y50	w100, 	OnInventory Color
 	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
 	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
+	Gui, Add, Button, gupdateMouseoverColor vUdateMouseoverColorBtn	 	w100, 	Mouseover Color
 	Gui, Font, Bold
 	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
 	Gui, Font, 
@@ -1219,7 +1221,7 @@ readFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Loot Scanner for items under cursor pressing Loot button
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	LootScan(){
+LootScan(){
 	LootScanCommand:
 		Pressed := GetKeyState(hotkeyLootScan, "P")
 		While (Pressed&&LootVacuum)
@@ -1250,7 +1252,7 @@ readFromFile()
 
 ; Sort inventory and determine action
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	ItemSort(){
+ItemSort(){
 	ItemSortCommand:
 		Critical
 		CurrentTab:=0
@@ -1288,8 +1290,8 @@ readFromFile()
 					} 
 					pixelgetcolor, PointColor, GridX, GridY
 					
-					If (indexOf(PointColor, varEmptyInvSlotColor)){
-						;Seems to be an empty slot, do not need to clip item info
+					If (indexOf(PointColor, varEmptyInvSlotColor)) || (indexOf(PointColor, varMouseoverColor)) {
+						;Seems to be an empty slot or item already moused over, do not need to clip item info
 						Continue
 					}
 					
@@ -1531,7 +1533,7 @@ readFromFile()
 
 ; Input any digit and it will move to that Stash tab, only tested up to 25 tabs
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MoveStash(Tab){
+MoveStash(Tab){
 		If (CurrentTab=Tab)
 			return
 		If (CurrentTab!=Tab)
@@ -1565,7 +1567,7 @@ readFromFile()
 
 ; Swift Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	SwiftClick(x, y){
+SwiftClick(x, y){
 		MouseMove, x, y	
 		Sleep, 15*Latency
 		Send {Click, Down x, y }
@@ -1577,7 +1579,7 @@ readFromFile()
 
 ; Right Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	RightClick(x, y){
+RightClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
 		Sleep, 15*Latency
@@ -1591,7 +1593,7 @@ readFromFile()
 
 ; Shift Click +Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	ShiftClick(x, y){
+ShiftClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
 		Sleep, 15*Latency
@@ -1609,7 +1611,7 @@ readFromFile()
 
 ; Ctrl Click ^Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	CtrlClick(x, y){
+CtrlClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
 		Sleep, 15*Latency
@@ -1628,7 +1630,7 @@ readFromFile()
 
 ; Identify Item at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	WisdomScroll(x, y){
+WisdomScroll(x, y){
 		BlockInput, MouseMove
 		Sleep, 30*Latency
 		MouseMove %WisdomScrollX%, %WisdomScrollY%
@@ -1649,7 +1651,7 @@ readFromFile()
 
 ; Restock scrolls that have more than 10 missing
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	StockScrolls(){
+StockScrolls(){
 		BlockInput, MouseMove
 		If StockWisdom{
 			MouseMove %WisdomScrollX%, %WisdomScrollY%
@@ -1702,7 +1704,7 @@ readFromFile()
 
 ; Randomize Click area around middle of cell using Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	RandClick(x, y){
+RandClick(x, y){
 		Random, Rx, x+5, x+45
 		Random, Ry, y-45, y-5
 	return {"X": Rx, "Y": Ry}
@@ -1710,7 +1712,7 @@ readFromFile()
 
 ; Scales two resolution quardinates -- Currently not being used
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	ScaleRes(x, y){
+ScaleRes(x, y){
 		Rx:=Round(A_ScreenWidth / (1920 / x))
 		Ry:=Round(A_ScreenHeight / (1080 / y))
 	return {"X": Rx, "Y": Ry}
@@ -1718,7 +1720,7 @@ readFromFile()
 
 ; Rescales values for specialty resolutions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Rescale(){
+Rescale(){
 		IfWinExist, ahk_group POEGameGroup 
 		{
 			WinGetPos, X, Y, W, H
@@ -1924,7 +1926,7 @@ readFromFile()
 
 ; Toggle Auto-Quit
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	AutoQuit(){
+AutoQuit(){
 	AutoQuitCommand:
 		AutoQuit := !AutoQuit
 		if ((!AutoFlask) && (!AutoQuit)) {
@@ -1937,7 +1939,7 @@ readFromFile()
 
 ; Toggle Auto-Pot
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	AutoFlask(){
+AutoFlask(){
 	AutoFlaskCommand:	
 		AutoFlask := !AutoFlask
 		if ((!AutoFlask) and (!AutoQuit)) {
@@ -1951,7 +1953,7 @@ readFromFile()
 
 ; Tooltip Management
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	WM_MOUSEMOVE(){
+WM_MOUSEMOVE(){
 		static CurrControl, PrevControl, _TT
 		CurrControl := A_GuiControl
 		If (CurrControl <> PrevControl and not InStr(CurrControl, " ")){
@@ -1972,7 +1974,7 @@ readFromFile()
 
 ; Provides a call for simpler random sleep timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	RandomSleep(min,max){
+RandomSleep(min,max){
 		Random, r, min, max
 		r:=floor(r/Speed)
 		Sleep, r*Latency
@@ -1981,7 +1983,7 @@ readFromFile()
 
 ;Gem Swap
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GemSwap(){
+GemSwap(){
 	GemSwapCommand:
 		Critical
 		Keywait, Alt
@@ -2020,7 +2022,7 @@ readFromFile()
 
 ;Open Town Portal
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	QuickPortal(){
+QuickPortal(){
 	QuickPortalCommand:
 		Critical
 		Keywait, Alt
@@ -2048,7 +2050,7 @@ readFromFile()
 
 ;Pop all flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	PopFlasks(){
+PopFlasks(){
 	PopFlasksCommand:
 		Critical
 		If PopFlaskRespectCD
@@ -2089,7 +2091,7 @@ readFromFile()
 
 ; Decide which logout method to use
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	LogoutCommand(){
+LogoutCommand(){
 	LogoutCommand:
 		Critical
 		if (CritQuit=1) {
@@ -2110,7 +2112,7 @@ readFromFile()
 
 ; Main function of the LutBot logout method
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	logout(executable){
+logout(executable){
 		global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
 		Critical
 		start := A_TickCount
@@ -2222,7 +2224,7 @@ readFromFile()
 
 ; Check for backup executable
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	checkActiveType() {
+checkActiveType() {
 		global executable, backupExe
 		Process, Exist, %executable%
 		if !ErrorLevel
@@ -2241,7 +2243,7 @@ readFromFile()
 
 ; Error capture from LutLogout to error.txt
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
+error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
 	GuiControl,1:, guiErr, %var%
 	print := A_Now . "," . var . "," . var2 . "," . var3 . "," . var4 . "," . var5 . "," . var6 . "," . var7 . "`n"
 	FileAppend, %print%, error.txt, UTF-16
@@ -2250,7 +2252,7 @@ readFromFile()
 
 ; Capture Clip at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	ClipItem(x, y){
+ClipItem(x, y){
 		BlockInput, MouseMove
 		Clipboard := ""
 		MouseMove %x%, %y%
@@ -2264,7 +2266,7 @@ readFromFile()
 
 ; Checks the contents of the clipboard and parses the information from the tooltip capture
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	ParseClip(){
+ParseClip(){
 		;Reset Variables
 		NameIsDone := False
 		
@@ -2669,7 +2671,7 @@ readFromFile()
 
 ; Debugging information on Mouse Cursor
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GetMouseCoords(){
+GetMouseCoords(){
 		GetMouseCoordsCommand:
 			
 			MouseGetPos x, y
@@ -2706,7 +2708,7 @@ readFromFile()
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified. Color: " . PointColor  .  "`n"
 							}else if (PointColor=IdColor){
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified. Color: " . PointColor  .  "`n"
-							}else if (PointColor=MOColor){
+							}else if (indexOf(PointColor, varMouseoverColor) > 0){
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected item. Color: " . PointColor  .  "`n"
 							}else if (indexOf(PointColor, varEmptyInvSlotColor) > 0){				
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
@@ -2724,7 +2726,7 @@ readFromFile()
 
 ; Check if a specific value is part of an array and return the index
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	indexOf(var, Arr, fromIndex:=1) {
+indexOf(var, Arr, fromIndex:=1) {
 		for index, value in Arr {
 			if (index < fromIndex){
 				Continue
@@ -2736,7 +2738,7 @@ readFromFile()
 
 ; Transform an array to a comma separated string
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	arrToStr(array){
+arrToStr(array){
 		Str := ""
 		For Index, Value In array
 			Str .= "," . Value
@@ -2745,7 +2747,7 @@ readFromFile()
 	}
 ; Auto Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	DetonateMines(){
+DetonateMines(){
 		GuiStatus("OnChat")
 		If (OnChat)
 			exit
@@ -2762,7 +2764,7 @@ readFromFile()
 
 ; Update Overlay ON OFF states
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GuiUpdate(){
+GuiUpdate(){
 		if (AutoFlask=1) {
 			AutoFlaskToggle:="ON" 
 		} else AutoFlaskToggle:="OFF" 
@@ -2778,7 +2780,7 @@ readFromFile()
 
 ; Pixelcheck for different parts of the screen to see what your status is in game. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	PoEWindowCheck(){
+PoEWindowCheck(){
 		IfWinExist, ahk_group POEGameGroup 
 		{
 			global GuiX, GuiY, RescaleRan, ToggleExist
@@ -2799,7 +2801,7 @@ readFromFile()
 	}
 ; Receive Messages from other scripts
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MsgMonitor(wParam, lParam, msg)
+MsgMonitor(wParam, lParam, msg)
 		{
 		critical
 		If (wParam=1)
@@ -2864,7 +2866,7 @@ readFromFile()
 		}
 ; Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	SendMSG(wParam:=0, lParam:=0, script:=""){
+SendMSG(wParam:=0, lParam:=0, script:=""){
 	DetectHiddenWindows On
 	if WinExist(script) 
 		PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
@@ -3536,7 +3538,7 @@ readFromFile(){
     IniRead, YesVendor, settings.ini, General, YesVendor, 1
     IniRead, YesStash, settings.ini, General, YesStash, 1
     IniRead, YesIdentify, settings.ini, General, YesIdentify, 1
-        IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
+	IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
     IniRead, Latency, settings.ini, General, Latency, 1
     IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
     IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
@@ -3580,8 +3582,10 @@ readFromFile(){
     
     ;Inventory Colors
     IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905
+    IniRead, varMouseoverColor, settings.ini, Inventory Colors, MouseoverColor, 0x011C01, 0x011C01
     ;Create an array out of the read string
     varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
+    varMouseoverColor := StrSplit(varMouseoverColor, ",")
     
     ;Failsafe Colors
     IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
@@ -3617,33 +3621,33 @@ readFromFile(){
     
     ;Life Triggers
     IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20, 00000
-        IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30, 00000
-        IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40, 00000
-        IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50, 00000
-        IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60, 00000
-        IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70, 00000
-        IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80, 00000
-        IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90, 00000
-        IniRead, DisableLife, settings.ini, Life Triggers, DisableLife, 11111
+	IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30, 00000
+	IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40, 00000
+	IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50, 00000
+	IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60, 00000
+	IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70, 00000
+	IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80, 00000
+	IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90, 00000
+	IniRead, DisableLife, settings.ini, Life Triggers, DisableLife, 11111
     Loop, 5 {
         valueLife20 := substr(TriggerLife20, (A_Index), 1)
-            GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
-            valueLife30 := substr(TriggerLife30, (A_Index), 1)
-            GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
-            valueLife40 := substr(TriggerLife40, (A_Index), 1)
-            GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
-            valueLife50 := substr(TriggerLife50, (A_Index), 1)
-            GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
-            valueLife60 := substr(TriggerLife60, (A_Index), 1)
-            GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
-            valueLife70 := substr(TriggerLife70, (A_Index), 1)
-            GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
-            valueLife80 := substr(TriggerLife80, (A_Index), 1)
-            GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
-            valueLife90 := substr(TriggerLife90, (A_Index), 1)
-            GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
-            valueDisableLife := substr(DisableLife, (A_Index), 1)
-            GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
+		GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
+		valueLife30 := substr(TriggerLife30, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
+		valueLife40 := substr(TriggerLife40, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
+		valueLife50 := substr(TriggerLife50, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
+		valueLife60 := substr(TriggerLife60, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
+		valueLife70 := substr(TriggerLife70, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
+		valueLife80 := substr(TriggerLife80, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
+		valueLife90 := substr(TriggerLife90, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
+		valueDisableLife := substr(DisableLife, (A_Index), 1)
+		GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
         }
     
     ;ES Triggers
@@ -3698,11 +3702,11 @@ readFromFile(){
     
     ;Utility Percents	
     IniRead, YesUtility1LifePercent, settings.ini, Utility Buttons, YesUtility1LifePercent, Off
-        IniRead, YesUtility2LifePercent, settings.ini, Utility Buttons, YesUtility2LifePercent, Off
-        IniRead, YesUtility3LifePercent, settings.ini, Utility Buttons, YesUtility3LifePercent, Off
-        IniRead, YesUtility4LifePercent, settings.ini, Utility Buttons, YesUtility4LifePercent, Off
-        IniRead, YesUtility5LifePercent, settings.ini, Utility Buttons, YesUtility5LifePercent, Off
-        IniRead, YesUtility1EsPercent, settings.ini, 	Utility Buttons, YesUtility1EsPercent, Off
+	IniRead, YesUtility2LifePercent, settings.ini, Utility Buttons, YesUtility2LifePercent, Off
+	IniRead, YesUtility3LifePercent, settings.ini, Utility Buttons, YesUtility3LifePercent, Off
+	IniRead, YesUtility4LifePercent, settings.ini, Utility Buttons, YesUtility4LifePercent, Off
+	IniRead, YesUtility5LifePercent, settings.ini, Utility Buttons, YesUtility5LifePercent, Off
+	IniRead, YesUtility1EsPercent, settings.ini, 	Utility Buttons, YesUtility1EsPercent, Off
     IniRead, YesUtility2EsPercent, settings.ini, 	Utility Buttons, YesUtility2EsPercent, Off
     IniRead, YesUtility3EsPercent, settings.ini, 	Utility Buttons, YesUtility3EsPercent, Off
     IniRead, YesUtility4EsPercent, settings.ini, 	Utility Buttons, YesUtility4EsPercent, Off
@@ -3767,7 +3771,7 @@ readFromFile(){
     
     ;CharacterTypeCheck
     IniRead, RadioLife, settings.ini, CharacterTypeCheck, Life, 1
-        IniRead, RadioHybrid, settings.ini, CharacterTypeCheck, Hybrid, 0
+	IniRead, RadioHybrid, settings.ini, CharacterTypeCheck, Hybrid, 0
     IniRead, RadioCi, settings.ini, CharacterTypeCheck, Ci, 0
     
     ;AutoQuit
@@ -3791,7 +3795,7 @@ readFromFile(){
     
     ;~ hotkeys reset
     hotkey, IfWinActive, ahk_group POEGameGroup
-        If hotkeyAutoQuit
+	If hotkeyAutoQuit
         hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
     If hotkeyAutoFlask
         hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
@@ -3815,7 +3819,7 @@ readFromFile(){
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
     
     hotkey, IfWinActive
-        If hotkeyOptions
+	If hotkeyOptions
         hotkey,% hotkeyOptions, optionsCommand, Off
     hotkey, IfWinActive, ahk_group POEGameGroup
         
@@ -3838,7 +3842,7 @@ readFromFile(){
     IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
     
     hotkey, IfWinActive, ahk_group POEGameGroup
-        If hotkeyAutoQuit
+	If hotkeyAutoQuit
         hotkey,% hotkeyAutoQuit, AutoQuitCommand, On
     If hotkeyAutoFlask
         hotkey,% hotkeyAutoFlask, AutoFlaskCommand, On
@@ -3865,11 +3869,11 @@ readFromFile(){
     If hotkeyOptions {
         hotkey,% hotkeyOptions, optionsCommand, On
         ;GuiControl,, guiSettings, Settings:%hotkeyOptions%
-    } else {
+    	} else {
         hotkey,!F10, optionsCommand, On
         msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
         ;GuiControl,, guiSettings, Settings:%hotkeyOptions%
-    }
+    	}
     checkActiveType()
 Return
 }
@@ -4007,11 +4011,11 @@ updateEverything:
     
     ;Utility Percents	
     IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
-        IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
-        IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
-        IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
-        IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
-        IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
+	IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
+	IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
+	IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
+	IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
+	IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
     IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
     IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
     IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
@@ -4100,7 +4104,7 @@ updateEverything:
     
     ;CharacterTypeCheck
     IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
-        IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid	
+	IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid	
     IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci	
     
     ;AutoQuit
@@ -4114,9 +4118,9 @@ updateEverything:
     GuiUpdate()
     SetTitleMatchMode 2
     IfWinExist, ahk_group POEGameGroup
-    {
+    	{
         WinActivate, ahk_group POEGameGroup
-    }
+    	}
     SendMSG(1, , scriptGottaGoFast)
 return  
 }
@@ -4127,66 +4131,66 @@ submitProfile(Profile){
     
     ;Life Flasks
     
-    IniWrite, %Radiobox1Life20%, settings.ini, Profile%Profile%, Radiobox1Life20
-        IniWrite, %Radiobox2Life20%, settings.ini, Profile%Profile%, Radiobox2Life20
-        IniWrite, %Radiobox3Life20%, settings.ini, Profile%Profile%, Radiobox3Life20
-        IniWrite, %Radiobox4Life20%, settings.ini, Profile%Profile%, Radiobox4Life20
-        IniWrite, %Radiobox5Life20%, settings.ini, Profile%Profile%, Radiobox5Life20
-        
-    IniWrite, %Radiobox1Life30%, settings.ini, Profile%Profile%, Radiobox1Life30
-        IniWrite, %Radiobox2Life30%, settings.ini, Profile%Profile%, Radiobox2Life30
-        IniWrite, %Radiobox3Life30%, settings.ini, Profile%Profile%, Radiobox3Life30
-        IniWrite, %Radiobox4Life30%, settings.ini, Profile%Profile%, Radiobox4Life30
-        IniWrite, %Radiobox5Life30%, settings.ini, Profile%Profile%, Radiobox5Life30
-        
-    IniWrite, %Radiobox1Life40%, settings.ini, Profile%Profile%, Radiobox1Life40
-        IniWrite, %Radiobox2Life40%, settings.ini, Profile%Profile%, Radiobox2Life40
-        IniWrite, %Radiobox3Life40%, settings.ini, Profile%Profile%, Radiobox3Life40
-        IniWrite, %Radiobox4Life40%, settings.ini, Profile%Profile%, Radiobox4Life40
-        IniWrite, %Radiobox5Life40%, settings.ini, Profile%Profile%, Radiobox5Life40
-        
-    IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
-        IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
-        IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
-        IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
-        IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
-        
-    IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
-        IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
-        IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
-        IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
-        IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
-        
-    IniWrite, %Radiobox1Life60%, settings.ini, Profile%Profile%, Radiobox1Life60
-        IniWrite, %Radiobox2Life60%, settings.ini, Profile%Profile%, Radiobox2Life60
-        IniWrite, %Radiobox3Life60%, settings.ini, Profile%Profile%, Radiobox3Life60
-        IniWrite, %Radiobox4Life60%, settings.ini, Profile%Profile%, Radiobox4Life60
-        IniWrite, %Radiobox5Life60%, settings.ini, Profile%Profile%, Radiobox5Life60
-        
-    IniWrite, %Radiobox1Life70%, settings.ini, Profile%Profile%, Radiobox1Life70
-        IniWrite, %Radiobox2Life70%, settings.ini, Profile%Profile%, Radiobox2Life70
-        IniWrite, %Radiobox3Life70%, settings.ini, Profile%Profile%, Radiobox3Life70
-        IniWrite, %Radiobox4Life70%, settings.ini, Profile%Profile%, Radiobox4Life70
-        IniWrite, %Radiobox5Life70%, settings.ini, Profile%Profile%, Radiobox5Life70
-        
-    IniWrite, %Radiobox1Life80%, settings.ini, Profile%Profile%, Radiobox1Life80
-        IniWrite, %Radiobox2Life80%, settings.ini, Profile%Profile%, Radiobox2Life80
-        IniWrite, %Radiobox3Life80%, settings.ini, Profile%Profile%, Radiobox3Life80
-        IniWrite, %Radiobox4Life80%, settings.ini, Profile%Profile%, Radiobox4Life80
-        IniWrite, %Radiobox5Life80%, settings.ini, Profile%Profile%, Radiobox5Life80
-        
-    IniWrite, %Radiobox1Life90%, settings.ini, Profile%Profile%, Radiobox1Life90
-        IniWrite, %Radiobox2Life90%, settings.ini, Profile%Profile%, Radiobox2Life90
-        IniWrite, %Radiobox3Life90%, settings.ini, Profile%Profile%, Radiobox3Life90
-        IniWrite, %Radiobox4Life90%, settings.ini, Profile%Profile%, Radiobox4Life90
-        IniWrite, %Radiobox5Life90%, settings.ini, Profile%Profile%, Radiobox5Life90
-        
-    IniWrite, %RadioUncheck1Life%, settings.ini, Profile%Profile%, RadioUncheck1Life
-        IniWrite, %RadioUncheck2Life%, settings.ini, Profile%Profile%, RadioUncheck2Life
-        IniWrite, %RadioUncheck3Life%, settings.ini, Profile%Profile%, RadioUncheck3Life
-        IniWrite, %RadioUncheck4Life%, settings.ini, Profile%Profile%, RadioUncheck4Life
-        IniWrite, %RadioUncheck5Life%, settings.ini, Profile%Profile%, RadioUncheck5Life
-        
+	IniWrite, %Radiobox1Life20%, settings.ini, Profile%Profile%, Radiobox1Life20
+	IniWrite, %Radiobox2Life20%, settings.ini, Profile%Profile%, Radiobox2Life20
+	IniWrite, %Radiobox3Life20%, settings.ini, Profile%Profile%, Radiobox3Life20
+	IniWrite, %Radiobox4Life20%, settings.ini, Profile%Profile%, Radiobox4Life20
+	IniWrite, %Radiobox5Life20%, settings.ini, Profile%Profile%, Radiobox5Life20
+
+	IniWrite, %Radiobox1Life30%, settings.ini, Profile%Profile%, Radiobox1Life30
+	IniWrite, %Radiobox2Life30%, settings.ini, Profile%Profile%, Radiobox2Life30
+	IniWrite, %Radiobox3Life30%, settings.ini, Profile%Profile%, Radiobox3Life30
+	IniWrite, %Radiobox4Life30%, settings.ini, Profile%Profile%, Radiobox4Life30
+	IniWrite, %Radiobox5Life30%, settings.ini, Profile%Profile%, Radiobox5Life30
+
+	IniWrite, %Radiobox1Life40%, settings.ini, Profile%Profile%, Radiobox1Life40
+	IniWrite, %Radiobox2Life40%, settings.ini, Profile%Profile%, Radiobox2Life40
+	IniWrite, %Radiobox3Life40%, settings.ini, Profile%Profile%, Radiobox3Life40
+	IniWrite, %Radiobox4Life40%, settings.ini, Profile%Profile%, Radiobox4Life40
+	IniWrite, %Radiobox5Life40%, settings.ini, Profile%Profile%, Radiobox5Life40
+
+	IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
+	IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
+	IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
+	IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
+	IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
+
+	IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
+	IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
+	IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
+	IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
+	IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
+
+	IniWrite, %Radiobox1Life60%, settings.ini, Profile%Profile%, Radiobox1Life60
+	IniWrite, %Radiobox2Life60%, settings.ini, Profile%Profile%, Radiobox2Life60
+	IniWrite, %Radiobox3Life60%, settings.ini, Profile%Profile%, Radiobox3Life60
+	IniWrite, %Radiobox4Life60%, settings.ini, Profile%Profile%, Radiobox4Life60
+	IniWrite, %Radiobox5Life60%, settings.ini, Profile%Profile%, Radiobox5Life60
+
+	IniWrite, %Radiobox1Life70%, settings.ini, Profile%Profile%, Radiobox1Life70
+	IniWrite, %Radiobox2Life70%, settings.ini, Profile%Profile%, Radiobox2Life70
+	IniWrite, %Radiobox3Life70%, settings.ini, Profile%Profile%, Radiobox3Life70
+	IniWrite, %Radiobox4Life70%, settings.ini, Profile%Profile%, Radiobox4Life70
+	IniWrite, %Radiobox5Life70%, settings.ini, Profile%Profile%, Radiobox5Life70
+
+	IniWrite, %Radiobox1Life80%, settings.ini, Profile%Profile%, Radiobox1Life80
+	IniWrite, %Radiobox2Life80%, settings.ini, Profile%Profile%, Radiobox2Life80
+	IniWrite, %Radiobox3Life80%, settings.ini, Profile%Profile%, Radiobox3Life80
+	IniWrite, %Radiobox4Life80%, settings.ini, Profile%Profile%, Radiobox4Life80
+	IniWrite, %Radiobox5Life80%, settings.ini, Profile%Profile%, Radiobox5Life80
+
+	IniWrite, %Radiobox1Life90%, settings.ini, Profile%Profile%, Radiobox1Life90
+	IniWrite, %Radiobox2Life90%, settings.ini, Profile%Profile%, Radiobox2Life90
+	IniWrite, %Radiobox3Life90%, settings.ini, Profile%Profile%, Radiobox3Life90
+	IniWrite, %Radiobox4Life90%, settings.ini, Profile%Profile%, Radiobox4Life90
+	IniWrite, %Radiobox5Life90%, settings.ini, Profile%Profile%, Radiobox5Life90
+
+	IniWrite, %RadioUncheck1Life%, settings.ini, Profile%Profile%, RadioUncheck1Life
+	IniWrite, %RadioUncheck2Life%, settings.ini, Profile%Profile%, RadioUncheck2Life
+	IniWrite, %RadioUncheck3Life%, settings.ini, Profile%Profile%, RadioUncheck3Life
+	IniWrite, %RadioUncheck4Life%, settings.ini, Profile%Profile%, RadioUncheck4Life
+	IniWrite, %RadioUncheck5Life%, settings.ini, Profile%Profile%, RadioUncheck5Life
+	
     ;ES Flasks
     IniWrite, %Radiobox1ES20%, settings.ini, Profile%Profile%, Radiobox1ES20
     IniWrite, %Radiobox2ES20%, settings.ini, Profile%Profile%, Radiobox2ES20
@@ -4289,7 +4293,7 @@ submitProfile(Profile){
     
     ;CharacterTypeCheck
     IniWrite, %RadioLife%, settings.ini, Profile%Profile%, Life
-        IniWrite, %RadioHybrid%, settings.ini, Profile%Profile%, Hybrid	
+	IniWrite, %RadioHybrid%, settings.ini, Profile%Profile%, Hybrid	
     IniWrite, %RadioCi%, settings.ini, Profile%Profile%, Ci	
     
     ;AutoQuit
@@ -4346,120 +4350,120 @@ readProfile(Profile){
     global
     
     IniRead, Test, settings.ini, Profile%Profile%, Radiobox1Life20
-        If (Test = "ERROR")
+	If (Test = "ERROR")
         Exit
     ;Life Flasks
     
-    IniRead, Radiobox1Life20, settings.ini, Profile%Profile%, Radiobox1Life20
-        GuiControl, , Radiobox1Life20, %Radiobox1Life20%
-        IniRead, Radiobox2Life20, settings.ini, Profile%Profile%, Radiobox2Life20
-        GuiControl, , Radiobox2Life20, %Radiobox2Life20%
-        IniRead, Radiobox3Life20, settings.ini, Profile%Profile%, Radiobox3Life20
-        GuiControl, , Radiobox3Life20, %Radiobox3Life20%
-        IniRead, Radiobox4Life20, settings.ini, Profile%Profile%, Radiobox4Life20
-        GuiControl, , Radiobox4Life20, %Radiobox4Life20%
-        IniRead, Radiobox5Life20, settings.ini, Profile%Profile%, Radiobox5Life20
-        GuiControl, , Radiobox5Life20, %Radiobox5Life20%
-        
-    IniRead, Radiobox1Life30, settings.ini, Profile%Profile%, Radiobox1Life30
-        GuiControl, , Radiobox1Life30, %Radiobox1Life30%
-        IniRead, Radiobox2Life30, settings.ini, Profile%Profile%, Radiobox2Life30
-        GuiControl, , Radiobox2Life30, %Radiobox2Life30%
-        IniRead, Radiobox3Life30, settings.ini, Profile%Profile%, Radiobox3Life30
-        GuiControl, , Radiobox3Life30, %Radiobox3Life30%
-        IniRead, Radiobox4Life30, settings.ini, Profile%Profile%, Radiobox4Life30
-        GuiControl, , Radiobox4Life30, %Radiobox4Life30%
-        IniRead, Radiobox5Life30, settings.ini, Profile%Profile%, Radiobox5Life30
-        GuiControl, , Radiobox5Life30, %Radiobox5Life30%
-        
-    IniRead, Radiobox1Life40, settings.ini, Profile%Profile%, Radiobox1Life40
-        GuiControl, , Radiobox1Life40, %Radiobox1Life40%
-        IniRead, Radiobox2Life40, settings.ini, Profile%Profile%, Radiobox2Life40
-        GuiControl, , Radiobox2Life40, %Radiobox2Life40%
-        IniRead, Radiobox3Life40, settings.ini, Profile%Profile%, Radiobox3Life40
-        GuiControl, , Radiobox3Life40, %Radiobox3Life40%
-        IniRead, Radiobox4Life40, settings.ini, Profile%Profile%, Radiobox4Life40
-        GuiControl, , Radiobox4Life40, %Radiobox4Life40%
-        IniRead, Radiobox5Life40, settings.ini, Profile%Profile%, Radiobox5Life40
-        GuiControl, , Radiobox5Life40, %Radiobox5Life40%
-        
-    IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50
-        GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-        IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50
-        GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-        IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50
-        GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-        IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50
-        GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-        IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50
-        GuiControl, , Radiobox5Life50, %Radiobox5Life50%
-        
-    IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50
-        GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-        IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50
-        GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-        IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50
-        GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-        IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50
-        GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-        IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50
-        GuiControl, , Radiobox5Life50, %Radiobox5Life50%
-        
-    IniRead, Radiobox1Life60, settings.ini, Profile%Profile%, Radiobox1Life60
-        GuiControl, , Radiobox1Life60, %Radiobox1Life60%
-        IniRead, Radiobox2Life60, settings.ini, Profile%Profile%, Radiobox2Life60
-        GuiControl, , Radiobox2Life60, %Radiobox2Life60%
-        IniRead, Radiobox3Life60, settings.ini, Profile%Profile%, Radiobox3Life60
-        GuiControl, , Radiobox3Life60, %Radiobox3Life60%
-        IniRead, Radiobox4Life60, settings.ini, Profile%Profile%, Radiobox4Life60
-        GuiControl, , Radiobox4Life60, %Radiobox4Life60%
-        IniRead, Radiobox5Life60, settings.ini, Profile%Profile%, Radiobox5Life60
-        GuiControl, , Radiobox5Life60, %Radiobox5Life60%
-        
-    IniRead, Radiobox1Life70, settings.ini, Profile%Profile%, Radiobox1Life70
-        GuiControl, , Radiobox1Life70, %Radiobox1Life70%
-        IniRead, Radiobox2Life70, settings.ini, Profile%Profile%, Radiobox2Life70
-        GuiControl, , Radiobox2Life70, %Radiobox2Life70%
-        IniRead, Radiobox3Life70, settings.ini, Profile%Profile%, Radiobox3Life70
-        GuiControl, , Radiobox3Life70, %Radiobox3Life70%
-        IniRead, Radiobox4Life70, settings.ini, Profile%Profile%, Radiobox4Life70
-        GuiControl, , Radiobox4Life70, %Radiobox4Life70%
-        IniRead, Radiobox5Life70, settings.ini, Profile%Profile%, Radiobox5Life70
-        GuiControl, , Radiobox5Life70, %Radiobox5Life70%
-        
-    IniRead, Radiobox1Life80, settings.ini, Profile%Profile%, Radiobox1Life80
-        GuiControl, , Radiobox1Life80, %Radiobox1Life80%
-        IniRead, Radiobox2Life80, settings.ini, Profile%Profile%, Radiobox2Life80
-        GuiControl, , Radiobox2Life80, %Radiobox2Life80%
-        IniRead, Radiobox3Life80, settings.ini, Profile%Profile%, Radiobox3Life80
-        GuiControl, , Radiobox3Life80, %Radiobox3Life80%
-        IniRead, Radiobox4Life80, settings.ini, Profile%Profile%, Radiobox4Life80
-        GuiControl, , Radiobox4Life80, %Radiobox4Life80%
-        IniRead, Radiobox5Life80, settings.ini, Profile%Profile%, Radiobox5Life80
-        GuiControl, , Radiobox5Life80, %Radiobox5Life80%
-        
-    IniRead, Radiobox1Life90, settings.ini, Profile%Profile%, Radiobox1Life90
-        GuiControl, , Radiobox1Life90, %Radiobox1Life90%
-        IniRead, Radiobox2Life90, settings.ini, Profile%Profile%, Radiobox2Life90
-        GuiControl, , Radiobox2Life90, %Radiobox2Life90%
-        IniRead, Radiobox3Life90, settings.ini, Profile%Profile%, Radiobox3Life90
-        GuiControl, , Radiobox3Life90, %Radiobox3Life90%
-        IniRead, Radiobox4Life90, settings.ini, Profile%Profile%, Radiobox4Life90
-        GuiControl, , Radiobox4Life90, %Radiobox4Life90%
-        IniRead, Radiobox5Life90, settings.ini, Profile%Profile%, Radiobox5Life90
-        GuiControl, , Radiobox5Life90, %Radiobox5Life90%
-        
-    IniRead, RadioUncheck1Life, settings.ini, Profile%Profile%, RadioUncheck1Life
-        GuiControl, , RadioUncheck1Life, %RadioUncheck1Life%
-        IniRead, RadioUncheck2Life, settings.ini, Profile%Profile%, RadioUncheck2Life
-        GuiControl, , RadioUncheck2Life, %RadioUncheck2Life%
-        IniRead, RadioUncheck3Life, settings.ini, Profile%Profile%, RadioUncheck3Life
-        GuiControl, , RadioUncheck3Life, %RadioUncheck3Life%
-        IniRead, RadioUncheck4Life, settings.ini, Profile%Profile%, RadioUncheck4Life
-        GuiControl, , RadioUncheck4Life, %RadioUncheck4Life%
-        IniRead, RadioUncheck5Life, settings.ini, Profile%Profile%, RadioUncheck5Life
-        GuiControl, , RadioUncheck5Life, %RadioUncheck5Life%
-        
+	IniRead, Radiobox1Life20, settings.ini, Profile%Profile%, Radiobox1Life20
+	GuiControl, , Radiobox1Life20, %Radiobox1Life20%
+	IniRead, Radiobox2Life20, settings.ini, Profile%Profile%, Radiobox2Life20
+	GuiControl, , Radiobox2Life20, %Radiobox2Life20%
+	IniRead, Radiobox3Life20, settings.ini, Profile%Profile%, Radiobox3Life20
+	GuiControl, , Radiobox3Life20, %Radiobox3Life20%
+	IniRead, Radiobox4Life20, settings.ini, Profile%Profile%, Radiobox4Life20
+	GuiControl, , Radiobox4Life20, %Radiobox4Life20%
+	IniRead, Radiobox5Life20, settings.ini, Profile%Profile%, Radiobox5Life20
+	GuiControl, , Radiobox5Life20, %Radiobox5Life20%
+
+	IniRead, Radiobox1Life30, settings.ini, Profile%Profile%, Radiobox1Life30
+	GuiControl, , Radiobox1Life30, %Radiobox1Life30%
+	IniRead, Radiobox2Life30, settings.ini, Profile%Profile%, Radiobox2Life30
+	GuiControl, , Radiobox2Life30, %Radiobox2Life30%
+	IniRead, Radiobox3Life30, settings.ini, Profile%Profile%, Radiobox3Life30
+	GuiControl, , Radiobox3Life30, %Radiobox3Life30%
+	IniRead, Radiobox4Life30, settings.ini, Profile%Profile%, Radiobox4Life30
+	GuiControl, , Radiobox4Life30, %Radiobox4Life30%
+	IniRead, Radiobox5Life30, settings.ini, Profile%Profile%, Radiobox5Life30
+	GuiControl, , Radiobox5Life30, %Radiobox5Life30%
+
+	IniRead, Radiobox1Life40, settings.ini, Profile%Profile%, Radiobox1Life40
+	GuiControl, , Radiobox1Life40, %Radiobox1Life40%
+	IniRead, Radiobox2Life40, settings.ini, Profile%Profile%, Radiobox2Life40
+	GuiControl, , Radiobox2Life40, %Radiobox2Life40%
+	IniRead, Radiobox3Life40, settings.ini, Profile%Profile%, Radiobox3Life40
+	GuiControl, , Radiobox3Life40, %Radiobox3Life40%
+	IniRead, Radiobox4Life40, settings.ini, Profile%Profile%, Radiobox4Life40
+	GuiControl, , Radiobox4Life40, %Radiobox4Life40%
+	IniRead, Radiobox5Life40, settings.ini, Profile%Profile%, Radiobox5Life40
+	GuiControl, , Radiobox5Life40, %Radiobox5Life40%
+
+	IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50
+	GuiControl, , Radiobox1Life50, %Radiobox1Life50%
+	IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50
+	GuiControl, , Radiobox2Life50, %Radiobox2Life50%
+	IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50
+	GuiControl, , Radiobox3Life50, %Radiobox3Life50%
+	IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50
+	GuiControl, , Radiobox4Life50, %Radiobox4Life50%
+	IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50
+	GuiControl, , Radiobox5Life50, %Radiobox5Life50%
+
+	IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50
+	GuiControl, , Radiobox1Life50, %Radiobox1Life50%
+	IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50
+	GuiControl, , Radiobox2Life50, %Radiobox2Life50%
+	IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50
+	GuiControl, , Radiobox3Life50, %Radiobox3Life50%
+	IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50
+	GuiControl, , Radiobox4Life50, %Radiobox4Life50%
+	IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50
+	GuiControl, , Radiobox5Life50, %Radiobox5Life50%
+
+	IniRead, Radiobox1Life60, settings.ini, Profile%Profile%, Radiobox1Life60
+	GuiControl, , Radiobox1Life60, %Radiobox1Life60%
+	IniRead, Radiobox2Life60, settings.ini, Profile%Profile%, Radiobox2Life60
+	GuiControl, , Radiobox2Life60, %Radiobox2Life60%
+	IniRead, Radiobox3Life60, settings.ini, Profile%Profile%, Radiobox3Life60
+	GuiControl, , Radiobox3Life60, %Radiobox3Life60%
+	IniRead, Radiobox4Life60, settings.ini, Profile%Profile%, Radiobox4Life60
+	GuiControl, , Radiobox4Life60, %Radiobox4Life60%
+	IniRead, Radiobox5Life60, settings.ini, Profile%Profile%, Radiobox5Life60
+	GuiControl, , Radiobox5Life60, %Radiobox5Life60%
+
+	IniRead, Radiobox1Life70, settings.ini, Profile%Profile%, Radiobox1Life70
+	GuiControl, , Radiobox1Life70, %Radiobox1Life70%
+	IniRead, Radiobox2Life70, settings.ini, Profile%Profile%, Radiobox2Life70
+	GuiControl, , Radiobox2Life70, %Radiobox2Life70%
+	IniRead, Radiobox3Life70, settings.ini, Profile%Profile%, Radiobox3Life70
+	GuiControl, , Radiobox3Life70, %Radiobox3Life70%
+	IniRead, Radiobox4Life70, settings.ini, Profile%Profile%, Radiobox4Life70
+	GuiControl, , Radiobox4Life70, %Radiobox4Life70%
+	IniRead, Radiobox5Life70, settings.ini, Profile%Profile%, Radiobox5Life70
+	GuiControl, , Radiobox5Life70, %Radiobox5Life70%
+
+	IniRead, Radiobox1Life80, settings.ini, Profile%Profile%, Radiobox1Life80
+	GuiControl, , Radiobox1Life80, %Radiobox1Life80%
+	IniRead, Radiobox2Life80, settings.ini, Profile%Profile%, Radiobox2Life80
+	GuiControl, , Radiobox2Life80, %Radiobox2Life80%
+	IniRead, Radiobox3Life80, settings.ini, Profile%Profile%, Radiobox3Life80
+	GuiControl, , Radiobox3Life80, %Radiobox3Life80%
+	IniRead, Radiobox4Life80, settings.ini, Profile%Profile%, Radiobox4Life80
+	GuiControl, , Radiobox4Life80, %Radiobox4Life80%
+	IniRead, Radiobox5Life80, settings.ini, Profile%Profile%, Radiobox5Life80
+	GuiControl, , Radiobox5Life80, %Radiobox5Life80%
+
+	IniRead, Radiobox1Life90, settings.ini, Profile%Profile%, Radiobox1Life90
+	GuiControl, , Radiobox1Life90, %Radiobox1Life90%
+	IniRead, Radiobox2Life90, settings.ini, Profile%Profile%, Radiobox2Life90
+	GuiControl, , Radiobox2Life90, %Radiobox2Life90%
+	IniRead, Radiobox3Life90, settings.ini, Profile%Profile%, Radiobox3Life90
+	GuiControl, , Radiobox3Life90, %Radiobox3Life90%
+	IniRead, Radiobox4Life90, settings.ini, Profile%Profile%, Radiobox4Life90
+	GuiControl, , Radiobox4Life90, %Radiobox4Life90%
+	IniRead, Radiobox5Life90, settings.ini, Profile%Profile%, Radiobox5Life90
+	GuiControl, , Radiobox5Life90, %Radiobox5Life90%
+
+	IniRead, RadioUncheck1Life, settings.ini, Profile%Profile%, RadioUncheck1Life
+	GuiControl, , RadioUncheck1Life, %RadioUncheck1Life%
+	IniRead, RadioUncheck2Life, settings.ini, Profile%Profile%, RadioUncheck2Life
+	GuiControl, , RadioUncheck2Life, %RadioUncheck2Life%
+	IniRead, RadioUncheck3Life, settings.ini, Profile%Profile%, RadioUncheck3Life
+	GuiControl, , RadioUncheck3Life, %RadioUncheck3Life%
+	IniRead, RadioUncheck4Life, settings.ini, Profile%Profile%, RadioUncheck4Life
+	GuiControl, , RadioUncheck4Life, %RadioUncheck4Life%
+	IniRead, RadioUncheck5Life, settings.ini, Profile%Profile%, RadioUncheck5Life
+	GuiControl, , RadioUncheck5Life, %RadioUncheck5Life%
+	
     ;ES Flasks
     IniRead, Radiobox1ES20, settings.ini, Profile%Profile%, Radiobox1ES20
     GuiControl, , Radiobox1ES20, %Radiobox1ES20%
@@ -4640,8 +4644,8 @@ readProfile(Profile){
     
     ;CharacterTypeCheck
     IniRead, RadioLife, settings.ini, Profile%Profile%, Life
-        GuiControl, , RadioLife, %RadioLife%
-        IniRead, RadioHybrid, settings.ini, Profile%Profile%, Hybrid	
+	GuiControl, , RadioLife, %RadioLife%
+	IniRead, RadioHybrid, settings.ini, Profile%Profile%, Hybrid	
     GuiControl, , RadioHybrid, %RadioHybrid%
     IniRead, RadioCi, settings.ini, Profile%Profile%, Ci	
     GuiControl, , RadioCi, %RadioCi%
@@ -5081,6 +5085,78 @@ updateEmptyInvSlotColor:
         readFromFile()
 
         infoMsg := "Empty inventory slot colors calibrated and saved with following color codes:`r`n`r`n"
+        infoMsg .= strToSave
+
+        MsgBox, %infoMsg%
+
+
+    }else{
+        MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
+    }
+
+    hotkeys()
+return
+
+updateMouseoverColor:
+    Gui, Submit, NoHide
+
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist. `nMouseover calibration didn't work"
+        Return
+    }
+
+    
+    
+    if WinActive(ahk_group POEGameGroup){
+        ;Now we need to get the user input for every grid element if its empty or not
+
+        ;First inform the user about the procedure
+        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Mouseover colors.`r`n`r`n"
+        infoMsg .= "  -> Make sure your whole inventory is filled with currency`r`n"
+        infoMsg .= "  -> Make sure your inventory is open`r`n`r`n"
+        infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
+
+        MsgBox, 1,, %infoMsg%
+        IfMsgBox, Cancel
+        {
+            MsgBox Canceled the Mouseover calibration
+            return
+        }
+
+        varMouseoverColor := []
+        WinActivate, ahk_group POEGameGroup
+
+        ;Loop through the whole grid, overlay the current grid item and display a box with two buttons "Empty" and "Occupied"
+        ; I couldn't find a fast way to draw an overlay, doing at the moment with manual , might lead to problem if the user doesnt understand
+        ; If the user clicks "Empty" save the pixelcolor and add it to the array of empty inv slot colors
+        For c, GridX in InventoryGridX	{
+            For r, GridY in InventoryGridY
+            {
+				Grid := RandClick(GridX, GridY)
+				MouseMove, Grid.X, Grid.Y
+				Sleep, 60
+                pixelgetcolor, PointColor, GridX, GridY
+
+                if(indexOf(PointColor, varMouseoverColor)){
+                    ;We have this empty color already, skip this slot
+                    continue
+                }else{
+                    ;Assume that the whole inventory is empty and we just add the color to the array
+                    varMouseoverColor.Push(PointColor)
+                }
+            }
+        }
+
+        strToSave := arrToStr(varMouseoverColor)
+
+        IniWrite, %strToSave%, settings.ini, Inventory Colors, MouseoverColor
+        readFromFile()
+
+        infoMsg := "Mouseover colors calibrated and saved with following color codes:`r`n`r`n"
         infoMsg .= strToSave
 
         MsgBox, %infoMsg%
@@ -5548,7 +5624,7 @@ UtilityCheck:
             GuiControl,, RadioUncheck%A_Index%ES, 1
         	}
     	}
-	Return
+Return
     
 RemoveToolTip:
     SetTimer, RemoveToolTip, Off
@@ -5580,8 +5656,8 @@ checkUpdate(){
         }
     }
     WinGetPos, , , WinWidth, WinHeight
-	Return
-	}
+Return
+}
 
 runUpdate:
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
@@ -5596,7 +5672,7 @@ runUpdate:
     }
     Sleep 5000 ;This shouldn't ever hit.
     error("update","uhoh", A_ScriptFullPath, macroVersion, A_AhkVersion)
-	Return
+Return
 
 dontUpdate:
     Gui, 4:Destroy
