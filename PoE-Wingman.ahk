@@ -347,7 +347,11 @@
 
 	;Utility Cooldowns
 		global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
-		global OnCooldownUtility1, OnCooldownUtility2, OnCooldownUtility3, OnCooldownUtility4, OnCooldownUtility5
+		global OnCooldownUtility1 := 0
+		global OnCooldownUtility2 := 0
+		global OnCooldownUtility3 := 0
+		global OnCooldownUtility4 := 0
+		global OnCooldownUtility5 := 0
 		
 	;Utility Keys
 		global KeyUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
@@ -2944,7 +2948,7 @@ TGameTick(){
 			Exit
 			}
 		
-		if (Life=1)	{
+		if (RadioLife=1)	{
 			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life20, vX_Life, vY_Life20 
 				if (Life20!=varLife20) {
@@ -3053,7 +3057,7 @@ TGameTick(){
 				}
 			}
 		
-		if (Hybrid=1) {
+		if (RadioHybrid=1) {
 			If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life20, vX_Life, vY_Life20 
 				if (Life20!=varLife20) {
@@ -3250,7 +3254,7 @@ TGameTick(){
 				}
 			}
 		
-		if (Ci=1) {
+		if (RadioCi=1) {
 			If ((TriggerES20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, ES20, vX_ES, vY_ES20 
 				if (ES20!=varES20) {
