@@ -1,3 +1,15 @@
+Version .03.7 August/10/2019
+--------------------------------------------------------------------------------
+Added a timer for checking if the attack key has been held down
+    Good news for those builds that holds down one key *META CYCLONE*
+
+Added Ding() function for debugging
+    Can take up to 7 lines of input strings
+    These only show when debug is checked
+
+Fixed activating AutoQuit alone wouldnt start the main timer
+Fixed AutoQuit variables in the main timer
+
 Version .03.6 August/09/2019
 --------------------------------------------------------------------------------
 Utility Management has been added to profiles

@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .03.6
+    Global VersionNumber := .03.7
     
     checkUpdate()
     
@@ -1931,8 +1931,9 @@ AutoQuit(){
 		AutoQuit := !AutoQuit
 		if ((!AutoFlask) && (!AutoQuit)) {
 			SetTimer TGameTick, Off
-		} else {
-		}
+		} else if ((AutoFlask) || (AutoQuit)){
+			SetTimer TGameTick, %Tick%
+		} 
 		GuiUpdate()
 	return
 	}
@@ -1944,7 +1945,7 @@ AutoFlask(){
 		AutoFlask := !AutoFlask
 		if ((!AutoFlask) and (!AutoQuit)) {
 			SetTimer TGameTick, Off
-		} else {
+		} else if ((AutoFlask) || (AutoQuit)) {
 			SetTimer TGameTick, %Tick%
 		}
 		GuiUpdate()	
@@ -2929,22 +2930,26 @@ GuiStatus(Fetch:=""){
 
 ; Main attack and secondary attack Flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-AttackFlasks(){
-    MainAttackCommand:
-        if (AutoFlask=1) {
-            GuiStatus()
-            If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
-                return
-            TriggerFlask(TriggerMainAttack)
-        }
+MainAttackCommand(){
+MainAttackCommand:
+	if (AutoFlask=1) {
+		GuiStatus()
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+			return
+		TriggerFlask(TriggerMainAttack)
+		SetTimer, TimerMainAttack, 200
+		}
     Return	
-    SecondaryAttackCommand:
-        if (AutoFlask=1) {
-            GuiStatus()
-            If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
-                return
-            TriggerFlask(TriggerSecondaryAttack)
-        }
+	}
+SecondaryAttackCommand(){
+SecondaryAttackCommand:
+	if (AutoFlask=1) {
+		GuiStatus()
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+			return
+		TriggerFlask(TriggerSecondaryAttack)
+		SetTimer, TimerSecondaryAttack, 200
+		}
     Return	
 	}
 
@@ -2957,6 +2962,43 @@ TMineTick(){
             DetonateMines()
     }
     Return
+	}
+
+; Debug messages within script
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ding(Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Message6:="", Message7:="" ){
+	If (!DebugMessages)
+		Return
+	Else If (DebugMessages){
+		debugStr:=Message
+		If (Message2!=""){
+			debugStr.="`n"
+			debugStr.=Message2
+			}
+		If (Message3!=""){
+			debugStr.="`n"
+			debugStr.=Message3
+			}
+		If (Message4!=""){
+			debugStr.="`n"
+			debugStr.=Message4
+			}
+		If (Message5!=""){
+			debugStr.="`n"
+			debugStr.=Message5
+			}
+		If (Message6!=""){
+			debugStr.="`n"
+			debugStr.=Message6
+			}
+		If (Message7!=""){
+			debugStr.="`n"
+			debugStr.=Message7
+			}
+		Tooltip, %debugStr%
+		}
+	SetTimer, RemoveTooltip, 500
+	Return
 	}
 
 ; Flask Logic
@@ -2972,10 +3014,10 @@ TGameTick(){
         }
         
         if (RadioLife=1)	{
-            If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life20, vX_Life, vY_Life20 
-                if (Life20!=varLife20) {
-                    if (AutoQuit=1) && (Quit20=1) {
+            If ((TriggerLife20!="00000")|| ( AutoQuit && RadioQuit20 ) || ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+				pixelgetcolor, Life20, vX_Life, vY_Life20 
+				if (Life20!=varLife20) {
+                    if (AutoQuit=1) && (RadioQuit20=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -2989,10 +3031,10 @@ TGameTick(){
                         TriggerFlask(TriggerLife20)
                     }
             }
-            If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
+            If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life30, vX_Life, vY_Life30 
                 if (Life30!=varLife30) {
-                    if (AutoQuit=1) && (Quit30=1) {
+                    if (AutoQuit=1) && (RadioQuit30=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -3006,10 +3048,10 @@ TGameTick(){
                         TriggerFlask(TriggerLife30)
                     }
             }
-            If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
+            If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life40, vX_Life, vY_Life40 
                 if (Life40!=varLife40) {
-                    if (AutoQuit=1) && (Quit40=1) {
+                    if (AutoQuit=1) && (RadioQuit40=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -3068,8 +3110,8 @@ TGameTick(){
                     }
             }
             If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life90, vX_Life, vY_Life90
-                if (Life90!=varLife90) {
+			    pixelgetcolor, Life90, vX_Life, vY_Life90
+				if (Life90!=varLife90) {
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
                             TriggerUtility(A_Index)
@@ -3081,10 +3123,10 @@ TGameTick(){
         }
         
         if (RadioHybrid=1) {
-            If ((TriggerLife20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+            If ((TriggerLife20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life20, vX_Life, vY_Life20 
                 if (Life20!=varLife20) {
-                    if (AutoQuit=1) && (Quit20=1) {
+                    if (AutoQuit=1) && (RadioQuit20=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -3098,10 +3140,10 @@ TGameTick(){
                         TriggerFlask(TriggerLife20)
                     }
             }
-            If ((TriggerLife30!="00000")||(AutoQuit&&Quit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
+            If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life30, vX_Life, vY_Life30 
                 if (Life30!=varLife30) {
-                    if (AutoQuit=1) && (Quit30=1) {
+                    if (AutoQuit=1) && (RadioQuit30=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -3115,10 +3157,10 @@ TGameTick(){
                         TriggerFlask(TriggerLife30)
                     }
             }
-            If ((TriggerLife40!="00000")||(AutoQuit&&Quit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
+            If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life40, vX_Life, vY_Life40 
                 if (Life40!=varLife40) {
-                    if (AutoQuit=1) && (Quit40=1) {
+                    if (AutoQuit=1) && (RadioQuit40=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -3278,10 +3320,10 @@ TGameTick(){
         }
         
         if (RadioCi=1) {
-            If ((TriggerES20!="00000")||(AutoQuit&&Quit20)|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+            If ((TriggerES20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES20, vX_ES, vY_ES20 
                 if (ES20!=varES20) {
-                    if (AutoQuit=1) && (Quit20=1) {
+                    if (AutoQuit=1) && (RadioQuit20=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -3295,10 +3337,10 @@ TGameTick(){
                         TriggerFlask(TriggerES20)
                 }
             }
-            If ((TriggerES30!="00000")||(AutoQuit&&Quit30)|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
+            If ((TriggerES30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES30, vX_ES, vY_ES30 
                 if (ES30!=varES30) {
-                    if (AutoQuit=1) && (Quit30=1) {
+                    if (AutoQuit=1) && (RadioQuit30=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -3312,10 +3354,10 @@ TGameTick(){
                         TriggerFlask(TriggerES30)
                 }
             }
-            If ((TriggerES40!="00000")||(AutoQuit&&Quit40)|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
+            If ((TriggerES40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES40, vX_ES, vY_ES40 
                 if (ES40!=varES40) {
-                    if (AutoQuit=1) && (Quit40=1) {
+                    if (AutoQuit=1) && (RadioQuit40=1) {
                         GuiStatus("OnChar")
                         if (OnChar)
                             LogoutCommand()
@@ -3493,6 +3535,23 @@ Clamp( Val, Min, Max) {
 		settimer,TimmerFlask5,delete
 	return
 
+; Attack Key timers
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TimerMainAttack:
+		MainAttackPressed:=GetKeyState(hotkeyMainAttack, "P")
+		If (MainAttackPressed)
+			MainAttackCommand()
+		Else
+			settimer,TimerMainAttack,delete
+	Return
+
+	TimerSecondaryAttack:
+		SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack, "P")
+		If (SecondaryAttackPressed)
+			SecondaryAttackCommand()
+		Else
+			settimer,TimerSecondaryAttack,delete
+	Return
 ; Utility Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerUtility1:
@@ -3598,13 +3657,13 @@ readFromFile(){
     
     ;Life Colors
     IniRead, varLife20, settings.ini, Life Colors, Life20, 0x181145
-        IniRead, varLife30, settings.ini, Life Colors, Life30, 0x181264
-        IniRead, varLife40, settings.ini, Life Colors, Life40, 0x190F7D
-        IniRead, varLife50, settings.ini, Life Colors, Life50, 0x2318A5
-        IniRead, varLife60, settings.ini, Life Colors, Life60, 0x2215B4
-        IniRead, varLife70, settings.ini, Life Colors, Life70, 0x2413B3
-        IniRead, varLife80, settings.ini, Life Colors, Life80, 0x2B2385
-        IniRead, varLife90, settings.ini, Life Colors, Life90, 0x664564
+	IniRead, varLife30, settings.ini, Life Colors, Life30, 0x181264
+	IniRead, varLife40, settings.ini, Life Colors, Life40, 0x190F7D
+	IniRead, varLife50, settings.ini, Life Colors, Life50, 0x2318A5
+	IniRead, varLife60, settings.ini, Life Colors, Life60, 0x2215B4
+	IniRead, varLife70, settings.ini, Life Colors, Life70, 0x2413B3
+	IniRead, varLife80, settings.ini, Life Colors, Life80, 0x2B2385
+	IniRead, varLife90, settings.ini, Life Colors, Life90, 0x664564
         
     ;ES Colors
     IniRead, varES20, settings.ini, ES Colors, ES20, 0xFFC445
@@ -3889,25 +3948,26 @@ updateEverything:
         Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
         ToggleExist := True
         WinActivate, ahk_group POEGameGroup
+
         ;Life Resample
         pixelgetcolor, varLife20, vX_Life, vY_Life20
-            pixelgetcolor, varLife30, vX_Life, vY_Life30
-            pixelgetcolor, varLife40, vX_Life, vY_Life40
-            pixelgetcolor, varLife50, vX_Life, vY_Life50
-            pixelgetcolor, varLife60, vX_Life, vY_Life60
-            pixelgetcolor, varLife70, vX_Life, vY_Life70
-            pixelgetcolor, varLife80, vX_Life, vY_Life80
-            pixelgetcolor, varLife90, vX_Life, vY_Life90
+		pixelgetcolor, varLife30, vX_Life, vY_Life30
+		pixelgetcolor, varLife40, vX_Life, vY_Life40
+		pixelgetcolor, varLife50, vX_Life, vY_Life50
+		pixelgetcolor, varLife60, vX_Life, vY_Life60
+		pixelgetcolor, varLife70, vX_Life, vY_Life70
+		pixelgetcolor, varLife80, vX_Life, vY_Life80
+		pixelgetcolor, varLife90, vX_Life, vY_Life90
             
         IniWrite, %varLife20%, settings.ini, Life Colors, Life20
-            IniWrite, %varLife30%, settings.ini, Life Colors, Life30
-            IniWrite, %varLife40%, settings.ini, Life Colors, Life40
-            IniWrite, %varLife50%, settings.ini, Life Colors, Life50
-            IniWrite, %varLife60%, settings.ini, Life Colors, Life60
-            IniWrite, %varLife70%, settings.ini, Life Colors, Life70
-            IniWrite, %varLife80%, settings.ini, Life Colors, Life80
-            IniWrite, %varLife90%, settings.ini, Life Colors, Life90
-            ;ES Resample
+		IniWrite, %varLife30%, settings.ini, Life Colors, Life30
+		IniWrite, %varLife40%, settings.ini, Life Colors, Life40
+		IniWrite, %varLife50%, settings.ini, Life Colors, Life50
+		IniWrite, %varLife60%, settings.ini, Life Colors, Life60
+		IniWrite, %varLife70%, settings.ini, Life Colors, Life70
+		IniWrite, %varLife80%, settings.ini, Life Colors, Life80
+		IniWrite, %varLife90%, settings.ini, Life Colors, Life90
+		;ES Resample
         pixelgetcolor, varES20, vX_ES, vY_ES20
         pixelgetcolor, varES30, vX_ES, vY_ES30
         pixelgetcolor, varES40, vX_ES, vY_ES40
@@ -5193,7 +5253,7 @@ updateEmptyInvSlotColor:
 
 
     }else{
-        MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
+        MsgBox % "PoE Window is not active. `nRecalibrate of Empty Color didn't work"
     }
 
     hotkeys()
@@ -5265,7 +5325,7 @@ updateMouseoverColor:
 
 
     }else{
-        MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
+        MsgBox % "PoE Window is not active. `nRecalibrate of Mouseover Color didn't work"
     }
 
     hotkeys()
