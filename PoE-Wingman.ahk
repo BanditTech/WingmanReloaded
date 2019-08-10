@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .03.7
+    Global VersionNumber := .04
     
     checkUpdate()
     
@@ -178,6 +178,7 @@
 		global RunningToggle := False
 		Global Steam := 1
 		Global HighBits := 1
+		Global AutoUpdateOff := 0
 		; Dont change the speed & the tick unless you know what you are doing
 			global Speed:=1
 			global Tick:=50
@@ -589,6 +590,12 @@ readFromFile()
 
 	Gui, Add, Text, 									x447 	y51 		h135 0x11
 
+	Gui, Add, Text, 									x317 	y235 		h145 0x11
+	Gui, Add, Text, 									x+52 	 		h145 0x11
+	Gui, Add, Text, 									x+52 	 		h145 0x11
+	Gui, Add, Text, 									x+27 	 		h145 0x11
+	Gui, Add, Text, 									x+57 	 		h145 0x11
+
 	Gui, Font, Bold
 	Gui, Add, Text, 										x292 	y30, 				Flask Profile Management:
 	Gui, Font
@@ -632,31 +639,31 @@ readFromFile()
 	Gui Add, Text, 										x292 	y210, 				Utility Management
 	Gui, Font,
 
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility1 Checked%YesUtility1%		y+34	
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility2 Checked%YesUtility2%		y+12	
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility3 Checked%YesUtility3%		y+12	
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility4 Checked%YesUtility4%		y+12	
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility5 Checked%YesUtility5%		y+12	
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility1 +BackgroundTrans Checked%YesUtility1%		y+34	, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility2 +BackgroundTrans Checked%YesUtility2%		y+12	, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility3 +BackgroundTrans Checked%YesUtility3%		y+12	, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility4 +BackgroundTrans Checked%YesUtility4%		y+12	, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility5 +BackgroundTrans Checked%YesUtility5%		y+12	, %A_Space%
 
-	Gui,Add,Edit,			gUpdateUtility  x+1 y254  w40 h19 	vCooldownUtility1				,%CooldownUtility1%
+	Gui,Add,Edit,			gUpdateUtility  x+10 y254  w40 h19 	vCooldownUtility1				,%CooldownUtility1%
 	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility2				,%CooldownUtility2%
 	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility3				,%CooldownUtility3%
 	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility4				,%CooldownUtility4%
 	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility5				,%CooldownUtility5%
 
-	Gui,Add,Edit,	  	x+15	y254   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
+	Gui,Add,Edit,	  	x+20	y254   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
 	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility2				,%KeyUtility2%
 	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility3				,%KeyUtility3%
 	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility4				,%KeyUtility4%
 	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility5				,%KeyUtility5%
 
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver Checked%YesUtility1Quicksilver%	x+15 y257
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver Checked%YesUtility2Quicksilver%		y+12
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver Checked%YesUtility3Quicksilver%		y+12
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver Checked%YesUtility4Quicksilver%		y+12
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver Checked%YesUtility5Quicksilver%		y+12
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%	x+20 y257, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver +BackgroundTrans Checked%YesUtility2Quicksilver%		y+12, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver +BackgroundTrans Checked%YesUtility3Quicksilver%		y+12, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver +BackgroundTrans Checked%YesUtility4Quicksilver%		y+12, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver +BackgroundTrans Checked%YesUtility5Quicksilver%		y+12, %A_Space%
 
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+1 	y253,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+12 	y253,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
@@ -667,7 +674,7 @@ readFromFile()
 	GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
 	GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
 		
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+17 	y253,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+25 	y253,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
@@ -679,11 +686,11 @@ readFromFile()
 	GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
 
 	Gui Add, Text, 										x292 	y235, 	ON:
-	Gui Add, Text, 										x+21 	y235, 	CD:
-	Gui Add, Text, 										x+35 	y235, 	Key:
-	Gui Add, Text, 										x+26 	y235, 	QS:
-	Gui Add, Text, 										x+23 	y235, 	Life:
-	Gui Add, Text, 										x+37 	y235, 	ES:
+	Gui Add, Text, 										x+25 	y235, 	CD:
+	Gui Add, Text, 										x+40 	y235, 	Key:
+	Gui Add, Text, 										x+31 	y235, 	QS:
+	Gui Add, Text, 										x+28 	y235, 	Life:
+	Gui Add, Text, 										x+47 	y235, 	ES:
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -728,6 +735,7 @@ readFromFile()
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
 	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          	, Are you using Steam?
 	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          	, Are you running 64 bit?
+	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	          	, Turn off Auto-Update?
 	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    , Standard|UltraWide
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
@@ -3604,6 +3612,7 @@ readFromFile(){
     IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
     IniRead, Steam, settings.ini, General, Steam, 1
     IniRead, HighBits, settings.ini, General, HighBits, 1
+    IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -4156,11 +4165,6 @@ updateEverything:
     ;Quicksilver Flasks
     IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
     IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver
-    IniWrite, %Radiobox1QS%, settings.ini, Quicksilver, QuicksilverSlot1
-    IniWrite, %Radiobox2QS%, settings.ini, Quicksilver, QuicksilverSlot2
-    IniWrite, %Radiobox3QS%, settings.ini, Quicksilver, QuicksilverSlot3
-    IniWrite, %Radiobox4QS%, settings.ini, Quicksilver, QuicksilverSlot4
-    IniWrite, %Radiobox5QS%, settings.ini, Quicksilver, QuicksilverSlot5
     
     ;CharacterTypeCheck
     IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
@@ -5554,13 +5558,14 @@ UpdateExtra:
     IniWrite, %YesVendor%, settings.ini, General, YesVendor
     IniWrite, %YesStash%, settings.ini, General, YesStash
     IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
-        IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
     IniWrite, %Latency%, settings.ini, General, Latency
     IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
     IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
     IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
     IniWrite, %Steam%, settings.ini, General, Steam
     IniWrite, %HighBits%, settings.ini, General, HighBits
+    IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
     
     If (DetonateMines&&!Detonated)
         SetTimer, TMineTick, 100
@@ -5798,27 +5803,30 @@ helpCalibration:
 Return
 
 checkUpdate(){
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/version.html, version.html
-    FileRead, newestVersion, version.html
-    
-    if ( VersionNumber < newestVersion ) {
-        UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/changelog.txt, changelog.txt
-        if ErrorLevel
-            GuiControl,1:, guiErr, ED08
-        FileRead, changelog, changelog.txt
-		Gui, 4:Add, Button, x0 y0 h1 w1, a
-        Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
-        Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
-        Gui, 4:Add, Button, section default grunUpdate, Update to the Newest Version!
-        Gui, 4:Add, Button, ys gLaunchDonate, Support the Project
-        Gui, 4:Add, Button, ys gdontUpdate, Skip Update this time
-        Gui, 4:Show,, WingmanReloaded Update
-        IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
-        {
-            WinWaitClose
-        }
-    }
-    WinGetPos, , , WinWidth, WinHeight
+    IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
+	If (!AutoUpdateOff) {
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/version.html, version.html
+		FileRead, newestVersion, version.html
+		
+		if ( VersionNumber < newestVersion ) {
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/changelog.txt, changelog.txt
+			if ErrorLevel
+				GuiControl,1:, guiErr, ED08
+			FileRead, changelog, changelog.txt
+			Gui, 4:Add, Button, x0 y0 h1 w1, a
+			Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
+			Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
+			Gui, 4:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
+			Gui, 4:Add, Button, x+35 ys gLaunchDonate, Support the Project
+			Gui, 4:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
+			Gui, 4:Show,, WingmanReloaded Update
+			IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
+				{
+				WinWaitClose
+				}
+			}
+		WinGetPos, , , WinWidth, WinHeight
+		}
 Return
 }
 
@@ -5838,6 +5846,8 @@ runUpdate:
 Return
 
 dontUpdate:
+	IniWrite, 1, Settings.ini, General, AutoUpdateOff
+	MsgBox, Auto-Updates have been disabled.`nCheck back on the forum for more information!`nTo resume updates, uncheck the box in config page.
     Gui, 4:Destroy
 return	
 

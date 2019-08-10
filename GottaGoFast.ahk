@@ -60,7 +60,7 @@ if not A_IsAdmin
 		Global ToggleExist := False
 		Global RescaleRan := False
 		Global FlaskList := []
-
+		Global DebugMessages
 	;Coordinates
 		global GuiX:=-5
 		global GuiY:=1005
@@ -126,6 +126,7 @@ if not A_IsAdmin
 			IniRead, QTick, settings.ini, General, QTick, 50
 			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
 			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
+			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
 		;Coordinates
 			IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 			IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -183,13 +184,17 @@ if not A_IsAdmin
 		;Quicksilver
 			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
 			IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
-			IniRead, QuicksilverSlot1, settings.ini, Quicksilver, QuicksilverSlot1, 0
-			IniRead, QuicksilverSlot2, settings.ini, Quicksilver, QuicksilverSlot2, 0
-			IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3, 0
-			IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4, 0
-			IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5, 0
+			Loop, 5 {	
+				valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+				QuicksilverSlot%A_Index% := valueQuicksilver
+				}
+
 		;hotkeys
-			IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, %A_Space%
+			IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
+			If hotkeyAutoQuicksilver
+				hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
+
+
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra vars - Not in INI
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -233,9 +238,6 @@ IfWinExist, ahk_group POEGameGroup
 		ToggleExist := True
 		WinActivate, ahk_group POEGameGroup
 	}
-
-If hotkeyAutoQuicksilver
-	hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 
 ; Check for window to open
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -451,13 +453,19 @@ ReadFromFile(){
 	;Quicksilver
 		IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
 		IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
-		IniRead, QuicksilverSlot1, settings.ini, Quicksilver, QuicksilverSlot1, 0
-		IniRead, QuicksilverSlot2, settings.ini, Quicksilver, QuicksilverSlot2, 0
-		IniRead, QuicksilverSlot3, settings.ini, Quicksilver, QuicksilverSlot3, 0
-		IniRead, QuicksilverSlot4, settings.ini, Quicksilver, QuicksilverSlot4, 0
-		IniRead, QuicksilverSlot5, settings.ini, Quicksilver, QuicksilverSlot5, 0
+		Loop, 5 {	
+			valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+			QuicksilverSlot%A_Index% := valueQuicksilver
+			}
 	;hotkeys
-		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, %A_Space%
+
+		If hotkeyAutoQuicksilver
+			hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, Off
+
+		IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
+
+		If hotkeyAutoQuicksilver
+			hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 	IfWinExist, ahk_group POEGameGroup
 		{
 		Rescale()
@@ -547,7 +555,6 @@ TQuickTick(){
 			GuiUpdate()
 			Exit
 			}
-
 		if ((AutoQuick=1)&&((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))) {
 			TriggerFlask(TriggerQuicksilver)
 			}
@@ -605,6 +612,43 @@ TriggerFlask(Trigger){
 				}
 			}
 		}
+	Return
+	}
+
+; Debug messages within script
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ding(Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Message6:="", Message7:="" ){
+	If (!DebugMessages)
+		Return
+	Else If (DebugMessages){
+		debugStr:=Message
+		If (Message2!=""){
+			debugStr.="`n"
+			debugStr.=Message2
+			}
+		If (Message3!=""){
+			debugStr.="`n"
+			debugStr.=Message3
+			}
+		If (Message4!=""){
+			debugStr.="`n"
+			debugStr.=Message4
+			}
+		If (Message5!=""){
+			debugStr.="`n"
+			debugStr.=Message5
+			}
+		If (Message6!=""){
+			debugStr.="`n"
+			debugStr.=Message6
+			}
+		If (Message7!=""){
+			debugStr.="`n"
+			debugStr.=Message7
+			}
+		Tooltip, %debugStr%
+		}
+	SetTimer, RemoveTooltip, 500
 	Return
 	}
 
@@ -761,3 +805,8 @@ TimmerFlask5:
 		OnCooldownUtility5 := 0
 		settimer,TimerUtility5,delete
 		Return
+
+RemoveToolTip:
+    SetTimer, RemoveToolTip, Off
+    ToolTip
+return

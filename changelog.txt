@@ -1,3 +1,103 @@
+--------------------------------------------------------------------------------
+Release Notes .04 August/10/2019
+--------------------------------------------------------------------------------
+
+Since the last release there has been a lot of work done to the script!
+
+Backend improvements to how the script handles your settings, as well as making
+profiles easier to use and centralizing all the relevant settings. With the 
+introduction of the utility section I figured it was time to move it around.
+Also how it handles Mana and Quicksilver flasks has been vastly improved. Now it
+creates a list of all the flasks that are off cooldown, and goes through the list
+in order when the previous one finishes cooldown.
+
+People using scaled versions of the script should see improvements with how the
+inventory sort function works. Sauron-Dev has been testing on a scaled resolution
+and added some great changes to how it determines empty inventory slots.
+
+Additions
+--------------------------------------------------------------------------------
+Fully fleshed out Utility function
+    5 Generic utility keys that can be configured to:
+        Fire on cooldown if there are no combination of triggers below
+        Trigger when pressing a Quicksilver
+        Trigger when at 20-90% Life
+        Trigger when at 20-90% ES
+
+Utility Management has been added to profiles
+    Configure Each utility for a specific build!
+	Now with all the settings in one place that profiles save and load
+
+Profiles which have not been used now act as a blank slate for the GUI
+    Press the load # button on a slot you have not used to unselect everything
+
+Sauron-Dev has added:
+    New method of determining items in inventory, should now scale without issues
+    New calibration button to determine empty item slots colors
+    New function to return an index of matching values from an array
+	New function to deal with strings and arrays
+
+Using Sauron-Dev's additions
+    Implimented the same changes for Mouseover color
+    Added calibration button to determine Mouseover Colors
+
+Added Ding() function for debugging
+    Can take up to 7 lines of input strings
+    These only show when debug is checked
+
+Added a timer for checking if the attack key has been held down
+    Good news for those builds that holds down one key *META CYCLONE*
+	
+Added option to turn off Auto-Update
+
+
+UI Changes
+--------------------------------------------------------------------------------
+Re-Organized the Tabs of the GUI, combined several tabs together.
+    All Flasks and Utilities related options are now presented together in one page
+    Added a messagebox for explaining how to use the calibration buttons
+        Open by pressing the ?
+
+Hotkey, Calibration, Additional Interface, and Debug items moved to second tab
+
+Added load button to Flask/Utility and Configuration page to reload saved settings
+	Keep in mind that some sections of the options always save themselves to ini
+
+Added purple color to Hybrid text
+
+
+Bug-Fixes
+--------------------------------------------------------------------------------
+Fixed activating AutoQuit alone wouldnt start the main timer
+
+Fixed AutoQuit variables in the main timer
+
+Mana Flasks now Fire sequentially to prevent overlap.
+
+Removed a lot of unnecessary loading and GUI altering.
+    Several checkboxes have been added default checked state
+    Editboxes do not need second application of the variable text
+    Radiobuttons can be Checked by default as well
+
+Set default INI settings straight from the ReadFromFile() in both scripts
+    This should fix any further issues with loading from incomplete settings.ini
+
+Fixed textbox being selected on update Popup
+
+--------------------------------------------------------------------------------
+Patch Notes
+--------------------------------------------------------------------------------
+
+Version .04 August/10/2019
+--------------------------------------------------------------------------------
+Added option to turn off auto-updates
+    This will become checked if declining update
+    It is located on Configuration tab in Aditional Interface Options
+
+Finished touching up GUI for Utility
+
+Adjustments to quicksilver ini load
+
 Version .03.7 August/10/2019
 --------------------------------------------------------------------------------
 Added a timer for checking if the attack key has been held down
