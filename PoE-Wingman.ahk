@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04
+    Global VersionNumber := .04.1
     
     checkUpdate()
     
@@ -3950,6 +3950,37 @@ submit(){
 updateEverything:
     global
     critical
+
+    ;~ hotkeys reset
+    hotkey, IfWinActive, ahk_group POEGameGroup
+	If hotkeyAutoQuit
+        hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
+    If hotkeyAutoFlask
+        hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
+    If hotkeyQuickPortal
+        hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
+    If hotkeyGemSwap
+        hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+    If hotkeyGetCoords
+        hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, Off
+    If hotkeyPopFlasks
+        hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
+    If hotkeyLogout
+        hotkey,% hotkeyLogout, LogoutCommand, Off
+    If hotkeyItemSort
+        hotkey,% hotkeyItemSort, ItemSortCommand, Off
+    If hotkeyLootScan
+        hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+    If hotkeyMainAttack
+        hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+    If hotkeySecondaryAttack
+        hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+    
+    hotkey, IfWinActive
+	If hotkeyOptions
+        hotkey,% hotkeyOptions, optionsCommand, Off
+    hotkey, IfWinActive, ahk_group POEGameGroup
+        
     IfWinExist, ahk_group POEGameGroup 
     {
         Gui, Submit
