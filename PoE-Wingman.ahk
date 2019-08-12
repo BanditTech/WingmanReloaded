@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04
+    Global VersionNumber := .04.1
     
     checkUpdate()
     
@@ -375,7 +375,14 @@
 	;Quicksilver
 		global TriggerQuicksilverDelay=0.8
 		global TriggerQuicksilver=00000
-
+	;Chat Functions
+		Global CharName := "ReplaceWithCharName"
+		Global fn1, fn2
+		Global 1Prefix1, 1Prefix2, 2Prefix1, 2Prefix2
+		Global 1Suffix1,1Suffix2,1Suffix3,1Suffix4,1Suffix5,1Suffix6,1Suffix7,1Suffix8,1Suffix9
+		Global 1Suffix1Text,1Suffix2Text,1Suffix3Text,1Suffix4Text,1Suffix5Text,1Suffix6Text,1Suffix7Text,1Suffix8Text,1Suffix9Text
+		Global 2Suffix1,2Suffix2,2Suffix3,2Suffix4,2Suffix5,2Suffix6,2Suffix7,2Suffix8,2Suffix9
+		Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
 ; Standard ini read
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 readFromFile()
@@ -406,7 +413,7 @@ readFromFile()
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, x1 y1 w620 h465 -wrap, Flasks and Utility|Configuration|Inventory
+	Gui Add, Tab2, x1 y1 w620 h465 -wrap, Flasks and Utility|Configuration|Inventory|Chat
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
@@ -590,53 +597,53 @@ readFromFile()
 
 	Gui, Add, Text, 									x447 	y51 		h135 0x11
 
-	Gui, Add, Text, 									x317 	y235 		h145 0x11
-	Gui, Add, Text, 									x+52 	 		h145 0x11
-	Gui, Add, Text, 									x+52 	 		h145 0x11
-	Gui, Add, Text, 									x+27 	 		h145 0x11
-	Gui, Add, Text, 									x+57 	 		h145 0x11
 
 	Gui, Font, Bold
-	Gui, Add, Text, 										x292 	y30, 				Flask Profile Management:
+	Gui, Add, Text, 					Section					x292 	y30, 				Flask Profile Management:
 	Gui, Font
-	Gui, Add, Button, gsubmitProfile1 x290 y52 w50 h21, Save 1
+	Gui, Add, Button, gsubmitProfile1 xs-2 ys+22 w50 h21, Save 1
 	Gui, Add, Button, gsubmitProfile2 w50 h21, Save 2
 	Gui, Add, Button, gsubmitProfile3 w50 h21, Save 3
 	Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
 	Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
 
-	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x340 y53 w50 h19, %ProfileText1%
+	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x+1 ys+23 w50 h19, %ProfileText1%
 	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
 	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
 	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
 	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
 
-	Gui, Add, Button, greadProfile1 x390 y52 w50 h21, Load 1
+	Gui, Add, Button, greadProfile1 x+1 ys+22 w50 h21, Load 1
 	Gui, Add, Button, greadProfile2 w50 h21, Load 2
 	Gui, Add, Button, greadProfile3 w50 h21, Load 3
 	Gui, Add, Button, greadProfile4 w50 h21, Load 4
 	Gui, Add, Button, greadProfile5 w50 h21, Load 5
 
-	Gui, Add, Button, gsubmitProfile6 x455 y52 w50 h21, Save 6
+	Gui, Add, Button, gsubmitProfile6 x+10 ys+22 w50 h21, Save 6
 	Gui, Add, Button, gsubmitProfile7 w50 h21, Save 7
 	Gui, Add, Button, gsubmitProfile8 w50 h21, Save 8
 	Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
 	Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
 
-	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x505 y53 w50 h19, %ProfileText6%
+	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x+1 ys+23 w50 h19, %ProfileText6%
 	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
 	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
 	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
 	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
 
-	Gui, Add, Button, greadProfile6 x555 y52 w50 h21, Load 6
+	Gui, Add, Button, greadProfile6 x+1 ys+22 w50 h21, Load 6
 	Gui, Add, Button, greadProfile7 w50 h21, Load 7
 	Gui, Add, Button, greadProfile8 w50 h21, Load 8
 	Gui, Add, Button, greadProfile9 w50 h21, Load 9
 	Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section xs+60 y+15 w190 h45											,Character Name:
+	Gui,Font,
+	Gui, Add, Edit, vCharName xs+5 ys+18 w180 h19, %CharName%
+
 	Gui, Font, Bold
-	Gui Add, Text, 										x292 	y210, 				Utility Management
+	Gui Add, Text, 								section		x292 	y250, 				Utility Management:
 	Gui, Font,
 
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility1 +BackgroundTrans Checked%YesUtility1%		y+34	, %A_Space%
@@ -645,25 +652,25 @@ readFromFile()
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility4 +BackgroundTrans Checked%YesUtility4%		y+12	, %A_Space%
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility5 +BackgroundTrans Checked%YesUtility5%		y+12	, %A_Space%
 
-	Gui,Add,Edit,			gUpdateUtility  x+10 y254  w40 h19 	vCooldownUtility1				,%CooldownUtility1%
+	Gui,Add,Edit,			gUpdateUtility  x+10 ys+44   w40 h19 	vCooldownUtility1				,%CooldownUtility1%
 	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility2				,%CooldownUtility2%
 	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility3				,%CooldownUtility3%
 	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility4				,%CooldownUtility4%
 	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility5				,%CooldownUtility5%
 
-	Gui,Add,Edit,	  	x+20	y254   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
+	Gui,Add,Edit,	  	x+20	ys+44   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
 	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility2				,%KeyUtility2%
 	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility3				,%KeyUtility3%
 	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility4				,%KeyUtility4%
 	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility5				,%KeyUtility5%
 
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%	x+20 y257, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%	x+20 ys+47, %A_Space%
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver +BackgroundTrans Checked%YesUtility2Quicksilver%		y+12, %A_Space%
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver +BackgroundTrans Checked%YesUtility3Quicksilver%		y+12, %A_Space%
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver +BackgroundTrans Checked%YesUtility4Quicksilver%		y+12, %A_Space%
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver +BackgroundTrans Checked%YesUtility5Quicksilver%		y+12, %A_Space%
 
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+12 	y253,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+12 	ys+43,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
@@ -674,7 +681,7 @@ readFromFile()
 	GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
 	GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
 		
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+25 	y253,  Off|20|30|40|50|60|70|80|90
+	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+25 	ys+43,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
 	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
@@ -685,12 +692,18 @@ readFromFile()
 	GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
 	GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
 
-	Gui Add, Text, 										x292 	y235, 	ON:
-	Gui Add, Text, 										x+25 	y235, 	CD:
-	Gui Add, Text, 										x+40 	y235, 	Key:
-	Gui Add, Text, 										x+31 	y235, 	QS:
-	Gui Add, Text, 										x+28 	y235, 	Life:
-	Gui Add, Text, 										x+47 	y235, 	ES:
+	Gui Add, Text, 										x292 	ys+25, 	ON:
+	Gui Add, Text, 										x+25 	, 	CD:
+	Gui Add, Text, 										x+40 	, 	Key:
+	Gui Add, Text, 										x+31 	, 	QS:
+	Gui Add, Text, 										x+28 	, 	Life:
+	Gui Add, Text, 										x+47 	, 	ES:
+
+	Gui, Add, Text, 									x317 	ys+25 		h145 0x11
+	Gui, Add, Text, 									x+52 	 		h145 0x11
+	Gui, Add, Text, 									x+52 	 		h145 0x11
+	Gui, Add, Text, 									x+27 	 		h145 0x11
+	Gui, Add, Text, 									x+57 	 		h145 0x11
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -915,6 +928,78 @@ readFromFile()
 	Gui Add, Text, 										x22 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
 	Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
 	Gui Add, Text, 										x22 	y+5, 				The options to the right affect which portion of the script is enabled.
+	;#######################################################################################################Chat Tab
+	Gui, Tab, Chat
+	Gui Add, Checkbox, gUpdateExtra	vEnableChatHotkeys Checked%EnableChatHotkeys%     xm ym+20                    	          	, Enable chat Hotkeys?
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section xm+1 ym+40 w60 h85											,Modifier
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, xs+4 ys+20 w50 h23 v1Prefix1, %1Prefix1%
+	Gui Add, Edit, y+8        w50 h23 v1Prefix2, %1Prefix2%
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+10 ys w60 h275											,Keys
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, ys+20 xs+4 w50 h23 v1Suffix1, %1Suffix1%
+	Gui Add, Edit, y+5        w50 h23 v1Suffix2, %1Suffix2%
+	Gui Add, Edit, y+5        w50 h23 v1Suffix3, %1Suffix3%
+	Gui Add, Edit, y+5        w50 h23 v1Suffix4, %1Suffix4%
+	Gui Add, Edit, y+5        w50 h23 v1Suffix5, %1Suffix5%
+	Gui Add, Edit, y+5        w50 h23 v1Suffix6, %1Suffix6%
+	Gui Add, Edit, y+5        w50 h23 v1Suffix7, %1Suffix7%
+	Gui Add, Edit, y+5        w50 h23 v1Suffix8, %1Suffix8%
+	Gui Add, Edit, y+5        w50 h23 v1Suffix9, %1Suffix9%
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+10 ys w170 h275											,Commands
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, xs+4 ys+20 w160 h23 v1Suffix1Text, %1Suffix1Text%
+	Gui Add, Edit,  y+5       w160 h23 v1Suffix2Text, %1Suffix2Text%
+	Gui Add, Edit,  y+5       w160 h23 v1Suffix3Text, %1Suffix3Text%
+	Gui Add, Edit,  y+5       w160 h23 v1Suffix4Text, %1Suffix4Text%
+	Gui Add, Edit,  y+5       w160 h23 v1Suffix5Text, %1Suffix5Text%
+	Gui Add, Edit,  y+5       w160 h23 v1Suffix6Text, %1Suffix6Text%
+	Gui Add, Edit,  y+5       w160 h23 v1Suffix7Text, %1Suffix7Text%
+	Gui Add, Edit,  y+5       w160 h23 v1Suffix8Text, %1Suffix8Text%
+	Gui Add, Edit,  y+5       w160 h23 v1Suffix9Text, %1Suffix9Text%
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+10 ys w60 h85											,Modifier
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
+	Gui Add, Edit, y+8        w50 h23 v2Prefix2, %2Prefix2%
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+10 ys w60 h275											,Keys
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, ys+20 xs+4 w50 h23 v2Suffix1, %2Suffix1%
+	Gui Add, Edit, y+5        w50 h23 v2Suffix2, %2Suffix2%
+	Gui Add, Edit, y+5        w50 h23 v2Suffix3, %2Suffix3%
+	Gui Add, Edit, y+5        w50 h23 v2Suffix4, %2Suffix4%
+	Gui Add, Edit, y+5        w50 h23 v2Suffix5, %2Suffix5%
+	Gui Add, Edit, y+5        w50 h23 v2Suffix6, %2Suffix6%
+	Gui Add, Edit, y+5        w50 h23 v2Suffix7, %2Suffix7%
+	Gui Add, Edit, y+5        w50 h23 v2Suffix8, %2Suffix8%
+	Gui Add, Edit, y+5        w50 h23 v2Suffix9, %2Suffix9%
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+10 ys w170 h275											,Whisper Reply
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, xs+4 ys+20 w160 h23 v2Suffix1Text, %2Suffix1Text%
+	Gui Add, Edit,  y+5       w160 h23 v2Suffix2Text, %2Suffix2Text%
+	Gui Add, Edit,  y+5       w160 h23 v2Suffix3Text, %2Suffix3Text%
+	Gui Add, Edit,  y+5       w160 h23 v2Suffix4Text, %2Suffix4Text%
+	Gui Add, Edit,  y+5       w160 h23 v2Suffix5Text, %2Suffix5Text%
+	Gui Add, Edit,  y+5       w160 h23 v2Suffix6Text, %2Suffix6Text%
+	Gui Add, Edit,  y+5       w160 h23 v2Suffix7Text, %2Suffix7Text%
+	Gui Add, Edit,  y+5       w160 h23 v2Suffix8Text, %2Suffix8Text%
+	Gui Add, Edit,  y+5       w160 h23 v2Suffix9Text, %2Suffix9Text%
+
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
 	Gui, +LastFound
 	If (ShowOnStart)
@@ -1114,50 +1199,15 @@ readFromFile()
 ; Check for window to open
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	SetTimer, PoEWindowCheck, 5000
+; Check for Flask presses
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SetTimer, TimerPassthrough, 25
 ; Detonate mines timer check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	If (DetonateMines&&!Detonated)
 		SetTimer, TMineTick, 100
 	Else If (!DetonateMines)
 		SetTimer, TMineTick, off
-
-; Key Passthrough for 1-5 & Attack keys
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	;Passthrough for manual activation
-	; pass-thru and start timer for flask 1
-	~1::
-		OnCooldown[1]:=1 
-		settimer, TimmerFlask1, %CooldownFlask1%
-		SendMSG(3, 1, scriptGottaGoFast)
-		return
-
-	; pass-thru and start timer for flask 2
-	~2::
-		OnCooldown[2]:=1 
-		settimer, TimmerFlask2, %CooldownFlask2%
-		SendMSG(3, 2, scriptGottaGoFast)
-		return
-
-	; pass-thru and start timer for flask 3
-	~3::
-		OnCooldown[3]:=1 
-		settimer, TimmerFlask3, %CooldownFlask3%
-		SendMSG(3, 3, scriptGottaGoFast)
-		return
-
-	; pass-thru and start timer for flask 4
-	~4::
-		OnCooldown[4]:=1 
-		settimer, TimmerFlask4, %CooldownFlask4%
-		SendMSG(3, 4, scriptGottaGoFast)
-		return
-
-	; pass-thru and start timer for flask 5
-	~5::
-		OnCooldown[5]:=1 
-		settimer, TimmerFlask5, %CooldownFlask5%
-		SendMSG(3, 5, scriptGottaGoFast)
-		return
 
 ; Move to # stash hotkeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3515,7 +3565,127 @@ Clamp( Val, Min, Max) {
         Val := Max
     Return
 	}
+;Clamp Value function
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RegisterChatHotkeys() {
+    global
+        If 1Suffix1
+            Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
+        If 1Suffix2
+            Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
+        If 1Suffix3
+            Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
+        If 1Suffix4
+            Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
+        If 1Suffix5
+            Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
+        If 1Suffix6
+            Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
+        If 1Suffix7
+            Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
+        If 1Suffix8
+            Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
+        If 1Suffix9
+            Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
 
+        If 2Suffix1
+            Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
+        If 2Suffix2
+            Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
+        If 2Suffix3
+            Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
+        If 2Suffix4
+            Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
+        If 2Suffix5
+            Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
+        If 2Suffix6
+            Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
+        If 2Suffix7
+            Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
+        If 2Suffix8
+            Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
+        If 2Suffix9
+            Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
+
+    Gui Submit, NoHide
+    local fn1
+    fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2)
+    Hotkey If, % fn1
+    Loop, 9 {
+        If (1Suffix%A_Index%)
+            keyval := 1Suffix%A_Index%
+            Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
+        }
+    local fn2
+    fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2)
+    Hotkey If, % fn2
+    Loop, 9 {
+        If (2Suffix%A_Index%)
+            keyval := 2Suffix%A_Index%
+            Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
+        }
+    Return
+    }
+
+1HotkeyShouldFire(1Prefix1, 1Prefix2, thisHotkey) {
+    IfWinExist, ahk_group POEGameGroup
+        {
+        If ( 1Prefix1 && 1Prefix2 ){
+            If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
+                return True
+            Else
+                return False
+            }
+        Else If ( 1Prefix1 && !1Prefix2 ) {
+            If ( GetKeyState(1Prefix1) ) 
+                return True
+            Else
+                return False
+            }
+        Else If ( !1Prefix1 && 1Prefix2 ) {
+            If ( GetKeyState(1Prefix2) ) 
+                return True
+            Else
+                return False
+            }
+        Else If ( !1Prefix1 && !1Prefix2 ) {
+            return True
+            }
+        } 
+    Else {
+            Return False
+        }
+}
+
+2HotkeyShouldFire(2Prefix1, 2Prefix2, thisHotkey) {
+    IfWinExist, ahk_group POEGameGroup
+        {
+        If ( 2Prefix1 && 2Prefix2 ){
+            If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
+                return True
+            Else
+                return False
+            }
+        Else If ( 2Prefix1 && !2Prefix2 ) {
+            If ( GetKeyState(2Prefix1) ) 
+                return True
+            Else
+                return False
+            }
+        Else If ( !2Prefix1 && 2Prefix2 ) {
+            If ( GetKeyState(2Prefix2) ) 
+                return True
+            Else
+                return False
+            }
+        Else If ( !2Prefix1 && !2Prefix2 ) {
+            return True
+            }
+        } 
+    Else {
+            Return False
+        }
+}
 ; Flask Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimmerFlask1:
@@ -3542,6 +3712,36 @@ Clamp( Val, Min, Max) {
 		OnCooldown[5]:=0
 		settimer,TimmerFlask5,delete
 	return
+
+; Passthrough Timer
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TimerPassthrough:
+	If ( GetKeyState(1, "P") ) {
+		OnCooldown[1]:=1
+		settimer, TimmerFlask1, %CooldownFlask1%
+		SendMSG(3, 1, scriptGottaGoFast)
+	}
+	If ( GetKeyState(2, "P") ) {
+		OnCooldown[2]:=1
+		settimer, TimmerFlask2, %CooldownFlask2%
+		SendMSG(3, 2, scriptGottaGoFast)
+	}
+	If ( GetKeyState(3, "P") ) {
+		OnCooldown[3]:=1
+		settimer, TimmerFlask3, %CooldownFlask3%
+		SendMSG(3, 3, scriptGottaGoFast)
+	}
+	If ( GetKeyState(4, "P") ) {
+		OnCooldown[4]:=1
+		settimer, TimmerFlask4, %CooldownFlask4%
+		SendMSG(3, 4, scriptGottaGoFast)
+	}
+	If ( GetKeyState(5, "P") ) {
+		OnCooldown[5]:=1
+		settimer, TimmerFlask5, %CooldownFlask5%
+		SendMSG(3, 5, scriptGottaGoFast)
+	}
+Return
 
 ; Attack Key timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3613,6 +3813,8 @@ readFromFile(){
     IniRead, Steam, settings.ini, General, Steam, 1
     IniRead, HighBits, settings.ini, General, HighBits, 1
     IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
+    IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
+    IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -3860,7 +4062,7 @@ readFromFile(){
     Iniread, ProfileText8, settings.ini, Profiles, ProfileText8, Profile 8
     Iniread, ProfileText9, settings.ini, Profiles, ProfileText9, Profile 9
     Iniread, ProfileText10, settings.ini, Profiles, ProfileText10, Profile 10
-    
+
     ;~ hotkeys reset
     hotkey, IfWinActive, ahk_group POEGameGroup
 	If hotkeyAutoQuit
@@ -3885,7 +4087,7 @@ readFromFile(){
         hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
     If hotkeySecondaryAttack
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
-    
+
     hotkey, IfWinActive
 	If hotkeyOptions
         hotkey,% hotkeyOptions, optionsCommand, Off
@@ -3936,12 +4138,56 @@ readFromFile(){
     hotkey, IfWinActive
     If hotkeyOptions {
         hotkey,% hotkeyOptions, optionsCommand, On
-        ;GuiControl,, guiSettings, Settings:%hotkeyOptions%
     	} else {
         hotkey,!F10, optionsCommand, On
         msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
-        ;GuiControl,, guiSettings, Settings:%hotkeyOptions%
     	}
+	
+    IniRead, 1Prefix1, settings.ini, Chat Hotkeys, 1Prefix1, a
+    IniRead, 1Prefix2, settings.ini, Chat Hotkeys, 1Prefix2, ""
+    IniRead, 1Suffix1, settings.ini, Chat Hotkeys, 1Suffix1, 1
+    IniRead, 1Suffix2, settings.ini, Chat Hotkeys, 1Suffix2, 2
+    IniRead, 1Suffix3, settings.ini, Chat Hotkeys, 1Suffix3, 3
+    IniRead, 1Suffix4, settings.ini, Chat Hotkeys, 1Suffix4, 4
+    IniRead, 1Suffix5, settings.ini, Chat Hotkeys, 1Suffix5, 5
+    IniRead, 1Suffix6, settings.ini, Chat Hotkeys, 1Suffix6, 6
+    IniRead, 1Suffix7, settings.ini, Chat Hotkeys, 1Suffix7, 7
+    IniRead, 1Suffix8, settings.ini, Chat Hotkeys, 1Suffix8, 8
+    IniRead, 1Suffix9, settings.ini, Chat Hotkeys, 1Suffix9, 9
+
+    IniRead, 1Suffix1Text, settings.ini, Chat Hotkeys, 1Suffix1Text, /Hideout
+    IniRead, 1Suffix2Text, settings.ini, Chat Hotkeys, 1Suffix2Text, /reset_xp
+    IniRead, 1Suffix3Text, settings.ini, Chat Hotkeys, 1Suffix3Text, /menagerie
+    IniRead, 1Suffix4Text, settings.ini, Chat Hotkeys, 1Suffix4Text, /kick CharacterName
+    IniRead, 1Suffix5Text, settings.ini, Chat Hotkeys, 1Suffix5Text, /remaining
+    IniRead, 1Suffix6Text, settings.ini, Chat Hotkeys, 1Suffix6Text, /ladder
+    IniRead, 1Suffix7Text, settings.ini, Chat Hotkeys, 1Suffix7Text, /pvp
+    IniRead, 1Suffix8Text, settings.ini, Chat Hotkeys, 1Suffix8Text, /passives
+    IniRead, 1Suffix9Text, settings.ini, Chat Hotkeys, 1Suffix9Text, /cls
+
+    IniRead, 2Prefix1, settings.ini, Chat Hotkeys, 2Prefix1, d
+    IniRead, 2Prefix2, settings.ini, Chat Hotkeys, 2Prefix2, ""
+    IniRead, 2Suffix1, settings.ini, Chat Hotkeys, 2Suffix1, 1
+    IniRead, 2Suffix2, settings.ini, Chat Hotkeys, 2Suffix2, 2
+    IniRead, 2Suffix3, settings.ini, Chat Hotkeys, 2Suffix3, 3
+    IniRead, 2Suffix4, settings.ini, Chat Hotkeys, 2Suffix4, 4
+    IniRead, 2Suffix5, settings.ini, Chat Hotkeys, 2Suffix5, 5
+    IniRead, 2Suffix6, settings.ini, Chat Hotkeys, 2Suffix6, 6
+    IniRead, 2Suffix7, settings.ini, Chat Hotkeys, 2Suffix7, 7
+    IniRead, 2Suffix8, settings.ini, Chat Hotkeys, 2Suffix8, 8
+    IniRead, 2Suffix9, settings.ini, Chat Hotkeys, 2Suffix9, 9
+	
+    IniRead, 2Suffix1Text, settings.ini, Chat Hotkeys, 2Suffix1Text, Sure, will invite in a sec.
+    IniRead, 2Suffix2Text, settings.ini, Chat Hotkeys, 2Suffix2Text, In a map, will get to you in a minute.
+    IniRead, 2Suffix3Text, settings.ini, Chat Hotkeys, 2Suffix3Text, Still Interested?
+    IniRead, 2Suffix4Text, settings.ini, Chat Hotkeys, 2Suffix4Text, Sorry, going to be a while.
+    IniRead, 2Suffix5Text, settings.ini, Chat Hotkeys, 2Suffix5Text, No thank you.
+    IniRead, 2Suffix6Text, settings.ini, Chat Hotkeys, 2Suffix6Text, No thank you.
+    IniRead, 2Suffix7Text, settings.ini, Chat Hotkeys, 2Suffix7Text, No thank you.
+    IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
+    IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
+	If (EnableChatHotkeys)
+		RegisterChatHotkeys()
     checkActiveType()
 Return
 }
@@ -3950,6 +4196,75 @@ submit(){
 updateEverything:
     global
     critical
+
+    ;~ hotkeys reset
+    hotkey, IfWinActive, ahk_group POEGameGroup
+	If hotkeyAutoQuit
+        hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
+    If hotkeyAutoFlask
+        hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
+    If hotkeyQuickPortal
+        hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
+    If hotkeyGemSwap
+        hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+    If hotkeyGetCoords
+        hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, Off
+    If hotkeyPopFlasks
+        hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
+    If hotkeyLogout
+        hotkey,% hotkeyLogout, LogoutCommand, Off
+    If hotkeyItemSort
+        hotkey,% hotkeyItemSort, ItemSortCommand, Off
+    If hotkeyLootScan
+        hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+    If hotkeyMainAttack
+        hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+    If hotkeySecondaryAttack
+        hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+
+	If 1Suffix1
+		Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
+	If 1Suffix2
+		Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
+	If 1Suffix3
+		Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
+	If 1Suffix4
+		Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
+	If 1Suffix5
+		Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
+	If 1Suffix6
+		Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
+	If 1Suffix7
+		Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
+	If 1Suffix8
+		Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
+	If 1Suffix9
+		Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
+
+	If 2Suffix1
+		Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
+	If 2Suffix2
+		Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
+	If 2Suffix3
+		Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
+	If 2Suffix4
+		Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
+	If 2Suffix5
+		Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
+	If 2Suffix6
+		Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
+	If 2Suffix7
+		Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
+	If 2Suffix8
+		Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
+	If 2Suffix9
+		Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
+
+    hotkey, IfWinActive
+	If hotkeyOptions
+        hotkey,% hotkeyOptions, optionsCommand, Off
+    hotkey, IfWinActive, ahk_group POEGameGroup
+        
     IfWinExist, ahk_group POEGameGroup 
     {
         Gui, Submit
@@ -4040,13 +4355,14 @@ updateEverything:
     IniWrite, %YesVendor%, settings.ini, General, YesVendor
     IniWrite, %YesStash%, settings.ini, General, YesStash
     IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
-        IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
     IniWrite, %Latency%, settings.ini, General, Latency
     IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
     IniWrite, %Steam%, settings.ini, General, Steam
     IniWrite, %HighBits%, settings.ini, General, HighBits
     IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
-    
+    IniWrite, %CharName%, settings.ini, General, CharName
+
     ;~ Hotkeys 
     IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
     IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit
@@ -4177,7 +4493,52 @@ updateEverything:
     IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
     IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
     IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
-    
+
+	;Chat Hotkeys
+    IniWrite, %1Prefix1%, settings.ini, Chat Hotkeys, 1Prefix1
+    IniWrite, %1Prefix2%, settings.ini, Chat Hotkeys, 1Prefix2
+    IniWrite, %1Suffix1%, settings.ini, Chat Hotkeys, 1Suffix1
+    IniWrite, %1Suffix2%, settings.ini, Chat Hotkeys, 1Suffix2
+    IniWrite, %1Suffix3%, settings.ini, Chat Hotkeys, 1Suffix3
+    IniWrite, %1Suffix4%, settings.ini, Chat Hotkeys, 1Suffix4
+    IniWrite, %1Suffix5%, settings.ini, Chat Hotkeys, 1Suffix5
+    IniWrite, %1Suffix6%, settings.ini, Chat Hotkeys, 1Suffix6
+    IniWrite, %1Suffix7%, settings.ini, Chat Hotkeys, 1Suffix7
+    IniWrite, %1Suffix8%, settings.ini, Chat Hotkeys, 1Suffix8
+    IniWrite, %1Suffix9%, settings.ini, Chat Hotkeys, 1Suffix9
+
+    IniWrite, %1Suffix1Text%, settings.ini, Chat Hotkeys, 1Suffix1Text
+    IniWrite, %1Suffix2Text%, settings.ini, Chat Hotkeys, 1Suffix2Text
+    IniWrite, %1Suffix3Text%, settings.ini, Chat Hotkeys, 1Suffix3Text
+    IniWrite, %1Suffix4Text%, settings.ini, Chat Hotkeys, 1Suffix4Text
+    IniWrite, %1Suffix5Text%, settings.ini, Chat Hotkeys, 1Suffix5Text
+    IniWrite, %1Suffix6Text%, settings.ini, Chat Hotkeys, 1Suffix6Text
+    IniWrite, %1Suffix7Text%, settings.ini, Chat Hotkeys, 1Suffix7Text
+    IniWrite, %1Suffix8Text%, settings.ini, Chat Hotkeys, 1Suffix8Text
+    IniWrite, %1Suffix9Text%, settings.ini, Chat Hotkeys, 1Suffix9Text
+
+    IniWrite, %2Prefix1%, settings.ini, Chat Hotkeys, 2Prefix1
+    IniWrite, %2Prefix2%, settings.ini, Chat Hotkeys, 2Prefix2
+    IniWrite, %2Suffix1%, settings.ini, Chat Hotkeys, 2Suffix1
+    IniWrite, %2Suffix2%, settings.ini, Chat Hotkeys, 2Suffix2
+    IniWrite, %2Suffix3%, settings.ini, Chat Hotkeys, 2Suffix3
+    IniWrite, %2Suffix4%, settings.ini, Chat Hotkeys, 2Suffix4
+    IniWrite, %2Suffix5%, settings.ini, Chat Hotkeys, 2Suffix5
+    IniWrite, %2Suffix6%, settings.ini, Chat Hotkeys, 2Suffix6
+    IniWrite, %2Suffix7%, settings.ini, Chat Hotkeys, 2Suffix7
+    IniWrite, %2Suffix8%, settings.ini, Chat Hotkeys, 2Suffix8
+    IniWrite, %2Suffix9%, settings.ini, Chat Hotkeys, 2Suffix9
+	
+    IniWrite, %2Suffix1Text%, settings.ini, Chat Hotkeys, 2Suffix1Text
+    IniWrite, %2Suffix2Text%, settings.ini, Chat Hotkeys, 2Suffix2Text
+    IniWrite, %2Suffix3Text%, settings.ini, Chat Hotkeys, 2Suffix3Text
+    IniWrite, %2Suffix4Text%, settings.ini, Chat Hotkeys, 2Suffix4Text
+    IniWrite, %2Suffix5Text%, settings.ini, Chat Hotkeys, 2Suffix5Text
+    IniWrite, %2Suffix6Text%, settings.ini, Chat Hotkeys, 2Suffix6Text
+    IniWrite, %2Suffix7Text%, settings.ini, Chat Hotkeys, 2Suffix7Text
+    IniWrite, %2Suffix8Text%, settings.ini, Chat Hotkeys, 2Suffix8Text
+    IniWrite, %2Suffix9Text%, settings.ini, Chat Hotkeys, 2Suffix9Text
+
     readFromFile()
     GuiUpdate()
     SetTitleMatchMode 2
@@ -4398,6 +4759,9 @@ submitProfile(Profile){
     IniWrite, %CooldownUtility4%, settings.ini, Profile%Profile%, CooldownUtility4
     IniWrite, %CooldownUtility5%, settings.ini, Profile%Profile%, CooldownUtility5
     
+    ;Character Name
+    IniWrite, %CharName%, settings.ini, Profile%Profile%, CharName
+
     ;Utility Keys
     IniWrite, %KeyUtility1%, settings.ini, Profile%Profile%, KeyUtility1
     IniWrite, %KeyUtility2%, settings.ini, Profile%Profile%, KeyUtility2
@@ -4816,6 +5180,10 @@ readProfile(Profile){
     IniRead, CooldownUtility5, settings.ini, Profile%Profile%, CooldownUtility5, 5000
     GuiControl, , CooldownUtility5, %CooldownUtility5%
     
+    ;Character Name
+    IniRead, CharName, settings.ini, Profile%Profile%, CharName, ReplaceWithCharName
+    GuiControl, , CharName, %CharName%
+
     ;Utility Keys
     IniRead, KeyUtility1, settings.ini, Profile%Profile%, KeyUtility1, q
     GuiControl, , KeyUtility1, %KeyUtility1%
@@ -5566,7 +5934,49 @@ UpdateExtra:
     IniWrite, %Steam%, settings.ini, General, Steam
     IniWrite, %HighBits%, settings.ini, General, HighBits
     IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
-    
+    IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
+    If (!EnableChatHotkeys){
+		If 1Suffix1
+			Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
+		If 1Suffix2
+			Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
+		If 1Suffix3
+			Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
+		If 1Suffix4
+			Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
+		If 1Suffix5
+			Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
+		If 1Suffix6
+			Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
+		If 1Suffix7
+			Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
+		If 1Suffix8
+			Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
+		If 1Suffix9
+			Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
+
+		If 2Suffix1
+			Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
+		If 2Suffix2
+			Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
+		If 2Suffix3
+			Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
+		If 2Suffix4
+			Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
+		If 2Suffix5
+			Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
+		If 2Suffix6
+			Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
+		If 2Suffix7
+			Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
+		If 2Suffix8
+			Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
+		If 2Suffix9
+			Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
+		}
+	Else if (EnableChatHotkeys)	{
+		RegisterChatHotkeys()
+		}
     If (DetonateMines&&!Detonated)
         SetTimer, TMineTick, 100
     Else If (!DetonateMines)
@@ -5850,5 +6260,110 @@ dontUpdate:
 	MsgBox, Auto-Updates have been disabled.`nCheck back on the forum for more information!`nTo resume updates, uncheck the box in config page.
     Gui, 4:Destroy
 return	
+
+ResetChat(){
+    Send {Enter}{Up}{Escape}
+return
+}
+1FireWhisperHotkey1() {
+    1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix1Text%{Enter}
+    ResetChat()
+return
+}
+1FireWhisperHotkey2() {
+    1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix2Text%{Enter}
+    ResetChat()
+return
+}
+1FireWhisperHotkey3() {
+    1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix3Text%{Enter}
+    ResetChat()
+return
+}
+1FireWhisperHotkey4() {
+    1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix4Text%{Enter}
+    ResetChat()
+return
+}
+1FireWhisperHotkey5() {
+    1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix5Text%{Enter}
+    ResetChat()
+return
+}
+1FireWhisperHotkey6() {
+    1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix6Text%{Enter}
+    ResetChat()
+return
+}
+1FireWhisperHotkey7() {
+    1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix7Text%{Enter}
+    ResetChat()
+return
+}
+1FireWhisperHotkey8() {
+    Tooltip, Ding
+    1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix8Text%{Enter}
+    ResetChat()
+return
+}
+1FireWhisperHotkey9() {
+    1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+    Send, {Enter}%1Suffix9Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey1() {
+    Send, ^{Enter}%2Suffix1Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey2() {
+    Send, ^{Enter}%2Suffix2Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey3() {
+    Send, ^{Enter}%2Suffix3Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey4() {
+    Send, ^{Enter}%2Suffix4Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey5() {
+    Send, ^{Enter}%2Suffix5Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey6() {
+    Send, ^{Enter}%2Suffix6Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey7() {
+    Send, ^{Enter}%2Suffix7Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey8() {
+    Send, ^{Enter}%2Suffix8Text%{Enter}
+    ResetChat()
+return
+}
+2FireWhisperHotkey9() {
+    Send, ^{Enter}%2Suffix9Text%{Enter}
+    ResetChat()
+return
+}
 
 return

@@ -1,4 +1,36 @@
 --------------------------------------------------------------------------------
+Patch Notes
+--------------------------------------------------------------------------------
+
+Version .04.1 August/12/2019
+--------------------------------------------------------------------------------
+New Chat tab with customizable hotkeys
+    Added two Hotkey sections which are for commands and reply whispers
+    modifier editboxes can be blank or 1 or 2 modifier keys
+    the keys themselves can also have modifiers such as ^ ! + or #
+    this allows you to put a maximum modifier of 8 keys! XD
+        Rediculous Example: Modifiers: A, D Keys: ^!+#1 & ^!+#2
+        A and D together would activate Ctrl+Alt+Shift+Win+( 1 & 2 )
+    Command section is a regular Enter and the Reply Whisper are Ctrl+Enter
+
+Added new editbox for associating a character name with each profile
+    You can insert this variable into any command with CharacterName
+    mostly this is for using with /kick CharacterName
+
+Updated some elements of UI to use sections
+    will be replacing UI portions with outlined sections
+    also makes the whole piece move together easier
+    
+Fixed hotkeys remaining in effect after being changed until next restart.
+    Simply needed to move the hotkey reset BEFORE the gui is submit
+
+Had to rewrite how the script checks if you press flasks for the passthrough
+    now it is on a very short timer that just checks the state of 1-5
+
+Still need to figure out how to get the chat hotkeys to de-activate properly
+    For now, uncheck the box to turn them off and reload.
+    or if you want to only de-activate a few remove the key or modifier
+--------------------------------------------------------------------------------
 Release Notes .04 August/10/2019
 --------------------------------------------------------------------------------
 
