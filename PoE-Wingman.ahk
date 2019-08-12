@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.1
+    Global VersionNumber := .04.2
     
     checkUpdate()
     
@@ -56,12 +56,13 @@
     AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
     
     CleanUp()
-    Run GottaGoFast.ahk, "A_ScriptDir"
     if not A_IsAdmin
         if A_IsCompiled
         Run *RunAs "%A_ScriptFullPath%" /restart
     else
         Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+	Sleep, -1
+    Run "%A_ScriptDir%\GottaGoFast.ahk"
     OnExit("CleanUp")
     
     If FileExist("settings.ini")
@@ -3569,6 +3570,7 @@ Clamp( Val, Min, Max) {
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RegisterChatHotkeys() {
     global
+    Hotkey If, % fn1
         If 1Suffix1
             Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
         If 1Suffix2
@@ -3588,6 +3590,7 @@ RegisterChatHotkeys() {
         If 1Suffix9
             Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
 
+    Hotkey If, % fn2
         If 2Suffix1
             Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
         If 2Suffix2
@@ -3608,16 +3611,14 @@ RegisterChatHotkeys() {
             Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
 
     Gui Submit, NoHide
-    local fn1
-    fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2)
+    fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
     Hotkey If, % fn1
     Loop, 9 {
         If (1Suffix%A_Index%)
             keyval := 1Suffix%A_Index%
             Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
         }
-    local fn2
-    fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2)
+    fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
     Hotkey If, % fn2
     Loop, 9 {
         If (2Suffix%A_Index%)
@@ -3627,61 +3628,67 @@ RegisterChatHotkeys() {
     Return
     }
 
-1HotkeyShouldFire(1Prefix1, 1Prefix2, thisHotkey) {
+1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
     IfWinExist, ahk_group POEGameGroup
         {
-        If ( 1Prefix1 && 1Prefix2 ){
-            If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
-                return True
-            Else
-                return False
-            }
-        Else If ( 1Prefix1 && !1Prefix2 ) {
-            If ( GetKeyState(1Prefix1) ) 
-                return True
-            Else
-                return False
-            }
-        Else If ( !1Prefix1 && 1Prefix2 ) {
-            If ( GetKeyState(1Prefix2) ) 
-                return True
-            Else
-                return False
-            }
-        Else If ( !1Prefix1 && !1Prefix2 ) {
-            return True
-            }
-        } 
+		If (EnableChatHotkeys){
+			If ( 1Prefix1 && 1Prefix2 ){
+				If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
+					return True
+				Else
+					return False
+				}
+			Else If ( 1Prefix1 && !1Prefix2 ) {
+				If ( GetKeyState(1Prefix1) ) 
+					return True
+				Else
+					return False
+				}
+			Else If ( !1Prefix1 && 1Prefix2 ) {
+				If ( GetKeyState(1Prefix2) ) 
+					return True
+				Else
+					return False
+				}
+			Else If ( !1Prefix1 && !1Prefix2 ) {
+				return True
+				}
+			} 
+		}
     Else {
             Return False
         }
 }
 
-2HotkeyShouldFire(2Prefix1, 2Prefix2, thisHotkey) {
+2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
     IfWinExist, ahk_group POEGameGroup
         {
-        If ( 2Prefix1 && 2Prefix2 ){
-            If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
-                return True
-            Else
-                return False
-            }
-        Else If ( 2Prefix1 && !2Prefix2 ) {
-            If ( GetKeyState(2Prefix1) ) 
-                return True
-            Else
-                return False
-            }
-        Else If ( !2Prefix1 && 2Prefix2 ) {
-            If ( GetKeyState(2Prefix2) ) 
-                return True
-            Else
-                return False
-            }
-        Else If ( !2Prefix1 && !2Prefix2 ) {
-            return True
-            }
-        } 
+		If (EnableChatHotkeys){
+			If ( 2Prefix1 && 2Prefix2 ){
+				If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
+					return True
+				Else
+					return False
+				}
+			Else If ( 2Prefix1 && !2Prefix2 ) {
+				If ( GetKeyState(2Prefix1) ) 
+					return True
+				Else
+					return False
+				}
+			Else If ( !2Prefix1 && 2Prefix2 ) {
+				If ( GetKeyState(2Prefix2) ) 
+					return True
+				Else
+					return False
+				}
+			Else If ( !2Prefix1 && !2Prefix2 ) {
+				return True
+				}
+			}
+		Else
+			Return False 
+		}
     Else {
             Return False
         }
@@ -3815,6 +3822,7 @@ readFromFile(){
     IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
     IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
     IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
+    IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -4186,8 +4194,7 @@ readFromFile(){
     IniRead, 2Suffix7Text, settings.ini, Chat Hotkeys, 2Suffix7Text, No thank you.
     IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
     IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
-	If (EnableChatHotkeys)
-		RegisterChatHotkeys()
+	RegisterChatHotkeys()
     checkActiveType()
 Return
 }
@@ -4222,6 +4229,7 @@ updateEverything:
     If hotkeySecondaryAttack
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
 
+    Hotkey If, % fn1
 	If 1Suffix1
 		Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
 	If 1Suffix2
@@ -4241,6 +4249,7 @@ updateEverything:
 	If 1Suffix9
 		Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
 
+    Hotkey If, % fn2
 	If 2Suffix1
 		Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
 	If 2Suffix2
@@ -4362,6 +4371,7 @@ updateEverything:
     IniWrite, %HighBits%, settings.ini, General, HighBits
     IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
     IniWrite, %CharName%, settings.ini, General, CharName
+    IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
 
     ;~ Hotkeys 
     IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
@@ -5934,49 +5944,6 @@ UpdateExtra:
     IniWrite, %Steam%, settings.ini, General, Steam
     IniWrite, %HighBits%, settings.ini, General, HighBits
     IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
-    IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
-    If (!EnableChatHotkeys){
-		If 1Suffix1
-			Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
-		If 1Suffix2
-			Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
-		If 1Suffix3
-			Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
-		If 1Suffix4
-			Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
-		If 1Suffix5
-			Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
-		If 1Suffix6
-			Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
-		If 1Suffix7
-			Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
-		If 1Suffix8
-			Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
-		If 1Suffix9
-			Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
-
-		If 2Suffix1
-			Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
-		If 2Suffix2
-			Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
-		If 2Suffix3
-			Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
-		If 2Suffix4
-			Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
-		If 2Suffix5
-			Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
-		If 2Suffix6
-			Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
-		If 2Suffix7
-			Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
-		If 2Suffix8
-			Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
-		If 2Suffix9
-			Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
-		}
-	Else if (EnableChatHotkeys)	{
-		RegisterChatHotkeys()
-		}
     If (DetonateMines&&!Detonated)
         SetTimer, TMineTick, 100
     Else If (!DetonateMines)
@@ -6308,7 +6275,6 @@ return
 return
 }
 1FireWhisperHotkey8() {
-    Tooltip, Ding
     1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
     Send, {Enter}%1Suffix8Text%{Enter}
     ResetChat()
