@@ -378,6 +378,7 @@
 		global TriggerQuicksilver=00000
 	;Chat Functions
 		Global CharName := "ReplaceWithCharName"
+		Global RecipientName := "NothingYet"
 		Global fn1, fn2
 		Global 1Prefix1, 1Prefix2, 2Prefix1, 2Prefix2
 		Global 1Suffix1,1Suffix2,1Suffix3,1Suffix4,1Suffix5,1Suffix6,1Suffix7,1Suffix8,1Suffix9
@@ -2727,6 +2728,31 @@ ParseClip(){
 			}
 		}
 		Return
+	}
+
+; Grab Reply whisper recipient
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GrabRecipientName(){
+	Clipboard := ""
+	Send ^{Enter}^{A}^{C}{Escape}
+	ClipWait, 0
+	Loop, Parse, Clipboard, `n, `r
+		{
+		; Clipboard must have "@" in the first line
+		If A_Index = 1
+			{
+			IfNotInString, A_LoopField, @
+				{
+				Exit
+				}
+			RecipientNameArr := StrSplit(A_LoopField, " ", @)
+			RecipientName1 := RecipientNameArr[1]
+			RecipientName := StrReplace(RecipientName1, "@")
+			}
+			Ding(%RecipientName%)
+		}
+	Sleep, 60
+	Return
 	}
 
 ; Debugging information on Mouse Cursor
@@ -6234,99 +6260,117 @@ return
 }
 1FireWhisperHotkey1() {
     1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
+    1Suffix1Text := StrReplace(1Suffix1Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix1Text%{Enter}
     ResetChat()
 return
 }
 1FireWhisperHotkey2() {
     1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
+    1Suffix2Text := StrReplace(1Suffix2Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix2Text%{Enter}
     ResetChat()
 return
 }
 1FireWhisperHotkey3() {
     1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
+    1Suffix3Text := StrReplace(1Suffix3Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix3Text%{Enter}
     ResetChat()
 return
 }
 1FireWhisperHotkey4() {
     1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
+    1Suffix4Text := StrReplace(1Suffix4Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix4Text%{Enter}
     ResetChat()
 return
 }
 1FireWhisperHotkey5() {
     1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
+    1Suffix5Text := StrReplace(1Suffix5Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix5Text%{Enter}
     ResetChat()
 return
 }
 1FireWhisperHotkey6() {
     1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
+    1Suffix6Text := StrReplace(1Suffix6Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix6Text%{Enter}
     ResetChat()
 return
 }
 1FireWhisperHotkey7() {
     1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
+    1Suffix7Text := StrReplace(1Suffix7Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix7Text%{Enter}
     ResetChat()
 return
 }
 1FireWhisperHotkey8() {
     1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
+    1Suffix8Text := StrReplace(1Suffix8Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix8Text%{Enter}
     ResetChat()
 return
 }
 1FireWhisperHotkey9() {
-    1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+	1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+	1Suffix9Text := StrReplace(1Suffix9Text, "RecipientName", RecipientName, 0, -1)
     Send, {Enter}%1Suffix9Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey1() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix1Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey2() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix2Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey3() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix3Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey4() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix4Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey5() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix5Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey6() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix6Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey7() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix7Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey8() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix8Text%{Enter}
     ResetChat()
 return
 }
 2FireWhisperHotkey9() {
+    GrabRecipientName()
     Send, ^{Enter}%2Suffix9Text%{Enter}
     ResetChat()
 return

@@ -4,6 +4,9 @@ Patch Notes
 
 Version .04.2 August/12/2019
 --------------------------------------------------------------------------------
+Added RecipientName variable for command Functions
+    Add RecipientName to any command to replace with last name replied to
+
 Adjustment to GottaGoFast script load, attempting to fix rogue issues
 
 Fixed Chat Hotkeys not becoming unregistered when disabled from enabled.
