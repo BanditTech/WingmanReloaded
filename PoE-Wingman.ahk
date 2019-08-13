@@ -42,6 +42,8 @@
         Menu, Tray, Icon, %I_Icon%
     
     Global VersionNumber := .04.2
+
+	Global Null := 0
     
     checkUpdate()
     
@@ -166,7 +168,23 @@
 			, Incubator : False
 			, Flask : False
 			, Veiled : False
-			, Prophecy : False}
+			, Prophecy : False
+			, PhysLo : False
+			, PhysHi : False
+			, AttackSpeed : False
+			, IsWeapon : False
+			, PhysMult : False
+			, PhysDps : False
+			, EleDps : False
+			, TotalDps : False
+			, ChaosLo : False
+			, ChaosHi : False
+			, EleLo : False
+			, EleHi : False
+			, ItemLevel : False
+			, TotalPhysMult : False
+			, BasePhysDps : False
+			, Q20Dps : False}
 
 		global Detonated := 0
 		global CritQuit := 1
@@ -2303,6 +2321,21 @@ error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
 	return
 	}
 
+; Parse Elemental and Chaos damage
+ParseDamage(String, DmgType, ByRef DmgLo, ByRef DmgHi)
+{
+	IfInString, String, %DmgType% Damage:
+	{
+		IfNotInString, String, increased
+		{
+			StringSplit, Arr, String, %A_Space%
+			StringSplit, Arr, Arr3, -
+			DmgLo := Arr1
+			DmgHi := Arr2
+		}
+	}
+	return
+}
 ; Capture Clip at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ClipItem(x, y){
@@ -2336,7 +2369,7 @@ ParseClip(){
 			, RarityRare : False
 			, RarityUnique : False
 			, Identified : True
-				, Map : False
+			, Map : False
 			, Ring : False
 			, Amulet : False
 			, Chromatic : False
@@ -2359,7 +2392,7 @@ ParseClip(){
 			, TimelessSplinter : False
 			, BreachSplinter : False
 			, SacrificeFragment : False
-				, MortalFragment : False
+			, MortalFragment : False
 			, GuardianFragment : False
 			, ProphecyFragment : False
 			, Scarab : False
@@ -2368,8 +2401,23 @@ ParseClip(){
 			, Incubator : False
 			, Flask : False
 			, Veiled : False
-			, Prophecy : False}
-
+			, Prophecy : False
+			, PhysLo : False
+			, PhysHi : False
+			, AttackSpeed : False
+			, IsWeapon : False
+			, PhysMult : False
+			, PhysDps : False
+			, EleDps : False
+			, TotalDps : False
+			, ChaosLo : False
+			, ChaosHi : False
+			, EleLo : False
+			, EleHi : False
+			, ItemLevel : False
+			, TotalPhysMult : False
+			, BasePhysDps : False
+			, Q20Dps : False}
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -2632,6 +2680,13 @@ ParseClip(){
 				Continue
 			}
 				
+			; Get item level
+			IfInString, A_LoopField, Item Level:
+			{
+				StringSplit, ItemLevelArray, A_LoopField, %A_Space%
+				ItemProp.ItemLevel := ItemLevelArray3
+				Continue
+			}
 			; Get Socket Information
 			IfInString, A_LoopField, Sockets:
 			{
@@ -2681,7 +2736,6 @@ ParseClip(){
 					ItemProp.Jeweler:=True
 				Continue
 			}
-
 			; Get quality
 			IfInString, A_LoopField, Quality:
 			{
@@ -2704,13 +2758,6 @@ ParseClip(){
 				ItemProp.Identified := False
 				continue
 			}
-			; Flag Veiled
-			IfInString, A_LoopField, Veiled%A_Space%
-			{
-				ItemProp.Veiled := True
-				ItemProp.SpecialType := "Veiled"
-				continue
-			}
 			; Flag Prophecy
 			IfInString, A_LoopField, add this prophecy
 			{
@@ -2718,7 +2765,95 @@ ParseClip(){
 				ItemProp.SpecialType := "Prophecy"
 				continue
 			}
+			; Flag Veiled
+			IfInString, A_LoopField, Veiled%A_Space%
+			{
+				ItemProp.Veiled := True
+				ItemProp.SpecialType := "Veiled"
+				continue
+			}
+			; Get non physical
+			IfInString, A_LoopField, Elemental Damage:
+			{
+				ItemProp.IsWeapon := True
+			}
+
+			; Get total physical damage
+			IfInString, A_LoopField, Physical Damage:
+			{
+				ItemProp.IsWeapon := True
+				StringSplit, Arr, A_LoopField, %A_Space%
+				StringSplit, Arr, Arr3, -
+				ItemProp.PhysLo := Arr1
+				ItemProp.PhysHi := Arr2
+				Continue
+			}
+			; Get total Elemental damage
+			IfInString, A_LoopField, Elemental Damage:
+			{
+				ItemProp.IsWeapon := True
+				StringSplit, Arr, A_LoopField, %A_Space%
+				StringSplit, Arr, Arr3, -
+				ItemProp.EleLo := Arr1
+				ItemProp.EleHi := Arr2
+				Continue
+			}
+			; Get total Elemental damage
+			IfInString, A_LoopField, Chaos Damage:
+			{
+				ItemProp.IsWeapon := True
+				StringSplit, Arr, A_LoopField, %A_Space%
+				StringSplit, Arr, Arr3, -
+				ItemProp.ChaosLo := Arr1
+				ItemProp.ChaosHi := Arr2
+				Continue
+			}
+			; These only make sense for weapons
+			If ItemProp.IsWeapon 
+			{
+				; Get attack speed
+				IfInString, A_LoopField, Attacks per Second:
+				{
+					StringSplit, Arr, A_LoopField, %A_Space%
+					ItemProp.AttackSpeed := Arr4
+					Continue
+				}
+
+				; Get percentage physical damage increase
+				IfInString, A_LoopField, increased Physical Damage
+				{
+					StringSplit, Arr, A_LoopField, %A_Space%, `%
+					ItemProp.PhysMult := Arr1
+					Continue
+				}
+			}
 		}
+		; DPS calculations
+		If (ItemProp.IsWeapon) {
+
+			ItemProp.PhysDps := ((ItemProp.PhysLo + ItemProp.PhysHi) / 2) * ItemProp.AttackSpeed
+			ItemProp.EleDps := ((ItemProp.EleLo + ItemProp.EleHi) / 2) * ItemProp.AttackSpeed
+			ItemProp.ChaosDps := ((ItemProp.ChaosLo + ItemProp.ChaosHi) / 2) * ItemProp.AttackSpeed
+
+			If ItemProp.PhysDps
+				ItemProp.TotalDps += ItemProp.PhysDps
+			If ItemProp.EleDps
+				ItemProp.TotalDps += ItemProp.EleDps
+			If ItemProp.ChaosDps
+				ItemProp.TotalDps += ItemProp.ChaosDps
+			; Only show Q20 values if item is not Q20
+			If (ItemProp.Quality < 20 && ItemProp.PhysDps)
+			{
+				ItemProp.TotalPhysMult := (ItemProp.PhysMult + ItemProp.Quality + 100) / 100
+				ItemProp.BasePhysDps := ItemProp.PhysDps / ItemProp.TotalPhysMult
+				ItemProp.Q20Dps := ItemProp.BasePhysDps * ((ItemProp.PhysMult + 120) / 100) 
+				If ItemProp.EleDps
+					ItemProp.Q20Dps += ItemProp.EleDps
+				If ItemProp.ChaosDps
+					ItemProp.Q20Dps += ItemProp.ChaosDps
+			}
+		}
+
 		Return
 	}
 
