@@ -379,16 +379,17 @@
 	;Chat Functions
 		Global CharName := "ReplaceWithCharName"
 		Global RecipientName := "NothingYet"
-		Global fn1, fn2
-		Global 1Prefix1, 1Prefix2, 2Prefix1, 2Prefix2
+		Global fn1, fn2, fn3
+		Global 1Prefix1, 1Prefix2, 2Prefix1, 2Prefix2, stashPrefix1, stashPrefix2
 		Global 1Suffix1,1Suffix2,1Suffix3,1Suffix4,1Suffix5,1Suffix6,1Suffix7,1Suffix8,1Suffix9
 		Global 1Suffix1Text,1Suffix2Text,1Suffix3Text,1Suffix4Text,1Suffix5Text,1Suffix6Text,1Suffix7Text,1Suffix8Text,1Suffix9Text
 		Global 2Suffix1,2Suffix2,2Suffix3,2Suffix4,2Suffix5,2Suffix6,2Suffix7,2Suffix8,2Suffix9
 		Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
-; Standard ini read
+		Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
+		Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
+; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-readFromFile()
-
+	readFromFile()
 ; Wingman Gui Variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	if RadioLife=1 
@@ -804,7 +805,6 @@ readFromFile()
 		}
 
 	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           x300  y145           	          , Detonate Mines?
-	Gui Add, Checkbox, gUpdateExtra	vYesStashKeys Checked%YesStashKeys%                         	         x+20 , Ctrl(1-10) stash tabs?
 	Gui, Font, Bold
 	Gui Add, Text, 										x295 	y168, 				Keybinds:
 	Gui, Font
@@ -880,14 +880,14 @@ readFromFile()
 	Gui, Font, Bold
 	Gui Add, Text, 										x12 	y30, 				Stash Management
 	Gui, Font,
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabTimelessSplinter Choose%StashTabTimelessSplinter% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabTimelessSplinter Choose%StashTabTimelessSplinter% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter Checked%StashTabYesTimelessSplinter% y+14, TSplinter Tab
@@ -898,14 +898,14 @@ readFromFile()
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
 
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, R5 gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x195 y55, Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% y+14, Quality Gem Tab
@@ -916,8 +916,45 @@ readFromFile()
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% y+14, Fossil Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% y+14, Resonator Tab
 
+
+	Gui Add, Checkbox, x+95 ym+30	vYesStashKeys Checked%YesStashKeys%                         	         , Enable stash hotkeys?
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section xp-5 yp+20 w60 h85											,Modifier
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, xs+4 ys+20 w50 h23 vstashPrefix1, %stashPrefix1%
+	Gui Add, Edit, y+8        w50 h23 vstashPrefix2, %stashPrefix2%
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+10 ys w100 h275											,Keys
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
+	Gui Add, Edit, y+5        w90 h23 vstashSuffix2, %stashSuffix2%
+	Gui Add, Edit, y+5        w90 h23 vstashSuffix3, %stashSuffix3%
+	Gui Add, Edit, y+5        w90 h23 vstashSuffix4, %stashSuffix4%
+	Gui Add, Edit, y+5        w90 h23 vstashSuffix5, %stashSuffix5%
+	Gui Add, Edit, y+5        w90 h23 vstashSuffix6, %stashSuffix6%
+	Gui Add, Edit, y+5        w90 h23 vstashSuffix7, %stashSuffix7%
+	Gui Add, Edit, y+5        w90 h23 vstashSuffix8, %stashSuffix8%
+	Gui Add, Edit, y+5        w90 h23 vstashSuffix9, %stashSuffix9%
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+10 ys w50 h275											,Tab
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, DropDownList, xs+4 ys+20 w40 vstashSuffixTab1 Choose%stashSuffixTab1%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab2 Choose%stashSuffixTab2%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab3 Choose%stashSuffixTab3%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab4 Choose%stashSuffixTab4%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab5 Choose%stashSuffixTab5%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab6 Choose%stashSuffixTab6%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab7 Choose%stashSuffixTab7%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab8 Choose%stashSuffixTab8%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+
+
+
 	Gui, Font, Bold
-	Gui Add, Text, 										x352 	y30, 				ID/Vend/Stash Options:
+	Gui Add, Text, 										xm 	y330, 				ID/Vend/Stash Options:
 	Gui, Font,
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%                         	          , Identify Items?
 	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%                         	        	  , Deposit at stash?
@@ -925,11 +962,17 @@ readFromFile()
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%                         	          , Leave Map Un-ID?
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x20 	y280, 				Inventory Instructions:
+	Gui Add, Text, 										xm+170 	y330, 				Inventory Instructions:
 	Gui, Font,
-	Gui Add, Text, 										x22 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
-	Gui Add, Text, 										x22 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
-	Gui Add, Text, 										x22 	y+5, 				The options to the right affect which portion of the script is enabled.
+	Gui Add, Text, 										 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
+	Gui Add, Text, 										 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
+	Gui Add, Text, 										 	y+5, 				The options to the right affect which portion of the script is enabled.
+
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
 	;#######################################################################################################Chat Tab
 	Gui, Tab, Chat
 	Gui Add, Checkbox, gUpdateExtra	vEnableChatHotkeys Checked%EnableChatHotkeys%     xm ym+20                    	          	, Enable chat Hotkeys?
@@ -1211,59 +1254,6 @@ readFromFile()
 	Else If (!DetonateMines)
 		SetTimer, TMineTick, off
 
-; Move to # stash hotkeys
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	If (YesStashKeys){
-		^1::
-			;Keywait, Ctrl
-			MoveStash(1)
-			return
-
-		^2::
-			;Keywait, Ctrl
-			MoveStash(2)
-			return
-
-		^3::
-			;Keywait, Ctrl
-			MoveStash(3)
-			return
-
-		^4::
-			;Keywait, Ctrl
-			MoveStash(4)
-			return
-
-		^5::
-			;Keywait, Ctrl
-			MoveStash(5)
-			return
-
-		^6::
-			;Keywait, Ctrl
-			MoveStash(6)
-			return
-
-		^7::
-			;Keywait, Ctrl
-			MoveStash(7)
-			return
-
-		^8::
-			;Keywait, Ctrl
-			MoveStash(8)
-			return
-
-		^9::
-			;Keywait, Ctrl
-			MoveStash(9)
-			return
-
-		^0::
-			;Keywait, Ctrl
-			MoveStash(10)
-			return
-		}
 
 ;Reload Script with Alt+Escape
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1594,33 +1584,35 @@ ItemSort(){
 ; Input any digit and it will move to that Stash tab, only tested up to 25 tabs
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MoveStash(Tab){
-		If (CurrentTab=Tab)
-			return
-		If (CurrentTab!=Tab)
-		{
-			MouseGetPos MSx, MSy
-			BlockInput, MouseMove
-			Sleep, 45*Latency
-			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-			Sleep, 45*Latency
-			Click, Down, Left, 1
-			Sleep, 45*Latency
-			Click, Up, Left, 1
-			Sleep, 45*Latency
-			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-			Sleep, 45*Latency
-			send {Enter}
-			Sleep, 45*Latency
-			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-			Sleep, 45*Latency
-			Click, Down, Left, 1
-			Sleep, 45*Latency
-			Click, Up, Left, 1
-			Sleep, 45*Latency
-			CurrentTab:=Tab
-			MouseMove, MSx, MSy, 0
-			Sleep, 45*Latency
-			BlockInput, MouseMoveOff
+	GuiStatus("OnStash")
+	If (!OnStash)
+		Return
+	If (CurrentTab=Tab)
+		return
+	If (CurrentTab!=Tab) {
+		MouseGetPos MSx, MSy
+		BlockInput, MouseMove
+		Sleep, 45*Latency
+		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+		Sleep, 45*Latency
+		Click, Down, Left, 1
+		Sleep, 45*Latency
+		Click, Up, Left, 1
+		Sleep, 45*Latency
+		MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
+		Sleep, 60*Latency
+		send {Enter}
+		Sleep, 45*Latency
+		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+		Sleep, 45*Latency
+		Click, Down, Left, 1
+		Sleep, 45*Latency
+		Click, Up, Left, 1
+		Sleep, 45*Latency
+		CurrentTab:=Tab
+		MouseMove, MSx, MSy, 0
+		Sleep, 45*Latency
+		BlockInput, MouseMoveOff
 		}
 	return
 	}
@@ -3013,10 +3005,10 @@ GuiStatus(Fetch:=""){
 	Return
 	}
 
-; Main attack and secondary attack Flasks
+; Main attack Flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MainAttackCommand(){
-MainAttackCommand:
+	MainAttackCommand:
 	if (AutoFlask=1) {
 		GuiStatus()
 		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
@@ -3026,8 +3018,10 @@ MainAttackCommand:
 		}
     Return	
 	}
+; Secondary attack Flasks
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SecondaryAttackCommand(){
-SecondaryAttackCommand:
+	SecondaryAttackCommand:
 	if (AutoFlask=1) {
 		GuiStatus()
 		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
@@ -3583,7 +3577,7 @@ TriggerMana(Trigger){
     Return
 	}
 
-;Clamp Value function
+; Clamp Value function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Clamp( Val, Min, Max) {
     If Val < Min
@@ -3592,9 +3586,9 @@ Clamp( Val, Min, Max) {
         Val := Max
     Return
 	}
-;Clamp Value function
+; Register Chat Hokeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RegisterChatHotkeys() {
+RegisterHotkeys() {
     global
     Hotkey If, % fn1
         If 1Suffix1
@@ -3636,6 +3630,26 @@ RegisterChatHotkeys() {
         If 2Suffix9
             Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
 
+    Hotkey If, % fn3
+        If stashSuffix1
+            Hotkey, *%stashSuffix1%, FireStashHotkey1, off
+        If stashSuffix2
+            Hotkey, *%stashSuffix2%, FireStashHotkey2, off
+        If stashSuffix3
+            Hotkey, *%stashSuffix3%, FireStashHotkey3, off
+        If stashSuffix4
+            Hotkey, *%stashSuffix4%, FireStashHotkey4, off
+        If stashSuffix5
+            Hotkey, *%stashSuffix5%, FireStashHotkey5, off
+        If stashSuffix6
+            Hotkey, *%stashSuffix6%, FireStashHotkey6, off
+        If stashSuffix7
+            Hotkey, *%stashSuffix7%, FireStashHotkey7, off
+        If stashSuffix8
+            Hotkey, *%stashSuffix8%, FireStashHotkey8, off
+        If stashSuffix9
+            Hotkey, *%stashSuffix9%, FireStashHotkey9, off
+
     Gui Submit, NoHide
     fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
     Hotkey If, % fn1
@@ -3651,9 +3665,17 @@ RegisterChatHotkeys() {
             keyval := 2Suffix%A_Index%
             Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
         }
+    fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
+    Hotkey If, % fn3
+    Loop, 9 {
+        If (stashSuffix%A_Index%)
+            keyval := stashSuffix%A_Index%
+            Hotkey, ~*%keyval%, FireStashHotkey%A_Index%, On
+        }
     Return
     }
-
+; Functions to evaluate keystate
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
     IfWinExist, ahk_group POEGameGroup
         {
@@ -3719,6 +3741,41 @@ RegisterChatHotkeys() {
             Return False
         }
 }
+
+stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
+    IfWinExist, ahk_group POEGameGroup
+        {
+		If (YesStashKeys){
+			If ( stashPrefix1 && stashPrefix2 ){
+				If ( GetKeyState(stashPrefix1) && GetKeyState(stashPrefix2) )
+					return True
+				Else
+					return False
+				}
+			Else If ( stashPrefix1 && !stashPrefix2 ) {
+				If ( GetKeyState(stashPrefix1) ) 
+					return True
+				Else
+					return False
+				}
+			Else If ( !stashPrefix1 && stashPrefix2 ) {
+				If ( GetKeyState(stashPrefix2) ) 
+					return True
+				Else
+					return False
+				}
+			Else If ( !stashPrefix1 && !stashPrefix2 ) {
+				return True
+				}
+			}
+		Else
+			Return False 
+		}
+    Else {
+            Return False
+        }
+	}
+
 ; Flask Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimmerFlask1:
@@ -3849,6 +3906,7 @@ readFromFile(){
     IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
     IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
     IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
+    IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -4190,14 +4248,14 @@ readFromFile(){
     IniRead, 1Suffix9, settings.ini, Chat Hotkeys, 1Suffix9, 9
 
     IniRead, 1Suffix1Text, settings.ini, Chat Hotkeys, 1Suffix1Text, /Hideout
-    IniRead, 1Suffix2Text, settings.ini, Chat Hotkeys, 1Suffix2Text, /reset_xp
-    IniRead, 1Suffix3Text, settings.ini, Chat Hotkeys, 1Suffix3Text, /menagerie
-    IniRead, 1Suffix4Text, settings.ini, Chat Hotkeys, 1Suffix4Text, /kick CharacterName
-    IniRead, 1Suffix5Text, settings.ini, Chat Hotkeys, 1Suffix5Text, /remaining
-    IniRead, 1Suffix6Text, settings.ini, Chat Hotkeys, 1Suffix6Text, /ladder
-    IniRead, 1Suffix7Text, settings.ini, Chat Hotkeys, 1Suffix7Text, /pvp
-    IniRead, 1Suffix8Text, settings.ini, Chat Hotkeys, 1Suffix8Text, /passives
-    IniRead, 1Suffix9Text, settings.ini, Chat Hotkeys, 1Suffix9Text, /cls
+    IniRead, 1Suffix2Text, settings.ini, Chat Hotkeys, 1Suffix2Text, /menagerie
+    IniRead, 1Suffix3Text, settings.ini, Chat Hotkeys, 1Suffix3Text, /cls
+    IniRead, 1Suffix4Text, settings.ini, Chat Hotkeys, 1Suffix4Text, /ladder
+    IniRead, 1Suffix5Text, settings.ini, Chat Hotkeys, 1Suffix5Text, /reset_xp
+    IniRead, 1Suffix6Text, settings.ini, Chat Hotkeys, 1Suffix6Text, /invite RecipientName
+    IniRead, 1Suffix7Text, settings.ini, Chat Hotkeys, 1Suffix7Text, /kick RecipientName
+    IniRead, 1Suffix8Text, settings.ini, Chat Hotkeys, 1Suffix8Text, /kick CharacterName
+    IniRead, 1Suffix9Text, settings.ini, Chat Hotkeys, 1Suffix9Text, @RecipientName Still Interested?
 
     IniRead, 2Prefix1, settings.ini, Chat Hotkeys, 2Prefix1, d
     IniRead, 2Prefix2, settings.ini, Chat Hotkeys, 2Prefix2, ""
@@ -4220,7 +4278,30 @@ readFromFile(){
     IniRead, 2Suffix7Text, settings.ini, Chat Hotkeys, 2Suffix7Text, No thank you.
     IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
     IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
-	RegisterChatHotkeys()
+
+    IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, ""
+    IniRead, stashPrefix2, settings.ini, Stash Hotkeys, stashPrefix2, ""
+    IniRead, stashSuffix1, settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
+    IniRead, stashSuffix2, settings.ini, Stash Hotkeys, stashSuffix2, Numpad2
+    IniRead, stashSuffix3, settings.ini, Stash Hotkeys, stashSuffix3, Numpad3
+    IniRead, stashSuffix4, settings.ini, Stash Hotkeys, stashSuffix4, Numpad4
+    IniRead, stashSuffix5, settings.ini, Stash Hotkeys, stashSuffix5, Numpad5
+    IniRead, stashSuffix6, settings.ini, Stash Hotkeys, stashSuffix6, Numpad6
+    IniRead, stashSuffix7, settings.ini, Stash Hotkeys, stashSuffix7, Numpad7
+    IniRead, stashSuffix8, settings.ini, Stash Hotkeys, stashSuffix8, Numpad8
+    IniRead, stashSuffix9, settings.ini, Stash Hotkeys, stashSuffix9, Numpad9
+	
+    IniRead, stashSuffixTab1, settings.ini, Stash Hotkeys, stashSuffixTab1, 1
+    IniRead, stashSuffixTab2, settings.ini, Stash Hotkeys, stashSuffixTab2, 2
+    IniRead, stashSuffixTab3, settings.ini, Stash Hotkeys, stashSuffixTab3, 3
+    IniRead, stashSuffixTab4, settings.ini, Stash Hotkeys, stashSuffixTab4, 4
+    IniRead, stashSuffixTab5, settings.ini, Stash Hotkeys, stashSuffixTab5, 5
+    IniRead, stashSuffixTab6, settings.ini, Stash Hotkeys, stashSuffixTab6, 6
+    IniRead, stashSuffixTab7, settings.ini, Stash Hotkeys, stashSuffixTab7, 7
+    IniRead, stashSuffixTab8, settings.ini, Stash Hotkeys, stashSuffixTab8, 8
+    IniRead, stashSuffixTab9, settings.ini, Stash Hotkeys, stashSuffixTab9, 9
+
+	RegisterHotkeys()
     checkActiveType()
 Return
 }
@@ -4294,6 +4375,26 @@ updateEverything:
 		Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
 	If 2Suffix9
 		Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
+
+    Hotkey If, % fn3
+	If stashSuffix1
+		Hotkey, *%stashSuffix1%, FireStashHotkey1, off
+	If stashSuffix2
+		Hotkey, *%stashSuffix2%, FireStashHotkey2, off
+	If stashSuffix3
+		Hotkey, *%stashSuffix3%, FireStashHotkey3, off
+	If stashSuffix4
+		Hotkey, *%stashSuffix4%, FireStashHotkey4, off
+	If stashSuffix5
+		Hotkey, *%stashSuffix5%, FireStashHotkey5, off
+	If stashSuffix6
+		Hotkey, *%stashSuffix6%, FireStashHotkey6, off
+	If stashSuffix7
+		Hotkey, *%stashSuffix7%, FireStashHotkey7, off
+	If stashSuffix8
+		Hotkey, *%stashSuffix8%, FireStashHotkey8, off
+	If stashSuffix9
+		Hotkey, *%stashSuffix9%, FireStashHotkey9, off
 
     hotkey, IfWinActive
 	If hotkeyOptions
@@ -4398,6 +4499,7 @@ updateEverything:
     IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
     IniWrite, %CharName%, settings.ini, General, CharName
     IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
+    IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
 
     ;~ Hotkeys 
     IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
@@ -4574,6 +4676,28 @@ updateEverything:
     IniWrite, %2Suffix7Text%, settings.ini, Chat Hotkeys, 2Suffix7Text
     IniWrite, %2Suffix8Text%, settings.ini, Chat Hotkeys, 2Suffix8Text
     IniWrite, %2Suffix9Text%, settings.ini, Chat Hotkeys, 2Suffix9Text
+
+    IniWrite, %stashPrefix1%, settings.ini, Stash Hotkeys, stashPrefix1
+    IniWrite, %stashPrefix2%, settings.ini, Stash Hotkeys, stashPrefix2
+    IniWrite, %stashSuffix1%, settings.ini, Stash Hotkeys, stashSuffix1
+    IniWrite, %stashSuffix2%, settings.ini, Stash Hotkeys, stashSuffix2
+    IniWrite, %stashSuffix3%, settings.ini, Stash Hotkeys, stashSuffix3
+    IniWrite, %stashSuffix4%, settings.ini, Stash Hotkeys, stashSuffix4
+    IniWrite, %stashSuffix5%, settings.ini, Stash Hotkeys, stashSuffix5
+    IniWrite, %stashSuffix6%, settings.ini, Stash Hotkeys, stashSuffix6
+    IniWrite, %stashSuffix7%, settings.ini, Stash Hotkeys, stashSuffix7
+    IniWrite, %stashSuffix8%, settings.ini, Stash Hotkeys, stashSuffix8
+    IniWrite, %stashSuffix9%, settings.ini, Stash Hotkeys, stashSuffix9
+	
+    IniWrite, %stashSuffixTab1%, settings.ini, Stash Hotkeys, stashSuffixTab1
+    IniWrite, %stashSuffixTab2%, settings.ini, Stash Hotkeys, stashSuffixTab2
+    IniWrite, %stashSuffixTab3%, settings.ini, Stash Hotkeys, stashSuffixTab3
+    IniWrite, %stashSuffixTab4%, settings.ini, Stash Hotkeys, stashSuffixTab4
+    IniWrite, %stashSuffixTab5%, settings.ini, Stash Hotkeys, stashSuffixTab5
+    IniWrite, %stashSuffixTab6%, settings.ini, Stash Hotkeys, stashSuffixTab6
+    IniWrite, %stashSuffixTab7%, settings.ini, Stash Hotkeys, stashSuffixTab7
+    IniWrite, %stashSuffixTab8%, settings.ini, Stash Hotkeys, stashSuffixTab8
+    IniWrite, %stashSuffixTab9%, settings.ini, Stash Hotkeys, stashSuffixTab9
 
     readFromFile()
     GuiUpdate()
@@ -5965,7 +6089,6 @@ UpdateExtra:
 	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
     IniWrite, %Latency%, settings.ini, General, Latency
     IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
-    IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
     IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
     IniWrite, %Steam%, settings.ini, General, Steam
     IniWrite, %HighBits%, settings.ini, General, HighBits
@@ -6375,5 +6498,40 @@ return
     ResetChat()
 return
 }
-
+FireStashHotkey1() {
+    MoveStash(stashSuffixTab1)
+return
+}
+FireStashHotkey2() {
+    MoveStash(stashSuffixTab2)
+return
+}
+FireStashHotkey3() {
+    MoveStash(stashSuffixTab3)
+return
+}
+FireStashHotkey4() {
+    MoveStash(stashSuffixTab4)
+return
+}
+FireStashHotkey5() {
+    MoveStash(stashSuffixTab5)
+return
+}
+FireStashHotkey6() {
+    MoveStash(stashSuffixTab6)
+return
+}
+FireStashHotkey7() {
+    MoveStash(stashSuffixTab7)
+return
+}
+FireStashHotkey8() {
+    MoveStash(stashSuffixTab8)
+return
+}
+FireStashHotkey9() {
+    MoveStash(stashSuffixTab9)
+return
+}
 return
