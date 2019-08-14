@@ -114,77 +114,20 @@
 
 		; Use the colorkey above to choose your background colors.
 		; The example below uses two colors black and white
-			Global LootColors := { 1 : 0x222222
+		Global LootColors := { 1 : 0x222222
 			, 2 : 0xFFFFFF}
 
 		; Use this as an example of adding more colors into the loot vacuum (This adds tan and red at postion 2,3)
-			Global ExampleColors := { 1 : 0xFFFFFF
-				, 2 : 0xFCDDB2
-				, 3 : 0xFE2222
-				, 4 : 0x222222}
-		;Item Property blank Array
-		Global ItemProp := {ItemName: ""
-			, Rarity : ""
-			, SpecialType : ""
-			, Stack : 0
-			, StackMax : 0
-			, RarityCurrency : False
-			, RarityDivination : False
-			, RarityGem : False
-			, RarityNormal : False
-			, RarityMagic : False
-			, RarityRare : False
-			, RarityUnique : False
-			, Identified : True
-			, Map : False
-			, Ring : False
-			, Amulet : False
-			, Chromatic : False
-			, Jewel : False
-			, AbyssJewel : False
-			, Essence : False
-			, Incubator : False
-			, Fossil : False
-			, Resonator : False
-			, Quality : 0
-			, Sockets : 0
-			, RawSockets : ""
-			, LinkCount : 0
-			, 2Link : False
-			, 3Link : False
-			, 4Link : False
-			, 5Link : False
-			, 6Link : False
-			, Jeweler : False
-			, TimelessSplinter : False
-			, BreachSplinter : False
-			, SacrificeFragment : False
-			, MortalFragment : False
-			, GuardianFragment : False
-			, ProphecyFragment : False
-			, Scarab : False
-			, Offering : False
-			, Vessel : False
-			, Incubator : False
-			, Flask : False
-			, Veiled : False
-			, Prophecy : False
-			, PhysLo : False
-			, PhysHi : False
-			, AttackSpeed : False
-			, IsWeapon : False
-			, PhysMult : False
-			, PhysDps : False
-			, EleDps : False
-			, TotalDps : False
-			, ChaosLo : False
-			, ChaosHi : False
-			, EleLo : False
-			, EleHi : False
-			, ItemLevel : False
-			, TotalPhysMult : False
-			, BasePhysDps : False
-			, Q20Dps : False}
+		Global ExampleColors := { 1 : 0xFFFFFF
+			, 2 : 0xFCDDB2
+			, 3 : 0xFE2222
+			, 4 : 0x222222}
+
+		;Item Parse blank Arrays
+		Global Prop := {}
+		Global WeaponStats := {}
+		Global ArmourStats := {}
+		Global Affix := {}
 
 		global Detonated := 0
 		global CritQuit := 1
@@ -1364,102 +1307,102 @@ ItemSort(){
 					}
 					
 					ClipItem(Grid.X,Grid.Y)
-					If (!ItemProp.Identified&&YesIdentify)
+					If (!Prop.Identified&&YesIdentify)
 					{
-						If (ItemProp.Map&&!YesMapUnid)
+						If (Prop.Map&&!YesMapUnid)
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
-						Else If (ItemProp.Chromatic && (ItemProp.RarityRare || ItemProp.RarityUnique ) ) 
+						Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
-						Else If ( ItemProp.Jeweler && ( ItemProp.5Link || ItemProp.6Link || ItemProp.RarityRare || ItemProp.RarityUnique) )
+						Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
-						Else If (!ItemProp.Chromatic && !ItemProp.Jeweler&&!ItemProp.Map)
+						Else If (!Prop.Chromatic && !Prop.Jeweler&&!Prop.Map)
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
 					}
 					If (OnStash&&YesStash) 
 					{
-						If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
+						If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
 						{
 							MoveStash(StashTabCurrency)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Map&&StashTabYesMap)
+						If (Prop.Map&&StashTabYesMap)
 						{
 							MoveStash(StashTabMap)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.BreachSplinter&&StashTabYesFragment)
+						If (Prop.BreachSplinter&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.SacrificeFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (ItemProp.MortalFragment&&StashTabYesFragment)
+						If (Prop.SacrificeFragment&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.GuardianFragment&&StashTabYesFragment)
+						If (Prop.MortalFragment&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.ProphecyFragment&&StashTabYesFragment)
+						If (Prop.GuardianFragment&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Offering&&StashTabYesFragment)
+						If (Prop.ProphecyFragment&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Vessel&&StashTabYesFragment)
+						If (Prop.Offering&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Scarab&&StashTabYesFragment)
+						If (Prop.Vessel&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.RarityDivination&&StashTabYesDivination)
+						If (Prop.Scarab&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.RarityDivination&&StashTabYesDivination)
 						{
 							MoveStash(StashTabDivination)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.RarityUnique&&ItemProp.Ring)
+						If (Prop.RarityUnique&&Prop.Ring)
 						{
 							If (StashTabYesCollection)
 							{
@@ -1481,7 +1424,7 @@ ItemSort(){
 							}
 							Continue
 						}
-						Else If (ItemProp.RarityUnique)
+						Else If (Prop.RarityUnique)
 						{
 							If (StashTabYesCollection)
 							{
@@ -1504,36 +1447,36 @@ ItemSort(){
 							}
 							Continue
 						}
-						If (ItemProp.Essence&&StashTabYesEssence)
+						If (Prop.Essence&&StashTabYesEssence)
 						{
 							MoveStash(StashTabEssence)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Fossil&&StashTabYesFossil)
+						If (Prop.Fossil&&StashTabYesFossil)
 						{
 							MoveStash(StashTabFossil)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Resonator&&StashTabYesResonator)
+						If (Prop.Resonator&&StashTabYesResonator)
 						{
 							MoveStash(StashTabResonator)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
+						If (Prop.Flask&&(Prop.Quality>0)&&StashTabYesFlaskQuality)
 						{
 							MoveStash(StashTabFlaskQuality)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.RarityGem)
+						If (Prop.RarityGem)
 						{
-							If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
+							If ((Prop.Quality>0)&&StashTabYesGemQuality)
 							{
 								MoveStash(StashTabGemQuality)
 								CtrlClick(Grid.X,Grid.Y)
@@ -1546,19 +1489,19 @@ ItemSort(){
 								Continue
 							}
 						}
-						If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
+						If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
 						{
 							MoveStash(StashTabLinked)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
+						If (Prop.TimelessSplinter&&StashTabYesTimelessSplinter)
 						{
 							MoveStash(StashTabTimelessSplinter)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Prophecy&&StashTabYesProphecy)
+						If (Prop.Prophecy&&StashTabYesProphecy)
 						{
 							MoveStash(StashTabProphecy)
 							CtrlClick(Grid.X,Grid.Y)
@@ -1567,11 +1510,11 @@ ItemSort(){
 					}
 					If (OnVendor&&YesVendor)
 					{
-						If (ItemProp.RarityCurrency)
+						If (Prop.RarityCurrency)
 							Continue
-						If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
+						If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
 							Continue
-						If ( ItemProp.SpecialType="" )
+						If ( Prop.SpecialType="" )
 						{
 							Sleep, 30*Latency
 							CtrlClick(Grid.X,Grid.Y)
@@ -1727,7 +1670,7 @@ StockScrolls(){
 			MouseMove %WisdomScrollX%, %WisdomScrollY%
 			ClipItem(WisdomScrollX, WisdomScrollY)
 			Sleep, 20*Latency
-			dif := (40 - ItemProp.Stack)
+			dif := (40 - Prop.Stack)
 				If (dif>10)
 			{
 				MoveStash(1)
@@ -1750,7 +1693,7 @@ StockScrolls(){
 			MouseMove %PortalScrollX%, %PortalScrollY%
 			ClipItem(PortalScrollX, PortalScrollY)
 			Sleep, 20*Latency
-			dif := (40 - ItemProp.Stack)
+			dif := (40 - Prop.Stack)
 				If (dif>10)
 			{
 				MoveStash(1)
@@ -2321,21 +2264,6 @@ error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
 	return
 	}
 
-; Parse Elemental and Chaos damage
-ParseDamage(String, DmgType, ByRef DmgLo, ByRef DmgHi)
-{
-	IfInString, String, %DmgType% Damage:
-	{
-		IfNotInString, String, increased
-		{
-			StringSplit, Arr, String, %A_Space%
-			StringSplit, Arr, Arr3, -
-			DmgLo := Arr1
-			DmgHi := Arr2
-		}
-	}
-	return
-}
 ; Capture Clip at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ClipItem(x, y){
@@ -2356,7 +2284,11 @@ ParseClip(){
 		;Reset Variables
 		NameIsDone := False
 		
-		ItemProp := {ItemName: ""
+		Prop := {ItemName: ""
+			, IsItem : False
+			, IsArmour : False
+			, IsWeapon : False
+			, ShowAffix : False
 			, Rarity : ""
 			, SpecialType : ""
 			, Stack : 0
@@ -2402,10 +2334,11 @@ ParseClip(){
 			, Flask : False
 			, Veiled : False
 			, Prophecy : False
-			, PhysLo : False
+			, ItemLevel : False}
+
+		WeaponStats := { PhysLo : False
 			, PhysHi : False
 			, AttackSpeed : False
-			, IsWeapon : False
 			, PhysMult : False
 			, PhysDps : False
 			, EleDps : False
@@ -2414,10 +2347,9 @@ ParseClip(){
 			, ChaosHi : False
 			, EleLo : False
 			, EleHi : False
-			, ItemLevel : False
 			, TotalPhysMult : False
 			, BasePhysDps : False
-			, Q20Dps : False}
+			, Q20Dps : False }
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -2430,42 +2362,43 @@ ParseClip(){
 				}
 				Else
 				{
+					Prop.IsItem := True
 					IfInString, A_LoopField, Currency
 					{
-						ItemProp.RarityCurrency := True
-						ItemProp.Rarity := "Currency"
+						Prop.RarityCurrency := True
+						Prop.Rarity := "Currency"
 					}
 					IfInString, A_LoopField, Divination Card
 					{
-						ItemProp.RarityDivination := True
-						ItemProp.Rarity := "Divination Card"
-						ItemProp.SpecialType := "Divination Card"
+						Prop.RarityDivination := True
+						Prop.Rarity := "Divination Card"
+						Prop.SpecialType := "Divination Card"
 					}
 					IfInString, A_LoopField, Gem
 					{
-						ItemProp.RarityGem := True
-						ItemProp.Rarity := "Gem"
-						ItemProp.SpecialType := "Gem"
+						Prop.RarityGem := True
+						Prop.Rarity := "Gem"
+						Prop.SpecialType := "Gem"
 					}
 					IfInString, A_LoopField, Normal
 					{
-						ItemProp.RarityNormal := True
-						ItemProp.Rarity := "Normal"
+						Prop.RarityNormal := True
+						Prop.Rarity := "Normal"
 					}
 					IfInString, A_LoopField, Magic
 					{
-						ItemProp.RarityMagic := True
-						ItemProp.Rarity := "Magic"
+						Prop.RarityMagic := True
+						Prop.Rarity := "Magic"
 					}
 					IfInString, A_LoopField, Rare
 					{
-						ItemProp.RarityRare := True
-						ItemProp.Rarity := "Rare"
+						Prop.RarityRare := True
+						Prop.Rarity := "Rare"
 					}
 					IfInString, A_LoopField, Unique
 					{
-						ItemProp.RarityUnique := True
-						ItemProp.Rarity := "Unique"
+						Prop.RarityUnique := True
+						Prop.Rarity := "Unique"
 					}
 					Continue
 				}
@@ -2480,200 +2413,200 @@ ParseClip(){
 				}
 				Else
 				{
-					ItemProp.ItemName := ItemProp.ItemName . A_LoopField . "`n" ; Add a line of name
+					Prop.ItemName := Prop.ItemName . A_LoopField . "`n" ; Add a line of name
 					IfInString, A_LoopField, Ring
 					{
-						ItemProp.Ring := True
+						Prop.Ring := True
 						Continue
 					}
 					IfInString, A_LoopField, Amulet
 					{
-						ItemProp.Amulet := True
+						Prop.Amulet := True
 						Continue
 					}
 					IfInString, A_LoopField, Map
 					{
-						ItemProp.Map := True
-						ItemProp.SpecialType := "Map"
+						Prop.Map := True
+						Prop.SpecialType := "Map"
 						Continue
 					}
 					IfInString, A_LoopField, Incubator
 					{
-						ItemProp.Incubator := True
-						ItemProp.SpecialType := "Incubator"
+						Prop.Incubator := True
+						Prop.SpecialType := "Incubator"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Karui Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Eternal Empire Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Vaal Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Templar Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Maraketh Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Splinter of
 					{
-						ItemProp.BreachSplinter := True
-						ItemProp.SpecialType := "Breach Splinter"
+						Prop.BreachSplinter := True
+						Prop.SpecialType := "Breach Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Sacrifice at
 					{
-						ItemProp.SacrificeFragment := True
-							ItemProp.SpecialType := "Sacrifice Fragment"
+						Prop.SacrificeFragment := True
+						Prop.SpecialType := "Sacrifice Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Mortal Grief
 					{
-						ItemProp.MortalFragment := True
-						ItemProp.SpecialType := "Mortal Fragment"
+						Prop.MortalFragment := True
+						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Mortal Hope
 					{
-						ItemProp.MortalFragment := True
-						ItemProp.SpecialType := "Mortal Fragment"
+						Prop.MortalFragment := True
+						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Mortal Ignorance
 					{
-						ItemProp.MortalFragment := True
-						ItemProp.SpecialType := "Mortal Fragment"
+						Prop.MortalFragment := True
+						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Mortal Rage
 					{
-						ItemProp.MortalFragment := True
-						ItemProp.SpecialType := "Mortal Fragment"
+						Prop.MortalFragment := True
+						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Fragment of the
 					{
-						ItemProp.GuardianFragment := True
-						ItemProp.SpecialType := "Guardian Fragment"
+						Prop.GuardianFragment := True
+						Prop.SpecialType := "Guardian Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Volkuur's Key
 					{
-						ItemProp.ProphecyFragment := True
-						ItemProp.SpecialType := "Prophecy Fragment"
+						Prop.ProphecyFragment := True
+						Prop.SpecialType := "Prophecy Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Eber's Key
 					{
-						ItemProp.ProphecyFragment := True
-						ItemProp.SpecialType := "Prophecy Fragment"
+						Prop.ProphecyFragment := True
+						Prop.SpecialType := "Prophecy Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Yriel's Key
 					{
-						ItemProp.ProphecyFragment := True
-						ItemProp.SpecialType := "Prophecy Fragment"
+						Prop.ProphecyFragment := True
+						Prop.SpecialType := "Prophecy Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Inya's Key
 					{
-						ItemProp.ProphecyFragment := True
-						ItemProp.SpecialType := "Prophecy Fragment"
+						Prop.ProphecyFragment := True
+						Prop.SpecialType := "Prophecy Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Scarab
 					{
-						ItemProp.Scarab := True
-						ItemProp.SpecialType := "Scarab"
+						Prop.Scarab := True
+						Prop.SpecialType := "Scarab"
 						Continue
 					}
 					IfInString, A_LoopField, Offering to the Goddess
 					{
-						ItemProp.Offering := True
-						ItemProp.SpecialType := "Offering"
+						Prop.Offering := True
+						Prop.SpecialType := "Offering"
 						Continue
 					}
 					IfInString, A_LoopField, Essence of
 					{
-						ItemProp.Essence := True
-						ItemProp.SpecialType := "Essence"
+						Prop.Essence := True
+						Prop.SpecialType := "Essence"
 						Continue
 					}
 					IfInString, A_LoopField, Remnant of Corruption
 					{
-						ItemProp.Essence := True
-						ItemProp.SpecialType := "Essence"
+						Prop.Essence := True
+						Prop.SpecialType := "Essence"
 						Continue
 					}
 					IfInString, A_LoopField, Incubator
 					{
-						ItemProp.Incubator := True
-						ItemProp.SpecialType := "Incubator"
+						Prop.Incubator := True
+						Prop.SpecialType := "Incubator"
 						Continue
 					}
 					IfInString, A_LoopField, Fossil
 					{
 						IfNotInString, A_LoopField, Fossilised
 						{
-							ItemProp.Fossil := True
-							ItemProp.SpecialType := "Fossil"
+							Prop.Fossil := True
+							Prop.SpecialType := "Fossil"
 							Continue
 						}
 					}
 					IfInString, A_LoopField, Resonator
 					{
-						ItemProp.Resonator := True
-						ItemProp.SpecialType := "Resonator"
+						Prop.Resonator := True
+						Prop.SpecialType := "Resonator"
 						Continue
 					}
 					IfInString, A_LoopField, Divine Vessel
 					{
-						ItemProp.Vessel := True
-						ItemProp.SpecialType := "Divine Vessel"
+						Prop.Vessel := True
+						Prop.SpecialType := "Divine Vessel"
 						Continue
 					}
 					IfInString, A_LoopField, Eye Jewel
 					{
-						ItemProp.AbyssJewel := True
-						ItemProp.Jewel := True
+						Prop.AbyssJewel := True
+						Prop.Jewel := True
 						Continue
 					}
 					IfInString, A_LoopField, Cobalt Jewel
 					{
-						ItemProp.Jewel := True
+						Prop.Jewel := True
 						Continue
 					}
 					IfInString, A_LoopField, Crimson Jewel
 					{
-						ItemProp.Jewel := True
+						Prop.Jewel := True
 						Continue
 					}
 					IfInString, A_LoopField, Viridian Jewel
 					{
-						ItemProp.Jewel := True
+						Prop.Jewel := True
 						Continue
 					}
 					IfInString, A_LoopField, Flask
 					{
-						ItemProp.Flask := True
+						Prop.Flask := True
 						Continue
 					}
 				}
@@ -2684,63 +2617,63 @@ ParseClip(){
 			IfInString, A_LoopField, Item Level:
 			{
 				StringSplit, ItemLevelArray, A_LoopField, %A_Space%
-				ItemProp.ItemLevel := ItemLevelArray3
+				Prop.ItemLevel := ItemLevelArray3
 				Continue
 			}
 			; Get Socket Information
 			IfInString, A_LoopField, Sockets:
 			{
 				StringSplit, RawSocketsArray, A_LoopField, %A_Space%
-				ItemProp.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
-				For k, v in StrSplit(ItemProp.RawSockets, " ") 
+				Prop.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
+				For k, v in StrSplit(Prop.RawSockets, " ") 
 				{		
 					if (v ~= "B") && (v ~= "G") && (v ~= "R")
-						ItemProp.Chromatic := True
+						Prop.Chromatic := True
 					Loop, Parse, v
 						Counter++
 					If (Counter=11)
 					{
-						ItemProp.6Link:=True
-						ItemProp.SpecialType := "6Link"
+						Prop.6Link:=True
+						Prop.SpecialType := "6Link"
 					}
 					Else If (Counter=9)
 					{
-						ItemProp.5Link:=True
-						ItemProp.SpecialType := "5Link"
+						Prop.5Link:=True
+						Prop.SpecialType := "5Link"
 					}
 					Else If (Counter=7)
 					{
-						ItemProp.4Link:=True
+						Prop.4Link:=True
 					}
 					Else If (Counter=5)
 					{
-						ItemProp.3Link:=True
+						Prop.3Link:=True
 					}
 					Else If (Counter=3)
 					{
-						ItemProp.2Link:=True
+						Prop.2Link:=True
 					}
 					Counter:=0
 				}
 				Loop, parse, A_LoopField
 				{
 					if (A_LoopField ~= "[-]")
-						ItemProp.LinkCount++
+						Prop.LinkCount++
 				}
 				Loop, parse, A_LoopField
 				{
 					if (A_LoopField ~= "[BGR]")
-						ItemProp.Sockets++
+						Prop.Sockets++
 				}
-				If (ItemProp.Sockets = 6)
-					ItemProp.Jeweler:=True
+				If (Prop.Sockets = 6)
+					Prop.Jeweler:=True
 				Continue
 			}
 			; Get quality
 			IfInString, A_LoopField, Quality:
 			{
 				StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
-					ItemProp.Quality := QualityArray2
+					Prop.Quality := QualityArray2
 				Continue
 			}
 			;Stack size
@@ -2748,74 +2681,68 @@ ParseClip(){
 			{
 				StringSplit, StackArray, A_LoopField, %A_Space%
 				StringSplit, StripStackArray, StackArray3, /
-				ItemProp.Stack := StripStackArray1
-				ItemProp.StackMax := StripStackArray2
+				Prop.Stack := StripStackArray1
+				Prop.StackMax := StripStackArray2
 				Continue
 			}
 			; Flag Unidentified
 			IfInString, A_LoopField, Unidentified
 			{
-				ItemProp.Identified := False
+				Prop.Identified := False
 				continue
 			}
 			; Flag Prophecy
 			IfInString, A_LoopField, add this prophecy
 			{
-				ItemProp.Prophecy := True
-				ItemProp.SpecialType := "Prophecy"
+				Prop.Prophecy := True
+				Prop.SpecialType := "Prophecy"
 				continue
 			}
 			; Flag Veiled
 			IfInString, A_LoopField, Veiled%A_Space%
 			{
-				ItemProp.Veiled := True
-				ItemProp.SpecialType := "Veiled"
+				Prop.Veiled := True
+				Prop.SpecialType := "Veiled"
 				continue
 			}
-			; Get non physical
-			IfInString, A_LoopField, Elemental Damage:
-			{
-				ItemProp.IsWeapon := True
-			}
-
 			; Get total physical damage
 			IfInString, A_LoopField, Physical Damage:
 			{
-				ItemProp.IsWeapon := True
+				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				ItemProp.PhysLo := Arr1
-				ItemProp.PhysHi := Arr2
+				WeaponStats.PhysLo := Arr1
+				WeaponStats.PhysHi := Arr2
 				Continue
 			}
 			; Get total Elemental damage
 			IfInString, A_LoopField, Elemental Damage:
 			{
-				ItemProp.IsWeapon := True
+				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				ItemProp.EleLo := Arr1
-				ItemProp.EleHi := Arr2
+				WeaponStats.EleLo := Arr1
+				WeaponStats.EleHi := Arr2
 				Continue
 			}
-			; Get total Elemental damage
+			; Get total Chaos damage
 			IfInString, A_LoopField, Chaos Damage:
 			{
-				ItemProp.IsWeapon := True
+				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				ItemProp.ChaosLo := Arr1
-				ItemProp.ChaosHi := Arr2
+				WeaponStats.ChaosLo := Arr1
+				WeaponStats.ChaosHi := Arr2
 				Continue
 			}
 			; These only make sense for weapons
-			If ItemProp.IsWeapon 
+			If Prop.IsWeapon 
 			{
 				; Get attack speed
 				IfInString, A_LoopField, Attacks per Second:
 				{
 					StringSplit, Arr, A_LoopField, %A_Space%
-					ItemProp.AttackSpeed := Arr4
+					WeaponStats.AttackSpeed := Arr4
 					Continue
 				}
 
@@ -2823,34 +2750,25 @@ ParseClip(){
 				IfInString, A_LoopField, increased Physical Damage
 				{
 					StringSplit, Arr, A_LoopField, %A_Space%, `%
-					ItemProp.PhysMult := Arr1
+					WeaponStats.PhysMult := Arr1
 					Continue
 				}
 			}
 		}
 		; DPS calculations
-		If (ItemProp.IsWeapon) {
+		If (Prop.IsWeapon) {
 
-			ItemProp.PhysDps := ((ItemProp.PhysLo + ItemProp.PhysHi) / 2) * ItemProp.AttackSpeed
-			ItemProp.EleDps := ((ItemProp.EleLo + ItemProp.EleHi) / 2) * ItemProp.AttackSpeed
-			ItemProp.ChaosDps := ((ItemProp.ChaosLo + ItemProp.ChaosHi) / 2) * ItemProp.AttackSpeed
+			WeaponStats.PhysDps := ((WeaponStats.PhysLo + WeaponStats.PhysHi) / 2) * WeaponStats.AttackSpeed
+			WeaponStats.EleDps := ((WeaponStats.EleLo + WeaponStats.EleHi) / 2) * WeaponStats.AttackSpeed
+			WeaponStats.ChaosDps := ((WeaponStats.ChaosLo + WeaponStats.ChaosHi) / 2) * WeaponStats.AttackSpeed
 
-			If ItemProp.PhysDps
-				ItemProp.TotalDps += ItemProp.PhysDps
-			If ItemProp.EleDps
-				ItemProp.TotalDps += ItemProp.EleDps
-			If ItemProp.ChaosDps
-				ItemProp.TotalDps += ItemProp.ChaosDps
+			WeaponStats.TotalDps := WeaponStats.PhysDps + WeaponStats.EleDps + WeaponStats.ChaosDps
 			; Only show Q20 values if item is not Q20
-			If (ItemProp.Quality < 20 && ItemProp.PhysDps)
+			If (Prop.Quality < 20)
 			{
-				ItemProp.TotalPhysMult := (ItemProp.PhysMult + ItemProp.Quality + 100) / 100
-				ItemProp.BasePhysDps := ItemProp.PhysDps / ItemProp.TotalPhysMult
-				ItemProp.Q20Dps := ItemProp.BasePhysDps * ((ItemProp.PhysMult + 120) / 100) 
-				If ItemProp.EleDps
-					ItemProp.Q20Dps += ItemProp.EleDps
-				If ItemProp.ChaosDps
-					ItemProp.Q20Dps += ItemProp.ChaosDps
+				WeaponStats.TotalPhysMult := (WeaponStats.PhysMult + Prop.Quality + 100) / 100
+				WeaponStats.BasePhysDps := WeaponStats.PhysDps / WeaponStats.TotalPhysMult
+				WeaponStats.Q20Dps := WeaponStats.BasePhysDps * ((WeaponStats.PhysMult + 120) / 100) + WeaponStats.EleDps + WeaponStats.ChaosDps
 			}
 		}
 
@@ -2884,25 +2802,59 @@ GrabRecipientName(){
 
 ; Debugging information on Mouse Cursor
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GetMouseCoords(){
-		GetMouseCoordsCommand:
+CoordAndDebug(){
+		CoordAndDebugCommand:
 			
 			MouseGetPos x, y
 			PixelGetColor, xycolor , x, y
 			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
 			
 			If DebugMessages{
-				TT := TT . "`n" . "`n"
+				TT := TT . "`n`n"
 				GuiStatus()
 				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
-				If ShowItemInfo {
-					ClipItem(x, y)
-					For key, value in ItemProp
-						TT := TT . key . ":  " . value . "`n"
+				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n`n"
+				ClipItem(x, y)
+				If (Prop.IsItem) {
+					TT := TT . "Item Properties:`n"
+					If ShowItemInfo {	
+						For key, value in Prop
+							TT := TT . key . ":  " . value . "`n"
+						MsgBox %TT%
+						If (Prop.IsWeapon) {
+							TT := "Weapon Stats:`n`n"
+							If ShowItemInfo {
+								For key, value in WeaponStats
+									TT := TT . key . ":  " . value . "`n"
+							}
+						MsgBox %TT%
+						}
+						If (Prop.IsArmour) {
+							TT := "Armour Stats:`n`n"
+							If ShowItemInfo {
+								For key, value in ArmourStats
+									TT := TT . key . ":  " . value . "`n"
+							}
+						MsgBox %TT%
+						}
+						If (Prop.ShowAffix) {
+							TT := "Item Affix:`n`n"
+							If ShowItemInfo {
+								For key, value in Affix
+									TT := TT . key . ":  " . value . "`n"
+							}
+						MsgBox %TT%
+						}
+					}
+				} Else {
+					Tooltip, %TT%
+					SetTimer, RemoveToolTip, 10000
 				}
+
+			} Else {
+				Tooltip, %TT%
+				SetTimer, RemoveToolTip, 10000
 			}
-			MsgBox %TT%
 			If (DebugMessages&&ShowPixelGrid){
 				
 				;Check if inventory is open
@@ -2935,7 +2887,6 @@ GetMouseCoords(){
 			}
 		Return
 	}
-
 
 ; Check if a specific value is part of an array and return the index
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4301,7 +4252,7 @@ readFromFile(){
     If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
     If hotkeyGetCoords
-        hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, Off
+        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, Off
     If hotkeyPopFlasks
         hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
     If hotkeyLogout
@@ -4348,7 +4299,7 @@ readFromFile(){
     If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, On
     If hotkeyGetMouseCoords
-        hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, On
+        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, On
     If hotkeyPopFlasks
         hotkey,% hotkeyPopFlasks, PopFlasksCommand, On
     If hotkeyLogout
@@ -4457,7 +4408,7 @@ updateEverything:
     If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
     If hotkeyGetCoords
-        hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, Off
+        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, Off
     If hotkeyPopFlasks
         hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
     If hotkeyLogout
@@ -5716,7 +5667,7 @@ loadSaved:
     GuiControl,, RadioNormalQuit, %RadioNormalQuit%
     GuiControl,, RadioCritQuit, %RadioCritQuit%
     GuiControl,, RadioLife, %RadioLife%
-        GuiControl,, RadioHybrid, %RadioHybrid%
+    GuiControl,, RadioHybrid, %RadioHybrid%
     GuiControl,, RadioCi, %RadioCi%
     GuiControl,, hotkeyMainAttack, %hotkeyMainAttack%
     GuiControl,, hotkeySecondaryAttack, %hotkeySecondaryAttack%
@@ -5726,10 +5677,10 @@ loadSaved:
     GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
     GuiControl,, hotkeyLogout, %hotkeyLogout%
     GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
-    GuiControl,, otkeyGetMouseCoords, %otkeyGetMouseCoords%
+    GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
     GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
     GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
-    GuiControl,, vhotkeyPopFlasks, %vhotkeyPopFlasks%
+    GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
     GuiControl,, hotkeyItemSort, %hotkeyItemSort%
     GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
     GuiControl,, hotkeyInventory, %hotkeyInventory%

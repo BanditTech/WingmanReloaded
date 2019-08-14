@@ -1,7 +1,21 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .04.3 August/1x/2019
+--------------------------------------------------------------------------------
+Converted the stats from weapon info into their own array
+    will do the same for armour, and also affixes
+    Modified the Debug tool to add this new array
+    
+Renamed the GetMouseCoords function to CoordAndDebug
+    ReWork output of the debug tool, will only show popup when clipped an item
+    Otherwise will show a 10 second long tooltip, this lets the item grid start
+    Will only show weapon stats when clipping a weapon
+    Will only show armour stats when clipping an armour
+    For future when affixes are working there is a flag to turn on affix display
 
+    Eventaully I want to change this all into a GUI window of some sort
+    
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------
 Added RecipientName variable for command Functions
@@ -49,9 +63,6 @@ Fixed hotkeys remaining in effect after being changed until next restart.
 Had to rewrite how the script checks if you press flasks for the passthrough
     now it is on a very short timer that just checks the state of 1-5
 
-Still need to figure out how to get the chat hotkeys to de-activate properly
-    For now, uncheck the box to turn them off and reload.
-    or if you want to only de-activate a few remove the key or modifier
 --------------------------------------------------------------------------------
 Release Notes .04 August/10/2019
 --------------------------------------------------------------------------------
