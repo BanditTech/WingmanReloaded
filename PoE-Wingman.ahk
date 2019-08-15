@@ -127,6 +127,7 @@
 		Global Prop := {}
 		Global WeaponStats := {}
 		Global ArmourStats := {}
+		Global MapStats := {}
 		Global Affix := {}
 
 		global Detonated := 0
@@ -1309,7 +1310,7 @@ ItemSort(){
 					ClipItem(Grid.X,Grid.Y)
 					If (!Prop.Identified&&YesIdentify)
 					{
-						If (Prop.Map&&!YesMapUnid)
+						If (Prop.IsMap&&!YesMapUnid)
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
@@ -1321,7 +1322,7 @@ ItemSort(){
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
-						Else If (!Prop.Chromatic && !Prop.Jeweler&&!Prop.Map)
+						Else If (!Prop.Chromatic && !Prop.Jeweler&&!Prop.IsMap)
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
@@ -1334,7 +1335,7 @@ ItemSort(){
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (Prop.Map&&StashTabYesMap)
+						If (Prop.IsMap&&StashTabYesMap)
 						{
 							MoveStash(StashTabMap)
 							CtrlClick(Grid.X,Grid.Y)
@@ -2283,11 +2284,14 @@ ClipItem(x, y){
 ParseClip(){
 		;Reset Variables
 		NameIsDone := False
+		itemLevelIsDone := 0
+		captureLines := 0
 		
 		Prop := {ItemName: ""
 			, IsItem : False
 			, IsArmour : False
 			, IsWeapon : False
+			, IsMap : False
 			, ShowAffix : False
 			, Rarity : ""
 			, SpecialType : ""
@@ -2301,7 +2305,6 @@ ParseClip(){
 			, RarityRare : False
 			, RarityUnique : False
 			, Identified : True
-			, Map : False
 			, Ring : False
 			, Amulet : False
 			, Chromatic : False
@@ -2334,7 +2337,7 @@ ParseClip(){
 			, Flask : False
 			, Veiled : False
 			, Prophecy : False
-			, ItemLevel : False}
+			, ItemLevel : 0}
 
 		WeaponStats := { PhysLo : False
 			, PhysHi : False
@@ -2349,7 +2352,28 @@ ParseClip(){
 			, EleHi : False
 			, TotalPhysMult : False
 			, BasePhysDps : False
-			, Q20Dps : False }
+			, Q20Dps : False
+			, RequirementLevel : 0
+			, RequirementStr : 0
+			, RequirementInt : 0
+			, RequirementDex : 0}
+
+		ArmourStats := { RequirementLevel : 0
+			, RequirementStr : 0
+			, RequirementInt : 0
+			, RequirementDex : 0 }
+
+		MapStats := { Tier : 0
+			, ItemQuantity : 0
+			, ItemRarity : 0
+			, MonsterPackSize : 0 }
+
+		Affix := { SupportGem : ""
+			, SupportGemLevel : 0
+			, CountSupportGem : 0
+			, Implicit : ""
+			, Completed : False}
+
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -2426,7 +2450,7 @@ ParseClip(){
 					}
 					IfInString, A_LoopField, Map
 					{
-						Prop.Map := True
+						Prop.IsMap := True
 						Prop.SpecialType := "Map"
 						Continue
 					}
@@ -2613,11 +2637,11 @@ ParseClip(){
 				Continue
 			}
 				
-			; Get item level
-			IfInString, A_LoopField, Item Level:
+			; Get quality
+			IfInString, A_LoopField, Quality:
 			{
-				StringSplit, ItemLevelArray, A_LoopField, %A_Space%
-				Prop.ItemLevel := ItemLevelArray3
+				StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
+					Prop.Quality := QualityArray2
 				Continue
 			}
 			; Get Socket Information
@@ -2669,12 +2693,92 @@ ParseClip(){
 					Prop.Jeweler:=True
 				Continue
 			}
-			; Get quality
-			IfInString, A_LoopField, Quality:
+			; Get item level
+			IfInString, A_LoopField, Item Level:
 			{
-				StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
-					Prop.Quality := QualityArray2
+				StringSplit, ItemLevelArray, A_LoopField, %A_Space%
+				Prop.ItemLevel := ItemLevelArray3
+				itemLevelIsDone := 1
 				Continue
+			}
+			;Capture Implicit and Affixes after the Item Level
+			If (itemLevelIsDone > 0 && itemLevelIsDone < 4) {
+				If A_LoopField = --------
+				{
+					++itemLevelIsDone
+					If (itemLevelIsDone = 3 && captureLines = 1){
+						Prop.HasAffix := True
+						Affix.Implicit := possibleImplicit
+					}
+					Else If (!Affix.Implicit && itemLevelIsDone = 3 && captureLines > 1){
+						Prop.HasAffix := True
+						Affix.Completed := True
+					}
+					Else If (Affix.Implicit && itemLevelIsDone = 4 && captureLines > 1){
+						Prop.HasAffix := True
+						Affix.Completed := True
+					}
+				}
+				Else
+				{
+					++captureLines
+					If (captureLines < 2)
+						possibleImplicit:=A_LoopField
+					IfInString, A_LoopField, Socketed Gems are
+					{
+						++Affix.CountSupportGem
+						If (Affix.CountSupportGem = 1) {
+							StringSplit, arr, A_LoopField, %A_Space%
+							Affix.SupportGemLevel := arr7
+							StringSplit, arrname, A_LoopField, %arr7%, 3
+							If (arrname2!=""){
+								StringTrimLeft, arrname2, arrname2 , 1
+								Affix.SupportGem := arrname2
+							}
+							Else if (arrname3!=""){
+								StringTrimLeft, arrname3, arrname3, 1
+								Affix.SupportGem := arrname3
+							}
+						} Else If (Affix.CountSupportGem = 2){
+							StringSplit, arr, A_LoopField, %A_Space%
+							Affix.SupportGem2Level := arr7
+							StringSplit, arrname, A_LoopField, %arr7%
+							If (arrname2!=""){
+								StringTrimLeft, arrname2, arrname2 , 1
+								Affix.SupportGem2 := arrname2
+							}
+							Else if (arrname3!=""){
+								StringTrimLeft, arrname3, arrname3, 1
+								Affix.SupportGem2 := arrname3
+							}
+						} Else If (Affix.CountSupportGem = 3) {
+							StringSplit, arr, A_LoopField, %A_Space%
+							Affix.SupportGem3Level := arr7
+							StringSplit, arrname, A_LoopField, %arr7%
+							If (arrname2!=""){
+								StringTrimLeft, arrname2, arrname2 , 1
+								Affix.SupportGem3 := arrname2
+							}
+							Else if (arrname3!=""){
+								StringTrimLeft, arrname3, arrname3, 1
+								Affix.SupportGem3 := arrname3
+							}
+						} Else If (Affix.CountSupportGem = 4) {
+							StringSplit, arr, A_LoopField, %A_Space%
+							Affix.SupportGem4Level := arr7
+							StringSplit, arrname, A_LoopField, %arr7%
+							If (arrname2!=""){
+								StringTrimLeft, arrname2, arrname2 , 1
+								Affix.SupportGem4 := arrname2
+							}
+							Else if (arrname3!=""){
+								StringTrimLeft, arrname3, arrname3, 1
+								Affix.SupportGem4 := arrname3
+							}
+						}
+					Continue
+					}
+				}
 			}
 			;Stack size
 			IfInString, A_LoopField, Stack Size:
@@ -2755,6 +2859,12 @@ ParseClip(){
 				}
 			}
 		}
+		;Determine if affixes complete on certain items
+		If (itemLevelIsDone = 2 && captureLines >= 1)
+		{
+			Prop.HasAffix := True
+			Affix.Completed := True
+		}
 		; DPS calculations
 		If (Prop.IsWeapon) {
 
@@ -2819,13 +2929,19 @@ CoordAndDebug(){
 					TT := TT . "Item Properties:`n"
 					If ShowItemInfo {	
 						For key, value in Prop
-							TT := TT . key . ":  " . value . "`n"
+						{
+							If (value != 0 && value != "" && value != False)
+								TT := TT . key . ":  " . value . "`n"
+						}
 						MsgBox %TT%
 						If (Prop.IsWeapon) {
 							TT := "Weapon Stats:`n`n"
 							If ShowItemInfo {
 								For key, value in WeaponStats
-									TT := TT . key . ":  " . value . "`n"
+								{
+									If (value != 0 && value != "" && value != False)
+										TT := TT . key . ":  " . value . "`n"
+								}
 							}
 						MsgBox %TT%
 						}
@@ -2833,15 +2949,32 @@ CoordAndDebug(){
 							TT := "Armour Stats:`n`n"
 							If ShowItemInfo {
 								For key, value in ArmourStats
-									TT := TT . key . ":  " . value . "`n"
+								{
+									If (value != 0 && value != "" && value != False)
+										TT := TT . key . ":  " . value . "`n"
+								}
 							}
 						MsgBox %TT%
 						}
-						If (Prop.ShowAffix) {
+						If (Prop.IsMap) {
+							TT := "Map Stats:`n`n"
+							If ShowItemInfo {
+								For key, value in MapStats
+								{
+									If (value != 0 && value != "" && value != False)
+										TT := TT . key . ":  " . value . "`n"
+								}
+							}
+						MsgBox %TT%
+						}
+						If (Prop.HasAffix) {
 							TT := "Item Affix:`n`n"
 							If ShowItemInfo {
 								For key, value in Affix
-									TT := TT . key . ":  " . value . "`n"
+								{
+									If (value != 0 && value != "" && value != False)
+										TT := TT . key . ":  " . value . "`n"
+								}
 							}
 						MsgBox %TT%
 						}

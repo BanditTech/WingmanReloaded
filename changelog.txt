@@ -3,19 +3,22 @@ Patch Notes
 --------------------------------------------------------------------------------
 Version .04.3 August/1x/2019
 --------------------------------------------------------------------------------
-Converted the stats from weapon info into their own array
-    will do the same for armour, and also affixes
-    Modified the Debug tool to add this new array
+Converted the stats from weapon info into their own array WeaponStats
+    Have done the same for ArmourStats and MapStats
+    Modified the Debug tool to add the new arrays
     
 Renamed the GetMouseCoords function to CoordAndDebug
     ReWork output of the debug tool, will only show popup when clipped an item
     Otherwise will show a 10 second long tooltip, this lets the item grid start
+    may allow this to be optional, so you can copy the messagebox if needed.
     Will only show weapon stats when clipping a weapon
     Will only show armour stats when clipping an armour
-    For future when affixes are working there is a flag to turn on affix display
-
+    Will only show relevant affixes and properties (Only things that are true)
     Eventaully I want to change this all into a GUI window of some sort
     
+Added first Affix parse, can read out Implicit modifier
+    Second affix parse is reading if it has Socketed Gems are Supported by x
+
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------
 Added RecipientName variable for command Functions
