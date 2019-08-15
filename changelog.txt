@@ -24,6 +24,10 @@ Added tons of affixes to the item parser
     Most of the affixes are now working, still getting around to a few
     Can now handle double corrupted items
 
+All hotkeys now check if the game is open before firing.
+
+Added placeholder variables for setting up QS on attack keys
+
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------
 Added RecipientName variable for command Functions

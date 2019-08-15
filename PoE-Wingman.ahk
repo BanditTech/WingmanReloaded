@@ -130,7 +130,8 @@
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
-		
+		Global QSonMainAttack := 1
+		Global QSonSecondaryAttack := 1
 		
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
@@ -654,9 +655,15 @@
 	Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
 	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section xs+60 y+15 w190 h45											,Character Name:
+	Gui,Add,GroupBox,Section xs+10 y+15 w160 h45											,Character Name:
 	Gui,Font,
-	Gui, Add, Edit, vCharName xs+5 ys+18 w180 h19, %CharName%
+	Gui, Add, Edit, vCharName xs+5 ys+18 w150 h19, %CharName%
+
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+20 ys w120 h60											,QS on attack:
+	Gui,Font,
+	Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xs+5 ys+20 , Primary Attack
+	Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack%  , Secondary Attack
 
 	Gui, Font, Bold
 	Gui Add, Text, 								section		x292 	y250, 				Utility Management:
@@ -1320,7 +1327,7 @@ ItemSort(){
 		Critical
 		CurrentTab:=0
 		MouseGetPos xx, yy
-		IfWinActive, Path of Exile
+		IfWinActive, ahk_group POEGameGroup
 		{
 			If RunningToggle  ; This means an underlying thread is already running the loop below.
 			{
@@ -2807,19 +2814,12 @@ ParseClip(){
 					}
 					Else If (itemLevelIsDone = 2 && countCorruption > 0 && !doneCorruption && captureLines < 3){
 						doneCorruption := True
-						If possibleCorruption{
-							Affix.Corruption := possibleCorruption
-							Prop.Corrupted := True
-						}
-						If possibleCorruption2 {
-							Affix.Corruption2 := possibleCorruption2
-							Prop.DoubleCorrupted := True
-						}
+						captureLines := 1
 					}
-					Else If (!Affix.Implicit && itemLevelIsDone = 3 && captureLines > 1){
+					Else If (!Affix.Implicit && itemLevelIsDone = 3 && captureLines > 0){
 						Prop.HasAffix := True
 					}
-					Else If (Affix.Implicit && itemLevelIsDone = 4 && captureLines > 1){
+					Else If (Affix.Implicit && itemLevelIsDone = 4 && captureLines > 0){
 						Prop.HasAffix := True
 					}
 				}
@@ -2852,8 +2852,8 @@ ParseClip(){
 							}Else If (countCorruption = 1){
 							possibleCorruption2 := A_LoopField
 							++countCorruption
-							itemLevelIsDone := 1
 							}
+							itemLevelIsDone := 1
 						}
 					}
 					If (captureLines < 2)
@@ -3214,6 +3214,19 @@ ParseClip(){
 
 					}
 				}
+			}
+			;Stack size
+			IfInString, A_LoopField, Corrupted
+			{
+					If possibleCorruption{
+						Affix.Corruption := possibleCorruption
+						Prop.Corrupted := True
+					}
+					If possibleCorruption2 {
+						Affix.Corruption2 := possibleCorruption2
+						Prop.DoubleCorrupted := True
+					}
+				Continue
 			}
 			;Stack size
 			IfInString, A_LoopField, Stack Size:
@@ -3688,7 +3701,7 @@ SecondaryAttackCommand(){
 ; Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TMineTick(){
-    IfWinActive, Path of Exile
+    IfWinActive, ahk_group POEGameGroup
     {	
         If (DetonateMines&&!Detonated) 
             DetonateMines()
@@ -3736,7 +3749,7 @@ Ding(Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Me
 ; Flask Logic
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TGameTick(){
-    IfWinActive, Path of Exile
+    IfWinActive, ahk_group POEGameGroup
     {
         ; Check what status is your character in the game
         GuiStatus()
@@ -4360,7 +4373,6 @@ RegisterHotkeys() {
             Return False
         }
 }
-
 2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
     IfWinExist, ahk_group POEGameGroup
         {
@@ -4394,10 +4406,9 @@ RegisterHotkeys() {
             Return False
         }
 }
-
 stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
     IfWinExist, ahk_group POEGameGroup
-        {
+    {
 		If (YesStashKeys){
 			If ( stashPrefix1 && stashPrefix2 ){
 				If ( GetKeyState(stashPrefix1) && GetKeyState(stashPrefix2) )
@@ -4420,15 +4431,14 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 			Else If ( !stashPrefix1 && !stashPrefix2 ) {
 				return True
 				}
-			}
+		}
 		Else
 			Return False 
-		}
+	}
     Else {
             Return False
-        }
-	}
-
+    }
+}
 ; Flask Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimmerFlask1:
@@ -7035,156 +7045,237 @@ ResetChat(){
 return
 }
 1FireWhisperHotkey1() {
-    1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
-    1Suffix1Text := StrReplace(1Suffix1Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix1Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
+		1Suffix1Text := StrReplace(1Suffix1Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix1Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey2() {
-    1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
-    1Suffix2Text := StrReplace(1Suffix2Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix2Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
+		1Suffix2Text := StrReplace(1Suffix2Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix2Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey3() {
-    1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
-    1Suffix3Text := StrReplace(1Suffix3Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix3Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
+		1Suffix3Text := StrReplace(1Suffix3Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix3Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey4() {
-    1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
-    1Suffix4Text := StrReplace(1Suffix4Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix4Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
+		1Suffix4Text := StrReplace(1Suffix4Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix4Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey5() {
-    1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
-    1Suffix5Text := StrReplace(1Suffix5Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix5Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
+		1Suffix5Text := StrReplace(1Suffix5Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix5Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey6() {
-    1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
-    1Suffix6Text := StrReplace(1Suffix6Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix6Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
+		1Suffix6Text := StrReplace(1Suffix6Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix6Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey7() {
-    1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
-    1Suffix7Text := StrReplace(1Suffix7Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix7Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
+		1Suffix7Text := StrReplace(1Suffix7Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix7Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey8() {
-    1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
-    1Suffix8Text := StrReplace(1Suffix8Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix8Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
+		1Suffix8Text := StrReplace(1Suffix8Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix8Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey9() {
-	1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
-	1Suffix9Text := StrReplace(1Suffix9Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix9Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+		1Suffix9Text := StrReplace(1Suffix9Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix9Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey1() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix1Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix1Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey2() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix2Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix2Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey3() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix3Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix3Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey4() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix4Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix4Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey5() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix5Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix5Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey6() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix6Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix6Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey7() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix7Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix7Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey8() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix8Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix8Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey9() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix9Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix9Text%{Enter}
+		ResetChat()
+    }
 return
 }
 FireStashHotkey1() {
-    MoveStash(stashSuffixTab1)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab1)
+    }
 return
 }
 FireStashHotkey2() {
-    MoveStash(stashSuffixTab2)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab2)
+    }
 return
 }
 FireStashHotkey3() {
-    MoveStash(stashSuffixTab3)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab3)
+    }
 return
 }
 FireStashHotkey4() {
-    MoveStash(stashSuffixTab4)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab4)
+    }
 return
 }
 FireStashHotkey5() {
-    MoveStash(stashSuffixTab5)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab5)
+    }
 return
 }
 FireStashHotkey6() {
-    MoveStash(stashSuffixTab6)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab6)
+    }
 return
 }
 FireStashHotkey7() {
-    MoveStash(stashSuffixTab7)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab7)
+    }
 return
 }
 FireStashHotkey8() {
-    MoveStash(stashSuffixTab8)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab8)
+    }
 return
 }
 FireStashHotkey9() {
-    MoveStash(stashSuffixTab9)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab9)
+    }
 return
 }
 return
