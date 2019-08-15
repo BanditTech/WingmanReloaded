@@ -69,6 +69,57 @@
     
     If FileExist("settings.ini")
         readFromFile()
+	Global Enchantment  := []
+	Global Corruption := []
+	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
+	{
+	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
+	}
+	Loop, Read, %A_ScriptDir%\data\boot_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+	{
+	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
+	}
+	Loop, Read, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\glove_enchantment_mods.txt
+	{
+	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
+	}
+	Loop, Read, %A_ScriptDir%\data\glove_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\item_corrupted_mods.txt
+	{
+	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
+	}
+	Loop, read, %A_ScriptDir%\data\item_corrupted_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Corruption.push(A_LoopReadLine)
+		}
+	}
+
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ;General
@@ -2286,7 +2337,8 @@ ParseClip(){
 		NameIsDone := False
 		itemLevelIsDone := 0
 		captureLines := 0
-		
+;		countCorruption := 0
+;		doneCorruption := False
 		Prop := {ItemName: ""
 			, IsItem : False
 			, IsArmour : False
@@ -2371,8 +2423,51 @@ ParseClip(){
 		Affix := { SupportGem : ""
 			, SupportGemLevel : 0
 			, CountSupportGem : 0
-			, Implicit : ""
-			, Completed : False}
+			, AllElementalResistances : 0
+			, ColdLightningResistance : 0
+			, FireColdResistance : 0
+			, FireLightningResistance : 0
+			, ColdResistance : 0
+			, FireResistance : 0
+			, LightningResistance : 0
+			, ChaosResistance : 0
+			, MaximumLife : 0
+			, IncreasedMaximumLife : 0
+			, MaximumEnergyShield : 0
+			, IncreasedEnergyShield : 0
+			, MaximumMana : 0
+			, IncreasedMaximumMana : 0
+			, IncreasedAttackSpeed : 0
+			, IncreasedColdDamage : 0
+			, IncreasedFireDamage : 0
+			, IncreasedLightningDamage : 0
+			, IncreasedPhysicalDamage : 0
+			, IncreasedSpellDamage : 0
+			, PseudoColdResist : 0
+			, PseudoFireResist : 0
+			, PseudoLightningResist : 0
+			, PseudoChaosResist : 0
+			, LifeRegeneration : 0
+			, ChanceDoubleDamage : 0
+			, IncreasedRarity : 0
+			, IncreasedEvasion : 0
+			, IncreasedArmour : 0
+			, IncreasedAttackSpeed : 0
+			, ReducedEnemyStunThreshold : 0
+			, IncreasedStunBlockRecovery : 0
+			, LifeGainOnAttack : 0
+			, WeaponRange : 0
+			, AddedIntelligence : 0
+			, AddedStrength : 0
+			, AddedDexterity : 0
+			, AddedArmour : 0
+			, AddedEvasion : 0
+			, PseudoChaosResist : 0
+			, PseudoChaosResist : 0
+			, PseudoChaosResist : 0
+			, countCorruption : 0
+			, doneCorruption : 0
+			, Implicit : ""}
 
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
@@ -2710,73 +2805,413 @@ ParseClip(){
 						Prop.HasAffix := True
 						Affix.Implicit := possibleImplicit
 					}
+					Else If (itemLevelIsDone = 2 && countCorruption > 0 && !doneCorruption && captureLines < 3){
+						doneCorruption := True
+						If possibleCorruption{
+							Affix.Corruption := possibleCorruption
+							Prop.Corrupted := True
+						}
+						If possibleCorruption2 {
+							Affix.Corruption2 := possibleCorruption2
+							Prop.DoubleCorrupted := True
+						}
+					}
 					Else If (!Affix.Implicit && itemLevelIsDone = 3 && captureLines > 1){
 						Prop.HasAffix := True
-						Affix.Completed := True
 					}
 					Else If (Affix.Implicit && itemLevelIsDone = 4 && captureLines > 1){
 						Prop.HasAffix := True
-						Affix.Completed := True
 					}
 				}
 				Else
 				{
+					If (itemLevelIsDone=2 && !Affix.LabEnchant && captureLines < 1) {
+						imp := RegExReplace(A_LoopField, "i)([-.0-9]+)", "#")
+						if (indexOf(imp, Enchantment)) {
+							Affix.LabEnchant := A_LoopField
+							itemLevelIsDone := 1
+						Continue
+						}
+					}
+					If (itemLevelIsDone=2 && !Affix.Talisman && captureLines < 1) {
+						IfInString, A_LoopField, Talisman Tier:
+						{	
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.TalismanTier := Arr3
+							itemLevelIsDone := 1
+						Continue
+						}
+					}
 					++captureLines
+					If (itemLevelIsDone >= 1 && !doneCorruption && captureLines < 3) {
+						imp := RegExReplace(A_LoopField, "i)([-.0-9]+)", "#")
+						if (indexOf(imp, Corruption)) {
+							If (countCorruption < 1){
+							possibleCorruption := A_LoopField
+							++countCorruption
+							}Else If (countCorruption = 1){
+							possibleCorruption2 := A_LoopField
+							++countCorruption
+							itemLevelIsDone := 1
+							}
+						}
+					}
 					If (captureLines < 2)
 						possibleImplicit:=A_LoopField
 					IfInString, A_LoopField, Socketed Gems are
 					{
 						++Affix.CountSupportGem
 						If (Affix.CountSupportGem = 1) {
-							StringSplit, arr, A_LoopField, %A_Space%
-							Affix.SupportGemLevel := arr7
-							StringSplit, arrname, A_LoopField, %arr7%, 3
-							If (arrname2!=""){
-								StringTrimLeft, arrname2, arrname2 , 1
-								Affix.SupportGem := arrname2
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.SupportGemLevel := Arr7
+							StringSplit, Arrname, A_LoopField, %Arr7%, 3
+							If (Arrname2!=""){
+								StringTrimLeft, Arrname2, Arrname2 , 1
+								Affix.SupportGem := Arrname2
 							}
-							Else if (arrname3!=""){
-								StringTrimLeft, arrname3, arrname3, 1
-								Affix.SupportGem := arrname3
+							Else if (Arrname3!=""){
+								StringTrimLeft, Arrname3, Arrname3, 1
+								Affix.SupportGem := Arrname3
 							}
-						} Else If (Affix.CountSupportGem = 2){
-							StringSplit, arr, A_LoopField, %A_Space%
-							Affix.SupportGem2Level := arr7
-							StringSplit, arrname, A_LoopField, %arr7%
-							If (arrname2!=""){
-								StringTrimLeft, arrname2, arrname2 , 1
-								Affix.SupportGem2 := arrname2
+						} Else If (Affix.CountSupportGem = 2) {
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.SupportGem2Level := Arr7
+							StringSplit, Arrname, A_LoopField, %Arr7%
+							If (Arrname2!=""){
+								StringTrimLeft, Arrname2, Arrname2 , 1
+								Affix.SupportGem2 := Arrname2
 							}
-							Else if (arrname3!=""){
-								StringTrimLeft, arrname3, arrname3, 1
-								Affix.SupportGem2 := arrname3
+							Else if (Arrname3!=""){
+								StringTrimLeft, Arrname3, Arrname3, 1
+								Affix.SupportGem2 := Arrname3
 							}
 						} Else If (Affix.CountSupportGem = 3) {
-							StringSplit, arr, A_LoopField, %A_Space%
-							Affix.SupportGem3Level := arr7
-							StringSplit, arrname, A_LoopField, %arr7%
-							If (arrname2!=""){
-								StringTrimLeft, arrname2, arrname2 , 1
-								Affix.SupportGem3 := arrname2
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.SupportGem3Level := Arr7
+							StringSplit, Arrname, A_LoopField, %Arr7%
+							If (Arrname2!=""){
+								StringTrimLeft, Arrname2, Arrname2 , 1
+								Affix.SupportGem3 := Arrname2
 							}
-							Else if (arrname3!=""){
-								StringTrimLeft, arrname3, arrname3, 1
-								Affix.SupportGem3 := arrname3
+							Else if (Arrname3!=""){
+								StringTrimLeft, Arrname3, Arrname3, 1
+								Affix.SupportGem3 := Arrname3
 							}
 						} Else If (Affix.CountSupportGem = 4) {
-							StringSplit, arr, A_LoopField, %A_Space%
-							Affix.SupportGem4Level := arr7
-							StringSplit, arrname, A_LoopField, %arr7%
-							If (arrname2!=""){
-								StringTrimLeft, arrname2, arrname2 , 1
-								Affix.SupportGem4 := arrname2
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.SupportGem4Level := Arr7
+							StringSplit, Arrname, A_LoopField, %Arr7%
+							If (Arrname2!=""){
+								StringTrimLeft, Arrname2, Arrname2 , 1
+								Affix.SupportGem4 := Arrname2
 							}
-							Else if (arrname3!=""){
-								StringTrimLeft, arrname3, arrname3, 1
-								Affix.SupportGem4 := arrname3
+							Else if (Arrname3!=""){
+								StringTrimLeft, Arrname3, Arrname3, 1
+								Affix.SupportGem4 := Arrname3
 							}
 						}
 					Continue
+					}
+					IfInString, A_LoopField, to Intelligence
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedIntelligence := Affix.AddedIntelligence + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Strength
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedStrength := Affix.AddedStrength + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Dexterity
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedDexterity := Affix.AddedDexterity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Armour
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedArmour := Affix.AddedArmour + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Armour
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedArmour := Affix.IncreasedArmour + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Evasion Rating
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedEvasion := Affix.AddedEvasion + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Evasion Rating
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedEvasion := Affix.IncreasedEvasion + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to maximum Life
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.MaximumLife := Affix.MaximumLife + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased maximum Life
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedMaximumLife := Affix.IncreasedMaximumLife + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to maximum Mana
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.MaximumMana := Affix.MaximumMana + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased maximum Mana
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedMaximumMana := Affix.IncreasedMaximumMana + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to maximum Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.MaximumEnergyShield := Affix.MaximumEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedEnergyShield := Affix.IncreasedEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to all Elemental Resistances
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.AllElementalResistances := Affix.AllElementalResistances + Arr1
+						Affix.PseudoColdResist := Affix.PseudoColdResist + Arr1
+						Affix.PseudoLightningResist := Affix.PseudoLightningResist + Arr1
+						Affix.PseudoFireResist := Affix.PseudoFireResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Fire and Lightning Resistances
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.FireLightningResistance := Affix.FireLightningResistance + Arr1
+						Affix.PseudoLightningResist := Affix.PseudoLightningResist + Arr1
+						Affix.PseudoFireResist := Affix.PseudoFireResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Fire and Cold Resistances
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.FireColdResistance := Affix.FireColdResistance + Arr1
+						Affix.PseudoFireResist := Affix.PseudoFireResist + Arr1
+						Affix.PseudoColdResist := Affix.PseudoColdResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Cold and Lightning Resistances
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.ColdLightningResistance := Affix.ColdLightningResistance + Arr1
+						Affix.PseudoColdResist := Affix.PseudoColdResist + Arr1
+						Affix.PseudoLightningResist := Affix.PseudoLightningResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Cold Resistance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.ColdResistance := Affix.ColdResistance + Arr1
+						Affix.PseudoColdResist := Affix.PseudoColdResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Fire Resistance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.FireResistance := Affix.FireResistance + Arr1
+						Affix.PseudoFireResist := Affix.PseudoFireResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Lightning Resistance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.LightningResistance := Affix.LightningResistance + Arr1
+						Affix.PseudoLightningResist := Affix.PseudoLightningResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Chaos Resistance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.ChaosResistance := Affix.ChaosResistance + Arr1
+						Affix.PseudoChaosResist := Affix.PseudoChaosResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Life Regenerated per second
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%
+						Affix.LifeRegeneration := Affix.LifeRegeneration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Spell Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedSpellDamage := Affix.IncreasedSpellDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to deal Double Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Rarity of Items found
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedRarity := Affix.IncreasedRarity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Attack Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedAttackSpeed := Affix.IncreasedAttackSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Physical Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedPhysicalDamage := Affix.IncreasedPhysicalDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Cold Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedColdDamage := Affix.IncreasedColdDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Fire Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFireDamage := Affix.IncreasedFireDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Lightning Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedLightningDamage := Affix.IncreasedLightningDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, reduced Enemy Stun Threshold
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ReducedEnemyStunThreshold := Affix.ReducedEnemyStunThreshold + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Stun and Block Recovery
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedStunBlockRecovery := Affix.IncreasedStunBlockRecovery + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Life gained for each Enemy hit by Attacks
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.LifeGainOnAttack := Affix.LifeGainOnAttack + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Weapon range
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.WeaponRange := Affix.WeaponRange + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Adds
+					{
+						IfInString, A_LoopField, Physical Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.PhysicalDamageAttackLo := Arr2
+							Affix.PhysicalDamageAttackHi := Arr4
+							Affix.PhysicalDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Fire Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.FireDamageAttackLo := Arr2
+							Affix.FireDamageAttackHi := Arr4
+							Affix.FireDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Cold Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ColdDamageAttackLo := Arr2
+							Affix.ColdDamageAttackHi := Arr4
+							Affix.ColdDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Lightning Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.LightningDamageAttackLo := Arr2
+							Affix.LightningDamageAttackHi := Arr4
+							Affix.LightningDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Chaos Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ChaosDamageAttackLo := Arr2
+							Affix.ChaosDamageAttackHi := Arr4
+							Affix.ChaosDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ChaosDamageLo := Arr2
+							Affix.ChaosDamageHi := Arr4
+							Affix.ChaosDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Cold Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ColdDamageLo := Arr2
+							Affix.ColdDamageHi := Arr4
+							Affix.ColdDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Fire Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.FireDamageLo := Arr2
+							Affix.FireDamageHi := Arr4
+							Affix.FireDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Lightning Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.LightningDamageLo := Arr2
+							Affix.LightningDamageHi := Arr4
+							Affix.LightningDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Physical Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.PhysicalDamageLo := Arr2
+							Affix.PhysicalDamageHi := Arr4
+							Affix.PhysicalDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+
 					}
 				}
 			}
@@ -2863,7 +3298,6 @@ ParseClip(){
 		If (itemLevelIsDone = 2 && captureLines >= 1)
 		{
 			Prop.HasAffix := True
-			Affix.Completed := True
 		}
 		; DPS calculations
 		If (Prop.IsWeapon) {

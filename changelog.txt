@@ -5,6 +5,7 @@ Version .04.3 August/1x/2019
 --------------------------------------------------------------------------------
 Converted the stats from weapon info into their own array WeaponStats
     Have done the same for ArmourStats and MapStats
+    Also added an array for affixes
     Modified the Debug tool to add the new arrays
     
 Renamed the GetMouseCoords function to CoordAndDebug
@@ -16,8 +17,12 @@ Renamed the GetMouseCoords function to CoordAndDebug
     Will only show relevant affixes and properties (Only things that are true)
     Eventaully I want to change this all into a GUI window of some sort
     
-Added first Affix parse, can read out Implicit modifier
-    Second affix parse is reading if it has Socketed Gems are Supported by x
+Added tons of affixes to the item parser
+    Integrated the Databases from PoE-TradeMacro for lab enchants and Corruptions
+    Added Talisman corruptions to the table of possible corruption affixes
+    using the indexOf function we can check for match in the Databases
+    Most of the affixes are now working, still getting around to a few
+    Can now handle double corrupted items
 
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------
