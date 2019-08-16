@@ -11,7 +11,7 @@ Added all the Vanilla Affixes to the item parser
 
 Added variables for firing QS on attack keys
     Also reworked the delay to support all three
-    Modify the Quicksilver Flask Delay in the menu
+    Modify the Quicksilver Flask Delay in the menu (Blank or 0 = instant)
     These variables are saved and loaded with profiles
 
 Renamed the GetMouseCoords function to CoordAndDebug
