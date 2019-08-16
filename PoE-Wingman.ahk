@@ -2344,8 +2344,8 @@ ParseClip(){
 		NameIsDone := False
 		itemLevelIsDone := 0
 		captureLines := 0
-;		countCorruption := 0
-;		doneCorruption := False
+		countCorruption := 0
+		doneCorruption := False
 		Prop := {ItemName: ""
 			, IsItem : False
 			, IsArmour : False
@@ -2460,6 +2460,8 @@ ParseClip(){
 			, IncreasedEvasion : 0
 			, IncreasedArmour : 0
 			, IncreasedAttackSpeed : 0
+			, IncreasedAttackCastSpeed : 0
+			, IncreasedMovementSpeed : 0
 			, ReducedEnemyStunThreshold : 0
 			, IncreasedStunBlockRecovery : 0
 			, LifeGainOnAttack : 0
@@ -2467,13 +2469,78 @@ ParseClip(){
 			, AddedIntelligence : 0
 			, AddedStrength : 0
 			, AddedDexterity : 0
+			, AddedStrengthDexterity : 0
+			, AddedStrengthIntelligence : 0
+			, AddedDexterityIntelligence : 0
 			, AddedArmour : 0
 			, AddedEvasion : 0
-			, PseudoChaosResist : 0
-			, PseudoChaosResist : 0
-			, PseudoChaosResist : 0
-			, countCorruption : 0
-			, doneCorruption : 0
+			, AddedAllStats : 0
+			, PseudoAddedStrength : 0
+			, PseudoAddedDexterity : 0
+			, PseudoAddedIntelligence : 0
+			, IncreasedArmourEnergyShield : 0
+			, IncreasedArmourEvasion : 0
+			, IncreasedEvasionEnergyShield : 0
+			, PseudoIncreasedArmour : 0
+			, PseudoIncreasedEvasion : 0
+			, PseudoIncreasedEnergyShield : 0
+			, ChanceDodgeAttack : 0
+			, ChanceDodgeSpell : 0
+			, ChanceBlockSpell : 0
+			, BlockManaGain : 0
+			, PhysicalDamageReduction : 0
+			, ReducedAttributeRequirement : 0
+			, ReflectPhysical : 0
+			, EnergyShieldRegen : 0
+			, PhysicalLeechLife : 0
+			, PhysicalLeechMana : 0
+			, OnKillLife : 0
+			, OnKillMana : 0
+			, IncreasedElementalAttack : 0
+			, IncreasedFlaskLifeRecovery : 0
+			, IncreasedFlaskManaRecovery : 0
+			, IncreasedStunDuration : 0
+			, IncreasedFlaskDuration : 0
+			, IncreasedFlaskChargesGained : 0
+			, ReducedFlaskChargesUsed : 0
+			, GlobalCriticalChance : 0
+			, GlobalCriticalMultiplier : 0
+			, IncreasedProjectileSpeed : 0
+			, AddedLevelGems : 0
+			, AddedLevelMinionGems : 0
+			, AddedLevelMeleeGems : 0
+			, AddedLevelBowGems : 0
+			, AddedLevelFireGems : 0
+			, AddedLevelColdGems : 0
+			, AddedLevelLightningGems : 0
+			, AddedLevelChaosGems : 0
+			, NonAilmentChaosDOTMult : 0
+			, ColdDOTMult : 0
+			, ChanceFreeze : 0
+			, ChanceShock : 0
+			, ChanceIgnite : 0
+			, ChanceAvoidElementalAilment : 0
+			, ChanceIgnite : 0
+			, ChanceIgnite : 0
+			, ChanceIgnite : 0
+			, IncreasedBurningDamage : 0
+			, IncreasedSpellCritChance : 0
+			, IncreasedCritChance : 0
+			, IncreasedManaRegeneration : 0
+			, IncreasedCastSpeed : 0
+			, IncreasedPoisonDuration : 0
+			, ChancePoison : 0
+			, IncreasedPoisonDamage : 0
+			, IncreasedBleedDuration : 0
+			, ChanceBleed : 0
+			, IncreasedBleedDamage : 0
+			, IncreasedLightRadius : 0
+			, IncreasedGlobalAccuracy : 0
+			, ChanceBlock : 0
+			, GainFireToExtraChaos : 0
+			, GainColdToExtraChaos : 0
+			, GainLightningToExtraChaos : 0
+			, GainPhysicalToExtraChaos : 0
 			, Implicit : ""}
 
 		;Begin parsing information	
@@ -2912,22 +2979,100 @@ ParseClip(){
 						}
 					Continue
 					}
+					IfInString, A_LoopField, to Level of Socketed Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelGems := Affix.AddedLevelGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Minion Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelMinionGems := Affix.AddedLevelMinionGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Bow Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelBowGems := Affix.AddedLevelBowGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Fire Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelFireGems := Affix.AddedLevelFireGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Cold Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelColdGems := Affix.AddedLevelColdGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Lightning Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelLightningGems := Affix.AddedLevelLightningGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Chaos Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelChaosGems := Affix.AddedLevelChaosGems + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, to Intelligence
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, +
 						Affix.AddedIntelligence := Affix.AddedIntelligence + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to Strength
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, +
 						Affix.AddedStrength := Affix.AddedStrength + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to Dexterity
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, +
 						Affix.AddedDexterity := Affix.AddedDexterity + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to all Attributes
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedAllStats := Affix.AddedAllStats + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Strength and Dexterity
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedStrengthDexterity := Affix.AddedStrengthDexterity + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Dexterity and Intelligence
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedDexterityIntelligence := Affix.AddedDexterityIntelligence + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Strength and Intelligence
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedStrengthIntelligence := Affix.AddedStrengthIntelligence + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to Armour
@@ -2940,6 +3085,7 @@ ParseClip(){
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedArmour := Affix.IncreasedArmour + Arr1
+						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to Evasion Rating
@@ -2952,6 +3098,37 @@ ParseClip(){
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedEvasion := Affix.IncreasedEvasion + Arr1
+						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Evasion and Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedEvasionEnergyShield := Affix.IncreasedEvasionEnergyShield + Arr1
+						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
+						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Armour and Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedArmourEnergyShield := Affix.IncreasedArmourEnergyShield + Arr1
+						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
+						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Armour and Evasion
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedArmourEvasion := Affix.IncreasedArmourEvasion + Arr1
+						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
+						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Accuracy Rating
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedAccuracy := Affix.AddedAccuracy + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to maximum Life
@@ -2978,6 +3155,12 @@ ParseClip(){
 						Affix.IncreasedMaximumMana := Affix.IncreasedMaximumMana + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, increased Mana Regeneration Rate
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedManaRegeneration := Affix.IncreasedManaRegeneration + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, to maximum Energy Shield
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, +
@@ -2988,6 +3171,37 @@ ParseClip(){
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedEnergyShield := Affix.IncreasedEnergyShield + Arr1
+						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, of Physical Attack Damage Leeched as Life
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.PhysicalLeechLife := Affix.PhysicalLeechLife + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, of Physical Attack Damage Leeched as Mana
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.PhysicalLeechMana := Affix.PhysicalLeechMana + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Global Critical Strike Chance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.GlobalCriticalChance := Affix.GlobalCriticalChance + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Global Critical Strike Multiplier
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.GlobalCriticalMultiplier := Affix.GlobalCriticalMultiplier + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Projectile Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedProjectileSpeed := Affix.IncreasedProjectileSpeed + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to all Elemental Resistances
@@ -3057,10 +3271,22 @@ ParseClip(){
 						Affix.LifeRegeneration := Affix.LifeRegeneration + Arr1
 					Continue	
 					}
-					IfInString, A_LoopField, increased Spell Damage
+					IfInString, A_LoopField, chance to deal Double Damage
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
-						Affix.IncreasedSpellDamage := Affix.IncreasedSpellDamage + Arr1
+						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Avoid Elemental Ailments
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceAvoidElementalAilment := Affix.ChanceAvoidElementalAilment + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Dodge Attack Hits
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, chance to deal Double Damage
@@ -3075,16 +3301,100 @@ ParseClip(){
 						Affix.IncreasedRarity := Affix.IncreasedRarity + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, increased Attack and Cast Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedAttackCastSpeed := Affix.IncreasedAttackCastSpeed + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, increased Attack Speed
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedAttackSpeed := Affix.IncreasedAttackSpeed + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, increased Movement Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedMovementSpeed := Affix.IncreasedMovementSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Chance to Block
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceBlock := Affix.ChanceBlock + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Elemental Damage with Attack Skills
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedElementalAttack := Affix.IncreasedElementalAttack + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, increased Physical Damage
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedPhysicalDamage := Affix.IncreasedPhysicalDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Poison Duration
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedPoisonDuration := Affix.IncreasedPoisonDuration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Poison on Hit
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChancePoison := Affix.ChancePoison + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Damage with Poison
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedPoisonDamage := Affix.IncreasedPoisonDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Bleeding Duration
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedBleedDuration := Affix.IncreasedBleedDuration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to cause Bleeding on Hit
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceBleed := Affix.ChanceBleed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Damage with Bleeding
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedBleedDamage := Affix.IncreasedBleedDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Critical Strike Chance for Spells
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedSpellCritChance := Affix.IncreasedSpellCritChance + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Critical Strike Chance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedCritChance := Affix.IncreasedCritChance + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Cast Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedCastSpeed := Affix.IncreasedCastSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Spell Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedSpellDamage := Affix.IncreasedSpellDamage + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, increased Cold Damage
@@ -3099,10 +3409,76 @@ ParseClip(){
 						Affix.IncreasedFireDamage := Affix.IncreasedFireDamage + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, increased Burning Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedBurningDamage := Affix.IncreasedBurningDamage + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, increased Lightning Damage
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedLightningDamage := Affix.IncreasedLightningDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Ignite
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceIgnite := Affix.ChanceIgnite + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Freeze
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceFreeze := Affix.ChanceFreeze + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Shock
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceShock := Affix.ChanceShock + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Light Radius
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedLightRadius := Affix.IncreasedLightRadius + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Flask Life Recovery rate
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFlaskLifeRecovery := Affix.IncreasedFlaskLifeRecovery + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Flask Mana Recovery rate
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFlaskManaRecovery := Affix.IncreasedFlaskManaRecovery + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Flask Charges gained
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFlaskChargesGained := Affix.IncreasedFlaskChargesGained + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, reduced Flask Charges used
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ReducedFlaskChargesUsed := Affix.ReducedFlaskChargesUsed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Flask Effect Duration
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFlaskDuration := Affix.IncreasedFlaskDuration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Global Accuracy Rating
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedGlobalAccuracy := Affix.IncreasedGlobalAccuracy + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, reduced Enemy Stun Threshold
@@ -3111,10 +3487,76 @@ ParseClip(){
 						Affix.ReducedEnemyStunThreshold := Affix.ReducedEnemyStunThreshold + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, increased Stun Duration on Enemies
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedStunDuration := Affix.IncreasedStunDuration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, of Energy Shield Regenerated per second
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.EnergyShieldRegen := Affix.EnergyShieldRegen + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, reduced Attribute Requirements
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ReducedAttributeRequirement := Affix.ReducedAttributeRequirement + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, additional Physical Damage Reduction
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.PhysicalDamageReduction := Affix.PhysicalDamageReduction + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Dodge Attack Hits
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDodgeAttack := Affix.ChanceDodgeAttack + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Dodge Spell Hits
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDodgeSpell := Affix.ChanceDodgeSpell + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Chance to Block Spell Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceBlockSpell := Affix.ChanceBlockSpell + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Mana gained when you Block
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.BlockManaGain := Affix.BlockManaGain + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Physical Damage to Melee Attackers
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%
+						Affix.ReflectPhysical := Affix.ReflectPhysical + Arr2
+					Continue	
+					}
 					IfInString, A_LoopField, increased Stun and Block Recovery
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedStunBlockRecovery := Affix.IncreasedStunBlockRecovery + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Life gained on Kill
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.OnKillLife := Affix.OnKillLife + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Mana gained on Kill
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.OnKillMana := Affix.OnKillMana + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, Life gained for each Enemy hit by Attacks
@@ -3127,6 +3569,18 @@ ParseClip(){
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, +
 						Affix.WeaponRange := Affix.WeaponRange + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Non-Ailment Chaos Damage over Time Multiplier
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.NonAilmentChaosDOTMult := Affix.NonAilmentChaosDOTMult + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Cold Damage over Time Multiplier
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.ColdDOTMult := Affix.ColdDOTMult + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, Adds
@@ -3147,6 +3601,14 @@ ParseClip(){
 							Affix.FireDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
 						Continue
 						}
+						IfInString, A_LoopField, Fire Damage to Spells
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.FireDamageSpellLo := Arr2
+							Affix.FireDamageSpellHi := Arr4
+							Affix.FireDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
 						IfInString, A_LoopField, Cold Damage to Attacks
 						{
 							StringSplit, Arr, A_LoopField, %A_Space%
@@ -3155,12 +3617,28 @@ ParseClip(){
 							Affix.ColdDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
 						Continue
 						}
+						IfInString, A_LoopField, Cold Damage to Spells
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ColdDamageSpellLo := Arr2
+							Affix.ColdDamageSpellHi := Arr4
+							Affix.ColdDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
 						IfInString, A_LoopField, Lightning Damage to Attacks
 						{
 							StringSplit, Arr, A_LoopField, %A_Space%
 							Affix.LightningDamageAttackLo := Arr2
 							Affix.LightningDamageAttackHi := Arr4
 							Affix.LightningDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Lightning Damage to Spells
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.LightningDamageSpellLo := Arr2
+							Affix.LightningDamageSpellHi := Arr4
+							Affix.LightningDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
 						Continue
 						}
 						IfInString, A_LoopField, Chaos Damage to Attacks
@@ -3212,6 +3690,33 @@ ParseClip(){
 						Continue
 						}
 
+					}
+					IfInString, A_LoopField, Gain
+					{
+						IfInString, A_LoopField, of Fire Damage as Extra Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%, `%
+							Affix.GainFireToExtraChaos := Affix.GainFireToExtraChaos + Arr2
+						Continue
+						}
+						IfInString, A_LoopField, of Cold Damage as Extra Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%, `%
+							Affix.GainColdToExtraChaos := Affix.GainColdToExtraChaos + Arr2
+						Continue
+						}
+						IfInString, A_LoopField, of Lightning Damage as Extra Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%, `%
+							Affix.GainLightningToExtraChaos := Affix.GainLightningToExtraChaos + Arr2
+						Continue
+						}
+						IfInString, A_LoopField, of Physical Damage as Extra Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%, `%
+							Affix.GainPhysicalToExtraChaos := Affix.GainPhysicalToExtraChaos + Arr2
+						Continue
+						}
 					}
 				}
 			}

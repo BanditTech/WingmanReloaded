@@ -21,8 +21,8 @@ Added tons of affixes to the item parser
     Integrated the Databases from PoE-TradeMacro for lab enchants and Corruptions
     Added Talisman corruptions to the table of possible corruption affixes
     using the indexOf function we can check for match in the Databases
-    Most of the affixes are now working, still getting around to a few
     Can now handle double corrupted items
+    All vanilla affixes are now working
 
 All hotkeys now check if the game is open before firing.
 
