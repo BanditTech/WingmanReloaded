@@ -4180,13 +4180,19 @@ GuiStatus(Fetch:=""){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MainAttackCommand(){
 	MainAttackCommand:
-	if (AutoFlask=1) {
+	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
 		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
 			return
-		TriggerFlask(TriggerMainAttack)
-		SetTimer, TimerMainAttack, 200
+		If AutoFlask {
+			TriggerFlask(TriggerMainAttack)
+			SetTimer, TimerMainAttack, 200
 		}
+		If (AutoQuicksilver && QSonMainAttack) {
+			SendMSG(5,1,scriptGottaGoFast)
+			SetTimer, TimerMainAttack, 200
+		}
+	}
     Return	
 	}
 ; Secondary attack Flasks
@@ -5005,19 +5011,23 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerMainAttack:
 		MainAttackPressed:=GetKeyState(hotkeyMainAttack, "P")
-		If (MainAttackPressed)
+		If (MainAttackPressed && TriggerMainAttack > 0 )
 			MainAttackCommand()
-		Else
+		If (MainAttackPressed && QSonMainAttack)
+			SendMSG(5,1,scriptGottaGoFast)
+		If (!MainAttackPressed)
 			settimer,TimerMainAttack,delete
 	Return
-
 	TimerSecondaryAttack:
 		SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack, "P")
-		If (SecondaryAttackPressed)
+		If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
 			SecondaryAttackCommand()
-		Else
+		If (SecondaryAttackPressed && QSonSecondaryAttack)
+			SendMSG(5,1,scriptGottaGoFast)
+		If (!SecondaryAttackPressed)
 			settimer,TimerSecondaryAttack,delete
 	Return
+
 ; Utility Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerUtility1:

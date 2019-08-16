@@ -61,6 +61,11 @@ if not A_IsAdmin
 		Global RescaleRan := False
 		Global FlaskList := []
 		Global DebugMessages
+		Global QSonMainAttack
+		Global QSonSecondaryAttack
+		Global LButtonPressed := 0
+		Global MainPressed := 0
+		Global SecondaryPressed := 0
 	;Coordinates
 		global GuiX:=-5
 		global GuiY:=1005
@@ -100,6 +105,8 @@ if not A_IsAdmin
 
 	;Hotkeys
 		global hotkeyAutoQuicksilver
+		global hotkeyMainAttack
+		global hotkeySecondaryAttack
 	
 	;Utility Buttons
 		global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
@@ -127,6 +134,8 @@ if not A_IsAdmin
 			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
 			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
+			IniRead, QSonMainAttack, settings.ini, General, DebugMessages, 1
+			IniRead, QSonSecondaryAttack, settings.ini, General, DebugMessages, 1
 		;Coordinates
 			IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 			IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -191,6 +200,8 @@ if not A_IsAdmin
 
 		;hotkeys
 			IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
+			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
+			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
 			If hotkeyAutoQuicksilver
 				hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 
@@ -354,6 +365,12 @@ MsgMonitor(wParam, lParam, msg)
 			return
 			}		
 		}
+	Else If (wParam=5) {
+		If (lParam=1){
+			TriggerFlask(TriggerQuicksilver)
+			return
+			}		
+		}
 	Return
 	}
 ; Send one or two digits to a sub-script 
@@ -396,6 +413,8 @@ ReadFromFile(){
 		IniRead, QTick, settings.ini, General, QTick, 50
 		IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
 		IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
+		IniRead, QSonMainAttack, settings.ini, General, DebugMessages, 1
+		IniRead, QSonSecondaryAttack, settings.ini, General, DebugMessages, 1
 	;Coordinates
 		IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 		IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -458,6 +477,8 @@ ReadFromFile(){
 			QuicksilverSlot%A_Index% := valueQuicksilver
 			}
 	;hotkeys
+		IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
+		IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
 
 		If hotkeyAutoQuicksilver
 			hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, Off
@@ -596,8 +617,29 @@ TriggerFlask(Trigger){
 			}
 		} 
 	Else If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ){
-		Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
-		if (ErrorLevel=1) {
+		
+		LButtonPressed := GetKeyState("LButton", "P")
+		MainPressed := GetKeyState(hotkeyMainAttack, "P")
+		SecondaryPressed := GetKeyState(hotkeySecondaryAttack, "P")
+		if (LButtonPressed || (MainPressed && QSonMainAttack) || (SecondaryPressed && QSonSecondaryAttack) ) {
+			If (TriggerQuicksilverDelay > 0){
+				if (LButtonPressed) {
+					Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
+					if (ErrorLevel=0) {
+						Return
+					}
+				} Else If (MainPressed && QSonMainAttack){
+					Keywait, %hotkeyMainAttack%, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
+					if (ErrorLevel=0) {
+						Return
+					}
+				} Else If (SecondaryPressed && QSonSecondaryAttack){
+					Keywait, %hotkeySecondaryAttack%, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
+					if (ErrorLevel=0) {
+						Return
+					}
+				}
+			}
 			QFL:=FlaskList.RemoveAt(1)
 			send %QFL%
 			OnCooldown[QFL] := 1 
@@ -610,6 +652,8 @@ TriggerFlask(Trigger){
 					TriggerUtility(A_Index)
 					}
 				}
+			
+
 			}
 		}
 	Return

@@ -26,7 +26,9 @@ Added tons of affixes to the item parser
 
 All hotkeys now check if the game is open before firing.
 
-Added placeholder variables for setting up QS on attack keys
+Added variables for firing QS on attack keys
+    Also reworked the delay to support all three
+    Modify the Quicksilver Flask Delay in the menu
 
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------
