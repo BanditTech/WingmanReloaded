@@ -5085,6 +5085,8 @@ readFromFile(){
     IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
     IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
     IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
+    IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 1
+    IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 1
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -5678,6 +5680,8 @@ updateEverything:
     IniWrite, %CharName%, settings.ini, General, CharName
     IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
     IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
+    IniWrite, %QSonMainAttack%, settings.ini, General, QSonMainAttack
+    IniWrite, %QSonSecondaryAttack%, settings.ini, General, QSonSecondaryAttack
 
     ;~ Hotkeys 
     IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
