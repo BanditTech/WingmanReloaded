@@ -1,14 +1,7 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .04.4 August/16/2019
---------------------------------------------------------------------------------
-Added Dropdown box for chat command defaults
-added text replacement to the whisper reply as well
-
-Bugfixes
-
-Version .04.3 August/16/2019
+Version .04.5 August/16/2019
 --------------------------------------------------------------------------------
 Added all the Vanilla Affixes to the item parser
     Integrated the Databases from PoE-TradeMacro for lab enchants and Corruptions
@@ -29,6 +22,14 @@ Renamed the GetMouseCoords function to CoordAndDebug
     Will only show relevant affixes and properties (Only things that are true)
     
 All hotkeys now check if the game is open before firing.
+
+Adjustments to the Chat hotkeys section.
+    Added Dropdown box for chat command defaults
+    Added a second tab structure inside the Chat tab
+    added text replacement to the whisper reply as well
+
+Bugfixes for QSonMainAttack portion that was added
+    did not catch this bug until it was released, will need to skip version numbers
 
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------

@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.4
+    Global VersionNumber := .04.5
 
 	Global Null := 0
     
@@ -430,7 +430,7 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, x1 y1 w620 h465 -wrap, Flasks and Utility|Configuration|Inventory|Chat
+	Gui Add, Tab2, vMainGuiTabs x1 y1 w620 h465 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
@@ -996,8 +996,17 @@
 	;#######################################################################################################Chat Tab
 	Gui, Tab, Chat
 	Gui Add, Checkbox, gUpdateExtra	vEnableChatHotkeys Checked%EnableChatHotkeys%     xm ym+20                    	          	, Enable chat Hotkeys?
+
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
+
+	Gui Add, Tab, vInnerTab w590 h370 xm+10 ym+40 Section hwndInnerTab, Commands|Reply Whisper
+	Gui, Tab, Commands
 	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section xm+1 ym+40 w60 h85											,Modifier
+	Gui,Add,GroupBox,Section w60 h85											,Modifier
 	Gui,Font,
 	Gui,Font,s9,Arial
 	Gui Add, Edit, xs+4 ys+20 w50 h23 v1Prefix1, %1Prefix1%
@@ -1016,23 +1025,24 @@
 	Gui Add, Edit, y+5        w50 h23 v1Suffix8, %1Suffix8%
 	Gui Add, Edit, y+5        w50 h23 v1Suffix9, %1Suffix9%
 	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section x+10 ys w170 h275											,Commands
+	Gui,Add,GroupBox,Section x+10 ys w300 h275											,Commands
 	Gui,Font,
 	Gui,Font,s9,Arial
 	DefaultCommands := [ "/Hideout","/menagerie","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
 	For k, v in DefaultCommands
 		textList .= (!textList ? "" : "|") v
-	Gui Add, ComboBox, xs+4 ys+20 w160 v1Suffix1Text, %1Suffix1Text%||%textList%
-	Gui Add, ComboBox,  y+5       w160 v1Suffix2Text, %1Suffix2Text%||%textList%
-	Gui Add, ComboBox,  y+5       w160 v1Suffix3Text, %1Suffix3Text%||%textList%
-	Gui Add, ComboBox,  y+5       w160 v1Suffix4Text, %1Suffix4Text%||%textList%
-	Gui Add, ComboBox,  y+5       w160 v1Suffix5Text, %1Suffix5Text%||%textList%
-	Gui Add, ComboBox,  y+5       w160 v1Suffix6Text, %1Suffix6Text%||%textList%
-	Gui Add, ComboBox,  y+5       w160 v1Suffix7Text, %1Suffix7Text%||%textList%
-	Gui Add, ComboBox,  y+5       w160 v1Suffix8Text, %1Suffix8Text%||%textList%
-	Gui Add, ComboBox,  y+5       w160 v1Suffix9Text, %1Suffix9Text%||%textList%
+	Gui Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %1Suffix1Text%||%textList%
+	Gui Add, ComboBox,  y+5       w290 v1Suffix2Text, %1Suffix2Text%||%textList%
+	Gui Add, ComboBox,  y+5       w290 v1Suffix3Text, %1Suffix3Text%||%textList%
+	Gui Add, ComboBox,  y+5       w290 v1Suffix4Text, %1Suffix4Text%||%textList%
+	Gui Add, ComboBox,  y+5       w290 v1Suffix5Text, %1Suffix5Text%||%textList%
+	Gui Add, ComboBox,  y+5       w290 v1Suffix6Text, %1Suffix6Text%||%textList%
+	Gui Add, ComboBox,  y+5       w290 v1Suffix7Text, %1Suffix7Text%||%textList%
+	Gui Add, ComboBox,  y+5       w290 v1Suffix8Text, %1Suffix8Text%||%textList%
+	Gui Add, ComboBox,  y+5       w290 v1Suffix9Text, %1Suffix9Text%||%textList%
+	Gui, Tab, Reply Whisper
 	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section x+10 ys w60 h85											,Modifier
+	Gui,Add,GroupBox,Section  w60 h85											,Modifier
 	Gui,Font,
 	Gui,Font,s9,Arial
 	Gui Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
@@ -1051,27 +1061,25 @@
 	Gui Add, Edit, y+5        w50 h23 v2Suffix8, %2Suffix8%
 	Gui Add, Edit, y+5        w50 h23 v2Suffix9, %2Suffix9%
 	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section x+10 ys w170 h275											,Whisper Reply
+	Gui,Add,GroupBox,Section x+10 ys w300 h275											,Whisper Reply
 	Gui,Font,
 	Gui,Font,s9,Arial
 	DefaultWhisper := [ "/invite RecipientName","Sure, will invite in a sec.","In a map, will get to you in a minute.","Sorry, going to be a while.","No thank you.","Sold","/afk Sold to RecipientName"]
 	textList=
 	For k, v in DefaultWhisper
 		textList .= (!textList ? "" : "|") v
-	Gui Add, ComboBox, xs+4 ys+20 	w160 v2Suffix1Text, %2Suffix1Text%||%textList%
-	Gui Add, ComboBox,  y+5			w160 v2Suffix2Text, %2Suffix2Text%||%textList%
-	Gui Add, ComboBox,  y+5			w160 v2Suffix3Text, %2Suffix3Text%||%textList%
-	Gui Add, ComboBox,  y+5			w160 v2Suffix4Text, %2Suffix4Text%||%textList%
-	Gui Add, ComboBox,  y+5			w160 v2Suffix5Text, %2Suffix5Text%||%textList%
-	Gui Add, ComboBox,  y+5			w160 v2Suffix6Text, %2Suffix6Text%||%textList%
-	Gui Add, ComboBox,  y+5			w160 v2Suffix7Text, %2Suffix7Text%||%textList%
-	Gui Add, ComboBox,  y+5			w160 v2Suffix8Text, %2Suffix8Text%||%textList%
-	Gui Add, ComboBox,  y+5			w160 v2Suffix9Text, %2Suffix9Text%||%textList%
-
-	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
-	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
-	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+	Gui Add, ComboBox, xs+4 ys+20 	w290 v2Suffix1Text, %2Suffix1Text%||%textList%
+	Gui Add, ComboBox,  y+5			w290 v2Suffix2Text, %2Suffix2Text%||%textList%
+	Gui Add, ComboBox,  y+5			w290 v2Suffix3Text, %2Suffix3Text%||%textList%
+	Gui Add, ComboBox,  y+5			w290 v2Suffix4Text, %2Suffix4Text%||%textList%
+	Gui Add, ComboBox,  y+5			w290 v2Suffix5Text, %2Suffix5Text%||%textList%
+	Gui Add, ComboBox,  y+5			w290 v2Suffix6Text, %2Suffix6Text%||%textList%
+	Gui Add, ComboBox,  y+5			w290 v2Suffix7Text, %2Suffix7Text%||%textList%
+	Gui Add, ComboBox,  y+5			w290 v2Suffix8Text, %2Suffix8Text%||%textList%
+	Gui Add, ComboBox,  y+5			w290 v2Suffix9Text, %2Suffix9Text%||%textList%
+	GuiControlGet MainGuiTabs
+	GuiControl % (MainGuiTabs = "Chat") ? "Show" : "Hide", InnerTab
+	WinSet Top,, ahk_id %InnerTab%
 
 	Gui, +LastFound
 	If (ShowOnStart)
@@ -7832,4 +7840,11 @@ FireStashHotkey9() {
     }
 return
 }
+
+SelectMainGuiTabs:
+	GuiControlGet MainGuiTabs
+	GuiControl % (MainGuiTabs = "Chat") ? "Show" : "Hide", InnerTab
+	GuiControl MoveDraw, MainGuiTabs
+return
+
 return
