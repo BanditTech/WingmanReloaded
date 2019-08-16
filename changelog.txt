@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .04.3 August/1x/2019
+Version .04.3 August/16/2019
 --------------------------------------------------------------------------------
 Added all the Vanilla Affixes to the item parser
     Integrated the Databases from PoE-TradeMacro for lab enchants and Corruptions
