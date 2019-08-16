@@ -5085,8 +5085,8 @@ readFromFile(){
     IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
     IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
     IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
-    IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 1
-    IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 1
+    IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
+    IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -6050,6 +6050,10 @@ submitProfile(Profile){
     IniWrite, %hotkeyMainAttack%, settings.ini, Profile%Profile%, MainAttack
     IniWrite, %hotkeySecondaryAttack%, settings.ini, Profile%Profile%, SecondaryAttack
     
+    ;QS on Attack Keys
+    IniWrite, %QSonMainAttack%, settings.ini, Profile%Profile%, QSonMainAttack
+    IniWrite, %QSonSecondaryAttack%, settings.ini, Profile%Profile%, QSonSecondaryAttack
+    
     ;Quicksilver Flasks
     IniWrite, %TriggerQuicksilverDelay%, settings.ini, Profile%Profile%, TriggerQuicksilverDelay
     IniWrite, %Radiobox1QS%, settings.ini, Profile%Profile%, QuicksilverSlot1
@@ -6430,6 +6434,12 @@ readProfile(Profile){
     GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
     IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, w
     GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
+    
+    ;QS on Attack Keys
+    IniRead, QSonMainAttack, settings.ini, Profile%Profile%, QSonMainAttack, 0
+    GuiControl, , QSonMainAttack, %QSonMainAttack%
+    IniRead, QSonSecondaryAttack, settings.ini, Profile%Profile%, QSonSecondaryAttack, 0
+    GuiControl, , QSonSecondaryAttack, %QSonSecondaryAttack%
     
     ;Quicksilver Flasks
     IniRead, TriggerQuicksilverDelay, settings.ini, Profile%Profile%, TriggerQuicksilverDelay, .5

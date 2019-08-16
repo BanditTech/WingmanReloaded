@@ -61,8 +61,8 @@ if not A_IsAdmin
 		Global RescaleRan := False
 		Global FlaskList := []
 		Global DebugMessages
-		Global QSonMainAttack
-		Global QSonSecondaryAttack
+		Global QSonMainAttack := 0
+		Global QSonSecondaryAttack := 0
 		Global LButtonPressed := 0
 		Global MainPressed := 0
 		Global SecondaryPressed := 0
@@ -134,8 +134,8 @@ if not A_IsAdmin
 			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
 			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
-			IniRead, QSonMainAttack, settings.ini, General, DebugMessages, 1
-			IniRead, QSonSecondaryAttack, settings.ini, General, DebugMessages, 1
+			IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
+			IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
 		;Coordinates
 			IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 			IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -413,8 +413,8 @@ ReadFromFile(){
 		IniRead, QTick, settings.ini, General, QTick, 50
 		IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
 		IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
-		IniRead, QSonMainAttack, settings.ini, General, DebugMessages, 1
-		IniRead, QSonSecondaryAttack, settings.ini, General, DebugMessages, 1
+		IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
+		IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
 	;Coordinates
 		IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 		IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
