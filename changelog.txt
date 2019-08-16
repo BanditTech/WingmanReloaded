@@ -7,6 +7,7 @@ Added all the Vanilla Affixes to the item parser
     Integrated the Databases from PoE-TradeMacro for lab enchants and Corruptions
     Added Talisman corruptions to the table of possible corruption affixes
     Can handle double corrupted items
+    This is the first step towards loot filtering and crafting bench functions
 
 Added variables for firing QS on attack keys
     Also reworked the delay to support all three
