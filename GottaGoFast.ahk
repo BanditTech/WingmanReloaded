@@ -367,7 +367,8 @@ MsgMonitor(wParam, lParam, msg)
 		}
 	Else If (wParam=5) {
 		If (lParam=1){
-			TriggerFlask(TriggerQuicksilver)
+			If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) )
+				TriggerFlask(TriggerQuicksilver)
 			return
 			}		
 		}
@@ -605,8 +606,8 @@ TUtilityTick(){
 	}
 
 TriggerFlask(Trigger){
-	If (!FlaskList.Count() && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
-		QFL=1
+	If ((!FlaskList.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
+		QFL:=1
 		loop, 5 {
 			QFLVal:=SubStr(Trigger,QFL,1)+0
 			if (QFLVal > 0) {
@@ -616,7 +617,7 @@ TriggerFlask(Trigger){
 			++QFL
 			}
 		} 
-	If (FlaskList.Count() && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ){
+	If ((FlaskList.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ){
 		
 		LButtonPressed := GetKeyState("LButton", "P")
 		MainPressed := GetKeyState(hotkeyMainAttack, "P")
@@ -641,6 +642,8 @@ TriggerFlask(Trigger){
 				}
 			}
 			QFL:=FlaskList.RemoveAt(1)
+			If (!QFL)
+				Return
 			send %QFL%
 			OnCooldown[QFL] := 1 
 			Cooldown:=CooldownFlask%QFL%
@@ -648,7 +651,7 @@ TriggerFlask(Trigger){
 			SendMSG(3, QFL, scriptPOEWingman)
 			RandomSleep(23,59)
 			Loop, 5 {
-				If (YesUtility%A_Index%) && (YesUtility%A_Index%Quicksilver){
+				If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver){
 					TriggerUtility(A_Index)
 					}
 				}
