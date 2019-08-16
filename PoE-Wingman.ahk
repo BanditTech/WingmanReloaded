@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.2
+    Global VersionNumber := .04.4
 
 	Global Null := 0
     
@@ -1019,15 +1019,18 @@
 	Gui,Add,GroupBox,Section x+10 ys w170 h275											,Commands
 	Gui,Font,
 	Gui,Font,s9,Arial
-	Gui Add, Edit, xs+4 ys+20 w160 h23 v1Suffix1Text, %1Suffix1Text%
-	Gui Add, Edit,  y+5       w160 h23 v1Suffix2Text, %1Suffix2Text%
-	Gui Add, Edit,  y+5       w160 h23 v1Suffix3Text, %1Suffix3Text%
-	Gui Add, Edit,  y+5       w160 h23 v1Suffix4Text, %1Suffix4Text%
-	Gui Add, Edit,  y+5       w160 h23 v1Suffix5Text, %1Suffix5Text%
-	Gui Add, Edit,  y+5       w160 h23 v1Suffix6Text, %1Suffix6Text%
-	Gui Add, Edit,  y+5       w160 h23 v1Suffix7Text, %1Suffix7Text%
-	Gui Add, Edit,  y+5       w160 h23 v1Suffix8Text, %1Suffix8Text%
-	Gui Add, Edit,  y+5       w160 h23 v1Suffix9Text, %1Suffix9Text%
+	DefaultCommands := [ "/Hideout","/menagerie","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
+	For k, v in DefaultCommands
+		textList .= (!textList ? "" : "|") v
+	Gui Add, ComboBox, xs+4 ys+20 w160 v1Suffix1Text, %1Suffix1Text%||%textList%
+	Gui Add, ComboBox,  y+5       w160 v1Suffix2Text, %1Suffix2Text%||%textList%
+	Gui Add, ComboBox,  y+5       w160 v1Suffix3Text, %1Suffix3Text%||%textList%
+	Gui Add, ComboBox,  y+5       w160 v1Suffix4Text, %1Suffix4Text%||%textList%
+	Gui Add, ComboBox,  y+5       w160 v1Suffix5Text, %1Suffix5Text%||%textList%
+	Gui Add, ComboBox,  y+5       w160 v1Suffix6Text, %1Suffix6Text%||%textList%
+	Gui Add, ComboBox,  y+5       w160 v1Suffix7Text, %1Suffix7Text%||%textList%
+	Gui Add, ComboBox,  y+5       w160 v1Suffix8Text, %1Suffix8Text%||%textList%
+	Gui Add, ComboBox,  y+5       w160 v1Suffix9Text, %1Suffix9Text%||%textList%
 	Gui,Font,s9 cBlack Bold Underline
 	Gui,Add,GroupBox,Section x+10 ys w60 h85											,Modifier
 	Gui,Font,
@@ -1051,15 +1054,19 @@
 	Gui,Add,GroupBox,Section x+10 ys w170 h275											,Whisper Reply
 	Gui,Font,
 	Gui,Font,s9,Arial
-	Gui Add, Edit, xs+4 ys+20 w160 h23 v2Suffix1Text, %2Suffix1Text%
-	Gui Add, Edit,  y+5       w160 h23 v2Suffix2Text, %2Suffix2Text%
-	Gui Add, Edit,  y+5       w160 h23 v2Suffix3Text, %2Suffix3Text%
-	Gui Add, Edit,  y+5       w160 h23 v2Suffix4Text, %2Suffix4Text%
-	Gui Add, Edit,  y+5       w160 h23 v2Suffix5Text, %2Suffix5Text%
-	Gui Add, Edit,  y+5       w160 h23 v2Suffix6Text, %2Suffix6Text%
-	Gui Add, Edit,  y+5       w160 h23 v2Suffix7Text, %2Suffix7Text%
-	Gui Add, Edit,  y+5       w160 h23 v2Suffix8Text, %2Suffix8Text%
-	Gui Add, Edit,  y+5       w160 h23 v2Suffix9Text, %2Suffix9Text%
+	DefaultWhisper := [ "/invite RecipientName","Sure, will invite in a sec.","In a map, will get to you in a minute.","Sorry, going to be a while.","No thank you.","Sold","/afk Sold to RecipientName"]
+	textList=
+	For k, v in DefaultWhisper
+		textList .= (!textList ? "" : "|") v
+	Gui Add, ComboBox, xs+4 ys+20 	w160 v2Suffix1Text, %2Suffix1Text%||%textList%
+	Gui Add, ComboBox,  y+5			w160 v2Suffix2Text, %2Suffix2Text%||%textList%
+	Gui Add, ComboBox,  y+5			w160 v2Suffix3Text, %2Suffix3Text%||%textList%
+	Gui Add, ComboBox,  y+5			w160 v2Suffix4Text, %2Suffix4Text%||%textList%
+	Gui Add, ComboBox,  y+5			w160 v2Suffix5Text, %2Suffix5Text%||%textList%
+	Gui Add, ComboBox,  y+5			w160 v2Suffix6Text, %2Suffix6Text%||%textList%
+	Gui Add, ComboBox,  y+5			w160 v2Suffix7Text, %2Suffix7Text%||%textList%
+	Gui Add, ComboBox,  y+5			w160 v2Suffix8Text, %2Suffix8Text%||%textList%
+	Gui Add, ComboBox,  y+5			w160 v2Suffix9Text, %2Suffix9Text%||%textList%
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -7667,6 +7674,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
+		2Suffix1Text := StrReplace(2Suffix1Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix1Text%{Enter}
 		ResetChat()
     }
@@ -7676,6 +7685,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
+		2Suffix2Text := StrReplace(2Suffix2Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix2Text%{Enter}
 		ResetChat()
     }
@@ -7685,6 +7696,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
+		2Suffix3Text := StrReplace(2Suffix3Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix3Text%{Enter}
 		ResetChat()
     }
@@ -7694,6 +7707,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
+		2Suffix4Text := StrReplace(2Suffix4Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix4Text%{Enter}
 		ResetChat()
     }
@@ -7703,6 +7718,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
+		2Suffix5Text := StrReplace(2Suffix5Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix5Text%{Enter}
 		ResetChat()
     }
@@ -7712,6 +7729,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
+		2Suffix6Text := StrReplace(2Suffix6Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix6Text%{Enter}
 		ResetChat()
     }
@@ -7721,6 +7740,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
+		2Suffix7Text := StrReplace(2Suffix7Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix7Text%{Enter}
 		ResetChat()
     }
@@ -7730,6 +7751,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
+		2Suffix8Text := StrReplace(2Suffix8Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix8Text%{Enter}
 		ResetChat()
     }
@@ -7739,6 +7762,8 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
+		2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
+		2Suffix9Text := StrReplace(2Suffix9Text, "RecipientName", RecipientName, 0, -1)
 		Send, ^{Enter}%2Suffix9Text%{Enter}
 		ResetChat()
     }

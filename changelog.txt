@@ -1,6 +1,13 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .04.4 August/16/2019
+--------------------------------------------------------------------------------
+Added Dropdown box for chat command defaults
+added text replacement to the whisper reply as well
+
+Bugfixes
+
 Version .04.3 August/16/2019
 --------------------------------------------------------------------------------
 Added all the Vanilla Affixes to the item parser
