@@ -1,6 +1,27 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .04.3 August/16/2019
+--------------------------------------------------------------------------------
+Added all the Vanilla Affixes to the item parser
+    Integrated the Databases from PoE-TradeMacro for lab enchants and Corruptions
+    Added Talisman corruptions to the table of possible corruption affixes
+    Can handle double corrupted items
+    This is the first step towards loot filtering and crafting bench functions
+
+Added variables for firing QS on attack keys
+    Also reworked the delay to support all three
+    Modify the Quicksilver Flask Delay in the menu (Blank or 0 = instant)
+    These variables are saved and loaded with profiles
+
+Renamed the GetMouseCoords function to CoordAndDebug
+    ReWork output of the debug tool, will only show popup when clipped an item
+    Otherwise will show a 10 second long tooltip, this lets the item grid start
+    Will only show weapon stats when clipping a weapon
+    Will only show armour stats when clipping an armour
+    Will only show relevant affixes and properties (Only things that are true)
+    
+All hotkeys now check if the game is open before firing.
 
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------
@@ -49,9 +70,6 @@ Fixed hotkeys remaining in effect after being changed until next restart.
 Had to rewrite how the script checks if you press flasks for the passthrough
     now it is on a very short timer that just checks the state of 1-5
 
-Still need to figure out how to get the chat hotkeys to de-activate properly
-    For now, uncheck the box to turn them off and reload.
-    or if you want to only de-activate a few remove the key or modifier
 --------------------------------------------------------------------------------
 Release Notes .04 August/10/2019
 --------------------------------------------------------------------------------

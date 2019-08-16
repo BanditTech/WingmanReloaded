@@ -69,6 +69,57 @@
     
     If FileExist("settings.ini")
         readFromFile()
+	Global Enchantment  := []
+	Global Corruption := []
+	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
+	{
+	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
+	}
+	Loop, Read, %A_ScriptDir%\data\boot_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+	{
+	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
+	}
+	Loop, Read, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\glove_enchantment_mods.txt
+	{
+	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
+	}
+	Loop, Read, %A_ScriptDir%\data\glove_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\item_corrupted_mods.txt
+	{
+	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
+			if ErrorLevel
+					MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
+	}
+	Loop, read, %A_ScriptDir%\data\item_corrupted_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Corruption.push(A_LoopReadLine)
+		}
+	}
+
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ;General
@@ -79,7 +130,8 @@
 		Global IdColor := 0x1C0101
 		Global UnIdColor := 0x01012A
 		Global MOColor := 0x011C01
-		
+		Global QSonMainAttack := 1
+		Global QSonSecondaryAttack := 1
 		
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
@@ -114,77 +166,21 @@
 
 		; Use the colorkey above to choose your background colors.
 		; The example below uses two colors black and white
-			Global LootColors := { 1 : 0x222222
+		Global LootColors := { 1 : 0x222222
 			, 2 : 0xFFFFFF}
 
 		; Use this as an example of adding more colors into the loot vacuum (This adds tan and red at postion 2,3)
-			Global ExampleColors := { 1 : 0xFFFFFF
-				, 2 : 0xFCDDB2
-				, 3 : 0xFE2222
-				, 4 : 0x222222}
-		;Item Property blank Array
-		Global ItemProp := {ItemName: ""
-			, Rarity : ""
-			, SpecialType : ""
-			, Stack : 0
-			, StackMax : 0
-			, RarityCurrency : False
-			, RarityDivination : False
-			, RarityGem : False
-			, RarityNormal : False
-			, RarityMagic : False
-			, RarityRare : False
-			, RarityUnique : False
-			, Identified : True
-			, Map : False
-			, Ring : False
-			, Amulet : False
-			, Chromatic : False
-			, Jewel : False
-			, AbyssJewel : False
-			, Essence : False
-			, Incubator : False
-			, Fossil : False
-			, Resonator : False
-			, Quality : 0
-			, Sockets : 0
-			, RawSockets : ""
-			, LinkCount : 0
-			, 2Link : False
-			, 3Link : False
-			, 4Link : False
-			, 5Link : False
-			, 6Link : False
-			, Jeweler : False
-			, TimelessSplinter : False
-			, BreachSplinter : False
-			, SacrificeFragment : False
-			, MortalFragment : False
-			, GuardianFragment : False
-			, ProphecyFragment : False
-			, Scarab : False
-			, Offering : False
-			, Vessel : False
-			, Incubator : False
-			, Flask : False
-			, Veiled : False
-			, Prophecy : False
-			, PhysLo : False
-			, PhysHi : False
-			, AttackSpeed : False
-			, IsWeapon : False
-			, PhysMult : False
-			, PhysDps : False
-			, EleDps : False
-			, TotalDps : False
-			, ChaosLo : False
-			, ChaosHi : False
-			, EleLo : False
-			, EleHi : False
-			, ItemLevel : False
-			, TotalPhysMult : False
-			, BasePhysDps : False
-			, Q20Dps : False}
+		Global ExampleColors := { 1 : 0xFFFFFF
+			, 2 : 0xFCDDB2
+			, 3 : 0xFE2222
+			, 4 : 0x222222}
+
+		;Item Parse blank Arrays
+		Global Prop := {}
+		Global WeaponStats := {}
+		Global ArmourStats := {}
+		Global MapStats := {}
+		Global Affix := {}
 
 		global Detonated := 0
 		global CritQuit := 1
@@ -659,9 +655,15 @@
 	Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
 	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section xs+60 y+15 w190 h45											,Character Name:
+	Gui,Add,GroupBox,Section xs+10 y+15 w160 h45											,Character Name:
 	Gui,Font,
-	Gui, Add, Edit, vCharName xs+5 ys+18 w180 h19, %CharName%
+	Gui, Add, Edit, vCharName xs+5 ys+18 w150 h19, %CharName%
+
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox,Section x+20 ys w120 h60											,QS on attack:
+	Gui,Font,
+	Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xs+5 ys+20 , Primary Attack
+	Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack%  , Secondary Attack
 
 	Gui, Font, Bold
 	Gui Add, Text, 								section		x292 	y250, 				Utility Management:
@@ -1325,7 +1327,7 @@ ItemSort(){
 		Critical
 		CurrentTab:=0
 		MouseGetPos xx, yy
-		IfWinActive, Path of Exile
+		IfWinActive, ahk_group POEGameGroup
 		{
 			If RunningToggle  ; This means an underlying thread is already running the loop below.
 			{
@@ -1364,102 +1366,102 @@ ItemSort(){
 					}
 					
 					ClipItem(Grid.X,Grid.Y)
-					If (!ItemProp.Identified&&YesIdentify)
+					If (!Prop.Identified&&YesIdentify)
 					{
-						If (ItemProp.Map&&!YesMapUnid)
+						If (Prop.IsMap&&!YesMapUnid)
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
-						Else If (ItemProp.Chromatic && (ItemProp.RarityRare || ItemProp.RarityUnique ) ) 
+						Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
-						Else If ( ItemProp.Jeweler && ( ItemProp.5Link || ItemProp.6Link || ItemProp.RarityRare || ItemProp.RarityUnique) )
+						Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
-						Else If (!ItemProp.Chromatic && !ItemProp.Jeweler&&!ItemProp.Map)
+						Else If (!Prop.Chromatic && !Prop.Jeweler&&!Prop.IsMap)
 						{
 							WisdomScroll(Grid.X,Grid.Y)
 						}
 					}
 					If (OnStash&&YesStash) 
 					{
-						If (ItemProp.RarityCurrency&&ItemProp.SpecialType=""&&StashTabYesCurrency)
+						If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
 						{
 							MoveStash(StashTabCurrency)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Map&&StashTabYesMap)
+						If (Prop.IsMap&&StashTabYesMap)
 						{
 							MoveStash(StashTabMap)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.BreachSplinter&&StashTabYesFragment)
+						If (Prop.BreachSplinter&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.SacrificeFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (ItemProp.MortalFragment&&StashTabYesFragment)
+						If (Prop.SacrificeFragment&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.GuardianFragment&&StashTabYesFragment)
+						If (Prop.MortalFragment&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.ProphecyFragment&&StashTabYesFragment)
+						If (Prop.GuardianFragment&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Offering&&StashTabYesFragment)
+						If (Prop.ProphecyFragment&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Vessel&&StashTabYesFragment)
+						If (Prop.Offering&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Scarab&&StashTabYesFragment)
+						If (Prop.Vessel&&StashTabYesFragment)
 						{
 							MoveStash(StashTabFragment)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.RarityDivination&&StashTabYesDivination)
+						If (Prop.Scarab&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.RarityDivination&&StashTabYesDivination)
 						{
 							MoveStash(StashTabDivination)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.RarityUnique&&ItemProp.Ring)
+						If (Prop.RarityUnique&&Prop.Ring)
 						{
 							If (StashTabYesCollection)
 							{
@@ -1481,7 +1483,7 @@ ItemSort(){
 							}
 							Continue
 						}
-						Else If (ItemProp.RarityUnique)
+						Else If (Prop.RarityUnique)
 						{
 							If (StashTabYesCollection)
 							{
@@ -1504,36 +1506,36 @@ ItemSort(){
 							}
 							Continue
 						}
-						If (ItemProp.Essence&&StashTabYesEssence)
+						If (Prop.Essence&&StashTabYesEssence)
 						{
 							MoveStash(StashTabEssence)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Fossil&&StashTabYesFossil)
+						If (Prop.Fossil&&StashTabYesFossil)
 						{
 							MoveStash(StashTabFossil)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Resonator&&StashTabYesResonator)
+						If (Prop.Resonator&&StashTabYesResonator)
 						{
 							MoveStash(StashTabResonator)
 							RandomSleep(30,45)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Flask&&(ItemProp.Quality>0)&&StashTabYesFlaskQuality)
+						If (Prop.Flask&&(Prop.Quality>0)&&StashTabYesFlaskQuality)
 						{
 							MoveStash(StashTabFlaskQuality)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.RarityGem)
+						If (Prop.RarityGem)
 						{
-							If ((ItemProp.Quality>0)&&StashTabYesGemQuality)
+							If ((Prop.Quality>0)&&StashTabYesGemQuality)
 							{
 								MoveStash(StashTabGemQuality)
 								CtrlClick(Grid.X,Grid.Y)
@@ -1546,19 +1548,19 @@ ItemSort(){
 								Continue
 							}
 						}
-						If ((ItemProp.5Link||ItemProp.6Link)&&StashTabYesLinked)
+						If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
 						{
 							MoveStash(StashTabLinked)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.TimelessSplinter&&StashTabYesTimelessSplinter)
+						If (Prop.TimelessSplinter&&StashTabYesTimelessSplinter)
 						{
 							MoveStash(StashTabTimelessSplinter)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (ItemProp.Prophecy&&StashTabYesProphecy)
+						If (Prop.Prophecy&&StashTabYesProphecy)
 						{
 							MoveStash(StashTabProphecy)
 							CtrlClick(Grid.X,Grid.Y)
@@ -1567,11 +1569,11 @@ ItemSort(){
 					}
 					If (OnVendor&&YesVendor)
 					{
-						If (ItemProp.RarityCurrency)
+						If (Prop.RarityCurrency)
 							Continue
-						If (ItemProp.RarityUnique && (ItemProp.Ring||ItemProp.Amulet||ItemProp.Jewel||ItemProp.Flask))
+						If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
 							Continue
-						If ( ItemProp.SpecialType="" )
+						If ( Prop.SpecialType="" )
 						{
 							Sleep, 30*Latency
 							CtrlClick(Grid.X,Grid.Y)
@@ -1727,7 +1729,7 @@ StockScrolls(){
 			MouseMove %WisdomScrollX%, %WisdomScrollY%
 			ClipItem(WisdomScrollX, WisdomScrollY)
 			Sleep, 20*Latency
-			dif := (40 - ItemProp.Stack)
+			dif := (40 - Prop.Stack)
 				If (dif>10)
 			{
 				MoveStash(1)
@@ -1750,7 +1752,7 @@ StockScrolls(){
 			MouseMove %PortalScrollX%, %PortalScrollY%
 			ClipItem(PortalScrollX, PortalScrollY)
 			Sleep, 20*Latency
-			dif := (40 - ItemProp.Stack)
+			dif := (40 - Prop.Stack)
 				If (dif>10)
 			{
 				MoveStash(1)
@@ -2321,21 +2323,6 @@ error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
 	return
 	}
 
-; Parse Elemental and Chaos damage
-ParseDamage(String, DmgType, ByRef DmgLo, ByRef DmgHi)
-{
-	IfInString, String, %DmgType% Damage:
-	{
-		IfNotInString, String, increased
-		{
-			StringSplit, Arr, String, %A_Space%
-			StringSplit, Arr, Arr3, -
-			DmgLo := Arr1
-			DmgHi := Arr2
-		}
-	}
-	return
-}
 ; Capture Clip at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ClipItem(x, y){
@@ -2355,8 +2342,16 @@ ClipItem(x, y){
 ParseClip(){
 		;Reset Variables
 		NameIsDone := False
-		
-		ItemProp := {ItemName: ""
+		itemLevelIsDone := 0
+		captureLines := 0
+		countCorruption := 0
+		doneCorruption := False
+		Prop := {ItemName: ""
+			, IsItem : False
+			, IsArmour : False
+			, IsWeapon : False
+			, IsMap : False
+			, ShowAffix : False
 			, Rarity : ""
 			, SpecialType : ""
 			, Stack : 0
@@ -2369,7 +2364,6 @@ ParseClip(){
 			, RarityRare : False
 			, RarityUnique : False
 			, Identified : True
-			, Map : False
 			, Ring : False
 			, Amulet : False
 			, Chromatic : False
@@ -2402,10 +2396,11 @@ ParseClip(){
 			, Flask : False
 			, Veiled : False
 			, Prophecy : False
-			, PhysLo : False
+			, ItemLevel : 0}
+
+		WeaponStats := { PhysLo : False
 			, PhysHi : False
 			, AttackSpeed : False
-			, IsWeapon : False
 			, PhysMult : False
 			, PhysDps : False
 			, EleDps : False
@@ -2414,10 +2409,140 @@ ParseClip(){
 			, ChaosHi : False
 			, EleLo : False
 			, EleHi : False
-			, ItemLevel : False
 			, TotalPhysMult : False
 			, BasePhysDps : False
-			, Q20Dps : False}
+			, Q20Dps : False
+			, RequirementLevel : 0
+			, RequirementStr : 0
+			, RequirementInt : 0
+			, RequirementDex : 0}
+
+		ArmourStats := { RequirementLevel : 0
+			, RequirementStr : 0
+			, RequirementInt : 0
+			, RequirementDex : 0 }
+
+		MapStats := { Tier : 0
+			, ItemQuantity : 0
+			, ItemRarity : 0
+			, MonsterPackSize : 0 }
+
+		Affix := { SupportGem : ""
+			, SupportGemLevel : 0
+			, CountSupportGem : 0
+			, AllElementalResistances : 0
+			, ColdLightningResistance : 0
+			, FireColdResistance : 0
+			, FireLightningResistance : 0
+			, ColdResistance : 0
+			, FireResistance : 0
+			, LightningResistance : 0
+			, ChaosResistance : 0
+			, MaximumLife : 0
+			, IncreasedMaximumLife : 0
+			, MaximumEnergyShield : 0
+			, IncreasedEnergyShield : 0
+			, MaximumMana : 0
+			, IncreasedMaximumMana : 0
+			, IncreasedAttackSpeed : 0
+			, IncreasedColdDamage : 0
+			, IncreasedFireDamage : 0
+			, IncreasedLightningDamage : 0
+			, IncreasedPhysicalDamage : 0
+			, IncreasedSpellDamage : 0
+			, PseudoColdResist : 0
+			, PseudoFireResist : 0
+			, PseudoLightningResist : 0
+			, PseudoChaosResist : 0
+			, LifeRegeneration : 0
+			, ChanceDoubleDamage : 0
+			, IncreasedRarity : 0
+			, IncreasedEvasion : 0
+			, IncreasedArmour : 0
+			, IncreasedAttackSpeed : 0
+			, IncreasedAttackCastSpeed : 0
+			, IncreasedMovementSpeed : 0
+			, ReducedEnemyStunThreshold : 0
+			, IncreasedStunBlockRecovery : 0
+			, LifeGainOnAttack : 0
+			, WeaponRange : 0
+			, AddedIntelligence : 0
+			, AddedStrength : 0
+			, AddedDexterity : 0
+			, AddedStrengthDexterity : 0
+			, AddedStrengthIntelligence : 0
+			, AddedDexterityIntelligence : 0
+			, AddedArmour : 0
+			, AddedEvasion : 0
+			, AddedAllStats : 0
+			, PseudoAddedStrength : 0
+			, PseudoAddedDexterity : 0
+			, PseudoAddedIntelligence : 0
+			, IncreasedArmourEnergyShield : 0
+			, IncreasedArmourEvasion : 0
+			, IncreasedEvasionEnergyShield : 0
+			, PseudoIncreasedArmour : 0
+			, PseudoIncreasedEvasion : 0
+			, PseudoIncreasedEnergyShield : 0
+			, ChanceDodgeAttack : 0
+			, ChanceDodgeSpell : 0
+			, ChanceBlockSpell : 0
+			, BlockManaGain : 0
+			, PhysicalDamageReduction : 0
+			, ReducedAttributeRequirement : 0
+			, ReflectPhysical : 0
+			, EnergyShieldRegen : 0
+			, PhysicalLeechLife : 0
+			, PhysicalLeechMana : 0
+			, OnKillLife : 0
+			, OnKillMana : 0
+			, IncreasedElementalAttack : 0
+			, IncreasedFlaskLifeRecovery : 0
+			, IncreasedFlaskManaRecovery : 0
+			, IncreasedStunDuration : 0
+			, IncreasedFlaskDuration : 0
+			, IncreasedFlaskChargesGained : 0
+			, ReducedFlaskChargesUsed : 0
+			, GlobalCriticalChance : 0
+			, GlobalCriticalMultiplier : 0
+			, IncreasedProjectileSpeed : 0
+			, AddedLevelGems : 0
+			, AddedLevelMinionGems : 0
+			, AddedLevelMeleeGems : 0
+			, AddedLevelBowGems : 0
+			, AddedLevelFireGems : 0
+			, AddedLevelColdGems : 0
+			, AddedLevelLightningGems : 0
+			, AddedLevelChaosGems : 0
+			, NonAilmentChaosDOTMult : 0
+			, ColdDOTMult : 0
+			, ChanceFreeze : 0
+			, ChanceShock : 0
+			, ChanceIgnite : 0
+			, ChanceAvoidElementalAilment : 0
+			, ChanceIgnite : 0
+			, ChanceIgnite : 0
+			, ChanceIgnite : 0
+			, IncreasedBurningDamage : 0
+			, IncreasedSpellCritChance : 0
+			, IncreasedCritChance : 0
+			, IncreasedManaRegeneration : 0
+			, IncreasedCastSpeed : 0
+			, IncreasedPoisonDuration : 0
+			, ChancePoison : 0
+			, IncreasedPoisonDamage : 0
+			, IncreasedBleedDuration : 0
+			, ChanceBleed : 0
+			, IncreasedBleedDamage : 0
+			, IncreasedLightRadius : 0
+			, IncreasedGlobalAccuracy : 0
+			, ChanceBlock : 0
+			, GainFireToExtraChaos : 0
+			, GainColdToExtraChaos : 0
+			, GainLightningToExtraChaos : 0
+			, GainPhysicalToExtraChaos : 0
+			, Implicit : ""}
+
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -2430,42 +2555,43 @@ ParseClip(){
 				}
 				Else
 				{
+					Prop.IsItem := True
 					IfInString, A_LoopField, Currency
 					{
-						ItemProp.RarityCurrency := True
-						ItemProp.Rarity := "Currency"
+						Prop.RarityCurrency := True
+						Prop.Rarity := "Currency"
 					}
 					IfInString, A_LoopField, Divination Card
 					{
-						ItemProp.RarityDivination := True
-						ItemProp.Rarity := "Divination Card"
-						ItemProp.SpecialType := "Divination Card"
+						Prop.RarityDivination := True
+						Prop.Rarity := "Divination Card"
+						Prop.SpecialType := "Divination Card"
 					}
 					IfInString, A_LoopField, Gem
 					{
-						ItemProp.RarityGem := True
-						ItemProp.Rarity := "Gem"
-						ItemProp.SpecialType := "Gem"
+						Prop.RarityGem := True
+						Prop.Rarity := "Gem"
+						Prop.SpecialType := "Gem"
 					}
 					IfInString, A_LoopField, Normal
 					{
-						ItemProp.RarityNormal := True
-						ItemProp.Rarity := "Normal"
+						Prop.RarityNormal := True
+						Prop.Rarity := "Normal"
 					}
 					IfInString, A_LoopField, Magic
 					{
-						ItemProp.RarityMagic := True
-						ItemProp.Rarity := "Magic"
+						Prop.RarityMagic := True
+						Prop.Rarity := "Magic"
 					}
 					IfInString, A_LoopField, Rare
 					{
-						ItemProp.RarityRare := True
-						ItemProp.Rarity := "Rare"
+						Prop.RarityRare := True
+						Prop.Rarity := "Rare"
 					}
 					IfInString, A_LoopField, Unique
 					{
-						ItemProp.RarityUnique := True
-						ItemProp.Rarity := "Unique"
+						Prop.RarityUnique := True
+						Prop.Rarity := "Unique"
 					}
 					Continue
 				}
@@ -2480,267 +2606,1131 @@ ParseClip(){
 				}
 				Else
 				{
-					ItemProp.ItemName := ItemProp.ItemName . A_LoopField . "`n" ; Add a line of name
+					Prop.ItemName := Prop.ItemName . A_LoopField . "`n" ; Add a line of name
 					IfInString, A_LoopField, Ring
 					{
-						ItemProp.Ring := True
+						Prop.Ring := True
 						Continue
 					}
 					IfInString, A_LoopField, Amulet
 					{
-						ItemProp.Amulet := True
+						Prop.Amulet := True
 						Continue
 					}
 					IfInString, A_LoopField, Map
 					{
-						ItemProp.Map := True
-						ItemProp.SpecialType := "Map"
+						Prop.IsMap := True
+						Prop.SpecialType := "Map"
 						Continue
 					}
 					IfInString, A_LoopField, Incubator
 					{
-						ItemProp.Incubator := True
-						ItemProp.SpecialType := "Incubator"
+						Prop.Incubator := True
+						Prop.SpecialType := "Incubator"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Karui Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Eternal Empire Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Vaal Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Templar Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Timeless Maraketh Splinter
 					{
-						ItemProp.TimelessSplinter := True
-						ItemProp.SpecialType := "Timeless Splinter"
+						Prop.TimelessSplinter := True
+						Prop.SpecialType := "Timeless Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Splinter of
 					{
-						ItemProp.BreachSplinter := True
-						ItemProp.SpecialType := "Breach Splinter"
+						Prop.BreachSplinter := True
+						Prop.SpecialType := "Breach Splinter"
 						Continue
 					}
 					IfInString, A_LoopField, Sacrifice at
 					{
-						ItemProp.SacrificeFragment := True
-							ItemProp.SpecialType := "Sacrifice Fragment"
+						Prop.SacrificeFragment := True
+						Prop.SpecialType := "Sacrifice Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Mortal Grief
 					{
-						ItemProp.MortalFragment := True
-						ItemProp.SpecialType := "Mortal Fragment"
+						Prop.MortalFragment := True
+						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Mortal Hope
 					{
-						ItemProp.MortalFragment := True
-						ItemProp.SpecialType := "Mortal Fragment"
+						Prop.MortalFragment := True
+						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Mortal Ignorance
 					{
-						ItemProp.MortalFragment := True
-						ItemProp.SpecialType := "Mortal Fragment"
+						Prop.MortalFragment := True
+						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Mortal Rage
 					{
-						ItemProp.MortalFragment := True
-						ItemProp.SpecialType := "Mortal Fragment"
+						Prop.MortalFragment := True
+						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Fragment of the
 					{
-						ItemProp.GuardianFragment := True
-						ItemProp.SpecialType := "Guardian Fragment"
+						Prop.GuardianFragment := True
+						Prop.SpecialType := "Guardian Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Volkuur's Key
 					{
-						ItemProp.ProphecyFragment := True
-						ItemProp.SpecialType := "Prophecy Fragment"
+						Prop.ProphecyFragment := True
+						Prop.SpecialType := "Prophecy Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Eber's Key
 					{
-						ItemProp.ProphecyFragment := True
-						ItemProp.SpecialType := "Prophecy Fragment"
+						Prop.ProphecyFragment := True
+						Prop.SpecialType := "Prophecy Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Yriel's Key
 					{
-						ItemProp.ProphecyFragment := True
-						ItemProp.SpecialType := "Prophecy Fragment"
+						Prop.ProphecyFragment := True
+						Prop.SpecialType := "Prophecy Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Inya's Key
 					{
-						ItemProp.ProphecyFragment := True
-						ItemProp.SpecialType := "Prophecy Fragment"
+						Prop.ProphecyFragment := True
+						Prop.SpecialType := "Prophecy Fragment"
 						Continue
 					}
 					IfInString, A_LoopField, Scarab
 					{
-						ItemProp.Scarab := True
-						ItemProp.SpecialType := "Scarab"
+						Prop.Scarab := True
+						Prop.SpecialType := "Scarab"
 						Continue
 					}
 					IfInString, A_LoopField, Offering to the Goddess
 					{
-						ItemProp.Offering := True
-						ItemProp.SpecialType := "Offering"
+						Prop.Offering := True
+						Prop.SpecialType := "Offering"
 						Continue
 					}
 					IfInString, A_LoopField, Essence of
 					{
-						ItemProp.Essence := True
-						ItemProp.SpecialType := "Essence"
+						Prop.Essence := True
+						Prop.SpecialType := "Essence"
 						Continue
 					}
 					IfInString, A_LoopField, Remnant of Corruption
 					{
-						ItemProp.Essence := True
-						ItemProp.SpecialType := "Essence"
+						Prop.Essence := True
+						Prop.SpecialType := "Essence"
 						Continue
 					}
 					IfInString, A_LoopField, Incubator
 					{
-						ItemProp.Incubator := True
-						ItemProp.SpecialType := "Incubator"
+						Prop.Incubator := True
+						Prop.SpecialType := "Incubator"
 						Continue
 					}
 					IfInString, A_LoopField, Fossil
 					{
 						IfNotInString, A_LoopField, Fossilised
 						{
-							ItemProp.Fossil := True
-							ItemProp.SpecialType := "Fossil"
+							Prop.Fossil := True
+							Prop.SpecialType := "Fossil"
 							Continue
 						}
 					}
 					IfInString, A_LoopField, Resonator
 					{
-						ItemProp.Resonator := True
-						ItemProp.SpecialType := "Resonator"
+						Prop.Resonator := True
+						Prop.SpecialType := "Resonator"
 						Continue
 					}
 					IfInString, A_LoopField, Divine Vessel
 					{
-						ItemProp.Vessel := True
-						ItemProp.SpecialType := "Divine Vessel"
+						Prop.Vessel := True
+						Prop.SpecialType := "Divine Vessel"
 						Continue
 					}
 					IfInString, A_LoopField, Eye Jewel
 					{
-						ItemProp.AbyssJewel := True
-						ItemProp.Jewel := True
+						Prop.AbyssJewel := True
+						Prop.Jewel := True
 						Continue
 					}
 					IfInString, A_LoopField, Cobalt Jewel
 					{
-						ItemProp.Jewel := True
+						Prop.Jewel := True
 						Continue
 					}
 					IfInString, A_LoopField, Crimson Jewel
 					{
-						ItemProp.Jewel := True
+						Prop.Jewel := True
 						Continue
 					}
 					IfInString, A_LoopField, Viridian Jewel
 					{
-						ItemProp.Jewel := True
+						Prop.Jewel := True
 						Continue
 					}
 					IfInString, A_LoopField, Flask
 					{
-						ItemProp.Flask := True
+						Prop.Flask := True
 						Continue
 					}
 				}
 				Continue
 			}
 				
-			; Get item level
-			IfInString, A_LoopField, Item Level:
+			; Get quality
+			IfInString, A_LoopField, Quality:
 			{
-				StringSplit, ItemLevelArray, A_LoopField, %A_Space%
-				ItemProp.ItemLevel := ItemLevelArray3
+				StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
+					Prop.Quality := QualityArray2
 				Continue
 			}
 			; Get Socket Information
 			IfInString, A_LoopField, Sockets:
 			{
 				StringSplit, RawSocketsArray, A_LoopField, %A_Space%
-				ItemProp.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
-				For k, v in StrSplit(ItemProp.RawSockets, " ") 
+				Prop.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
+				For k, v in StrSplit(Prop.RawSockets, " ") 
 				{		
 					if (v ~= "B") && (v ~= "G") && (v ~= "R")
-						ItemProp.Chromatic := True
+						Prop.Chromatic := True
 					Loop, Parse, v
 						Counter++
 					If (Counter=11)
 					{
-						ItemProp.6Link:=True
-						ItemProp.SpecialType := "6Link"
+						Prop.6Link:=True
+						Prop.SpecialType := "6Link"
 					}
 					Else If (Counter=9)
 					{
-						ItemProp.5Link:=True
-						ItemProp.SpecialType := "5Link"
+						Prop.5Link:=True
+						Prop.SpecialType := "5Link"
 					}
 					Else If (Counter=7)
 					{
-						ItemProp.4Link:=True
+						Prop.4Link:=True
 					}
 					Else If (Counter=5)
 					{
-						ItemProp.3Link:=True
+						Prop.3Link:=True
 					}
 					Else If (Counter=3)
 					{
-						ItemProp.2Link:=True
+						Prop.2Link:=True
 					}
 					Counter:=0
 				}
 				Loop, parse, A_LoopField
 				{
 					if (A_LoopField ~= "[-]")
-						ItemProp.LinkCount++
+						Prop.LinkCount++
 				}
 				Loop, parse, A_LoopField
 				{
 					if (A_LoopField ~= "[BGR]")
-						ItemProp.Sockets++
+						Prop.Sockets++
 				}
-				If (ItemProp.Sockets = 6)
-					ItemProp.Jeweler:=True
+				If (Prop.Sockets = 6)
+					Prop.Jeweler:=True
 				Continue
 			}
-			; Get quality
-			IfInString, A_LoopField, Quality:
+			; Get item level
+			IfInString, A_LoopField, Item Level:
 			{
-				StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
-					ItemProp.Quality := QualityArray2
+				StringSplit, ItemLevelArray, A_LoopField, %A_Space%
+				Prop.ItemLevel := ItemLevelArray3
+				itemLevelIsDone := 1
+				Continue
+			}
+			;Capture Implicit and Affixes after the Item Level
+			If (itemLevelIsDone > 0 && itemLevelIsDone < 4) {
+				If A_LoopField = --------
+				{
+					++itemLevelIsDone
+					If (itemLevelIsDone = 3 && captureLines = 1){
+						Prop.HasAffix := True
+						Affix.Implicit := possibleImplicit
+					}
+					Else If (itemLevelIsDone = 2 && countCorruption > 0 && !doneCorruption && captureLines < 3){
+						doneCorruption := True
+						captureLines := 1
+					}
+					Else If (!Affix.Implicit && itemLevelIsDone = 3 && captureLines > 0){
+						Prop.HasAffix := True
+					}
+					Else If (Affix.Implicit && itemLevelIsDone = 4 && captureLines > 0){
+						Prop.HasAffix := True
+					}
+				}
+				Else
+				{
+					If (itemLevelIsDone=2 && !Affix.LabEnchant && captureLines < 1) {
+						imp := RegExReplace(A_LoopField, "i)([-.0-9]+)", "#")
+						if (indexOf(imp, Enchantment)) {
+							Affix.LabEnchant := A_LoopField
+							itemLevelIsDone := 1
+						Continue
+						}
+					}
+					If (itemLevelIsDone=2 && !Affix.Talisman && captureLines < 1) {
+						IfInString, A_LoopField, Talisman Tier:
+						{	
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.TalismanTier := Arr3
+							itemLevelIsDone := 1
+						Continue
+						}
+					}
+					++captureLines
+					If (itemLevelIsDone >= 1 && !doneCorruption && captureLines < 3) {
+						imp := RegExReplace(A_LoopField, "i)([-.0-9]+)", "#")
+						if (indexOf(imp, Corruption)) {
+							If (countCorruption < 1){
+							possibleCorruption := A_LoopField
+							++countCorruption
+							}Else If (countCorruption = 1){
+							possibleCorruption2 := A_LoopField
+							++countCorruption
+							}
+							itemLevelIsDone := 1
+						}
+					}
+					If (captureLines < 2)
+						possibleImplicit:=A_LoopField
+					IfInString, A_LoopField, Socketed Gems are
+					{
+						++Affix.CountSupportGem
+						If (Affix.CountSupportGem = 1) {
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.SupportGemLevel := Arr7
+							StringSplit, Arrname, A_LoopField, %Arr7%, 3
+							If (Arrname2!=""){
+								StringTrimLeft, Arrname2, Arrname2 , 1
+								Affix.SupportGem := Arrname2
+							}
+							Else if (Arrname3!=""){
+								StringTrimLeft, Arrname3, Arrname3, 1
+								Affix.SupportGem := Arrname3
+							}
+						} Else If (Affix.CountSupportGem = 2) {
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.SupportGem2Level := Arr7
+							StringSplit, Arrname, A_LoopField, %Arr7%
+							If (Arrname2!=""){
+								StringTrimLeft, Arrname2, Arrname2 , 1
+								Affix.SupportGem2 := Arrname2
+							}
+							Else if (Arrname3!=""){
+								StringTrimLeft, Arrname3, Arrname3, 1
+								Affix.SupportGem2 := Arrname3
+							}
+						} Else If (Affix.CountSupportGem = 3) {
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.SupportGem3Level := Arr7
+							StringSplit, Arrname, A_LoopField, %Arr7%
+							If (Arrname2!=""){
+								StringTrimLeft, Arrname2, Arrname2 , 1
+								Affix.SupportGem3 := Arrname2
+							}
+							Else if (Arrname3!=""){
+								StringTrimLeft, Arrname3, Arrname3, 1
+								Affix.SupportGem3 := Arrname3
+							}
+						} Else If (Affix.CountSupportGem = 4) {
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.SupportGem4Level := Arr7
+							StringSplit, Arrname, A_LoopField, %Arr7%
+							If (Arrname2!=""){
+								StringTrimLeft, Arrname2, Arrname2 , 1
+								Affix.SupportGem4 := Arrname2
+							}
+							Else if (Arrname3!=""){
+								StringTrimLeft, Arrname3, Arrname3, 1
+								Affix.SupportGem4 := Arrname3
+							}
+						}
+					Continue
+					}
+					IfInString, A_LoopField, to Level of Socketed Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelGems := Affix.AddedLevelGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Minion Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelMinionGems := Affix.AddedLevelMinionGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Bow Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelBowGems := Affix.AddedLevelBowGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Fire Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelFireGems := Affix.AddedLevelFireGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Cold Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelColdGems := Affix.AddedLevelColdGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Lightning Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelLightningGems := Affix.AddedLevelLightningGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Level of Socketed Chaos Gems
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedLevelChaosGems := Affix.AddedLevelChaosGems + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Intelligence
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedIntelligence := Affix.AddedIntelligence + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Strength
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedStrength := Affix.AddedStrength + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Dexterity
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedDexterity := Affix.AddedDexterity + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to all Attributes
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedAllStats := Affix.AddedAllStats + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Strength and Dexterity
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedStrengthDexterity := Affix.AddedStrengthDexterity + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Dexterity and Intelligence
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedDexterityIntelligence := Affix.AddedDexterityIntelligence + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Strength and Intelligence
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedStrengthIntelligence := Affix.AddedStrengthIntelligence + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Armour
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedArmour := Affix.AddedArmour + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Armour
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedArmour := Affix.IncreasedArmour + Arr1
+						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Evasion Rating
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedEvasion := Affix.AddedEvasion + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Evasion Rating
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedEvasion := Affix.IncreasedEvasion + Arr1
+						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Evasion and Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedEvasionEnergyShield := Affix.IncreasedEvasionEnergyShield + Arr1
+						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
+						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Armour and Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedArmourEnergyShield := Affix.IncreasedArmourEnergyShield + Arr1
+						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
+						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Armour and Evasion
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedArmourEvasion := Affix.IncreasedArmourEvasion + Arr1
+						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
+						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Accuracy Rating
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedAccuracy := Affix.AddedAccuracy + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to maximum Life
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.MaximumLife := Affix.MaximumLife + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased maximum Life
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedMaximumLife := Affix.IncreasedMaximumLife + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to maximum Mana
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.MaximumMana := Affix.MaximumMana + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased maximum Mana
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedMaximumMana := Affix.IncreasedMaximumMana + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Mana Regeneration Rate
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedManaRegeneration := Affix.IncreasedManaRegeneration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to maximum Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.MaximumEnergyShield := Affix.MaximumEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedEnergyShield := Affix.IncreasedEnergyShield + Arr1
+						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, of Physical Attack Damage Leeched as Life
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.PhysicalLeechLife := Affix.PhysicalLeechLife + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, of Physical Attack Damage Leeched as Mana
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.PhysicalLeechMana := Affix.PhysicalLeechMana + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Global Critical Strike Chance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.GlobalCriticalChance := Affix.GlobalCriticalChance + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Global Critical Strike Multiplier
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.GlobalCriticalMultiplier := Affix.GlobalCriticalMultiplier + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Projectile Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedProjectileSpeed := Affix.IncreasedProjectileSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to all Elemental Resistances
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.AllElementalResistances := Affix.AllElementalResistances + Arr1
+						Affix.PseudoColdResist := Affix.PseudoColdResist + Arr1
+						Affix.PseudoLightningResist := Affix.PseudoLightningResist + Arr1
+						Affix.PseudoFireResist := Affix.PseudoFireResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Fire and Lightning Resistances
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.FireLightningResistance := Affix.FireLightningResistance + Arr1
+						Affix.PseudoLightningResist := Affix.PseudoLightningResist + Arr1
+						Affix.PseudoFireResist := Affix.PseudoFireResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Fire and Cold Resistances
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.FireColdResistance := Affix.FireColdResistance + Arr1
+						Affix.PseudoFireResist := Affix.PseudoFireResist + Arr1
+						Affix.PseudoColdResist := Affix.PseudoColdResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Cold and Lightning Resistances
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.ColdLightningResistance := Affix.ColdLightningResistance + Arr1
+						Affix.PseudoColdResist := Affix.PseudoColdResist + Arr1
+						Affix.PseudoLightningResist := Affix.PseudoLightningResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Cold Resistance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.ColdResistance := Affix.ColdResistance + Arr1
+						Affix.PseudoColdResist := Affix.PseudoColdResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Fire Resistance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.FireResistance := Affix.FireResistance + Arr1
+						Affix.PseudoFireResist := Affix.PseudoFireResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Lightning Resistance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.LightningResistance := Affix.LightningResistance + Arr1
+						Affix.PseudoLightningResist := Affix.PseudoLightningResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Chaos Resistance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.ChaosResistance := Affix.ChaosResistance + Arr1
+						Affix.PseudoChaosResist := Affix.PseudoChaosResist + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Life Regenerated per second
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%
+						Affix.LifeRegeneration := Affix.LifeRegeneration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to deal Double Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Avoid Elemental Ailments
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceAvoidElementalAilment := Affix.ChanceAvoidElementalAilment + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Dodge Attack Hits
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to deal Double Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Rarity of Items found
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedRarity := Affix.IncreasedRarity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Attack and Cast Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedAttackCastSpeed := Affix.IncreasedAttackCastSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Attack Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedAttackSpeed := Affix.IncreasedAttackSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Movement Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedMovementSpeed := Affix.IncreasedMovementSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Chance to Block
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceBlock := Affix.ChanceBlock + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Elemental Damage with Attack Skills
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedElementalAttack := Affix.IncreasedElementalAttack + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Physical Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedPhysicalDamage := Affix.IncreasedPhysicalDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Poison Duration
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedPoisonDuration := Affix.IncreasedPoisonDuration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Poison on Hit
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChancePoison := Affix.ChancePoison + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Damage with Poison
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedPoisonDamage := Affix.IncreasedPoisonDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Bleeding Duration
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedBleedDuration := Affix.IncreasedBleedDuration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to cause Bleeding on Hit
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceBleed := Affix.ChanceBleed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Damage with Bleeding
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedBleedDamage := Affix.IncreasedBleedDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Critical Strike Chance for Spells
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedSpellCritChance := Affix.IncreasedSpellCritChance + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Critical Strike Chance
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedCritChance := Affix.IncreasedCritChance + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Cast Speed
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedCastSpeed := Affix.IncreasedCastSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Spell Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedSpellDamage := Affix.IncreasedSpellDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Cold Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedColdDamage := Affix.IncreasedColdDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Fire Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFireDamage := Affix.IncreasedFireDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Burning Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedBurningDamage := Affix.IncreasedBurningDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Lightning Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedLightningDamage := Affix.IncreasedLightningDamage + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Ignite
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceIgnite := Affix.ChanceIgnite + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Freeze
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceFreeze := Affix.ChanceFreeze + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Shock
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceShock := Affix.ChanceShock + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Light Radius
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedLightRadius := Affix.IncreasedLightRadius + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Flask Life Recovery rate
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFlaskLifeRecovery := Affix.IncreasedFlaskLifeRecovery + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Flask Mana Recovery rate
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFlaskManaRecovery := Affix.IncreasedFlaskManaRecovery + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Flask Charges gained
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFlaskChargesGained := Affix.IncreasedFlaskChargesGained + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, reduced Flask Charges used
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ReducedFlaskChargesUsed := Affix.ReducedFlaskChargesUsed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Flask Effect Duration
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedFlaskDuration := Affix.IncreasedFlaskDuration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Global Accuracy Rating
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedGlobalAccuracy := Affix.IncreasedGlobalAccuracy + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, reduced Enemy Stun Threshold
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ReducedEnemyStunThreshold := Affix.ReducedEnemyStunThreshold + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Stun Duration on Enemies
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedStunDuration := Affix.IncreasedStunDuration + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, of Energy Shield Regenerated per second
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.EnergyShieldRegen := Affix.EnergyShieldRegen + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, reduced Attribute Requirements
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ReducedAttributeRequirement := Affix.ReducedAttributeRequirement + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, additional Physical Damage Reduction
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.PhysicalDamageReduction := Affix.PhysicalDamageReduction + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Dodge Attack Hits
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDodgeAttack := Affix.ChanceDodgeAttack + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Dodge Spell Hits
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceDodgeSpell := Affix.ChanceDodgeSpell + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Chance to Block Spell Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChanceBlockSpell := Affix.ChanceBlockSpell + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Mana gained when you Block
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.BlockManaGain := Affix.BlockManaGain + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Physical Damage to Melee Attackers
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%
+						Affix.ReflectPhysical := Affix.ReflectPhysical + Arr2
+					Continue	
+					}
+					IfInString, A_LoopField, increased Stun and Block Recovery
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedStunBlockRecovery := Affix.IncreasedStunBlockRecovery + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Life gained on Kill
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.OnKillLife := Affix.OnKillLife + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Mana gained on Kill
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.OnKillMana := Affix.OnKillMana + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Life gained for each Enemy hit by Attacks
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.LifeGainOnAttack := Affix.LifeGainOnAttack + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Weapon range
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.WeaponRange := Affix.WeaponRange + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Non-Ailment Chaos Damage over Time Multiplier
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.NonAilmentChaosDOTMult := Affix.NonAilmentChaosDOTMult + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Cold Damage over Time Multiplier
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +`%
+						Affix.ColdDOTMult := Affix.ColdDOTMult + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, Adds
+					{
+						IfInString, A_LoopField, Physical Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.PhysicalDamageAttackLo := Arr2
+							Affix.PhysicalDamageAttackHi := Arr4
+							Affix.PhysicalDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Fire Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.FireDamageAttackLo := Arr2
+							Affix.FireDamageAttackHi := Arr4
+							Affix.FireDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Fire Damage to Spells
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.FireDamageSpellLo := Arr2
+							Affix.FireDamageSpellHi := Arr4
+							Affix.FireDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Cold Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ColdDamageAttackLo := Arr2
+							Affix.ColdDamageAttackHi := Arr4
+							Affix.ColdDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Cold Damage to Spells
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ColdDamageSpellLo := Arr2
+							Affix.ColdDamageSpellHi := Arr4
+							Affix.ColdDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Lightning Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.LightningDamageAttackLo := Arr2
+							Affix.LightningDamageAttackHi := Arr4
+							Affix.LightningDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Lightning Damage to Spells
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.LightningDamageSpellLo := Arr2
+							Affix.LightningDamageSpellHi := Arr4
+							Affix.LightningDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Chaos Damage to Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ChaosDamageAttackLo := Arr2
+							Affix.ChaosDamageAttackHi := Arr4
+							Affix.ChaosDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ChaosDamageLo := Arr2
+							Affix.ChaosDamageHi := Arr4
+							Affix.ChaosDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Cold Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ColdDamageLo := Arr2
+							Affix.ColdDamageHi := Arr4
+							Affix.ColdDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Fire Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.FireDamageLo := Arr2
+							Affix.FireDamageHi := Arr4
+							Affix.FireDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Lightning Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.LightningDamageLo := Arr2
+							Affix.LightningDamageHi := Arr4
+							Affix.LightningDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Physical Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.PhysicalDamageLo := Arr2
+							Affix.PhysicalDamageHi := Arr4
+							Affix.PhysicalDamageAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+
+					}
+					IfInString, A_LoopField, Gain
+					{
+						IfInString, A_LoopField, of Fire Damage as Extra Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%, `%
+							Affix.GainFireToExtraChaos := Affix.GainFireToExtraChaos + Arr2
+						Continue
+						}
+						IfInString, A_LoopField, of Cold Damage as Extra Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%, `%
+							Affix.GainColdToExtraChaos := Affix.GainColdToExtraChaos + Arr2
+						Continue
+						}
+						IfInString, A_LoopField, of Lightning Damage as Extra Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%, `%
+							Affix.GainLightningToExtraChaos := Affix.GainLightningToExtraChaos + Arr2
+						Continue
+						}
+						IfInString, A_LoopField, of Physical Damage as Extra Chaos Damage
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%, `%
+							Affix.GainPhysicalToExtraChaos := Affix.GainPhysicalToExtraChaos + Arr2
+						Continue
+						}
+					}
+				}
+			}
+			;Stack size
+			IfInString, A_LoopField, Corrupted
+			{
+					If possibleCorruption{
+						Affix.Corruption := possibleCorruption
+						Prop.Corrupted := True
+					}
+					If possibleCorruption2 {
+						Affix.Corruption2 := possibleCorruption2
+						Prop.DoubleCorrupted := True
+					}
 				Continue
 			}
 			;Stack size
@@ -2748,74 +3738,68 @@ ParseClip(){
 			{
 				StringSplit, StackArray, A_LoopField, %A_Space%
 				StringSplit, StripStackArray, StackArray3, /
-				ItemProp.Stack := StripStackArray1
-				ItemProp.StackMax := StripStackArray2
+				Prop.Stack := StripStackArray1
+				Prop.StackMax := StripStackArray2
 				Continue
 			}
 			; Flag Unidentified
 			IfInString, A_LoopField, Unidentified
 			{
-				ItemProp.Identified := False
+				Prop.Identified := False
 				continue
 			}
 			; Flag Prophecy
 			IfInString, A_LoopField, add this prophecy
 			{
-				ItemProp.Prophecy := True
-				ItemProp.SpecialType := "Prophecy"
+				Prop.Prophecy := True
+				Prop.SpecialType := "Prophecy"
 				continue
 			}
 			; Flag Veiled
 			IfInString, A_LoopField, Veiled%A_Space%
 			{
-				ItemProp.Veiled := True
-				ItemProp.SpecialType := "Veiled"
+				Prop.Veiled := True
+				Prop.SpecialType := "Veiled"
 				continue
 			}
-			; Get non physical
-			IfInString, A_LoopField, Elemental Damage:
-			{
-				ItemProp.IsWeapon := True
-			}
-
 			; Get total physical damage
 			IfInString, A_LoopField, Physical Damage:
 			{
-				ItemProp.IsWeapon := True
+				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				ItemProp.PhysLo := Arr1
-				ItemProp.PhysHi := Arr2
+				WeaponStats.PhysLo := Arr1
+				WeaponStats.PhysHi := Arr2
 				Continue
 			}
 			; Get total Elemental damage
 			IfInString, A_LoopField, Elemental Damage:
 			{
-				ItemProp.IsWeapon := True
+				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				ItemProp.EleLo := Arr1
-				ItemProp.EleHi := Arr2
+				WeaponStats.EleLo := Arr1
+				WeaponStats.EleHi := Arr2
 				Continue
 			}
-			; Get total Elemental damage
+			; Get total Chaos damage
 			IfInString, A_LoopField, Chaos Damage:
 			{
-				ItemProp.IsWeapon := True
+				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				ItemProp.ChaosLo := Arr1
-				ItemProp.ChaosHi := Arr2
+				WeaponStats.ChaosLo := Arr1
+				WeaponStats.ChaosHi := Arr2
 				Continue
 			}
 			; These only make sense for weapons
-			If ItemProp.IsWeapon 
+			If Prop.IsWeapon 
 			{
 				; Get attack speed
 				IfInString, A_LoopField, Attacks per Second:
 				{
 					StringSplit, Arr, A_LoopField, %A_Space%
-					ItemProp.AttackSpeed := Arr4
+					WeaponStats.AttackSpeed := Arr4
 					Continue
 				}
 
@@ -2823,34 +3807,30 @@ ParseClip(){
 				IfInString, A_LoopField, increased Physical Damage
 				{
 					StringSplit, Arr, A_LoopField, %A_Space%, `%
-					ItemProp.PhysMult := Arr1
+					WeaponStats.PhysMult := Arr1
 					Continue
 				}
 			}
 		}
+		;Determine if affixes complete on certain items
+		If (itemLevelIsDone = 2 && captureLines >= 1)
+		{
+			Prop.HasAffix := True
+		}
 		; DPS calculations
-		If (ItemProp.IsWeapon) {
+		If (Prop.IsWeapon) {
 
-			ItemProp.PhysDps := ((ItemProp.PhysLo + ItemProp.PhysHi) / 2) * ItemProp.AttackSpeed
-			ItemProp.EleDps := ((ItemProp.EleLo + ItemProp.EleHi) / 2) * ItemProp.AttackSpeed
-			ItemProp.ChaosDps := ((ItemProp.ChaosLo + ItemProp.ChaosHi) / 2) * ItemProp.AttackSpeed
+			WeaponStats.PhysDps := ((WeaponStats.PhysLo + WeaponStats.PhysHi) / 2) * WeaponStats.AttackSpeed
+			WeaponStats.EleDps := ((WeaponStats.EleLo + WeaponStats.EleHi) / 2) * WeaponStats.AttackSpeed
+			WeaponStats.ChaosDps := ((WeaponStats.ChaosLo + WeaponStats.ChaosHi) / 2) * WeaponStats.AttackSpeed
 
-			If ItemProp.PhysDps
-				ItemProp.TotalDps += ItemProp.PhysDps
-			If ItemProp.EleDps
-				ItemProp.TotalDps += ItemProp.EleDps
-			If ItemProp.ChaosDps
-				ItemProp.TotalDps += ItemProp.ChaosDps
+			WeaponStats.TotalDps := WeaponStats.PhysDps + WeaponStats.EleDps + WeaponStats.ChaosDps
 			; Only show Q20 values if item is not Q20
-			If (ItemProp.Quality < 20 && ItemProp.PhysDps)
+			If (Prop.Quality < 20)
 			{
-				ItemProp.TotalPhysMult := (ItemProp.PhysMult + ItemProp.Quality + 100) / 100
-				ItemProp.BasePhysDps := ItemProp.PhysDps / ItemProp.TotalPhysMult
-				ItemProp.Q20Dps := ItemProp.BasePhysDps * ((ItemProp.PhysMult + 120) / 100) 
-				If ItemProp.EleDps
-					ItemProp.Q20Dps += ItemProp.EleDps
-				If ItemProp.ChaosDps
-					ItemProp.Q20Dps += ItemProp.ChaosDps
+				WeaponStats.TotalPhysMult := (WeaponStats.PhysMult + Prop.Quality + 100) / 100
+				WeaponStats.BasePhysDps := WeaponStats.PhysDps / WeaponStats.TotalPhysMult
+				WeaponStats.Q20Dps := WeaponStats.BasePhysDps * ((WeaponStats.PhysMult + 120) / 100) + WeaponStats.EleDps + WeaponStats.ChaosDps
 			}
 		}
 
@@ -2884,25 +3864,82 @@ GrabRecipientName(){
 
 ; Debugging information on Mouse Cursor
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GetMouseCoords(){
-		GetMouseCoordsCommand:
+CoordAndDebug(){
+		CoordAndDebugCommand:
 			
 			MouseGetPos x, y
 			PixelGetColor, xycolor , x, y
 			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
 			
 			If DebugMessages{
-				TT := TT . "`n" . "`n"
+				TT := TT . "`n`n"
 				GuiStatus()
 				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n" . "`n"
-				If ShowItemInfo {
-					ClipItem(x, y)
-					For key, value in ItemProp
-						TT := TT . key . ":  " . value . "`n"
+				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n`n"
+				ClipItem(x, y)
+				If (Prop.IsItem) {
+					TT := TT . "Item Properties:`n"
+					If ShowItemInfo {	
+						For key, value in Prop
+						{
+							If (value != 0 && value != "" && value != False)
+								TT := TT . key . ":  " . value . "`n"
+						}
+						MsgBox %TT%
+						If (Prop.IsWeapon) {
+							TT := "Weapon Stats:`n`n"
+							If ShowItemInfo {
+								For key, value in WeaponStats
+								{
+									If (value != 0 && value != "" && value != False)
+										TT := TT . key . ":  " . value . "`n"
+								}
+							}
+						MsgBox %TT%
+						}
+						If (Prop.IsArmour) {
+							TT := "Armour Stats:`n`n"
+							If ShowItemInfo {
+								For key, value in ArmourStats
+								{
+									If (value != 0 && value != "" && value != False)
+										TT := TT . key . ":  " . value . "`n"
+								}
+							}
+						MsgBox %TT%
+						}
+						If (Prop.IsMap) {
+							TT := "Map Stats:`n`n"
+							If ShowItemInfo {
+								For key, value in MapStats
+								{
+									If (value != 0 && value != "" && value != False)
+										TT := TT . key . ":  " . value . "`n"
+								}
+							}
+						MsgBox %TT%
+						}
+						If (Prop.HasAffix) {
+							TT := "Item Affix:`n`n"
+							If ShowItemInfo {
+								For key, value in Affix
+								{
+									If (value != 0 && value != "" && value != False)
+										TT := TT . key . ":  " . value . "`n"
+								}
+							}
+						MsgBox %TT%
+						}
+					}
+				} Else {
+					Tooltip, %TT%
+					SetTimer, RemoveToolTip, 10000
 				}
+
+			} Else {
+				Tooltip, %TT%
+				SetTimer, RemoveToolTip, 10000
 			}
-			MsgBox %TT%
 			If (DebugMessages&&ShowPixelGrid){
 				
 				;Check if inventory is open
@@ -2935,7 +3972,6 @@ GetMouseCoords(){
 			}
 		Return
 	}
-
 
 ; Check if a specific value is part of an array and return the index
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3144,13 +4180,19 @@ GuiStatus(Fetch:=""){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MainAttackCommand(){
 	MainAttackCommand:
-	if (AutoFlask=1) {
+	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
 		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
 			return
-		TriggerFlask(TriggerMainAttack)
-		SetTimer, TimerMainAttack, 200
+		If AutoFlask {
+			TriggerFlask(TriggerMainAttack)
+			SetTimer, TimerMainAttack, 200
 		}
+		If (AutoQuicksilver && QSonMainAttack) {
+			SendMSG(5,1,scriptGottaGoFast)
+			SetTimer, TimerMainAttack, 200
+		}
+	}
     Return	
 	}
 ; Secondary attack Flasks
@@ -3170,7 +4212,7 @@ SecondaryAttackCommand(){
 ; Detonate Mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TMineTick(){
-    IfWinActive, Path of Exile
+    IfWinActive, ahk_group POEGameGroup
     {	
         If (DetonateMines&&!Detonated) 
             DetonateMines()
@@ -3218,7 +4260,7 @@ Ding(Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Me
 ; Flask Logic
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TGameTick(){
-    IfWinActive, Path of Exile
+    IfWinActive, ahk_group POEGameGroup
     {
         ; Check what status is your character in the game
         GuiStatus()
@@ -3842,7 +4884,6 @@ RegisterHotkeys() {
             Return False
         }
 }
-
 2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
     IfWinExist, ahk_group POEGameGroup
         {
@@ -3876,10 +4917,9 @@ RegisterHotkeys() {
             Return False
         }
 }
-
 stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
     IfWinExist, ahk_group POEGameGroup
-        {
+    {
 		If (YesStashKeys){
 			If ( stashPrefix1 && stashPrefix2 ){
 				If ( GetKeyState(stashPrefix1) && GetKeyState(stashPrefix2) )
@@ -3902,15 +4942,14 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 			Else If ( !stashPrefix1 && !stashPrefix2 ) {
 				return True
 				}
-			}
+		}
 		Else
 			Return False 
-		}
+	}
     Else {
             Return False
-        }
-	}
-
+    }
+}
 ; Flask Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimmerFlask1:
@@ -3972,19 +5011,23 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerMainAttack:
 		MainAttackPressed:=GetKeyState(hotkeyMainAttack, "P")
-		If (MainAttackPressed)
+		If (MainAttackPressed && TriggerMainAttack > 0 )
 			MainAttackCommand()
-		Else
+		If (MainAttackPressed && QSonMainAttack)
+			SendMSG(5,1,scriptGottaGoFast)
+		If (!MainAttackPressed)
 			settimer,TimerMainAttack,delete
 	Return
-
 	TimerSecondaryAttack:
 		SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack, "P")
-		If (SecondaryAttackPressed)
+		If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
 			SecondaryAttackCommand()
-		Else
+		If (SecondaryAttackPressed && QSonSecondaryAttack)
+			SendMSG(5,1,scriptGottaGoFast)
+		If (!SecondaryAttackPressed)
 			settimer,TimerSecondaryAttack,delete
 	Return
+
 ; Utility Timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerUtility1:
@@ -4042,6 +5085,8 @@ readFromFile(){
     IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
     IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
     IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
+    IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
+    IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -4301,7 +5346,7 @@ readFromFile(){
     If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
     If hotkeyGetCoords
-        hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, Off
+        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, Off
     If hotkeyPopFlasks
         hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
     If hotkeyLogout
@@ -4348,7 +5393,7 @@ readFromFile(){
     If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, On
     If hotkeyGetMouseCoords
-        hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, On
+        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, On
     If hotkeyPopFlasks
         hotkey,% hotkeyPopFlasks, PopFlasksCommand, On
     If hotkeyLogout
@@ -4457,7 +5502,7 @@ updateEverything:
     If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
     If hotkeyGetCoords
-        hotkey,% hotkeyGetMouseCoords, GetMouseCoordsCommand, Off
+        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, Off
     If hotkeyPopFlasks
         hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
     If hotkeyLogout
@@ -4635,6 +5680,8 @@ updateEverything:
     IniWrite, %CharName%, settings.ini, General, CharName
     IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
     IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
+    IniWrite, %QSonMainAttack%, settings.ini, General, QSonMainAttack
+    IniWrite, %QSonSecondaryAttack%, settings.ini, General, QSonSecondaryAttack
 
     ;~ Hotkeys 
     IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
@@ -5002,6 +6049,10 @@ submitProfile(Profile){
     ;Attack Keys
     IniWrite, %hotkeyMainAttack%, settings.ini, Profile%Profile%, MainAttack
     IniWrite, %hotkeySecondaryAttack%, settings.ini, Profile%Profile%, SecondaryAttack
+    
+    ;QS on Attack Keys
+    IniWrite, %QSonMainAttack%, settings.ini, Profile%Profile%, QSonMainAttack
+    IniWrite, %QSonSecondaryAttack%, settings.ini, Profile%Profile%, QSonSecondaryAttack
     
     ;Quicksilver Flasks
     IniWrite, %TriggerQuicksilverDelay%, settings.ini, Profile%Profile%, TriggerQuicksilverDelay
@@ -5384,6 +6435,12 @@ readProfile(Profile){
     IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, w
     GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
     
+    ;QS on Attack Keys
+    IniRead, QSonMainAttack, settings.ini, Profile%Profile%, QSonMainAttack, 0
+    GuiControl, , QSonMainAttack, %QSonMainAttack%
+    IniRead, QSonSecondaryAttack, settings.ini, Profile%Profile%, QSonSecondaryAttack, 0
+    GuiControl, , QSonSecondaryAttack, %QSonSecondaryAttack%
+    
     ;Quicksilver Flasks
     IniRead, TriggerQuicksilverDelay, settings.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
     GuiControl, , TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
@@ -5716,7 +6773,7 @@ loadSaved:
     GuiControl,, RadioNormalQuit, %RadioNormalQuit%
     GuiControl,, RadioCritQuit, %RadioCritQuit%
     GuiControl,, RadioLife, %RadioLife%
-        GuiControl,, RadioHybrid, %RadioHybrid%
+    GuiControl,, RadioHybrid, %RadioHybrid%
     GuiControl,, RadioCi, %RadioCi%
     GuiControl,, hotkeyMainAttack, %hotkeyMainAttack%
     GuiControl,, hotkeySecondaryAttack, %hotkeySecondaryAttack%
@@ -5726,10 +6783,10 @@ loadSaved:
     GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
     GuiControl,, hotkeyLogout, %hotkeyLogout%
     GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
-    GuiControl,, otkeyGetMouseCoords, %otkeyGetMouseCoords%
+    GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
     GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
     GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
-    GuiControl,, vhotkeyPopFlasks, %vhotkeyPopFlasks%
+    GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
     GuiControl,, hotkeyItemSort, %hotkeyItemSort%
     GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
     GuiControl,, hotkeyInventory, %hotkeyInventory%
@@ -6517,156 +7574,237 @@ ResetChat(){
 return
 }
 1FireWhisperHotkey1() {
-    1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
-    1Suffix1Text := StrReplace(1Suffix1Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix1Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
+		1Suffix1Text := StrReplace(1Suffix1Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix1Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey2() {
-    1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
-    1Suffix2Text := StrReplace(1Suffix2Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix2Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
+		1Suffix2Text := StrReplace(1Suffix2Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix2Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey3() {
-    1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
-    1Suffix3Text := StrReplace(1Suffix3Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix3Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
+		1Suffix3Text := StrReplace(1Suffix3Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix3Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey4() {
-    1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
-    1Suffix4Text := StrReplace(1Suffix4Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix4Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
+		1Suffix4Text := StrReplace(1Suffix4Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix4Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey5() {
-    1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
-    1Suffix5Text := StrReplace(1Suffix5Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix5Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
+		1Suffix5Text := StrReplace(1Suffix5Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix5Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey6() {
-    1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
-    1Suffix6Text := StrReplace(1Suffix6Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix6Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
+		1Suffix6Text := StrReplace(1Suffix6Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix6Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey7() {
-    1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
-    1Suffix7Text := StrReplace(1Suffix7Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix7Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
+		1Suffix7Text := StrReplace(1Suffix7Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix7Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey8() {
-    1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
-    1Suffix8Text := StrReplace(1Suffix8Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix8Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
+		1Suffix8Text := StrReplace(1Suffix8Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix8Text%{Enter}
+		ResetChat()
+    }
 return
 }
 1FireWhisperHotkey9() {
-	1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
-	1Suffix9Text := StrReplace(1Suffix9Text, "RecipientName", RecipientName, 0, -1)
-    Send, {Enter}%1Suffix9Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+		1Suffix9Text := StrReplace(1Suffix9Text, "RecipientName", RecipientName, 0, -1)
+		Send, {Enter}%1Suffix9Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey1() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix1Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix1Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey2() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix2Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix2Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey3() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix3Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix3Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey4() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix4Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix4Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey5() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix5Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix5Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey6() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix6Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix6Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey7() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix7Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix7Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey8() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix8Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix8Text%{Enter}
+		ResetChat()
+    }
 return
 }
 2FireWhisperHotkey9() {
-    GrabRecipientName()
-    Send, ^{Enter}%2Suffix9Text%{Enter}
-    ResetChat()
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		GrabRecipientName()
+		Send, ^{Enter}%2Suffix9Text%{Enter}
+		ResetChat()
+    }
 return
 }
 FireStashHotkey1() {
-    MoveStash(stashSuffixTab1)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab1)
+    }
 return
 }
 FireStashHotkey2() {
-    MoveStash(stashSuffixTab2)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab2)
+    }
 return
 }
 FireStashHotkey3() {
-    MoveStash(stashSuffixTab3)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab3)
+    }
 return
 }
 FireStashHotkey4() {
-    MoveStash(stashSuffixTab4)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab4)
+    }
 return
 }
 FireStashHotkey5() {
-    MoveStash(stashSuffixTab5)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab5)
+    }
 return
 }
 FireStashHotkey6() {
-    MoveStash(stashSuffixTab6)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab6)
+    }
 return
 }
 FireStashHotkey7() {
-    MoveStash(stashSuffixTab7)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab7)
+    }
 return
 }
 FireStashHotkey8() {
-    MoveStash(stashSuffixTab8)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab8)
+    }
 return
 }
 FireStashHotkey9() {
-    MoveStash(stashSuffixTab9)
+    IfWinActive, ahk_group POEGameGroup
+    {	
+		MoveStash(stashSuffixTab9)
+    }
 return
 }
 return
