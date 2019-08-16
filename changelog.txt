@@ -29,6 +29,7 @@ All hotkeys now check if the game is open before firing.
 Added variables for firing QS on attack keys
     Also reworked the delay to support all three
     Modify the Quicksilver Flask Delay in the menu
+    These variables are saved and loaded with profiles
 
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------
