@@ -3,33 +3,24 @@ Patch Notes
 --------------------------------------------------------------------------------
 Version .04.3 August/1x/2019
 --------------------------------------------------------------------------------
-Converted the stats from weapon info into their own array WeaponStats
-    Have done the same for ArmourStats and MapStats
-    Also added an array for affixes
-    Modified the Debug tool to add the new arrays
-    
-Renamed the GetMouseCoords function to CoordAndDebug
-    ReWork output of the debug tool, will only show popup when clipped an item
-    Otherwise will show a 10 second long tooltip, this lets the item grid start
-    may allow this to be optional, so you can copy the messagebox if needed.
-    Will only show weapon stats when clipping a weapon
-    Will only show armour stats when clipping an armour
-    Will only show relevant affixes and properties (Only things that are true)
-    Eventaully I want to change this all into a GUI window of some sort
-    
-Added tons of affixes to the item parser
+Added all the Vanilla Affixes to the item parser
     Integrated the Databases from PoE-TradeMacro for lab enchants and Corruptions
     Added Talisman corruptions to the table of possible corruption affixes
-    using the indexOf function we can check for match in the Databases
-    Can now handle double corrupted items
-    All vanilla affixes are now working
-
-All hotkeys now check if the game is open before firing.
+    Can handle double corrupted items
 
 Added variables for firing QS on attack keys
     Also reworked the delay to support all three
     Modify the Quicksilver Flask Delay in the menu
     These variables are saved and loaded with profiles
+
+Renamed the GetMouseCoords function to CoordAndDebug
+    ReWork output of the debug tool, will only show popup when clipped an item
+    Otherwise will show a 10 second long tooltip, this lets the item grid start
+    Will only show weapon stats when clipping a weapon
+    Will only show armour stats when clipping an armour
+    Will only show relevant affixes and properties (Only things that are true)
+    
+All hotkeys now check if the game is open before firing.
 
 Version .04.2 August/13/2019
 --------------------------------------------------------------------------------
