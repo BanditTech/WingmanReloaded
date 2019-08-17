@@ -1,6 +1,13 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .04.7 August/1x/2019
+--------------------------------------------------------------------------------
+rearranged the GUI section for calibration, still looks the same but now using 
+sections to make it easier to add and move around.
+    added Instance Management screen to failsafe colors.
+    to calibrate hit the OnInsMan Color button while instance manager is open
+    
 Version .04.6 August/17/2019
 --------------------------------------------------------------------------------
 Bugfix for QSonMainAttack - was double casting the flasks and not respecting CD

@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.6
+    Global VersionNumber := .04.7
 
 	Global Null := 0
     
@@ -172,6 +172,7 @@
 		Global OnInventory := False
 		Global OnStash := False
 		Global OnVendor := False
+		Global OnInsMan := False
 		Global RescaleRan := False
 		Global ToggleExist := False
 		; These colors are from filterblade.xyz filter creator
@@ -295,6 +296,7 @@
 		global varOnInventory:=0x8CC6DD
 		global varOnStash:=0x9BD6E7
 		global varOnVendor:=0x7BB1CC
+		global varOnInsMan:=0x91CCE4
 		Global DetonateHex := 0x412037
 
 	;Life Colors
@@ -767,27 +769,31 @@
 	Gui, Add, Text, 									x+33 		 		h107 0x11
 
 	Gui, Font, Bold
-	Gui, Add, Text, 										x22 	y30, 				Gamestate Calibration:
+	Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
 	Gui, Font
 	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
 
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y50	w100, 	OnHideout Color
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
-	Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn	 	w100, 	Empty Color
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w100, 	OnHideout Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w100, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w100, 	OnChat Color
+
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn x+8 ys+20			w100, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w100, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 						w100, 	OnVendor Color
+	Gui, Add, Button, gupdateOnInsMan vUpdateOnInsManBtn							w100, 	OnInsMan Color
 
 	Gui, Font, Bold
-	Gui, Add, Text, 										x22 	y+10, 				AutoDetonate Calibration:
+	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
 	Gui, Font
+	Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn xs ys+20 	w100, 	Empty Color
+	Gui, Add, Button, gupdateMouseoverColor vUdateMouseoverColorBtn	 	x+8 ys+20	w100, 	Mouseover Color
+	Gui, Font, Bold
+	Gui, Add, Text, 				section						xs 	y+10, 				AutoDetonate Calibration:
+	Gui, Font
+	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn xs ys+20					w100, 	Detonate Color
+	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
 
-	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+8	w100, 	Detonate Color
-	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
-
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y50	w100, 	OnInventory Color
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
-	Gui, Add, Button, gupdateMouseoverColor vUdateMouseoverColorBtn	 	w100, 	Mouseover Color
 	Gui, Font, Bold
 	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
 	Gui, Font, 
@@ -1248,6 +1254,8 @@
 		global vY_OnStash:=32
 		global vX_OnVendor:=618
 		global vY_OnVendor:=88
+		global vX_OnInsMan:=960
+		global vY_OnInsMan:=124
 		
 		global vX_Life:=95
 		global vY_Life90:=1034
@@ -1865,6 +1873,9 @@ Rescale(){
 				;Status Check OnVendor
 				global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
 				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Status Check OnInsMan
+				global vX_OnInsMan:=X + Round(A_ScreenWidth / 2)
+				global vY_OnInsMan:=Y + Round(A_ScreenHeight / ( 1080 / 124))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
@@ -1930,6 +1941,9 @@ Rescale(){
 				;Status Check OnVendor
 				global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
 				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Status Check OnInsMan
+				global vX_OnInsMan:=X + Round(A_ScreenWidth / 2)
+				global vY_OnInsMan:=Y + Round(A_ScreenHeight / ( 1080 / 124))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
 					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
@@ -3914,7 +3928,8 @@ CoordAndDebug(){
 				TT := TT . "`n`n"
 				GuiStatus()
 				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n`n"
+				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
+				TT := TT . "Instance Management screen:  " . OnInsMan . "`n`n"
 				ClipItem(x, y)
 				If (Prop.IsItem) {
 					TT := TT . "Item Properties:`n"
@@ -4212,6 +4227,12 @@ GuiStatus(Fetch:=""){
 		} Else {
 		OnVendor:=False
 		}
+	pixelgetcolor, POnInsMan, vX_OnInsMan, vY_OnInsMan
+	If (POnInsMan=varOnInsMan) {
+		OnInsMan:=True
+		} Else {
+		OnInsMan:=False
+		}
 	Return
 	}
 
@@ -4221,7 +4242,7 @@ MainAttackCommand(){
 	MainAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnInsMan)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerMainAttack)
@@ -4244,7 +4265,7 @@ SecondaryAttackCommand(){
 	SecondaryAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnInsMan)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerSecondaryAttack)
@@ -4317,7 +4338,7 @@ TGameTick(){
     {
         ; Check what status is your character in the game
         GuiStatus()
-        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
+        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnInsMan) { 
             ;GuiUpdate()																									   
             Exit
         }
@@ -5189,6 +5210,7 @@ readFromFile(){
     IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
     IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
     IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
+    IniRead, varOnInsMan, settings.ini, Failsafe Colors, OnInsMan, 0x91CCE4
     IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
     
     ;Life Colors
@@ -7151,6 +7173,30 @@ updateOnVendor:
         MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . vX_OnVendor . " and y: " . vY_OnVendor
     }else
     MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
+    
+    hotkeys()
+    
+return
+
+updateOnInsMan:
+    Gui, Submit, NoHide
+    
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnInsMan didn't work"
+        Return
+    }
+    
+    if WinActive(ahk_group POEGameGroup){
+        pixelgetcolor, varOnInsMan, vX_OnInsMan, vY_OnInsMan
+        IniWrite, %varOnInsMan%, settings.ini, Failsafe Colors, OnInsMan
+        readFromFile()
+        MsgBox % "OnInsMan recalibrated!`nTook color hex: " . varOnInsMan . " `nAt coords x: " . vX_OnInsMan . " and y: " . vY_OnInsMan
+    }else
+    MsgBox % "PoE Window is not active. `nRecalibrate of OnInsMan didn't work"
     
     hotkeys()
     
