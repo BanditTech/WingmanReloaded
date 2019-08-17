@@ -1,6 +1,13 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .04.6 August/17/2019
+--------------------------------------------------------------------------------
+Bugfix for QSonMainAttack - was double casting the flasks and not respecting CD
+Bugfix for AutoUpdate - needed to create data folder or it would fail to DL
+
+Hopefully this should fix all issues with current version. 
+
 Version .04.5 August/16/2019
 --------------------------------------------------------------------------------
 Added all the Vanilla Affixes to the item parser

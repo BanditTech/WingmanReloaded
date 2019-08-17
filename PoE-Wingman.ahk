@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.5
+    Global VersionNumber := .04.6
 
 	Global Null := 0
     
@@ -73,9 +73,15 @@
 	Global Corruption := []
 	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
 	{
-	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
-			if ErrorLevel
-					MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
+		FileCreateDir, %A_ScriptDir%\data
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
+		if ErrorLevel{
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "boot_enchantment_mods")
+			MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "boot_enchantment_mods")
+		}
 	}
 	Loop, Read, %A_ScriptDir%\data\boot_enchantment_mods.txt
 	{
@@ -85,9 +91,15 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\helmet_enchantment_mods.txt
 	{
-	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
-			if ErrorLevel
-					MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
+		FileCreateDir, %A_ScriptDir%\data
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "helmet_enchantment_mods")
+			MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "helmet_enchantment_mods")
+		}
 	}
 	Loop, Read, %A_ScriptDir%\data\helmet_enchantment_mods.txt
 	{
@@ -97,9 +109,15 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\glove_enchantment_mods.txt
 	{
-	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
-			if ErrorLevel
-					MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
+		FileCreateDir, %A_ScriptDir%\data
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "glove_enchantment_mods")
+			MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "glove_enchantment_mods")
+		}
 	}
 	Loop, Read, %A_ScriptDir%\data\glove_enchantment_mods.txt
 	{
@@ -109,9 +127,15 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\item_corrupted_mods.txt
 	{
-	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
-			if ErrorLevel
-					MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
+		FileCreateDir, %A_ScriptDir%\data
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "item_corrupted_mods")
+			MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "item_corrupted_mods")
+		}
 	}
 	Loop, read, %A_ScriptDir%\data\item_corrupted_mods.txt
 	{
@@ -4201,11 +4225,15 @@ MainAttackCommand(){
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerMainAttack)
-			SetTimer, TimerMainAttack, 200
+			SetTimer, TimerMainAttack, 400
 		}
 		If (AutoQuicksilver && QSonMainAttack) {
-			SendMSG(5,1,scriptGottaGoFast)
-			SetTimer, TimerMainAttack, 200
+			If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+				If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+					Return
+				SendMSG(5,1,scriptGottaGoFast)
+				SetTimer, TimerMainAttack, 400
+			}
 		}
 	}
     Return	
@@ -4214,13 +4242,23 @@ MainAttackCommand(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SecondaryAttackCommand(){
 	SecondaryAttackCommand:
-	if (AutoFlask=1) {
+	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
 		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
 			return
-		TriggerFlask(TriggerSecondaryAttack)
-		SetTimer, TimerSecondaryAttack, 200
+		If AutoFlask {
+			TriggerFlask(TriggerSecondaryAttack)
+			SetTimer, TimerSecondaryAttack, 400
 		}
+		If (AutoQuicksilver && QSonSecondaryAttack) {
+			If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+				If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+					Return
+				SendMSG(5,1,scriptGottaGoFast)
+				SetTimer, TimerSecondaryAttack, 400
+			}
+		}
+	}
     Return	
 	}
 
@@ -7567,15 +7605,15 @@ runUpdate:
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/PoE-Wingman.ahk, PoE-Wingman.ahk
     if ErrorLevel {
-        error("update","fail",A_ScriptFullPath, macroVersion, A_AhkVersion)
+        error("update","fail",A_ScriptFullPath, VersionNumber, A_AhkVersion)
         error("ED07")
     }
     else {
-        error("update","pass",A_ScriptFullPath, macroVersion, A_AhkVersion)
+        error("update","pass",A_ScriptFullPath, VersionNumber, A_AhkVersion)
         Run "%A_ScriptFullPath%"
     }
     Sleep 5000 ;This shouldn't ever hit.
-    error("update","uhoh", A_ScriptFullPath, macroVersion, A_AhkVersion)
+    error("update","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion)
 Return
 
 dontUpdate:

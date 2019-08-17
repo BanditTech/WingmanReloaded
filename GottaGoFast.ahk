@@ -59,7 +59,7 @@ if not A_IsAdmin
 		global ResolutionScale:="Standard"
 		Global ToggleExist := False
 		Global RescaleRan := False
-		Global FlaskList := []
+		Global FlaskListQS := []
 		Global DebugMessages
 		Global QSonMainAttack := 0
 		Global QSonSecondaryAttack := 0
@@ -306,7 +306,7 @@ MsgMonitor(wParam, lParam, msg)
 	critical
     If (wParam=1){
 		ReadFromFile()
-		FlaskList:=[]
+		FlaskListQS:=[]
 	}
 	Else If (wParam=2)
 		PopFlaskCooldowns()
@@ -367,11 +367,14 @@ MsgMonitor(wParam, lParam, msg)
 		}
 	Else If (wParam=5) {
 		If (lParam=1){
-			If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) )
+			If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+				If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+					Return
 				TriggerFlask(TriggerQuicksilver)
-			return
-			}		
-		}
+			}
+		}		
+		return
+	}
 	Return
 	}
 ; Send one or two digits to a sub-script 
@@ -606,18 +609,18 @@ TUtilityTick(){
 	}
 
 TriggerFlask(Trigger){
-	If ((!FlaskList.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
+	If ((!FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
 		QFL:=1
 		loop, 5 {
 			QFLVal:=SubStr(Trigger,QFL,1)+0
 			if (QFLVal > 0) {
 				if (OnCooldown[QFL]=0)
-					FlaskList.Push(QFL)
+					FlaskListQS.Push(QFL)
 				}
 			++QFL
 			}
 		} 
-	If ((FlaskList.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ){
+	Else If ((FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ){
 		
 		LButtonPressed := GetKeyState("LButton", "P")
 		MainPressed := GetKeyState(hotkeyMainAttack, "P")
@@ -641,7 +644,7 @@ TriggerFlask(Trigger){
 					}
 				}
 			}
-			QFL:=FlaskList.RemoveAt(1)
+			QFL:=FlaskListQS.RemoveAt(1)
 			If (!QFL)
 				Return
 			send %QFL%
@@ -649,14 +652,12 @@ TriggerFlask(Trigger){
 			Cooldown:=CooldownFlask%QFL%
 			settimer, TimmerFlask%QFL%, %Cooldown%
 			SendMSG(3, QFL, scriptPOEWingman)
-			RandomSleep(23,59)
 			Loop, 5 {
 				If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver){
 					TriggerUtility(A_Index)
 					}
 				}
-			
-
+			RandomSleep(200,300)
 			}
 		}
 	Return
