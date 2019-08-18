@@ -164,6 +164,7 @@
 		Global YesVendor := 1
 		Global YesStash := 1
 		Global YesIdentify := 1
+		Global YesDiv := 1
 		Global YesMapUnid := 1
 		Global YesStashKeys := 1
 		Global OnHideout := False
@@ -172,6 +173,7 @@
 		Global OnInventory := False
 		Global OnStash := False
 		Global OnVendor := False
+		Global OnDiv := False
 		Global OnInsMan := False
 		Global RescaleRan := False
 		Global ToggleExist := False
@@ -296,6 +298,7 @@
 		global varOnInventory:=0x8CC6DD
 		global varOnStash:=0x9BD6E7
 		global varOnVendor:=0x7BB1CC
+		global varOnDiv:=0xC5E2F6
 		global varOnInsMan:=0x91CCE4
 		Global DetonateHex := 0x412037
 
@@ -777,6 +780,7 @@
 	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w100, 	OnHideout Color
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w100, 	OnChar Color
 	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w100, 	OnChat Color
+	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 								w100, 	OnDiv Color
 
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn x+8 ys+20			w100, 	OnInventory Color
 	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w100, 	OnStash Color
@@ -795,7 +799,7 @@
 	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
+	Gui Add, Text, 										xs 	y+40, 				Additional Interface Options:
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
@@ -1009,6 +1013,7 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%                         	          , Identify Items?
 	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%                         	        	  , Deposit at stash?
 	Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%                         	              , Sell at vendor?
+	Gui Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%                         	              	  , Trade Divination?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%                         	          , Leave Map Un-ID?
 
 	Gui, Font, Bold
@@ -1254,6 +1259,8 @@
 		global vY_OnStash:=32
 		global vX_OnVendor:=618
 		global vY_OnVendor:=88
+		global vX_OnDiv:=618
+		global vY_OnDiv:=135
 		global vX_OnInsMan:=960
 		global vY_OnInsMan:=124
 		
@@ -1279,7 +1286,10 @@
 		
 		global vX_Mana:=1825
 		global vY_Mana10:=1054
-		
+	
+		Global vY_DivTrade:=736
+		Global vY_DivItem:=605
+
 		global vX_StashTabMenu := 640
 		global vY_StashTabMenu := 146
 		global vX_StashTabList := 760
@@ -1413,6 +1423,16 @@ ItemSort(){
 					}
 					
 					ClipItem(Grid.X,Grid.Y)
+					If (OnDiv && YesDiv) 
+					{
+						If (Prop.RarityDivination && (Prop.Stack = Prop.StackMax)){
+							CtrlClick(Grid.X,Grid.Y)
+							RandomSleep(150,200)
+							SwiftClick(vX_OnDiv,vY_DivTrade)
+							CtrlClick(vX_OnDiv,vY_DivItem)
+						}
+						Continue
+					}
 					If (!Prop.Identified&&YesIdentify)
 					{
 						If (Prop.IsMap&&!YesMapUnid)
@@ -1824,8 +1844,8 @@ StockScrolls(){
 ; Randomize Click area around middle of cell using Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RandClick(x, y){
-		Random, Rx, x+5, x+45
-		Random, Ry, y-45, y-5
+		Random, Rx, x+10, x+40
+		Random, Ry, y-40, y-10
 	return {"X": Rx, "Y": Ry}
 	}
 
@@ -1873,6 +1893,9 @@ Rescale(){
 				;Status Check OnVendor
 				global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
 				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Status Check OnDiv
+				global vX_OnDiv:=X + Round(A_ScreenWidth / (1920 / 618))
+				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
 				;Status Check OnInsMan
 				global vX_OnInsMan:=X + Round(A_ScreenWidth / 2)
 				global vY_OnInsMan:=Y + Round(A_ScreenHeight / ( 1080 / 124))
@@ -1902,6 +1925,9 @@ Rescale(){
 				;GUI overlay
 				global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
 				global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+				;Divination Y locations
+				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
 				;Stash tabs menu button
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
@@ -1941,6 +1967,9 @@ Rescale(){
 				;Status Check OnVendor
 				global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
 				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Status Check OnDiv
+				global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
+				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
 				;Status Check OnInsMan
 				global vX_OnInsMan:=X + Round(A_ScreenWidth / 2)
 				global vY_OnInsMan:=Y + Round(A_ScreenHeight / ( 1080 / 124))
@@ -1970,6 +1999,9 @@ Rescale(){
 				;GUI overlay
 				global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
 				global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+				;Divination Y locations
+				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
 				;Stash tabs menu button
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
@@ -2009,6 +2041,9 @@ Rescale(){
 				;Status Check OnVendor
 				global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
 				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
+				;Status Check OnDiv
+				global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
+				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (2560 / 95))
 					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
@@ -2035,6 +2070,9 @@ Rescale(){
 				;GUI overlay
 				global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
 				global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
+				;Divination Y locations
+				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
 				;Stash tabs menu button
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
@@ -3929,7 +3967,7 @@ CoordAndDebug(){
 				GuiStatus()
 				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
 				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
-				TT := TT . "Instance Management screen:  " . OnInsMan . "`n`n"
+				TT := TT . "Instance Management screen:  " . OnInsMan . "  Divination Trade: " . OnDiv . "`n`n"
 				ClipItem(x, y)
 				If (Prop.IsItem) {
 					TT := TT . "Item Properties:`n"
@@ -4226,6 +4264,12 @@ GuiStatus(Fetch:=""){
 		OnVendor:=True
 		} Else {
 		OnVendor:=False
+		}
+	pixelgetcolor, POnDiv, vX_OnDiv, vY_OnDiv
+	If (POnDiv=varOnDiv) {
+		OnDiv:=True
+		} Else {
+		OnDiv:=False
 		}
 	pixelgetcolor, POnInsMan, vX_OnInsMan, vY_OnInsMan
 	If (POnInsMan=varOnInsMan) {
@@ -5147,6 +5191,7 @@ readFromFile(){
     IniRead, YesVendor, settings.ini, General, YesVendor, 1
     IniRead, YesStash, settings.ini, General, YesStash, 1
     IniRead, YesIdentify, settings.ini, General, YesIdentify, 1
+    IniRead, YesDiv, settings.ini, General, YesDiv, 1
 	IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
     IniRead, Latency, settings.ini, General, Latency, 1
     IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
@@ -5210,6 +5255,7 @@ readFromFile(){
     IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
     IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
     IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
+    IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xC5E2F6
     IniRead, varOnInsMan, settings.ini, Failsafe Colors, OnInsMan, 0x91CCE4
     IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
     
@@ -5746,6 +5792,7 @@ updateEverything:
     IniWrite, %YesVendor%, settings.ini, General, YesVendor
     IniWrite, %YesStash%, settings.ini, General, YesStash
     IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+    IniWrite, %YesDiv%, settings.ini, General, YesDiv
 	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
     IniWrite, %Latency%, settings.ini, General, Latency
     IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
@@ -7178,6 +7225,30 @@ updateOnVendor:
     
 return
 
+updateOnDiv:
+    Gui, Submit, NoHide
+    
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnDiv didn't work"
+        Return
+    }
+    
+    if WinActive(ahk_group POEGameGroup){
+        pixelgetcolor, varOnDiv, vX_OnDiv, vY_OnDiv
+        IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
+        readFromFile()
+        MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . vX_OnDiv . " and y: " . vY_OnDiv
+    }else
+    MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
+    
+    hotkeys()
+    
+return
+
 updateOnInsMan:
     Gui, Submit, NoHide
     
@@ -7377,6 +7448,7 @@ UpdateExtra:
     IniWrite, %YesVendor%, settings.ini, General, YesVendor
     IniWrite, %YesStash%, settings.ini, General, YesStash
     IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+    IniWrite, %YesDiv%, settings.ini, General, YesDiv
 	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
     IniWrite, %Latency%, settings.ini, General, Latency
     IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD

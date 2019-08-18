@@ -7,6 +7,13 @@ rearranged the GUI section for calibration, still looks the same but now using
 sections to make it easier to add and move around.
     added Instance Management screen to failsafe colors.
     to calibrate hit the OnInsMan Color button while instance manager is open
+    added Divination trade window to failsafe colors
+    to calibrate hit the OnDiv Color button while divination trade window is open
+
+Added option to inventory tab to turn on and off Divination trading
+    Open the divination trade window and press the one button inventory hotkey!
+    all full stack divination cards will be attempted to trade.
+    currently does not have any way of determining if successful. 
     
 Version .04.6 August/17/2019
 --------------------------------------------------------------------------------
