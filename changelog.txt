@@ -14,6 +14,10 @@ Added option to inventory tab to turn on and off Divination trading
     Open the divination trade window and press the one button inventory hotkey!
     all full stack divination cards will be attempted to trade.
     currently does not have any way of determining if successful. 
+
+Introducing Controller support!
+    Currently is not fully functional, but movement on the dpad is working!
+    optional keys to move up down left or right with utility key tied to it
     
 Version .04.6 August/17/2019
 --------------------------------------------------------------------------------

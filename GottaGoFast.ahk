@@ -19,6 +19,7 @@ SetWinDelay, -1
 SetControlDelay, -1
 FileEncoding , UTF-8
 SendMode Input
+global newposition := false
 
 Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
 Global scriptPOEWingmanSecondary := "WingmanReloaded ahk_exe AutoHotkey.exe"
@@ -55,6 +56,7 @@ if not A_IsAdmin
 		; Dont change the speed & the tick unless you know what you are doing
 		global Speed:=1
 		global QTick:=250
+		global checkvar:=0
 		global PopFlaskRespectCD:=1
 		global ResolutionScale:="Standard"
 		Global ToggleExist := False
@@ -63,6 +65,9 @@ if not A_IsAdmin
 		Global DebugMessages
 		Global QSonMainAttack := 0
 		Global QSonSecondaryAttack := 0
+		Global YesMovementKeys := 0
+		Global YesTriggerUtilityKey := 0
+		Global TriggerUtilityKey := 1
 		Global LButtonPressed := 0
 		Global MainPressed := 0
 		Global SecondaryPressed := 0
@@ -107,7 +112,14 @@ if not A_IsAdmin
 		global hotkeyAutoQuicksilver
 		global hotkeyMainAttack
 		global hotkeySecondaryAttack
-	
+		global hotkeyUp := "W"
+		global hotkeyDown := "S"
+		global hotkeyLeft := "A"
+		global hotkeyRight := "D"
+
+		global utilityKeyToFire = 1
+		global y_offset = 150	
+
 	;Utility Buttons
 		global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
 		global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
@@ -136,6 +148,9 @@ if not A_IsAdmin
 			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
 			IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
 			IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
+			IniRead, YesTriggerUtilityKey, settings.ini, General, YesTriggerUtilityKey, 0
+			IniRead, TriggerUtilityKey, settings.ini, General, TriggerUtilityKey, 1
+			IniRead, YesMovementKeys, settings.ini, General, YesMovementKeys, 0
 		;Coordinates
 			IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 			IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -205,6 +220,11 @@ if not A_IsAdmin
 			If hotkeyAutoQuicksilver
 				hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 
+		;Set up timer if checkbox ticked
+			If (YesMovementKeys)
+				SetTimer, WASD_Handler, 250
+			Else
+				SetTimer, WASD_Handler, Delete
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra vars - Not in INI
@@ -250,7 +270,7 @@ IfWinExist, ahk_group POEGameGroup
 		WinActivate, ahk_group POEGameGroup
 	}
 
-; Check for window to open
+; Set timers section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	SetTimer, PoEWindowCheck, 5000
 
@@ -419,6 +439,9 @@ ReadFromFile(){
 		IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 		IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
 		IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
+		IniRead, YesTriggerUtilityKey, settings.ini, General, YesTriggerUtilityKey, 0
+		IniRead, TriggerUtilityKey, settings.ini, General, TriggerUtilityKey, 1
+		IniRead, YesMovementKeys, settings.ini, General, YesMovementKeys, 0
 	;Coordinates
 		IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 		IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -467,6 +490,12 @@ ReadFromFile(){
 		IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
 		IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
 
+		;Utility Keys
+		IniRead, hotkeyUp, 		settings.ini, Controller Keys, hotkeyUp, 	w
+		IniRead, hotkeyDown, 	settings.ini, Controller Keys, hotkeyDown,  s
+		IniRead, hotkeyLeft, 	settings.ini, Controller Keys, hotkeyLeft,  a
+		IniRead, hotkeyRight, 	settings.ini, Controller Keys, hotkeyRight, d
+
 	;Flask Cooldowns
 		IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
 		IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2, 4800
@@ -499,6 +528,11 @@ ReadFromFile(){
 			WinActivate, ahk_group POEGameGroup
 			}
 		}
+	;Set up timer if checkbox ticked
+		If (YesMovementKeys)
+			SetTimer, WASD_Handler, 250
+		Else
+			SetTimer, WASD_Handler, Delete
 	; Start timer for active Utility that is not triggered by Life, ES, or QS
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		Loop, 5 {
@@ -711,6 +745,17 @@ TriggerUtility(Utility){
 		}
 	Return
 	} 
+TriggerUtilityForce(Utility){
+	If (!OnCooldownUtility%Utility%){
+		key:=KeyUtility%Utility%
+		Send %key%
+		SendMSG(4, Utility, scriptPOEWingman)
+		OnCooldownUtility%Utility%:=1
+		Cooldown:=CooldownUtility%Utility%
+		SetTimer, TimerUtility%Utility%, %Cooldown%
+		}
+	Return
+	} 
 
 Rescale(){
 	IfWinExist, ahk_group POEGameGroup 
@@ -785,6 +830,12 @@ Rescale(){
 			global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
 			global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
 			}
+		WinGetPos, win_x, win_y, width, height, A
+		global x_center := win_x + width / 2
+		global compensation := (width / height) == (16 / 10) ? 1.103829 : 1.103719
+		global y_center := win_y + height / 2 / compensation
+		global offset_mod := y_offset / height
+		global x_offset := width * (offset_mod / 1.5 )
 		Global RescaleRan := True
 		}
 	return
@@ -807,6 +858,73 @@ TriggerFlaskCD(Trigger){
 		}
 	Return
 	}
+
+WASD_Handler:
+    IfWinActive ahk_group POEGameGroup
+    {
+		If (!YesMovementKeys)
+			Return
+		POV := GetKeyState("2JoyPOV")  ; Get position of the POV control.
+        if GetKeyState("Shift", "P")		; this if/loop lets Shift still function as a stand still key
+        {
+            Loop
+            {
+                GetKeyState, state, Shift, P
+                if state = U  
+                break				
+            }
+        }
+        else if GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P") || !(POV = 1)
+        {
+            if GetKeyState(hotkeyUp, "P") || (POV > 31500 && POV < 36000) || (POV > 1 && POV < 4500) || (POV = 0) || (POV = 31500) || (POV = 4500)
+            {
+                y_final := y_center - y_offset
+				newposition := true
+            }
+            else if GetKeyState(hotkeyDown, "P") || (POV > 13501 && POV < 22500) || (POV = 13500) || (POV = 22500)
+            {
+                y_final := y_center + y_offset
+				newposition := true
+            }
+            else
+            {
+                y_final := y_center
+            }
+                    
+            if GetKeyState(hotkeyLeft, "P") || (POV > 22501 && POV < 31500) || (POV = 22500) || (POV = 31500)
+            {
+                x_final := x_center - x_offset
+				newposition := true
+            }
+            else if GetKeyState(hotkeyRight, "P") || (POV > 4501 && POV < 13500) || (POV = 13500) || (POV = 4500)
+            {
+                x_final := x_center + x_offset
+				newposition := true
+            }
+            else
+            {
+                x_final := x_center
+            }
+
+			If (newposition)
+			{
+            MouseMove, %x_final%, %y_final%, 0			
+            Sleep, 45
+            Click, Down, %x_final%, %y_final%
+			newposition := false
+            checkvar := 1
+			If (YesTriggerUtilityKey)
+				TriggerUtilityForce(utilityKeyToFire)
+			}
+        }
+        if !(GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P") || (POV=1)) && (checkvar) 
+        {
+            click, up
+            checkvar := 0
+        }
+    }
+return    
+
 TimmerFlask1:
 	OnCooldown[1]:=0
 	settimer,TimmerFlask1,delete

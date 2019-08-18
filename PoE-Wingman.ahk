@@ -459,7 +459,7 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, vMainGuiTabs x1 y1 w620 h465 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat
+	Gui Add, Tab2, vMainGuiTabs x1 y1 w620 h465 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
@@ -1022,6 +1022,30 @@
 	Gui Add, Text, 										 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
 	Gui Add, Text, 										 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
 	Gui Add, Text, 										 	y+5, 				The options to the right affect which portion of the script is enabled.
+
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+	;#######################################################################################################Controller Tab
+
+	Gui, Tab, Controller
+	
+	Gui, Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
+
+	Gui Add, Checkbox, gUpdateMovementKeys	xp y+-10					vYesMovementKeys Checked%YesMovementKeys%                         	          , Use Movement Keys?
+	Gui Add, Checkbox, gUpdateMovementKeys						vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                         	          , Use utility on movement?
+	Gui Add, DropDownList,  gUpdateMovementKeys x+5 yp-5     w40 	vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
+
+	Gui,Add,Text,Section xm+45 ym+60 											,Movement Keys
+	Gui,Add,GroupBox, xs+50 ys+20 w40 h40											,Up
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											,%hotkeyUp%
+	Gui,Add,GroupBox, xs+50 ys+100 w40 h40											,Down
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											,%hotkeyDown%
+	Gui,Add,GroupBox, xs+10 ys+60 w40 h40											,Left
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											,%hotkeyLeft%
+	Gui,Add,GroupBox, xs+90 ys+60 w40 h40											,Right
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											,%hotkeyRight%
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -5206,6 +5230,9 @@ readFromFile(){
     IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
     IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
     IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
+	IniRead, YesTriggerUtilityKey, settings.ini, General, YesTriggerUtilityKey, 0
+	IniRead, TriggerUtilityKey, settings.ini, General, TriggerUtilityKey, 1
+	IniRead, YesMovementKeys, settings.ini, General, YesMovementKeys, 0
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -5388,6 +5415,12 @@ readFromFile(){
     IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
     IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
     IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
+
+    ;Utility Keys
+    IniRead, hotkeyUp, 		settings.ini, Controller Keys, hotkeyUp, 	w
+    IniRead, hotkeyDown, 	settings.ini, Controller Keys, hotkeyDown,  s
+    IniRead, hotkeyLeft, 	settings.ini, Controller Keys, hotkeyLeft,  a
+    IniRead, hotkeyRight, 	settings.ini, Controller Keys, hotkeyRight, d
     
     ;Flask Cooldowns
     IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
@@ -5823,6 +5856,11 @@ updateEverything:
     IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
     IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
     
+    ;Utility Keys
+    IniWrite, %hotkeyUp%, 		settings.ini, Controller Keys, hotkeyUp
+    IniWrite, %hotkeyDown%, 	settings.ini, Controller Keys, hotkeyDown
+    IniWrite, %hotkeyLeft%, 	settings.ini, Controller Keys, hotkeyLeft
+    IniWrite, %hotkeyRight%, 	settings.ini, Controller Keys, hotkeyRight
     
     ;Utility Buttons
     IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
@@ -7475,6 +7513,16 @@ UpdateExtra:
     }
     
 Return
+
+UpdateMovementKeys:
+	Gui, Submit, NoHide
+    IniWrite, %YesTriggerUtilityKey%, settings.ini, General, YesTriggerUtilityKey
+    IniWrite, %TriggerUtilityKey%, settings.ini, General, TriggerUtilityKey
+    IniWrite, %YesMovementKeys%, settings.ini, General, YesMovementKeys
+
+	SendMSG(1,1,scriptGottaGoFast)
+return
+	
 
 UpdateResolutionScale:
     Gui, Submit, NoHide
