@@ -94,6 +94,16 @@ Global LButtonPressed := 0
 Global MainPressed := 0
 Global SecondaryPressed := 0
 Global JoystickNumber := 0
+Global JoyThreshold := 6
+global JoyThresholdUpper := 50 + JoyThreshold
+global JoyThresholdLower := 50 - JoyThreshold
+global InvertYAxis := false
+global JoyMultiplier = 0.90
+
+if InvertYAxis
+    global YAxisMultiplier = -1
+else
+    global YAxisMultiplier = 1
 ;Coordinates
 global GuiX:=-5
 global GuiY:=1005
@@ -142,6 +152,7 @@ global hotkeyRight := "D"
 
 global utilityKeyToFire = 1
 global y_offset = 150	
+
 
 ;Utility Buttons
 global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
@@ -262,9 +273,17 @@ Else
 SetTimer, WASD_Handler, Delete
 ;Set up timer if checkbox ticked
 If (YesController)
-SetTimer, JoyButtons_Handler, 250
+{
+	SetTimer, JoyButtons_Handler, 15
+	SetTimer, Joystick_Handler, 15
+	SetTimer, Joystick2_Handler, 15
+}
 Else
-SetTimer, JoyButtons_Handler, Delete
+{
+	SetTimer, JoyButtons_Handler, Delete
+	SetTimer, Joystick_Handler, Delete
+	SetTimer, Joystick2_Handler, Delete
+}
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra vars - Not in INI
@@ -557,37 +576,45 @@ ReadFromFile(){
     IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
 
 	DetectJoystick()
-     ;Quicksilver
-     IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
-     IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
-     Loop, 5 {	
-          valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
-          QuicksilverSlot%A_Index% := valueQuicksilver
-     }
-     ;hotkeys
-     IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
-     IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
-     
-     If hotkeyAutoQuicksilver
-     hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, Off
-     
-     IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
-     
-     If hotkeyAutoQuicksilver
-     hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
-     IfWinExist, ahk_group POEGameGroup
-     {
-          Rescale()
-          If (!ToggleExist){
-               Gui, Show, x%GuiX% y%GuiY%, NoActivate 
-               WinActivate, ahk_group POEGameGroup
-          }
-     }
-     ;Set up timer if checkbox ticked
-     If (YesController)
-     SetTimer, JoyButtons_Handler, 15
-     Else
-     SetTimer, JoyButtons_Handler, Delete
+	;Quicksilver
+	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
+	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
+	Loop, 5 {	
+		valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+		QuicksilverSlot%A_Index% := valueQuicksilver
+	}
+	;hotkeys
+	IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
+	IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
+	
+	If hotkeyAutoQuicksilver
+	hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, Off
+	
+	IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
+	
+	If hotkeyAutoQuicksilver
+	hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
+	IfWinExist, ahk_group POEGameGroup
+	{
+		Rescale()
+		If (!ToggleExist){
+			Gui, Show, x%GuiX% y%GuiY%, NoActivate 
+			WinActivate, ahk_group POEGameGroup
+		}
+	}
+	;Set up timer if checkbox ticked
+	If (YesController)
+	{
+		SetTimer, JoyButtons_Handler, 15
+		SetTimer, Joystick_Handler, 15
+		SetTimer, Joystick2_Handler, 15
+	}
+	Else
+	{
+		SetTimer, JoyButtons_Handler, Delete
+		SetTimer, Joystick_Handler, Delete
+		SetTimer, Joystick2_Handler, Delete
+	}
      ;Set up timer if checkbox ticked
      If (YesMovementKeys)
      SetTimer, WASD_Handler, 15
@@ -918,6 +945,79 @@ TriggerFlaskCD(Trigger){
      }
      Return
 }
+
+Joystick_Handler:
+	MouseNeedsToBeMoved := false  ; Set default.
+	SetFormat, float, 03
+	GetKeyState, JoyX, %JoystickNumber%JoyX
+	GetKeyState, JoyY, %JoystickNumber%JoyY
+	if JoyX > %JoyThresholdUpper%
+	{
+		MouseNeedsToBeMoved := true
+		DeltaX := JoyX - JoyThresholdUpper
+	}
+	else if JoyX < %JoyThresholdLower%
+	{
+		MouseNeedsToBeMoved := true
+		DeltaX := JoyX - JoyThresholdLower
+	}
+	else
+		DeltaX = 0
+	if JoyY > %JoyThresholdUpper%
+	{
+		MouseNeedsToBeMoved := true
+		DeltaY := JoyY - JoyThresholdUpper
+	}
+	else if JoyY < %JoyThresholdLower%
+	{
+		MouseNeedsToBeMoved := true
+		DeltaY := JoyY - JoyThresholdLower
+	}
+	else
+		DeltaY = 0
+	if MouseNeedsToBeMoved
+	{
+		SetMouseDelay, -1  ; Makes movement smoother.
+		MouseMove, DeltaX * JoyMultiplier, DeltaY * JoyMultiplier * YAxisMultiplier, 0, R
+	}
+return
+
+Joystick2_Handler:
+	MouseNeedsToBeMoved := false  ; Set default.
+	SetFormat, float, 03
+	GetKeyState, JoyX, %JoystickNumber%JoyU
+	GetKeyState, JoyY, %JoystickNumber%JoyR
+	if JoyX > %JoyThresholdUpper%
+	{
+		MouseNeedsToBeMoved := true
+		DeltaX := JoyX - JoyThresholdUpper
+	}
+	else if JoyX < %JoyThresholdLower%
+	{
+		MouseNeedsToBeMoved := true
+		DeltaX := JoyX - JoyThresholdLower
+	}
+	else
+		DeltaX = 0
+	if JoyY > %JoyThresholdUpper%
+	{
+		MouseNeedsToBeMoved := true
+		DeltaY := JoyY - JoyThresholdUpper
+	}
+	else if JoyY < %JoyThresholdLower%
+	{
+		MouseNeedsToBeMoved := true
+		DeltaY := JoyY - JoyThresholdLower
+	}
+	else
+		DeltaY = 0
+	if MouseNeedsToBeMoved
+	{
+		SetMouseDelay, -1  ; Makes movement smoother.
+		MouseMove, DeltaX * JoyMultiplier, DeltaY * JoyMultiplier * YAxisMultiplier, 0, R
+	}
+return
+
 
 JoyButtons_Handler:
 	GetKeyState, joy_buttons, %JoystickNumber%JoyButtons
