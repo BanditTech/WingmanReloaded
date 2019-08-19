@@ -1036,16 +1036,37 @@
 	Gui Add, Checkbox, gUpdateMovementKeys	xp y+-10					vYesMovementKeys Checked%YesMovementKeys%                         	          , Use Movement Keys?
 	Gui Add, Checkbox, gUpdateMovementKeys						vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                         	          , Use utility on movement?
 	Gui Add, DropDownList,  gUpdateMovementKeys x+5 yp-5     w40 	vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
+	
+	Gui,Add,GroupBox, section xm+100 ym+20 w40 h40												,5
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton5, %hotkeyControllerButton5%
+	Gui,Add,GroupBox,  xs+360 ys w40 h40												,6
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton6, %hotkeyControllerButton6%
 
-	Gui,Add,Text,Section xm+45 ym+60 											,Movement Keys
-	Gui,Add,GroupBox, xs+50 ys+20 w40 h40											,Up
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											,%hotkeyUp%
-	Gui,Add,GroupBox, xs+50 ys+100 w40 h40											,Down
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											,%hotkeyDown%
-	Gui,Add,GroupBox, xs+10 ys+60 w40 h40											,Left
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											,%hotkeyLeft%
-	Gui,Add,GroupBox, xs+90 ys+60 w40 h40											,Right
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											,%hotkeyRight%
+	Gui,Add,GroupBox,  xm+60 ys+60 w110 h120												,D-Pad
+	Gui,Add,Checkbox, xp+5 y+-73 		Checked%hotkeyControllerDPad%			vhotkeyControllerDPad, Use Dpad for`nmovement keys?
+
+	Gui,Add,GroupBox, section xm+160 ym+60 w40 h40												,7
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton7, %hotkeyControllerButton7%
+	Gui,Add,GroupBox, xs+245 ys w40 h40												,8
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton8, %hotkeyControllerButton8%
+
+	Gui,Add,GroupBox, section xm+65 ym+280 w40 h40									,Up
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyUp, %hotkeyUp%
+	Gui,Add,GroupBox, xs ys+80 w40 h40												,Down
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyDown, %hotkeyDown%
+	Gui,Add,GroupBox, xs-40 ys+40 w40 h40											,Left
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyLeft, %hotkeyLeft%
+	Gui,Add,GroupBox, xs+40 ys+40 w40 h40											,Right
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyRight, %hotkeyRight%
+
+	Gui,Add,GroupBox,section xm+465 ym+80 w40 h40											,4
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton4, %hotkeyControllerButton4%
+	Gui,Add,GroupBox, xs ys+80 w40 h40											,1
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton1, %hotkeyControllerButton1%
+	Gui,Add,GroupBox, xs-40 ys+40 w40 h40											,3
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton3, %hotkeyControllerButton3%
+	Gui,Add,GroupBox, xs+40 ys+40 w40 h40											,2
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton2, %hotkeyControllerButton2%
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -3971,7 +3992,7 @@ GrabRecipientName(){
 			RecipientName1 := RecipientNameArr[1]
 			RecipientName := StrReplace(RecipientName1, "@")
 			}
-			Ding(%RecipientName%)
+			Ding( ,%RecipientName%)
 		}
 	Sleep, 60
 	Return
@@ -4364,7 +4385,7 @@ TMineTick(){
 
 ; Debug messages within script
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Ding(Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Message6:="", Message7:="" ){
+Ding(Timeout:=500,Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Message6:="", Message7:="" ){
 	If (!DebugMessages)
 		Return
 	Else If (DebugMessages){
@@ -4395,7 +4416,7 @@ Ding(Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Me
 			}
 		Tooltip, %debugStr%
 		}
-	SetTimer, RemoveTooltip, 500
+	SetTimer, RemoveTooltip, %Timeout%
 	Return
 	}
 
@@ -4896,6 +4917,32 @@ TriggerMana(Trigger){
     Return
 	}
 
+; Auto-detect the joystick number if called for:
+DetectJoystick(){
+     if JoystickNumber <= 0
+     {
+          Loop 16  ; Query each joystick number to find out which ones exist.
+          {
+               GetKeyState, JoyName, %A_Index%JoyName
+               if JoyName <>
+               {
+                    JoystickNumber = %A_Index%
+                    Ding(3000,"Detected Joystick on the " . A_Index . " port.")
+                    break
+                    
+               }
+          }
+          if JoystickNumber <= 0
+          {
+				Ding(3000,"The system does not appear to have any joysticks.")
+          }
+     }
+     Else 
+     {
+		Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
+     }
+     Return
+}
 ; Clamp Value function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Clamp( Val, Min, Max) {
@@ -5635,6 +5682,17 @@ readFromFile(){
     IniRead, stashSuffixTab8, settings.ini, Stash Hotkeys, stashSuffixTab8, 8
     IniRead, stashSuffixTab9, settings.ini, Stash Hotkeys, stashSuffixTab9, 9
 
+	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+
+    IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
+    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, RButton
+    IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
+    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, r
+    IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, w
+    IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, e
+    IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
+    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
+
 	RegisterHotkeys()
     checkActiveType()
 Return
@@ -6040,6 +6098,8 @@ updateEverything:
     IniWrite, %stashSuffixTab7%, settings.ini, Stash Hotkeys, stashSuffixTab7
     IniWrite, %stashSuffixTab8%, settings.ini, Stash Hotkeys, stashSuffixTab8
     IniWrite, %stashSuffixTab9%, settings.ini, Stash Hotkeys, stashSuffixTab9
+
+	IniWrite, %JoystickNumber%, settings.ini, Controller, JoystickNumber
 
     readFromFile()
     GuiUpdate()
@@ -6960,6 +7020,8 @@ loadSaved:
     GuiControl,, CurrentGemY, %CurrentGemY%
     GuiControl,, AlternateGemX, %AlternateGemX%
     GuiControl,, AlternateGemY, %AlternateGemY%
+	
+	SendMSG(1,1,scriptGottaGoFast)
 return
 
 hotkeys(){
