@@ -273,7 +273,7 @@
 		global JoyMultiplier := 0.30
 		global JoyMultiplier2 := 8
 		global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerJoystick2
-		global YesTriggerUtilityDPadKey := 1
+		global YesTriggerUtilityJoystickKey := 1
 		global YesTriggerJoystick2Key := 1
 	;~ Hotkeys
 	; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
@@ -1061,11 +1061,11 @@
 	Gui,Add,GroupBox,  xs+360 ys w40 h40												,6
 	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton6, %hotkeyControllerButton6%
 
-	Gui,Add,GroupBox,  xm+65 ym+100 w90 h80												,D-Pad
-	Gui,Add,Checkbox, xp+5 y+-53 		Checked%YesTriggerUtilityDpadKey%			vYesTriggerUtilityDpadKey, Use util from`nMove Keys?
-
-	Gui,Add,GroupBox, section xm+165 ys+160 w80 h80												,Joystick1
+	Gui,Add,GroupBox, section  xm+65 ym+100 w90 h80												,D-Pad
 	gui,add,text, xs+15 ys+30, Mouse`nMovement
+
+	Gui,Add,GroupBox, section xm+165 ym+180 w80 h80												,Joystick1
+	Gui,Add,Checkbox, xs+5 ys+30 		Checked%YesTriggerUtilityJoystickKey%			vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
 
 	Gui,Add,GroupBox,  xs+190 ys w80 h80												,Joystick2
 	Gui,Add,Checkbox, xp+5 y+-53 		Checked%YesTriggerJoystick2Key%			vYesTriggerJoystick2Key, Use key?
@@ -5069,7 +5069,7 @@ RegisterHotkeys() {
 ; Functions to evaluate keystate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
-    IfWinExist, ahk_group POEGameGroup
+    IfWinActive, ahk_group POEGameGroup
         {
 		If (EnableChatHotkeys){
 			If ( 1Prefix1 && 1Prefix2 ){
@@ -5100,7 +5100,7 @@ RegisterHotkeys() {
         }
 }
 2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
-    IfWinExist, ahk_group POEGameGroup
+    IfWinActive, ahk_group POEGameGroup
         {
 		If (EnableChatHotkeys){
 			If ( 2Prefix1 && 2Prefix2 ){
@@ -5133,7 +5133,7 @@ RegisterHotkeys() {
         }
 }
 stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
-    IfWinExist, ahk_group POEGameGroup
+    IfWinActive, ahk_group POEGameGroup
     {
 		If (YesStashKeys){
 			If ( stashPrefix1 && stashPrefix2 ){
@@ -5719,7 +5719,7 @@ readFromFile(){
 	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
 	IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
-	IniRead, YesTriggerUtilityDPadKey, settings.ini, Controller, YesTriggerUtilityDPadKey, 1
+	IniRead, YesTriggerUtilityJoystickKey, settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
 	IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
 	IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
 	IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
@@ -6146,7 +6146,7 @@ updateEverything:
 	IniWrite, %hotkeyControllerJoystick2%, settings.ini, Controller Keys, hotkeyControllerJoystick2
 
 	IniWrite, %YesTriggerUtilityKey%, settings.ini, Controller, YesTriggerUtilityKey
-	IniWrite, %YesTriggerUtilityDPadKey%, settings.ini, Controller, YesTriggerUtilityDPadKey
+	IniWrite, %YesTriggerUtilityJoystickKey%, settings.ini, Controller, YesTriggerUtilityJoystickKey
 	IniWrite, %YesTriggerJoystick2Key%, settings.ini, Controller, YesTriggerJoystick2Key
 	IniWrite, %TriggerUtilityKey%, settings.ini, Controller, TriggerUtilityKey
 	IniWrite, %YesMovementKeys%, settings.ini, Controller, YesMovementKeys

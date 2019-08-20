@@ -23,6 +23,7 @@ global newposition := false
 global newpositionPOV := false
 global JoystickNumber := 0
 global JoystickActive := False
+Global Latency := 1
 
 Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
 Global scriptPOEWingmanSecondary := "WingmanReloaded ahk_exe AutoHotkey.exe"
@@ -58,6 +59,10 @@ global pressed18 := False
 global pressed19 := False
 global pressed20 := False
 global pressedJoy2 := False
+global pressedVacuum := 0
+Global AreaScale := 1
+Global LootColors := { 1 : 0x222222
+     , 2 : 0xFFFFFF}
 
 OnMessage(0x5555, "MsgMonitor")
 OnMessage(0x5556, "MsgMonitor")
@@ -80,6 +85,7 @@ if not A_IsAdmin
 ; Dont change the speed & the tick unless you know what you are doing
 global Speed:=1
 global QTick:=250
+Global LootVacuum := 1
 global PopFlaskRespectCD:=1
 global ResolutionScale:="Standard"
 Global ToggleExist := False
@@ -95,21 +101,24 @@ Global SecondaryPressed := 0
 ;Controller
 Global YesController := 1
 global checkvar:=0
-global checkvarDPad:=0
+global checkvarJoystick:=0
 global checkvarJoy2:=False
 Global YesMovementKeys := 0
 Global YesTriggerUtilityKey := 0
 Global TriggerUtilityKey := 1
 Global JoystickNumber := 0
-Global JoyThreshold := 6
+Global JoyThreshold := 20
 global JoyThresholdUpper := 50 + JoyThreshold
 global JoyThresholdLower := 50 - JoyThreshold
 global InvertYAxis := false
-global JoyMultiplier := 0.30
+global JoyMultiplier := 6
 global JoyMultiplier2 := 8
 global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerJoystick2
-global YesTriggerUtilityDPadKey := 1
+global YesTriggerUtilityJoystickKey := 1
 global YesTriggerJoystick2Key := 1
+global HeldCountJoystick := 0
+global HeldCountJoystick2 := 0
+global HeldCountPOV := 1	
 
 
 if InvertYAxis
@@ -157,13 +166,16 @@ global OnVendor:=False
 global hotkeyAutoQuicksilver
 global hotkeyMainAttack
 global hotkeySecondaryAttack
+global hotkeyLootScan
 global hotkeyUp := "W"
 global hotkeyDown := "S"
 global hotkeyLeft := "A"
 global hotkeyRight := "D"
 
-global utilityKeyToFire = 1
-global y_offset = 150	
+global utilityKeyToFire := 1
+global y_offset := 150	
+global x_POVscale := 4	
+global y_POVscale := 4	
 
 
 global x_center := 1920 / 2
@@ -201,6 +213,7 @@ IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
 IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
 IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
+IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
 ;Coordinates
 IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -283,12 +296,15 @@ IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButto
 IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
 IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
-IniRead, YesTriggerUtilityDPadKey, settings.ini, Controller, YesTriggerUtilityDPadKey, 1
+IniRead, YesTriggerUtilityJoystickKey, settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
 IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
 IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
 IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
 IniRead, YesController, settings.ini, Controller, YesController, 0
 IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+
+IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
+IniRead, Latency, settings.ini, General, Latency, 1
 
 DetectJoystick()
 ;Set up timer if checkbox ticked
@@ -411,7 +427,7 @@ MsgMonitor(wParam, lParam, msg)
      If (wParam=1){
           ReadFromFile()
           FlaskListQS:=[]
-		  DetectJoystick()
+          DetectJoystick()
      }
      Else If (wParam=2)
      PopFlaskCooldowns()
@@ -528,6 +544,7 @@ ReadFromFile(){
      IniRead, YesTriggerUtilityKey, settings.ini, General, YesTriggerUtilityKey, 0
      IniRead, TriggerUtilityKey, settings.ini, General, TriggerUtilityKey, 1
      IniRead, YesMovementKeys, settings.ini, General, YesMovementKeys, 0
+     IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
      ;Coordinates
      IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
      IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -602,12 +619,15 @@ ReadFromFile(){
 	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
 	IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
-	IniRead, YesTriggerUtilityDPadKey, settings.ini, Controller, YesTriggerUtilityDPadKey, 1
+	IniRead, YesTriggerUtilityJoystickKey, settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
 	IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
 	IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
 	IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
 	IniRead, YesController, settings.ini, Controller, YesController, 0
 	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+
+     IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
+     IniRead, Latency, settings.ini, General, Latency, 1
 
 	DetectJoystick()
 	;Quicksilver
@@ -812,7 +832,35 @@ TriggerFlask(Trigger){
                          TriggerUtility(A_Index)
                     }
                }
-               RandomSleep(200,300)
+          }
+     }
+     Return
+}
+TriggerFlaskForce(Trigger){
+     If ((!FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
+          QFL:=1
+          loop, 5 {
+               QFLVal:=SubStr(Trigger,QFL,1)+0
+               if (QFLVal > 0) {
+                    if (OnCooldown[QFL]=0)
+                         FlaskListQS.Push(QFL)
+               }
+               ++QFL
+          }
+     } 
+     Else If ((FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ){
+          QFL:=FlaskListQS.RemoveAt(1)
+          If (!QFL)
+          Return
+          send %QFL%
+          OnCooldown[QFL] := 1 
+          Cooldown:=CooldownFlask%QFL%
+          settimer, TimmerFlask%QFL%, %Cooldown%
+          SendMSG(3, QFL, scriptPOEWingman)
+          Loop, 5 {
+               If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver){
+                    TriggerUtility(A_Index)
+               }
           }
      }
      Return
@@ -1018,7 +1066,30 @@ Joystick_Handler:
                DeltaY = 0
           if MouseNeedsToBeMoved
           {
-               MouseMove, DeltaX * JoyMultiplier, DeltaY * JoyMultiplier * YAxisMultiplier, 0, R
+               MouseMove, x_center + DeltaX * JoyMultiplier, y_center + DeltaY * JoyMultiplier * YAxisMultiplier
+               ++HeldCountJoystick
+               if (!checkvarJoystick && HeldCountJoystick > 3)
+               {
+                    Click, down
+                    checkvarJoystick := 1
+               }
+               if (YesTriggerUtilityJoystickKey && HeldCountJoystick > 6)
+               {
+                    TriggerUtilityForce(utilityKeyToFire)
+               }
+               if (AutoQuick && HeldCountJoystick > 12)
+               {
+                    if ((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))
+                    {
+                         TriggerFlaskForce(TriggerQuicksilver)
+                    }
+               }
+          }
+          Else if (checkvarJoystick) 
+          {
+               click, up
+               checkvarJoystick := 0
+               HeldCountJoystick := 1
           }
      }
 return
@@ -1064,7 +1135,7 @@ Joystick2_Handler:
                MouseMove, x_center + DeltaX * JoyMultiplier2, y_center + DeltaY * JoyMultiplier2 * YAxisMultiplier
                if (YesTriggerJoystick2Key && !checkvarJoy2)
                {
-                    Send {%hotkeyControllerJoystick2% down}
+                    SetTimer, TimerJoystick2Key, 45
                     checkvarJoy2 := True
                }
           }
@@ -1089,71 +1160,90 @@ JoyButtons_Handler:
           GetKeyState, POV, %JoystickNumber%JoyPOV
           Loop, %joy_buttons%
           {
+               buttonIndex := A_Index
                GetKeyState, joy%A_Index%, %JoystickNumber%joy%A_Index%
+               if (joy%A_Index% = "D") && (pressed%A_Index%)  && (pressedVacuum = A_Index) 
+               {
+                    For k, ColorHex in LootColors
+                    {
+                         Sleep, -1
+                         MouseGetPos CenterX, CenterY
+                         ScanX1:=(CenterX-AreaScale)
+                         ScanY1:=(CenterY-AreaScale)
+                         ScanX2:=(CenterX+AreaScale)
+                         ScanY2:=(CenterY+AreaScale)
+                         PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
+                         If (ErrorLevel = 0){
+                              GetKeyState, joy%buttonIndex%, %JoystickNumber%joy%buttonIndex%
+                              If !(joy%buttonIndex% = "D")
+                                   Break
+                              Sleep, -1
+                              SwiftClick(ScanPx, ScanPy)
+                              }
+                         Else If (ErrorLevel = 1)
+                              Continue
+                    }
+               }
                if (joy%A_Index% = "D") && !(pressed%A_Index%) 
                {
                     ;Ding(500,A_Index,"Pressed",hotkeyControllerButton%A_Index%)
                     pressed%A_Index% := True 
-                    Send, % "{" hotkeyControllerButton%A_Index% " down}"
+                    SendEvent, % "{" hotkeyControllerButton%A_Index% " down}"
+          		If (hotkeyLootScan = hotkeyControllerButton%A_Index%) && LootVacuum
+                    {
+                         pressedVacuum := A_Index
+                    }
                }
                Else if (pressed%A_Index%) && !(joy%A_Index% = "D")
                {
                     ;Ding(500,A_Index,"Released",hotkeyControllerButton%A_Index%)
                     pressed%A_Index% := False 
-                    Send, % "{" hotkeyControllerButton%A_Index% " up}"
+                    SendEvent, % "{" hotkeyControllerButton%A_Index% " up}"
                }
           }
           if !(POV = -1)
           {
                if ((POV >= 31500 && POV <= 36000) || (POV >= 0 && POV <= 4500))
                {
-                    y_finalPOV := y_center - y_offset
+                    y_finalPOV := -y_POVscale-HeldCountPOV
                     newpositionPOV := true
                }
                else if (POV >= 13500 && POV <= 22500)
                {
-                    y_finalPOV := y_center + y_offset
+                    y_finalPOV := +y_POVscale+HeldCountPOV
                     newpositionPOV := true
                }
                else
                {
-                    y_finalPOV := y_center
+                    y_finalPOV := 0
                }
                
                if (POV >= 22500 && POV <= 31500)
                {
-                    x_finalPOV := x_center - x_offset
+                    x_finalPOV := -x_POVscale-HeldCountPOV
                     newpositionPOV := true
                }
                else if (POV >= 4500 && POV <= 13500)
                {
-                    x_finalPOV := x_center + x_offset
+                    x_finalPOV := +x_POVscale+HeldCountPOV
                     newpositionPOV := true
                }
                else
                {
-                    x_finalPOV := x_center
+                    x_finalPOV := 0
                }
                
                If (newpositionPOV)
                {
+                    HeldCountPOV+=2
                     Sleep, 45
-                    MouseMove, %x_finalPOV%, %y_finalPOV%
-                    if !(checkvarDPad)
-                    {
-                         Sleep, 45
-                         Click, Down, %x_finalPOV%, %y_finalPOV%
-                         checkvarDPad := 1
-                    }
-                    If (YesTriggerUtilityDpadKey)
-                         TriggerUtilityForce(utilityKeyToFire)
+                    MouseMove, %x_finalPOV%, %y_finalPOV%, 0, R
                     newpositionPOV := false
                }
           }
-          if !(POV>=0) && (checkvarDPad) 
+          Else If (HeldCountPOV > 1)
           {
-               click, up
-               checkvarDPad := 0
+               HeldCountPOV := 1
           }
      }
 return
@@ -1197,6 +1287,9 @@ IfWinActive ahk_group POEGameGroup
           
           If (newposition)
           {
+               GuiStatus()
+               If (!OnChar || OnChat || OnInventory)
+                    Return
                MouseMove, %x_final%, %y_final%			
                Sleep, 45
                If !(checkvar)
@@ -1207,6 +1300,13 @@ IfWinActive ahk_group POEGameGroup
                newposition := false
                If (YesTriggerUtilityKey)
                     TriggerUtilityForce(utilityKeyToFire)
+               if (AutoQuick)
+               {
+                    if ((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))
+                    {
+                         TriggerFlaskForce(TriggerQuicksilver)
+                    }
+               }
           }
      }
      if !(GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P")) && (checkvar) 
@@ -1243,8 +1343,33 @@ DetectJoystick(){
 		Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
           JoystickActive := True
      }
+     ;Set up timer if checkbox ticked
+     If (YesController&&JoystickActive)
+     {
+          SetTimer, JoyButtons_Handler, 15
+          SetTimer, Joystick_Handler, 15
+          SetTimer, Joystick2_Handler, 15
+     }
+     Else
+     {
+          SetTimer, JoyButtons_Handler, Delete
+          SetTimer, Joystick_Handler, Delete
+          SetTimer, Joystick2_Handler, Delete
+     }
      Return
 }
+
+; Swift Click at Coord
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SwiftClick(x, y){
+		MouseMove, x, y	
+		Sleep, 15*Latency
+		Send {Click, Down x, y }
+		Sleep, 45*Latency
+		Send {Click, Up x, y }
+		Sleep, 15*Latency
+	return
+	}
 
 TimmerFlask1:
 OnCooldown[1]:=0
@@ -1292,7 +1417,11 @@ TimerUtility5:
 OnCooldownUtility5 := 0
 settimer,TimerUtility5,delete
 Return
-
+TimerJoystick2Key:
+Send {%hotkeyControllerJoystick2% down}
+checkvarJoy2 := True
+SetTimer, TimerJoystick2Key, Delete
+return
 RemoveToolTip:
 SetTimer, RemoveToolTip, Off
 ToolTip
