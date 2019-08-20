@@ -221,6 +221,7 @@
 		Global Steam := 1
 		Global HighBits := 1
 		Global AutoUpdateOff := 0
+		Global EnableChatHotkeys := 0
 		; Dont change the speed & the tick unless you know what you are doing
 			global Speed:=1
 			global Tick:=50
@@ -258,6 +259,22 @@
 		Global StashTabYesFossil := 1
 		Global StashTabYesResonator := 1
 		Global StashTabYesProphecy := 1
+		;Controller
+		Global YesController := 1
+		global checkvar:=0
+		Global YesMovementKeys := 0
+		Global YesTriggerUtilityKey := 0
+		Global TriggerUtilityKey := 1
+		Global JoystickNumber := 0
+		Global JoyThreshold := 6
+		global JoyThresholdUpper := 50 + JoyThreshold
+		global JoyThresholdLower := 50 - JoyThreshold
+		global InvertYAxis := false
+		global JoyMultiplier := 0.30
+		global JoyMultiplier2 := 8
+		global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerJoystick2
+		global YesTriggerUtilityDPadKey := 1
+		global YesTriggerJoystick2Key := 1
 	;~ Hotkeys
 	; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
 		global hotkeyOptions:=!F10
@@ -1033,17 +1050,26 @@
 	
 	Gui, Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
 
-	Gui Add, Checkbox, gUpdateMovementKeys	xp y+-10					vYesMovementKeys Checked%YesMovementKeys%                         	          , Use Movement Keys?
-	Gui Add, Checkbox, gUpdateMovementKeys						vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                         	          , Use utility on movement?
-	Gui Add, DropDownList,  gUpdateMovementKeys x+5 yp-5     w40 	vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
+	Gui Add, Checkbox,  section	xp y+-10					vYesMovementKeys Checked%YesMovementKeys%                         	          , Use Move Keys?
+	Gui Add, Checkbox, 						vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                         	          , Use utility on Move?
+	Gui Add, DropDownList,   x+5 yp-5     w40 	vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
+
+	Gui, Add, Checkbox, section xm+255 ym+300 vYesController Checked%YesController%,Enable Controller
 	
 	Gui,Add,GroupBox, section xm+100 ym+20 w40 h40												,5
 	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton5, %hotkeyControllerButton5%
 	Gui,Add,GroupBox,  xs+360 ys w40 h40												,6
 	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton6, %hotkeyControllerButton6%
 
-	Gui,Add,GroupBox,  xm+60 ys+60 w110 h120												,D-Pad
-	Gui,Add,Checkbox, xp+5 y+-73 		Checked%hotkeyControllerDPad%			vhotkeyControllerDPad, Use Dpad for`nmovement keys?
+	Gui,Add,GroupBox,  xm+65 ym+100 w90 h80												,D-Pad
+	Gui,Add,Checkbox, xp+5 y+-53 		Checked%YesTriggerUtilityDpadKey%			vYesTriggerUtilityDpadKey, Use util from`nMove Keys?
+
+	Gui,Add,GroupBox, section xm+165 ys+160 w80 h80												,Joystick1
+	gui,add,text, xs+15 ys+30, Mouse`nMovement
+
+	Gui,Add,GroupBox,  xs+190 ys w80 h80												,Joystick2
+	Gui,Add,Checkbox, xp+5 y+-53 		Checked%YesTriggerJoystick2Key%			vYesTriggerJoystick2Key, Use key?
+	Gui Add, ComboBox,  			xp y+8      w70 	vhotkeyControllerJoystick2, %hotkeyControllerJoystick2%||LButton|RButton|q|w|e|r|t
 
 	Gui,Add,GroupBox, section xm+160 ym+60 w40 h40												,7
 	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton7, %hotkeyControllerButton7%
@@ -5277,9 +5303,6 @@ readFromFile(){
     IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
     IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
     IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
-	IniRead, YesTriggerUtilityKey, settings.ini, General, YesTriggerUtilityKey, 0
-	IniRead, TriggerUtilityKey, settings.ini, General, TriggerUtilityKey, 1
-	IniRead, YesMovementKeys, settings.ini, General, YesMovementKeys, 0
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -5682,16 +5705,27 @@ readFromFile(){
     IniRead, stashSuffixTab8, settings.ini, Stash Hotkeys, stashSuffixTab8, 8
     IniRead, stashSuffixTab9, settings.ini, Stash Hotkeys, stashSuffixTab9, 9
 
-	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
 
+	;Controller setup
     IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, RButton
+    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, Space
     IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
     IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, r
     IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, w
     IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, e
     IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
     IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
+	
+	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
+
+	IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
+	IniRead, YesTriggerUtilityDPadKey, settings.ini, Controller, YesTriggerUtilityDPadKey, 1
+	IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
+	IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
+	IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
+	IniRead, YesController, settings.ini, Controller, YesController, 0
+	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+
 
 	RegisterHotkeys()
     checkActiveType()
@@ -5851,14 +5885,14 @@ updateEverything:
     
     ;Life Flasks
     IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
-        IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
-        IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
-        IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
-        IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
-        IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
-        IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
-        IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
-        IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
+	IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
+	IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
+	IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
+	IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
+	IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
+	IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
+	IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
+	IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
         
     
     ;ES Flasks
@@ -6099,6 +6133,24 @@ updateEverything:
     IniWrite, %stashSuffixTab8%, settings.ini, Stash Hotkeys, stashSuffixTab8
     IniWrite, %stashSuffixTab9%, settings.ini, Stash Hotkeys, stashSuffixTab9
 
+	;Controller setup
+    IniWrite, %hotkeyControllerButton1%, settings.ini, Controller Keys, ControllerButton1
+    IniWrite, %hotkeyControllerButton2%, settings.ini, Controller Keys, ControllerButton2
+    IniWrite, %hotkeyControllerButton3%, settings.ini, Controller Keys, ControllerButton3
+    IniWrite, %hotkeyControllerButton4%, settings.ini, Controller Keys, ControllerButton4
+    IniWrite, %hotkeyControllerButton5%, settings.ini, Controller Keys, ControllerButton5
+    IniWrite, %hotkeyControllerButton6%, settings.ini, Controller Keys, ControllerButton6
+    IniWrite, %hotkeyControllerButton7%, settings.ini, Controller Keys, ControllerButton7
+    IniWrite, %hotkeyControllerButton8%, settings.ini, Controller Keys, ControllerButton8
+	
+	IniWrite, %hotkeyControllerJoystick2%, settings.ini, Controller Keys, hotkeyControllerJoystick2
+
+	IniWrite, %YesTriggerUtilityKey%, settings.ini, Controller, YesTriggerUtilityKey
+	IniWrite, %YesTriggerUtilityDPadKey%, settings.ini, Controller, YesTriggerUtilityDPadKey
+	IniWrite, %YesTriggerJoystick2Key%, settings.ini, Controller, YesTriggerJoystick2Key
+	IniWrite, %TriggerUtilityKey%, settings.ini, Controller, TriggerUtilityKey
+	IniWrite, %YesMovementKeys%, settings.ini, Controller, YesMovementKeys
+	IniWrite, %YesController%, settings.ini, Controller, YesController
 	IniWrite, %JoystickNumber%, settings.ini, Controller, JoystickNumber
 
     readFromFile()
@@ -7575,16 +7627,6 @@ UpdateExtra:
     }
     
 Return
-
-UpdateMovementKeys:
-	Gui, Submit, NoHide
-    IniWrite, %YesTriggerUtilityKey%, settings.ini, General, YesTriggerUtilityKey
-    IniWrite, %TriggerUtilityKey%, settings.ini, General, TriggerUtilityKey
-    IniWrite, %YesMovementKeys%, settings.ini, General, YesMovementKeys
-
-	SendMSG(1,1,scriptGottaGoFast)
-return
-	
 
 UpdateResolutionScale:
     Gui, Submit, NoHide

@@ -77,7 +77,6 @@ if not A_IsAdmin
 ; Dont change the speed & the tick unless you know what you are doing
 global Speed:=1
 global QTick:=250
-global checkvar:=0
 global PopFlaskRespectCD:=1
 global ResolutionScale:="Standard"
 Global ToggleExist := False
@@ -86,19 +85,27 @@ Global FlaskListQS := []
 Global DebugMessages
 Global QSonMainAttack := 0
 Global QSonSecondaryAttack := 0
-Global YesController := 1
-Global YesMovementKeys := 0
-Global YesTriggerUtilityKey := 0
-Global TriggerUtilityKey := 1
 Global LButtonPressed := 0
 Global MainPressed := 0
 Global SecondaryPressed := 0
+
+;Controller
+Global YesController := 1
+global checkvar:=0
+Global YesMovementKeys := 0
+Global YesTriggerUtilityKey := 0
+Global TriggerUtilityKey := 1
 Global JoystickNumber := 0
 Global JoyThreshold := 6
 global JoyThresholdUpper := 50 + JoyThreshold
 global JoyThresholdLower := 50 - JoyThreshold
 global InvertYAxis := false
-global JoyMultiplier = 0.90
+global JoyMultiplier := 0.30
+global JoyMultiplier2 := 8
+global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerJoystick2
+global YesTriggerUtilityDPadKey := 1
+global YesTriggerJoystick2Key := 1
+
 
 if InvertYAxis
     global YAxisMultiplier = -1
@@ -154,6 +161,13 @@ global utilityKeyToFire = 1
 global y_offset = 150	
 
 
+global x_center := 1920 / 2
+global compensation := (1920 / 1080) == (16 / 10) ? 1.103829 : 1.103719
+global y_center := 1080 / 2 / compensation
+global offset_mod := y_offset / 1080
+global x_offset := 1920 * (offset_mod / 1.5 )
+
+
 ;Utility Buttons
 global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
 global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
@@ -182,9 +196,6 @@ IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
 IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
 IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
-IniRead, YesTriggerUtilityKey, settings.ini, General, YesTriggerUtilityKey, 0
-IniRead, TriggerUtilityKey, settings.ini, General, TriggerUtilityKey, 1
-IniRead, YesMovementKeys, settings.ini, General, YesMovementKeys, 0
 ;Coordinates
 IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -254,16 +265,25 @@ IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
 If hotkeyAutoQuicksilver
 hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 
-IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
-
+;Controller setup
 IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, RButton
+IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, Space
 IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
 IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, r
 IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, w
 IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, e
 IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
 IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
+
+IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
+
+IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
+IniRead, YesTriggerUtilityDPadKey, settings.ini, Controller, YesTriggerUtilityDPadKey, 1
+IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
+IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
+IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
+IniRead, YesController, settings.ini, Controller, YesController, 0
+IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
 
 DetectJoystick()
 ;Set up timer if checkbox ticked
@@ -479,6 +499,7 @@ PoEWindowCheck(){
           If (!ToggleExist) {
                Gui 1: Show, x%GuiX% y%GuiY%, NoActivate 
                ToggleExist := True
+               DetectJoystick()
                WinActivate, ahk_group POEGameGroup
           }
      } Else {
@@ -563,17 +584,25 @@ ReadFromFile(){
      IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
      IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
 
-	;Controller
-	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+	;Controller setup
+     IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
+     IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, Space
+     IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
+     IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, r
+     IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, w
+     IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, e
+     IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
+     IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
+	
+	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
-    IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, RButton
-    IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
-    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, r
-    IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, w
-    IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, e
-    IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
-    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
+	IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
+	IniRead, YesTriggerUtilityDPadKey, settings.ini, Controller, YesTriggerUtilityDPadKey, 1
+	IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
+	IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
+	IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
+	IniRead, YesController, settings.ini, Controller, YesController, 0
+	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
 
 	DetectJoystick()
 	;Quicksilver
@@ -918,11 +947,11 @@ Rescale(){
                global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
           }
           WinGetPos, win_x, win_y, width, height, A
-          global x_center := win_x + width / 2
-          global compensation := (width / height) == (16 / 10) ? 1.103829 : 1.103719
-          global y_center := win_y + height / 2 / compensation
-          global offset_mod := y_offset / height
-          global x_offset := width * (offset_mod / 1.5 )
+          x_center := win_x + width / 2
+          compensation := (width / height) == (16 / 10) ? 1.103829 : 1.103719
+          y_center := win_y + height / 2 / compensation
+          offset_mod := y_offset / height
+          x_offset := width * (offset_mod / 1.5 )
           Global RescaleRan := True
      }
      return
@@ -1014,13 +1043,14 @@ Joystick2_Handler:
 	if MouseNeedsToBeMoved
 	{
 		SetMouseDelay, -1  ; Makes movement smoother.
-		MouseMove, DeltaX * JoyMultiplier, DeltaY * JoyMultiplier * YAxisMultiplier, 0, R
+		MouseMove, x_center + DeltaX * JoyMultiplier2, y_center + DeltaY * JoyMultiplier2 * YAxisMultiplier
 	}
 return
 
 
 JoyButtons_Handler:
 	GetKeyState, joy_buttons, %JoystickNumber%JoyButtons
+	GetKeyState, POV, %JoystickNumber%JoyPOV
 	Loop, %joy_buttons%
 	{
 		GetKeyState, joy%A_Index%, %JoystickNumber%joy%A_Index%
@@ -1037,16 +1067,7 @@ JoyButtons_Handler:
 			Send, % "{" hotkeyControllerButton%A_Index% " up}"
 		}
 	}
-
-return
-
-WASD_Handler:
-IfWinActive ahk_group POEGameGroup
-{
-     If (!YesMovementKeys)
-     Return
-	GetKeyState, POV, %JoystickNumber%JoyPOV
-	 if GetKeyState("Shift", "P")		; this if/loop lets Shift still function as a stand still key
+	if GetKeyState("Shift", "P")		; this if/loop lets Shift still function as a stand still key
      {
           Loop
           {
@@ -1055,14 +1076,14 @@ IfWinActive ahk_group POEGameGroup
                     break				
           }
      }
-     else if (GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P") || !(POV = -1))
+     else if !(POV = -1)
      {
-          if (GetKeyState(hotkeyUp, "P") || (POV >= 31500 && POV <= 36000) || (POV >= 0 && POV <= 4500))
+          if ((POV >= 31500 && POV <= 36000) || (POV >= 0 && POV <= 4500))
           {
                y_final := y_center - y_offset
                newposition := true
           }
-          else if (GetKeyState(hotkeyDown, "P") || (POV >= 13500 && POV <= 22500))
+          else if (POV >= 13500 && POV <= 22500)
           {
                y_final := y_center + y_offset
                newposition := true
@@ -1072,12 +1093,77 @@ IfWinActive ahk_group POEGameGroup
                y_final := y_center
           }
           
-          if (GetKeyState(hotkeyLeft, "P") || (POV >= 22500 && POV <= 31500))
+          if (POV >= 22500 && POV <= 31500)
           {
                x_final := x_center - x_offset
                newposition := true
           }
-          else if (GetKeyState(hotkeyRight, "P") || (POV >= 4500 && POV <= 13500))
+          else if (POV >= 4500 && POV <= 13500)
+          {
+               x_final := x_center + x_offset
+               newposition := true
+          }
+          else
+          {
+               x_final := x_center
+          }
+          
+          If (newposition)
+          {
+               MouseMove, %x_final%, %y_final%, 0			
+               Sleep, 45
+               Click, Down, %x_final%, %y_final%
+               newposition := false
+               checkvar := 1
+               If (YesTriggerUtilityDpadKey)
+               TriggerUtilityForce(utilityKeyToFire)
+          }
+     }
+     if !(POV>=0) && (checkvar) 
+     {
+          click, up
+          checkvar := 0
+     }
+
+return
+
+WASD_Handler:
+IfWinActive ahk_group POEGameGroup
+{
+     If (!YesMovementKeys)
+     Return
+	 if GetKeyState("Shift", "P")		; this if/loop lets Shift still function as a stand still key
+     {
+          Loop
+          {
+               GetKeyState, state, Shift, P
+               if state = U  
+                    break				
+          }
+     }
+     else if (GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P"))
+     {
+          if (GetKeyState(hotkeyUp, "P"))
+          {
+               y_final := y_center - y_offset
+               newposition := true
+          }
+          else if (GetKeyState(hotkeyDown, "P") )
+          {
+               y_final := y_center + y_offset
+               newposition := true
+          }
+          else
+          {
+               y_final := y_center
+          }
+          
+          if (GetKeyState(hotkeyLeft, "P"))
+          {
+               x_final := x_center - x_offset
+               newposition := true
+          }
+          else if (GetKeyState(hotkeyRight, "P"))
           {
                x_final := x_center + x_offset
                newposition := true
@@ -1098,7 +1184,7 @@ IfWinActive ahk_group POEGameGroup
                TriggerUtilityForce(utilityKeyToFire)
           }
      }
-     if !(GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P") || (POV>=0)) && (checkvar) 
+     if !(GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P")) && (checkvar) 
      {
           click, up
           checkvar := 0
