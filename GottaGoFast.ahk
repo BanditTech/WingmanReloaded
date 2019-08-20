@@ -20,7 +20,9 @@ SetControlDelay, -1
 FileEncoding , UTF-8
 SendMode Input
 global newposition := false
+global newpositionPOV := false
 global JoystickNumber := 0
+global JoystickActive := False
 
 Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
 Global scriptPOEWingmanSecondary := "WingmanReloaded ahk_exe AutoHotkey.exe"
@@ -55,6 +57,7 @@ global pressed17 := False
 global pressed18 := False
 global pressed19 := False
 global pressed20 := False
+global pressedJoy2 := False
 
 OnMessage(0x5555, "MsgMonitor")
 OnMessage(0x5556, "MsgMonitor")
@@ -92,6 +95,8 @@ Global SecondaryPressed := 0
 ;Controller
 Global YesController := 1
 global checkvar:=0
+global checkvarDPad:=0
+global checkvarJoy2:=False
 Global YesMovementKeys := 0
 Global YesTriggerUtilityKey := 0
 Global TriggerUtilityKey := 1
@@ -976,155 +981,181 @@ TriggerFlaskCD(Trigger){
 }
 
 Joystick_Handler:
-	MouseNeedsToBeMoved := false  ; Set default.
-	SetFormat, float, 03
-	GetKeyState, JoyX, %JoystickNumber%JoyX
-	GetKeyState, JoyY, %JoystickNumber%JoyY
-	if JoyX > %JoyThresholdUpper%
-	{
-		MouseNeedsToBeMoved := true
-		DeltaX := JoyX - JoyThresholdUpper
-	}
-	else if JoyX < %JoyThresholdLower%
-	{
-		MouseNeedsToBeMoved := true
-		DeltaX := JoyX - JoyThresholdLower
-	}
-	else
-		DeltaX = 0
-	if JoyY > %JoyThresholdUpper%
-	{
-		MouseNeedsToBeMoved := true
-		DeltaY := JoyY - JoyThresholdUpper
-	}
-	else if JoyY < %JoyThresholdLower%
-	{
-		MouseNeedsToBeMoved := true
-		DeltaY := JoyY - JoyThresholdLower
-	}
-	else
-		DeltaY = 0
-	if MouseNeedsToBeMoved
-	{
-		SetMouseDelay, -1  ; Makes movement smoother.
-		MouseMove, DeltaX * JoyMultiplier, DeltaY * JoyMultiplier * YAxisMultiplier, 0, R
-	}
+     IfWinActive ahk_group POEGameGroup
+     {
+          If (!JoystickActive || !YesController)
+          {
+               SetTimer, Joystick_Handler, off
+               Return
+          }
+          MouseNeedsToBeMoved := false  ; Set default.
+          SetFormat, float, 03
+          GetKeyState, JoyX, %JoystickNumber%JoyX
+          GetKeyState, JoyY, %JoystickNumber%JoyY
+          if JoyX > %JoyThresholdUpper%
+          {
+               MouseNeedsToBeMoved := true
+               DeltaX := JoyX - JoyThresholdUpper
+          }
+          else if JoyX < %JoyThresholdLower%
+          {
+               MouseNeedsToBeMoved := true
+               DeltaX := JoyX - JoyThresholdLower
+          }
+          else
+               DeltaX = 0
+          if JoyY > %JoyThresholdUpper%
+          {
+               MouseNeedsToBeMoved := true
+               DeltaY := JoyY - JoyThresholdUpper
+          }
+          else if JoyY < %JoyThresholdLower%
+          {
+               MouseNeedsToBeMoved := true
+               DeltaY := JoyY - JoyThresholdLower
+          }
+          else
+               DeltaY = 0
+          if MouseNeedsToBeMoved
+          {
+               MouseMove, DeltaX * JoyMultiplier, DeltaY * JoyMultiplier * YAxisMultiplier, 0, R
+          }
+     }
 return
 
 Joystick2_Handler:
-	MouseNeedsToBeMoved := false  ; Set default.
-	SetFormat, float, 03
-	GetKeyState, JoyX, %JoystickNumber%JoyU
-	GetKeyState, JoyY, %JoystickNumber%JoyR
-	if JoyX > %JoyThresholdUpper%
-	{
-		MouseNeedsToBeMoved := true
-		DeltaX := JoyX - JoyThresholdUpper
-	}
-	else if JoyX < %JoyThresholdLower%
-	{
-		MouseNeedsToBeMoved := true
-		DeltaX := JoyX - JoyThresholdLower
-	}
-	else
-		DeltaX = 0
-	if JoyY > %JoyThresholdUpper%
-	{
-		MouseNeedsToBeMoved := true
-		DeltaY := JoyY - JoyThresholdUpper
-	}
-	else if JoyY < %JoyThresholdLower%
-	{
-		MouseNeedsToBeMoved := true
-		DeltaY := JoyY - JoyThresholdLower
-	}
-	else
-		DeltaY = 0
-	if MouseNeedsToBeMoved
-	{
-		SetMouseDelay, -1  ; Makes movement smoother.
-		MouseMove, x_center + DeltaX * JoyMultiplier2, y_center + DeltaY * JoyMultiplier2 * YAxisMultiplier
-	}
+     IfWinActive ahk_group POEGameGroup
+     {
+          If (!JoystickActive || !YesController)
+          {
+               SetTimer, Joystick2_Handler, off
+               Return
+          }
+          MouseNeedsToBeMoved := false  ; Set default.
+          SetFormat, float, 03
+          GetKeyState, JoyX, %JoystickNumber%JoyU
+          GetKeyState, JoyY, %JoystickNumber%JoyR
+          if JoyX > %JoyThresholdUpper%
+          {
+               MouseNeedsToBeMoved := true
+               DeltaX := JoyX - JoyThresholdUpper
+          }
+          else if JoyX < %JoyThresholdLower%
+          {
+               MouseNeedsToBeMoved := true
+               DeltaX := JoyX - JoyThresholdLower
+          }
+          else
+               DeltaX = 0
+          if JoyY > %JoyThresholdUpper%
+          {
+               MouseNeedsToBeMoved := true
+               DeltaY := JoyY - JoyThresholdUpper
+          }
+          else if JoyY < %JoyThresholdLower%
+          {
+               MouseNeedsToBeMoved := true
+               DeltaY := JoyY - JoyThresholdLower
+          }
+          else
+               DeltaY = 0
+          if MouseNeedsToBeMoved
+          {
+               MouseMove, x_center + DeltaX * JoyMultiplier2, y_center + DeltaY * JoyMultiplier2 * YAxisMultiplier
+               if (YesTriggerJoystick2Key && !checkvarJoy2)
+               {
+                    Send {%hotkeyControllerJoystick2% down}
+                    checkvarJoy2 := True
+               }
+          }
+          Else If (checkvarJoy2)
+          {
+               Send {%hotkeyControllerJoystick2% up}
+               checkvarJoy2 := False
+          }
+     }
 return
 
 
 JoyButtons_Handler:
-	GetKeyState, joy_buttons, %JoystickNumber%JoyButtons
-	GetKeyState, POV, %JoystickNumber%JoyPOV
-	Loop, %joy_buttons%
-	{
-		GetKeyState, joy%A_Index%, %JoystickNumber%joy%A_Index%
-		if (joy%A_Index% = "D") && !(pressed%A_Index%) 
-		{
-			Ding(500,A_Index,"Pressed",hotkeyControllerButton%A_Index%)
-			pressed%A_Index% := True 
-			Send, % "{" hotkeyControllerButton%A_Index% " down}"
-		}
-		Else if (pressed%A_Index%) && !(joy%A_Index% = "D")
-		{
-			Ding(500,A_Index,"Released",hotkeyControllerButton%A_Index%)
-			pressed%A_Index% := False 
-			Send, % "{" hotkeyControllerButton%A_Index% " up}"
-		}
-	}
-	if GetKeyState("Shift", "P")		; this if/loop lets Shift still function as a stand still key
+     IfWinActive ahk_group POEGameGroup
      {
-          Loop
+          If (!JoystickActive || !YesController)
           {
-               GetKeyState, state, Shift, P
-               if state = U  
-                    break				
+               SetTimer, JoyButtons_Handler, off
+               Return
+          }
+          GetKeyState, joy_buttons, %JoystickNumber%JoyButtons
+          GetKeyState, POV, %JoystickNumber%JoyPOV
+          Loop, %joy_buttons%
+          {
+               GetKeyState, joy%A_Index%, %JoystickNumber%joy%A_Index%
+               if (joy%A_Index% = "D") && !(pressed%A_Index%) 
+               {
+                    ;Ding(500,A_Index,"Pressed",hotkeyControllerButton%A_Index%)
+                    pressed%A_Index% := True 
+                    Send, % "{" hotkeyControllerButton%A_Index% " down}"
+               }
+               Else if (pressed%A_Index%) && !(joy%A_Index% = "D")
+               {
+                    ;Ding(500,A_Index,"Released",hotkeyControllerButton%A_Index%)
+                    pressed%A_Index% := False 
+                    Send, % "{" hotkeyControllerButton%A_Index% " up}"
+               }
+          }
+          if !(POV = -1)
+          {
+               if ((POV >= 31500 && POV <= 36000) || (POV >= 0 && POV <= 4500))
+               {
+                    y_finalPOV := y_center - y_offset
+                    newpositionPOV := true
+               }
+               else if (POV >= 13500 && POV <= 22500)
+               {
+                    y_finalPOV := y_center + y_offset
+                    newpositionPOV := true
+               }
+               else
+               {
+                    y_finalPOV := y_center
+               }
+               
+               if (POV >= 22500 && POV <= 31500)
+               {
+                    x_finalPOV := x_center - x_offset
+                    newpositionPOV := true
+               }
+               else if (POV >= 4500 && POV <= 13500)
+               {
+                    x_finalPOV := x_center + x_offset
+                    newpositionPOV := true
+               }
+               else
+               {
+                    x_finalPOV := x_center
+               }
+               
+               If (newpositionPOV)
+               {
+                    Sleep, 45
+                    MouseMove, %x_finalPOV%, %y_finalPOV%
+                    if !(checkvarDPad)
+                    {
+                         Sleep, 45
+                         Click, Down, %x_finalPOV%, %y_finalPOV%
+                         checkvarDPad := 1
+                    }
+                    If (YesTriggerUtilityDpadKey)
+                         TriggerUtilityForce(utilityKeyToFire)
+                    newpositionPOV := false
+               }
+          }
+          if !(POV>=0) && (checkvarDPad) 
+          {
+               click, up
+               checkvarDPad := 0
           }
      }
-     else if !(POV = -1)
-     {
-          if ((POV >= 31500 && POV <= 36000) || (POV >= 0 && POV <= 4500))
-          {
-               y_final := y_center - y_offset
-               newposition := true
-          }
-          else if (POV >= 13500 && POV <= 22500)
-          {
-               y_final := y_center + y_offset
-               newposition := true
-          }
-          else
-          {
-               y_final := y_center
-          }
-          
-          if (POV >= 22500 && POV <= 31500)
-          {
-               x_final := x_center - x_offset
-               newposition := true
-          }
-          else if (POV >= 4500 && POV <= 13500)
-          {
-               x_final := x_center + x_offset
-               newposition := true
-          }
-          else
-          {
-               x_final := x_center
-          }
-          
-          If (newposition)
-          {
-               MouseMove, %x_final%, %y_final%, 0			
-               Sleep, 45
-               Click, Down, %x_final%, %y_final%
-               newposition := false
-               checkvar := 1
-               If (YesTriggerUtilityDpadKey)
-               TriggerUtilityForce(utilityKeyToFire)
-          }
-     }
-     if !(POV>=0) && (checkvar) 
-     {
-          click, up
-          checkvar := 0
-     }
-
 return
 
 WASD_Handler:
@@ -1132,16 +1163,7 @@ IfWinActive ahk_group POEGameGroup
 {
      If (!YesMovementKeys)
      Return
-	 if GetKeyState("Shift", "P")		; this if/loop lets Shift still function as a stand still key
-     {
-          Loop
-          {
-               GetKeyState, state, Shift, P
-               if state = U  
-                    break				
-          }
-     }
-     else if (GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P"))
+     if (GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P"))
      {
           if (GetKeyState(hotkeyUp, "P"))
           {
@@ -1175,13 +1197,16 @@ IfWinActive ahk_group POEGameGroup
           
           If (newposition)
           {
-               MouseMove, %x_final%, %y_final%, 0			
+               MouseMove, %x_final%, %y_final%			
                Sleep, 45
-               Click, Down, %x_final%, %y_final%
+               If !(checkvar)
+               {
+                    Click, Down, %x_final%, %y_final%
+                    checkvar := 1
+               }
                newposition := false
-               checkvar := 1
                If (YesTriggerUtilityKey)
-               TriggerUtilityForce(utilityKeyToFire)
+                    TriggerUtilityForce(utilityKeyToFire)
           }
      }
      if !(GetKeyState(hotkeyUp, "P") || GetKeyState(hotkeyDown, "P") || GetKeyState(hotkeyLeft, "P") || GetKeyState(hotkeyRight, "P")) && (checkvar) 
@@ -1203,18 +1228,20 @@ DetectJoystick(){
                {
                     JoystickNumber := A_Index
                     Ding(3000,"Detected Joystick on the " . A_Index . " port.")
+                    JoystickActive:=True
                     break
-                    
                }
           }
           if JoystickNumber <= 0
           {
 			Ding(3000,"The system does not appear to have any joysticks.")
+               JoystickActive:=False
           }
      }
      Else 
      {
 		Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
+          JoystickActive := True
      }
      Return
 }

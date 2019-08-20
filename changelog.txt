@@ -19,14 +19,18 @@ Introducing Controller support!
     Currently is adequately functional
     movement on the dpad with optional utility key
     Move the mouse cursor with the first joystick
-    Aiming for spells with the second joystick
+        Might switch the two of these so movement is on joystick instead
+    Aiming for spells with the second joystick and assigned key
     Keybindings for each button 1-8
+    Key thing to note:
+        Press load to redetect joysticks
+        Disconnecting an active controller requires a script reload
+        There is nothing I can do about this, AHK does not detect removal
 
 Added in keyboard movement!
     optional keys to move up down left or right with utility key tied to it
     find these keys on controller tab for now
 
-    
 Version .04.6 August/17/2019
 --------------------------------------------------------------------------------
 Bugfix for QSonMainAttack - was double casting the flasks and not respecting CD
