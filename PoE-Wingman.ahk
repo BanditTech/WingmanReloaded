@@ -143,6 +143,18 @@
 			Corruption.push(A_LoopReadLine)
 		}
 	}
+	IfNotExist, %A_ScriptDir%\data\Controller.png
+	{
+		FileCreateDir, %A_ScriptDir%\data
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Controller.png, %A_ScriptDir%\data\Controller.png
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
+			MsgBox, Error ED02 : There was a problem downloading Controller.png
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
+		}
+	}
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
