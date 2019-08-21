@@ -1,6 +1,42 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .04.7 August/21/2019
+--------------------------------------------------------------------------------
+Introducing Controller support!
+    movement on the Joystick with optional utility key
+    Move the mouse cursor with the D-Pad
+    Aiming for spells with the second joystick and assigned key
+    Keybindings for each button 1-10
+    Use the key dropdown boxes to choose a script function, or an ingame key
+    Lootvacuum on the controller by assigning the loot pickup key
+    Key thing to note:
+        Press load to redetect joysticks
+        Disconnecting an active controller requires a script reload
+        There is nothing I can do about this, AHK does not detect removal
+        buttons are configured for default keybinds, match to your style
+
+Added new option to return toggles to their previous state on load.
+    Select Persistant Auto-Toggles in the Configuration tab
+
+Added Instance Management screen and Divination trade window to failsafe colors.
+    hit the OnInsMan Color button while instance manager is open
+    hit the OnDiv Color button while divination trade window is open
+
+Added option to inventory tab to turn on and off Divination trading
+    Open the divination trade window and press the one button inventory hotkey!
+    all full stack divination cards will be attempted to trade.
+    currently does not have any way of determining if successful. 
+
+Added in keyboard movement!
+    optional keys to move up down left or right with utility key tied to it
+    find these keys on controller tab for now
+
+Bugfix for loot vacuum
+    was not using the areascale calculations properly
+    now searches in a small square near mouse
+    (Was searching in 1 pixel area before)
+
 Version .04.6 August/17/2019
 --------------------------------------------------------------------------------
 Bugfix for QSonMainAttack - was double casting the flasks and not respecting CD

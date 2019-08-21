@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.6
+    Global VersionNumber := .04.7
 
 	Global Null := 0
     
@@ -143,9 +143,37 @@
 			Corruption.push(A_LoopReadLine)
 		}
 	}
+	IfNotExist, %A_ScriptDir%\data\Controller.png
+	{
+		FileCreateDir, %A_ScriptDir%\data
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Controller.png, %A_ScriptDir%\data\Controller.png
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
+			MsgBox, Error ED02 : There was a problem downloading Controller.png
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
+		}
+	}
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Extra vars - Not in INI
+		global Trigger:=00000
+		global AutoQuit:=0 
+		global AutoFlask:=0
+		global AutoQuick:=0 
+		global OnCooldown:=[0,0,0,0,0]
+		global Radiobox1QS
+		global Radiobox2QS
+		global Radiobox3QS
+		global Radiobox4QS
+		global Radiobox5QS
+		global Radiobox1Mana10
+		global Radiobox2Mana10
+		global Radiobox3Mana10
+		global Radiobox4Mana10
+		global Radiobox5Mana10
     ;General
 		Global Latency := 1
 		Global ShowOnStart := 0
@@ -156,14 +184,16 @@
 		Global MOColor := 0x011C01
 		Global QSonMainAttack := 1
 		Global QSonSecondaryAttack := 1
+		Global YesPersistantToggle := 1
 		
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
-		Global AreaScale := 1
+		Global AreaScale := 4
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
 		Global YesIdentify := 1
+		Global YesDiv := 1
 		Global YesMapUnid := 1
 		Global YesStashKeys := 1
 		Global OnHideout := False
@@ -172,6 +202,8 @@
 		Global OnInventory := False
 		Global OnStash := False
 		Global OnVendor := False
+		Global OnDiv := False
+		Global OnInsMan := False
 		Global RescaleRan := False
 		Global ToggleExist := False
 		; These colors are from filterblade.xyz filter creator
@@ -218,6 +250,7 @@
 		Global Steam := 1
 		Global HighBits := 1
 		Global AutoUpdateOff := 0
+		Global EnableChatHotkeys := 0
 		; Dont change the speed & the tick unless you know what you are doing
 			global Speed:=1
 			global Tick:=50
@@ -255,6 +288,22 @@
 		Global StashTabYesFossil := 1
 		Global StashTabYesResonator := 1
 		Global StashTabYesProphecy := 1
+		;Controller
+		Global YesController := 1
+		global checkvar:=0
+		Global YesMovementKeys := 0
+		Global YesTriggerUtilityKey := 0
+		Global TriggerUtilityKey := 1
+		Global JoystickNumber := 0
+		Global JoyThreshold := 6
+		global JoyThresholdUpper := 50 + JoyThreshold
+		global JoyThresholdLower := 50 - JoyThreshold
+		global InvertYAxis := false
+		global JoyMultiplier := 0.30
+		global JoyMultiplier2 := 8
+		global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerButton9,hotkeyControllerButton10,hotkeyControllerJoystick2
+		global YesTriggerUtilityJoystickKey := 1
+		global YesTriggerJoystick2Key := 1
 	;~ Hotkeys
 	; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
 		global hotkeyOptions:=!F10
@@ -295,6 +344,8 @@
 		global varOnInventory:=0x8CC6DD
 		global varOnStash:=0x9BD6E7
 		global varOnVendor:=0x7BB1CC
+		global varOnDiv:=0xC5E2F6
+		global varOnInsMan:=0x91CCE4
 		Global DetonateHex := 0x412037
 
 	;Life Colors
@@ -454,7 +505,7 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, vMainGuiTabs x1 y1 w620 h465 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat
+	Gui Add, Tab2, vMainGuiTabs x1 y1 w620 h465 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
@@ -767,36 +818,42 @@
 	Gui, Add, Text, 									x+33 		 		h107 0x11
 
 	Gui, Font, Bold
-	Gui, Add, Text, 										x22 	y30, 				Gamestate Calibration:
+	Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
 	Gui, Font
 	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
 
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	x22	y50	w100, 	OnHideout Color
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 	w100, 	OnChar Color
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 	w100, 	OnChat Color
-	Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn	 	w100, 	Empty Color
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w100, 	OnHideout Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w100, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w100, 	OnChat Color
+	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 								w100, 	OnDiv Color
+
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn x+8 ys+20			w100, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w100, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 						w100, 	OnVendor Color
+	Gui, Add, Button, gupdateOnInsMan vUpdateOnInsManBtn							w100, 	OnInsMan Color
 
 	Gui, Font, Bold
-	Gui, Add, Text, 										x22 	y+10, 				AutoDetonate Calibration:
+	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
 	Gui, Font
-
-	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn	 y+8	w100, 	Detonate Color
-	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8	w100, 	Detonate in Delve
-
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	 x130 y50	w100, 	OnInventory Color
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 	w100, 	OnStash Color
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 	w100, 	OnVendor Color
-	Gui, Add, Button, gupdateMouseoverColor vUdateMouseoverColorBtn	 	w100, 	Mouseover Color
+	Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn xs ys+20 	w100, 	Empty Color
+	Gui, Add, Button, gupdateMouseoverColor vUdateMouseoverColorBtn	 	x+8 ys+20	w100, 	Mouseover Color
 	Gui, Font, Bold
-	Gui Add, Text, 										x22 	y+90, 				Additional Interface Options:
+	Gui, Add, Text, 				section						xs 	y+10, 				AutoDetonate Calibration:
+	Gui, Font
+	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn xs ys+20					w100, 	Detonate Color
+	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
+
+	Gui, Font, Bold
+	Gui Add, Text, 										xs 	y+20, 				Additional Interface Options:
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
-	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          	, Are you using Steam?
-	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          	, Are you running 64 bit?
-	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	          	, Turn off Auto-Update?
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    , Standard|UltraWide
+	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
+	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
+	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
+	Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|UltraWide
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
@@ -1003,6 +1060,7 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%                         	          , Identify Items?
 	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%                         	        	  , Deposit at stash?
 	Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%                         	              , Sell at vendor?
+	Gui Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%                         	              	  , Trade Divination?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%                         	          , Leave Map Un-ID?
 
 	Gui, Font, Bold
@@ -1011,6 +1069,68 @@
 	Gui Add, Text, 										 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
 	Gui Add, Text, 										 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
 	Gui Add, Text, 										 	y+5, 				The options to the right affect which portion of the script is enabled.
+
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+	;#######################################################################################################Controller Tab
+
+	Gui, Tab, Controller
+	DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
+	textList= 
+	For k, v in DefaultButtons
+		textList .= (!textList ? "" : "|") v
+	
+	Gui, Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
+
+	Gui Add, Checkbox,  section	xp y+-10					vYesMovementKeys Checked%YesMovementKeys%                         	          , Use Move Keys?
+	Gui Add, Checkbox, 						vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                         	          , Use utility on Move?
+	Gui Add, DropDownList,   x+5 yp-5     w40 	vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
+
+	Gui, Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
+	
+	Gui,Add,GroupBox, section xm+80 ym+15 w80 h40												,5
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton5, %hotkeyControllerButton5%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox,  xs+360 ys w80 h40												,6
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton6, %hotkeyControllerButton6%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+	Gui,Add,GroupBox, section  xm+65 ym+100 w90 h80												,D-Pad
+	gui,add,text, xs+15 ys+30, Mouse`nMovement
+
+	Gui,Add,GroupBox, section xm+165 ym+180 w80 h80												,Joystick1
+	Gui,Add,Checkbox, xs+5 ys+30 		Checked%YesTriggerUtilityJoystickKey%			vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
+	Gui,Add,GroupBox,  xs ys+90 w80 h40												,9 / L3
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton9, %hotkeyControllerButton9%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+	Gui,Add,GroupBox,section  xs+190 ys w80 h80												,Joystick2
+	Gui,Add,Checkbox, xp+5 y+-53 		Checked%YesTriggerJoystick2Key%			vYesTriggerJoystick2Key, Use key?
+	Gui Add, ComboBox,  			xp y+8      w70 	vhotkeyControllerJoystick2, %hotkeyControllerJoystick2%||LButton|RButton|q|w|e|r|t
+	Gui,Add,GroupBox,  xs ys+90 w80 h40												,10 / R3
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton10, %hotkeyControllerButton10%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+	Gui,Add,GroupBox, section xm+140 ym+60 w80 h40												,7 / Select
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton7, %hotkeyControllerButton7%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox, xs+245 ys w80 h40												,8 / Start
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton8, %hotkeyControllerButton8%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+	Gui,Add,GroupBox, section xm+65 ym+280 w40 h40									,Up
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyUp, %hotkeyUp%
+	Gui,Add,GroupBox, xs ys+80 w40 h40												,Down
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyDown, %hotkeyDown%
+	Gui,Add,GroupBox, xs-40 ys+40 w40 h40											,Left
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyLeft, %hotkeyLeft%
+	Gui,Add,GroupBox, xs+40 ys+40 w40 h40											,Right
+	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyRight, %hotkeyRight%
+
+	Gui,Add,GroupBox,section xm+465 ym+80 w70 h40											,4
+	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton4, %hotkeyControllerButton4%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox, xs ys+80 w70 h40											,1
+	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton1, %hotkeyControllerButton1%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox, xs-40 ys+40 w70 h40											,3
+	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton3, %hotkeyControllerButton3%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox, xs+40 ys+40 w70 h40											,2
+	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton2, %hotkeyControllerButton2%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -1053,6 +1173,7 @@
 	Gui,Font,
 	Gui,Font,s9,Arial
 	DefaultCommands := [ "/Hideout","/menagerie","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
+	textList=
 	For k, v in DefaultCommands
 		textList .= (!textList ? "" : "|") v
 	Gui Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %1Suffix1Text%||%textList%
@@ -1206,23 +1327,6 @@
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-; Extra vars - Not in INI
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	global Trigger=00000
-	global AutoQuit=0 
-	global AutoFlask=0
-	global OnCooldown:=[0,0,0,0,0]
-	global Radiobox1QS
-	global Radiobox2QS
-	global Radiobox3QS
-	global Radiobox4QS
-	global Radiobox5QS
-	global Radiobox1Mana10
-	global Radiobox2Mana10
-	global Radiobox3Mana10
-	global Radiobox4Mana10
-	global Radiobox5Mana10
-
 	IfWinExist, ahk_group POEGameGroup
 		{
 		Rescale()
@@ -1248,6 +1352,10 @@
 		global vY_OnStash:=32
 		global vX_OnVendor:=618
 		global vY_OnVendor:=88
+		global vX_OnDiv:=618
+		global vY_OnDiv:=135
+		global vX_OnInsMan:=960
+		global vY_OnInsMan:=124
 		
 		global vX_Life:=95
 		global vY_Life90:=1034
@@ -1271,7 +1379,10 @@
 		
 		global vX_Mana:=1825
 		global vY_Mana10:=1054
-		
+	
+		Global vY_DivTrade:=736
+		Global vY_DivItem:=605
+
 		global vX_StashTabMenu := 640
 		global vY_StashTabMenu := 146
 		global vX_StashTabList := 760
@@ -1296,6 +1407,8 @@
 		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 		ToggleExist := True
 		WinActivate, ahk_group POEGameGroup
+		If (YesPersistantToggle)
+			AutoReset()
 		If (ShowOnStart)
 			Hotkeys()
 		}
@@ -1332,21 +1445,21 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LootScan(){
 	LootScanCommand:
-		Pressed := GetKeyState(hotkeyLootScan, "P")
+		Pressed := GetKeyState(hotkeyLootScan)
 		While (Pressed&&LootVacuum)
 		{
 			For k, ColorHex in LootColors
 			{
-				Pressed := GetKeyState(hotkeyLootScan, "P")
+				Pressed := GetKeyState(hotkeyLootScan)
 				Sleep, -1
 				MouseGetPos CenterX, CenterY
 				ScanX1:=(CenterX-AreaScale)
 				ScanY1:=(CenterY-AreaScale)
 				ScanX2:=(CenterX+AreaScale)
 				ScanY2:=(CenterY+AreaScale)
-				PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
+				PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
 				If (ErrorLevel = 0){
-					Pressed := GetKeyState(hotkeyLootScan, "P")
+					Pressed := GetKeyState(hotkeyLootScan)
 					If !(Pressed)
 						Break
 					Sleep, -1
@@ -1376,9 +1489,14 @@ ItemSort(){
 			RunningToggle := True
 			GuiStatus()
 			
-			If ((!OnInventory&&OnChar)||(!OnChar)){ ;Need to be on Character and have Inventory Open
-				MsgBox %  "Make sure your inventory is open, doing nothing now."
+			If (!OnChar) { ;Need to be on Character 
+				MsgBox %  "You do not appear to be in game."
 				Return
+			}
+			Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
+				Send {%hotkeyInventory%}
+				Sleep, 60
+				;Return
 			}
 
 			For C, GridX in InventoryGridX
@@ -1405,6 +1523,16 @@ ItemSort(){
 					}
 					
 					ClipItem(Grid.X,Grid.Y)
+					If (OnDiv && YesDiv) 
+					{
+						If (Prop.RarityDivination && (Prop.Stack = Prop.StackMax)){
+							CtrlClick(Grid.X,Grid.Y)
+							RandomSleep(150,200)
+							SwiftClick(vX_OnDiv,vY_DivTrade)
+							CtrlClick(vX_OnDiv,vY_DivItem)
+						}
+						Continue
+					}
 					If (!Prop.Identified&&YesIdentify)
 					{
 						If (Prop.IsMap&&!YesMapUnid)
@@ -1816,8 +1944,8 @@ StockScrolls(){
 ; Randomize Click area around middle of cell using Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RandClick(x, y){
-		Random, Rx, x+5, x+45
-		Random, Ry, y-45, y-5
+		Random, Rx, x+10, x+40
+		Random, Ry, y-40, y-10
 	return {"X": Rx, "Y": Ry}
 	}
 
@@ -1865,6 +1993,12 @@ Rescale(){
 				;Status Check OnVendor
 				global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
 				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Status Check OnDiv
+				global vX_OnDiv:=X + Round(A_ScreenWidth / (1920 / 618))
+				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
+				;Status Check OnInsMan
+				global vX_OnInsMan:=X + Round(A_ScreenWidth / 2)
+				global vY_OnInsMan:=Y + Round(A_ScreenHeight / ( 1080 / 124))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
@@ -1891,6 +2025,9 @@ Rescale(){
 				;GUI overlay
 				global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
 				global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+				;Divination Y locations
+				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
 				;Stash tabs menu button
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
@@ -1930,6 +2067,12 @@ Rescale(){
 				;Status Check OnVendor
 				global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
 				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Status Check OnDiv
+				global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
+				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
+				;Status Check OnInsMan
+				global vX_OnInsMan:=X + Round(A_ScreenWidth / 2)
+				global vY_OnInsMan:=Y + Round(A_ScreenHeight / ( 1080 / 124))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
 					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
@@ -1956,6 +2099,9 @@ Rescale(){
 				;GUI overlay
 				global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
 				global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+				;Divination Y locations
+				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
 				;Stash tabs menu button
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
@@ -1995,6 +2141,9 @@ Rescale(){
 				;Status Check OnVendor
 				global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
 				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
+				;Status Check OnDiv
+				global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
+				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (2560 / 95))
 					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
@@ -2021,6 +2170,9 @@ Rescale(){
 				;GUI overlay
 				global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
 				global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
+				;Divination Y locations
+				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
 				;Stash tabs menu button
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
@@ -2040,6 +2192,7 @@ Rescale(){
 AutoQuit(){
 	AutoQuitCommand:
 		AutoQuit := !AutoQuit
+		IniWrite, %AutoQuit%, settings.ini, Previous Toggles, AutoQuit
 		if ((!AutoFlask) && (!AutoQuit)) {
 			SetTimer TGameTick, Off
 		} else if ((AutoFlask) || (AutoQuit)){
@@ -2054,6 +2207,7 @@ AutoQuit(){
 AutoFlask(){
 	AutoFlaskCommand:	
 		AutoFlask := !AutoFlask
+		IniWrite, %AutoFlask%, settings.ini, Previous Toggles, AutoFlask
 		if ((!AutoFlask) and (!AutoQuit)) {
 			SetTimer TGameTick, Off
 		} else if ((AutoFlask) || (AutoQuit)) {
@@ -2062,6 +2216,20 @@ AutoFlask(){
 		GuiUpdate()	
 	return
 	}
+
+; Load Previous Toggle States
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+AutoReset(){
+	IniRead, AutoQuit, settings.ini, Previous Toggles, AutoQuit, 0
+	IniRead, AutoFlask, settings.ini, Previous Toggles, AutoFlask, 0
+	if ((!AutoFlask) and (!AutoQuit)) {
+		SetTimer TGameTick, Off
+	} else if ((AutoFlask) || (AutoQuit)) {
+		SetTimer TGameTick, %Tick%
+	}
+	GuiUpdate()	
+return
+}
 
 ; Tooltip Management
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3895,7 +4063,7 @@ GrabRecipientName(){
 			RecipientName1 := RecipientNameArr[1]
 			RecipientName := StrReplace(RecipientName1, "@")
 			}
-			Ding(%RecipientName%)
+			Ding( ,%RecipientName%)
 		}
 	Sleep, 60
 	Return
@@ -3914,7 +4082,8 @@ CoordAndDebug(){
 				TT := TT . "`n`n"
 				GuiStatus()
 				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n`n"
+				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
+				TT := TT . "Instance Management screen:  " . OnInsMan . "  Divination Trade: " . OnDiv . "`n`n"
 				ClipItem(x, y)
 				If (Prop.IsItem) {
 					TT := TT . "Item Properties:`n"
@@ -4078,6 +4247,8 @@ PoEWindowCheck(){
 				Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 				ToggleExist := True
 				WinActivate, ahk_group POEGameGroup
+				If (YesPersistantToggle)
+					AutoReset()
 			}
 		} Else {
 			If (ToggleExist){
@@ -4150,6 +4321,33 @@ MsgMonitor(wParam, lParam, msg)
 				return
 				}		
 			}
+		Else If (wParam=6) {
+			If (lParam=1){
+				; hotkeyLogout
+				LogoutCommand()
+				return
+				}		
+			If (lParam=2){
+				; hotkeyPopFlasks
+				PopFlasks()
+				return
+				}		
+			If (lParam=3){
+				; hotkeyQuickPortal
+				QuickPortal()
+				return
+				}		
+			If (lParam=4){
+				; hotkeyGemSwap
+				GemSwap()
+				return
+				}		
+			If (lParam=5){
+				; hotkeyItemSort
+				ItemSort()
+				return
+				}		
+			}
 		Return
 		}
 ; Send one or two digits to a sub-script 
@@ -4212,6 +4410,18 @@ GuiStatus(Fetch:=""){
 		} Else {
 		OnVendor:=False
 		}
+	pixelgetcolor, POnDiv, vX_OnDiv, vY_OnDiv
+	If (POnDiv=varOnDiv) {
+		OnDiv:=True
+		} Else {
+		OnDiv:=False
+		}
+	pixelgetcolor, POnInsMan, vX_OnInsMan, vY_OnInsMan
+	If (POnInsMan=varOnInsMan) {
+		OnInsMan:=True
+		} Else {
+		OnInsMan:=False
+		}
 	Return
 	}
 
@@ -4221,7 +4431,7 @@ MainAttackCommand(){
 	MainAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnInsMan)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerMainAttack)
@@ -4244,7 +4454,7 @@ SecondaryAttackCommand(){
 	SecondaryAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnInsMan)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerSecondaryAttack)
@@ -4275,7 +4485,7 @@ TMineTick(){
 
 ; Debug messages within script
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Ding(Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Message6:="", Message7:="" ){
+Ding(Timeout:=500,Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Message6:="", Message7:="" ){
 	If (!DebugMessages)
 		Return
 	Else If (DebugMessages){
@@ -4306,7 +4516,7 @@ Ding(Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Me
 			}
 		Tooltip, %debugStr%
 		}
-	SetTimer, RemoveTooltip, 500
+	SetTimer, RemoveTooltip, %Timeout%
 	Return
 	}
 
@@ -4317,7 +4527,7 @@ TGameTick(){
     {
         ; Check what status is your character in the game
         GuiStatus()
-        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
+        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnInsMan) { 
             ;GuiUpdate()																									   
             Exit
         }
@@ -4807,6 +5017,32 @@ TriggerMana(Trigger){
     Return
 	}
 
+; Auto-detect the joystick number if called for:
+DetectJoystick(){
+     if JoystickNumber <= 0
+     {
+          Loop 16  ; Query each joystick number to find out which ones exist.
+          {
+               GetKeyState, JoyName, %A_Index%JoyName
+               if JoyName <>
+               {
+                    JoystickNumber = %A_Index%
+                    Ding(3000,"Detected Joystick on the " . A_Index . " port.")
+                    break
+                    
+               }
+          }
+          if JoystickNumber <= 0
+          {
+				Ding(3000,"The system does not appear to have any joysticks.")
+          }
+     }
+     Else 
+     {
+		Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
+     }
+     Return
+}
 ; Clamp Value function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Clamp( Val, Min, Max) {
@@ -4907,7 +5143,7 @@ RegisterHotkeys() {
 ; Functions to evaluate keystate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
-    IfWinExist, ahk_group POEGameGroup
+    IfWinActive, ahk_group POEGameGroup
         {
 		If (EnableChatHotkeys){
 			If ( 1Prefix1 && 1Prefix2 ){
@@ -4938,7 +5174,7 @@ RegisterHotkeys() {
         }
 }
 2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
-    IfWinExist, ahk_group POEGameGroup
+    IfWinActive, ahk_group POEGameGroup
         {
 		If (EnableChatHotkeys){
 			If ( 2Prefix1 && 2Prefix2 ){
@@ -4971,7 +5207,7 @@ RegisterHotkeys() {
         }
 }
 stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
-    IfWinExist, ahk_group POEGameGroup
+    IfWinActive, ahk_group POEGameGroup
     {
 		If (YesStashKeys){
 			If ( stashPrefix1 && stashPrefix2 ){
@@ -5063,7 +5299,7 @@ Return
 ; Attack Key timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerMainAttack:
-		MainAttackPressed:=GetKeyState(hotkeyMainAttack, "P")
+		MainAttackPressed:=GetKeyState(hotkeyMainAttack)
 		If (MainAttackPressed && TriggerMainAttack > 0 )
 			MainAttackCommand()
 		If (MainAttackPressed && QSonMainAttack)
@@ -5072,7 +5308,7 @@ Return
 			settimer,TimerMainAttack,delete
 	Return
 	TimerSecondaryAttack:
-		SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack, "P")
+		SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack)
 		If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
 			SecondaryAttackCommand()
 		If (SecondaryAttackPressed && QSonSecondaryAttack)
@@ -5126,6 +5362,7 @@ readFromFile(){
     IniRead, YesVendor, settings.ini, General, YesVendor, 1
     IniRead, YesStash, settings.ini, General, YesStash, 1
     IniRead, YesIdentify, settings.ini, General, YesIdentify, 1
+    IniRead, YesDiv, settings.ini, General, YesDiv, 1
 	IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
     IniRead, Latency, settings.ini, General, Latency, 1
     IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
@@ -5140,6 +5377,7 @@ readFromFile(){
     IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
     IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
     IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
+    IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -5189,6 +5427,8 @@ readFromFile(){
     IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
     IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
     IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
+    IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xC5E2F6
+    IniRead, varOnInsMan, settings.ini, Failsafe Colors, OnInsMan, 0x91CCE4
     IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
     
     ;Life Colors
@@ -5320,6 +5560,12 @@ readFromFile(){
     IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
     IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
     IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
+
+    ;Utility Keys
+    IniRead, hotkeyUp, 		settings.ini, Controller Keys, hotkeyUp, 	w
+    IniRead, hotkeyDown, 	settings.ini, Controller Keys, hotkeyDown,  s
+    IniRead, hotkeyLeft, 	settings.ini, Controller Keys, hotkeyLeft,  a
+    IniRead, hotkeyRight, 	settings.ini, Controller Keys, hotkeyRight, d
     
     ;Flask Cooldowns
     IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
@@ -5534,6 +5780,29 @@ readFromFile(){
     IniRead, stashSuffixTab8, settings.ini, Stash Hotkeys, stashSuffixTab8, 8
     IniRead, stashSuffixTab9, settings.ini, Stash Hotkeys, stashSuffixTab9, 9
 
+
+	;Controller setup
+    IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
+    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
+    IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
+    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
+    IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
+    IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
+    IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
+    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Logout
+    IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Tab
+    IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
+	
+	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
+
+	IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
+	IniRead, YesTriggerUtilityJoystickKey, settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
+	IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
+	IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
+	IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
+	IniRead, YesController, settings.ini, Controller, YesController, 0
+	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+
 	RegisterHotkeys()
     checkActiveType()
 Return
@@ -5692,14 +5961,14 @@ updateEverything:
     
     ;Life Flasks
     IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
-        IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
-        IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
-        IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
-        IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
-        IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
-        IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
-        IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
-        IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
+	IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
+	IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
+	IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
+	IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
+	IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
+	IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
+	IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
+	IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
         
     
     ;ES Flasks
@@ -5724,6 +5993,7 @@ updateEverything:
     IniWrite, %YesVendor%, settings.ini, General, YesVendor
     IniWrite, %YesStash%, settings.ini, General, YesStash
     IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+    IniWrite, %YesDiv%, settings.ini, General, YesDiv
 	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
     IniWrite, %Latency%, settings.ini, General, Latency
     IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
@@ -5754,6 +6024,11 @@ updateEverything:
     IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
     IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
     
+    ;Utility Keys
+    IniWrite, %hotkeyUp%, 		settings.ini, Controller Keys, hotkeyUp
+    IniWrite, %hotkeyDown%, 	settings.ini, Controller Keys, hotkeyDown
+    IniWrite, %hotkeyLeft%, 	settings.ini, Controller Keys, hotkeyLeft
+    IniWrite, %hotkeyRight%, 	settings.ini, Controller Keys, hotkeyRight
     
     ;Utility Buttons
     IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
@@ -5934,7 +6209,31 @@ updateEverything:
     IniWrite, %stashSuffixTab8%, settings.ini, Stash Hotkeys, stashSuffixTab8
     IniWrite, %stashSuffixTab9%, settings.ini, Stash Hotkeys, stashSuffixTab9
 
+	;Controller setup
+    IniWrite, %hotkeyControllerButton1%, settings.ini, Controller Keys, ControllerButton1
+    IniWrite, %hotkeyControllerButton2%, settings.ini, Controller Keys, ControllerButton2
+    IniWrite, %hotkeyControllerButton3%, settings.ini, Controller Keys, ControllerButton3
+    IniWrite, %hotkeyControllerButton4%, settings.ini, Controller Keys, ControllerButton4
+    IniWrite, %hotkeyControllerButton5%, settings.ini, Controller Keys, ControllerButton5
+    IniWrite, %hotkeyControllerButton6%, settings.ini, Controller Keys, ControllerButton6
+    IniWrite, %hotkeyControllerButton7%, settings.ini, Controller Keys, ControllerButton7
+    IniWrite, %hotkeyControllerButton8%, settings.ini, Controller Keys, ControllerButton8
+    IniWrite, %hotkeyControllerButton9%, settings.ini, Controller Keys, ControllerButton9
+    IniWrite, %hotkeyControllerButton10%, settings.ini, Controller Keys, ControllerButton10
+	
+	IniWrite, %hotkeyControllerJoystick2%, settings.ini, Controller Keys, hotkeyControllerJoystick2
+
+	IniWrite, %YesTriggerUtilityKey%, settings.ini, Controller, YesTriggerUtilityKey
+	IniWrite, %YesTriggerUtilityJoystickKey%, settings.ini, Controller, YesTriggerUtilityJoystickKey
+	IniWrite, %YesTriggerJoystick2Key%, settings.ini, Controller, YesTriggerJoystick2Key
+	IniWrite, %TriggerUtilityKey%, settings.ini, Controller, TriggerUtilityKey
+	IniWrite, %YesMovementKeys%, settings.ini, Controller, YesMovementKeys
+	IniWrite, %YesController%, settings.ini, Controller, YesController
+	IniWrite, %JoystickNumber%, settings.ini, Controller, JoystickNumber
+
     readFromFile()
+	If (YesPersistantToggle)
+		AutoReset()
     GuiUpdate()
     SetTitleMatchMode 2
     IfWinExist, ahk_group POEGameGroup
@@ -6853,6 +7152,8 @@ loadSaved:
     GuiControl,, CurrentGemY, %CurrentGemY%
     GuiControl,, AlternateGemX, %AlternateGemX%
     GuiControl,, AlternateGemY, %AlternateGemY%
+	
+	SendMSG(1,1,scriptGottaGoFast)
 return
 
 hotkeys(){
@@ -7156,6 +7457,54 @@ updateOnVendor:
     
 return
 
+updateOnDiv:
+    Gui, Submit, NoHide
+    
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnDiv didn't work"
+        Return
+    }
+    
+    if WinActive(ahk_group POEGameGroup){
+        pixelgetcolor, varOnDiv, vX_OnDiv, vY_OnDiv
+        IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
+        readFromFile()
+        MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . vX_OnDiv . " and y: " . vY_OnDiv
+    }else
+    MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
+    
+    hotkeys()
+    
+return
+
+updateOnInsMan:
+    Gui, Submit, NoHide
+    
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnInsMan didn't work"
+        Return
+    }
+    
+    if WinActive(ahk_group POEGameGroup){
+        pixelgetcolor, varOnInsMan, vX_OnInsMan, vY_OnInsMan
+        IniWrite, %varOnInsMan%, settings.ini, Failsafe Colors, OnInsMan
+        readFromFile()
+        MsgBox % "OnInsMan recalibrated!`nTook color hex: " . varOnInsMan . " `nAt coords x: " . vX_OnInsMan . " and y: " . vY_OnInsMan
+    }else
+    MsgBox % "PoE Window is not active. `nRecalibrate of OnInsMan didn't work"
+    
+    hotkeys()
+    
+return
+
 updateDetonate:
     Gui, Submit, NoHide
     IfWinExist, ahk_group POEGameGroup
@@ -7331,6 +7680,7 @@ UpdateExtra:
     IniWrite, %YesVendor%, settings.ini, General, YesVendor
     IniWrite, %YesStash%, settings.ini, General, YesStash
     IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+    IniWrite, %YesDiv%, settings.ini, General, YesDiv
 	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
     IniWrite, %Latency%, settings.ini, General, Latency
     IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
@@ -7338,6 +7688,9 @@ UpdateExtra:
     IniWrite, %Steam%, settings.ini, General, Steam
     IniWrite, %HighBits%, settings.ini, General, HighBits
     IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
+    IniWrite, %YesPersistantToggle%, settings.ini, General, YesPersistantToggle
+	If (YesPersistantToggle)
+		AutoReset()
     If (DetonateMines&&!Detonated)
         SetTimer, TMineTick, 100
     Else If (!DetonateMines)
