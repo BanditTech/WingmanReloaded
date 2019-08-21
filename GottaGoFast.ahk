@@ -31,6 +31,7 @@ global newpositionPOV := false
 global JoystickNumber := 0
 global JoystickActive := False
 Global Latency := 1
+Global YesPersistantToggle := 1
 
 Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
 Global scriptPOEWingmanSecondary := "WingmanReloaded ahk_exe AutoHotkey.exe"
@@ -120,7 +121,7 @@ global JoyThresholdLower := 50 - JoyThreshold
 global InvertYAxis := false
 global JoyMultiplier := 6
 global JoyMultiplier2 := 8
-global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerJoystick2
+global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerButton9,hotkeyControllerButton10,hotkeyControllerJoystick2
 global YesTriggerUtilityJoystickKey := 1
 global YesTriggerJoystick2Key := 1
 global HeldCountJoystick := 0
@@ -289,18 +290,21 @@ IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
 IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
 If hotkeyAutoQuicksilver
 hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
+IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
+IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
 
 ;Controller setup
 IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, f
+IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
 IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
-IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, Space
+IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
 IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
 IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
-IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
-IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, c
+IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
+IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Logout
+IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Tab
+IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
 	
-
 IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
 IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
@@ -311,10 +315,10 @@ IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
 IniRead, YesController, settings.ini, Controller, YesController, 0
 IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
 
-IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
 IniRead, Latency, settings.ini, General, Latency, 1
 
 DetectJoystick()
+IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
 ;Set up timer if checkbox ticked
 If (YesMovementKeys)
 SetTimer, WASD_Handler, 250
@@ -370,6 +374,8 @@ IfWinExist, ahk_group POEGameGroup
      Gui, Show, x%GuiX% y%GuiY%, NoActivate 
      ToggleExist := True
      WinActivate, ahk_group POEGameGroup
+     If (YesPersistantToggle)
+          AutoReset()
 }
 
 ; Set timers section
@@ -414,6 +420,7 @@ ExitApp
 ;Toggle Auto-Quick
 AutoQuicksilverCommand:
 AutoQuick := !AutoQuick	
+IniWrite, %AutoQuick%, settings.ini, Previous Toggles, AutoQuick
 if (!AutoQuick) {
      SetTimer TQuickTick, Off
 } else {
@@ -421,6 +428,19 @@ if (!AutoQuick) {
 }
 GuiUpdate()
 return
+; Load Previous Toggle States
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+AutoReset(){
+	IniRead, AutoQuick, settings.ini, Previous Toggles, AutoQuick, 0
+     if (!AutoQuick) {
+          SetTimer TQuickTick, Off
+     } else {
+          SetTimer TQuickTick, %QTick%	
+     }
+	GuiUpdate()	
+return
+}
+
 ; Receive Messages from other scripts
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MsgMonitor(wParam, lParam, msg)
@@ -524,6 +544,8 @@ PoEWindowCheck(){
                ToggleExist := True
                DetectJoystick()
                WinActivate, ahk_group POEGameGroup
+               If (YesPersistantToggle)
+                    AutoReset()
           }
      } Else {
           If (ToggleExist){
@@ -607,16 +629,20 @@ ReadFromFile(){
      IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
      IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
      IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
+     IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
+     IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
 
 	;Controller setup
-     IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-     IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, f
-     IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
-     IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, Space
-     IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
-     IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
-     IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
-     IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, c
+    IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
+    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
+    IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
+    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
+    IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
+    IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
+    IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
+    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Logout
+    IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Tab
+    IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
 	
 	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
@@ -628,10 +654,12 @@ ReadFromFile(){
 	IniRead, YesController, settings.ini, Controller, YesController, 0
 	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
 
-     IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
      IniRead, Latency, settings.ini, General, Latency, 1
 
 	DetectJoystick()
+     IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
+     If (YesPersistantToggle)
+          AutoReset()
 	;Quicksilver
 	IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
 	IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
@@ -1162,6 +1190,8 @@ JoyButtons_Handler:
           GetKeyState, POV, %JoystickNumber%JoyPOV
           Loop, %joy_buttons%
           {
+               If (A_Index > 10)
+                    Break
                buttonIndex := A_Index
                GetKeyState, joy%A_Index%, %JoystickNumber%joy%A_Index%
                if (joy%A_Index% = "D") && (pressed%A_Index%)  && (pressedVacuum = A_Index) 
@@ -1194,6 +1224,26 @@ JoyButtons_Handler:
           		If (hotkeyLootScan = hotkeyControllerButton%A_Index%) && LootVacuum
                     {
                          pressedVacuum := A_Index
+                    }
+          		Else If (hotkeyControllerButton%A_Index% = "Logout")
+                    {
+                         SendMSG(6,1,scriptPOEWingman)
+                    }
+          		Else If (hotkeyControllerButton%A_Index% = "PopFlasks")
+                    {
+                         SendMSG(6,2,scriptPOEWingman)
+                    }
+          		Else If (hotkeyControllerButton%A_Index% = "QuickPortal")
+                    {
+                         SendMSG(6,3,scriptPOEWingman)
+                    }
+          		Else If (hotkeyControllerButton%A_Index% = "GemSwap")
+                    {
+                         SendMSG(6,4,scriptPOEWingman)
+                    }
+          		Else If (hotkeyControllerButton%A_Index% = "ItemSort")
+                    {
+                         SendMSG(6,5,scriptPOEWingman)
                     }
                }
                Else if (pressed%A_Index%) && !(joy%A_Index% = "D")

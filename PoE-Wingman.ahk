@@ -184,10 +184,11 @@
 		Global MOColor := 0x011C01
 		Global QSonMainAttack := 1
 		Global QSonSecondaryAttack := 1
+		Global YesPersistantToggle := 1
 		
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
-		Global AreaScale := 2
+		Global AreaScale := 4
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
@@ -300,7 +301,7 @@
 		global InvertYAxis := false
 		global JoyMultiplier := 0.30
 		global JoyMultiplier2 := 8
-		global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerJoystick2
+		global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerButton9,hotkeyControllerButton10,hotkeyControllerJoystick2
 		global YesTriggerUtilityJoystickKey := 1
 		global YesTriggerJoystick2Key := 1
 	;~ Hotkeys
@@ -844,14 +845,15 @@
 	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
 
 	Gui, Font, Bold
-	Gui Add, Text, 										xs 	y+40, 				Additional Interface Options:
+	Gui Add, Text, 										xs 	y+20, 				Additional Interface Options:
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
-	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          	, Are you using Steam?
-	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          	, Are you running 64 bit?
-	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	          	, Turn off Auto-Update?
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    , Standard|UltraWide
+	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
+	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
+	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
+	Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|UltraWide
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
@@ -1075,6 +1077,10 @@
 	;#######################################################################################################Controller Tab
 
 	Gui, Tab, Controller
+	DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
+	textList= 
+	For k, v in DefaultButtons
+		textList .= (!textList ? "" : "|") v
 	
 	Gui, Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
 
@@ -1082,27 +1088,31 @@
 	Gui Add, Checkbox, 						vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                         	          , Use utility on Move?
 	Gui Add, DropDownList,   x+5 yp-5     w40 	vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
 
-	Gui, Add, Checkbox, section xm+255 ym+300 vYesController Checked%YesController%,Enable Controller
+	Gui, Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
 	
-	Gui,Add,GroupBox, section xm+100 ym+20 w40 h40												,5
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton5, %hotkeyControllerButton5%
-	Gui,Add,GroupBox,  xs+360 ys w40 h40												,6
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton6, %hotkeyControllerButton6%
+	Gui,Add,GroupBox, section xm+80 ym+15 w80 h40												,5
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton5, %hotkeyControllerButton5%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox,  xs+360 ys w80 h40												,6
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton6, %hotkeyControllerButton6%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
 
 	Gui,Add,GroupBox, section  xm+65 ym+100 w90 h80												,D-Pad
 	gui,add,text, xs+15 ys+30, Mouse`nMovement
 
 	Gui,Add,GroupBox, section xm+165 ym+180 w80 h80												,Joystick1
 	Gui,Add,Checkbox, xs+5 ys+30 		Checked%YesTriggerUtilityJoystickKey%			vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
+	Gui,Add,GroupBox,  xs ys+90 w80 h40												,9 / L3
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton9, %hotkeyControllerButton9%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
 
-	Gui,Add,GroupBox,  xs+190 ys w80 h80												,Joystick2
+	Gui,Add,GroupBox,section  xs+190 ys w80 h80												,Joystick2
 	Gui,Add,Checkbox, xp+5 y+-53 		Checked%YesTriggerJoystick2Key%			vYesTriggerJoystick2Key, Use key?
 	Gui Add, ComboBox,  			xp y+8      w70 	vhotkeyControllerJoystick2, %hotkeyControllerJoystick2%||LButton|RButton|q|w|e|r|t
+	Gui,Add,GroupBox,  xs ys+90 w80 h40												,10 / R3
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton10, %hotkeyControllerButton10%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
 
-	Gui,Add,GroupBox, section xm+160 ym+60 w40 h40												,7
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton7, %hotkeyControllerButton7%
-	Gui,Add,GroupBox, xs+245 ys w40 h40												,8
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton8, %hotkeyControllerButton8%
+	Gui,Add,GroupBox, section xm+140 ym+60 w80 h40												,7 / Select
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton7, %hotkeyControllerButton7%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox, xs+245 ys w80 h40												,8 / Start
+	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton8, %hotkeyControllerButton8%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
 
 	Gui,Add,GroupBox, section xm+65 ym+280 w40 h40									,Up
 	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyUp, %hotkeyUp%
@@ -1113,14 +1123,14 @@
 	Gui,Add,GroupBox, xs+40 ys+40 w40 h40											,Right
 	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyRight, %hotkeyRight%
 
-	Gui,Add,GroupBox,section xm+465 ym+80 w40 h40											,4
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton4, %hotkeyControllerButton4%
-	Gui,Add,GroupBox, xs ys+80 w40 h40											,1
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton1, %hotkeyControllerButton1%
-	Gui,Add,GroupBox, xs-40 ys+40 w40 h40											,3
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton3, %hotkeyControllerButton3%
-	Gui,Add,GroupBox, xs+40 ys+40 w40 h40											,2
-	Gui,Add,Edit, xp+5 y+-23 w30 h19											vhotkeyControllerButton2, %hotkeyControllerButton2%
+	Gui,Add,GroupBox,section xm+465 ym+80 w70 h40											,4
+	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton4, %hotkeyControllerButton4%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox, xs ys+80 w70 h40											,1
+	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton1, %hotkeyControllerButton1%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox, xs-40 ys+40 w70 h40											,3
+	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton3, %hotkeyControllerButton3%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+	Gui,Add,GroupBox, xs+40 ys+40 w70 h40											,2
+	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton2, %hotkeyControllerButton2%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -1163,6 +1173,7 @@
 	Gui,Font,
 	Gui,Font,s9,Arial
 	DefaultCommands := [ "/Hideout","/menagerie","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
+	textList=
 	For k, v in DefaultCommands
 		textList .= (!textList ? "" : "|") v
 	Gui Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %1Suffix1Text%||%textList%
@@ -1396,6 +1407,8 @@
 		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 		ToggleExist := True
 		WinActivate, ahk_group POEGameGroup
+		If (YesPersistantToggle)
+			AutoReset()
 		If (ShowOnStart)
 			Hotkeys()
 		}
@@ -1432,12 +1445,12 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LootScan(){
 	LootScanCommand:
-		Pressed := GetKeyState(hotkeyLootScan, "P")
+		Pressed := GetKeyState(hotkeyLootScan)
 		While (Pressed&&LootVacuum)
 		{
 			For k, ColorHex in LootColors
 			{
-				Pressed := GetKeyState(hotkeyLootScan, "P")
+				Pressed := GetKeyState(hotkeyLootScan)
 				Sleep, -1
 				MouseGetPos CenterX, CenterY
 				ScanX1:=(CenterX-AreaScale)
@@ -1446,7 +1459,7 @@ LootScan(){
 				ScanY2:=(CenterY+AreaScale)
 				PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
 				If (ErrorLevel = 0){
-					Pressed := GetKeyState(hotkeyLootScan, "P")
+					Pressed := GetKeyState(hotkeyLootScan)
 					If !(Pressed)
 						Break
 					Sleep, -1
@@ -1476,9 +1489,14 @@ ItemSort(){
 			RunningToggle := True
 			GuiStatus()
 			
-			If ((!OnInventory&&OnChar)||(!OnChar)){ ;Need to be on Character and have Inventory Open
-				MsgBox %  "Make sure your inventory is open, doing nothing now."
+			If (!OnChar) { ;Need to be on Character 
+				MsgBox %  "You do not appear to be in game."
 				Return
+			}
+			Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
+				Send {%hotkeyInventory%}
+				Sleep, 60
+				;Return
 			}
 
 			For C, GridX in InventoryGridX
@@ -2174,6 +2192,7 @@ Rescale(){
 AutoQuit(){
 	AutoQuitCommand:
 		AutoQuit := !AutoQuit
+		IniWrite, %AutoQuit%, settings.ini, Previous Toggles, AutoQuit
 		if ((!AutoFlask) && (!AutoQuit)) {
 			SetTimer TGameTick, Off
 		} else if ((AutoFlask) || (AutoQuit)){
@@ -2188,6 +2207,7 @@ AutoQuit(){
 AutoFlask(){
 	AutoFlaskCommand:	
 		AutoFlask := !AutoFlask
+		IniWrite, %AutoFlask%, settings.ini, Previous Toggles, AutoFlask
 		if ((!AutoFlask) and (!AutoQuit)) {
 			SetTimer TGameTick, Off
 		} else if ((AutoFlask) || (AutoQuit)) {
@@ -2196,6 +2216,20 @@ AutoFlask(){
 		GuiUpdate()	
 	return
 	}
+
+; Load Previous Toggle States
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+AutoReset(){
+	IniRead, AutoQuit, settings.ini, Previous Toggles, AutoQuit, 0
+	IniRead, AutoFlask, settings.ini, Previous Toggles, AutoFlask, 0
+	if ((!AutoFlask) and (!AutoQuit)) {
+		SetTimer TGameTick, Off
+	} else if ((AutoFlask) || (AutoQuit)) {
+		SetTimer TGameTick, %Tick%
+	}
+	GuiUpdate()	
+return
+}
 
 ; Tooltip Management
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4213,6 +4247,8 @@ PoEWindowCheck(){
 				Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 				ToggleExist := True
 				WinActivate, ahk_group POEGameGroup
+				If (YesPersistantToggle)
+					AutoReset()
 			}
 		} Else {
 			If (ToggleExist){
@@ -4282,6 +4318,33 @@ MsgMonitor(wParam, lParam, msg)
 			If (lParam=5){
 				OnCooldownUtility5:=1 
 				settimer, TimerUtility5, %CooldownUtility5%
+				return
+				}		
+			}
+		Else If (wParam=6) {
+			If (lParam=1){
+				; hotkeyLogout
+				LogoutCommand()
+				return
+				}		
+			If (lParam=2){
+				; hotkeyPopFlasks
+				PopFlasks()
+				return
+				}		
+			If (lParam=3){
+				; hotkeyQuickPortal
+				QuickPortal()
+				return
+				}		
+			If (lParam=4){
+				; hotkeyGemSwap
+				GemSwap()
+				return
+				}		
+			If (lParam=5){
+				; hotkeyItemSort
+				ItemSort()
 				return
 				}		
 			}
@@ -5236,7 +5299,7 @@ Return
 ; Attack Key timers
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerMainAttack:
-		MainAttackPressed:=GetKeyState(hotkeyMainAttack, "P")
+		MainAttackPressed:=GetKeyState(hotkeyMainAttack)
 		If (MainAttackPressed && TriggerMainAttack > 0 )
 			MainAttackCommand()
 		If (MainAttackPressed && QSonMainAttack)
@@ -5245,7 +5308,7 @@ Return
 			settimer,TimerMainAttack,delete
 	Return
 	TimerSecondaryAttack:
-		SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack, "P")
+		SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack)
 		If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
 			SecondaryAttackCommand()
 		If (SecondaryAttackPressed && QSonSecondaryAttack)
@@ -5314,6 +5377,7 @@ readFromFile(){
     IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
     IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
     IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
+    IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
     
     ;Stash Tab Management
     IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -5719,13 +5783,15 @@ readFromFile(){
 
 	;Controller setup
     IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, f
+    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
     IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
-    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, Space
+    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
     IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
     IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
-    IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
-    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, c
+    IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
+    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Logout
+    IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Tab
+    IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
 	
 	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
@@ -5736,7 +5802,6 @@ readFromFile(){
 	IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
 	IniRead, YesController, settings.ini, Controller, YesController, 0
 	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
-
 
 	RegisterHotkeys()
     checkActiveType()
@@ -6153,6 +6218,8 @@ updateEverything:
     IniWrite, %hotkeyControllerButton6%, settings.ini, Controller Keys, ControllerButton6
     IniWrite, %hotkeyControllerButton7%, settings.ini, Controller Keys, ControllerButton7
     IniWrite, %hotkeyControllerButton8%, settings.ini, Controller Keys, ControllerButton8
+    IniWrite, %hotkeyControllerButton9%, settings.ini, Controller Keys, ControllerButton9
+    IniWrite, %hotkeyControllerButton10%, settings.ini, Controller Keys, ControllerButton10
 	
 	IniWrite, %hotkeyControllerJoystick2%, settings.ini, Controller Keys, hotkeyControllerJoystick2
 
@@ -6165,6 +6232,8 @@ updateEverything:
 	IniWrite, %JoystickNumber%, settings.ini, Controller, JoystickNumber
 
     readFromFile()
+	If (YesPersistantToggle)
+		AutoReset()
     GuiUpdate()
     SetTitleMatchMode 2
     IfWinExist, ahk_group POEGameGroup
@@ -7619,6 +7688,9 @@ UpdateExtra:
     IniWrite, %Steam%, settings.ini, General, Steam
     IniWrite, %HighBits%, settings.ini, General, HighBits
     IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
+    IniWrite, %YesPersistantToggle%, settings.ini, General, YesPersistantToggle
+	If (YesPersistantToggle)
+		AutoReset()
     If (DetonateMines&&!Detonated)
         SetTimer, TMineTick, 100
     Else If (!DetonateMines)

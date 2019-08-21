@@ -16,16 +16,17 @@ Added option to inventory tab to turn on and off Divination trading
     currently does not have any way of determining if successful. 
 
 Introducing Controller support!
-    Currently is adequately functional
-    movement on the dpad with optional utility key
-    Move the mouse cursor with the first joystick
-        Might switch the two of these so movement is on joystick instead
+    movement on the Joystick with optional utility key
+    Move the mouse cursor with the D-Pad
     Aiming for spells with the second joystick and assigned key
-    Keybindings for each button 1-8
+    Keybindings for each button 1-10
+    Use the dropdown boxes to choose a script function, or an ingame key
+    Lootvacuum on the controller by assigning the loot pickup key
     Key thing to note:
         Press load to redetect joysticks
         Disconnecting an active controller requires a script reload
         There is nothing I can do about this, AHK does not detect removal
+        buttons are configured for default keybinds, match to your style
 
 Added in keyboard movement!
     optional keys to move up down left or right with utility key tied to it
@@ -35,7 +36,7 @@ Bugfix for loot vacuum
     was not using the areascale calculations properly
     now searches in a small square near mouse
     (Was searching in 1 pixel area before)
-    
+
 Version .04.6 August/17/2019
 --------------------------------------------------------------------------------
 Bugfix for QSonMainAttack - was double casting the flasks and not respecting CD
