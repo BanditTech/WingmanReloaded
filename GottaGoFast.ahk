@@ -19,6 +19,13 @@ SetWinDelay, -1
 SetControlDelay, -1
 FileEncoding , UTF-8
 SendMode Input
+; Extra vars - Not in INI
+global TriggerQ:=00000
+global AutoQuit:=0 
+global AutoFlask:=0
+global AutoQuick:=0 
+global OnCooldown:=[0,0,0,0,0]
+
 global newposition := false
 global newpositionPOV := false
 global JoystickNumber := 0
@@ -60,7 +67,7 @@ global pressed19 := False
 global pressed20 := False
 global pressedJoy2 := False
 global pressedVacuum := 0
-Global AreaScale := 1
+Global AreaScale := 2
 Global LootColors := { 1 : 0x222222
      , 2 : 0xFFFFFF}
 
@@ -285,13 +292,14 @@ hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 
 ;Controller setup
 IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, Space
+IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, f
 IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
-IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, r
-IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, w
-IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, e
+IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, Space
+IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
+IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
 IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
-IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
+IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, c
+	
 
 IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
@@ -326,12 +334,6 @@ Else
 	SetTimer, Joystick2_Handler, Delete
 }
 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Extra vars - Not in INI
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-global TriggerQ=00000
-global AutoQuick=0 
-global OnCooldown:=[0,0,0,0,0]
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Scale positions for status check
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -608,13 +610,13 @@ ReadFromFile(){
 
 	;Controller setup
      IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-     IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, Space
+     IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, f
      IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
-     IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, r
-     IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, w
-     IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, e
+     IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, Space
+     IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
+     IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
      IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
-     IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
+     IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, c
 	
 	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
@@ -1172,7 +1174,7 @@ JoyButtons_Handler:
                          ScanY1:=(CenterY-AreaScale)
                          ScanX2:=(CenterX+AreaScale)
                          ScanY2:=(CenterY+AreaScale)
-                         PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
+                         PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
                          If (ErrorLevel = 0){
                               GetKeyState, joy%buttonIndex%, %JoystickNumber%joy%buttonIndex%
                               If !(joy%buttonIndex% = "D")

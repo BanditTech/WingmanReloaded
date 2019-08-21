@@ -158,6 +158,22 @@
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Extra vars - Not in INI
+		global Trigger:=00000
+		global AutoQuit:=0 
+		global AutoFlask:=0
+		global AutoQuick:=0 
+		global OnCooldown:=[0,0,0,0,0]
+		global Radiobox1QS
+		global Radiobox2QS
+		global Radiobox3QS
+		global Radiobox4QS
+		global Radiobox5QS
+		global Radiobox1Mana10
+		global Radiobox2Mana10
+		global Radiobox3Mana10
+		global Radiobox4Mana10
+		global Radiobox5Mana10
     ;General
 		Global Latency := 1
 		Global ShowOnStart := 0
@@ -171,7 +187,7 @@
 		
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
-		Global AreaScale := 1
+		Global AreaScale := 2
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
@@ -1300,23 +1316,6 @@
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-; Extra vars - Not in INI
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	global Trigger=00000
-	global AutoQuit=0 
-	global AutoFlask=0
-	global OnCooldown:=[0,0,0,0,0]
-	global Radiobox1QS
-	global Radiobox2QS
-	global Radiobox3QS
-	global Radiobox4QS
-	global Radiobox5QS
-	global Radiobox1Mana10
-	global Radiobox2Mana10
-	global Radiobox3Mana10
-	global Radiobox4Mana10
-	global Radiobox5Mana10
-
 	IfWinExist, ahk_group POEGameGroup
 		{
 		Rescale()
@@ -1445,7 +1444,7 @@ LootScan(){
 				ScanY1:=(CenterY-AreaScale)
 				ScanX2:=(CenterX+AreaScale)
 				ScanY2:=(CenterY+AreaScale)
-				PixelSearch, ScanPx, ScanPy, CenterX, CenterY, CenterX, CenterY, ColorHex, 0, Fast RGB
+				PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
 				If (ErrorLevel = 0){
 					Pressed := GetKeyState(hotkeyLootScan, "P")
 					If !(Pressed)
@@ -5720,13 +5719,13 @@ readFromFile(){
 
 	;Controller setup
     IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, Space
+    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, f
     IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
-    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, r
-    IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, w
-    IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, e
+    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, Space
+    IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
+    IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
     IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, F6
-    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, i
+    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, c
 	
 	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 

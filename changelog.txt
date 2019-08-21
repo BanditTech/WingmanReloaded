@@ -31,6 +31,11 @@ Added in keyboard movement!
     optional keys to move up down left or right with utility key tied to it
     find these keys on controller tab for now
 
+Bugfix for loot vacuum
+    was not using the areascale calculations properly
+    now searches in a small square near mouse
+    (Was searching in 1 pixel area before)
+    
 Version .04.6 August/17/2019
 --------------------------------------------------------------------------------
 Bugfix for QSonMainAttack - was double casting the flasks and not respecting CD
