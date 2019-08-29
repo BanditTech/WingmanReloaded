@@ -1,6 +1,32 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .04.8 August/28/2019
+--------------------------------------------------------------------------------
+Adjustments for the dpad movement, makes it feel less sluggish
+    it speeds up just slightly faster now and begins faster
+
+bugfix for controller hotkeys, now can use symbol modifiers properly
+    Use ! # ~ ^ * + symbols to apply appropriate modifiers.
+    Used this to make button one Ctrl+LButton, seems to work well.
+    still working on a way to do either regular click or shift or ctrl
+
+Fix for controller joystick drifting
+    adjustments to joystick thresholds to prevent false positives
+    
+Itemsort function now opens inventory if it is not already open
+    this allows one button to act as inventory and also sort for controllers
+
+   ############## Critical Update ###############
+Updating to this version is required to autopatch to any further version.
+
+Adding JSON library for next patch.
+    without having a way to install it before the #Include JSON.ahk it will crash
+    
+Next release will include Custom loot filters!
+    You can choose what items go into stash based on affixes and stats!
+    Prevent the script from vendoring epic gear!
+
 Version .04.7 August/21/2019
 --------------------------------------------------------------------------------
 Introducing Controller support!

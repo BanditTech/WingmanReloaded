@@ -115,9 +115,12 @@ Global YesMovementKeys := 0
 Global YesTriggerUtilityKey := 0
 Global TriggerUtilityKey := 1
 Global JoystickNumber := 0
-Global JoyThreshold := 20
+Global JoyThreshold := 6
 global JoyThresholdUpper := 50 + JoyThreshold
 global JoyThresholdLower := 50 - JoyThreshold
+Global Joy2Threshold := 10
+global Joy2ThresholdUpper := 50 + Joy2Threshold
+global Joy2ThresholdLower := 50 - Joy2Threshold
 global InvertYAxis := false
 global JoyMultiplier := 6
 global JoyMultiplier2 := 8
@@ -182,8 +185,8 @@ global hotkeyRight := "D"
 
 global utilityKeyToFire := 1
 global y_offset := 150	
-global x_POVscale := 4	
-global y_POVscale := 4	
+global x_POVscale := 5	
+global y_POVscale := 5	
 
 
 global x_center := 1920 / 2
@@ -294,15 +297,15 @@ IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
 IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
 
 ;Controller setup
-IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
+IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, ^LButton
 IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
-IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
+IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, r
 IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
 IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
 IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
 IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
-IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Logout
-IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Tab
+IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Tab
+IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Logout
 IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
 	
 IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
@@ -321,7 +324,7 @@ DetectJoystick()
 IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
 ;Set up timer if checkbox ticked
 If (YesMovementKeys)
-SetTimer, WASD_Handler, 250
+SetTimer, WASD_Handler, 15
 Else
 SetTimer, WASD_Handler, Delete
 ;Set up timer if checkbox ticked
@@ -1070,44 +1073,53 @@ Joystick_Handler:
           SetFormat, float, 03
           GetKeyState, JoyX, %JoystickNumber%JoyX
           GetKeyState, JoyY, %JoystickNumber%JoyY
-          if JoyX > %JoyThresholdUpper%
+          if (JoyX < JoyThresholdUpper) && (JoyX > JoyThresholdLower)
+          {
+               DeltaX = 0
+          }
+          Else if (JoyX > JoyThresholdUpper)
           {
                MouseNeedsToBeMoved := true
                DeltaX := JoyX - JoyThresholdUpper
           }
-          else if JoyX < %JoyThresholdLower%
+          else if (JoyX < JoyThresholdLower) && (JoyX != -1)
           {
                MouseNeedsToBeMoved := true
                DeltaX := JoyX - JoyThresholdLower
           }
           else
                DeltaX = 0
-          if JoyY > %JoyThresholdUpper%
+          if (JoyY < JoyThresholdUpper) && (JoyY > JoyThresholdLower)
+          {
+               DeltaY = 0
+          }
+          Else if (JoyY > JoyThresholdUpper)
           {
                MouseNeedsToBeMoved := true
                DeltaY := JoyY - JoyThresholdUpper
           }
-          else if JoyY < %JoyThresholdLower%
+          else if (JoyY < JoyThresholdLower) && (JoyY != -1)
           {
                MouseNeedsToBeMoved := true
                DeltaY := JoyY - JoyThresholdLower
           }
           else
                DeltaY = 0
-          if MouseNeedsToBeMoved
+          if (MouseNeedsToBeMoved)
           {
                MouseMove, x_center + DeltaX * JoyMultiplier, y_center + DeltaY * JoyMultiplier * YAxisMultiplier
                ++HeldCountJoystick
+               ;Ding(500,"Count: " . HeldCountJoystick)
                if (!checkvarJoystick && HeldCountJoystick > 3)
                {
                     Click, down
                     checkvarJoystick := 1
                }
-               if (YesTriggerUtilityJoystickKey && HeldCountJoystick > 6)
+               if (YesTriggerUtilityJoystickKey && HeldCountJoystick > 20)
                {
                     TriggerUtilityForce(utilityKeyToFire)
                }
-               if (AutoQuick && HeldCountJoystick > 12)
+               if (AutoQuick && HeldCountJoystick > 60)
                {
                     if ((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))
                     {
@@ -1136,24 +1148,32 @@ Joystick2_Handler:
           SetFormat, float, 03
           GetKeyState, JoyX, %JoystickNumber%JoyU
           GetKeyState, JoyY, %JoystickNumber%JoyR
-          if JoyX > %JoyThresholdUpper%
+          if (JoyX < Joy2ThresholdUpper) && (JoyX > Joy2ThresholdLower)
+          {
+               DeltaX = 0
+          }
+          else if (JoyX > Joy2ThresholdUpper)
           {
                MouseNeedsToBeMoved := true
-               DeltaX := JoyX - JoyThresholdUpper
+               DeltaX := JoyX - Joy2ThresholdUpper
           }
-          else if JoyX < %JoyThresholdLower%
+          else if (JoyX < Joy2ThresholdLower) && (JoyX != -1)
           {
                MouseNeedsToBeMoved := true
                DeltaX := JoyX - JoyThresholdLower
           }
           else
                DeltaX = 0
-          if JoyY > %JoyThresholdUpper%
+          if (JoyY < Joy2ThresholdUpper) && (JoyY > Joy2ThresholdLower)
+          {
+               DeltaY = 0
+          }
+          else if (JoyY > Joy2ThresholdUpper)
           {
                MouseNeedsToBeMoved := true
-               DeltaY := JoyY - JoyThresholdUpper
+               DeltaY := JoyY - Joy2ThresholdUpper
           }
-          else if JoyY < %JoyThresholdLower%
+          else if (JoyY < Joy2ThresholdLower) && (JoyY != -1)
           {
                MouseNeedsToBeMoved := true
                DeltaY := JoyY - JoyThresholdLower
@@ -1163,9 +1183,11 @@ Joystick2_Handler:
           if MouseNeedsToBeMoved
           {
                MouseMove, x_center + DeltaX * JoyMultiplier2, y_center + DeltaY * JoyMultiplier2 * YAxisMultiplier
-               if (YesTriggerJoystick2Key && !checkvarJoy2)
+               ++HeldCountJoystick2
+               ;Ding(500,"Count: " . HeldCountJoystick2)
+               if (YesTriggerJoystick2Key && !checkvarJoy2 && HeldCountJoystick2 > 6)
                {
-                    SetTimer, TimerJoystick2Key, 45
+                    Send {%hotkeyControllerJoystick2% down}
                     checkvarJoy2 := True
                }
           }
@@ -1173,10 +1195,10 @@ Joystick2_Handler:
           {
                Send {%hotkeyControllerJoystick2% up}
                checkvarJoy2 := False
+               HeldCountJoystick2 := 0
           }
      }
 return
-
 
 JoyButtons_Handler:
      IfWinActive ahk_group POEGameGroup
@@ -1220,8 +1242,19 @@ JoyButtons_Handler:
                {
                     ;Ding(500,A_Index,"Pressed",hotkeyControllerButton%A_Index%)
                     pressed%A_Index% := True 
-                    SendEvent, % "{" hotkeyControllerButton%A_Index% " down}"
-          		If (hotkeyLootScan = hotkeyControllerButton%A_Index%) && LootVacuum
+                    Modifiers := ""
+                    String := ""
+                    for k, Letter in StrSplit(hotkeyControllerButton%A_Index%) {
+                    if (IsModifier(Letter)) {
+                         Modifiers .= Letter
+                    }
+                    else {
+                         String .= Letter
+                    }
+                    }
+                    Send, % Modifiers "{" String " down}"
+                    ;Ding(500,%Modifiers%,%String%)
+                    If (hotkeyLootScan = hotkeyControllerButton%A_Index%) && LootVacuum
                     {
                          pressedVacuum := A_Index
                     }
@@ -1250,7 +1283,17 @@ JoyButtons_Handler:
                {
                     ;Ding(500,A_Index,"Released",hotkeyControllerButton%A_Index%)
                     pressed%A_Index% := False 
-                    SendEvent, % "{" hotkeyControllerButton%A_Index% " up}"
+                    Modifiers := ""
+                    String := ""
+                    for k, Letter in StrSplit(hotkeyControllerButton%A_Index%) {
+                    if (IsModifier(Letter)) {
+                         Modifiers .= Letter
+                    }
+                    else {
+                         String .= Letter
+                    }
+                    }
+                    Send, % Modifiers "{" String " up}"
                }
           }
           if !(POV = -1)
@@ -1287,7 +1330,7 @@ JoyButtons_Handler:
                
                If (newpositionPOV)
                {
-                    HeldCountPOV+=2
+                    HeldCountPOV+=3
                     Sleep, 45
                     MouseMove, %x_finalPOV%, %y_finalPOV%, 0, R
                     newpositionPOV := false
@@ -1367,7 +1410,13 @@ IfWinActive ahk_group POEGameGroup
           checkvar := 0
      }
 }
-return    
+
+return
+
+IsModifier(Character) {
+    static Modifiers := {"!": 1, "#": 1, "~": 1, "^": 1, "*": 1, "+": 1}
+return Modifiers.HasKey(Character)
+}
 
 ; Auto-detect the joystick number if called for:
 DetectJoystick(){
@@ -1469,11 +1518,6 @@ TimerUtility5:
 OnCooldownUtility5 := 0
 settimer,TimerUtility5,delete
 Return
-TimerJoystick2Key:
-Send {%hotkeyControllerJoystick2% down}
-checkvarJoy2 := True
-SetTimer, TimerJoystick2Key, Delete
-return
 RemoveToolTip:
 SetTimer, RemoveToolTip, Off
 ToolTip

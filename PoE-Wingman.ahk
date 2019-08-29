@@ -155,6 +155,19 @@
  			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
 		}
 	}
+	IfNotExist, %A_ScriptDir%\data\JSON.ahk
+	{
+		FileCreateDir, %A_ScriptDir%\data
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/JSON.ahk, %A_ScriptDir%\data\JSON.ahk
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "JSON.ahk")
+			MsgBox, Error ED02 : There was a problem downloading JSON.ahk
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "JSON.ahk")
+			MsgBox % "JSON library installed, ready for next patch!"
+		}
+	}
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1481,6 +1494,14 @@ ItemSort(){
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
 		{
+			If (!OnChar) { ;Need to be on Character 
+				MsgBox %  "You do not appear to be in game."
+				Return
+			}
+			Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
+				Send {%hotkeyInventory%}
+				Return
+			}
 			If RunningToggle  ; This means an underlying thread is already running the loop below.
 			{
 				RunningToggle := False  ; Signal that thread's loop to stop.
@@ -1489,15 +1510,6 @@ ItemSort(){
 			RunningToggle := True
 			GuiStatus()
 			
-			If (!OnChar) { ;Need to be on Character 
-				MsgBox %  "You do not appear to be in game."
-				Return
-			}
-			Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
-				Send {%hotkeyInventory%}
-				Sleep, 60
-				;Return
-			}
 
 			For C, GridX in InventoryGridX
 			{
@@ -5782,15 +5794,15 @@ readFromFile(){
 
 
 	;Controller setup
-    IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
+    IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, ^LButton
     IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
-    IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
+    IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, r
     IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
     IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
     IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
     IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
-    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Logout
-    IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Tab
+    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Tab
+    IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Logout
     IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
 	
 	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
