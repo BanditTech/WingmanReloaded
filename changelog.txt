@@ -27,6 +27,9 @@ Bugfix for Inventory button
 Bugfix for Stock Wisdom and Portal 
     the checkboxes were not saved properly
 
+Bugfix for chat hotkeys
+    Can now use the symbol ! to punctuate messages
+
 Removed unnecessary QHD scale section.
 
 Preparing to add Custom loot filter for next major release!

@@ -7977,9 +7977,10 @@ return
 1FireWhisperHotkey1() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
-		1Suffix1Text := StrReplace(1Suffix1Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix1Text%{Enter}
+		str1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
+		str1Suffix1Text := StrReplace(str1Suffix1Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix1Text := StrReplace(str1Suffix1Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix1Text%{Enter}
 		ResetChat()
     }
 return
@@ -7987,9 +7988,10 @@ return
 1FireWhisperHotkey2() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
-		1Suffix2Text := StrReplace(1Suffix2Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix2Text%{Enter}
+		str1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
+		str1Suffix2Text := StrReplace(str1Suffix2Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix2Text := StrReplace(str1Suffix2Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix2Text%{Enter}
 		ResetChat()
     }
 return
@@ -7997,9 +7999,10 @@ return
 1FireWhisperHotkey3() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
-		1Suffix3Text := StrReplace(1Suffix3Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix3Text%{Enter}
+		str1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
+		str1Suffix3Text := StrReplace(str1Suffix3Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix3Text := StrReplace(str1Suffix3Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix3Text%{Enter}
 		ResetChat()
     }
 return
@@ -8007,9 +8010,10 @@ return
 1FireWhisperHotkey4() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
-		1Suffix4Text := StrReplace(1Suffix4Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix4Text%{Enter}
+		str1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
+		str1Suffix4Text := StrReplace(str1Suffix4Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix4Text := StrReplace(str1Suffix4Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix4Text%{Enter}
 		ResetChat()
     }
 return
@@ -8017,9 +8021,10 @@ return
 1FireWhisperHotkey5() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
-		1Suffix5Text := StrReplace(1Suffix5Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix5Text%{Enter}
+		str1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
+		str1Suffix5Text := StrReplace(str1Suffix5Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix5Text := StrReplace(str1Suffix5Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix5Text%{Enter}
 		ResetChat()
     }
 return
@@ -8027,9 +8032,10 @@ return
 1FireWhisperHotkey6() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
-		1Suffix6Text := StrReplace(1Suffix6Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix6Text%{Enter}
+		str1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
+		str1Suffix6Text := StrReplace(str1Suffix6Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix6Text := StrReplace(str1Suffix6Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix6Text%{Enter}
 		ResetChat()
     }
 return
@@ -8037,9 +8043,10 @@ return
 1FireWhisperHotkey7() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
-		1Suffix7Text := StrReplace(1Suffix7Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix7Text%{Enter}
+		str1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
+		str1Suffix7Text := StrReplace(str1Suffix7Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix7Text := StrReplace(str1Suffix7Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix7Text%{Enter}
 		ResetChat()
     }
 return
@@ -8047,9 +8054,10 @@ return
 1FireWhisperHotkey8() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
-		1Suffix8Text := StrReplace(1Suffix8Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix8Text%{Enter}
+		str1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
+		str1Suffix8Text := StrReplace(str1Suffix8Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix8Text := StrReplace(str1Suffix8Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix8Text%{Enter}
 		ResetChat()
     }
 return
@@ -8057,9 +8065,10 @@ return
 1FireWhisperHotkey9() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
-		1Suffix9Text := StrReplace(1Suffix9Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix9Text%{Enter}
+		str1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+		str1Suffix9Text := StrReplace(str1Suffix9Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix9Text := StrReplace(str1Suffix9Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix9Text%{Enter}
 		ResetChat()
     }
 return
@@ -8068,9 +8077,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
-		2Suffix1Text := StrReplace(2Suffix1Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix1Text%{Enter}
+		str2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
+		str2Suffix1Text := StrReplace(str2Suffix1Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix1Text := StrReplace(str2Suffix1Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix1Text%{Enter}
 		ResetChat()
     }
 return
@@ -8079,9 +8089,11 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
-		2Suffix2Text := StrReplace(2Suffix2Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix2Text%{Enter}
+		str2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
+		str2Suffix2Text := StrReplace(str2Suffix2Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix2Text := StrReplace(str2Suffix2Text, "!", "{!}", 0, -1)
+
+		Send, ^{Enter}%str2Suffix2Text%{Enter}
 		ResetChat()
     }
 return
@@ -8090,9 +8102,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
-		2Suffix3Text := StrReplace(2Suffix3Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix3Text%{Enter}
+		str2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
+		str2Suffix3Text := StrReplace(str2Suffix3Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix3Text := StrReplace(str2Suffix3Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix3Text%{Enter}
 		ResetChat()
     }
 return
@@ -8101,9 +8114,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
-		2Suffix4Text := StrReplace(2Suffix4Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix4Text%{Enter}
+		str2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
+		str2Suffix4Text := StrReplace(str2Suffix4Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix4Text := StrReplace(str2Suffix4Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix4Text%{Enter}
 		ResetChat()
     }
 return
@@ -8112,9 +8126,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
-		2Suffix5Text := StrReplace(2Suffix5Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix5Text%{Enter}
+		str2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
+		str2Suffix5Text := StrReplace(str2Suffix5Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix5Text := StrReplace(str2Suffix5Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix5Text%{Enter}
 		ResetChat()
     }
 return
@@ -8123,9 +8138,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
-		2Suffix6Text := StrReplace(2Suffix6Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix6Text%{Enter}
+		str2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
+		str2Suffix6Text := StrReplace(str2Suffix6Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix6Text := StrReplace(str2Suffix6Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix6Text%{Enter}
 		ResetChat()
     }
 return
@@ -8134,9 +8150,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
-		2Suffix7Text := StrReplace(2Suffix7Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix7Text%{Enter}
+		str2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
+		str2Suffix7Text := StrReplace(str2Suffix7Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix7Text := StrReplace(str2Suffix7Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix7Text%{Enter}
 		ResetChat()
     }
 return
@@ -8145,9 +8162,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
-		2Suffix8Text := StrReplace(2Suffix8Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix8Text%{Enter}
+		str2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
+		str2Suffix8Text := StrReplace(str2Suffix8Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix8Text := StrReplace(str2Suffix8Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix8Text%{Enter}
 		ResetChat()
     }
 return
@@ -8156,9 +8174,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
-		2Suffix9Text := StrReplace(2Suffix9Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix9Text%{Enter}
+		str2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
+		str2Suffix9Text := StrReplace(str2Suffix9Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix9Text := StrReplace(str2Suffix9Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix9Text%{Enter}
 		ResetChat()
     }
 return
