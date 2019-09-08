@@ -4,7 +4,7 @@
     #HotkeyInterval 99000000
     #KeyHistory 0
     #SingleInstance force
-        ;#Warn UseEnv 
+	;#Warn UseEnv 
     #Persistent 
     #InstallMouseHook
     #InstallKeybdHook
@@ -341,8 +341,8 @@
 		global PortalScrollY:=825
 		global WisdomScrollX:=1875
 		global WisdomScrollY:=825
-		global StockPortal:=1
-		global StockWisdom:=1
+		global StockPortal:=0
+		global StockWisdom:=0
 		global GuiX:=-5
 		global GuiY:=1005
 
@@ -1398,7 +1398,7 @@
 
 		global vX_StashTabMenu := 640
 		global vY_StashTabMenu := 146
-		global vX_StashTabList := 760
+		global vX_StashTabList := 706
 		global vY_StashTabList := 120
 		global vY_StashTabSize := 22
 		}
@@ -1489,7 +1489,7 @@ LootScan(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ItemSort(){
 	ItemSortCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		CurrentTab:=0
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
@@ -1801,7 +1801,7 @@ MoveStash(Tab){
 		MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
 		Sleep, 60*Latency
 		send {Enter}
-		Sleep, 45*Latency
+		Sleep, 145*Latency
 		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
 		Sleep, 45*Latency
 		Click, Down, Left, 1
@@ -2044,7 +2044,7 @@ Rescale(){
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
 				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 760))
+				global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 706))
 				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
 				;calculate the height of each tab
 				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
@@ -2118,7 +2118,7 @@ Rescale(){
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
 				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
+				global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 706))
 				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
 				;calculate the height of each tab
 				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
@@ -2189,7 +2189,7 @@ Rescale(){
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
 				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (2560 / 760))
+				global vX_StashTabList := X + Round(A_ScreenWidth / (2560 / 706))
 				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1440 / 120))
 				;calculate the height of each tab
 				global vY_StashTabSize := Round(A_ScreenHeight / ( 1440 / 22))
@@ -2277,34 +2277,34 @@ RandomSleep(min,max){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GemSwap(){
 	GemSwapCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		Keywait, Alt
 		BlockInput, MouseMove
 		MouseGetPos xx, yy
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		Send {%hotkeyCloseAllUI%} 
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		Send {%hotkeyInventory%} 
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		RightClick(CurrentGemX, CurrentGemY)
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		if (WeaponSwap==1) 
 			Send {%hotkeyWeaponSwapKey%} 
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		SwiftClick(AlternateGemX, AlternateGemY)
-			RandomSleep(45,60)
+			RandomSleep(90,120)
 		
 		if (WeaponSwap==1) 
 			Send {%hotkeyWeaponSwapKey%} 
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		SwiftClick(CurrentGemX, CurrentGemY)
-			RandomSleep(45,60)
+			RandomSleep(90,120)
 		
 		Send {%hotkeyInventory%} 
 		MouseMove, xx, yy, 0
@@ -2316,7 +2316,7 @@ GemSwap(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 QuickPortal(){
 	QuickPortalCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		Keywait, Alt
 		BlockInput On
 		MouseGetPos xx, yy
@@ -2344,7 +2344,7 @@ QuickPortal(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
 	PopFlasksCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		If PopFlaskRespectCD
 			TriggerFlask(11111)
 		Else {
@@ -2385,7 +2385,7 @@ PopFlasks(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LogoutCommand(){
 	LogoutCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		if (CritQuit=1) {
 			global executable, backupExe
 			succ := logout(executable)
@@ -2406,7 +2406,7 @@ LogoutCommand(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 logout(executable){
 		global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
-		Critical
+		Thread, NoTimers, true		;Critical
 		start := A_TickCount
 		
 		poePID := Object()
@@ -4274,7 +4274,7 @@ PoEWindowCheck(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MsgMonitor(wParam, lParam, msg)
 		{
-		critical
+		Thread, NoTimers, true		;Critical
 		If (wParam=1)
 			Return
 		Else If (wParam=2)
@@ -5362,6 +5362,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 readFromFile(){
     global
+	Thread, NoTimers, true		;Critical
     ;General settings
     IniRead, Speed, settings.ini, General, Speed, 1
     IniRead, Tick, settings.ini, General, Tick, 50
@@ -5600,8 +5601,8 @@ readFromFile(){
     IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY, 825
     IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX, 1875
     IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY, 825
-    IniRead, StockPortal, settings.ini, Coordinates, StockPortal, 1
-    IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom, 1
+    IniRead, StockPortal, settings.ini, Coordinates, StockPortal, 0
+    IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom, 0
     
     
     ;Attack Flasks
@@ -5823,7 +5824,7 @@ Return
 submit(){  
 updateEverything:
     global
-    critical
+    Thread, NoTimers, true		;Critical
 
     ;~ hotkeys reset
     hotkey, IfWinActive, ahk_group POEGameGroup
@@ -6099,6 +6100,8 @@ updateEverything:
     IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY
     IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX
     IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY
+    IniWrite, %StockPortal%, settings.ini, Coordinates, StockPortal
+    IniWrite, %StockWisdom%, settings.ini, Coordinates, StockWisdom
     
     ;Stash Tab Management
     IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency

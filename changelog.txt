@@ -1,6 +1,19 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .04.9 September/07/2019
+--------------------------------------------------------------------------------
+Bugfix for Movestash
+    fixed issue where it opens chat (longer delay after hitting enter)
+    Fixed issue with tab names being too small
+
+Bugfix for Inventory button
+    Replaced Critical with Thread, NoTimers, true
+        did same for all instances where Critical was used
+    this fixes issues with hotkeys being qued back to back
+    you can once again stop the inventory function by repressing the hotkey
+    also seems to be back at full speed
+
 Version .04.8 August/28/2019
 --------------------------------------------------------------------------------
 Adjustments for the dpad movement, makes it feel less sluggish
