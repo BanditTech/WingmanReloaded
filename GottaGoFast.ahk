@@ -448,7 +448,7 @@ return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MsgMonitor(wParam, lParam, msg)
 {
-     critical
+     Thread, NoTimers, true   ;critical
      If (wParam=1){
           ReadFromFile()
           FlaskListQS:=[]

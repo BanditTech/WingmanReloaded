@@ -4,7 +4,7 @@
     #HotkeyInterval 99000000
     #KeyHistory 0
     #SingleInstance force
-        ;#Warn UseEnv 
+	;#Warn UseEnv 
     #Persistent 
     #InstallMouseHook
     #InstallKeybdHook
@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.8
+    Global VersionNumber := .04.9
 
 	Global Null := 0
     
@@ -168,6 +168,9 @@
 			MsgBox % "JSON library installed, ready for next patch!"
 		}
 	}
+	; Comment out this line if your script crashes on launch
+	; will add this later when ready for loot filter
+	;#Include, %A_ScriptDir%\data\JSON.ahk
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -280,7 +283,7 @@
 		Global StashTabUniqueDump := 1
 		Global StashTabFragment := 1
 		Global StashTabEssence := 1
-		Global StashTabTimelessSplinter := 1
+		Global StashTabOil := 1
 		Global StashTabFossil := 1
 		Global StashTabResonator := 1
 		Global StashTabProphecy := 1
@@ -297,7 +300,7 @@
 		Global StashTabYesUniqueDump := 1
 		Global StashTabYesFragment := 1
 		Global StashTabYesEssence := 1
-		Global StashTabYesTimelessSplinter := 1
+		Global StashTabYesOil := 1
 		Global StashTabYesFossil := 1
 		Global StashTabYesResonator := 1
 		Global StashTabYesProphecy := 1
@@ -341,8 +344,8 @@
 		global PortalScrollY:=825
 		global WisdomScrollX:=1875
 		global WisdomScrollY:=825
-		global StockPortal:=1
-		global StockWisdom:=1
+		global StockPortal:=0
+		global StockWisdom:=0
 		global GuiX:=-5
 		global GuiY:=1005
 
@@ -351,7 +354,8 @@
 		global varMouseoverColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905]
 
 	;Failsafe Colors
-		global varOnHideout:=0x161114
+		global varOnHideout:=0xB5EFFE
+		global varOnHideoutMin:=0xCDF6FE
 		global varOnChar:=0x4F6980
 		global varOnChat:=0x3B6288
 		global varOnInventory:=0x8CC6DD
@@ -836,15 +840,16 @@
 	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
 
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w100, 	OnHideout Color
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w100, 	OnChar Color
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w100, 	OnChat Color
-	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 								w100, 	OnDiv Color
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w110, 	OnHideout Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w110, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w110, 	OnChat Color
+	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 								w110, 	OnDiv Color
 
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn x+8 ys+20			w100, 	OnInventory Color
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w100, 	OnStash Color
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 						w100, 	OnVendor Color
-	Gui, Add, Button, gupdateOnInsMan vUpdateOnInsManBtn							w100, 	OnInsMan Color
+	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+20		w110, 	OnHideoutMin Color
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn						w110, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w110, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 						w110, 	OnVendor Color
+	Gui, Add, Button, gupdateOnInsMan vUpdateOnInsManBtn							w110, 	OnInsMan Color
 
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
@@ -858,7 +863,7 @@
 	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
 
 	Gui, Font, Bold
-	Gui Add, Text, 										xs 	y+20, 				Additional Interface Options:
+	Gui Add, Text, 										xs 	y+10, 				Additional Interface Options:
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
@@ -995,7 +1000,7 @@
 	Gui Add, Text, 										x12 	y30, 				Stash Management
 	Gui, Font,
 	Gui, Add, DropDownList, gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabTimelessSplinter Choose%StashTabTimelessSplinter% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabOil Choose%StashTabOil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
@@ -1004,7 +1009,7 @@
 	Gui, Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter Checked%StashTabYesTimelessSplinter% y+14, TSplinter Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% y+14, Oil Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% y+14, Map Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% y+14, Fragment Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% y+14, Divination Tab
@@ -1353,8 +1358,9 @@
 		Global PortalStockX:=175
 		Global WPStockY:=262
 		
-		global vX_OnHideout:=1241
-		global vY_OnHideout:=951
+		global vX_OnHideout:=1178
+		global vY_OnHideout:=930
+		global vY_OnHideoutMin:=1053
 		global vX_OnChar:=41
 		global vY_OnChar:=915
 		global vX_OnChat:=41
@@ -1398,7 +1404,7 @@
 
 		global vX_StashTabMenu := 640
 		global vY_StashTabMenu := 146
-		global vX_StashTabList := 760
+		global vX_StashTabList := 706
 		global vY_StashTabList := 120
 		global vY_StashTabSize := 22
 		}
@@ -1489,7 +1495,7 @@ LootScan(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ItemSort(){
 	ItemSortCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		CurrentTab:=0
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
@@ -1633,6 +1639,12 @@ ItemSort(){
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
+						If (Prop.TimelessSplinter&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
 						If (Prop.RarityDivination&&StashTabYesDivination)
 						{
 							MoveStash(StashTabDivination)
@@ -1733,15 +1745,15 @@ ItemSort(){
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (Prop.TimelessSplinter&&StashTabYesTimelessSplinter)
-						{
-							MoveStash(StashTabTimelessSplinter)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
 						If (Prop.Prophecy&&StashTabYesProphecy)
 						{
 							MoveStash(StashTabProphecy)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Oil&&StashTabYesOil)
+						{
+							MoveStash(StashTabOil)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
@@ -1801,7 +1813,7 @@ MoveStash(Tab){
 		MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
 		Sleep, 60*Latency
 		send {Enter}
-		Sleep, 45*Latency
+		Sleep, 145*Latency
 		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
 		Sleep, 45*Latency
 		Click, Down, Left, 1
@@ -1988,8 +2000,9 @@ Rescale(){
 				Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
 				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
 				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
-				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+				global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1178))
+				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
 				;Status Check OnChar
 				global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -2044,7 +2057,7 @@ Rescale(){
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
 				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 760))
+				global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 706))
 				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
 				;calculate the height of each tab
 				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
@@ -2062,8 +2075,9 @@ Rescale(){
 				Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
 				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
 				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+				global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3098))
+				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
 				;Status Check OnChar
 				global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
 				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -2118,81 +2132,10 @@ Rescale(){
 				global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
 				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
 				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 760))
+				global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 706))
 				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
 				;calculate the height of each tab
 				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-			} 
-			Else If (ResolutionScale="QHD") {
-				; Item Inventory Grid
-				Global InventoryGridX := [ Round(A_ScreenWidth/(2560/3193)), Round(A_ScreenWidth/(2560/3246)), Round(A_ScreenWidth/(2560/3299)), Round(A_ScreenWidth/(2560/3352)), Round(A_ScreenWidth/(2560/3404)), Round(A_ScreenWidth/(2560/3457)), Round(A_ScreenWidth/(2560/3510)), Round(A_ScreenWidth/(2560/3562)), Round(A_ScreenWidth/(2560/3615)), Round(A_ScreenWidth/(2560/3668)), Round(A_ScreenWidth/(2560/3720)), Round(A_ScreenWidth/(2560/3773)) ]
-				Global InventoryGridY := [ Round(A_ScreenHeight/(1440/638)), Round(A_ScreenHeight/(1440/690)), Round(A_ScreenHeight/(1440/743)), Round(A_ScreenHeight/(1440/796)), Round(A_ScreenHeight/(1440/848)) ]  
-				;Detonate Mines
-				Global DetonateDelveX:=X + Round(A_ScreenWidth/(2560/3462))
-				Global DetonateX:=X + Round(A_ScreenWidth/(2560/3578))
-				Global DetonateY:=Y + Round(A_ScreenHeight/(1440/901))
-				;Scrolls in currency tab
-				Global WisdomStockX:=X + Round(A_ScreenWidth/(2560/125))
-				Global PortalStockX:=X + Round(A_ScreenWidth/(2560/175))
-				Global WPStockY:=Y + Round(A_ScreenHeight/(1440/262))
-				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (2560 / 3161))
-				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1440 / 951))
-				;Status Check OnChar
-				global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
-				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1440 / 915))
-				;Status Check OnChat
-				global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
-				global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1440 / 653))
-				;Status Check OnInventory
-				global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 3503))
-				global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1440 / 36))
-				;Status Check OnStash
-				global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
-				global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1440 / 32))
-				;Status Check OnVendor
-				global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
-				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
-				;Status Check OnDiv
-				global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
-				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-				;Life %'s
-				global vX_Life:=X + Round(A_ScreenWidth / (2560 / 95))
-					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
-					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
-					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
-					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
-					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
-					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
-					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
-					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
-					;ES %'s
-				global vX_ES:=X + Round(A_ScreenWidth / (2560 / 180))
-				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
-				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
-				global vY_ES40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
-				global vY_ES50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
-				global vY_ES60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
-				global vY_ES70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
-				global vY_ES80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
-				global vY_ES90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
-				;Mana
-				global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 3745))
-				global vY_Mana10:=Y + Round(A_ScreenHeight / (1440 / 1054))
-				;GUI overlay
-				global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
-				global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
-				;Divination Y locations
-				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
-				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
-				;Stash tabs menu button
-				global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
-				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
-				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (2560 / 760))
-				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1440 / 120))
-				;calculate the height of each tab
-				global vY_StashTabSize := Round(A_ScreenHeight / ( 1440 / 22))
 			} 
 			RescaleRan := True
 		}
@@ -2277,34 +2220,34 @@ RandomSleep(min,max){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GemSwap(){
 	GemSwapCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		Keywait, Alt
 		BlockInput, MouseMove
 		MouseGetPos xx, yy
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		Send {%hotkeyCloseAllUI%} 
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		Send {%hotkeyInventory%} 
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		RightClick(CurrentGemX, CurrentGemY)
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		if (WeaponSwap==1) 
 			Send {%hotkeyWeaponSwapKey%} 
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		SwiftClick(AlternateGemX, AlternateGemY)
-			RandomSleep(45,60)
+			RandomSleep(90,120)
 		
 		if (WeaponSwap==1) 
 			Send {%hotkeyWeaponSwapKey%} 
-		RandomSleep(45,60)
+		RandomSleep(90,120)
 		
 		SwiftClick(CurrentGemX, CurrentGemY)
-			RandomSleep(45,60)
+			RandomSleep(90,120)
 		
 		Send {%hotkeyInventory%} 
 		MouseMove, xx, yy, 0
@@ -2316,7 +2259,7 @@ GemSwap(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 QuickPortal(){
 	QuickPortalCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		Keywait, Alt
 		BlockInput On
 		MouseGetPos xx, yy
@@ -2344,7 +2287,7 @@ QuickPortal(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
 	PopFlasksCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		If PopFlaskRespectCD
 			TriggerFlask(11111)
 		Else {
@@ -2385,7 +2328,7 @@ PopFlasks(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LogoutCommand(){
 	LogoutCommand:
-		Critical
+		Thread, NoTimers, true		;Critical
 		if (CritQuit=1) {
 			global executable, backupExe
 			succ := logout(executable)
@@ -2406,7 +2349,7 @@ LogoutCommand(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 logout(executable){
 		global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
-		Critical
+		Thread, NoTimers, true		;Critical
 		start := A_TickCount
 		
 		poePID := Object()
@@ -2615,6 +2558,7 @@ ParseClip(){
 			, Flask : False
 			, Veiled : False
 			, Prophecy : False
+			, Oil : False
 			, ItemLevel : 0}
 
 		WeaponStats := { PhysLo : False
@@ -3020,6 +2964,15 @@ ParseClip(){
 					{
 						Prop.Flask := True
 						Continue
+					}
+					IfInString, A_LoopField, Oil
+					{
+						If Prop.RarityCurrency
+						{
+							Prop.Oil := True
+							Prop.SpecialType := "Oil"
+							Continue
+						}
 					}
 				}
 				Continue
@@ -4274,7 +4227,7 @@ PoEWindowCheck(){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MsgMonitor(wParam, lParam, msg)
 		{
-		critical
+		Thread, NoTimers, true		;Critical
 		If (wParam=1)
 			Return
 		Else If (wParam=2)
@@ -4387,7 +4340,8 @@ GuiStatus(Fetch:=""){
 		Return
 		}
 	pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-	if (POnHideout=varOnHideout) {
+	pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+	if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
 		OnHideout:=True
 		} Else {
 		OnHideout:=False
@@ -5362,6 +5316,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 readFromFile(){
     global
+	Thread, NoTimers, true		;Critical
     ;General settings
     IniRead, Speed, settings.ini, General, Speed, 1
     IniRead, Tick, settings.ini, General, Tick, 50
@@ -5404,7 +5359,7 @@ readFromFile(){
     IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump, 1
     IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment, 1
     IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence, 1
-    IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter, 1
+    IniRead, StashTabOil, settings.ini, Stash Tab, StashTabOil, 1
     IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil, 1
     IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator, 1
     IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
@@ -5420,7 +5375,7 @@ readFromFile(){
     IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump, 1
     IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment, 1
     IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence, 1
-    IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter, 1
+    IniRead, StashTabYesOil, settings.ini, Stash Tab, StashTabYesOil, 1
     IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil, 1
     IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator, 1
     IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
@@ -5433,7 +5388,8 @@ readFromFile(){
     varMouseoverColor := StrSplit(varMouseoverColor, ",")
     
     ;Failsafe Colors
-    IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
+    IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
+    IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
     IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
     IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
     IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
@@ -5600,8 +5556,8 @@ readFromFile(){
     IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY, 825
     IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX, 1875
     IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY, 825
-    IniRead, StockPortal, settings.ini, Coordinates, StockPortal, 1
-    IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom, 1
+    IniRead, StockPortal, settings.ini, Coordinates, StockPortal, 0
+    IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom, 0
     
     
     ;Attack Flasks
@@ -5823,7 +5779,7 @@ Return
 submit(){  
 updateEverything:
     global
-    critical
+    Thread, NoTimers, true		;Critical
 
     ;~ hotkeys reset
     hotkey, IfWinActive, ahk_group POEGameGroup
@@ -6099,6 +6055,8 @@ updateEverything:
     IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY
     IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX
     IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY
+    IniWrite, %StockPortal%, settings.ini, Coordinates, StockPortal
+    IniWrite, %StockWisdom%, settings.ini, Coordinates, StockWisdom
     
     ;Stash Tab Management
     IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
@@ -6113,7 +6071,7 @@ updateEverything:
     IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
     IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
     IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-    IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+    IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
     IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
     IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
     IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
@@ -6129,7 +6087,7 @@ updateEverything:
     IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
     IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
     IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-    IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+    IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
     IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
     IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
     IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
@@ -7209,6 +7167,31 @@ updateOnHideout:
     
 return
 
+updateOnHideoutMin:
+    Gui, Submit, NoHide
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist `nRecalibrate of OnHideoutMin didn't work"
+        Return
+    }
+    
+    if WinActive(ahk_group POEGameGroup){
+		Sleep, 1000
+        pixelgetcolor, varOnHideoutMin, vX_OnHideout, vY_OnHideoutMin	
+        IniWrite, %varOnHideoutMin%, settings.ini, Failsafe Colors, OnHideoutMin
+        readFromFile()
+        MsgBox % "OnHideoutMin recalibrated!`nTook color hex: " . varOnHideoutMin . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideoutMin
+    } else
+    MsgBox % "PoE Window is not active. `nRecalibrate of OnHideoutMin didn't work"
+    
+    
+    hotkeys()
+    
+return
+
 updateOnChar:
     Gui, Submit, NoHide
     IfWinExist, ahk_group POEGameGroup
@@ -7663,7 +7646,7 @@ UpdateStash:
     IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
     IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
     IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-    IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+    IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
     IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
     IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
     IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
@@ -7679,7 +7662,7 @@ UpdateStash:
     IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
     IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
     IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-    IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+    IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
     IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
     IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
     IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
@@ -7994,9 +7977,10 @@ return
 1FireWhisperHotkey1() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
-		1Suffix1Text := StrReplace(1Suffix1Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix1Text%{Enter}
+		str1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
+		str1Suffix1Text := StrReplace(str1Suffix1Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix1Text := StrReplace(str1Suffix1Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix1Text%{Enter}
 		ResetChat()
     }
 return
@@ -8004,9 +7988,10 @@ return
 1FireWhisperHotkey2() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
-		1Suffix2Text := StrReplace(1Suffix2Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix2Text%{Enter}
+		str1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
+		str1Suffix2Text := StrReplace(str1Suffix2Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix2Text := StrReplace(str1Suffix2Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix2Text%{Enter}
 		ResetChat()
     }
 return
@@ -8014,9 +7999,10 @@ return
 1FireWhisperHotkey3() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
-		1Suffix3Text := StrReplace(1Suffix3Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix3Text%{Enter}
+		str1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
+		str1Suffix3Text := StrReplace(str1Suffix3Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix3Text := StrReplace(str1Suffix3Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix3Text%{Enter}
 		ResetChat()
     }
 return
@@ -8024,9 +8010,10 @@ return
 1FireWhisperHotkey4() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
-		1Suffix4Text := StrReplace(1Suffix4Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix4Text%{Enter}
+		str1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
+		str1Suffix4Text := StrReplace(str1Suffix4Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix4Text := StrReplace(str1Suffix4Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix4Text%{Enter}
 		ResetChat()
     }
 return
@@ -8034,9 +8021,10 @@ return
 1FireWhisperHotkey5() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
-		1Suffix5Text := StrReplace(1Suffix5Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix5Text%{Enter}
+		str1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
+		str1Suffix5Text := StrReplace(str1Suffix5Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix5Text := StrReplace(str1Suffix5Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix5Text%{Enter}
 		ResetChat()
     }
 return
@@ -8044,9 +8032,10 @@ return
 1FireWhisperHotkey6() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
-		1Suffix6Text := StrReplace(1Suffix6Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix6Text%{Enter}
+		str1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
+		str1Suffix6Text := StrReplace(str1Suffix6Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix6Text := StrReplace(str1Suffix6Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix6Text%{Enter}
 		ResetChat()
     }
 return
@@ -8054,9 +8043,10 @@ return
 1FireWhisperHotkey7() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
-		1Suffix7Text := StrReplace(1Suffix7Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix7Text%{Enter}
+		str1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
+		str1Suffix7Text := StrReplace(str1Suffix7Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix7Text := StrReplace(str1Suffix7Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix7Text%{Enter}
 		ResetChat()
     }
 return
@@ -8064,9 +8054,10 @@ return
 1FireWhisperHotkey8() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
-		1Suffix8Text := StrReplace(1Suffix8Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix8Text%{Enter}
+		str1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
+		str1Suffix8Text := StrReplace(str1Suffix8Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix8Text := StrReplace(str1Suffix8Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix8Text%{Enter}
 		ResetChat()
     }
 return
@@ -8074,9 +8065,10 @@ return
 1FireWhisperHotkey9() {
     IfWinActive, ahk_group POEGameGroup
     {	
-		1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
-		1Suffix9Text := StrReplace(1Suffix9Text, "RecipientName", RecipientName, 0, -1)
-		Send, {Enter}%1Suffix9Text%{Enter}
+		str1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+		str1Suffix9Text := StrReplace(str1Suffix9Text, "RecipientName", RecipientName, 0, -1)
+		str1Suffix9Text := StrReplace(str1Suffix9Text, "!", "{!}", 0, -1)
+		Send, {Enter}%str1Suffix9Text%{Enter}
 		ResetChat()
     }
 return
@@ -8085,9 +8077,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
-		2Suffix1Text := StrReplace(2Suffix1Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix1Text%{Enter}
+		str2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
+		str2Suffix1Text := StrReplace(str2Suffix1Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix1Text := StrReplace(str2Suffix1Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix1Text%{Enter}
 		ResetChat()
     }
 return
@@ -8096,9 +8089,11 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
-		2Suffix2Text := StrReplace(2Suffix2Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix2Text%{Enter}
+		str2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
+		str2Suffix2Text := StrReplace(str2Suffix2Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix2Text := StrReplace(str2Suffix2Text, "!", "{!}", 0, -1)
+
+		Send, ^{Enter}%str2Suffix2Text%{Enter}
 		ResetChat()
     }
 return
@@ -8107,9 +8102,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
-		2Suffix3Text := StrReplace(2Suffix3Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix3Text%{Enter}
+		str2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
+		str2Suffix3Text := StrReplace(str2Suffix3Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix3Text := StrReplace(str2Suffix3Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix3Text%{Enter}
 		ResetChat()
     }
 return
@@ -8118,9 +8114,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
-		2Suffix4Text := StrReplace(2Suffix4Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix4Text%{Enter}
+		str2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
+		str2Suffix4Text := StrReplace(str2Suffix4Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix4Text := StrReplace(str2Suffix4Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix4Text%{Enter}
 		ResetChat()
     }
 return
@@ -8129,9 +8126,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
-		2Suffix5Text := StrReplace(2Suffix5Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix5Text%{Enter}
+		str2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
+		str2Suffix5Text := StrReplace(str2Suffix5Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix5Text := StrReplace(str2Suffix5Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix5Text%{Enter}
 		ResetChat()
     }
 return
@@ -8140,9 +8138,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
-		2Suffix6Text := StrReplace(2Suffix6Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix6Text%{Enter}
+		str2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
+		str2Suffix6Text := StrReplace(str2Suffix6Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix6Text := StrReplace(str2Suffix6Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix6Text%{Enter}
 		ResetChat()
     }
 return
@@ -8151,9 +8150,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
-		2Suffix7Text := StrReplace(2Suffix7Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix7Text%{Enter}
+		str2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
+		str2Suffix7Text := StrReplace(str2Suffix7Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix7Text := StrReplace(str2Suffix7Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix7Text%{Enter}
 		ResetChat()
     }
 return
@@ -8162,9 +8162,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
-		2Suffix8Text := StrReplace(2Suffix8Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix8Text%{Enter}
+		str2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
+		str2Suffix8Text := StrReplace(str2Suffix8Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix8Text := StrReplace(str2Suffix8Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix8Text%{Enter}
 		ResetChat()
     }
 return
@@ -8173,9 +8174,10 @@ return
     IfWinActive, ahk_group POEGameGroup
     {	
 		GrabRecipientName()
-		2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
-		2Suffix9Text := StrReplace(2Suffix9Text, "RecipientName", RecipientName, 0, -1)
-		Send, ^{Enter}%2Suffix9Text%{Enter}
+		str2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
+		str2Suffix9Text := StrReplace(str2Suffix9Text, "RecipientName", RecipientName, 0, -1)
+		str2Suffix9Text := StrReplace(str2Suffix9Text, "!", "{!}", 0, -1)
+		Send, ^{Enter}%str2Suffix9Text%{Enter}
 		ResetChat()
     }
 return
