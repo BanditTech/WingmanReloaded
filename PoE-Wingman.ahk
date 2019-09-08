@@ -168,6 +168,9 @@
 			MsgBox % "JSON library installed, ready for next patch!"
 		}
 	}
+	; Comment out this line if your script crashes on launch
+	; will add this later when ready for loot filter
+	;#Include, %A_ScriptDir%\data\JSON.ahk
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -280,7 +283,7 @@
 		Global StashTabUniqueDump := 1
 		Global StashTabFragment := 1
 		Global StashTabEssence := 1
-		Global StashTabTimelessSplinter := 1
+		Global StashTabOil := 1
 		Global StashTabFossil := 1
 		Global StashTabResonator := 1
 		Global StashTabProphecy := 1
@@ -297,7 +300,7 @@
 		Global StashTabYesUniqueDump := 1
 		Global StashTabYesFragment := 1
 		Global StashTabYesEssence := 1
-		Global StashTabYesTimelessSplinter := 1
+		Global StashTabYesOil := 1
 		Global StashTabYesFossil := 1
 		Global StashTabYesResonator := 1
 		Global StashTabYesProphecy := 1
@@ -351,7 +354,8 @@
 		global varMouseoverColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905]
 
 	;Failsafe Colors
-		global varOnHideout:=0x161114
+		global varOnHideout:=0xB5EFFE
+		global varOnHideoutMin:=0xCDF6FE
 		global varOnChar:=0x4F6980
 		global varOnChat:=0x3B6288
 		global varOnInventory:=0x8CC6DD
@@ -836,15 +840,16 @@
 	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
 
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w100, 	OnHideout Color
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w100, 	OnChar Color
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w100, 	OnChat Color
-	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 								w100, 	OnDiv Color
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w110, 	OnHideout Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w110, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w110, 	OnChat Color
+	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 								w110, 	OnDiv Color
 
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn x+8 ys+20			w100, 	OnInventory Color
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w100, 	OnStash Color
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 						w100, 	OnVendor Color
-	Gui, Add, Button, gupdateOnInsMan vUpdateOnInsManBtn							w100, 	OnInsMan Color
+	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+20		w110, 	OnHideoutMin Color
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn						w110, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w110, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 						w110, 	OnVendor Color
+	Gui, Add, Button, gupdateOnInsMan vUpdateOnInsManBtn							w110, 	OnInsMan Color
 
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
@@ -858,7 +863,7 @@
 	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
 
 	Gui, Font, Bold
-	Gui Add, Text, 										xs 	y+20, 				Additional Interface Options:
+	Gui Add, Text, 										xs 	y+10, 				Additional Interface Options:
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
@@ -995,7 +1000,7 @@
 	Gui Add, Text, 										x12 	y30, 				Stash Management
 	Gui, Font,
 	Gui, Add, DropDownList, gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabTimelessSplinter Choose%StashTabTimelessSplinter% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabOil Choose%StashTabOil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 	Gui, Add, DropDownList, gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
@@ -1004,7 +1009,7 @@
 	Gui, Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesTimelessSplinter Checked%StashTabYesTimelessSplinter% y+14, TSplinter Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% y+14, Oil Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% y+14, Map Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% y+14, Fragment Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% y+14, Divination Tab
@@ -1353,8 +1358,9 @@
 		Global PortalStockX:=175
 		Global WPStockY:=262
 		
-		global vX_OnHideout:=1241
-		global vY_OnHideout:=951
+		global vX_OnHideout:=1178
+		global vY_OnHideout:=930
+		global vY_OnHideoutMin:=1053
 		global vX_OnChar:=41
 		global vY_OnChar:=915
 		global vX_OnChat:=41
@@ -1633,6 +1639,12 @@ ItemSort(){
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
+						If (Prop.TimelessSplinter&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
 						If (Prop.RarityDivination&&StashTabYesDivination)
 						{
 							MoveStash(StashTabDivination)
@@ -1733,15 +1745,15 @@ ItemSort(){
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (Prop.TimelessSplinter&&StashTabYesTimelessSplinter)
-						{
-							MoveStash(StashTabTimelessSplinter)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
 						If (Prop.Prophecy&&StashTabYesProphecy)
 						{
 							MoveStash(StashTabProphecy)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Oil&&StashTabYesOil)
+						{
+							MoveStash(StashTabOil)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
@@ -1988,8 +2000,9 @@ Rescale(){
 				Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
 				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
 				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
-				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+				global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1178))
+				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
 				;Status Check OnChar
 				global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -2062,8 +2075,9 @@ Rescale(){
 				Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
 				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
 				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+				global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3098))
+				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
 				;Status Check OnChar
 				global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
 				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -2122,77 +2136,6 @@ Rescale(){
 				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
 				;calculate the height of each tab
 				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-			} 
-			Else If (ResolutionScale="QHD") {
-				; Item Inventory Grid
-				Global InventoryGridX := [ Round(A_ScreenWidth/(2560/3193)), Round(A_ScreenWidth/(2560/3246)), Round(A_ScreenWidth/(2560/3299)), Round(A_ScreenWidth/(2560/3352)), Round(A_ScreenWidth/(2560/3404)), Round(A_ScreenWidth/(2560/3457)), Round(A_ScreenWidth/(2560/3510)), Round(A_ScreenWidth/(2560/3562)), Round(A_ScreenWidth/(2560/3615)), Round(A_ScreenWidth/(2560/3668)), Round(A_ScreenWidth/(2560/3720)), Round(A_ScreenWidth/(2560/3773)) ]
-				Global InventoryGridY := [ Round(A_ScreenHeight/(1440/638)), Round(A_ScreenHeight/(1440/690)), Round(A_ScreenHeight/(1440/743)), Round(A_ScreenHeight/(1440/796)), Round(A_ScreenHeight/(1440/848)) ]  
-				;Detonate Mines
-				Global DetonateDelveX:=X + Round(A_ScreenWidth/(2560/3462))
-				Global DetonateX:=X + Round(A_ScreenWidth/(2560/3578))
-				Global DetonateY:=Y + Round(A_ScreenHeight/(1440/901))
-				;Scrolls in currency tab
-				Global WisdomStockX:=X + Round(A_ScreenWidth/(2560/125))
-				Global PortalStockX:=X + Round(A_ScreenWidth/(2560/175))
-				Global WPStockY:=Y + Round(A_ScreenHeight/(1440/262))
-				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (2560 / 3161))
-				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1440 / 951))
-				;Status Check OnChar
-				global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
-				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1440 / 915))
-				;Status Check OnChat
-				global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
-				global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1440 / 653))
-				;Status Check OnInventory
-				global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 3503))
-				global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1440 / 36))
-				;Status Check OnStash
-				global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
-				global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1440 / 32))
-				;Status Check OnVendor
-				global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
-				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
-				;Status Check OnDiv
-				global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
-				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-				;Life %'s
-				global vX_Life:=X + Round(A_ScreenWidth / (2560 / 95))
-					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
-					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
-					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
-					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
-					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
-					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
-					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
-					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
-					;ES %'s
-				global vX_ES:=X + Round(A_ScreenWidth / (2560 / 180))
-				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1440 / 1034))
-				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1440 / 1014))
-				global vY_ES40:=Y + Round(A_ScreenHeight / ( 1440 / 994))
-				global vY_ES50:=Y + Round(A_ScreenHeight / ( 1440 / 974))
-				global vY_ES60:=Y + Round(A_ScreenHeight / ( 1440 / 954))
-				global vY_ES70:=Y + Round(A_ScreenHeight / ( 1440 / 934))
-				global vY_ES80:=Y + Round(A_ScreenHeight / ( 1440 / 914))
-				global vY_ES90:=Y + Round(A_ScreenHeight / ( 1440 / 894))
-				;Mana
-				global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 3745))
-				global vY_Mana10:=Y + Round(A_ScreenHeight / (1440 / 1054))
-				;GUI overlay
-				global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
-				global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
-				;Divination Y locations
-				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
-				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
-				;Stash tabs menu button
-				global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
-				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1440 / 146))
-				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (2560 / 706))
-				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1440 / 120))
-				;calculate the height of each tab
-				global vY_StashTabSize := Round(A_ScreenHeight / ( 1440 / 22))
 			} 
 			RescaleRan := True
 		}
@@ -2615,6 +2558,7 @@ ParseClip(){
 			, Flask : False
 			, Veiled : False
 			, Prophecy : False
+			, Oil : False
 			, ItemLevel : 0}
 
 		WeaponStats := { PhysLo : False
@@ -3020,6 +2964,15 @@ ParseClip(){
 					{
 						Prop.Flask := True
 						Continue
+					}
+					IfInString, A_LoopField, Oil
+					{
+						If Prop.RarityCurrency
+						{
+							Prop.Oil := True
+							Prop.SpecialType := "Oil"
+							Continue
+						}
 					}
 				}
 				Continue
@@ -4387,7 +4340,8 @@ GuiStatus(Fetch:=""){
 		Return
 		}
 	pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-	if (POnHideout=varOnHideout) {
+	pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+	if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
 		OnHideout:=True
 		} Else {
 		OnHideout:=False
@@ -5405,7 +5359,7 @@ readFromFile(){
     IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump, 1
     IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment, 1
     IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence, 1
-    IniRead, StashTabTimelessSplinter, settings.ini, Stash Tab, StashTabTimelessSplinter, 1
+    IniRead, StashTabOil, settings.ini, Stash Tab, StashTabOil, 1
     IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil, 1
     IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator, 1
     IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
@@ -5421,7 +5375,7 @@ readFromFile(){
     IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump, 1
     IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment, 1
     IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence, 1
-    IniRead, StashTabYesTimelessSplinter, settings.ini, Stash Tab, StashTabYesTimelessSplinter, 1
+    IniRead, StashTabYesOil, settings.ini, Stash Tab, StashTabYesOil, 1
     IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil, 1
     IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator, 1
     IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
@@ -5434,7 +5388,8 @@ readFromFile(){
     varMouseoverColor := StrSplit(varMouseoverColor, ",")
     
     ;Failsafe Colors
-    IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
+    IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
+    IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
     IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
     IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
     IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
@@ -6116,7 +6071,7 @@ updateEverything:
     IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
     IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
     IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-    IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+    IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
     IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
     IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
     IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
@@ -6132,7 +6087,7 @@ updateEverything:
     IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
     IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
     IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-    IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+    IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
     IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
     IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
     IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
@@ -7212,6 +7167,31 @@ updateOnHideout:
     
 return
 
+updateOnHideoutMin:
+    Gui, Submit, NoHide
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist `nRecalibrate of OnHideoutMin didn't work"
+        Return
+    }
+    
+    if WinActive(ahk_group POEGameGroup){
+		Sleep, 1000
+        pixelgetcolor, varOnHideoutMin, vX_OnHideout, vY_OnHideoutMin	
+        IniWrite, %varOnHideoutMin%, settings.ini, Failsafe Colors, OnHideoutMin
+        readFromFile()
+        MsgBox % "OnHideoutMin recalibrated!`nTook color hex: " . varOnHideoutMin . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideoutMin
+    } else
+    MsgBox % "PoE Window is not active. `nRecalibrate of OnHideoutMin didn't work"
+    
+    
+    hotkeys()
+    
+return
+
 updateOnChar:
     Gui, Submit, NoHide
     IfWinExist, ahk_group POEGameGroup
@@ -7666,7 +7646,7 @@ UpdateStash:
     IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
     IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
     IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-    IniWrite, %StashTabTimelessSplinter%, settings.ini, Stash Tab, StashTabTimelessSplinter
+    IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
     IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
     IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
     IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
@@ -7682,7 +7662,7 @@ UpdateStash:
     IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
     IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
     IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-    IniWrite, %StashTabYesTimelessSplinter%, settings.ini, Stash Tab, StashTabYesTimelessSplinter
+    IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
     IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
     IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
     IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy

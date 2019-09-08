@@ -3,6 +3,16 @@ Patch Notes
 --------------------------------------------------------------------------------
 Version .04.9 September/07/2019
 --------------------------------------------------------------------------------
+Updated stash tabs for latest patch
+    Timeless splinter items are now handled under Fragments
+    Oils have been added to the list of stash tabs in their place
+
+Added Oils to item parser
+
+Added New Minimized Hideout bar to GuiStatus
+    Moved the hideout pixel spot 
+    Dont forget to recalibrate!
+
 Bugfix for Movestash
     fixed issue where it opens chat (longer delay after hitting enter)
     Fixed issue with tab names being too small
@@ -13,6 +23,13 @@ Bugfix for Inventory button
     this fixes issues with hotkeys being qued back to back
     you can once again stop the inventory function by repressing the hotkey
     also seems to be back at full speed
+
+Bugfix for Stock Wisdom and Portal 
+    the checkboxes were not saved properly
+
+Removed unnecessary QHD scale section.
+
+Preparing to add Custom loot filter for next major release!
 
 Version .04.8 August/28/2019
 --------------------------------------------------------------------------------
