@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.8
+    Global VersionNumber := .04.9
 
 	Global Null := 0
     
