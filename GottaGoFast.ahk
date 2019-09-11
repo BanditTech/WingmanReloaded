@@ -142,6 +142,7 @@ global GuiY:=1005
 
 ;Failsafe Colors
 global varOnHideout
+global varOnHideoutMin
 global varOnChar
 global varOnChat
 global varOnInventory
@@ -349,8 +350,9 @@ IfWinExist, ahk_group POEGameGroup
      Rescale()
      WinActivate, ahk_group POEGameGroup
 } Else {
-     global vX_OnHideout:=1241
-     global vY_OnHideout:=951
+     global vX_OnHideout:=1178
+     global vY_OnHideout:=930
+     global vY_OnHideoutMin:=1053
      global vX_OnChar:=41
      global vY_OnChar:=915
      global vX_OnChat:=0
@@ -576,7 +578,8 @@ ReadFromFile(){
      IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
      IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
      ;Failsafe Colors
-     IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
+     IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
+     IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
      IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
      IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
      IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
@@ -747,12 +750,13 @@ GuiStatus(Fetch:=""){
           }
           Return
      }
-     pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-     if (POnHideout=varOnHideout) {
-          OnHideout:=True
-     } Else {
-          OnHideout:=False
-     }
+	pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+	pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+	if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
+		OnHideout:=True
+		} Else {
+		OnHideout:=False
+		}
      pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
      If (POnChar=varOnChar)  {
           OnChar:=True
@@ -965,8 +969,9 @@ Rescale(){
           WinGetPos, X, Y, W, H
           If (ResolutionScale="Standard") {
                ;Status Check OnHideout
-               global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1241))
-               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+               global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
+               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+               global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
                ;Status Check OnChar
                global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
                global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -988,8 +993,9 @@ Rescale(){
           }
           Else If (ResolutionScale="UltraWide") {
                ;Status Check OnHideout
-               global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3161))
-               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 951))
+               global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
+               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+               global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
                ;Status Check OnChar
                global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
                global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -1428,21 +1434,29 @@ DetectJoystick(){
                if JoyName <>
                {
                     JoystickNumber := A_Index
-                    Ding(3000,"Detected Joystick on the " . A_Index . " port.")
+                    If YesController
+                         Ding(3000,"Detected Joystick on the " . A_Index . " port.")
                     JoystickActive:=True
                     break
                }
           }
           if JoystickNumber <= 0
           {
-			Ding(3000,"The system does not appear to have any joysticks.")
+               If YesController
+     			Ding(3000,"The system does not appear to have any joysticks.")
                JoystickActive:=False
           }
      }
      Else 
      {
-		Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
-          JoystickActive := True
+          If YesController
+          {
+		     Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
+               JoystickActive := True
+          }
+          Else
+               JoystickActive:=False
+          
      }
      ;Set up timer if checkbox ticked
      If (YesController&&JoystickActive)
