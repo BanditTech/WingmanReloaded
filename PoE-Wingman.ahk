@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .04.9
+    Global VersionNumber := .05.00
 
 	Global Null := 0
     
@@ -71,6 +71,8 @@
         readFromFile()
 	Global Enchantment  := []
 	Global Corruption := []
+	Global WeaponBases, ArmourBases
+	
 	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
 	{
 		FileCreateDir, %A_ScriptDir%\data
@@ -168,9 +170,54 @@
 			MsgBox % "JSON library installed, ready for next patch!"
 		}
 	}
+	IfNotExist, %A_ScriptDir%\data\LootFilter.ahk
+	{
+		FileCreateDir, %A_ScriptDir%\data
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "LootFilter.ahk")
+			MsgBox, Error ED02 : There was a problem downloading LootFilter.ahk
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "LootFilter.ahk")
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\ArmourBases.json
+	{
+		FileCreateDir, %A_ScriptDir%\data
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/ArmourBases.json, %A_ScriptDir%\data\ArmourBases.json
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "ArmourBases.json")
+			MsgBox, Error ED02 : There was a problem downloading ArmourBases.json
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "ArmourBases.json")
+		}
+	}
+	Else
+	{
+		FileRead, JSONtext, %A_ScriptDir%\data\ArmourBases.json
+		ArmourBases := JSON.Load(JSONtext)
+	}
+	IfNotExist, %A_ScriptDir%\data\WeaponBases.json
+	{
+		FileCreateDir, %A_ScriptDir%\data
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/WeaponBases.json, %A_ScriptDir%\data\WeaponBases.json
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "WeaponBases.json")
+			MsgBox, Error ED02 : There was a problem downloading WeaponBases.json
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "WeaponBases.json")
+		}
+	}
+	Else
+	{
+		FileRead, JSONtext, %A_ScriptDir%\data\WeaponBases.json
+		WeaponBases := JSON.Load(JSONtext)
+	}
 	; Comment out this line if your script crashes on launch
-	; will add this later when ready for loot filter
-	;#Include, %A_ScriptDir%\data\JSON.ahk
+	#Include, %A_ScriptDir%\data\JSON.ahk
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -190,6 +237,9 @@
 		global Radiobox3Mana10
 		global Radiobox4Mana10
 		global Radiobox5Mana10
+		Global LootFilter := {}
+		Global LootFilterTabs := {}
+
     ;General
 		Global Latency := 1
 		Global ShowOnStart := 0
@@ -201,7 +251,7 @@
 		Global QSonMainAttack := 1
 		Global QSonSecondaryAttack := 1
 		Global YesPersistantToggle := 1
-		
+
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
 		Global AreaScale := 4
@@ -249,9 +299,7 @@
 
 		;Item Parse blank Arrays
 		Global Prop := {}
-		Global WeaponStats := {}
-		Global ArmourStats := {}
-		Global MapStats := {}
+		Global Stats := {}
 		Global Affix := {}
 
 		global Detonated := 0
@@ -1071,7 +1119,7 @@
 	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
 
 
-
+	Gui, Add, Button, gLaunchLootFilter xm y290, Custom Loot Filter
 	Gui, Font, Bold
 	Gui Add, Text, 										xm 	y330, 				ID/Vend/Stash Options:
 	Gui, Font,
@@ -1543,7 +1591,7 @@ ItemSort(){
 					ClipItem(Grid.X,Grid.Y)
 					If (OnDiv && YesDiv) 
 					{
-						If (Prop.RarityDivination && (Prop.Stack = Prop.StackMax)){
+						If (Prop.RarityDivination && (Stats.Stack = Stats.StackMax)){
 							CtrlClick(Grid.X,Grid.Y)
 							RandomSleep(150,200)
 							SwiftClick(vX_OnDiv,vY_DivTrade)
@@ -1572,6 +1620,12 @@ ItemSort(){
 					}
 					If (OnStash&&YesStash) 
 					{
+						If (sendstash:=MatchLootFilter())
+						{
+							MoveStash(sendstash)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
 						If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
 						{
 							MoveStash(StashTabCurrency)
@@ -1718,7 +1772,7 @@ ItemSort(){
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						If (Prop.Flask&&(Prop.Quality>0)&&StashTabYesFlaskQuality)
+						If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
 						{
 							MoveStash(StashTabFlaskQuality)
 							CtrlClick(Grid.X,Grid.Y)
@@ -1726,7 +1780,7 @@ ItemSort(){
 						}
 						If (Prop.RarityGem)
 						{
-							If ((Prop.Quality>0)&&StashTabYesGemQuality)
+							If ((Stats.Quality>0)&&StashTabYesGemQuality)
 							{
 								MoveStash(StashTabGemQuality)
 								CtrlClick(Grid.X,Grid.Y)
@@ -1760,6 +1814,8 @@ ItemSort(){
 					}
 					If (OnVendor&&YesVendor)
 					{
+						If MatchLootFilter()
+							Continue
 						If (Prop.RarityCurrency)
 							Continue
 						If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
@@ -1920,7 +1976,7 @@ StockScrolls(){
 			MouseMove %WisdomScrollX%, %WisdomScrollY%
 			ClipItem(WisdomScrollX, WisdomScrollY)
 			Sleep, 20*Latency
-			dif := (40 - Prop.Stack)
+			dif := (40 - Stats.Stack)
 				If (dif>10)
 			{
 				MoveStash(1)
@@ -1943,7 +1999,7 @@ StockScrolls(){
 			MouseMove %PortalScrollX%, %PortalScrollY%
 			ClipItem(PortalScrollX, PortalScrollY)
 			Sleep, 20*Latency
-			dif := (40 - Prop.Stack)
+			dif := (40 - Stats.Stack)
 				If (dif>10)
 			{
 				MoveStash(1)
@@ -2000,7 +2056,7 @@ Rescale(){
 				Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
 				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
 				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (1920 / 1178))
+				global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
 				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
 				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
 				;Status Check OnChar
@@ -2075,7 +2131,7 @@ Rescale(){
 				Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
 				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
 				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(	A_ScreenWidth / (3840 / 3098))
+				global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
 				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
 				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
 				;Status Check OnChar
@@ -2510,14 +2566,11 @@ ParseClip(){
 		doneCorruption := False
 		Prop := {ItemName: ""
 			, IsItem : False
-			, IsArmour : False
 			, IsWeapon : False
 			, IsMap : False
 			, ShowAffix : False
 			, Rarity : ""
 			, SpecialType : ""
-			, Stack : 0
-			, StackMax : 0
 			, RarityCurrency : False
 			, RarityDivination : False
 			, RarityGem : False
@@ -2535,7 +2588,6 @@ ParseClip(){
 			, Incubator : False
 			, Fossil : False
 			, Resonator : False
-			, Quality : 0
 			, Sockets : 0
 			, RawSockets : ""
 			, LinkCount : 0
@@ -2559,9 +2611,12 @@ ParseClip(){
 			, Veiled : False
 			, Prophecy : False
 			, Oil : False
+			, DoubleCorrupted : False
+			, Width : 0
+			, Height : 0
 			, ItemLevel : 0}
 
-		WeaponStats := { PhysLo : False
+		Stats := { PhysLo : False
 			, PhysHi : False
 			, AttackSpeed : False
 			, PhysMult : False
@@ -2575,20 +2630,22 @@ ParseClip(){
 			, TotalPhysMult : False
 			, BasePhysDps : False
 			, Q20Dps : False
-			, RequirementLevel : 0
-			, RequirementStr : 0
-			, RequirementInt : 0
-			, RequirementDex : 0}
-
-		ArmourStats := { RequirementLevel : 0
-			, RequirementStr : 0
-			, RequirementInt : 0
-			, RequirementDex : 0 }
-
-		MapStats := { Tier : 0
-			, ItemQuantity : 0
-			, ItemRarity : 0
-			, MonsterPackSize : 0 }
+			, ItemClass : ""
+			, Quality : 0
+			, Stack : 0
+			, StackMax : 0
+			, RequiredLevel : 0
+			, RequiredStr : 0
+			, RequiredInt : 0
+			, RequiredDex : 0
+			, RatingArmour : 0
+			, RatingEnergyShield : 0
+			, RatingEvasion : 0
+			, RatingBlock : 0
+			, MapTier : 0
+			, MapItemQuantity : 0
+			, MapItemRarity : 0
+			, MapMonsterPackSize : 0 }
 
 		Affix := { SupportGem : ""
 			, SupportGemLevel : 0
@@ -2637,6 +2694,7 @@ ParseClip(){
 			, AddedDexterityIntelligence : 0
 			, AddedArmour : 0
 			, AddedEvasion : 0
+			, AddedAccuracy : 0
 			, AddedAllStats : 0
 			, PseudoAddedStrength : 0
 			, PseudoAddedDexterity : 0
@@ -2677,7 +2735,7 @@ ParseClip(){
 			, AddedLevelColdGems : 0
 			, AddedLevelLightningGems : 0
 			, AddedLevelChaosGems : 0
-			, NonAilmentChaosDOTMult : 0
+			, ChaosDOTMult : 0
 			, ColdDOTMult : 0
 			, ChanceFreeze : 0
 			, ChanceShock : 0
@@ -2770,10 +2828,27 @@ ParseClip(){
 				Else
 				{
 					Prop.ItemName := Prop.ItemName . A_LoopField . "`n" ; Add a line of name
+					If ArmourBases.HasKey(A_LoopField){
+						Prop.Width := ArmourBases[A_LoopField]["Width"]
+						Prop.Height := ArmourBases[A_LoopField]["Height"]
+						Stats.ItemClass := ArmourBases[A_LoopField]["Item Class"]
+					}
+					If WeaponBases.HasKey(A_LoopField){
+						Prop.Width := WeaponBases[A_LoopField]["Width"]
+						Prop.Height := WeaponBases[A_LoopField]["Height"]
+						Stats.ItemClass := WeaponBases[A_LoopField]["Item Class"]
+					}
 					IfInString, A_LoopField, Ring
 					{
+						IfInString, A_LoopField, Ringmail
+						{
+							Sleep, -1
+						}
+						Else
+						{
 						Prop.Ring := True
 						Continue
+						}
 					}
 					IfInString, A_LoopField, Amulet
 					{
@@ -2977,12 +3052,91 @@ ParseClip(){
 				}
 				Continue
 			}
-				
+
+			; Get Requirements
+
+			IfInString, A_LoopField, Requirements:
+			{
+				ReqSect := True
+				Continue
+			}
+			If ReqSect
+			{
+				IfInString, A_LoopField, Level:
+				{
+					StringSplit, arr, A_LoopField, %A_Space%
+					Stats.RequiredLevel := arr2
+					Continue
+				}
+				IfInString, A_LoopField, Str:
+				{
+					StringSplit, arr, A_LoopField, %A_Space%
+					Stats.RequiredStr := arr2
+					Continue
+				}
+				IfInString, A_LoopField, Strength:
+				{
+					StringSplit, arr, A_LoopField, %A_Space%
+					Stats.RequiredStr := arr2
+					Continue
+				}
+				IfInString, A_LoopField, Int:
+				{
+					StringSplit, arr, A_LoopField, %A_Space%
+					Stats.RequiredInt := arr2
+					Continue
+				}
+				IfInString, A_LoopField, Intelligence:
+				{
+					StringSplit, arr, A_LoopField, %A_Space%
+					Stats.RequiredInt := arr2
+					Continue
+				}
+				IfInString, A_LoopField, Dex:
+				{
+					StringSplit, arr, A_LoopField, %A_Space%
+					Stats.RequiredDex := arr2
+					Continue
+				}
+				IfInString, A_LoopField, Dexterity:
+				{
+					StringSplit, arr, A_LoopField, %A_Space%
+					Stats.RequiredDex := arr2
+					Continue
+				}
+				If A_LoopField = --------
+					ReqSect := False
+			}
+			; Get Total Rating of the item
+			IfInString, A_LoopField, Armour:
+			{
+				StringSplit, arr, A_LoopField, %A_Space%
+				Stats.RatingArmour := arr2
+				Continue
+			}
+			IfInString, A_LoopField, Energy Shield:
+			{
+				StringSplit, arr, A_LoopField, %A_Space%
+				Stats.RatingEnergyShield := arr3
+				Continue
+			}
+			IfInString, A_LoopField, Evasion Rating:
+			{
+				StringSplit, arr, A_LoopField, %A_Space%
+				Stats.RatingEvasion := arr2
+				Continue
+			}
+			IfInString, A_LoopField, Chance to Block:
+			{
+				StringSplit, arr, A_LoopField, %A_Space%
+				Stats.RatingBlock := arr2
+				Continue
+			}
 			; Get quality
 			IfInString, A_LoopField, Quality:
 			{
 				StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
-					Prop.Quality := QualityArray2
+				Stats.Quality := QualityArray2
 				Continue
 			}
 			; Get Socket Information
@@ -3253,6 +3407,22 @@ ParseClip(){
 						Affix.AddedArmour := Affix.AddedArmour + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, increased Armour and Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedArmourEnergyShield := Affix.IncreasedArmourEnergyShield + Arr1
+						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
+						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Armour and Evasion
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedArmourEvasion := Affix.IncreasedArmourEvasion + Arr1
+						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
+						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, increased Armour
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
@@ -3279,22 +3449,6 @@ ParseClip(){
 						Affix.IncreasedEvasionEnergyShield := Affix.IncreasedEvasionEnergyShield + Arr1
 						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
 						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
-					Continue	
-					}
-					IfInString, A_LoopField, increased Armour and Energy Shield
-					{
-						StringSplit, Arr, A_LoopField, %A_Space%, `%
-						Affix.IncreasedArmourEnergyShield := Affix.IncreasedArmourEnergyShield + Arr1
-						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
-						Affix.PseudoIncreasedEnergyShield := Affix.PseudoIncreasedEnergyShield + Arr1
-					Continue	
-					}
-					IfInString, A_LoopField, increased Armour and Evasion
-					{
-						StringSplit, Arr, A_LoopField, %A_Space%, `%
-						Affix.IncreasedArmourEvasion := Affix.IncreasedArmourEvasion + Arr1
-						Affix.PseudoIncreasedArmour := Affix.PseudoIncreasedArmour + Arr1
-						Affix.PseudoIncreasedEvasion := Affix.PseudoIncreasedEvasion + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to Accuracy Rating
@@ -3743,10 +3897,10 @@ ParseClip(){
 						Affix.WeaponRange := Affix.WeaponRange + Arr1
 					Continue	
 					}
-					IfInString, A_LoopField, to Non-Ailment Chaos Damage over Time Multiplier
+					IfInString, A_LoopField, to Chaos Damage over Time Multiplier
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, +`%
-						Affix.NonAilmentChaosDOTMult := Affix.NonAilmentChaosDOTMult + Arr1
+						Affix.ChaosDOTMult := Affix.ChaosDOTMult + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to Cold Damage over Time Multiplier
@@ -3892,7 +4046,7 @@ ParseClip(){
 					}
 				}
 			}
-			;Stack size
+			; Corrupted
 			IfInString, A_LoopField, Corrupted
 			{
 					If possibleCorruption{
@@ -3905,13 +4059,13 @@ ParseClip(){
 					}
 				Continue
 			}
-			;Stack size
+			; Stack size
 			IfInString, A_LoopField, Stack Size:
 			{
 				StringSplit, StackArray, A_LoopField, %A_Space%
 				StringSplit, StripStackArray, StackArray3, /
-				Prop.Stack := StripStackArray1
-				Prop.StackMax := StripStackArray2
+				Stats.Stack := StripStackArray1
+				Stats.StackMax := StripStackArray2
 				Continue
 			}
 			; Flag Unidentified
@@ -3940,8 +4094,8 @@ ParseClip(){
 				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				WeaponStats.PhysLo := Arr1
-				WeaponStats.PhysHi := Arr2
+				Stats.PhysLo := Arr1
+				Stats.PhysHi := Arr2
 				Continue
 			}
 			; Get total Elemental damage
@@ -3950,8 +4104,8 @@ ParseClip(){
 				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				WeaponStats.EleLo := Arr1
-				WeaponStats.EleHi := Arr2
+				Stats.EleLo := Arr1
+				Stats.EleHi := Arr2
 				Continue
 			}
 			; Get total Chaos damage
@@ -3960,8 +4114,8 @@ ParseClip(){
 				Prop.IsWeapon := True
 				StringSplit, Arr, A_LoopField, %A_Space%
 				StringSplit, Arr, Arr3, -
-				WeaponStats.ChaosLo := Arr1
-				WeaponStats.ChaosHi := Arr2
+				Stats.ChaosLo := Arr1
+				Stats.ChaosHi := Arr2
 				Continue
 			}
 			; These only make sense for weapons
@@ -3971,7 +4125,7 @@ ParseClip(){
 				IfInString, A_LoopField, Attacks per Second:
 				{
 					StringSplit, Arr, A_LoopField, %A_Space%
-					WeaponStats.AttackSpeed := Arr4
+					Stats.AttackSpeed := Arr4
 					Continue
 				}
 
@@ -3979,7 +4133,7 @@ ParseClip(){
 				IfInString, A_LoopField, increased Physical Damage
 				{
 					StringSplit, Arr, A_LoopField, %A_Space%, `%
-					WeaponStats.PhysMult := Arr1
+					Stats.PhysMult := Arr1
 					Continue
 				}
 			}
@@ -3992,23 +4146,147 @@ ParseClip(){
 		; DPS calculations
 		If (Prop.IsWeapon) {
 
-			WeaponStats.PhysDps := ((WeaponStats.PhysLo + WeaponStats.PhysHi) / 2) * WeaponStats.AttackSpeed
-			WeaponStats.EleDps := ((WeaponStats.EleLo + WeaponStats.EleHi) / 2) * WeaponStats.AttackSpeed
-			WeaponStats.ChaosDps := ((WeaponStats.ChaosLo + WeaponStats.ChaosHi) / 2) * WeaponStats.AttackSpeed
+			Stats.PhysDps := ((Stats.PhysLo + Stats.PhysHi) / 2) * Stats.AttackSpeed
+			Stats.EleDps := ((Stats.EleLo + Stats.EleHi) / 2) * Stats.AttackSpeed
+			Stats.ChaosDps := ((Stats.ChaosLo + Stats.ChaosHi) / 2) * Stats.AttackSpeed
 
-			WeaponStats.TotalDps := WeaponStats.PhysDps + WeaponStats.EleDps + WeaponStats.ChaosDps
+			Stats.TotalDps := Stats.PhysDps + Stats.EleDps + Stats.ChaosDps
 			; Only show Q20 values if item is not Q20
-			If (Prop.Quality < 20)
+			If (Stats.Quality < 20)
 			{
-				WeaponStats.TotalPhysMult := (WeaponStats.PhysMult + Prop.Quality + 100) / 100
-				WeaponStats.BasePhysDps := WeaponStats.PhysDps / WeaponStats.TotalPhysMult
-				WeaponStats.Q20Dps := WeaponStats.BasePhysDps * ((WeaponStats.PhysMult + 120) / 100) + WeaponStats.EleDps + WeaponStats.ChaosDps
+				Stats.TotalPhysMult := (Stats.PhysMult + Stats.Quality + 100) / 100
+				Stats.BasePhysDps := Stats.PhysDps / Stats.TotalPhysMult
+				Stats.Q20Dps := Stats.BasePhysDps * ((Stats.PhysMult + 120) / 100) + Stats.EleDps + Stats.ChaosDps
 			}
 		}
 
 		Return
 	}
 
+; Evaluate Loot Filter Match
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MatchLootFilter()
+{
+	For GKey, Groups in LootFilter
+	{
+		matched := False
+		nomatched := False
+		For SKey, Selected in Groups
+		{
+			For AKey, AVal in Selected
+			{
+                If (InStr(AKey, "Eval") || InStr(AKey, "Min"))
+					Continue
+				;MsgBox % "Key: " SKey "  Val: " Selected
+				if InStr(SKey, "Affix")
+				{
+					if Affix.haskey(AVal)
+					{
+						arrval := Affix[AVal]
+						eval := LootFilter[GKey][SKey][AKey . "Eval"]
+						min := LootFilter[GKey][SKey][AKey . "Min"]
+						if eval = >
+							If (arrval > min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = =
+							if (arrval = min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = <
+							if (arrval < min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = !=
+							if (arrval != min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = ~
+							If InStr(arrval, min)
+							matched := True
+							Else
+							nomatched := True
+					}
+				}
+				if InStr(SKey, "Prop")
+				{
+					if Prop.haskey(AVal)
+					{
+						arrval := Prop[AVal]
+						eval := LootFilter[GKey][SKey][AKey . "Eval"]
+						min := LootFilter[GKey][SKey][AKey . "Min"]
+						if eval = >
+							If (arrval > min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = =
+							if (arrval = min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = <
+							if (arrval < min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = !=
+							if (arrval != min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = ~
+							If InStr(arrval, min)
+							matched := True
+							Else
+							nomatched := True
+					}
+				}
+				if InStr(SKey, "Stats")
+				{
+					if Stats.haskey(AVal)
+					{
+						arrval := Stats[AVal]
+						eval := LootFilter[GKey][SKey][AKey . "Eval"]
+						min := LootFilter[GKey][SKey][AKey . "Min"]
+						if eval = >
+							If (arrval > min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = =
+							if (arrval = min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = <
+							if (arrval < min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = !=
+							if (arrval != min)
+							matched := True
+							Else
+							nomatched := True
+						else if eval = ~
+							If InStr(arrval, min)
+							matched := True
+							Else
+							nomatched := True
+					}
+				}
+			}
+		}
+		If matched && !nomatched
+			Return LootFilterTabs[GKey]
+	}
+Return False
+}
 ; Grab Reply whisper recipient
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GrabRecipientName(){
@@ -4051,40 +4329,22 @@ CoordAndDebug(){
 				TT := TT . "Instance Management screen:  " . OnInsMan . "  Divination Trade: " . OnDiv . "`n`n"
 				ClipItem(x, y)
 				If (Prop.IsItem) {
-					TT := TT . "Item Properties:`n"
+					TT := TT . "Item Properties:`n`n"
 					If ShowItemInfo {	
+						If (sendstash:=MatchLootFilter())
+							TT := TT . "Matches loot filter  -  Send to " . sendstash . "`n`n"
+						Else
+							TT := TT . "Item does not match Loot Filter`n`n"
 						For key, value in Prop
 						{
 							If (value != 0 && value != "" && value != False)
 								TT := TT . key . ":  " . value . "`n"
 						}
 						MsgBox %TT%
-						If (Prop.IsWeapon) {
-							TT := "Weapon Stats:`n`n"
+						If (Prop.IsItem) {
+							TT := "Item Stats:`n`n"
 							If ShowItemInfo {
-								For key, value in WeaponStats
-								{
-									If (value != 0 && value != "" && value != False)
-										TT := TT . key . ":  " . value . "`n"
-								}
-							}
-						MsgBox %TT%
-						}
-						If (Prop.IsArmour) {
-							TT := "Armour Stats:`n`n"
-							If ShowItemInfo {
-								For key, value in ArmourStats
-								{
-									If (value != 0 && value != "" && value != False)
-										TT := TT . key . ":  " . value . "`n"
-								}
-							}
-						MsgBox %TT%
-						}
-						If (Prop.IsMap) {
-							TT := "Map Stats:`n`n"
-							If ShowItemInfo {
-								For key, value in MapStats
+								For key, value in Stats
 								{
 									If (value != 0 && value != "" && value != False)
 										TT := TT . key . ":  " . value . "`n"
@@ -4100,6 +4360,8 @@ CoordAndDebug(){
 									If (value != 0 && value != "" && value != False)
 										TT := TT . key . ":  " . value . "`n"
 								}
+							If !Prop.Identified
+							TT .= "Unidentified"
 							}
 						MsgBox %TT%
 						}
@@ -4226,95 +4488,101 @@ PoEWindowCheck(){
 ; Receive Messages from other scripts
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MsgMonitor(wParam, lParam, msg)
-		{
-		Thread, NoTimers, true		;Critical
-		If (wParam=1)
-			Return
-		Else If (wParam=2)
-			Return
-		Else If (wParam=3) {
-			If (lParam=1){
-				OnCooldown[1]:=1 
-				settimer, TimmerFlask1, %CooldownFlask1%
-				return
-				}		
-			If (lParam=2){
-				OnCooldown[2]:=1 
-				settimer, TimmerFlask2, %CooldownFlask2%
-				return
-				}		
-			If (lParam=3){
-				OnCooldown[3]:=1 
-				settimer, TimmerFlask3, %CooldownFlask3%
-				return
-				}		
-			If (lParam=4){
-				OnCooldown[4]:=1 
-				settimer, TimmerFlask4, %CooldownFlask4%
-				return
-				}		
-			If (lParam=5){
-				OnCooldown[5]:=1 
-				settimer, TimmerFlask5, %CooldownFlask5%
-				return
-				}		
-			}
-		Else If (wParam=4) {
-			If (lParam=1){
-				OnCooldownUtility1:=1 
-				settimer, TimerUtility1, %CooldownUtility1%
-				return
-				}		
-			If (lParam=2){
-				OnCooldownUtility2:=1 
-				settimer, TimerUtility2, %CooldownUtility2%
-				return
-				}		
-			If (lParam=3){
-				OnCooldownUtility3:=1 
-				settimer, TimerUtility3, %CooldownUtility3%
-				return
-				}		
-			If (lParam=4){
-				OnCooldownUtility4:=1 
-				settimer, TimerUtility4, %CooldownUtility4%
-				return
-				}		
-			If (lParam=5){
-				OnCooldownUtility5:=1 
-				settimer, TimerUtility5, %CooldownUtility5%
-				return
-				}		
-			}
-		Else If (wParam=6) {
-			If (lParam=1){
-				; hotkeyLogout
-				LogoutCommand()
-				return
-				}		
-			If (lParam=2){
-				; hotkeyPopFlasks
-				PopFlasks()
-				return
-				}		
-			If (lParam=3){
-				; hotkeyQuickPortal
-				QuickPortal()
-				return
-				}		
-			If (lParam=4){
-				; hotkeyGemSwap
-				GemSwap()
-				return
-				}		
-			If (lParam=5){
-				; hotkeyItemSort
-				ItemSort()
-				return
-				}		
-			}
+	{
+	;Thread, NoTimers, true		;Critical
+	If (wParam=1)
 		Return
+	Else If (wParam=2)
+		Return
+	Else If (wParam=3) {
+		If (lParam=1){
+			OnCooldown[1]:=1 
+			settimer, TimmerFlask1, %CooldownFlask1%
+			return
+			}		
+		If (lParam=2){
+			OnCooldown[2]:=1 
+			settimer, TimmerFlask2, %CooldownFlask2%
+			return
+			}		
+		If (lParam=3){
+			OnCooldown[3]:=1 
+			settimer, TimmerFlask3, %CooldownFlask3%
+			return
+			}		
+		If (lParam=4){
+			OnCooldown[4]:=1 
+			settimer, TimmerFlask4, %CooldownFlask4%
+			return
+			}		
+		If (lParam=5){
+			OnCooldown[5]:=1 
+			settimer, TimmerFlask5, %CooldownFlask5%
+			return
+			}		
 		}
+	Else If (wParam=4) {
+		If (lParam=1){
+			OnCooldownUtility1:=1 
+			settimer, TimerUtility1, %CooldownUtility1%
+			return
+			}		
+		If (lParam=2){
+			OnCooldownUtility2:=1 
+			settimer, TimerUtility2, %CooldownUtility2%
+			return
+			}		
+		If (lParam=3){
+			OnCooldownUtility3:=1 
+			settimer, TimerUtility3, %CooldownUtility3%
+			return
+			}		
+		If (lParam=4){
+			OnCooldownUtility4:=1 
+			settimer, TimerUtility4, %CooldownUtility4%
+			return
+			}		
+		If (lParam=5){
+			OnCooldownUtility5:=1 
+			settimer, TimerUtility5, %CooldownUtility5%
+			return
+			}		
+		}
+	Else If (wParam=6) {
+		If (lParam=1){
+			; hotkeyLogout
+			LogoutCommand()
+			return
+			}		
+		If (lParam=2){
+			; hotkeyPopFlasks
+			PopFlasks()
+			return
+			}		
+		If (lParam=3){
+			; hotkeyQuickPortal
+			QuickPortal()
+			return
+			}		
+		If (lParam=4){
+			; hotkeyGemSwap
+			GemSwap()
+			return
+			}		
+		If (lParam=5){
+			; hotkeyItemSort
+			ItemSort()
+			return
+			}		
+		}
+	Else If (wParam=7) {
+		;MsgBox, Ding
+		LoadArray()
+		;Hotkeys()
+		Return
+	}
+	Return
+	}
 ; Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SendMSG(wParam:=0, lParam:=0, script:=""){
@@ -5317,6 +5585,8 @@ Return
 readFromFile(){
     global
 	Thread, NoTimers, true		;Critical
+
+	LoadArray()
     ;General settings
     IniRead, Speed, settings.ini, General, Speed, 1
     IniRead, Tick, settings.ini, General, Tick, 50
@@ -7784,6 +8054,10 @@ LaunchDonate:
     Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&currency_code=USD&source=url ; Open the donation page for the script
 Return
 
+LaunchLootFilter:
+    Run, %A_ScriptDir%\data\LootFilter.ahk ; Open the custom loot filter editor
+Return
+
 UpdateDebug:
     Gui, Submit, NoHide
     If (DebugMessages=1) {
@@ -7950,9 +8224,20 @@ Return
 }
 
 runUpdate:
+	Fail:=False
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
+    if ErrorLevel {
+        Fail:=true
+    }
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/PoE-Wingman.ahk, PoE-Wingman.ahk
     if ErrorLevel {
+        Fail:=true
+    }
+    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
+    if ErrorLevel {
+        Fail:=true
+    }
+    if Fail {
         error("update","fail",A_ScriptFullPath, VersionNumber, A_AhkVersion)
         error("ED07")
     }
@@ -8251,5 +8536,22 @@ SelectMainGuiTabs:
 	GuiControl % (MainGuiTabs = "Chat") ? "Show" : "Hide", InnerTab
 	GuiControl MoveDraw, MainGuiTabs
 return
+
+LoadArray:
+	LoadArray()
+return
+
+LoadArray()
+{
+    FileRead, JSONtext, %A_ScriptDir%\data\LootFilter.json
+    LootFilter := JSON.Load(JSONtext)
+    If !LootFilter
+        LootFilter:={}
+    FileRead, JSONtexttabs, %A_ScriptDir%\data\LootFilterTabs.json
+    LootFilterTabs := JSON.Load(JSONtexttabs)
+    If !LootFilterTabs
+        LootFilterTabs:={}
+Return
+}
 
 return
