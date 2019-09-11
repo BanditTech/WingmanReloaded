@@ -1,6 +1,20 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .05.01 September/11/2019
+--------------------------------------------------------------------------------
+added missing failsafe checks for utility buttons
+    Will no longer fire Utility when on Chat, Hideout, Inventory or not on Char
+    Misnamed KeyUtility1-5
+
+added belt type to Stats.ItemClass as "Belts"
+    Also can now use to match "Amulets" and "Rings"
+    This requires a JSON file to download, check error log for issues
+
+Added status check the moment before firing Life/ES flask to confirm if still OnChar
+    This should fix the issue with flasks firing on the instance management panel
+    Instance management calibration has been removed as it is not required
+
 Version .05.00 September/11/2019
 --------------------------------------------------------------------------------
 Custom loot filter is a GO!

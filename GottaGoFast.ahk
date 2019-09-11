@@ -212,7 +212,7 @@ global OnCooldownUtility4 := 0
 global OnCooldownUtility5 := 0
 
 ;Utility Keys
-global KeyUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
+global KeyUtility1, KeyUtility2, KeyUtility3, KeyUtility4, KeyUtility5
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Standard ini read
@@ -231,6 +231,7 @@ IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
 ;Failsafe Colors
 IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
+IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
 IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
 IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
 IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
@@ -740,6 +741,17 @@ GuiUpdate(){
 }
 
 GuiStatus(Fetch:=""){
+	If (Fetch="OnHideout")
+		{
+		pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+		pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+		if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
+			OnHideout:=True
+			} Else {
+			OnHideout:=False
+			}
+		Return
+		}
      If !(Fetch="")
      {
           pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
@@ -821,6 +833,15 @@ TUtilityTick(){
 }
 
 TriggerFlask(Trigger){
+     GuiStatus("OnHideout")
+     GuiStatus("OnChar")
+     GuiStatus("OnChat")
+     GuiStatus("OnInventory")
+     
+     if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+          Exit
+     }
+
      If ((!FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
           QFL:=1
           loop, 5 {
@@ -874,6 +895,14 @@ TriggerFlask(Trigger){
      Return
 }
 TriggerFlaskForce(Trigger){
+     GuiStatus("OnHideout")
+     GuiStatus("OnChar")
+     GuiStatus("OnChat")
+     GuiStatus("OnInventory")
+     
+     if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+          Exit
+     }
      If ((!FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
           QFL:=1
           loop, 5 {
@@ -952,6 +981,8 @@ TriggerUtility(Utility){
      Return
 } 
 TriggerUtilityForce(Utility){
+     GuiStatus()
+
      If (!OnCooldownUtility%Utility%){
           key:=KeyUtility%Utility%
           Send %key%

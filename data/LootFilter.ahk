@@ -41,6 +41,7 @@ Prop := {ItemName: ""
     , Identified : True
     , Ring : False
     , Amulet : False
+    , Belt : False
     , Chromatic : False
     , Jewel : False
     , AbyssJewel : False

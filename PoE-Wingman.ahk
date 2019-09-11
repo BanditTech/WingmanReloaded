@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.00
+    Global VersionNumber := .05.01
 
 	Global Null := 0
     
@@ -192,6 +192,7 @@
 		}
 		Else if (ErrorLevel=0){
  			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "ArmourBases.json")
+			needReload:=true
 		}
 	}
 	Else
@@ -209,6 +210,7 @@
 		}
 		Else if (ErrorLevel=0){
  			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "WeaponBases.json")
+			needReload:=true
 		}
 	}
 	Else
@@ -216,6 +218,26 @@
 		FileRead, JSONtext, %A_ScriptDir%\data\WeaponBases.json
 		WeaponBases := JSON.Load(JSONtext)
 	}
+	IfNotExist, %A_ScriptDir%\data\BeltBases.json
+	{
+		FileCreateDir, %A_ScriptDir%\data
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/BeltBases.json, %A_ScriptDir%\data\BeltBases.json
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "BeltBases.json")
+			MsgBox, Error ED02 : There was a problem downloading BeltBases.json
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "BeltBases.json")
+			needReload:=true
+		}
+	}
+	Else
+	{
+		FileRead, JSONtext, %A_ScriptDir%\data\BeltBases.json
+		BeltBases := JSON.Load(JSONtext)
+	}
+	If needReload
+		Reload
 	; Comment out this line if your script crashes on launch
 	#Include, %A_ScriptDir%\data\JSON.ahk
 
@@ -269,7 +291,6 @@
 		Global OnStash := False
 		Global OnVendor := False
 		Global OnDiv := False
-		Global OnInsMan := False
 		Global RescaleRan := False
 		Global ToggleExist := False
 		; These colors are from filterblade.xyz filter creator
@@ -410,7 +431,6 @@
 		global varOnStash:=0x9BD6E7
 		global varOnVendor:=0x7BB1CC
 		global varOnDiv:=0xC5E2F6
-		global varOnInsMan:=0x91CCE4
 		Global DetonateHex := 0x412037
 
 	;Life Colors
@@ -517,7 +537,7 @@
 		global OnCooldownUtility5 := 0
 
 	;Utility Keys
-		global KeyUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
+		global KeyUtility1, KeyUtility2, KeyUtility3, KeyUtility4, KeyUtility5
 
 	;Flask Cooldowns
 		global CooldownFlask1:=5000
@@ -897,7 +917,6 @@
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn						w110, 	OnInventory Color
 	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w110, 	OnStash Color
 	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 						w110, 	OnVendor Color
-	Gui, Add, Button, gupdateOnInsMan vUpdateOnInsManBtn							w110, 	OnInsMan Color
 
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
@@ -1421,8 +1440,6 @@
 		global vY_OnVendor:=88
 		global vX_OnDiv:=618
 		global vY_OnDiv:=135
-		global vX_OnInsMan:=960
-		global vY_OnInsMan:=124
 		
 		global vX_Life:=95
 		global vY_Life90:=1034
@@ -2077,9 +2094,6 @@ Rescale(){
 				;Status Check OnDiv
 				global vX_OnDiv:=X + Round(A_ScreenWidth / (1920 / 618))
 				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-				;Status Check OnInsMan
-				global vX_OnInsMan:=X + Round(A_ScreenWidth / 2)
-				global vY_OnInsMan:=Y + Round(A_ScreenHeight / ( 1080 / 124))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
 					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
@@ -2152,9 +2166,6 @@ Rescale(){
 				;Status Check OnDiv
 				global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
 				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-				;Status Check OnInsMan
-				global vX_OnInsMan:=X + Round(A_ScreenWidth / 2)
-				global vY_OnInsMan:=Y + Round(A_ScreenHeight / ( 1080 / 124))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
 					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
@@ -2581,6 +2592,7 @@ ParseClip(){
 			, Identified : True
 			, Ring : False
 			, Amulet : False
+			, Belt : False
 			, Chromatic : False
 			, Jewel : False
 			, AbyssJewel : False
@@ -2828,15 +2840,25 @@ ParseClip(){
 				Else
 				{
 					Prop.ItemName := Prop.ItemName . A_LoopField . "`n" ; Add a line of name
+
 					If ArmourBases.HasKey(A_LoopField){
 						Prop.Width := ArmourBases[A_LoopField]["Width"]
 						Prop.Height := ArmourBases[A_LoopField]["Height"]
 						Stats.ItemClass := ArmourBases[A_LoopField]["Item Class"]
+						Continue
 					}
 					If WeaponBases.HasKey(A_LoopField){
 						Prop.Width := WeaponBases[A_LoopField]["Width"]
 						Prop.Height := WeaponBases[A_LoopField]["Height"]
 						Stats.ItemClass := WeaponBases[A_LoopField]["Item Class"]
+						Continue
+					}
+					If BeltBases.HasKey(A_LoopField){
+						Prop.Width := BeltBases[A_LoopField]["Width"]
+						Prop.Height := BeltBases[A_LoopField]["Height"]
+						Prop.Belt := True
+						Stats.ItemClass := BeltBases[A_LoopField]["Item Class"]
+						Continue
 					}
 					IfInString, A_LoopField, Ring
 					{
@@ -2847,18 +2869,21 @@ ParseClip(){
 						Else
 						{
 						Prop.Ring := True
+						Stats.ItemClass := "Rings"
 						Continue
 						}
 					}
 					IfInString, A_LoopField, Amulet
 					{
 						Prop.Amulet := True
+						Stats.ItemClass := "Amulets"
 						Continue
 					}
 					IfInString, A_LoopField, Map
 					{
 						Prop.IsMap := True
 						Prop.SpecialType := "Map"
+						Stats.ItemClass := "Maps"
 						Continue
 					}
 					IfInString, A_LoopField, Incubator
@@ -2965,6 +2990,8 @@ ParseClip(){
 					}
 					IfInString, A_LoopField, Scarab
 					{
+						If Prop.Amulet
+						continue
 						Prop.Scarab := True
 						Prop.SpecialType := "Scarab"
 						Continue
@@ -4326,7 +4353,7 @@ CoordAndDebug(){
 				GuiStatus()
 				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
 				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
-				TT := TT . "Instance Management screen:  " . OnInsMan . "  Divination Trade: " . OnDiv . "`n`n"
+				TT := TT . "  Divination Trade: " . OnDiv . "`n`n"
 				ClipItem(x, y)
 				If (Prop.IsItem) {
 					TT := TT . "Item Properties:`n`n"
@@ -4597,6 +4624,17 @@ SendMSG(wParam:=0, lParam:=0, script:=""){
 ; Pixelcheck for different parts of the screen to see what your status is in game. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GuiStatus(Fetch:=""){
+	If (Fetch="OnHideout")
+		{
+		pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+		pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+		if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
+			OnHideout:=True
+			} Else {
+			OnHideout:=False
+			}
+		Return
+		}
 	If !(Fetch="")
 		{
 		pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
@@ -4650,12 +4688,6 @@ GuiStatus(Fetch:=""){
 		} Else {
 		OnDiv:=False
 		}
-	pixelgetcolor, POnInsMan, vX_OnInsMan, vY_OnInsMan
-	If (POnInsMan=varOnInsMan) {
-		OnInsMan:=True
-		} Else {
-		OnInsMan:=False
-		}
 	Return
 	}
 
@@ -4665,7 +4697,7 @@ MainAttackCommand(){
 	MainAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnInsMan)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerMainAttack)
@@ -4688,7 +4720,7 @@ SecondaryAttackCommand(){
 	SecondaryAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnInsMan)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerSecondaryAttack)
@@ -4761,7 +4793,7 @@ TGameTick(){
     {
         ; Check what status is your character in the game
         GuiStatus()
-        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnInsMan) { 
+        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
             ;GuiUpdate()																									   
             Exit
         }
@@ -4770,10 +4802,11 @@ TGameTick(){
             If ((TriggerLife20!="00000")|| ( AutoQuit && RadioQuit20 ) || ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
 				pixelgetcolor, Life20, vX_Life, vY_Life20 
 				if (Life20!=varLife20) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit20=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+						LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -4787,10 +4820,11 @@ TGameTick(){
             If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life30, vX_Life, vY_Life30 
                 if (Life30!=varLife30) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit30=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+						LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -4804,10 +4838,11 @@ TGameTick(){
             If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life40, vX_Life, vY_Life40 
                 if (Life40!=varLife40) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit40=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+						LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -4821,6 +4856,9 @@ TGameTick(){
             If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life50, vX_Life, vY_Life50
                 if (Life50!=varLife50) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
                             TriggerUtility(A_Index)
@@ -4832,6 +4870,9 @@ TGameTick(){
             If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life60, vX_Life, vY_Life60
                 if (Life60!=varLife60) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
                             TriggerUtility(A_Index)
@@ -4843,6 +4884,9 @@ TGameTick(){
             If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life70, vX_Life, vY_Life70
                 if (Life70!=varLife70) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
                             TriggerUtility(A_Index)
@@ -4854,6 +4898,9 @@ TGameTick(){
             If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life80, vX_Life, vY_Life80
                 if (Life80!=varLife80) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
                             TriggerUtility(A_Index)
@@ -4865,6 +4912,9 @@ TGameTick(){
             If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
 			    pixelgetcolor, Life90, vX_Life, vY_Life90
 				if (Life90!=varLife90) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
                             TriggerUtility(A_Index)
@@ -4879,10 +4929,11 @@ TGameTick(){
             If ((TriggerLife20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life20, vX_Life, vY_Life20 
                 if (Life20!=varLife20) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit20=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+                        LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -4896,10 +4947,11 @@ TGameTick(){
             If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life30, vX_Life, vY_Life30 
                 if (Life30!=varLife30) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit30=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+						LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -4913,10 +4965,11 @@ TGameTick(){
             If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life40, vX_Life, vY_Life40 
                 if (Life40!=varLife40) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit40=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+                        LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -4930,6 +4983,9 @@ TGameTick(){
             If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life50, vX_Life, vY_Life50
                 if (Life50!=varLife50) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
                             TriggerUtility(A_Index)
@@ -4941,6 +4997,9 @@ TGameTick(){
             If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life60, vX_Life, vY_Life60
                 if (Life60!=varLife60) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
                             TriggerUtility(A_Index)
@@ -4952,6 +5011,9 @@ TGameTick(){
             If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life70, vX_Life, vY_Life70
                 if (Life70!=varLife70) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
                             TriggerUtility(A_Index)
@@ -4963,6 +5025,9 @@ TGameTick(){
             If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life80, vX_Life, vY_Life80
                 if (Life80!=varLife80) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
                             TriggerUtility(A_Index)
@@ -4974,6 +5039,9 @@ TGameTick(){
             If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, Life90, vX_Life, vY_Life90
                 if (Life90!=varLife90) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
                             TriggerUtility(A_Index)
@@ -4985,6 +5053,9 @@ TGameTick(){
             If ((TriggerES20!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES20, vX_ES, vY_ES20 
                 if (ES20!=varES20) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
                             TriggerUtility(A_Index)
@@ -4996,6 +5067,9 @@ TGameTick(){
             If ((TriggerES30!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES30, vX_ES, vY_ES30 
                 if (ES30!=varES30) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
                             TriggerUtility(A_Index)
@@ -5007,6 +5081,9 @@ TGameTick(){
             If ((TriggerES40!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES40, vX_ES, vY_ES40 
                 if (ES40!=varES40) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
                             TriggerUtility(A_Index)
@@ -5018,6 +5095,9 @@ TGameTick(){
             If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES50, vX_ES, vY_ES50
                 if (ES50!=varES50) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
                             TriggerUtility(A_Index)
@@ -5029,6 +5109,9 @@ TGameTick(){
             If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES60, vX_ES, vY_ES60
                 if (ES60!=varES60) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
                             TriggerUtility(A_Index)
@@ -5040,6 +5123,9 @@ TGameTick(){
             If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES70, vX_ES, vY_ES70
                 if (ES70!=varES70) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
                             TriggerUtility(A_Index)
@@ -5051,6 +5137,9 @@ TGameTick(){
             If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES80, vX_ES, vY_ES80
                 if (ES80!=varES80) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
                             TriggerUtility(A_Index)
@@ -5062,6 +5151,9 @@ TGameTick(){
             If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES90, vX_ES, vY_ES90
                 if (ES90!=varES90) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
                             TriggerUtility(A_Index)
@@ -5076,10 +5168,11 @@ TGameTick(){
             If ((TriggerES20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES20, vX_ES, vY_ES20 
                 if (ES20!=varES20) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit20=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+						LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -5093,10 +5186,11 @@ TGameTick(){
             If ((TriggerES30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES30, vX_ES, vY_ES30 
                 if (ES30!=varES30) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit30=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+						LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -5110,10 +5204,11 @@ TGameTick(){
             If ((TriggerES40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES40, vX_ES, vY_ES40 
                 if (ES40!=varES40) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     if (AutoQuit=1) && (RadioQuit40=1) {
-                        GuiStatus("OnChar")
-                        if (OnChar)
-                            LogoutCommand()
+						LogoutCommand()
                         Exit
                     }
                     Loop, 5 {
@@ -5127,6 +5222,9 @@ TGameTick(){
             If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES50, vX_ES, vY_ES50
                 if (ES50!=varES50) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
                             TriggerUtility(A_Index)
@@ -5138,6 +5236,9 @@ TGameTick(){
             If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES60, vX_ES, vY_ES60
                 if (ES60!=varES60) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
                             TriggerUtility(A_Index)
@@ -5149,6 +5250,9 @@ TGameTick(){
             If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES70, vX_ES, vY_ES70
                 if (ES70!=varES70) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
                             TriggerUtility(A_Index)
@@ -5160,6 +5264,9 @@ TGameTick(){
             If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES80, vX_ES, vY_ES80
                 if (ES80!=varES80) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
                             TriggerUtility(A_Index)
@@ -5171,6 +5278,9 @@ TGameTick(){
             If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
                 pixelgetcolor, ES90, vX_ES, vY_ES90
                 if (ES90!=varES90) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
                     Loop, 5 {
                         If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
                             TriggerUtility(A_Index)
@@ -5184,6 +5294,9 @@ TGameTick(){
         If (TriggerMana10!="00000") {
             pixelgetcolor, Mana10, vX_Mana, vY_Mana10
             if (Mana10!=varMana10) {
+				GuiStatus("OnChar")
+				if !(OnChar)
+					Exit
                 TriggerMana(TriggerMana10)
             }
         }
@@ -5195,6 +5308,15 @@ TGameTick(){
 ; Trigger named Utility
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 TriggerUtility(Utility){
+	GuiStatus("OnHideout")
+	GuiStatus("OnChar")
+	GuiStatus("OnChat")
+	GuiStatus("OnInventory")
+	
+	if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+		GuiUpdate()
+		Exit
+	}
     If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
         key:=KeyUtility%Utility%
         Send %key%
@@ -5666,7 +5788,6 @@ readFromFile(){
     IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
     IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
     IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xC5E2F6
-    IniRead, varOnInsMan, settings.ini, Failsafe Colors, OnInsMan, 0x91CCE4
     IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
     
     ;Life Colors
@@ -7741,30 +7862,6 @@ updateOnDiv:
         MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . vX_OnDiv . " and y: " . vY_OnDiv
     }else
     MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
-    
-    hotkeys()
-    
-return
-
-updateOnInsMan:
-    Gui, Submit, NoHide
-    
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnInsMan didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnInsMan, vX_OnInsMan, vY_OnInsMan
-        IniWrite, %varOnInsMan%, settings.ini, Failsafe Colors, OnInsMan
-        readFromFile()
-        MsgBox % "OnInsMan recalibrated!`nTook color hex: " . varOnInsMan . " `nAt coords x: " . vX_OnInsMan . " and y: " . vY_OnInsMan
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnInsMan didn't work"
     
     hotkeys()
     
