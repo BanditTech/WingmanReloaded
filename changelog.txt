@@ -5,7 +5,7 @@ Version .05.02 September/12/2019
 --------------------------------------------------------------------------------
 Added the ability to match mutliple strings in one Group item
     Using the ~ evaluator you can now use | between each string
-    so wand|shield will match for Wands and Shields in Stats.ItemClass
+    so wand|shield will match for Wands or Shields in Stats.ItemClass
     it will remove extra spaces so you can use: wand | shield | body armour
 
 Added the ability to import and export the JSON strings
