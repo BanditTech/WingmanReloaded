@@ -21,6 +21,8 @@ for n, exe in POEGameArr {
      GroupAdd, POEGameGroup, ahk_exe %exe%
 }
 
+Global CLFStashTabDefault := 1
+IniRead, CLFStashTabDefault, LootFilter.ini, LootFilter, CLFStashTabDefault , 1
 Global LootFilter := {}
 Global LootFilterTabs := {}
 
@@ -258,10 +260,12 @@ Gui, +Resize -MinimizeBox +0x300000  ; WS_VSCROLL | WS_HSCROLL	;necessary for sc
 Gui, Add, Text, Section y+-5 w1 h1
 
 Gui, add, button, gAddGroup xs y+20, Add new Group
+Gui, add, DropDownList, gUpdateStashDefault vCLFStashTabDefault x+10 yp+1 w40, %CLFStashTabDefault%||%textListStashTabs%
 ;Gui, add, button, gPrintout x+10 yp, Print Array
 ;Gui, add, button, gPrintJSON x+10 yp, JSON string
-Gui, add, button, gLoadArray x+10 yp, Load Loot Filter
+Gui, add, button, gLoadArray x+10 yp-1, Load Loot Filter
 Gui, add, button, gSaveArray x+10 yp, Save Loot Filter
+Gui, add, button, gImportGroup x+10 yp, Import Loot Filter
 ;Gui, add, button, gRefreshGUI x+10 yp, Refresh Menu
 ;Gui, add, button, gTestEval x+10 yp, Test Eval vs 5
 
@@ -342,6 +346,67 @@ GroupAdd, MyGui, % "ahk_id " . WinExist()		;necessary for scrollable gui windows
 return
 
 
+ImportGroup:
+    
+    Gui, Submit, NoHide
+    LootFilterActive := LootFilter.Count()
+    ++LootFilterActive
+    ;msgbox %LootFilterActive%
+    LootFilterEmpty:=0
+    Loop, %LootFilterActive%
+    {
+        ++LootFilterEmpty
+        groupstr := "Group" LootFilterEmpty
+        if LootFilter.HasKey(groupstr)
+            {
+            continue
+            }
+        Else
+            break
+    }
+    ; msgbox %groupstr%
+    importJSON := JSON.Load(Clipboard)
+    %groupstr% := importJSON
+
+    LootFilter[groupstr]:=%groupstr%
+    LootFilterTabs[groupstr]:=CLFStashTabDefault
+    ; MsgBox % LootFilterTabs 
+    ; for k, v in LootFilterTabs
+    ;     MsgBox % "Key:  " k "  Val:  " v 
+    Gui, Destroy
+    GoSub, Redraw
+Return
+
+ChangeButtonNamesVar: 
+  IfWinNotExist, Export String
+    Return ; Keep waiting.
+  SetTimer, ChangeButtonNamesVar, off 
+  WinActivate 
+  ControlSetText, Button1, Continue, Export String
+  ControlSetText, Button2, Duplicate, Export String
+Return
+
+ExportGroup:
+Gui, Submit, NoHide
+StringSplit, buttonstr, A_GuiControl, _
+GKey := buttonstr2
+exportArr := LootFilter[GKey]
+Clipboard := JSON.Dump(exportArr)
+SetTimer, ChangeButtonNamesVar, 10
+MsgBox 3, Export String,% Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy"
+IfMsgBox, Yes
+{
+    Return
+}
+IfMsgBox, No
+{
+    GoSub, ImportGroup
+}
+
+Return
+
+
+
 AddGroup:
     
     Gui, Submit, NoHide
@@ -365,7 +430,7 @@ AddGroup:
     %groupstr% := {Prop: {}, Stats: {}, Affix: {}}
 
     LootFilter[groupstr]:=%groupstr%
-    LootFilterTabs[groupstr]:="1"
+    LootFilterTabs[groupstr]:=CLFStashTabDefault
     ; MsgBox % LootFilterTabs 
     ; for k, v in LootFilterTabs
     ;     MsgBox % "Key:  " k "  Val:  " v 
@@ -386,16 +451,16 @@ Global
             ;MsgBox % selectedItems
             Gui, Add, GroupBox,% " section xs y+18 w127 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,%SKey%
             Gui, Add, GroupBox,% " x+2 yp w54 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Eval:
-            Gui, Add, GroupBox,% " x+2 yp w54 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Min:
+            Gui, Add, GroupBox,% " x+2 yp w94 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Min:
             For AKey, Val in selectedItems
                 {
                     strLootFilterGSA := "LootFilter_" . GKey . "_" . SKey . "_" . AKey
                     %strLootFilterGSA% := LootFilter[GKey][SKey][AKey]
                     ;MsgBox % AKey
                     If InStr(AKey, "Min"){
-                        Gui, Add, Edit, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w50, % LootFilter[GKey][SKey][AKey]
+                        Gui, Add, Edit, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w90 h21, % LootFilter[GKey][SKey][AKey]
                         %strLootFilterGSA%_Remove := False
-                        Gui, Add, Button, v%strLootFilterGSA%_Remove gRemoveMenuItem x+6 , X
+                        Gui, Add, Button, v%strLootFilterGSA%_Remove gRemoveMenuItem x+6 w21 h21, X
                     }
                     else If InStr(AKey, "Eval")
                         Gui, Add, DropDownList, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w50, % LootFilter[GKey][SKey][AKey] "||" textListEval
@@ -408,10 +473,12 @@ Global
                 }
             Gui, add, button, gAddNewDDL xs yp+25, Add new %SKey% to %GKey%
         }
-        Gui, Add, Text, ,____________%GKey% Stash Tab:
+        Gui, Add, Text, ,_________%GKey% Stash Tab:
         strLootFilterGroupStash := "LootFilter_" . GKey . "_Stash"
         %strLootFilterGroupStash% := LootFilterTabs[GKey]
         Gui, Add,  DropDownList, v%strLootFilterGroupStash% gUpdateGroupStash w40 x+5 yp-6, % LootFilterTabs[GKey] "||" textListStashTabs
+        strLootFilterExport := "LootFilter_" . GKey . "_Export"
+        Gui, Add, Button, v%strLootFilterExport% gExportGroup w60 h21 x+5, Export
         if (gkeyarr[6] < 10 ) 
             gkeyarr[6] := 0 . gkeyarr[6]
         ;MsgBox % gkeyarr[6]
@@ -471,6 +538,11 @@ StringSplit, buttonstr, A_GuiControl, _
 GKey := buttonstr2
 LootFilterTabs[GKey] := %A_GuiControl%
 ;MsgBox % LootFilterTabs[GKey]
+Return
+
+UpdateStashDefault:
+Gui, Submit, NoHide
+IniWrite, %CLFStashTabDefault%, LootFilter.ini, LootFilter, CLFStashTabDefault
 Return
 
 RemoveMenuItem:

@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.01
+    Global VersionNumber := .05.02
 
 	Global Null := 0
     
@@ -4301,10 +4301,14 @@ MatchLootFilter()
 							Else
 							nomatched := True
 						else if eval = ~
-							If InStr(arrval, min)
-							matched := True
-							Else
-							nomatched := True
+						{
+							minarr := StrSplit(min, "|"," ")
+							for k, v in minarr
+								if InStr(arrval, v)
+									matched := True
+							if !matched
+								nomatched := True
+						}
 					}
 				}
 			}
