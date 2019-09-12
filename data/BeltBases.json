@@ -1,0 +1,65 @@
+{
+  "Chain Belt": {
+    "Item Class": "Belts",
+    "Level": 1,
+    "Drop Level": 1,
+    "Width": 2,
+    "Height": 1
+  },
+  "Rustic Sash": {
+    "Item Class": "Belts",
+    "Level": 1,
+    "Drop Level": 1,
+    "Width": 2,
+    "Height": 1
+  },
+  "Stygian Vise": {
+    "Item Class": "Belts",
+    "Level": 1,
+    "Drop Level": 1,
+    "Width": 2,
+    "Height": 1
+  },
+  "Heavy Belt": {
+    "Item Class": "Belts",
+    "Level": 8,
+    "Drop Level": 8,
+    "Width": 2,
+    "Height": 1
+  },
+  "Leather Belt": {
+    "Item Class": "Belts",
+    "Level": 8,
+    "Drop Level": 8,
+    "Width": 2,
+    "Height": 1
+  },
+  "Cloth Belt": {
+    "Item Class": "Belts",
+    "Level": 16,
+    "Drop Level": 16,
+    "Width": 2,
+    "Height": 1
+  },
+  "Studded Belt": {
+    "Item Class": "Belts",
+    "Level": 16,
+    "Drop Level": 16,
+    "Width": 2,
+    "Height": 1
+  },
+  "Vanguard Belt": {
+    "Item Class": "Belts",
+    "Level": 78,
+    "Drop Level": 78,
+    "Width": 2,
+    "Height": 1
+  },
+  "Crystal Belt": {
+    "Item Class": "Belts",
+    "Level": 79,
+    "Drop Level": 79,
+    "Width": 2,
+    "Height": 1
+  }
+}
