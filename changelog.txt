@@ -1,6 +1,24 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .05.02 September/12/2019
+--------------------------------------------------------------------------------
+Added the ability to match mutliple strings in one Group item
+    Using the ~ evaluator you can now use | between each string
+    so wand|shield will match for Wands or Shields in Stats.ItemClass
+    it will remove extra spaces so you can use: wand | shield | body armour
+
+Added the ability to import and export the JSON strings
+    Import and Export directly from the Clipboard
+    You can share these JSON strings on the forum!
+        Lets see what people can come up with
+        I will add them to wiki for examples
+    Added the ability to duplicate the Group directly from export
+        Click the export button then click duplicate
+
+Added dropdownlist for setting default stashtab in LootFilter
+    Saves to its own INI in the data folder
+
 Version .05.01 September/11/2019
 --------------------------------------------------------------------------------
 added missing failsafe checks for utility buttons
