@@ -795,10 +795,7 @@ TQuickTick(){
      {
           ;pixelgetcolor, OnHideout, vX_OnHideout, vY_OnHideout
           ;pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-          GuiStatus("OnHideout")
-          GuiStatus("OnChar")
-          GuiStatus("OnChat")
-          GuiStatus("OnInventory")
+          GuiStatus()
           
           if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
                GuiUpdate()
@@ -813,10 +810,7 @@ TQuickTick(){
 TUtilityTick(){
      IfWinActive, Path of Exile
      {
-          GuiStatus("OnHideout")
-          GuiStatus("OnChar")
-          GuiStatus("OnChat")
-          GuiStatus("OnInventory")
+          GuiStatus()
           
           if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
                GuiUpdate()
@@ -833,11 +827,8 @@ TUtilityTick(){
 }
 
 TriggerFlask(Trigger){
-     GuiStatus("OnHideout")
-     GuiStatus("OnChar")
-     GuiStatus("OnChat")
-     GuiStatus("OnInventory")
-     
+     GuiStatus()
+
      if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
           Exit
      }
@@ -895,11 +886,8 @@ TriggerFlask(Trigger){
      Return
 }
 TriggerFlaskForce(Trigger){
-     GuiStatus("OnHideout")
-     GuiStatus("OnChar")
-     GuiStatus("OnChat")
-     GuiStatus("OnInventory")
-     
+     GuiStatus()
+
      if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
           Exit
      }
@@ -970,6 +958,10 @@ Ding(Timeout:=500,Message:="Ding", Message2:="", Message3:="", Message4:="", Mes
 }
 
 TriggerUtility(Utility){
+     GuiStatus()
+     if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+          Exit
+     }
      If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
           key:=KeyUtility%Utility%
           Send %key%
@@ -982,7 +974,9 @@ TriggerUtility(Utility){
 } 
 TriggerUtilityForce(Utility){
      GuiStatus()
-
+     if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+          Exit
+     }
      If (!OnCooldownUtility%Utility%){
           key:=KeyUtility%Utility%
           Send %key%
