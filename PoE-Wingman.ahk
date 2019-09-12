@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.02
+    Global VersionNumber := .05.03
 
 	Global Null := 0
     
@@ -71,7 +71,7 @@
         readFromFile()
 	Global Enchantment  := []
 	Global Corruption := []
-	Global WeaponBases, ArmourBases
+	Global WeaponBases, ArmourBases, BeltBases
 	
 	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
 	{
