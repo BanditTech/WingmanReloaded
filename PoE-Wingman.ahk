@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.03
+    Global VersionNumber := .05.04
 
 	Global Null := 0
     
@@ -2877,6 +2877,11 @@ ParseClip(){
 					{
 						Prop.Amulet := True
 						Stats.ItemClass := "Amulets"
+						If Prop.Scarab
+						{
+						Prop.Scarab := False
+						Prop.SpecialType := ""
+						}
 						Continue
 					}
 					IfInString, A_LoopField, Map
