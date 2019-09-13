@@ -75,10 +75,6 @@ Global LootColors := { 1 : 0x222222
 OnMessage(0x5555, "MsgMonitor")
 OnMessage(0x5556, "MsgMonitor")
 
-I_Icon = phase_run_skill_icon.ico
-IfExist, %I_Icon%
-Menu, Tray, Icon, %I_Icon%
-
 if not A_IsAdmin
 {
      Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"

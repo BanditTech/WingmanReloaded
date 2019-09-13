@@ -75,8 +75,8 @@ Prop := {ItemName: ""
     , Prophecy : False
     , Oil : False
     , DoubleCorrupted : False
-    , Width : 0
-    , Height : 0
+    , Width : 1
+    , Height : 1
     , ItemLevel : 0}
 
 textListProp= 
@@ -145,6 +145,8 @@ Affix := { SupportGem : ""
     , PseudoFireResist : 0
     , PseudoLightningResist : 0
     , PseudoChaosResist : 0
+    , PseudoTotalResist : 0
+    , PseudoTotalEleResist : 0
     , LifeRegeneration : 0
     , ChanceDoubleDamage : 0
     , IncreasedRarity : 0

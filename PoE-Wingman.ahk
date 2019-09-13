@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.04
+    Global VersionNumber := .05.05
 
 	Global Null := 0
     
@@ -1884,9 +1884,9 @@ MoveStash(Tab){
 		Click, Up, Left, 1
 		Sleep, 45*Latency
 		MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-		Sleep, 60*Latency
+		Sleep, 90*Latency
 		send {Enter}
-		Sleep, 145*Latency
+		Sleep, 115*Latency
 		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
 		Sleep, 45*Latency
 		Click, Down, Left, 1
@@ -2624,8 +2624,8 @@ ParseClip(){
 			, Prophecy : False
 			, Oil : False
 			, DoubleCorrupted : False
-			, Width : 0
-			, Height : 0
+			, Width : 1
+			, Height : 1
 			, ItemLevel : 0}
 
 		Stats := { PhysLo : False
@@ -2686,6 +2686,9 @@ ParseClip(){
 			, PseudoFireResist : 0
 			, PseudoLightningResist : 0
 			, PseudoChaosResist : 0
+			, PseudoTotalEleResist : 0
+			, PseudoTotalResist : 0
+			, PseudoTotalEleResist : 0
 			, LifeRegeneration : 0
 			, ChanceDoubleDamage : 0
 			, IncreasedRarity : 0
@@ -4192,6 +4195,8 @@ ParseClip(){
 			}
 		}
 
+		Affix.PseudoTotalEleResist := Affix.PseudoColdResist + Affix.PseudoFireResist + Affix.PseudoLightningResist
+		Affix.PseudoTotalResist := Affix.PseudoTotalEleResist + Affix.PseudoChaosResist
 		Return
 	}
 

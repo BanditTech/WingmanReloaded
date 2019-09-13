@@ -1,6 +1,18 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .05.05 September/12/2019
+--------------------------------------------------------------------------------
+Added PseudoTotalResist and PseudoTotalEleResist to affixes
+Prop.Width and Prop.Height default to 1 now
+
+Updated FilterBlade zip for the last few background colors to Black
+    to updated these you need to manually extract them to their correct location
+    C:\Users\  UserName  \Documents\My games\Path of Exile
+
+Removed the icon file for GGF as it is no longer needed
+    Removed the load lines for tray icon from GottaGoFast
+    
 Version .05.04 September/12/2019
 --------------------------------------------------------------------------------
 Bugfix patch
