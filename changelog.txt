@@ -1,6 +1,16 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .05.06 September/14/2019
+--------------------------------------------------------------------------------
+Bugfix for AlternateGemY not being loaded properly
+Added request for OnAtlas state
+    thank you for the contributions danmarzola
+    they have been helping to point out typos in the code
+
+Added hex color comparison function for later use
+    ToRGB(hexcolorVar) and CompareHex(rgbVar1,rgbVar2,varianceNum)
+
 Version .05.05 September/13/2019
 --------------------------------------------------------------------------------
 Added PseudoTotalResist and PseudoTotalEleResist to affixes

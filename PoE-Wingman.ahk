@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.05
+    Global VersionNumber := .05.06
 
 	Global Null := 0
     
@@ -285,6 +285,7 @@
 		Global YesMapUnid := 1
 		Global YesStashKeys := 1
 		Global OnHideout := False
+		Global OnAtlas := False
 		Global OnChar := False
 		Global OnChat := False
 		Global OnInventory := False
@@ -425,6 +426,7 @@
 	;Failsafe Colors
 		global varOnHideout:=0xB5EFFE
 		global varOnHideoutMin:=0xCDF6FE
+		global varOnAtlas:=0x9CC7D8
 		global varOnChar:=0x4F6980
 		global varOnChat:=0x3B6288
 		global varOnInventory:=0x8CC6DD
@@ -912,6 +914,7 @@
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w110, 	OnChar Color
 	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w110, 	OnChat Color
 	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 								w110, 	OnDiv Color
+	Gui, Add, Button, gupdateOnAtlas vUpdateOnAtlasBtn	 							w110, 	OnAtlas Color
 
 	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+20		w110, 	OnHideoutMin Color
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn						w110, 	OnInventory Color
@@ -1428,6 +1431,8 @@
 		global vX_OnHideout:=1178
 		global vY_OnHideout:=930
 		global vY_OnHideoutMin:=1053
+		global vX_OnAtlas:=960
+		global vY_OnAtlas:=32
 		global vX_OnChar:=41
 		global vY_OnChar:=915
 		global vX_OnChat:=41
@@ -2076,6 +2081,9 @@ Rescale(){
 				global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
 				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
 				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+				;Status Check OnAtlas
+				global vX_OnAtlas:=X + Round(A_ScreenWidth / 2)
+				global vY_OnAtlas:=Y + Round(A_ScreenHeight / (1080 / 32))
 				;Status Check OnChar
 				global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -2096,15 +2104,15 @@ Rescale(){
 				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;ES %'s
+				global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+				global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+				global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+				global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+				global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+				global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+				global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+				global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+				;ES %'s
 				global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
 				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
 				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
@@ -2148,6 +2156,9 @@ Rescale(){
 				global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
 				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
 				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+				;Status Check OnAtlas
+				global vX_OnAtlas:=X + Round(A_ScreenWidth / 2)
+				global vY_OnAtlas:=Y + Round(A_ScreenHeight / (1080 / 32))
 				;Status Check OnChar
 				global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
 				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -2168,15 +2179,15 @@ Rescale(){
 				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
 				;Life %'s
 				global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;ES %'s
+				global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+				global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+				global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+				global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+				global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+				global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+				global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+				global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+				;ES %'s
 				global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
 				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
 				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
@@ -4367,7 +4378,7 @@ CoordAndDebug(){
 				GuiStatus()
 				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
 				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
-				TT := TT . "  Divination Trade: " . OnDiv . "`n`n"
+				TT := TT . "  Divination Trade: " . OnDiv . "  Atlas Open: " . OnAtlas . "`n`n"
 				ClipItem(x, y)
 				If (Prop.IsItem) {
 					TT := TT . "Item Properties:`n`n"
@@ -4678,6 +4689,12 @@ GuiStatus(Fetch:=""){
 		} Else {
 		OnChat:=False
 		}
+	pixelgetcolor, POnAtlas, vX_OnAtlas, vY_OnAtlas
+	If (POnAtlas=varOnAtlas) {
+		OnAtlas:=True
+		} Else {
+		OnAtlas:=False
+		}
 	pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
 	If (POnInventory=varOnInventory) {
 		OnInventory:=True
@@ -4711,7 +4728,7 @@ MainAttackCommand(){
 	MainAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnAtlas)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerMainAttack)
@@ -4734,7 +4751,7 @@ SecondaryAttackCommand(){
 	SecondaryAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnAtlas)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerSecondaryAttack)
@@ -4807,7 +4824,7 @@ TGameTick(){
     {
         ; Check what status is your character in the game
         GuiStatus()
-        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor) { 
+        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnAtlas) { 
             ;GuiUpdate()																									   
             Exit
         }
@@ -5326,8 +5343,9 @@ TriggerUtility(Utility){
 	GuiStatus("OnChar")
 	GuiStatus("OnChat")
 	GuiStatus("OnInventory")
+	GuiStatus("OnAtlas")
 	
-	if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+	if (OnHideout || !OnChar || OnChat || OnInventory || OnAtlas) { ;in Hideout, not on char,atlas open, chat open, or open inventory
 		GuiUpdate()
 		Exit
 	}
@@ -5421,6 +5439,21 @@ Clamp( Val, Min, Max) {
     If Val > Max
         Val := Max
     Return
+	}
+; Converts a hex color into its R G B elements
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ToRGB(color) {
+    return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
+	}
+
+; Compares two converted HEX codes as R G B within the variance range
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CompareHex(c1, c2, vary=20) {
+    rdiff := Abs( c1.r - c2.r )
+    gdiff := Abs( c1.g - c2.g )
+    bdiff := Abs( c1.b - c2.b )
+
+    return rdiff <= vary && gdiff <= vary && bdiff <= vary
 	}
 ; Register Chat Hokeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5796,6 +5829,7 @@ readFromFile(){
     ;Failsafe Colors
     IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
     IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
+    IniRead, varOnAtlas, settings.ini, Failsafe Colors, OnAtlas, 0x9CC7D8
     IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
     IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
     IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
@@ -7640,6 +7674,31 @@ updateOnInventory:
         MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . vX_OnInventory . " and y: " . vY_OnInventory
     }else
     MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
+    
+    hotkeys()
+    
+return
+
+updateOnAtlas:
+    Gui, Submit, NoHide
+    
+    IfWinExist, ahk_group POEGameGroup
+    {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+    } else {
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnAtlas didn't work"
+        Return
+    }
+    
+    
+    if WinActive(ahk_group POEGameGroup){
+        pixelgetcolor, varOnAtlas, vX_OnAtlas, vY_OnAtlas
+        IniWrite, %varOnAtlas%, settings.ini, Failsafe Colors, OnAtlas
+        readFromFile()
+        MsgBox % "OnAtlas recalibrated!`nTook color hex: " . varOnAtlas . " `nAt coords x: " . vX_OnAtlas . " and y: " . vY_OnAtlas
+    }else
+    MsgBox % "PoE Window is not active. `nRecalibrate of OnAtlas didn't work"
     
     hotkeys()
     

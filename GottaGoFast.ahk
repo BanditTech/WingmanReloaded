@@ -144,6 +144,7 @@ global varOnChat
 global varOnInventory
 global varOnStash
 global varOnVendor
+global varOnAtlas
 
 ;Flask Cooldowns
 global CooldownFlask1:=5000
@@ -169,6 +170,7 @@ global OnChat:=False
 global OnInventory:=False
 global OnStash:=False
 global OnVendor:=False
+global OnAtlas:=False
 
 ;Hotkeys
 global hotkeyAutoQuicksilver
@@ -228,6 +230,7 @@ IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
 ;Failsafe Colors
 IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
 IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
+IniRead, varOnAtlas, settings.ini, Failsafe Colors, OnAtlas, 0x9CC7D8
 IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
 IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
 IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
@@ -350,6 +353,8 @@ IfWinExist, ahk_group POEGameGroup
      global vX_OnHideout:=1178
      global vY_OnHideout:=930
      global vY_OnHideoutMin:=1053
+     global vX_OnAtlas:=960
+     global vY_OnAtlas:=32
      global vX_OnChar:=41
      global vY_OnChar:=915
      global vX_OnChat:=0
@@ -577,6 +582,7 @@ ReadFromFile(){
      ;Failsafe Colors
      IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
      IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
+     IniRead, varOnAtlas, settings.ini, Failsafe Colors, OnAtlas, 0x9CC7D8
      IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
      IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
      IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
@@ -777,6 +783,12 @@ GuiStatus(Fetch:=""){
      } Else {
           OnChat:=False
      }
+     pixelgetcolor, POnAtlas, vX_OnAtlas, vY_OnAtlas
+	If (POnAtlas=varOnAtlas) {
+		OnAtlas:=True
+		} Else {
+		OnAtlas:=False
+		}
      pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
      If (POnInventory=varOnInventory) {
           OnInventory:=True
@@ -793,7 +805,7 @@ TQuickTick(){
           ;pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
           GuiStatus()
           
-          if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+          if (OnHideout || !OnChar || OnChat || OnInventory || OnAtlas) { ;in Hideout, not on char, chat open, or open inventory, open atlas
                GuiUpdate()
                Exit
           }
@@ -808,7 +820,7 @@ TUtilityTick(){
      {
           GuiStatus()
           
-          if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+          if (OnHideout || !OnChar || OnChat || OnInventory || OnAtlas) { ;in Hideout, not on char, chat open, or open inventory
                GuiUpdate()
                Exit
           }
@@ -825,7 +837,7 @@ TUtilityTick(){
 TriggerFlask(Trigger){
      GuiStatus()
 
-     if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+     if (OnHideout || !OnChar || OnChat || OnInventory || OnAtlas) { ;in Hideout, not on char, chat open, or open inventory
           Exit
      }
 
@@ -884,7 +896,7 @@ TriggerFlask(Trigger){
 TriggerFlaskForce(Trigger){
      GuiStatus()
 
-     if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+     if (OnHideout || !OnChar || OnChat || OnInventory || OnAtlas) { ;in Hideout, not on char, chat open, or open inventory
           Exit
      }
      If ((!FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
@@ -955,7 +967,7 @@ Ding(Timeout:=500,Message:="Ding", Message2:="", Message3:="", Message4:="", Mes
 
 TriggerUtility(Utility){
      GuiStatus()
-     if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+     if (OnHideout || !OnChar || OnChat || OnInventory || OnAtlas) { ;in Hideout, not on char, chat open, or open inventory
           Exit
      }
      If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
@@ -970,7 +982,7 @@ TriggerUtility(Utility){
 } 
 TriggerUtilityForce(Utility){
      GuiStatus()
-     if (OnHideout || !OnChar || OnChat || OnInventory) { ;in Hideout, not on char, chat open, or open inventory
+     if (OnHideout || !OnChar || OnChat || OnInventory || OnAtlas) { ;in Hideout, not on char, chat open, or open inventory
           Exit
      }
      If (!OnCooldownUtility%Utility%){
@@ -1008,6 +1020,9 @@ Rescale(){
                ;Status Check OnVendor
                global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
                global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Status Check OnAtlas
+				global vX_OnAtlas:=X + Round(A_ScreenWidth / 2)
+				global vY_OnAtlas:=Y + Round(A_ScreenHeight / (1080 / 32))
                ;GUI overlay
                global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
                global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
@@ -1032,6 +1047,9 @@ Rescale(){
                ;Status Check OnVendor
                global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
                global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+				;Status Check OnAtlas
+				global vX_OnAtlas:=X + Round(A_ScreenWidth / 2)
+				global vY_OnAtlas:=Y + Round(A_ScreenHeight / (1080 / 32))
                ;GUI overlay
                global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
                global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
