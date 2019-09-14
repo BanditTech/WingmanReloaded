@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.06
+    Global VersionNumber := .05.07
 
 	Global Null := 0
     
@@ -911,15 +911,15 @@
 
 	;Update calibration for pixel check
 	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w110, 	OnHideout Color
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 							w110, 	OnChar Color
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 							w110, 	OnChat Color
-	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 								w110, 	OnDiv Color
-	Gui, Add, Button, gupdateOnAtlas vUpdateOnAtlasBtn	 							w110, 	OnAtlas Color
+	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 		y+3					w110, 	OnChar Color
+	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 		y+3					w110, 	OnChat Color
+	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			y+3					w110, 	OnDiv Color
 
 	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+20		w110, 	OnHideoutMin Color
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn						w110, 	OnInventory Color
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 							w110, 	OnStash Color
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 						w110, 	OnVendor Color
+	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn		y+3				w110, 	OnInventory Color
+	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 			y+3				w110, 	OnStash Color
+	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		y+3				w110, 	OnVendor Color
+	Gui, Add, Button, gupdateOnAtlas vUpdateOnAtlasBtn	 			y+3				w110, 	OnAtlas Color
 
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
