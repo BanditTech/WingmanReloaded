@@ -963,7 +963,7 @@
 
 	Gui Add, Text, 										x303	y+6, 				Alternate Gem:
 	Gui Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
-	Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemX%
+	Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemY%
 	Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     	y53	 	            , Stock Portal?
 	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         y+8                , Stock Wisdom?
 	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%             y+8                , Weapon Swap?
