@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.07
+    Global VersionNumber := .05.08
 
 	Global Null := 0
     
@@ -267,9 +267,6 @@
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
 		Global ResolutionScale := "Standard"
-		Global IdColor := 0x1C0101
-		Global UnIdColor := 0x01012A
-		Global MOColor := 0x011C01
 		Global QSonMainAttack := 1
 		Global QSonSecondaryAttack := 1
 		Global YesPersistantToggle := 1
@@ -420,9 +417,10 @@
 		global GuiY:=1005
 
 	;Inventory Colors
-		global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
-		global varMouseoverColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905]
-
+		global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
+		global varMouseoverColor := [0x011C01]
+		global varIdColor := [0x1C0101]
+		global varUnIdColor := [0x01012A]
 	;Failsafe Colors
 		global varOnHideout:=0xB5EFFE
 		global varOnHideoutMin:=0xCDF6FE
@@ -924,8 +922,8 @@
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
 	Gui, Font
-	Gui, Add, Button, gupdateEmptyInvSlotColor vUdateEmptyInvSlotColorBtn xs ys+20 	w100, 	Empty Color
-	Gui, Add, Button, gupdateMouseoverColor vUdateMouseoverColorBtn	 	x+8 ys+20	w100, 	Mouseover Color
+	Gui, Add, Button, gupdateIdandEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20 	w110, 	Id / Empty
+	Gui, Add, Button, gupdateUnIdandMOColor vupdateUnIdandMOColorBtn	 	x+8 ys+20	w110, 	UnId / Mouseover
 	Gui, Font, Bold
 	Gui, Add, Text, 				section						xs 	y+10, 				AutoDetonate Calibration:
 	Gui, Font
@@ -1605,8 +1603,13 @@ ItemSort(){
 					} 
 					pixelgetcolor, PointColor, GridX, GridY
 					
-					If (indexOf(PointColor, varEmptyInvSlotColor)) || (indexOf(PointColor, varMouseoverColor)) {
+					If (indexOfHex(PointColor, varEmptyInvSlotColor)) || (indexOfHex(PointColor, varMouseoverColor)) {
 						;Seems to be an empty slot or item already moused over, do not need to clip item info
+						Continue
+					}
+					
+					If !( indexOfHex(PointColor, varIdColor) || indexOfHex(PointColor, varUnIdColor) ) {
+						;Seems to not match with either identified or UnIdentified color arrays
 						Continue
 					}
 					
@@ -1626,18 +1629,22 @@ ItemSort(){
 						If (Prop.IsMap&&!YesMapUnid)
 						{
 							WisdomScroll(Grid.X,Grid.Y)
+							ClipItem(Grid.X,Grid.Y)
 						}
 						Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
 						{
 							WisdomScroll(Grid.X,Grid.Y)
+							ClipItem(Grid.X,Grid.Y)
 						}
 						Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
 						{
 							WisdomScroll(Grid.X,Grid.Y)
+							ClipItem(Grid.X,Grid.Y)
 						}
-						Else If (!Prop.Chromatic && !Prop.Jeweler&&!Prop.IsMap)
+						Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
 						{
 							WisdomScroll(Grid.X,Grid.Y)
+							ClipItem(Grid.X,Grid.Y)
 						}
 					}
 					If (OnStash&&YesStash) 
@@ -1735,17 +1742,23 @@ ItemSort(){
 								MoveStash(StashTabCollection)
 								RandomSleep(30,45)
 								CtrlClick(Grid.X,Grid.Y)
-								If (StashTabYesUniqueRing)
-								{
-									pixelgetcolor, Pitem, GridX, GridY
-									if (Pitem!=MOColor)
-										Continue
-									Sleep, 60*Latency
-								}
+								Sleep, 30*Latency
 							}
 							If (StashTabYesUniqueRing)
 							{
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
 								MoveStash(StashTabUniqueRing)
+								CtrlClick(Grid.X,Grid.Y)
+								Sleep, 30*Latency
+							}
+							If (StashTabYesUniqueDump)
+							{
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
+								MoveStash(StashTabUniqueDump)
 								CtrlClick(Grid.X,Grid.Y)
 							}
 							Continue
@@ -1757,17 +1770,13 @@ ItemSort(){
 								MoveStash(StashTabCollection)
 								RandomSleep(30,45)
 								CtrlClick(Grid.X,Grid.Y)
-								If (StashTabYesUniqueDump)
-								{
-									Sleep, 15*Latency
-									pixelgetcolor, Pitem, GridX, GridY
-									if (Pitem!=MOColor) 
-										Continue
-									Sleep, 45*Latency
-								}
+								Sleep, 30*Latency
 							}
 							If (StashTabYesUniqueDump)
 							{
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
 								MoveStash(StashTabUniqueDump)
 								CtrlClick(Grid.X,Grid.Y)
 							}
@@ -1910,11 +1919,11 @@ MoveStash(Tab){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SwiftClick(x, y){
 		MouseMove, x, y	
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Click, Down x, y }
-		Sleep, 45*Latency
+		Sleep, 60*Latency
 		Send {Click, Up x, y }
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 	return
 	}
 
@@ -1923,11 +1932,11 @@ SwiftClick(x, y){
 RightClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Click, Down x, y, Right}
-		Sleep, 45*Latency
+		Sleep, 60*Latency
 		Send {Click, Up x, y, Right}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -1937,13 +1946,13 @@ RightClick(x, y){
 ShiftClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Shift Down}
 			Sleep, 30*Latency
 		Send {Click, Down, x, y}
-		Sleep, 45*Latency
+		Sleep, 60*Latency
 		Send {Click, Up, x, y}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Shift Up}
 			Sleep, 15*Latency
 		BlockInput, MouseMoveOff
@@ -1955,16 +1964,16 @@ ShiftClick(x, y){
 CtrlClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 15*Latency
-		Send {Ctrl Down}
 		Sleep, 30*Latency
-		Send {Click, Down, x, y}
+		Send {Ctrl Down}
 		Sleep, 45*Latency
+		Send {Click, Down, x, y}
+		Sleep, 60*Latency
 		Send {Click, Up, x, y}
 		;Send ^{Click, Up, x, y}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Ctrl Up}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -1977,13 +1986,13 @@ WisdomScroll(x, y){
 		MouseMove %WisdomScrollX%, %WisdomScrollY%
 		Sleep, 30*Latency
 		Click, Down, Right, 1
-		Sleep, 45*Latency
+		Sleep, 60*Latency
 		Click, Up, Right, 1
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		MouseMove %x%, %y%
 		Sleep, 30*Latency
 		Click, Down, Left, 1
-		Sleep, 45*Latency
+		Sleep, 60*Latency
 		Click, Up, Left, 1
 		Sleep, 30*Latency
 		BlockInput, MouseMoveOff
@@ -1997,13 +2006,13 @@ StockScrolls(){
 		If StockWisdom{
 			MouseMove %WisdomScrollX%, %WisdomScrollY%
 			ClipItem(WisdomScrollX, WisdomScrollY)
-			Sleep, 20*Latency
+			Sleep, 30*Latency
 			dif := (40 - Stats.Stack)
 				If (dif>10)
 			{
 				MoveStash(1)
 				MouseMove WisdomStockX, WPStockY
-				Sleep, 15*Latency
+				Sleep, 30*Latency
 				ShiftClick(WisdomStockX, WPStockY)
 					Sleep, 30*Latency
 				Send %dif%
@@ -2020,13 +2029,13 @@ StockScrolls(){
 		If StockPortal{
 			MouseMove %PortalScrollX%, %PortalScrollY%
 			ClipItem(PortalScrollX, PortalScrollY)
-			Sleep, 20*Latency
+			Sleep, 30*Latency
 			dif := (40 - Stats.Stack)
 				If (dif>10)
 			{
 				MoveStash(1)
 				MouseMove PortalStockX, WPStockY
-				Sleep, 15*Latency
+				Sleep, 30*Latency
 				ShiftClick(PortalStockX, WPStockY)
 					Sleep, 30*Latency
 				Send %dif%
@@ -4441,13 +4450,13 @@ CoordAndDebug(){
 						{
 							pixelgetcolor, PointColor, GridX, GridY
 							
-							If (PointColor=UnIdColor){
+							If (indexOfHex(PointColor, varUnIdColor)) {
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified. Color: " . PointColor  .  "`n"
-							}else if (PointColor=IdColor){
+							}else if (indexOfHex(PointColor, varIdColor)) {
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified. Color: " . PointColor  .  "`n"
-							}else if (indexOf(PointColor, varMouseoverColor) > 0){
+							}else if (indexOfHex(PointColor, varMouseoverColor)) {
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected item. Color: " . PointColor  .  "`n"
-							}else if (indexOf(PointColor, varEmptyInvSlotColor) > 0){				
+							}else if (indexOfHex(PointColor, varEmptyInvSlotColor)) {				
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
 							}else{
 								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
@@ -4458,6 +4467,20 @@ CoordAndDebug(){
 				MsgBox %TT%	
 			}
 		Return
+	}
+
+; Check if a specific hex value is part of an array within a variance and return the index
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+indexOfHex(var, Arr, fromIndex:=1, vary:=2) {
+		for index, value in Arr {
+			h1 := ToRGB(value) 
+			h2 := ToRGB(var) 
+			if (index < fromIndex){
+				Continue
+			}else if (CompareHex(h1, h2, vary)){
+				return index
+			}
+		}
 	}
 
 ; Check if a specific value is part of an array and return the index
@@ -5443,12 +5466,12 @@ Clamp( Val, Min, Max) {
 ; Converts a hex color into its R G B elements
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ToRGB(color) {
-    return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
+    return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
 	}
 
 ; Compares two converted HEX codes as R G B within the variance range
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CompareHex(c1, c2, vary=20) {
+CompareHex(c1, c2, vary:=1) {
     rdiff := Abs( c1.r - c2.r )
     gdiff := Abs( c1.g - c2.g )
     bdiff := Abs( c1.b - c2.b )
@@ -5820,11 +5843,15 @@ readFromFile(){
     IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
     
     ;Inventory Colors
-    IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010201, 0x060906, 0x050905
-    IniRead, varMouseoverColor, settings.ini, Inventory Colors, MouseoverColor, 0x011C01, 0x011C01
+    IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
+    IniRead, varMouseoverColor, settings.ini, Inventory Colors, MouseoverColor, 0x011C01
+    IniRead, varUnIdColor, settings.ini, Inventory Colors, UnIdColor, 0x01012A
+    IniRead, varIdColor, settings.ini, Inventory Colors, IdColor, 0x1C0101
     ;Create an array out of the read string
     varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
     varMouseoverColor := StrSplit(varMouseoverColor, ",")
+    varUnIdColor := StrSplit(varUnIdColor, ",")
+    varIdColor := StrSplit(varIdColor, ",")
     
     ;Failsafe Colors
     IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
@@ -6122,7 +6149,7 @@ readFromFile(){
     	}
 	
     IniRead, 1Prefix1, settings.ini, Chat Hotkeys, 1Prefix1, a
-    IniRead, 1Prefix2, settings.ini, Chat Hotkeys, 1Prefix2, ""
+    IniRead, 1Prefix2, settings.ini, Chat Hotkeys, 1Prefix2, %A_Space%
     IniRead, 1Suffix1, settings.ini, Chat Hotkeys, 1Suffix1, 1
     IniRead, 1Suffix2, settings.ini, Chat Hotkeys, 1Suffix2, 2
     IniRead, 1Suffix3, settings.ini, Chat Hotkeys, 1Suffix3, 3
@@ -6144,7 +6171,7 @@ readFromFile(){
     IniRead, 1Suffix9Text, settings.ini, Chat Hotkeys, 1Suffix9Text, @RecipientName Still Interested?
 
     IniRead, 2Prefix1, settings.ini, Chat Hotkeys, 2Prefix1, d
-    IniRead, 2Prefix2, settings.ini, Chat Hotkeys, 2Prefix2, ""
+    IniRead, 2Prefix2, settings.ini, Chat Hotkeys, 2Prefix2, %A_Space%
     IniRead, 2Suffix1, settings.ini, Chat Hotkeys, 2Suffix1, 1
     IniRead, 2Suffix2, settings.ini, Chat Hotkeys, 2Suffix2, 2
     IniRead, 2Suffix3, settings.ini, Chat Hotkeys, 2Suffix3, 3
@@ -6165,8 +6192,8 @@ readFromFile(){
     IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
     IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
 
-    IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, ""
-    IniRead, stashPrefix2, settings.ini, Stash Hotkeys, stashPrefix2, ""
+    IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, %A_Space%
+    IniRead, stashPrefix2, settings.ini, Stash Hotkeys, stashPrefix2, %A_Space%
     IniRead, stashSuffix1, settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
     IniRead, stashSuffix2, settings.ini, Stash Hotkeys, stashSuffix2, Numpad2
     IniRead, stashSuffix3, settings.ini, Stash Hotkeys, stashSuffix3, Numpad3
@@ -7727,15 +7754,16 @@ updateOnStash:
     
 return
 
-updateEmptyInvSlotColor:
+updateUnIdandMOColor:
     Gui, Submit, NoHide
+	Thread, NoTimers, true		;Critical
 
     IfWinExist, ahk_group POEGameGroup
     {
         Rescale()
         WinActivate, ahk_group POEGameGroup
     } else {
-        MsgBox % "PoE Window does not exist. `nInventory calibration didn't work"
+        MsgBox % "PoE Window does not exist. `nUnIdentified / Mouseover calibration didn't work"
         Return
     }
 
@@ -7745,66 +7773,91 @@ updateEmptyInvSlotColor:
         ;Now we need to get the user input for every grid element if its empty or not
 
         ;First inform the user about the procedure
-        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as empty slot colors.`r`n`r`n"
-        infoMsg .= "  -> Make sure your whole inventory is empty`r`n"
+        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Unidentified and Mouseover colors.`r`n`r`n"
+        infoMsg .= "  -> Make sure the very first slot has 1x1 red item`r`n"
+        infoMsg .= "  -> Clear all other items from inventory`r`n"
         infoMsg .= "  -> Make sure your inventory is open`r`n`r`n"
         infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
 
         MsgBox, 1,, %infoMsg%
         IfMsgBox, Cancel
         {
-            MsgBox Canceled the inventory calibration
+            MsgBox Canceled the UnId/Mouseover calibration
             return
         }
 
-        varEmptyInvSlotColor := []
+        varUnIdColor := []
+        varMouseoverColor := []
         WinActivate, ahk_group POEGameGroup
 
-        ;Loop through the whole grid, overlay the current grid item and display a box with two buttons "Empty" and "Occupied"
-        ; I couldn't find a fast way to draw an overlay, doing at the moment with manual , might lead to problem if the user doesnt understand
-        ; If the user clicks "Empty" save the pixelcolor and add it to the array of empty inv slot colors
+		BlockInput, On
+        ;Loop through the whole grid, and add unknown colors to the lists
         For c, GridX in InventoryGridX	{
             For r, GridY in InventoryGridY
             {
+				Grid := RandClick(GridX, GridY)
+				++slotNum
+				If (slotNum!=1)
+				{
+					SwiftClick(Grid.X, Grid.Y)
+					Sleep, 60
+				}
+				MouseMove, (A_ScreenWidth / 2), (A_ScreenHeight / 2)
+				Sleep, 60
                 pixelgetcolor, PointColor, GridX, GridY
 
-                if(indexOf(PointColor, varEmptyInvSlotColor)){
-                    ;We have this empty color already, skip this slot
-                    continue
-                }else{
-                    ;Assume that the whole inventory is empty and we just add the color to the array
-                    varEmptyInvSlotColor.Push(PointColor)
+                if !(indexOf(PointColor, varUnIdColor)){
+                    ;We dont have this UnId color already
+                    varUnIdColor.Push(PointColor)
                 }
+
+				MouseMove, Grid.X, Grid.Y
+				Sleep, 60
+                pixelgetcolor, PointColor, GridX, GridY
+
+                if !(indexOf(PointColor, varMouseoverColor)){
+                    ;We dont have this Mouseover color already
+                    varMouseoverColor.Push(PointColor)
+                }
+
+				If (slotNum!=60){
+					SwiftClick(Grid.X, Grid.Y)
+					Sleep, 60
+				} 
             }
         }
+		BlockInput, Off
+        strToSave := arrToStr(varMouseoverColor)
+        strUnIdToSave := arrToStr(varUnIdColor)
 
-        strToSave := arrToStr(varEmptyInvSlotColor)
-
-        IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
+        IniWrite, %strToSave%, settings.ini, Inventory Colors, MouseoverColor
+        IniWrite, %strUnIdToSave%, settings.ini, Inventory Colors, UnIdColor
         readFromFile()
-
-        infoMsg := "Empty inventory slot colors calibrated and saved with following color codes:`r`n`r`n"
+        infoMsg := "UnIdentified colors calibrated and saved with following color codes:`r`n`r`n"
+        infoMsg .= strUnIdToSave
+        infoMsg .= "`r`n`r`nMouseover colors calibrated and saved with following color codes:`r`n`r`n"
         infoMsg .= strToSave
 
         MsgBox, %infoMsg%
 
 
     }else{
-        MsgBox % "PoE Window is not active. `nRecalibrate of Empty Color didn't work"
+        MsgBox % "PoE Window is not active. `nRecalibrate of UnIdentified / Mouseover calibration didn't work"
     }
 
     hotkeys()
 return
 
-updateMouseoverColor:
+updateIdandEmptyColor:
     Gui, Submit, NoHide
+	Thread, NoTimers, true		;Critical
 
     IfWinExist, ahk_group POEGameGroup
     {
         Rescale()
         WinActivate, ahk_group POEGameGroup
     } else {
-        MsgBox % "PoE Window does not exist. `nMouseover calibration didn't work"
+        MsgBox % "PoE Window does not exist. `nId / Empty Slot calibration didn't work"
         Return
     }
 
@@ -7814,55 +7867,79 @@ updateMouseoverColor:
         ;Now we need to get the user input for every grid element if its empty or not
 
         ;First inform the user about the procedure
-        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Mouseover colors.`r`n`r`n"
-        infoMsg .= "  -> Make sure your whole inventory is filled with currency`r`n"
+        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Identified and Empty Slot colors.`r`n`r`n"
+        infoMsg .= "  -> Make sure only the very first slot has 1x1 Identified item (a wisdom scroll works perfect)`r`n"
+        infoMsg .= "  -> Clear all other items from inventory`r`n"
         infoMsg .= "  -> Make sure your inventory is open`r`n`r`n"
         infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
 
         MsgBox, 1,, %infoMsg%
         IfMsgBox, Cancel
         {
-            MsgBox Canceled the Mouseover calibration
+            MsgBox Canceled the Id / Empty Slot calibration
             return
         }
 
-        varMouseoverColor := []
+        varIdColor := []
+        varEmptyInvSlotColor := []
         WinActivate, ahk_group POEGameGroup
 
-        ;Loop through the whole grid, overlay the current grid item and display a box with two buttons "Empty" and "Occupied"
-        ; I couldn't find a fast way to draw an overlay, doing at the moment with manual , might lead to problem if the user doesnt understand
-        ; If the user clicks "Empty" save the pixelcolor and add it to the array of empty inv slot colors
+		BlockInput, On
+        ;Loop through the whole grid, and add unknown colors to the lists
         For c, GridX in InventoryGridX	{
             For r, GridY in InventoryGridY
             {
 				Grid := RandClick(GridX, GridY)
-				MouseMove, Grid.X, Grid.Y
+				++slotNum
+				If (slotNum!=1)
+				{
+					SwiftClick(Grid.X, Grid.Y)
+					Sleep, 60
+				}
+				MouseMove, (A_ScreenWidth / 2), (A_ScreenHeight / 2)
 				Sleep, 60
                 pixelgetcolor, PointColor, GridX, GridY
 
-                if(indexOf(PointColor, varMouseoverColor)){
-                    ;We have this empty color already, skip this slot
-                    continue
-                }else{
-                    ;Assume that the whole inventory is empty and we just add the color to the array
-                    varMouseoverColor.Push(PointColor)
+                if !(indexOf(PointColor, varIdColor)){
+                    ;We dont have this UnId color already
+                    varIdColor.Push(PointColor)
                 }
+
+				SwiftClick(Grid.X, Grid.Y)
+				Sleep, 60
+				MouseMove, (A_ScreenWidth / 2), (A_ScreenHeight / 2)
+				Sleep, 60
+                pixelgetcolor, PointColor, GridX, GridY
+
+                if !(indexOf(PointColor, varEmptyInvSlotColor)){
+                    ;We dont have this Mouseover color already
+                    varEmptyInvSlotColor.Push(PointColor)
+                }
+				If (slotNum=60){
+					SwiftClick(Grid.X, Grid.Y)
+				Sleep, 60
+				} 
             }
         }
+		BlockInput, Off
 
-        strToSave := arrToStr(varMouseoverColor)
+        strToSave := arrToStr(varEmptyInvSlotColor)
+        strIdToSave := arrToStr(varIdColor)
 
-        IniWrite, %strToSave%, settings.ini, Inventory Colors, MouseoverColor
+        IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
+        IniWrite, %strIdToSave%, settings.ini, Inventory Colors, IdColor
         readFromFile()
 
-        infoMsg := "Mouseover colors calibrated and saved with following color codes:`r`n`r`n"
+        infoMsg := "Identified colors calibrated and saved with following color codes:`r`n`r`n"
+        infoMsg .= strIdToSave
+        infoMsg .= "`r`n`r`nEmpty Slot colors calibrated and saved with following color codes:`r`n`r`n"
         infoMsg .= strToSave
 
         MsgBox, %infoMsg%
 
 
     }else{
-        MsgBox % "PoE Window is not active. `nRecalibrate of Mouseover Color didn't work"
+        MsgBox % "PoE Window is not active. `nRecalibrate of Id / Empty Slot Color didn't work"
     }
 
     hotkeys()

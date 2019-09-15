@@ -1,6 +1,46 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .05.08 September/15/2019
+--------------------------------------------------------------------------------
+**Patch Requires Recalibration of Inventory**
+
+Returned the Id/Vend/Stash to checking for Unidentified and Identified colors
+    This should speed up the script drastically when dealing with inventory
+    The most times an item should be clipped is twice
+        Will eventually get this down to once by using Prop.Width and Prop.Height
+
+Rewrote the Inventory calibration section
+    It now samples two colors per Calibration
+        Identified items and Empty slots
+        UnIdentified items and Mouseover color
+    This now requires much less setup from the User
+    Now you only need ONE unid or red item, and ONE identified item 
+        Any item that has a red background can be used for UnId
+        Gems with too high requirements are useful for this (they have red backgrnd)
+    Place the single item in the first slot of an empty inventory to calibrate
+    Requires 1x1 items (An item which is only one slot wide and high)
+    Input is blocked while running calibration for these
+
+Added new function to compare a hex value to an array of hex values
+    indexOfHex(hexVal, hexArr, fromIndex, variance)
+    default is variance of 2
+
+Reclip items after they become identified.
+
+Adjusted delays in SwiftClick, ShiftClick and CtrlClick by +15ms
+    allow the button to register being released
+    most delays are standardized now
+
+Adjusted default values for INI read of Chat and Stash hotkeys prefix
+    Now properly loads blank values when fresh install
+
+Adjusted ItemSort to add delay before resampling Unique items
+    Makes sure that the item has a chance to leave inventory
+    This now works as intended, if not transfered it attempts next tab
+        Tab Priority:
+        Collection tab > Unique Ring Tab (if ring) > Unique Dump tab
+
 Version .05.07 September/14/2019
 --------------------------------------------------------------------------------
 forgot to fix overlap on the calibration section
