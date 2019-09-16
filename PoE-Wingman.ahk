@@ -1554,8 +1554,7 @@ LootScan(){
 				If (ErrorLevel = 0){
 					Pressed := GetKeyState(hotkeyLootScan)
 					If !(Pressed)
-						Break
-					Sleep, -1
+						Break 2
 					SwiftClick(ScanPx, ScanPy)
 					}
 				Else If (ErrorLevel = 1)
@@ -1925,11 +1924,11 @@ MoveStash(Tab){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SwiftClick(x, y){
 		MouseMove, x, y	
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Click, Down x, y }
 		Sleep, 60*Latency
 		Send {Click, Up x, y }
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 	return
 	}
 
@@ -1938,11 +1937,11 @@ SwiftClick(x, y){
 RightClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Click, Down x, y, Right}
 		Sleep, 60*Latency
 		Send {Click, Up x, y, Right}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -1952,15 +1951,15 @@ RightClick(x, y){
 ShiftClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Shift Down}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Click, Down, x, y}
 		Sleep, 60*Latency
 		Send {Click, Up, x, y}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Shift Up}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -1970,7 +1969,7 @@ ShiftClick(x, y){
 CtrlClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Send {Ctrl Down}
 		Sleep, 45*Latency
 		Send {Click, Down, x, y}
@@ -1978,7 +1977,7 @@ CtrlClick(x, y){
 		Send {Click, Up, x, y}
 		Sleep, 30*Latency
 		Send {Ctrl Up}
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -1989,7 +1988,7 @@ WisdomScroll(x, y){
 		BlockInput, MouseMove
 		;Sleep, 15*Latency
 		MouseMove %WisdomScrollX%, %WisdomScrollY%
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		Click, Down, Right, 1
 		Sleep, 60*Latency
 		Click, Up, Right, 1
@@ -1999,7 +1998,7 @@ WisdomScroll(x, y){
 		Click, Down, Left, 1
 		Sleep, 60*Latency
 		Click, Up, Left, 1
-		Sleep, 15*Latency
+		Sleep, 30*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
