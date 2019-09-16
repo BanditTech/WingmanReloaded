@@ -10,7 +10,7 @@ if not A_IsAdmin
 
 #Include %A_ScriptDir%\JSON.ahk
 
-
+Global xpos, ypos, Maxed
 
 OnMessage(0x115, "OnScroll") ; WM_VSCROLL	;necessary for scrollable gui windows (must be added before gui lines)
 OnMessage(0x114, "OnScroll") ; WM_HSCROLL	;necessary for scrollable gui windows (must be added before gui lines)
@@ -21,6 +21,7 @@ for n, exe in POEGameArr {
      GroupAdd, POEGameGroup, ahk_exe %exe%
 }
 
+    
 Global CLFStashTabDefault := 1
 IniRead, CLFStashTabDefault, LootFilter.ini, LootFilter, CLFStashTabDefault , 1
 Global LootFilter := {}
@@ -247,7 +248,7 @@ textListEval=
 For k, v in Eval
     textListEval .= (!textListEval ? "" : "|") v
 
-StashTabs := [ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"]
+StashTabs := [ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
 
 textListStashTabs= 
 For k, v in StashTabs
@@ -260,6 +261,10 @@ Redraw:
 Gui, +Resize -MinimizeBox +0x300000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
 						;+Resize (allows resize of windows)
 Gui, Add, Text, Section y+-5 w1 h1
+
+IniRead, Maxed, LootFilter.ini, Settings, Maxed, 0
+IniRead, xpos, LootFilter.ini, Settings, xpos, first
+IniRead, ypos, LootFilter.ini, Settings, ypos, first
 
 Gui, add, button, gAddGroup xs y+20, Add new Group
 Gui, add, DropDownList, gUpdateStashDefault vCLFStashTabDefault x+10 yp+1 w40, %CLFStashTabDefault%||%textListStashTabs%
@@ -342,7 +347,16 @@ Gui, Add, Text, Section x+45 ym+32 w1 h1
 BuildMenu(90,999)
 }
 
-Gui, show, w640 h475 
+if (xpos="first")
+{
+    Gui, show, w640 h475 ; if first run, show gui at default positon
+}
+else
+{
+    Gui, show, w640 h475 x%xpos% y%ypos%
+    If (Maxed)
+        WinMaximize, LootFilter
+}
 Gui,  +LastFound				;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
 GroupAdd, MyGui, % "ahk_id " . WinExist()		;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
 return
@@ -436,6 +450,7 @@ AddGroup:
     ; MsgBox % LootFilterTabs 
     ; for k, v in LootFilterTabs
     ;     MsgBox % "Key:  " k "  Val:  " v 
+    SaveWinPos()
     Gui, Destroy
     GoSub, Redraw
 Return
@@ -490,6 +505,7 @@ Return
 }
 LoadArray:
 LoadArray()
+SaveWinPos()
 Gui, Destroy
 GoSub, Redraw
 return
@@ -564,6 +580,7 @@ LootFilter[GKey][SKey].Delete(AKey . "Eval")
 LootFilter[GKey][SKey].Delete(AKey)
 
 ;MsgBox % LootFilter[GKey][SKey][AKey]
+SaveWinPos()
 Gui, Destroy
 GoSub, Redraw
 Return
@@ -607,6 +624,7 @@ gnumber := buttonstr2
 GKey := "Group" gnumber
 LootFilter.Delete(GKey)
 LootFilterTabs.Delete(GKey)
+SaveWinPos()
 Gui, Destroy
 GoSub, Redraw
 Return
@@ -625,6 +643,7 @@ AKey := SKey . skeyItemsActive
 LootFilter[GKey][SKey][AKey] := "Blank"
 LootFilter[GKey][SKey][AKey . "Eval"] := ">"
 LootFilter[GKey][SKey][AKey . "Min"] := 0
+SaveWinPos()
 Gui, Destroy
 GoSub, Redraw
 Return
@@ -870,7 +889,29 @@ SendMSG(wParam:=0, lParam:=0){
      Return
 }
 
+SaveWinPos()
+{
+    WinGet, Maxed, MinMax, LootFilter.ahk
+    WinGetPos, xpos, ypos
+    IniWrite, %Maxed%, LootFilter.ini, Settings, Maxed
+    If !Maxed
+    {
+        IniWrite, %xpos%, LootFilter.ini, Settings, xpos
+        IniWrite, %ypos%, LootFilter.ini, Settings, ypos
+    }
+Return
+}
+
 GuiEscape:
 GuiClose:
+    WinGet, Maxed, MinMax, LootFilter.ahk
+    WinGetPos, xpos, ypos
+    IniWrite, %Maxed%, LootFilter.ini, Settings, Maxed
+    If !Maxed
+    {
+        IniWrite, %xpos%, LootFilter.ini, Settings, xpos
+        IniWrite, %ypos%, LootFilter.ini, Settings, ypos
+    }
     SendMSG( 7, 0)
 ExitApp
+

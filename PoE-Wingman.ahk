@@ -41,7 +41,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.08
+    Global VersionNumber := .05.09
 
 	Global Null := 0
     
@@ -1067,14 +1067,20 @@
 	Gui, Font, Bold
 	Gui Add, Text, 										x12 	y30, 				Stash Management
 	Gui, Font,
-	Gui, Add, DropDownList, gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  ,   1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabOil Choose%StashTabOil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+
+		DefaultWhisper := [ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+	textList=
+	For k, v in DefaultWhisper
+		textList .= (!textList ? "" : "|") v
+
+	Gui, Add, DropDownList, gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  , %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabOil Choose%StashTabOil% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  %textList%
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% y+14, Oil Tab
@@ -1085,14 +1091,14 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
 
-	Gui, Add, DropDownList, gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui, Add, DropDownList, gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui, Add, DropDownList, gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  %textList%
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x195 y55, Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% y+14, Quality Gem Tab
@@ -1128,15 +1134,15 @@
 	Gui,Add,GroupBox,Section x+10 ys w50 h275											,Tab
 	Gui,Font,
 	Gui,Font,s9,Arial
-	Gui Add, DropDownList, xs+4 ys+20 w40 vstashSuffixTab1 Choose%stashSuffixTab1%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab2 Choose%stashSuffixTab2%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab3 Choose%stashSuffixTab3%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab4 Choose%stashSuffixTab4%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab5 Choose%stashSuffixTab5%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab6 Choose%stashSuffixTab6%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab7 Choose%stashSuffixTab7%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab8 Choose%stashSuffixTab8%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
-	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25
+	Gui Add, DropDownList, xs+4 ys+20 w40 vstashSuffixTab1 Choose%stashSuffixTab1%, %textList%
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab2 Choose%stashSuffixTab2%, %textList%
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab3 Choose%stashSuffixTab3%, %textList%
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab4 Choose%stashSuffixTab4%, %textList%
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab5 Choose%stashSuffixTab5%, %textList%
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab6 Choose%stashSuffixTab6%, %textList%
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab7 Choose%stashSuffixTab7%, %textList%
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
+	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
 
 
 	Gui, Add, Button, gLaunchLootFilter xm y290, Custom Loot Filter
@@ -1919,11 +1925,11 @@ MoveStash(Tab){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SwiftClick(x, y){
 		MouseMove, x, y	
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		Send {Click, Down x, y }
 		Sleep, 60*Latency
 		Send {Click, Up x, y }
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 	return
 	}
 
@@ -1932,11 +1938,11 @@ SwiftClick(x, y){
 RightClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		Send {Click, Down x, y, Right}
 		Sleep, 60*Latency
 		Send {Click, Up x, y, Right}
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -1946,15 +1952,15 @@ RightClick(x, y){
 ShiftClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		Send {Shift Down}
-			Sleep, 30*Latency
+		Sleep, 15*Latency
 		Send {Click, Down, x, y}
 		Sleep, 60*Latency
 		Send {Click, Up, x, y}
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		Send {Shift Up}
-			Sleep, 15*Latency
+		Sleep, 15*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -1964,16 +1970,15 @@ ShiftClick(x, y){
 CtrlClick(x, y){
 		BlockInput, MouseMove
 		MouseMove, x, y
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		Send {Ctrl Down}
 		Sleep, 45*Latency
 		Send {Click, Down, x, y}
 		Sleep, 60*Latency
 		Send {Click, Up, x, y}
-		;Send ^{Click, Up, x, y}
 		Sleep, 30*Latency
 		Send {Ctrl Up}
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -1982,9 +1987,9 @@ CtrlClick(x, y){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 WisdomScroll(x, y){
 		BlockInput, MouseMove
-		Sleep, 30*Latency
+		;Sleep, 15*Latency
 		MouseMove %WisdomScrollX%, %WisdomScrollY%
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		Click, Down, Right, 1
 		Sleep, 60*Latency
 		Click, Up, Right, 1
@@ -1994,7 +1999,7 @@ WisdomScroll(x, y){
 		Click, Down, Left, 1
 		Sleep, 60*Latency
 		Click, Up, Left, 1
-		Sleep, 30*Latency
+		Sleep, 15*Latency
 		BlockInput, MouseMoveOff
 	return
 	}
@@ -2954,6 +2959,12 @@ ParseClip(){
 					{
 						Prop.BreachSplinter := True
 						Prop.SpecialType := "Breach Splinter"
+						Continue
+					}
+					IfInString, A_LoopField, Breachstone
+					{
+						Prop.BreachSplinter := True
+						Prop.SpecialType := "Breachstone"
 						Continue
 					}
 					IfInString, A_LoopField, Sacrifice at
@@ -6192,7 +6203,7 @@ readFromFile(){
     IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
     IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
 
-    IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, %A_Space%
+    IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, Numpad0
     IniRead, stashPrefix2, settings.ini, Stash Hotkeys, stashPrefix2, %A_Space%
     IniRead, stashSuffix1, settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
     IniRead, stashSuffix2, settings.ini, Stash Hotkeys, stashSuffix2, Numpad2
@@ -8800,5 +8811,9 @@ LoadArray()
         LootFilterTabs:={}
 Return
 }
+
+GuiEscape:
+Gui, Cancel
+return
 
 return
