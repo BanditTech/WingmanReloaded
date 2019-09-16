@@ -3,22 +3,18 @@ Patch Notes
 --------------------------------------------------------------------------------
 Version .05.09 September/16/2019
 --------------------------------------------------------------------------------
-Added Numpad0 as default modifier for stash tab hotkeys
-    This will allow typing with the Numpad keys normally
-
-Replaced all the manually assigned Stash tab options with a variable
-    This allowed increasing the # of stash tabs easier
-    Increased the list to 31 tabs, beyond that is unknown how it will behave
+Increased stash list to 31 tabs, beyond that is unknown how it will behave
 
 Custom loot filter GUI now remembers Maximized state and window position
-    You can now maximize the window and edit items, and will refresh maximized
-    You can move around the regular window and it will reopen in same place
-    Does not save position if it is maximized, will use the last saved location
 
 Added Breachstone to parser with flags:
     Prop.BreachSplinter and Prop.SpecialType="Breachstone"
 
-Can now hit escape to close the script GUI window
+Can now hit escape to close any script GUI window
+
+Added Numpad0 as default modifier for stash tab hotkeys
+    This will allow typing with the Numpad keys normally
+    only affects fresh install
 
 Bugfix for Lootvacuum
     will no longer get stuck holding down left mouse button
