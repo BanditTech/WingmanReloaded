@@ -1,6 +1,57 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .05.10 September/20/2019
+--------------------------------------------------------------------------------
+**Patch Requires Calibration of OnMenu**
+    Open either the Atlas or Talent skills panel then calibrate OnMenu
+
+**First Launch will take more time**
+    It will download and condense the PoE.Ninja databases into one file
+    The script is now loading a sizable database into memory compared to before.
+
+Added new Tab to the Config GUI for the Item Parse system
+    option for turning it off
+    option for frequency of the database update
+    option for League name
+    button to update league info
+    Todo GUI:
+        provide new filters for chaos value and exalt value
+        Make new hotkey just for clipping item
+
+New XGraph Library has been installed which allows us to graph the plotpoints
+    this will be part of the next patch.
+    I have already gotten the test script showing working graphs
+
+Changed OnAtlas to OnMenu
+    Since this affects both Atlas and Talent skills panel
+
+Improvements for parser
+    Splits itemname into ItemName and ItemBase
+    Corrupted included in list of props available
+    Encodes the variant for matching skillgems 
+        "GemLevel"/"Quality""corrupted"
+        "21/23c" is 21 level 23 quality corrupted gem
+        anything < lvl 20 with < 15 quality will be matched as "20" version
+            if lvl < 20 & quality > 15 it will be matched as "1/20" version
+    There are other items in the database with variants undone
+        beyond skillgems it doesn't match for variant
+
+Added a new scraper to grab PoE League data
+    This will auto-populate the dropdown list for choosing your league.
+    You only grab the league info one time, then you manually update it.
+        any fresh install will grab this automatically.
+        this is to limit us pinging the PoE servers for data
+
+Added a new scraper to grab PoE ninja chaos value data
+    Items become flagged with Prop.ChaosValue and Prop.ExaltValue
+    Currency and Fragments only have ChaosValue
+    Graphs of information to come!
+
+Parses these PoE.Ninja API: Currency, Fragment, Prophecy, DivinationCard, Map, 
+    Essence, UniqueArmour, UniqueFlask, UniqueWeapon, UniqueAccessory, Beast,
+    UniqueJewel, UniqueMap, SkillGem, Scarab, Oil, Incubator, Resonator, Fossil
+
 Version .05.09 September/16/2019
 --------------------------------------------------------------------------------
 Increased stash list to 31 tabs, beyond that is unknown how it will behave
