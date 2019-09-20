@@ -29,6 +29,7 @@ Changed OnAtlas to OnMenu
 Improvements for parser
     Splits itemname into ItemName and ItemBase
     Corrupted included in list of props available
+    Added GemLevel to list of Stats
     Encodes the variant for matching skillgems 
         "GemLevel"/"Quality""corrupted"
         "21/23c" is 21 level 23 quality corrupted gem
