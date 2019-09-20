@@ -2,6 +2,8 @@
 settings.ini
 error.txt
 GitHub/
+data/Ninja.json
+data/leagues.json
 data/LootFilter.json
 data/LootFilterTabs.json
 data/LootFilter.ini

@@ -1,4 +1,4 @@
-#IfWinActive Path of Exile
+#IfWinActive Path of Exile ;Contains all the pre-setup for the script
     #NoEnv
     #MaxHotkeysPerInterval 99000000
     #HotkeyInterval 99000000
@@ -20,6 +20,33 @@
     FileEncoding , UTF-8
     SendMode Input
     StringCaseSense, On ; Match strings with case.
+	FormatTime, Date_now, A_Now, yyyyMMdd
+	Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
+	IniRead, LastDatabaseParseDate, Settings.ini, Database, LastDatabaseParseDate, 20190913
+	IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Blight
+	IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
+	IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
+	Global Ninja := {}
+	Global apiList := ["Currency"
+		, "Fragment"
+		, "Prophecy"
+		, "DivinationCard"
+		, "Map"
+		, "Essence"
+		, "UniqueArmour"
+		, "UniqueFlask"
+		, "UniqueWeapon"
+		, "UniqueAccessory"
+		, "UniqueJewel"
+		, "UniqueMap"
+		, "SkillGem"
+		, "Scarab"
+		, "Oil"
+		, "Incubator"
+		, "Resonator"
+		, "Fossil"
+		, "Beast"]
+
     ; Create a container for the sub-script
     Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     ; Create Executable group for gameHotkey, IfWinActive
@@ -41,7 +68,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.09
+    Global VersionNumber := .05.10
 
 	Global Null := 0
     
@@ -72,10 +99,11 @@
 	Global Enchantment  := []
 	Global Corruption := []
 	Global WeaponBases, ArmourBases, BeltBases
+	IfNotExist, %A_ScriptDir%\data
+		FileCreateDir, %A_ScriptDir%\data
 	
 	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
 	{
-		FileCreateDir, %A_ScriptDir%\data
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
 		if ErrorLevel{
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "boot_enchantment_mods")
@@ -93,7 +121,6 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\helmet_enchantment_mods.txt
 	{
-		FileCreateDir, %A_ScriptDir%\data
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "helmet_enchantment_mods")
@@ -111,7 +138,6 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\glove_enchantment_mods.txt
 	{
-		FileCreateDir, %A_ScriptDir%\data
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "glove_enchantment_mods")
@@ -129,7 +155,6 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\item_corrupted_mods.txt
 	{
-		FileCreateDir, %A_ScriptDir%\data
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "item_corrupted_mods")
@@ -147,7 +172,6 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\Controller.png
 	{
-		FileCreateDir, %A_ScriptDir%\data
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Controller.png, %A_ScriptDir%\data\Controller.png
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
@@ -159,7 +183,6 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\JSON.ahk
 	{
-		FileCreateDir, %A_ScriptDir%\data
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/JSON.ahk, %A_ScriptDir%\data\JSON.ahk
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "JSON.ahk")
@@ -170,9 +193,20 @@
 			MsgBox % "JSON library installed, ready for next patch!"
 		}
 	}
+	IfNotExist, %A_ScriptDir%\data\XGraph.ahk
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/XGraph.ahk, %A_ScriptDir%\data\XGraph.ahk
+		if ErrorLevel {
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "XGraph.ahk")
+			MsgBox, Error ED02 : There was a problem downloading XGraph.ahk
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "XGraph.ahk")
+			MsgBox % "XGraph library installed, ready for next patch!"
+		}
+	}
 	IfNotExist, %A_ScriptDir%\data\LootFilter.ahk
 	{
-		FileCreateDir, %A_ScriptDir%\data
     	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "LootFilter.ahk")
@@ -184,7 +218,6 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\ArmourBases.json
 	{
-		FileCreateDir, %A_ScriptDir%\data
     	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/ArmourBases.json, %A_ScriptDir%\data\ArmourBases.json
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "ArmourBases.json")
@@ -202,7 +235,6 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\WeaponBases.json
 	{
-		FileCreateDir, %A_ScriptDir%\data
     	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/WeaponBases.json, %A_ScriptDir%\data\WeaponBases.json
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "WeaponBases.json")
@@ -220,7 +252,6 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\BeltBases.json
 	{
-		FileCreateDir, %A_ScriptDir%\data
     	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/BeltBases.json, %A_ScriptDir%\data\BeltBases.json
 		if ErrorLevel {
  			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "BeltBases.json")
@@ -238,6 +269,34 @@
 	}
 	If needReload
 		Reload
+	If YesNinjaDatabase
+	{
+		IfNotExist, %A_ScriptDir%\data\Ninja.json
+		{
+			For k, apiKey in apiList
+				ScrapeNinjaData(apiKey)
+			JSONtext := JSON.Dump(Ninja)
+			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+		}
+		Else
+		{
+			If ((Date_now - LastDatabaseParseDate) >= UpdateDatabaseInterval)
+			{
+				For k, apiKey in apiList
+					ScrapeNinjaData(apiKey)
+				JSONtext := JSON.Dump(Ninja)
+				FileDelete, %A_ScriptDir%\data\Ninja.json
+				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+			}
+			Else
+			{
+				FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
+				Ninja := JSON.Load(JSONtext)
+			}
+		}
+	}
 	; Comment out this line if your script crashes on launch
 	#Include, %A_ScriptDir%\data\JSON.ahk
 
@@ -282,7 +341,7 @@
 		Global YesMapUnid := 1
 		Global YesStashKeys := 1
 		Global OnHideout := False
-		Global OnAtlas := False
+		Global OnMenu := False
 		Global OnChar := False
 		Global OnChat := False
 		Global OnInventory := False
@@ -424,7 +483,7 @@
 	;Failsafe Colors
 		global varOnHideout:=0xB5EFFE
 		global varOnHideoutMin:=0xCDF6FE
-		global varOnAtlas:=0x9CC7D8
+		global varOnMenu:=0x7BB9D6
 		global varOnChar:=0x4F6980
 		global varOnChat:=0x3B6288
 		global varOnInventory:=0x8CC6DD
@@ -590,7 +649,7 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, vMainGuiTabs x1 y1 w620 h465 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller
+	Gui Add, Tab2, vMainGuiTabs x1 y1 w620 h465 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller|Item Parse
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
@@ -917,7 +976,7 @@
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn		y+3				w110, 	OnInventory Color
 	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 			y+3				w110, 	OnStash Color
 	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		y+3				w110, 	OnVendor Color
-	Gui, Add, Button, gupdateOnAtlas vUpdateOnAtlasBtn	 			y+3				w110, 	OnAtlas Color
+	Gui, Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			y+3				w110, 	OnMenu Color
 
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
@@ -1068,9 +1127,9 @@
 	Gui Add, Text, 										x12 	y30, 				Stash Management
 	Gui, Font,
 
-		DefaultWhisper := [ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+	tablistArr := [ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
 	textList=
-	For k, v in DefaultWhisper
+	For k, v in tablistArr
 		textList .= (!textList ? "" : "|") v
 
 	Gui, Add, DropDownList, gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  , %textList%
@@ -1228,7 +1287,34 @@
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+	;#######################################################################################################Chat Tab
+	Gui, Tab, Item Parse
+	Gui, Font, Bold
+	Gui Add, Text, 			Section						x12 	y30, 				Item Parse Settings
+	Gui, Font,
+	IfNotExist, %A_ScriptDir%\data\leagues.json
+	{
+		UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+	}
+	FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+	LeagueIndex := JSON.Load(JSONtext)
+	textList= 
+	For K, V in LeagueIndex
+		textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
+	Gui, Add, Checkbox, vYesNinjaDatabase xs+5 y+15 Checked%YesNinjaDatabase%, Enable PoE.Ninja Database?
+		YesNinjaDatabase_TT:="Disable to remove this function"
+	Gui, Add, DropDownList, vUpdateDatabaseInterval x+5 yp-3 w50 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
+		UpdateDatabaseInterval_TT:="How many days between database updates?"
+	Gui, Add, DropDownList, vselectedLeague x+5 , %selectedLeague%||%textList%
+		selectedLeague_TT:="Which league are you playing on?"
+	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Update leagues
+		UpdateLeaguesBtn_TT:="Use this button when there is a new league"
+
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 	;#######################################################################################################Chat Tab
 	Gui, Tab, Chat
 	Gui Add, Checkbox, gUpdateExtra	vEnableChatHotkeys Checked%EnableChatHotkeys%     xm ym+20                    	          	, Enable chat Hotkeys?
@@ -1435,8 +1521,8 @@
 		global vX_OnHideout:=1178
 		global vY_OnHideout:=930
 		global vY_OnHideoutMin:=1053
-		global vX_OnAtlas:=960
-		global vY_OnAtlas:=32
+		global vX_OnMenu:=960
+		global vY_OnMenu:=54
 		global vX_OnChar:=41
 		global vY_OnChar:=915
 		global vX_OnChat:=41
@@ -2094,9 +2180,9 @@ Rescale(){
 				global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
 				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
 				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
-				;Status Check OnAtlas
-				global vX_OnAtlas:=X + Round(A_ScreenWidth / 2)
-				global vY_OnAtlas:=Y + Round(A_ScreenHeight / (1080 / 32))
+				;Status Check OnMenu
+				global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+				global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
 				;Status Check OnChar
 				global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
 				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -2169,9 +2255,9 @@ Rescale(){
 				global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
 				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
 				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
-				;Status Check OnAtlas
-				global vX_OnAtlas:=X + Round(A_ScreenWidth / 2)
-				global vY_OnAtlas:=Y + Round(A_ScreenHeight / (1080 / 32))
+				;Status Check OnMenu
+				global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+				global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
 				;Status Check OnChar
 				global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
 				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
@@ -2595,6 +2681,7 @@ ClipItem(x, y){
 ParseClip(){
 		;Reset Variables
 		NameIsDone := False
+		IgnoreDash := False
 		itemLevelIsDone := 0
 		captureLines := 0
 		countCorruption := 0
@@ -2647,9 +2734,11 @@ ParseClip(){
 			, Veiled : False
 			, Prophecy : False
 			, Oil : False
+			, Corrupted : False
 			, DoubleCorrupted : False
 			, Width : 1
 			, Height : 1
+			, Variant : 0
 			, ItemLevel : 0}
 
 		Stats := { PhysLo : False
@@ -2668,6 +2757,7 @@ ParseClip(){
 			, Q20Dps : False
 			, ItemClass : ""
 			, Quality : 0
+			, GemLevel : 0
 			, Stack : 0
 			, StackMax : 0
 			, RequiredLevel : 0
@@ -2862,7 +2952,18 @@ ParseClip(){
 			{
 				If A_LoopField = --------
 				{
-					NameIsDone := True
+					If !IgnoreDash
+						NameIsDone := True
+					Else
+					{
+						IgnoreDash := False
+						Continue
+					}
+				}
+				Else if A_LoopField = You cannot use this item. Its stats will be ignored
+				{
+					IgnoreDash := True
+					Continue
 				}
 				Else
 				{
@@ -3259,6 +3360,13 @@ ParseClip(){
 				StringSplit, ItemLevelArray, A_LoopField, %A_Space%
 				Prop.ItemLevel := ItemLevelArray3
 				itemLevelIsDone := 1
+				Continue
+			}
+			; Get Gem Level
+			IfInString, A_LoopField, Level:
+			{
+				StringSplit, GemLevelArray, A_LoopField, %A_Space%
+				Stats.GemLevel := GemLevelArray2
 				Continue
 			}
 			;Capture Implicit and Affixes after the Item Level
@@ -4227,6 +4335,38 @@ ParseClip(){
 
 		Affix.PseudoTotalEleResist := Affix.PseudoColdResist + Affix.PseudoFireResist + Affix.PseudoLightningResist
 		Affix.PseudoTotalResist := Affix.PseudoTotalEleResist + Affix.PseudoChaosResist
+		
+		nameArr := StrSplit(Prop.ItemName, "`n")
+		Prop.ItemName := nameArr[1]
+		Prop.ItemBase := nameArr[2]
+
+		If Prop.RarityGem
+		{
+			If Stats.GemLevel >= 20
+			{
+				variantStr := Stats.GemLevel
+				If Stats.Quality >= 20 && Stats.Quality < 23
+					variantStr .= "/20"
+				Else If Stats.Quality = 23
+					variantStr .= "/23"
+				If Prop.Corrupted 
+					variantStr .= "c"
+				Prop.Variant := variantStr
+			}
+			Else If Stats.GemLevel < 20 && Stats.Quality >= 15
+			{
+				variantStr := "1/20"
+				Prop.Variant := variantStr
+			}
+			Else If Stats.GemLevel < 20 && Stats.Quality < 15
+			{
+				variantStr := "20"
+				Prop.Variant := variantStr
+			}
+		}
+		MatchNinjaPrice()
+		If InStr(Prop.ItemName, "Chaos Orb")
+			Prop.ChaosValue := 1
 		Return
 	}
 
@@ -4358,6 +4498,45 @@ MatchLootFilter()
 	}
 Return False
 }
+; Flag item with chaos value from PoE-Ninja
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MatchNinjaPrice()
+{
+	For TKey, typeArr in Ninja
+	{
+		If TKey != "currencyDetails"
+		{
+			For index, indVal in typeArr
+			{
+				If Prop.RarityGem
+				{
+					If (Prop.ItemName = Ninja[TKey][index]["name"] && Prop.Variant = Ninja[TKey][index]["variant"])
+					{
+						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+						Return True
+					}
+				}
+				Else If (Prop.IsMap)
+				{
+					If InStr(Prop.ItemName, Ninja[TKey][index]["name"])
+					{
+						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+						Return True
+					}
+				}
+				Else If (Prop.ItemName = Ninja[TKey][index]["name"])
+				{
+					Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+					Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+					Return True
+				}
+			}
+		}
+	}
+Return False
+}
 ; Grab Reply whisper recipient
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GrabRecipientName(){
@@ -4397,7 +4576,7 @@ CoordAndDebug(){
 				GuiStatus()
 				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
 				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
-				TT := TT . "  Divination Trade: " . OnDiv . "  Atlas Open: " . OnAtlas . "`n`n"
+				TT := TT . "  Divination Trade: " . OnDiv . "  Menu Open: " . OnMenu . "`n`n"
 				ClipItem(x, y)
 				If (Prop.IsItem) {
 					TT := TT . "Item Properties:`n`n"
@@ -4722,11 +4901,11 @@ GuiStatus(Fetch:=""){
 		} Else {
 		OnChat:=False
 		}
-	pixelgetcolor, POnAtlas, vX_OnAtlas, vY_OnAtlas
-	If (POnAtlas=varOnAtlas) {
-		OnAtlas:=True
+	pixelgetcolor, POnMenu, vX_OnMenu, vY_OnMenu
+	If (POnMenu=varOnMenu) {
+		OnMenu:=True
 		} Else {
-		OnAtlas:=False
+		OnMenu:=False
 		}
 	pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
 	If (POnInventory=varOnInventory) {
@@ -4761,7 +4940,7 @@ MainAttackCommand(){
 	MainAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnAtlas)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerMainAttack)
@@ -4784,7 +4963,7 @@ SecondaryAttackCommand(){
 	SecondaryAttackCommand:
 	if (AutoFlask || AutoQuicksilver) {
 		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnAtlas)
+		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
 			return
 		If AutoFlask {
 			TriggerFlask(TriggerSecondaryAttack)
@@ -4857,7 +5036,7 @@ TGameTick(){
     {
         ; Check what status is your character in the game
         GuiStatus()
-        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnAtlas) { 
+        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnMenu) { 
             ;GuiUpdate()																									   
             Exit
         }
@@ -5376,9 +5555,9 @@ TriggerUtility(Utility){
 	GuiStatus("OnChar")
 	GuiStatus("OnChat")
 	GuiStatus("OnInventory")
-	GuiStatus("OnAtlas")
+	GuiStatus("OnMenu")
 	
-	if (OnHideout || !OnChar || OnChat || OnInventory || OnAtlas) { ;in Hideout, not on char,atlas open, chat open, or open inventory
+	if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char,atlas open, chat open, or open inventory
 		GuiUpdate()
 		Exit
 	}
@@ -5488,6 +5667,143 @@ CompareHex(c1, c2, vary:=1) {
 
     return rdiff <= vary && gdiff <= vary && bdiff <= vary
 	}
+; Parse raw data from PoE-Ninja API and extract Chaos Value || Chaose Equivalent
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ScrapeNinjaData(apiString)
+{
+    If InStr(apiString, "Fragment")
+    {
+        UrlDownloadToFile, https://poe.ninja/api/Data/Get%apiString%Overview?league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+        If ErrorLevel{
+            MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+        }
+        Else If (ErrorLevel=0){
+            FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+            holder := JSON.Load(JSONtext)
+            For obj, objlist in holder
+            {
+                If (obj != "currencyDetails") 
+                {
+                    for index, indexArr in objlist
+                    { ; This will extract the information and standardize the chaos value to one variable.
+                        grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
+                        grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
+                        grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
+                        grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
+                        grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
+                        grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
+                        grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
+                        grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
+                        holder[obj][index] := {"name":grabName
+                            ,"chaosValue":grabChaosVal
+                            ,"pay":grabPayVal
+                            ,"receive":grabRecVal
+                            ,"paySparkLine":grabPaySparklineVal
+                            ,"receiveSparkLine":grabRecSparklineVal
+                            ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
+                            ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+                        Ninja[apiString] := holder[obj]
+                    }
+                }
+            }
+            FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+        }
+        Return
+    }
+    Else If InStr(apiString, "Currency")
+    {
+        UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+        if ErrorLevel{
+            MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+        }
+        Else if (ErrorLevel=0){
+            FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+            holder := JSON.Load(JSONtext)
+            For obj, objlist in holder
+            {
+                If (obj != "currencyDetails") 
+                {
+                    for index, indexArr in objlist
+                    {
+                        grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
+                        grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
+                        grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
+                        grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
+                        grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
+                        grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
+                        grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
+                        grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
+                        holder[obj][index] := {"name":grabName
+                            ,"chaosValue":grabChaosVal
+                            ,"pay":grabPayVal
+                            ,"receive":grabRecVal
+                            ,"paySparkLine":grabPaySparklineVal
+                            ,"receiveSparkLine":grabRecSparklineVal
+                            ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
+                            ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+                        Ninja[apiString] := holder[obj]
+                    }
+                }
+                Else 
+                {
+                    for index, indexArr in objlist
+                    {
+                        grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
+                        grabPoeTrdId := (holder[obj][index]["poeTradeId"] ? holder[obj][index]["poeTradeId"] : False)
+                        grabId := (holder[obj][index]["id"] ? holder[obj][index]["id"] : False)
+
+                        holder[obj][index] := {"name":grabName
+                            ,"poeTradeId":grabPoeTrdId
+                            ,"id":grabId}
+
+                        Ninja["currencyDetails"] := holder[obj]
+                    }
+                }
+            }
+            FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+        }
+        Return
+    }
+    Else
+    {
+        UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+        if ErrorLevel{
+            MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+        }
+        Else if (ErrorLevel=0){
+            FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+            holder := JSON.Load(JSONtext)
+            For obj, objlist in holder
+            {
+                If (obj != "currencyDetails")
+                {
+                    for index, indexArr in objlist
+                    {
+                        grabSparklineVal := (holder[obj][index]["sparkline"] ? holder[obj][index]["sparkline"] : False)
+                        grabLowSparklineVal := (holder[obj][index]["lowConfidenceSparkline"] ? holder[obj][index]["lowConfidenceSparkline"] : False)
+                        grabExaltVal := (holder[obj][index]["exaltedValue"] ? holder[obj][index]["exaltedValue"] : False)
+                        grabChaosVal := (holder[obj][index]["chaosValue"] ? holder[obj][index]["chaosValue"] : False)
+                        grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
+                        grabLinks := (holder[obj][index]["links"] ? holder[obj][index]["links"] : False)
+                        grabVariant := (holder[obj][index]["variant"] ? holder[obj][index]["variant"] : False)
+                        
+                        holder[obj][index] := {"name":grabName
+                            ,"chaosValue":grabChaosVal
+                            ,"exaltedValue":grabExaltVal
+                            ,"sparkline":grabSparklineVal
+                            ,"lowConfidenceSparkline":grabLowSparklineVal
+                            ,"links":grabLinks
+                            ,"variant":grabVariant}
+                    }
+                }
+            }
+            Ninja[apiString] := holder[obj]
+        }
+        FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+    }
+        ;MsgBox % "Download worked for Ninja Database  -  There are " Ninja.Count() " Entries in the array
+    Return
+}
 ; Register Chat Hokeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RegisterHotkeys() {
@@ -5862,11 +6178,11 @@ readFromFile(){
     varMouseoverColor := StrSplit(varMouseoverColor, ",")
     varUnIdColor := StrSplit(varUnIdColor, ",")
     varIdColor := StrSplit(varIdColor, ",")
-    
+
     ;Failsafe Colors
     IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
     IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
-    IniRead, varOnAtlas, settings.ini, Failsafe Colors, OnAtlas, 0x9CC7D8
+    IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0x7BB9D6
     IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
     IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
     IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
@@ -6246,6 +6562,12 @@ readFromFile(){
 	IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
 	IniRead, YesController, settings.ini, Controller, YesController, 0
 	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+
+	;settings for the Ninja Database
+	IniRead, LastDatabaseParseDate, Settings.ini, Database, LastDatabaseParseDate, 20190913
+	IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Blight
+	IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
+	IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
 
 	RegisterHotkeys()
     checkActiveType()
@@ -6676,6 +6998,12 @@ updateEverything:
 	IniWrite, %YesMovementKeys%, settings.ini, Controller, YesMovementKeys
 	IniWrite, %YesController%, settings.ini, Controller, YesController
 	IniWrite, %JoystickNumber%, settings.ini, Controller, JoystickNumber
+
+	;Settings for Ninja parse
+	IniWrite, %LastDatabaseParseDate%, Settings.ini, Database, LastDatabaseParseDate
+	IniWrite, %selectedLeague%, Settings.ini, Database, selectedLeague
+	IniWrite, %UpdateDatabaseInterval%, Settings.ini, Database, UpdateDatabaseInterval
+	IniWrite, %YesNinjaDatabase%, Settings.ini, Database, YesNinjaDatabase
 
     readFromFile()
 	If (YesPersistantToggle)
@@ -7716,7 +8044,7 @@ updateOnInventory:
     
 return
 
-updateOnAtlas:
+updateOnMenu:
     Gui, Submit, NoHide
     
     IfWinExist, ahk_group POEGameGroup
@@ -7724,18 +8052,18 @@ updateOnAtlas:
         Rescale()
         WinActivate, ahk_group POEGameGroup
     } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnAtlas didn't work"
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnMenu didn't work"
         Return
     }
     
     
     if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnAtlas, vX_OnAtlas, vY_OnAtlas
-        IniWrite, %varOnAtlas%, settings.ini, Failsafe Colors, OnAtlas
+        pixelgetcolor, varOnMenu, vX_OnMenu, vY_OnMenu
+        IniWrite, %varOnMenu%, settings.ini, Failsafe Colors, OnMenu
         readFromFile()
-        MsgBox % "OnAtlas recalibrated!`nTook color hex: " . varOnAtlas . " `nAt coords x: " . vX_OnAtlas . " and y: " . vY_OnAtlas
+        MsgBox % "OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . vX_OnMenu . " and y: " . vY_OnMenu
     }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnAtlas didn't work"
+    MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
     
     hotkeys()
     
@@ -8301,6 +8629,16 @@ Return
 
 LaunchHelp:
     Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
+Return
+
+UpdateLeagues:
+	UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+	FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+	LeagueIndex := JSON.Load(JSONtext)
+	textList= 
+	For K, V in LeagueIndex
+		textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+	GuiControl, , selectedLeague, |%selectedLeague%||%textList%
 Return
 
 LaunchWiki:
