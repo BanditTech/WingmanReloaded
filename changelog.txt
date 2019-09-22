@@ -1,6 +1,37 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .05.11 September/22/2019
+--------------------------------------------------------------------------------
+Added Ignored Inventory slots menu, open in the inventory tab
+    Check any box which you want the inventory scanner to skip
+    Wisdom and Portal scroll locations are automatically skipped already
+        The slots they occupy will not appear to be checked, but they are skipped
+
+Reverted the ItemScan to only check for Empty Slots
+    Reverted the need to check for variation from the sample colors 
+
+Added BlackList array to remember which slots are occupied
+    Using the IgnoredSlot array we create the BlackList each time we run ItemSort
+    Each item is added to the blacklist using its Width and Height
+        Report any item types that doesnt have an assigned Width x Height
+    This should limit items to get clipped only ONCE
+    The speed of the scanner is now the fastest it can get!
+
+Calibration for Inventory Colors has been Reverted
+    Mouseover, ID, and UnID are no longer required.
+    Simply provide an empty inventory to calibrate!
+        has been moved back into Gamestate Calibration section
+
+Added Array_DeepClone library for cloning an array multiple arrays deep
+    Ty to GeekDude for the code, only using part of the lib
+    https://autohotkey.com/board/topic/85201-array-deep-copy-treeview-viewer-and-more/
+
+Fixed sleep between sending Unique to stash and Checking if it is gone
+    Was still moving to secondary tabs even when Item was gone
+
+Next Patch will include Graphs for 6.0 with new interface for the item parse
+
 Version .05.10 September/20/2019
 --------------------------------------------------------------------------------
 **Patch Requires Calibration of OnMenu**

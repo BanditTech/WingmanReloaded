@@ -68,7 +68,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.10
+    Global VersionNumber := .05.11
 
 	Global Null := 0
     
@@ -102,6 +102,17 @@
 	IfNotExist, %A_ScriptDir%\data
 		FileCreateDir, %A_ScriptDir%\data
 	
+	IfNotExist, %A_ScriptDir%\data\InventorySlots.png
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/InventorySlots.png, %A_ScriptDir%\data\InventorySlots.png
+		if ErrorLevel{
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "InventorySlots.png")
+			MsgBox, Error ED02 : There was a problem downloading InventorySlots.png
+		}
+		Else if (ErrorLevel=0){
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "InventorySlots.png")
+		}
+	}
 	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
@@ -320,6 +331,8 @@
 		global Radiobox5Mana10
 		Global LootFilter := {}
 		Global LootFilterTabs := {}
+		Global IgnoredSlot := {}
+		Global BlackList := {}
 
     ;General
 		Global Latency := 1
@@ -620,6 +633,7 @@
 		Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
 		Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
 		Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
+
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	readFromFile()
@@ -971,6 +985,7 @@
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 		y+3					w110, 	OnChar Color
 	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 		y+3					w110, 	OnChat Color
 	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			y+3					w110, 	OnDiv Color
+	Gui, Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn y+3			 	w110, 	Empty Inventory
 
 	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+20		w110, 	OnHideoutMin Color
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn		y+3				w110, 	OnInventory Color
@@ -978,11 +993,6 @@
 	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		y+3				w110, 	OnVendor Color
 	Gui, Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			y+3				w110, 	OnMenu Color
 
-	Gui, Font, Bold
-	Gui, Add, Text, 						section				xs 	y+10, 				Inventory Calibration:
-	Gui, Font
-	Gui, Add, Button, gupdateIdandEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20 	w110, 	Id / Empty
-	Gui, Add, Button, gupdateUnIdandMOColor vupdateUnIdandMOColorBtn	 	x+8 ys+20	w110, 	UnId / Mouseover
 	Gui, Font, Bold
 	Gui, Add, Text, 				section						xs 	y+10, 				AutoDetonate Calibration:
 	Gui, Font
@@ -1205,6 +1215,7 @@
 
 
 	Gui, Add, Button, gLaunchLootFilter xm y290, Custom Loot Filter
+	Gui, Add, Button, gBuildIgnoreMenu x+10, Assign Ignored Slots
 	Gui, Font, Bold
 	Gui Add, Text, 										xm 	y330, 				ID/Vend/Stash Options:
 	Gui, Font,
@@ -1569,6 +1580,23 @@
 		global vY_StashTabSize := 22
 		}
 
+	;Ignore Slot setup
+		IfNotExist, %A_ScriptDir%\data\IgnoredSlot.json
+		{
+			For C, GridX in InventoryGridX
+			{
+				IgnoredSlot[C] := {}
+				For R, GridY in InventoryGridY
+				{
+					IgnoredSlot[C][R] := False
+				}
+			}
+			SaveIgnoreArray()
+		} 
+		Else
+			LoadIgnoreArray()
+
+
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1652,323 +1680,325 @@ LootScan(){
 
 ; Sort inventory and determine action
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ItemSort(){
-	ItemSortCommand:
-		Thread, NoTimers, true		;Critical
-		CurrentTab:=0
-		MouseGetPos xx, yy
-		IfWinActive, ahk_group POEGameGroup
-		{
-			If (!OnChar) { ;Need to be on Character 
-				MsgBox %  "You do not appear to be in game."
-				Return
+ItemSortCommand:
+	Thread, NoTimers, true		;Critical
+	BlackList := Array_DeepClone(IgnoredSlot)
+	CurrentTab:=0
+	MouseGetPos xx, yy
+	IfWinActive, ahk_group POEGameGroup
+	{
+		If (!OnChar) { ;Need to be on Character 
+			MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
+			Return
+			} Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
+			Send {%hotkeyInventory%}
+			Return
 			}
-			Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
-				Send {%hotkeyInventory%}
-				Return
-			}
-			If RunningToggle  ; This means an underlying thread is already running the loop below.
+		If RunningToggle  ; This means an underlying thread is already running the loop below.
 			{
-				RunningToggle := False  ; Signal that thread's loop to stop.
-				return  ; End this thread so that the one underneath will resume and see the change made by the line above.
+			RunningToggle := False  ; Signal that thread's loop to stop.
+			return  ; End this thread so that the one underneath will resume and see the change made by the line above.
 			}
-			RunningToggle := True
-			GuiStatus()
-			
+		RunningToggle := True
+		GuiStatus()
+		
 
-			For C, GridX in InventoryGridX
+		For C, GridX in InventoryGridX
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			For R, GridY in InventoryGridY
 			{
 				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 					Break
-				For R, GridY in InventoryGridY
+				If BlackList[C][R]
+					Continue
+				Grid := RandClick(GridX, GridY)
+				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+				{   
+					;Unmark the below lines to check if it is going into scroll area during run
+					;MsgBox, Hit Scroll
+					;Return
+					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+				} 
+				pixelgetcolor, PointColor, GridX, GridY
+				
+				If indexOf(PointColor, varEmptyInvSlotColor) {
+					;Seems to be an empty slot, no need to clip item info
+					Continue
+				}
+				
+				; If !( indexOfHex(PointColor, varIdColor) || indexOfHex(PointColor, varUnIdColor) ) {
+				; 	;Seems to not match with either identified or UnIdentified color arrays
+				; 	Continue
+				; }
+				
+				ClipItem(Grid.X,Grid.Y)
+				addToBlacklist(C, R)
+				If (OnDiv && YesDiv) 
 				{
-					If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-						Break
-					Grid := RandClick(GridX, GridY)
-					If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-					{   
-						;Unmark the below lines to check if it is going into scroll area during run
-						;MsgBox, Hit Scroll
-						;Return
-						Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-					} 
-					pixelgetcolor, PointColor, GridX, GridY
-					
-					If (indexOfHex(PointColor, varEmptyInvSlotColor)) || (indexOfHex(PointColor, varMouseoverColor)) {
-						;Seems to be an empty slot or item already moused over, do not need to clip item info
-						Continue
+					If (Prop.RarityDivination && (Stats.Stack = Stats.StackMax)){
+						CtrlClick(Grid.X,Grid.Y)
+						RandomSleep(150,200)
+						SwiftClick(vX_OnDiv,vY_DivTrade)
+						CtrlClick(vX_OnDiv,vY_DivItem)
 					}
-					
-					If !( indexOfHex(PointColor, varIdColor) || indexOfHex(PointColor, varUnIdColor) ) {
-						;Seems to not match with either identified or UnIdentified color arrays
-						Continue
-					}
-					
-					ClipItem(Grid.X,Grid.Y)
-					If (OnDiv && YesDiv) 
+					Continue
+				}
+				If (!Prop.Identified&&YesIdentify)
+				{
+					If (Prop.IsMap&&!YesMapUnid)
 					{
-						If (Prop.RarityDivination && (Stats.Stack = Stats.StackMax)){
-							CtrlClick(Grid.X,Grid.Y)
-							RandomSleep(150,200)
-							SwiftClick(vX_OnDiv,vY_DivTrade)
-							CtrlClick(vX_OnDiv,vY_DivItem)
-						}
-						Continue
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
 					}
-					If (!Prop.Identified&&YesIdentify)
+					Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
 					{
-						If (Prop.IsMap&&!YesMapUnid)
-						{
-							WisdomScroll(Grid.X,Grid.Y)
-							ClipItem(Grid.X,Grid.Y)
-						}
-						Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
-						{
-							WisdomScroll(Grid.X,Grid.Y)
-							ClipItem(Grid.X,Grid.Y)
-						}
-						Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
-						{
-							WisdomScroll(Grid.X,Grid.Y)
-							ClipItem(Grid.X,Grid.Y)
-						}
-						Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
-						{
-							WisdomScroll(Grid.X,Grid.Y)
-							ClipItem(Grid.X,Grid.Y)
-						}
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
 					}
-					If (OnStash&&YesStash) 
+					Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
 					{
-						If (sendstash:=MatchLootFilter())
-						{
-							MoveStash(sendstash)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
-						{
-							MoveStash(StashTabCurrency)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.IsMap&&StashTabYesMap)
-						{
-							MoveStash(StashTabMap)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.BreachSplinter&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.SacrificeFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.MortalFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.GuardianFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.ProphecyFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Offering&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Vessel&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Scarab&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.TimelessSplinter&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.RarityDivination&&StashTabYesDivination)
-						{
-							MoveStash(StashTabDivination)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.RarityUnique&&Prop.Ring)
-						{
-							If (StashTabYesCollection)
-							{
-								MoveStash(StashTabCollection)
-								RandomSleep(30,45)
-								CtrlClick(Grid.X,Grid.Y)
-								Sleep, 30*Latency
-							}
-							If (StashTabYesUniqueRing)
-							{
-								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
-									Continue
-								MoveStash(StashTabUniqueRing)
-								CtrlClick(Grid.X,Grid.Y)
-								Sleep, 30*Latency
-							}
-							If (StashTabYesUniqueDump)
-							{
-								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
-									Continue
-								MoveStash(StashTabUniqueDump)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							Continue
-						}
-						Else If (Prop.RarityUnique)
-						{
-							If (StashTabYesCollection)
-							{
-								MoveStash(StashTabCollection)
-								RandomSleep(30,45)
-								CtrlClick(Grid.X,Grid.Y)
-								Sleep, 30*Latency
-							}
-							If (StashTabYesUniqueDump)
-							{
-								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
-									Continue
-								MoveStash(StashTabUniqueDump)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							Continue
-						}
-						If (Prop.Essence&&StashTabYesEssence)
-						{
-							MoveStash(StashTabEssence)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Fossil&&StashTabYesFossil)
-						{
-							MoveStash(StashTabFossil)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Resonator&&StashTabYesResonator)
-						{
-							MoveStash(StashTabResonator)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-						{
-							MoveStash(StashTabFlaskQuality)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.RarityGem)
-						{
-							If ((Stats.Quality>0)&&StashTabYesGemQuality)
-							{
-								MoveStash(StashTabGemQuality)
-								CtrlClick(Grid.X,Grid.Y)
-								Continue
-							}
-							Else If (StashTabYesGem)
-							{
-								MoveStash(StashTabGem)
-								CtrlClick(Grid.X,Grid.Y)
-								Continue
-							}
-						}
-						If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
-						{
-							MoveStash(StashTabLinked)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Prophecy&&StashTabYesProphecy)
-						{
-							MoveStash(StashTabProphecy)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Oil&&StashTabYesOil)
-						{
-							MoveStash(StashTabOil)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
 					}
-					If (OnVendor&&YesVendor)
+					Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
 					{
-						If MatchLootFilter()
-							Continue
-						If (Prop.RarityCurrency)
-							Continue
-						If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
-							Continue
-						If ( Prop.SpecialType="" )
-						{
-							Sleep, 30*Latency
-							CtrlClick(Grid.X,Grid.Y)
-							Sleep, 10*Latency
-							Continue
-						}
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
 					}
 				}
-				MouseGetPos Checkx, Checky
-				If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-					Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-					Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
-					MouseMove, RX, RY, 0
-					Sleep, 45*Latency
+				If (OnStash&&YesStash) 
+				{
+					If (sendstash:=MatchLootFilter())
+					{
+						MoveStash(sendstash)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
+					{
+						MoveStash(StashTabCurrency)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.IsMap&&StashTabYesMap)
+					{
+						MoveStash(StashTabMap)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.BreachSplinter&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.SacrificeFragment&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.MortalFragment&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.GuardianFragment&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.ProphecyFragment&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.Offering&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.Vessel&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.Scarab&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.TimelessSplinter&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.RarityDivination&&StashTabYesDivination)
+					{
+						MoveStash(StashTabDivination)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.RarityUnique&&Prop.Ring)
+					{
+						If (StashTabYesCollection)
+						{
+							MoveStash(StashTabCollection)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Sleep, 90*Latency
+						}
+						If (StashTabYesUniqueRing)
+						{
+							pixelgetcolor, Pitem, GridX, GridY
+							if !(indexOfHex(Pitem, varMouseoverColor))
+								Continue
+							MoveStash(StashTabUniqueRing)
+							CtrlClick(Grid.X,Grid.Y)
+							Sleep, 90*Latency
+						}
+						If (StashTabYesUniqueDump)
+						{
+							pixelgetcolor, Pitem, GridX, GridY
+							if !(indexOfHex(Pitem, varMouseoverColor))
+								Continue
+							MoveStash(StashTabUniqueDump)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						Continue
+					}
+					Else If (Prop.RarityUnique)
+					{
+						If (StashTabYesCollection)
+						{
+							MoveStash(StashTabCollection)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Sleep, 90*Latency
+						}
+						If (StashTabYesUniqueDump)
+						{
+							pixelgetcolor, Pitem, GridX, GridY
+							if !(indexOfHex(Pitem, varMouseoverColor))
+								Continue
+							MoveStash(StashTabUniqueDump)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						Continue
+					}
+					If (Prop.Essence&&StashTabYesEssence)
+					{
+						MoveStash(StashTabEssence)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.Fossil&&StashTabYesFossil)
+					{
+						MoveStash(StashTabFossil)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.Resonator&&StashTabYesResonator)
+					{
+						MoveStash(StashTabResonator)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
+					{
+						MoveStash(StashTabFlaskQuality)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.RarityGem)
+					{
+						If ((Stats.Quality>0)&&StashTabYesGemQuality)
+						{
+							MoveStash(StashTabGemQuality)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						Else If (StashTabYesGem)
+						{
+							MoveStash(StashTabGem)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+					}
+					If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
+					{
+						MoveStash(StashTabLinked)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.Prophecy&&StashTabYesProphecy)
+					{
+						MoveStash(StashTabProphecy)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					If (Prop.Oil&&StashTabYesOil)
+					{
+						MoveStash(StashTabOil)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+				}
+				If (OnVendor&&YesVendor)
+				{
+					If MatchLootFilter()
+						Continue
+					If (Prop.RarityCurrency)
+						Continue
+					If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
+						Continue
+					If ( Prop.SpecialType="" )
+					{
+						Sleep, 30*Latency
+						CtrlClick(Grid.X,Grid.Y)
+						Sleep, 10*Latency
+						Continue
+					}
 				}
 			}
-			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-			{
-				StockScrolls()
+			MouseGetPos Checkx, Checky
+			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+				MouseMove, RX, RY, 0
+				Sleep, 45*Latency
 			}
 		}
-		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
-		CurrentTab:=0
-		MouseMove, xx, yy, 0
-	Return
+		If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+		{
+			StockScrolls()
+		}
 	}
+	RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+	CurrentTab:=0
+	MouseMove, xx, yy, 0
+Return
+
 
 ; Input any digit and it will move to that Stash tab, only tested up to 25 tabs
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3204,6 +3234,15 @@ ParseClip(){
 					IfInString, A_LoopField, Flask
 					{
 						Prop.Flask := True
+						Prop.Width := 1
+						Prop.Height := 2
+						Continue
+					}
+					IfInString, A_LoopField, Quiver
+					{
+						Prop.Quiver := True
+						Prop.Width := 2
+						Prop.Height := 3
 						Continue
 					}
 					IfInString, A_LoopField, Oil
@@ -4835,7 +4874,7 @@ MsgMonitor(wParam, lParam, msg)
 			}		
 		If (lParam=5){
 			; hotkeyItemSort
-			ItemSort()
+			GoSub, ItemSortCommand
 			return
 			}		
 		}
@@ -8092,7 +8131,7 @@ updateOnStash:
     
 return
 
-updateUnIdandMOColor:
+updateEmptyColor:
     Gui, Submit, NoHide
 	Thread, NoTimers, true		;Critical
 
@@ -8101,7 +8140,7 @@ updateUnIdandMOColor:
         Rescale()
         WinActivate, ahk_group POEGameGroup
     } else {
-        MsgBox % "PoE Window does not exist. `nUnIdentified / Mouseover calibration didn't work"
+        MsgBox % "PoE Window does not exist. `nEmpty Slot calibration didn't work"
         Return
     }
 
@@ -8111,103 +8150,8 @@ updateUnIdandMOColor:
         ;Now we need to get the user input for every grid element if its empty or not
 
         ;First inform the user about the procedure
-        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Unidentified and Mouseover colors.`r`n`r`n"
-        infoMsg .= "  -> Make sure the very first slot has 1x1 red item`r`n"
-        infoMsg .= "  -> Clear all other items from inventory`r`n"
-        infoMsg .= "  -> Make sure your inventory is open`r`n`r`n"
-        infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
-
-        MsgBox, 1,, %infoMsg%
-        IfMsgBox, Cancel
-        {
-            MsgBox Canceled the UnId/Mouseover calibration
-            return
-        }
-
-        varUnIdColor := []
-        varMouseoverColor := []
-        WinActivate, ahk_group POEGameGroup
-
-		BlockInput, On
-        ;Loop through the whole grid, and add unknown colors to the lists
-        For c, GridX in InventoryGridX	{
-            For r, GridY in InventoryGridY
-            {
-				Grid := RandClick(GridX, GridY)
-				++slotNum
-				If (slotNum!=1)
-				{
-					SwiftClick(Grid.X, Grid.Y)
-					Sleep, 60
-				}
-				MouseMove, (A_ScreenWidth / 2), (A_ScreenHeight / 2)
-				Sleep, 60
-                pixelgetcolor, PointColor, GridX, GridY
-
-                if !(indexOf(PointColor, varUnIdColor)){
-                    ;We dont have this UnId color already
-                    varUnIdColor.Push(PointColor)
-                }
-
-				MouseMove, Grid.X, Grid.Y
-				Sleep, 60
-                pixelgetcolor, PointColor, GridX, GridY
-
-                if !(indexOf(PointColor, varMouseoverColor)){
-                    ;We dont have this Mouseover color already
-                    varMouseoverColor.Push(PointColor)
-                }
-
-				If (slotNum!=60){
-					SwiftClick(Grid.X, Grid.Y)
-					Sleep, 60
-				} 
-            }
-        }
-		BlockInput, Off
-        strToSave := arrToStr(varMouseoverColor)
-        strUnIdToSave := arrToStr(varUnIdColor)
-
-        IniWrite, %strToSave%, settings.ini, Inventory Colors, MouseoverColor
-        IniWrite, %strUnIdToSave%, settings.ini, Inventory Colors, UnIdColor
-        readFromFile()
-        infoMsg := "UnIdentified colors calibrated and saved with following color codes:`r`n`r`n"
-        infoMsg .= strUnIdToSave
-        infoMsg .= "`r`n`r`nMouseover colors calibrated and saved with following color codes:`r`n`r`n"
-        infoMsg .= strToSave
-
-        MsgBox, %infoMsg%
-
-
-    }else{
-        MsgBox % "PoE Window is not active. `nRecalibrate of UnIdentified / Mouseover calibration didn't work"
-    }
-
-    hotkeys()
-return
-
-updateIdandEmptyColor:
-    Gui, Submit, NoHide
-	Thread, NoTimers, true		;Critical
-
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nId / Empty Slot calibration didn't work"
-        Return
-    }
-
-    
-    
-    if WinActive(ahk_group POEGameGroup){
-        ;Now we need to get the user input for every grid element if its empty or not
-
-        ;First inform the user about the procedure
-        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Identified and Empty Slot colors.`r`n`r`n"
-        infoMsg .= "  -> Make sure only the very first slot has 1x1 Identified item (a wisdom scroll works perfect)`r`n"
-        infoMsg .= "  -> Clear all other items from inventory`r`n"
+        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Empty Slot colors.`r`n`r`n"
+        infoMsg .= "  -> Clear all items from inventory`r`n"
         infoMsg .= "  -> Make sure your inventory is open`r`n`r`n"
         infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
 
@@ -8222,62 +8166,33 @@ updateIdandEmptyColor:
         varEmptyInvSlotColor := []
         WinActivate, ahk_group POEGameGroup
 
-		BlockInput, On
         ;Loop through the whole grid, and add unknown colors to the lists
         For c, GridX in InventoryGridX	{
             For r, GridY in InventoryGridY
             {
-				Grid := RandClick(GridX, GridY)
-				++slotNum
-				If (slotNum!=1)
-				{
-					SwiftClick(Grid.X, Grid.Y)
-					Sleep, 60
-				}
-				MouseMove, (A_ScreenWidth / 2), (A_ScreenHeight / 2)
-				Sleep, 60
-                pixelgetcolor, PointColor, GridX, GridY
-
-                if !(indexOf(PointColor, varIdColor)){
-                    ;We dont have this UnId color already
-                    varIdColor.Push(PointColor)
-                }
-
-				SwiftClick(Grid.X, Grid.Y)
-				Sleep, 60
-				MouseMove, (A_ScreenWidth / 2), (A_ScreenHeight / 2)
-				Sleep, 60
                 pixelgetcolor, PointColor, GridX, GridY
 
                 if !(indexOf(PointColor, varEmptyInvSlotColor)){
-                    ;We dont have this Mouseover color already
+                    ;We dont have this Empty color already
                     varEmptyInvSlotColor.Push(PointColor)
                 }
-				If (slotNum=60){
-					SwiftClick(Grid.X, Grid.Y)
-				Sleep, 60
-				} 
             }
         }
-		BlockInput, Off
 
         strToSave := arrToStr(varEmptyInvSlotColor)
-        strIdToSave := arrToStr(varIdColor)
 
         IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
-        IniWrite, %strIdToSave%, settings.ini, Inventory Colors, IdColor
         readFromFile()
 
-        infoMsg := "Identified colors calibrated and saved with following color codes:`r`n`r`n"
-        infoMsg .= strIdToSave
-        infoMsg .= "`r`n`r`nEmpty Slot colors calibrated and saved with following color codes:`r`n`r`n"
+
+        infoMsg := "Empty Slot colors calibrated and saved with following color codes:`r`n`r`n"
         infoMsg .= strToSave
 
         MsgBox, %infoMsg%
 
 
     }else{
-        MsgBox % "PoE Window is not active. `nRecalibrate of Id / Empty Slot Color didn't work"
+        MsgBox % "PoE Window is not active. `nRecalibrate Empty Slot Color didn't work"
     }
 
     hotkeys()
@@ -9150,7 +9065,92 @@ Return
 }
 
 GuiEscape:
-Gui, Cancel
+	Gui, Cancel
 return
+
+IgnoreClose:
+IgnoreEscape:
+	SaveIgnoreArray()
+	Gui, Ignore: Destroy
+Return
+
+addToBlacklist(C, R)
+{
+    Loop % Prop.Height
+    {
+        addNum := A_Index - 1
+		addR := R + addNum
+		addC := C + 1
+        BlackList[C][addR] := True
+        If Prop.Width = 2
+            BlackList[addC][addR] := True
+    }
+}
+
+BuildIgnoreMenu:
+	Gui, Ignore: +LabelIgnore -MinimizeBox
+	Gui, Ignore: Font, Bold
+	Gui, Ignore: Add, GroupBox, w660 h305 Section xm ym, Ignored Inventory Slots:
+	Gui, Ignore: Add, Picture, w650 h-1 xs+5 ys+15, %A_ScriptDir%\data\InventorySlots.png
+	Gui, Ignore: Font
+	LoadIgnoreArray()
+
+	Gui, Ignore: Add, Text, w1 h1 xs+25 ys+13, ""
+	For C, GridX in InventoryGridX
+	{
+		If (C != 1)
+			Gui, Ignore: Add, Text, w1 h1 x+18 ys+13, ""
+		For R, GridY in InventoryGridY
+		{
+			++ind
+			checkboxStr := "IgnoredSlot_" . C . "_" . R
+			checkboxTik := IgnoredSlot[C][R]
+			Gui, Ignore: Add, Checkbox, v%checkboxStr% gUpdateCheckbox y+25 h27 Checked%checkboxTik%,% (ind < 10 ? "0" . ind : ind)
+		}
+	}
+	ind=0
+
+	Gui, Ignore: Show
+Return
+
+UpdateCheckbox:
+	Gui, Ignore: Submit, NoHide
+	btnArr := StrSplit(A_GuiControl, "_")
+	C := btnArr[2]
+	R := btnArr[3]
+	IgnoredSlot[C][R] := %A_GuiControl%
+Return
+
+LoadIgnoreArray()
+{
+    FileRead, JSONtext, %A_ScriptDir%\data\IgnoredSlot.json
+    IgnoredSlot := JSON.Load(JSONtext)
+	Return
+}
+
+SaveIgnoreArray()
+{
+	SaveIgnoreArray:
+    Gui, Ignore: Submit, NoHide
+    JSONtext := JSON.Dump(IgnoredSlot)
+    FileDelete, %A_ScriptDir%\data\IgnoredSlot.json
+    FileAppend, %JSONtext%, %A_ScriptDir%\data\IgnoredSlot.json
+	LoadIgnoreArray()
+	Return
+}
+
+Array_DeepClone(Array, Objs=0)
+{
+    if !Objs
+        Objs := {}
+    Obj := Array.Clone()
+    Objs[&Array] := Obj ; Save this new array
+    For Key, Val in Obj
+        if (IsObject(Val)) ; If it is a subarray
+            Obj[Key] := Objs[&Val] ; If we already know of a refrence to this array
+            ? Objs[&Val] ; Then point it to the new array
+            : Array_DeepClone(Val,Objs) ; Otherwise, clone this sub-array
+    return Obj
+}
 
 return
