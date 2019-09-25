@@ -1,6 +1,24 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.00 September/23/2019
+--------------------------------------------------------------------------------
+
+********************************************************************************
+******************* DO NOT AUTO UPDATE TO THIS VERSION *************************
+********************************************************************************
+******************* WILL CRASH ON LAUNCH IF MISSING LIB ************************
+********************************************************************************
+
+Seperated some of the basic functions of the script into a library file
+    This will allow for easier transitions into using new libraries
+    Now they will be updated with the script and use a single Library.ahk file
+    any previously included library has been merged into this file
+    All information regarding these basic functions can be found within the lib
+
+Quivers and Flasks have been added to Stats.ItemClass
+
+
 Version .05.11 September/22/2019
 --------------------------------------------------------------------------------
 Added Ignored Inventory slots menu, open in the inventory tab
