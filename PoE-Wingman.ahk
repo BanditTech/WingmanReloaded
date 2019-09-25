@@ -58,6 +58,7 @@
         
     OnMessage(0x5555, "MsgMonitor")
     OnMessage(0x5556, "MsgMonitor")
+	OnMessage( 0xF, "WM_PAINT")
     
     SetTitleMatchMode 3 
     CoordMode, Mouse, Screen
@@ -607,6 +608,57 @@
 		Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
 		Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
 		Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
+	;ItemInfo GUI
+		Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
+		Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21, 
+		Global PComment1 := "LongDataTextNameSpace"
+		Global PData1 := "000.000"
+		Global PComment2 := "LongDataTextNameSpace"
+		Global PData2 := "000.000"
+		Global PComment3 := "LongDataTextNameSpace"
+		Global PData3 := "000.000"
+		Global PComment4 := "LongDataTextNameSpace"
+		Global PData4 := "000.000"
+		Global PComment5 := "LongDataTextNameSpace"
+		Global PData5 := "000.000"
+		Global PComment6 := "LongDataTextNameSpace"
+		Global PData6 := "000.000"
+		Global PComment7 := "LongDataTextNameSpace"
+		Global PData7 := "000.000"
+		Global PComment8 := "LongDataTextNameSpace"
+		Global PData8 := "000.000"
+		Global PComment9 := "LongDataTextNameSpace"
+		Global PData9 := "000.000"
+		Global PComment10 := "LongDataTextNameSpace"
+		Global PData10 := "000.000"
+		Global SComment1 := "LongDataTextNameSpace"
+		Global SData1 := "000.000"
+		Global SComment2 := "LongDataTextNameSpace"
+		Global SData2 := "000.000"
+		Global SComment3 := "LongDataTextNameSpace"
+		Global SData3 := "000.000"
+		Global SComment4 := "LongDataTextNameSpace"
+		Global SData4 := "000.000"
+		Global SComment5 := "LongDataTextNameSpace"
+		Global SData5 := "000.000"
+		Global SComment6 := "LongDataTextNameSpace"
+		Global SData6 := "000.000"
+		Global SComment7 := "LongDataTextNameSpace"
+		Global SData7 := "000.000"
+		Global SComment8 := "LongDataTextNameSpace"
+		Global SData8 := "000.000"
+		Global SComment9 := "LongDataTextNameSpace"
+		Global SData9 := "000.000"
+		Global SComment10 := "LongDataTextNameSpace"
+		Global SData10 := "000.000"
+		Global GroupBox1 := "LongDataTextNameSpaceLongDataTextNameSpaceLongDataTextNameSpace"
+		Global GroupBox2 := "LongDataTextNameSpaceLongDataTextNameSpaceLongDataTextNameSpace"
+		Global ItemInfoPropText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+		Global ItemInfoAffixText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+		Global ItemInfoStatText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+		global graphWidth := 219
+		global graphHeight := 221
+
 
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1486,6 +1538,83 @@
 			}
 		}
 
+	Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
+	Gui, ItemInfo: Margin, 10, 10
+	Gui, ItemInfo: Font, Bold s8 c4D7186, Verdana
+	Gui, ItemInfo: Add, GroupBox, vGroupBox1 xm+1 y+1  h251 w554 , %GroupBox1%
+	Gui, ItemInfo: Add, Text, xp+3 yp+20 Section h1 w1 , ""
+	Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
+	{
+		addY := y + 10 
+		Gui, ItemInfo: Add, Text, vPercentText1G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
+	}
+
+	Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
+	Gui, ItemInfo: Add, Text, % "xp+1 yp+1 w" graphWidth " h" graphHeight " hwndhGraph1", pGraph1
+	Gui, ItemInfo: Add, Text, Section x+8 vPComment1, %PComment1%
+	Gui, ItemInfo: Add, Text, x+8 vPData1, %PData1%
+	Gui, ItemInfo: Add, Text, xs vPComment2, %PComment2%
+	Gui, ItemInfo: Add, Text, x+8 vPData2, %PData2%
+	Gui, ItemInfo: Add, Text, xs vPComment3, %PComment3%
+	Gui, ItemInfo: Add, Text, x+8 vPData3, %PData3%
+	Gui, ItemInfo: Add, Text, xs vPComment4, %PComment4%
+	Gui, ItemInfo: Add, Text, x+8 vPData4, %PData4%
+	Gui, ItemInfo: Add, Text, xs vPComment5, %PComment5%
+	Gui, ItemInfo: Add, Text, x+8 vPData5, %PData5%
+	Gui, ItemInfo: Add, Text, xs vPComment6, %PComment6%
+	Gui, ItemInfo: Add, Text, x+8 vPData6, %PData6%
+	Gui, ItemInfo: Add, Text, xs vPComment7, %PComment7%
+	Gui, ItemInfo: Add, Text, x+8 vPData7, %PData7%
+	Gui, ItemInfo: Add, Text, xs vPComment8, %PComment8%
+	Gui, ItemInfo: Add, Text, x+8 vPData8, %PData8%
+	Gui, ItemInfo: Add, Text, xs vPComment9, %PComment9%
+	Gui, ItemInfo: Add, Text, x+8 vPData9, %PData9%
+	Gui, ItemInfo: Add, Text, xs vPComment10, %PComment10%
+	Gui, ItemInfo: Add, Text, x+8 vPData10, %PData10%
+
+	Gui, ItemInfo: Add, GroupBox, vGroupBox2 x+15 ys-21  h251 w554 , %GroupBox2%
+	Gui, ItemInfo: Add, Text, xp+3 ys Section h1 w1 , ""
+	Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
+	{
+		addY := y + 10 
+		Gui, ItemInfo: Add, Text, vPercentText2G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
+	}
+	Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
+	Gui, ItemInfo: Add, Text, % "xp+1 yp+1 w" graphWidth " h" graphHeight " hwndhGraph2", pGraph2
+	Gui, ItemInfo: Add, Text, Section x+8 vSComment1, %SComment1%
+	Gui, ItemInfo: Add, Text, x+8 vSData1, %SData1%
+	Gui, ItemInfo: Add, Text, xs vSComment2, %SComment2%
+	Gui, ItemInfo: Add, Text, x+8 vSData2, %SData2%
+	Gui, ItemInfo: Add, Text, xs vSComment3, %SComment3%
+	Gui, ItemInfo: Add, Text, x+8 vSData3, %SData3%
+	Gui, ItemInfo: Add, Text, xs vSComment4, %SComment4%
+	Gui, ItemInfo: Add, Text, x+8 vSData4, %SData4%
+	Gui, ItemInfo: Add, Text, xs vSComment5, %SComment5%
+	Gui, ItemInfo: Add, Text, x+8 vSData5, %SData5%
+	Gui, ItemInfo: Add, Text, xs vSComment6, %SComment6%
+	Gui, ItemInfo: Add, Text, x+8 vSData6, %SData6%
+	Gui, ItemInfo: Add, Text, xs vSComment7, %SComment7%
+	Gui, ItemInfo: Add, Text, x+8 vSData7, %SData7%
+	Gui, ItemInfo: Add, Text, xs vSComment8, %SComment8%
+	Gui, ItemInfo: Add, Text, x+8 vSData8, %SData8%
+	Gui, ItemInfo: Add, Text, xs vSComment9, %SComment9%
+	Gui, ItemInfo: Add, Text, x+8 vSData9, %SData9%
+	Gui, ItemInfo: Add, Text, xs vSComment10, %SComment10%
+	Gui, ItemInfo: Add, Text, x+8 vSData10, %SData10%
+
+	global hBM := CreateDIB( "E9F5F8|E9F5F8|AFAFAF|AFAFAF|E9F5F8|E9F5F8", 2, 3, graphWidth, graphHeight, 0)
+	global pGraph1 := XGraph( hGraph1, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
+	global pGraph2 := XGraph( hGraph2, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
+
+
+	Gui, ItemInfo: Add, GroupBox, Section xm+1 y+30  h251 w364 , Item Properties
+	Gui, ItemInfo: Add, Edit, vItemInfoPropText xp+2 ys+17 w358, %ItemInfoPropText%
+	Gui, ItemInfo: Add, GroupBox, x+10 ys   h251 w364 , Item Statistics
+	Gui, ItemInfo: Add, Edit, vItemInfoStatText xp+2 ys+17 w358, %ItemInfoStatText%
+	Gui, ItemInfo: Add, GroupBox, x+9 ys  h251 w364 , Item Affixes
+	Gui, ItemInfo: Add, Edit, vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
+	;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
+	;Gui, ItemInfo: Hide
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1617,7 +1746,12 @@
 	#Escape::
 		ExitApp
 		Return
-
+	; Test ItemInfo function
+	!F5::
+		MouseGetPos, Mx, My
+		ClipItem(Mx, My)
+		MatchNinjaPrice(True)
+		Return
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; LootScan - Finds matching colors under the cursor while key pressed
@@ -4100,7 +4234,7 @@
 	}
 ; MatchNinjaPrice - Flag item with chaos value from PoE-Ninja
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MatchNinjaPrice()
+	MatchNinjaPrice(graph := False)
 	{
 		For TKey, typeArr in Ninja
 		{
@@ -4114,6 +4248,8 @@
 						{
 							Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 							Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+							If graph
+								GraphNinjaPrices(TKey,index)
 							Return True
 						}
 					}
@@ -4123,6 +4259,8 @@
 						{
 							Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 							Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+							If graph
+								GraphNinjaPrices(TKey,index)
 							Return True
 						}
 					}
@@ -4130,6 +4268,8 @@
 					{
 						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+						If graph
+							GraphNinjaPrices(TKey,index)
 						Return True
 					}
 				}
@@ -8392,6 +8532,407 @@
 			Process, Close, %PID%
 		Return
 		}
+	}
+
+	{ ; ItemInfo Functions
+		GraphNinjaPrices(TKey,index)
+		{
+			Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
+			If (Ninja[TKey][index]["paySparkLine"])
+			{
+				dataPayPoint := Ninja[TKey][index]["paySparkLine"]["data"]
+				dataRecPoint := Ninja[TKey][index]["receiveSparkLine"]["data"]
+				totalPayChange := Ninja[TKey][index]["paySparkLine"]["totalChange"]
+				totalRecChange := Ninja[TKey][index]["receiveSparkLine"]["totalChange"]
+
+				basePayPoint := 0
+				For k, v in dataPayPoint
+				{
+					If Abs(v) > basePayPoint
+						basePayPoint := Abs(v)
+				}
+				If basePayPoint = 0
+				FormatStr := "{1:0.0f}"
+				Else If basePayPoint < 1
+				FormatStr := "{1:0.3f}"
+				Else If basePayPoint < 10
+				FormatStr := "{1:0.2f}"
+				Else If basePayPoint < 100
+				FormatStr := "{1:0.1f}"
+				Else If basePayPoint > 100
+				FormatStr := "{1:0.0f}"
+
+				GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
+				GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
+				GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePayPoint*0.8)) "`%"
+				GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePayPoint*0.7)) "`%"
+				GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePayPoint*0.6)) "`%"
+				GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePayPoint*0.5)) "`%"
+				GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePayPoint*0.4)) "`%"
+				GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePayPoint*0.3)) "`%"
+				GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePayPoint*0.2)) "`%"
+				GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePayPoint*0.1)) "`%"
+				GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+				GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePayPoint*0.1)) "`%"
+				GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePayPoint*0.2)) "`%"
+				GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePayPoint*0.3)) "`%"
+				GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePayPoint*0.4)) "`%"
+				GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePayPoint*0.5)) "`%"
+				GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePayPoint*0.6)) "`%"
+				GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePayPoint*0.7)) "`%"
+				GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePayPoint*0.8)) "`%"
+				GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
+				GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
+
+
+				baseRecPoint := 0
+				For k, v in dataRecPoint
+				{
+					If Abs(v) > baseRecPoint
+						baseRecPoint := Abs(v)
+				}
+				If baseRecPoint = 0
+				FormatStr := "{1:0.0f}"
+				Else If baseRecPoint < 1
+				FormatStr := "{1:0.3f}"
+				Else If baseRecPoint < 10
+				FormatStr := "{1:0.2f}"
+				Else If baseRecPoint < 100
+				FormatStr := "{1:0.1f}"
+				Else If baseRecPoint > 100
+				FormatStr := "{1:0.0f}"
+
+				GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
+				GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
+				GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseRecPoint*0.8)) "`%"
+				GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseRecPoint*0.7)) "`%"
+				GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseRecPoint*0.6)) "`%"
+				GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseRecPoint*0.5)) "`%"
+				GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseRecPoint*0.4)) "`%"
+				GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseRecPoint*0.3)) "`%"
+				GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseRecPoint*0.2)) "`%"
+				GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseRecPoint*0.1)) "`%"
+				GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+				GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseRecPoint*0.1)) "`%"
+				GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseRecPoint*0.2)) "`%"
+				GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseRecPoint*0.3)) "`%"
+				GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseRecPoint*0.4)) "`%"
+				GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseRecPoint*0.5)) "`%"
+				GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseRecPoint*0.6)) "`%"
+				GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseRecPoint*0.7)) "`%"
+				GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
+				GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
+				GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
+
+
+				AvgPay := {}
+				Loop 5
+				{
+					AvgPay[A_Index] := (dataPayPoint[A_Index+1] + dataPayPoint[A_Index+2]) / 2
+				}
+				paddedPayData := {}
+				paddedPayData[1] := dataPayPoint[1]
+				paddedPayData[2] := dataPayPoint[1]
+				paddedPayData[3] := dataPayPoint[2]
+				paddedPayData[4] := AvgPay[1]
+				paddedPayData[5] := dataPayPoint[3]
+				paddedPayData[6] := AvgPay[2]
+				paddedPayData[7] := dataPayPoint[4]
+				paddedPayData[8] := AvgPay[3]
+				paddedPayData[9] := dataPayPoint[5]
+				paddedPayData[10] := AvgPay[4]
+				paddedPayData[11] := dataPayPoint[6]
+				paddedPayData[12] := AvgPay[5]
+				paddedPayData[13] := dataPayPoint[7]
+				For k, v in paddedPayData
+				{
+					div := v / basePayPoint * 100
+					XGraph_Plot( pGraph1, 100 - div, "", True )
+					;MsgBox % "Key : " k "   Val : " v
+				}
+				AvgRec := {}
+				Loop 5
+				{
+					AvgRec[A_Index] := (dataRecPoint[A_Index+1] + dataRecPoint[A_Index+2]) / 2
+				}
+				paddedRecData := {}
+				paddedRecData[1] := dataRecPoint[1]
+				paddedRecData[2] := dataRecPoint[1]
+				paddedRecData[3] := dataRecPoint[2]
+				paddedRecData[4] := AvgRec[1]
+				paddedRecData[5] := dataRecPoint[3]
+				paddedRecData[6] := AvgRec[2]
+				paddedRecData[7] := dataRecPoint[4]
+				paddedRecData[8] := AvgRec[3]
+				paddedRecData[9] := dataRecPoint[5]
+				paddedRecData[10] := AvgRec[4]
+				paddedRecData[11] := dataRecPoint[6]
+				paddedRecData[12] := AvgRec[5]
+				paddedRecData[13] := dataRecPoint[7]
+				For k, v in paddedRecData
+				{
+					div := v / baseRecPoint * 100
+					XGraph_Plot( pGraph2, 100 - div, "", True )
+					;MsgBox % "Key : " k "   Val : " v
+				}
+
+				GuiControl,ItemInfo: , GroupBox1, % "Sell " Prop.ItemName " to Chaos"
+				GuiControl,ItemInfo: , PComment1, Sell Value
+				GuiControl,ItemInfo: , PData1, % sellval := (1 / Ninja[TKey][index]["pay"]["value"])
+				GuiControl,ItemInfo: , PComment2, Sell Value `% Change
+				GuiControl,ItemInfo: , PData2, % Ninja[TKey][index]["paySparkLine"]["totalChange"]
+				GuiControl,ItemInfo: , PComment3, Orb per Chaos
+				GuiControl,ItemInfo: , PData3, % Ninja[TKey][index]["pay"]["value"]
+				GuiControl,ItemInfo: , PComment4, Day 6 Change
+				GuiControl,ItemInfo: , PData4, % dataPayPoint[2]
+				GuiControl,ItemInfo: , PComment5, Day 5 Change
+				GuiControl,ItemInfo: , PData5, % dataPayPoint[3]
+				GuiControl,ItemInfo: , PComment6, Day 4 Change
+				GuiControl,ItemInfo: , PData6, % dataPayPoint[4]
+				GuiControl,ItemInfo: , PComment7, Day 3 Change
+				GuiControl,ItemInfo: , PData7, % dataPayPoint[5]
+				GuiControl,ItemInfo: , PComment8, Day 2 Change
+				GuiControl,ItemInfo: , PData8, % dataPayPoint[6]
+				GuiControl,ItemInfo: , PComment9, Day 1 Change
+				GuiControl,ItemInfo: , PData9, % dataPayPoint[7]
+				GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
+				GuiControl,ItemInfo: , PData10, C / O
+
+				GuiControl,ItemInfo: , GroupBox2, % "Buy " Prop.ItemName " from Chaos"
+				GuiControl,ItemInfo: , SComment1, Buy Value
+				GuiControl,ItemInfo: , SData1, % sellval := (Ninja[TKey][index]["receive"]["value"])
+				GuiControl,ItemInfo: , SComment2, Buy Value `% Change
+				GuiControl,ItemInfo: , SData2, % Ninja[TKey][index]["receiveSparkLine"]["totalChange"]
+				GuiControl,ItemInfo: , SComment3, Orb per Chaos
+				GuiControl,ItemInfo: , SData3, % 1 / Ninja[TKey][index]["receive"]["value"]
+				GuiControl,ItemInfo: , SComment4, Day 6 Change
+				GuiControl,ItemInfo: , SData4, % dataRecPoint[2]
+				GuiControl,ItemInfo: , SComment5, Day 5 Change
+				GuiControl,ItemInfo: , SData5, % dataRecPoint[3]
+				GuiControl,ItemInfo: , SComment6, Day 4 Change
+				GuiControl,ItemInfo: , SData6, % dataRecPoint[4]
+				GuiControl,ItemInfo: , SComment7, Day 3 Change
+				GuiControl,ItemInfo: , SData7, % dataRecPoint[5]
+				GuiControl,ItemInfo: , SComment8, Day 2 Change
+				GuiControl,ItemInfo: , SData8, % dataRecPoint[6]
+				GuiControl,ItemInfo: , SComment9, Day 1 Change
+				GuiControl,ItemInfo: , SData9, % dataRecPoint[7]
+				GuiControl,ItemInfo: , SComment10, % Decimal2Fraction(sellval,"ID3")
+				GuiControl,ItemInfo: , SData10, C / O
+
+			}
+			Else If (Ninja[TKey][index]["sparkline"])
+			{
+				dataPoint := Ninja[TKey][index]["sparkline"]["data"]
+				dataLTPoint := Ninja[TKey][index]["lowConfidenceSparkline"]["data"]
+				totalChange := Ninja[TKey][index]["sparkline"]["totalChange"]
+				totalLTChange := Ninja[TKey][index]["lowConfidenceSparkline"]["totalChange"]
+
+				basePoint := 0
+				For k, v in dataPoint
+				{
+					If Abs(v) > basePoint
+						basePoint := Abs(v)
+				}
+				If basePoint = 0
+				FormatStr := "{1:0.0f}"
+				Else If basePoint < 1
+				FormatStr := "{1:0.3f}"
+				Else If basePoint < 10
+				FormatStr := "{1:0.2f}"
+				Else If basePoint < 100
+				FormatStr := "{1:0.1f}"
+				Else If basePoint > 100
+				FormatStr := "{1:0.0f}"
+
+				GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePoint*1.0)) "`%"
+				GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePoint*0.9)) "`%"
+				GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePoint*0.8)) "`%"
+				GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePoint*0.7)) "`%"
+				GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePoint*0.6)) "`%"
+				GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePoint*0.5)) "`%"
+				GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePoint*0.4)) "`%"
+				GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePoint*0.3)) "`%"
+				GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePoint*0.2)) "`%"
+				GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePoint*0.1)) "`%"
+				GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+				GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePoint*0.1)) "`%"
+				GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePoint*0.2)) "`%"
+				GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePoint*0.3)) "`%"
+				GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePoint*0.4)) "`%"
+				GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePoint*0.5)) "`%"
+				GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePoint*0.6)) "`%"
+				GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePoint*0.7)) "`%"
+				GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePoint*0.8)) "`%"
+				GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePoint*0.9)) "`%"
+				GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePoint*1.0)) "`%"
+
+				baseLTPoint := 0
+				For k, v in dataLTPoint
+				{
+					If Abs(v) > baseLTPoint
+						baseLTPoint := Abs(v)
+				}
+				If baseLTPoint = 0
+				FormatStr := "{1:0.0f}"
+				If baseLTPoint < 1
+				FormatStr := "{1:0.3f}"
+				Else If baseLTPoint < 10
+				FormatStr := "{1:0.2f}"
+				Else If baseLTPoint < 100
+				FormatStr := "{1:0.1f}"
+				Else If baseLTPoint > 100
+				FormatStr := "{1:0.0f}"
+
+				GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseLTPoint*1.0)) "`%"
+				GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseLTPoint*0.9)) "`%"
+				GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseLTPoint*0.8)) "`%"
+				GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseLTPoint*0.7)) "`%"
+				GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseLTPoint*0.6)) "`%"
+				GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseLTPoint*0.5)) "`%"
+				GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseLTPoint*0.4)) "`%"
+				GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseLTPoint*0.3)) "`%"
+				GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseLTPoint*0.2)) "`%"
+				GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseLTPoint*0.1)) "`%"
+				GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+				GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseLTPoint*0.1)) "`%"
+				GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseLTPoint*0.2)) "`%"
+				GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseLTPoint*0.3)) "`%"
+				GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseLTPoint*0.4)) "`%"
+				GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseLTPoint*0.5)) "`%"
+				GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseLTPoint*0.6)) "`%"
+				GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseLTPoint*0.7)) "`%"
+				GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseLTPoint*0.8)) "`%"
+				GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseLTPoint*0.9)) "`%"
+				GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseLTPoint*1.0)) "`%"
+
+				Avg := {}
+				Loop 5
+				{
+					Avg[A_Index] := (dataPoint[A_Index+1] + dataPoint[A_Index+2]) / 2
+				}
+				paddedData := {}
+				paddedData[1] := dataPoint[1]
+				paddedData[2] := dataPoint[1]
+				paddedData[3] := dataPoint[2]
+				paddedData[4] := Avg[1]
+				paddedData[5] := dataPoint[3]
+				paddedData[6] := Avg[2]
+				paddedData[7] := dataPoint[4]
+				paddedData[8] := Avg[3]
+				paddedData[9] := dataPoint[5]
+				paddedData[10] := Avg[4]
+				paddedData[11] := dataPoint[6]
+				paddedData[12] := Avg[5]
+				paddedData[13] := dataPoint[7]
+				For k, v in paddedData
+				{
+					div := v / basePoint * 100
+					XGraph_Plot( pGraph1, 100 - div, "", True )
+					;MsgBox % "Key : " k "   Val : " v
+				}
+				LTAvg := {}
+				Loop 5
+				{
+					LTAvg[A_Index] := (dataLTPoint[A_Index+1] + dataLTPoint[A_Index+2]) / 2
+				}
+				paddedLTData := {}
+				paddedLTData[1] := dataLTPoint[1]
+				paddedLTData[2] := dataLTPoint[1]
+				paddedLTData[3] := dataLTPoint[2]
+				paddedLTData[4] := LTAvg[1]
+				paddedLTData[5] := dataLTPoint[3]
+				paddedLTData[6] := LTAvg[2]
+				paddedLTData[7] := dataLTPoint[4]
+				paddedLTData[8] := LTAvg[3]
+				paddedLTData[9] := dataLTPoint[5]
+				paddedLTData[10] := LTAvg[4]
+				paddedLTData[11] := dataLTPoint[6]
+				paddedLTData[12] := LTAvg[5]
+				paddedLTData[13] := dataLTPoint[7]
+				For k, v in paddedLTData
+				{
+					div := v / baseLTPoint * 100
+					XGraph_Plot( pGraph2, 100 - div, "", True )
+					;MsgBox % "Key : " k "   Val : " v
+				}
+
+				GuiControl,ItemInfo: , GroupBox1, % "Value of " Prop.ItemName
+				GuiControl,ItemInfo: , PComment1, Chaos Value
+				GuiControl,ItemInfo: , PData1, % Ninja[TKey][index]["chaosValue"]
+				GuiControl,ItemInfo: , PComment2, Chaos Value `% Change
+				GuiControl,ItemInfo: , PData2, % Ninja[TKey][index]["sparkline"]["totalChange"]
+				GuiControl,ItemInfo: , PComment3, Exalted Value
+				GuiControl,ItemInfo: , PData3, % Ninja[TKey][index]["exaltedValue"]
+				GuiControl,ItemInfo: , PComment4, Day 6 Change
+				GuiControl,ItemInfo: , PData4, % dataPoint[2]
+				GuiControl,ItemInfo: , PComment5, Day 5 Change
+				GuiControl,ItemInfo: , PData5, % dataPoint[3]
+				GuiControl,ItemInfo: , PComment6, Day 4 Change
+				GuiControl,ItemInfo: , PData6, % dataPoint[4]
+				GuiControl,ItemInfo: , PComment7, Day 3 Change
+				GuiControl,ItemInfo: , PData7, % dataPoint[5]
+				GuiControl,ItemInfo: , PComment8, Day 2 Change
+				GuiControl,ItemInfo: , PData8, % dataPoint[6]
+				GuiControl,ItemInfo: , PComment9, Day 1 Change
+				GuiControl,ItemInfo: , PData9, % dataPoint[7]
+				GuiControl,ItemInfo: , PComment10, 
+				GuiControl,ItemInfo: , PData10,
+
+				GuiControl,ItemInfo: , GroupBox2, % "Low Confidence Value of " Prop.ItemName
+				GuiControl,ItemInfo: , SComment1, Chaos Value `% Change
+				GuiControl,ItemInfo: , SData1, % Ninja[TKey][index]["lowConfidenceSparkline"]["totalChange"]
+				GuiControl,ItemInfo: , SComment2,
+				GuiControl,ItemInfo: , SData2, 
+				GuiControl,ItemInfo: , SComment3, 
+				GuiControl,ItemInfo: , SData3, 
+				GuiControl,ItemInfo: , SComment4, Day 6 Change
+				GuiControl,ItemInfo: , SData4, % dataLTPoint[2]
+				GuiControl,ItemInfo: , SComment5, Day 5 Change
+				GuiControl,ItemInfo: , SData5, % dataLTPoint[3]
+				GuiControl,ItemInfo: , SComment6, Day 4 Change
+				GuiControl,ItemInfo: , SData6, % dataLTPoint[4]
+				GuiControl,ItemInfo: , SComment7, Day 3 Change
+				GuiControl,ItemInfo: , SData7, % dataLTPoint[5]
+				GuiControl,ItemInfo: , SComment8, Day 2 Change
+				GuiControl,ItemInfo: , SData8, % dataLTPoint[6]
+				GuiControl,ItemInfo: , SComment9, Day 1 Change
+				GuiControl,ItemInfo: , SData9, % dataLTPoint[7]
+				GuiControl,ItemInfo: , SComment10,
+				GuiControl,ItemInfo: , SData10,
+			}
+
+			propText=
+			For key, value in Prop
+			{
+				If (value != 0 && value != "" && value != False)
+					propText .= key . ":  " . value . "`n"
+			}
+			GuiControl, ItemInfo:, ItemInfoPropText, %propText%
+
+			statText=
+			For key, value in Stats
+			{
+				If (value != 0 && value != "" && value != False)
+					statText .= key . ":  " . value . "`n"
+			}
+			GuiControl, ItemInfo:, ItemInfoStatText, %statText%
+
+			affixText=
+			For key, value in Affix
+			{
+				If (value != 0 && value != "" && value != False)
+					affixText .= key . ":  " . value . "`n"
+			}
+			GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
+
+		Return
+		}
+
+		ItemInfoEscape:
+		ItemInfoClose:
+			Gui, ItemInfo: Hide
+		Return
 	}
 
 	helpCalibration:
