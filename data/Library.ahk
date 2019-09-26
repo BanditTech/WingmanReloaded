@@ -1089,7 +1089,42 @@
     }
 ;}
 
-
+/** * Functions to Monitor File Changes
+ * Lib: PoEClick.ahk
+ *     Found on page: https://autohotkey.com/board/topic/6416-tail-the-last-lines-of-a-text-file/
+ * Version:
+ *     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
+ */
+    ; str_getTailf - Return the last line from a file
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    str_getTailf(ByRef _Str) {
+        Return SubStr(_Str,InStr(_Str,"`n",False,0)+1)
+    }
+    ; str_getTail - Return the last n lines from a file
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    str_getTail(_Str, _LineNum = 1)
+    {
+        StringGetPos, Pos, _Str, `n, R%_LineNum%
+        StringTrimLeft, _Str, _Str, % ++Pos
+        Return _Str
+    }
+    ; FileCheck - Checks for changes in file size
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    FileCheck(file){
+        Static Size0
+        FileGetSize Size, file
+        If Size0 >= %Size%
+            Return False
+        If Size0 =
+        {
+            Size0 = %Size%
+            Return False
+        }
+        Size0 = %Size% ; File size increased!
+    Return True
+    }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
 /** * PoE Click v1.0.0 : PoE Click Lib for AutoHotkey.
  * Lib: PoEClick.ahk
  *     Path of Exile Click functions for AutoHotkey.
@@ -1556,7 +1591,7 @@
 			ToolTip % %CurrControl%_TT
 			catch
 			ToolTip
-			SetTimer, RemoveToolTip, -2000
+			SetTimer, RemoveToolTip, -4000
 		return
 		return
 		}

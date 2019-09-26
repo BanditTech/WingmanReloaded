@@ -443,6 +443,7 @@
 		global hotkeyAutoQuicksilver:=!MButton
 		global hotkeyPopFlasks:=CapsLock
 		global hotkeyItemSort:=F6
+		global hotkeyItemInfo:=F5
 		global hotkeyLootScan:=f
 		global hotkeyQuickPortal:=!q
 		global hotkeyGemSwap:=!e
@@ -1060,35 +1061,35 @@
 	Gui Add, Text, 										x303	y+6, 				Alternate Gem:
 	Gui Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
 	Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemY%
-	Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     	y53	 	            , Stock Portal?
-	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         y+8                , Stock Wisdom?
-	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%             y+8                , Weapon Swap?
+	Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     		y53				, Stock Portal?
+	StockPortal_TT:="Enable this to restock Portal scrolls when more than 10 are missing"
+	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         		y+8				, Stock Wisdom?
+	StockWisdom_TT:="Enable this to restock Wisdom scrolls when more than 10 are missing"
+	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
+	StockWisdom_TT:="Enable this to Swap Weapons for your Alternate Gem Swap location"
+	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           		y+8				, Detonate Mines?
+	StockWisdom_TT:="Enable this to automatically Detonate Mines when placed"
 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
+	DebugMessages_TT:="Enable this to enable debugging mode`nCoord/Pixel tool turns into Coord/Debug tool`nAlso enables display of the Inventory Pixel Grid"
 	Gui Add, Text, 										x573	y5, 				Debug:
 	Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x556 	y5 	w13 h13	
+	ShowPixelGrid_TT:="Enable this to enable display of the Inventory Pixel Grid`nTo use this function, move your mouse outside inventory area`nActivate with Coord/Debug hotkey"
 	Gui Add, Text, 							vPGrid	    x507	y5, 		    	Pixel Grid:
-	Gui Add, Checkbox, 	vShowItemInfo Checked%ShowItemInfo%  gUpdateDebug  	x490 	y5 	w13 h13	
-	Gui Add, Text, 							vParseI	    x435	y5, 		        Parse Item:
 
 	If (DebugMessages=1) {
 		varCoordUtilText := "Coord/Debug"
 		GuiControl, Show, ShowPixelGrid
 		GuiControl, Show, PGrid
-		GuiControl, Show, ShowItemInfo
-		GuiControl, Show, ParseI
 		} 
 	Else If (DebugMessages=0) {
 		varCoordUtilText := "Coord/Pixel"
 		GuiControl, Hide, ShowPixelGrid
-		GuiControl, Hide, ShowItemInfo
 		GuiControl, Hide, PGrid
-		GuiControl, Hide, ParseI
 		}
 
-	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           x300  y145           	          , Detonate Mines?
 	Gui, Font, Bold
-	Gui Add, Text, 										x295 	y168, 				Keybinds:
+	Gui Add, Text, 										x295 	y148, 				Keybinds:
 	Gui, Font
 	Gui Add, Text, 										x360 	y+10, 				Open this GUI
 	Gui Add, Text, 										x360 	y+10, 				Auto-Flask
@@ -1102,45 +1103,50 @@
 	Gui Add, Text, 										x360 	y+10, 				Gem-Swap
 	Gui Add, Text, 										x360 	y+10, 				Pop Flasks
 	Gui Add, Text, 										x360 	y+10, 				ID/Vend/Stash
+	Gui Add, Text, 										x360 	y+10, 				Item Info
 
-	Gui,Add,Edit,			 x295 y188 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
-	hotkeyOptions_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 x295 y168 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
+	hotkeyOptions_TT:="Set your hotkey to open the options GUI"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoFlask			,%hotkeyAutoFlask%
-	hotkeyAutoFlask_TT:="Set your own hotkey here"
+	hotkeyAutoFlask_TT:="Set your hotkey to turn on and off AutoFlask"
 	Gui,Add,Edit,			 		y+4  w60 h19 	vhotkeyAutoQuit			,%hotkeyAutoQuit%
-	hotkeyAutoQuit_TT:="Set your own hotkey here"
+	hotkeyAutoQuit_TT:="Set your hotkey to turn on and off AutoQuit"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyLogout	        ,%hotkeyLogout%
-	hotkeyLogout_TT:="Set your own hotkey here"
+	hotkeyLogout_TT:="Set your hotkey to Log out of the game"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoQuicksilver	,%hotkeyAutoQuicksilver%
-	hotkeyAutoQuicksilver_TT:="Set your own hotkey here"
+	hotkeyAutoQuicksilver_TT:="Set your hotkey to Turn on and off AutoQuicksilver"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGetMouseCoords	,%hotkeyGetMouseCoords%
-	hotkeyGetMouseCoords_TT:="Set your own hotkey here"
+	hotkeyGetMouseCoords_TT:="Set your hotkey to grab mouse coordinates`nIf debug is enabled this function becomes the debug tool`nUse this to get gamestates or pixel grid info"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyQuickPortal		,%hotkeyQuickPortal%
-	hotkeyQuickPortal_TT:="Set your own hotkey here"
+	hotkeyQuickPortal_TT:="Set your hotkey to use a portal scroll from inventory"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGemSwap			,%hotkeyGemSwap%
-	hotkeyGemSwap_TT:="Set your own hotkey here"
+	hotkeyGemSwap_TT:="Set your hotkey to swap gems between the two locations set above`nEnable Weapon swap if your gem is on alternate weapon set"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyPopFlasks	        ,%hotkeyPopFlasks%
-	hotkeyPopFlasks_TT:="Set your own hotkey here"
+	hotkeyPopFlasks_TT:="Set your hotkey to Pop all flasks`nEnable the option to respect cooldowns on the right"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
-	hotkeyItemSort_TT:="Set your own hotkey here"
+	hotkeyItemSort_TT:="Set your hotkey to Sort through inventory`nPerforms several functions:`nIdentifies Items`nVendors Items`nSend Items to Stash`nTrade Divination cards"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemInfo     ,%hotkeyItemInfo%
+	hotkeyItemInfo_TT:="Set your hotkey to display information about an item`nWill graph price info if there is any match"
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x440 	y168, 				Ingame:
+	Gui Add, Text, 										x440 	y148, 				Ingame:
 	Gui, Font
 	Gui Add, Text, 										x500 	y+10, 				Close UI
 	Gui Add, Text, 											 	y+10, 				Inventory
 	Gui Add, Text, 											 	y+10, 				W-Swap
 	Gui Add, Text, 											 	y+10, 				Item Pickup
-	Gui,Add,Edit,			  	x435 y188  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
-	hotkeyCloseAllUI_TT:="Put your ingame assigned hotkey here"
+	Gui,Add,Edit,			  	x435 y168  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
+	hotkeyCloseAllUI_TT:="Put your ingame assigned hotkey to Close All User Interface here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyInventory			,%hotkeyInventory%
-	hotkeyInventory_TT:="Put your ingame assigned hotkey here"
+	hotkeyInventory_TT:="Put your ingame assigned hotkey to open inventory panel here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyWeaponSwapKey		,%hotkeyWeaponSwapKey%
-	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey here"
+	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey to Weapon Swap here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
-	hotkeyLootScan_TT:="Put your ingame assigned hotkey here"
+	hotkeyLootScan_TT:="Put your ingame assigned hotkey for Item Pickup Key here"
 	Gui Add, Checkbox, gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 , Loot Vacuum?
+	LootVacuum_TT:="Enable the Loot Vacuum function`nUses the hotkey assigned to Item Pickup"
 	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	     y+8 , Pop Flasks Respect CD?
+	PopFlaskRespectCD_TT:="Enable this option to limit flasks on CD when Popping all Flasks"
 
 	;~ =========================================================================================== Subgroup: Hints
 	Gui,Font,Bold
@@ -1747,45 +1753,12 @@
 		ExitApp
 		Return
 	; Test ItemInfo function
-	!F5::
-		MouseGetPos, Mx, My
-		ClipItem(Mx, My)
-		MatchNinjaPrice(True)
-		Return
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; LootScan - Finds matching colors under the cursor while key pressed
+; Inventory Management Functions - ItemSortCommand, ParseClip, ItemInfo, MatchLootFilter, MatchNinjaPrice, GraphNinjaPrices, MoveStash, StockScrolls, LootScan
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	LootScan(){
-		LootScanCommand:
-			Pressed := GetKeyState(hotkeyLootScan)
-			While (Pressed&&LootVacuum)
-			{
-				For k, ColorHex in LootColors
-				{
-					Pressed := GetKeyState(hotkeyLootScan)
-					Sleep, -1
-					MouseGetPos CenterX, CenterY
-					ScanX1:=(CenterX-AreaScale)
-					ScanY1:=(CenterY-AreaScale)
-					ScanX2:=(CenterX+AreaScale)
-					ScanY2:=(CenterY+AreaScale)
-					PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
-					If (ErrorLevel = 0){
-						Pressed := GetKeyState(hotkeyLootScan)
-						If !(Pressed)
-							Break 2
-						SwiftClick(ScanPx, ScanPy)
-						}
-					Else If (ErrorLevel = 1)
-						Continue
-				}
-			}
-		Return
-		}
-
-; ItemSortCommand - Sort inventory and determine action
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; ItemSortCommand - Sort inventory and determine action
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ItemSortCommand:
 		Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
@@ -2104,303 +2077,8 @@
 		CurrentTab:=0
 		MouseMove, xx, yy, 0
 	Return
-
-; MoveStash - Input any digit and it will move to that Stash tab, only tested up to 25 tabs
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MoveStash(Tab){
-		GuiStatus("OnStash")
-		If (!OnStash)
-			Return
-		If (CurrentTab=Tab)
-			return
-		If (CurrentTab!=Tab) {
-			MouseGetPos MSx, MSy
-			BlockInput, MouseMove
-			Sleep, 45*Latency
-			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-			Sleep, 45*Latency
-			Click, Down, Left, 1
-			Sleep, 45*Latency
-			Click, Up, Left, 1
-			Sleep, 45*Latency
-			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-			Sleep, 90*Latency
-			send {Enter}
-			Sleep, 115*Latency
-			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-			Sleep, 45*Latency
-			Click, Down, Left, 1
-			Sleep, 45*Latency
-			Click, Up, Left, 1
-			Sleep, 45*Latency
-			CurrentTab:=Tab
-			MouseMove, MSx, MSy, 0
-			Sleep, 45*Latency
-			BlockInput, MouseMoveOff
-			}
-		return
-		}
-
-; StockScrolls - Restock scrolls that have more than 10 missing
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	StockScrolls(){
-			BlockInput, MouseMove
-			If StockWisdom{
-				MouseMove %WisdomScrollX%, %WisdomScrollY%
-				ClipItem(WisdomScrollX, WisdomScrollY)
-				Sleep, 30*Latency
-				dif := (40 - Stats.Stack)
-					If (dif>10)
-				{
-					MoveStash(1)
-					MouseMove WisdomStockX, WPStockY
-					Sleep, 30*Latency
-					ShiftClick(WisdomStockX, WPStockY)
-						Sleep, 30*Latency
-					Send %dif%
-						Sleep, 45*Latency
-					Send {Enter}
-					Sleep, 60*Latency
-					Send {Click, Down, %WisdomScrollX%, %WisdomScrollY%}
-					Sleep, 30*Latency
-					Send {Click, Up, %WisdomScrollX%, %WisdomScrollY%}
-					Sleep, 45*Latency
-				}
-				Sleep, 20*Latency
-			}
-			If StockPortal{
-				MouseMove %PortalScrollX%, %PortalScrollY%
-				ClipItem(PortalScrollX, PortalScrollY)
-				Sleep, 30*Latency
-				dif := (40 - Stats.Stack)
-					If (dif>10)
-				{
-					MoveStash(1)
-					MouseMove PortalStockX, WPStockY
-					Sleep, 30*Latency
-					ShiftClick(PortalStockX, WPStockY)
-						Sleep, 30*Latency
-					Send %dif%
-						Sleep, 45*Latency
-					Send {Enter}
-					Sleep, 60*Latency
-					Send {Click, Down, %PortalScrollX%, %PortalScrollY%}
-					Sleep, 30*Latency
-					Send {Click, Up, %PortalScrollX%, %PortalScrollY%}
-					Sleep, 45*Latency
-				}
-			}
-			BlockInput, MouseMoveOff
-		return
-		}
-
-; Rescale - Rescales values for specialty resolutions
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Rescale(){
-			IfWinExist, ahk_group POEGameGroup 
-			{
-				WinGetPos, X, Y, W, H
-				If (ResolutionScale="Standard") {
-					; Item Inventory Grid
-					Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
-					Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-					;Detonate Mines
-					Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
-					Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
-					Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-					;Scrolls in currency tab
-					Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
-					Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
-					Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-					;Status Check OnHideout
-					global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
-					global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-					global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
-					;Status Check OnMenu
-					global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-					global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
-					;Status Check OnChar
-					global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-					global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-					;Status Check OnChat
-					global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-					global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-					;Status Check OnInventory
-					global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-					global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-					;Status Check OnStash
-					global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-					global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-					;Status Check OnVendor
-					global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-					global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-					;Status Check OnDiv
-					global vX_OnDiv:=X + Round(A_ScreenWidth / (1920 / 618))
-					global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-					;Life %'s
-					global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;ES %'s
-					global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
-					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;Mana
-					global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
-					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-					;GUI overlay
-					global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
-					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-					;Divination Y locations
-					Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
-					Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
-					;Stash tabs menu button
-					global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
-					global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-					;Stash tabs menu list
-					global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 706))
-					global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-					;calculate the height of each tab
-					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-				}
-				Else If (ResolutionScale="UltraWide") {
-					; Item Inventory Grid
-					Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
-					Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-					;Detonate Mines
-					Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
-					Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
-					Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-					;Scrolls in currency tab
-					Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
-					Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
-					Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-					;Status Check OnHideout
-					global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
-					global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-					global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
-					;Status Check OnMenu
-					global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-					global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
-					;Status Check OnChar
-					global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-					global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-					;Status Check OnChat
-					global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-					global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-					;Status Check OnInventory
-					global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-					global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-					;Status Check OnStash
-					global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-					global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-					;Status Check OnVendor
-					global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-					global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-					;Status Check OnDiv
-					global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
-					global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-					;Life %'s
-					global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;ES %'s
-					global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;Mana
-					global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-					;GUI overlay
-					global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
-					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-					;Divination Y locations
-					Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
-					Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
-					;Stash tabs menu button
-					global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
-					global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-					;Stash tabs menu list
-					global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 706))
-					global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-					;calculate the height of each tab
-					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-				} 
-				RescaleRan := True
-			}
-		return
-		}
-
-; AutoQuit - Toggle Auto-Quit
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	AutoQuit(){
-		AutoQuitCommand:
-			AutoQuit := !AutoQuit
-			IniWrite, %AutoQuit%, settings.ini, Previous Toggles, AutoQuit
-			if ((!AutoFlask) && (!AutoQuit)) {
-				SetTimer TGameTick, Off
-			} else if ((AutoFlask) || (AutoQuit)){
-				SetTimer TGameTick, %Tick%
-			} 
-			GuiUpdate()
-		return
-		}
-
-; AutoFlask - Toggle Auto-Pot
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	AutoFlask(){
-		AutoFlaskCommand:	
-			AutoFlask := !AutoFlask
-			IniWrite, %AutoFlask%, settings.ini, Previous Toggles, AutoFlask
-			if ((!AutoFlask) and (!AutoQuit)) {
-				SetTimer TGameTick, Off
-			} else if ((AutoFlask) || (AutoQuit)) {
-				SetTimer TGameTick, %Tick%
-			}
-			GuiUpdate()	
-		return
-		}
-
-; AutoReset - Load Previous Toggle States
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	AutoReset(){
-		IniRead, AutoQuit, settings.ini, Previous Toggles, AutoQuit, 0
-		IniRead, AutoFlask, settings.ini, Previous Toggles, AutoFlask, 0
-		if ((!AutoFlask) and (!AutoQuit)) {
-			SetTimer TGameTick, Off
-		} else if ((AutoFlask) || (AutoQuit)) {
-			SetTimer TGameTick, %Tick%
-		}
-		GuiUpdate()	
-	return
-	}
-
-; ParseClip - Checks the contents of the clipboard and parses the information from the tooltip capture
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; ParseClip - Checks the contents of the clipboard and parses the information from the tooltip capture
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ParseClip(){
 		;Reset Variables
 		NameIsDone := False
@@ -4103,9 +3781,17 @@
 			Prop.ChaosValue := 1
 		Return
 	}
-
-; MatchLootFilter - Evaluate Loot Filter Match
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; ItemInfo - Display information about item under cursor
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ItemInfo(){
+		ItemInfoCommand:
+		MouseGetPos, Mx, My
+		ClipItem(Mx, My)
+		MatchNinjaPrice(True)
+		Return
+	}
+	; MatchLootFilter - Evaluate Loot Filter Match
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	MatchLootFilter()
 	{
 		For GKey, Groups in LootFilter
@@ -4232,8 +3918,8 @@
 		}
 	Return False
 	}
-; MatchNinjaPrice - Flag item with chaos value from PoE-Ninja
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; MatchNinjaPrice - Flag item with chaos value from PoE-Ninja
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	MatchNinjaPrice(graph := False)
 	{
 		For TKey, typeArr in Ninja
@@ -4249,7 +3935,10 @@
 							Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 							Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
 							If graph
+							{
 								GraphNinjaPrices(TKey,index)
+								DisplayPSA()
+							}
 							Return True
 						}
 					}
@@ -4260,7 +3949,10 @@
 							Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 							Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
 							If graph
+							{
 								GraphNinjaPrices(TKey,index)
+								DisplayPSA()
+							}
 							Return True
 						}
 					}
@@ -4269,291 +3961,648 @@
 						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
 						If graph
+						{
 							GraphNinjaPrices(TKey,index)
+							DisplayPSA()
+						}
 						Return True
 					}
 				}
 			}
 		}
+		If graph
+		{
+			GraphNinjaPrices()
+			DisplayPSA()
+		}
 	Return False
 	}
-; CoordAndDebug - Debugging information on Mouse Cursor
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	CoordAndDebug(){
-			CoordAndDebugCommand:
-				
-				MouseGetPos x, y
-				PixelGetColor, xycolor , x, y
-				TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
-				
-				If DebugMessages{
-					TT := TT . "`n`n"
-					GuiStatus()
-					TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-					TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
-					TT := TT . "  Divination Trade: " . OnDiv . "  Menu Open: " . OnMenu . "`n`n"
-					ClipItem(x, y)
-					If (Prop.IsItem) {
-						TT := TT . "Item Properties:`n`n"
-						If ShowItemInfo {	
-							If (sendstash:=MatchLootFilter())
-								TT := TT . "Matches loot filter  -  Send to " . sendstash . "`n`n"
-							Else
-								TT := TT . "Item does not match Loot Filter`n`n"
-							For key, value in Prop
-							{
-								If (value != 0 && value != "" && value != False)
-									TT := TT . key . ":  " . value . "`n"
-							}
-							MsgBox %TT%
-							If (Prop.IsItem) {
-								TT := "Item Stats:`n`n"
-								If ShowItemInfo {
-									For key, value in Stats
-									{
-										If (value != 0 && value != "" && value != False)
-											TT := TT . key . ":  " . value . "`n"
-									}
-								}
-							MsgBox %TT%
-							}
-							If (Prop.HasAffix) {
-								TT := "Item Affix:`n`n"
-								If ShowItemInfo {
-									For key, value in Affix
-									{
-										If (value != 0 && value != "" && value != False)
-											TT := TT . key . ":  " . value . "`n"
-									}
-								If !Prop.Identified
-								TT .= "Unidentified"
-								}
-							MsgBox %TT%
-							}
-						}
-					} Else {
-						Tooltip, %TT%
-						SetTimer, RemoveToolTip, 10000
-					}
-
-				} Else {
-					Tooltip, %TT%
-					SetTimer, RemoveToolTip, 10000
-				}
-				If (DebugMessages&&ShowPixelGrid){
-					
-					;Check if inventory is open
-					if(!OnInventory){
-						TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
-					}else{
-						
-						TT := "Grid information:" . "`n"
-						
-						For c, GridX in InventoryGridX	{
-							For r, GridY in InventoryGridY
-							{
-								pixelgetcolor, PointColor, GridX, GridY
-								
-								If (indexOfHex(PointColor, varUnIdColor)) {
-									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified. Color: " . PointColor  .  "`n"
-								}else if (indexOfHex(PointColor, varIdColor)) {
-									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified. Color: " . PointColor  .  "`n"
-								}else if (indexOfHex(PointColor, varMouseoverColor)) {
-									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected item. Color: " . PointColor  .  "`n"
-								}else if (indexOfHex(PointColor, varEmptyInvSlotColor)) {				
-									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
-								}else{
-									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
-								}
-							}
-						}
-					}
-					MsgBox %TT%	
-				}
-			Return
+	; GraphNinjaPrices - Send sparkline data to the graphs
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GraphNinjaPrices(TKey:=False,index:=False)
+	{
+		If !(TKey = False || index = False)
+			Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
+		Else
+		{
+			Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " has no Graph Data"
+			Goto, noDataGraph
 		}
-
-; DetonateMines - Auto Detonate Mines
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	DetonateMines(){
-			GuiStatus("OnChat")
-			If (OnChat)
-				exit
-			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
-			pixelgetcolor, Mine, DetonateX, DetonateY
-			If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
-				Sendraw, d
-				Detonated:=1
-				Settimer, TDetonated, 500
-				Return
-			}
-			Return	
-		}
-
-; GuiUpdate - Update Overlay ON OFF states
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GuiUpdate(){
-			if (AutoFlask=1) {
-				AutoFlaskToggle:="ON" 
-			} else AutoFlaskToggle:="OFF" 
 			
-			if (AutoQuit=1) {
-				AutoQuitToggle:="ON" 
-			}else AutoQuitToggle:="OFF" 
-			
-			GuiControl, 2:, T1, Quit: %AutoQuitToggle%
-			GuiControl, 2:, T2, Flasks: %AutoFlaskToggle%
+		If (Ninja[TKey][index]["paySparkLine"])
+		{
+			dataPayPoint := Ninja[TKey][index]["paySparkLine"]["data"]
+			dataRecPoint := Ninja[TKey][index]["receiveSparkLine"]["data"]
+			totalPayChange := Ninja[TKey][index]["paySparkLine"]["totalChange"]
+			totalRecChange := Ninja[TKey][index]["receiveSparkLine"]["totalChange"]
+
+			basePayPoint := 0
+			For k, v in dataPayPoint
+			{
+				If Abs(v) > basePayPoint
+					basePayPoint := Abs(v)
+			}
+			If basePayPoint = 0
+			FormatStr := "{1:0.0f}"
+			Else If basePayPoint < 1
+			FormatStr := "{1:0.3f}"
+			Else If basePayPoint < 10
+			FormatStr := "{1:0.2f}"
+			Else If basePayPoint < 100
+			FormatStr := "{1:0.1f}"
+			Else If basePayPoint > 100
+			FormatStr := "{1:0.0f}"
+
+			GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
+			GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePayPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePayPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePayPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePayPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePayPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePayPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePayPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePayPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+			GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePayPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePayPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePayPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePayPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePayPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePayPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePayPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePayPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
+
+
+			baseRecPoint := 0
+			For k, v in dataRecPoint
+			{
+				If Abs(v) > baseRecPoint
+					baseRecPoint := Abs(v)
+			}
+			If baseRecPoint = 0
+			FormatStr := "{1:0.0f}"
+			Else If baseRecPoint < 1
+			FormatStr := "{1:0.3f}"
+			Else If baseRecPoint < 10
+			FormatStr := "{1:0.2f}"
+			Else If baseRecPoint < 100
+			FormatStr := "{1:0.1f}"
+			Else If baseRecPoint > 100
+			FormatStr := "{1:0.0f}"
+
+			GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
+			GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseRecPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseRecPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseRecPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseRecPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseRecPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseRecPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseRecPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseRecPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+			GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseRecPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseRecPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseRecPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseRecPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseRecPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseRecPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseRecPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
+
+
+			AvgPay := {}
+			Loop 5
+			{
+				AvgPay[A_Index] := (dataPayPoint[A_Index+1] + dataPayPoint[A_Index+2]) / 2
+			}
+			paddedPayData := {}
+			paddedPayData[1] := dataPayPoint[1]
+			paddedPayData[2] := dataPayPoint[1]
+			paddedPayData[3] := dataPayPoint[2]
+			paddedPayData[4] := AvgPay[1]
+			paddedPayData[5] := dataPayPoint[3]
+			paddedPayData[6] := AvgPay[2]
+			paddedPayData[7] := dataPayPoint[4]
+			paddedPayData[8] := AvgPay[3]
+			paddedPayData[9] := dataPayPoint[5]
+			paddedPayData[10] := AvgPay[4]
+			paddedPayData[11] := dataPayPoint[6]
+			paddedPayData[12] := AvgPay[5]
+			paddedPayData[13] := dataPayPoint[7]
+			For k, v in paddedPayData
+			{
+				div := v / basePayPoint * 100
+				XGraph_Plot( pGraph1, 100 - div, "", True )
+				;MsgBox % "Key : " k "   Val : " v
+			}
+			AvgRec := {}
+			Loop 5
+			{
+				AvgRec[A_Index] := (dataRecPoint[A_Index+1] + dataRecPoint[A_Index+2]) / 2
+			}
+			paddedRecData := {}
+			paddedRecData[1] := dataRecPoint[1]
+			paddedRecData[2] := dataRecPoint[1]
+			paddedRecData[3] := dataRecPoint[2]
+			paddedRecData[4] := AvgRec[1]
+			paddedRecData[5] := dataRecPoint[3]
+			paddedRecData[6] := AvgRec[2]
+			paddedRecData[7] := dataRecPoint[4]
+			paddedRecData[8] := AvgRec[3]
+			paddedRecData[9] := dataRecPoint[5]
+			paddedRecData[10] := AvgRec[4]
+			paddedRecData[11] := dataRecPoint[6]
+			paddedRecData[12] := AvgRec[5]
+			paddedRecData[13] := dataRecPoint[7]
+			For k, v in paddedRecData
+			{
+				div := v / baseRecPoint * 100
+				XGraph_Plot( pGraph2, 100 - div, "", True )
+				;MsgBox % "Key : " k "   Val : " v
+			}
+
+			GuiControl,ItemInfo: , GroupBox1, % "Sell " Prop.ItemName " to Chaos"
+			GuiControl,ItemInfo: , PComment1, Sell Value
+			GuiControl,ItemInfo: , PData1, % sellval := (1 / Ninja[TKey][index]["pay"]["value"])
+			GuiControl,ItemInfo: , PComment2, Sell Value `% Change
+			GuiControl,ItemInfo: , PData2, % Ninja[TKey][index]["paySparkLine"]["totalChange"]
+			GuiControl,ItemInfo: , PComment3, Orb per Chaos
+			GuiControl,ItemInfo: , PData3, % Ninja[TKey][index]["pay"]["value"]
+			GuiControl,ItemInfo: , PComment4, Day 6 Change
+			GuiControl,ItemInfo: , PData4, % dataPayPoint[2]
+			GuiControl,ItemInfo: , PComment5, Day 5 Change
+			GuiControl,ItemInfo: , PData5, % dataPayPoint[3]
+			GuiControl,ItemInfo: , PComment6, Day 4 Change
+			GuiControl,ItemInfo: , PData6, % dataPayPoint[4]
+			GuiControl,ItemInfo: , PComment7, Day 3 Change
+			GuiControl,ItemInfo: , PData7, % dataPayPoint[5]
+			GuiControl,ItemInfo: , PComment8, Day 2 Change
+			GuiControl,ItemInfo: , PData8, % dataPayPoint[6]
+			GuiControl,ItemInfo: , PComment9, Day 1 Change
+			GuiControl,ItemInfo: , PData9, % dataPayPoint[7]
+			GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
+			GuiControl,ItemInfo: , PData10, C / O
+
+			GuiControl,ItemInfo: , GroupBox2, % "Buy " Prop.ItemName " from Chaos"
+			GuiControl,ItemInfo: , SComment1, Buy Value
+			GuiControl,ItemInfo: , SData1, % sellval := (Ninja[TKey][index]["receive"]["value"])
+			GuiControl,ItemInfo: , SComment2, Buy Value `% Change
+			GuiControl,ItemInfo: , SData2, % Ninja[TKey][index]["receiveSparkLine"]["totalChange"]
+			GuiControl,ItemInfo: , SComment3, Orb per Chaos
+			GuiControl,ItemInfo: , SData3, % 1 / Ninja[TKey][index]["receive"]["value"]
+			GuiControl,ItemInfo: , SComment4, Day 6 Change
+			GuiControl,ItemInfo: , SData4, % dataRecPoint[2]
+			GuiControl,ItemInfo: , SComment5, Day 5 Change
+			GuiControl,ItemInfo: , SData5, % dataRecPoint[3]
+			GuiControl,ItemInfo: , SComment6, Day 4 Change
+			GuiControl,ItemInfo: , SData6, % dataRecPoint[4]
+			GuiControl,ItemInfo: , SComment7, Day 3 Change
+			GuiControl,ItemInfo: , SData7, % dataRecPoint[5]
+			GuiControl,ItemInfo: , SComment8, Day 2 Change
+			GuiControl,ItemInfo: , SData8, % dataRecPoint[6]
+			GuiControl,ItemInfo: , SComment9, Day 1 Change
+			GuiControl,ItemInfo: , SData9, % dataRecPoint[7]
+			GuiControl,ItemInfo: , SComment10, % Decimal2Fraction(sellval,"ID3")
+			GuiControl,ItemInfo: , SData10, C / O
+
+		}
+		Else If (Ninja[TKey][index]["sparkline"])
+		{
+			dataPoint := Ninja[TKey][index]["sparkline"]["data"]
+			dataLTPoint := Ninja[TKey][index]["lowConfidenceSparkline"]["data"]
+			totalChange := Ninja[TKey][index]["sparkline"]["totalChange"]
+			totalLTChange := Ninja[TKey][index]["lowConfidenceSparkline"]["totalChange"]
+
+			basePoint := 0
+			For k, v in dataPoint
+			{
+				If Abs(v) > basePoint
+					basePoint := Abs(v)
+			}
+			If basePoint = 0
+			FormatStr := "{1:0.0f}"
+			Else If basePoint < 1
+			FormatStr := "{1:0.3f}"
+			Else If basePoint < 10
+			FormatStr := "{1:0.2f}"
+			Else If basePoint < 100
+			FormatStr := "{1:0.1f}"
+			Else If basePoint > 100
+			FormatStr := "{1:0.0f}"
+
+			GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePoint*1.0)) "`%"
+			GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+			GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePoint*1.0)) "`%"
+
+			baseLTPoint := 0
+			For k, v in dataLTPoint
+			{
+				If Abs(v) > baseLTPoint
+					baseLTPoint := Abs(v)
+			}
+			If baseLTPoint = 0
+			FormatStr := "{1:0.0f}"
+			If baseLTPoint < 1
+			FormatStr := "{1:0.3f}"
+			Else If baseLTPoint < 10
+			FormatStr := "{1:0.2f}"
+			Else If baseLTPoint < 100
+			FormatStr := "{1:0.1f}"
+			Else If baseLTPoint > 100
+			FormatStr := "{1:0.0f}"
+
+			GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseLTPoint*1.0)) "`%"
+			GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseLTPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseLTPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseLTPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseLTPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseLTPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseLTPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseLTPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseLTPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseLTPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+			GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseLTPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseLTPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseLTPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseLTPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseLTPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseLTPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseLTPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseLTPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseLTPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseLTPoint*1.0)) "`%"
+
+			Avg := {}
+			Loop 5
+			{
+				Avg[A_Index] := (dataPoint[A_Index+1] + dataPoint[A_Index+2]) / 2
+			}
+			paddedData := {}
+			paddedData[1] := dataPoint[1]
+			paddedData[2] := dataPoint[1]
+			paddedData[3] := dataPoint[2]
+			paddedData[4] := Avg[1]
+			paddedData[5] := dataPoint[3]
+			paddedData[6] := Avg[2]
+			paddedData[7] := dataPoint[4]
+			paddedData[8] := Avg[3]
+			paddedData[9] := dataPoint[5]
+			paddedData[10] := Avg[4]
+			paddedData[11] := dataPoint[6]
+			paddedData[12] := Avg[5]
+			paddedData[13] := dataPoint[7]
+			For k, v in paddedData
+			{
+				div := v / basePoint * 100
+				XGraph_Plot( pGraph1, 100 - div, "", True )
+				;MsgBox % "Key : " k "   Val : " v
+			}
+			LTAvg := {}
+			Loop 5
+			{
+				LTAvg[A_Index] := (dataLTPoint[A_Index+1] + dataLTPoint[A_Index+2]) / 2
+			}
+			paddedLTData := {}
+			paddedLTData[1] := dataLTPoint[1]
+			paddedLTData[2] := dataLTPoint[1]
+			paddedLTData[3] := dataLTPoint[2]
+			paddedLTData[4] := LTAvg[1]
+			paddedLTData[5] := dataLTPoint[3]
+			paddedLTData[6] := LTAvg[2]
+			paddedLTData[7] := dataLTPoint[4]
+			paddedLTData[8] := LTAvg[3]
+			paddedLTData[9] := dataLTPoint[5]
+			paddedLTData[10] := LTAvg[4]
+			paddedLTData[11] := dataLTPoint[6]
+			paddedLTData[12] := LTAvg[5]
+			paddedLTData[13] := dataLTPoint[7]
+			For k, v in paddedLTData
+			{
+				div := v / baseLTPoint * 100
+				XGraph_Plot( pGraph2, 100 - div, "", True )
+				;MsgBox % "Key : " k "   Val : " v
+			}
+
+			GuiControl,ItemInfo: , GroupBox1, % "Value of " Prop.ItemName
+			GuiControl,ItemInfo: , PComment1, Chaos Value
+			GuiControl,ItemInfo: , PData1, % Ninja[TKey][index]["chaosValue"]
+			GuiControl,ItemInfo: , PComment2, Chaos Value `% Change
+			GuiControl,ItemInfo: , PData2, % Ninja[TKey][index]["sparkline"]["totalChange"]
+			GuiControl,ItemInfo: , PComment3, Exalted Value
+			GuiControl,ItemInfo: , PData3, % Ninja[TKey][index]["exaltedValue"]
+			GuiControl,ItemInfo: , PComment4, Day 6 Change
+			GuiControl,ItemInfo: , PData4, % dataPoint[2]
+			GuiControl,ItemInfo: , PComment5, Day 5 Change
+			GuiControl,ItemInfo: , PData5, % dataPoint[3]
+			GuiControl,ItemInfo: , PComment6, Day 4 Change
+			GuiControl,ItemInfo: , PData6, % dataPoint[4]
+			GuiControl,ItemInfo: , PComment7, Day 3 Change
+			GuiControl,ItemInfo: , PData7, % dataPoint[5]
+			GuiControl,ItemInfo: , PComment8, Day 2 Change
+			GuiControl,ItemInfo: , PData8, % dataPoint[6]
+			GuiControl,ItemInfo: , PComment9, Day 1 Change
+			GuiControl,ItemInfo: , PData9, % dataPoint[7]
+			GuiControl,ItemInfo: , PComment10, 
+			GuiControl,ItemInfo: , PData10,
+
+			GuiControl,ItemInfo: , GroupBox2, % "Low Confidence Value of " Prop.ItemName
+			GuiControl,ItemInfo: , SComment1, Chaos Value `% Change
+			GuiControl,ItemInfo: , SData1, % Ninja[TKey][index]["lowConfidenceSparkline"]["totalChange"]
+			GuiControl,ItemInfo: , SComment2,
+			GuiControl,ItemInfo: , SData2, 
+			GuiControl,ItemInfo: , SComment3, 
+			GuiControl,ItemInfo: , SData3, 
+			GuiControl,ItemInfo: , SComment4, Day 6 Change
+			GuiControl,ItemInfo: , SData4, % dataLTPoint[2]
+			GuiControl,ItemInfo: , SComment5, Day 5 Change
+			GuiControl,ItemInfo: , SData5, % dataLTPoint[3]
+			GuiControl,ItemInfo: , SComment6, Day 4 Change
+			GuiControl,ItemInfo: , SData6, % dataLTPoint[4]
+			GuiControl,ItemInfo: , SComment7, Day 3 Change
+			GuiControl,ItemInfo: , SData7, % dataLTPoint[5]
+			GuiControl,ItemInfo: , SComment8, Day 2 Change
+			GuiControl,ItemInfo: , SData8, % dataLTPoint[6]
+			GuiControl,ItemInfo: , SComment9, Day 1 Change
+			GuiControl,ItemInfo: , SData9, % dataLTPoint[7]
+			GuiControl,ItemInfo: , SComment10,
+			GuiControl,ItemInfo: , SData10,
+		}
+		Return
+
+		noDataGraph:
+				GuiControl,ItemInfo: , PercentText1G1, 0`%
+				GuiControl,ItemInfo: , PercentText1G2, 0`%
+				GuiControl,ItemInfo: , PercentText1G3, 0`%
+				GuiControl,ItemInfo: , PercentText1G4, 0`%
+				GuiControl,ItemInfo: , PercentText1G5, 0`%
+				GuiControl,ItemInfo: , PercentText1G6, 0`%
+				GuiControl,ItemInfo: , PercentText1G7, 0`%
+				GuiControl,ItemInfo: , PercentText1G8, 0`%
+				GuiControl,ItemInfo: , PercentText1G9, 0`%
+				GuiControl,ItemInfo: , PercentText1G10, 0`%
+				GuiControl,ItemInfo: , PercentText1G11, 0`%
+				GuiControl,ItemInfo: , PercentText1G12, 0`%
+				GuiControl,ItemInfo: , PercentText1G13, 0`%
+				GuiControl,ItemInfo: , PercentText1G14, 0`%
+				GuiControl,ItemInfo: , PercentText1G15, 0`%
+				GuiControl,ItemInfo: , PercentText1G16, 0`%
+				GuiControl,ItemInfo: , PercentText1G17, 0`%
+				GuiControl,ItemInfo: , PercentText1G18, 0`%
+				GuiControl,ItemInfo: , PercentText1G19, 0`%
+				GuiControl,ItemInfo: , PercentText1G20, 0`%
+				GuiControl,ItemInfo: , PercentText1G21, 0`%
+				GuiControl,ItemInfo: , PercentText2G1, 0`%
+				GuiControl,ItemInfo: , PercentText2G2, 0`%
+				GuiControl,ItemInfo: , PercentText2G3, 0`%
+				GuiControl,ItemInfo: , PercentText2G4, 0`%
+				GuiControl,ItemInfo: , PercentText2G5, 0`%
+				GuiControl,ItemInfo: , PercentText2G6, 0`%
+				GuiControl,ItemInfo: , PercentText2G7, 0`%
+				GuiControl,ItemInfo: , PercentText2G8, 0`%
+				GuiControl,ItemInfo: , PercentText2G9, 0`%
+				GuiControl,ItemInfo: , PercentText2G10, 0`%
+				GuiControl,ItemInfo: , PercentText2G11, 0`%
+				GuiControl,ItemInfo: , PercentText2G12, 0`%
+				GuiControl,ItemInfo: , PercentText2G13, 0`%
+				GuiControl,ItemInfo: , PercentText2G14, 0`%
+				GuiControl,ItemInfo: , PercentText2G15, 0`%
+				GuiControl,ItemInfo: , PercentText2G16, 0`%
+				GuiControl,ItemInfo: , PercentText2G17, 0`%
+				GuiControl,ItemInfo: , PercentText2G18, 0`%
+				GuiControl,ItemInfo: , PercentText2G19, 0`%
+				GuiControl,ItemInfo: , PercentText2G20, 0`%
+				GuiControl,ItemInfo: , PercentText2G21, 0`%
+
+				Loop 13
+				{
+					XGraph_Plot( pGraph1, 100, "", True )
+				}
+				Loop 13
+				{
+					XGraph_Plot( pGraph2, 100, "", True )
+				}
+
+				GuiControl,ItemInfo: , GroupBox1, No Data
+				GuiControl,ItemInfo: , PComment1,
+				GuiControl,ItemInfo: , PData1, 
+				GuiControl,ItemInfo: , PComment2,
+				GuiControl,ItemInfo: , PData2, 
+				GuiControl,ItemInfo: , PComment3,
+				GuiControl,ItemInfo: , PData3, 
+				GuiControl,ItemInfo: , PComment4,
+				GuiControl,ItemInfo: , PData4, 
+				GuiControl,ItemInfo: , PComment5,
+				GuiControl,ItemInfo: , PData5, 
+				GuiControl,ItemInfo: , PComment6,
+				GuiControl,ItemInfo: , PData6, 
+				GuiControl,ItemInfo: , PComment7,
+				GuiControl,ItemInfo: , PData7, 
+				GuiControl,ItemInfo: , PComment8,
+				GuiControl,ItemInfo: , PData8, 
+				GuiControl,ItemInfo: , PComment9,
+				GuiControl,ItemInfo: , PData9, 
+				GuiControl,ItemInfo: , PComment10, 
+				GuiControl,ItemInfo: , PData10, 
+
+				GuiControl,ItemInfo: , GroupBox2, No Data
+				GuiControl,ItemInfo: , SComment1,
+				GuiControl,ItemInfo: , SData1,
+				GuiControl,ItemInfo: , SComment2,
+				GuiControl,ItemInfo: , SData2,
+				GuiControl,ItemInfo: , SComment3,
+				GuiControl,ItemInfo: , SData3,
+				GuiControl,ItemInfo: , SComment4,
+				GuiControl,ItemInfo: , SData4,
+				GuiControl,ItemInfo: , SComment5,
+				GuiControl,ItemInfo: , SData5,
+				GuiControl,ItemInfo: , SComment6,
+				GuiControl,ItemInfo: , SData6,
+				GuiControl,ItemInfo: , SComment7,
+				GuiControl,ItemInfo: , SData7,
+				GuiControl,ItemInfo: , SComment8,
+				GuiControl,ItemInfo: , SData8,
+				GuiControl,ItemInfo: , SComment9,
+				GuiControl,ItemInfo: , SData9,
+				GuiControl,ItemInfo: , SComment10,
+				GuiControl,ItemInfo: , SData10
+		Return
+	}
+	; DisplayPSA - Send Item info arrays Prop, Stats, and Affix to ItemInfo gui
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DisplayPSA()
+	{
+		propText=
+		For key, value in Prop
+		{
+			If (value != 0 && value != "" && value != False)
+				propText .= key . ":  " . value . "`n"
+		}
+		GuiControl, ItemInfo:, ItemInfoPropText, %propText%
+
+		statText=
+		For key, value in Stats
+		{
+			If (value != 0 && value != "" && value != False)
+				statText .= key . ":  " . value . "`n"
+		}
+		GuiControl, ItemInfo:, ItemInfoStatText, %statText%
+
+		affixText=
+		For key, value in Affix
+		{
+			If (value != 0 && value != "" && value != False)
+				affixText .= key . ":  " . value . "`n"
+		}
+		GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
+	}
+	; MoveStash - Input any digit and it will move to that Stash tab, only tested up to 25 tabs
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	MoveStash(Tab){
+		GuiStatus("OnStash")
+		If (!OnStash)
 			Return
+		If (CurrentTab=Tab)
+			return
+		If (CurrentTab!=Tab) {
+			MouseGetPos MSx, MSy
+			BlockInput, MouseMove
+			Sleep, 45*Latency
+			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+			Sleep, 45*Latency
+			Click, Down, Left, 1
+			Sleep, 45*Latency
+			Click, Up, Left, 1
+			Sleep, 45*Latency
+			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
+			Sleep, 90*Latency
+			send {Enter}
+			Sleep, 115*Latency
+			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+			Sleep, 45*Latency
+			Click, Down, Left, 1
+			Sleep, 45*Latency
+			Click, Up, Left, 1
+			Sleep, 45*Latency
+			CurrentTab:=Tab
+			MouseMove, MSx, MSy, 0
+			Sleep, 45*Latency
+			BlockInput, MouseMoveOff
+			}
+		return
 		}
 
-; PoEWindowCheck - Check for the game window. 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	PoEWindowCheck(){
-			IfWinExist, ahk_group POEGameGroup 
-			{
-				global GuiX, GuiY, RescaleRan, ToggleExist
-				If (!RescaleRan)
-					Rescale()
-				If (!ToggleExist) {
-					Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
-					ToggleExist := True
-					WinActivate, ahk_group POEGameGroup
-					If (YesPersistantToggle)
-						AutoReset()
+	; StockScrolls - Restock scrolls that have more than 10 missing
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	StockScrolls(){
+			BlockInput, MouseMove
+			If StockWisdom{
+				MouseMove %WisdomScrollX%, %WisdomScrollY%
+				ClipItem(WisdomScrollX, WisdomScrollY)
+				Sleep, 30*Latency
+				dif := (40 - Stats.Stack)
+					If (dif>10)
+				{
+					MoveStash(1)
+					MouseMove WisdomStockX, WPStockY
+					Sleep, 30*Latency
+					ShiftClick(WisdomStockX, WPStockY)
+						Sleep, 30*Latency
+					Send %dif%
+						Sleep, 45*Latency
+					Send {Enter}
+					Sleep, 60*Latency
+					Send {Click, Down, %WisdomScrollX%, %WisdomScrollY%}
+					Sleep, 30*Latency
+					Send {Click, Up, %WisdomScrollX%, %WisdomScrollY%}
+					Sleep, 45*Latency
 				}
-			} Else {
-				If (ToggleExist){
-					Gui 2: Show, Hide
-					ToggleExist := False
+				Sleep, 20*Latency
+			}
+			If StockPortal{
+				MouseMove %PortalScrollX%, %PortalScrollY%
+				ClipItem(PortalScrollX, PortalScrollY)
+				Sleep, 30*Latency
+				dif := (40 - Stats.Stack)
+					If (dif>10)
+				{
+					MoveStash(1)
+					MouseMove PortalStockX, WPStockY
+					Sleep, 30*Latency
+					ShiftClick(PortalStockX, WPStockY)
+						Sleep, 30*Latency
+					Send %dif%
+						Sleep, 45*Latency
+					Send {Enter}
+					Sleep, 60*Latency
+					Send {Click, Down, %PortalScrollX%, %PortalScrollY%}
+					Sleep, 30*Latency
+					Send {Click, Up, %PortalScrollX%, %PortalScrollY%}
+					Sleep, 45*Latency
 				}
 			}
-			Return
+			BlockInput, MouseMoveOff
+		return
 		}
-; GuiStatus - Pixelcheck for different parts of the screen to see what your status is in game. 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GuiStatus(Fetch:=""){
-		If (Fetch="OnHideout")
+
+	; LootScan - Finds matching colors under the cursor while key pressed
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	LootScan(){
+		LootScanCommand:
+			Pressed := GetKeyState(hotkeyLootScan)
+			While (Pressed&&LootVacuum)
 			{
-			pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-			pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
-			if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
-				OnHideout:=True
-				} Else {
-				OnHideout:=False
+				For k, ColorHex in LootColors
+				{
+					Pressed := GetKeyState(hotkeyLootScan)
+					Sleep, -1
+					MouseGetPos CenterX, CenterY
+					ScanX1:=(CenterX-AreaScale)
+					ScanY1:=(CenterY-AreaScale)
+					ScanX2:=(CenterX+AreaScale)
+					ScanY2:=(CenterY+AreaScale)
+					PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
+					If (ErrorLevel = 0){
+						Pressed := GetKeyState(hotkeyLootScan)
+						If !(Pressed)
+							Break 2
+						SwiftClick(ScanPx, ScanPy)
+						}
+					Else If (ErrorLevel = 1)
+						Continue
 				}
-			Return
-			}
-		If !(Fetch="")
-			{
-			pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
-			If (P%Fetch%=var%Fetch%){
-				%Fetch%:=True
-				} Else {
-				%Fetch%:=False
-				}
-			Return
-			}
-		pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-		pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
-		if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
-			OnHideout:=True
-			} Else {
-			OnHideout:=False
-			}
-		pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
-		If (POnChar=varOnChar)  {
-			OnChar:=True
-			} Else {
-			OnChar:=False
-			}
-		pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-		If (POnChat=varOnChat) {
-			OnChat:=True
-			} Else {
-			OnChat:=False
-			}
-		pixelgetcolor, POnMenu, vX_OnMenu, vY_OnMenu
-		If (POnMenu=varOnMenu) {
-			OnMenu:=True
-			} Else {
-			OnMenu:=False
-			}
-		pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-		If (POnInventory=varOnInventory) {
-			OnInventory:=True
-			} Else {
-			OnInventory:=False
-			}
-		pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-		If (POnStash=varOnStash) {
-			OnStash:=True
-			} Else {
-			OnStash:=False
-			}
-		pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
-		If (POnVendor=varOnVendor) {
-			OnVendor:=True
-			} Else {
-			OnVendor:=False
-			}
-		pixelgetcolor, POnDiv, vX_OnDiv, vY_OnDiv
-		If (POnDiv=varOnDiv) {
-			OnDiv:=True
-			} Else {
-			OnDiv:=False
 			}
 		Return
 		}
 
-; MainAttackCommand - Main attack Flasks
+; Main Script Logic Timers - TGameTick, TMineTick, TimerPassthrough, TimerMainAttack, TimerSecondaryAttack
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MainAttackCommand(){
-		MainAttackCommand:
-		if (AutoFlask || AutoQuicksilver) {
-			GuiStatus()
-			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
-				return
-			If AutoFlask {
-				TriggerFlask(TriggerMainAttack)
-				SetTimer, TimerMainAttack, 400
-			}
-			If (AutoQuicksilver && QSonMainAttack) {
-				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
-					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
-						Return
-					SendMSG(5,1,scriptGottaGoFast)
-					SetTimer, TimerMainAttack, 400
-				}
-			}
-		}
-		Return	
-		}
-; SecondaryAttackCommand - Secondary attack Flasks
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	SecondaryAttackCommand(){
-		SecondaryAttackCommand:
-		if (AutoFlask || AutoQuicksilver) {
-			GuiStatus()
-			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
-				return
-			If AutoFlask {
-				TriggerFlask(TriggerSecondaryAttack)
-				SetTimer, TimerSecondaryAttack, 400
-			}
-			If (AutoQuicksilver && QSonSecondaryAttack) {
-				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
-					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
-						Return
-					SendMSG(5,1,scriptGottaGoFast)
-					SetTimer, TimerSecondaryAttack, 400
-				}
-			}
-		}
-		Return	
-		}
-
-; TGameTick - Flask Logic timer
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; TGameTick - Flask Logic timer
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TGameTick(){
 		IfWinActive, ahk_group POEGameGroup
 		{
@@ -5071,8 +5120,8 @@
 		}
 		Return
 		}
-; TMineTick - Detonate Mines timer
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; TMineTick - Detonate Mines timer
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TMineTick(){
 		IfWinActive, ahk_group POEGameGroup
 		{	
@@ -5082,291 +5131,8 @@
 		Return
 		}
 
-; TriggerUtility - Trigger named Utility
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TriggerUtility(Utility){
-		GuiStatus("OnHideout")
-		GuiStatus("OnChar")
-		GuiStatus("OnChat")
-		GuiStatus("OnInventory")
-		GuiStatus("OnMenu")
-		
-		if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char,atlas open, chat open, or open inventory
-			GuiUpdate()
-			Exit
-		}
-		If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
-			key:=KeyUtility%Utility%
-			Send %key%
-			SendMSG(4, Utility, scriptGottaGoFast)
-			OnCooldownUtility%Utility%:=1
-			Cooldown:=CooldownUtility%Utility%
-			SetTimer, TimerUtility%Utility%, %Cooldown%
-		}
-		Return
-	} 
-; TriggerFlask - Flask Trigger check
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TriggerFlask(Trigger){
-		FL:=1
-		loop 5 {
-			FLVal:=SubStr(Trigger,FL,1)+0
-			if (FLVal > 0) {
-				if (OnCooldown[FL]=0) {
-					send %FL%
-					SendMSG(3, FL, scriptGottaGoFast)
-					OnCooldown[FL]:=1 
-					Cooldown:=CooldownFlask%FL%
-					settimer, TimerFlask%FL%, %Cooldown%
-					RandomSleep(15,60)			
-				}
-			}
-			++FL
-		}
-		Return
-	}
-; TriggerMana - Trigger Mana Flasks Sequentially
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TriggerMana(Trigger){
-		If ((!FlaskList.Count())&& !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) ) {
-			FL=1
-			loop, 5 {
-				FLVal:=SubStr(Trigger,FL,1)+0
-				if (FLVal > 0) {
-					if (OnCooldown[FL]=0)
-						FlaskList.Push(FL)
-				}
-				++FL
-			}
-		}
-		Else If !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) {
-			FL:=FlaskList.RemoveAt(1)
-			send %FL%
-			OnCooldown[FL] := 1 
-			Cooldown:=CooldownFlask%FL%
-			settimer, TimerFlask%FL%, %Cooldown%
-			SendMSG(3, FL, scriptGottaGoFast)
-			RandomSleep(23,59)
-		}
-		Return
-	}
-
-; DetectJoystick - Auto-detect the joystick number if called for:
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	DetectJoystick(){
-		if JoystickNumber <= 0
-		{
-			Loop 16  ; Query each joystick number to find out which ones exist.
-			{
-				GetKeyState, JoyName, %A_Index%JoyName
-				if JoyName <>
-				{
-						JoystickNumber = %A_Index%
-						Ding(3000,"Detected Joystick on the " . A_Index . " port.")
-						break
-						
-				}
-			}
-			if JoystickNumber <= 0
-			{
-					Ding(3000,"The system does not appear to have any joysticks.")
-			}
-		}
-		Else 
-		{
-			Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
-		}
-		Return
-	}
-; RegisterHotkeys - Register Chat Hokeys
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	RegisterHotkeys() {
-		global
-		Hotkey If, % fn1
-			If 1Suffix1
-				Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
-			If 1Suffix2
-				Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
-			If 1Suffix3
-				Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
-			If 1Suffix4
-				Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
-			If 1Suffix5
-				Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
-			If 1Suffix6
-				Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
-			If 1Suffix7
-				Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
-			If 1Suffix8
-				Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
-			If 1Suffix9
-				Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
-
-		Hotkey If, % fn2
-			If 2Suffix1
-				Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
-			If 2Suffix2
-				Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
-			If 2Suffix3
-				Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
-			If 2Suffix4
-				Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
-			If 2Suffix5
-				Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
-			If 2Suffix6
-				Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
-			If 2Suffix7
-				Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
-			If 2Suffix8
-				Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
-			If 2Suffix9
-				Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
-
-		Hotkey If, % fn3
-			If stashSuffix1
-				Hotkey, *%stashSuffix1%, FireStashHotkey1, off
-			If stashSuffix2
-				Hotkey, *%stashSuffix2%, FireStashHotkey2, off
-			If stashSuffix3
-				Hotkey, *%stashSuffix3%, FireStashHotkey3, off
-			If stashSuffix4
-				Hotkey, *%stashSuffix4%, FireStashHotkey4, off
-			If stashSuffix5
-				Hotkey, *%stashSuffix5%, FireStashHotkey5, off
-			If stashSuffix6
-				Hotkey, *%stashSuffix6%, FireStashHotkey6, off
-			If stashSuffix7
-				Hotkey, *%stashSuffix7%, FireStashHotkey7, off
-			If stashSuffix8
-				Hotkey, *%stashSuffix8%, FireStashHotkey8, off
-			If stashSuffix9
-				Hotkey, *%stashSuffix9%, FireStashHotkey9, off
-
-		Gui Submit, NoHide
-		fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
-		Hotkey If, % fn1
-		Loop, 9 {
-			If (1Suffix%A_Index%)
-				keyval := 1Suffix%A_Index%
-				Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
-			}
-		fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
-		Hotkey If, % fn2
-		Loop, 9 {
-			If (2Suffix%A_Index%)
-				keyval := 2Suffix%A_Index%
-				Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
-			}
-		fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
-		Hotkey If, % fn3
-		Loop, 9 {
-			If (stashSuffix%A_Index%)
-				keyval := stashSuffix%A_Index%
-				Hotkey, ~*%keyval%, FireStashHotkey%A_Index%, On
-			}
-		Return
-		}
-; HotkeyShouldFire - Functions to evaluate keystate
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
-		IfWinActive, ahk_group POEGameGroup
-			{
-			If (EnableChatHotkeys){
-				If ( 1Prefix1 && 1Prefix2 ){
-					If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
-						return True
-					Else
-						return False
-					}
-				Else If ( 1Prefix1 && !1Prefix2 ) {
-					If ( GetKeyState(1Prefix1) ) 
-						return True
-					Else
-						return False
-					}
-				Else If ( !1Prefix1 && 1Prefix2 ) {
-					If ( GetKeyState(1Prefix2) ) 
-						return True
-					Else
-						return False
-					}
-				Else If ( !1Prefix1 && !1Prefix2 ) {
-					return True
-					}
-				} 
-			}
-		Else {
-				Return False
-			}
-	}
-	2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
-		IfWinActive, ahk_group POEGameGroup
-			{
-			If (EnableChatHotkeys){
-				If ( 2Prefix1 && 2Prefix2 ){
-					If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
-						return True
-					Else
-						return False
-					}
-				Else If ( 2Prefix1 && !2Prefix2 ) {
-					If ( GetKeyState(2Prefix1) ) 
-						return True
-					Else
-						return False
-					}
-				Else If ( !2Prefix1 && 2Prefix2 ) {
-					If ( GetKeyState(2Prefix2) ) 
-						return True
-					Else
-						return False
-					}
-				Else If ( !2Prefix1 && !2Prefix2 ) {
-					return True
-					}
-				}
-			Else
-				Return False 
-			}
-		Else {
-				Return False
-			}
-	}
-	stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
-		IfWinActive, ahk_group POEGameGroup
-		{
-			If (YesStashKeys){
-				If ( stashPrefix1 && stashPrefix2 ){
-					If ( GetKeyState(stashPrefix1) && GetKeyState(stashPrefix2) )
-						return True
-					Else
-						return False
-					}
-				Else If ( stashPrefix1 && !stashPrefix2 ) {
-					If ( GetKeyState(stashPrefix1) ) 
-						return True
-					Else
-						return False
-					}
-				Else If ( !stashPrefix1 && stashPrefix2 ) {
-					If ( GetKeyState(stashPrefix2) ) 
-						return True
-					Else
-						return False
-					}
-				Else If ( !stashPrefix1 && !stashPrefix2 ) {
-					return True
-					}
-			}
-			Else
-				Return False 
-		}
-		Else {
-				Return False
-		}
-	}
-; TimerPassthrough - Passthrough Timer
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; TimerPassthrough - Passthrough Timer
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerPassthrough:
 		If ( GetKeyState(1, "P") ) {
 			OnCooldown[1]:=1
@@ -5394,9 +5160,8 @@
 			SendMSG(3, 5, scriptGottaGoFast)
 		}
 	Return
-
-; TimerMainAttack - TimerSecondaryAttack - Attack Key timers
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Attack Key timers - TimerMainAttack, TimerSecondaryAttack
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerMainAttack:
 		MainAttackPressed:=GetKeyState(hotkeyMainAttack)
 		If (MainAttackPressed && TriggerMainAttack > 0 )
@@ -5415,7 +5180,490 @@
 		If (!SecondaryAttackPressed)
 			settimer,TimerSecondaryAttack,delete
 	Return
+; Toggle Main Script Timers - AutoQuit, AutoFlask, AutoReset, GuiUpdate
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; AutoQuit - Toggle Auto-Quit
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	AutoQuit(){
+		AutoQuitCommand:
+			AutoQuit := !AutoQuit
+			IniWrite, %AutoQuit%, settings.ini, Previous Toggles, AutoQuit
+			if ((!AutoFlask) && (!AutoQuit)) {
+				SetTimer TGameTick, Off
+			} else if ((AutoFlask) || (AutoQuit)){
+				SetTimer TGameTick, %Tick%
+			} 
+			GuiUpdate()
+		return
+		}
 
+	; AutoFlask - Toggle Auto-Pot
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	AutoFlask(){
+		AutoFlaskCommand:	
+			AutoFlask := !AutoFlask
+			IniWrite, %AutoFlask%, settings.ini, Previous Toggles, AutoFlask
+			if ((!AutoFlask) and (!AutoQuit)) {
+				SetTimer TGameTick, Off
+			} else if ((AutoFlask) || (AutoQuit)) {
+				SetTimer TGameTick, %Tick%
+			}
+			GuiUpdate()	
+		return
+		}
+
+	; AutoReset - Load Previous Toggle States
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	AutoReset(){
+		IniRead, AutoQuit, settings.ini, Previous Toggles, AutoQuit, 0
+		IniRead, AutoFlask, settings.ini, Previous Toggles, AutoFlask, 0
+		if ((!AutoFlask) and (!AutoQuit)) {
+			SetTimer TGameTick, Off
+		} else if ((AutoFlask) || (AutoQuit)) {
+			SetTimer TGameTick, %Tick%
+		}
+		GuiUpdate()	
+		return
+		}
+
+	; GuiUpdate - Update Overlay ON OFF states
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GuiUpdate(){
+			if (AutoFlask=1) {
+				AutoFlaskToggle:="ON" 
+			} else AutoFlaskToggle:="OFF" 
+			
+			if (AutoQuit=1) {
+				AutoQuitToggle:="ON" 
+			}else AutoQuitToggle:="OFF" 
+			
+			GuiControl, 2:, T1, Quit: %AutoQuitToggle%
+			GuiControl, 2:, T2, Flasks: %AutoFlaskToggle%
+			Return
+		}
+
+; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, TriggerFlask, TriggerMana, TriggerUtility, DetonateMines
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; MainAttackCommand - Main attack Flasks
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	MainAttackCommand(){
+		MainAttackCommand:
+		if (AutoFlask || AutoQuicksilver) {
+			GuiStatus()
+			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+				return
+			If AutoFlask {
+				TriggerFlask(TriggerMainAttack)
+				SetTimer, TimerMainAttack, 400
+			}
+			If (AutoQuicksilver && QSonMainAttack) {
+				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+						Return
+					SendMSG(5,1,scriptGottaGoFast)
+					SetTimer, TimerMainAttack, 400
+				}
+			}
+		}
+		Return	
+		}
+	; SecondaryAttackCommand - Secondary attack Flasks
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SecondaryAttackCommand(){
+		SecondaryAttackCommand:
+		if (AutoFlask || AutoQuicksilver) {
+			GuiStatus()
+			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+				return
+			If AutoFlask {
+				TriggerFlask(TriggerSecondaryAttack)
+				SetTimer, TimerSecondaryAttack, 400
+			}
+			If (AutoQuicksilver && QSonSecondaryAttack) {
+				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+						Return
+					SendMSG(5,1,scriptGottaGoFast)
+					SetTimer, TimerSecondaryAttack, 400
+				}
+			}
+		}
+		Return	
+		}
+
+	; TriggerFlask - Flask Trigger check
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TriggerFlask(Trigger){
+		FL:=1
+		loop 5 {
+			FLVal:=SubStr(Trigger,FL,1)+0
+			if (FLVal > 0) {
+				if (OnCooldown[FL]=0) {
+					send %FL%
+					SendMSG(3, FL, scriptGottaGoFast)
+					OnCooldown[FL]:=1 
+					Cooldown:=CooldownFlask%FL%
+					settimer, TimerFlask%FL%, %Cooldown%
+					RandomSleep(15,60)			
+				}
+			}
+			++FL
+		}
+		Return
+	}
+	; TriggerMana - Trigger Mana Flasks Sequentially
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TriggerMana(Trigger){
+		If ((!FlaskList.Count())&& !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) ) {
+			FL=1
+			loop, 5 {
+				FLVal:=SubStr(Trigger,FL,1)+0
+				if (FLVal > 0) {
+					if (OnCooldown[FL]=0)
+						FlaskList.Push(FL)
+				}
+				++FL
+			}
+		}
+		Else If !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) {
+			FL:=FlaskList.RemoveAt(1)
+			send %FL%
+			OnCooldown[FL] := 1 
+			Cooldown:=CooldownFlask%FL%
+			settimer, TimerFlask%FL%, %Cooldown%
+			SendMSG(3, FL, scriptGottaGoFast)
+			RandomSleep(23,59)
+		}
+		Return
+	}
+
+	; TriggerUtility - Trigger named Utility
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TriggerUtility(Utility){
+		GuiStatus("OnHideout")
+		GuiStatus("OnChar")
+		GuiStatus("OnChat")
+		GuiStatus("OnInventory")
+		GuiStatus("OnMenu")
+		
+		if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, menu open, chat open, or open inventory
+			GuiUpdate()
+			Exit
+		}
+		If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
+			key:=KeyUtility%Utility%
+			Send %key%
+			SendMSG(4, Utility, scriptGottaGoFast)
+			OnCooldownUtility%Utility%:=1
+			Cooldown:=CooldownUtility%Utility%
+			SetTimer, TimerUtility%Utility%, %Cooldown%
+		}
+		Return
+	} 
+	; DetonateMines - Auto Detonate Mines
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DetonateMines(){
+			GuiStatus("OnChat")
+			If (OnChat)
+				exit
+			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
+			pixelgetcolor, Mine, DetonateX, DetonateY
+			If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
+				Sendraw, d
+				Detonated:=1
+				Settimer, TDetonated, 500
+				Return
+			}
+			Return	
+		}
+
+; GuiStatus - Pixelcheck for different parts of the screen to see what your status is in game. 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GuiStatus(Fetch:=""){
+		If (Fetch="OnHideout")
+			{
+			pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+			pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+			if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
+				OnHideout:=True
+				} Else {
+				OnHideout:=False
+				}
+			Return
+			}
+		If !(Fetch="")
+			{
+			pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
+			If (P%Fetch%=var%Fetch%){
+				%Fetch%:=True
+				} Else {
+				%Fetch%:=False
+				}
+			Return
+			}
+		pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+		pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+		if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
+			OnHideout:=True
+			} Else {
+			OnHideout:=False
+			}
+		pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
+		If (POnChar=varOnChar)  {
+			OnChar:=True
+			} Else {
+			OnChar:=False
+			}
+		pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
+		If (POnChat=varOnChat) {
+			OnChat:=True
+			} Else {
+			OnChat:=False
+			}
+		pixelgetcolor, POnMenu, vX_OnMenu, vY_OnMenu
+		If (POnMenu=varOnMenu) {
+			OnMenu:=True
+			} Else {
+			OnMenu:=False
+			}
+		pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
+		If (POnInventory=varOnInventory) {
+			OnInventory:=True
+			} Else {
+			OnInventory:=False
+			}
+		pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
+		If (POnStash=varOnStash) {
+			OnStash:=True
+			} Else {
+			OnStash:=False
+			}
+		pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
+		If (POnVendor=varOnVendor) {
+			OnVendor:=True
+			} Else {
+			OnVendor:=False
+			}
+		pixelgetcolor, POnDiv, vX_OnDiv, vY_OnDiv
+		If (POnDiv=varOnDiv) {
+			OnDiv:=True
+			} Else {
+			OnDiv:=False
+			}
+		Return
+		}
+
+; Rescale - Rescales values of the script to the user's resolution
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Rescale(){
+			IfWinExist, ahk_group POEGameGroup 
+			{
+				WinGetPos, X, Y, W, H
+				If (ResolutionScale="Standard") {
+					; Item Inventory Grid
+					Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
+					Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+					;Detonate Mines
+					Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
+					Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
+					Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+					;Scrolls in currency tab
+					Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
+					Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
+					Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+					;Status Check OnHideout
+					global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
+					global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+					global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+					;Status Check OnMenu
+					global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+					global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+					;Status Check OnChar
+					global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+					global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+					;Status Check OnChat
+					global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+					global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+					;Status Check OnInventory
+					global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+					global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+					;Status Check OnStash
+					global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+					global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+					;Status Check OnVendor
+					global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+					global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+					;Status Check OnDiv
+					global vX_OnDiv:=X + Round(A_ScreenWidth / (1920 / 618))
+					global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
+					;Life %'s
+					global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;ES %'s
+					global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;Mana
+					global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+					;GUI overlay
+					global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
+					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+					;Divination Y locations
+					Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+					Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
+					;Stash tabs menu button
+					global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
+					global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+					;Stash tabs menu list
+					global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 706))
+					global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+					;calculate the height of each tab
+					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+				}
+				Else If (ResolutionScale="UltraWide") {
+					; Item Inventory Grid
+					Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
+					Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+					;Detonate Mines
+					Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
+					Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
+					Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+					;Scrolls in currency tab
+					Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
+					Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
+					Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+					;Status Check OnHideout
+					global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
+					global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+					global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+					;Status Check OnMenu
+					global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+					global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+					;Status Check OnChar
+					global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+					global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+					;Status Check OnChat
+					global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+					global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+					;Status Check OnInventory
+					global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+					global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+					;Status Check OnStash
+					global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+					global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+					;Status Check OnVendor
+					global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+					global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+					;Status Check OnDiv
+					global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
+					global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
+					;Life %'s
+					global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;ES %'s
+					global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;Mana
+					global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
+					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+					;GUI overlay
+					global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
+					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+					;Divination Y locations
+					Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+					Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
+					;Stash tabs menu button
+					global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
+					global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+					;Stash tabs menu list
+					global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 706))
+					global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+					;calculate the height of each tab
+					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+				} 
+				RescaleRan := True
+			}
+		return
+		}
+
+; PoEWindowCheck - Check for the game window. 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	PoEWindowCheck(){
+			IfWinExist, ahk_group POEGameGroup 
+			{
+				global GuiX, GuiY, RescaleRan, ToggleExist
+				If (!RescaleRan)
+					Rescale()
+				If (!ToggleExist) {
+					Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+					ToggleExist := True
+					WinActivate, ahk_group POEGameGroup
+					If (YesPersistantToggle)
+						AutoReset()
+				}
+			} Else {
+				If (ToggleExist){
+					Gui 2: Show, Hide
+					ToggleExist := False
+				}
+			}
+			Return
+		}
+; DetectJoystick - Auto-detect the joystick number if called for:
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DetectJoystick(){
+		if JoystickNumber <= 0
+		{
+			Loop 16  ; Query each joystick number to find out which ones exist.
+			{
+				GetKeyState, JoyName, %A_Index%JoyName
+				if JoyName <>
+				{
+						JoystickNumber = %A_Index%
+						Ding(3000,"Detected Joystick on the " . A_Index . " port.")
+						break
+						
+				}
+			}
+			if JoystickNumber <= 0
+			{
+					Ding(3000,"The system does not appear to have any joysticks.")
+			}
+		}
+		Else 
+		{
+			Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
+		}
+		Return
+	}
 ; MsgMonitor - Receive Messages from other scripts
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	MsgMonitor(wParam, lParam, msg)
@@ -5514,6 +5762,51 @@
 		}
 		Return
 		}
+; CoordAndDebug - Debugging information on Mouse Cursor, also provides Inventory Grid information
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	CoordAndDebug(){
+			CoordAndDebugCommand:
+				
+				MouseGetPos x, y
+				PixelGetColor, xycolor , x, y
+				TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
+				
+				If DebugMessages{
+					TT := TT . "`n`n"
+					GuiStatus()
+					TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
+					TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
+					TT := TT . "  Divination Trade: " . OnDiv . "  Menu Open: " . OnMenu . "`n`n"
+					Tooltip, %TT%
+					SetTimer, RemoveToolTip, 10000
+
+				} Else {
+					Tooltip, %TT%
+					SetTimer, RemoveToolTip, 10000
+				}
+				If (DebugMessages&&ShowPixelGrid){
+					;Check if inventory is open
+					if(!OnInventory){
+						TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+					}else{
+						TT := "Grid information:" . "`n"
+						For C, GridX in InventoryGridX	{
+							For R, GridY in InventoryGridY
+							{
+								pixelgetcolor, PointColor, GridX, GridY
+								if (indexOf(PointColor, varEmptyInvSlotColor)) {				
+									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+								}else{
+									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
+								}
+							}
+						}
+					}
+					MsgBox %TT%	
+				}
+			Return
+		}
+
 ; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	{ ; Read, Save, Load
@@ -5829,6 +6122,8 @@
 				hotkey,% hotkeyLogout, LogoutCommand, Off
 			If hotkeyItemSort
 				hotkey,% hotkeyItemSort, ItemSortCommand, Off
+			If hotkeyItemInfo
+				hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
 			If hotkeyLootScan
 				hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
 			If hotkeyMainAttack
@@ -5855,6 +6150,7 @@
 			IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory, c
 			IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey, x
 			IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort, F6
+			IniRead, hotkeyItemInfo, settings.ini, hotkeys, ItemInfo, F5
 			IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
 			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
 			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
@@ -5876,6 +6172,8 @@
 				hotkey,% hotkeyLogout, LogoutCommand, On
 			If hotkeyItemSort
 				hotkey,% hotkeyItemSort, ItemSortCommand, On
+			If hotkeyItemInfo
+				hotkey,% hotkeyItemInfo, ItemInfoCommand, On
 			If hotkeyLootScan
 				hotkey, $~%hotkeyLootScan%, LootScanCommand, On
 			If hotkeyMainAttack
@@ -6014,6 +6312,8 @@
 				hotkey,% hotkeyLogout, LogoutCommand, Off
 			If hotkeyItemSort
 				hotkey,% hotkeyItemSort, ItemSortCommand, Off
+			If hotkeyItemInfo
+				hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
 			If hotkeyLootScan
 				hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
 			If hotkeyMainAttack
@@ -6203,6 +6503,7 @@
 			IniWrite, %hotkeyInventory%, settings.ini, hotkeys, Inventory
 			IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey
 			IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort
+			IniWrite, %hotkeyItemInfo%, settings.ini, hotkeys, ItemInfo
 			IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
 			IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
 			IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
@@ -6545,6 +6846,7 @@
 			GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
 			GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
 			GuiControl,, hotkeyItemSort, %hotkeyItemSort%
+			GuiControl,, hotkeyItemInfo, %hotkeyItemInfo%
 			GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
 			GuiControl,, hotkeyInventory, %hotkeyInventory%
 			GuiControl,, hotkeyWeaponSwapKey, %hotkeyWeaponSwapKey%
@@ -6560,6 +6862,197 @@
 			
 			SendMSG(1,1,scriptGottaGoFast)
 		return
+	}
+
+	{ ; Hotkeys with modifiers - RegisterHotkeys, 1HotkeyShouldFire, 2HotkeyShouldFire, stashHotkeyShouldFire
+
+		; RegisterHotkeys - Register Chat and Stash Hotkeys
+		; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		RegisterHotkeys() {
+			global
+			Hotkey If, % fn1
+				If 1Suffix1
+					Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
+				If 1Suffix2
+					Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
+				If 1Suffix3
+					Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
+				If 1Suffix4
+					Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
+				If 1Suffix5
+					Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
+				If 1Suffix6
+					Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
+				If 1Suffix7
+					Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
+				If 1Suffix8
+					Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
+				If 1Suffix9
+					Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
+
+			Hotkey If, % fn2
+				If 2Suffix1
+					Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
+				If 2Suffix2
+					Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
+				If 2Suffix3
+					Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
+				If 2Suffix4
+					Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
+				If 2Suffix5
+					Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
+				If 2Suffix6
+					Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
+				If 2Suffix7
+					Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
+				If 2Suffix8
+					Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
+				If 2Suffix9
+					Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
+
+			Hotkey If, % fn3
+				If stashSuffix1
+					Hotkey, *%stashSuffix1%, FireStashHotkey1, off
+				If stashSuffix2
+					Hotkey, *%stashSuffix2%, FireStashHotkey2, off
+				If stashSuffix3
+					Hotkey, *%stashSuffix3%, FireStashHotkey3, off
+				If stashSuffix4
+					Hotkey, *%stashSuffix4%, FireStashHotkey4, off
+				If stashSuffix5
+					Hotkey, *%stashSuffix5%, FireStashHotkey5, off
+				If stashSuffix6
+					Hotkey, *%stashSuffix6%, FireStashHotkey6, off
+				If stashSuffix7
+					Hotkey, *%stashSuffix7%, FireStashHotkey7, off
+				If stashSuffix8
+					Hotkey, *%stashSuffix8%, FireStashHotkey8, off
+				If stashSuffix9
+					Hotkey, *%stashSuffix9%, FireStashHotkey9, off
+
+			Gui Submit, NoHide
+			fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
+			Hotkey If, % fn1
+			Loop, 9 {
+				If (1Suffix%A_Index%)
+					keyval := 1Suffix%A_Index%
+					Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
+				}
+			fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
+			Hotkey If, % fn2
+			Loop, 9 {
+				If (2Suffix%A_Index%)
+					keyval := 2Suffix%A_Index%
+					Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
+				}
+			fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
+			Hotkey If, % fn3
+			Loop, 9 {
+				If (stashSuffix%A_Index%)
+					keyval := stashSuffix%A_Index%
+					Hotkey, ~*%keyval%, FireStashHotkey%A_Index%, On
+				}
+			Return
+			}
+		; HotkeyShouldFire - Functions to evaluate keystate
+		; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
+			IfWinActive, ahk_group POEGameGroup
+				{
+				If (EnableChatHotkeys){
+					If ( 1Prefix1 && 1Prefix2 ){
+						If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
+							return True
+						Else
+							return False
+						}
+					Else If ( 1Prefix1 && !1Prefix2 ) {
+						If ( GetKeyState(1Prefix1) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !1Prefix1 && 1Prefix2 ) {
+						If ( GetKeyState(1Prefix2) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !1Prefix1 && !1Prefix2 ) {
+						return True
+						}
+					} 
+				}
+			Else {
+					Return False
+				}
+		}
+		2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
+			IfWinActive, ahk_group POEGameGroup
+				{
+				If (EnableChatHotkeys){
+					If ( 2Prefix1 && 2Prefix2 ){
+						If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
+							return True
+						Else
+							return False
+						}
+					Else If ( 2Prefix1 && !2Prefix2 ) {
+						If ( GetKeyState(2Prefix1) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !2Prefix1 && 2Prefix2 ) {
+						If ( GetKeyState(2Prefix2) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !2Prefix1 && !2Prefix2 ) {
+						return True
+						}
+					}
+				Else
+					Return False 
+				}
+			Else {
+					Return False
+				}
+		}
+		stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
+			IfWinActive, ahk_group POEGameGroup
+			{
+				If (YesStashKeys){
+					If ( stashPrefix1 && stashPrefix2 ){
+						If ( GetKeyState(stashPrefix1) && GetKeyState(stashPrefix2) )
+							return True
+						Else
+							return False
+						}
+					Else If ( stashPrefix1 && !stashPrefix2 ) {
+						If ( GetKeyState(stashPrefix1) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !stashPrefix1 && stashPrefix2 ) {
+						If ( GetKeyState(stashPrefix2) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !stashPrefix1 && !stashPrefix2 ) {
+						return True
+						}
+				}
+				Else
+					Return False 
+			}
+			Else {
+					Return False
+			}
+		}
 	}
 
 	{ ; Submit Profiles
@@ -8534,401 +9027,7 @@
 		}
 	}
 
-	{ ; ItemInfo Functions
-		GraphNinjaPrices(TKey,index)
-		{
-			Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
-			If (Ninja[TKey][index]["paySparkLine"])
-			{
-				dataPayPoint := Ninja[TKey][index]["paySparkLine"]["data"]
-				dataRecPoint := Ninja[TKey][index]["receiveSparkLine"]["data"]
-				totalPayChange := Ninja[TKey][index]["paySparkLine"]["totalChange"]
-				totalRecChange := Ninja[TKey][index]["receiveSparkLine"]["totalChange"]
-
-				basePayPoint := 0
-				For k, v in dataPayPoint
-				{
-					If Abs(v) > basePayPoint
-						basePayPoint := Abs(v)
-				}
-				If basePayPoint = 0
-				FormatStr := "{1:0.0f}"
-				Else If basePayPoint < 1
-				FormatStr := "{1:0.3f}"
-				Else If basePayPoint < 10
-				FormatStr := "{1:0.2f}"
-				Else If basePayPoint < 100
-				FormatStr := "{1:0.1f}"
-				Else If basePayPoint > 100
-				FormatStr := "{1:0.0f}"
-
-				GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
-				GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePayPoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePayPoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePayPoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePayPoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePayPoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePayPoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePayPoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePayPoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText1G11, % "0`%"
-				GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePayPoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePayPoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePayPoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePayPoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePayPoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePayPoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePayPoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePayPoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
-
-
-				baseRecPoint := 0
-				For k, v in dataRecPoint
-				{
-					If Abs(v) > baseRecPoint
-						baseRecPoint := Abs(v)
-				}
-				If baseRecPoint = 0
-				FormatStr := "{1:0.0f}"
-				Else If baseRecPoint < 1
-				FormatStr := "{1:0.3f}"
-				Else If baseRecPoint < 10
-				FormatStr := "{1:0.2f}"
-				Else If baseRecPoint < 100
-				FormatStr := "{1:0.1f}"
-				Else If baseRecPoint > 100
-				FormatStr := "{1:0.0f}"
-
-				GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
-				GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseRecPoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseRecPoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseRecPoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseRecPoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseRecPoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseRecPoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseRecPoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseRecPoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText2G11, % "0`%"
-				GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseRecPoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseRecPoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseRecPoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseRecPoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseRecPoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseRecPoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseRecPoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
-
-
-				AvgPay := {}
-				Loop 5
-				{
-					AvgPay[A_Index] := (dataPayPoint[A_Index+1] + dataPayPoint[A_Index+2]) / 2
-				}
-				paddedPayData := {}
-				paddedPayData[1] := dataPayPoint[1]
-				paddedPayData[2] := dataPayPoint[1]
-				paddedPayData[3] := dataPayPoint[2]
-				paddedPayData[4] := AvgPay[1]
-				paddedPayData[5] := dataPayPoint[3]
-				paddedPayData[6] := AvgPay[2]
-				paddedPayData[7] := dataPayPoint[4]
-				paddedPayData[8] := AvgPay[3]
-				paddedPayData[9] := dataPayPoint[5]
-				paddedPayData[10] := AvgPay[4]
-				paddedPayData[11] := dataPayPoint[6]
-				paddedPayData[12] := AvgPay[5]
-				paddedPayData[13] := dataPayPoint[7]
-				For k, v in paddedPayData
-				{
-					div := v / basePayPoint * 100
-					XGraph_Plot( pGraph1, 100 - div, "", True )
-					;MsgBox % "Key : " k "   Val : " v
-				}
-				AvgRec := {}
-				Loop 5
-				{
-					AvgRec[A_Index] := (dataRecPoint[A_Index+1] + dataRecPoint[A_Index+2]) / 2
-				}
-				paddedRecData := {}
-				paddedRecData[1] := dataRecPoint[1]
-				paddedRecData[2] := dataRecPoint[1]
-				paddedRecData[3] := dataRecPoint[2]
-				paddedRecData[4] := AvgRec[1]
-				paddedRecData[5] := dataRecPoint[3]
-				paddedRecData[6] := AvgRec[2]
-				paddedRecData[7] := dataRecPoint[4]
-				paddedRecData[8] := AvgRec[3]
-				paddedRecData[9] := dataRecPoint[5]
-				paddedRecData[10] := AvgRec[4]
-				paddedRecData[11] := dataRecPoint[6]
-				paddedRecData[12] := AvgRec[5]
-				paddedRecData[13] := dataRecPoint[7]
-				For k, v in paddedRecData
-				{
-					div := v / baseRecPoint * 100
-					XGraph_Plot( pGraph2, 100 - div, "", True )
-					;MsgBox % "Key : " k "   Val : " v
-				}
-
-				GuiControl,ItemInfo: , GroupBox1, % "Sell " Prop.ItemName " to Chaos"
-				GuiControl,ItemInfo: , PComment1, Sell Value
-				GuiControl,ItemInfo: , PData1, % sellval := (1 / Ninja[TKey][index]["pay"]["value"])
-				GuiControl,ItemInfo: , PComment2, Sell Value `% Change
-				GuiControl,ItemInfo: , PData2, % Ninja[TKey][index]["paySparkLine"]["totalChange"]
-				GuiControl,ItemInfo: , PComment3, Orb per Chaos
-				GuiControl,ItemInfo: , PData3, % Ninja[TKey][index]["pay"]["value"]
-				GuiControl,ItemInfo: , PComment4, Day 6 Change
-				GuiControl,ItemInfo: , PData4, % dataPayPoint[2]
-				GuiControl,ItemInfo: , PComment5, Day 5 Change
-				GuiControl,ItemInfo: , PData5, % dataPayPoint[3]
-				GuiControl,ItemInfo: , PComment6, Day 4 Change
-				GuiControl,ItemInfo: , PData6, % dataPayPoint[4]
-				GuiControl,ItemInfo: , PComment7, Day 3 Change
-				GuiControl,ItemInfo: , PData7, % dataPayPoint[5]
-				GuiControl,ItemInfo: , PComment8, Day 2 Change
-				GuiControl,ItemInfo: , PData8, % dataPayPoint[6]
-				GuiControl,ItemInfo: , PComment9, Day 1 Change
-				GuiControl,ItemInfo: , PData9, % dataPayPoint[7]
-				GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
-				GuiControl,ItemInfo: , PData10, C / O
-
-				GuiControl,ItemInfo: , GroupBox2, % "Buy " Prop.ItemName " from Chaos"
-				GuiControl,ItemInfo: , SComment1, Buy Value
-				GuiControl,ItemInfo: , SData1, % sellval := (Ninja[TKey][index]["receive"]["value"])
-				GuiControl,ItemInfo: , SComment2, Buy Value `% Change
-				GuiControl,ItemInfo: , SData2, % Ninja[TKey][index]["receiveSparkLine"]["totalChange"]
-				GuiControl,ItemInfo: , SComment3, Orb per Chaos
-				GuiControl,ItemInfo: , SData3, % 1 / Ninja[TKey][index]["receive"]["value"]
-				GuiControl,ItemInfo: , SComment4, Day 6 Change
-				GuiControl,ItemInfo: , SData4, % dataRecPoint[2]
-				GuiControl,ItemInfo: , SComment5, Day 5 Change
-				GuiControl,ItemInfo: , SData5, % dataRecPoint[3]
-				GuiControl,ItemInfo: , SComment6, Day 4 Change
-				GuiControl,ItemInfo: , SData6, % dataRecPoint[4]
-				GuiControl,ItemInfo: , SComment7, Day 3 Change
-				GuiControl,ItemInfo: , SData7, % dataRecPoint[5]
-				GuiControl,ItemInfo: , SComment8, Day 2 Change
-				GuiControl,ItemInfo: , SData8, % dataRecPoint[6]
-				GuiControl,ItemInfo: , SComment9, Day 1 Change
-				GuiControl,ItemInfo: , SData9, % dataRecPoint[7]
-				GuiControl,ItemInfo: , SComment10, % Decimal2Fraction(sellval,"ID3")
-				GuiControl,ItemInfo: , SData10, C / O
-
-			}
-			Else If (Ninja[TKey][index]["sparkline"])
-			{
-				dataPoint := Ninja[TKey][index]["sparkline"]["data"]
-				dataLTPoint := Ninja[TKey][index]["lowConfidenceSparkline"]["data"]
-				totalChange := Ninja[TKey][index]["sparkline"]["totalChange"]
-				totalLTChange := Ninja[TKey][index]["lowConfidenceSparkline"]["totalChange"]
-
-				basePoint := 0
-				For k, v in dataPoint
-				{
-					If Abs(v) > basePoint
-						basePoint := Abs(v)
-				}
-				If basePoint = 0
-				FormatStr := "{1:0.0f}"
-				Else If basePoint < 1
-				FormatStr := "{1:0.3f}"
-				Else If basePoint < 10
-				FormatStr := "{1:0.2f}"
-				Else If basePoint < 100
-				FormatStr := "{1:0.1f}"
-				Else If basePoint > 100
-				FormatStr := "{1:0.0f}"
-
-				GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePoint*1.0)) "`%"
-				GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText1G11, % "0`%"
-				GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePoint*1.0)) "`%"
-
-				baseLTPoint := 0
-				For k, v in dataLTPoint
-				{
-					If Abs(v) > baseLTPoint
-						baseLTPoint := Abs(v)
-				}
-				If baseLTPoint = 0
-				FormatStr := "{1:0.0f}"
-				If baseLTPoint < 1
-				FormatStr := "{1:0.3f}"
-				Else If baseLTPoint < 10
-				FormatStr := "{1:0.2f}"
-				Else If baseLTPoint < 100
-				FormatStr := "{1:0.1f}"
-				Else If baseLTPoint > 100
-				FormatStr := "{1:0.0f}"
-
-				GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseLTPoint*1.0)) "`%"
-				GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseLTPoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseLTPoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseLTPoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseLTPoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseLTPoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseLTPoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseLTPoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseLTPoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseLTPoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText2G11, % "0`%"
-				GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseLTPoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseLTPoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseLTPoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseLTPoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseLTPoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseLTPoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseLTPoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseLTPoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseLTPoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseLTPoint*1.0)) "`%"
-
-				Avg := {}
-				Loop 5
-				{
-					Avg[A_Index] := (dataPoint[A_Index+1] + dataPoint[A_Index+2]) / 2
-				}
-				paddedData := {}
-				paddedData[1] := dataPoint[1]
-				paddedData[2] := dataPoint[1]
-				paddedData[3] := dataPoint[2]
-				paddedData[4] := Avg[1]
-				paddedData[5] := dataPoint[3]
-				paddedData[6] := Avg[2]
-				paddedData[7] := dataPoint[4]
-				paddedData[8] := Avg[3]
-				paddedData[9] := dataPoint[5]
-				paddedData[10] := Avg[4]
-				paddedData[11] := dataPoint[6]
-				paddedData[12] := Avg[5]
-				paddedData[13] := dataPoint[7]
-				For k, v in paddedData
-				{
-					div := v / basePoint * 100
-					XGraph_Plot( pGraph1, 100 - div, "", True )
-					;MsgBox % "Key : " k "   Val : " v
-				}
-				LTAvg := {}
-				Loop 5
-				{
-					LTAvg[A_Index] := (dataLTPoint[A_Index+1] + dataLTPoint[A_Index+2]) / 2
-				}
-				paddedLTData := {}
-				paddedLTData[1] := dataLTPoint[1]
-				paddedLTData[2] := dataLTPoint[1]
-				paddedLTData[3] := dataLTPoint[2]
-				paddedLTData[4] := LTAvg[1]
-				paddedLTData[5] := dataLTPoint[3]
-				paddedLTData[6] := LTAvg[2]
-				paddedLTData[7] := dataLTPoint[4]
-				paddedLTData[8] := LTAvg[3]
-				paddedLTData[9] := dataLTPoint[5]
-				paddedLTData[10] := LTAvg[4]
-				paddedLTData[11] := dataLTPoint[6]
-				paddedLTData[12] := LTAvg[5]
-				paddedLTData[13] := dataLTPoint[7]
-				For k, v in paddedLTData
-				{
-					div := v / baseLTPoint * 100
-					XGraph_Plot( pGraph2, 100 - div, "", True )
-					;MsgBox % "Key : " k "   Val : " v
-				}
-
-				GuiControl,ItemInfo: , GroupBox1, % "Value of " Prop.ItemName
-				GuiControl,ItemInfo: , PComment1, Chaos Value
-				GuiControl,ItemInfo: , PData1, % Ninja[TKey][index]["chaosValue"]
-				GuiControl,ItemInfo: , PComment2, Chaos Value `% Change
-				GuiControl,ItemInfo: , PData2, % Ninja[TKey][index]["sparkline"]["totalChange"]
-				GuiControl,ItemInfo: , PComment3, Exalted Value
-				GuiControl,ItemInfo: , PData3, % Ninja[TKey][index]["exaltedValue"]
-				GuiControl,ItemInfo: , PComment4, Day 6 Change
-				GuiControl,ItemInfo: , PData4, % dataPoint[2]
-				GuiControl,ItemInfo: , PComment5, Day 5 Change
-				GuiControl,ItemInfo: , PData5, % dataPoint[3]
-				GuiControl,ItemInfo: , PComment6, Day 4 Change
-				GuiControl,ItemInfo: , PData6, % dataPoint[4]
-				GuiControl,ItemInfo: , PComment7, Day 3 Change
-				GuiControl,ItemInfo: , PData7, % dataPoint[5]
-				GuiControl,ItemInfo: , PComment8, Day 2 Change
-				GuiControl,ItemInfo: , PData8, % dataPoint[6]
-				GuiControl,ItemInfo: , PComment9, Day 1 Change
-				GuiControl,ItemInfo: , PData9, % dataPoint[7]
-				GuiControl,ItemInfo: , PComment10, 
-				GuiControl,ItemInfo: , PData10,
-
-				GuiControl,ItemInfo: , GroupBox2, % "Low Confidence Value of " Prop.ItemName
-				GuiControl,ItemInfo: , SComment1, Chaos Value `% Change
-				GuiControl,ItemInfo: , SData1, % Ninja[TKey][index]["lowConfidenceSparkline"]["totalChange"]
-				GuiControl,ItemInfo: , SComment2,
-				GuiControl,ItemInfo: , SData2, 
-				GuiControl,ItemInfo: , SComment3, 
-				GuiControl,ItemInfo: , SData3, 
-				GuiControl,ItemInfo: , SComment4, Day 6 Change
-				GuiControl,ItemInfo: , SData4, % dataLTPoint[2]
-				GuiControl,ItemInfo: , SComment5, Day 5 Change
-				GuiControl,ItemInfo: , SData5, % dataLTPoint[3]
-				GuiControl,ItemInfo: , SComment6, Day 4 Change
-				GuiControl,ItemInfo: , SData6, % dataLTPoint[4]
-				GuiControl,ItemInfo: , SComment7, Day 3 Change
-				GuiControl,ItemInfo: , SData7, % dataLTPoint[5]
-				GuiControl,ItemInfo: , SComment8, Day 2 Change
-				GuiControl,ItemInfo: , SData8, % dataLTPoint[6]
-				GuiControl,ItemInfo: , SComment9, Day 1 Change
-				GuiControl,ItemInfo: , SData9, % dataLTPoint[7]
-				GuiControl,ItemInfo: , SComment10,
-				GuiControl,ItemInfo: , SData10,
-			}
-
-			propText=
-			For key, value in Prop
-			{
-				If (value != 0 && value != "" && value != False)
-					propText .= key . ":  " . value . "`n"
-			}
-			GuiControl, ItemInfo:, ItemInfoPropText, %propText%
-
-			statText=
-			For key, value in Stats
-			{
-				If (value != 0 && value != "" && value != False)
-					statText .= key . ":  " . value . "`n"
-			}
-			GuiControl, ItemInfo:, ItemInfoStatText, %statText%
-
-			affixText=
-			For key, value in Affix
-			{
-				If (value != 0 && value != "" && value != False)
-					affixText .= key . ":  " . value . "`n"
-			}
-			GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
-
-		Return
-		}
-
+	{ ; ItemInfo Gui
 		ItemInfoEscape:
 		ItemInfoClose:
 			Gui, ItemInfo: Hide

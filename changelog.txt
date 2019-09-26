@@ -9,6 +9,11 @@ Version .06.00 September/23/2019
 ********************************************************************************
 ******************* WILL CRASH ON LAUNCH IF MISSING LIB ************************
 ********************************************************************************
+Redisigned the Item parse debug system into the new Item Info GUI
+    You can quickly look at the price graphs of items and its parsed info
+    It shows the Prop, Stats, and Affix arrays for use with custom loot filter
+    The two graphs either show the Buy and Sell or the Value and Low Confidence
+        Low confidence graphs are based on low volumes of trade
 
 Seperated some of the basic functions of the script into a library file
     This will allow for easier transitions into using new libraries
@@ -18,6 +23,10 @@ Seperated some of the basic functions of the script into a library file
 
 Quivers and Flasks have been added to Stats.ItemClass
 
+Organized the script a little and moved functions into groups
+    This will help when editing the file as it is getting rather large
+    Top down view with everything minimized gives more information
+        Labels have been added to any groups with its contained functions
 
 Version .05.11 September/22/2019
 --------------------------------------------------------------------------------
