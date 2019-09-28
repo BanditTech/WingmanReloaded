@@ -69,7 +69,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.11
+    Global VersionNumber := .06.00
 
 	Global Null := 0
     
@@ -1006,39 +1006,58 @@
 	Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
 	Gui, Font
 	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
-
+	Gui, Add, Button, gStartCalibrationWizard 	xs	ys+20 Section	w228 h25, 	Calibration Wizard
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w110, 	OnHideout Color
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+30				w110, 	OnHideout Color
+	UpdateOnHideoutBtn_TT:="Calibrate the OnHideout Color`nThis color determines if you are in a Hideout`nMake sure the Hideout menu next to abilities is visible"
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 		y+3					w110, 	OnChar Color
+	UpdateOnCharBtn_TT:="Calibrate the OnChar Color`nThis color determines if you are on a character`nSample located on the figurine next to the health globe"
 	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 		y+3					w110, 	OnChat Color
+	UpdateOnChatBtn_TT:="Calibrate the OnChat Color`nThis color determines if the chat panel is open`nSample located on the very left edge of the screen"
 	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			y+3					w110, 	OnDiv Color
+	UpdateOnDivBtn_TT:="Calibrate the OnDiv Color`nThis color determines if the Trade Divination panel is open`nSample located at the top of the Trade panel"
 	Gui, Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn y+3			 	w110, 	Empty Inventory
+	UdateEmptyInvSlotColorBtn_TT:="Calibrate the Empty Inventory Color`nThis color determines the Empy Inventory slots`nSample located at the bottom left of each cell"
 
-	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+20		w110, 	OnHideoutMin Color
+	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+30		w110, 	OnHideoutMin Color
+	UpdateOnHideoutMinBtn_TT:="Calibrate the OnHideoutMin Color`nThis color determines if you are in a Hideout`nMake sure the Hideout menu next to abilities is minimized"
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn		y+3				w110, 	OnInventory Color
+	UpdateOnInventoryBtn_TT:="Calibrate the OnInventory Color`nThis color determines if the Inventory panel is open`nSample is located at the top of the Inventory panel"
 	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 			y+3				w110, 	OnStash Color
+	UpdateOnStashBtn_TT:="Calibrate the OnStash Color`nThis color determines if the Stash panel is open`nSample is located at the top of the Stash panel"
 	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		y+3				w110, 	OnVendor Color
+	UpdateOnVendorBtn_TT:="Calibrate the OnVendor Color`nThis color determines if the Vendor Sell panel is open`n Sample is located at the top of the Sell panel"
 	Gui, Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			y+3				w110, 	OnMenu Color
+	UpdateOnMenuBtn_TT:="Calibrate the OnMenu Color`nThis color determines if Atlas or Skills menus are open`nSample located at the top of the fullscreen Menu panel"
 
 	Gui, Font, Bold
 	Gui, Add, Text, 				section						xs 	y+10, 				AutoDetonate Calibration:
 	Gui, Font
 	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn xs ys+20					w100, 	Detonate Color
+	UpdateDetonateBtn_TT:="Calibrate the Detonate Mines Color`nThis color determines if the detonate mine button is visible`nLocated above mana flask on the right"
 	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
+	UpdateDetonateDelveBtn_TT:="Calibrate the Detonate Mines Color while in Delve`nThis color determines if the detonate mine button is visible`nLocated above mana flask on the left"
 
 	Gui, Font, Bold
 	Gui Add, Text, 										xs 	y+10, 				Additional Interface Options:
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
+	ShowOnStart_TT:="Enable this to have the GUI show on start`nThe script can run without saving each launch`nAs long as nothing changed since last color sample"
 	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
+	Steam_TT:="These settings are for the LutBot Quit method`nEnable this to set the EXE as Steam version"
 	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
+	HighBits_TT:="These settings are for the LutBot Quit method`nEnable this to set the EXE as 64bit version"
 	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
+	AutoUpdateOff_TT:="Enable this to not check for new updates when launching the script"
 	Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
+	YesPersistantToggle_TT:="Enable this to have toggles remain after exiting and restarting the script"
 	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|UltraWide
+	ResolutionScale_TT:="Adjust the resolution the script scales its values from`nStandard is 16/9`nUltraWide is 32/9"
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
+	Latency_TT:="Use this to multiply the sleep timers by this value`nOnly use in situations where you have extreme lag"
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 
 	Gui, Font, Bold
@@ -1050,28 +1069,36 @@
 
 	Gui Add, Text, 										x314	y+5, 				Portal Scroll:
 	Gui Add, Edit, 			vPortalScrollX 				x+7		y+-15 	w34	h17, 	%PortalScrollX%
+	PortalScrollX_TT:="Select the X location at the center of Portal scrolls in inventory`nUse the Coord tool to find the X and Y"
 	Gui Add, Edit, 			vPortalScrollY 				x+7			 	w34	h17, 	%PortalScrollY%	
+	PortalScrollY_TT:="Select the Y location at the center of Portal scrolls in inventory`nUse the Coord tool to find the X and Y"
 	Gui Add, Text, 										x306	y+6, 				Wisdm. Scroll:
 	Gui Add, Edit, 			vWisdomScrollX 				x+7		y+-15 	w34	h17, 	%WisdomScrollX%
+	WisdomScrollX_TT:="Select the X location at the center of Wisdom scrolls in inventory`nUse the Coord tool to find the X and Y"
 	Gui Add, Edit, 			vWisdomScrollY 				x+7			 	w34	h17, 	%WisdomScrollY%	
+	WisdomScrollY_TT:="Select the Y location at the center of Wisdom scrolls in inventory`nUse the Coord tool to find the X and Y"
 	Gui Add, Text, 										x311	y+6, 				Current Gem:
 	Gui Add, Edit, 			vCurrentGemX 				x+7		y+-15 	w34	h17, 	%CurrentGemX%
+	CurrentGemX_TT:="Select the X location of the Gem to swap from`nUse the Coord tool to find the X and Y"
 	Gui Add, Edit, 			vCurrentGemY 				x+7			 	w34	h17, 	%CurrentGemY%
+	CurrentGemY_TT:="Select the Y location of the Gem to swap from`nUse the Coord tool to find the X and Y"
 
 	Gui Add, Text, 										x303	y+6, 				Alternate Gem:
 	Gui Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
+	AlternateGemX_TT:="Select the X location of the Gem to swap with`nThis can be in secondary weapon, enable weapon swap`nUse the Coord tool to find the X and Y"
 	Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemY%
+	AlternateGemY_TT:="Select the Y location of the Gem to swap with`nThis can be in secondary weapon, enable weapon swap`nUse the Coord tool to find the X and Y"
 	Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     		y53				, Stock Portal?
 	StockPortal_TT:="Enable this to restock Portal scrolls when more than 10 are missing"
 	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         		y+8				, Stock Wisdom?
 	StockWisdom_TT:="Enable this to restock Wisdom scrolls when more than 10 are missing"
 	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
-	StockWisdom_TT:="Enable this to Swap Weapons for your Alternate Gem Swap location"
+	AlternateGemOnSecondarySlot_TT:="Enable this to Swap Weapons for your Alternate Gem Swap location"
 	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           		y+8				, Detonate Mines?
-	StockWisdom_TT:="Enable this to automatically Detonate Mines when placed"
+	DetonateMines_TT:="Enable this to automatically Detonate Mines when placed"
 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
-	DebugMessages_TT:="Enable this to enable debugging mode`nCoord/Pixel tool turns into Coord/Debug tool`nAlso enables display of the Inventory Pixel Grid"
+	DebugMessages_TT:="Enable this to enable debugging mode for Coord/Pixel`nCoord/Pixel tool turns into Coord/Debug tool`nAlso shows the Inventory Pixel Grid if checked on the left"
 	Gui Add, Text, 										x573	y5, 				Debug:
 	Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x556 	y5 	w13 h13	
 	ShowPixelGrid_TT:="Enable this to enable display of the Inventory Pixel Grid`nTo use this function, move your mouse outside inventory area`nActivate with Coord/Debug hotkey"
@@ -1151,7 +1178,8 @@
 	;~ =========================================================================================== Subgroup: Hints
 	Gui,Font,Bold
 	Gui,Add,GroupBox,Section xs	x450 y330  w120 h89							,Hotkey Modifiers
-	Gui, Add, Button,  		gLaunchHelp 		x558 y330 w18 h18 , 	?
+	Gui, Add, Button,  		gLaunchHelp vLaunchHelp		x558 y330 w18 h18 , 	?
+	LaunchHelp_TT:="Opens the AutoHotkey List of Keys"
 	Gui,Font,Norm
 	Gui,Font,s8,Arial
 	Gui,Add,Text,	 		 	x465 y350					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
@@ -1622,7 +1650,9 @@
 	;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
 	;Gui, ItemInfo: Hide
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;~  END of Wingman Gui Settings
+;~  END of Wingman Gui Settings - Start Scaling resolution values
+;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;~  Start Scaling resolution values and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	IfWinExist, ahk_group POEGameGroup
@@ -1687,6 +1717,7 @@
 		global vX_StashTabList := 706
 		global vY_StashTabList := 120
 		global vY_StashTabSize := 22
+	    Global ScrCenter := { X : 960 , Y : 540 }
 		}
 
 	;Ignore Slot setup
@@ -1755,7 +1786,7 @@
 	; Test ItemInfo function
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Inventory Management Functions - ItemSortCommand, ParseClip, ItemInfo, MatchLootFilter, MatchNinjaPrice, GraphNinjaPrices, MoveStash, StockScrolls, LootScan
+; Inventory Management Functions - ItemSortCommand, ClipItem, ParseClip, ItemInfo, MatchLootFilter, MatchNinjaPrice, GraphNinjaPrices, MoveStash, StockScrolls, LootScan
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; ItemSortCommand - Sort inventory and determine action
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2077,6 +2108,19 @@
 		CurrentTab:=0
 		MouseMove, xx, yy, 0
 	Return
+	; ClipItem - Capture Clip at Coord
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ClipItem(x, y){
+			BlockInput, MouseMove
+			Clipboard := ""
+			MouseMove %x%, %y%
+			Sleep, 75*Latency
+			Send ^c
+			ClipWait, 0
+			ParseClip()
+			BlockInput, MouseMoveOff
+		Return
+		}
 	; ParseClip - Checks the contents of the clipboard and parses the information from the tooltip capture
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ParseClip(){
@@ -5453,164 +5497,132 @@
 		Return
 		}
 
-; Rescale - Rescales values of the script to the user's resolution
+; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Rescale(){
-			IfWinExist, ahk_group POEGameGroup 
-			{
-				WinGetPos, X, Y, W, H
-				If (ResolutionScale="Standard") {
-					; Item Inventory Grid
-					Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
-					Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-					;Detonate Mines
-					Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
-					Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
-					Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-					;Scrolls in currency tab
-					Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
-					Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
-					Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-					;Status Check OnHideout
-					global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
-					global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-					global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
-					;Status Check OnMenu
-					global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-					global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
-					;Status Check OnChar
-					global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-					global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-					;Status Check OnChat
-					global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-					global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-					;Status Check OnInventory
-					global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-					global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-					;Status Check OnStash
-					global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-					global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-					;Status Check OnVendor
-					global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-					global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-					;Status Check OnDiv
-					global vX_OnDiv:=X + Round(A_ScreenWidth / (1920 / 618))
-					global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-					;Life %'s
-					global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;ES %'s
-					global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
-					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;Mana
-					global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
-					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-					;GUI overlay
-					global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
-					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-					;Divination Y locations
-					Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
-					Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
-					;Stash tabs menu button
-					global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
-					global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-					;Stash tabs menu list
-					global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 706))
-					global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-					;calculate the height of each tab
-					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-				}
-				Else If (ResolutionScale="UltraWide") {
-					; Item Inventory Grid
-					Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
-					Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-					;Detonate Mines
-					Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
-					Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
-					Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-					;Scrolls in currency tab
-					Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
-					Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
-					Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-					;Status Check OnHideout
-					global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
-					global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-					global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
-					;Status Check OnMenu
-					global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-					global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
-					;Status Check OnChar
-					global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-					global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-					;Status Check OnChat
-					global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-					global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-					;Status Check OnInventory
-					global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-					global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-					;Status Check OnStash
-					global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-					global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-					;Status Check OnVendor
-					global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-					global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-					;Status Check OnDiv
-					global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
-					global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-					;Life %'s
-					global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;ES %'s
-					global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-					global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-					global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-					global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-					global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-					global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-					;Mana
-					global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-					;GUI overlay
-					global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
-					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-					;Divination Y locations
-					Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
-					Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
-					;Stash tabs menu button
-					global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
-					global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-					;Stash tabs menu list
-					global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 706))
-					global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-					;calculate the height of each tab
-					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-				} 
-				RescaleRan := True
+	GemSwap(){
+		GemSwapCommand:
+			Thread, NoTimers, true		;Critical
+			Keywait, Alt
+			BlockInput, MouseMove
+			MouseGetPos xx, yy
+			RandomSleep(90,120)
+			
+			Send {%hotkeyCloseAllUI%} 
+			RandomSleep(90,120)
+			
+			Send {%hotkeyInventory%} 
+			RandomSleep(90,120)
+			
+			RightClick(CurrentGemX, CurrentGemY)
+			RandomSleep(90,120)
+			
+			if (WeaponSwap==1) 
+				Send {%hotkeyWeaponSwapKey%} 
+			RandomSleep(90,120)
+			
+			SwiftClick(AlternateGemX, AlternateGemY)
+				RandomSleep(90,120)
+			
+			if (WeaponSwap==1) 
+				Send {%hotkeyWeaponSwapKey%} 
+			RandomSleep(90,120)
+			
+			SwiftClick(CurrentGemX, CurrentGemY)
+				RandomSleep(90,120)
+			
+			Send {%hotkeyInventory%} 
+			MouseMove, xx, yy, 0
+			BlockInput, MouseMoveOff
+		return
+		}
+
+; QuickPortal - Open Town Portal
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	QuickPortal(){
+		QuickPortalCommand:
+			Thread, NoTimers, true		;Critical
+			Keywait, Alt
+			BlockInput On
+			MouseGetPos xx, yy
+			RandomSleep(53,87)
+			
+			Send {%hotkeyCloseAllUI%} 
+			RandomSleep(53,68)
+			
+			Send {%hotkeyInventory%}
+			RandomSleep(56,68)
+			
+			MouseMove, PortalScrollX, PortalScrollY, 0
+			RandomSleep(56,68)
+			
+			Click Right
+			RandomSleep(56,68)
+			
+			Send {%hotkeyInventory%}
+			MouseMove, xx, yy, 0
+			BlockInput Off
+		return
+		}
+
+; PopFlasks - Pop all flasks
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	PopFlasks(){
+		PopFlasksCommand:
+			Thread, NoTimers, true		;Critical
+			If PopFlaskRespectCD
+				TriggerFlask(11111)
+			Else {
+				Send 1
+				OnCooldown[1]:=1 
+				SendMSG(3, 1, scriptGottaGoFast)
+				Cooldown:=CooldownFlask1
+				settimer, TimerFlask1, %Cooldown%
+				RandomSleep(-99,99)
+				Send 4
+				OnCooldown[4]:=1 
+				Cooldown:=CooldownFlask4
+				SendMSG(3, 4, scriptGottaGoFast)
+				settimer, TimerFlask4, %Cooldown%
+				RandomSleep(-99,99)
+				Send 3
+				OnCooldown[3]:=1 
+				SendMSG(3, 3, scriptGottaGoFast)
+				Cooldown:=CooldownFlask3
+				settimer, TimerFlask3, %Cooldown%
+				RandomSleep(-99,99)
+				Send 2
+				OnCooldown[2]:=1 
+				SendMSG(3, 2, scriptGottaGoFast)
+				Cooldown:=CooldownFlask2
+				settimer, TimerFlask2, %Cooldown%
+				RandomSleep(-99,99)
+				Send 5
+				OnCooldown[5]:=1 
+				SendMSG(3, 5, scriptGottaGoFast)
+				Cooldown:=CooldownFlask5
+				settimer, TimerFlask5, %Cooldown%
 			}
+		return
+		}
+
+; LogoutCommand - Logout Function
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	LogoutCommand(){
+		LogoutCommand:
+			Thread, NoTimers, true		;Critical
+			if (CritQuit=1) {
+				global executable, backupExe
+				succ := logout(executable)
+				if (succ == 0) && backupExe != "" {
+					newSucc := logout(backupExe)
+					error("ED12",executable,backupExe)
+					if (newSucc == 0) {
+						error("ED13")
+					}
+				}
+			} 
+			Else 
+				Send {Enter} /exit {Enter}
 		return
 		}
 
@@ -5637,33 +5649,6 @@
 			}
 			Return
 		}
-; DetectJoystick - Auto-detect the joystick number if called for:
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	DetectJoystick(){
-		if JoystickNumber <= 0
-		{
-			Loop 16  ; Query each joystick number to find out which ones exist.
-			{
-				GetKeyState, JoyName, %A_Index%JoyName
-				if JoyName <>
-				{
-						JoystickNumber = %A_Index%
-						Ding(3000,"Detected Joystick on the " . A_Index . " port.")
-						break
-						
-				}
-			}
-			if JoystickNumber <= 0
-			{
-					Ding(3000,"The system does not appear to have any joysticks.")
-			}
-		}
-		Else 
-		{
-			Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
-		}
-		Return
-	}
 ; MsgMonitor - Receive Messages from other scripts
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	MsgMonitor(wParam, lParam, msg)
@@ -5809,7 +5794,7 @@
 
 ; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	{ ; Read, Save, Load
+	{ ; Read, Save, Load - Includes basic hotkey setup
 		readFromFile(){
 			global
 			Thread, NoTimers, true		;Critical
@@ -7053,6 +7038,280 @@
 					Return False
 			}
 		}
+
+		; FireHotkey - Functions to Send each hotkey
+		; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		1FireWhisperHotkey1() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
+				str1Suffix1Text := StrReplace(str1Suffix1Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix1Text := StrReplace(str1Suffix1Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix1Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey2() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
+				str1Suffix2Text := StrReplace(str1Suffix2Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix2Text := StrReplace(str1Suffix2Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix2Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey3() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
+				str1Suffix3Text := StrReplace(str1Suffix3Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix3Text := StrReplace(str1Suffix3Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix3Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey4() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
+				str1Suffix4Text := StrReplace(str1Suffix4Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix4Text := StrReplace(str1Suffix4Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix4Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey5() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
+				str1Suffix5Text := StrReplace(str1Suffix5Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix5Text := StrReplace(str1Suffix5Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix5Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey6() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
+				str1Suffix6Text := StrReplace(str1Suffix6Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix6Text := StrReplace(str1Suffix6Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix6Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey7() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
+				str1Suffix7Text := StrReplace(str1Suffix7Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix7Text := StrReplace(str1Suffix7Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix7Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey8() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
+				str1Suffix8Text := StrReplace(str1Suffix8Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix8Text := StrReplace(str1Suffix8Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix8Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey9() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+				str1Suffix9Text := StrReplace(str1Suffix9Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix9Text := StrReplace(str1Suffix9Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix9Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey1() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
+				str2Suffix1Text := StrReplace(str2Suffix1Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix1Text := StrReplace(str2Suffix1Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix1Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey2() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
+				str2Suffix2Text := StrReplace(str2Suffix2Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix2Text := StrReplace(str2Suffix2Text, "!", "{!}", 0, -1)
+
+				Send, ^{Enter}%str2Suffix2Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey3() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
+				str2Suffix3Text := StrReplace(str2Suffix3Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix3Text := StrReplace(str2Suffix3Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix3Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey4() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
+				str2Suffix4Text := StrReplace(str2Suffix4Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix4Text := StrReplace(str2Suffix4Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix4Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey5() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
+				str2Suffix5Text := StrReplace(str2Suffix5Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix5Text := StrReplace(str2Suffix5Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix5Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey6() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
+				str2Suffix6Text := StrReplace(str2Suffix6Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix6Text := StrReplace(str2Suffix6Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix6Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey7() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
+				str2Suffix7Text := StrReplace(str2Suffix7Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix7Text := StrReplace(str2Suffix7Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix7Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey8() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
+				str2Suffix8Text := StrReplace(str2Suffix8Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix8Text := StrReplace(str2Suffix8Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix8Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey9() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
+				str2Suffix9Text := StrReplace(str2Suffix9Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix9Text := StrReplace(str2Suffix9Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix9Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		FireStashHotkey1() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab1)
+			}
+		return
+		}
+		FireStashHotkey2() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab2)
+			}
+		return
+		}
+		FireStashHotkey3() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab3)
+			}
+		return
+		}
+		FireStashHotkey4() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab4)
+			}
+		return
+		}
+		FireStashHotkey5() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab5)
+			}
+		return
+		}
+		FireStashHotkey6() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab6)
+			}
+		return
+		}
+		FireStashHotkey7() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab7)
+			}
+		return
+		}
+		FireStashHotkey8() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab8)
+			}
+		return
+		}
+		FireStashHotkey9() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab9)
+			}
+		return
+		}	
 	}
 
 	{ ; Submit Profiles
@@ -7841,7 +8100,7 @@
 		Return
 	}
 
-	{ ; Update Functions
+	{ ; Script Update Functions - checkUpdate, runUpdate, dontUpdate
 		checkUpdate(){
 			IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
 			If (!AutoUpdateOff) {
@@ -7920,7 +8179,8 @@
 		return	
 	}
 
-	{ ; Recalibration color sample functions
+	{ ; Calibration color sample functions - updateOnHideout, updateOnHideoutMin, updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
+	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate, updateDetonateDelve
 		updateOnHideout:
 			Gui, Submit, NoHide
 			IfWinExist, ahk_group POEGameGroup
@@ -8251,344 +8511,362 @@
 			
 		return
 	}
-	
-	{ ; Update Profile text in GUI
-		UpdateProfileText1:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText1, , ProfileText1
-			IniWrite, %ProfileText1%, settings.ini, Profiles, ProfileText1
-		Return
 
-		UpdateProfileText2:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText2, , ProfileText2
-			IniWrite, %ProfileText2%, settings.ini, Profiles, ProfileText2
-		Return
+	{ ; Calibration Wizard
+		CalibrationWizard()
+		{
+			StartCalibrationWizard:
+				Static
+				Thread, NoTimers, true
+				Gui, Wizard: New, +LabelWizard +AlwaysOnTop
+				Gui, Wizard: Font, Bold
+				Gui, Wizard: Add, GroupBox, x10 y9 w460 h270 , Select which calibrations to run
+				Gui, Wizard: Font
+				Gui, Wizard: Add, Text, x22 y29 w170 h200 , % "Enable the checkboxes to choose which calibration to perform"
+					. "`n`nFollow the instructions in the tooltip that will appear in the screen center"
+					. "`n`nFor best results, start the wizard in the hideout with your inventory emptied"
+					. "`n`nPress the ""A"" button when your gamestate matches the instructions"
+					. "`n`nTo cancel the Wizard, Hold Escape then press ""A"""
 
-		UpdateProfileText3:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText3, , ProfileText3
-			IniWrite, %ProfileText3%, settings.ini, Profiles, ProfileText3
-		Return
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnChar      x222 y39             w100 h20 , OnChar
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnChat              xp   y+10            w100 h20 , OnChat
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnInventory         xp   y+10            w100 h20 , OnInventory
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnVendor            xp   y+10            w100 h20 , OnVendor
+				Gui, Wizard: Add, CheckBox, vCalibrationOnDiv               xp   y+10            w100 h20 , OnDiv
 
-		UpdateProfileText4:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText4, , ProfileText4
-			IniWrite, %ProfileText4%, settings.ini, Profiles, ProfileText4
-		Return
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnHideout   x342 y39             w100 h20 , OnHideout
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu              xp   y+10            w100 h20 , OnMenu
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty               xp   y+10            w100 h20 , Empty Inventory
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnStash             xp   y+10            w100 h20 , OnStash
+				Gui, Wizard: Add, CheckBox, vCalibrationDetonate            xp   y+10            w100 h20 , Detonate Mines
 
-		UpdateProfileText5:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText5, , ProfileText5
-			IniWrite, %ProfileText5%, settings.ini, Profiles, ProfileText5
-		Return
+				Gui, Wizard: Add, Button, x122 y239 w100 h30 gRunWizard, Run Wizard
+				Gui, Wizard: Add, Button, x252 y239 w100 h30 gWizardClose, Cancel Wizard
 
-		UpdateProfileText6:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText6, , ProfileText6, 
-			IniWrite, %ProfileText6%, settings.ini, Profiles, ProfileText6
-		Return
+				Gui, Wizard: Show,% "x"ScrCenter.X - 240 "y"ScrCenter.Y - 150 " h300 w479", Calibration Wizard
+			Return
 
-		UpdateProfileText7:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText7, , ProfileText7
-			IniWrite, %ProfileText7%, settings.ini, Profiles, ProfileText7
-		Return
+			RunWizard:
+				Gui, Wizard: Submit
+				IfWinExist, ahk_group POEGameGroup
+				{
+					WinActivate, ahk_group POEGameGroup
+					Rescale()
+				} else {
+					MsgBox % "PoE Window does not exist. `nCalibration Wizard didn't run"
+					Return
+				}
 
-		UpdateProfileText8:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText8, , ProfileText8
-			IniWrite, %ProfileText8%, settings.ini, Profiles, ProfileText8
-		Return
+				SampleTT=
+				EmptySampleTT=
+				If CalibrationOnChar
+				{
+					ToolTip,% "This will sample the OnChar Color"
+						. "`nMake sure you are logged into a character"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
+						SampleTT .= "OnChar            took BGR color hex: " . varOnChar . "    At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
+				}
+				If CalibrationOnHideout
+				{
+					ToolTip,% "This will sample the OnHideout Color`n"
+						. "Make sure you are in a hideout`n"
+						. "Make sure the hideout menu is Visible`n"
+						. "Press ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout
+						SampleTT .= "OnHideout       took BGR color hex: " . varOnHideout . "    At coords x: " . vX_OnHideout . " and y: " . vY_OnHideout . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
+						
+						
+					ToolTip,% "This will sample the OnHideoutMin Color`n"
+						. "From the hideout menu being visible, minimize the menu`n"
+						. "Make sure the hideout menu is not Visible`n"
+						. "Press ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnHideoutMin, vX_OnHideout, vY_OnHideoutMin	
+						SampleTT .= "OnHideoutMin took BGR color hex: " . varOnHideoutMin . "    At coords x: " . vX_OnHideout . " and y: " . vY_OnHideoutMin . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
+				}
+				If CalibrationOnChat
+				{
+					ToolTip,% "This will sample the OnChat Color"
+						. "`nMake sure you have chat panel open"
+						. "`nNo other panels can be open on the left"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
+						SampleTT .= "OnChat            took BGR color hex: " . varOnChat . "    At coords x: " . vX_OnChat . " and y: " . vY_OnChat . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnChat didn't work"
+				}
+				If CalibrationOnMenu
+				{
+					ToolTip,% "This will sample the OnMenu Color"
+						. "`nMake sure you have the Passive Skills menu open"
+						. "`nCan also use Atlas menu to sample"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnMenu, vX_OnMenu, vY_OnMenu
+						SampleTT .= "OnMenu          took BGR color hex: " . varOnMenu . "    At coords x: " . vX_OnMenu . " and y: " . vY_OnMenu . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
+				}
+				If CalibrationOnInventory
+				{
+					ToolTip,% "This will sample the OnInventory Color"
+						. "`nMake sure you have the Inventory panel open"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+						SampleTT .= "OnInventory     took BGR color hex: " . varOnInventory . "    At coords x: " . vX_OnInventory . " and y: " . vY_OnInventory . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
+				}
+				If CalibrationEmpty
+				{
+					ToolTip,% "This will sample the Empty Inventory Colors"
+						. "`nMake sure you Empty all items from inventory"
+						. "`nMake sure you have the Inventory panel open"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						varEmptyInvSlotColor := []
+						For c, GridX in InventoryGridX	
+						{
+							For r, GridY in InventoryGridY
+							{
+								pixelgetcolor, PointColor, GridX, GridY
+								if !(indexOf(PointColor, varEmptyInvSlotColor)){
+									varEmptyInvSlotColor.Push(PointColor)
+								}
+							}
+						}
+						strToSave := arrToStr(varEmptyInvSlotColor)
+						NewString := StringReplaceN(strToSave,",",",`n",4)
+						NewString := StringReplaceN(NewString,",",",`n",11)
+						NewString := StringReplaceN(NewString,",",",`n",18)
+						NewString := StringReplaceN(NewString,",",",`n",25)
+						NewString := StringReplaceN(NewString,",",",`n",32)
+						NewString := StringReplaceN(NewString,",",",`n",39)
+						NewString := StringReplaceN(NewString,",",",`n",46)
+						NewString := StringReplaceN(NewString,",",",`n",53)
+						SampleTT .= " "
+						EmptySampleTT := "`nEmpty Inventory took BGR color hexes: " . NewString
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of Empty Inventory didn't work"
+				}
+				If CalibrationOnVendor
+				{
+					ToolTip,% "This will sample the OnVendor Color"
+						. "`nMake sure you have the Vendor Sell panel open"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
+						SampleTT .= "OnVendor        took BGR color hex: " . varOnVendor . "    At coords x: " . vX_OnVendor . " and y: " . vY_OnVendor . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
+				}
+				If CalibrationOnStash
+				{
+					ToolTip,% "This will sample the OnStash Color"
+						. "`nMake sure you have the Stash panel open"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+						SampleTT .= "OnStash          took BGR color hex: " . varOnStash . "    At coords x: " . vX_OnStash . " and y: " . vY_OnStash . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnStash didn't work"
+				}
+				If CalibrationOnDiv
+				{
+					ToolTip,% "This will sample the OnDiv Color"
+						. "`nMake sure you have the Trade Divination panel open"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnDiv, vX_OnDiv, vY_OnDiv
+						SampleTT .= "OnDiv             took BGR color hex: " . varOnDiv . "    At coords x: " . vX_OnDiv . " and y: " . vY_OnDiv . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
+				}
+				If CalibrationDetonate
+				{
+					ToolTip,% "This will sample the Detonate Mines Color"
+						. "`nMake sure you are somewhere other than Delve mines"
+						. "`nPlace a mine, and the detonate mines icon should appear"
+						. "`nPress ""A"" to sample"
+						, % ScrCenter.X, % ScrCenter.Y
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, DetonateHex, DetonateX, DetonateY
+						SampleTT .= "Detonate Mines took BGR color hex: " . DetonateHex . "    At coords x: " . DetonateX . " and y: " . DetonateY . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
+				}
 
-		UpdateProfileText9:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText9, , ProfileText9
-			IniWrite, %ProfileText9%, settings.ini, Profiles, ProfileText9
-		Return
+				If SampleTT =
+					MsgBox, No Sample Taken
+				Else
+					Goto, ShowWizardResults
+			Return
 
-		UpdateProfileText10:
-			;Gui, Submit, NoHide
-			GuiControlGet, ProfileText10, , ProfileText10
-			IniWrite, %ProfileText10%, settings.ini, Profiles, ProfileText10
-		Return
+			ShowWizardResults:
+				Gui, Wizard: New, +LabelWizard
+				Gui, Wizard: Add, Button,w1 h1
+				Gui, Wizard: Add, Edit, , % SampleTT . EmptySampleTT
+				Gui, Wizard: Add, Button, gSaveWizardResults, Save Samples
+				Gui, Wizard: Add, Button, x+20 gWizardClose, Abort Samples
+
+				Gui, Wizard: Show
+			Return
+
+			SaveWizardResults:
+				If CalibrationOnChar
+					IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar        
+				If CalibrationOnHideout
+				{
+					IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
+					IniWrite, %varOnHideoutMin%, settings.ini, Failsafe Colors, OnHideoutMin
+				}
+				If CalibrationOnChat
+					IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
+				If CalibrationOnMenu
+					IniWrite, %varOnMenu%, settings.ini, Failsafe Colors, OnMenu
+				If CalibrationOnInventory
+					IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
+				If CalibrationEmpty
+					IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
+				If CalibrationOnVendor
+					IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
+				If CalibrationOnStash
+					IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
+				If CalibrationOnDiv
+					IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
+				If CalibrationDetonate
+					IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+				Gui, Wizard: Submit
+			Return
+
+			WizardEscape:
+			WizardClose:
+				Gui, Wizard: Destroy
+			Return
+		}
 	}
 
-	{ ; Hotkey functions for Whisper and stash
-		1FireWhisperHotkey1() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
-				str1Suffix1Text := StrReplace(str1Suffix1Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix1Text := StrReplace(str1Suffix1Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix1Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		1FireWhisperHotkey2() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
-				str1Suffix2Text := StrReplace(str1Suffix2Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix2Text := StrReplace(str1Suffix2Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix2Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		1FireWhisperHotkey3() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
-				str1Suffix3Text := StrReplace(str1Suffix3Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix3Text := StrReplace(str1Suffix3Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix3Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		1FireWhisperHotkey4() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
-				str1Suffix4Text := StrReplace(str1Suffix4Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix4Text := StrReplace(str1Suffix4Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix4Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		1FireWhisperHotkey5() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
-				str1Suffix5Text := StrReplace(str1Suffix5Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix5Text := StrReplace(str1Suffix5Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix5Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		1FireWhisperHotkey6() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
-				str1Suffix6Text := StrReplace(str1Suffix6Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix6Text := StrReplace(str1Suffix6Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix6Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		1FireWhisperHotkey7() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
-				str1Suffix7Text := StrReplace(str1Suffix7Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix7Text := StrReplace(str1Suffix7Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix7Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		1FireWhisperHotkey8() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
-				str1Suffix8Text := StrReplace(str1Suffix8Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix8Text := StrReplace(str1Suffix8Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix8Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		1FireWhisperHotkey9() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				str1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
-				str1Suffix9Text := StrReplace(str1Suffix9Text, "RecipientName", RecipientName, 0, -1)
-				str1Suffix9Text := StrReplace(str1Suffix9Text, "!", "{!}", 0, -1)
-				Send, {Enter}%str1Suffix9Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey1() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
-				str2Suffix1Text := StrReplace(str2Suffix1Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix1Text := StrReplace(str2Suffix1Text, "!", "{!}", 0, -1)
-				Send, ^{Enter}%str2Suffix1Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey2() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
-				str2Suffix2Text := StrReplace(str2Suffix2Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix2Text := StrReplace(str2Suffix2Text, "!", "{!}", 0, -1)
-
-				Send, ^{Enter}%str2Suffix2Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey3() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
-				str2Suffix3Text := StrReplace(str2Suffix3Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix3Text := StrReplace(str2Suffix3Text, "!", "{!}", 0, -1)
-				Send, ^{Enter}%str2Suffix3Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey4() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
-				str2Suffix4Text := StrReplace(str2Suffix4Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix4Text := StrReplace(str2Suffix4Text, "!", "{!}", 0, -1)
-				Send, ^{Enter}%str2Suffix4Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey5() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
-				str2Suffix5Text := StrReplace(str2Suffix5Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix5Text := StrReplace(str2Suffix5Text, "!", "{!}", 0, -1)
-				Send, ^{Enter}%str2Suffix5Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey6() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
-				str2Suffix6Text := StrReplace(str2Suffix6Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix6Text := StrReplace(str2Suffix6Text, "!", "{!}", 0, -1)
-				Send, ^{Enter}%str2Suffix6Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey7() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
-				str2Suffix7Text := StrReplace(str2Suffix7Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix7Text := StrReplace(str2Suffix7Text, "!", "{!}", 0, -1)
-				Send, ^{Enter}%str2Suffix7Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey8() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
-				str2Suffix8Text := StrReplace(str2Suffix8Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix8Text := StrReplace(str2Suffix8Text, "!", "{!}", 0, -1)
-				Send, ^{Enter}%str2Suffix8Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		2FireWhisperHotkey9() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				GrabRecipientName()
-				str2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
-				str2Suffix9Text := StrReplace(str2Suffix9Text, "RecipientName", RecipientName, 0, -1)
-				str2Suffix9Text := StrReplace(str2Suffix9Text, "!", "{!}", 0, -1)
-				Send, ^{Enter}%str2Suffix9Text%{Enter}
-				ResetChat()
-			}
-		return
-		}
-		FireStashHotkey1() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab1)
-			}
-		return
-		}
-		FireStashHotkey2() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab2)
-			}
-		return
-		}
-		FireStashHotkey3() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab3)
-			}
-		return
-		}
-		FireStashHotkey4() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab4)
-			}
-		return
-		}
-		FireStashHotkey5() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab5)
-			}
-		return
-		}
-		FireStashHotkey6() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab6)
-			}
-		return
-		}
-		FireStashHotkey7() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab7)
-			}
-		return
-		}
-		FireStashHotkey8() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab8)
-			}
-		return
-		}
-		FireStashHotkey9() {
-			IfWinActive, ahk_group POEGameGroup
-			{	
-				MoveStash(stashSuffixTab9)
-			}
-		return
-		}	
-	}
-
-	{ ; Ignore list functions
+	{ ; Ignore list functions - addToBlacklist, BuildIgnoreMenu, UpdateCheckbox, LoadIgnoreArray, SaveIgnoreArray
 		IgnoreClose:
 		IgnoreEscape:
 			SaveIgnoreArray()
@@ -8661,7 +8939,7 @@
 		}
 	}
 
-	{ ; Loot Filter Functions
+	{ ; Loot Filter Functions - LaunchLootFilter, LoadArray
 		LaunchLootFilter:
 			Run, %A_ScriptDir%\data\LootFilter.ahk ; Open the custom loot filter editor
 		Return
@@ -8684,7 +8962,7 @@
 		}
 	}
 
-	{ ; Gui Update functions - Manage display
+	{ ; Gui Update functions - updateCharacterType, UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility, SelectMainGuiTabs, FlaskCheck, UtilityCheck
 		updateCharacterType:
 			Gui, Submit, NoHide
 			if(RadioLife==1) {
@@ -9000,7 +9278,7 @@
 		Return
 	}
 
-	{ ; Main GUI functions and Cleanup
+	{ ; Basic GUI functions - Script Cleanup, UpdateProfileText, helpCalibration
 		optionsCommand:
 			hotkeys()
 		return
@@ -9017,6 +9295,11 @@
 			Gui, Cancel
 		return
 
+		ItemInfoEscape:
+		ItemInfoClose:
+			Gui, ItemInfo: Hide
+		Return
+
 		CleanUp(){
 			DetectHiddenWindows, On
 			SetTitleMatchMode, 2
@@ -9025,18 +9308,71 @@
 			Process, Close, %PID%
 		Return
 		}
-	}
 
-	{ ; ItemInfo Gui
-		ItemInfoEscape:
-		ItemInfoClose:
-			Gui, ItemInfo: Hide
+		UpdateProfileText1:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText1, , ProfileText1
+			IniWrite, %ProfileText1%, settings.ini, Profiles, ProfileText1
+		Return
+
+		UpdateProfileText2:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText2, , ProfileText2
+			IniWrite, %ProfileText2%, settings.ini, Profiles, ProfileText2
+		Return
+
+		UpdateProfileText3:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText3, , ProfileText3
+			IniWrite, %ProfileText3%, settings.ini, Profiles, ProfileText3
+		Return
+
+		UpdateProfileText4:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText4, , ProfileText4
+			IniWrite, %ProfileText4%, settings.ini, Profiles, ProfileText4
+		Return
+
+		UpdateProfileText5:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText5, , ProfileText5
+			IniWrite, %ProfileText5%, settings.ini, Profiles, ProfileText5
+		Return
+
+		UpdateProfileText6:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText6, , ProfileText6, 
+			IniWrite, %ProfileText6%, settings.ini, Profiles, ProfileText6
+		Return
+
+		UpdateProfileText7:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText7, , ProfileText7
+			IniWrite, %ProfileText7%, settings.ini, Profiles, ProfileText7
+		Return
+
+		UpdateProfileText8:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText8, , ProfileText8
+			IniWrite, %ProfileText8%, settings.ini, Profiles, ProfileText8
+		Return
+
+		UpdateProfileText9:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText9, , ProfileText9
+			IniWrite, %ProfileText9%, settings.ini, Profiles, ProfileText9
+		Return
+
+		UpdateProfileText10:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText10, , ProfileText10
+			IniWrite, %ProfileText10%, settings.ini, Profiles, ProfileText10
+		Return
+
+		helpCalibration:
+			MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnHideout -- Not Mandatory - Pauses Auto-Functions`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- ID/Vend/Stash`nOnStash -- ID/Vend/Stash`nOnDiv -- ID/Vend/Stash`nOnVendor -- ID/Vend/Stash`nEmpty Inventory -- ID/Vend/Stash`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
 		Return
 	}
-
-	helpCalibration:
-		MsgBox, Gamestate Calibration Instructions:`n`n  These buttons regrab the gamestate sample color.`n  Each button references a different game state.`n  Make sure the gamestate is true for that button!`n  Click the button once ready to calibrate.`n`nAuto-Detonate Mines Recalibration:`n`n  Sample the DetonateHex color in normal or delve.`n  Drop a mine then press the sample button that matches.
-	Return
 
 	; Comment out this line if your script crashes on launch
 	#Include, %A_ScriptDir%\data\Library.ahk

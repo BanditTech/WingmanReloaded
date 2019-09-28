@@ -724,6 +724,7 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
+
 /* DeepClone v1 : A library of functions to make unlinked array Clone
     ;
     ; Function:
@@ -1124,6 +1125,29 @@
     Return True
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+/** * Function to Replace Nth instance of Needle in Haystack
+ * Replaces the 'Instance'th instance of 'Needle' in 'Haystack' with 'Replacement'. If 'Instance' is
+ * negative, it counts instances from the right end of 'Haystack'. If 'Instance' is zero, it
+ * replaces all instances.
+ */
+    StringReplaceN( Haystack, Needle, Replacement="", Instance=1 ) 
+    { 
+        If !( Instance := 0 | Instance )
+        {
+            StringReplace, Haystack, Haystack, %Needle%, %Replacement%, A
+            Return Haystack
+        }
+        Else Instance := "L" Instance
+        StringReplace, Instance, Instance, L-, R
+        StringGetPos, Instance, Haystack, %Needle%, %Instance%
+        If ( ErrorLevel )
+            Return Haystack
+        StringTrimLeft, Needle, HayStack, Instance+ StrLen( Needle )
+        StringLeft, HayStack, HayStack, Instance
+        Return HayStack Replacement Needle
+    } 
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
  
 /** * PoE Click v1.0.0 : PoE Click Lib for AutoHotkey.
  * Lib: PoEClick.ahk
@@ -1203,19 +1227,6 @@
         return {"X": Rx, "Y": Ry}
         }
 
-    ; ClipItem - Capture Clip at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ClipItem(x, y){
-            BlockInput, MouseMove
-            Clipboard := ""
-            MouseMove %x%, %y%
-            Sleep, 75*Latency
-            Send ^c
-            ClipWait, 0
-            ParseClip()
-            BlockInput, MouseMoveOff
-        Return
-        }
     ; WisdomScroll - Identify Item at Coord
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	WisdomScroll(x, y){
@@ -1560,16 +1571,171 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * ScaleRes : Basic demonstration of the scaling method used in the script
+/** * Rescale : Resolution scaling for pixel locations taken at a sample resolution.
  */
 
-    ; Scales two resolution quardinates
+    ; Rescale - Rescales values of the script to the user's resolution
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        ScaleRes(x, y){
-                Rx:=Round(A_ScreenWidth / (1920 / x))
-                Ry:=Round(A_ScreenHeight / (1080 / y))
-            return {"X": Rx, "Y": Ry}
-            }
+	Rescale(){
+			IfWinExist, ahk_group POEGameGroup 
+			{
+				WinGetPos, X, Y, W, H
+				If (ResolutionScale="Standard") {
+					; Item Inventory Grid
+					Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
+					Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+					;Detonate Mines
+					Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
+					Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
+					Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+					;Scrolls in currency tab
+					Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
+					Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
+					Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+					;Status Check OnHideout
+					global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
+					global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+					global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+					;Status Check OnMenu
+					global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+					global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+					;Status Check OnChar
+					global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
+					global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+					;Status Check OnChat
+					global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
+					global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+					;Status Check OnInventory
+					global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
+					global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+					;Status Check OnStash
+					global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
+					global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+					;Status Check OnVendor
+					global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
+					global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+					;Status Check OnDiv
+					global vX_OnDiv:=X + Round(A_ScreenWidth / (1920 / 618))
+					global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
+					;Life %'s
+					global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
+					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;ES %'s
+					global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;Mana
+					global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
+					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+					;GUI overlay
+					global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
+					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+					;Divination Y locations
+					Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+					Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
+					;Stash tabs menu button
+					global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
+					global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+					;Stash tabs menu list
+					global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 706))
+					global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+					;calculate the height of each tab
+					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+				}
+				Else If (ResolutionScale="UltraWide") {
+					; Item Inventory Grid
+					Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
+					Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
+					;Detonate Mines
+					Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
+					Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
+					Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+					;Scrolls in currency tab
+					Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
+					Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
+					Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+					;Status Check OnHideout
+					global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
+					global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+					global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+					;Status Check OnMenu
+					global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+					global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+					;Status Check OnChar
+					global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
+					global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+					;Status Check OnChat
+					global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
+					global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+					;Status Check OnInventory
+					global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
+					global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+					;Status Check OnStash
+					global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
+					global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+					;Status Check OnVendor
+					global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
+					global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+					;Status Check OnDiv
+					global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
+					global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
+					;Life %'s
+					global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
+					global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;ES %'s
+					global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+					global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+					global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+					global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+					global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+					global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+					;Mana
+					global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
+					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+					;GUI overlay
+					global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
+					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+					;Divination Y locations
+					Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+					Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
+					;Stash tabs menu button
+					global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
+					global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+					;Stash tabs menu list
+					global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 706))
+					global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+					;calculate the height of each tab
+					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+				} 
+                Global ScrCenter := { "X" : X + Round(A_ScreenWidth / 2) , "Y" : Y + Round(A_ScreenHeight / 2) }
+				RescaleRan := True
+			}
+		return
+		}
+
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -1591,7 +1757,7 @@
 			ToolTip % %CurrControl%_TT
 			catch
 			ToolTip
-			SetTimer, RemoveToolTip, -4000
+			SetTimer, RemoveToolTip, -10000
 		return
 		return
 		}
@@ -1790,139 +1956,6 @@
             textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
         GuiControl, , selectedLeague, |%selectedLeague%||%textList%
     Return
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-/** * Basic PoE functions: GemSwap, QuickPortal, PopFlasks, LogoutCommand
- */
-    ; GemSwap - Swap gems between two locations
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GemSwap(){
-		GemSwapCommand:
-			Thread, NoTimers, true		;Critical
-			Keywait, Alt
-			BlockInput, MouseMove
-			MouseGetPos xx, yy
-			RandomSleep(90,120)
-			
-			Send {%hotkeyCloseAllUI%} 
-			RandomSleep(90,120)
-			
-			Send {%hotkeyInventory%} 
-			RandomSleep(90,120)
-			
-			RightClick(CurrentGemX, CurrentGemY)
-			RandomSleep(90,120)
-			
-			if (WeaponSwap==1) 
-				Send {%hotkeyWeaponSwapKey%} 
-			RandomSleep(90,120)
-			
-			SwiftClick(AlternateGemX, AlternateGemY)
-				RandomSleep(90,120)
-			
-			if (WeaponSwap==1) 
-				Send {%hotkeyWeaponSwapKey%} 
-			RandomSleep(90,120)
-			
-			SwiftClick(CurrentGemX, CurrentGemY)
-				RandomSleep(90,120)
-			
-			Send {%hotkeyInventory%} 
-			MouseMove, xx, yy, 0
-			BlockInput, MouseMoveOff
-		return
-		}
-
-    ; QuickPortal - Open Town Portal
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	QuickPortal(){
-		QuickPortalCommand:
-			Thread, NoTimers, true		;Critical
-			Keywait, Alt
-			BlockInput On
-			MouseGetPos xx, yy
-			RandomSleep(53,87)
-			
-			Send {%hotkeyCloseAllUI%} 
-			RandomSleep(53,68)
-			
-			Send {%hotkeyInventory%}
-			RandomSleep(56,68)
-			
-			MouseMove, PortalScrollX, PortalScrollY, 0
-			RandomSleep(56,68)
-			
-			Click Right
-			RandomSleep(56,68)
-			
-			Send {%hotkeyInventory%}
-			MouseMove, xx, yy, 0
-			BlockInput Off
-		return
-		}
-
-    ; PopFlasks - Pop all flasks
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	PopFlasks(){
-		PopFlasksCommand:
-			Thread, NoTimers, true		;Critical
-			If PopFlaskRespectCD
-				TriggerFlask(11111)
-			Else {
-				Send 1
-				OnCooldown[1]:=1 
-				SendMSG(3, 1, scriptGottaGoFast)
-				Cooldown:=CooldownFlask1
-				settimer, TimerFlask1, %Cooldown%
-				RandomSleep(-99,99)
-				Send 4
-				OnCooldown[4]:=1 
-				Cooldown:=CooldownFlask4
-				SendMSG(3, 4, scriptGottaGoFast)
-				settimer, TimerFlask4, %Cooldown%
-				RandomSleep(-99,99)
-				Send 3
-				OnCooldown[3]:=1 
-				SendMSG(3, 3, scriptGottaGoFast)
-				Cooldown:=CooldownFlask3
-				settimer, TimerFlask3, %Cooldown%
-				RandomSleep(-99,99)
-				Send 2
-				OnCooldown[2]:=1 
-				SendMSG(3, 2, scriptGottaGoFast)
-				Cooldown:=CooldownFlask2
-				settimer, TimerFlask2, %Cooldown%
-				RandomSleep(-99,99)
-				Send 5
-				OnCooldown[5]:=1 
-				SendMSG(3, 5, scriptGottaGoFast)
-				Cooldown:=CooldownFlask5
-				settimer, TimerFlask5, %Cooldown%
-			}
-		return
-		}
-
-    ; LogoutCommand - Logout Function
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	LogoutCommand(){
-		LogoutCommand:
-			Thread, NoTimers, true		;Critical
-			if (CritQuit=1) {
-				global executable, backupExe
-				succ := logout(executable)
-				if (succ == 0) && backupExe != "" {
-					newSucc := logout(backupExe)
-					error("ED12",executable,backupExe)
-					if (newSucc == 0) {
-						error("ED13")
-					}
-				}
-			} 
-			Else 
-				Send {Enter} /exit {Enter}
-		return
-		}
-
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 /** * Cooldown Timers

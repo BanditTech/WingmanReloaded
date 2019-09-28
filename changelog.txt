@@ -15,18 +15,21 @@ Redisigned the Item parse debug system into the new Item Info GUI
     The two graphs either show the Buy and Sell or the Value and Low Confidence
         Low confidence graphs are based on low volumes of trade
 
-Seperated some of the basic functions of the script into a library file
-    This will allow for easier transitions into using new libraries
-    Now they will be updated with the script and use a single Library.ahk file
-    any previously included library has been merged into this file
-    All information regarding these basic functions can be found within the lib
+Added Calibration Wizard which will gather all the samples at once
+    Gives step by step instructions while waiting for "A" keypress
+    Cancel the Wizard by holding Escape when pressing "A"
+
+Added tooltips to all the options on the Configuration tab
+    A lot of people seem to have issues with getting the calibration done
+        This will hopefully give some more direction to those having issues
+    These tooltips along with the Wizard will help a lot of people
 
 Quivers and Flasks have been added to Stats.ItemClass
 
-Organized the script a little and moved functions into groups
-    This will help when editing the file as it is getting rather large
-    Top down view with everything minimized gives more information
-        Labels have been added to any groups with its contained functions
+The script has been completely restructured
+    Several non dependant functions have been moved into the Library.ahk file
+    Functions have been moved around and grouped together where possible
+    Labels have been added to most comments for top down view navigation
 
 Version .05.11 September/22/2019
 --------------------------------------------------------------------------------
