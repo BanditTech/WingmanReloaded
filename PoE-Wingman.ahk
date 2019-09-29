@@ -1008,12 +1008,12 @@
 
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
-	Gui, Font
-	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
+	Gui, Add, Button, ghelpCalibration 	x+10 ys-4		w20 h20, 	?
 	Gui, Add, Button, gStartCalibrationWizard 	xs	ys+20 Section	w110 h25, 	Run Wizard
 	Gui, Add, Button, gShowDebugGamestates 	x+8	yp				w110 h25, 	Show Gamestates
+	Gui, Font
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+30				w110, 	OnHideout Color
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+35				w110, 	OnHideout Color
 	UpdateOnHideoutBtn_TT:="Calibrate the OnHideout Color`nThis color determines if you are in a Hideout`nMake sure the Hideout menu next to abilities is visible"
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 		y+3					w110, 	OnChar Color
 	UpdateOnCharBtn_TT:="Calibrate the OnChar Color`nThis color determines if you are on a character`nSample located on the figurine next to the health globe"
@@ -1024,7 +1024,7 @@
 	Gui, Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn y+3			 	w110, 	Empty Inventory
 	UdateEmptyInvSlotColorBtn_TT:="Calibrate the Empty Inventory Color`nThis color determines the Empy Inventory slots`nSample located at the bottom left of each cell"
 
-	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+30		w110, 	OnHideoutMin Color
+	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+35		w110, 	OnHideoutMin Color
 	UpdateOnHideoutMinBtn_TT:="Calibrate the OnHideoutMin Color`nThis color determines if you are in a Hideout`nMake sure the Hideout menu next to abilities is minimized"
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn		y+3				w110, 	OnInventory Color
 	UpdateOnInventoryBtn_TT:="Calibrate the OnInventory Color`nThis color determines if the Inventory panel is open`nSample is located at the top of the Inventory panel"
