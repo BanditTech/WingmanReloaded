@@ -8,7 +8,6 @@ if not A_IsAdmin
      ExitApp
 }
 
-#Include %A_ScriptDir%\JSON.ahk
 
 Global xpos, ypos, Maxed
 
@@ -919,3 +918,4 @@ GuiClose:
     SendMSG( 7, 0)
 ExitApp
 
+#Include %A_ScriptDir%\Library.ahk

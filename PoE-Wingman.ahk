@@ -320,7 +320,7 @@
 
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
-		Global AreaScale := 4
+		Global AreaScale := 2
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
@@ -329,6 +329,9 @@
 		Global YesMapUnid := 1
 		Global YesStashKeys := 1
 		Global OnHideout := False
+		Global OnHideoutMin := False
+		Global DetonateMines := False
+		Global DetonateDelve := False
 		Global OnMenu := False
 		Global OnChar := False
 		Global OnChat := False
@@ -659,6 +662,7 @@
 		Global ItemInfoStatText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
 		global graphWidth := 219
 		global graphHeight := 221
+		Global ForceMatch6Link := False
 
 
 ; ReadFromFile()
@@ -1006,7 +1010,8 @@
 	Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
 	Gui, Font
 	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
-	Gui, Add, Button, gStartCalibrationWizard 	xs	ys+20 Section	w228 h25, 	Calibration Wizard
+	Gui, Add, Button, gStartCalibrationWizard 	xs	ys+20 Section	w110 h25, 	Run Wizard
+	Gui, Add, Button, gShowDebugGamestates 	x+8	yp				w110 h25, 	Show Gamestates
 	;Update calibration for pixel check
 	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+30				w110, 	OnHideout Color
 	UpdateOnHideoutBtn_TT:="Calibrate the OnHideout Color`nThis color determines if you are in a Hideout`nMake sure the Hideout menu next to abilities is visible"
@@ -1098,22 +1103,8 @@
 	DetonateMines_TT:="Enable this to automatically Detonate Mines when placed"
 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
-	DebugMessages_TT:="Enable this to enable debugging mode for Coord/Pixel`nCoord/Pixel tool turns into Coord/Debug tool`nAlso shows the Inventory Pixel Grid if checked on the left"
-	Gui Add, Text, 										x573	y5, 				Debug:
-	Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x556 	y5 	w13 h13	
-	ShowPixelGrid_TT:="Enable this to enable display of the Inventory Pixel Grid`nTo use this function, move your mouse outside inventory area`nActivate with Coord/Debug hotkey"
-	Gui Add, Text, 							vPGrid	    x507	y5, 		    	Pixel Grid:
-
-	If (DebugMessages=1) {
-		varCoordUtilText := "Coord/Debug"
-		GuiControl, Show, ShowPixelGrid
-		GuiControl, Show, PGrid
-		} 
-	Else If (DebugMessages=0) {
-		varCoordUtilText := "Coord/Pixel"
-		GuiControl, Hide, ShowPixelGrid
-		GuiControl, Hide, PGrid
-		}
+	DebugMessages_TT:="Enable this to show debug messages, previous functions have been moved to gamestates"
+	Gui Add, Text, 										x515	y5, 				Debug Messages:
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x295 	y148, 				Keybinds:
@@ -1123,9 +1114,7 @@
 	Gui Add, Text, 										x360 	y+10, 				Auto-Quit
 	Gui Add, Text, 										x360 	y+10, 				Logout
 	Gui Add, Text, 										x360 	y+10, 				Auto-QSilver
-	;CoordUtilText:="Mouse Coord"
-	Gui Add, Text, 					  	vCoordUtilText	x360 	y+10,               "%varCoordUtilText%" 				
-	GuiControl, , CoordUtilText, %varCoordUtilText%
+	Gui Add, Text, 					  					x360 	y+10,               Coord/Pixel 				
 	Gui Add, Text, 										x360 	y+10, 				Quick-Portal
 	Gui Add, Text, 										x360 	y+10, 				Gem-Swap
 	Gui Add, Text, 										x360 	y+10, 				Pop Flasks
@@ -1290,7 +1279,7 @@
 	Gui, Font,
 	Gui Add, Text, 										 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
 	Gui Add, Text, 										 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
-	Gui Add, Text, 										 	y+5, 				The options to the right affect which portion of the script is enabled.
+	Gui Add, Text, 										 	y+5, 				The options to the left affect which portion of the Inventory functions are enabled.
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -1358,7 +1347,7 @@
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
-	;#######################################################################################################Chat Tab
+	;#######################################################################################################Item Parse
 	Gui, Tab, Item Parse
 	Gui, Font, Bold
 	Gui Add, Text, 			Section						x12 	y30, 				Item Parse Settings
@@ -1381,7 +1370,7 @@
 		selectedLeague_TT:="Which league are you playing on?"
 	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Update leagues
 		UpdateLeaguesBtn_TT:="Use this button when there is a new league"
-
+	Gui, Add, Checkbox, vForceMatch6Link xs+5 y+15 Checked%ForceMatch6Link%, Force a match with the 6 Link price
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
@@ -1973,19 +1962,19 @@
 								MoveStash(StashTabCollection)
 								RandomSleep(30,45)
 								CtrlClick(Grid.X,Grid.Y)
-								Sleep, 90*Latency
 							}
 							If (StashTabYesUniqueRing)
 							{
+								Sleep, 135*Latency
 								pixelgetcolor, Pitem, GridX, GridY
 								if !(indexOfHex(Pitem, varMouseoverColor))
 									Continue
 								MoveStash(StashTabUniqueRing)
 								CtrlClick(Grid.X,Grid.Y)
-								Sleep, 90*Latency
 							}
 							If (StashTabYesUniqueDump)
 							{
+								Sleep, 135*Latency
 								pixelgetcolor, Pitem, GridX, GridY
 								if !(indexOfHex(Pitem, varMouseoverColor))
 									Continue
@@ -2001,10 +1990,10 @@
 								MoveStash(StashTabCollection)
 								RandomSleep(30,45)
 								CtrlClick(Grid.X,Grid.Y)
-								Sleep, 90*Latency
 							}
 							If (StashTabYesUniqueDump)
 							{
+								Sleep, 135*Latency
 								pixelgetcolor, Pitem, GridX, GridY
 								if !(indexOfHex(Pitem, varMouseoverColor))
 									Continue
@@ -4000,7 +3989,18 @@
 							Return True
 						}
 					}
-					Else If (Prop.ItemName = Ninja[TKey][index]["name"])
+					Else If (Prop.ItemName = Ninja[TKey][index]["name"] && !Ninja[TKey][index].HasKey("links") )
+					{
+						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+						If graph
+						{
+							GraphNinjaPrices(TKey,index)
+							DisplayPSA()
+						}
+						Return True
+					}
+					Else If (Prop.ItemName = Ninja[TKey][index]["name"] && ((ForceMatch6Link && Ninja[TKey][index]["links"] = "6") || (Prop.6Link && Ninja[TKey][index]["links"] = "6") || (Prop.5Link && Ninja[TKey][index]["links"] = "5") || (Prop.LinkCount < 4 && Ninja[TKey][index]["links"] = "0")))
 					{
 						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
@@ -5424,6 +5424,22 @@
 ; GuiStatus - Pixelcheck for different parts of the screen to see what your status is in game. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	GuiStatus(Fetch:=""){
+		If (Fetch="DetonateMines")
+			{
+			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
+			pixelgetcolor, Mine, DetonateX, DetonateY
+			if (Mine = DetonateHex) {
+				DetonateMines:=True
+				} Else {
+				DetonateMines:=False
+				}
+			if (DelveMine = DetonateHex) {
+				DetonateDelve:=True
+				} Else {
+				DetonateDelve:=False
+				}
+			Return
+			}
 		If (Fetch="OnHideout")
 			{
 			pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
@@ -5451,6 +5467,11 @@
 			OnHideout:=True
 			} Else {
 			OnHideout:=False
+			}
+		if (POnHideoutMin=varOnHideoutMin) {
+			OnHideoutMin:=True
+			} Else {
+			OnHideoutMin:=False
 			}
 		pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
 		If (POnChar=varOnChar)  {
@@ -5496,6 +5517,134 @@
 			}
 		Return
 		}
+
+; DebugGamestates - Show a GUI which will update based on the state of the game
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DebugGamestates(){
+		Global
+		ShowDebugGamestates:
+			SetTimer, CheckGamestates, 50
+			Gui, Submit
+			; ----------------------------------------------------------------------------------------------------------------------
+			Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
+			Gui, States: Margin, 10, 10
+			; ----------------------------------------------------------------------------------------------------------------------
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnHideout hwndCTIDOnHideout, % "       OnHideout "
+			CtlColors.Attach(CTIDOnHideout, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnHideoutMin hwndCTIDOnHideoutMin, % "    OnHideoutMin "
+			CtlColors.Attach(CTIDOnHideoutMin, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnChar hwndCTIDOnChar, % "          OnChar "
+			CtlColors.Attach(CTIDOnChar, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnInventory hwndCTIDOnInventory, % "      OnInventory "
+			CtlColors.Attach(CTIDOnInventory, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnChat hwndCTIDOnChat, % "          OnChat "
+			CtlColors.Attach(CTIDOnChat, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnStash hwndCTIDOnStash, % "         OnStash "
+			CtlColors.Attach(CTIDOnStash, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDiv hwndCTIDOnDiv, % "          OnDiv "
+			CtlColors.Attach(CTIDOnDiv, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnVendor hwndCTIDOnVendor, % "         OnVendor "
+			CtlColors.Attach(CTIDOnVendor, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnMenu hwndCTIDOnMenu, % "         OnMenu "
+			CtlColors.Attach(CTIDOnMenu, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTDetonateMines hwndCTIDDetonateMines, % "   DetonateMines "
+			CtlColors.Attach(CTIDDetonateMines, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTDetonateDelve hwndCTIDDetonateDelve, % "   DetonateDelve "
+			CtlColors.Attach(CTIDDetonateDelve, "", "Red")
+			Gui, States: Add, Button, gCheckPixelGrid xm+5 y+15 w190 , Check Inventory Grid
+			; ----------------------------------------------------------------------------------------------------------------------
+			Gui, States: Show ,  , Check Gamestates
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+		StatesClose:
+		StatesEscape:
+			Gui, States: Destroy
+			SetTimer, CheckGamestates, Delete
+			CtlColors.Free()
+			Gui, 1: Show
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+		StatesSize:
+			If (A_EventInfo != 1) {
+				Gui, %A_Gui%:+LastFound
+				WinSet, ReDraw
+			}
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+		CheckGamestates:
+			GuiStatus()
+			GuiStatus("DetonateMines")
+			If (OnHideout)
+				CtlColors.Change(CTIDOnHideout, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnHideout, "", "Red")
+			If (OnHideoutMin)
+				CtlColors.Change(CTIDOnHideoutMin, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnHideoutMin, "", "Red")
+			If (OnChar)
+				CtlColors.Change(CTIDOnChar, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnChar, "", "Red")
+			If (OnInventory)
+				CtlColors.Change(CTIDOnInventory, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnInventory, "", "Red")
+			If (OnChat)
+				CtlColors.Change(CTIDOnChat, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnChat, "", "Red")
+			If (OnStash)
+				CtlColors.Change(CTIDOnStash, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnStash, "", "Red")
+			If (OnDiv)
+				CtlColors.Change(CTIDOnDiv, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnDiv, "", "Red")
+			If (OnVendor)
+				CtlColors.Change(CTIDOnVendor, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnVendor, "", "Red")
+			If (DetonateMines)
+				CtlColors.Change(CTIDDetonateMines, "Lime", "")
+			Else
+				CtlColors.Change(CTIDDetonateMines, "", "Red")
+			If (DetonateDelve)
+				CtlColors.Change(CTIDDetonateDelve, "Lime", "")
+			Else
+				CtlColors.Change(CTIDDetonateDelve, "", "Red")
+			If (OnMenu)
+				CtlColors.Change(CTIDOnMenu, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnMenu, "", "Red")
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+		CheckPixelGrid:
+			;Check if inventory is open
+			Gui, States: Hide
+			if(!OnInventory){
+				TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+			}else{
+				TT := "Grid information:" . "`n"
+				For C, GridX in InventoryGridX	
+				{
+					For R, GridY in InventoryGridY
+					{
+						pixelgetcolor, PointColor, GridX, GridY
+						if (indexOf(PointColor, varEmptyInvSlotColor)) {				
+							TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+						}else{
+							TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
+						}
+					}
+				}
+			}
+			MsgBox %TT%	
+			Gui, States: Show
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+	}
 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5747,50 +5896,28 @@
 		}
 		Return
 		}
-; CoordAndDebug - Debugging information on Mouse Cursor, also provides Inventory Grid information
+; Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	CoordAndDebug(){
-			CoordAndDebugCommand:
-				
-				MouseGetPos x, y
-				PixelGetColor, xycolor , x, y
-				TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
-				
-				If DebugMessages{
-					TT := TT . "`n`n"
-					GuiStatus()
-					TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-					TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
-					TT := TT . "  Divination Trade: " . OnDiv . "  Menu Open: " . OnMenu . "`n`n"
-					Tooltip, %TT%
-					SetTimer, RemoveToolTip, 10000
-
-				} Else {
-					Tooltip, %TT%
-					SetTimer, RemoveToolTip, 10000
-				}
-				If (DebugMessages&&ShowPixelGrid){
-					;Check if inventory is open
-					if(!OnInventory){
-						TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
-					}else{
-						TT := "Grid information:" . "`n"
-						For C, GridX in InventoryGridX	{
-							For R, GridY in InventoryGridY
-							{
-								pixelgetcolor, PointColor, GridX, GridY
-								if (indexOf(PointColor, varEmptyInvSlotColor)) {				
-									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
-								}else{
-									TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
-								}
-							}
-						}
-					}
-					MsgBox %TT%	
-				}
-			Return
-		}
+    SendMSG(wParam:=0, lParam:=0, script:=""){
+        DetectHiddenWindows On
+        if WinExist(script) 
+            PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+        else 
+            MsgBox %script% . " Not found"
+        DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
+        Return
+        }
+; Coord - : Pixel information on Mouse Cursor, provides pixel location and GRB color hex
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Coord(){
+		CoordCommand:
+			MouseGetPos x, y
+			PixelGetColor, xycolor , x, y
+			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
+			Tooltip, %TT%
+			SetTimer, RemoveToolTip, 10000
+		Return
+	}
 
 ; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -6100,7 +6227,7 @@
 			If hotkeyGemSwap
 				hotkey,% hotkeyGemSwap, GemSwapCommand, Off
 			If hotkeyGetCoords
-				hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, Off
+				hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
 			If hotkeyPopFlasks
 				hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
 			If hotkeyLogout
@@ -6150,7 +6277,7 @@
 			If hotkeyGemSwap
 				hotkey,% hotkeyGemSwap, GemSwapCommand, On
 			If hotkeyGetMouseCoords
-				hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, On
+				hotkey,% hotkeyGetMouseCoords, CoordCommand, On
 			If hotkeyPopFlasks
 				hotkey,% hotkeyPopFlasks, PopFlasksCommand, On
 			If hotkeyLogout
@@ -6268,6 +6395,7 @@
 			IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Blight
 			IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
 			IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
+			IniRead, ForceMatch6Link, Settings.ini, Database, ForceMatch6Link, 0
 
 			RegisterHotkeys()
 			checkActiveType()
@@ -6290,7 +6418,7 @@
 			If hotkeyGemSwap
 				hotkey,% hotkeyGemSwap, GemSwapCommand, Off
 			If hotkeyGetCoords
-				hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, Off
+				hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
 			If hotkeyPopFlasks
 				hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
 			If hotkeyLogout
@@ -6307,63 +6435,63 @@
 				hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
 
 			Hotkey If, % fn1
-			If 1Suffix1
+			If 1Suffix1 != A_Space
 				Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
-			If 1Suffix2
+			If 1Suffix2 != A_Space
 				Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
-			If 1Suffix3
+			If 1Suffix3 != A_Space
 				Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
-			If 1Suffix4
+			If 1Suffix4 != A_Space
 				Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
-			If 1Suffix5
+			If 1Suffix5 != A_Space
 				Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
-			If 1Suffix6
+			If 1Suffix6 != A_Space
 				Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
-			If 1Suffix7
+			If 1Suffix7 != A_Space
 				Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
-			If 1Suffix8
+			If 1Suffix8 != A_Space
 				Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
-			If 1Suffix9
+			If 1Suffix9 != A_Space
 				Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
 
 			Hotkey If, % fn2
-			If 2Suffix1
+			If 2Suffix1 != A_Space
 				Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
-			If 2Suffix2
+			If 2Suffix2 != A_Space
 				Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
-			If 2Suffix3
+			If 2Suffix3 != A_Space
 				Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
-			If 2Suffix4
+			If 2Suffix4 != A_Space
 				Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
-			If 2Suffix5
+			If 2Suffix5 != A_Space
 				Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
-			If 2Suffix6
+			If 2Suffix6 != A_Space
 				Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
-			If 2Suffix7
+			If 2Suffix7 != A_Space
 				Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
-			If 2Suffix8
+			If 2Suffix8 != A_Space
 				Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
-			If 2Suffix9
+			If 2Suffix9 != A_Space
 				Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
 
 			Hotkey If, % fn3
-			If stashSuffix1
+			If stashSuffix1 != A_Space
 				Hotkey, *%stashSuffix1%, FireStashHotkey1, off
-			If stashSuffix2
+			If stashSuffix2 != A_Space
 				Hotkey, *%stashSuffix2%, FireStashHotkey2, off
-			If stashSuffix3
+			If stashSuffix3 != A_Space
 				Hotkey, *%stashSuffix3%, FireStashHotkey3, off
-			If stashSuffix4
+			If stashSuffix4 != A_Space
 				Hotkey, *%stashSuffix4%, FireStashHotkey4, off
-			If stashSuffix5
+			If stashSuffix5 != A_Space
 				Hotkey, *%stashSuffix5%, FireStashHotkey5, off
-			If stashSuffix6
+			If stashSuffix6 != A_Space
 				Hotkey, *%stashSuffix6%, FireStashHotkey6, off
-			If stashSuffix7
+			If stashSuffix7 != A_Space
 				Hotkey, *%stashSuffix7%, FireStashHotkey7, off
-			If stashSuffix8
+			If stashSuffix8 != A_Space
 				Hotkey, *%stashSuffix8%, FireStashHotkey8, off
-			If stashSuffix9
+			If stashSuffix9 != A_Space
 				Hotkey, *%stashSuffix9%, FireStashHotkey9, off
 
 			hotkey, IfWinActive
@@ -6707,6 +6835,7 @@
 			IniWrite, %selectedLeague%, Settings.ini, Database, selectedLeague
 			IniWrite, %UpdateDatabaseInterval%, Settings.ini, Database, UpdateDatabaseInterval
 			IniWrite, %YesNinjaDatabase%, Settings.ini, Database, YesNinjaDatabase
+			IniWrite, %ForceMatch6Link%, Settings.ini, Database, ForceMatch6Link
 
 			readFromFile()
 			If (YesPersistantToggle)
@@ -6856,84 +6985,84 @@
 		RegisterHotkeys() {
 			global
 			Hotkey If, % fn1
-				If 1Suffix1
+				If 1Suffix1 != A_Space
 					Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
-				If 1Suffix2
+				If 1Suffix2 != A_Space
 					Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
-				If 1Suffix3
+				If 1Suffix3 != A_Space
 					Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
-				If 1Suffix4
+				If 1Suffix4 != A_Space
 					Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
-				If 1Suffix5
+				If 1Suffix5 != A_Space
 					Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
-				If 1Suffix6
+				If 1Suffix6 != A_Space
 					Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
-				If 1Suffix7
+				If 1Suffix7 != A_Space
 					Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
-				If 1Suffix8
+				If 1Suffix8 != A_Space
 					Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
-				If 1Suffix9
+				If 1Suffix9 != A_Space
 					Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
 
 			Hotkey If, % fn2
-				If 2Suffix1
+				If 2Suffix1 != A_Space
 					Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
-				If 2Suffix2
+				If 2Suffix2 != A_Space
 					Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
-				If 2Suffix3
+				If 2Suffix3 != A_Space
 					Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
-				If 2Suffix4
+				If 2Suffix4 != A_Space
 					Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
-				If 2Suffix5
+				If 2Suffix5 != A_Space
 					Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
-				If 2Suffix6
+				If 2Suffix6 != A_Space
 					Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
-				If 2Suffix7
+				If 2Suffix7 != A_Space
 					Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
-				If 2Suffix8
+				If 2Suffix8 != A_Space
 					Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
-				If 2Suffix9
+				If 2Suffix9 != A_Space
 					Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
 
 			Hotkey If, % fn3
-				If stashSuffix1
+				If stashSuffix1 != A_Space
 					Hotkey, *%stashSuffix1%, FireStashHotkey1, off
-				If stashSuffix2
+				If stashSuffix2 != A_Space
 					Hotkey, *%stashSuffix2%, FireStashHotkey2, off
-				If stashSuffix3
+				If stashSuffix3 != A_Space
 					Hotkey, *%stashSuffix3%, FireStashHotkey3, off
-				If stashSuffix4
+				If stashSuffix4 != A_Space
 					Hotkey, *%stashSuffix4%, FireStashHotkey4, off
-				If stashSuffix5
+				If stashSuffix5 != A_Space
 					Hotkey, *%stashSuffix5%, FireStashHotkey5, off
-				If stashSuffix6
+				If stashSuffix6 != A_Space
 					Hotkey, *%stashSuffix6%, FireStashHotkey6, off
-				If stashSuffix7
+				If stashSuffix7 != A_Space
 					Hotkey, *%stashSuffix7%, FireStashHotkey7, off
-				If stashSuffix8
+				If stashSuffix8 != A_Space
 					Hotkey, *%stashSuffix8%, FireStashHotkey8, off
-				If stashSuffix9
+				If stashSuffix9 != A_Space
 					Hotkey, *%stashSuffix9%, FireStashHotkey9, off
 
 			Gui Submit, NoHide
 			fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
 			Hotkey If, % fn1
 			Loop, 9 {
-				If (1Suffix%A_Index%)
+				If (1Suffix%A_Index% != A_Space)
 					keyval := 1Suffix%A_Index%
 					Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
 				}
 			fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
 			Hotkey If, % fn2
 			Loop, 9 {
-				If (2Suffix%A_Index%)
+				If (2Suffix%A_Index% != A_Space)
 					keyval := 2Suffix%A_Index%
 					Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
 				}
 			fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
 			Hotkey If, % fn3
 			Loop, 9 {
-				If (stashSuffix%A_Index%)
+				If (stashSuffix%A_Index% != A_Space)
 					keyval := stashSuffix%A_Index%
 					Hotkey, ~*%keyval%, FireStashHotkey%A_Index%, On
 				}
@@ -8130,18 +8259,6 @@
 		}
 
 		runUpdate:
-			IfNotExist, %A_ScriptDir%\data\JSON.ahk
-			{
-				UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/JSON.ahk, %A_ScriptDir%\data\JSON.ahk
-				if ErrorLevel {
-					error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "JSON.ahk")
-					MsgBox, Error ED02 : There was a problem downloading JSON.ahk
-				}
-				Else if (ErrorLevel=0){
-					error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "JSON.ahk")
-					MsgBox % "JSON library installed, ready for next patch!"
-				}
-			}
 
 			Fail:=False
 			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
@@ -8515,9 +8632,10 @@
 	{ ; Calibration Wizard
 		CalibrationWizard()
 		{
+			Global
 			StartCalibrationWizard:
-				Static
 				Thread, NoTimers, true
+				Gui, Submit
 				Gui, Wizard: New, +LabelWizard +AlwaysOnTop
 				Gui, Wizard: Font, Bold
 				Gui, Wizard: Add, GroupBox, x10 y9 w460 h270 , Select which calibrations to run
@@ -8564,7 +8682,8 @@
 					ToolTip,% "This will sample the OnChar Color"
 						. "`nMake sure you are logged into a character"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 115 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8572,6 +8691,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8585,8 +8705,9 @@
 					ToolTip,% "This will sample the OnHideout Color`n"
 						. "Make sure you are in a hideout`n"
 						. "Make sure the hideout menu is Visible`n"
-						. "Press ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "Press ""A"" to sample`n"
+						. "Hold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 110 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8594,6 +8715,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8606,8 +8728,9 @@
 					ToolTip,% "This will sample the OnHideoutMin Color`n"
 						. "From the hideout menu being visible, minimize the menu`n"
 						. "Make sure the hideout menu is not Visible`n"
-						. "Press ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "Press ""A"" to sample`n"
+						. "Hold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 160 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8615,6 +8738,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8629,7 +8753,8 @@
 						. "`nMake sure you have chat panel open"
 						. "`nNo other panels can be open on the left"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 115 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8637,6 +8762,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8651,7 +8777,8 @@
 						. "`nMake sure you have the Passive Skills menu open"
 						. "`nCan also use Atlas menu to sample"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 135 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8659,6 +8786,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8672,7 +8800,8 @@
 					ToolTip,% "This will sample the OnInventory Color"
 						. "`nMake sure you have the Inventory panel open"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 130 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8680,6 +8809,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8694,7 +8824,8 @@
 						. "`nMake sure you Empty all items from inventory"
 						. "`nMake sure you have the Inventory panel open"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 125 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8702,6 +8833,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8735,7 +8867,8 @@
 					ToolTip,% "This will sample the OnVendor Color"
 						. "`nMake sure you have the Vendor Sell panel open"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 135 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8743,6 +8876,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8756,7 +8890,8 @@
 					ToolTip,% "This will sample the OnStash Color"
 						. "`nMake sure you have the Stash panel open"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 115 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8764,6 +8899,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8777,7 +8913,8 @@
 					ToolTip,% "This will sample the OnDiv Color"
 						. "`nMake sure you have the Trade Divination panel open"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 150 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8785,6 +8922,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8799,7 +8937,8 @@
 						. "`nMake sure you are somewhere other than Delve mines"
 						. "`nPlace a mine, and the detonate mines icon should appear"
 						. "`nPress ""A"" to sample"
-						, % ScrCenter.X, % ScrCenter.Y
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 165 , % ScrCenter.Y -30
 					KeyWait, a, D
 					ToolTip
 					KeyWait, a
@@ -8807,6 +8946,7 @@
 					{
 						MsgBox % "Escape key was held`n"
 						. "Canceling the Wizard!"
+						Gui, Wizard: Show
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
@@ -8817,7 +8957,10 @@
 				}
 
 				If SampleTT =
+				{
 					MsgBox, No Sample Taken
+					Gui, Wizard: Show
+				}
 				Else
 					Goto, ShowWizardResults
 			Return
@@ -8857,11 +9000,13 @@
 				If CalibrationDetonate
 					IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
 				Gui, Wizard: Submit
+				Gui, 1: show
 			Return
 
 			WizardEscape:
 			WizardClose:
 				Gui, Wizard: Destroy
+				Gui, 1: Show
 			Return
 		}
 	}
@@ -8871,6 +9016,7 @@
 		IgnoreEscape:
 			SaveIgnoreArray()
 			Gui, Ignore: Destroy
+			Gui, 1: Show
 		Return
 
 		addToBlacklist(C, R)
@@ -8887,6 +9033,7 @@
 		}
 
 		BuildIgnoreMenu:
+			Gui, Submit
 			Gui, Ignore: +LabelIgnore -MinimizeBox
 			Gui, Ignore: Font, Bold
 			Gui, Ignore: Add, GroupBox, w660 h305 Section xm ym, Ignored Inventory Slots:
@@ -9131,23 +9278,7 @@
 
 		UpdateDebug:
 			Gui, Submit, NoHide
-			If (DebugMessages=1) {
-				varCoordUtilText := "Coord/Debug"
-				GuiControl, Show, ShowPixelGrid
-				GuiControl, Show, PGrid
-				GuiControl, Show, ShowItemInfo
-				GuiControl, Show, ParseI
-			} Else If (DebugMessages=0) {
-				varCoordUtilText := "Coord/Pixel"
-				GuiControl, Hide, ShowPixelGrid
-				GuiControl, Hide, ShowItemInfo
-				GuiControl, Hide, PGrid
-				GuiControl, Hide, ParseI
-			}
-			GuiControl, , CoordUtilText, %varCoordUtilText%
 			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
-			IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
-			IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
 		Return
 
 		UpdateUtility:
