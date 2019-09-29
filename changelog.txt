@@ -23,9 +23,14 @@ Added Calibration Wizard which will gather all the samples at once
     Cancel the Wizard by holding Escape when pressing "A"
 
 Added Gamestate display GUI for testing Calibration
+    This replaces most of the functions of the previous debug options
     GUI will remain AlwaysOnTop, so you can move around in game
     Gamestates that return true will light up green
     Gamestates that are false will show as red text
+    Use the Check Inventory Grid button to get a readout of your slots
+
+Debug messages is the last vestage of the old debug system
+    Enable this to allow debug tooltips to display
 
 Added tooltips to all the options on the Configuration tab
     A lot of people seem to have issues with getting the calibration done
