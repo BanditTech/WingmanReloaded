@@ -50,4 +50,4 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
 
 [For install instructions](https://github.com/BanditTech/WingmanReloaded/wiki)
 
-[Keep the project alive with a donation!](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&currency_code=USD&source=url)
+[Keep the project alive with a donation!](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&item_name=Open+Source+Script+Building&currency_code=USD&source=url)
