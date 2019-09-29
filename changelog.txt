@@ -1,4 +1,77 @@
 --------------------------------------------------------------------------------
+Release Notes
+--------------------------------------------------------------------------------
+Version .06.00 September/29/2019
+--------------------------------------------------------------------------------
+
+********************************************************************************
+******************* DO NOT AUTO UPDATE TO THIS VERSION *************************
+********************************************************************************
+******************* WILL CRASH ON LAUNCH IF MISSING LIB ************************
+********************************************************************************
+************ Either fresh install or unzip on top of script dir ****************
+********************************************************************************
+
+Redisigned the Item parse debug system into the new Item Info GUI
+    You can quickly look at the price graphs of items and its parsed info
+    It shows the Prop, Stats, and Affix arrays for use with custom loot filter
+    The two graphs either show the Buy and Sell or the Value and Low Confidence
+        Low confidence graphs are based on low volumes of trade
+
+Added Calibration Wizard which will gather all the samples at once
+    Gives step by step instructions while waiting for "A" keypress
+    Cancel the Wizard by holding Escape when pressing "A"
+
+Added Gamestate display GUI for testing Calibration
+    This replaces most of the functions of the previous debug options
+    GUI will remain AlwaysOnTop, so you can move around in game
+    Gamestates that return true will light up green
+    Gamestates that are false will show as red text
+    Use the Check Inventory Grid button to get a readout of your slots
+
+Debug messages is the last vestage of the old debug system
+    Enable this to allow debug tooltips to display
+
+Added tooltips to all the options on the Configuration tab
+    A lot of people seem to have issues with getting the calibration done
+        This will hopefully give some more direction to those having issues
+    These tooltips along with the Wizard will help a lot of people
+
+MatchNinjaPrice can recognizes 5link, 6link or less variants
+    Enable the option to force a 6 link match in the Item Parse tab
+    I will add the ability to graph the other prices on demand later
+
+The script has been completely restructured
+    Several non dependant functions have been moved into the Library.ahk file
+    Functions have been moved around and grouped together where possible
+    Labels have been added to most comments for top down view navigation
+
+Added Class_CtlColors, StringReplaceN, str_getTailf, FileCheck, to library
+    Class_CtlColors for managing GuiControls text and background colors
+    StringReplaceN for truncating long lists of hex colors
+    str_getTailf and FileCheck are for future project of parsing the client log
+
+"Quivers" and "Flasks" have been added to Stats.ItemClass
+
+Fixed bug related to chat hotkey bindings
+    You can now disable any hotkey from the Stash hotkeys or the Chat hotkeys
+    Now works as intended, any Hotkey with an Empty Key value will be skipped
+
+Adjusted sleep timers for the unique stash logic again, should be working now
+    Still seemed to sample the color too quickly
+
+--------------------------------------------------------------------------------
+Summary of Changes Since last release version:
+--------------------------------------------------------------------------------
+Using the ~ evaluator with custom loot filter can use | between each string
+Import and Export your Custom Loot Filters, can also duplicate them
+New ingame loot filter pack to use with Loot Vacuum
+Ignored Slot system to skip positions of the inventory and items already clipped
+New database parser for PoE.Ninja that grabs price info (1-7 days between updates)
+Update League info from the POE servers by pressing Update Leagues in Item Parse tab
+Tons of bugfixes and adjustments
+
+--------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
 Version .05.11 September/22/2019

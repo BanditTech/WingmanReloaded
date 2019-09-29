@@ -58,6 +58,7 @@
         
     OnMessage(0x5555, "MsgMonitor")
     OnMessage(0x5556, "MsgMonitor")
+	OnMessage( 0xF, "WM_PAINT")
     
     SetTitleMatchMode 3 
     CoordMode, Mouse, Screen
@@ -68,7 +69,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .05.11
+    Global VersionNumber := .06.00
 
 	Global Null := 0
     
@@ -192,30 +193,6 @@
  			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
 		}
 	}
-	IfNotExist, %A_ScriptDir%\data\JSON.ahk
-	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/JSON.ahk, %A_ScriptDir%\data\JSON.ahk
-		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "JSON.ahk")
-			MsgBox, Error ED02 : There was a problem downloading JSON.ahk
-		}
-		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "JSON.ahk")
-			MsgBox % "JSON library installed, ready for next patch!"
-		}
-	}
-	IfNotExist, %A_ScriptDir%\data\XGraph.ahk
-	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/XGraph.ahk, %A_ScriptDir%\data\XGraph.ahk
-		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "XGraph.ahk")
-			MsgBox, Error ED02 : There was a problem downloading XGraph.ahk
-		}
-		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "XGraph.ahk")
-			MsgBox % "XGraph library installed, ready for next patch!"
-		}
-	}
 	IfNotExist, %A_ScriptDir%\data\LootFilter.ahk
 	{
     	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
@@ -308,8 +285,6 @@
 			}
 		}
 	}
-	; Comment out this line if your script crashes on launch
-	#Include, %A_ScriptDir%\data\JSON.ahk
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -345,7 +320,7 @@
 
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
-		Global AreaScale := 4
+		Global AreaScale := 2
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
@@ -354,6 +329,9 @@
 		Global YesMapUnid := 1
 		Global YesStashKeys := 1
 		Global OnHideout := False
+		Global OnHideoutMin := False
+		Global DetonateMines := False
+		Global DetonateDelve := False
 		Global OnMenu := False
 		Global OnChar := False
 		Global OnChat := False
@@ -468,6 +446,7 @@
 		global hotkeyAutoQuicksilver:=!MButton
 		global hotkeyPopFlasks:=CapsLock
 		global hotkeyItemSort:=F6
+		global hotkeyItemInfo:=F5
 		global hotkeyLootScan:=f
 		global hotkeyQuickPortal:=!q
 		global hotkeyGemSwap:=!e
@@ -633,6 +612,58 @@
 		Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
 		Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
 		Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
+	;ItemInfo GUI
+		Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
+		Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21, 
+		Global PComment1 := "LongDataTextNameSpace"
+		Global PData1 := "000.000"
+		Global PComment2 := "LongDataTextNameSpace"
+		Global PData2 := "000.000"
+		Global PComment3 := "LongDataTextNameSpace"
+		Global PData3 := "000.000"
+		Global PComment4 := "LongDataTextNameSpace"
+		Global PData4 := "000.000"
+		Global PComment5 := "LongDataTextNameSpace"
+		Global PData5 := "000.000"
+		Global PComment6 := "LongDataTextNameSpace"
+		Global PData6 := "000.000"
+		Global PComment7 := "LongDataTextNameSpace"
+		Global PData7 := "000.000"
+		Global PComment8 := "LongDataTextNameSpace"
+		Global PData8 := "000.000"
+		Global PComment9 := "LongDataTextNameSpace"
+		Global PData9 := "000.000"
+		Global PComment10 := "LongDataTextNameSpace"
+		Global PData10 := "000.000"
+		Global SComment1 := "LongDataTextNameSpace"
+		Global SData1 := "000.000"
+		Global SComment2 := "LongDataTextNameSpace"
+		Global SData2 := "000.000"
+		Global SComment3 := "LongDataTextNameSpace"
+		Global SData3 := "000.000"
+		Global SComment4 := "LongDataTextNameSpace"
+		Global SData4 := "000.000"
+		Global SComment5 := "LongDataTextNameSpace"
+		Global SData5 := "000.000"
+		Global SComment6 := "LongDataTextNameSpace"
+		Global SData6 := "000.000"
+		Global SComment7 := "LongDataTextNameSpace"
+		Global SData7 := "000.000"
+		Global SComment8 := "LongDataTextNameSpace"
+		Global SData8 := "000.000"
+		Global SComment9 := "LongDataTextNameSpace"
+		Global SData9 := "000.000"
+		Global SComment10 := "LongDataTextNameSpace"
+		Global SData10 := "000.000"
+		Global GroupBox1 := "LongDataTextNameSpaceLongDataTextNameSpaceLongDataTextNameSpace"
+		Global GroupBox2 := "LongDataTextNameSpaceLongDataTextNameSpaceLongDataTextNameSpace"
+		Global ItemInfoPropText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+		Global ItemInfoAffixText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+		Global ItemInfoStatText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+		global graphWidth := 219
+		global graphHeight := 221
+		Global ForceMatch6Link := False
+
 
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -977,41 +1008,61 @@
 
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
+	Gui, Add, Button, ghelpCalibration 	x+10 ys-4		w20 h20, 	?
+	Gui, Add, Button, gStartCalibrationWizard 	xs	ys+20 Section	w110 h25, 	Run Wizard
+	Gui, Add, Button, gShowDebugGamestates 	x+8	yp				w110 h25, 	Show Gamestates
 	Gui, Font
-	Gui, Add, Button, ghelpCalibration 	x+15		w15 h15, 	?
-
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+20				w110, 	OnHideout Color
+	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+35				w110, 	OnHideout Color
+	UpdateOnHideoutBtn_TT:="Calibrate the OnHideout Color`nThis color determines if you are in a Hideout`nMake sure the Hideout menu next to abilities is visible"
 	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 		y+3					w110, 	OnChar Color
+	UpdateOnCharBtn_TT:="Calibrate the OnChar Color`nThis color determines if you are on a character`nSample located on the figurine next to the health globe"
 	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 		y+3					w110, 	OnChat Color
+	UpdateOnChatBtn_TT:="Calibrate the OnChat Color`nThis color determines if the chat panel is open`nSample located on the very left edge of the screen"
 	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			y+3					w110, 	OnDiv Color
+	UpdateOnDivBtn_TT:="Calibrate the OnDiv Color`nThis color determines if the Trade Divination panel is open`nSample located at the top of the Trade panel"
 	Gui, Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn y+3			 	w110, 	Empty Inventory
+	UdateEmptyInvSlotColorBtn_TT:="Calibrate the Empty Inventory Color`nThis color determines the Empy Inventory slots`nSample located at the bottom left of each cell"
 
-	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+20		w110, 	OnHideoutMin Color
+	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+35		w110, 	OnHideoutMin Color
+	UpdateOnHideoutMinBtn_TT:="Calibrate the OnHideoutMin Color`nThis color determines if you are in a Hideout`nMake sure the Hideout menu next to abilities is minimized"
 	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn		y+3				w110, 	OnInventory Color
+	UpdateOnInventoryBtn_TT:="Calibrate the OnInventory Color`nThis color determines if the Inventory panel is open`nSample is located at the top of the Inventory panel"
 	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 			y+3				w110, 	OnStash Color
+	UpdateOnStashBtn_TT:="Calibrate the OnStash Color`nThis color determines if the Stash panel is open`nSample is located at the top of the Stash panel"
 	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		y+3				w110, 	OnVendor Color
+	UpdateOnVendorBtn_TT:="Calibrate the OnVendor Color`nThis color determines if the Vendor Sell panel is open`n Sample is located at the top of the Sell panel"
 	Gui, Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			y+3				w110, 	OnMenu Color
+	UpdateOnMenuBtn_TT:="Calibrate the OnMenu Color`nThis color determines if Atlas or Skills menus are open`nSample located at the top of the fullscreen Menu panel"
 
 	Gui, Font, Bold
 	Gui, Add, Text, 				section						xs 	y+10, 				AutoDetonate Calibration:
 	Gui, Font
 	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn xs ys+20					w100, 	Detonate Color
+	UpdateDetonateBtn_TT:="Calibrate the Detonate Mines Color`nThis color determines if the detonate mine button is visible`nLocated above mana flask on the right"
 	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
+	UpdateDetonateDelveBtn_TT:="Calibrate the Detonate Mines Color while in Delve`nThis color determines if the detonate mine button is visible`nLocated above mana flask on the left"
 
 	Gui, Font, Bold
 	Gui Add, Text, 										xs 	y+10, 				Additional Interface Options:
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
+	ShowOnStart_TT:="Enable this to have the GUI show on start`nThe script can run without saving each launch`nAs long as nothing changed since last color sample"
 	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
+	Steam_TT:="These settings are for the LutBot Quit method`nEnable this to set the EXE as Steam version"
 	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
+	HighBits_TT:="These settings are for the LutBot Quit method`nEnable this to set the EXE as 64bit version"
 	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
+	AutoUpdateOff_TT:="Enable this to not check for new updates when launching the script"
 	Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
+	YesPersistantToggle_TT:="Enable this to have toggles remain after exiting and restarting the script"
 	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|UltraWide
+	ResolutionScale_TT:="Adjust the resolution the script scales its values from`nStandard is 16/9`nUltraWide is 32/9"
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
+	Latency_TT:="Use this to multiply the sleep timers by this value`nOnly use in situations where you have extreme lag"
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 
 	Gui, Font, Bold
@@ -1023,103 +1074,101 @@
 
 	Gui Add, Text, 										x314	y+5, 				Portal Scroll:
 	Gui Add, Edit, 			vPortalScrollX 				x+7		y+-15 	w34	h17, 	%PortalScrollX%
+	PortalScrollX_TT:="Select the X location at the center of Portal scrolls in inventory`nUse the Coord tool to find the X and Y"
 	Gui Add, Edit, 			vPortalScrollY 				x+7			 	w34	h17, 	%PortalScrollY%	
+	PortalScrollY_TT:="Select the Y location at the center of Portal scrolls in inventory`nUse the Coord tool to find the X and Y"
 	Gui Add, Text, 										x306	y+6, 				Wisdm. Scroll:
 	Gui Add, Edit, 			vWisdomScrollX 				x+7		y+-15 	w34	h17, 	%WisdomScrollX%
+	WisdomScrollX_TT:="Select the X location at the center of Wisdom scrolls in inventory`nUse the Coord tool to find the X and Y"
 	Gui Add, Edit, 			vWisdomScrollY 				x+7			 	w34	h17, 	%WisdomScrollY%	
+	WisdomScrollY_TT:="Select the Y location at the center of Wisdom scrolls in inventory`nUse the Coord tool to find the X and Y"
 	Gui Add, Text, 										x311	y+6, 				Current Gem:
 	Gui Add, Edit, 			vCurrentGemX 				x+7		y+-15 	w34	h17, 	%CurrentGemX%
+	CurrentGemX_TT:="Select the X location of the Gem to swap from`nUse the Coord tool to find the X and Y"
 	Gui Add, Edit, 			vCurrentGemY 				x+7			 	w34	h17, 	%CurrentGemY%
+	CurrentGemY_TT:="Select the Y location of the Gem to swap from`nUse the Coord tool to find the X and Y"
 
 	Gui Add, Text, 										x303	y+6, 				Alternate Gem:
 	Gui Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
+	AlternateGemX_TT:="Select the X location of the Gem to swap with`nThis can be in secondary weapon, enable weapon swap`nUse the Coord tool to find the X and Y"
 	Gui Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemY%
-	Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     	y53	 	            , Stock Portal?
-	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         y+8                , Stock Wisdom?
-	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%             y+8                , Weapon Swap?
+	AlternateGemY_TT:="Select the Y location of the Gem to swap with`nThis can be in secondary weapon, enable weapon swap`nUse the Coord tool to find the X and Y"
+	Gui Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x465     		y53				, Stock Portal?
+	StockPortal_TT:="Enable this to restock Portal scrolls when more than 10 are missing"
+	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         		y+8				, Stock Wisdom?
+	StockWisdom_TT:="Enable this to restock Wisdom scrolls when more than 10 are missing"
+	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
+	AlternateGemOnSecondarySlot_TT:="Enable this to Swap Weapons for your Alternate Gem Swap location"
+	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           		y+8				, Detonate Mines?
+	DetonateMines_TT:="Enable this to automatically Detonate Mines when placed"
 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
-	Gui Add, Text, 										x573	y5, 				Debug:
-	Gui Add, Checkbox, 	vShowPixelGrid Checked%ShowPixelGrid%  gUpdateDebug   	x556 	y5 	w13 h13	
-	Gui Add, Text, 							vPGrid	    x507	y5, 		    	Pixel Grid:
-	Gui Add, Checkbox, 	vShowItemInfo Checked%ShowItemInfo%  gUpdateDebug  	x490 	y5 	w13 h13	
-	Gui Add, Text, 							vParseI	    x435	y5, 		        Parse Item:
+	DebugMessages_TT:="Enable this to show debug messages, previous functions have been moved to gamestates"
+	Gui Add, Text, 										x515	y5, 				Debug Messages:
 
-	If (DebugMessages=1) {
-		varCoordUtilText := "Coord/Debug"
-		GuiControl, Show, ShowPixelGrid
-		GuiControl, Show, PGrid
-		GuiControl, Show, ShowItemInfo
-		GuiControl, Show, ParseI
-		} 
-	Else If (DebugMessages=0) {
-		varCoordUtilText := "Coord/Pixel"
-		GuiControl, Hide, ShowPixelGrid
-		GuiControl, Hide, ShowItemInfo
-		GuiControl, Hide, PGrid
-		GuiControl, Hide, ParseI
-		}
-
-	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           x300  y145           	          , Detonate Mines?
 	Gui, Font, Bold
-	Gui Add, Text, 										x295 	y168, 				Keybinds:
+	Gui Add, Text, 										x295 	y148, 				Keybinds:
 	Gui, Font
 	Gui Add, Text, 										x360 	y+10, 				Open this GUI
 	Gui Add, Text, 										x360 	y+10, 				Auto-Flask
 	Gui Add, Text, 										x360 	y+10, 				Auto-Quit
 	Gui Add, Text, 										x360 	y+10, 				Logout
 	Gui Add, Text, 										x360 	y+10, 				Auto-QSilver
-	;CoordUtilText:="Mouse Coord"
-	Gui Add, Text, 					  	vCoordUtilText	x360 	y+10,               "%varCoordUtilText%" 				
-	GuiControl, , CoordUtilText, %varCoordUtilText%
+	Gui Add, Text, 					  					x360 	y+10,               Coord/Pixel 				
 	Gui Add, Text, 										x360 	y+10, 				Quick-Portal
 	Gui Add, Text, 										x360 	y+10, 				Gem-Swap
 	Gui Add, Text, 										x360 	y+10, 				Pop Flasks
 	Gui Add, Text, 										x360 	y+10, 				ID/Vend/Stash
+	Gui Add, Text, 										x360 	y+10, 				Item Info
 
-	Gui,Add,Edit,			 x295 y188 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
-	hotkeyOptions_TT:="Set your own hotkey here"
+	Gui,Add,Edit,			 x295 y168 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
+	hotkeyOptions_TT:="Set your hotkey to open the options GUI"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoFlask			,%hotkeyAutoFlask%
-	hotkeyAutoFlask_TT:="Set your own hotkey here"
+	hotkeyAutoFlask_TT:="Set your hotkey to turn on and off AutoFlask"
 	Gui,Add,Edit,			 		y+4  w60 h19 	vhotkeyAutoQuit			,%hotkeyAutoQuit%
-	hotkeyAutoQuit_TT:="Set your own hotkey here"
+	hotkeyAutoQuit_TT:="Set your hotkey to turn on and off AutoQuit"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyLogout	        ,%hotkeyLogout%
-	hotkeyLogout_TT:="Set your own hotkey here"
+	hotkeyLogout_TT:="Set your hotkey to Log out of the game"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoQuicksilver	,%hotkeyAutoQuicksilver%
-	hotkeyAutoQuicksilver_TT:="Set your own hotkey here"
+	hotkeyAutoQuicksilver_TT:="Set your hotkey to Turn on and off AutoQuicksilver"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGetMouseCoords	,%hotkeyGetMouseCoords%
-	hotkeyGetMouseCoords_TT:="Set your own hotkey here"
+	hotkeyGetMouseCoords_TT:="Set your hotkey to grab mouse coordinates`nIf debug is enabled this function becomes the debug tool`nUse this to get gamestates or pixel grid info"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyQuickPortal		,%hotkeyQuickPortal%
-	hotkeyQuickPortal_TT:="Set your own hotkey here"
+	hotkeyQuickPortal_TT:="Set your hotkey to use a portal scroll from inventory"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGemSwap			,%hotkeyGemSwap%
-	hotkeyGemSwap_TT:="Set your own hotkey here"
+	hotkeyGemSwap_TT:="Set your hotkey to swap gems between the two locations set above`nEnable Weapon swap if your gem is on alternate weapon set"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyPopFlasks	        ,%hotkeyPopFlasks%
-	hotkeyPopFlasks_TT:="Set your own hotkey here"
+	hotkeyPopFlasks_TT:="Set your hotkey to Pop all flasks`nEnable the option to respect cooldowns on the right"
 	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
-	hotkeyItemSort_TT:="Set your own hotkey here"
+	hotkeyItemSort_TT:="Set your hotkey to Sort through inventory`nPerforms several functions:`nIdentifies Items`nVendors Items`nSend Items to Stash`nTrade Divination cards"
+	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemInfo     ,%hotkeyItemInfo%
+	hotkeyItemInfo_TT:="Set your hotkey to display information about an item`nWill graph price info if there is any match"
 
 	Gui, Font, Bold
-	Gui Add, Text, 										x440 	y168, 				Ingame:
+	Gui Add, Text, 										x440 	y148, 				Ingame:
 	Gui, Font
 	Gui Add, Text, 										x500 	y+10, 				Close UI
 	Gui Add, Text, 											 	y+10, 				Inventory
 	Gui Add, Text, 											 	y+10, 				W-Swap
 	Gui Add, Text, 											 	y+10, 				Item Pickup
-	Gui,Add,Edit,			  	x435 y188  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
-	hotkeyCloseAllUI_TT:="Put your ingame assigned hotkey here"
+	Gui,Add,Edit,			  	x435 y168  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
+	hotkeyCloseAllUI_TT:="Put your ingame assigned hotkey to Close All User Interface here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyInventory			,%hotkeyInventory%
-	hotkeyInventory_TT:="Put your ingame assigned hotkey here"
+	hotkeyInventory_TT:="Put your ingame assigned hotkey to open inventory panel here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyWeaponSwapKey		,%hotkeyWeaponSwapKey%
-	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey here"
+	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey to Weapon Swap here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
-	hotkeyLootScan_TT:="Put your ingame assigned hotkey here"
+	hotkeyLootScan_TT:="Put your ingame assigned hotkey for Item Pickup Key here"
 	Gui Add, Checkbox, gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 , Loot Vacuum?
+	LootVacuum_TT:="Enable the Loot Vacuum function`nUses the hotkey assigned to Item Pickup"
 	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	     y+8 , Pop Flasks Respect CD?
+	PopFlaskRespectCD_TT:="Enable this option to limit flasks on CD when Popping all Flasks"
 
 	;~ =========================================================================================== Subgroup: Hints
 	Gui,Font,Bold
 	Gui,Add,GroupBox,Section xs	x450 y330  w120 h89							,Hotkey Modifiers
-	Gui, Add, Button,  		gLaunchHelp 		x558 y330 w18 h18 , 	?
+	Gui, Add, Button,  		gLaunchHelp vLaunchHelp		x558 y330 w18 h18 , 	?
+	LaunchHelp_TT:="Opens the AutoHotkey List of Keys"
 	Gui,Font,Norm
 	Gui,Font,s8,Arial
 	Gui,Add,Text,	 		 	x465 y350					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
@@ -1230,7 +1279,7 @@
 	Gui, Font,
 	Gui Add, Text, 										 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
 	Gui Add, Text, 										 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
-	Gui Add, Text, 										 	y+5, 				The options to the right affect which portion of the script is enabled.
+	Gui Add, Text, 										 	y+5, 				The options to the left affect which portion of the Inventory functions are enabled.
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
@@ -1298,7 +1347,7 @@
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
-	;#######################################################################################################Chat Tab
+	;#######################################################################################################Item Parse
 	Gui, Tab, Item Parse
 	Gui, Font, Bold
 	Gui Add, Text, 			Section						x12 	y30, 				Item Parse Settings
@@ -1321,7 +1370,7 @@
 		selectedLeague_TT:="Which league are you playing on?"
 	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Update leagues
 		UpdateLeaguesBtn_TT:="Use this button when there is a new league"
-
+	Gui, Add, Checkbox, vForceMatch6Link xs+5 y+15 Checked%ForceMatch6Link%, Force a match with the 6 Link price
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
@@ -1512,8 +1561,87 @@
 			}
 		}
 
+	Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
+	Gui, ItemInfo: Margin, 10, 10
+	Gui, ItemInfo: Font, Bold s8 c4D7186, Verdana
+	Gui, ItemInfo: Add, GroupBox, vGroupBox1 xm+1 y+1  h251 w554 , %GroupBox1%
+	Gui, ItemInfo: Add, Text, xp+3 yp+20 Section h1 w1 , ""
+	Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
+	{
+		addY := y + 10 
+		Gui, ItemInfo: Add, Text, vPercentText1G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
+	}
+
+	Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
+	Gui, ItemInfo: Add, Text, % "xp+1 yp+1 w" graphWidth " h" graphHeight " hwndhGraph1", pGraph1
+	Gui, ItemInfo: Add, Text, Section x+8 vPComment1, %PComment1%
+	Gui, ItemInfo: Add, Text, x+8 vPData1, %PData1%
+	Gui, ItemInfo: Add, Text, xs vPComment2, %PComment2%
+	Gui, ItemInfo: Add, Text, x+8 vPData2, %PData2%
+	Gui, ItemInfo: Add, Text, xs vPComment3, %PComment3%
+	Gui, ItemInfo: Add, Text, x+8 vPData3, %PData3%
+	Gui, ItemInfo: Add, Text, xs vPComment4, %PComment4%
+	Gui, ItemInfo: Add, Text, x+8 vPData4, %PData4%
+	Gui, ItemInfo: Add, Text, xs vPComment5, %PComment5%
+	Gui, ItemInfo: Add, Text, x+8 vPData5, %PData5%
+	Gui, ItemInfo: Add, Text, xs vPComment6, %PComment6%
+	Gui, ItemInfo: Add, Text, x+8 vPData6, %PData6%
+	Gui, ItemInfo: Add, Text, xs vPComment7, %PComment7%
+	Gui, ItemInfo: Add, Text, x+8 vPData7, %PData7%
+	Gui, ItemInfo: Add, Text, xs vPComment8, %PComment8%
+	Gui, ItemInfo: Add, Text, x+8 vPData8, %PData8%
+	Gui, ItemInfo: Add, Text, xs vPComment9, %PComment9%
+	Gui, ItemInfo: Add, Text, x+8 vPData9, %PData9%
+	Gui, ItemInfo: Add, Text, xs vPComment10, %PComment10%
+	Gui, ItemInfo: Add, Text, x+8 vPData10, %PData10%
+
+	Gui, ItemInfo: Add, GroupBox, vGroupBox2 x+15 ys-21  h251 w554 , %GroupBox2%
+	Gui, ItemInfo: Add, Text, xp+3 ys Section h1 w1 , ""
+	Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
+	{
+		addY := y + 10 
+		Gui, ItemInfo: Add, Text, vPercentText2G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
+	}
+	Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
+	Gui, ItemInfo: Add, Text, % "xp+1 yp+1 w" graphWidth " h" graphHeight " hwndhGraph2", pGraph2
+	Gui, ItemInfo: Add, Text, Section x+8 vSComment1, %SComment1%
+	Gui, ItemInfo: Add, Text, x+8 vSData1, %SData1%
+	Gui, ItemInfo: Add, Text, xs vSComment2, %SComment2%
+	Gui, ItemInfo: Add, Text, x+8 vSData2, %SData2%
+	Gui, ItemInfo: Add, Text, xs vSComment3, %SComment3%
+	Gui, ItemInfo: Add, Text, x+8 vSData3, %SData3%
+	Gui, ItemInfo: Add, Text, xs vSComment4, %SComment4%
+	Gui, ItemInfo: Add, Text, x+8 vSData4, %SData4%
+	Gui, ItemInfo: Add, Text, xs vSComment5, %SComment5%
+	Gui, ItemInfo: Add, Text, x+8 vSData5, %SData5%
+	Gui, ItemInfo: Add, Text, xs vSComment6, %SComment6%
+	Gui, ItemInfo: Add, Text, x+8 vSData6, %SData6%
+	Gui, ItemInfo: Add, Text, xs vSComment7, %SComment7%
+	Gui, ItemInfo: Add, Text, x+8 vSData7, %SData7%
+	Gui, ItemInfo: Add, Text, xs vSComment8, %SComment8%
+	Gui, ItemInfo: Add, Text, x+8 vSData8, %SData8%
+	Gui, ItemInfo: Add, Text, xs vSComment9, %SComment9%
+	Gui, ItemInfo: Add, Text, x+8 vSData9, %SData9%
+	Gui, ItemInfo: Add, Text, xs vSComment10, %SComment10%
+	Gui, ItemInfo: Add, Text, x+8 vSData10, %SData10%
+
+	global hBM := CreateDIB( "E9F5F8|E9F5F8|AFAFAF|AFAFAF|E9F5F8|E9F5F8", 2, 3, graphWidth, graphHeight, 0)
+	global pGraph1 := XGraph( hGraph1, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
+	global pGraph2 := XGraph( hGraph2, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
+
+
+	Gui, ItemInfo: Add, GroupBox, Section xm+1 y+30  h251 w364 , Item Properties
+	Gui, ItemInfo: Add, Edit, vItemInfoPropText xp+2 ys+17 w358, %ItemInfoPropText%
+	Gui, ItemInfo: Add, GroupBox, x+10 ys   h251 w364 , Item Statistics
+	Gui, ItemInfo: Add, Edit, vItemInfoStatText xp+2 ys+17 w358, %ItemInfoStatText%
+	Gui, ItemInfo: Add, GroupBox, x+9 ys  h251 w364 , Item Affixes
+	Gui, ItemInfo: Add, Edit, vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
+	;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
+	;Gui, ItemInfo: Hide
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;~  END of Wingman Gui Settings
+;~  END of Wingman Gui Settings - Start Scaling resolution values
+;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;~  Start Scaling resolution values and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	IfWinExist, ahk_group POEGameGroup
@@ -1578,6 +1706,7 @@
 		global vX_StashTabList := 706
 		global vY_StashTabList := 120
 		global vY_StashTabSize := 22
+	    Global ScrCenter := { X : 960 , Y : 540 }
 		}
 
 	;Ignore Slot setup
@@ -1620,1095 +1749,370 @@
 			Hotkeys()
 		}
 
-; Check for window to open
+; Timers for : game window open, Flask presses, Detonate mines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Check for window to open
 	SetTimer, PoEWindowCheck, 5000
-; Check for Flask presses
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Check for Flask presses
 	SetTimer, TimerPassthrough, 25
-; Detonate mines timer check
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Detonate mines timer check
 	If (DetonateMines&&!Detonated)
 		SetTimer, TMineTick, 100
 	Else If (!DetonateMines)
 		SetTimer, TMineTick, off
 
-
-;Reload Script with Alt+Escape
+; Hotkeys to reload or exit script
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Reload Script with Alt+Escape
 	!Escape::
 		Reload
 		Return
 
-;Exit Script with Win+Escape
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Exit Script with Win+Escape
 	#Escape::
 		ExitApp
 		Return
-
+	; Test ItemInfo function
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Loot Scanner for items under cursor pressing Loot button
+; Inventory Management Functions - ItemSortCommand, ClipItem, ParseClip, ItemInfo, MatchLootFilter, MatchNinjaPrice, GraphNinjaPrices, MoveStash, StockScrolls, LootScan
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LootScan(){
-	LootScanCommand:
-		Pressed := GetKeyState(hotkeyLootScan)
-		While (Pressed&&LootVacuum)
+	; ItemSortCommand - Sort inventory and determine action
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ItemSortCommand:
+		Thread, NoTimers, true		;Critical
+		BlackList := Array_DeepClone(IgnoredSlot)
+		CurrentTab:=0
+		MouseGetPos xx, yy
+		IfWinActive, ahk_group POEGameGroup
 		{
-			For k, ColorHex in LootColors
-			{
-				Pressed := GetKeyState(hotkeyLootScan)
-				Sleep, -1
-				MouseGetPos CenterX, CenterY
-				ScanX1:=(CenterX-AreaScale)
-				ScanY1:=(CenterY-AreaScale)
-				ScanX2:=(CenterX+AreaScale)
-				ScanY2:=(CenterY+AreaScale)
-				PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
-				If (ErrorLevel = 0){
-					Pressed := GetKeyState(hotkeyLootScan)
-					If !(Pressed)
-						Break 2
-					SwiftClick(ScanPx, ScanPy)
-					}
-				Else If (ErrorLevel = 1)
-					Continue
-			}
-		}
-	Return
-	}
+			If (!OnChar) { ;Need to be on Character 
+				MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
+				Return
+				} Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
+				Send {%hotkeyInventory%}
+				Return
+				}
+			If RunningToggle  ; This means an underlying thread is already running the loop below.
+				{
+				RunningToggle := False  ; Signal that thread's loop to stop.
+				return  ; End this thread so that the one underneath will resume and see the change made by the line above.
+				}
+			RunningToggle := True
+			GuiStatus()
+			
 
-; Sort inventory and determine action
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ItemSortCommand:
-	Thread, NoTimers, true		;Critical
-	BlackList := Array_DeepClone(IgnoredSlot)
-	CurrentTab:=0
-	MouseGetPos xx, yy
-	IfWinActive, ahk_group POEGameGroup
-	{
-		If (!OnChar) { ;Need to be on Character 
-			MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
-			Return
-			} Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
-			Send {%hotkeyInventory%}
-			Return
-			}
-		If RunningToggle  ; This means an underlying thread is already running the loop below.
-			{
-			RunningToggle := False  ; Signal that thread's loop to stop.
-			return  ; End this thread so that the one underneath will resume and see the change made by the line above.
-			}
-		RunningToggle := True
-		GuiStatus()
-		
-
-		For C, GridX in InventoryGridX
-		{
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-				Break
-			For R, GridY in InventoryGridY
+			For C, GridX in InventoryGridX
 			{
 				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 					Break
-				If BlackList[C][R]
-					Continue
-				Grid := RandClick(GridX, GridY)
-				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-				{   
-					;Unmark the below lines to check if it is going into scroll area during run
-					;MsgBox, Hit Scroll
-					;Return
-					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-				} 
-				pixelgetcolor, PointColor, GridX, GridY
-				
-				If indexOf(PointColor, varEmptyInvSlotColor) {
-					;Seems to be an empty slot, no need to clip item info
-					Continue
-				}
-				
-				; If !( indexOfHex(PointColor, varIdColor) || indexOfHex(PointColor, varUnIdColor) ) {
-				; 	;Seems to not match with either identified or UnIdentified color arrays
-				; 	Continue
-				; }
-				
-				ClipItem(Grid.X,Grid.Y)
-				addToBlacklist(C, R)
-				If (OnDiv && YesDiv) 
+				For R, GridY in InventoryGridY
 				{
-					If (Prop.RarityDivination && (Stats.Stack = Stats.StackMax)){
-						CtrlClick(Grid.X,Grid.Y)
-						RandomSleep(150,200)
-						SwiftClick(vX_OnDiv,vY_DivTrade)
-						CtrlClick(vX_OnDiv,vY_DivItem)
-					}
-					Continue
-				}
-				If (!Prop.Identified&&YesIdentify)
-				{
-					If (Prop.IsMap&&!YesMapUnid)
-					{
-						WisdomScroll(Grid.X,Grid.Y)
-						ClipItem(Grid.X,Grid.Y)
-					}
-					Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
-					{
-						WisdomScroll(Grid.X,Grid.Y)
-						ClipItem(Grid.X,Grid.Y)
-					}
-					Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
-					{
-						WisdomScroll(Grid.X,Grid.Y)
-						ClipItem(Grid.X,Grid.Y)
-					}
-					Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
-					{
-						WisdomScroll(Grid.X,Grid.Y)
-						ClipItem(Grid.X,Grid.Y)
-					}
-				}
-				If (OnStash&&YesStash) 
-				{
-					If (sendstash:=MatchLootFilter())
-					{
-						MoveStash(sendstash)
-						CtrlClick(Grid.X,Grid.Y)
+					If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+						Break
+					If BlackList[C][R]
+						Continue
+					Grid := RandClick(GridX, GridY)
+					If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+					{   
+						;Unmark the below lines to check if it is going into scroll area during run
+						;MsgBox, Hit Scroll
+						;Return
+						Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+					} 
+					pixelgetcolor, PointColor, GridX, GridY
+					
+					If indexOf(PointColor, varEmptyInvSlotColor) {
+						;Seems to be an empty slot, no need to clip item info
 						Continue
 					}
-					If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
+					
+					; If !( indexOfHex(PointColor, varIdColor) || indexOfHex(PointColor, varUnIdColor) ) {
+					; 	;Seems to not match with either identified or UnIdentified color arrays
+					; 	Continue
+					; }
+					
+					ClipItem(Grid.X,Grid.Y)
+					addToBlacklist(C, R)
+					If (OnDiv && YesDiv) 
 					{
-						MoveStash(StashTabCurrency)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.IsMap&&StashTabYesMap)
-					{
-						MoveStash(StashTabMap)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.BreachSplinter&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.SacrificeFragment&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.MortalFragment&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.GuardianFragment&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.ProphecyFragment&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.Offering&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.Vessel&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.Scarab&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.TimelessSplinter&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.RarityDivination&&StashTabYesDivination)
-					{
-						MoveStash(StashTabDivination)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.RarityUnique&&Prop.Ring)
-					{
-						If (StashTabYesCollection)
-						{
-							MoveStash(StashTabCollection)
-							RandomSleep(30,45)
+						If (Prop.RarityDivination && (Stats.Stack = Stats.StackMax)){
 							CtrlClick(Grid.X,Grid.Y)
-							Sleep, 90*Latency
-						}
-						If (StashTabYesUniqueRing)
-						{
-							pixelgetcolor, Pitem, GridX, GridY
-							if !(indexOfHex(Pitem, varMouseoverColor))
-								Continue
-							MoveStash(StashTabUniqueRing)
-							CtrlClick(Grid.X,Grid.Y)
-							Sleep, 90*Latency
-						}
-						If (StashTabYesUniqueDump)
-						{
-							pixelgetcolor, Pitem, GridX, GridY
-							if !(indexOfHex(Pitem, varMouseoverColor))
-								Continue
-							MoveStash(StashTabUniqueDump)
-							CtrlClick(Grid.X,Grid.Y)
+							RandomSleep(150,200)
+							SwiftClick(vX_OnDiv,vY_DivTrade)
+							CtrlClick(vX_OnDiv,vY_DivItem)
 						}
 						Continue
 					}
-					Else If (Prop.RarityUnique)
+					If (!Prop.Identified&&YesIdentify)
 					{
-						If (StashTabYesCollection)
+						If (Prop.IsMap&&!YesMapUnid)
 						{
-							MoveStash(StashTabCollection)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Sleep, 90*Latency
+							WisdomScroll(Grid.X,Grid.Y)
+							ClipItem(Grid.X,Grid.Y)
 						}
-						If (StashTabYesUniqueDump)
+						Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
 						{
-							pixelgetcolor, Pitem, GridX, GridY
-							if !(indexOfHex(Pitem, varMouseoverColor))
-								Continue
-							MoveStash(StashTabUniqueDump)
-							CtrlClick(Grid.X,Grid.Y)
+							WisdomScroll(Grid.X,Grid.Y)
+							ClipItem(Grid.X,Grid.Y)
 						}
-						Continue
-					}
-					If (Prop.Essence&&StashTabYesEssence)
-					{
-						MoveStash(StashTabEssence)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.Fossil&&StashTabYesFossil)
-					{
-						MoveStash(StashTabFossil)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.Resonator&&StashTabYesResonator)
-					{
-						MoveStash(StashTabResonator)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-					{
-						MoveStash(StashTabFlaskQuality)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.RarityGem)
-					{
-						If ((Stats.Quality>0)&&StashTabYesGemQuality)
+						Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
 						{
-							MoveStash(StashTabGemQuality)
+							WisdomScroll(Grid.X,Grid.Y)
+							ClipItem(Grid.X,Grid.Y)
+						}
+						Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
+						{
+							WisdomScroll(Grid.X,Grid.Y)
+							ClipItem(Grid.X,Grid.Y)
+						}
+					}
+					If (OnStash&&YesStash) 
+					{
+						If (sendstash:=MatchLootFilter())
+						{
+							MoveStash(sendstash)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
-						Else If (StashTabYesGem)
+						If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
 						{
-							MoveStash(StashTabGem)
+							MoveStash(StashTabCurrency)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.IsMap&&StashTabYesMap)
+						{
+							MoveStash(StashTabMap)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.BreachSplinter&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.SacrificeFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.MortalFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.GuardianFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.ProphecyFragment&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Offering&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Vessel&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Scarab&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.TimelessSplinter&&StashTabYesFragment)
+						{
+							MoveStash(StashTabFragment)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.RarityDivination&&StashTabYesDivination)
+						{
+							MoveStash(StashTabDivination)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.RarityUnique&&Prop.Ring)
+						{
+							If (StashTabYesCollection)
+							{
+								MoveStash(StashTabCollection)
+								RandomSleep(30,45)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							If (StashTabYesUniqueRing)
+							{
+								Sleep, 135*Latency
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
+								MoveStash(StashTabUniqueRing)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							If (StashTabYesUniqueDump)
+							{
+								Sleep, 135*Latency
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
+								MoveStash(StashTabUniqueDump)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							Continue
+						}
+						Else If (Prop.RarityUnique)
+						{
+							If (StashTabYesCollection)
+							{
+								MoveStash(StashTabCollection)
+								RandomSleep(30,45)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							If (StashTabYesUniqueDump)
+							{
+								Sleep, 135*Latency
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
+								MoveStash(StashTabUniqueDump)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							Continue
+						}
+						If (Prop.Essence&&StashTabYesEssence)
+						{
+							MoveStash(StashTabEssence)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Fossil&&StashTabYesFossil)
+						{
+							MoveStash(StashTabFossil)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Resonator&&StashTabYesResonator)
+						{
+							MoveStash(StashTabResonator)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
+						{
+							MoveStash(StashTabFlaskQuality)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.RarityGem)
+						{
+							If ((Stats.Quality>0)&&StashTabYesGemQuality)
+							{
+								MoveStash(StashTabGemQuality)
+								CtrlClick(Grid.X,Grid.Y)
+								Continue
+							}
+							Else If (StashTabYesGem)
+							{
+								MoveStash(StashTabGem)
+								CtrlClick(Grid.X,Grid.Y)
+								Continue
+							}
+						}
+						If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
+						{
+							MoveStash(StashTabLinked)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Prophecy&&StashTabYesProphecy)
+						{
+							MoveStash(StashTabProphecy)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						If (Prop.Oil&&StashTabYesOil)
+						{
+							MoveStash(StashTabOil)
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
 					}
-					If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
+					If (OnVendor&&YesVendor)
 					{
-						MoveStash(StashTabLinked)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.Prophecy&&StashTabYesProphecy)
-					{
-						MoveStash(StashTabProphecy)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.Oil&&StashTabYesOil)
-					{
-						MoveStash(StashTabOil)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-				}
-				If (OnVendor&&YesVendor)
-				{
-					If MatchLootFilter()
-						Continue
-					If (Prop.RarityCurrency)
-						Continue
-					If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
-						Continue
-					If ( Prop.SpecialType="" )
-					{
-						Sleep, 30*Latency
-						CtrlClick(Grid.X,Grid.Y)
-						Sleep, 10*Latency
-						Continue
-					}
-				}
-			}
-			MouseGetPos Checkx, Checky
-			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
-				MouseMove, RX, RY, 0
-				Sleep, 45*Latency
-			}
-		}
-		If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-		{
-			StockScrolls()
-		}
-	}
-	RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
-	CurrentTab:=0
-	MouseMove, xx, yy, 0
-Return
-
-
-; Input any digit and it will move to that Stash tab, only tested up to 25 tabs
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MoveStash(Tab){
-	GuiStatus("OnStash")
-	If (!OnStash)
-		Return
-	If (CurrentTab=Tab)
-		return
-	If (CurrentTab!=Tab) {
-		MouseGetPos MSx, MSy
-		BlockInput, MouseMove
-		Sleep, 45*Latency
-		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-		Sleep, 45*Latency
-		Click, Down, Left, 1
-		Sleep, 45*Latency
-		Click, Up, Left, 1
-		Sleep, 45*Latency
-		MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-		Sleep, 90*Latency
-		send {Enter}
-		Sleep, 115*Latency
-		MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-		Sleep, 45*Latency
-		Click, Down, Left, 1
-		Sleep, 45*Latency
-		Click, Up, Left, 1
-		Sleep, 45*Latency
-		CurrentTab:=Tab
-		MouseMove, MSx, MSy, 0
-		Sleep, 45*Latency
-		BlockInput, MouseMoveOff
-		}
-	return
-	}
-
-; Swift Click at Coord
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SwiftClick(x, y){
-		MouseMove, x, y	
-		Sleep, 30*Latency
-		Send {Click, Down x, y }
-		Sleep, 60*Latency
-		Send {Click, Up x, y }
-		Sleep, 30*Latency
-	return
-	}
-
-; Right Click at Coord
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RightClick(x, y){
-		BlockInput, MouseMove
-		MouseMove, x, y
-		Sleep, 30*Latency
-		Send {Click, Down x, y, Right}
-		Sleep, 60*Latency
-		Send {Click, Up x, y, Right}
-		Sleep, 30*Latency
-		BlockInput, MouseMoveOff
-	return
-	}
-
-; Shift Click +Click at Coord
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ShiftClick(x, y){
-		BlockInput, MouseMove
-		MouseMove, x, y
-		Sleep, 30*Latency
-		Send {Shift Down}
-		Sleep, 30*Latency
-		Send {Click, Down, x, y}
-		Sleep, 60*Latency
-		Send {Click, Up, x, y}
-		Sleep, 30*Latency
-		Send {Shift Up}
-		Sleep, 30*Latency
-		BlockInput, MouseMoveOff
-	return
-	}
-
-; Ctrl Click ^Click at Coord
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CtrlClick(x, y){
-		BlockInput, MouseMove
-		MouseMove, x, y
-		Sleep, 30*Latency
-		Send {Ctrl Down}
-		Sleep, 45*Latency
-		Send {Click, Down, x, y}
-		Sleep, 60*Latency
-		Send {Click, Up, x, y}
-		Sleep, 30*Latency
-		Send {Ctrl Up}
-		Sleep, 30*Latency
-		BlockInput, MouseMoveOff
-	return
-	}
-
-; Identify Item at Coord
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-WisdomScroll(x, y){
-		BlockInput, MouseMove
-		;Sleep, 15*Latency
-		MouseMove %WisdomScrollX%, %WisdomScrollY%
-		Sleep, 30*Latency
-		Click, Down, Right, 1
-		Sleep, 60*Latency
-		Click, Up, Right, 1
-		Sleep, 30*Latency
-		MouseMove %x%, %y%
-		Sleep, 30*Latency
-		Click, Down, Left, 1
-		Sleep, 60*Latency
-		Click, Up, Left, 1
-		Sleep, 30*Latency
-		BlockInput, MouseMoveOff
-	return
-	}
-
-; Restock scrolls that have more than 10 missing
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-StockScrolls(){
-		BlockInput, MouseMove
-		If StockWisdom{
-			MouseMove %WisdomScrollX%, %WisdomScrollY%
-			ClipItem(WisdomScrollX, WisdomScrollY)
-			Sleep, 30*Latency
-			dif := (40 - Stats.Stack)
-				If (dif>10)
-			{
-				MoveStash(1)
-				MouseMove WisdomStockX, WPStockY
-				Sleep, 30*Latency
-				ShiftClick(WisdomStockX, WPStockY)
-					Sleep, 30*Latency
-				Send %dif%
-					Sleep, 45*Latency
-				Send {Enter}
-				Sleep, 60*Latency
-				Send {Click, Down, %WisdomScrollX%, %WisdomScrollY%}
-				Sleep, 30*Latency
-				Send {Click, Up, %WisdomScrollX%, %WisdomScrollY%}
-				Sleep, 45*Latency
-			}
-			Sleep, 20*Latency
-		}
-		If StockPortal{
-			MouseMove %PortalScrollX%, %PortalScrollY%
-			ClipItem(PortalScrollX, PortalScrollY)
-			Sleep, 30*Latency
-			dif := (40 - Stats.Stack)
-				If (dif>10)
-			{
-				MoveStash(1)
-				MouseMove PortalStockX, WPStockY
-				Sleep, 30*Latency
-				ShiftClick(PortalStockX, WPStockY)
-					Sleep, 30*Latency
-				Send %dif%
-					Sleep, 45*Latency
-				Send {Enter}
-				Sleep, 60*Latency
-				Send {Click, Down, %PortalScrollX%, %PortalScrollY%}
-				Sleep, 30*Latency
-				Send {Click, Up, %PortalScrollX%, %PortalScrollY%}
-				Sleep, 45*Latency
-			}
-		}
-		BlockInput, MouseMoveOff
-	return
-	}
-
-; Randomize Click area around middle of cell using Coord
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RandClick(x, y){
-		Random, Rx, x+10, x+40
-		Random, Ry, y-40, y-10
-	return {"X": Rx, "Y": Ry}
-	}
-
-; Scales two resolution quardinates -- Currently not being used
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ScaleRes(x, y){
-		Rx:=Round(A_ScreenWidth / (1920 / x))
-		Ry:=Round(A_ScreenHeight / (1080 / y))
-	return {"X": Rx, "Y": Ry}
-	}
-
-; Rescales values for specialty resolutions
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Rescale(){
-		IfWinExist, ahk_group POEGameGroup 
-		{
-			WinGetPos, X, Y, W, H
-			If (ResolutionScale="Standard") {
-				; Item Inventory Grid
-				Global InventoryGridX := [ Round(A_ScreenWidth/(1920/1274)), Round(A_ScreenWidth/(1920/1326)), Round(A_ScreenWidth/(1920/1379)), Round(A_ScreenWidth/(1920/1432)), Round(A_ScreenWidth/(1920/1484)), Round(A_ScreenWidth/(1920/1537)), Round(A_ScreenWidth/(1920/1590)), Round(A_ScreenWidth/(1920/1642)), Round(A_ScreenWidth/(1920/1695)), Round(A_ScreenWidth/(1920/1748)), Round(A_ScreenWidth/(1920/1800)), Round(A_ScreenWidth/(1920/1853)) ]
-				Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-				;Detonate Mines
-				Global DetonateDelveX:=X + Round(A_ScreenWidth/(1920/1542))
-				Global DetonateX:=X + Round(A_ScreenWidth/(1920/1658))
-				Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-				;Scrolls in currency tab
-				Global WisdomStockX:=X + Round(A_ScreenWidth/(1920/125))
-				Global PortalStockX:=X + Round(A_ScreenWidth/(1920/175))
-				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
-				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
-				;Status Check OnMenu
-				global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-				global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
-				;Status Check OnChar
-				global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-				;Status Check OnChat
-				global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-				global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-				;Status Check OnInventory
-				global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-				global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-				;Status Check OnStash
-				global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-				global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-				;Status Check OnVendor
-				global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-				;Status Check OnDiv
-				global vX_OnDiv:=X + Round(A_ScreenWidth / (1920 / 618))
-				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-				;Life %'s
-				global vX_Life:=X + Round(A_ScreenWidth / (1920 / 95))
-				global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-				global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-				global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-				global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-				global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-				global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-				global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-				global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-				;ES %'s
-				global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
-				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-				global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-				global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-				global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-				global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-				global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-				global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-				;Mana
-				global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
-				global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-				;GUI overlay
-				global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
-				global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-				;Divination Y locations
-				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
-				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
-				;Stash tabs menu button
-				global vX_StashTabMenu := X + Round(A_ScreenWidth / (1920 / 640))
-				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (1920 / 706))
-				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-				;calculate the height of each tab
-				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-			}
-			Else If (ResolutionScale="UltraWide") {
-				; Item Inventory Grid
-				Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
-				Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]  
-				;Detonate Mines
-				Global DetonateDelveX:=X + Round(A_ScreenWidth/(3840/3462))
-				Global DetonateX:=X + Round(A_ScreenWidth/(3840/3578))
-				Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
-				;Scrolls in currency tab
-				Global WisdomStockX:=X + Round(A_ScreenWidth/(3840/125))
-				Global PortalStockX:=X + Round(A_ScreenWidth/(3840/175))
-				Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
-				;Status Check OnHideout
-				global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
-				global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-				global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
-				;Status Check OnMenu
-				global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-				global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
-				;Status Check OnChar
-				global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-				global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
-				;Status Check OnChat
-				global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-				global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
-				;Status Check OnInventory
-				global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-				global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
-				;Status Check OnStash
-				global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-				global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
-				;Status Check OnVendor
-				global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-				global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-				;Status Check OnDiv
-				global vX_OnDiv:=X + Round(A_ScreenWidth / (3840 / 1578))
-				global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
-				;Life %'s
-				global vX_Life:=X + Round(A_ScreenWidth / (3840 / 95))
-				global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-				global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-				global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-				global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-				global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-				global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-				global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-				global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-				;ES %'s
-				global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
-				global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
-				global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
-				global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
-				global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
-				global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
-				global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
-				global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
-				global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
-				;Mana
-				global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
-				global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
-				;GUI overlay
-				global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
-				global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
-				;Divination Y locations
-				Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
-				Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
-				;Stash tabs menu button
-				global vX_StashTabMenu := X + Round(A_ScreenWidth / (3840 / 640))
-				global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
-				;Stash tabs menu list
-				global vX_StashTabList := X + Round(A_ScreenWidth / (3840 / 706))
-				global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
-				;calculate the height of each tab
-				global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
-			} 
-			RescaleRan := True
-		}
-	return
-	}
-
-; Toggle Auto-Quit
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-AutoQuit(){
-	AutoQuitCommand:
-		AutoQuit := !AutoQuit
-		IniWrite, %AutoQuit%, settings.ini, Previous Toggles, AutoQuit
-		if ((!AutoFlask) && (!AutoQuit)) {
-			SetTimer TGameTick, Off
-		} else if ((AutoFlask) || (AutoQuit)){
-			SetTimer TGameTick, %Tick%
-		} 
-		GuiUpdate()
-	return
-	}
-
-; Toggle Auto-Pot
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-AutoFlask(){
-	AutoFlaskCommand:	
-		AutoFlask := !AutoFlask
-		IniWrite, %AutoFlask%, settings.ini, Previous Toggles, AutoFlask
-		if ((!AutoFlask) and (!AutoQuit)) {
-			SetTimer TGameTick, Off
-		} else if ((AutoFlask) || (AutoQuit)) {
-			SetTimer TGameTick, %Tick%
-		}
-		GuiUpdate()	
-	return
-	}
-
-; Load Previous Toggle States
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-AutoReset(){
-	IniRead, AutoQuit, settings.ini, Previous Toggles, AutoQuit, 0
-	IniRead, AutoFlask, settings.ini, Previous Toggles, AutoFlask, 0
-	if ((!AutoFlask) and (!AutoQuit)) {
-		SetTimer TGameTick, Off
-	} else if ((AutoFlask) || (AutoQuit)) {
-		SetTimer TGameTick, %Tick%
-	}
-	GuiUpdate()	
-return
-}
-
-; Tooltip Management
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-WM_MOUSEMOVE(){
-		static CurrControl, PrevControl, _TT
-		CurrControl := A_GuiControl
-		If (CurrControl <> PrevControl and not InStr(CurrControl, " ")){
-			SetTimer, DisplayToolTip, -300 	; shorter wait, shows the tooltip quicker
-			PrevControl := CurrControl
-		}
-	return
-
-	DisplayToolTip:
-		try
-		ToolTip % %CurrControl%_TT
-		catch
-		ToolTip
-		SetTimer, RemoveToolTip, -2000
-	return
-	return
-	}
-
-; Provides a call for simpler random sleep timers
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RandomSleep(min,max){
-		Random, r, min, max
-		r:=floor(r/Speed)
-		Sleep, r*Latency
-	return
-	}
-
-;Gem Swap
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GemSwap(){
-	GemSwapCommand:
-		Thread, NoTimers, true		;Critical
-		Keywait, Alt
-		BlockInput, MouseMove
-		MouseGetPos xx, yy
-		RandomSleep(90,120)
-		
-		Send {%hotkeyCloseAllUI%} 
-		RandomSleep(90,120)
-		
-		Send {%hotkeyInventory%} 
-		RandomSleep(90,120)
-		
-		RightClick(CurrentGemX, CurrentGemY)
-		RandomSleep(90,120)
-		
-		if (WeaponSwap==1) 
-			Send {%hotkeyWeaponSwapKey%} 
-		RandomSleep(90,120)
-		
-		SwiftClick(AlternateGemX, AlternateGemY)
-			RandomSleep(90,120)
-		
-		if (WeaponSwap==1) 
-			Send {%hotkeyWeaponSwapKey%} 
-		RandomSleep(90,120)
-		
-		SwiftClick(CurrentGemX, CurrentGemY)
-			RandomSleep(90,120)
-		
-		Send {%hotkeyInventory%} 
-		MouseMove, xx, yy, 0
-		BlockInput, MouseMoveOff
-	return
-	}
-
-;Open Town Portal
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-QuickPortal(){
-	QuickPortalCommand:
-		Thread, NoTimers, true		;Critical
-		Keywait, Alt
-		BlockInput On
-		MouseGetPos xx, yy
-		RandomSleep(53,87)
-		
-		Send {%hotkeyCloseAllUI%} 
-		RandomSleep(53,68)
-		
-		Send {%hotkeyInventory%}
-		RandomSleep(56,68)
-		
-		MouseMove, PortalScrollX, PortalScrollY, 0
-		RandomSleep(56,68)
-		
-		Click Right
-		RandomSleep(56,68)
-		
-		Send {%hotkeyInventory%}
-		MouseMove, xx, yy, 0
-		BlockInput Off
-	return
-	}
-
-;Pop all flasks
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-PopFlasks(){
-	PopFlasksCommand:
-		Thread, NoTimers, true		;Critical
-		If PopFlaskRespectCD
-			TriggerFlask(11111)
-		Else {
-			Send 1
-			OnCooldown[1]:=1 
-			SendMSG(3, 1, scriptGottaGoFast)
-			Cooldown:=CooldownFlask1
-			settimer, TimmerFlask1, %Cooldown%
-			RandomSleep(-99,99)
-			Send 4
-			OnCooldown[4]:=1 
-			Cooldown:=CooldownFlask4
-			SendMSG(3, 4, scriptGottaGoFast)
-			settimer, TimmerFlask4, %Cooldown%
-			RandomSleep(-99,99)
-			Send 3
-			OnCooldown[3]:=1 
-			SendMSG(3, 3, scriptGottaGoFast)
-			Cooldown:=CooldownFlask3
-			settimer, TimmerFlask3, %Cooldown%
-			RandomSleep(-99,99)
-			Send 2
-			OnCooldown[2]:=1 
-			SendMSG(3, 2, scriptGottaGoFast)
-			Cooldown:=CooldownFlask2
-			settimer, TimmerFlask2, %Cooldown%
-			RandomSleep(-99,99)
-			Send 5
-			OnCooldown[5]:=1 
-			SendMSG(3, 5, scriptGottaGoFast)
-			Cooldown:=CooldownFlask5
-			settimer, TimmerFlask5, %Cooldown%
-		}
-	return
-	}
-
-; Decide which logout method to use
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LogoutCommand(){
-	LogoutCommand:
-		Thread, NoTimers, true		;Critical
-		if (CritQuit=1) {
-			global executable, backupExe
-			succ := logout(executable)
-			if (succ == 0) && backupExe != "" {
-				newSucc := logout(backupExe)
-				error("ED12",executable,backupExe)
-				if (newSucc == 0) {
-					error("ED13")
-				}
-			}
-		} 
-		Else 
-			Send {Enter} /exit {Enter}
-	return
-	}
-
-; Main function of the LutBot logout method
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-logout(executable){
-		global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
-		Thread, NoTimers, true		;Critical
-		start := A_TickCount
-		
-		poePID := Object()
-		s := 4096
-		Process, Exist 
-		h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", ErrorLevel, "Ptr")
-		
-		DllCall(OpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", t)
-		VarSetCapacity(ti, 16, 0)
-		NumPut(1, ti, 0, "UInt")
-		
-		DllCall(LookupPrivilegeValue, "Ptr", 0, "Str", "SeDebugPrivilege", "Int64P", luid)
-		NumPut(luid, ti, 4, "Int64")
-		NumPut(2, ti, 12, "UInt")
-		
-		r := DllCall(AdjustTokenPrivileges, "Ptr", t, "Int", false, "Ptr", &ti, "UInt", 0, "Ptr", 0, "Ptr", 0)
-		DllCall("CloseHandle", "Ptr", t)
-		DllCall("CloseHandle", "Ptr", h)
-		
-		try
-		{
-			s := VarSetCapacity(a, s)
-			c := 0
-			DllCall(EnumProcesses, "Ptr", &a, "UInt", s, "UIntP", r)
-			Loop, % r // 4
-			{
-				id := NumGet(a, A_Index * 4, "UInt")
-				
-				h := DllCall("OpenProcess", "UInt", 0x0010 | 0x0400, "Int", false, "UInt", id, "Ptr")
-				
-				if !h
-					continue
-				VarSetCapacity(n, s, 0)
-				e := DllCall("Psapi\GetModuleBaseName", "Ptr", h, "Ptr", 0, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
-				if !e 
-					if e := DllCall("Psapi\GetProcessImageFileName", "Ptr", h, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
-					SplitPath n, n
-				DllCall("CloseHandle", "Ptr", h)
-				if (n && e)
-				if (n == executable) {
-					poePID.Insert(id)
-				}
-			}
-			
-			l := poePID.Length()
-			if ( l = 0 ) {
-				Process, wait, %executable%, 0.2
-				if ( ErrorLevel > 0 ) {
-					poePID.Insert(ErrorLevel)
-				}
-			}
-			
-			VarSetCapacity(dwSize, 4, 0) 
-			result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
-			VarSetCapacity(TcpTable, NumGet(dwSize), 0) 
-			
-			result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
-			
-			num := NumGet(&TcpTable,0,"UInt")
-			
-			IfEqual, num, 0
-			{
-				error("ED11",num,l,executable)
-				return False
-			}
-			
-			out := 0
-			Loop %num%
-			{
-				cutby := a_index - 1
-				cutby *= 24
-				ownerPID := NumGet(&TcpTable,cutby+24,"UInt")
-				for index, element in poePID {
-					if ( ownerPID = element )
-					{
-						VarSetCapacity(newEntry, 20, 0) 
-						NumPut(12,&newEntry,0,"UInt")
-						NumPut(NumGet(&TcpTable,cutby+8,"UInt"),&newEntry,4,"UInt")
-						NumPut(NumGet(&TcpTable,cutby+12,"UInt"),&newEntry,8,"UInt")
-						NumPut(NumGet(&TcpTable,cutby+16,"UInt"),&newEntry,12,"UInt")
-						NumPut(NumGet(&TcpTable,cutby+20,"UInt"),&newEntry,16,"UInt")
-						result := DllCall(SetEntry, UInt, &newEntry)
-						IfNotEqual, result, 0
+						If MatchLootFilter()
+							Continue
+						If (Prop.RarityCurrency)
+							Continue
+						If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
+							Continue
+						If ( Prop.SpecialType="" )
 						{
-							error("TCP" . result,out,result,l,executable)
-							return False
+							Sleep, 30*Latency
+							CtrlClick(Grid.X,Grid.Y)
+							Sleep, 10*Latency
+							Continue
 						}
-						out++
 					}
 				}
+				MouseGetPos Checkx, Checky
+				If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+					Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+					Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+					MouseMove, RX, RY, 0
+					Sleep, 45*Latency
+				}
 			}
-			if ( out = 0 ) {
-				error("ED10",out,l,executable)
-				return False
-			} else {
-				error(l . ":" . A_TickCount - start,out,l,executable)
-			}
-		} 
-		catch e
-		{
-			error("ED14","catcherror",e)
-			return False
-		}
-		
-	return True
-	}
-
-; Check for backup executable
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-checkActiveType() {
-		global executable, backupExe
-		Process, Exist, %executable%
-		if !ErrorLevel
-		{
-			WinGet, id, list,ahk_group POEGameGroup,, Program Manager
-			Loop, %id%
+			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
 			{
-				this_id := id%A_Index%
-				WinGet, this_name, ProcessName, ahk_id %this_id%
-				backupExe := this_name
-				found .= ", " . this_name
+				StockScrolls()
 			}
 		}
-	return
-	}
-
-; Error capture from LutLogout to error.txt
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
-	GuiControl,1:, guiErr, %var%
-	print := A_Now . "," . var . "," . var2 . "," . var3 . "," . var4 . "," . var5 . "," . var6 . "," . var7 . "`n"
-	FileAppend, %print%, error.txt, UTF-16
-	return
-	}
-
-; Capture Clip at Coord
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ClipItem(x, y){
-		BlockInput, MouseMove
-		Clipboard := ""
-		MouseMove %x%, %y%
-		Sleep, 75*Latency
-		Send ^c
-		ClipWait, 0
-		ParseClip()
-		BlockInput, MouseMoveOff
+		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+		CurrentTab:=0
+		MouseMove, xx, yy, 0
 	Return
-	}
-
-; Checks the contents of the clipboard and parses the information from the tooltip capture
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ParseClip(){
+	; ClipItem - Capture Clip at Coord
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ClipItem(x, y){
+			BlockInput, MouseMove
+			Clipboard := ""
+			MouseMove %x%, %y%
+			Sleep, 75*Latency
+			Send ^c
+			ClipWait, 0
+			ParseClip()
+			BlockInput, MouseMoveOff
+		Return
+		}
+	; ParseClip - Checks the contents of the clipboard and parses the information from the tooltip capture
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ParseClip(){
 		;Reset Variables
 		NameIsDone := False
 		IgnoreDash := False
@@ -3234,6 +2638,7 @@ ParseClip(){
 					IfInString, A_LoopField, Flask
 					{
 						Prop.Flask := True
+						Stats.ItemClass := "Flasks"
 						Prop.Width := 1
 						Prop.Height := 2
 						Continue
@@ -3241,6 +2646,7 @@ ParseClip(){
 					IfInString, A_LoopField, Quiver
 					{
 						Prop.Quiver := True
+						Stats.ItemClass := "Quivers"
 						Prop.Width := 2
 						Prop.Height := 3
 						Continue
@@ -4408,1687 +3814,1398 @@ ParseClip(){
 			Prop.ChaosValue := 1
 		Return
 	}
-
-; Evaluate Loot Filter Match
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MatchLootFilter()
-{
-	For GKey, Groups in LootFilter
+	; ItemInfo - Display information about item under cursor
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ItemInfo(){
+		ItemInfoCommand:
+		MouseGetPos, Mx, My
+		ClipItem(Mx, My)
+		MatchNinjaPrice(True)
+		Return
+	}
+	; MatchLootFilter - Evaluate Loot Filter Match
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	MatchLootFilter()
 	{
-		matched := False
-		nomatched := False
-		For SKey, Selected in Groups
+		For GKey, Groups in LootFilter
 		{
-			For AKey, AVal in Selected
+			matched := False
+			nomatched := False
+			For SKey, Selected in Groups
 			{
-                If (InStr(AKey, "Eval") || InStr(AKey, "Min"))
-					Continue
-				;MsgBox % "Key: " SKey "  Val: " Selected
-				if InStr(SKey, "Affix")
+				For AKey, AVal in Selected
 				{
-					if Affix.haskey(AVal)
+					If (InStr(AKey, "Eval") || InStr(AKey, "Min"))
+						Continue
+					;MsgBox % "Key: " SKey "  Val: " Selected
+					if InStr(SKey, "Affix")
 					{
-						arrval := Affix[AVal]
-						eval := LootFilter[GKey][SKey][AKey . "Eval"]
-						min := LootFilter[GKey][SKey][AKey . "Min"]
-						if eval = >
-							If (arrval > min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = =
-							if (arrval = min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = <
-							if (arrval < min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = !=
-							if (arrval != min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = ~
-							If InStr(arrval, min)
-							matched := True
-							Else
-							nomatched := True
-					}
-				}
-				if InStr(SKey, "Prop")
-				{
-					if Prop.haskey(AVal)
-					{
-						arrval := Prop[AVal]
-						eval := LootFilter[GKey][SKey][AKey . "Eval"]
-						min := LootFilter[GKey][SKey][AKey . "Min"]
-						if eval = >
-							If (arrval > min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = =
-							if (arrval = min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = <
-							if (arrval < min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = !=
-							if (arrval != min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = ~
-							If InStr(arrval, min)
-							matched := True
-							Else
-							nomatched := True
-					}
-				}
-				if InStr(SKey, "Stats")
-				{
-					if Stats.haskey(AVal)
-					{
-						arrval := Stats[AVal]
-						eval := LootFilter[GKey][SKey][AKey . "Eval"]
-						min := LootFilter[GKey][SKey][AKey . "Min"]
-						if eval = >
-							If (arrval > min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = =
-							if (arrval = min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = <
-							if (arrval < min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = !=
-							if (arrval != min)
-							matched := True
-							Else
-							nomatched := True
-						else if eval = ~
+						if Affix.haskey(AVal)
 						{
-							minarr := StrSplit(min, "|"," ")
-							for k, v in minarr
-								if InStr(arrval, v)
-									matched := True
-							if !matched
+							arrval := Affix[AVal]
+							eval := LootFilter[GKey][SKey][AKey . "Eval"]
+							min := LootFilter[GKey][SKey][AKey . "Min"]
+							if eval = >
+								If (arrval > min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = =
+								if (arrval = min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = <
+								if (arrval < min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = !=
+								if (arrval != min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = ~
+								If InStr(arrval, min)
+								matched := True
+								Else
 								nomatched := True
 						}
 					}
+					if InStr(SKey, "Prop")
+					{
+						if Prop.haskey(AVal)
+						{
+							arrval := Prop[AVal]
+							eval := LootFilter[GKey][SKey][AKey . "Eval"]
+							min := LootFilter[GKey][SKey][AKey . "Min"]
+							if eval = >
+								If (arrval > min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = =
+								if (arrval = min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = <
+								if (arrval < min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = !=
+								if (arrval != min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = ~
+								If InStr(arrval, min)
+								matched := True
+								Else
+								nomatched := True
+						}
+					}
+					if InStr(SKey, "Stats")
+					{
+						if Stats.haskey(AVal)
+						{
+							arrval := Stats[AVal]
+							eval := LootFilter[GKey][SKey][AKey . "Eval"]
+							min := LootFilter[GKey][SKey][AKey . "Min"]
+							if eval = >
+								If (arrval > min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = =
+								if (arrval = min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = <
+								if (arrval < min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = !=
+								if (arrval != min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = ~
+							{
+								minarr := StrSplit(min, "|"," ")
+								for k, v in minarr
+									if InStr(arrval, v)
+										matched := True
+								if !matched
+									nomatched := True
+							}
+						}
+					}
 				}
 			}
+			If matched && !nomatched
+				Return LootFilterTabs[GKey]
 		}
-		If matched && !nomatched
-			Return LootFilterTabs[GKey]
+	Return False
 	}
-Return False
-}
-; Flag item with chaos value from PoE-Ninja
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MatchNinjaPrice()
-{
-	For TKey, typeArr in Ninja
+	; MatchNinjaPrice - Flag item with chaos value from PoE-Ninja
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	MatchNinjaPrice(graph := False)
 	{
-		If TKey != "currencyDetails"
+		For TKey, typeArr in Ninja
 		{
-			For index, indVal in typeArr
+			If TKey != "currencyDetails"
 			{
-				If Prop.RarityGem
+				For index, indVal in typeArr
 				{
-					If (Prop.ItemName = Ninja[TKey][index]["name"] && Prop.Variant = Ninja[TKey][index]["variant"])
+					If Prop.RarityGem
+					{
+						If (Prop.ItemName = Ninja[TKey][index]["name"] && Prop.Variant = Ninja[TKey][index]["variant"])
+						{
+							Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+							Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+							If graph
+							{
+								GraphNinjaPrices(TKey,index)
+								DisplayPSA()
+							}
+							Return True
+						}
+					}
+					Else If (Prop.IsMap)
+					{
+						If InStr(Prop.ItemName, Ninja[TKey][index]["name"])
+						{
+							Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+							Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+							If graph
+							{
+								GraphNinjaPrices(TKey,index)
+								DisplayPSA()
+							}
+							Return True
+						}
+					}
+					Else If (Prop.ItemName = Ninja[TKey][index]["name"] && !Ninja[TKey][index].HasKey("links") )
 					{
 						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+						If graph
+						{
+							GraphNinjaPrices(TKey,index)
+							DisplayPSA()
+						}
 						Return True
 					}
-				}
-				Else If (Prop.IsMap)
-				{
-					If InStr(Prop.ItemName, Ninja[TKey][index]["name"])
+					Else If (Prop.ItemName = Ninja[TKey][index]["name"] && ((ForceMatch6Link && Ninja[TKey][index]["links"] = "6") || (Prop.6Link && Ninja[TKey][index]["links"] = "6") || (Prop.5Link && Ninja[TKey][index]["links"] = "5") || (Prop.LinkCount < 4 && Ninja[TKey][index]["links"] = "0")))
 					{
 						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+						If graph
+						{
+							GraphNinjaPrices(TKey,index)
+							DisplayPSA()
+						}
 						Return True
 					}
 				}
-				Else If (Prop.ItemName = Ninja[TKey][index]["name"])
-				{
-					Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
-					Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
-					Return True
-				}
 			}
 		}
-	}
-Return False
-}
-; Grab Reply whisper recipient
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GrabRecipientName(){
-	Clipboard := ""
-	Send ^{Enter}^{A}^{C}{Escape}
-	ClipWait, 0
-	Loop, Parse, Clipboard, `n, `r
+		If graph
 		{
-		; Clipboard must have "@" in the first line
-		If A_Index = 1
-			{
-			IfNotInString, A_LoopField, @
-				{
-				Exit
-				}
-			RecipientNameArr := StrSplit(A_LoopField, " ", @)
-			RecipientName1 := RecipientNameArr[1]
-			RecipientName := StrReplace(RecipientName1, "@")
-			}
-			Ding( ,%RecipientName%)
+			GraphNinjaPrices()
+			DisplayPSA()
 		}
-	Sleep, 60
-	Return
+	Return False
 	}
+	; GraphNinjaPrices - Send sparkline data to the graphs
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GraphNinjaPrices(TKey:=False,index:=False)
+	{
+		If !(TKey = False || index = False)
+			Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
+		Else
+		{
+			Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " has no Graph Data"
+			Goto, noDataGraph
+		}
+			
+		If (Ninja[TKey][index]["paySparkLine"])
+		{
+			dataPayPoint := Ninja[TKey][index]["paySparkLine"]["data"]
+			dataRecPoint := Ninja[TKey][index]["receiveSparkLine"]["data"]
+			totalPayChange := Ninja[TKey][index]["paySparkLine"]["totalChange"]
+			totalRecChange := Ninja[TKey][index]["receiveSparkLine"]["totalChange"]
 
-; Debugging information on Mouse Cursor
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CoordAndDebug(){
-		CoordAndDebugCommand:
-			
-			MouseGetPos x, y
-			PixelGetColor, xycolor , x, y
-			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
-			
-			If DebugMessages{
-				TT := TT . "`n`n"
-				GuiStatus()
-				TT := TT . "In Hideout:  " . OnHideout . "  On Character:  " . OnChar . "  Chat Open:  " . OnChat . "`n"
-				TT := TT . "Inventory open:  " . OnInventory . "  Stash Open:  " . OnStash . "  Vendor Open:  " . OnVendor . "`n"
-				TT := TT . "  Divination Trade: " . OnDiv . "  Menu Open: " . OnMenu . "`n`n"
-				ClipItem(x, y)
-				If (Prop.IsItem) {
-					TT := TT . "Item Properties:`n`n"
-					If ShowItemInfo {	
-						If (sendstash:=MatchLootFilter())
-							TT := TT . "Matches loot filter  -  Send to " . sendstash . "`n`n"
-						Else
-							TT := TT . "Item does not match Loot Filter`n`n"
-						For key, value in Prop
-						{
-							If (value != 0 && value != "" && value != False)
-								TT := TT . key . ":  " . value . "`n"
-						}
-						MsgBox %TT%
-						If (Prop.IsItem) {
-							TT := "Item Stats:`n`n"
-							If ShowItemInfo {
-								For key, value in Stats
-								{
-									If (value != 0 && value != "" && value != False)
-										TT := TT . key . ":  " . value . "`n"
-								}
-							}
-						MsgBox %TT%
-						}
-						If (Prop.HasAffix) {
-							TT := "Item Affix:`n`n"
-							If ShowItemInfo {
-								For key, value in Affix
-								{
-									If (value != 0 && value != "" && value != False)
-										TT := TT . key . ":  " . value . "`n"
-								}
-							If !Prop.Identified
-							TT .= "Unidentified"
-							}
-						MsgBox %TT%
-						}
-					}
-				} Else {
-					Tooltip, %TT%
-					SetTimer, RemoveToolTip, 10000
+			basePayPoint := 0
+			For k, v in dataPayPoint
+			{
+				If Abs(v) > basePayPoint
+					basePayPoint := Abs(v)
+			}
+			If basePayPoint = 0
+			FormatStr := "{1:0.0f}"
+			Else If basePayPoint < 1
+			FormatStr := "{1:0.3f}"
+			Else If basePayPoint < 10
+			FormatStr := "{1:0.2f}"
+			Else If basePayPoint < 100
+			FormatStr := "{1:0.1f}"
+			Else If basePayPoint > 100
+			FormatStr := "{1:0.0f}"
+
+			GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
+			GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePayPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePayPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePayPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePayPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePayPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePayPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePayPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePayPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+			GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePayPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePayPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePayPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePayPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePayPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePayPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePayPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePayPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
+
+
+			baseRecPoint := 0
+			For k, v in dataRecPoint
+			{
+				If Abs(v) > baseRecPoint
+					baseRecPoint := Abs(v)
+			}
+			If baseRecPoint = 0
+			FormatStr := "{1:0.0f}"
+			Else If baseRecPoint < 1
+			FormatStr := "{1:0.3f}"
+			Else If baseRecPoint < 10
+			FormatStr := "{1:0.2f}"
+			Else If baseRecPoint < 100
+			FormatStr := "{1:0.1f}"
+			Else If baseRecPoint > 100
+			FormatStr := "{1:0.0f}"
+
+			GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
+			GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseRecPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseRecPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseRecPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseRecPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseRecPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseRecPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseRecPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseRecPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+			GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseRecPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseRecPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseRecPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseRecPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseRecPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseRecPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseRecPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
+
+
+			AvgPay := {}
+			Loop 5
+			{
+				AvgPay[A_Index] := (dataPayPoint[A_Index+1] + dataPayPoint[A_Index+2]) / 2
+			}
+			paddedPayData := {}
+			paddedPayData[1] := dataPayPoint[1]
+			paddedPayData[2] := dataPayPoint[1]
+			paddedPayData[3] := dataPayPoint[2]
+			paddedPayData[4] := AvgPay[1]
+			paddedPayData[5] := dataPayPoint[3]
+			paddedPayData[6] := AvgPay[2]
+			paddedPayData[7] := dataPayPoint[4]
+			paddedPayData[8] := AvgPay[3]
+			paddedPayData[9] := dataPayPoint[5]
+			paddedPayData[10] := AvgPay[4]
+			paddedPayData[11] := dataPayPoint[6]
+			paddedPayData[12] := AvgPay[5]
+			paddedPayData[13] := dataPayPoint[7]
+			For k, v in paddedPayData
+			{
+				div := v / basePayPoint * 100
+				XGraph_Plot( pGraph1, 100 - div, "", True )
+				;MsgBox % "Key : " k "   Val : " v
+			}
+			AvgRec := {}
+			Loop 5
+			{
+				AvgRec[A_Index] := (dataRecPoint[A_Index+1] + dataRecPoint[A_Index+2]) / 2
+			}
+			paddedRecData := {}
+			paddedRecData[1] := dataRecPoint[1]
+			paddedRecData[2] := dataRecPoint[1]
+			paddedRecData[3] := dataRecPoint[2]
+			paddedRecData[4] := AvgRec[1]
+			paddedRecData[5] := dataRecPoint[3]
+			paddedRecData[6] := AvgRec[2]
+			paddedRecData[7] := dataRecPoint[4]
+			paddedRecData[8] := AvgRec[3]
+			paddedRecData[9] := dataRecPoint[5]
+			paddedRecData[10] := AvgRec[4]
+			paddedRecData[11] := dataRecPoint[6]
+			paddedRecData[12] := AvgRec[5]
+			paddedRecData[13] := dataRecPoint[7]
+			For k, v in paddedRecData
+			{
+				div := v / baseRecPoint * 100
+				XGraph_Plot( pGraph2, 100 - div, "", True )
+				;MsgBox % "Key : " k "   Val : " v
+			}
+
+			GuiControl,ItemInfo: , GroupBox1, % "Sell " Prop.ItemName " to Chaos"
+			GuiControl,ItemInfo: , PComment1, Sell Value
+			GuiControl,ItemInfo: , PData1, % sellval := (1 / Ninja[TKey][index]["pay"]["value"])
+			GuiControl,ItemInfo: , PComment2, Sell Value `% Change
+			GuiControl,ItemInfo: , PData2, % Ninja[TKey][index]["paySparkLine"]["totalChange"]
+			GuiControl,ItemInfo: , PComment3, Orb per Chaos
+			GuiControl,ItemInfo: , PData3, % Ninja[TKey][index]["pay"]["value"]
+			GuiControl,ItemInfo: , PComment4, Day 6 Change
+			GuiControl,ItemInfo: , PData4, % dataPayPoint[2]
+			GuiControl,ItemInfo: , PComment5, Day 5 Change
+			GuiControl,ItemInfo: , PData5, % dataPayPoint[3]
+			GuiControl,ItemInfo: , PComment6, Day 4 Change
+			GuiControl,ItemInfo: , PData6, % dataPayPoint[4]
+			GuiControl,ItemInfo: , PComment7, Day 3 Change
+			GuiControl,ItemInfo: , PData7, % dataPayPoint[5]
+			GuiControl,ItemInfo: , PComment8, Day 2 Change
+			GuiControl,ItemInfo: , PData8, % dataPayPoint[6]
+			GuiControl,ItemInfo: , PComment9, Day 1 Change
+			GuiControl,ItemInfo: , PData9, % dataPayPoint[7]
+			GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
+			GuiControl,ItemInfo: , PData10, C / O
+
+			GuiControl,ItemInfo: , GroupBox2, % "Buy " Prop.ItemName " from Chaos"
+			GuiControl,ItemInfo: , SComment1, Buy Value
+			GuiControl,ItemInfo: , SData1, % sellval := (Ninja[TKey][index]["receive"]["value"])
+			GuiControl,ItemInfo: , SComment2, Buy Value `% Change
+			GuiControl,ItemInfo: , SData2, % Ninja[TKey][index]["receiveSparkLine"]["totalChange"]
+			GuiControl,ItemInfo: , SComment3, Orb per Chaos
+			GuiControl,ItemInfo: , SData3, % 1 / Ninja[TKey][index]["receive"]["value"]
+			GuiControl,ItemInfo: , SComment4, Day 6 Change
+			GuiControl,ItemInfo: , SData4, % dataRecPoint[2]
+			GuiControl,ItemInfo: , SComment5, Day 5 Change
+			GuiControl,ItemInfo: , SData5, % dataRecPoint[3]
+			GuiControl,ItemInfo: , SComment6, Day 4 Change
+			GuiControl,ItemInfo: , SData6, % dataRecPoint[4]
+			GuiControl,ItemInfo: , SComment7, Day 3 Change
+			GuiControl,ItemInfo: , SData7, % dataRecPoint[5]
+			GuiControl,ItemInfo: , SComment8, Day 2 Change
+			GuiControl,ItemInfo: , SData8, % dataRecPoint[6]
+			GuiControl,ItemInfo: , SComment9, Day 1 Change
+			GuiControl,ItemInfo: , SData9, % dataRecPoint[7]
+			GuiControl,ItemInfo: , SComment10, % Decimal2Fraction(sellval,"ID3")
+			GuiControl,ItemInfo: , SData10, C / O
+
+		}
+		Else If (Ninja[TKey][index]["sparkline"])
+		{
+			dataPoint := Ninja[TKey][index]["sparkline"]["data"]
+			dataLTPoint := Ninja[TKey][index]["lowConfidenceSparkline"]["data"]
+			totalChange := Ninja[TKey][index]["sparkline"]["totalChange"]
+			totalLTChange := Ninja[TKey][index]["lowConfidenceSparkline"]["totalChange"]
+
+			basePoint := 0
+			For k, v in dataPoint
+			{
+				If Abs(v) > basePoint
+					basePoint := Abs(v)
+			}
+			If basePoint = 0
+			FormatStr := "{1:0.0f}"
+			Else If basePoint < 1
+			FormatStr := "{1:0.3f}"
+			Else If basePoint < 10
+			FormatStr := "{1:0.2f}"
+			Else If basePoint < 100
+			FormatStr := "{1:0.1f}"
+			Else If basePoint > 100
+			FormatStr := "{1:0.0f}"
+
+			GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePoint*1.0)) "`%"
+			GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+			GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePoint*1.0)) "`%"
+
+			baseLTPoint := 0
+			For k, v in dataLTPoint
+			{
+				If Abs(v) > baseLTPoint
+					baseLTPoint := Abs(v)
+			}
+			If baseLTPoint = 0
+			FormatStr := "{1:0.0f}"
+			If baseLTPoint < 1
+			FormatStr := "{1:0.3f}"
+			Else If baseLTPoint < 10
+			FormatStr := "{1:0.2f}"
+			Else If baseLTPoint < 100
+			FormatStr := "{1:0.1f}"
+			Else If baseLTPoint > 100
+			FormatStr := "{1:0.0f}"
+
+			GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseLTPoint*1.0)) "`%"
+			GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseLTPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseLTPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseLTPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseLTPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseLTPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseLTPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseLTPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseLTPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseLTPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+			GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseLTPoint*0.1)) "`%"
+			GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseLTPoint*0.2)) "`%"
+			GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseLTPoint*0.3)) "`%"
+			GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseLTPoint*0.4)) "`%"
+			GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseLTPoint*0.5)) "`%"
+			GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseLTPoint*0.6)) "`%"
+			GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseLTPoint*0.7)) "`%"
+			GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseLTPoint*0.8)) "`%"
+			GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseLTPoint*0.9)) "`%"
+			GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseLTPoint*1.0)) "`%"
+
+			Avg := {}
+			Loop 5
+			{
+				Avg[A_Index] := (dataPoint[A_Index+1] + dataPoint[A_Index+2]) / 2
+			}
+			paddedData := {}
+			paddedData[1] := dataPoint[1]
+			paddedData[2] := dataPoint[1]
+			paddedData[3] := dataPoint[2]
+			paddedData[4] := Avg[1]
+			paddedData[5] := dataPoint[3]
+			paddedData[6] := Avg[2]
+			paddedData[7] := dataPoint[4]
+			paddedData[8] := Avg[3]
+			paddedData[9] := dataPoint[5]
+			paddedData[10] := Avg[4]
+			paddedData[11] := dataPoint[6]
+			paddedData[12] := Avg[5]
+			paddedData[13] := dataPoint[7]
+			For k, v in paddedData
+			{
+				div := v / basePoint * 100
+				XGraph_Plot( pGraph1, 100 - div, "", True )
+				;MsgBox % "Key : " k "   Val : " v
+			}
+			LTAvg := {}
+			Loop 5
+			{
+				LTAvg[A_Index] := (dataLTPoint[A_Index+1] + dataLTPoint[A_Index+2]) / 2
+			}
+			paddedLTData := {}
+			paddedLTData[1] := dataLTPoint[1]
+			paddedLTData[2] := dataLTPoint[1]
+			paddedLTData[3] := dataLTPoint[2]
+			paddedLTData[4] := LTAvg[1]
+			paddedLTData[5] := dataLTPoint[3]
+			paddedLTData[6] := LTAvg[2]
+			paddedLTData[7] := dataLTPoint[4]
+			paddedLTData[8] := LTAvg[3]
+			paddedLTData[9] := dataLTPoint[5]
+			paddedLTData[10] := LTAvg[4]
+			paddedLTData[11] := dataLTPoint[6]
+			paddedLTData[12] := LTAvg[5]
+			paddedLTData[13] := dataLTPoint[7]
+			For k, v in paddedLTData
+			{
+				div := v / baseLTPoint * 100
+				XGraph_Plot( pGraph2, 100 - div, "", True )
+				;MsgBox % "Key : " k "   Val : " v
+			}
+
+			GuiControl,ItemInfo: , GroupBox1, % "Value of " Prop.ItemName
+			GuiControl,ItemInfo: , PComment1, Chaos Value
+			GuiControl,ItemInfo: , PData1, % Ninja[TKey][index]["chaosValue"]
+			GuiControl,ItemInfo: , PComment2, Chaos Value `% Change
+			GuiControl,ItemInfo: , PData2, % Ninja[TKey][index]["sparkline"]["totalChange"]
+			GuiControl,ItemInfo: , PComment3, Exalted Value
+			GuiControl,ItemInfo: , PData3, % Ninja[TKey][index]["exaltedValue"]
+			GuiControl,ItemInfo: , PComment4, Day 6 Change
+			GuiControl,ItemInfo: , PData4, % dataPoint[2]
+			GuiControl,ItemInfo: , PComment5, Day 5 Change
+			GuiControl,ItemInfo: , PData5, % dataPoint[3]
+			GuiControl,ItemInfo: , PComment6, Day 4 Change
+			GuiControl,ItemInfo: , PData6, % dataPoint[4]
+			GuiControl,ItemInfo: , PComment7, Day 3 Change
+			GuiControl,ItemInfo: , PData7, % dataPoint[5]
+			GuiControl,ItemInfo: , PComment8, Day 2 Change
+			GuiControl,ItemInfo: , PData8, % dataPoint[6]
+			GuiControl,ItemInfo: , PComment9, Day 1 Change
+			GuiControl,ItemInfo: , PData9, % dataPoint[7]
+			GuiControl,ItemInfo: , PComment10, 
+			GuiControl,ItemInfo: , PData10,
+
+			GuiControl,ItemInfo: , GroupBox2, % "Low Confidence Value of " Prop.ItemName
+			GuiControl,ItemInfo: , SComment1, Chaos Value `% Change
+			GuiControl,ItemInfo: , SData1, % Ninja[TKey][index]["lowConfidenceSparkline"]["totalChange"]
+			GuiControl,ItemInfo: , SComment2,
+			GuiControl,ItemInfo: , SData2, 
+			GuiControl,ItemInfo: , SComment3, 
+			GuiControl,ItemInfo: , SData3, 
+			GuiControl,ItemInfo: , SComment4, Day 6 Change
+			GuiControl,ItemInfo: , SData4, % dataLTPoint[2]
+			GuiControl,ItemInfo: , SComment5, Day 5 Change
+			GuiControl,ItemInfo: , SData5, % dataLTPoint[3]
+			GuiControl,ItemInfo: , SComment6, Day 4 Change
+			GuiControl,ItemInfo: , SData6, % dataLTPoint[4]
+			GuiControl,ItemInfo: , SComment7, Day 3 Change
+			GuiControl,ItemInfo: , SData7, % dataLTPoint[5]
+			GuiControl,ItemInfo: , SComment8, Day 2 Change
+			GuiControl,ItemInfo: , SData8, % dataLTPoint[6]
+			GuiControl,ItemInfo: , SComment9, Day 1 Change
+			GuiControl,ItemInfo: , SData9, % dataLTPoint[7]
+			GuiControl,ItemInfo: , SComment10,
+			GuiControl,ItemInfo: , SData10,
+		}
+		Return
+
+		noDataGraph:
+				GuiControl,ItemInfo: , PercentText1G1, 0`%
+				GuiControl,ItemInfo: , PercentText1G2, 0`%
+				GuiControl,ItemInfo: , PercentText1G3, 0`%
+				GuiControl,ItemInfo: , PercentText1G4, 0`%
+				GuiControl,ItemInfo: , PercentText1G5, 0`%
+				GuiControl,ItemInfo: , PercentText1G6, 0`%
+				GuiControl,ItemInfo: , PercentText1G7, 0`%
+				GuiControl,ItemInfo: , PercentText1G8, 0`%
+				GuiControl,ItemInfo: , PercentText1G9, 0`%
+				GuiControl,ItemInfo: , PercentText1G10, 0`%
+				GuiControl,ItemInfo: , PercentText1G11, 0`%
+				GuiControl,ItemInfo: , PercentText1G12, 0`%
+				GuiControl,ItemInfo: , PercentText1G13, 0`%
+				GuiControl,ItemInfo: , PercentText1G14, 0`%
+				GuiControl,ItemInfo: , PercentText1G15, 0`%
+				GuiControl,ItemInfo: , PercentText1G16, 0`%
+				GuiControl,ItemInfo: , PercentText1G17, 0`%
+				GuiControl,ItemInfo: , PercentText1G18, 0`%
+				GuiControl,ItemInfo: , PercentText1G19, 0`%
+				GuiControl,ItemInfo: , PercentText1G20, 0`%
+				GuiControl,ItemInfo: , PercentText1G21, 0`%
+				GuiControl,ItemInfo: , PercentText2G1, 0`%
+				GuiControl,ItemInfo: , PercentText2G2, 0`%
+				GuiControl,ItemInfo: , PercentText2G3, 0`%
+				GuiControl,ItemInfo: , PercentText2G4, 0`%
+				GuiControl,ItemInfo: , PercentText2G5, 0`%
+				GuiControl,ItemInfo: , PercentText2G6, 0`%
+				GuiControl,ItemInfo: , PercentText2G7, 0`%
+				GuiControl,ItemInfo: , PercentText2G8, 0`%
+				GuiControl,ItemInfo: , PercentText2G9, 0`%
+				GuiControl,ItemInfo: , PercentText2G10, 0`%
+				GuiControl,ItemInfo: , PercentText2G11, 0`%
+				GuiControl,ItemInfo: , PercentText2G12, 0`%
+				GuiControl,ItemInfo: , PercentText2G13, 0`%
+				GuiControl,ItemInfo: , PercentText2G14, 0`%
+				GuiControl,ItemInfo: , PercentText2G15, 0`%
+				GuiControl,ItemInfo: , PercentText2G16, 0`%
+				GuiControl,ItemInfo: , PercentText2G17, 0`%
+				GuiControl,ItemInfo: , PercentText2G18, 0`%
+				GuiControl,ItemInfo: , PercentText2G19, 0`%
+				GuiControl,ItemInfo: , PercentText2G20, 0`%
+				GuiControl,ItemInfo: , PercentText2G21, 0`%
+
+				Loop 13
+				{
+					XGraph_Plot( pGraph1, 100, "", True )
+				}
+				Loop 13
+				{
+					XGraph_Plot( pGraph2, 100, "", True )
 				}
 
-			} Else {
-				Tooltip, %TT%
-				SetTimer, RemoveToolTip, 10000
-			}
-			If (DebugMessages&&ShowPixelGrid){
-				
-				;Check if inventory is open
-				if(!OnInventory){
-					TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
-				}else{
-					
-					TT := "Grid information:" . "`n"
-					
-					For c, GridX in InventoryGridX	{
-						For r, GridY in InventoryGridY
-						{
-							pixelgetcolor, PointColor, GridX, GridY
-							
-							If (indexOfHex(PointColor, varUnIdColor)) {
-								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Un-Identified. Color: " . PointColor  .  "`n"
-							}else if (indexOfHex(PointColor, varIdColor)) {
-								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Identified. Color: " . PointColor  .  "`n"
-							}else if (indexOfHex(PointColor, varMouseoverColor)) {
-								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Selected item. Color: " . PointColor  .  "`n"
-							}else if (indexOfHex(PointColor, varEmptyInvSlotColor)) {				
-								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
-							}else{
-								TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
-							}
-						}
-					}
-				}
-				MsgBox %TT%	
-			}
+				GuiControl,ItemInfo: , GroupBox1, No Data
+				GuiControl,ItemInfo: , PComment1,
+				GuiControl,ItemInfo: , PData1, 
+				GuiControl,ItemInfo: , PComment2,
+				GuiControl,ItemInfo: , PData2, 
+				GuiControl,ItemInfo: , PComment3,
+				GuiControl,ItemInfo: , PData3, 
+				GuiControl,ItemInfo: , PComment4,
+				GuiControl,ItemInfo: , PData4, 
+				GuiControl,ItemInfo: , PComment5,
+				GuiControl,ItemInfo: , PData5, 
+				GuiControl,ItemInfo: , PComment6,
+				GuiControl,ItemInfo: , PData6, 
+				GuiControl,ItemInfo: , PComment7,
+				GuiControl,ItemInfo: , PData7, 
+				GuiControl,ItemInfo: , PComment8,
+				GuiControl,ItemInfo: , PData8, 
+				GuiControl,ItemInfo: , PComment9,
+				GuiControl,ItemInfo: , PData9, 
+				GuiControl,ItemInfo: , PComment10, 
+				GuiControl,ItemInfo: , PData10, 
+
+				GuiControl,ItemInfo: , GroupBox2, No Data
+				GuiControl,ItemInfo: , SComment1,
+				GuiControl,ItemInfo: , SData1,
+				GuiControl,ItemInfo: , SComment2,
+				GuiControl,ItemInfo: , SData2,
+				GuiControl,ItemInfo: , SComment3,
+				GuiControl,ItemInfo: , SData3,
+				GuiControl,ItemInfo: , SComment4,
+				GuiControl,ItemInfo: , SData4,
+				GuiControl,ItemInfo: , SComment5,
+				GuiControl,ItemInfo: , SData5,
+				GuiControl,ItemInfo: , SComment6,
+				GuiControl,ItemInfo: , SData6,
+				GuiControl,ItemInfo: , SComment7,
+				GuiControl,ItemInfo: , SData7,
+				GuiControl,ItemInfo: , SComment8,
+				GuiControl,ItemInfo: , SData8,
+				GuiControl,ItemInfo: , SComment9,
+				GuiControl,ItemInfo: , SData9,
+				GuiControl,ItemInfo: , SComment10,
+				GuiControl,ItemInfo: , SData10
 		Return
 	}
-
-; Check if a specific hex value is part of an array within a variance and return the index
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-indexOfHex(var, Arr, fromIndex:=1, vary:=2) {
-		for index, value in Arr {
-			h1 := ToRGB(value) 
-			h2 := ToRGB(var) 
-			if (index < fromIndex){
-				Continue
-			}else if (CompareHex(h1, h2, vary)){
-				return index
-			}
+	; DisplayPSA - Send Item info arrays Prop, Stats, and Affix to ItemInfo gui
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DisplayPSA()
+	{
+		propText=
+		For key, value in Prop
+		{
+			If (value != 0 && value != "" && value != False)
+				propText .= key . ":  " . value . "`n"
 		}
-	}
+		GuiControl, ItemInfo:, ItemInfoPropText, %propText%
 
-; Check if a specific value is part of an array and return the index
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-indexOf(var, Arr, fromIndex:=1) {
-		for index, value in Arr {
-			if (index < fromIndex){
-				Continue
-			}else if (value = var){
-				return index
-			}
+		statText=
+		For key, value in Stats
+		{
+			If (value != 0 && value != "" && value != False)
+				statText .= key . ":  " . value . "`n"
 		}
-	}
+		GuiControl, ItemInfo:, ItemInfoStatText, %statText%
 
-; Transform an array to a comma separated string
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-arrToStr(array){
-		Str := ""
-		For Index, Value In array
-			Str .= "," . Value
-		Str := LTrim(Str, ",")
-		return Str
+		affixText=
+		For key, value in Affix
+		{
+			If (value != 0 && value != "" && value != False)
+				affixText .= key . ":  " . value . "`n"
+		}
+		GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
 	}
-; Auto Detonate Mines
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-DetonateMines(){
-		GuiStatus("OnChat")
-		If (OnChat)
-			exit
-		pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
-		pixelgetcolor, Mine, DetonateX, DetonateY
-		If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
-			Sendraw, d
-			Detonated:=1
-			Settimer, TDetonated, 500
+	; MoveStash - Input any digit and it will move to that Stash tab, only tested up to 25 tabs
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	MoveStash(Tab){
+		GuiStatus("OnStash")
+		If (!OnStash)
 			Return
+		If (CurrentTab=Tab)
+			return
+		If (CurrentTab!=Tab) {
+			MouseGetPos MSx, MSy
+			BlockInput, MouseMove
+			Sleep, 45*Latency
+			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+			Sleep, 45*Latency
+			Click, Down, Left, 1
+			Sleep, 45*Latency
+			Click, Up, Left, 1
+			Sleep, 45*Latency
+			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
+			Sleep, 90*Latency
+			send {Enter}
+			Sleep, 115*Latency
+			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+			Sleep, 45*Latency
+			Click, Down, Left, 1
+			Sleep, 45*Latency
+			Click, Up, Left, 1
+			Sleep, 45*Latency
+			CurrentTab:=Tab
+			MouseMove, MSx, MSy, 0
+			Sleep, 45*Latency
+			BlockInput, MouseMoveOff
+			}
+		return
 		}
-		Return	
-	}
 
-; Update Overlay ON OFF states
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GuiUpdate(){
-		if (AutoFlask=1) {
-			AutoFlaskToggle:="ON" 
-		} else AutoFlaskToggle:="OFF" 
-		
-		if (AutoQuit=1) {
-			AutoQuitToggle:="ON" 
-		}else AutoQuitToggle:="OFF" 
-		
-		GuiControl, 2:, T1, Quit: %AutoQuitToggle%
-		GuiControl, 2:, T2, Flasks: %AutoFlaskToggle%
+	; StockScrolls - Restock scrolls that have more than 10 missing
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	StockScrolls(){
+			BlockInput, MouseMove
+			If StockWisdom{
+				MouseMove %WisdomScrollX%, %WisdomScrollY%
+				ClipItem(WisdomScrollX, WisdomScrollY)
+				Sleep, 30*Latency
+				dif := (40 - Stats.Stack)
+					If (dif>10)
+				{
+					MoveStash(1)
+					MouseMove WisdomStockX, WPStockY
+					Sleep, 30*Latency
+					ShiftClick(WisdomStockX, WPStockY)
+						Sleep, 30*Latency
+					Send %dif%
+						Sleep, 45*Latency
+					Send {Enter}
+					Sleep, 60*Latency
+					Send {Click, Down, %WisdomScrollX%, %WisdomScrollY%}
+					Sleep, 30*Latency
+					Send {Click, Up, %WisdomScrollX%, %WisdomScrollY%}
+					Sleep, 45*Latency
+				}
+				Sleep, 20*Latency
+			}
+			If StockPortal{
+				MouseMove %PortalScrollX%, %PortalScrollY%
+				ClipItem(PortalScrollX, PortalScrollY)
+				Sleep, 30*Latency
+				dif := (40 - Stats.Stack)
+					If (dif>10)
+				{
+					MoveStash(1)
+					MouseMove PortalStockX, WPStockY
+					Sleep, 30*Latency
+					ShiftClick(PortalStockX, WPStockY)
+						Sleep, 30*Latency
+					Send %dif%
+						Sleep, 45*Latency
+					Send {Enter}
+					Sleep, 60*Latency
+					Send {Click, Down, %PortalScrollX%, %PortalScrollY%}
+					Sleep, 30*Latency
+					Send {Click, Up, %PortalScrollX%, %PortalScrollY%}
+					Sleep, 45*Latency
+				}
+			}
+			BlockInput, MouseMoveOff
+		return
+		}
+
+	; LootScan - Finds matching colors under the cursor while key pressed
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	LootScan(){
+		LootScanCommand:
+			Pressed := GetKeyState(hotkeyLootScan)
+			While (Pressed&&LootVacuum)
+			{
+				For k, ColorHex in LootColors
+				{
+					Pressed := GetKeyState(hotkeyLootScan)
+					Sleep, -1
+					MouseGetPos CenterX, CenterY
+					ScanX1:=(CenterX-AreaScale)
+					ScanY1:=(CenterY-AreaScale)
+					ScanX2:=(CenterX+AreaScale)
+					ScanY2:=(CenterY+AreaScale)
+					PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
+					If (ErrorLevel = 0){
+						Pressed := GetKeyState(hotkeyLootScan)
+						If !(Pressed)
+							Break 2
+						SwiftClick(ScanPx, ScanPy)
+						}
+					Else If (ErrorLevel = 1)
+						Continue
+				}
+			}
 		Return
-	}
+		}
 
-; Pixelcheck for different parts of the screen to see what your status is in game. 
+; Main Script Logic Timers - TGameTick, TMineTick, TimerPassthrough, TimerMainAttack, TimerSecondaryAttack
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-PoEWindowCheck(){
-		IfWinExist, ahk_group POEGameGroup 
+	; TGameTick - Flask Logic timer
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TGameTick(){
+		IfWinActive, ahk_group POEGameGroup
 		{
-			global GuiX, GuiY, RescaleRan, ToggleExist
-			If (!RescaleRan)
-				Rescale()
-			If (!ToggleExist) {
-				Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
-				ToggleExist := True
-				WinActivate, ahk_group POEGameGroup
-				If (YesPersistantToggle)
-					AutoReset()
+			; Check what status is your character in the game
+			GuiStatus()
+			if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnMenu) { 
+				;GuiUpdate()																									   
+				Exit
 			}
-		} Else {
-			If (ToggleExist){
-				Gui 2: Show, Hide
-				ToggleExist := False
+			
+			if (RadioLife=1)	{
+				If ((TriggerLife20!="00000")|| ( AutoQuit && RadioQuit20 ) || ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life20, vX_Life, vY_Life20 
+					if (Life20!=varLife20) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit20=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife20!="00000")
+							TriggerFlask(TriggerLife20)
+						}
+				}
+				If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life30, vX_Life, vY_Life30 
+					if (Life30!=varLife30) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit30=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife30!="00000")
+							TriggerFlask(TriggerLife30)
+						}
+				}
+				If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life40, vX_Life, vY_Life40 
+					if (Life40!=varLife40) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit40=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife40!="00000")
+							TriggerFlask(TriggerLife40)
+						}
+				}
+				If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life50, vX_Life, vY_Life50
+					if (Life50!=varLife50) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife50!="00000")
+							TriggerFlask(TriggerLife50)
+						}
+				}
+				If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life60, vX_Life, vY_Life60
+					if (Life60!=varLife60) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife60!="00000")
+							TriggerFlask(TriggerLife60)
+						}
+				}
+				If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life70, vX_Life, vY_Life70
+					if (Life70!=varLife70) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife70!="00000")
+							TriggerFlask(TriggerLife70)
+						}
+				}
+				If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life80, vX_Life, vY_Life80
+					if (Life80!=varLife80) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife80!="00000")
+							TriggerFlask(TriggerLife80)
+						}
+				}
+				If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life90, vX_Life, vY_Life90
+					if (Life90!=varLife90) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife90!="00000")
+							TriggerFlask(TriggerLife90)
+						}
+				}
 			}
+			
+			if (RadioHybrid=1) {
+				If ((TriggerLife20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life20, vX_Life, vY_Life20 
+					if (Life20!=varLife20) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit20=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife20!="00000")
+							TriggerFlask(TriggerLife20)
+						}
+				}
+				If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life30, vX_Life, vY_Life30 
+					if (Life30!=varLife30) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit30=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife30!="00000")
+							TriggerFlask(TriggerLife30)
+						}
+				}
+				If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life40, vX_Life, vY_Life40 
+					if (Life40!=varLife40) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit40=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife40!="00000")
+							TriggerFlask(TriggerLife40)
+						}
+				}
+				If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life50, vX_Life, vY_Life50
+					if (Life50!=varLife50) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife50!="00000")
+							TriggerFlask(TriggerLife50)
+						}
+				}
+				If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life60, vX_Life, vY_Life60
+					if (Life60!=varLife60) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife60!="00000")
+							TriggerFlask(TriggerLife60)
+						}
+				}
+				If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life70, vX_Life, vY_Life70
+					if (Life70!=varLife70) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife70!="00000")
+							TriggerFlask(TriggerLife70)
+						}
+				}
+				If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life80, vX_Life, vY_Life80
+					if (Life80!=varLife80) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife80!="00000")
+							TriggerFlask(TriggerLife80)
+						}
+				}
+				If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, Life90, vX_Life, vY_Life90
+					if (Life90!=varLife90) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerLife90!="00000")
+							TriggerFlask(TriggerLife90)
+						}
+				}
+				If ((TriggerES20!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES20, vX_ES, vY_ES20 
+					if (ES20!=varES20) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES20!="00000")
+							TriggerFlask(TriggerES20)
+					}
+				}
+				If ((TriggerES30!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES30, vX_ES, vY_ES30 
+					if (ES30!=varES30) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES30!="00000")
+							TriggerFlask(TriggerES30)
+					}
+				}
+				If ((TriggerES40!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES40, vX_ES, vY_ES40 
+					if (ES40!=varES40) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES40!="00000")
+							TriggerFlask(TriggerES40)
+					}
+				}
+				If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES50, vX_ES, vY_ES50
+					if (ES50!=varES50) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES50!="00000")
+							TriggerFlask(TriggerES50)
+					}
+				}
+				If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES60, vX_ES, vY_ES60
+					if (ES60!=varES60) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES60!="00000")
+							TriggerFlask(TriggerES60)
+					}
+				}
+				If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES70, vX_ES, vY_ES70
+					if (ES70!=varES70) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES70!="00000")
+							TriggerFlask(TriggerES70)
+					}
+				}
+				If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES80, vX_ES, vY_ES80
+					if (ES80!=varES80) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES80!="00000")
+							TriggerFlask(TriggerES80)
+					}
+				}
+				If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES90, vX_ES, vY_ES90
+					if (ES90!=varES90) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES90!="00000")
+							TriggerFlask(TriggerES90)
+					}
+				}
+			}
+			
+			if (RadioCi=1) {
+				If ((TriggerES20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES20, vX_ES, vY_ES20 
+					if (ES20!=varES20) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit20=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES20!="00000")
+							TriggerFlask(TriggerES20)
+					}
+				}
+				If ((TriggerES30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES30, vX_ES, vY_ES30 
+					if (ES30!=varES30) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit30=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES30!="00000")
+							TriggerFlask(TriggerES30)
+					}
+				}
+				If ((TriggerES40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES40, vX_ES, vY_ES40 
+					if (ES40!=varES40) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						if (AutoQuit=1) && (RadioQuit40=1) {
+							LogoutCommand()
+							Exit
+						}
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES40!="00000")
+							TriggerFlask(TriggerES40)
+					}
+				}
+				If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES50, vX_ES, vY_ES50
+					if (ES50!=varES50) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES50!="00000")
+							TriggerFlask(TriggerES50)
+					}
+				}
+				If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES60, vX_ES, vY_ES60
+					if (ES60!=varES60) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES60!="00000")
+							TriggerFlask(TriggerES60)
+					}
+				}
+				If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES70, vX_ES, vY_ES70
+					if (ES70!=varES70) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES70!="00000")
+							TriggerFlask(TriggerES70)
+					}
+				}
+				If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES80, vX_ES, vY_ES80
+					if (ES80!=varES80) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES80!="00000")
+							TriggerFlask(TriggerES80)
+					}
+				}
+				If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
+					pixelgetcolor, ES90, vX_ES, vY_ES90
+					if (ES90!=varES90) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						Loop, 5 {
+							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
+								TriggerUtility(A_Index)
+						}
+						If (TriggerES90!="00000")
+							TriggerFlask(TriggerES90)
+					}
+				}
+			}
+			
+			If (TriggerMana10!="00000") {
+				pixelgetcolor, Mana10, vX_Mana, vY_Mana10
+				if (Mana10!=varMana10) {
+					GuiStatus("OnChar")
+					if !(OnChar)
+						Exit
+					TriggerMana(TriggerMana10)
+				}
+			}
+			
+			GuiUpdate()
 		}
 		Return
-	}
-; Receive Messages from other scripts
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MsgMonitor(wParam, lParam, msg)
-	{
-	;Thread, NoTimers, true		;Critical
-	If (wParam=1)
-		Return
-	Else If (wParam=2)
-		Return
-	Else If (wParam=3) {
-		If (lParam=1){
-			OnCooldown[1]:=1 
-			settimer, TimmerFlask1, %CooldownFlask1%
-			return
-			}		
-		If (lParam=2){
-			OnCooldown[2]:=1 
-			settimer, TimmerFlask2, %CooldownFlask2%
-			return
-			}		
-		If (lParam=3){
-			OnCooldown[3]:=1 
-			settimer, TimmerFlask3, %CooldownFlask3%
-			return
-			}		
-		If (lParam=4){
-			OnCooldown[4]:=1 
-			settimer, TimmerFlask4, %CooldownFlask4%
-			return
-			}		
-		If (lParam=5){
-			OnCooldown[5]:=1 
-			settimer, TimmerFlask5, %CooldownFlask5%
-			return
-			}		
 		}
-	Else If (wParam=4) {
-		If (lParam=1){
-			OnCooldownUtility1:=1 
-			settimer, TimerUtility1, %CooldownUtility1%
-			return
-			}		
-		If (lParam=2){
-			OnCooldownUtility2:=1 
-			settimer, TimerUtility2, %CooldownUtility2%
-			return
-			}		
-		If (lParam=3){
-			OnCooldownUtility3:=1 
-			settimer, TimerUtility3, %CooldownUtility3%
-			return
-			}		
-		If (lParam=4){
-			OnCooldownUtility4:=1 
-			settimer, TimerUtility4, %CooldownUtility4%
-			return
-			}		
-		If (lParam=5){
-			OnCooldownUtility5:=1 
-			settimer, TimerUtility5, %CooldownUtility5%
-			return
-			}		
+	; TMineTick - Detonate Mines timer
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TMineTick(){
+		IfWinActive, ahk_group POEGameGroup
+		{	
+			If (DetonateMines&&!Detonated) 
+				DetonateMines()
 		}
-	Else If (wParam=6) {
-		If (lParam=1){
-			; hotkeyLogout
-			LogoutCommand()
-			return
-			}		
-		If (lParam=2){
-			; hotkeyPopFlasks
-			PopFlasks()
-			return
-			}		
-		If (lParam=3){
-			; hotkeyQuickPortal
-			QuickPortal()
-			return
-			}		
-		If (lParam=4){
-			; hotkeyGemSwap
-			GemSwap()
-			return
-			}		
-		If (lParam=5){
-			; hotkeyItemSort
-			GoSub, ItemSortCommand
-			return
-			}		
-		}
-	Else If (wParam=7) {
-		;MsgBox, Ding
-		LoadArray()
-		;Hotkeys()
 		Return
-	}
+		}
+
+	; TimerPassthrough - Passthrough Timer
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TimerPassthrough:
+		If ( GetKeyState(1, "P") ) {
+			OnCooldown[1]:=1
+			settimer, TimerFlask1, %CooldownFlask1%
+			SendMSG(3, 1, scriptGottaGoFast)
+		}
+		If ( GetKeyState(2, "P") ) {
+			OnCooldown[2]:=1
+			settimer, TimerFlask2, %CooldownFlask2%
+			SendMSG(3, 2, scriptGottaGoFast)
+		}
+		If ( GetKeyState(3, "P") ) {
+			OnCooldown[3]:=1
+			settimer, TimerFlask3, %CooldownFlask3%
+			SendMSG(3, 3, scriptGottaGoFast)
+		}
+		If ( GetKeyState(4, "P") ) {
+			OnCooldown[4]:=1
+			settimer, TimerFlask4, %CooldownFlask4%
+			SendMSG(3, 4, scriptGottaGoFast)
+		}
+		If ( GetKeyState(5, "P") ) {
+			OnCooldown[5]:=1
+			settimer, TimerFlask5, %CooldownFlask5%
+			SendMSG(3, 5, scriptGottaGoFast)
+		}
 	Return
-	}
-; Send one or two digits to a sub-script 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SendMSG(wParam:=0, lParam:=0, script:=""){
-	DetectHiddenWindows On
-	if WinExist(script) 
-		PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
-	else 
-		MsgBox %script% . " Not found"
-	DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
-	Return
-	}
-; Pixelcheck for different parts of the screen to see what your status is in game. 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GuiStatus(Fetch:=""){
-	If (Fetch="OnHideout")
-		{
-		pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-		pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
-		if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
-			OnHideout:=True
-			} Else {
-			OnHideout:=False
-			}
-		Return
-		}
-	If !(Fetch="")
-		{
-		pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
-		If (P%Fetch%=var%Fetch%){
-			%Fetch%:=True
-			} Else {
-			%Fetch%:=False
-			}
-		Return
-		}
-	pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-	pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
-	if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
-		OnHideout:=True
-		} Else {
-		OnHideout:=False
-		}
-	pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
-	If (POnChar=varOnChar)  {
-		OnChar:=True
-		} Else {
-		OnChar:=False
-		}
-	pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-	If (POnChat=varOnChat) {
-		OnChat:=True
-		} Else {
-		OnChat:=False
-		}
-	pixelgetcolor, POnMenu, vX_OnMenu, vY_OnMenu
-	If (POnMenu=varOnMenu) {
-		OnMenu:=True
-		} Else {
-		OnMenu:=False
-		}
-	pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-	If (POnInventory=varOnInventory) {
-		OnInventory:=True
-		} Else {
-		OnInventory:=False
-		}
-	pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-	If (POnStash=varOnStash) {
-		OnStash:=True
-		} Else {
-		OnStash:=False
-		}
-	pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
-	If (POnVendor=varOnVendor) {
-		OnVendor:=True
-		} Else {
-		OnVendor:=False
-		}
-	pixelgetcolor, POnDiv, vX_OnDiv, vY_OnDiv
-	If (POnDiv=varOnDiv) {
-		OnDiv:=True
-		} Else {
-		OnDiv:=False
-		}
-	Return
-	}
-
-; Main attack Flasks
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MainAttackCommand(){
-	MainAttackCommand:
-	if (AutoFlask || AutoQuicksilver) {
-		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
-			return
-		If AutoFlask {
-			TriggerFlask(TriggerMainAttack)
-			SetTimer, TimerMainAttack, 400
-		}
-		If (AutoQuicksilver && QSonMainAttack) {
-			If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
-				If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
-					Return
-				SendMSG(5,1,scriptGottaGoFast)
-				SetTimer, TimerMainAttack, 400
-			}
-		}
-	}
-    Return	
-	}
-; Secondary attack Flasks
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SecondaryAttackCommand(){
-	SecondaryAttackCommand:
-	if (AutoFlask || AutoQuicksilver) {
-		GuiStatus()
-		If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
-			return
-		If AutoFlask {
-			TriggerFlask(TriggerSecondaryAttack)
-			SetTimer, TimerSecondaryAttack, 400
-		}
-		If (AutoQuicksilver && QSonSecondaryAttack) {
-			If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
-				If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
-					Return
-				SendMSG(5,1,scriptGottaGoFast)
-				SetTimer, TimerSecondaryAttack, 400
-			}
-		}
-	}
-    Return	
-	}
-
-; Detonate Mines
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TMineTick(){
-    IfWinActive, ahk_group POEGameGroup
-    {	
-        If (DetonateMines&&!Detonated) 
-            DetonateMines()
-    }
-    Return
-	}
-
-; Debug messages within script
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Ding(Timeout:=500,Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Message6:="", Message7:="" ){
-	If (!DebugMessages)
-		Return
-	Else If (DebugMessages){
-		debugStr:=Message
-		If (Message2!=""){
-			debugStr.="`n"
-			debugStr.=Message2
-			}
-		If (Message3!=""){
-			debugStr.="`n"
-			debugStr.=Message3
-			}
-		If (Message4!=""){
-			debugStr.="`n"
-			debugStr.=Message4
-			}
-		If (Message5!=""){
-			debugStr.="`n"
-			debugStr.=Message5
-			}
-		If (Message6!=""){
-			debugStr.="`n"
-			debugStr.=Message6
-			}
-		If (Message7!=""){
-			debugStr.="`n"
-			debugStr.=Message7
-			}
-		Tooltip, %debugStr%
-		}
-	SetTimer, RemoveTooltip, %Timeout%
-	Return
-	}
-
-; Flask Logic
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TGameTick(){
-    IfWinActive, ahk_group POEGameGroup
-    {
-        ; Check what status is your character in the game
-        GuiStatus()
-        if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnMenu) { 
-            ;GuiUpdate()																									   
-            Exit
-        }
-        
-        if (RadioLife=1)	{
-            If ((TriggerLife20!="00000")|| ( AutoQuit && RadioQuit20 ) || ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
-				pixelgetcolor, Life20, vX_Life, vY_Life20 
-				if (Life20!=varLife20) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit20=1) {
-						LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife20!="00000")
-                        TriggerFlask(TriggerLife20)
-                    }
-            }
-            If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life30, vX_Life, vY_Life30 
-                if (Life30!=varLife30) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit30=1) {
-						LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife30!="00000")
-                        TriggerFlask(TriggerLife30)
-                    }
-            }
-            If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life40, vX_Life, vY_Life40 
-                if (Life40!=varLife40) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit40=1) {
-						LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife40!="00000")
-                        TriggerFlask(TriggerLife40)
-                    }
-            }
-            If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life50, vX_Life, vY_Life50
-                if (Life50!=varLife50) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife50!="00000")
-                        TriggerFlask(TriggerLife50)
-                    }
-            }
-            If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life60, vX_Life, vY_Life60
-                if (Life60!=varLife60) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife60!="00000")
-                        TriggerFlask(TriggerLife60)
-                    }
-            }
-            If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life70, vX_Life, vY_Life70
-                if (Life70!=varLife70) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife70!="00000")
-                        TriggerFlask(TriggerLife70)
-                    }
-            }
-            If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life80, vX_Life, vY_Life80
-                if (Life80!=varLife80) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife80!="00000")
-                        TriggerFlask(TriggerLife80)
-                    }
-            }
-            If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
-			    pixelgetcolor, Life90, vX_Life, vY_Life90
-				if (Life90!=varLife90) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife90!="00000")
-                        TriggerFlask(TriggerLife90)
-                    }
-            }
-        }
-        
-        if (RadioHybrid=1) {
-            If ((TriggerLife20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life20, vX_Life, vY_Life20 
-                if (Life20!=varLife20) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit20=1) {
-                        LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife20!="00000")
-                        TriggerFlask(TriggerLife20)
-                    }
-            }
-            If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life30, vX_Life, vY_Life30 
-                if (Life30!=varLife30) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit30=1) {
-						LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife30!="00000")
-                        TriggerFlask(TriggerLife30)
-                    }
-            }
-            If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life40, vX_Life, vY_Life40 
-                if (Life40!=varLife40) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit40=1) {
-                        LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife40!="00000")
-                        TriggerFlask(TriggerLife40)
-                    }
-            }
-            If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life50, vX_Life, vY_Life50
-                if (Life50!=varLife50) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife50!="00000")
-                        TriggerFlask(TriggerLife50)
-                    }
-            }
-            If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life60, vX_Life, vY_Life60
-                if (Life60!=varLife60) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife60!="00000")
-                        TriggerFlask(TriggerLife60)
-                    }
-            }
-            If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life70, vX_Life, vY_Life70
-                if (Life70!=varLife70) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife70!="00000")
-                        TriggerFlask(TriggerLife70)
-                    }
-            }
-            If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life80, vX_Life, vY_Life80
-                if (Life80!=varLife80) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife80!="00000")
-                        TriggerFlask(TriggerLife80)
-                    }
-            }
-            If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, Life90, vX_Life, vY_Life90
-                if (Life90!=varLife90) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerLife90!="00000")
-                        TriggerFlask(TriggerLife90)
-                    }
-            }
-            If ((TriggerES20!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES20, vX_ES, vY_ES20 
-                if (ES20!=varES20) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES20!="00000")
-                        TriggerFlask(TriggerES20)
-                }
-            }
-            If ((TriggerES30!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES30, vX_ES, vY_ES30 
-                if (ES30!=varES30) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES30!="00000")
-                        TriggerFlask(TriggerES30)
-                }
-            }
-            If ((TriggerES40!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES40, vX_ES, vY_ES40 
-                if (ES40!=varES40) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES40!="00000")
-                        TriggerFlask(TriggerES40)
-                }
-            }
-            If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES50, vX_ES, vY_ES50
-                if (ES50!=varES50) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES50!="00000")
-                        TriggerFlask(TriggerES50)
-                }
-            }
-            If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES60, vX_ES, vY_ES60
-                if (ES60!=varES60) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES60!="00000")
-                        TriggerFlask(TriggerES60)
-                }
-            }
-            If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES70, vX_ES, vY_ES70
-                if (ES70!=varES70) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES70!="00000")
-                        TriggerFlask(TriggerES70)
-                }
-            }
-            If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES80, vX_ES, vY_ES80
-                if (ES80!=varES80) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES80!="00000")
-                        TriggerFlask(TriggerES80)
-                }
-            }
-            If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES90, vX_ES, vY_ES90
-                if (ES90!=varES90) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES90!="00000")
-                        TriggerFlask(TriggerES90)
-                }
-            }
-        }
-        
-        if (RadioCi=1) {
-            If ((TriggerES20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES20, vX_ES, vY_ES20 
-                if (ES20!=varES20) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit20=1) {
-						LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES20!="00000")
-                        TriggerFlask(TriggerES20)
-                }
-            }
-            If ((TriggerES30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES30, vX_ES, vY_ES30 
-                if (ES30!=varES30) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit30=1) {
-						LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES30!="00000")
-                        TriggerFlask(TriggerES30)
-                }
-            }
-            If ((TriggerES40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES40, vX_ES, vY_ES40 
-                if (ES40!=varES40) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    if (AutoQuit=1) && (RadioQuit40=1) {
-						LogoutCommand()
-                        Exit
-                    }
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES40!="00000")
-                        TriggerFlask(TriggerES40)
-                }
-            }
-            If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES50, vX_ES, vY_ES50
-                if (ES50!=varES50) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES50!="00000")
-                        TriggerFlask(TriggerES50)
-                }
-            }
-            If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES60, vX_ES, vY_ES60
-                if (ES60!=varES60) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES60!="00000")
-                        TriggerFlask(TriggerES60)
-                }
-            }
-            If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES70, vX_ES, vY_ES70
-                if (ES70!=varES70) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES70!="00000")
-                        TriggerFlask(TriggerES70)
-                }
-            }
-            If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES80, vX_ES, vY_ES80
-                if (ES80!=varES80) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES80!="00000")
-                        TriggerFlask(TriggerES80)
-                }
-            }
-            If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
-                pixelgetcolor, ES90, vX_ES, vY_ES90
-                if (ES90!=varES90) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-                    Loop, 5 {
-                        If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
-                            TriggerUtility(A_Index)
-                    }
-                    If (TriggerES90!="00000")
-                        TriggerFlask(TriggerES90)
-                }
-            }
-        }
-        
-        If (TriggerMana10!="00000") {
-            pixelgetcolor, Mana10, vX_Mana, vY_Mana10
-            if (Mana10!=varMana10) {
-				GuiStatus("OnChar")
-				if !(OnChar)
-					Exit
-                TriggerMana(TriggerMana10)
-            }
-        }
-        
-        GuiUpdate()
-    }
-    Return
-	}
-; Trigger named Utility
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TriggerUtility(Utility){
-	GuiStatus("OnHideout")
-	GuiStatus("OnChar")
-	GuiStatus("OnChat")
-	GuiStatus("OnInventory")
-	GuiStatus("OnMenu")
-	
-	if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char,atlas open, chat open, or open inventory
-		GuiUpdate()
-		Exit
-	}
-    If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
-        key:=KeyUtility%Utility%
-        Send %key%
-        SendMSG(4, Utility, scriptGottaGoFast)
-        OnCooldownUtility%Utility%:=1
-        Cooldown:=CooldownUtility%Utility%
-        SetTimer, TimerUtility%Utility%, %Cooldown%
-    }
-    Return
-	} 
-; Flask Trigger check
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TriggerFlask(Trigger){
-    FL:=1
-    loop 5 {
-        FLVal:=SubStr(Trigger,FL,1)+0
-        if (FLVal > 0) {
-            if (OnCooldown[FL]=0) {
-                send %FL%
-                SendMSG(3, FL, scriptGottaGoFast)
-                OnCooldown[FL]:=1 
-                Cooldown:=CooldownFlask%FL%
-                settimer, TimmerFlask%FL%, %Cooldown%
-                RandomSleep(15,60)			
-            }
-        }
-        ++FL
-    }
-    Return
-	}
-; Trigger Mana Flasks Sequentially
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TriggerMana(Trigger){
-    If ((!FlaskList.Count())&& !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) ) {
-        FL=1
-        loop, 5 {
-            FLVal:=SubStr(Trigger,FL,1)+0
-            if (FLVal > 0) {
-                if (OnCooldown[FL]=0)
-                    FlaskList.Push(FL)
-            }
-            ++FL
-        }
-    }
-    Else If !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) {
-        FL:=FlaskList.RemoveAt(1)
-        send %FL%
-        OnCooldown[FL] := 1 
-        Cooldown:=CooldownFlask%FL%
-        settimer, TimmerFlask%FL%, %Cooldown%
-        SendMSG(3, FL, scriptGottaGoFast)
-        RandomSleep(23,59)
-    }
-    Return
-	}
-
-; Auto-detect the joystick number if called for:
-DetectJoystick(){
-     if JoystickNumber <= 0
-     {
-          Loop 16  ; Query each joystick number to find out which ones exist.
-          {
-               GetKeyState, JoyName, %A_Index%JoyName
-               if JoyName <>
-               {
-                    JoystickNumber = %A_Index%
-                    Ding(3000,"Detected Joystick on the " . A_Index . " port.")
-                    break
-                    
-               }
-          }
-          if JoystickNumber <= 0
-          {
-				Ding(3000,"The system does not appear to have any joysticks.")
-          }
-     }
-     Else 
-     {
-		Ding(3000,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
-     }
-     Return
-}
-; Clamp Value function
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Clamp( Val, Min, Max) {
-    If Val < Min
-        Val := Min
-    If Val > Max
-        Val := Max
-    Return
-	}
-; Converts a hex color into its R G B elements
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ToRGB(color) {
-    return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
-	}
-
-; Compares two converted HEX codes as R G B within the variance range
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-CompareHex(c1, c2, vary:=1) {
-    rdiff := Abs( c1.r - c2.r )
-    gdiff := Abs( c1.g - c2.g )
-    bdiff := Abs( c1.b - c2.b )
-
-    return rdiff <= vary && gdiff <= vary && bdiff <= vary
-	}
-; Parse raw data from PoE-Ninja API and extract Chaos Value || Chaose Equivalent
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-ScrapeNinjaData(apiString)
-{
-    If InStr(apiString, "Fragment")
-    {
-        UrlDownloadToFile, https://poe.ninja/api/Data/Get%apiString%Overview?league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
-        If ErrorLevel{
-            MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
-        }
-        Else If (ErrorLevel=0){
-            FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
-            holder := JSON.Load(JSONtext)
-            For obj, objlist in holder
-            {
-                If (obj != "currencyDetails") 
-                {
-                    for index, indexArr in objlist
-                    { ; This will extract the information and standardize the chaos value to one variable.
-                        grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-                        grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
-                        grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
-                        grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
-                        grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
-                        grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
-                        grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
-                        grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
-                        holder[obj][index] := {"name":grabName
-                            ,"chaosValue":grabChaosVal
-                            ,"pay":grabPayVal
-                            ,"receive":grabRecVal
-                            ,"paySparkLine":grabPaySparklineVal
-                            ,"receiveSparkLine":grabRecSparklineVal
-                            ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-                            ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
-                        Ninja[apiString] := holder[obj]
-                    }
-                }
-            }
-            FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
-        }
-        Return
-    }
-    Else If InStr(apiString, "Currency")
-    {
-        UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
-        if ErrorLevel{
-            MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
-        }
-        Else if (ErrorLevel=0){
-            FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
-            holder := JSON.Load(JSONtext)
-            For obj, objlist in holder
-            {
-                If (obj != "currencyDetails") 
-                {
-                    for index, indexArr in objlist
-                    {
-                        grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-                        grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
-                        grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
-                        grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
-                        grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
-                        grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
-                        grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
-                        grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
-                        holder[obj][index] := {"name":grabName
-                            ,"chaosValue":grabChaosVal
-                            ,"pay":grabPayVal
-                            ,"receive":grabRecVal
-                            ,"paySparkLine":grabPaySparklineVal
-                            ,"receiveSparkLine":grabRecSparklineVal
-                            ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-                            ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
-                        Ninja[apiString] := holder[obj]
-                    }
-                }
-                Else 
-                {
-                    for index, indexArr in objlist
-                    {
-                        grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-                        grabPoeTrdId := (holder[obj][index]["poeTradeId"] ? holder[obj][index]["poeTradeId"] : False)
-                        grabId := (holder[obj][index]["id"] ? holder[obj][index]["id"] : False)
-
-                        holder[obj][index] := {"name":grabName
-                            ,"poeTradeId":grabPoeTrdId
-                            ,"id":grabId}
-
-                        Ninja["currencyDetails"] := holder[obj]
-                    }
-                }
-            }
-            FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
-        }
-        Return
-    }
-    Else
-    {
-        UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
-        if ErrorLevel{
-            MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
-        }
-        Else if (ErrorLevel=0){
-            FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
-            holder := JSON.Load(JSONtext)
-            For obj, objlist in holder
-            {
-                If (obj != "currencyDetails")
-                {
-                    for index, indexArr in objlist
-                    {
-                        grabSparklineVal := (holder[obj][index]["sparkline"] ? holder[obj][index]["sparkline"] : False)
-                        grabLowSparklineVal := (holder[obj][index]["lowConfidenceSparkline"] ? holder[obj][index]["lowConfidenceSparkline"] : False)
-                        grabExaltVal := (holder[obj][index]["exaltedValue"] ? holder[obj][index]["exaltedValue"] : False)
-                        grabChaosVal := (holder[obj][index]["chaosValue"] ? holder[obj][index]["chaosValue"] : False)
-                        grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
-                        grabLinks := (holder[obj][index]["links"] ? holder[obj][index]["links"] : False)
-                        grabVariant := (holder[obj][index]["variant"] ? holder[obj][index]["variant"] : False)
-                        
-                        holder[obj][index] := {"name":grabName
-                            ,"chaosValue":grabChaosVal
-                            ,"exaltedValue":grabExaltVal
-                            ,"sparkline":grabSparklineVal
-                            ,"lowConfidenceSparkline":grabLowSparklineVal
-                            ,"links":grabLinks
-                            ,"variant":grabVariant}
-                    }
-                }
-            }
-            Ninja[apiString] := holder[obj]
-        }
-        FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
-    }
-        ;MsgBox % "Download worked for Ninja Database  -  There are " Ninja.Count() " Entries in the array
-    Return
-}
-; Register Chat Hokeys
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RegisterHotkeys() {
-    global
-    Hotkey If, % fn1
-        If 1Suffix1
-            Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
-        If 1Suffix2
-            Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
-        If 1Suffix3
-            Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
-        If 1Suffix4
-            Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
-        If 1Suffix5
-            Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
-        If 1Suffix6
-            Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
-        If 1Suffix7
-            Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
-        If 1Suffix8
-            Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
-        If 1Suffix9
-            Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
-
-    Hotkey If, % fn2
-        If 2Suffix1
-            Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
-        If 2Suffix2
-            Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
-        If 2Suffix3
-            Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
-        If 2Suffix4
-            Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
-        If 2Suffix5
-            Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
-        If 2Suffix6
-            Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
-        If 2Suffix7
-            Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
-        If 2Suffix8
-            Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
-        If 2Suffix9
-            Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
-
-    Hotkey If, % fn3
-        If stashSuffix1
-            Hotkey, *%stashSuffix1%, FireStashHotkey1, off
-        If stashSuffix2
-            Hotkey, *%stashSuffix2%, FireStashHotkey2, off
-        If stashSuffix3
-            Hotkey, *%stashSuffix3%, FireStashHotkey3, off
-        If stashSuffix4
-            Hotkey, *%stashSuffix4%, FireStashHotkey4, off
-        If stashSuffix5
-            Hotkey, *%stashSuffix5%, FireStashHotkey5, off
-        If stashSuffix6
-            Hotkey, *%stashSuffix6%, FireStashHotkey6, off
-        If stashSuffix7
-            Hotkey, *%stashSuffix7%, FireStashHotkey7, off
-        If stashSuffix8
-            Hotkey, *%stashSuffix8%, FireStashHotkey8, off
-        If stashSuffix9
-            Hotkey, *%stashSuffix9%, FireStashHotkey9, off
-
-    Gui Submit, NoHide
-    fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
-    Hotkey If, % fn1
-    Loop, 9 {
-        If (1Suffix%A_Index%)
-            keyval := 1Suffix%A_Index%
-            Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
-        }
-    fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
-    Hotkey If, % fn2
-    Loop, 9 {
-        If (2Suffix%A_Index%)
-            keyval := 2Suffix%A_Index%
-            Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
-        }
-    fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
-    Hotkey If, % fn3
-    Loop, 9 {
-        If (stashSuffix%A_Index%)
-            keyval := stashSuffix%A_Index%
-            Hotkey, ~*%keyval%, FireStashHotkey%A_Index%, On
-        }
-    Return
-    }
-; Functions to evaluate keystate
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
-    IfWinActive, ahk_group POEGameGroup
-        {
-		If (EnableChatHotkeys){
-			If ( 1Prefix1 && 1Prefix2 ){
-				If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
-					return True
-				Else
-					return False
-				}
-			Else If ( 1Prefix1 && !1Prefix2 ) {
-				If ( GetKeyState(1Prefix1) ) 
-					return True
-				Else
-					return False
-				}
-			Else If ( !1Prefix1 && 1Prefix2 ) {
-				If ( GetKeyState(1Prefix2) ) 
-					return True
-				Else
-					return False
-				}
-			Else If ( !1Prefix1 && !1Prefix2 ) {
-				return True
-				}
-			} 
-		}
-    Else {
-            Return False
-        }
-}
-2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
-    IfWinActive, ahk_group POEGameGroup
-        {
-		If (EnableChatHotkeys){
-			If ( 2Prefix1 && 2Prefix2 ){
-				If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
-					return True
-				Else
-					return False
-				}
-			Else If ( 2Prefix1 && !2Prefix2 ) {
-				If ( GetKeyState(2Prefix1) ) 
-					return True
-				Else
-					return False
-				}
-			Else If ( !2Prefix1 && 2Prefix2 ) {
-				If ( GetKeyState(2Prefix2) ) 
-					return True
-				Else
-					return False
-				}
-			Else If ( !2Prefix1 && !2Prefix2 ) {
-				return True
-				}
-			}
-		Else
-			Return False 
-		}
-    Else {
-            Return False
-        }
-}
-stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
-    IfWinActive, ahk_group POEGameGroup
-    {
-		If (YesStashKeys){
-			If ( stashPrefix1 && stashPrefix2 ){
-				If ( GetKeyState(stashPrefix1) && GetKeyState(stashPrefix2) )
-					return True
-				Else
-					return False
-				}
-			Else If ( stashPrefix1 && !stashPrefix2 ) {
-				If ( GetKeyState(stashPrefix1) ) 
-					return True
-				Else
-					return False
-				}
-			Else If ( !stashPrefix1 && stashPrefix2 ) {
-				If ( GetKeyState(stashPrefix2) ) 
-					return True
-				Else
-					return False
-				}
-			Else If ( !stashPrefix1 && !stashPrefix2 ) {
-				return True
-				}
-		}
-		Else
-			Return False 
-	}
-    Else {
-            Return False
-    }
-}
-; Flask Timers
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TimmerFlask1:
-		OnCooldown[1]:=0
-		settimer,TimmerFlask1,delete
-	return
-
-	TimmerFlask2:
-		OnCooldown[2]:=0
-		settimer,TimmerFlask2,delete
-	return
-
-	TimmerFlask3:
-		OnCooldown[3]:=0
-		settimer,TimmerFlask3,delete
-	return
-
-	TimmerFlask4:
-		OnCooldown[4]:=0
-		settimer,TimmerFlask4,delete
-	return
-
-	TimmerFlask5:
-		OnCooldown[5]:=0
-		settimer,TimmerFlask5,delete
-	return
-
-; Passthrough Timer
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TimerPassthrough:
-	If ( GetKeyState(1, "P") ) {
-		OnCooldown[1]:=1
-		settimer, TimmerFlask1, %CooldownFlask1%
-		SendMSG(3, 1, scriptGottaGoFast)
-	}
-	If ( GetKeyState(2, "P") ) {
-		OnCooldown[2]:=1
-		settimer, TimmerFlask2, %CooldownFlask2%
-		SendMSG(3, 2, scriptGottaGoFast)
-	}
-	If ( GetKeyState(3, "P") ) {
-		OnCooldown[3]:=1
-		settimer, TimmerFlask3, %CooldownFlask3%
-		SendMSG(3, 3, scriptGottaGoFast)
-	}
-	If ( GetKeyState(4, "P") ) {
-		OnCooldown[4]:=1
-		settimer, TimmerFlask4, %CooldownFlask4%
-		SendMSG(3, 4, scriptGottaGoFast)
-	}
-	If ( GetKeyState(5, "P") ) {
-		OnCooldown[5]:=1
-		settimer, TimmerFlask5, %CooldownFlask5%
-		SendMSG(3, 5, scriptGottaGoFast)
-	}
-Return
-
-; Attack Key timers
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	; Attack Key timers - TimerMainAttack, TimerSecondaryAttack
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerMainAttack:
 		MainAttackPressed:=GetKeyState(hotkeyMainAttack)
 		If (MainAttackPressed && TriggerMainAttack > 0 )
@@ -6107,3050 +5224,4288 @@ Return
 		If (!SecondaryAttackPressed)
 			settimer,TimerSecondaryAttack,delete
 	Return
-
-; Utility Timers
+; Toggle Main Script Timers - AutoQuit, AutoFlask, AutoReset, GuiUpdate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TimerUtility1:
-		OnCooldownUtility1 := 0
-		settimer,TimerUtility1,delete
-	Return
-	TimerUtility2:
-		OnCooldownUtility2 := 0
-		settimer,TimerUtility2,delete
-	Return
-	TimerUtility3:
-		OnCooldownUtility3 := 0
-		settimer,TimerUtility3,delete
-	Return
-	TimerUtility4:
-		OnCooldownUtility4 := 0
-		settimer,TimerUtility4,delete
-	Return
-	TimerUtility5:
-		OnCooldownUtility5 := 0
-		settimer,TimerUtility5,delete
-	Return
-; Detonate Timer
+	; AutoQuit - Toggle Auto-Quit
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	AutoQuit(){
+		AutoQuitCommand:
+			AutoQuit := !AutoQuit
+			IniWrite, %AutoQuit%, settings.ini, Previous Toggles, AutoQuit
+			if ((!AutoFlask) && (!AutoQuit)) {
+				SetTimer TGameTick, Off
+			} else if ((AutoFlask) || (AutoQuit)){
+				SetTimer TGameTick, %Tick%
+			} 
+			GuiUpdate()
+		return
+		}
+
+	; AutoFlask - Toggle Auto-Pot
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	AutoFlask(){
+		AutoFlaskCommand:	
+			AutoFlask := !AutoFlask
+			IniWrite, %AutoFlask%, settings.ini, Previous Toggles, AutoFlask
+			if ((!AutoFlask) and (!AutoQuit)) {
+				SetTimer TGameTick, Off
+			} else if ((AutoFlask) || (AutoQuit)) {
+				SetTimer TGameTick, %Tick%
+			}
+			GuiUpdate()	
+		return
+		}
+
+	; AutoReset - Load Previous Toggle States
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	AutoReset(){
+		IniRead, AutoQuit, settings.ini, Previous Toggles, AutoQuit, 0
+		IniRead, AutoFlask, settings.ini, Previous Toggles, AutoFlask, 0
+		if ((!AutoFlask) and (!AutoQuit)) {
+			SetTimer TGameTick, Off
+		} else if ((AutoFlask) || (AutoQuit)) {
+			SetTimer TGameTick, %Tick%
+		}
+		GuiUpdate()	
+		return
+		}
+
+	; GuiUpdate - Update Overlay ON OFF states
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GuiUpdate(){
+			if (AutoFlask=1) {
+				AutoFlaskToggle:="ON" 
+			} else AutoFlaskToggle:="OFF" 
+			
+			if (AutoQuit=1) {
+				AutoQuitToggle:="ON" 
+			}else AutoQuitToggle:="OFF" 
+			
+			GuiControl, 2:, T1, Quit: %AutoQuitToggle%
+			GuiControl, 2:, T2, Flasks: %AutoFlaskToggle%
+			Return
+		}
+
+; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, TriggerFlask, TriggerMana, TriggerUtility, DetonateMines
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TDetonated:
-		Detonated:=0
-		settimer,TDetonated,delete
-	return
-
-; Configuration handling, ini updates, Hotkey handling, Utility Gfunctions
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-readFromFile(){
-    global
-	Thread, NoTimers, true		;Critical
-
-	LoadArray()
-    ;General settings
-    IniRead, Speed, settings.ini, General, Speed, 1
-    IniRead, Tick, settings.ini, General, Tick, 50
-    IniRead, QTick, settings.ini, General, QTick, 250
-    IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
-    IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid, 0
-    IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo, 0
-    IniRead, DetonateMines, settings.ini, General, DetonateMines, 0
-    IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
-    IniRead, YesVendor, settings.ini, General, YesVendor, 1
-    IniRead, YesStash, settings.ini, General, YesStash, 1
-    IniRead, YesIdentify, settings.ini, General, YesIdentify, 1
-    IniRead, YesDiv, settings.ini, General, YesDiv, 1
-	IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
-    IniRead, Latency, settings.ini, General, Latency, 1
-    IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
-    IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
-    IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
-    IniRead, Steam, settings.ini, General, Steam, 1
-    IniRead, HighBits, settings.ini, General, HighBits, 1
-    IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
-    IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
-    IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
-    IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
-    IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
-    IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
-    IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
-    IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
-    
-    ;Stash Tab Management
-    IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
-    IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap, 1
-    IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination, 1
-    IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem, 1
-    IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality, 1
-    IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality, 1
-    IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked, 1
-    IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection, 1
-    IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing, 1
-    IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump, 1
-    IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment, 1
-    IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence, 1
-    IniRead, StashTabOil, settings.ini, Stash Tab, StashTabOil, 1
-    IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil, 1
-    IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator, 1
-    IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
-    IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency, 1
-    IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap, 1
-    IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination, 1
-    IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem, 1
-    IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality, 1
-    IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality, 1
-    IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked, 1
-    IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection, 1
-    IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing, 1
-    IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump, 1
-    IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment, 1
-    IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence, 1
-    IniRead, StashTabYesOil, settings.ini, Stash Tab, StashTabYesOil, 1
-    IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil, 1
-    IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator, 1
-    IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
-    
-    ;Inventory Colors
-    IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
-    IniRead, varMouseoverColor, settings.ini, Inventory Colors, MouseoverColor, 0x011C01
-    IniRead, varUnIdColor, settings.ini, Inventory Colors, UnIdColor, 0x01012A
-    IniRead, varIdColor, settings.ini, Inventory Colors, IdColor, 0x1C0101
-    ;Create an array out of the read string
-    varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
-    varMouseoverColor := StrSplit(varMouseoverColor, ",")
-    varUnIdColor := StrSplit(varUnIdColor, ",")
-    varIdColor := StrSplit(varIdColor, ",")
-
-    ;Failsafe Colors
-    IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
-    IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
-    IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0x7BB9D6
-    IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
-    IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
-    IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
-    IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
-    IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
-    IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xC5E2F6
-    IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
-    
-    ;Life Colors
-    IniRead, varLife20, settings.ini, Life Colors, Life20, 0x181145
-	IniRead, varLife30, settings.ini, Life Colors, Life30, 0x181264
-	IniRead, varLife40, settings.ini, Life Colors, Life40, 0x190F7D
-	IniRead, varLife50, settings.ini, Life Colors, Life50, 0x2318A5
-	IniRead, varLife60, settings.ini, Life Colors, Life60, 0x2215B4
-	IniRead, varLife70, settings.ini, Life Colors, Life70, 0x2413B3
-	IniRead, varLife80, settings.ini, Life Colors, Life80, 0x2B2385
-	IniRead, varLife90, settings.ini, Life Colors, Life90, 0x664564
-        
-    ;ES Colors
-    IniRead, varES20, settings.ini, ES Colors, ES20, 0xFFC445
-    IniRead, varES30, settings.ini, ES Colors, ES30, 0xFFCE66
-    IniRead, varES40, settings.ini, ES Colors, ES40, 0xFFFF85
-    IniRead, varES50, settings.ini, ES Colors, ES50, 0xFFFF82
-    IniRead, varES60, settings.ini, ES Colors, ES60, 0xFFFF95
-    IniRead, varES70, settings.ini, ES Colors, ES70, 0xFFD07F
-    IniRead, varES80, settings.ini, ES Colors, ES80, 0xE89C5E
-    IniRead, varES90, settings.ini, ES Colors, ES90, 0xE79435
-    
-    ;Mana Colors
-    IniRead, varMana10, settings.ini, Mana Colors, Mana10, 0x3C201D
-    
-    ;Life Triggers
-    IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20, 00000
-	IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30, 00000
-	IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40, 00000
-	IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50, 00000
-	IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60, 00000
-	IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70, 00000
-	IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80, 00000
-	IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90, 00000
-	IniRead, DisableLife, settings.ini, Life Triggers, DisableLife, 11111
-    Loop, 5 {
-        valueLife20 := substr(TriggerLife20, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
-		valueLife30 := substr(TriggerLife30, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
-		valueLife40 := substr(TriggerLife40, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
-		valueLife50 := substr(TriggerLife50, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
-		valueLife60 := substr(TriggerLife60, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
-		valueLife70 := substr(TriggerLife70, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
-		valueLife80 := substr(TriggerLife80, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
-		valueLife90 := substr(TriggerLife90, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
-		valueDisableLife := substr(DisableLife, (A_Index), 1)
-		GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
-        }
-    
-    ;ES Triggers
-    IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20, 00000
-    IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30, 00000
-    IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40, 00000
-    IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50, 00000
-    IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60, 00000
-    IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70, 00000
-    IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80, 00000
-    IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90, 00000
-    IniRead, DisableES, settings.ini, ES Triggers, DisableES, 11111
-    Loop, 5 {
-        valueES20 := substr(TriggerES20, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES20, %valueES20%
-        valueES30 := substr(TriggerES30, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES30, %valueES30%
-        valueES40 := substr(TriggerES40, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES40, %valueES40%
-        valueES50 := substr(TriggerES50, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES50, %valueES50%
-        valueES60 := substr(TriggerES60, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES60, %valueES60%
-        valueES70 := substr(TriggerES70, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES70, %valueES70%
-        valueES80 := substr(TriggerES80, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES80, %valueES80%
-        valueES90 := substr(TriggerES90, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES90, %valueES90%
-        valueDisableES := substr(DisableES, (A_Index), 1)
-        GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
-    }	
-    
-    ;Mana Triggers
-    IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10, 00000
-    Loop, 5 {	
-        valueMana10 := substr(TriggerMana10, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
-    }
-    
-    ;Utility Buttons
-    IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
-    IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
-    IniRead, YesUtility3, settings.ini, Utility Buttons, YesUtility3, 0
-    IniRead, YesUtility4, settings.ini, Utility Buttons, YesUtility4, 0
-    IniRead, YesUtility5, settings.ini, Utility Buttons, YesUtility5, 0
-    IniRead, YesUtility1Quicksilver, settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
-    IniRead, YesUtility2Quicksilver, settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
-    IniRead, YesUtility3Quicksilver, settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
-    IniRead, YesUtility4Quicksilver, settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
-    IniRead, YesUtility5Quicksilver, settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
-    
-    ;Utility Percents	
-    IniRead, YesUtility1LifePercent, settings.ini, Utility Buttons, YesUtility1LifePercent, Off
-	IniRead, YesUtility2LifePercent, settings.ini, Utility Buttons, YesUtility2LifePercent, Off
-	IniRead, YesUtility3LifePercent, settings.ini, Utility Buttons, YesUtility3LifePercent, Off
-	IniRead, YesUtility4LifePercent, settings.ini, Utility Buttons, YesUtility4LifePercent, Off
-	IniRead, YesUtility5LifePercent, settings.ini, Utility Buttons, YesUtility5LifePercent, Off
-	IniRead, YesUtility1EsPercent, settings.ini, 	Utility Buttons, YesUtility1EsPercent, Off
-    IniRead, YesUtility2EsPercent, settings.ini, 	Utility Buttons, YesUtility2EsPercent, Off
-    IniRead, YesUtility3EsPercent, settings.ini, 	Utility Buttons, YesUtility3EsPercent, Off
-    IniRead, YesUtility4EsPercent, settings.ini, 	Utility Buttons, YesUtility4EsPercent, Off
-    IniRead, YesUtility5EsPercent, settings.ini, 	Utility Buttons, YesUtility5EsPercent, Off
-    
-    ;Utility Cooldowns
-    IniRead, CooldownUtility1, settings.ini, Utility Cooldowns, CooldownUtility1, 5000
-    IniRead, CooldownUtility2, settings.ini, Utility Cooldowns, CooldownUtility2, 5000
-    IniRead, CooldownUtility3, settings.ini, Utility Cooldowns, CooldownUtility3, 5000
-    IniRead, CooldownUtility4, settings.ini, Utility Cooldowns, CooldownUtility4, 5000
-    IniRead, CooldownUtility5, settings.ini, Utility Cooldowns, CooldownUtility5, 5000
-    
-    ;Utility Keys
-    IniRead, KeyUtility1, settings.ini, Utility Keys, KeyUtility1, q
-    IniRead, KeyUtility2, settings.ini, Utility Keys, KeyUtility2, w
-    IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
-    IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
-    IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
-
-    ;Utility Keys
-    IniRead, hotkeyUp, 		settings.ini, Controller Keys, hotkeyUp, 	w
-    IniRead, hotkeyDown, 	settings.ini, Controller Keys, hotkeyDown,  s
-    IniRead, hotkeyLeft, 	settings.ini, Controller Keys, hotkeyLeft,  a
-    IniRead, hotkeyRight, 	settings.ini, Controller Keys, hotkeyRight, d
-    
-    ;Flask Cooldowns
-    IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
-    IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2, 4800
-    IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
-    IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
-    IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
-    
-    ;Gem Swap
-    IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX, 1353
-    IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY, 224
-    IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX, 1407
-    IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY, 201
-    IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
-    
-    ;Coordinates
-    IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
-    IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
-    IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX, 1825
-    IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY, 825
-    IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX, 1875
-    IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY, 825
-    IniRead, StockPortal, settings.ini, Coordinates, StockPortal, 0
-    IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom, 0
-    
-    
-    ;Attack Flasks
-    IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack, 00000
-    IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack, 00000
-    Loop, 5{	
-        valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
-        GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
-        valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
-        GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
-    }
-    
-    ;Quicksilver
-    IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
-    IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
-    Loop, 5 {	
-        valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
-    }
-    
-    ;CharacterTypeCheck
-    IniRead, RadioLife, settings.ini, CharacterTypeCheck, Life, 1
-	IniRead, RadioHybrid, settings.ini, CharacterTypeCheck, Hybrid, 0
-    IniRead, RadioCi, settings.ini, CharacterTypeCheck, Ci, 0
-    
-    ;AutoQuit
-    IniRead, RadioQuit20, settings.ini, AutoQuit, Quit20, 1
-    IniRead, RadioQuit30, settings.ini, AutoQuit, Quit30, 0
-    IniRead, RadioQuit40, settings.ini, AutoQuit, Quit40, 0
-    IniRead, RadioCritQuit, settings.ini, AutoQuit, CritQuit, 1
-    IniRead, RadioNormalQuit, settings.ini, AutoQuit, NormalQuit, 0
-    
-    ;Profile Editbox
-    Iniread, ProfileText1, settings.ini, Profiles, ProfileText1, Profile 1
-    Iniread, ProfileText2, settings.ini, Profiles, ProfileText2, Profile 2
-    Iniread, ProfileText3, settings.ini, Profiles, ProfileText3, Profile 3
-    Iniread, ProfileText4, settings.ini, Profiles, ProfileText4, Profile 4
-    Iniread, ProfileText5, settings.ini, Profiles, ProfileText5, Profile 5
-    Iniread, ProfileText6, settings.ini, Profiles, ProfileText6, Profile 6
-    Iniread, ProfileText7, settings.ini, Profiles, ProfileText7, Profile 7
-    Iniread, ProfileText8, settings.ini, Profiles, ProfileText8, Profile 8
-    Iniread, ProfileText9, settings.ini, Profiles, ProfileText9, Profile 9
-    Iniread, ProfileText10, settings.ini, Profiles, ProfileText10, Profile 10
-
-    ;~ hotkeys reset
-    hotkey, IfWinActive, ahk_group POEGameGroup
-	If hotkeyAutoQuit
-        hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
-    If hotkeyAutoFlask
-        hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
-    If hotkeyQuickPortal
-        hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
-    If hotkeyGemSwap
-        hotkey,% hotkeyGemSwap, GemSwapCommand, Off
-    If hotkeyGetCoords
-        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, Off
-    If hotkeyPopFlasks
-        hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
-    If hotkeyLogout
-        hotkey,% hotkeyLogout, LogoutCommand, Off
-    If hotkeyItemSort
-        hotkey,% hotkeyItemSort, ItemSortCommand, Off
-    If hotkeyLootScan
-        hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
-    If hotkeyMainAttack
-        hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
-    If hotkeySecondaryAttack
-        hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
-
-    hotkey, IfWinActive
-	If hotkeyOptions
-        hotkey,% hotkeyOptions, optionsCommand, Off
-    hotkey, IfWinActive, ahk_group POEGameGroup
-        
-    ;~ hotkeys iniread
-    IniRead, hotkeyOptions, settings.ini, hotkeys, Options, !F10
-    IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit, !F12
-    IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask, !F11
-    IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
-    IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal, !q
-    IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap, !e
-    IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords, !o
-    IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks, CapsLock
-    IniRead, hotkeyLogout, settings.ini, hotkeys, Logout, F12
-    IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
-    IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory, c
-    IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey, x
-    IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort, F6
-    IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
-    IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
-    IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
-    
-    hotkey, IfWinActive, ahk_group POEGameGroup
-	If hotkeyAutoQuit
-        hotkey,% hotkeyAutoQuit, AutoQuitCommand, On
-    If hotkeyAutoFlask
-        hotkey,% hotkeyAutoFlask, AutoFlaskCommand, On
-    If hotkeyQuickPortal
-        hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
-    If hotkeyGemSwap
-        hotkey,% hotkeyGemSwap, GemSwapCommand, On
-    If hotkeyGetMouseCoords
-        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, On
-    If hotkeyPopFlasks
-        hotkey,% hotkeyPopFlasks, PopFlasksCommand, On
-    If hotkeyLogout
-        hotkey,% hotkeyLogout, LogoutCommand, On
-    If hotkeyItemSort
-        hotkey,% hotkeyItemSort, ItemSortCommand, On
-    If hotkeyLootScan
-        hotkey, $~%hotkeyLootScan%, LootScanCommand, On
-    If hotkeyMainAttack
-        hotkey, $~%hotkeyMainAttack%, MainAttackCommand, On
-    If hotkeySecondaryAttack
-        hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, On
-    
-    hotkey, IfWinActive
-    If hotkeyOptions {
-        hotkey,% hotkeyOptions, optionsCommand, On
-    	} else {
-        hotkey,!F10, optionsCommand, On
-        msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
-    	}
-	
-    IniRead, 1Prefix1, settings.ini, Chat Hotkeys, 1Prefix1, a
-    IniRead, 1Prefix2, settings.ini, Chat Hotkeys, 1Prefix2, %A_Space%
-    IniRead, 1Suffix1, settings.ini, Chat Hotkeys, 1Suffix1, 1
-    IniRead, 1Suffix2, settings.ini, Chat Hotkeys, 1Suffix2, 2
-    IniRead, 1Suffix3, settings.ini, Chat Hotkeys, 1Suffix3, 3
-    IniRead, 1Suffix4, settings.ini, Chat Hotkeys, 1Suffix4, 4
-    IniRead, 1Suffix5, settings.ini, Chat Hotkeys, 1Suffix5, 5
-    IniRead, 1Suffix6, settings.ini, Chat Hotkeys, 1Suffix6, 6
-    IniRead, 1Suffix7, settings.ini, Chat Hotkeys, 1Suffix7, 7
-    IniRead, 1Suffix8, settings.ini, Chat Hotkeys, 1Suffix8, 8
-    IniRead, 1Suffix9, settings.ini, Chat Hotkeys, 1Suffix9, 9
-
-    IniRead, 1Suffix1Text, settings.ini, Chat Hotkeys, 1Suffix1Text, /Hideout
-    IniRead, 1Suffix2Text, settings.ini, Chat Hotkeys, 1Suffix2Text, /menagerie
-    IniRead, 1Suffix3Text, settings.ini, Chat Hotkeys, 1Suffix3Text, /cls
-    IniRead, 1Suffix4Text, settings.ini, Chat Hotkeys, 1Suffix4Text, /ladder
-    IniRead, 1Suffix5Text, settings.ini, Chat Hotkeys, 1Suffix5Text, /reset_xp
-    IniRead, 1Suffix6Text, settings.ini, Chat Hotkeys, 1Suffix6Text, /invite RecipientName
-    IniRead, 1Suffix7Text, settings.ini, Chat Hotkeys, 1Suffix7Text, /kick RecipientName
-    IniRead, 1Suffix8Text, settings.ini, Chat Hotkeys, 1Suffix8Text, /kick CharacterName
-    IniRead, 1Suffix9Text, settings.ini, Chat Hotkeys, 1Suffix9Text, @RecipientName Still Interested?
-
-    IniRead, 2Prefix1, settings.ini, Chat Hotkeys, 2Prefix1, d
-    IniRead, 2Prefix2, settings.ini, Chat Hotkeys, 2Prefix2, %A_Space%
-    IniRead, 2Suffix1, settings.ini, Chat Hotkeys, 2Suffix1, 1
-    IniRead, 2Suffix2, settings.ini, Chat Hotkeys, 2Suffix2, 2
-    IniRead, 2Suffix3, settings.ini, Chat Hotkeys, 2Suffix3, 3
-    IniRead, 2Suffix4, settings.ini, Chat Hotkeys, 2Suffix4, 4
-    IniRead, 2Suffix5, settings.ini, Chat Hotkeys, 2Suffix5, 5
-    IniRead, 2Suffix6, settings.ini, Chat Hotkeys, 2Suffix6, 6
-    IniRead, 2Suffix7, settings.ini, Chat Hotkeys, 2Suffix7, 7
-    IniRead, 2Suffix8, settings.ini, Chat Hotkeys, 2Suffix8, 8
-    IniRead, 2Suffix9, settings.ini, Chat Hotkeys, 2Suffix9, 9
-	
-    IniRead, 2Suffix1Text, settings.ini, Chat Hotkeys, 2Suffix1Text, Sure, will invite in a sec.
-    IniRead, 2Suffix2Text, settings.ini, Chat Hotkeys, 2Suffix2Text, In a map, will get to you in a minute.
-    IniRead, 2Suffix3Text, settings.ini, Chat Hotkeys, 2Suffix3Text, Still Interested?
-    IniRead, 2Suffix4Text, settings.ini, Chat Hotkeys, 2Suffix4Text, Sorry, going to be a while.
-    IniRead, 2Suffix5Text, settings.ini, Chat Hotkeys, 2Suffix5Text, No thank you.
-    IniRead, 2Suffix6Text, settings.ini, Chat Hotkeys, 2Suffix6Text, No thank you.
-    IniRead, 2Suffix7Text, settings.ini, Chat Hotkeys, 2Suffix7Text, No thank you.
-    IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
-    IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
-
-    IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, Numpad0
-    IniRead, stashPrefix2, settings.ini, Stash Hotkeys, stashPrefix2, %A_Space%
-    IniRead, stashSuffix1, settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
-    IniRead, stashSuffix2, settings.ini, Stash Hotkeys, stashSuffix2, Numpad2
-    IniRead, stashSuffix3, settings.ini, Stash Hotkeys, stashSuffix3, Numpad3
-    IniRead, stashSuffix4, settings.ini, Stash Hotkeys, stashSuffix4, Numpad4
-    IniRead, stashSuffix5, settings.ini, Stash Hotkeys, stashSuffix5, Numpad5
-    IniRead, stashSuffix6, settings.ini, Stash Hotkeys, stashSuffix6, Numpad6
-    IniRead, stashSuffix7, settings.ini, Stash Hotkeys, stashSuffix7, Numpad7
-    IniRead, stashSuffix8, settings.ini, Stash Hotkeys, stashSuffix8, Numpad8
-    IniRead, stashSuffix9, settings.ini, Stash Hotkeys, stashSuffix9, Numpad9
-	
-    IniRead, stashSuffixTab1, settings.ini, Stash Hotkeys, stashSuffixTab1, 1
-    IniRead, stashSuffixTab2, settings.ini, Stash Hotkeys, stashSuffixTab2, 2
-    IniRead, stashSuffixTab3, settings.ini, Stash Hotkeys, stashSuffixTab3, 3
-    IniRead, stashSuffixTab4, settings.ini, Stash Hotkeys, stashSuffixTab4, 4
-    IniRead, stashSuffixTab5, settings.ini, Stash Hotkeys, stashSuffixTab5, 5
-    IniRead, stashSuffixTab6, settings.ini, Stash Hotkeys, stashSuffixTab6, 6
-    IniRead, stashSuffixTab7, settings.ini, Stash Hotkeys, stashSuffixTab7, 7
-    IniRead, stashSuffixTab8, settings.ini, Stash Hotkeys, stashSuffixTab8, 8
-    IniRead, stashSuffixTab9, settings.ini, Stash Hotkeys, stashSuffixTab9, 9
-
-
-	;Controller setup
-    IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, ^LButton
-    IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
-    IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, r
-    IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
-    IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
-    IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
-    IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
-    IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Tab
-    IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Logout
-    IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
-	
-	IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
-
-	IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
-	IniRead, YesTriggerUtilityJoystickKey, settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
-	IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
-	IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
-	IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
-	IniRead, YesController, settings.ini, Controller, YesController, 0
-	IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
-
-	;settings for the Ninja Database
-	IniRead, LastDatabaseParseDate, Settings.ini, Database, LastDatabaseParseDate, 20190913
-	IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Blight
-	IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
-	IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
-
-	RegisterHotkeys()
-    checkActiveType()
-Return
-}
-
-submit(){  
-updateEverything:
-    global
-    Thread, NoTimers, true		;Critical
-
-    ;~ hotkeys reset
-    hotkey, IfWinActive, ahk_group POEGameGroup
-	If hotkeyAutoQuit
-        hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
-    If hotkeyAutoFlask
-        hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
-    If hotkeyQuickPortal
-        hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
-    If hotkeyGemSwap
-        hotkey,% hotkeyGemSwap, GemSwapCommand, Off
-    If hotkeyGetCoords
-        hotkey,% hotkeyGetMouseCoords, CoordAndDebugCommand, Off
-    If hotkeyPopFlasks
-        hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
-    If hotkeyLogout
-        hotkey,% hotkeyLogout, LogoutCommand, Off
-    If hotkeyItemSort
-        hotkey,% hotkeyItemSort, ItemSortCommand, Off
-    If hotkeyLootScan
-        hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
-    If hotkeyMainAttack
-        hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
-    If hotkeySecondaryAttack
-        hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
-
-    Hotkey If, % fn1
-	If 1Suffix1
-		Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
-	If 1Suffix2
-		Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
-	If 1Suffix3
-		Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
-	If 1Suffix4
-		Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
-	If 1Suffix5
-		Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
-	If 1Suffix6
-		Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
-	If 1Suffix7
-		Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
-	If 1Suffix8
-		Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
-	If 1Suffix9
-		Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
-
-    Hotkey If, % fn2
-	If 2Suffix1
-		Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
-	If 2Suffix2
-		Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
-	If 2Suffix3
-		Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
-	If 2Suffix4
-		Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
-	If 2Suffix5
-		Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
-	If 2Suffix6
-		Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
-	If 2Suffix7
-		Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
-	If 2Suffix8
-		Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
-	If 2Suffix9
-		Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
-
-    Hotkey If, % fn3
-	If stashSuffix1
-		Hotkey, *%stashSuffix1%, FireStashHotkey1, off
-	If stashSuffix2
-		Hotkey, *%stashSuffix2%, FireStashHotkey2, off
-	If stashSuffix3
-		Hotkey, *%stashSuffix3%, FireStashHotkey3, off
-	If stashSuffix4
-		Hotkey, *%stashSuffix4%, FireStashHotkey4, off
-	If stashSuffix5
-		Hotkey, *%stashSuffix5%, FireStashHotkey5, off
-	If stashSuffix6
-		Hotkey, *%stashSuffix6%, FireStashHotkey6, off
-	If stashSuffix7
-		Hotkey, *%stashSuffix7%, FireStashHotkey7, off
-	If stashSuffix8
-		Hotkey, *%stashSuffix8%, FireStashHotkey8, off
-	If stashSuffix9
-		Hotkey, *%stashSuffix9%, FireStashHotkey9, off
-
-    hotkey, IfWinActive
-	If hotkeyOptions
-        hotkey,% hotkeyOptions, optionsCommand, Off
-    hotkey, IfWinActive, ahk_group POEGameGroup
-        
-    IfWinExist, ahk_group POEGameGroup 
-    {
-        Gui, Submit
-        Rescale()
-        Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
-        ToggleExist := True
-        WinActivate, ahk_group POEGameGroup
-
-        ;Life Resample
-        pixelgetcolor, varLife20, vX_Life, vY_Life20
-		pixelgetcolor, varLife30, vX_Life, vY_Life30
-		pixelgetcolor, varLife40, vX_Life, vY_Life40
-		pixelgetcolor, varLife50, vX_Life, vY_Life50
-		pixelgetcolor, varLife60, vX_Life, vY_Life60
-		pixelgetcolor, varLife70, vX_Life, vY_Life70
-		pixelgetcolor, varLife80, vX_Life, vY_Life80
-		pixelgetcolor, varLife90, vX_Life, vY_Life90
-            
-        IniWrite, %varLife20%, settings.ini, Life Colors, Life20
-		IniWrite, %varLife30%, settings.ini, Life Colors, Life30
-		IniWrite, %varLife40%, settings.ini, Life Colors, Life40
-		IniWrite, %varLife50%, settings.ini, Life Colors, Life50
-		IniWrite, %varLife60%, settings.ini, Life Colors, Life60
-		IniWrite, %varLife70%, settings.ini, Life Colors, Life70
-		IniWrite, %varLife80%, settings.ini, Life Colors, Life80
-		IniWrite, %varLife90%, settings.ini, Life Colors, Life90
-		;ES Resample
-        pixelgetcolor, varES20, vX_ES, vY_ES20
-        pixelgetcolor, varES30, vX_ES, vY_ES30
-        pixelgetcolor, varES40, vX_ES, vY_ES40
-        pixelgetcolor, varES50, vX_ES, vY_ES50
-        pixelgetcolor, varES60, vX_ES, vY_ES60
-        pixelgetcolor, varES70, vX_ES, vY_ES70
-        pixelgetcolor, varES80, vX_ES, vY_ES80
-        pixelgetcolor, varES90, vX_ES, vY_ES90
-        
-        IniWrite, %varES20%, settings.ini, ES Colors, ES20
-        IniWrite, %varES30%, settings.ini, ES Colors, ES30
-        IniWrite, %varES40%, settings.ini, ES Colors, ES40
-        IniWrite, %varES50%, settings.ini, ES Colors, ES50
-        IniWrite, %varES60%, settings.ini, ES Colors, ES60
-        IniWrite, %varES70%, settings.ini, ES Colors, ES70
-        IniWrite, %varES80%, settings.ini, ES Colors, ES80
-        IniWrite, %varES90%, settings.ini, ES Colors, ES90
-        ;Mana Resample
-        pixelgetcolor, varMana10, vX_Mana, vY_Mana10
-        
-        IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
-        ;Messagebox	
-        ToolTip % "Resampled the Life, ES, and Mana colors`nMake sure you were on your character!"
-            SetTimer, RemoveToolTip, -5000
-    } Else {
-        MsgBox % "Game is not Open`nWill not Resample the Life, ES, or Mana colors!`nAll other settings will save."
-        Gui, Submit, NoHide
-    }
-    
-    ;Life Flasks
-    IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
-	IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
-	IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
-	IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
-	IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
-	IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
-	IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
-	IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
-	IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
-        
-    
-    ;ES Flasks
-    IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, settings.ini, ES Triggers, TriggerES20
-    IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, settings.ini, ES Triggers, TriggerES30
-    IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, settings.ini, ES Triggers, TriggerES40
-    IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, settings.ini, ES Triggers, TriggerES50
-    IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, settings.ini, ES Triggers, TriggerES60
-    IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, settings.ini, ES Triggers, TriggerES70
-    IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, settings.ini, ES Triggers, TriggerES80
-    IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, settings.ini, ES Triggers, TriggerES90
-    IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, settings.ini, ES Triggers, DisableES
-    ;Mana Flasks
-    IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10
-    
-    ;Bandit Extra options
-    IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
-    IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
-    IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
-    IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
-    IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
-    IniWrite, %YesVendor%, settings.ini, General, YesVendor
-    IniWrite, %YesStash%, settings.ini, General, YesStash
-    IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
-    IniWrite, %YesDiv%, settings.ini, General, YesDiv
-	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
-    IniWrite, %Latency%, settings.ini, General, Latency
-    IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
-    IniWrite, %Steam%, settings.ini, General, Steam
-    IniWrite, %HighBits%, settings.ini, General, HighBits
-    IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
-    IniWrite, %CharName%, settings.ini, General, CharName
-    IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
-    IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
-    IniWrite, %QSonMainAttack%, settings.ini, General, QSonMainAttack
-    IniWrite, %QSonSecondaryAttack%, settings.ini, General, QSonSecondaryAttack
-
-    ;~ Hotkeys 
-    IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
-    IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit
-    IniWrite, %hotkeyAutoFlask%, settings.ini, hotkeys, AutoFlask
-    IniWrite, %hotkeyAutoQuicksilver%, settings.ini, hotkeys, AutoQuicksilver
-    IniWrite, %hotkeyQuickPortal%, settings.ini, hotkeys, QuickPortal
-    IniWrite, %hotkeyGemSwap%, settings.ini, hotkeys, GemSwap
-    IniWrite, %hotkeyGetMouseCoords%, settings.ini, hotkeys, GetMouseCoords
-    IniWrite, %hotkeyPopFlasks%, settings.ini, hotkeys, PopFlasks
-    IniWrite, %hotkeyLogout%, settings.ini, hotkeys, Logout
-    IniWrite, %hotkeyCloseAllUI%, settings.ini, hotkeys, CloseAllUI
-    IniWrite, %hotkeyInventory%, settings.ini, hotkeys, Inventory
-    IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey
-    IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort
-    IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
-    IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
-    IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
-    
-    ;Utility Keys
-    IniWrite, %hotkeyUp%, 		settings.ini, Controller Keys, hotkeyUp
-    IniWrite, %hotkeyDown%, 	settings.ini, Controller Keys, hotkeyDown
-    IniWrite, %hotkeyLeft%, 	settings.ini, Controller Keys, hotkeyLeft
-    IniWrite, %hotkeyRight%, 	settings.ini, Controller Keys, hotkeyRight
-    
-    ;Utility Buttons
-    IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
-    IniWrite, %YesUtility2%, settings.ini, Utility Buttons, YesUtility2
-    IniWrite, %YesUtility3%, settings.ini, Utility Buttons, YesUtility3
-    IniWrite, %YesUtility4%, settings.ini, Utility Buttons, YesUtility4
-    IniWrite, %YesUtility5%, settings.ini, Utility Buttons, YesUtility5
-    IniWrite, %YesUtility1Quicksilver%, settings.ini, Utility Buttons, YesUtility1Quicksilver
-    IniWrite, %YesUtility2Quicksilver%, settings.ini, Utility Buttons, YesUtility2Quicksilver
-    IniWrite, %YesUtility3Quicksilver%, settings.ini, Utility Buttons, YesUtility3Quicksilver
-    IniWrite, %YesUtility4Quicksilver%, settings.ini, Utility Buttons, YesUtility4Quicksilver
-    IniWrite, %YesUtility5Quicksilver%, settings.ini, Utility Buttons, YesUtility5Quicksilver
-    
-    ;Utility Percents	
-    IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
-	IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
-	IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
-	IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
-	IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
-	IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
-    IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
-    IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
-    IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
-    IniWrite, %YesUtility5EsPercent%, settings.ini, Utility Buttons, YesUtility5EsPercent
-    
-    ;Utility Cooldowns
-    IniWrite, %CooldownUtility1%, settings.ini, Utility Cooldowns, CooldownUtility1
-    IniWrite, %CooldownUtility2%, settings.ini, Utility Cooldowns, CooldownUtility2
-    IniWrite, %CooldownUtility3%, settings.ini, Utility Cooldowns, CooldownUtility3
-    IniWrite, %CooldownUtility4%, settings.ini, Utility Cooldowns, CooldownUtility4
-    IniWrite, %CooldownUtility5%, settings.ini, Utility Cooldowns, CooldownUtility5
-    
-    ;Utility Keys
-    IniWrite, %KeyUtility1%, settings.ini, Utility Keys, KeyUtility1
-    IniWrite, %KeyUtility2%, settings.ini, Utility Keys, KeyUtility2
-    IniWrite, %KeyUtility3%, settings.ini, Utility Keys, KeyUtility3
-    IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
-    IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
-    
-    ;Flask Cooldowns
-    IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
-    IniWrite, %CooldownFlask2%, settings.ini, Flask Cooldowns, CooldownFlask2
-    IniWrite, %CooldownFlask3%, settings.ini, Flask Cooldowns, CooldownFlask3
-    IniWrite, %CooldownFlask4%, settings.ini, Flask Cooldowns, CooldownFlask4
-    IniWrite, %CooldownFlask5%, settings.ini, Flask Cooldowns, CooldownFlask5	
-    
-    ;Gem Swap
-    IniWrite, %CurrentGemX%, settings.ini, Gem Swap, CurrentGemX
-    IniWrite, %CurrentGemY%, settings.ini, Gem Swap, CurrentGemY
-    IniWrite, %AlternateGemX%, settings.ini, Gem Swap, AlternateGemX
-    IniWrite, %AlternateGemY%, settings.ini, Gem Swap, AlternateGemY
-    IniWrite, %AlternateGemOnSecondarySlot%, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
-    
-    ;~ Scroll locations
-    IniWrite, %PortalScrollX%, settings.ini, Coordinates, PortalScrollX
-    IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY
-    IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX
-    IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY
-    IniWrite, %StockPortal%, settings.ini, Coordinates, StockPortal
-    IniWrite, %StockWisdom%, settings.ini, Coordinates, StockWisdom
-    
-    ;Stash Tab Management
-    IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
-    IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
-    IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
-    IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
-    IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
-    IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
-    IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
-    IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
-    IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
-    IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
-    IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
-    IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-    IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
-    IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
-    IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
-    IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
-    IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
-    IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
-    IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
-    IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
-    IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
-    IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
-    IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
-    IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
-    IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
-    IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
-    IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
-    IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-    IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
-    IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
-    IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
-    IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
-    
-    ;Attack Flasks
-    IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
-    IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, settings.ini, Attack Triggers, TriggerSecondaryAttack
-    
-    ;Quicksilver Flasks
-    IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
-    IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver
-    
-    ;CharacterTypeCheck
-    IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
-	IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid	
-    IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci	
-    
-    ;AutoQuit
-    IniWrite, %RadioQuit20%, settings.ini, AutoQuit, Quit20
-    IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30
-    IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
-    IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
-    IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
-
-	;Chat Hotkeys
-    IniWrite, %1Prefix1%, settings.ini, Chat Hotkeys, 1Prefix1
-    IniWrite, %1Prefix2%, settings.ini, Chat Hotkeys, 1Prefix2
-    IniWrite, %1Suffix1%, settings.ini, Chat Hotkeys, 1Suffix1
-    IniWrite, %1Suffix2%, settings.ini, Chat Hotkeys, 1Suffix2
-    IniWrite, %1Suffix3%, settings.ini, Chat Hotkeys, 1Suffix3
-    IniWrite, %1Suffix4%, settings.ini, Chat Hotkeys, 1Suffix4
-    IniWrite, %1Suffix5%, settings.ini, Chat Hotkeys, 1Suffix5
-    IniWrite, %1Suffix6%, settings.ini, Chat Hotkeys, 1Suffix6
-    IniWrite, %1Suffix7%, settings.ini, Chat Hotkeys, 1Suffix7
-    IniWrite, %1Suffix8%, settings.ini, Chat Hotkeys, 1Suffix8
-    IniWrite, %1Suffix9%, settings.ini, Chat Hotkeys, 1Suffix9
-
-    IniWrite, %1Suffix1Text%, settings.ini, Chat Hotkeys, 1Suffix1Text
-    IniWrite, %1Suffix2Text%, settings.ini, Chat Hotkeys, 1Suffix2Text
-    IniWrite, %1Suffix3Text%, settings.ini, Chat Hotkeys, 1Suffix3Text
-    IniWrite, %1Suffix4Text%, settings.ini, Chat Hotkeys, 1Suffix4Text
-    IniWrite, %1Suffix5Text%, settings.ini, Chat Hotkeys, 1Suffix5Text
-    IniWrite, %1Suffix6Text%, settings.ini, Chat Hotkeys, 1Suffix6Text
-    IniWrite, %1Suffix7Text%, settings.ini, Chat Hotkeys, 1Suffix7Text
-    IniWrite, %1Suffix8Text%, settings.ini, Chat Hotkeys, 1Suffix8Text
-    IniWrite, %1Suffix9Text%, settings.ini, Chat Hotkeys, 1Suffix9Text
-
-    IniWrite, %2Prefix1%, settings.ini, Chat Hotkeys, 2Prefix1
-    IniWrite, %2Prefix2%, settings.ini, Chat Hotkeys, 2Prefix2
-    IniWrite, %2Suffix1%, settings.ini, Chat Hotkeys, 2Suffix1
-    IniWrite, %2Suffix2%, settings.ini, Chat Hotkeys, 2Suffix2
-    IniWrite, %2Suffix3%, settings.ini, Chat Hotkeys, 2Suffix3
-    IniWrite, %2Suffix4%, settings.ini, Chat Hotkeys, 2Suffix4
-    IniWrite, %2Suffix5%, settings.ini, Chat Hotkeys, 2Suffix5
-    IniWrite, %2Suffix6%, settings.ini, Chat Hotkeys, 2Suffix6
-    IniWrite, %2Suffix7%, settings.ini, Chat Hotkeys, 2Suffix7
-    IniWrite, %2Suffix8%, settings.ini, Chat Hotkeys, 2Suffix8
-    IniWrite, %2Suffix9%, settings.ini, Chat Hotkeys, 2Suffix9
-	
-    IniWrite, %2Suffix1Text%, settings.ini, Chat Hotkeys, 2Suffix1Text
-    IniWrite, %2Suffix2Text%, settings.ini, Chat Hotkeys, 2Suffix2Text
-    IniWrite, %2Suffix3Text%, settings.ini, Chat Hotkeys, 2Suffix3Text
-    IniWrite, %2Suffix4Text%, settings.ini, Chat Hotkeys, 2Suffix4Text
-    IniWrite, %2Suffix5Text%, settings.ini, Chat Hotkeys, 2Suffix5Text
-    IniWrite, %2Suffix6Text%, settings.ini, Chat Hotkeys, 2Suffix6Text
-    IniWrite, %2Suffix7Text%, settings.ini, Chat Hotkeys, 2Suffix7Text
-    IniWrite, %2Suffix8Text%, settings.ini, Chat Hotkeys, 2Suffix8Text
-    IniWrite, %2Suffix9Text%, settings.ini, Chat Hotkeys, 2Suffix9Text
-
-    IniWrite, %stashPrefix1%, settings.ini, Stash Hotkeys, stashPrefix1
-    IniWrite, %stashPrefix2%, settings.ini, Stash Hotkeys, stashPrefix2
-    IniWrite, %stashSuffix1%, settings.ini, Stash Hotkeys, stashSuffix1
-    IniWrite, %stashSuffix2%, settings.ini, Stash Hotkeys, stashSuffix2
-    IniWrite, %stashSuffix3%, settings.ini, Stash Hotkeys, stashSuffix3
-    IniWrite, %stashSuffix4%, settings.ini, Stash Hotkeys, stashSuffix4
-    IniWrite, %stashSuffix5%, settings.ini, Stash Hotkeys, stashSuffix5
-    IniWrite, %stashSuffix6%, settings.ini, Stash Hotkeys, stashSuffix6
-    IniWrite, %stashSuffix7%, settings.ini, Stash Hotkeys, stashSuffix7
-    IniWrite, %stashSuffix8%, settings.ini, Stash Hotkeys, stashSuffix8
-    IniWrite, %stashSuffix9%, settings.ini, Stash Hotkeys, stashSuffix9
-	
-    IniWrite, %stashSuffixTab1%, settings.ini, Stash Hotkeys, stashSuffixTab1
-    IniWrite, %stashSuffixTab2%, settings.ini, Stash Hotkeys, stashSuffixTab2
-    IniWrite, %stashSuffixTab3%, settings.ini, Stash Hotkeys, stashSuffixTab3
-    IniWrite, %stashSuffixTab4%, settings.ini, Stash Hotkeys, stashSuffixTab4
-    IniWrite, %stashSuffixTab5%, settings.ini, Stash Hotkeys, stashSuffixTab5
-    IniWrite, %stashSuffixTab6%, settings.ini, Stash Hotkeys, stashSuffixTab6
-    IniWrite, %stashSuffixTab7%, settings.ini, Stash Hotkeys, stashSuffixTab7
-    IniWrite, %stashSuffixTab8%, settings.ini, Stash Hotkeys, stashSuffixTab8
-    IniWrite, %stashSuffixTab9%, settings.ini, Stash Hotkeys, stashSuffixTab9
-
-	;Controller setup
-    IniWrite, %hotkeyControllerButton1%, settings.ini, Controller Keys, ControllerButton1
-    IniWrite, %hotkeyControllerButton2%, settings.ini, Controller Keys, ControllerButton2
-    IniWrite, %hotkeyControllerButton3%, settings.ini, Controller Keys, ControllerButton3
-    IniWrite, %hotkeyControllerButton4%, settings.ini, Controller Keys, ControllerButton4
-    IniWrite, %hotkeyControllerButton5%, settings.ini, Controller Keys, ControllerButton5
-    IniWrite, %hotkeyControllerButton6%, settings.ini, Controller Keys, ControllerButton6
-    IniWrite, %hotkeyControllerButton7%, settings.ini, Controller Keys, ControllerButton7
-    IniWrite, %hotkeyControllerButton8%, settings.ini, Controller Keys, ControllerButton8
-    IniWrite, %hotkeyControllerButton9%, settings.ini, Controller Keys, ControllerButton9
-    IniWrite, %hotkeyControllerButton10%, settings.ini, Controller Keys, ControllerButton10
-	
-	IniWrite, %hotkeyControllerJoystick2%, settings.ini, Controller Keys, hotkeyControllerJoystick2
-
-	IniWrite, %YesTriggerUtilityKey%, settings.ini, Controller, YesTriggerUtilityKey
-	IniWrite, %YesTriggerUtilityJoystickKey%, settings.ini, Controller, YesTriggerUtilityJoystickKey
-	IniWrite, %YesTriggerJoystick2Key%, settings.ini, Controller, YesTriggerJoystick2Key
-	IniWrite, %TriggerUtilityKey%, settings.ini, Controller, TriggerUtilityKey
-	IniWrite, %YesMovementKeys%, settings.ini, Controller, YesMovementKeys
-	IniWrite, %YesController%, settings.ini, Controller, YesController
-	IniWrite, %JoystickNumber%, settings.ini, Controller, JoystickNumber
-
-	;Settings for Ninja parse
-	IniWrite, %LastDatabaseParseDate%, Settings.ini, Database, LastDatabaseParseDate
-	IniWrite, %selectedLeague%, Settings.ini, Database, selectedLeague
-	IniWrite, %UpdateDatabaseInterval%, Settings.ini, Database, UpdateDatabaseInterval
-	IniWrite, %YesNinjaDatabase%, Settings.ini, Database, YesNinjaDatabase
-
-    readFromFile()
-	If (YesPersistantToggle)
-		AutoReset()
-    GuiUpdate()
-    SetTitleMatchMode 2
-    IfWinExist, ahk_group POEGameGroup
-    	{
-        WinActivate, ahk_group POEGameGroup
-    	}
-    SendMSG(1, , scriptGottaGoFast)
-return  
-}
-
-submitProfile(Profile){  
-    global
-    Gui, Submit, NoHide
-    
-    ;Life Flasks
-    
-	IniWrite, %Radiobox1Life20%, settings.ini, Profile%Profile%, Radiobox1Life20
-	IniWrite, %Radiobox2Life20%, settings.ini, Profile%Profile%, Radiobox2Life20
-	IniWrite, %Radiobox3Life20%, settings.ini, Profile%Profile%, Radiobox3Life20
-	IniWrite, %Radiobox4Life20%, settings.ini, Profile%Profile%, Radiobox4Life20
-	IniWrite, %Radiobox5Life20%, settings.ini, Profile%Profile%, Radiobox5Life20
-
-	IniWrite, %Radiobox1Life30%, settings.ini, Profile%Profile%, Radiobox1Life30
-	IniWrite, %Radiobox2Life30%, settings.ini, Profile%Profile%, Radiobox2Life30
-	IniWrite, %Radiobox3Life30%, settings.ini, Profile%Profile%, Radiobox3Life30
-	IniWrite, %Radiobox4Life30%, settings.ini, Profile%Profile%, Radiobox4Life30
-	IniWrite, %Radiobox5Life30%, settings.ini, Profile%Profile%, Radiobox5Life30
-
-	IniWrite, %Radiobox1Life40%, settings.ini, Profile%Profile%, Radiobox1Life40
-	IniWrite, %Radiobox2Life40%, settings.ini, Profile%Profile%, Radiobox2Life40
-	IniWrite, %Radiobox3Life40%, settings.ini, Profile%Profile%, Radiobox3Life40
-	IniWrite, %Radiobox4Life40%, settings.ini, Profile%Profile%, Radiobox4Life40
-	IniWrite, %Radiobox5Life40%, settings.ini, Profile%Profile%, Radiobox5Life40
-
-	IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
-	IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
-	IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
-	IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
-	IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
-
-	IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
-	IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
-	IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
-	IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
-	IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
-
-	IniWrite, %Radiobox1Life60%, settings.ini, Profile%Profile%, Radiobox1Life60
-	IniWrite, %Radiobox2Life60%, settings.ini, Profile%Profile%, Radiobox2Life60
-	IniWrite, %Radiobox3Life60%, settings.ini, Profile%Profile%, Radiobox3Life60
-	IniWrite, %Radiobox4Life60%, settings.ini, Profile%Profile%, Radiobox4Life60
-	IniWrite, %Radiobox5Life60%, settings.ini, Profile%Profile%, Radiobox5Life60
-
-	IniWrite, %Radiobox1Life70%, settings.ini, Profile%Profile%, Radiobox1Life70
-	IniWrite, %Radiobox2Life70%, settings.ini, Profile%Profile%, Radiobox2Life70
-	IniWrite, %Radiobox3Life70%, settings.ini, Profile%Profile%, Radiobox3Life70
-	IniWrite, %Radiobox4Life70%, settings.ini, Profile%Profile%, Radiobox4Life70
-	IniWrite, %Radiobox5Life70%, settings.ini, Profile%Profile%, Radiobox5Life70
-
-	IniWrite, %Radiobox1Life80%, settings.ini, Profile%Profile%, Radiobox1Life80
-	IniWrite, %Radiobox2Life80%, settings.ini, Profile%Profile%, Radiobox2Life80
-	IniWrite, %Radiobox3Life80%, settings.ini, Profile%Profile%, Radiobox3Life80
-	IniWrite, %Radiobox4Life80%, settings.ini, Profile%Profile%, Radiobox4Life80
-	IniWrite, %Radiobox5Life80%, settings.ini, Profile%Profile%, Radiobox5Life80
-
-	IniWrite, %Radiobox1Life90%, settings.ini, Profile%Profile%, Radiobox1Life90
-	IniWrite, %Radiobox2Life90%, settings.ini, Profile%Profile%, Radiobox2Life90
-	IniWrite, %Radiobox3Life90%, settings.ini, Profile%Profile%, Radiobox3Life90
-	IniWrite, %Radiobox4Life90%, settings.ini, Profile%Profile%, Radiobox4Life90
-	IniWrite, %Radiobox5Life90%, settings.ini, Profile%Profile%, Radiobox5Life90
-
-	IniWrite, %RadioUncheck1Life%, settings.ini, Profile%Profile%, RadioUncheck1Life
-	IniWrite, %RadioUncheck2Life%, settings.ini, Profile%Profile%, RadioUncheck2Life
-	IniWrite, %RadioUncheck3Life%, settings.ini, Profile%Profile%, RadioUncheck3Life
-	IniWrite, %RadioUncheck4Life%, settings.ini, Profile%Profile%, RadioUncheck4Life
-	IniWrite, %RadioUncheck5Life%, settings.ini, Profile%Profile%, RadioUncheck5Life
-	
-    ;ES Flasks
-    IniWrite, %Radiobox1ES20%, settings.ini, Profile%Profile%, Radiobox1ES20
-    IniWrite, %Radiobox2ES20%, settings.ini, Profile%Profile%, Radiobox2ES20
-    IniWrite, %Radiobox3ES20%, settings.ini, Profile%Profile%, Radiobox3ES20
-    IniWrite, %Radiobox4ES20%, settings.ini, Profile%Profile%, Radiobox4ES20
-    IniWrite, %Radiobox5ES20%, settings.ini, Profile%Profile%, Radiobox5ES20
-    
-    IniWrite, %Radiobox1ES30%, settings.ini, Profile%Profile%, Radiobox1ES30
-    IniWrite, %Radiobox2ES30%, settings.ini, Profile%Profile%, Radiobox2ES30
-    IniWrite, %Radiobox3ES30%, settings.ini, Profile%Profile%, Radiobox3ES30
-    IniWrite, %Radiobox4ES30%, settings.ini, Profile%Profile%, Radiobox4ES30
-    IniWrite, %Radiobox5ES30%, settings.ini, Profile%Profile%, Radiobox5ES30
-    
-    IniWrite, %Radiobox1ES40%, settings.ini, Profile%Profile%, Radiobox1ES40
-    IniWrite, %Radiobox2ES40%, settings.ini, Profile%Profile%, Radiobox2ES40
-    IniWrite, %Radiobox3ES40%, settings.ini, Profile%Profile%, Radiobox3ES40
-    IniWrite, %Radiobox4ES40%, settings.ini, Profile%Profile%, Radiobox4ES40
-    IniWrite, %Radiobox5ES40%, settings.ini, Profile%Profile%, Radiobox5ES40
-    
-    IniWrite, %Radiobox1ES50%, settings.ini, Profile%Profile%, Radiobox1ES50
-    IniWrite, %Radiobox2ES50%, settings.ini, Profile%Profile%, Radiobox2ES50
-    IniWrite, %Radiobox3ES50%, settings.ini, Profile%Profile%, Radiobox3ES50
-    IniWrite, %Radiobox4ES50%, settings.ini, Profile%Profile%, Radiobox4ES50
-    IniWrite, %Radiobox5ES50%, settings.ini, Profile%Profile%, Radiobox5ES50
-    
-    IniWrite, %Radiobox1ES50%, settings.ini, Profile%Profile%, Radiobox1ES50
-    IniWrite, %Radiobox2ES50%, settings.ini, Profile%Profile%, Radiobox2ES50
-    IniWrite, %Radiobox3ES50%, settings.ini, Profile%Profile%, Radiobox3ES50
-    IniWrite, %Radiobox4ES50%, settings.ini, Profile%Profile%, Radiobox4ES50
-    IniWrite, %Radiobox5ES50%, settings.ini, Profile%Profile%, Radiobox5ES50
-    
-    IniWrite, %Radiobox1ES60%, settings.ini, Profile%Profile%, Radiobox1ES60
-    IniWrite, %Radiobox2ES60%, settings.ini, Profile%Profile%, Radiobox2ES60
-    IniWrite, %Radiobox3ES60%, settings.ini, Profile%Profile%, Radiobox3ES60
-    IniWrite, %Radiobox4ES60%, settings.ini, Profile%Profile%, Radiobox4ES60
-    IniWrite, %Radiobox5ES60%, settings.ini, Profile%Profile%, Radiobox5ES60
-    
-    IniWrite, %Radiobox1ES70%, settings.ini, Profile%Profile%, Radiobox1ES70
-    IniWrite, %Radiobox2ES70%, settings.ini, Profile%Profile%, Radiobox2ES70
-    IniWrite, %Radiobox3ES70%, settings.ini, Profile%Profile%, Radiobox3ES70
-    IniWrite, %Radiobox4ES70%, settings.ini, Profile%Profile%, Radiobox4ES70
-    IniWrite, %Radiobox5ES70%, settings.ini, Profile%Profile%, Radiobox5ES70
-    
-    IniWrite, %Radiobox1ES80%, settings.ini, Profile%Profile%, Radiobox1ES80
-    IniWrite, %Radiobox2ES80%, settings.ini, Profile%Profile%, Radiobox2ES80
-    IniWrite, %Radiobox3ES80%, settings.ini, Profile%Profile%, Radiobox3ES80
-    IniWrite, %Radiobox4ES80%, settings.ini, Profile%Profile%, Radiobox4ES80
-    IniWrite, %Radiobox5ES80%, settings.ini, Profile%Profile%, Radiobox5ES80
-    
-    IniWrite, %Radiobox1ES90%, settings.ini, Profile%Profile%, Radiobox1ES90
-    IniWrite, %Radiobox2ES90%, settings.ini, Profile%Profile%, Radiobox2ES90
-    IniWrite, %Radiobox3ES90%, settings.ini, Profile%Profile%, Radiobox3ES90
-    IniWrite, %Radiobox4ES90%, settings.ini, Profile%Profile%, Radiobox4ES90
-    IniWrite, %Radiobox5ES90%, settings.ini, Profile%Profile%, Radiobox5ES90
-    
-    IniWrite, %RadioUncheck1ES%, settings.ini, Profile%Profile%, RadioUncheck1ES
-    IniWrite, %RadioUncheck2ES%, settings.ini, Profile%Profile%, RadioUncheck2ES
-    IniWrite, %RadioUncheck3ES%, settings.ini, Profile%Profile%, RadioUncheck3ES
-    IniWrite, %RadioUncheck4ES%, settings.ini, Profile%Profile%, RadioUncheck4ES
-    IniWrite, %RadioUncheck5ES%, settings.ini, Profile%Profile%, RadioUncheck5ES
-    
-    ;Mana Flasks
-    IniWrite, %Radiobox1Mana10%, settings.ini, Profile%Profile%, Radiobox1Mana10
-    IniWrite, %Radiobox2Mana10%, settings.ini, Profile%Profile%, Radiobox2Mana10
-    IniWrite, %Radiobox3Mana10%, settings.ini, Profile%Profile%, Radiobox3Mana10
-    IniWrite, %Radiobox4Mana10%, settings.ini, Profile%Profile%, Radiobox4Mana10
-    IniWrite, %Radiobox5Mana10%, settings.ini, Profile%Profile%, Radiobox5Mana10
-    
-    ;Flask Cooldowns
-    IniWrite, %CooldownFlask1%, settings.ini, Profile%Profile%, CooldownFlask1
-    IniWrite, %CooldownFlask2%, settings.ini, Profile%Profile%, CooldownFlask2
-    IniWrite, %CooldownFlask3%, settings.ini, Profile%Profile%, CooldownFlask3
-    IniWrite, %CooldownFlask4%, settings.ini, Profile%Profile%, CooldownFlask4
-    IniWrite, %CooldownFlask5%, settings.ini, Profile%Profile%, CooldownFlask5	
-    
-    ;Attack Flasks
-    IniWrite, %MainAttackbox1%, settings.ini, Profile%Profile%, MainAttackbox1
-    IniWrite, %MainAttackbox2%, settings.ini, Profile%Profile%, MainAttackbox2
-    IniWrite, %MainAttackbox3%, settings.ini, Profile%Profile%, MainAttackbox3
-    IniWrite, %MainAttackbox4%, settings.ini, Profile%Profile%, MainAttackbox4
-    IniWrite, %MainAttackbox5%, settings.ini, Profile%Profile%, MainAttackbox5
-    
-    IniWrite, %SecondaryAttackbox1%, settings.ini, Profile%Profile%, SecondaryAttackbox1
-    IniWrite, %SecondaryAttackbox2%, settings.ini, Profile%Profile%, SecondaryAttackbox2
-    IniWrite, %SecondaryAttackbox3%, settings.ini, Profile%Profile%, SecondaryAttackbox3
-    IniWrite, %SecondaryAttackbox4%, settings.ini, Profile%Profile%, SecondaryAttackbox4
-    IniWrite, %SecondaryAttackbox5%, settings.ini, Profile%Profile%, SecondaryAttackbox5
-    
-    ;Attack Keys
-    IniWrite, %hotkeyMainAttack%, settings.ini, Profile%Profile%, MainAttack
-    IniWrite, %hotkeySecondaryAttack%, settings.ini, Profile%Profile%, SecondaryAttack
-    
-    ;QS on Attack Keys
-    IniWrite, %QSonMainAttack%, settings.ini, Profile%Profile%, QSonMainAttack
-    IniWrite, %QSonSecondaryAttack%, settings.ini, Profile%Profile%, QSonSecondaryAttack
-    
-    ;Quicksilver Flasks
-    IniWrite, %TriggerQuicksilverDelay%, settings.ini, Profile%Profile%, TriggerQuicksilverDelay
-    IniWrite, %Radiobox1QS%, settings.ini, Profile%Profile%, QuicksilverSlot1
-    IniWrite, %Radiobox2QS%, settings.ini, Profile%Profile%, QuicksilverSlot2
-    IniWrite, %Radiobox3QS%, settings.ini, Profile%Profile%, QuicksilverSlot3
-    IniWrite, %Radiobox4QS%, settings.ini, Profile%Profile%, QuicksilverSlot4
-    IniWrite, %Radiobox5QS%, settings.ini, Profile%Profile%, QuicksilverSlot5
-    
-    ;CharacterTypeCheck
-    IniWrite, %RadioLife%, settings.ini, Profile%Profile%, Life
-	IniWrite, %RadioHybrid%, settings.ini, Profile%Profile%, Hybrid	
-    IniWrite, %RadioCi%, settings.ini, Profile%Profile%, Ci	
-    
-    ;AutoQuit
-    IniWrite, %RadioQuit20%, settings.ini, Profile%Profile%, Quit20
-    IniWrite, %RadioQuit30%, settings.ini, Profile%Profile%, Quit30
-    IniWrite, %RadioQuit40%, settings.ini, Profile%Profile%, Quit40
-    IniWrite, %RadioCritQuit%, settings.ini, Profile%Profile%, CritQuit
-    IniWrite, %RadioNormalQuit%, settings.ini, Profile%Profile%, NormalQuit
-    
-    ;Utility Buttons
-    IniWrite, %YesUtility1%, settings.ini, Profile%Profile%, YesUtility1
-    IniWrite, %YesUtility2%, settings.ini, Profile%Profile%, YesUtility2
-    IniWrite, %YesUtility3%, settings.ini, Profile%Profile%, YesUtility3
-    IniWrite, %YesUtility4%, settings.ini, Profile%Profile%, YesUtility4
-    IniWrite, %YesUtility5%, settings.ini, Profile%Profile%, YesUtility5
-    IniWrite, %YesUtility1Quicksilver%, settings.ini, Profile%Profile%, YesUtility1Quicksilver
-    IniWrite, %YesUtility2Quicksilver%, settings.ini, Profile%Profile%, YesUtility2Quicksilver
-    IniWrite, %YesUtility3Quicksilver%, settings.ini, Profile%Profile%, YesUtility3Quicksilver
-    IniWrite, %YesUtility4Quicksilver%, settings.ini, Profile%Profile%, YesUtility4Quicksilver
-    IniWrite, %YesUtility5Quicksilver%, settings.ini, Profile%Profile%, YesUtility5Quicksilver
-    
-    ;Utility Percents	
-    IniWrite, %YesUtility1LifePercent%, settings.ini, Profile%Profile%, YesUtility1LifePercent
-	IniWrite, %YesUtility2LifePercent%, settings.ini, Profile%Profile%, YesUtility2LifePercent
-	IniWrite, %YesUtility3LifePercent%, settings.ini, Profile%Profile%, YesUtility3LifePercent
-	IniWrite, %YesUtility4LifePercent%, settings.ini, Profile%Profile%, YesUtility4LifePercent
-	IniWrite, %YesUtility5LifePercent%, settings.ini, Profile%Profile%, YesUtility5LifePercent
-	IniWrite, %YesUtility1EsPercent%, settings.ini, Profile%Profile%, YesUtility1EsPercent
-    IniWrite, %YesUtility2EsPercent%, settings.ini, Profile%Profile%, YesUtility2EsPercent
-    IniWrite, %YesUtility3EsPercent%, settings.ini, Profile%Profile%, YesUtility3EsPercent
-    IniWrite, %YesUtility4EsPercent%, settings.ini, Profile%Profile%, YesUtility4EsPercent
-    IniWrite, %YesUtility5EsPercent%, settings.ini, Profile%Profile%, YesUtility5EsPercent
-    
-    ;Utility Cooldowns
-    IniWrite, %CooldownUtility1%, settings.ini, Profile%Profile%, CooldownUtility1
-    IniWrite, %CooldownUtility2%, settings.ini, Profile%Profile%, CooldownUtility2
-    IniWrite, %CooldownUtility3%, settings.ini, Profile%Profile%, CooldownUtility3
-    IniWrite, %CooldownUtility4%, settings.ini, Profile%Profile%, CooldownUtility4
-    IniWrite, %CooldownUtility5%, settings.ini, Profile%Profile%, CooldownUtility5
-    
-    ;Character Name
-    IniWrite, %CharName%, settings.ini, Profile%Profile%, CharName
-
-    ;Utility Keys
-    IniWrite, %KeyUtility1%, settings.ini, Profile%Profile%, KeyUtility1
-    IniWrite, %KeyUtility2%, settings.ini, Profile%Profile%, KeyUtility2
-    IniWrite, %KeyUtility3%, settings.ini, Profile%Profile%, KeyUtility3
-    IniWrite, %KeyUtility4%, settings.ini, Profile%Profile%, KeyUtility4
-    IniWrite, %KeyUtility5%, settings.ini, Profile%Profile%, KeyUtility5
-    
-return
-}
-
-submitProfile1:
-    submitProfile(1)
-Return
-
-submitProfile2:
-    submitProfile(2)
-Return
-
-submitProfile3:
-    submitProfile(3)
-Return
-
-submitProfile4:
-    submitProfile(4)
-Return
-
-submitProfile5:
-    submitProfile(5)
-Return
-
-submitProfile6:
-    submitProfile(6)
-Return
-
-submitProfile7:
-    submitProfile(7)
-Return
-
-submitProfile8:
-    submitProfile(8)
-Return
-
-submitProfile9:
-    submitProfile(9)
-Return
-
-submitProfile10:
-    submitProfile(10)
-Return
-
-readProfile(Profile){  
-    global
-    ;Life Flasks
-	IniRead, Radiobox1Life20, settings.ini, Profile%Profile%, Radiobox1Life20, 0
-	GuiControl, , Radiobox1Life20, %Radiobox1Life20%
-	IniRead, Radiobox2Life20, settings.ini, Profile%Profile%, Radiobox2Life20, 0
-	GuiControl, , Radiobox2Life20, %Radiobox2Life20%
-	IniRead, Radiobox3Life20, settings.ini, Profile%Profile%, Radiobox3Life20, 0
-	GuiControl, , Radiobox3Life20, %Radiobox3Life20%
-	IniRead, Radiobox4Life20, settings.ini, Profile%Profile%, Radiobox4Life20, 0
-	GuiControl, , Radiobox4Life20, %Radiobox4Life20%
-	IniRead, Radiobox5Life20, settings.ini, Profile%Profile%, Radiobox5Life20, 0
-	GuiControl, , Radiobox5Life20, %Radiobox5Life20%
-
-	IniRead, Radiobox1Life30, settings.ini, Profile%Profile%, Radiobox1Life30, 0
-	GuiControl, , Radiobox1Life30, %Radiobox1Life30%
-	IniRead, Radiobox2Life30, settings.ini, Profile%Profile%, Radiobox2Life30, 0
-	GuiControl, , Radiobox2Life30, %Radiobox2Life30%
-	IniRead, Radiobox3Life30, settings.ini, Profile%Profile%, Radiobox3Life30, 0
-	GuiControl, , Radiobox3Life30, %Radiobox3Life30%
-	IniRead, Radiobox4Life30, settings.ini, Profile%Profile%, Radiobox4Life30, 0
-	GuiControl, , Radiobox4Life30, %Radiobox4Life30%
-	IniRead, Radiobox5Life30, settings.ini, Profile%Profile%, Radiobox5Life30, 0
-	GuiControl, , Radiobox5Life30, %Radiobox5Life30%
-
-	IniRead, Radiobox1Life40, settings.ini, Profile%Profile%, Radiobox1Life40, 0
-	GuiControl, , Radiobox1Life40, %Radiobox1Life40%
-	IniRead, Radiobox2Life40, settings.ini, Profile%Profile%, Radiobox2Life40, 0
-	GuiControl, , Radiobox2Life40, %Radiobox2Life40%
-	IniRead, Radiobox3Life40, settings.ini, Profile%Profile%, Radiobox3Life40, 0
-	GuiControl, , Radiobox3Life40, %Radiobox3Life40%
-	IniRead, Radiobox4Life40, settings.ini, Profile%Profile%, Radiobox4Life40, 0
-	GuiControl, , Radiobox4Life40, %Radiobox4Life40%
-	IniRead, Radiobox5Life40, settings.ini, Profile%Profile%, Radiobox5Life40, 0
-	GuiControl, , Radiobox5Life40, %Radiobox5Life40%
-
-	IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50, 0
-	GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-	IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50, 0
-	GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-	IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50, 0
-	GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-	IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50, 0
-	GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-	IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50, 0
-	GuiControl, , Radiobox5Life50, %Radiobox5Life50%
-
-	IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50, 0
-	GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-	IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50, 0
-	GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-	IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50, 0
-	GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-	IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50, 0
-	GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-	IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50, 0
-	GuiControl, , Radiobox5Life50, %Radiobox5Life50%
-
-	IniRead, Radiobox1Life60, settings.ini, Profile%Profile%, Radiobox1Life60, 0
-	GuiControl, , Radiobox1Life60, %Radiobox1Life60%
-	IniRead, Radiobox2Life60, settings.ini, Profile%Profile%, Radiobox2Life60, 0
-	GuiControl, , Radiobox2Life60, %Radiobox2Life60%
-	IniRead, Radiobox3Life60, settings.ini, Profile%Profile%, Radiobox3Life60, 0
-	GuiControl, , Radiobox3Life60, %Radiobox3Life60%
-	IniRead, Radiobox4Life60, settings.ini, Profile%Profile%, Radiobox4Life60, 0
-	GuiControl, , Radiobox4Life60, %Radiobox4Life60%
-	IniRead, Radiobox5Life60, settings.ini, Profile%Profile%, Radiobox5Life60, 0
-	GuiControl, , Radiobox5Life60, %Radiobox5Life60%
-
-	IniRead, Radiobox1Life70, settings.ini, Profile%Profile%, Radiobox1Life70, 0
-	GuiControl, , Radiobox1Life70, %Radiobox1Life70%
-	IniRead, Radiobox2Life70, settings.ini, Profile%Profile%, Radiobox2Life70, 0
-	GuiControl, , Radiobox2Life70, %Radiobox2Life70%
-	IniRead, Radiobox3Life70, settings.ini, Profile%Profile%, Radiobox3Life70, 0
-	GuiControl, , Radiobox3Life70, %Radiobox3Life70%
-	IniRead, Radiobox4Life70, settings.ini, Profile%Profile%, Radiobox4Life70, 0
-	GuiControl, , Radiobox4Life70, %Radiobox4Life70%
-	IniRead, Radiobox5Life70, settings.ini, Profile%Profile%, Radiobox5Life70, 0
-	GuiControl, , Radiobox5Life70, %Radiobox5Life70%
-
-	IniRead, Radiobox1Life80, settings.ini, Profile%Profile%, Radiobox1Life80, 0
-	GuiControl, , Radiobox1Life80, %Radiobox1Life80%
-	IniRead, Radiobox2Life80, settings.ini, Profile%Profile%, Radiobox2Life80, 0
-	GuiControl, , Radiobox2Life80, %Radiobox2Life80%
-	IniRead, Radiobox3Life80, settings.ini, Profile%Profile%, Radiobox3Life80, 0
-	GuiControl, , Radiobox3Life80, %Radiobox3Life80%
-	IniRead, Radiobox4Life80, settings.ini, Profile%Profile%, Radiobox4Life80, 0
-	GuiControl, , Radiobox4Life80, %Radiobox4Life80%
-	IniRead, Radiobox5Life80, settings.ini, Profile%Profile%, Radiobox5Life80, 0
-	GuiControl, , Radiobox5Life80, %Radiobox5Life80%
-
-	IniRead, Radiobox1Life90, settings.ini, Profile%Profile%, Radiobox1Life90, 0
-	GuiControl, , Radiobox1Life90, %Radiobox1Life90%
-	IniRead, Radiobox2Life90, settings.ini, Profile%Profile%, Radiobox2Life90, 0
-	GuiControl, , Radiobox2Life90, %Radiobox2Life90%
-	IniRead, Radiobox3Life90, settings.ini, Profile%Profile%, Radiobox3Life90, 0
-	GuiControl, , Radiobox3Life90, %Radiobox3Life90%
-	IniRead, Radiobox4Life90, settings.ini, Profile%Profile%, Radiobox4Life90, 0
-	GuiControl, , Radiobox4Life90, %Radiobox4Life90%
-	IniRead, Radiobox5Life90, settings.ini, Profile%Profile%, Radiobox5Life90, 0
-	GuiControl, , Radiobox5Life90, %Radiobox5Life90%
-
-	IniRead, RadioUncheck1Life, settings.ini, Profile%Profile%, RadioUncheck1Life, 1
-	GuiControl, , RadioUncheck1Life, %RadioUncheck1Life%
-	IniRead, RadioUncheck2Life, settings.ini, Profile%Profile%, RadioUncheck2Life, 1
-	GuiControl, , RadioUncheck2Life, %RadioUncheck2Life%
-	IniRead, RadioUncheck3Life, settings.ini, Profile%Profile%, RadioUncheck3Life, 1
-	GuiControl, , RadioUncheck3Life, %RadioUncheck3Life%
-	IniRead, RadioUncheck4Life, settings.ini, Profile%Profile%, RadioUncheck4Life, 1
-	GuiControl, , RadioUncheck4Life, %RadioUncheck4Life%
-	IniRead, RadioUncheck5Life, settings.ini, Profile%Profile%, RadioUncheck5Life, 1
-	GuiControl, , RadioUncheck5Life, %RadioUncheck5Life%
-	
-    ;ES Flasks
-    IniRead, Radiobox1ES20, settings.ini, Profile%Profile%, Radiobox1ES20, 0
-    GuiControl, , Radiobox1ES20, %Radiobox1ES20%
-    IniRead, Radiobox2ES20, settings.ini, Profile%Profile%, Radiobox2ES20, 0
-    GuiControl, , Radiobox2ES20, %Radiobox2ES20%
-    IniRead, Radiobox3ES20, settings.ini, Profile%Profile%, Radiobox3ES20, 0
-    GuiControl, , Radiobox3ES20, %Radiobox3ES20%
-    IniRead, Radiobox4ES20, settings.ini, Profile%Profile%, Radiobox4ES20, 0
-    GuiControl, , Radiobox4ES20, %Radiobox4ES20%
-    IniRead, Radiobox5ES20, settings.ini, Profile%Profile%, Radiobox5ES20, 0
-    GuiControl, , Radiobox5ES20, %Radiobox5ES20%
-    
-    IniRead, Radiobox1ES30, settings.ini, Profile%Profile%, Radiobox1ES30, 0
-    GuiControl, , Radiobox1ES30, %Radiobox1ES30%
-    IniRead, Radiobox2ES30, settings.ini, Profile%Profile%, Radiobox2ES30, 0
-    GuiControl, , Radiobox2ES30, %Radiobox2ES30%
-    IniRead, Radiobox3ES30, settings.ini, Profile%Profile%, Radiobox3ES30, 0
-    GuiControl, , Radiobox3ES30, %Radiobox3ES30%
-    IniRead, Radiobox4ES30, settings.ini, Profile%Profile%, Radiobox4ES30, 0
-    GuiControl, , Radiobox4ES30, %Radiobox4ES30%
-    IniRead, Radiobox5ES30, settings.ini, Profile%Profile%, Radiobox5ES30, 0
-    GuiControl, , Radiobox5ES30, %Radiobox5ES30%
-    
-    IniRead, Radiobox1ES40, settings.ini, Profile%Profile%, Radiobox1ES40, 0
-    GuiControl, , Radiobox1ES40, %Radiobox1ES40%
-    IniRead, Radiobox2ES40, settings.ini, Profile%Profile%, Radiobox2ES40, 0
-    GuiControl, , Radiobox2ES40, %Radiobox2ES40%
-    IniRead, Radiobox3ES40, settings.ini, Profile%Profile%, Radiobox3ES40, 0
-    GuiControl, , Radiobox3ES40, %Radiobox3ES40%
-    IniRead, Radiobox4ES40, settings.ini, Profile%Profile%, Radiobox4ES40, 0
-    GuiControl, , Radiobox4ES40, %Radiobox4ES40%
-    IniRead, Radiobox5ES40, settings.ini, Profile%Profile%, Radiobox5ES40, 0
-    GuiControl, , Radiobox5ES40, %Radiobox5ES40%
-    
-    IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50, 0
-    GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-    IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50, 0
-    GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-    IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50, 0
-    GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-    IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50, 0
-    GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-    IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50, 0
-    GuiControl, , Radiobox5ES50, %Radiobox5ES50%
-    
-    IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50, 0
-    GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-    IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50, 0
-    GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-    IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50, 0
-    GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-    IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50, 0
-    GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-    IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50, 0
-    GuiControl, , Radiobox5ES50, %Radiobox5ES50%
-    
-    IniRead, Radiobox1ES60, settings.ini, Profile%Profile%, Radiobox1ES60, 0
-    GuiControl, , Radiobox1ES60, %Radiobox1ES60%
-    IniRead, Radiobox2ES60, settings.ini, Profile%Profile%, Radiobox2ES60, 0
-    GuiControl, , Radiobox2ES60, %Radiobox2ES60%
-    IniRead, Radiobox3ES60, settings.ini, Profile%Profile%, Radiobox3ES60, 0
-    GuiControl, , Radiobox3ES60, %Radiobox3ES60%
-    IniRead, Radiobox4ES60, settings.ini, Profile%Profile%, Radiobox4ES60, 0
-    GuiControl, , Radiobox4ES60, %Radiobox4ES60%
-    IniRead, Radiobox5ES60, settings.ini, Profile%Profile%, Radiobox5ES60, 0
-    GuiControl, , Radiobox5ES60, %Radiobox5ES60%
-    
-    IniRead, Radiobox1ES70, settings.ini, Profile%Profile%, Radiobox1ES70, 0
-    GuiControl, , Radiobox1ES70, %Radiobox1ES70%
-    IniRead, Radiobox2ES70, settings.ini, Profile%Profile%, Radiobox2ES70, 0
-    GuiControl, , Radiobox2ES70, %Radiobox2ES70%
-    IniRead, Radiobox3ES70, settings.ini, Profile%Profile%, Radiobox3ES70, 0
-    GuiControl, , Radiobox3ES70, %Radiobox3ES70%
-    IniRead, Radiobox4ES70, settings.ini, Profile%Profile%, Radiobox4ES70, 0
-    GuiControl, , Radiobox4ES70, %Radiobox4ES70%
-    IniRead, Radiobox5ES70, settings.ini, Profile%Profile%, Radiobox5ES70, 0
-    GuiControl, , Radiobox5ES70, %Radiobox5ES70%
-    
-    IniRead, Radiobox1ES80, settings.ini, Profile%Profile%, Radiobox1ES80, 0
-    GuiControl, , Radiobox1ES80, %Radiobox1ES80%
-    IniRead, Radiobox2ES80, settings.ini, Profile%Profile%, Radiobox2ES80, 0
-    GuiControl, , Radiobox2ES80, %Radiobox2ES80%
-    IniRead, Radiobox3ES80, settings.ini, Profile%Profile%, Radiobox3ES80, 0
-    GuiControl, , Radiobox3ES80, %Radiobox3ES80%
-    IniRead, Radiobox4ES80, settings.ini, Profile%Profile%, Radiobox4ES80, 0
-    GuiControl, , Radiobox4ES80, %Radiobox4ES80%
-    IniRead, Radiobox5ES80, settings.ini, Profile%Profile%, Radiobox5ES80, 0
-    GuiControl, , Radiobox5ES80, %Radiobox5ES80%
-    
-    IniRead, Radiobox1ES90, settings.ini, Profile%Profile%, Radiobox1ES90, 0
-    GuiControl, , Radiobox1ES90, %Radiobox1ES90%
-    IniRead, Radiobox2ES90, settings.ini, Profile%Profile%, Radiobox2ES90, 0
-    GuiControl, , Radiobox2ES90, %Radiobox2ES90%
-    IniRead, Radiobox3ES90, settings.ini, Profile%Profile%, Radiobox3ES90, 0
-    GuiControl, , Radiobox3ES90, %Radiobox3ES90%
-    IniRead, Radiobox4ES90, settings.ini, Profile%Profile%, Radiobox4ES90, 0
-    GuiControl, , Radiobox4ES90, %Radiobox4ES90%
-    IniRead, Radiobox5ES90, settings.ini, Profile%Profile%, Radiobox5ES90, 0
-    GuiControl, , Radiobox5ES90, %Radiobox5ES90%
-    
-    IniRead, RadioUncheck1ES, settings.ini, Profile%Profile%, RadioUncheck1ES, 1
-    GuiControl, , RadioUncheck1ES, %RadioUncheck1ES%
-    IniRead, RadioUncheck2ES, settings.ini, Profile%Profile%, RadioUncheck2ES, 1
-    GuiControl, , RadioUncheck2ES, %RadioUncheck2ES%
-    IniRead, RadioUncheck3ES, settings.ini, Profile%Profile%, RadioUncheck3ES, 1
-    GuiControl, , RadioUncheck3ES, %RadioUncheck3ES%
-    IniRead, RadioUncheck4ES, settings.ini, Profile%Profile%, RadioUncheck4ES, 1
-    GuiControl, , RadioUncheck4ES, %RadioUncheck4ES%
-    IniRead, RadioUncheck5ES, settings.ini, Profile%Profile%, RadioUncheck5ES, 1
-    GuiControl, , RadioUncheck5ES, %RadioUncheck5ES%
-    
-    ;Mana Flasks
-    IniRead, Radiobox1Mana10, settings.ini, Profile%Profile%, Radiobox1Mana10, 0
-    GuiControl, , Radiobox1Mana10, %Radiobox1Mana10%
-    IniRead, Radiobox2Mana10, settings.ini, Profile%Profile%, Radiobox2Mana10, 0
-    GuiControl, , Radiobox2Mana10, %Radiobox2Mana10%
-    IniRead, Radiobox3Mana10, settings.ini, Profile%Profile%, Radiobox3Mana10, 0
-    GuiControl, , Radiobox3Mana10, %Radiobox3Mana10%
-    IniRead, Radiobox4Mana10, settings.ini, Profile%Profile%, Radiobox4Mana10, 0
-    GuiControl, , Radiobox4Mana10, %Radiobox4Mana10%
-    IniRead, Radiobox5Mana10, settings.ini, Profile%Profile%, Radiobox5Mana10, 0
-    GuiControl, , Radiobox5Mana10, %Radiobox5Mana10%
-    
-    ;Flask Cooldowns
-    IniRead, CooldownFlask1, settings.ini, Profile%Profile%, CooldownFlask1, 4800
-    GuiControl, , CooldownFlask1, %CooldownFlask1%
-    IniRead, CooldownFlask2, settings.ini, Profile%Profile%, CooldownFlask2, 4800
-    GuiControl, , CooldownFlask2, %CooldownFlask2%
-    IniRead, CooldownFlask3, settings.ini, Profile%Profile%, CooldownFlask3, 4800
-    GuiControl, , CooldownFlask3, %CooldownFlask3%
-    IniRead, CooldownFlask4, settings.ini, Profile%Profile%, CooldownFlask4, 4800
-    GuiControl, , CooldownFlask4, %CooldownFlask4%
-    IniRead, CooldownFlask5, settings.ini, Profile%Profile%, CooldownFlask5	, 4800
-    GuiControl, , CooldownFlask5, %CooldownFlask5%
-    
-    ;Attack Flasks
-    IniRead, MainAttackbox1, settings.ini, Profile%Profile%, MainAttackbox1, 0
-    GuiControl, , MainAttackbox1, %MainAttackbox1%
-    IniRead, MainAttackbox2, settings.ini, Profile%Profile%, MainAttackbox2, 0
-    GuiControl, , MainAttackbox2, %MainAttackbox2%
-    IniRead, MainAttackbox3, settings.ini, Profile%Profile%, MainAttackbox3, 0
-    GuiControl, , MainAttackbox3, %MainAttackbox3%
-    IniRead, MainAttackbox4, settings.ini, Profile%Profile%, MainAttackbox4, 0
-    GuiControl, , MainAttackbox4, %MainAttackbox4%
-    IniRead, MainAttackbox5, settings.ini, Profile%Profile%, MainAttackbox5, 0
-    GuiControl, , MainAttackbox5, %MainAttackbox5%
-    
-    IniRead, SecondaryAttackbox1, settings.ini, Profile%Profile%, SecondaryAttackbox1, 0
-    GuiControl, , SecondaryAttackbox1, %SecondaryAttackbox1%
-    IniRead, SecondaryAttackbox2, settings.ini, Profile%Profile%, SecondaryAttackbox2, 0
-    GuiControl, , SecondaryAttackbox2, %SecondaryAttackbox2%
-    IniRead, SecondaryAttackbox3, settings.ini, Profile%Profile%, SecondaryAttackbox3, 0
-    GuiControl, , SecondaryAttackbox3, %SecondaryAttackbox3%
-    IniRead, SecondaryAttackbox4, settings.ini, Profile%Profile%, SecondaryAttackbox4, 0
-    GuiControl, , SecondaryAttackbox4, %SecondaryAttackbox4%
-    IniRead, SecondaryAttackbox5, settings.ini, Profile%Profile%, SecondaryAttackbox5, 0
-    GuiControl, , SecondaryAttackbox5, %SecondaryAttackbox5%
-    
-    ;Attack Keys
-    IniRead, hotkeyMainAttack, settings.ini, Profile%Profile%, MainAttack, RButton
-    GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
-    IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, w
-    GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
-    
-    ;QS on Attack Keys
-    IniRead, QSonMainAttack, settings.ini, Profile%Profile%, QSonMainAttack, 0
-    GuiControl, , QSonMainAttack, %QSonMainAttack%
-    IniRead, QSonSecondaryAttack, settings.ini, Profile%Profile%, QSonSecondaryAttack, 0
-    GuiControl, , QSonSecondaryAttack, %QSonSecondaryAttack%
-    
-    ;Quicksilver Flasks
-    IniRead, TriggerQuicksilverDelay, settings.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
-    GuiControl, , TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
-    IniRead, Radiobox1QS, settings.ini, Profile%Profile%, QuicksilverSlot1, 0
-    GuiControl, , Radiobox1QS, %Radiobox1QS%
-    IniRead, Radiobox2QS, settings.ini, Profile%Profile%, QuicksilverSlot2, 0
-    GuiControl, , Radiobox2QS, %Radiobox2QS%
-    IniRead, Radiobox3QS, settings.ini, Profile%Profile%, QuicksilverSlot3, 0
-    GuiControl, , Radiobox3QS, %Radiobox3QS%
-    IniRead, Radiobox4QS, settings.ini, Profile%Profile%, QuicksilverSlot4, 0
-    GuiControl, , Radiobox4QS, %Radiobox4QS%
-    IniRead, Radiobox5QS, settings.ini, Profile%Profile%, QuicksilverSlot5, 0
-    GuiControl, , Radiobox5QS, %Radiobox5QS%
-    
-    ;CharacterTypeCheck
-    IniRead, RadioLife, settings.ini, Profile%Profile%, Life, 1
-	GuiControl, , RadioLife, %RadioLife%
-	IniRead, RadioHybrid, settings.ini, Profile%Profile%, Hybrid, 0
-    GuiControl, , RadioHybrid, %RadioHybrid%
-    IniRead, RadioCi, settings.ini, Profile%Profile%, Ci, 0
-    GuiControl, , RadioCi, %RadioCi%
-    
-    ;AutoQuit
-    IniRead, RadioQuit20, settings.ini, Profile%Profile%, Quit20, 1
-    GuiControl, , RadioQuit20, %RadioQuit20%
-    IniRead, RadioQuit30, settings.ini, Profile%Profile%, Quit30, 0
-    GuiControl, , RadioQuit30, %RadioQuit30%
-    IniRead, RadioQuit40, settings.ini, Profile%Profile%, Quit40, 0
-    GuiControl, , RadioQuit40, %RadioQuit40%
-    IniRead, RadioCritQuit, settings.ini, Profile%Profile%, CritQuit, 1
-    GuiControl, , RadioCritQuit, %RadioCritQuit%
-    IniRead, RadioNormalQuit, settings.ini, Profile%Profile%, NormalQuit, 0
-    GuiControl, , RadioNormalQuit, %RadioNormalQuit%
-
-
-    ;Utility Buttons
-    IniRead, YesUtility1, settings.ini, Profile%Profile%, YesUtility1, 0
-    GuiControl, , YesUtility1, %YesUtility1%
-    IniRead, YesUtility2, settings.ini, Profile%Profile%, YesUtility2, 0
-    GuiControl, , YesUtility2, %YesUtility2%
-    IniRead, YesUtility3, settings.ini, Profile%Profile%, YesUtility3, 0
-    GuiControl, , YesUtility3, %YesUtility3%
-    IniRead, YesUtility4, settings.ini, Profile%Profile%, YesUtility4, 0
-    GuiControl, , YesUtility4, %YesUtility4%
-    IniRead, YesUtility5, settings.ini, Profile%Profile%, YesUtility5, 0
-    GuiControl, , YesUtility5, %YesUtility5%
-    IniRead, YesUtility1Quicksilver, settings.ini, Profile%Profile%, YesUtility1Quicksilver, 0
-    GuiControl, , YesUtility1Quicksilver, %YesUtility1Quicksilver%
-    IniRead, YesUtility2Quicksilver, settings.ini, Profile%Profile%, YesUtility2Quicksilver, 0
-    GuiControl, , YesUtility2Quicksilver, %YesUtility2Quicksilver%
-    IniRead, YesUtility3Quicksilver, settings.ini, Profile%Profile%, YesUtility3Quicksilver, 0
-    GuiControl, , YesUtility3Quicksilver, %YesUtility3Quicksilver%
-    IniRead, YesUtility4Quicksilver, settings.ini, Profile%Profile%, YesUtility4Quicksilver, 0
-    GuiControl, , YesUtility4Quicksilver, %YesUtility4Quicksilver%
-    IniRead, YesUtility5Quicksilver, settings.ini, Profile%Profile%, YesUtility5Quicksilver, 0
-    GuiControl, , YesUtility5Quicksilver, %YesUtility5Quicksilver%
-    
-    ;Utility Percents	
-    IniRead, YesUtility1LifePercent, settings.ini, Profile%Profile%, YesUtility1LifePercent, Off
-    GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
-	IniRead, YesUtility2LifePercent, settings.ini, Profile%Profile%, YesUtility2LifePercent, Off
-    GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
-	IniRead, YesUtility3LifePercent, settings.ini, Profile%Profile%, YesUtility3LifePercent, Off
-    GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
-	IniRead, YesUtility4LifePercent, settings.ini, Profile%Profile%, YesUtility4LifePercent, Off
-    GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
-	IniRead, YesUtility5LifePercent, settings.ini, Profile%Profile%, YesUtility5LifePercent, Off
-    GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
-	IniRead, YesUtility1EsPercent, settings.ini, Profile%Profile%, YesUtility1EsPercent, Off
-    GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-    IniRead, YesUtility2EsPercent, settings.ini, Profile%Profile%, YesUtility2EsPercent, Off
-    GuiControl, ChooseString, YesUtility2EsPercent, %YesUtility2EsPercent%
-    IniRead, YesUtility3EsPercent, settings.ini, Profile%Profile%, YesUtility3EsPercent, Off
-    GuiControl, ChooseString, YesUtility3EsPercent, %YesUtility3EsPercent%
-    IniRead, YesUtility4EsPercent, settings.ini, Profile%Profile%, YesUtility4EsPercent, Off
-    GuiControl, ChooseString, YesUtility4EsPercent, %YesUtility4EsPercent%
-    IniRead, YesUtility5EsPercent, settings.ini, Profile%Profile%, YesUtility5EsPercent, Off
-    GuiControl, ChooseString, YesUtility5EsPercent, %YesUtility5EsPercent%
-    
-    ;Utility Cooldowns
-    IniRead, CooldownUtility1, settings.ini, Profile%Profile%, CooldownUtility1, 5000
-    GuiControl, , CooldownUtility1, %CooldownUtility1%
-    IniRead, CooldownUtility2, settings.ini, Profile%Profile%, CooldownUtility2, 5000
-    GuiControl, , CooldownUtility2, %CooldownUtility2%
-    IniRead, CooldownUtility3, settings.ini, Profile%Profile%, CooldownUtility3, 5000
-    GuiControl, , CooldownUtility3, %CooldownUtility3%
-    IniRead, CooldownUtility4, settings.ini, Profile%Profile%, CooldownUtility4, 5000
-    GuiControl, , CooldownUtility4, %CooldownUtility4%
-    IniRead, CooldownUtility5, settings.ini, Profile%Profile%, CooldownUtility5, 5000
-    GuiControl, , CooldownUtility5, %CooldownUtility5%
-    
-    ;Character Name
-    IniRead, CharName, settings.ini, Profile%Profile%, CharName, ReplaceWithCharName
-    GuiControl, , CharName, %CharName%
-
-    ;Utility Keys
-    IniRead, KeyUtility1, settings.ini, Profile%Profile%, KeyUtility1, q
-    GuiControl, , KeyUtility1, %KeyUtility1%
-    IniRead, KeyUtility2, settings.ini, Profile%Profile%, KeyUtility2, w
-    GuiControl, , KeyUtility2, %KeyUtility2%
-    IniRead, KeyUtility3, settings.ini, Profile%Profile%, KeyUtility3, e
-    GuiControl, , KeyUtility3, %KeyUtility3%
-    IniRead, KeyUtility4, settings.ini, Profile%Profile%, KeyUtility4, r
-    GuiControl, , KeyUtility4, %KeyUtility4%
-    IniRead, KeyUtility5, settings.ini, Profile%Profile%, KeyUtility5, t
-    GuiControl, , KeyUtility5, %KeyUtility5%
-
-    ;Update UI
-    if(RadioLife==1) {
-        varTextAutoQuit20:="20 % Life"
-        varTextAutoQuit30:="30 % Life"
-        varTextAutoQuit40:="40 % Life"
-        loop 5 {
-            GuiControl, Enable, Radiobox%A_Index%Life90
-                GuiControl, Enable, Radiobox%A_Index%Life80
-                GuiControl, Enable, Radiobox%A_Index%Life70
-                GuiControl, Enable, Radiobox%A_Index%Life60
-                GuiControl, Enable, Radiobox%A_Index%Life50
-                GuiControl, Enable, Radiobox%A_Index%Life40
-                GuiControl, Enable, Radiobox%A_Index%Life30
-                GuiControl, Enable, Radiobox%A_Index%Life20
-                GuiControl, Enable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Disable, Radiobox%A_Index%ES90
-            GuiControl, Disable, Radiobox%A_Index%ES80
-            GuiControl, Disable, Radiobox%A_Index%ES70
-            GuiControl, Disable, Radiobox%A_Index%ES60
-            GuiControl, Disable, Radiobox%A_Index%ES50
-            GuiControl, Disable, Radiobox%A_Index%ES40
-            GuiControl, Disable, Radiobox%A_Index%ES30
-            GuiControl, Disable, Radiobox%A_Index%ES20
-            GuiControl, Disable, RadioUncheck%A_Index%ES
-        }
-    }
-    else if(RadioHybrid==1) {
-        varTextAutoQuit20:="20 % Life"
-        varTextAutoQuit30:="30 % Life"
-        varTextAutoQuit40:="40 % Life"
-        loop 5 {
-            GuiControl, Enable, Radiobox%A_Index%Life90
-                GuiControl, Enable, Radiobox%A_Index%Life80
-                GuiControl, Enable, Radiobox%A_Index%Life70
-                GuiControl, Enable, Radiobox%A_Index%Life60
-                GuiControl, Enable, Radiobox%A_Index%Life50
-                GuiControl, Enable, Radiobox%A_Index%Life40
-                GuiControl, Enable, Radiobox%A_Index%Life30
-                GuiControl, Enable, Radiobox%A_Index%Life20
-                GuiControl, Enable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Enable, Radiobox%A_Index%ES90
-            GuiControl, Enable, Radiobox%A_Index%ES80
-            GuiControl, Enable, Radiobox%A_Index%ES70
-            GuiControl, Enable, Radiobox%A_Index%ES60
-            GuiControl, Enable, Radiobox%A_Index%ES50
-            GuiControl, Enable, Radiobox%A_Index%ES40
-            GuiControl, Enable, Radiobox%A_Index%ES30
-            GuiControl, Enable, Radiobox%A_Index%ES20
-            GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-    }
-    else if(RadioCi==1) {
-        varTextAutoQuit20:="20 % ES"
-        varTextAutoQuit30:="30 % ES"
-        varTextAutoQuit40:="40 % ES"
-        loop 5 {
-            GuiControl, Disable, Radiobox%A_Index%Life90
-                GuiControl, Disable, Radiobox%A_Index%Life80
-                GuiControl, Disable, Radiobox%A_Index%Life70
-                GuiControl, Disable, Radiobox%A_Index%Life60
-                GuiControl, Disable, Radiobox%A_Index%Life50
-                GuiControl, Disable, Radiobox%A_Index%Life40
-                GuiControl, Disable, Radiobox%A_Index%Life30
-                GuiControl, Disable, Radiobox%A_Index%Life20
-                GuiControl, Disable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Enable, Radiobox%A_Index%ES90
-            GuiControl, Enable, Radiobox%A_Index%ES80
-            GuiControl, Enable, Radiobox%A_Index%ES70
-            GuiControl, Enable, Radiobox%A_Index%ES60
-            GuiControl, Enable, Radiobox%A_Index%ES50
-            GuiControl, Enable, Radiobox%A_Index%ES40
-            GuiControl, Enable, Radiobox%A_Index%ES30
-            GuiControl, Enable, Radiobox%A_Index%ES20
-            GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-    }
-    GuiControl,, RadioQuit20, %varTextAutoQuit20%
-    GuiControl,, RadioQuit30, %varTextAutoQuit30%
-    GuiControl,, RadioQuit40, %varTextAutoQuit40%
-    
-return  
-}
-
-readProfile1:
-    readProfile(1)
-Return
-
-readProfile2:
-    readProfile(2)
-Return
-
-readProfile3:
-    readProfile(3)
-Return
-
-readProfile4:
-    readProfile(4)
-Return
-
-readProfile5:
-    readProfile(5)
-Return
-
-readProfile6:
-    readProfile(6)
-Return
-
-readProfile7:
-    readProfile(7)
-Return
-
-readProfile8:
-    readProfile(8)
-Return
-
-readProfile9:
-    readProfile(9)
-Return
-
-readProfile10:
-    readProfile(10)
-Return
-
-optionsCommand:
-    hotkeys()
-return
-
-loadSaved:
-    readFromFile()
-    ;Update UI
-    if(RadioLife==1) {
-        varTextAutoQuit20:="20 % Life"
-        varTextAutoQuit30:="30 % Life"
-        varTextAutoQuit40:="40 % Life"
-        loop 5 {
-            GuiControl, Enable, Radiobox%A_Index%Life90
-                GuiControl, Enable, Radiobox%A_Index%Life80
-                GuiControl, Enable, Radiobox%A_Index%Life70
-                GuiControl, Enable, Radiobox%A_Index%Life60
-                GuiControl, Enable, Radiobox%A_Index%Life50
-                GuiControl, Enable, Radiobox%A_Index%Life40
-                GuiControl, Enable, Radiobox%A_Index%Life30
-                GuiControl, Enable, Radiobox%A_Index%Life20
-                GuiControl, Enable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Disable, Radiobox%A_Index%ES90
-            GuiControl, Disable, Radiobox%A_Index%ES80
-            GuiControl, Disable, Radiobox%A_Index%ES70
-            GuiControl, Disable, Radiobox%A_Index%ES60
-            GuiControl, Disable, Radiobox%A_Index%ES50
-            GuiControl, Disable, Radiobox%A_Index%ES40
-            GuiControl, Disable, Radiobox%A_Index%ES30
-            GuiControl, Disable, Radiobox%A_Index%ES20
-            GuiControl, Disable, RadioUncheck%A_Index%ES
-        }
-    }
-    else if(RadioHybrid==1) {
-        varTextAutoQuit20:="20 % Life"
-        varTextAutoQuit30:="30 % Life"
-        varTextAutoQuit40:="40 % Life"
-        loop 5 {
-            GuiControl, Enable, Radiobox%A_Index%Life90
-                GuiControl, Enable, Radiobox%A_Index%Life80
-                GuiControl, Enable, Radiobox%A_Index%Life70
-                GuiControl, Enable, Radiobox%A_Index%Life60
-                GuiControl, Enable, Radiobox%A_Index%Life50
-                GuiControl, Enable, Radiobox%A_Index%Life40
-                GuiControl, Enable, Radiobox%A_Index%Life30
-                GuiControl, Enable, Radiobox%A_Index%Life20
-                GuiControl, Enable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Enable, Radiobox%A_Index%ES90
-            GuiControl, Enable, Radiobox%A_Index%ES80
-            GuiControl, Enable, Radiobox%A_Index%ES70
-            GuiControl, Enable, Radiobox%A_Index%ES60
-            GuiControl, Enable, Radiobox%A_Index%ES50
-            GuiControl, Enable, Radiobox%A_Index%ES40
-            GuiControl, Enable, Radiobox%A_Index%ES30
-            GuiControl, Enable, Radiobox%A_Index%ES20
-            GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-    }
-    else if(RadioCi==1) {
-        varTextAutoQuit20:="20 % ES"
-        varTextAutoQuit30:="30 % ES"
-        varTextAutoQuit40:="40 % ES"
-        loop 5 {
-            GuiControl, Disable, Radiobox%A_Index%Life90
-                GuiControl, Disable, Radiobox%A_Index%Life80
-                GuiControl, Disable, Radiobox%A_Index%Life70
-                GuiControl, Disable, Radiobox%A_Index%Life60
-                GuiControl, Disable, Radiobox%A_Index%Life50
-                GuiControl, Disable, Radiobox%A_Index%Life40
-                GuiControl, Disable, Radiobox%A_Index%Life30
-                GuiControl, Disable, Radiobox%A_Index%Life20
-                GuiControl, Disable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Enable, Radiobox%A_Index%ES90
-            GuiControl, Enable, Radiobox%A_Index%ES80
-            GuiControl, Enable, Radiobox%A_Index%ES70
-            GuiControl, Enable, Radiobox%A_Index%ES60
-            GuiControl, Enable, Radiobox%A_Index%ES50
-            GuiControl, Enable, Radiobox%A_Index%ES40
-            GuiControl, Enable, Radiobox%A_Index%ES30
-            GuiControl, Enable, Radiobox%A_Index%ES20
-            GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-    }
-    GuiControl,, RadioQuit20, %varTextAutoQuit20%
-    GuiControl,, RadioQuit30, %varTextAutoQuit30%
-    GuiControl,, RadioQuit40, %varTextAutoQuit40%
-    GuiControl,, RadioQuit20, %RadioQuit20%
-    GuiControl,, RadioQuit30, %RadioQuit30%
-    GuiControl,, RadioQuit40, %RadioQuit40%
-    GuiControl,, CooldownFlask1, %CooldownFlask1%
-    GuiControl,, CooldownFlask2, %CooldownFlask2%
-    GuiControl,, CooldownFlask3, %CooldownFlask3%
-    GuiControl,, CooldownFlask4, %CooldownFlask4%
-    GuiControl,, CooldownFlask5, %CooldownFlask5%
-    GuiControl,, RadioNormalQuit, %RadioNormalQuit%
-    GuiControl,, RadioCritQuit, %RadioCritQuit%
-    GuiControl,, RadioLife, %RadioLife%
-    GuiControl,, RadioHybrid, %RadioHybrid%
-    GuiControl,, RadioCi, %RadioCi%
-    GuiControl,, hotkeyMainAttack, %hotkeyMainAttack%
-    GuiControl,, hotkeySecondaryAttack, %hotkeySecondaryAttack%
-    GuiControl,, TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
-    GuiControl,, hotkeyOptions, %hotkeyOptions%
-    GuiControl,, hotkeyAutoFlask, %hotkeyAutoFlask%
-    GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
-    GuiControl,, hotkeyLogout, %hotkeyLogout%
-    GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
-    GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
-    GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
-    GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
-    GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
-    GuiControl,, hotkeyItemSort, %hotkeyItemSort%
-    GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
-    GuiControl,, hotkeyInventory, %hotkeyInventory%
-    GuiControl,, hotkeyWeaponSwapKey, %hotkeyWeaponSwapKey%
-    GuiControl,, hotkeyLootScan, %hotkeyLootScan%
-    GuiControl,, PortalScrollX, %PortalScrollX%
-    GuiControl,, PortalScrollY, %PortalScrollY%
-    GuiControl,, WisdomScrollX, %WisdomScrollX%
-    GuiControl,, WisdomScrollY, %WisdomScrollY%
-    GuiControl,, CurrentGemX, %CurrentGemX%
-    GuiControl,, CurrentGemY, %CurrentGemY%
-    GuiControl,, AlternateGemX, %AlternateGemX%
-    GuiControl,, AlternateGemY, %AlternateGemY%
-	
-	SendMSG(1,1,scriptGottaGoFast)
-return
-
-hotkeys(){
-    global
-    Gui, Show, Autosize Center, 	WingmanReloaded
-    processWarningFound:=0
-    Gui,6:Hide
-return
-}
-
-CleanUp(){
-    DetectHiddenWindows, On
-    SetTitleMatchMode, 2
-    
-    WinGet, PID, PID, %A_ScriptDir%\GottaGoFast.ahk
-    Process, Close, %PID%
-Return
-}
-
-updateOnHideout:
-    Gui, Submit, NoHide
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist `nRecalibrate of OnHideout didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
-        IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
-        readFromFile()
-        MsgBox % "OnHideout recalibrated!`nTook color hex: " . varOnHideout . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideout
-    } else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
-    
-    
-    hotkeys()
-    
-return
-
-updateOnHideoutMin:
-    Gui, Submit, NoHide
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist `nRecalibrate of OnHideoutMin didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-		Sleep, 1000
-        pixelgetcolor, varOnHideoutMin, vX_OnHideout, vY_OnHideoutMin	
-        IniWrite, %varOnHideoutMin%, settings.ini, Failsafe Colors, OnHideoutMin
-        readFromFile()
-        MsgBox % "OnHideoutMin recalibrated!`nTook color hex: " . varOnHideoutMin . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideoutMin
-    } else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnHideoutMin didn't work"
-    
-    
-    hotkeys()
-    
-return
-
-updateOnChar:
-    Gui, Submit, NoHide
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnChar didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
-        IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
-        readFromFile()
-        MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . vX_OnChar . " and y: " . vY_OnChar
-    } else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
-    
-    hotkeys()
-    
-return
-
-updateOnInventory:
-    Gui, Submit, NoHide
-    
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnInventory didn't work"
-        Return
-    }
-    
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
-        IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
-        readFromFile()
-        MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . vX_OnInventory . " and y: " . vY_OnInventory
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
-    
-    hotkeys()
-    
-return
-
-updateOnMenu:
-    Gui, Submit, NoHide
-    
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnMenu didn't work"
-        Return
-    }
-    
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnMenu, vX_OnMenu, vY_OnMenu
-        IniWrite, %varOnMenu%, settings.ini, Failsafe Colors, OnMenu
-        readFromFile()
-        MsgBox % "OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . vX_OnMenu . " and y: " . vY_OnMenu
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
-    
-    hotkeys()
-    
-return
-
-updateOnStash:
-    Gui, Submit, NoHide
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnStash didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
-        IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
-        readFromFile()
-        MsgBox % "OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . vX_OnStash . " and y: " . vY_OnStash
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnStash didn't work"
-    
-    hotkeys()
-    
-return
-
-updateEmptyColor:
-    Gui, Submit, NoHide
-	Thread, NoTimers, true		;Critical
-
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nEmpty Slot calibration didn't work"
-        Return
-    }
-
-    
-    
-    if WinActive(ahk_group POEGameGroup){
-        ;Now we need to get the user input for every grid element if its empty or not
-
-        ;First inform the user about the procedure
-        infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Empty Slot colors.`r`n`r`n"
-        infoMsg .= "  -> Clear all items from inventory`r`n"
-        infoMsg .= "  -> Make sure your inventory is open`r`n`r`n"
-        infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
-
-        MsgBox, 1,, %infoMsg%
-        IfMsgBox, Cancel
-        {
-            MsgBox Canceled the Id / Empty Slot calibration
-            return
-        }
-
-        varIdColor := []
-        varEmptyInvSlotColor := []
-        WinActivate, ahk_group POEGameGroup
-
-        ;Loop through the whole grid, and add unknown colors to the lists
-        For c, GridX in InventoryGridX	{
-            For r, GridY in InventoryGridY
-            {
-                pixelgetcolor, PointColor, GridX, GridY
-
-                if !(indexOf(PointColor, varEmptyInvSlotColor)){
-                    ;We dont have this Empty color already
-                    varEmptyInvSlotColor.Push(PointColor)
-                }
-            }
-        }
-
-        strToSave := arrToStr(varEmptyInvSlotColor)
-
-        IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
-        readFromFile()
-
-
-        infoMsg := "Empty Slot colors calibrated and saved with following color codes:`r`n`r`n"
-        infoMsg .= strToSave
-
-        MsgBox, %infoMsg%
-
-
-    }else{
-        MsgBox % "PoE Window is not active. `nRecalibrate Empty Slot Color didn't work"
-    }
-
-    hotkeys()
-return
-
-updateOnChat:
-    Gui, Submit, NoHide
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnChat didn't work"
-        Return
-    }
-    
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
-        IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
-        readFromFile()
-        MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . vX_OnChat . " and y: " . vY_OnChat
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
-    
-    hotkeys()
-    
-return
-
-updateOnVendor:
-    Gui, Submit, NoHide
-    
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnVendor didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
-        IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
-        readFromFile()
-        MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . vX_OnVendor . " and y: " . vY_OnVendor
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
-    
-    hotkeys()
-    
-return
-
-updateOnDiv:
-    Gui, Submit, NoHide
-    
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnDiv didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, varOnDiv, vX_OnDiv, vY_OnDiv
-        IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
-        readFromFile()
-        MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . vX_OnDiv . " and y: " . vY_OnDiv
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
-    
-    hotkeys()
-    
-return
-
-updateDetonate:
-    Gui, Submit, NoHide
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of DetonateHex didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, DetonateHex, DetonateX, DetonateY
-        IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
-        readFromFile()
-        MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateX . " and y: " . DetonateY
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of DetonateHex didn't work"
-    
-    hotkeys()
-    
-return
-
-updateDetonateDelve:
-    Gui, Submit, NoHide
-    IfWinExist, ahk_group POEGameGroup
-    {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-    } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of DetonateHex didn't work"
-        Return
-    }
-    
-    if WinActive(ahk_group POEGameGroup){
-        pixelgetcolor, DetonateHex, DetonateDelveX, DetonateY
-        IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
-        readFromFile()
-        MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateDelveX . " and y: " . DetonateY
-    }else
-    MsgBox % "PoE Window is not active. `nRecalibrate of DetonateHex didn't work"
-    
-    hotkeys()
-    
-return
-
-updateCharacterType:
-    Gui, Submit, NoHide
-    if(RadioLife==1) {
-        varTextAutoQuit20:="20 % Life"
-        varTextAutoQuit30:="30 % Life"
-        varTextAutoQuit40:="40 % Life"
-        loop 5 {
-            GuiControl, Enable, Radiobox%A_Index%Life90
-                GuiControl, Enable, Radiobox%A_Index%Life80
-                GuiControl, Enable, Radiobox%A_Index%Life70
-                GuiControl, Enable, Radiobox%A_Index%Life60
-                GuiControl, Enable, Radiobox%A_Index%Life50
-                GuiControl, Enable, Radiobox%A_Index%Life40
-                GuiControl, Enable, Radiobox%A_Index%Life30
-                GuiControl, Enable, Radiobox%A_Index%Life20
-                GuiControl, Enable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Disable, Radiobox%A_Index%ES90
-            GuiControl, Disable, Radiobox%A_Index%ES80
-            GuiControl, Disable, Radiobox%A_Index%ES70
-            GuiControl, Disable, Radiobox%A_Index%ES60
-            GuiControl, Disable, Radiobox%A_Index%ES50
-            GuiControl, Disable, Radiobox%A_Index%ES40
-            GuiControl, Disable, Radiobox%A_Index%ES30
-            GuiControl, Disable, Radiobox%A_Index%ES20
-            GuiControl, Disable, RadioUncheck%A_Index%ES
-        }
-    }
-    else if(RadioHybrid==1) {
-        varTextAutoQuit20:="20 % Life"
-        varTextAutoQuit30:="30 % Life"
-        varTextAutoQuit40:="40 % Life"
-        loop 5 {
-            GuiControl, Enable, Radiobox%A_Index%Life90
-                GuiControl, Enable, Radiobox%A_Index%Life80
-                GuiControl, Enable, Radiobox%A_Index%Life70
-                GuiControl, Enable, Radiobox%A_Index%Life60
-                GuiControl, Enable, Radiobox%A_Index%Life50
-                GuiControl, Enable, Radiobox%A_Index%Life40
-                GuiControl, Enable, Radiobox%A_Index%Life30
-                GuiControl, Enable, Radiobox%A_Index%Life20
-                GuiControl, Enable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Enable, Radiobox%A_Index%ES90
-            GuiControl, Enable, Radiobox%A_Index%ES80
-            GuiControl, Enable, Radiobox%A_Index%ES70
-            GuiControl, Enable, Radiobox%A_Index%ES60
-            GuiControl, Enable, Radiobox%A_Index%ES50
-            GuiControl, Enable, Radiobox%A_Index%ES40
-            GuiControl, Enable, Radiobox%A_Index%ES30
-            GuiControl, Enable, Radiobox%A_Index%ES20
-            GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-    }
-    else if(RadioCi==1) {
-        varTextAutoQuit20:="20 % ES"
-        varTextAutoQuit30:="30 % ES"
-        varTextAutoQuit40:="40 % ES"
-        loop 5 {
-            GuiControl, Disable, Radiobox%A_Index%Life90
-                GuiControl, Disable, Radiobox%A_Index%Life80
-                GuiControl, Disable, Radiobox%A_Index%Life70
-                GuiControl, Disable, Radiobox%A_Index%Life60
-                GuiControl, Disable, Radiobox%A_Index%Life50
-                GuiControl, Disable, Radiobox%A_Index%Life40
-                GuiControl, Disable, Radiobox%A_Index%Life30
-                GuiControl, Disable, Radiobox%A_Index%Life20
-                GuiControl, Disable, RadioUncheck%A_Index%Life
-                
-            GuiControl, Enable, Radiobox%A_Index%ES90
-            GuiControl, Enable, Radiobox%A_Index%ES80
-            GuiControl, Enable, Radiobox%A_Index%ES70
-            GuiControl, Enable, Radiobox%A_Index%ES60
-            GuiControl, Enable, Radiobox%A_Index%ES50
-            GuiControl, Enable, Radiobox%A_Index%ES40
-            GuiControl, Enable, Radiobox%A_Index%ES30
-            GuiControl, Enable, Radiobox%A_Index%ES20
-            GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-    }
-    GuiControl,, RadioQuit20, %varTextAutoQuit20%
-    GuiControl,, RadioQuit30, %varTextAutoQuit30%
-    GuiControl,, RadioQuit40, %varTextAutoQuit40%
-return
-
-UpdateStash:
-    Gui, Submit, NoHide
-    ;Stash Tab Management
-    IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
-    IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
-    IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
-    IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
-    IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
-    IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
-    IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
-    IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
-    IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
-    IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
-    IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
-    IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-    IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
-    IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
-    IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
-    IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
-    IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
-    IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
-    IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
-    IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
-    IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
-    IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
-    IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
-    IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
-    IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
-    IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
-    IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
-    IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-    IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
-    IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
-    IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
-    IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
-Return
-
-UpdateExtra:
-    Gui, Submit, NoHide
-    IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
-    IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
-    IniWrite, %YesVendor%, settings.ini, General, YesVendor
-    IniWrite, %YesStash%, settings.ini, General, YesStash
-    IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
-    IniWrite, %YesDiv%, settings.ini, General, YesDiv
-	IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
-    IniWrite, %Latency%, settings.ini, General, Latency
-    IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
-    IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
-    IniWrite, %Steam%, settings.ini, General, Steam
-    IniWrite, %HighBits%, settings.ini, General, HighBits
-    IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
-    IniWrite, %YesPersistantToggle%, settings.ini, General, YesPersistantToggle
-	If (YesPersistantToggle)
-		AutoReset()
-    If (DetonateMines&&!Detonated)
-        SetTimer, TMineTick, 100
-    Else If (!DetonateMines)
-        SetTimer, TMineTick, off
-    if ( Steam ) {
-        if ( HighBits ) {
-            executable := "PathOfExile_x64Steam.exe"
-        } else {
-            executable := "PathOfExileSteam.exe"
-        }
-    } else {
-        if ( HighBits ) {
-            executable := "PathOfExile_x64.exe"
-        } else {
-            executable := "PathOfExile.exe"
-        }
-    }
-    
-Return
-
-UpdateResolutionScale:
-    Gui, Submit, NoHide
-    IniWrite, %ResolutionScale%, settings.ini, General, ResolutionScale
-    Rescale()
-Return
-
-UpdateProfileText1:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText1, , ProfileText1
-    IniWrite, %ProfileText1%, settings.ini, Profiles, ProfileText1
-Return
-
-UpdateProfileText2:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText2, , ProfileText2
-    IniWrite, %ProfileText2%, settings.ini, Profiles, ProfileText2
-Return
-
-UpdateProfileText3:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText3, , ProfileText3
-    IniWrite, %ProfileText3%, settings.ini, Profiles, ProfileText3
-Return
-
-UpdateProfileText4:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText4, , ProfileText4
-    IniWrite, %ProfileText4%, settings.ini, Profiles, ProfileText4
-Return
-
-UpdateProfileText5:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText5, , ProfileText5
-    IniWrite, %ProfileText5%, settings.ini, Profiles, ProfileText5
-Return
-
-UpdateProfileText6:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText6, , ProfileText6, 
-    IniWrite, %ProfileText6%, settings.ini, Profiles, ProfileText6
-Return
-
-UpdateProfileText7:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText7, , ProfileText7
-    IniWrite, %ProfileText7%, settings.ini, Profiles, ProfileText7
-Return
-
-UpdateProfileText8:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText8, , ProfileText8
-    IniWrite, %ProfileText8%, settings.ini, Profiles, ProfileText8
-Return
-
-UpdateProfileText9:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText9, , ProfileText9
-    IniWrite, %ProfileText9%, settings.ini, Profiles, ProfileText9
-Return
-
-UpdateProfileText10:
-    ;Gui, Submit, NoHide
-    GuiControlGet, ProfileText10, , ProfileText10
-    IniWrite, %ProfileText10%, settings.ini, Profiles, ProfileText10
-Return
-
-LaunchHelp:
-    Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
-Return
-
-UpdateLeagues:
-	UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-	FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-	LeagueIndex := JSON.Load(JSONtext)
-	textList= 
-	For K, V in LeagueIndex
-		textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
-	GuiControl, , selectedLeague, |%selectedLeague%||%textList%
-Return
-
-LaunchWiki:
-    Run, https://github.com/BanditTech/WingmanReloaded/wiki ; Open the wiki page for the script
-Return
-
-LaunchDonate:
-    Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&currency_code=USD&source=url ; Open the donation page for the script
-Return
-
-LaunchLootFilter:
-    Run, %A_ScriptDir%\data\LootFilter.ahk ; Open the custom loot filter editor
-Return
-
-UpdateDebug:
-    Gui, Submit, NoHide
-    If (DebugMessages=1) {
-        varCoordUtilText := "Coord/Debug"
-        GuiControl, Show, ShowPixelGrid
-        GuiControl, Show, PGrid
-        GuiControl, Show, ShowItemInfo
-        GuiControl, Show, ParseI
-    } Else If (DebugMessages=0) {
-        varCoordUtilText := "Coord/Pixel"
-        GuiControl, Hide, ShowPixelGrid
-        GuiControl, Hide, ShowItemInfo
-        GuiControl, Hide, PGrid
-        GuiControl, Hide, ParseI
-    }
-    GuiControl, , CoordUtilText, %varCoordUtilText%
-    IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
-    IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
-    IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
-Return
-
-UpdateUtility:
-    Gui, Submit, NoHide
-    ;Utility Buttons
-    IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
-    IniWrite, %YesUtility2%, settings.ini, Utility Buttons, YesUtility2
-    IniWrite, %YesUtility3%, settings.ini, Utility Buttons, YesUtility3
-    IniWrite, %YesUtility4%, settings.ini, Utility Buttons, YesUtility4
-    IniWrite, %YesUtility5%, settings.ini, Utility Buttons, YesUtility5
-    IniWrite, %YesUtility1Quicksilver%, settings.ini, Utility Buttons, YesUtility1Quicksilver
-    IniWrite, %YesUtility2Quicksilver%, settings.ini, Utility Buttons, YesUtility2Quicksilver
-    IniWrite, %YesUtility3Quicksilver%, settings.ini, Utility Buttons, YesUtility3Quicksilver
-    IniWrite, %YesUtility4Quicksilver%, settings.ini, Utility Buttons, YesUtility4Quicksilver
-    IniWrite, %YesUtility5Quicksilver%, settings.ini, Utility Buttons, YesUtility5Quicksilver
-    
-    ;Utility Percents	
-    IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
-        IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
-        IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
-        IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
-        IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
-        IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
-    IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
-    IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
-    IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
-    IniWrite, %YesUtility5EsPercent%, settings.ini, Utility Buttons, YesUtility5EsPercent
-    
-    ;Utility Cooldowns
-    IniWrite, %CooldownUtility1%, settings.ini, Utility Cooldowns, CooldownUtility1
-    IniWrite, %CooldownUtility2%, settings.ini, Utility Cooldowns, CooldownUtility2
-    IniWrite, %CooldownUtility3%, settings.ini, Utility Cooldowns, CooldownUtility3
-    IniWrite, %CooldownUtility4%, settings.ini, Utility Cooldowns, CooldownUtility4
-    IniWrite, %CooldownUtility5%, settings.ini, Utility Cooldowns, CooldownUtility5
-    
-    ;Utility Keys
-    IniWrite, %KeyUtility1%, settings.ini, Utility Keys, KeyUtility1
-    IniWrite, %KeyUtility2%, settings.ini, Utility Keys, KeyUtility2
-    IniWrite, %KeyUtility3%, settings.ini, Utility Keys, KeyUtility3
-    IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
-    IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
-    
-    SendMSG(1, 0, scriptGottaGoFast)
-Return
-
-FlaskCheck:
-    Gui, Submit, NoHide
-    loop 5 {
-        if(Radiobox%A_Index%Life90==1) || (Radiobox%A_Index%ES90==1) {
-            GuiControl,, Radiobox%A_Index%QS, 0
-            GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life80==1) || (Radiobox%A_Index%ES80==1) {
-            GuiControl,, Radiobox%A_Index%QS, 0
-            GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life70==1) || (Radiobox%A_Index%ES70==1) {
-            GuiControl,, Radiobox%A_Index%QS, 0
-            GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life60==1) || (Radiobox%A_Index%ES60==1) {
-            GuiControl,, Radiobox%A_Index%QS, 0
-            GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life50==1) || (Radiobox%A_Index%ES50==1) {
-            GuiControl,, Radiobox%A_Index%QS, 0
-            GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life40==1) || (Radiobox%A_Index%ES40==1) {
-            GuiControl,, Radiobox%A_Index%QS, 0
-            GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life30==1) || (Radiobox%A_Index%ES30==1) {
-            GuiControl,, Radiobox%A_Index%QS, 0
-            GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life20==1) || (Radiobox%A_Index%ES20==1) {
-            GuiControl,, Radiobox%A_Index%QS, 0
-            GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-    }
-return
-
-UtilityCheck:
-    Gui, Submit, NoHide
-    loop 5 {
-        if(Radiobox%A_Index%QS==1) || (Radiobox%A_Index%Mana10==1) {
-            GuiControl,, Radiobox%A_Index%Life90, 0
-			GuiControl,, Radiobox%A_Index%Life80, 0
-			GuiControl,, Radiobox%A_Index%Life70, 0
-			GuiControl,, Radiobox%A_Index%Life60, 0
-			GuiControl,, Radiobox%A_Index%Life50, 0
-			GuiControl,, Radiobox%A_Index%Life40, 0
-			GuiControl,, Radiobox%A_Index%Life30, 0
-			GuiControl,, Radiobox%A_Index%Life20, 0
-			GuiControl,, RadioUncheck%A_Index%Life, 1
-			GuiControl,, Radiobox%A_Index%ES90, 0
-            GuiControl,, Radiobox%A_Index%ES80, 0
-            GuiControl,, Radiobox%A_Index%ES70, 0
-            GuiControl,, Radiobox%A_Index%ES60, 0
-            GuiControl,, Radiobox%A_Index%ES50, 0
-            GuiControl,, Radiobox%A_Index%ES40, 0
-            GuiControl,, Radiobox%A_Index%ES30, 0
-            GuiControl,, Radiobox%A_Index%ES20, 0
-            GuiControl,, RadioUncheck%A_Index%ES, 1
-        	}
-    	}
-Return
-    
-RemoveToolTip:
-    SetTimer, RemoveToolTip, Off
-    ToolTip
-return
-
-helpCalibration:
-    MsgBox, Gamestate Calibration Instructions:`n`n  These buttons regrab the gamestate sample color.`n  Each button references a different game state.`n  Make sure the gamestate is true for that button!`n  Click the button once ready to calibrate.`n`nAuto-Detonate Mines Recalibration:`n`n  Sample the DetonateHex color in normal or delve.`n  Drop a mine then press the sample button that matches.
-Return
-
-checkUpdate(){
-    IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
-	If (!AutoUpdateOff) {
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/version.html, version.html
-		FileRead, newestVersion, version.html
-		
-		if ( VersionNumber < newestVersion ) {
-			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/changelog.txt, changelog.txt
-			if ErrorLevel
-				GuiControl,1:, guiErr, ED08
-			FileRead, changelog, changelog.txt
-			Gui, 4:Add, Button, x0 y0 h1 w1, a
-			Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
-			Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
-			Gui, 4:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
-			Gui, 4:Add, Button, x+35 ys gLaunchDonate, Support the Project
-			Gui, 4:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
-			Gui, 4:Show,, WingmanReloaded Update
-			IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
-				{
-				WinWaitClose
+	; MainAttackCommand - Main attack Flasks
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	MainAttackCommand(){
+		MainAttackCommand:
+		if (AutoFlask || AutoQuicksilver) {
+			GuiStatus()
+			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+				return
+			If AutoFlask {
+				TriggerFlask(TriggerMainAttack)
+				SetTimer, TimerMainAttack, 400
+			}
+			If (AutoQuicksilver && QSonMainAttack) {
+				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+						Return
+					SendMSG(5,1,scriptGottaGoFast)
+					SetTimer, TimerMainAttack, 400
 				}
 			}
-		WinGetPos, , , WinWidth, WinHeight
 		}
-Return
-}
+		Return	
+		}
+	; SecondaryAttackCommand - Secondary attack Flasks
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	SecondaryAttackCommand(){
+		SecondaryAttackCommand:
+		if (AutoFlask || AutoQuicksilver) {
+			GuiStatus()
+			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+				return
+			If AutoFlask {
+				TriggerFlask(TriggerSecondaryAttack)
+				SetTimer, TimerSecondaryAttack, 400
+			}
+			If (AutoQuicksilver && QSonSecondaryAttack) {
+				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+						Return
+					SendMSG(5,1,scriptGottaGoFast)
+					SetTimer, TimerSecondaryAttack, 400
+				}
+			}
+		}
+		Return	
+		}
 
-runUpdate:
-	Fail:=False
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
-    if ErrorLevel {
-        Fail:=true
-    }
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/PoE-Wingman.ahk, PoE-Wingman.ahk
-    if ErrorLevel {
-        Fail:=true
-    }
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
-    if ErrorLevel {
-        Fail:=true
-    }
-    if Fail {
-        error("update","fail",A_ScriptFullPath, VersionNumber, A_AhkVersion)
-        error("ED07")
-    }
-    else {
-        error("update","pass",A_ScriptFullPath, VersionNumber, A_AhkVersion)
-        Run "%A_ScriptFullPath%"
-    }
-    Sleep 5000 ;This shouldn't ever hit.
-    error("update","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion)
-Return
+	; TriggerFlask - Flask Trigger check
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TriggerFlask(Trigger){
+		FL:=1
+		loop 5 {
+			FLVal:=SubStr(Trigger,FL,1)+0
+			if (FLVal > 0) {
+				if (OnCooldown[FL]=0) {
+					send %FL%
+					SendMSG(3, FL, scriptGottaGoFast)
+					OnCooldown[FL]:=1 
+					Cooldown:=CooldownFlask%FL%
+					settimer, TimerFlask%FL%, %Cooldown%
+					RandomSleep(15,60)			
+				}
+			}
+			++FL
+		}
+		Return
+	}
+	; TriggerMana - Trigger Mana Flasks Sequentially
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TriggerMana(Trigger){
+		If ((!FlaskList.Count())&& !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) ) {
+			FL=1
+			loop, 5 {
+				FLVal:=SubStr(Trigger,FL,1)+0
+				if (FLVal > 0) {
+					if (OnCooldown[FL]=0)
+						FlaskList.Push(FL)
+				}
+				++FL
+			}
+		}
+		Else If !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) {
+			FL:=FlaskList.RemoveAt(1)
+			send %FL%
+			OnCooldown[FL] := 1 
+			Cooldown:=CooldownFlask%FL%
+			settimer, TimerFlask%FL%, %Cooldown%
+			SendMSG(3, FL, scriptGottaGoFast)
+			RandomSleep(23,59)
+		}
+		Return
+	}
 
-dontUpdate:
-	IniWrite, 1, Settings.ini, General, AutoUpdateOff
-	MsgBox, Auto-Updates have been disabled.`nCheck back on the forum for more information!`nTo resume updates, uncheck the box in config page.
-    Gui, 4:Destroy
-return	
+	; TriggerUtility - Trigger named Utility
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	TriggerUtility(Utility){
+		GuiStatus("OnHideout")
+		GuiStatus("OnChar")
+		GuiStatus("OnChat")
+		GuiStatus("OnInventory")
+		GuiStatus("OnMenu")
+		
+		if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, menu open, chat open, or open inventory
+			GuiUpdate()
+			Exit
+		}
+		If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
+			key:=KeyUtility%Utility%
+			Send %key%
+			SendMSG(4, Utility, scriptGottaGoFast)
+			OnCooldownUtility%Utility%:=1
+			Cooldown:=CooldownUtility%Utility%
+			SetTimer, TimerUtility%Utility%, %Cooldown%
+		}
+		Return
+	} 
+	; DetonateMines - Auto Detonate Mines
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DetonateMines(){
+			GuiStatus("OnChat")
+			If (OnChat)
+				exit
+			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
+			pixelgetcolor, Mine, DetonateX, DetonateY
+			If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
+				Sendraw, d
+				Detonated:=1
+				Settimer, TDetonated, 500
+				Return
+			}
+			Return	
+		}
 
-ResetChat(){
-    Send {Enter}{Up}{Escape}
-return
-}
-1FireWhisperHotkey1() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
-		str1Suffix1Text := StrReplace(str1Suffix1Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix1Text := StrReplace(str1Suffix1Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix1Text%{Enter}
-		ResetChat()
-    }
-return
-}
-1FireWhisperHotkey2() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
-		str1Suffix2Text := StrReplace(str1Suffix2Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix2Text := StrReplace(str1Suffix2Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix2Text%{Enter}
-		ResetChat()
-    }
-return
-}
-1FireWhisperHotkey3() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
-		str1Suffix3Text := StrReplace(str1Suffix3Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix3Text := StrReplace(str1Suffix3Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix3Text%{Enter}
-		ResetChat()
-    }
-return
-}
-1FireWhisperHotkey4() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
-		str1Suffix4Text := StrReplace(str1Suffix4Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix4Text := StrReplace(str1Suffix4Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix4Text%{Enter}
-		ResetChat()
-    }
-return
-}
-1FireWhisperHotkey5() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
-		str1Suffix5Text := StrReplace(str1Suffix5Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix5Text := StrReplace(str1Suffix5Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix5Text%{Enter}
-		ResetChat()
-    }
-return
-}
-1FireWhisperHotkey6() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
-		str1Suffix6Text := StrReplace(str1Suffix6Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix6Text := StrReplace(str1Suffix6Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix6Text%{Enter}
-		ResetChat()
-    }
-return
-}
-1FireWhisperHotkey7() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
-		str1Suffix7Text := StrReplace(str1Suffix7Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix7Text := StrReplace(str1Suffix7Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix7Text%{Enter}
-		ResetChat()
-    }
-return
-}
-1FireWhisperHotkey8() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
-		str1Suffix8Text := StrReplace(str1Suffix8Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix8Text := StrReplace(str1Suffix8Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix8Text%{Enter}
-		ResetChat()
-    }
-return
-}
-1FireWhisperHotkey9() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		str1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
-		str1Suffix9Text := StrReplace(str1Suffix9Text, "RecipientName", RecipientName, 0, -1)
-		str1Suffix9Text := StrReplace(str1Suffix9Text, "!", "{!}", 0, -1)
-		Send, {Enter}%str1Suffix9Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey1() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
-		str2Suffix1Text := StrReplace(str2Suffix1Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix1Text := StrReplace(str2Suffix1Text, "!", "{!}", 0, -1)
-		Send, ^{Enter}%str2Suffix1Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey2() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
-		str2Suffix2Text := StrReplace(str2Suffix2Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix2Text := StrReplace(str2Suffix2Text, "!", "{!}", 0, -1)
+; GuiStatus - Pixelcheck for different parts of the screen to see what your status is in game. 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GuiStatus(Fetch:=""){
+		If (Fetch="DetonateMines")
+			{
+			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
+			pixelgetcolor, Mine, DetonateX, DetonateY
+			if (Mine = DetonateHex) {
+				DetonateMines:=True
+				} Else {
+				DetonateMines:=False
+				}
+			if (DelveMine = DetonateHex) {
+				DetonateDelve:=True
+				} Else {
+				DetonateDelve:=False
+				}
+			Return
+			}
+		If (Fetch="OnHideout")
+			{
+			pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+			pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+			if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
+				OnHideout:=True
+				} Else {
+				OnHideout:=False
+				}
+			Return
+			}
+		If !(Fetch="")
+			{
+			pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
+			If (P%Fetch%=var%Fetch%){
+				%Fetch%:=True
+				} Else {
+				%Fetch%:=False
+				}
+			Return
+			}
+		pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
+		pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
+		if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
+			OnHideout:=True
+			} Else {
+			OnHideout:=False
+			}
+		if (POnHideoutMin=varOnHideoutMin) {
+			OnHideoutMin:=True
+			} Else {
+			OnHideoutMin:=False
+			}
+		pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
+		If (POnChar=varOnChar)  {
+			OnChar:=True
+			} Else {
+			OnChar:=False
+			}
+		pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
+		If (POnChat=varOnChat) {
+			OnChat:=True
+			} Else {
+			OnChat:=False
+			}
+		pixelgetcolor, POnMenu, vX_OnMenu, vY_OnMenu
+		If (POnMenu=varOnMenu) {
+			OnMenu:=True
+			} Else {
+			OnMenu:=False
+			}
+		pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
+		If (POnInventory=varOnInventory) {
+			OnInventory:=True
+			} Else {
+			OnInventory:=False
+			}
+		pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
+		If (POnStash=varOnStash) {
+			OnStash:=True
+			} Else {
+			OnStash:=False
+			}
+		pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
+		If (POnVendor=varOnVendor) {
+			OnVendor:=True
+			} Else {
+			OnVendor:=False
+			}
+		pixelgetcolor, POnDiv, vX_OnDiv, vY_OnDiv
+		If (POnDiv=varOnDiv) {
+			OnDiv:=True
+			} Else {
+			OnDiv:=False
+			}
+		Return
+		}
 
-		Send, ^{Enter}%str2Suffix2Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey3() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
-		str2Suffix3Text := StrReplace(str2Suffix3Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix3Text := StrReplace(str2Suffix3Text, "!", "{!}", 0, -1)
-		Send, ^{Enter}%str2Suffix3Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey4() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
-		str2Suffix4Text := StrReplace(str2Suffix4Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix4Text := StrReplace(str2Suffix4Text, "!", "{!}", 0, -1)
-		Send, ^{Enter}%str2Suffix4Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey5() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
-		str2Suffix5Text := StrReplace(str2Suffix5Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix5Text := StrReplace(str2Suffix5Text, "!", "{!}", 0, -1)
-		Send, ^{Enter}%str2Suffix5Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey6() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
-		str2Suffix6Text := StrReplace(str2Suffix6Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix6Text := StrReplace(str2Suffix6Text, "!", "{!}", 0, -1)
-		Send, ^{Enter}%str2Suffix6Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey7() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
-		str2Suffix7Text := StrReplace(str2Suffix7Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix7Text := StrReplace(str2Suffix7Text, "!", "{!}", 0, -1)
-		Send, ^{Enter}%str2Suffix7Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey8() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
-		str2Suffix8Text := StrReplace(str2Suffix8Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix8Text := StrReplace(str2Suffix8Text, "!", "{!}", 0, -1)
-		Send, ^{Enter}%str2Suffix8Text%{Enter}
-		ResetChat()
-    }
-return
-}
-2FireWhisperHotkey9() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		GrabRecipientName()
-		str2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
-		str2Suffix9Text := StrReplace(str2Suffix9Text, "RecipientName", RecipientName, 0, -1)
-		str2Suffix9Text := StrReplace(str2Suffix9Text, "!", "{!}", 0, -1)
-		Send, ^{Enter}%str2Suffix9Text%{Enter}
-		ResetChat()
-    }
-return
-}
-FireStashHotkey1() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab1)
-    }
-return
-}
-FireStashHotkey2() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab2)
-    }
-return
-}
-FireStashHotkey3() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab3)
-    }
-return
-}
-FireStashHotkey4() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab4)
-    }
-return
-}
-FireStashHotkey5() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab5)
-    }
-return
-}
-FireStashHotkey6() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab6)
-    }
-return
-}
-FireStashHotkey7() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab7)
-    }
-return
-}
-FireStashHotkey8() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab8)
-    }
-return
-}
-FireStashHotkey9() {
-    IfWinActive, ahk_group POEGameGroup
-    {	
-		MoveStash(stashSuffixTab9)
-    }
-return
-}
+; DebugGamestates - Show a GUI which will update based on the state of the game
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DebugGamestates(){
+		Global
+		ShowDebugGamestates:
+			SetTimer, CheckGamestates, 50
+			Gui, Submit
+			; ----------------------------------------------------------------------------------------------------------------------
+			Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
+			Gui, States: Margin, 10, 10
+			; ----------------------------------------------------------------------------------------------------------------------
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnHideout hwndCTIDOnHideout, % "       OnHideout "
+			CtlColors.Attach(CTIDOnHideout, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnHideoutMin hwndCTIDOnHideoutMin, % "    OnHideoutMin "
+			CtlColors.Attach(CTIDOnHideoutMin, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnChar hwndCTIDOnChar, % "          OnChar "
+			CtlColors.Attach(CTIDOnChar, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnInventory hwndCTIDOnInventory, % "      OnInventory "
+			CtlColors.Attach(CTIDOnInventory, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnChat hwndCTIDOnChat, % "          OnChat "
+			CtlColors.Attach(CTIDOnChat, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnStash hwndCTIDOnStash, % "         OnStash "
+			CtlColors.Attach(CTIDOnStash, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDiv hwndCTIDOnDiv, % "          OnDiv "
+			CtlColors.Attach(CTIDOnDiv, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnVendor hwndCTIDOnVendor, % "         OnVendor "
+			CtlColors.Attach(CTIDOnVendor, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnMenu hwndCTIDOnMenu, % "         OnMenu "
+			CtlColors.Attach(CTIDOnMenu, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTDetonateMines hwndCTIDDetonateMines, % "   DetonateMines "
+			CtlColors.Attach(CTIDDetonateMines, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTDetonateDelve hwndCTIDDetonateDelve, % "   DetonateDelve "
+			CtlColors.Attach(CTIDDetonateDelve, "", "Red")
+			Gui, States: Add, Button, gCheckPixelGrid xm+5 y+15 w190 , Check Inventory Grid
+			; ----------------------------------------------------------------------------------------------------------------------
+			Gui, States: Show ,  , Check Gamestates
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+		StatesClose:
+		StatesEscape:
+			Gui, States: Destroy
+			SetTimer, CheckGamestates, Delete
+			CtlColors.Free()
+			Gui, 1: Show
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+		StatesSize:
+			If (A_EventInfo != 1) {
+				Gui, %A_Gui%:+LastFound
+				WinSet, ReDraw
+			}
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+		CheckGamestates:
+			GuiStatus()
+			GuiStatus("DetonateMines")
+			If (OnHideout)
+				CtlColors.Change(CTIDOnHideout, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnHideout, "", "Red")
+			If (OnHideoutMin)
+				CtlColors.Change(CTIDOnHideoutMin, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnHideoutMin, "", "Red")
+			If (OnChar)
+				CtlColors.Change(CTIDOnChar, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnChar, "", "Red")
+			If (OnInventory)
+				CtlColors.Change(CTIDOnInventory, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnInventory, "", "Red")
+			If (OnChat)
+				CtlColors.Change(CTIDOnChat, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnChat, "", "Red")
+			If (OnStash)
+				CtlColors.Change(CTIDOnStash, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnStash, "", "Red")
+			If (OnDiv)
+				CtlColors.Change(CTIDOnDiv, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnDiv, "", "Red")
+			If (OnVendor)
+				CtlColors.Change(CTIDOnVendor, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnVendor, "", "Red")
+			If (DetonateMines)
+				CtlColors.Change(CTIDDetonateMines, "Lime", "")
+			Else
+				CtlColors.Change(CTIDDetonateMines, "", "Red")
+			If (DetonateDelve)
+				CtlColors.Change(CTIDDetonateDelve, "Lime", "")
+			Else
+				CtlColors.Change(CTIDDetonateDelve, "", "Red")
+			If (OnMenu)
+				CtlColors.Change(CTIDOnMenu, "Lime", "")
+			Else
+				CtlColors.Change(CTIDOnMenu, "", "Red")
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+		CheckPixelGrid:
+			;Check if inventory is open
+			Gui, States: Hide
+			if(!OnInventory){
+				TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+			}else{
+				TT := "Grid information:" . "`n"
+				For C, GridX in InventoryGridX	
+				{
+					For R, GridY in InventoryGridY
+					{
+						pixelgetcolor, PointColor, GridX, GridY
+						if (indexOf(PointColor, varEmptyInvSlotColor)) {				
+							TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+						}else{
+							TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
+						}
+					}
+				}
+			}
+			MsgBox %TT%	
+			Gui, States: Show
+		Return
+		; ----------------------------------------------------------------------------------------------------------------------
+	}
 
-SelectMainGuiTabs:
-	GuiControlGet MainGuiTabs
-	GuiControl % (MainGuiTabs = "Chat") ? "Show" : "Hide", InnerTab
-	GuiControl MoveDraw, MainGuiTabs
-return
+; GemSwap - Swap gems between two locations
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GemSwap(){
+		GemSwapCommand:
+			Thread, NoTimers, true		;Critical
+			Keywait, Alt
+			BlockInput, MouseMove
+			MouseGetPos xx, yy
+			RandomSleep(90,120)
+			
+			Send {%hotkeyCloseAllUI%} 
+			RandomSleep(90,120)
+			
+			Send {%hotkeyInventory%} 
+			RandomSleep(90,120)
+			
+			RightClick(CurrentGemX, CurrentGemY)
+			RandomSleep(90,120)
+			
+			if (WeaponSwap==1) 
+				Send {%hotkeyWeaponSwapKey%} 
+			RandomSleep(90,120)
+			
+			SwiftClick(AlternateGemX, AlternateGemY)
+				RandomSleep(90,120)
+			
+			if (WeaponSwap==1) 
+				Send {%hotkeyWeaponSwapKey%} 
+			RandomSleep(90,120)
+			
+			SwiftClick(CurrentGemX, CurrentGemY)
+				RandomSleep(90,120)
+			
+			Send {%hotkeyInventory%} 
+			MouseMove, xx, yy, 0
+			BlockInput, MouseMoveOff
+		return
+		}
 
-LoadArray:
-	LoadArray()
-return
+; QuickPortal - Open Town Portal
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	QuickPortal(){
+		QuickPortalCommand:
+			Thread, NoTimers, true		;Critical
+			Keywait, Alt
+			BlockInput On
+			MouseGetPos xx, yy
+			RandomSleep(53,87)
+			
+			Send {%hotkeyCloseAllUI%} 
+			RandomSleep(53,68)
+			
+			Send {%hotkeyInventory%}
+			RandomSleep(56,68)
+			
+			MouseMove, PortalScrollX, PortalScrollY, 0
+			RandomSleep(56,68)
+			
+			Click Right
+			RandomSleep(56,68)
+			
+			Send {%hotkeyInventory%}
+			MouseMove, xx, yy, 0
+			BlockInput Off
+		return
+		}
 
-LoadArray()
-{
-    FileRead, JSONtext, %A_ScriptDir%\data\LootFilter.json
-    LootFilter := JSON.Load(JSONtext)
-    If !LootFilter
-        LootFilter:={}
-    FileRead, JSONtexttabs, %A_ScriptDir%\data\LootFilterTabs.json
-    LootFilterTabs := JSON.Load(JSONtexttabs)
-    If !LootFilterTabs
-        LootFilterTabs:={}
-Return
-}
+; PopFlasks - Pop all flasks
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	PopFlasks(){
+		PopFlasksCommand:
+			Thread, NoTimers, true		;Critical
+			If PopFlaskRespectCD
+				TriggerFlask(11111)
+			Else {
+				Send 1
+				OnCooldown[1]:=1 
+				SendMSG(3, 1, scriptGottaGoFast)
+				Cooldown:=CooldownFlask1
+				settimer, TimerFlask1, %Cooldown%
+				RandomSleep(-99,99)
+				Send 4
+				OnCooldown[4]:=1 
+				Cooldown:=CooldownFlask4
+				SendMSG(3, 4, scriptGottaGoFast)
+				settimer, TimerFlask4, %Cooldown%
+				RandomSleep(-99,99)
+				Send 3
+				OnCooldown[3]:=1 
+				SendMSG(3, 3, scriptGottaGoFast)
+				Cooldown:=CooldownFlask3
+				settimer, TimerFlask3, %Cooldown%
+				RandomSleep(-99,99)
+				Send 2
+				OnCooldown[2]:=1 
+				SendMSG(3, 2, scriptGottaGoFast)
+				Cooldown:=CooldownFlask2
+				settimer, TimerFlask2, %Cooldown%
+				RandomSleep(-99,99)
+				Send 5
+				OnCooldown[5]:=1 
+				SendMSG(3, 5, scriptGottaGoFast)
+				Cooldown:=CooldownFlask5
+				settimer, TimerFlask5, %Cooldown%
+			}
+		return
+		}
 
-GuiEscape:
-	Gui, Cancel
-return
+; LogoutCommand - Logout Function
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	LogoutCommand(){
+		LogoutCommand:
+			Thread, NoTimers, true		;Critical
+			if (CritQuit=1) {
+				global executable, backupExe
+				succ := logout(executable)
+				if (succ == 0) && backupExe != "" {
+					newSucc := logout(backupExe)
+					error("ED12",executable,backupExe)
+					if (newSucc == 0) {
+						error("ED13")
+					}
+				}
+			} 
+			Else 
+				Send {Enter} /exit {Enter}
+		return
+		}
 
-IgnoreClose:
-IgnoreEscape:
-	SaveIgnoreArray()
-	Gui, Ignore: Destroy
-Return
-
-addToBlacklist(C, R)
-{
-    Loop % Prop.Height
-    {
-        addNum := A_Index - 1
-		addR := R + addNum
-		addC := C + 1
-        BlackList[C][addR] := True
-        If Prop.Width = 2
-            BlackList[addC][addR] := True
-    }
-}
-
-BuildIgnoreMenu:
-	Gui, Ignore: +LabelIgnore -MinimizeBox
-	Gui, Ignore: Font, Bold
-	Gui, Ignore: Add, GroupBox, w660 h305 Section xm ym, Ignored Inventory Slots:
-	Gui, Ignore: Add, Picture, w650 h-1 xs+5 ys+15, %A_ScriptDir%\data\InventorySlots.png
-	Gui, Ignore: Font
-	LoadIgnoreArray()
-
-	Gui, Ignore: Add, Text, w1 h1 xs+25 ys+13, ""
-	For C, GridX in InventoryGridX
-	{
-		If (C != 1)
-			Gui, Ignore: Add, Text, w1 h1 x+18 ys+13, ""
-		For R, GridY in InventoryGridY
+; PoEWindowCheck - Check for the game window. 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	PoEWindowCheck(){
+			IfWinExist, ahk_group POEGameGroup 
+			{
+				global GuiX, GuiY, RescaleRan, ToggleExist
+				If (!RescaleRan)
+					Rescale()
+				If (!ToggleExist) {
+					Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+					ToggleExist := True
+					WinActivate, ahk_group POEGameGroup
+					If (YesPersistantToggle)
+						AutoReset()
+				}
+			} Else {
+				If (ToggleExist){
+					Gui 2: Show, Hide
+					ToggleExist := False
+				}
+			}
+			Return
+		}
+; MsgMonitor - Receive Messages from other scripts
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	MsgMonitor(wParam, lParam, msg)
 		{
-			++ind
-			checkboxStr := "IgnoredSlot_" . C . "_" . R
-			checkboxTik := IgnoredSlot[C][R]
-			Gui, Ignore: Add, Checkbox, v%checkboxStr% gUpdateCheckbox y+25 h27 Checked%checkboxTik%,% (ind < 10 ? "0" . ind : ind)
+		;Thread, NoTimers, true		;Critical
+		If (wParam=1)
+			Return
+		Else If (wParam=2)
+			Return
+		Else If (wParam=3) {
+			If (lParam=1){
+				OnCooldown[1]:=1 
+				settimer, TimerFlask1, %CooldownFlask1%
+				return
+				}		
+			If (lParam=2){
+				OnCooldown[2]:=1 
+				settimer, TimerFlask2, %CooldownFlask2%
+				return
+				}		
+			If (lParam=3){
+				OnCooldown[3]:=1 
+				settimer, TimerFlask3, %CooldownFlask3%
+				return
+				}		
+			If (lParam=4){
+				OnCooldown[4]:=1 
+				settimer, TimerFlask4, %CooldownFlask4%
+				return
+				}		
+			If (lParam=5){
+				OnCooldown[5]:=1 
+				settimer, TimerFlask5, %CooldownFlask5%
+				return
+				}		
+			}
+		Else If (wParam=4) {
+			If (lParam=1){
+				OnCooldownUtility1:=1 
+				settimer, TimerUtility1, %CooldownUtility1%
+				return
+				}		
+			If (lParam=2){
+				OnCooldownUtility2:=1 
+				settimer, TimerUtility2, %CooldownUtility2%
+				return
+				}		
+			If (lParam=3){
+				OnCooldownUtility3:=1 
+				settimer, TimerUtility3, %CooldownUtility3%
+				return
+				}		
+			If (lParam=4){
+				OnCooldownUtility4:=1 
+				settimer, TimerUtility4, %CooldownUtility4%
+				return
+				}		
+			If (lParam=5){
+				OnCooldownUtility5:=1 
+				settimer, TimerUtility5, %CooldownUtility5%
+				return
+				}		
+			}
+		Else If (wParam=6) {
+			If (lParam=1){
+				; hotkeyLogout
+				LogoutCommand()
+				return
+				}		
+			If (lParam=2){
+				; hotkeyPopFlasks
+				PopFlasks()
+				return
+				}		
+			If (lParam=3){
+				; hotkeyQuickPortal
+				QuickPortal()
+				return
+				}		
+			If (lParam=4){
+				; hotkeyGemSwap
+				GemSwap()
+				return
+				}		
+			If (lParam=5){
+				; hotkeyItemSort
+				GoSub, ItemSortCommand
+				return
+				}		
+			}
+		Else If (wParam=7) {
+			;MsgBox, Ding
+			LoadArray()
+			;Hotkeys()
+			Return
+		}
+		Return
+		}
+; Send one or two digits to a sub-script 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    SendMSG(wParam:=0, lParam:=0, script:=""){
+        DetectHiddenWindows On
+        if WinExist(script) 
+            PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+        else 
+            MsgBox %script% . " Not found"
+        DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
+        Return
+        }
+; Coord - : Pixel information on Mouse Cursor, provides pixel location and GRB color hex
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Coord(){
+		CoordCommand:
+			MouseGetPos x, y
+			PixelGetColor, xycolor , x, y
+			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
+			Tooltip, %TT%
+			SetTimer, RemoveToolTip, 10000
+		Return
+	}
+
+; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	{ ; Read, Save, Load - Includes basic hotkey setup
+		readFromFile(){
+			global
+			Thread, NoTimers, true		;Critical
+
+			LoadArray()
+			;General settings
+			IniRead, Speed, settings.ini, General, Speed, 1
+			IniRead, Tick, settings.ini, General, Tick, 50
+			IniRead, QTick, settings.ini, General, QTick, 250
+			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
+			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid, 0
+			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo, 0
+			IniRead, DetonateMines, settings.ini, General, DetonateMines, 0
+			IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
+			IniRead, YesVendor, settings.ini, General, YesVendor, 1
+			IniRead, YesStash, settings.ini, General, YesStash, 1
+			IniRead, YesIdentify, settings.ini, General, YesIdentify, 1
+			IniRead, YesDiv, settings.ini, General, YesDiv, 1
+			IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
+			IniRead, Latency, settings.ini, General, Latency, 1
+			IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
+			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
+			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
+			IniRead, Steam, settings.ini, General, Steam, 1
+			IniRead, HighBits, settings.ini, General, HighBits, 1
+			IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
+			IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
+			IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
+			IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
+			IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
+			IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
+			IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
+			IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
+			
+			;Stash Tab Management
+			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
+			IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap, 1
+			IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination, 1
+			IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem, 1
+			IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality, 1
+			IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality, 1
+			IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked, 1
+			IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection, 1
+			IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing, 1
+			IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump, 1
+			IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment, 1
+			IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence, 1
+			IniRead, StashTabOil, settings.ini, Stash Tab, StashTabOil, 1
+			IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil, 1
+			IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator, 1
+			IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
+			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency, 1
+			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap, 1
+			IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination, 1
+			IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem, 1
+			IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality, 1
+			IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality, 1
+			IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked, 1
+			IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection, 1
+			IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing, 1
+			IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump, 1
+			IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment, 1
+			IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence, 1
+			IniRead, StashTabYesOil, settings.ini, Stash Tab, StashTabYesOil, 1
+			IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil, 1
+			IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator, 1
+			IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
+			
+			;Inventory Colors
+			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
+			IniRead, varMouseoverColor, settings.ini, Inventory Colors, MouseoverColor, 0x011C01
+			IniRead, varUnIdColor, settings.ini, Inventory Colors, UnIdColor, 0x01012A
+			IniRead, varIdColor, settings.ini, Inventory Colors, IdColor, 0x1C0101
+			;Create an array out of the read string
+			varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
+			varMouseoverColor := StrSplit(varMouseoverColor, ",")
+			varUnIdColor := StrSplit(varUnIdColor, ",")
+			varIdColor := StrSplit(varIdColor, ",")
+
+			;Failsafe Colors
+			IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
+			IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
+			IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0x7BB9D6
+			IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
+			IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
+			IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
+			IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
+			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
+			IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xC5E2F6
+			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
+			
+			;Life Colors
+			IniRead, varLife20, settings.ini, Life Colors, Life20, 0x181145
+			IniRead, varLife30, settings.ini, Life Colors, Life30, 0x181264
+			IniRead, varLife40, settings.ini, Life Colors, Life40, 0x190F7D
+			IniRead, varLife50, settings.ini, Life Colors, Life50, 0x2318A5
+			IniRead, varLife60, settings.ini, Life Colors, Life60, 0x2215B4
+			IniRead, varLife70, settings.ini, Life Colors, Life70, 0x2413B3
+			IniRead, varLife80, settings.ini, Life Colors, Life80, 0x2B2385
+			IniRead, varLife90, settings.ini, Life Colors, Life90, 0x664564
+				
+			;ES Colors
+			IniRead, varES20, settings.ini, ES Colors, ES20, 0xFFC445
+			IniRead, varES30, settings.ini, ES Colors, ES30, 0xFFCE66
+			IniRead, varES40, settings.ini, ES Colors, ES40, 0xFFFF85
+			IniRead, varES50, settings.ini, ES Colors, ES50, 0xFFFF82
+			IniRead, varES60, settings.ini, ES Colors, ES60, 0xFFFF95
+			IniRead, varES70, settings.ini, ES Colors, ES70, 0xFFD07F
+			IniRead, varES80, settings.ini, ES Colors, ES80, 0xE89C5E
+			IniRead, varES90, settings.ini, ES Colors, ES90, 0xE79435
+			
+			;Mana Colors
+			IniRead, varMana10, settings.ini, Mana Colors, Mana10, 0x3C201D
+			
+			;Life Triggers
+			IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20, 00000
+			IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30, 00000
+			IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40, 00000
+			IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50, 00000
+			IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60, 00000
+			IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70, 00000
+			IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80, 00000
+			IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90, 00000
+			IniRead, DisableLife, settings.ini, Life Triggers, DisableLife, 11111
+			Loop, 5 {
+				valueLife20 := substr(TriggerLife20, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
+				valueLife30 := substr(TriggerLife30, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
+				valueLife40 := substr(TriggerLife40, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
+				valueLife50 := substr(TriggerLife50, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
+				valueLife60 := substr(TriggerLife60, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
+				valueLife70 := substr(TriggerLife70, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
+				valueLife80 := substr(TriggerLife80, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
+				valueLife90 := substr(TriggerLife90, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
+				valueDisableLife := substr(DisableLife, (A_Index), 1)
+				GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
+				}
+			
+			;ES Triggers
+			IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20, 00000
+			IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30, 00000
+			IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40, 00000
+			IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50, 00000
+			IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60, 00000
+			IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70, 00000
+			IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80, 00000
+			IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90, 00000
+			IniRead, DisableES, settings.ini, ES Triggers, DisableES, 11111
+			Loop, 5 {
+				valueES20 := substr(TriggerES20, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES20, %valueES20%
+				valueES30 := substr(TriggerES30, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES30, %valueES30%
+				valueES40 := substr(TriggerES40, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES40, %valueES40%
+				valueES50 := substr(TriggerES50, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES50, %valueES50%
+				valueES60 := substr(TriggerES60, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES60, %valueES60%
+				valueES70 := substr(TriggerES70, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES70, %valueES70%
+				valueES80 := substr(TriggerES80, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES80, %valueES80%
+				valueES90 := substr(TriggerES90, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%ES90, %valueES90%
+				valueDisableES := substr(DisableES, (A_Index), 1)
+				GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
+			}	
+			
+			;Mana Triggers
+			IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10, 00000
+			Loop, 5 {	
+				valueMana10 := substr(TriggerMana10, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
+			}
+			
+			;Utility Buttons
+			IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
+			IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
+			IniRead, YesUtility3, settings.ini, Utility Buttons, YesUtility3, 0
+			IniRead, YesUtility4, settings.ini, Utility Buttons, YesUtility4, 0
+			IniRead, YesUtility5, settings.ini, Utility Buttons, YesUtility5, 0
+			IniRead, YesUtility1Quicksilver, settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
+			IniRead, YesUtility2Quicksilver, settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
+			IniRead, YesUtility3Quicksilver, settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
+			IniRead, YesUtility4Quicksilver, settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
+			IniRead, YesUtility5Quicksilver, settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
+			
+			;Utility Percents	
+			IniRead, YesUtility1LifePercent, settings.ini, Utility Buttons, YesUtility1LifePercent, Off
+			IniRead, YesUtility2LifePercent, settings.ini, Utility Buttons, YesUtility2LifePercent, Off
+			IniRead, YesUtility3LifePercent, settings.ini, Utility Buttons, YesUtility3LifePercent, Off
+			IniRead, YesUtility4LifePercent, settings.ini, Utility Buttons, YesUtility4LifePercent, Off
+			IniRead, YesUtility5LifePercent, settings.ini, Utility Buttons, YesUtility5LifePercent, Off
+			IniRead, YesUtility1EsPercent, settings.ini, 	Utility Buttons, YesUtility1EsPercent, Off
+			IniRead, YesUtility2EsPercent, settings.ini, 	Utility Buttons, YesUtility2EsPercent, Off
+			IniRead, YesUtility3EsPercent, settings.ini, 	Utility Buttons, YesUtility3EsPercent, Off
+			IniRead, YesUtility4EsPercent, settings.ini, 	Utility Buttons, YesUtility4EsPercent, Off
+			IniRead, YesUtility5EsPercent, settings.ini, 	Utility Buttons, YesUtility5EsPercent, Off
+			
+			;Utility Cooldowns
+			IniRead, CooldownUtility1, settings.ini, Utility Cooldowns, CooldownUtility1, 5000
+			IniRead, CooldownUtility2, settings.ini, Utility Cooldowns, CooldownUtility2, 5000
+			IniRead, CooldownUtility3, settings.ini, Utility Cooldowns, CooldownUtility3, 5000
+			IniRead, CooldownUtility4, settings.ini, Utility Cooldowns, CooldownUtility4, 5000
+			IniRead, CooldownUtility5, settings.ini, Utility Cooldowns, CooldownUtility5, 5000
+			
+			;Utility Keys
+			IniRead, KeyUtility1, settings.ini, Utility Keys, KeyUtility1, q
+			IniRead, KeyUtility2, settings.ini, Utility Keys, KeyUtility2, w
+			IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
+			IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
+			IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
+
+			;Utility Keys
+			IniRead, hotkeyUp, 		settings.ini, Controller Keys, hotkeyUp, 	w
+			IniRead, hotkeyDown, 	settings.ini, Controller Keys, hotkeyDown,  s
+			IniRead, hotkeyLeft, 	settings.ini, Controller Keys, hotkeyLeft,  a
+			IniRead, hotkeyRight, 	settings.ini, Controller Keys, hotkeyRight, d
+			
+			;Flask Cooldowns
+			IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
+			IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2, 4800
+			IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
+			IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
+			IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
+			
+			;Gem Swap
+			IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX, 1353
+			IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY, 224
+			IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX, 1407
+			IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY, 201
+			IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
+			
+			;Coordinates
+			IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
+			IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
+			IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX, 1825
+			IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY, 825
+			IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX, 1875
+			IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY, 825
+			IniRead, StockPortal, settings.ini, Coordinates, StockPortal, 0
+			IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom, 0
+			
+			
+			;Attack Flasks
+			IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack, 00000
+			IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack, 00000
+			Loop, 5{	
+				valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
+				GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
+				valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
+				GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
+			}
+			
+			;Quicksilver
+			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
+			IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
+			Loop, 5 {	
+				valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
+			}
+			
+			;CharacterTypeCheck
+			IniRead, RadioLife, settings.ini, CharacterTypeCheck, Life, 1
+			IniRead, RadioHybrid, settings.ini, CharacterTypeCheck, Hybrid, 0
+			IniRead, RadioCi, settings.ini, CharacterTypeCheck, Ci, 0
+			
+			;AutoQuit
+			IniRead, RadioQuit20, settings.ini, AutoQuit, Quit20, 1
+			IniRead, RadioQuit30, settings.ini, AutoQuit, Quit30, 0
+			IniRead, RadioQuit40, settings.ini, AutoQuit, Quit40, 0
+			IniRead, RadioCritQuit, settings.ini, AutoQuit, CritQuit, 1
+			IniRead, RadioNormalQuit, settings.ini, AutoQuit, NormalQuit, 0
+			
+			;Profile Editbox
+			Iniread, ProfileText1, settings.ini, Profiles, ProfileText1, Profile 1
+			Iniread, ProfileText2, settings.ini, Profiles, ProfileText2, Profile 2
+			Iniread, ProfileText3, settings.ini, Profiles, ProfileText3, Profile 3
+			Iniread, ProfileText4, settings.ini, Profiles, ProfileText4, Profile 4
+			Iniread, ProfileText5, settings.ini, Profiles, ProfileText5, Profile 5
+			Iniread, ProfileText6, settings.ini, Profiles, ProfileText6, Profile 6
+			Iniread, ProfileText7, settings.ini, Profiles, ProfileText7, Profile 7
+			Iniread, ProfileText8, settings.ini, Profiles, ProfileText8, Profile 8
+			Iniread, ProfileText9, settings.ini, Profiles, ProfileText9, Profile 9
+			Iniread, ProfileText10, settings.ini, Profiles, ProfileText10, Profile 10
+
+			;~ hotkeys reset
+			hotkey, IfWinActive, ahk_group POEGameGroup
+			If hotkeyAutoQuit
+				hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
+			If hotkeyAutoFlask
+				hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
+			If hotkeyQuickPortal
+				hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
+			If hotkeyGemSwap
+				hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+			If hotkeyGetCoords
+				hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
+			If hotkeyPopFlasks
+				hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
+			If hotkeyLogout
+				hotkey,% hotkeyLogout, LogoutCommand, Off
+			If hotkeyItemSort
+				hotkey,% hotkeyItemSort, ItemSortCommand, Off
+			If hotkeyItemInfo
+				hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
+			If hotkeyLootScan
+				hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+			If hotkeyMainAttack
+				hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+			If hotkeySecondaryAttack
+				hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+
+			hotkey, IfWinActive
+			If hotkeyOptions
+				hotkey,% hotkeyOptions, optionsCommand, Off
+			hotkey, IfWinActive, ahk_group POEGameGroup
+				
+			;~ hotkeys iniread
+			IniRead, hotkeyOptions, settings.ini, hotkeys, Options, !F10
+			IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit, !F12
+			IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask, !F11
+			IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
+			IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal, !q
+			IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap, !e
+			IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords, !o
+			IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks, CapsLock
+			IniRead, hotkeyLogout, settings.ini, hotkeys, Logout, F12
+			IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
+			IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory, c
+			IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey, x
+			IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort, F6
+			IniRead, hotkeyItemInfo, settings.ini, hotkeys, ItemInfo, F5
+			IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
+			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
+			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
+			
+			hotkey, IfWinActive, ahk_group POEGameGroup
+			If hotkeyAutoQuit
+				hotkey,% hotkeyAutoQuit, AutoQuitCommand, On
+			If hotkeyAutoFlask
+				hotkey,% hotkeyAutoFlask, AutoFlaskCommand, On
+			If hotkeyQuickPortal
+				hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
+			If hotkeyGemSwap
+				hotkey,% hotkeyGemSwap, GemSwapCommand, On
+			If hotkeyGetMouseCoords
+				hotkey,% hotkeyGetMouseCoords, CoordCommand, On
+			If hotkeyPopFlasks
+				hotkey,% hotkeyPopFlasks, PopFlasksCommand, On
+			If hotkeyLogout
+				hotkey,% hotkeyLogout, LogoutCommand, On
+			If hotkeyItemSort
+				hotkey,% hotkeyItemSort, ItemSortCommand, On
+			If hotkeyItemInfo
+				hotkey,% hotkeyItemInfo, ItemInfoCommand, On
+			If hotkeyLootScan
+				hotkey, $~%hotkeyLootScan%, LootScanCommand, On
+			If hotkeyMainAttack
+				hotkey, $~%hotkeyMainAttack%, MainAttackCommand, On
+			If hotkeySecondaryAttack
+				hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, On
+			
+			hotkey, IfWinActive
+			If hotkeyOptions {
+				hotkey,% hotkeyOptions, optionsCommand, On
+				} else {
+				hotkey,!F10, optionsCommand, On
+				msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
+				}
+			
+			IniRead, 1Prefix1, settings.ini, Chat Hotkeys, 1Prefix1, a
+			IniRead, 1Prefix2, settings.ini, Chat Hotkeys, 1Prefix2, %A_Space%
+			IniRead, 1Suffix1, settings.ini, Chat Hotkeys, 1Suffix1, 1
+			IniRead, 1Suffix2, settings.ini, Chat Hotkeys, 1Suffix2, 2
+			IniRead, 1Suffix3, settings.ini, Chat Hotkeys, 1Suffix3, 3
+			IniRead, 1Suffix4, settings.ini, Chat Hotkeys, 1Suffix4, 4
+			IniRead, 1Suffix5, settings.ini, Chat Hotkeys, 1Suffix5, 5
+			IniRead, 1Suffix6, settings.ini, Chat Hotkeys, 1Suffix6, 6
+			IniRead, 1Suffix7, settings.ini, Chat Hotkeys, 1Suffix7, 7
+			IniRead, 1Suffix8, settings.ini, Chat Hotkeys, 1Suffix8, 8
+			IniRead, 1Suffix9, settings.ini, Chat Hotkeys, 1Suffix9, 9
+
+			IniRead, 1Suffix1Text, settings.ini, Chat Hotkeys, 1Suffix1Text, /Hideout
+			IniRead, 1Suffix2Text, settings.ini, Chat Hotkeys, 1Suffix2Text, /menagerie
+			IniRead, 1Suffix3Text, settings.ini, Chat Hotkeys, 1Suffix3Text, /cls
+			IniRead, 1Suffix4Text, settings.ini, Chat Hotkeys, 1Suffix4Text, /ladder
+			IniRead, 1Suffix5Text, settings.ini, Chat Hotkeys, 1Suffix5Text, /reset_xp
+			IniRead, 1Suffix6Text, settings.ini, Chat Hotkeys, 1Suffix6Text, /invite RecipientName
+			IniRead, 1Suffix7Text, settings.ini, Chat Hotkeys, 1Suffix7Text, /kick RecipientName
+			IniRead, 1Suffix8Text, settings.ini, Chat Hotkeys, 1Suffix8Text, /kick CharacterName
+			IniRead, 1Suffix9Text, settings.ini, Chat Hotkeys, 1Suffix9Text, @RecipientName Still Interested?
+
+			IniRead, 2Prefix1, settings.ini, Chat Hotkeys, 2Prefix1, d
+			IniRead, 2Prefix2, settings.ini, Chat Hotkeys, 2Prefix2, %A_Space%
+			IniRead, 2Suffix1, settings.ini, Chat Hotkeys, 2Suffix1, 1
+			IniRead, 2Suffix2, settings.ini, Chat Hotkeys, 2Suffix2, 2
+			IniRead, 2Suffix3, settings.ini, Chat Hotkeys, 2Suffix3, 3
+			IniRead, 2Suffix4, settings.ini, Chat Hotkeys, 2Suffix4, 4
+			IniRead, 2Suffix5, settings.ini, Chat Hotkeys, 2Suffix5, 5
+			IniRead, 2Suffix6, settings.ini, Chat Hotkeys, 2Suffix6, 6
+			IniRead, 2Suffix7, settings.ini, Chat Hotkeys, 2Suffix7, 7
+			IniRead, 2Suffix8, settings.ini, Chat Hotkeys, 2Suffix8, 8
+			IniRead, 2Suffix9, settings.ini, Chat Hotkeys, 2Suffix9, 9
+			
+			IniRead, 2Suffix1Text, settings.ini, Chat Hotkeys, 2Suffix1Text, Sure, will invite in a sec.
+			IniRead, 2Suffix2Text, settings.ini, Chat Hotkeys, 2Suffix2Text, In a map, will get to you in a minute.
+			IniRead, 2Suffix3Text, settings.ini, Chat Hotkeys, 2Suffix3Text, Still Interested?
+			IniRead, 2Suffix4Text, settings.ini, Chat Hotkeys, 2Suffix4Text, Sorry, going to be a while.
+			IniRead, 2Suffix5Text, settings.ini, Chat Hotkeys, 2Suffix5Text, No thank you.
+			IniRead, 2Suffix6Text, settings.ini, Chat Hotkeys, 2Suffix6Text, No thank you.
+			IniRead, 2Suffix7Text, settings.ini, Chat Hotkeys, 2Suffix7Text, No thank you.
+			IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
+			IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
+
+			IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, Numpad0
+			IniRead, stashPrefix2, settings.ini, Stash Hotkeys, stashPrefix2, %A_Space%
+			IniRead, stashSuffix1, settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
+			IniRead, stashSuffix2, settings.ini, Stash Hotkeys, stashSuffix2, Numpad2
+			IniRead, stashSuffix3, settings.ini, Stash Hotkeys, stashSuffix3, Numpad3
+			IniRead, stashSuffix4, settings.ini, Stash Hotkeys, stashSuffix4, Numpad4
+			IniRead, stashSuffix5, settings.ini, Stash Hotkeys, stashSuffix5, Numpad5
+			IniRead, stashSuffix6, settings.ini, Stash Hotkeys, stashSuffix6, Numpad6
+			IniRead, stashSuffix7, settings.ini, Stash Hotkeys, stashSuffix7, Numpad7
+			IniRead, stashSuffix8, settings.ini, Stash Hotkeys, stashSuffix8, Numpad8
+			IniRead, stashSuffix9, settings.ini, Stash Hotkeys, stashSuffix9, Numpad9
+			
+			IniRead, stashSuffixTab1, settings.ini, Stash Hotkeys, stashSuffixTab1, 1
+			IniRead, stashSuffixTab2, settings.ini, Stash Hotkeys, stashSuffixTab2, 2
+			IniRead, stashSuffixTab3, settings.ini, Stash Hotkeys, stashSuffixTab3, 3
+			IniRead, stashSuffixTab4, settings.ini, Stash Hotkeys, stashSuffixTab4, 4
+			IniRead, stashSuffixTab5, settings.ini, Stash Hotkeys, stashSuffixTab5, 5
+			IniRead, stashSuffixTab6, settings.ini, Stash Hotkeys, stashSuffixTab6, 6
+			IniRead, stashSuffixTab7, settings.ini, Stash Hotkeys, stashSuffixTab7, 7
+			IniRead, stashSuffixTab8, settings.ini, Stash Hotkeys, stashSuffixTab8, 8
+			IniRead, stashSuffixTab9, settings.ini, Stash Hotkeys, stashSuffixTab9, 9
+
+
+			;Controller setup
+			IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, ^LButton
+			IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
+			IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, r
+			IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
+			IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
+			IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
+			IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
+			IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Tab
+			IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Logout
+			IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
+			
+			IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
+
+			IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
+			IniRead, YesTriggerUtilityJoystickKey, settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
+			IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
+			IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
+			IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
+			IniRead, YesController, settings.ini, Controller, YesController, 0
+			IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+
+			;settings for the Ninja Database
+			IniRead, LastDatabaseParseDate, Settings.ini, Database, LastDatabaseParseDate, 20190913
+			IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Blight
+			IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
+			IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
+			IniRead, ForceMatch6Link, Settings.ini, Database, ForceMatch6Link, 0
+
+			RegisterHotkeys()
+			checkActiveType()
+		Return
+		}
+
+		submit(){  
+		updateEverything:
+			global
+			Thread, NoTimers, true		;Critical
+
+			;~ hotkeys reset
+			hotkey, IfWinActive, ahk_group POEGameGroup
+			If hotkeyAutoQuit
+				hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
+			If hotkeyAutoFlask
+				hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
+			If hotkeyQuickPortal
+				hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
+			If hotkeyGemSwap
+				hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+			If hotkeyGetCoords
+				hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
+			If hotkeyPopFlasks
+				hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
+			If hotkeyLogout
+				hotkey,% hotkeyLogout, LogoutCommand, Off
+			If hotkeyItemSort
+				hotkey,% hotkeyItemSort, ItemSortCommand, Off
+			If hotkeyItemInfo
+				hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
+			If hotkeyLootScan
+				hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+			If hotkeyMainAttack
+				hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+			If hotkeySecondaryAttack
+				hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+
+			Hotkey If, % fn1
+			If 1Suffix1 != A_Space
+				Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
+			If 1Suffix2 != A_Space
+				Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
+			If 1Suffix3 != A_Space
+				Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
+			If 1Suffix4 != A_Space
+				Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
+			If 1Suffix5 != A_Space
+				Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
+			If 1Suffix6 != A_Space
+				Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
+			If 1Suffix7 != A_Space
+				Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
+			If 1Suffix8 != A_Space
+				Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
+			If 1Suffix9 != A_Space
+				Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
+
+			Hotkey If, % fn2
+			If 2Suffix1 != A_Space
+				Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
+			If 2Suffix2 != A_Space
+				Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
+			If 2Suffix3 != A_Space
+				Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
+			If 2Suffix4 != A_Space
+				Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
+			If 2Suffix5 != A_Space
+				Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
+			If 2Suffix6 != A_Space
+				Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
+			If 2Suffix7 != A_Space
+				Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
+			If 2Suffix8 != A_Space
+				Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
+			If 2Suffix9 != A_Space
+				Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
+
+			Hotkey If, % fn3
+			If stashSuffix1 != A_Space
+				Hotkey, *%stashSuffix1%, FireStashHotkey1, off
+			If stashSuffix2 != A_Space
+				Hotkey, *%stashSuffix2%, FireStashHotkey2, off
+			If stashSuffix3 != A_Space
+				Hotkey, *%stashSuffix3%, FireStashHotkey3, off
+			If stashSuffix4 != A_Space
+				Hotkey, *%stashSuffix4%, FireStashHotkey4, off
+			If stashSuffix5 != A_Space
+				Hotkey, *%stashSuffix5%, FireStashHotkey5, off
+			If stashSuffix6 != A_Space
+				Hotkey, *%stashSuffix6%, FireStashHotkey6, off
+			If stashSuffix7 != A_Space
+				Hotkey, *%stashSuffix7%, FireStashHotkey7, off
+			If stashSuffix8 != A_Space
+				Hotkey, *%stashSuffix8%, FireStashHotkey8, off
+			If stashSuffix9 != A_Space
+				Hotkey, *%stashSuffix9%, FireStashHotkey9, off
+
+			hotkey, IfWinActive
+			If hotkeyOptions
+				hotkey,% hotkeyOptions, optionsCommand, Off
+			hotkey, IfWinActive, ahk_group POEGameGroup
+				
+			IfWinExist, ahk_group POEGameGroup 
+			{
+				Gui, Submit
+				Rescale()
+				Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+				ToggleExist := True
+				WinActivate, ahk_group POEGameGroup
+
+				;Life Resample
+				pixelgetcolor, varLife20, vX_Life, vY_Life20
+				pixelgetcolor, varLife30, vX_Life, vY_Life30
+				pixelgetcolor, varLife40, vX_Life, vY_Life40
+				pixelgetcolor, varLife50, vX_Life, vY_Life50
+				pixelgetcolor, varLife60, vX_Life, vY_Life60
+				pixelgetcolor, varLife70, vX_Life, vY_Life70
+				pixelgetcolor, varLife80, vX_Life, vY_Life80
+				pixelgetcolor, varLife90, vX_Life, vY_Life90
+					
+				IniWrite, %varLife20%, settings.ini, Life Colors, Life20
+				IniWrite, %varLife30%, settings.ini, Life Colors, Life30
+				IniWrite, %varLife40%, settings.ini, Life Colors, Life40
+				IniWrite, %varLife50%, settings.ini, Life Colors, Life50
+				IniWrite, %varLife60%, settings.ini, Life Colors, Life60
+				IniWrite, %varLife70%, settings.ini, Life Colors, Life70
+				IniWrite, %varLife80%, settings.ini, Life Colors, Life80
+				IniWrite, %varLife90%, settings.ini, Life Colors, Life90
+				;ES Resample
+				pixelgetcolor, varES20, vX_ES, vY_ES20
+				pixelgetcolor, varES30, vX_ES, vY_ES30
+				pixelgetcolor, varES40, vX_ES, vY_ES40
+				pixelgetcolor, varES50, vX_ES, vY_ES50
+				pixelgetcolor, varES60, vX_ES, vY_ES60
+				pixelgetcolor, varES70, vX_ES, vY_ES70
+				pixelgetcolor, varES80, vX_ES, vY_ES80
+				pixelgetcolor, varES90, vX_ES, vY_ES90
+				
+				IniWrite, %varES20%, settings.ini, ES Colors, ES20
+				IniWrite, %varES30%, settings.ini, ES Colors, ES30
+				IniWrite, %varES40%, settings.ini, ES Colors, ES40
+				IniWrite, %varES50%, settings.ini, ES Colors, ES50
+				IniWrite, %varES60%, settings.ini, ES Colors, ES60
+				IniWrite, %varES70%, settings.ini, ES Colors, ES70
+				IniWrite, %varES80%, settings.ini, ES Colors, ES80
+				IniWrite, %varES90%, settings.ini, ES Colors, ES90
+				;Mana Resample
+				pixelgetcolor, varMana10, vX_Mana, vY_Mana10
+				
+				IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
+				;Messagebox	
+				ToolTip % "Resampled the Life, ES, and Mana colors`nMake sure you were on your character!"
+					SetTimer, RemoveToolTip, -5000
+			} Else {
+				MsgBox % "Game is not Open`nWill not Resample the Life, ES, or Mana colors!`nAll other settings will save."
+				Gui, Submit, NoHide
+			}
+			
+			;Life Flasks
+			IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
+			IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
+			IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
+			IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
+			IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
+			IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
+			IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
+			IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
+			IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
+				
+			
+			;ES Flasks
+			IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, settings.ini, ES Triggers, TriggerES20
+			IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, settings.ini, ES Triggers, TriggerES30
+			IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, settings.ini, ES Triggers, TriggerES40
+			IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, settings.ini, ES Triggers, TriggerES50
+			IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, settings.ini, ES Triggers, TriggerES60
+			IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, settings.ini, ES Triggers, TriggerES70
+			IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, settings.ini, ES Triggers, TriggerES80
+			IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, settings.ini, ES Triggers, TriggerES90
+			IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, settings.ini, ES Triggers, DisableES
+			;Mana Flasks
+			IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10
+			
+			;Bandit Extra options
+			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
+			IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
+			IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
+			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
+			IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
+			IniWrite, %YesVendor%, settings.ini, General, YesVendor
+			IniWrite, %YesStash%, settings.ini, General, YesStash
+			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+			IniWrite, %YesDiv%, settings.ini, General, YesDiv
+			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+			IniWrite, %Latency%, settings.ini, General, Latency
+			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
+			IniWrite, %Steam%, settings.ini, General, Steam
+			IniWrite, %HighBits%, settings.ini, General, HighBits
+			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
+			IniWrite, %CharName%, settings.ini, General, CharName
+			IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
+			IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
+			IniWrite, %QSonMainAttack%, settings.ini, General, QSonMainAttack
+			IniWrite, %QSonSecondaryAttack%, settings.ini, General, QSonSecondaryAttack
+
+			;~ Hotkeys 
+			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
+			IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit
+			IniWrite, %hotkeyAutoFlask%, settings.ini, hotkeys, AutoFlask
+			IniWrite, %hotkeyAutoQuicksilver%, settings.ini, hotkeys, AutoQuicksilver
+			IniWrite, %hotkeyQuickPortal%, settings.ini, hotkeys, QuickPortal
+			IniWrite, %hotkeyGemSwap%, settings.ini, hotkeys, GemSwap
+			IniWrite, %hotkeyGetMouseCoords%, settings.ini, hotkeys, GetMouseCoords
+			IniWrite, %hotkeyPopFlasks%, settings.ini, hotkeys, PopFlasks
+			IniWrite, %hotkeyLogout%, settings.ini, hotkeys, Logout
+			IniWrite, %hotkeyCloseAllUI%, settings.ini, hotkeys, CloseAllUI
+			IniWrite, %hotkeyInventory%, settings.ini, hotkeys, Inventory
+			IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey
+			IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort
+			IniWrite, %hotkeyItemInfo%, settings.ini, hotkeys, ItemInfo
+			IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
+			IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
+			IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
+			
+			;Utility Keys
+			IniWrite, %hotkeyUp%, 		settings.ini, Controller Keys, hotkeyUp
+			IniWrite, %hotkeyDown%, 	settings.ini, Controller Keys, hotkeyDown
+			IniWrite, %hotkeyLeft%, 	settings.ini, Controller Keys, hotkeyLeft
+			IniWrite, %hotkeyRight%, 	settings.ini, Controller Keys, hotkeyRight
+			
+			;Utility Buttons
+			IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
+			IniWrite, %YesUtility2%, settings.ini, Utility Buttons, YesUtility2
+			IniWrite, %YesUtility3%, settings.ini, Utility Buttons, YesUtility3
+			IniWrite, %YesUtility4%, settings.ini, Utility Buttons, YesUtility4
+			IniWrite, %YesUtility5%, settings.ini, Utility Buttons, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, settings.ini, Utility Buttons, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, settings.ini, Utility Buttons, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, settings.ini, Utility Buttons, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, settings.ini, Utility Buttons, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, settings.ini, Utility Buttons, YesUtility5Quicksilver
+			
+			;Utility Percents	
+			IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
+			IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
+			IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
+			IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
+			IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
+			IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, settings.ini, Utility Buttons, YesUtility5EsPercent
+			
+			;Utility Cooldowns
+			IniWrite, %CooldownUtility1%, settings.ini, Utility Cooldowns, CooldownUtility1
+			IniWrite, %CooldownUtility2%, settings.ini, Utility Cooldowns, CooldownUtility2
+			IniWrite, %CooldownUtility3%, settings.ini, Utility Cooldowns, CooldownUtility3
+			IniWrite, %CooldownUtility4%, settings.ini, Utility Cooldowns, CooldownUtility4
+			IniWrite, %CooldownUtility5%, settings.ini, Utility Cooldowns, CooldownUtility5
+			
+			;Utility Keys
+			IniWrite, %KeyUtility1%, settings.ini, Utility Keys, KeyUtility1
+			IniWrite, %KeyUtility2%, settings.ini, Utility Keys, KeyUtility2
+			IniWrite, %KeyUtility3%, settings.ini, Utility Keys, KeyUtility3
+			IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
+			IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
+			
+			;Flask Cooldowns
+			IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
+			IniWrite, %CooldownFlask2%, settings.ini, Flask Cooldowns, CooldownFlask2
+			IniWrite, %CooldownFlask3%, settings.ini, Flask Cooldowns, CooldownFlask3
+			IniWrite, %CooldownFlask4%, settings.ini, Flask Cooldowns, CooldownFlask4
+			IniWrite, %CooldownFlask5%, settings.ini, Flask Cooldowns, CooldownFlask5	
+			
+			;Gem Swap
+			IniWrite, %CurrentGemX%, settings.ini, Gem Swap, CurrentGemX
+			IniWrite, %CurrentGemY%, settings.ini, Gem Swap, CurrentGemY
+			IniWrite, %AlternateGemX%, settings.ini, Gem Swap, AlternateGemX
+			IniWrite, %AlternateGemY%, settings.ini, Gem Swap, AlternateGemY
+			IniWrite, %AlternateGemOnSecondarySlot%, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
+			
+			;~ Scroll locations
+			IniWrite, %PortalScrollX%, settings.ini, Coordinates, PortalScrollX
+			IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY
+			IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX
+			IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY
+			IniWrite, %StockPortal%, settings.ini, Coordinates, StockPortal
+			IniWrite, %StockWisdom%, settings.ini, Coordinates, StockWisdom
+			
+			;Stash Tab Management
+			IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
+			IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
+			IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
+			IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
+			IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
+			IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
+			IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
+			IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
+			IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
+			IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
+			IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
+			IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
+			IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
+			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
+			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
+			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
+			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
+			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
+			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
+			IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
+			IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
+			IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
+			IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
+			IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
+			IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
+			IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
+			IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
+			IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
+			IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
+			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
+			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
+			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
+			
+			;Attack Flasks
+			IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
+			IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, settings.ini, Attack Triggers, TriggerSecondaryAttack
+			
+			;Quicksilver Flasks
+			IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
+			IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver
+			
+			;CharacterTypeCheck
+			IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
+			IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid	
+			IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci	
+			
+			;AutoQuit
+			IniWrite, %RadioQuit20%, settings.ini, AutoQuit, Quit20
+			IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30
+			IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
+			IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
+			IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
+
+			;Chat Hotkeys
+			IniWrite, %1Prefix1%, settings.ini, Chat Hotkeys, 1Prefix1
+			IniWrite, %1Prefix2%, settings.ini, Chat Hotkeys, 1Prefix2
+			IniWrite, %1Suffix1%, settings.ini, Chat Hotkeys, 1Suffix1
+			IniWrite, %1Suffix2%, settings.ini, Chat Hotkeys, 1Suffix2
+			IniWrite, %1Suffix3%, settings.ini, Chat Hotkeys, 1Suffix3
+			IniWrite, %1Suffix4%, settings.ini, Chat Hotkeys, 1Suffix4
+			IniWrite, %1Suffix5%, settings.ini, Chat Hotkeys, 1Suffix5
+			IniWrite, %1Suffix6%, settings.ini, Chat Hotkeys, 1Suffix6
+			IniWrite, %1Suffix7%, settings.ini, Chat Hotkeys, 1Suffix7
+			IniWrite, %1Suffix8%, settings.ini, Chat Hotkeys, 1Suffix8
+			IniWrite, %1Suffix9%, settings.ini, Chat Hotkeys, 1Suffix9
+
+			IniWrite, %1Suffix1Text%, settings.ini, Chat Hotkeys, 1Suffix1Text
+			IniWrite, %1Suffix2Text%, settings.ini, Chat Hotkeys, 1Suffix2Text
+			IniWrite, %1Suffix3Text%, settings.ini, Chat Hotkeys, 1Suffix3Text
+			IniWrite, %1Suffix4Text%, settings.ini, Chat Hotkeys, 1Suffix4Text
+			IniWrite, %1Suffix5Text%, settings.ini, Chat Hotkeys, 1Suffix5Text
+			IniWrite, %1Suffix6Text%, settings.ini, Chat Hotkeys, 1Suffix6Text
+			IniWrite, %1Suffix7Text%, settings.ini, Chat Hotkeys, 1Suffix7Text
+			IniWrite, %1Suffix8Text%, settings.ini, Chat Hotkeys, 1Suffix8Text
+			IniWrite, %1Suffix9Text%, settings.ini, Chat Hotkeys, 1Suffix9Text
+
+			IniWrite, %2Prefix1%, settings.ini, Chat Hotkeys, 2Prefix1
+			IniWrite, %2Prefix2%, settings.ini, Chat Hotkeys, 2Prefix2
+			IniWrite, %2Suffix1%, settings.ini, Chat Hotkeys, 2Suffix1
+			IniWrite, %2Suffix2%, settings.ini, Chat Hotkeys, 2Suffix2
+			IniWrite, %2Suffix3%, settings.ini, Chat Hotkeys, 2Suffix3
+			IniWrite, %2Suffix4%, settings.ini, Chat Hotkeys, 2Suffix4
+			IniWrite, %2Suffix5%, settings.ini, Chat Hotkeys, 2Suffix5
+			IniWrite, %2Suffix6%, settings.ini, Chat Hotkeys, 2Suffix6
+			IniWrite, %2Suffix7%, settings.ini, Chat Hotkeys, 2Suffix7
+			IniWrite, %2Suffix8%, settings.ini, Chat Hotkeys, 2Suffix8
+			IniWrite, %2Suffix9%, settings.ini, Chat Hotkeys, 2Suffix9
+			
+			IniWrite, %2Suffix1Text%, settings.ini, Chat Hotkeys, 2Suffix1Text
+			IniWrite, %2Suffix2Text%, settings.ini, Chat Hotkeys, 2Suffix2Text
+			IniWrite, %2Suffix3Text%, settings.ini, Chat Hotkeys, 2Suffix3Text
+			IniWrite, %2Suffix4Text%, settings.ini, Chat Hotkeys, 2Suffix4Text
+			IniWrite, %2Suffix5Text%, settings.ini, Chat Hotkeys, 2Suffix5Text
+			IniWrite, %2Suffix6Text%, settings.ini, Chat Hotkeys, 2Suffix6Text
+			IniWrite, %2Suffix7Text%, settings.ini, Chat Hotkeys, 2Suffix7Text
+			IniWrite, %2Suffix8Text%, settings.ini, Chat Hotkeys, 2Suffix8Text
+			IniWrite, %2Suffix9Text%, settings.ini, Chat Hotkeys, 2Suffix9Text
+
+			IniWrite, %stashPrefix1%, settings.ini, Stash Hotkeys, stashPrefix1
+			IniWrite, %stashPrefix2%, settings.ini, Stash Hotkeys, stashPrefix2
+			IniWrite, %stashSuffix1%, settings.ini, Stash Hotkeys, stashSuffix1
+			IniWrite, %stashSuffix2%, settings.ini, Stash Hotkeys, stashSuffix2
+			IniWrite, %stashSuffix3%, settings.ini, Stash Hotkeys, stashSuffix3
+			IniWrite, %stashSuffix4%, settings.ini, Stash Hotkeys, stashSuffix4
+			IniWrite, %stashSuffix5%, settings.ini, Stash Hotkeys, stashSuffix5
+			IniWrite, %stashSuffix6%, settings.ini, Stash Hotkeys, stashSuffix6
+			IniWrite, %stashSuffix7%, settings.ini, Stash Hotkeys, stashSuffix7
+			IniWrite, %stashSuffix8%, settings.ini, Stash Hotkeys, stashSuffix8
+			IniWrite, %stashSuffix9%, settings.ini, Stash Hotkeys, stashSuffix9
+			
+			IniWrite, %stashSuffixTab1%, settings.ini, Stash Hotkeys, stashSuffixTab1
+			IniWrite, %stashSuffixTab2%, settings.ini, Stash Hotkeys, stashSuffixTab2
+			IniWrite, %stashSuffixTab3%, settings.ini, Stash Hotkeys, stashSuffixTab3
+			IniWrite, %stashSuffixTab4%, settings.ini, Stash Hotkeys, stashSuffixTab4
+			IniWrite, %stashSuffixTab5%, settings.ini, Stash Hotkeys, stashSuffixTab5
+			IniWrite, %stashSuffixTab6%, settings.ini, Stash Hotkeys, stashSuffixTab6
+			IniWrite, %stashSuffixTab7%, settings.ini, Stash Hotkeys, stashSuffixTab7
+			IniWrite, %stashSuffixTab8%, settings.ini, Stash Hotkeys, stashSuffixTab8
+			IniWrite, %stashSuffixTab9%, settings.ini, Stash Hotkeys, stashSuffixTab9
+
+			;Controller setup
+			IniWrite, %hotkeyControllerButton1%, settings.ini, Controller Keys, ControllerButton1
+			IniWrite, %hotkeyControllerButton2%, settings.ini, Controller Keys, ControllerButton2
+			IniWrite, %hotkeyControllerButton3%, settings.ini, Controller Keys, ControllerButton3
+			IniWrite, %hotkeyControllerButton4%, settings.ini, Controller Keys, ControllerButton4
+			IniWrite, %hotkeyControllerButton5%, settings.ini, Controller Keys, ControllerButton5
+			IniWrite, %hotkeyControllerButton6%, settings.ini, Controller Keys, ControllerButton6
+			IniWrite, %hotkeyControllerButton7%, settings.ini, Controller Keys, ControllerButton7
+			IniWrite, %hotkeyControllerButton8%, settings.ini, Controller Keys, ControllerButton8
+			IniWrite, %hotkeyControllerButton9%, settings.ini, Controller Keys, ControllerButton9
+			IniWrite, %hotkeyControllerButton10%, settings.ini, Controller Keys, ControllerButton10
+			
+			IniWrite, %hotkeyControllerJoystick2%, settings.ini, Controller Keys, hotkeyControllerJoystick2
+
+			IniWrite, %YesTriggerUtilityKey%, settings.ini, Controller, YesTriggerUtilityKey
+			IniWrite, %YesTriggerUtilityJoystickKey%, settings.ini, Controller, YesTriggerUtilityJoystickKey
+			IniWrite, %YesTriggerJoystick2Key%, settings.ini, Controller, YesTriggerJoystick2Key
+			IniWrite, %TriggerUtilityKey%, settings.ini, Controller, TriggerUtilityKey
+			IniWrite, %YesMovementKeys%, settings.ini, Controller, YesMovementKeys
+			IniWrite, %YesController%, settings.ini, Controller, YesController
+			IniWrite, %JoystickNumber%, settings.ini, Controller, JoystickNumber
+
+			;Settings for Ninja parse
+			IniWrite, %LastDatabaseParseDate%, Settings.ini, Database, LastDatabaseParseDate
+			IniWrite, %selectedLeague%, Settings.ini, Database, selectedLeague
+			IniWrite, %UpdateDatabaseInterval%, Settings.ini, Database, UpdateDatabaseInterval
+			IniWrite, %YesNinjaDatabase%, Settings.ini, Database, YesNinjaDatabase
+			IniWrite, %ForceMatch6Link%, Settings.ini, Database, ForceMatch6Link
+
+			readFromFile()
+			If (YesPersistantToggle)
+				AutoReset()
+			GuiUpdate()
+			SetTitleMatchMode 2
+			IfWinExist, ahk_group POEGameGroup
+				{
+				WinActivate, ahk_group POEGameGroup
+				}
+			SendMSG(1, , scriptGottaGoFast)
+		return  
+		}
+
+		loadSaved:
+			readFromFile()
+			;Update UI
+			if(RadioLife==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+						GuiControl, Enable, Radiobox%A_Index%Life80
+						GuiControl, Enable, Radiobox%A_Index%Life70
+						GuiControl, Enable, Radiobox%A_Index%Life60
+						GuiControl, Enable, Radiobox%A_Index%Life50
+						GuiControl, Enable, Radiobox%A_Index%Life40
+						GuiControl, Enable, Radiobox%A_Index%Life30
+						GuiControl, Enable, Radiobox%A_Index%Life20
+						GuiControl, Enable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Disable, Radiobox%A_Index%ES90
+					GuiControl, Disable, Radiobox%A_Index%ES80
+					GuiControl, Disable, Radiobox%A_Index%ES70
+					GuiControl, Disable, Radiobox%A_Index%ES60
+					GuiControl, Disable, Radiobox%A_Index%ES50
+					GuiControl, Disable, Radiobox%A_Index%ES40
+					GuiControl, Disable, Radiobox%A_Index%ES30
+					GuiControl, Disable, Radiobox%A_Index%ES20
+					GuiControl, Disable, RadioUncheck%A_Index%ES
+				}
+			}
+			else if(RadioHybrid==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+						GuiControl, Enable, Radiobox%A_Index%Life80
+						GuiControl, Enable, Radiobox%A_Index%Life70
+						GuiControl, Enable, Radiobox%A_Index%Life60
+						GuiControl, Enable, Radiobox%A_Index%Life50
+						GuiControl, Enable, Radiobox%A_Index%Life40
+						GuiControl, Enable, Radiobox%A_Index%Life30
+						GuiControl, Enable, Radiobox%A_Index%Life20
+						GuiControl, Enable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+				}
+			}
+			else if(RadioCi==1) {
+				varTextAutoQuit20:="20 % ES"
+				varTextAutoQuit30:="30 % ES"
+				varTextAutoQuit40:="40 % ES"
+				loop 5 {
+					GuiControl, Disable, Radiobox%A_Index%Life90
+						GuiControl, Disable, Radiobox%A_Index%Life80
+						GuiControl, Disable, Radiobox%A_Index%Life70
+						GuiControl, Disable, Radiobox%A_Index%Life60
+						GuiControl, Disable, Radiobox%A_Index%Life50
+						GuiControl, Disable, Radiobox%A_Index%Life40
+						GuiControl, Disable, Radiobox%A_Index%Life30
+						GuiControl, Disable, Radiobox%A_Index%Life20
+						GuiControl, Disable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+				}
+			}
+			GuiControl,, RadioQuit20, %varTextAutoQuit20%
+			GuiControl,, RadioQuit30, %varTextAutoQuit30%
+			GuiControl,, RadioQuit40, %varTextAutoQuit40%
+			GuiControl,, RadioQuit20, %RadioQuit20%
+			GuiControl,, RadioQuit30, %RadioQuit30%
+			GuiControl,, RadioQuit40, %RadioQuit40%
+			GuiControl,, CooldownFlask1, %CooldownFlask1%
+			GuiControl,, CooldownFlask2, %CooldownFlask2%
+			GuiControl,, CooldownFlask3, %CooldownFlask3%
+			GuiControl,, CooldownFlask4, %CooldownFlask4%
+			GuiControl,, CooldownFlask5, %CooldownFlask5%
+			GuiControl,, RadioNormalQuit, %RadioNormalQuit%
+			GuiControl,, RadioCritQuit, %RadioCritQuit%
+			GuiControl,, RadioLife, %RadioLife%
+			GuiControl,, RadioHybrid, %RadioHybrid%
+			GuiControl,, RadioCi, %RadioCi%
+			GuiControl,, hotkeyMainAttack, %hotkeyMainAttack%
+			GuiControl,, hotkeySecondaryAttack, %hotkeySecondaryAttack%
+			GuiControl,, TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
+			GuiControl,, hotkeyOptions, %hotkeyOptions%
+			GuiControl,, hotkeyAutoFlask, %hotkeyAutoFlask%
+			GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
+			GuiControl,, hotkeyLogout, %hotkeyLogout%
+			GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
+			GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
+			GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
+			GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
+			GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
+			GuiControl,, hotkeyItemSort, %hotkeyItemSort%
+			GuiControl,, hotkeyItemInfo, %hotkeyItemInfo%
+			GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
+			GuiControl,, hotkeyInventory, %hotkeyInventory%
+			GuiControl,, hotkeyWeaponSwapKey, %hotkeyWeaponSwapKey%
+			GuiControl,, hotkeyLootScan, %hotkeyLootScan%
+			GuiControl,, PortalScrollX, %PortalScrollX%
+			GuiControl,, PortalScrollY, %PortalScrollY%
+			GuiControl,, WisdomScrollX, %WisdomScrollX%
+			GuiControl,, WisdomScrollY, %WisdomScrollY%
+			GuiControl,, CurrentGemX, %CurrentGemX%
+			GuiControl,, CurrentGemY, %CurrentGemY%
+			GuiControl,, AlternateGemX, %AlternateGemX%
+			GuiControl,, AlternateGemY, %AlternateGemY%
+			
+			SendMSG(1,1,scriptGottaGoFast)
+		return
+	}
+
+	{ ; Hotkeys with modifiers - RegisterHotkeys, 1HotkeyShouldFire, 2HotkeyShouldFire, stashHotkeyShouldFire
+
+		; RegisterHotkeys - Register Chat and Stash Hotkeys
+		; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		RegisterHotkeys() {
+			global
+			Hotkey If, % fn1
+				If 1Suffix1 != A_Space
+					Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
+				If 1Suffix2 != A_Space
+					Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
+				If 1Suffix3 != A_Space
+					Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
+				If 1Suffix4 != A_Space
+					Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
+				If 1Suffix5 != A_Space
+					Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
+				If 1Suffix6 != A_Space
+					Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
+				If 1Suffix7 != A_Space
+					Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
+				If 1Suffix8 != A_Space
+					Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
+				If 1Suffix9 != A_Space
+					Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
+
+			Hotkey If, % fn2
+				If 2Suffix1 != A_Space
+					Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
+				If 2Suffix2 != A_Space
+					Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
+				If 2Suffix3 != A_Space
+					Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
+				If 2Suffix4 != A_Space
+					Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
+				If 2Suffix5 != A_Space
+					Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
+				If 2Suffix6 != A_Space
+					Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
+				If 2Suffix7 != A_Space
+					Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
+				If 2Suffix8 != A_Space
+					Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
+				If 2Suffix9 != A_Space
+					Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
+
+			Hotkey If, % fn3
+				If stashSuffix1 != A_Space
+					Hotkey, *%stashSuffix1%, FireStashHotkey1, off
+				If stashSuffix2 != A_Space
+					Hotkey, *%stashSuffix2%, FireStashHotkey2, off
+				If stashSuffix3 != A_Space
+					Hotkey, *%stashSuffix3%, FireStashHotkey3, off
+				If stashSuffix4 != A_Space
+					Hotkey, *%stashSuffix4%, FireStashHotkey4, off
+				If stashSuffix5 != A_Space
+					Hotkey, *%stashSuffix5%, FireStashHotkey5, off
+				If stashSuffix6 != A_Space
+					Hotkey, *%stashSuffix6%, FireStashHotkey6, off
+				If stashSuffix7 != A_Space
+					Hotkey, *%stashSuffix7%, FireStashHotkey7, off
+				If stashSuffix8 != A_Space
+					Hotkey, *%stashSuffix8%, FireStashHotkey8, off
+				If stashSuffix9 != A_Space
+					Hotkey, *%stashSuffix9%, FireStashHotkey9, off
+
+			Gui Submit, NoHide
+			fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
+			Hotkey If, % fn1
+			Loop, 9 {
+				If (1Suffix%A_Index% != A_Space)
+					keyval := 1Suffix%A_Index%
+					Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
+				}
+			fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
+			Hotkey If, % fn2
+			Loop, 9 {
+				If (2Suffix%A_Index% != A_Space)
+					keyval := 2Suffix%A_Index%
+					Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
+				}
+			fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
+			Hotkey If, % fn3
+			Loop, 9 {
+				If (stashSuffix%A_Index% != A_Space)
+					keyval := stashSuffix%A_Index%
+					Hotkey, ~*%keyval%, FireStashHotkey%A_Index%, On
+				}
+			Return
+			}
+		; HotkeyShouldFire - Functions to evaluate keystate
+		; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
+			IfWinActive, ahk_group POEGameGroup
+				{
+				If (EnableChatHotkeys){
+					If ( 1Prefix1 && 1Prefix2 ){
+						If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
+							return True
+						Else
+							return False
+						}
+					Else If ( 1Prefix1 && !1Prefix2 ) {
+						If ( GetKeyState(1Prefix1) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !1Prefix1 && 1Prefix2 ) {
+						If ( GetKeyState(1Prefix2) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !1Prefix1 && !1Prefix2 ) {
+						return True
+						}
+					} 
+				}
+			Else {
+					Return False
+				}
+		}
+		2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
+			IfWinActive, ahk_group POEGameGroup
+				{
+				If (EnableChatHotkeys){
+					If ( 2Prefix1 && 2Prefix2 ){
+						If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
+							return True
+						Else
+							return False
+						}
+					Else If ( 2Prefix1 && !2Prefix2 ) {
+						If ( GetKeyState(2Prefix1) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !2Prefix1 && 2Prefix2 ) {
+						If ( GetKeyState(2Prefix2) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !2Prefix1 && !2Prefix2 ) {
+						return True
+						}
+					}
+				Else
+					Return False 
+				}
+			Else {
+					Return False
+				}
+		}
+		stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
+			IfWinActive, ahk_group POEGameGroup
+			{
+				If (YesStashKeys){
+					If ( stashPrefix1 && stashPrefix2 ){
+						If ( GetKeyState(stashPrefix1) && GetKeyState(stashPrefix2) )
+							return True
+						Else
+							return False
+						}
+					Else If ( stashPrefix1 && !stashPrefix2 ) {
+						If ( GetKeyState(stashPrefix1) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !stashPrefix1 && stashPrefix2 ) {
+						If ( GetKeyState(stashPrefix2) ) 
+							return True
+						Else
+							return False
+						}
+					Else If ( !stashPrefix1 && !stashPrefix2 ) {
+						return True
+						}
+				}
+				Else
+					Return False 
+			}
+			Else {
+					Return False
+			}
+		}
+
+		; FireHotkey - Functions to Send each hotkey
+		; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		1FireWhisperHotkey1() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
+				str1Suffix1Text := StrReplace(str1Suffix1Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix1Text := StrReplace(str1Suffix1Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix1Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey2() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
+				str1Suffix2Text := StrReplace(str1Suffix2Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix2Text := StrReplace(str1Suffix2Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix2Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey3() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
+				str1Suffix3Text := StrReplace(str1Suffix3Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix3Text := StrReplace(str1Suffix3Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix3Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey4() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
+				str1Suffix4Text := StrReplace(str1Suffix4Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix4Text := StrReplace(str1Suffix4Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix4Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey5() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
+				str1Suffix5Text := StrReplace(str1Suffix5Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix5Text := StrReplace(str1Suffix5Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix5Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey6() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
+				str1Suffix6Text := StrReplace(str1Suffix6Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix6Text := StrReplace(str1Suffix6Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix6Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey7() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
+				str1Suffix7Text := StrReplace(str1Suffix7Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix7Text := StrReplace(str1Suffix7Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix7Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey8() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
+				str1Suffix8Text := StrReplace(str1Suffix8Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix8Text := StrReplace(str1Suffix8Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix8Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		1FireWhisperHotkey9() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				str1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
+				str1Suffix9Text := StrReplace(str1Suffix9Text, "RecipientName", RecipientName, 0, -1)
+				str1Suffix9Text := StrReplace(str1Suffix9Text, "!", "{!}", 0, -1)
+				Send, {Enter}%str1Suffix9Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey1() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
+				str2Suffix1Text := StrReplace(str2Suffix1Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix1Text := StrReplace(str2Suffix1Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix1Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey2() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
+				str2Suffix2Text := StrReplace(str2Suffix2Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix2Text := StrReplace(str2Suffix2Text, "!", "{!}", 0, -1)
+
+				Send, ^{Enter}%str2Suffix2Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey3() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
+				str2Suffix3Text := StrReplace(str2Suffix3Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix3Text := StrReplace(str2Suffix3Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix3Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey4() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
+				str2Suffix4Text := StrReplace(str2Suffix4Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix4Text := StrReplace(str2Suffix4Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix4Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey5() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
+				str2Suffix5Text := StrReplace(str2Suffix5Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix5Text := StrReplace(str2Suffix5Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix5Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey6() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
+				str2Suffix6Text := StrReplace(str2Suffix6Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix6Text := StrReplace(str2Suffix6Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix6Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey7() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
+				str2Suffix7Text := StrReplace(str2Suffix7Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix7Text := StrReplace(str2Suffix7Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix7Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey8() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
+				str2Suffix8Text := StrReplace(str2Suffix8Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix8Text := StrReplace(str2Suffix8Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix8Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		2FireWhisperHotkey9() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				GrabRecipientName()
+				str2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
+				str2Suffix9Text := StrReplace(str2Suffix9Text, "RecipientName", RecipientName, 0, -1)
+				str2Suffix9Text := StrReplace(str2Suffix9Text, "!", "{!}", 0, -1)
+				Send, ^{Enter}%str2Suffix9Text%{Enter}
+				ResetChat()
+			}
+		return
+		}
+		FireStashHotkey1() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab1)
+			}
+		return
+		}
+		FireStashHotkey2() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab2)
+			}
+		return
+		}
+		FireStashHotkey3() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab3)
+			}
+		return
+		}
+		FireStashHotkey4() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab4)
+			}
+		return
+		}
+		FireStashHotkey5() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab5)
+			}
+		return
+		}
+		FireStashHotkey6() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab6)
+			}
+		return
+		}
+		FireStashHotkey7() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab7)
+			}
+		return
+		}
+		FireStashHotkey8() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab8)
+			}
+		return
+		}
+		FireStashHotkey9() {
+			IfWinActive, ahk_group POEGameGroup
+			{	
+				MoveStash(stashSuffixTab9)
+			}
+		return
+		}	
+	}
+
+	{ ; Submit Profiles
+		submitProfile(Profile){  
+			global
+			Gui, Submit, NoHide
+			
+			;Life Flasks
+			
+			IniWrite, %Radiobox1Life20%, settings.ini, Profile%Profile%, Radiobox1Life20
+			IniWrite, %Radiobox2Life20%, settings.ini, Profile%Profile%, Radiobox2Life20
+			IniWrite, %Radiobox3Life20%, settings.ini, Profile%Profile%, Radiobox3Life20
+			IniWrite, %Radiobox4Life20%, settings.ini, Profile%Profile%, Radiobox4Life20
+			IniWrite, %Radiobox5Life20%, settings.ini, Profile%Profile%, Radiobox5Life20
+
+			IniWrite, %Radiobox1Life30%, settings.ini, Profile%Profile%, Radiobox1Life30
+			IniWrite, %Radiobox2Life30%, settings.ini, Profile%Profile%, Radiobox2Life30
+			IniWrite, %Radiobox3Life30%, settings.ini, Profile%Profile%, Radiobox3Life30
+			IniWrite, %Radiobox4Life30%, settings.ini, Profile%Profile%, Radiobox4Life30
+			IniWrite, %Radiobox5Life30%, settings.ini, Profile%Profile%, Radiobox5Life30
+
+			IniWrite, %Radiobox1Life40%, settings.ini, Profile%Profile%, Radiobox1Life40
+			IniWrite, %Radiobox2Life40%, settings.ini, Profile%Profile%, Radiobox2Life40
+			IniWrite, %Radiobox3Life40%, settings.ini, Profile%Profile%, Radiobox3Life40
+			IniWrite, %Radiobox4Life40%, settings.ini, Profile%Profile%, Radiobox4Life40
+			IniWrite, %Radiobox5Life40%, settings.ini, Profile%Profile%, Radiobox5Life40
+
+			IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
+			IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
+			IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
+			IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
+			IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
+
+			IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
+			IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
+			IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
+			IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
+			IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
+
+			IniWrite, %Radiobox1Life60%, settings.ini, Profile%Profile%, Radiobox1Life60
+			IniWrite, %Radiobox2Life60%, settings.ini, Profile%Profile%, Radiobox2Life60
+			IniWrite, %Radiobox3Life60%, settings.ini, Profile%Profile%, Radiobox3Life60
+			IniWrite, %Radiobox4Life60%, settings.ini, Profile%Profile%, Radiobox4Life60
+			IniWrite, %Radiobox5Life60%, settings.ini, Profile%Profile%, Radiobox5Life60
+
+			IniWrite, %Radiobox1Life70%, settings.ini, Profile%Profile%, Radiobox1Life70
+			IniWrite, %Radiobox2Life70%, settings.ini, Profile%Profile%, Radiobox2Life70
+			IniWrite, %Radiobox3Life70%, settings.ini, Profile%Profile%, Radiobox3Life70
+			IniWrite, %Radiobox4Life70%, settings.ini, Profile%Profile%, Radiobox4Life70
+			IniWrite, %Radiobox5Life70%, settings.ini, Profile%Profile%, Radiobox5Life70
+
+			IniWrite, %Radiobox1Life80%, settings.ini, Profile%Profile%, Radiobox1Life80
+			IniWrite, %Radiobox2Life80%, settings.ini, Profile%Profile%, Radiobox2Life80
+			IniWrite, %Radiobox3Life80%, settings.ini, Profile%Profile%, Radiobox3Life80
+			IniWrite, %Radiobox4Life80%, settings.ini, Profile%Profile%, Radiobox4Life80
+			IniWrite, %Radiobox5Life80%, settings.ini, Profile%Profile%, Radiobox5Life80
+
+			IniWrite, %Radiobox1Life90%, settings.ini, Profile%Profile%, Radiobox1Life90
+			IniWrite, %Radiobox2Life90%, settings.ini, Profile%Profile%, Radiobox2Life90
+			IniWrite, %Radiobox3Life90%, settings.ini, Profile%Profile%, Radiobox3Life90
+			IniWrite, %Radiobox4Life90%, settings.ini, Profile%Profile%, Radiobox4Life90
+			IniWrite, %Radiobox5Life90%, settings.ini, Profile%Profile%, Radiobox5Life90
+
+			IniWrite, %RadioUncheck1Life%, settings.ini, Profile%Profile%, RadioUncheck1Life
+			IniWrite, %RadioUncheck2Life%, settings.ini, Profile%Profile%, RadioUncheck2Life
+			IniWrite, %RadioUncheck3Life%, settings.ini, Profile%Profile%, RadioUncheck3Life
+			IniWrite, %RadioUncheck4Life%, settings.ini, Profile%Profile%, RadioUncheck4Life
+			IniWrite, %RadioUncheck5Life%, settings.ini, Profile%Profile%, RadioUncheck5Life
+			
+			;ES Flasks
+			IniWrite, %Radiobox1ES20%, settings.ini, Profile%Profile%, Radiobox1ES20
+			IniWrite, %Radiobox2ES20%, settings.ini, Profile%Profile%, Radiobox2ES20
+			IniWrite, %Radiobox3ES20%, settings.ini, Profile%Profile%, Radiobox3ES20
+			IniWrite, %Radiobox4ES20%, settings.ini, Profile%Profile%, Radiobox4ES20
+			IniWrite, %Radiobox5ES20%, settings.ini, Profile%Profile%, Radiobox5ES20
+			
+			IniWrite, %Radiobox1ES30%, settings.ini, Profile%Profile%, Radiobox1ES30
+			IniWrite, %Radiobox2ES30%, settings.ini, Profile%Profile%, Radiobox2ES30
+			IniWrite, %Radiobox3ES30%, settings.ini, Profile%Profile%, Radiobox3ES30
+			IniWrite, %Radiobox4ES30%, settings.ini, Profile%Profile%, Radiobox4ES30
+			IniWrite, %Radiobox5ES30%, settings.ini, Profile%Profile%, Radiobox5ES30
+			
+			IniWrite, %Radiobox1ES40%, settings.ini, Profile%Profile%, Radiobox1ES40
+			IniWrite, %Radiobox2ES40%, settings.ini, Profile%Profile%, Radiobox2ES40
+			IniWrite, %Radiobox3ES40%, settings.ini, Profile%Profile%, Radiobox3ES40
+			IniWrite, %Radiobox4ES40%, settings.ini, Profile%Profile%, Radiobox4ES40
+			IniWrite, %Radiobox5ES40%, settings.ini, Profile%Profile%, Radiobox5ES40
+			
+			IniWrite, %Radiobox1ES50%, settings.ini, Profile%Profile%, Radiobox1ES50
+			IniWrite, %Radiobox2ES50%, settings.ini, Profile%Profile%, Radiobox2ES50
+			IniWrite, %Radiobox3ES50%, settings.ini, Profile%Profile%, Radiobox3ES50
+			IniWrite, %Radiobox4ES50%, settings.ini, Profile%Profile%, Radiobox4ES50
+			IniWrite, %Radiobox5ES50%, settings.ini, Profile%Profile%, Radiobox5ES50
+			
+			IniWrite, %Radiobox1ES50%, settings.ini, Profile%Profile%, Radiobox1ES50
+			IniWrite, %Radiobox2ES50%, settings.ini, Profile%Profile%, Radiobox2ES50
+			IniWrite, %Radiobox3ES50%, settings.ini, Profile%Profile%, Radiobox3ES50
+			IniWrite, %Radiobox4ES50%, settings.ini, Profile%Profile%, Radiobox4ES50
+			IniWrite, %Radiobox5ES50%, settings.ini, Profile%Profile%, Radiobox5ES50
+			
+			IniWrite, %Radiobox1ES60%, settings.ini, Profile%Profile%, Radiobox1ES60
+			IniWrite, %Radiobox2ES60%, settings.ini, Profile%Profile%, Radiobox2ES60
+			IniWrite, %Radiobox3ES60%, settings.ini, Profile%Profile%, Radiobox3ES60
+			IniWrite, %Radiobox4ES60%, settings.ini, Profile%Profile%, Radiobox4ES60
+			IniWrite, %Radiobox5ES60%, settings.ini, Profile%Profile%, Radiobox5ES60
+			
+			IniWrite, %Radiobox1ES70%, settings.ini, Profile%Profile%, Radiobox1ES70
+			IniWrite, %Radiobox2ES70%, settings.ini, Profile%Profile%, Radiobox2ES70
+			IniWrite, %Radiobox3ES70%, settings.ini, Profile%Profile%, Radiobox3ES70
+			IniWrite, %Radiobox4ES70%, settings.ini, Profile%Profile%, Radiobox4ES70
+			IniWrite, %Radiobox5ES70%, settings.ini, Profile%Profile%, Radiobox5ES70
+			
+			IniWrite, %Radiobox1ES80%, settings.ini, Profile%Profile%, Radiobox1ES80
+			IniWrite, %Radiobox2ES80%, settings.ini, Profile%Profile%, Radiobox2ES80
+			IniWrite, %Radiobox3ES80%, settings.ini, Profile%Profile%, Radiobox3ES80
+			IniWrite, %Radiobox4ES80%, settings.ini, Profile%Profile%, Radiobox4ES80
+			IniWrite, %Radiobox5ES80%, settings.ini, Profile%Profile%, Radiobox5ES80
+			
+			IniWrite, %Radiobox1ES90%, settings.ini, Profile%Profile%, Radiobox1ES90
+			IniWrite, %Radiobox2ES90%, settings.ini, Profile%Profile%, Radiobox2ES90
+			IniWrite, %Radiobox3ES90%, settings.ini, Profile%Profile%, Radiobox3ES90
+			IniWrite, %Radiobox4ES90%, settings.ini, Profile%Profile%, Radiobox4ES90
+			IniWrite, %Radiobox5ES90%, settings.ini, Profile%Profile%, Radiobox5ES90
+			
+			IniWrite, %RadioUncheck1ES%, settings.ini, Profile%Profile%, RadioUncheck1ES
+			IniWrite, %RadioUncheck2ES%, settings.ini, Profile%Profile%, RadioUncheck2ES
+			IniWrite, %RadioUncheck3ES%, settings.ini, Profile%Profile%, RadioUncheck3ES
+			IniWrite, %RadioUncheck4ES%, settings.ini, Profile%Profile%, RadioUncheck4ES
+			IniWrite, %RadioUncheck5ES%, settings.ini, Profile%Profile%, RadioUncheck5ES
+			
+			;Mana Flasks
+			IniWrite, %Radiobox1Mana10%, settings.ini, Profile%Profile%, Radiobox1Mana10
+			IniWrite, %Radiobox2Mana10%, settings.ini, Profile%Profile%, Radiobox2Mana10
+			IniWrite, %Radiobox3Mana10%, settings.ini, Profile%Profile%, Radiobox3Mana10
+			IniWrite, %Radiobox4Mana10%, settings.ini, Profile%Profile%, Radiobox4Mana10
+			IniWrite, %Radiobox5Mana10%, settings.ini, Profile%Profile%, Radiobox5Mana10
+			
+			;Flask Cooldowns
+			IniWrite, %CooldownFlask1%, settings.ini, Profile%Profile%, CooldownFlask1
+			IniWrite, %CooldownFlask2%, settings.ini, Profile%Profile%, CooldownFlask2
+			IniWrite, %CooldownFlask3%, settings.ini, Profile%Profile%, CooldownFlask3
+			IniWrite, %CooldownFlask4%, settings.ini, Profile%Profile%, CooldownFlask4
+			IniWrite, %CooldownFlask5%, settings.ini, Profile%Profile%, CooldownFlask5	
+			
+			;Attack Flasks
+			IniWrite, %MainAttackbox1%, settings.ini, Profile%Profile%, MainAttackbox1
+			IniWrite, %MainAttackbox2%, settings.ini, Profile%Profile%, MainAttackbox2
+			IniWrite, %MainAttackbox3%, settings.ini, Profile%Profile%, MainAttackbox3
+			IniWrite, %MainAttackbox4%, settings.ini, Profile%Profile%, MainAttackbox4
+			IniWrite, %MainAttackbox5%, settings.ini, Profile%Profile%, MainAttackbox5
+			
+			IniWrite, %SecondaryAttackbox1%, settings.ini, Profile%Profile%, SecondaryAttackbox1
+			IniWrite, %SecondaryAttackbox2%, settings.ini, Profile%Profile%, SecondaryAttackbox2
+			IniWrite, %SecondaryAttackbox3%, settings.ini, Profile%Profile%, SecondaryAttackbox3
+			IniWrite, %SecondaryAttackbox4%, settings.ini, Profile%Profile%, SecondaryAttackbox4
+			IniWrite, %SecondaryAttackbox5%, settings.ini, Profile%Profile%, SecondaryAttackbox5
+			
+			;Attack Keys
+			IniWrite, %hotkeyMainAttack%, settings.ini, Profile%Profile%, MainAttack
+			IniWrite, %hotkeySecondaryAttack%, settings.ini, Profile%Profile%, SecondaryAttack
+			
+			;QS on Attack Keys
+			IniWrite, %QSonMainAttack%, settings.ini, Profile%Profile%, QSonMainAttack
+			IniWrite, %QSonSecondaryAttack%, settings.ini, Profile%Profile%, QSonSecondaryAttack
+			
+			;Quicksilver Flasks
+			IniWrite, %TriggerQuicksilverDelay%, settings.ini, Profile%Profile%, TriggerQuicksilverDelay
+			IniWrite, %Radiobox1QS%, settings.ini, Profile%Profile%, QuicksilverSlot1
+			IniWrite, %Radiobox2QS%, settings.ini, Profile%Profile%, QuicksilverSlot2
+			IniWrite, %Radiobox3QS%, settings.ini, Profile%Profile%, QuicksilverSlot3
+			IniWrite, %Radiobox4QS%, settings.ini, Profile%Profile%, QuicksilverSlot4
+			IniWrite, %Radiobox5QS%, settings.ini, Profile%Profile%, QuicksilverSlot5
+			
+			;CharacterTypeCheck
+			IniWrite, %RadioLife%, settings.ini, Profile%Profile%, Life
+			IniWrite, %RadioHybrid%, settings.ini, Profile%Profile%, Hybrid	
+			IniWrite, %RadioCi%, settings.ini, Profile%Profile%, Ci	
+			
+			;AutoQuit
+			IniWrite, %RadioQuit20%, settings.ini, Profile%Profile%, Quit20
+			IniWrite, %RadioQuit30%, settings.ini, Profile%Profile%, Quit30
+			IniWrite, %RadioQuit40%, settings.ini, Profile%Profile%, Quit40
+			IniWrite, %RadioCritQuit%, settings.ini, Profile%Profile%, CritQuit
+			IniWrite, %RadioNormalQuit%, settings.ini, Profile%Profile%, NormalQuit
+			
+			;Utility Buttons
+			IniWrite, %YesUtility1%, settings.ini, Profile%Profile%, YesUtility1
+			IniWrite, %YesUtility2%, settings.ini, Profile%Profile%, YesUtility2
+			IniWrite, %YesUtility3%, settings.ini, Profile%Profile%, YesUtility3
+			IniWrite, %YesUtility4%, settings.ini, Profile%Profile%, YesUtility4
+			IniWrite, %YesUtility5%, settings.ini, Profile%Profile%, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, settings.ini, Profile%Profile%, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, settings.ini, Profile%Profile%, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, settings.ini, Profile%Profile%, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, settings.ini, Profile%Profile%, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, settings.ini, Profile%Profile%, YesUtility5Quicksilver
+			
+			;Utility Percents	
+			IniWrite, %YesUtility1LifePercent%, settings.ini, Profile%Profile%, YesUtility1LifePercent
+			IniWrite, %YesUtility2LifePercent%, settings.ini, Profile%Profile%, YesUtility2LifePercent
+			IniWrite, %YesUtility3LifePercent%, settings.ini, Profile%Profile%, YesUtility3LifePercent
+			IniWrite, %YesUtility4LifePercent%, settings.ini, Profile%Profile%, YesUtility4LifePercent
+			IniWrite, %YesUtility5LifePercent%, settings.ini, Profile%Profile%, YesUtility5LifePercent
+			IniWrite, %YesUtility1EsPercent%, settings.ini, Profile%Profile%, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, settings.ini, Profile%Profile%, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, settings.ini, Profile%Profile%, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, settings.ini, Profile%Profile%, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, settings.ini, Profile%Profile%, YesUtility5EsPercent
+			
+			;Utility Cooldowns
+			IniWrite, %CooldownUtility1%, settings.ini, Profile%Profile%, CooldownUtility1
+			IniWrite, %CooldownUtility2%, settings.ini, Profile%Profile%, CooldownUtility2
+			IniWrite, %CooldownUtility3%, settings.ini, Profile%Profile%, CooldownUtility3
+			IniWrite, %CooldownUtility4%, settings.ini, Profile%Profile%, CooldownUtility4
+			IniWrite, %CooldownUtility5%, settings.ini, Profile%Profile%, CooldownUtility5
+			
+			;Character Name
+			IniWrite, %CharName%, settings.ini, Profile%Profile%, CharName
+
+			;Utility Keys
+			IniWrite, %KeyUtility1%, settings.ini, Profile%Profile%, KeyUtility1
+			IniWrite, %KeyUtility2%, settings.ini, Profile%Profile%, KeyUtility2
+			IniWrite, %KeyUtility3%, settings.ini, Profile%Profile%, KeyUtility3
+			IniWrite, %KeyUtility4%, settings.ini, Profile%Profile%, KeyUtility4
+			IniWrite, %KeyUtility5%, settings.ini, Profile%Profile%, KeyUtility5
+			
+		return
+		}
+
+		submitProfile1:
+			submitProfile(1)
+		Return
+
+		submitProfile2:
+			submitProfile(2)
+		Return
+
+		submitProfile3:
+			submitProfile(3)
+		Return
+
+		submitProfile4:
+			submitProfile(4)
+		Return
+
+		submitProfile5:
+			submitProfile(5)
+		Return
+
+		submitProfile6:
+			submitProfile(6)
+		Return
+
+		submitProfile7:
+			submitProfile(7)
+		Return
+
+		submitProfile8:
+			submitProfile(8)
+		Return
+
+		submitProfile9:
+			submitProfile(9)
+		Return
+
+		submitProfile10:
+			submitProfile(10)
+		Return
+	}
+
+	{ ; Read Profiles
+		readProfile(Profile){  
+			global
+			;Life Flasks
+			IniRead, Radiobox1Life20, settings.ini, Profile%Profile%, Radiobox1Life20, 0
+			GuiControl, , Radiobox1Life20, %Radiobox1Life20%
+			IniRead, Radiobox2Life20, settings.ini, Profile%Profile%, Radiobox2Life20, 0
+			GuiControl, , Radiobox2Life20, %Radiobox2Life20%
+			IniRead, Radiobox3Life20, settings.ini, Profile%Profile%, Radiobox3Life20, 0
+			GuiControl, , Radiobox3Life20, %Radiobox3Life20%
+			IniRead, Radiobox4Life20, settings.ini, Profile%Profile%, Radiobox4Life20, 0
+			GuiControl, , Radiobox4Life20, %Radiobox4Life20%
+			IniRead, Radiobox5Life20, settings.ini, Profile%Profile%, Radiobox5Life20, 0
+			GuiControl, , Radiobox5Life20, %Radiobox5Life20%
+
+			IniRead, Radiobox1Life30, settings.ini, Profile%Profile%, Radiobox1Life30, 0
+			GuiControl, , Radiobox1Life30, %Radiobox1Life30%
+			IniRead, Radiobox2Life30, settings.ini, Profile%Profile%, Radiobox2Life30, 0
+			GuiControl, , Radiobox2Life30, %Radiobox2Life30%
+			IniRead, Radiobox3Life30, settings.ini, Profile%Profile%, Radiobox3Life30, 0
+			GuiControl, , Radiobox3Life30, %Radiobox3Life30%
+			IniRead, Radiobox4Life30, settings.ini, Profile%Profile%, Radiobox4Life30, 0
+			GuiControl, , Radiobox4Life30, %Radiobox4Life30%
+			IniRead, Radiobox5Life30, settings.ini, Profile%Profile%, Radiobox5Life30, 0
+			GuiControl, , Radiobox5Life30, %Radiobox5Life30%
+
+			IniRead, Radiobox1Life40, settings.ini, Profile%Profile%, Radiobox1Life40, 0
+			GuiControl, , Radiobox1Life40, %Radiobox1Life40%
+			IniRead, Radiobox2Life40, settings.ini, Profile%Profile%, Radiobox2Life40, 0
+			GuiControl, , Radiobox2Life40, %Radiobox2Life40%
+			IniRead, Radiobox3Life40, settings.ini, Profile%Profile%, Radiobox3Life40, 0
+			GuiControl, , Radiobox3Life40, %Radiobox3Life40%
+			IniRead, Radiobox4Life40, settings.ini, Profile%Profile%, Radiobox4Life40, 0
+			GuiControl, , Radiobox4Life40, %Radiobox4Life40%
+			IniRead, Radiobox5Life40, settings.ini, Profile%Profile%, Radiobox5Life40, 0
+			GuiControl, , Radiobox5Life40, %Radiobox5Life40%
+
+			IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50, 0
+			GuiControl, , Radiobox1Life50, %Radiobox1Life50%
+			IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50, 0
+			GuiControl, , Radiobox2Life50, %Radiobox2Life50%
+			IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50, 0
+			GuiControl, , Radiobox3Life50, %Radiobox3Life50%
+			IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50, 0
+			GuiControl, , Radiobox4Life50, %Radiobox4Life50%
+			IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50, 0
+			GuiControl, , Radiobox5Life50, %Radiobox5Life50%
+
+			IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50, 0
+			GuiControl, , Radiobox1Life50, %Radiobox1Life50%
+			IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50, 0
+			GuiControl, , Radiobox2Life50, %Radiobox2Life50%
+			IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50, 0
+			GuiControl, , Radiobox3Life50, %Radiobox3Life50%
+			IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50, 0
+			GuiControl, , Radiobox4Life50, %Radiobox4Life50%
+			IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50, 0
+			GuiControl, , Radiobox5Life50, %Radiobox5Life50%
+
+			IniRead, Radiobox1Life60, settings.ini, Profile%Profile%, Radiobox1Life60, 0
+			GuiControl, , Radiobox1Life60, %Radiobox1Life60%
+			IniRead, Radiobox2Life60, settings.ini, Profile%Profile%, Radiobox2Life60, 0
+			GuiControl, , Radiobox2Life60, %Radiobox2Life60%
+			IniRead, Radiobox3Life60, settings.ini, Profile%Profile%, Radiobox3Life60, 0
+			GuiControl, , Radiobox3Life60, %Radiobox3Life60%
+			IniRead, Radiobox4Life60, settings.ini, Profile%Profile%, Radiobox4Life60, 0
+			GuiControl, , Radiobox4Life60, %Radiobox4Life60%
+			IniRead, Radiobox5Life60, settings.ini, Profile%Profile%, Radiobox5Life60, 0
+			GuiControl, , Radiobox5Life60, %Radiobox5Life60%
+
+			IniRead, Radiobox1Life70, settings.ini, Profile%Profile%, Radiobox1Life70, 0
+			GuiControl, , Radiobox1Life70, %Radiobox1Life70%
+			IniRead, Radiobox2Life70, settings.ini, Profile%Profile%, Radiobox2Life70, 0
+			GuiControl, , Radiobox2Life70, %Radiobox2Life70%
+			IniRead, Radiobox3Life70, settings.ini, Profile%Profile%, Radiobox3Life70, 0
+			GuiControl, , Radiobox3Life70, %Radiobox3Life70%
+			IniRead, Radiobox4Life70, settings.ini, Profile%Profile%, Radiobox4Life70, 0
+			GuiControl, , Radiobox4Life70, %Radiobox4Life70%
+			IniRead, Radiobox5Life70, settings.ini, Profile%Profile%, Radiobox5Life70, 0
+			GuiControl, , Radiobox5Life70, %Radiobox5Life70%
+
+			IniRead, Radiobox1Life80, settings.ini, Profile%Profile%, Radiobox1Life80, 0
+			GuiControl, , Radiobox1Life80, %Radiobox1Life80%
+			IniRead, Radiobox2Life80, settings.ini, Profile%Profile%, Radiobox2Life80, 0
+			GuiControl, , Radiobox2Life80, %Radiobox2Life80%
+			IniRead, Radiobox3Life80, settings.ini, Profile%Profile%, Radiobox3Life80, 0
+			GuiControl, , Radiobox3Life80, %Radiobox3Life80%
+			IniRead, Radiobox4Life80, settings.ini, Profile%Profile%, Radiobox4Life80, 0
+			GuiControl, , Radiobox4Life80, %Radiobox4Life80%
+			IniRead, Radiobox5Life80, settings.ini, Profile%Profile%, Radiobox5Life80, 0
+			GuiControl, , Radiobox5Life80, %Radiobox5Life80%
+
+			IniRead, Radiobox1Life90, settings.ini, Profile%Profile%, Radiobox1Life90, 0
+			GuiControl, , Radiobox1Life90, %Radiobox1Life90%
+			IniRead, Radiobox2Life90, settings.ini, Profile%Profile%, Radiobox2Life90, 0
+			GuiControl, , Radiobox2Life90, %Radiobox2Life90%
+			IniRead, Radiobox3Life90, settings.ini, Profile%Profile%, Radiobox3Life90, 0
+			GuiControl, , Radiobox3Life90, %Radiobox3Life90%
+			IniRead, Radiobox4Life90, settings.ini, Profile%Profile%, Radiobox4Life90, 0
+			GuiControl, , Radiobox4Life90, %Radiobox4Life90%
+			IniRead, Radiobox5Life90, settings.ini, Profile%Profile%, Radiobox5Life90, 0
+			GuiControl, , Radiobox5Life90, %Radiobox5Life90%
+
+			IniRead, RadioUncheck1Life, settings.ini, Profile%Profile%, RadioUncheck1Life, 1
+			GuiControl, , RadioUncheck1Life, %RadioUncheck1Life%
+			IniRead, RadioUncheck2Life, settings.ini, Profile%Profile%, RadioUncheck2Life, 1
+			GuiControl, , RadioUncheck2Life, %RadioUncheck2Life%
+			IniRead, RadioUncheck3Life, settings.ini, Profile%Profile%, RadioUncheck3Life, 1
+			GuiControl, , RadioUncheck3Life, %RadioUncheck3Life%
+			IniRead, RadioUncheck4Life, settings.ini, Profile%Profile%, RadioUncheck4Life, 1
+			GuiControl, , RadioUncheck4Life, %RadioUncheck4Life%
+			IniRead, RadioUncheck5Life, settings.ini, Profile%Profile%, RadioUncheck5Life, 1
+			GuiControl, , RadioUncheck5Life, %RadioUncheck5Life%
+			
+			;ES Flasks
+			IniRead, Radiobox1ES20, settings.ini, Profile%Profile%, Radiobox1ES20, 0
+			GuiControl, , Radiobox1ES20, %Radiobox1ES20%
+			IniRead, Radiobox2ES20, settings.ini, Profile%Profile%, Radiobox2ES20, 0
+			GuiControl, , Radiobox2ES20, %Radiobox2ES20%
+			IniRead, Radiobox3ES20, settings.ini, Profile%Profile%, Radiobox3ES20, 0
+			GuiControl, , Radiobox3ES20, %Radiobox3ES20%
+			IniRead, Radiobox4ES20, settings.ini, Profile%Profile%, Radiobox4ES20, 0
+			GuiControl, , Radiobox4ES20, %Radiobox4ES20%
+			IniRead, Radiobox5ES20, settings.ini, Profile%Profile%, Radiobox5ES20, 0
+			GuiControl, , Radiobox5ES20, %Radiobox5ES20%
+			
+			IniRead, Radiobox1ES30, settings.ini, Profile%Profile%, Radiobox1ES30, 0
+			GuiControl, , Radiobox1ES30, %Radiobox1ES30%
+			IniRead, Radiobox2ES30, settings.ini, Profile%Profile%, Radiobox2ES30, 0
+			GuiControl, , Radiobox2ES30, %Radiobox2ES30%
+			IniRead, Radiobox3ES30, settings.ini, Profile%Profile%, Radiobox3ES30, 0
+			GuiControl, , Radiobox3ES30, %Radiobox3ES30%
+			IniRead, Radiobox4ES30, settings.ini, Profile%Profile%, Radiobox4ES30, 0
+			GuiControl, , Radiobox4ES30, %Radiobox4ES30%
+			IniRead, Radiobox5ES30, settings.ini, Profile%Profile%, Radiobox5ES30, 0
+			GuiControl, , Radiobox5ES30, %Radiobox5ES30%
+			
+			IniRead, Radiobox1ES40, settings.ini, Profile%Profile%, Radiobox1ES40, 0
+			GuiControl, , Radiobox1ES40, %Radiobox1ES40%
+			IniRead, Radiobox2ES40, settings.ini, Profile%Profile%, Radiobox2ES40, 0
+			GuiControl, , Radiobox2ES40, %Radiobox2ES40%
+			IniRead, Radiobox3ES40, settings.ini, Profile%Profile%, Radiobox3ES40, 0
+			GuiControl, , Radiobox3ES40, %Radiobox3ES40%
+			IniRead, Radiobox4ES40, settings.ini, Profile%Profile%, Radiobox4ES40, 0
+			GuiControl, , Radiobox4ES40, %Radiobox4ES40%
+			IniRead, Radiobox5ES40, settings.ini, Profile%Profile%, Radiobox5ES40, 0
+			GuiControl, , Radiobox5ES40, %Radiobox5ES40%
+			
+			IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50, 0
+			GuiControl, , Radiobox1ES50, %Radiobox1ES50%
+			IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50, 0
+			GuiControl, , Radiobox2ES50, %Radiobox2ES50%
+			IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50, 0
+			GuiControl, , Radiobox3ES50, %Radiobox3ES50%
+			IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50, 0
+			GuiControl, , Radiobox4ES50, %Radiobox4ES50%
+			IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50, 0
+			GuiControl, , Radiobox5ES50, %Radiobox5ES50%
+			
+			IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50, 0
+			GuiControl, , Radiobox1ES50, %Radiobox1ES50%
+			IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50, 0
+			GuiControl, , Radiobox2ES50, %Radiobox2ES50%
+			IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50, 0
+			GuiControl, , Radiobox3ES50, %Radiobox3ES50%
+			IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50, 0
+			GuiControl, , Radiobox4ES50, %Radiobox4ES50%
+			IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50, 0
+			GuiControl, , Radiobox5ES50, %Radiobox5ES50%
+			
+			IniRead, Radiobox1ES60, settings.ini, Profile%Profile%, Radiobox1ES60, 0
+			GuiControl, , Radiobox1ES60, %Radiobox1ES60%
+			IniRead, Radiobox2ES60, settings.ini, Profile%Profile%, Radiobox2ES60, 0
+			GuiControl, , Radiobox2ES60, %Radiobox2ES60%
+			IniRead, Radiobox3ES60, settings.ini, Profile%Profile%, Radiobox3ES60, 0
+			GuiControl, , Radiobox3ES60, %Radiobox3ES60%
+			IniRead, Radiobox4ES60, settings.ini, Profile%Profile%, Radiobox4ES60, 0
+			GuiControl, , Radiobox4ES60, %Radiobox4ES60%
+			IniRead, Radiobox5ES60, settings.ini, Profile%Profile%, Radiobox5ES60, 0
+			GuiControl, , Radiobox5ES60, %Radiobox5ES60%
+			
+			IniRead, Radiobox1ES70, settings.ini, Profile%Profile%, Radiobox1ES70, 0
+			GuiControl, , Radiobox1ES70, %Radiobox1ES70%
+			IniRead, Radiobox2ES70, settings.ini, Profile%Profile%, Radiobox2ES70, 0
+			GuiControl, , Radiobox2ES70, %Radiobox2ES70%
+			IniRead, Radiobox3ES70, settings.ini, Profile%Profile%, Radiobox3ES70, 0
+			GuiControl, , Radiobox3ES70, %Radiobox3ES70%
+			IniRead, Radiobox4ES70, settings.ini, Profile%Profile%, Radiobox4ES70, 0
+			GuiControl, , Radiobox4ES70, %Radiobox4ES70%
+			IniRead, Radiobox5ES70, settings.ini, Profile%Profile%, Radiobox5ES70, 0
+			GuiControl, , Radiobox5ES70, %Radiobox5ES70%
+			
+			IniRead, Radiobox1ES80, settings.ini, Profile%Profile%, Radiobox1ES80, 0
+			GuiControl, , Radiobox1ES80, %Radiobox1ES80%
+			IniRead, Radiobox2ES80, settings.ini, Profile%Profile%, Radiobox2ES80, 0
+			GuiControl, , Radiobox2ES80, %Radiobox2ES80%
+			IniRead, Radiobox3ES80, settings.ini, Profile%Profile%, Radiobox3ES80, 0
+			GuiControl, , Radiobox3ES80, %Radiobox3ES80%
+			IniRead, Radiobox4ES80, settings.ini, Profile%Profile%, Radiobox4ES80, 0
+			GuiControl, , Radiobox4ES80, %Radiobox4ES80%
+			IniRead, Radiobox5ES80, settings.ini, Profile%Profile%, Radiobox5ES80, 0
+			GuiControl, , Radiobox5ES80, %Radiobox5ES80%
+			
+			IniRead, Radiobox1ES90, settings.ini, Profile%Profile%, Radiobox1ES90, 0
+			GuiControl, , Radiobox1ES90, %Radiobox1ES90%
+			IniRead, Radiobox2ES90, settings.ini, Profile%Profile%, Radiobox2ES90, 0
+			GuiControl, , Radiobox2ES90, %Radiobox2ES90%
+			IniRead, Radiobox3ES90, settings.ini, Profile%Profile%, Radiobox3ES90, 0
+			GuiControl, , Radiobox3ES90, %Radiobox3ES90%
+			IniRead, Radiobox4ES90, settings.ini, Profile%Profile%, Radiobox4ES90, 0
+			GuiControl, , Radiobox4ES90, %Radiobox4ES90%
+			IniRead, Radiobox5ES90, settings.ini, Profile%Profile%, Radiobox5ES90, 0
+			GuiControl, , Radiobox5ES90, %Radiobox5ES90%
+			
+			IniRead, RadioUncheck1ES, settings.ini, Profile%Profile%, RadioUncheck1ES, 1
+			GuiControl, , RadioUncheck1ES, %RadioUncheck1ES%
+			IniRead, RadioUncheck2ES, settings.ini, Profile%Profile%, RadioUncheck2ES, 1
+			GuiControl, , RadioUncheck2ES, %RadioUncheck2ES%
+			IniRead, RadioUncheck3ES, settings.ini, Profile%Profile%, RadioUncheck3ES, 1
+			GuiControl, , RadioUncheck3ES, %RadioUncheck3ES%
+			IniRead, RadioUncheck4ES, settings.ini, Profile%Profile%, RadioUncheck4ES, 1
+			GuiControl, , RadioUncheck4ES, %RadioUncheck4ES%
+			IniRead, RadioUncheck5ES, settings.ini, Profile%Profile%, RadioUncheck5ES, 1
+			GuiControl, , RadioUncheck5ES, %RadioUncheck5ES%
+			
+			;Mana Flasks
+			IniRead, Radiobox1Mana10, settings.ini, Profile%Profile%, Radiobox1Mana10, 0
+			GuiControl, , Radiobox1Mana10, %Radiobox1Mana10%
+			IniRead, Radiobox2Mana10, settings.ini, Profile%Profile%, Radiobox2Mana10, 0
+			GuiControl, , Radiobox2Mana10, %Radiobox2Mana10%
+			IniRead, Radiobox3Mana10, settings.ini, Profile%Profile%, Radiobox3Mana10, 0
+			GuiControl, , Radiobox3Mana10, %Radiobox3Mana10%
+			IniRead, Radiobox4Mana10, settings.ini, Profile%Profile%, Radiobox4Mana10, 0
+			GuiControl, , Radiobox4Mana10, %Radiobox4Mana10%
+			IniRead, Radiobox5Mana10, settings.ini, Profile%Profile%, Radiobox5Mana10, 0
+			GuiControl, , Radiobox5Mana10, %Radiobox5Mana10%
+			
+			;Flask Cooldowns
+			IniRead, CooldownFlask1, settings.ini, Profile%Profile%, CooldownFlask1, 4800
+			GuiControl, , CooldownFlask1, %CooldownFlask1%
+			IniRead, CooldownFlask2, settings.ini, Profile%Profile%, CooldownFlask2, 4800
+			GuiControl, , CooldownFlask2, %CooldownFlask2%
+			IniRead, CooldownFlask3, settings.ini, Profile%Profile%, CooldownFlask3, 4800
+			GuiControl, , CooldownFlask3, %CooldownFlask3%
+			IniRead, CooldownFlask4, settings.ini, Profile%Profile%, CooldownFlask4, 4800
+			GuiControl, , CooldownFlask4, %CooldownFlask4%
+			IniRead, CooldownFlask5, settings.ini, Profile%Profile%, CooldownFlask5	, 4800
+			GuiControl, , CooldownFlask5, %CooldownFlask5%
+			
+			;Attack Flasks
+			IniRead, MainAttackbox1, settings.ini, Profile%Profile%, MainAttackbox1, 0
+			GuiControl, , MainAttackbox1, %MainAttackbox1%
+			IniRead, MainAttackbox2, settings.ini, Profile%Profile%, MainAttackbox2, 0
+			GuiControl, , MainAttackbox2, %MainAttackbox2%
+			IniRead, MainAttackbox3, settings.ini, Profile%Profile%, MainAttackbox3, 0
+			GuiControl, , MainAttackbox3, %MainAttackbox3%
+			IniRead, MainAttackbox4, settings.ini, Profile%Profile%, MainAttackbox4, 0
+			GuiControl, , MainAttackbox4, %MainAttackbox4%
+			IniRead, MainAttackbox5, settings.ini, Profile%Profile%, MainAttackbox5, 0
+			GuiControl, , MainAttackbox5, %MainAttackbox5%
+			
+			IniRead, SecondaryAttackbox1, settings.ini, Profile%Profile%, SecondaryAttackbox1, 0
+			GuiControl, , SecondaryAttackbox1, %SecondaryAttackbox1%
+			IniRead, SecondaryAttackbox2, settings.ini, Profile%Profile%, SecondaryAttackbox2, 0
+			GuiControl, , SecondaryAttackbox2, %SecondaryAttackbox2%
+			IniRead, SecondaryAttackbox3, settings.ini, Profile%Profile%, SecondaryAttackbox3, 0
+			GuiControl, , SecondaryAttackbox3, %SecondaryAttackbox3%
+			IniRead, SecondaryAttackbox4, settings.ini, Profile%Profile%, SecondaryAttackbox4, 0
+			GuiControl, , SecondaryAttackbox4, %SecondaryAttackbox4%
+			IniRead, SecondaryAttackbox5, settings.ini, Profile%Profile%, SecondaryAttackbox5, 0
+			GuiControl, , SecondaryAttackbox5, %SecondaryAttackbox5%
+			
+			;Attack Keys
+			IniRead, hotkeyMainAttack, settings.ini, Profile%Profile%, MainAttack, RButton
+			GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
+			IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, w
+			GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
+			
+			;QS on Attack Keys
+			IniRead, QSonMainAttack, settings.ini, Profile%Profile%, QSonMainAttack, 0
+			GuiControl, , QSonMainAttack, %QSonMainAttack%
+			IniRead, QSonSecondaryAttack, settings.ini, Profile%Profile%, QSonSecondaryAttack, 0
+			GuiControl, , QSonSecondaryAttack, %QSonSecondaryAttack%
+			
+			;Quicksilver Flasks
+			IniRead, TriggerQuicksilverDelay, settings.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
+			GuiControl, , TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
+			IniRead, Radiobox1QS, settings.ini, Profile%Profile%, QuicksilverSlot1, 0
+			GuiControl, , Radiobox1QS, %Radiobox1QS%
+			IniRead, Radiobox2QS, settings.ini, Profile%Profile%, QuicksilverSlot2, 0
+			GuiControl, , Radiobox2QS, %Radiobox2QS%
+			IniRead, Radiobox3QS, settings.ini, Profile%Profile%, QuicksilverSlot3, 0
+			GuiControl, , Radiobox3QS, %Radiobox3QS%
+			IniRead, Radiobox4QS, settings.ini, Profile%Profile%, QuicksilverSlot4, 0
+			GuiControl, , Radiobox4QS, %Radiobox4QS%
+			IniRead, Radiobox5QS, settings.ini, Profile%Profile%, QuicksilverSlot5, 0
+			GuiControl, , Radiobox5QS, %Radiobox5QS%
+			
+			;CharacterTypeCheck
+			IniRead, RadioLife, settings.ini, Profile%Profile%, Life, 1
+			GuiControl, , RadioLife, %RadioLife%
+			IniRead, RadioHybrid, settings.ini, Profile%Profile%, Hybrid, 0
+			GuiControl, , RadioHybrid, %RadioHybrid%
+			IniRead, RadioCi, settings.ini, Profile%Profile%, Ci, 0
+			GuiControl, , RadioCi, %RadioCi%
+			
+			;AutoQuit
+			IniRead, RadioQuit20, settings.ini, Profile%Profile%, Quit20, 1
+			GuiControl, , RadioQuit20, %RadioQuit20%
+			IniRead, RadioQuit30, settings.ini, Profile%Profile%, Quit30, 0
+			GuiControl, , RadioQuit30, %RadioQuit30%
+			IniRead, RadioQuit40, settings.ini, Profile%Profile%, Quit40, 0
+			GuiControl, , RadioQuit40, %RadioQuit40%
+			IniRead, RadioCritQuit, settings.ini, Profile%Profile%, CritQuit, 1
+			GuiControl, , RadioCritQuit, %RadioCritQuit%
+			IniRead, RadioNormalQuit, settings.ini, Profile%Profile%, NormalQuit, 0
+			GuiControl, , RadioNormalQuit, %RadioNormalQuit%
+
+
+			;Utility Buttons
+			IniRead, YesUtility1, settings.ini, Profile%Profile%, YesUtility1, 0
+			GuiControl, , YesUtility1, %YesUtility1%
+			IniRead, YesUtility2, settings.ini, Profile%Profile%, YesUtility2, 0
+			GuiControl, , YesUtility2, %YesUtility2%
+			IniRead, YesUtility3, settings.ini, Profile%Profile%, YesUtility3, 0
+			GuiControl, , YesUtility3, %YesUtility3%
+			IniRead, YesUtility4, settings.ini, Profile%Profile%, YesUtility4, 0
+			GuiControl, , YesUtility4, %YesUtility4%
+			IniRead, YesUtility5, settings.ini, Profile%Profile%, YesUtility5, 0
+			GuiControl, , YesUtility5, %YesUtility5%
+			IniRead, YesUtility1Quicksilver, settings.ini, Profile%Profile%, YesUtility1Quicksilver, 0
+			GuiControl, , YesUtility1Quicksilver, %YesUtility1Quicksilver%
+			IniRead, YesUtility2Quicksilver, settings.ini, Profile%Profile%, YesUtility2Quicksilver, 0
+			GuiControl, , YesUtility2Quicksilver, %YesUtility2Quicksilver%
+			IniRead, YesUtility3Quicksilver, settings.ini, Profile%Profile%, YesUtility3Quicksilver, 0
+			GuiControl, , YesUtility3Quicksilver, %YesUtility3Quicksilver%
+			IniRead, YesUtility4Quicksilver, settings.ini, Profile%Profile%, YesUtility4Quicksilver, 0
+			GuiControl, , YesUtility4Quicksilver, %YesUtility4Quicksilver%
+			IniRead, YesUtility5Quicksilver, settings.ini, Profile%Profile%, YesUtility5Quicksilver, 0
+			GuiControl, , YesUtility5Quicksilver, %YesUtility5Quicksilver%
+			
+			;Utility Percents	
+			IniRead, YesUtility1LifePercent, settings.ini, Profile%Profile%, YesUtility1LifePercent, Off
+			GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
+			IniRead, YesUtility2LifePercent, settings.ini, Profile%Profile%, YesUtility2LifePercent, Off
+			GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
+			IniRead, YesUtility3LifePercent, settings.ini, Profile%Profile%, YesUtility3LifePercent, Off
+			GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
+			IniRead, YesUtility4LifePercent, settings.ini, Profile%Profile%, YesUtility4LifePercent, Off
+			GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
+			IniRead, YesUtility5LifePercent, settings.ini, Profile%Profile%, YesUtility5LifePercent, Off
+			GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
+			IniRead, YesUtility1EsPercent, settings.ini, Profile%Profile%, YesUtility1EsPercent, Off
+			GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
+			IniRead, YesUtility2EsPercent, settings.ini, Profile%Profile%, YesUtility2EsPercent, Off
+			GuiControl, ChooseString, YesUtility2EsPercent, %YesUtility2EsPercent%
+			IniRead, YesUtility3EsPercent, settings.ini, Profile%Profile%, YesUtility3EsPercent, Off
+			GuiControl, ChooseString, YesUtility3EsPercent, %YesUtility3EsPercent%
+			IniRead, YesUtility4EsPercent, settings.ini, Profile%Profile%, YesUtility4EsPercent, Off
+			GuiControl, ChooseString, YesUtility4EsPercent, %YesUtility4EsPercent%
+			IniRead, YesUtility5EsPercent, settings.ini, Profile%Profile%, YesUtility5EsPercent, Off
+			GuiControl, ChooseString, YesUtility5EsPercent, %YesUtility5EsPercent%
+			
+			;Utility Cooldowns
+			IniRead, CooldownUtility1, settings.ini, Profile%Profile%, CooldownUtility1, 5000
+			GuiControl, , CooldownUtility1, %CooldownUtility1%
+			IniRead, CooldownUtility2, settings.ini, Profile%Profile%, CooldownUtility2, 5000
+			GuiControl, , CooldownUtility2, %CooldownUtility2%
+			IniRead, CooldownUtility3, settings.ini, Profile%Profile%, CooldownUtility3, 5000
+			GuiControl, , CooldownUtility3, %CooldownUtility3%
+			IniRead, CooldownUtility4, settings.ini, Profile%Profile%, CooldownUtility4, 5000
+			GuiControl, , CooldownUtility4, %CooldownUtility4%
+			IniRead, CooldownUtility5, settings.ini, Profile%Profile%, CooldownUtility5, 5000
+			GuiControl, , CooldownUtility5, %CooldownUtility5%
+			
+			;Character Name
+			IniRead, CharName, settings.ini, Profile%Profile%, CharName, ReplaceWithCharName
+			GuiControl, , CharName, %CharName%
+
+			;Utility Keys
+			IniRead, KeyUtility1, settings.ini, Profile%Profile%, KeyUtility1, q
+			GuiControl, , KeyUtility1, %KeyUtility1%
+			IniRead, KeyUtility2, settings.ini, Profile%Profile%, KeyUtility2, w
+			GuiControl, , KeyUtility2, %KeyUtility2%
+			IniRead, KeyUtility3, settings.ini, Profile%Profile%, KeyUtility3, e
+			GuiControl, , KeyUtility3, %KeyUtility3%
+			IniRead, KeyUtility4, settings.ini, Profile%Profile%, KeyUtility4, r
+			GuiControl, , KeyUtility4, %KeyUtility4%
+			IniRead, KeyUtility5, settings.ini, Profile%Profile%, KeyUtility5, t
+			GuiControl, , KeyUtility5, %KeyUtility5%
+
+			;Update UI
+			if(RadioLife==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+						GuiControl, Enable, Radiobox%A_Index%Life80
+						GuiControl, Enable, Radiobox%A_Index%Life70
+						GuiControl, Enable, Radiobox%A_Index%Life60
+						GuiControl, Enable, Radiobox%A_Index%Life50
+						GuiControl, Enable, Radiobox%A_Index%Life40
+						GuiControl, Enable, Radiobox%A_Index%Life30
+						GuiControl, Enable, Radiobox%A_Index%Life20
+						GuiControl, Enable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Disable, Radiobox%A_Index%ES90
+					GuiControl, Disable, Radiobox%A_Index%ES80
+					GuiControl, Disable, Radiobox%A_Index%ES70
+					GuiControl, Disable, Radiobox%A_Index%ES60
+					GuiControl, Disable, Radiobox%A_Index%ES50
+					GuiControl, Disable, Radiobox%A_Index%ES40
+					GuiControl, Disable, Radiobox%A_Index%ES30
+					GuiControl, Disable, Radiobox%A_Index%ES20
+					GuiControl, Disable, RadioUncheck%A_Index%ES
+				}
+			}
+			else if(RadioHybrid==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+						GuiControl, Enable, Radiobox%A_Index%Life80
+						GuiControl, Enable, Radiobox%A_Index%Life70
+						GuiControl, Enable, Radiobox%A_Index%Life60
+						GuiControl, Enable, Radiobox%A_Index%Life50
+						GuiControl, Enable, Radiobox%A_Index%Life40
+						GuiControl, Enable, Radiobox%A_Index%Life30
+						GuiControl, Enable, Radiobox%A_Index%Life20
+						GuiControl, Enable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+				}
+			}
+			else if(RadioCi==1) {
+				varTextAutoQuit20:="20 % ES"
+				varTextAutoQuit30:="30 % ES"
+				varTextAutoQuit40:="40 % ES"
+				loop 5 {
+					GuiControl, Disable, Radiobox%A_Index%Life90
+						GuiControl, Disable, Radiobox%A_Index%Life80
+						GuiControl, Disable, Radiobox%A_Index%Life70
+						GuiControl, Disable, Radiobox%A_Index%Life60
+						GuiControl, Disable, Radiobox%A_Index%Life50
+						GuiControl, Disable, Radiobox%A_Index%Life40
+						GuiControl, Disable, Radiobox%A_Index%Life30
+						GuiControl, Disable, Radiobox%A_Index%Life20
+						GuiControl, Disable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+				}
+			}
+			GuiControl,, RadioQuit20, %varTextAutoQuit20%
+			GuiControl,, RadioQuit30, %varTextAutoQuit30%
+			GuiControl,, RadioQuit40, %varTextAutoQuit40%
+			
+		return  
+		}
+
+		readProfile1:
+			readProfile(1)
+		Return
+
+		readProfile2:
+			readProfile(2)
+		Return
+
+		readProfile3:
+			readProfile(3)
+		Return
+
+		readProfile4:
+			readProfile(4)
+		Return
+
+		readProfile5:
+			readProfile(5)
+		Return
+
+		readProfile6:
+			readProfile(6)
+		Return
+
+		readProfile7:
+			readProfile(7)
+		Return
+
+		readProfile8:
+			readProfile(8)
+		Return
+
+		readProfile9:
+			readProfile(9)
+		Return
+
+		readProfile10:
+			readProfile(10)
+		Return
+	}
+
+	{ ; Script Update Functions - checkUpdate, runUpdate, dontUpdate
+		checkUpdate(){
+			IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
+			If (!AutoUpdateOff) {
+				UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/version.html, version.html
+				FileRead, newestVersion, version.html
+				
+				if ( VersionNumber < newestVersion ) {
+					UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/changelog.txt, changelog.txt
+					if ErrorLevel
+						GuiControl,1:, guiErr, ED08
+					FileRead, changelog, changelog.txt
+					Gui, 4:Add, Button, x0 y0 h1 w1, a
+					Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
+					Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
+					Gui, 4:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
+					Gui, 4:Add, Button, x+35 ys gLaunchDonate, Support the Project
+					Gui, 4:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
+					Gui, 4:Show,, WingmanReloaded Update
+					IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
+						{
+						WinWaitClose
+						}
+					}
+				WinGetPos, , , WinWidth, WinHeight
+				}
+		Return
+		}
+
+		runUpdate:
+
+			Fail:=False
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
+			if ErrorLevel {
+				Fail:=true
+			}
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/PoE-Wingman.ahk, PoE-Wingman.ahk
+			if ErrorLevel {
+				Fail:=true
+			}
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
+			if ErrorLevel {
+				Fail:=true
+			}
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Library.ahk, %A_ScriptDir%\data\Library.ahk
+			if ErrorLevel {
+				Fail:=true
+			}
+			if Fail {
+				error("update","fail",A_ScriptFullPath, VersionNumber, A_AhkVersion)
+				error("ED07")
+			}
+			else {
+				error("update","pass",A_ScriptFullPath, VersionNumber, A_AhkVersion)
+				Run "%A_ScriptFullPath%"
+			}
+			Sleep 5000 ;This shouldn't ever hit.
+			error("update","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion)
+		Return
+
+		dontUpdate:
+			IniWrite, 1, Settings.ini, General, AutoUpdateOff
+			MsgBox, Auto-Updates have been disabled.`nCheck back on the forum for more information!`nTo resume updates, uncheck the box in config page.
+			Gui, 4:Destroy
+		return	
+	}
+
+	{ ; Calibration color sample functions - updateOnHideout, updateOnHideoutMin, updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
+	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate, updateDetonateDelve
+		updateOnHideout:
+			Gui, Submit, NoHide
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist `nRecalibrate of OnHideout didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
+				IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
+				readFromFile()
+				MsgBox % "OnHideout recalibrated!`nTook color hex: " . varOnHideout . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideout
+			} else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
+			
+			
+			hotkeys()
+			
+		return
+
+		updateOnHideoutMin:
+			Gui, Submit, NoHide
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist `nRecalibrate of OnHideoutMin didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				Sleep, 1000
+				pixelgetcolor, varOnHideoutMin, vX_OnHideout, vY_OnHideoutMin	
+				IniWrite, %varOnHideoutMin%, settings.ini, Failsafe Colors, OnHideoutMin
+				readFromFile()
+				MsgBox % "OnHideoutMin recalibrated!`nTook color hex: " . varOnHideoutMin . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideoutMin
+			} else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnHideoutMin didn't work"
+			
+			
+			hotkeys()
+			
+		return
+
+		updateOnChar:
+			Gui, Submit, NoHide
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnChar didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
+				IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
+				readFromFile()
+				MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . vX_OnChar . " and y: " . vY_OnChar
+			} else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateOnInventory:
+			Gui, Submit, NoHide
+			
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnInventory didn't work"
+				Return
+			}
+			
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+				IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
+				readFromFile()
+				MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . vX_OnInventory . " and y: " . vY_OnInventory
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateOnMenu:
+			Gui, Submit, NoHide
+			
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnMenu didn't work"
+				Return
+			}
+			
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, varOnMenu, vX_OnMenu, vY_OnMenu
+				IniWrite, %varOnMenu%, settings.ini, Failsafe Colors, OnMenu
+				readFromFile()
+				MsgBox % "OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . vX_OnMenu . " and y: " . vY_OnMenu
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateOnStash:
+			Gui, Submit, NoHide
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnStash didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+				IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
+				readFromFile()
+				MsgBox % "OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . vX_OnStash . " and y: " . vY_OnStash
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnStash didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateEmptyColor:
+			Gui, Submit, NoHide
+			Thread, NoTimers, true		;Critical
+
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nEmpty Slot calibration didn't work"
+				Return
+			}
+
+			
+			
+			if WinActive(ahk_group POEGameGroup){
+				;Now we need to get the user input for every grid element if its empty or not
+
+				;First inform the user about the procedure
+				infoMsg := "Following we loop through the whole inventory, recording all colors and save it as Empty Slot colors.`r`n`r`n"
+				infoMsg .= "  -> Clear all items from inventory`r`n"
+				infoMsg .= "  -> Make sure your inventory is open`r`n`r`n"
+				infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
+
+				MsgBox, 1,, %infoMsg%
+				IfMsgBox, Cancel
+				{
+					MsgBox Canceled the Id / Empty Slot calibration
+					return
+				}
+
+				varIdColor := []
+				varEmptyInvSlotColor := []
+				WinActivate, ahk_group POEGameGroup
+
+				;Loop through the whole grid, and add unknown colors to the lists
+				For c, GridX in InventoryGridX	{
+					For r, GridY in InventoryGridY
+					{
+						pixelgetcolor, PointColor, GridX, GridY
+
+						if !(indexOf(PointColor, varEmptyInvSlotColor)){
+							;We dont have this Empty color already
+							varEmptyInvSlotColor.Push(PointColor)
+						}
+					}
+				}
+
+				strToSave := arrToStr(varEmptyInvSlotColor)
+
+				IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
+				readFromFile()
+
+
+				infoMsg := "Empty Slot colors calibrated and saved with following color codes:`r`n`r`n"
+				infoMsg .= strToSave
+
+				MsgBox, %infoMsg%
+
+
+			}else{
+				MsgBox % "PoE Window is not active. `nRecalibrate Empty Slot Color didn't work"
+			}
+
+			hotkeys()
+		return
+
+		updateOnChat:
+			Gui, Submit, NoHide
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnChat didn't work"
+				Return
+			}
+			
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
+				IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
+				readFromFile()
+				MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . vX_OnChat . " and y: " . vY_OnChat
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateOnVendor:
+			Gui, Submit, NoHide
+			
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnVendor didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
+				IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
+				readFromFile()
+				MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . vX_OnVendor . " and y: " . vY_OnVendor
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateOnDiv:
+			Gui, Submit, NoHide
+			
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnDiv didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, varOnDiv, vX_OnDiv, vY_OnDiv
+				IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
+				readFromFile()
+				MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . vX_OnDiv . " and y: " . vY_OnDiv
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateDetonate:
+			Gui, Submit, NoHide
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of DetonateHex didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, DetonateHex, DetonateX, DetonateY
+				IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+				readFromFile()
+				MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateX . " and y: " . DetonateY
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of DetonateHex didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateDetonateDelve:
+			Gui, Submit, NoHide
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of DetonateHex didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				pixelgetcolor, DetonateHex, DetonateDelveX, DetonateY
+				IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+				readFromFile()
+				MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateDelveX . " and y: " . DetonateY
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of DetonateHex didn't work"
+			
+			hotkeys()
+			
+		return
+	}
+
+	{ ; Calibration Wizard
+		CalibrationWizard()
+		{
+			Global
+			StartCalibrationWizard:
+				Thread, NoTimers, true
+				Gui, Submit
+				Gui, Wizard: New, +LabelWizard +AlwaysOnTop
+				Gui, Wizard: Font, Bold
+				Gui, Wizard: Add, GroupBox, x10 y9 w460 h270 , Select which calibrations to run
+				Gui, Wizard: Font
+				Gui, Wizard: Add, Text, x22 y29 w170 h200 , % "Enable the checkboxes to choose which calibration to perform"
+					. "`n`nFollow the instructions in the tooltip that will appear in the screen center"
+					. "`n`nFor best results, start the wizard in the hideout with your inventory emptied"
+					. "`n`nPress the ""A"" button when your gamestate matches the instructions"
+					. "`n`nTo cancel the Wizard, Hold Escape then press ""A"""
+
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnChar      x222 y39             w100 h20 , OnChar
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnChat              xp   y+10            w100 h20 , OnChat
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnInventory         xp   y+10            w100 h20 , OnInventory
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnVendor            xp   y+10            w100 h20 , OnVendor
+				Gui, Wizard: Add, CheckBox, vCalibrationOnDiv               xp   y+10            w100 h20 , OnDiv
+
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnHideout   x342 y39             w100 h20 , OnHideout
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu              xp   y+10            w100 h20 , OnMenu
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty               xp   y+10            w100 h20 , Empty Inventory
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnStash             xp   y+10            w100 h20 , OnStash
+				Gui, Wizard: Add, CheckBox, vCalibrationDetonate            xp   y+10            w100 h20 , Detonate Mines
+
+				Gui, Wizard: Add, Button, x122 y239 w100 h30 gRunWizard, Run Wizard
+				Gui, Wizard: Add, Button, x252 y239 w100 h30 gWizardClose, Cancel Wizard
+
+				Gui, Wizard: Show,% "x"ScrCenter.X - 240 "y"ScrCenter.Y - 150 " h300 w479", Calibration Wizard
+			Return
+
+			RunWizard:
+				Gui, Wizard: Submit
+				IfWinExist, ahk_group POEGameGroup
+				{
+					WinActivate, ahk_group POEGameGroup
+					Rescale()
+				} else {
+					MsgBox % "PoE Window does not exist. `nCalibration Wizard didn't run"
+					Return
+				}
+
+				SampleTT=
+				EmptySampleTT=
+				If CalibrationOnChar
+				{
+					ToolTip,% "This will sample the OnChar Color"
+						. "`nMake sure you are logged into a character"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 115 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
+						SampleTT .= "OnChar            took BGR color hex: " . varOnChar . "    At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
+				}
+				If CalibrationOnHideout
+				{
+					ToolTip,% "This will sample the OnHideout Color`n"
+						. "Make sure you are in a hideout`n"
+						. "Make sure the hideout menu is Visible`n"
+						. "Press ""A"" to sample`n"
+						. "Hold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 110 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout
+						SampleTT .= "OnHideout       took BGR color hex: " . varOnHideout . "    At coords x: " . vX_OnHideout . " and y: " . vY_OnHideout . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
+						
+						
+					ToolTip,% "This will sample the OnHideoutMin Color`n"
+						. "From the hideout menu being visible, minimize the menu`n"
+						. "Make sure the hideout menu is not Visible`n"
+						. "Press ""A"" to sample`n"
+						. "Hold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 160 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnHideoutMin, vX_OnHideout, vY_OnHideoutMin	
+						SampleTT .= "OnHideoutMin took BGR color hex: " . varOnHideoutMin . "    At coords x: " . vX_OnHideout . " and y: " . vY_OnHideoutMin . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
+				}
+				If CalibrationOnChat
+				{
+					ToolTip,% "This will sample the OnChat Color"
+						. "`nMake sure you have chat panel open"
+						. "`nNo other panels can be open on the left"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 115 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
+						SampleTT .= "OnChat            took BGR color hex: " . varOnChat . "    At coords x: " . vX_OnChat . " and y: " . vY_OnChat . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnChat didn't work"
+				}
+				If CalibrationOnMenu
+				{
+					ToolTip,% "This will sample the OnMenu Color"
+						. "`nMake sure you have the Passive Skills menu open"
+						. "`nCan also use Atlas menu to sample"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 135 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnMenu, vX_OnMenu, vY_OnMenu
+						SampleTT .= "OnMenu          took BGR color hex: " . varOnMenu . "    At coords x: " . vX_OnMenu . " and y: " . vY_OnMenu . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
+				}
+				If CalibrationOnInventory
+				{
+					ToolTip,% "This will sample the OnInventory Color"
+						. "`nMake sure you have the Inventory panel open"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 130 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+						SampleTT .= "OnInventory     took BGR color hex: " . varOnInventory . "    At coords x: " . vX_OnInventory . " and y: " . vY_OnInventory . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
+				}
+				If CalibrationEmpty
+				{
+					ToolTip,% "This will sample the Empty Inventory Colors"
+						. "`nMake sure you Empty all items from inventory"
+						. "`nMake sure you have the Inventory panel open"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 125 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						varEmptyInvSlotColor := []
+						For c, GridX in InventoryGridX	
+						{
+							For r, GridY in InventoryGridY
+							{
+								pixelgetcolor, PointColor, GridX, GridY
+								if !(indexOf(PointColor, varEmptyInvSlotColor)){
+									varEmptyInvSlotColor.Push(PointColor)
+								}
+							}
+						}
+						strToSave := arrToStr(varEmptyInvSlotColor)
+						NewString := StringReplaceN(strToSave,",",",`n",4)
+						NewString := StringReplaceN(NewString,",",",`n",11)
+						NewString := StringReplaceN(NewString,",",",`n",18)
+						NewString := StringReplaceN(NewString,",",",`n",25)
+						NewString := StringReplaceN(NewString,",",",`n",32)
+						NewString := StringReplaceN(NewString,",",",`n",39)
+						NewString := StringReplaceN(NewString,",",",`n",46)
+						NewString := StringReplaceN(NewString,",",",`n",53)
+						SampleTT .= " "
+						EmptySampleTT := "`nEmpty Inventory took BGR color hexes: " . NewString
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of Empty Inventory didn't work"
+				}
+				If CalibrationOnVendor
+				{
+					ToolTip,% "This will sample the OnVendor Color"
+						. "`nMake sure you have the Vendor Sell panel open"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 135 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
+						SampleTT .= "OnVendor        took BGR color hex: " . varOnVendor . "    At coords x: " . vX_OnVendor . " and y: " . vY_OnVendor . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
+				}
+				If CalibrationOnStash
+				{
+					ToolTip,% "This will sample the OnStash Color"
+						. "`nMake sure you have the Stash panel open"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 115 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+						SampleTT .= "OnStash          took BGR color hex: " . varOnStash . "    At coords x: " . vX_OnStash . " and y: " . vY_OnStash . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnStash didn't work"
+				}
+				If CalibrationOnDiv
+				{
+					ToolTip,% "This will sample the OnDiv Color"
+						. "`nMake sure you have the Trade Divination panel open"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 150 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, varOnDiv, vX_OnDiv, vY_OnDiv
+						SampleTT .= "OnDiv             took BGR color hex: " . varOnDiv . "    At coords x: " . vX_OnDiv . " and y: " . vY_OnDiv . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
+				}
+				If CalibrationDetonate
+				{
+					ToolTip,% "This will sample the Detonate Mines Color"
+						. "`nMake sure you are somewhere other than Delve mines"
+						. "`nPlace a mine, and the detonate mines icon should appear"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 165 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						pixelgetcolor, DetonateHex, DetonateX, DetonateY
+						SampleTT .= "Detonate Mines took BGR color hex: " . DetonateHex . "    At coords x: " . DetonateX . " and y: " . DetonateY . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
+				}
+
+				If SampleTT =
+				{
+					MsgBox, No Sample Taken
+					Gui, Wizard: Show
+				}
+				Else
+					Goto, ShowWizardResults
+			Return
+
+			ShowWizardResults:
+				Gui, Wizard: New, +LabelWizard
+				Gui, Wizard: Add, Button,w1 h1
+				Gui, Wizard: Add, Edit, , % SampleTT . EmptySampleTT
+				Gui, Wizard: Add, Button, gSaveWizardResults, Save Samples
+				Gui, Wizard: Add, Button, x+20 gWizardClose, Abort Samples
+
+				Gui, Wizard: Show
+			Return
+
+			SaveWizardResults:
+				If CalibrationOnChar
+					IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar        
+				If CalibrationOnHideout
+				{
+					IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
+					IniWrite, %varOnHideoutMin%, settings.ini, Failsafe Colors, OnHideoutMin
+				}
+				If CalibrationOnChat
+					IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
+				If CalibrationOnMenu
+					IniWrite, %varOnMenu%, settings.ini, Failsafe Colors, OnMenu
+				If CalibrationOnInventory
+					IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
+				If CalibrationEmpty
+					IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
+				If CalibrationOnVendor
+					IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
+				If CalibrationOnStash
+					IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
+				If CalibrationOnDiv
+					IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
+				If CalibrationDetonate
+					IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+				Gui, Wizard: Submit
+				Gui, 1: show
+			Return
+
+			WizardEscape:
+			WizardClose:
+				Gui, Wizard: Destroy
+				Gui, 1: Show
+			Return
 		}
 	}
-	ind=0
 
-	Gui, Ignore: Show
-Return
+	{ ; Ignore list functions - addToBlacklist, BuildIgnoreMenu, UpdateCheckbox, LoadIgnoreArray, SaveIgnoreArray
+		IgnoreClose:
+		IgnoreEscape:
+			SaveIgnoreArray()
+			Gui, Ignore: Destroy
+			Gui, 1: Show
+		Return
 
-UpdateCheckbox:
-	Gui, Ignore: Submit, NoHide
-	btnArr := StrSplit(A_GuiControl, "_")
-	C := btnArr[2]
-	R := btnArr[3]
-	IgnoredSlot[C][R] := %A_GuiControl%
-Return
+		addToBlacklist(C, R)
+		{
+			Loop % Prop.Height
+			{
+				addNum := A_Index - 1
+				addR := R + addNum
+				addC := C + 1
+				BlackList[C][addR] := True
+				If Prop.Width = 2
+					BlackList[addC][addR] := True
+			}
+		}
 
-LoadIgnoreArray()
-{
-    FileRead, JSONtext, %A_ScriptDir%\data\IgnoredSlot.json
-    IgnoredSlot := JSON.Load(JSONtext)
-	Return
-}
+		BuildIgnoreMenu:
+			Gui, Submit
+			Gui, Ignore: +LabelIgnore -MinimizeBox
+			Gui, Ignore: Font, Bold
+			Gui, Ignore: Add, GroupBox, w660 h305 Section xm ym, Ignored Inventory Slots:
+			Gui, Ignore: Add, Picture, w650 h-1 xs+5 ys+15, %A_ScriptDir%\data\InventorySlots.png
+			Gui, Ignore: Font
+			LoadIgnoreArray()
 
-SaveIgnoreArray()
-{
-	SaveIgnoreArray:
-    Gui, Ignore: Submit, NoHide
-    JSONtext := JSON.Dump(IgnoredSlot)
-    FileDelete, %A_ScriptDir%\data\IgnoredSlot.json
-    FileAppend, %JSONtext%, %A_ScriptDir%\data\IgnoredSlot.json
-	LoadIgnoreArray()
-	Return
-}
+			Gui, Ignore: Add, Text, w1 h1 xs+25 ys+13, ""
+			For C, GridX in InventoryGridX
+			{
+				If (C != 1)
+					Gui, Ignore: Add, Text, w1 h1 x+18 ys+13, ""
+				For R, GridY in InventoryGridY
+				{
+					++ind
+					checkboxStr := "IgnoredSlot_" . C . "_" . R
+					checkboxTik := IgnoredSlot[C][R]
+					Gui, Ignore: Add, Checkbox, v%checkboxStr% gUpdateCheckbox y+25 h27 Checked%checkboxTik%,% (ind < 10 ? "0" . ind : ind)
+				}
+			}
+			ind=0
 
-Array_DeepClone(Array, Objs=0)
-{
-    if !Objs
-        Objs := {}
-    Obj := Array.Clone()
-    Objs[&Array] := Obj ; Save this new array
-    For Key, Val in Obj
-        if (IsObject(Val)) ; If it is a subarray
-            Obj[Key] := Objs[&Val] ; If we already know of a refrence to this array
-            ? Objs[&Val] ; Then point it to the new array
-            : Array_DeepClone(Val,Objs) ; Otherwise, clone this sub-array
-    return Obj
-}
+			Gui, Ignore: Show
+		Return
+
+		UpdateCheckbox:
+			Gui, Ignore: Submit, NoHide
+			btnArr := StrSplit(A_GuiControl, "_")
+			C := btnArr[2]
+			R := btnArr[3]
+			IgnoredSlot[C][R] := %A_GuiControl%
+		Return
+
+		LoadIgnoreArray()
+		{
+			FileRead, JSONtext, %A_ScriptDir%\data\IgnoredSlot.json
+			IgnoredSlot := JSON.Load(JSONtext)
+			Return
+		}
+
+		SaveIgnoreArray()
+		{
+			SaveIgnoreArray:
+			Gui, Ignore: Submit, NoHide
+			JSONtext := JSON.Dump(IgnoredSlot)
+			FileDelete, %A_ScriptDir%\data\IgnoredSlot.json
+			FileAppend, %JSONtext%, %A_ScriptDir%\data\IgnoredSlot.json
+			LoadIgnoreArray()
+			Return
+		}
+	}
+
+	{ ; Loot Filter Functions - LaunchLootFilter, LoadArray
+		LaunchLootFilter:
+			Run, %A_ScriptDir%\data\LootFilter.ahk ; Open the custom loot filter editor
+		Return
+
+		LoadArray:
+			LoadArray()
+		return
+
+		LoadArray()
+		{
+			FileRead, JSONtext, %A_ScriptDir%\data\LootFilter.json
+			LootFilter := JSON.Load(JSONtext)
+			If !LootFilter
+				LootFilter:={}
+			FileRead, JSONtexttabs, %A_ScriptDir%\data\LootFilterTabs.json
+			LootFilterTabs := JSON.Load(JSONtexttabs)
+			If !LootFilterTabs
+				LootFilterTabs:={}
+		Return
+		}
+	}
+
+	{ ; Gui Update functions - updateCharacterType, UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility, SelectMainGuiTabs, FlaskCheck, UtilityCheck
+		updateCharacterType:
+			Gui, Submit, NoHide
+			if(RadioLife==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+						GuiControl, Enable, Radiobox%A_Index%Life80
+						GuiControl, Enable, Radiobox%A_Index%Life70
+						GuiControl, Enable, Radiobox%A_Index%Life60
+						GuiControl, Enable, Radiobox%A_Index%Life50
+						GuiControl, Enable, Radiobox%A_Index%Life40
+						GuiControl, Enable, Radiobox%A_Index%Life30
+						GuiControl, Enable, Radiobox%A_Index%Life20
+						GuiControl, Enable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Disable, Radiobox%A_Index%ES90
+					GuiControl, Disable, Radiobox%A_Index%ES80
+					GuiControl, Disable, Radiobox%A_Index%ES70
+					GuiControl, Disable, Radiobox%A_Index%ES60
+					GuiControl, Disable, Radiobox%A_Index%ES50
+					GuiControl, Disable, Radiobox%A_Index%ES40
+					GuiControl, Disable, Radiobox%A_Index%ES30
+					GuiControl, Disable, Radiobox%A_Index%ES20
+					GuiControl, Disable, RadioUncheck%A_Index%ES
+				}
+			}
+			else if(RadioHybrid==1) {
+				varTextAutoQuit20:="20 % Life"
+				varTextAutoQuit30:="30 % Life"
+				varTextAutoQuit40:="40 % Life"
+				loop 5 {
+					GuiControl, Enable, Radiobox%A_Index%Life90
+						GuiControl, Enable, Radiobox%A_Index%Life80
+						GuiControl, Enable, Radiobox%A_Index%Life70
+						GuiControl, Enable, Radiobox%A_Index%Life60
+						GuiControl, Enable, Radiobox%A_Index%Life50
+						GuiControl, Enable, Radiobox%A_Index%Life40
+						GuiControl, Enable, Radiobox%A_Index%Life30
+						GuiControl, Enable, Radiobox%A_Index%Life20
+						GuiControl, Enable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+				}
+			}
+			else if(RadioCi==1) {
+				varTextAutoQuit20:="20 % ES"
+				varTextAutoQuit30:="30 % ES"
+				varTextAutoQuit40:="40 % ES"
+				loop 5 {
+					GuiControl, Disable, Radiobox%A_Index%Life90
+						GuiControl, Disable, Radiobox%A_Index%Life80
+						GuiControl, Disable, Radiobox%A_Index%Life70
+						GuiControl, Disable, Radiobox%A_Index%Life60
+						GuiControl, Disable, Radiobox%A_Index%Life50
+						GuiControl, Disable, Radiobox%A_Index%Life40
+						GuiControl, Disable, Radiobox%A_Index%Life30
+						GuiControl, Disable, Radiobox%A_Index%Life20
+						GuiControl, Disable, RadioUncheck%A_Index%Life
+						
+					GuiControl, Enable, Radiobox%A_Index%ES90
+					GuiControl, Enable, Radiobox%A_Index%ES80
+					GuiControl, Enable, Radiobox%A_Index%ES70
+					GuiControl, Enable, Radiobox%A_Index%ES60
+					GuiControl, Enable, Radiobox%A_Index%ES50
+					GuiControl, Enable, Radiobox%A_Index%ES40
+					GuiControl, Enable, Radiobox%A_Index%ES30
+					GuiControl, Enable, Radiobox%A_Index%ES20
+					GuiControl, Enable, RadioUncheck%A_Index%ES
+				}
+			}
+			GuiControl,, RadioQuit20, %varTextAutoQuit20%
+			GuiControl,, RadioQuit30, %varTextAutoQuit30%
+			GuiControl,, RadioQuit40, %varTextAutoQuit40%
+		return
+
+		UpdateStash:
+			Gui, Submit, NoHide
+			;Stash Tab Management
+			IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
+			IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
+			IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
+			IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
+			IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
+			IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
+			IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
+			IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
+			IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
+			IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
+			IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
+			IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
+			IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
+			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
+			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
+			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
+			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
+			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
+			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
+			IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
+			IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
+			IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
+			IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
+			IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
+			IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
+			IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
+			IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
+			IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
+			IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
+			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
+			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
+			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
+		Return
+
+		UpdateExtra:
+			Gui, Submit, NoHide
+			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
+			IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
+			IniWrite, %YesVendor%, settings.ini, General, YesVendor
+			IniWrite, %YesStash%, settings.ini, General, YesStash
+			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
+			IniWrite, %YesDiv%, settings.ini, General, YesDiv
+			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+			IniWrite, %Latency%, settings.ini, General, Latency
+			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
+			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
+			IniWrite, %Steam%, settings.ini, General, Steam
+			IniWrite, %HighBits%, settings.ini, General, HighBits
+			IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
+			IniWrite, %YesPersistantToggle%, settings.ini, General, YesPersistantToggle
+			If (YesPersistantToggle)
+				AutoReset()
+			If (DetonateMines&&!Detonated)
+				SetTimer, TMineTick, 100
+			Else If (!DetonateMines)
+				SetTimer, TMineTick, off
+			if ( Steam ) {
+				if ( HighBits ) {
+					executable := "PathOfExile_x64Steam.exe"
+				} else {
+					executable := "PathOfExileSteam.exe"
+				}
+			} else {
+				if ( HighBits ) {
+					executable := "PathOfExile_x64.exe"
+				} else {
+					executable := "PathOfExile.exe"
+				}
+			}
+			
+		Return
+
+		UpdateResolutionScale:
+			Gui, Submit, NoHide
+			IniWrite, %ResolutionScale%, settings.ini, General, ResolutionScale
+			Rescale()
+		Return
+
+		UpdateDebug:
+			Gui, Submit, NoHide
+			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
+		Return
+
+		UpdateUtility:
+			Gui, Submit, NoHide
+			;Utility Buttons
+			IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
+			IniWrite, %YesUtility2%, settings.ini, Utility Buttons, YesUtility2
+			IniWrite, %YesUtility3%, settings.ini, Utility Buttons, YesUtility3
+			IniWrite, %YesUtility4%, settings.ini, Utility Buttons, YesUtility4
+			IniWrite, %YesUtility5%, settings.ini, Utility Buttons, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, settings.ini, Utility Buttons, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, settings.ini, Utility Buttons, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, settings.ini, Utility Buttons, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, settings.ini, Utility Buttons, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, settings.ini, Utility Buttons, YesUtility5Quicksilver
+			
+			;Utility Percents	
+			IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
+				IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
+				IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
+				IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
+				IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
+				IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, settings.ini, Utility Buttons, YesUtility5EsPercent
+			
+			;Utility Cooldowns
+			IniWrite, %CooldownUtility1%, settings.ini, Utility Cooldowns, CooldownUtility1
+			IniWrite, %CooldownUtility2%, settings.ini, Utility Cooldowns, CooldownUtility2
+			IniWrite, %CooldownUtility3%, settings.ini, Utility Cooldowns, CooldownUtility3
+			IniWrite, %CooldownUtility4%, settings.ini, Utility Cooldowns, CooldownUtility4
+			IniWrite, %CooldownUtility5%, settings.ini, Utility Cooldowns, CooldownUtility5
+			
+			;Utility Keys
+			IniWrite, %KeyUtility1%, settings.ini, Utility Keys, KeyUtility1
+			IniWrite, %KeyUtility2%, settings.ini, Utility Keys, KeyUtility2
+			IniWrite, %KeyUtility3%, settings.ini, Utility Keys, KeyUtility3
+			IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
+			IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
+			
+			SendMSG(1, 0, scriptGottaGoFast)
+		Return
+
+		SelectMainGuiTabs:
+			GuiControlGet MainGuiTabs
+			GuiControl % (MainGuiTabs = "Chat") ? "Show" : "Hide", InnerTab
+			GuiControl MoveDraw, MainGuiTabs
+		return
+
+		FlaskCheck:
+			Gui, Submit, NoHide
+			loop 5 {
+				if(Radiobox%A_Index%Life90==1) || (Radiobox%A_Index%ES90==1) {
+					GuiControl,, Radiobox%A_Index%QS, 0
+					GuiControl,, Radiobox%A_Index%Mana10, 0
+				}
+				if(Radiobox%A_Index%Life80==1) || (Radiobox%A_Index%ES80==1) {
+					GuiControl,, Radiobox%A_Index%QS, 0
+					GuiControl,, Radiobox%A_Index%Mana10, 0
+				}
+				if(Radiobox%A_Index%Life70==1) || (Radiobox%A_Index%ES70==1) {
+					GuiControl,, Radiobox%A_Index%QS, 0
+					GuiControl,, Radiobox%A_Index%Mana10, 0
+				}
+				if(Radiobox%A_Index%Life60==1) || (Radiobox%A_Index%ES60==1) {
+					GuiControl,, Radiobox%A_Index%QS, 0
+					GuiControl,, Radiobox%A_Index%Mana10, 0
+				}
+				if(Radiobox%A_Index%Life50==1) || (Radiobox%A_Index%ES50==1) {
+					GuiControl,, Radiobox%A_Index%QS, 0
+					GuiControl,, Radiobox%A_Index%Mana10, 0
+				}
+				if(Radiobox%A_Index%Life40==1) || (Radiobox%A_Index%ES40==1) {
+					GuiControl,, Radiobox%A_Index%QS, 0
+					GuiControl,, Radiobox%A_Index%Mana10, 0
+				}
+				if(Radiobox%A_Index%Life30==1) || (Radiobox%A_Index%ES30==1) {
+					GuiControl,, Radiobox%A_Index%QS, 0
+					GuiControl,, Radiobox%A_Index%Mana10, 0
+				}
+				if(Radiobox%A_Index%Life20==1) || (Radiobox%A_Index%ES20==1) {
+					GuiControl,, Radiobox%A_Index%QS, 0
+					GuiControl,, Radiobox%A_Index%Mana10, 0
+				}
+			}
+		return
+
+		UtilityCheck:
+			Gui, Submit, NoHide
+			loop 5 {
+				if(Radiobox%A_Index%QS==1) || (Radiobox%A_Index%Mana10==1) {
+					GuiControl,, Radiobox%A_Index%Life90, 0
+					GuiControl,, Radiobox%A_Index%Life80, 0
+					GuiControl,, Radiobox%A_Index%Life70, 0
+					GuiControl,, Radiobox%A_Index%Life60, 0
+					GuiControl,, Radiobox%A_Index%Life50, 0
+					GuiControl,, Radiobox%A_Index%Life40, 0
+					GuiControl,, Radiobox%A_Index%Life30, 0
+					GuiControl,, Radiobox%A_Index%Life20, 0
+					GuiControl,, RadioUncheck%A_Index%Life, 1
+					GuiControl,, Radiobox%A_Index%ES90, 0
+					GuiControl,, Radiobox%A_Index%ES80, 0
+					GuiControl,, Radiobox%A_Index%ES70, 0
+					GuiControl,, Radiobox%A_Index%ES60, 0
+					GuiControl,, Radiobox%A_Index%ES50, 0
+					GuiControl,, Radiobox%A_Index%ES40, 0
+					GuiControl,, Radiobox%A_Index%ES30, 0
+					GuiControl,, Radiobox%A_Index%ES20, 0
+					GuiControl,, RadioUncheck%A_Index%ES, 1
+					}
+				}
+		Return
+	}
+
+	{ ; Launch Webpages from button
+		LaunchHelp:
+			Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
+		Return
+
+		LaunchWiki:
+			Run, https://github.com/BanditTech/WingmanReloaded/wiki ; Open the wiki page for the script
+		Return
+
+		LaunchDonate:
+			Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&currency_code=USD&source=url ; Open the donation page for the script
+		Return
+	}
+
+	{ ; Basic GUI functions - Script Cleanup, UpdateProfileText, helpCalibration
+		optionsCommand:
+			hotkeys()
+		return
+
+		hotkeys(){
+			global
+			Gui, Show, Autosize Center, 	WingmanReloaded
+			processWarningFound:=0
+			Gui,6:Hide
+		return
+		}
+
+		GuiEscape:
+			Gui, Cancel
+		return
+
+		ItemInfoEscape:
+		ItemInfoClose:
+			Gui, ItemInfo: Hide
+		Return
+
+		CleanUp(){
+			DetectHiddenWindows, On
+			SetTitleMatchMode, 2
+			
+			WinGet, PID, PID, %A_ScriptDir%\GottaGoFast.ahk
+			Process, Close, %PID%
+		Return
+		}
+
+		UpdateProfileText1:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText1, , ProfileText1
+			IniWrite, %ProfileText1%, settings.ini, Profiles, ProfileText1
+		Return
+
+		UpdateProfileText2:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText2, , ProfileText2
+			IniWrite, %ProfileText2%, settings.ini, Profiles, ProfileText2
+		Return
+
+		UpdateProfileText3:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText3, , ProfileText3
+			IniWrite, %ProfileText3%, settings.ini, Profiles, ProfileText3
+		Return
+
+		UpdateProfileText4:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText4, , ProfileText4
+			IniWrite, %ProfileText4%, settings.ini, Profiles, ProfileText4
+		Return
+
+		UpdateProfileText5:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText5, , ProfileText5
+			IniWrite, %ProfileText5%, settings.ini, Profiles, ProfileText5
+		Return
+
+		UpdateProfileText6:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText6, , ProfileText6, 
+			IniWrite, %ProfileText6%, settings.ini, Profiles, ProfileText6
+		Return
+
+		UpdateProfileText7:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText7, , ProfileText7
+			IniWrite, %ProfileText7%, settings.ini, Profiles, ProfileText7
+		Return
+
+		UpdateProfileText8:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText8, , ProfileText8
+			IniWrite, %ProfileText8%, settings.ini, Profiles, ProfileText8
+		Return
+
+		UpdateProfileText9:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText9, , ProfileText9
+			IniWrite, %ProfileText9%, settings.ini, Profiles, ProfileText9
+		Return
+
+		UpdateProfileText10:
+			;Gui, Submit, NoHide
+			GuiControlGet, ProfileText10, , ProfileText10
+			IniWrite, %ProfileText10%, settings.ini, Profiles, ProfileText10
+		Return
+
+		helpCalibration:
+			MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnHideout -- Not Mandatory - Pauses Auto-Functions`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- ID/Vend/Stash`nOnStash -- ID/Vend/Stash`nOnDiv -- ID/Vend/Stash`nOnVendor -- ID/Vend/Stash`nEmpty Inventory -- ID/Vend/Stash`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
+		Return
+	}
+
+	; Comment out this line if your script crashes on launch
+	#Include, %A_ScriptDir%\data\Library.ahk
 
 return
