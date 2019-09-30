@@ -1,4 +1,22 @@
 --------------------------------------------------------------------------------
+Patch Notes
+--------------------------------------------------------------------------------
+Version .06.01 September/30/2019
+--------------------------------------------------------------------------------
+Adjustments to PoE Click library, added LeftClick, SwiftClick now has no sleep
+    This finally seems to fix the Loot vacuum getting caught in a left click
+
+Updated Filterblade pack, fixed some missing black backgrounds
+    Retiered everything based on price as well.
+
+Fix for Parsing Item base which was missing magic item and superior items
+    I have added a series of string splits to seperate their possible names
+    This also fixed the ignore slots not matching with proper Width x Height
+
+Implimented request for the quicksilver and mana flask change to checkboxes
+    This will now allow you to quickly unselect either mana or quicks.
+    
+--------------------------------------------------------------------------------
 Release Notes
 --------------------------------------------------------------------------------
 Version .06.00 September/29/2019
