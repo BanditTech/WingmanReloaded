@@ -1488,17 +1488,27 @@
     } 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
  
-/** * PoE Click v1.0.0 : PoE Click Lib for AutoHotkey.
+/** * PoE Click v1.0.1 : PoE Click Lib for AutoHotkey.
  * Lib: PoEClick.ahk
  *     Path of Exile Click functions for AutoHotkey.
  *     Developed by Bandit
  * Version:
- *     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
+ *     v1.0.1 [updated 10/02/2019 (MM/DD/YYYY)]
  */
+
+    ; SwiftClick - Left Click at Coord with no wait between up and down
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    SwiftClick(x, y){
+            MouseMove, x, y	
+            Sleep, 30*Latency
+            Send {Click, x, y }
+            Sleep, 30*Latency
+        return
+        }
 
     ; SwiftClick - Left Click at Coord
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    SwiftClick(x, y){
+    LeftClick(x, y){
             MouseMove, x, y	
             Sleep, 30*Latency
             Send {Click, Down x, y }

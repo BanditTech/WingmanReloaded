@@ -69,7 +69,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.00
+    Global VersionNumber := .06.01
 
 	Global Null := 0
     
@@ -779,24 +779,24 @@
 		}
 	Loop, 5 {
 		valueLife20 := substr(TriggerLife20, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
-			valueLife30 := substr(TriggerLife30, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
-			valueLife40 := substr(TriggerLife40, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
-			valueLife50 := substr(TriggerLife50, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
-			valueLife60 := substr(TriggerLife60, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
-			valueLife70 := substr(TriggerLife70, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
-			valueLife80 := substr(TriggerLife80, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
-			valueLife90 := substr(TriggerLife90, (A_Index), 1)
-			GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
-			valueDisableLife := substr(DisableLife, (A_Index), 1)
-			GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
-			valueES20 := substr(TriggerES20, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
+		valueLife30 := substr(TriggerLife30, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
+		valueLife40 := substr(TriggerLife40, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
+		valueLife50 := substr(TriggerLife50, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
+		valueLife60 := substr(TriggerLife60, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
+		valueLife70 := substr(TriggerLife70, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
+		valueLife80 := substr(TriggerLife80, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
+		valueLife90 := substr(TriggerLife90, (A_Index), 1)
+		GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
+		valueDisableLife := substr(DisableLife, (A_Index), 1)
+		GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
+		valueES20 := substr(TriggerES20, (A_Index), 1)
 		GuiControl, , Radiobox%A_Index%ES20, %valueES20%
 		valueES30 := substr(TriggerES30, (A_Index), 1)
 		GuiControl, , Radiobox%A_Index%ES30, %valueES30%
@@ -816,14 +816,20 @@
 		GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
 		}	
 
-	Gui Add, Text, 													x16 	y+12, 				Quicks.:
-	Gui Add, Text, 													x25 	y+10, 				Mana:
-	Gui Add, Radio, Group 	vRadiobox1QS 		gUtilityCheck		x+20 	y+-36 	w13 h13
-	Gui Add, Radio, 		vRadiobox1Mana10 	gUtilityCheck				y+10 	w13 h13
+	Gui Add, Text, 					Section								x16 	y+12, 				Quicks.:
+	Gui,Font,cBlack
+	Gui Add, GroupBox, 		w257 h26								xp-5 	yp-9, 
+	Gui Add, GroupBox, 		w257 h26								xp 		y+-3, 
+	Gui Add, GroupBox, 		w256 h24								xp+1 		y+0, 
+	Gui Add, GroupBox, 		w256 h24								xp 		y+-4, 
+	Gui,Font
+	Gui Add, Text, 													x25 	ys+22, 				Mana:
+	Gui Add, CheckBox, Group 	vRadiobox1QS 		gUtilityCheck		x+20 	ys 	w13 h13
+	Gui Add, CheckBox, 		vRadiobox1Mana10 	gUtilityCheck				y+10 	w13 h13
 	vFlask=2
 	loop 4 {
-		Gui Add, Radio, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	y+-36 	w13 h13
-		Gui Add, Radio, 		vRadiobox%vFlask%Mana10 gUtilityCheck			y+10 	w13 h13
+		Gui Add, CheckBox, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	y+-36 	w13 h13
+		Gui Add, CheckBox, 		vRadiobox%vFlask%Mana10 gUtilityCheck			y+10 	w13 h13
 		vFlask:=vFlask+1
 		}
 	Loop, 5 {	
@@ -833,7 +839,7 @@
 		GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
 		}
 
-	Gui Add, Edit, 			vhotkeyMainAttack 				x12 	y+10 	w45 h17, 	%hotkeyMainAttack%
+	Gui Add, Edit, 			vhotkeyMainAttack 				x12 	y+10 	w48 h17, 	%hotkeyMainAttack%
 	Gui Add, Checkbox, 		vMainAttackbox1 			x75 	y+-15 	w13 h13
 	vFlask=2
 	loop 4 {
@@ -841,7 +847,7 @@
 		vFlask:=vFlask+1
 		} 
 
-	Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+5 	w45 h17, 	%hotkeySecondaryAttack%
+	Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+5 	w48 h17, 	%hotkeySecondaryAttack%
 	Gui Add, Checkbox, 		vSecondaryAttackbox1 		x75 	y+-15 	w13 h13
 	vFlask=2
 	loop 4 {
@@ -1839,7 +1845,7 @@
 						If (Prop.RarityDivination && (Stats.Stack = Stats.StackMax)){
 							CtrlClick(Grid.X,Grid.Y)
 							RandomSleep(150,200)
-							SwiftClick(vX_OnDiv,vY_DivTrade)
+							LeftClick(vX_OnDiv,vY_DivTrade)
 							CtrlClick(vX_OnDiv,vY_DivItem)
 						}
 						Continue
@@ -2402,24 +2408,76 @@
 				Else
 				{
 					Prop.ItemName := Prop.ItemName . A_LoopField . "`n" ; Add a line of name
+					StandardBase := StrReplace(A_LoopField, "Superior ", "")
+					PossibleBase := StrSplit(StandardBase, " of ")
+					NoPrefixMagicBase := PossibleBase[1]
+					PossibleBase := StrSplit(PossibleBase[1], " ",,2)
+					PrefixMagicBase := PossibleBase[2]
 
-					If ArmourBases.HasKey(A_LoopField){
-						Prop.Width := ArmourBases[A_LoopField]["Width"]
-						Prop.Height := ArmourBases[A_LoopField]["Height"]
-						Stats.ItemClass := ArmourBases[A_LoopField]["Item Class"]
+					If ArmourBases.HasKey(StandardBase){
+						Prop.Width := ArmourBases[StandardBase]["Width"]
+						Prop.Height := ArmourBases[StandardBase]["Height"]
+						Stats.ItemClass := ArmourBases[StandardBase]["Item Class"]
+						Prop.ItemBase := StandardBase
 						Continue
 					}
-					If WeaponBases.HasKey(A_LoopField){
-						Prop.Width := WeaponBases[A_LoopField]["Width"]
-						Prop.Height := WeaponBases[A_LoopField]["Height"]
-						Stats.ItemClass := WeaponBases[A_LoopField]["Item Class"]
+					If WeaponBases.HasKey(StandardBase){
+						Prop.Width := WeaponBases[StandardBase]["Width"]
+						Prop.Height := WeaponBases[StandardBase]["Height"]
+						Stats.ItemClass := WeaponBases[StandardBase]["Item Class"]
+						Prop.ItemBase := StandardBase
 						Continue
 					}
-					If BeltBases.HasKey(A_LoopField){
-						Prop.Width := BeltBases[A_LoopField]["Width"]
-						Prop.Height := BeltBases[A_LoopField]["Height"]
+					If BeltBases.HasKey(StandardBase){
+						Prop.Width := BeltBases[StandardBase]["Width"]
+						Prop.Height := BeltBases[StandardBase]["Height"]
 						Prop.Belt := True
-						Stats.ItemClass := BeltBases[A_LoopField]["Item Class"]
+						Stats.ItemClass := BeltBases[StandardBase]["Item Class"]
+						Prop.ItemBase := StandardBase
+						Continue
+					}
+					If ArmourBases.HasKey(NoPrefixMagicBase){
+						Prop.Width := ArmourBases[NoPrefixMagicBase]["Width"]
+						Prop.Height := ArmourBases[NoPrefixMagicBase]["Height"]
+						Stats.ItemClass := ArmourBases[NoPrefixMagicBase]["Item Class"]
+						Prop.ItemBase := NoPrefixMagicBase
+						Continue
+					}
+					If WeaponBases.HasKey(NoPrefixMagicBase){
+						Prop.Width := WeaponBases[NoPrefixMagicBase]["Width"]
+						Prop.Height := WeaponBases[NoPrefixMagicBase]["Height"]
+						Stats.ItemClass := WeaponBases[NoPrefixMagicBase]["Item Class"]
+						Prop.ItemBase := NoPrefixMagicBase
+						Continue
+					}
+					If BeltBases.HasKey(NoPrefixMagicBase){
+						Prop.Width := BeltBases[NoPrefixMagicBase]["Width"]
+						Prop.Height := BeltBases[NoPrefixMagicBase]["Height"]
+						Prop.Belt := True
+						Stats.ItemClass := BeltBases[NoPrefixMagicBase]["Item Class"]
+						Prop.ItemBase := NoPrefixMagicBase
+						Continue
+					}
+					If ArmourBases.HasKey(PrefixMagicBase){
+						Prop.Width := ArmourBases[PrefixMagicBase]["Width"]
+						Prop.Height := ArmourBases[PrefixMagicBase]["Height"]
+						Stats.ItemClass := ArmourBases[PrefixMagicBase]["Item Class"]
+						Prop.ItemBase := PrefixMagicBase
+						Continue
+					}
+					If WeaponBases.HasKey(PrefixMagicBase){
+						Prop.Width := WeaponBases[PrefixMagicBase]["Width"]
+						Prop.Height := WeaponBases[PrefixMagicBase]["Height"]
+						Stats.ItemClass := WeaponBases[PrefixMagicBase]["Item Class"]
+						Prop.ItemBase := PrefixMagicBase
+						Continue
+					}
+					If BeltBases.HasKey(PrefixMagicBase){
+						Prop.Width := BeltBases[PrefixMagicBase]["Width"]
+						Prop.Height := BeltBases[PrefixMagicBase]["Height"]
+						Prop.Belt := True
+						Stats.ItemClass := BeltBases[PrefixMagicBase]["Item Class"]
+						Prop.ItemBase := PrefixMagicBase
 						Continue
 					}
 					IfInString, A_LoopField, Ring
@@ -3783,6 +3841,8 @@
 		
 		nameArr := StrSplit(Prop.ItemName, "`n")
 		Prop.ItemName := nameArr[1]
+
+		If Prop.ItemBase =
 		Prop.ItemBase := nameArr[2]
 
 		If Prop.RarityGem
@@ -4634,7 +4694,7 @@
 						Pressed := GetKeyState(hotkeyLootScan)
 						If !(Pressed)
 							Break 2
-						SwiftClick(ScanPx, ScanPy)
+						SwiftClick(CenterX, CenterY)
 						}
 					Else If (ErrorLevel = 1)
 						Continue
@@ -5669,14 +5729,14 @@
 				Send {%hotkeyWeaponSwapKey%} 
 			RandomSleep(90,120)
 			
-			SwiftClick(AlternateGemX, AlternateGemY)
+			LeftClick(AlternateGemX, AlternateGemY)
 				RandomSleep(90,120)
 			
 			if (WeaponSwap==1) 
 				Send {%hotkeyWeaponSwapKey%} 
 			RandomSleep(90,120)
 			
-			SwiftClick(CurrentGemX, CurrentGemY)
+			LeftClick(CurrentGemX, CurrentGemY)
 				RandomSleep(90,120)
 			
 			Send {%hotkeyInventory%} 
@@ -9405,7 +9465,7 @@
 		Return
 
 		LaunchDonate:
-			Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&currency_code=USD&source=url ; Open the donation page for the script
+			Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&item_name=Open+Source+Script+Building&currency_code=USD&source=url ; Open the donation page for the script
 		Return
 	}
 
