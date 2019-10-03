@@ -69,7 +69,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.01
+    Global VersionNumber := .06.02
 
 	Global Null := 0
     
@@ -317,7 +317,7 @@
 		Global QSonMainAttack := 1
 		Global QSonSecondaryAttack := 1
 		Global YesPersistantToggle := 1
-
+		Global YesSortFirst := 1
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
 		Global AreaScale := 2
@@ -506,6 +506,8 @@
 
 	;Mana Colors
 		global varMana10
+		global varManaThreshold
+		Global ManaThreshold
 
 	;Gem Swap
 		global CurrentGemX:=1483
@@ -698,7 +700,6 @@
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
-
 	Gui, Font, Bold
 	Gui Add, Text, 										x12 	y30, 				Flask Settings
 	Gui, Font,
@@ -819,11 +820,13 @@
 	Gui Add, Text, 					Section								x16 	y+12, 				Quicks.:
 	Gui,Font,cBlack
 	Gui Add, GroupBox, 		w257 h26								xp-5 	yp-9, 
-	Gui Add, GroupBox, 		w257 h26								xp 		y+-3, 
+	Gui Add, GroupBox, 		w257 h26								xp 		y+-3, Mana `%
 	Gui Add, GroupBox, 		w256 h24								xp+1 		y+0, 
 	Gui Add, GroupBox, 		w256 h24								xp 		y+-4, 
 	Gui,Font
-	Gui Add, Text, 													x25 	ys+22, 				Mana:
+	;Gui Add, Text, 													x25 	ys+22, 				
+	Gui, Add, text, x20 ys+29 w35, %ManaThreshold%
+	Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
 	Gui Add, CheckBox, Group 	vRadiobox1QS 		gUtilityCheck		x+20 	ys 	w13 h13
 	Gui Add, CheckBox, 		vRadiobox1Mana10 	gUtilityCheck				y+10 	w13 h13
 	vFlask=2
@@ -1279,6 +1282,7 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%                         	              , Sell at vendor?
 	Gui Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%                         	              	  , Trade Divination?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%                         	          , Leave Map Un-ID?
+	Gui Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst%                         	      , Group Items before stashing?
 
 	Gui, Font, Bold
 	Gui Add, Text, 										xm+170 	y330, 				Inventory Instructions:
@@ -1682,27 +1686,30 @@
 		global vY_OnDiv:=135
 		
 		global vX_Life:=95
-		global vY_Life90:=1034
-		global vY_Life80:=1014
-		global vY_Life70:=994
-		global vY_Life60:=974
-		global vY_Life50:=954
-		global vY_Life40:=934
-		global vY_Life30:=914
-		global vY_Life20:=894
+		global vY_Life20:=1034
+		global vY_Life30:=1014
+		global vY_Life40:=994
+		global vY_Life50:=974
+		global vY_Life60:=954
+		global vY_Life70:=934
+		global vY_Life80:=914
+		global vY_Life90:=894
 			
 		global vX_ES:=180
-		global vY_ES90:=1034
-		global vY_ES80:=1014
-		global vY_ES70:=994
-		global vY_ES60:=974
-		global vY_ES50:=954
-		global vY_ES40:=934
-		global vY_ES30:=914
-		global vY_ES20:=894
+		global vY_ES20:=1034
+		global vY_ES30:=1014
+		global vY_ES40:=994
+		global vY_ES50:=974
+		global vY_ES60:=954
+		global vY_ES70:=934
+		global vY_ES80:=914
+		global vY_ES90:=894
 		
 		global vX_Mana:=1825
 		global vY_Mana10:=1054
+		global vY_Mana90:=876
+		Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+		Global vY_ManaThreshold:=vY_Mana10 - round(vH_ManaBar * (ManaThreshold / 100))
 	
 		Global vY_DivTrade:=736
 		Global vY_DivItem:=605
@@ -1789,6 +1796,11 @@
 		Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
 		CurrentTab:=0
+		SortFirst := {}
+		Loop 32
+		{
+			SortFirst[A_Index] := {}
+		}
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
 		{
@@ -1873,7 +1885,7 @@
 							ClipItem(Grid.X,Grid.Y)
 						}
 					}
-					If (OnStash&&YesStash) 
+					If (OnStash && YesStash && !YesSortFirst) 
 					{
 						If (sendstash:=MatchLootFilter())
 						{
@@ -2069,6 +2081,168 @@
 							Continue
 						}
 					}
+					If (OnStash && YesStash && YesSortFirst) 
+					{
+						If (sendstash:=MatchLootFilter())
+						{
+							SortFirst[sendstash].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
+						{
+							SortFirst[StashTabCurrency].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.IsMap&&StashTabYesMap)
+						{
+							SortFirst[StashTabMap].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.BreachSplinter&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.SacrificeFragment&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.MortalFragment&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.GuardianFragment&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.ProphecyFragment&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Offering&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Vessel&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Scarab&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.TimelessSplinter&&StashTabYesFragment)
+						{
+							SortFirst[StashTabFragment].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.RarityDivination&&StashTabYesDivination)
+						{
+							SortFirst[StashTabDivination].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.RarityUnique&&Prop.Ring)
+						{
+							If (StashTabYesCollection)
+							{
+								MoveStash(StashTabCollection)
+								RandomSleep(30,45)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							If (StashTabYesUniqueRing)
+							{
+								Sleep, 135*Latency
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
+								MoveStash(StashTabUniqueRing)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							If (StashTabYesUniqueDump)
+							{
+								Sleep, 135*Latency
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
+								MoveStash(StashTabUniqueDump)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							Continue
+						}
+						Else If (Prop.RarityUnique)
+						{
+							If (StashTabYesCollection)
+							{
+								MoveStash(StashTabCollection)
+								RandomSleep(30,45)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							If (StashTabYesUniqueDump)
+							{
+								Sleep, 135*Latency
+								pixelgetcolor, Pitem, GridX, GridY
+								if !(indexOfHex(Pitem, varMouseoverColor))
+									Continue
+								MoveStash(StashTabUniqueDump)
+								CtrlClick(Grid.X,Grid.Y)
+							}
+							Continue
+						}
+						If (Prop.Essence&&StashTabYesEssence)
+						{
+							SortFirst[StashTabEssence].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Fossil&&StashTabYesFossil)
+						{
+							SortFirst[StashTabFossil].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Resonator&&StashTabYesResonator)
+						{
+							SortFirst[StashTabResonator].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
+						{
+							Continue
+						}
+						If (Prop.RarityGem)
+						{
+							If ((Stats.Quality>0)&&StashTabYesGemQuality)
+							{
+								SortFirst[StashTabGemQuality].Push({"C":C,"R":R})
+								Continue
+							}
+							Else If (StashTabYesGem)
+							{
+								SortFirst[StashTabGem].Push({"C":C,"R":R})
+								Continue
+							}
+						}
+						If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
+						{
+							SortFirst[StashTabLinked].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Prophecy&&StashTabYesProphecy)
+						{
+							SortFirst[StashTabProphecy].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Oil&&StashTabYesOil)
+						{
+							SortFirst[StashTabOil].Push({"C":C,"R":R})
+							Continue
+						}
+					}
 					If (OnVendor&&YesVendor)
 					{
 						If MatchLootFilter()
@@ -2092,6 +2266,23 @@
 					Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
 					MouseMove, RX, RY, 0
 					Sleep, 45*Latency
+				}
+			}
+			If (OnStash && RunningToggle && YesStash && YesSortFirst)
+			{
+				For Tab, Tv in SortFirst
+				{
+					For Item, Iv in Tv
+					{
+						MoveStash(Tab)
+						C := SortFirst[Tab][Item]["C"]
+						R := SortFirst[Tab][Item]["R"]
+						GridX := InventoryGridX[C]
+						GridY := InventoryGridY[R]
+						Grid := RandClick(GridX, GridY)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
 				}
 			}
 			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
@@ -4614,7 +4805,7 @@
 			Sleep, 45*Latency
 			CurrentTab:=Tab
 			MouseMove, MSx, MSy, 0
-			Sleep, 45*Latency
+			Sleep, 90*Latency
 			BlockInput, MouseMoveOff
 			}
 		return
@@ -4694,6 +4885,7 @@
 						Pressed := GetKeyState(hotkeyLootScan)
 						If !(Pressed)
 							Break 2
+						MouseGetPos CenterX, CenterY
 						SwiftClick(CenterX, CenterY)
 						}
 					Else If (ErrorLevel = 1)
@@ -5211,13 +5403,21 @@
 			}
 			
 			If (TriggerMana10!="00000") {
-				pixelgetcolor, Mana10, vX_Mana, vY_Mana10
-				if (Mana10!=varMana10) {
+				pixelgetcolor, ManaPerc, vX_Mana, vY_ManaThreshold
+				;ToolTip % ManaPerc "        " varManaThreshold
+				if (ManaPerc!=varManaThreshold) {
 					GuiStatus("OnChar")
 					if !(OnChar)
 						Exit
 					TriggerMana(TriggerMana10)
 				}
+				; pixelgetcolor, Mana10, vX_Mana, vY_Mana10
+				; if (Mana10!=varMana10) {
+				; 	GuiStatus("OnChar")
+				; 	if !(OnChar)
+				; 		Exit
+				; 	TriggerMana(TriggerMana10)
+				; }
 			}
 			
 			GuiUpdate()
@@ -5956,7 +6156,7 @@
 		}
 		Return
 		}
-; Send one or two digits to a sub-script 
+; SendMSG - Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     SendMSG(wParam:=0, lParam:=0, script:=""){
         DetectHiddenWindows On
@@ -6001,6 +6201,7 @@
 			IniRead, YesIdentify, settings.ini, General, YesIdentify, 1
 			IniRead, YesDiv, settings.ini, General, YesDiv, 1
 			IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
+			IniRead, YesSortFirst, settings.ini, General, YesSortFirst, 1
 			IniRead, Latency, settings.ini, General, Latency, 1
 			IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
 			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
@@ -6015,6 +6216,7 @@
 			IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
 			IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
 			IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
+			IniRead, ManaThreshold, settings.ini, General, ManaThreshold, 0
 			
 			;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -6095,6 +6297,7 @@
 			
 			;Mana Colors
 			IniRead, varMana10, settings.ini, Mana Colors, Mana10, 0x3C201D
+			IniRead, varManaThreshold, settings.ini, Mana Colors, ManaThreshold, 0x3C201D
 			
 			;Life Triggers
 			IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20, 00000
@@ -6605,8 +6808,9 @@
 				IniWrite, %varES90%, settings.ini, ES Colors, ES90
 				;Mana Resample
 				pixelgetcolor, varMana10, vX_Mana, vY_Mana10
-				
+				pixelgetcolor, varManaThreshold, vX_Mana, vY_ManaThreshold
 				IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
+				IniWrite, %varManaThreshold%, settings.ini, Mana Colors, ManaThreshold
 				;Messagebox	
 				ToolTip % "Resampled the Life, ES, and Mana colors`nMake sure you were on your character!"
 					SetTimer, RemoveToolTip, -5000
@@ -6651,6 +6855,7 @@
 			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
 			IniWrite, %YesDiv%, settings.ini, General, YesDiv
 			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+			IniWrite, %YesSortFirst%, settings.ini, General, YesSortFirst
 			IniWrite, %Latency%, settings.ini, General, Latency
 			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
 			IniWrite, %Steam%, settings.ini, General, Steam
@@ -9301,6 +9506,7 @@
 			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
 			IniWrite, %YesDiv%, settings.ini, General, YesDiv
 			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
+			IniWrite, %YesSortFirst%, settings.ini, General, YesSortFirst
 			IniWrite, %Latency%, settings.ini, General, Latency
 			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart

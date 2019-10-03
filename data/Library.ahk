@@ -1967,6 +1967,9 @@
 					;Mana
 					global vX_Mana:=X + Round(A_ScreenWidth / (1920 / 1825))
 					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+					global vY_Mana90:=Y + Round(A_ScreenHeight / (1080 / 876))
+                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
 					;GUI overlay
 					global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
 					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
@@ -2042,6 +2045,9 @@
 					;Mana
 					global vX_Mana:=X + Round(A_ScreenWidth / (3840 / 3745))
 					global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+					global vY_Mana90:=Y + Round(A_ScreenHeight / (1080 / 876))
+                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
 					;GUI overlay
 					global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
 					global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))

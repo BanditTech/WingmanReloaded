@@ -1,6 +1,22 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.02 October/03/2019
+--------------------------------------------------------------------------------
+Added new option to the Inventory Tab named Group Items before Stashing?
+    Allows the script to go through all the inventory before Stashing
+    This is a drastic increase in speed for the stash portion of inventory logic
+    With a full inventory of various items its about 50% faster!
+        Because it only switches stashes once per type instead of for each item
+    Unique logic is the only exception, since it has 2 alternate tabs
+        GIbS Enabled or disabled, uniques always stash right away
+    Was suggested by SauronDev, thanks for the input!
+
+Added threshold to mana %
+    Will need to rework the GUI to be more clear, but for now is working
+    0 threshold is ~10% mana, 100 is ~95% mana
+    So if you want the old function just leave it at 0
+
 Version .06.01 October/02/2019
 --------------------------------------------------------------------------------
 Implimented request to change the quicksilver and mana flask to checkboxes
