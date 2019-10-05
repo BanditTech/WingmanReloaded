@@ -2,8 +2,8 @@
 name: Bug report
 about: Create a report for an issue
 title: "[BUG]"
-labels: bug
-assignees: BanditTech
+labels: ''
+assignees: ''
 
 ---
 
