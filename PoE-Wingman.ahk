@@ -5441,27 +5441,27 @@
 		If ( GetKeyState(1, "P") ) {
 			OnCooldown[1]:=1
 			settimer, TimerFlask1, %CooldownFlask1%
-			SendMSG(3, 1, scriptGottaGoFast)
+			SendMSG(3, 1)
 		}
 		If ( GetKeyState(2, "P") ) {
 			OnCooldown[2]:=1
 			settimer, TimerFlask2, %CooldownFlask2%
-			SendMSG(3, 2, scriptGottaGoFast)
+			SendMSG(3, 2)
 		}
 		If ( GetKeyState(3, "P") ) {
 			OnCooldown[3]:=1
 			settimer, TimerFlask3, %CooldownFlask3%
-			SendMSG(3, 3, scriptGottaGoFast)
+			SendMSG(3, 3)
 		}
 		If ( GetKeyState(4, "P") ) {
 			OnCooldown[4]:=1
 			settimer, TimerFlask4, %CooldownFlask4%
-			SendMSG(3, 4, scriptGottaGoFast)
+			SendMSG(3, 4)
 		}
 		If ( GetKeyState(5, "P") ) {
 			OnCooldown[5]:=1
 			settimer, TimerFlask5, %CooldownFlask5%
-			SendMSG(3, 5, scriptGottaGoFast)
+			SendMSG(3, 5)
 		}
 	Return
 	; Attack Key timers - TimerMainAttack, TimerSecondaryAttack
@@ -5471,7 +5471,7 @@
 		If (MainAttackPressed && TriggerMainAttack > 0 )
 			MainAttackCommand()
 		If (MainAttackPressed && QSonMainAttack)
-			SendMSG(5,1,scriptGottaGoFast)
+			SendMSG(5,1)
 		If (!MainAttackPressed)
 			settimer,TimerMainAttack,delete
 	Return
@@ -5480,7 +5480,7 @@
 		If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
 			SecondaryAttackCommand()
 		If (SecondaryAttackPressed && QSonSecondaryAttack)
-			SendMSG(5,1,scriptGottaGoFast)
+			SendMSG(5,1)
 		If (!SecondaryAttackPressed)
 			settimer,TimerSecondaryAttack,delete
 	Return
@@ -5564,7 +5564,7 @@
 				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
 					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
 						Return
-					SendMSG(5,1,scriptGottaGoFast)
+					SendMSG(5,1)
 					SetTimer, TimerMainAttack, 400
 				}
 			}
@@ -5587,7 +5587,7 @@
 				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
 					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
 						Return
-					SendMSG(5,1,scriptGottaGoFast)
+					SendMSG(5,1)
 					SetTimer, TimerSecondaryAttack, 400
 				}
 			}
@@ -5604,7 +5604,7 @@
 			if (FLVal > 0) {
 				if (OnCooldown[FL]=0) {
 					send %FL%
-					SendMSG(3, FL, scriptGottaGoFast)
+					SendMSG(3, FL)
 					OnCooldown[FL]:=1 
 					Cooldown:=CooldownFlask%FL%
 					settimer, TimerFlask%FL%, %Cooldown%
@@ -5635,7 +5635,7 @@
 			OnCooldown[FL] := 1 
 			Cooldown:=CooldownFlask%FL%
 			settimer, TimerFlask%FL%, %Cooldown%
-			SendMSG(3, FL, scriptGottaGoFast)
+			SendMSG(3, FL)
 			RandomSleep(23,59)
 		}
 		Return
@@ -5657,7 +5657,7 @@
 		If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
 			key:=KeyUtility%Utility%
 			Send %key%
-			SendMSG(4, Utility, scriptGottaGoFast)
+			SendMSG(4, Utility)
 			OnCooldownUtility%Utility%:=1
 			Cooldown:=CooldownUtility%Utility%
 			SetTimer, TimerUtility%Utility%, %Cooldown%
@@ -5983,31 +5983,31 @@
 			Else {
 				Send 1
 				OnCooldown[1]:=1 
-				SendMSG(3, 1, scriptGottaGoFast)
+				SendMSG(3, 1)
 				Cooldown:=CooldownFlask1
 				settimer, TimerFlask1, %Cooldown%
 				RandomSleep(-99,99)
 				Send 4
 				OnCooldown[4]:=1 
 				Cooldown:=CooldownFlask4
-				SendMSG(3, 4, scriptGottaGoFast)
+				SendMSG(3, 4)
 				settimer, TimerFlask4, %Cooldown%
 				RandomSleep(-99,99)
 				Send 3
 				OnCooldown[3]:=1 
-				SendMSG(3, 3, scriptGottaGoFast)
+				SendMSG(3, 3)
 				Cooldown:=CooldownFlask3
 				settimer, TimerFlask3, %Cooldown%
 				RandomSleep(-99,99)
 				Send 2
 				OnCooldown[2]:=1 
-				SendMSG(3, 2, scriptGottaGoFast)
+				SendMSG(3, 2)
 				Cooldown:=CooldownFlask2
 				settimer, TimerFlask2, %Cooldown%
 				RandomSleep(-99,99)
 				Send 5
 				OnCooldown[5]:=1 
-				SendMSG(3, 5, scriptGottaGoFast)
+				SendMSG(3, 5)
 				Cooldown:=CooldownFlask5
 				settimer, TimerFlask5, %Cooldown%
 			}
@@ -6158,12 +6158,12 @@
 		}
 ; SendMSG - Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    SendMSG(wParam:=0, lParam:=0, script:=""){
+    SendMSG(wParam:=0, lParam:=0, script:="GottaGoFast.ahk ahk_exe AutoHotkey.exe"){
         DetectHiddenWindows On
         if WinExist(script) 
             PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
         else 
-            MsgBox %script% . " Not found"
+			Ding(1000,"GGF Script Not Found") ;Turn on debug messages to see error information from GGF sendMSG
         DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
         Return
         }
@@ -7111,7 +7111,7 @@
 				{
 				WinActivate, ahk_group POEGameGroup
 				}
-			SendMSG(1, , scriptGottaGoFast)
+			SendMSG(1)
 		return  
 		}
 
@@ -7239,7 +7239,7 @@
 			GuiControl,, AlternateGemX, %AlternateGemX%
 			GuiControl,, AlternateGemY, %AlternateGemY%
 			
-			SendMSG(1,1,scriptGottaGoFast)
+			SendMSG(1,1)
 		return
 	}
 
@@ -9587,7 +9587,7 @@
 			IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
 			IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
 			
-			SendMSG(1, 0, scriptGottaGoFast)
+			SendMSG(1, 0)
 		Return
 
 		SelectMainGuiTabs:

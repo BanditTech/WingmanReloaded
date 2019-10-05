@@ -463,7 +463,7 @@ MsgMonitor(wParam, lParam, msg)
      Else If (wParam=3) {
           If (lParam=1){
                OnCooldown[1]:=1 
-               SendMSG(3, 1, scriptPOEWingman)
+               SendMSG(3, 1)
                settimer, TimmerFlask1, %CooldownFlask1%
                return
           }		
@@ -529,14 +529,14 @@ MsgMonitor(wParam, lParam, msg)
 }
 ; Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SendMSG(wParam:=0, lParam:=0, script:=""){
+SendMSG(wParam:=0, lParam:=0, script:="PoE-Wingman.ahk ahk_exe AutoHotkey.exe"){
      DetectHiddenWindows On
      if WinExist(script) 
           PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
      else if WinExist(scriptPOEWingmanSecondary)
-     PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+          PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
      else
-     MsgBox, Either Script Window Not Found
+          Ding(1000,"Wingman Script Not Found") ;Turn on debug messages to see error information from GGF sendMSG
      DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
      Return
 }
@@ -883,7 +883,7 @@ TriggerFlask(Trigger){
                OnCooldown[QFL] := 1 
                Cooldown:=CooldownFlask%QFL%
                settimer, TimmerFlask%QFL%, %Cooldown%
-               SendMSG(3, QFL, scriptPOEWingman)
+               SendMSG(3, QFL)
                Loop, 5 {
                     If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver){
                          TriggerUtility(A_Index)
@@ -918,7 +918,7 @@ TriggerFlaskForce(Trigger){
           OnCooldown[QFL] := 1 
           Cooldown:=CooldownFlask%QFL%
           settimer, TimmerFlask%QFL%, %Cooldown%
-          SendMSG(3, QFL, scriptPOEWingman)
+          SendMSG(3, QFL)
           Loop, 5 {
                If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver){
                     TriggerUtility(A_Index)
@@ -973,7 +973,7 @@ TriggerUtility(Utility){
      If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
           key:=KeyUtility%Utility%
           Send %key%
-          SendMSG(4, Utility, scriptPOEWingman)
+          SendMSG(4, Utility)
           OnCooldownUtility%Utility%:=1
           Cooldown:=CooldownUtility%Utility%
           SetTimer, TimerUtility%Utility%, %Cooldown%
@@ -988,7 +988,7 @@ TriggerUtilityForce(Utility){
      If (!OnCooldownUtility%Utility%){
           key:=KeyUtility%Utility%
           Send %key%
-          SendMSG(4, Utility, scriptPOEWingman)
+          SendMSG(4, Utility)
           OnCooldownUtility%Utility%:=1
           Cooldown:=CooldownUtility%Utility%
           SetTimer, TimerUtility%Utility%, %Cooldown%
@@ -1054,29 +1054,8 @@ Rescale(){
                global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
                global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
           }
-          Else If (ResolutionScale="QHD") {
-               ;Status Check OnHideout
-               global vX_OnHideout:=X + Round(	A_ScreenWidth / (2560 / 3161))
-               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1440 / 951))
-               ;Status Check OnChar
-               global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
-               global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1440 / 915))
-               ;Status Check OnChat
-               global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
-               global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1440 / 653))
-               ;Status Check OnInventory
-               global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 3503))
-               global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1440 / 36))
-               ;Status Check OnStash
-               global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
-               global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1440 / 32))
-               ;Status Check OnVendor
-               global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 1578))
-               global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1440 / 88))
-               ;GUI overlay
-               global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
-               global GuiY:=Y + Round(A_ScreenHeight / (1440 / 1027))
-          }
+
+          ; Controller support section, finds the center of the screen.
           WinGetPos, win_x, win_y, width, height, A
           x_center := win_x + width / 2
           compensation := (width / height) == (16 / 10) ? 1.103829 : 1.103719
@@ -1305,23 +1284,23 @@ JoyButtons_Handler:
                     }
           		Else If (hotkeyControllerButton%A_Index% = "Logout")
                     {
-                         SendMSG(6,1,scriptPOEWingman)
+                         SendMSG(6,1)
                     }
           		Else If (hotkeyControllerButton%A_Index% = "PopFlasks")
                     {
-                         SendMSG(6,2,scriptPOEWingman)
+                         SendMSG(6,2)
                     }
           		Else If (hotkeyControllerButton%A_Index% = "QuickPortal")
                     {
-                         SendMSG(6,3,scriptPOEWingman)
+                         SendMSG(6,3)
                     }
           		Else If (hotkeyControllerButton%A_Index% = "GemSwap")
                     {
-                         SendMSG(6,4,scriptPOEWingman)
+                         SendMSG(6,4)
                     }
           		Else If (hotkeyControllerButton%A_Index% = "ItemSort")
                     {
-                         SendMSG(6,5,scriptPOEWingman)
+                         SendMSG(6,5)
                     }
                }
                Else if (pressed%A_Index%) && !(joy%A_Index% = "D")

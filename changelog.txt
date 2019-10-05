@@ -1,6 +1,12 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.03 October/04/2019
+--------------------------------------------------------------------------------
+Improvements to the script messaging system, mostly streamlined code
+    Removed the need to put the default script to each call
+    Debug message added instead of Popup box for when it doesn't match
+
 Version .06.02 October/03/2019
 --------------------------------------------------------------------------------
 Added new option to the Inventory Tab named Group Items before Stashing?
