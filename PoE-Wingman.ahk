@@ -2309,18 +2309,22 @@
 							Continue
 						If (Prop.RarityCurrency)
 							Continue
-						If (Prop.RarityGem&&(Stats.Quality>0))
-							Q := Stats.Quality
-							tGQ += Q
-							SortGem.Push({"C":C,"R":R,"Q":Q})
-							Continue
 						If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
 							Continue
-						If (Prop.Flask&&(Stats.Quality>0))
+						If ( Prop.Flask && ( Stats.Quality > 0 ))
+						{
 							Q := Stats.Quality
 							tQ += Q
 							SortFlask.Push({"C":C,"R":R,"Q":Q})
 							Continue
+						}
+						If ( Prop.RarityGem && ( Stats.Quality > 0 ))
+						{
+							Q := Stats.Quality
+							tGQ += Q
+							SortGem.Push({"C":C,"R":R,"Q":Q})
+							Continue
+						}
 						If ( Prop.SpecialType="" )
 						{
 							Sleep, 30*Latency
