@@ -154,6 +154,13 @@ global CooldownFlask4:=5000
 global CooldownFlask5:=5000
 global Cooldown:=5000
 
+;Flask hotkeys
+global keyFlask1:=1
+global keyFlask2:=2
+global keyFlask3:=3
+global keyFlask4:=4
+global keyFlask5:=5
+
 ;Quicksilver
 global TriggerQuicksilverDelay:=0.8
 global TriggerQuicksilver:=00000
@@ -224,9 +231,11 @@ IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
 IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
 IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
 IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
+
 ;Coordinates
 IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
 IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
+
 ;Failsafe Colors
 IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0x161114
 IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
@@ -236,6 +245,7 @@ IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
 IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
 IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
 IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
+
 ;Utility Buttons
 IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
 IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
@@ -274,12 +284,20 @@ IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
 IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
 IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
 
+;Flask Keys
+IniRead, keyFlask1, settings.ini, Flask Keys, keyFlask1, 1
+IniRead, keyFlask2, settings.ini, Flask Keys, keyFlask2, 2
+IniRead, keyFlask3, settings.ini, Flask Keys, keyFlask3, 3
+IniRead, keyFlask4, settings.ini, Flask Keys, keyFlask4, 4
+IniRead, keyFlask5, settings.ini, Flask Keys, keyFlask5, 5
+
 ;Flask Cooldowns
 IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
 IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2, 4800
 IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
 IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
 IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
+
 ;Quicksilver
 IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
 IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
@@ -631,6 +649,13 @@ ReadFromFile(){
      IniRead, hotkeyDown, 	settings.ini, Controller Keys, hotkeyDown,  s
      IniRead, hotkeyLeft, 	settings.ini, Controller Keys, hotkeyLeft,  a
      IniRead, hotkeyRight, 	settings.ini, Controller Keys, hotkeyRight, d
+
+     ;Flask Keys
+     IniRead, keyFlask1, settings.ini, Flask Keys, keyFlask1, 1
+     IniRead, keyFlask2, settings.ini, Flask Keys, keyFlask2, 2
+     IniRead, keyFlask3, settings.ini, Flask Keys, keyFlask3, 3
+     IniRead, keyFlask4, settings.ini, Flask Keys, keyFlask4, 4
+     IniRead, keyFlask5, settings.ini, Flask Keys, keyFlask5, 5
      
      ;Flask Cooldowns
      IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
@@ -878,8 +903,9 @@ TriggerFlask(Trigger){
                }
                QFL:=FlaskListQS.RemoveAt(1)
                If (!QFL)
-               Return
-               send %QFL%
+                    Return
+               key := keyFlask%QFL%
+               send %key%
                OnCooldown[QFL] := 1 
                Cooldown:=CooldownFlask%QFL%
                settimer, TimmerFlask%QFL%, %Cooldown%
@@ -914,7 +940,8 @@ TriggerFlaskForce(Trigger){
           QFL:=FlaskListQS.RemoveAt(1)
           If (!QFL)
           Return
-          send %QFL%
+          key := keyFlask%QFL%
+          send %key%
           OnCooldown[QFL] := 1 
           Cooldown:=CooldownFlask%QFL%
           settimer, TimmerFlask%QFL%, %Cooldown%
@@ -1020,13 +1047,40 @@ Rescale(){
                ;Status Check OnVendor
                global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
                global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-				;Status Check OnMenu
-				global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-				global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+               ;Status Check OnMenu
+               global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+               global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
                ;GUI overlay
                global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
                global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
           }
+          Else If (ResolutionScale="Cinematic") {
+               ;Status Check OnHideout
+               global vX_OnHideout:=X + Round(A_ScreenWidth / (2560 / 1887))
+               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+               global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+               ;Status Check OnChar
+               global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
+               global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+               ;Status Check OnChat
+               global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
+               global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+               ;Status Check OnInventory
+               global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 2223))
+               global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+               ;Status Check OnStash
+               global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
+               global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+               ;Status Check OnVendor
+               global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 618))
+               global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+               ;Status Check OnMenu
+               global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+               global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+               ;GUI overlay
+               global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
+               global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+          } 
           Else If (ResolutionScale="UltraWide") {
                ;Status Check OnHideout
                global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
@@ -1047,9 +1101,9 @@ Rescale(){
                ;Status Check OnVendor
                global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
                global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
-				;Status Check OnMenu
-				global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-				global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+               ;Status Check OnMenu
+               global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+               global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
                ;GUI overlay
                global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
                global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))

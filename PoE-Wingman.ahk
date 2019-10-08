@@ -19,6 +19,17 @@
     SetControlDelay, -1
     FileEncoding , UTF-8
     SendMode Input
+	If A_AhkVersion < 1.1.28
+	{
+		msgbox 1, ,% "Version " A_AhkVersion " AutoHotkey has been found`nThe script requires minimum version 1.1.28+`nPress OK to go to download page"
+		IfMsgBox, OK
+		{
+			Run, "https://www.autohotkey.com/download/"
+			ExitApp
+		}
+		Else 
+			ExitApp
+	}
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
 	Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
@@ -69,7 +80,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.03
+    Global VersionNumber := .06.04
 
 	Global Null := 0
     
@@ -328,6 +339,7 @@
 		Global YesDiv := 1
 		Global YesMapUnid := 1
 		Global YesStashKeys := 1
+		Global YesPopAllExtraKeys := 1
 		Global OnHideout := False
 		Global OnHideoutMin := False
 		Global DetonateMines := False
@@ -377,7 +389,6 @@
 		global DebugMessages := 0
 		global ShowPixelGrid := 0
 		global ShowItemInfo := 0
-		global DetonateMines := 0
 		global Latency := 1
 		global RunningToggle := False
 		Global Steam := 1
@@ -599,6 +610,13 @@
 		global CooldownFlask4:=5000
 		global CooldownFlask5:=5000
 		global Cooldown:=5000
+	;Flask hotkeys
+		global keyFlask1:=1
+		global keyFlask2:=2
+		global keyFlask3:=3
+		global keyFlask4:=4
+		global keyFlask5:=5
+		Global KeyFlask1Proper,KeyFlask2Proper,KeyFlask3Proper,KeyFlask4Proper,KeyFlask5Proper
 
 	;Quicksilver
 		global TriggerQuicksilverDelay=0.8
@@ -696,7 +714,7 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Gui Add, Tab2, vMainGuiTabs x1 y1 w620 h465 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller|Item Parse
+	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller|Item Parse
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
@@ -704,9 +722,9 @@
 	Gui Add, Text, 										x12 	y30, 				Flask Settings
 	Gui, Font,
 
-	Gui Add, Text, 										x12 	y+10, 				Character Type:
+	Gui Add, GroupBox, 				Section		w160 h35				x+12 	yp-5, 				Character Type:
 	Gui, Font, cRed
-	Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					x+8 gUpdateCharacterType, 	Life
+	Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					xs+8 ys+14 gUpdateCharacterType, 	Life
 	Gui, Font, cPurple
 	Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
 	Gui, Font, cBlue
@@ -725,6 +743,13 @@
 	Gui Add, Edit, 			vCooldownFlask3 			x+7 			w34	h17, 	%CooldownFlask3%
 	Gui Add, Edit, 			vCooldownFlask4 			x+8 			w34	h17, 	%CooldownFlask4%
 	Gui Add, Edit, 			vCooldownFlask5 			x+7 			w34	h17, 	%CooldownFlask5%
+
+	Gui Add, Text, 										x13 	y+5, % 			   "  IG Key:"
+	Gui Add, Edit, 			vkeyFlask1 			x63 	y+-15 	w34	h17, 	%keyFlask1%
+	Gui Add, Edit, 			vkeyFlask2 			x+8 			w34	h17, 	%keyFlask2%
+	Gui Add, Edit, 			vkeyFlask3 			x+7 			w34	h17, 	%keyFlask3%
+	Gui Add, Edit, 			vkeyFlask4 			x+8 			w34	h17, 	%keyFlask4%
+	Gui Add, Edit, 			vkeyFlask5 			x+7 			w34	h17, 	%keyFlask5%
 
 	Gui, Font, cRed
 	Gui Add, Text,										x62	 	y+5, 				Life
@@ -818,21 +843,31 @@
 		}	
 
 	Gui Add, Text, 					Section								x16 	y+12, 				Quicks.:
+	;Gui,Font,cBlack
 	Gui,Font,cBlack
 	Gui Add, GroupBox, 		w257 h26								xp-5 	yp-9, 
-	Gui Add, GroupBox, 		w257 h26								xp 		y+-3, Mana `%
-	Gui Add, GroupBox, 		w256 h24								xp+1 		y+0, 
-	Gui Add, GroupBox, 		w256 h24								xp 		y+-4, 
 	Gui,Font
+	;Gui Add, GroupBox, 		w256 h24								xp+1 		y+0, 
+	;Gui Add, GroupBox, 		w256 h24								xp 		y+-4, 
+	;Gui,Font
 	;Gui Add, Text, 													x25 	ys+22, 				
-	Gui, Add, text, x20 ys+29 w35, %ManaThreshold%
-	Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
-	Gui Add, CheckBox, Group 	vRadiobox1QS 		gUtilityCheck		x+20 	ys 	w13 h13
-	Gui Add, CheckBox, 		vRadiobox1Mana10 	gUtilityCheck				y+10 	w13 h13
+	ManaThreshold_TT:="This value scales the location of the mana sample`nA value of 0 is aproximately 10`% mana`nA value of 100 is approximately 95`% mana"
+	Gui Add, CheckBox, Group 	vRadiobox1QS 		gUtilityCheck		xs+60 	ys 	w13 h13
 	vFlask=2
 	loop 4 {
-		Gui Add, CheckBox, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	y+-36 	w13 h13
-		Gui Add, CheckBox, 		vRadiobox%vFlask%Mana10 gUtilityCheck			y+10 	w13 h13
+		Gui Add, CheckBox, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	ys 	w13 h13
+		vFlask:=vFlask+1
+		}
+
+	Gui,Font,cBlack
+	Gui Add, GroupBox, 	Section	w257 h30								x11 	y+8, Mana `%
+	Gui,Font
+	Gui, Add, text, section x20 ys+13 w35, %ManaThreshold%
+	Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
+	Gui Add, CheckBox, 		vRadiobox1Mana10 	gUtilityCheck		x+20		ys 	w13 h13
+	vFlask=2
+	loop 4 {
+		Gui Add, CheckBox, 		vRadiobox%vFlask%Mana10 gUtilityCheck		x+28	ys 	w13 h13
 		vFlask:=vFlask+1
 		}
 	Loop, 5 {	
@@ -842,7 +877,15 @@
 		GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
 		}
 
-	Gui Add, Edit, 			vhotkeyMainAttack 				x12 	y+10 	w48 h17, 	%hotkeyMainAttack%
+	Gui,Font,cBlack
+	Gui Add, GroupBox, 			Section						x11 	y+14 	w257 h58,  	Attack:
+	Gui Add, text, vFlaskColumn1									xp+53 	ys-8 	, Flask 1
+	Gui Add, text, vFlaskColumn2									xp+42 	ys-8 	, Flask 2
+	Gui Add, text, vFlaskColumn3									xp+41 	ys-8 	, Flask 3
+	Gui Add, text, vFlaskColumn4									xp+41 	ys-8 	, Flask 4
+	Gui Add, text, vFlaskColumn5									xp+41 	ys-8 	, Flask 5
+	Gui,Font
+	Gui Add, Edit, 			vhotkeyMainAttack 				xs+1 	ys+14 	w48 h17, 	%hotkeyMainAttack%
 	Gui Add, Checkbox, 		vMainAttackbox1 			x75 	y+-15 	w13 h13
 	vFlask=2
 	loop 4 {
@@ -850,7 +893,7 @@
 		vFlask:=vFlask+1
 		} 
 
-	Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+5 	w48 h17, 	%hotkeySecondaryAttack%
+	Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+8 	w48 h17, 	%hotkeySecondaryAttack%
 	Gui Add, Checkbox, 		vSecondaryAttackbox1 		x75 	y+-15 	w13 h13
 	vFlask=2
 	loop 4 {
@@ -864,85 +907,97 @@
 		GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
 		}
 
-	Gui Add, Text, 										x12 	y+10, 				Quicksilver Flask Movement Delay (in s):
-	Gui Add, Edit, 			vTriggerQuicksilverDelay	x+31 	y+-15 	w22 h17, 	%TriggerQuicksilverDelay%
 
-	Gui Add, Text, 										x12 	y+10, 				Auto-Quit:
-	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				x+5, 						%varTextAutoQuit20%
-	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
-	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
-	Gui Add, Text, 										x20 	y+10, 				Quit via:
-	Gui, Add, Radio, Group	vRadioCritQuit Checked%RadioCritQuit%					x+5		y+-13,				LutBot Method
-	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+19	,				normal /exit
+	Gui,Font,s9 cBlack 
+	Gui Add, GroupBox, 		Section	w257 h66				x12 	y+15 , 				Quicksilver settings
+	Gui,Font,
+	Gui Add, Text, 										xs+10 	ys+16, 				Quicksilver Flask Delay (in s):
+	Gui Add, Edit, 			vTriggerQuicksilverDelay	x+10 	yp 	w22 h17, 	%TriggerQuicksilverDelay%
+	Gui,Add,GroupBox,Section xs+10 yp+16 w208 h26											,Quicksilver on attack:
+	Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xs+5 ys+15 , Primary Attack
+	Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
+
 
 	;Vertical Grey Lines
-	Gui, Add, Text, 									x59 	y77 		h310 0x11
-	Gui, Add, Text, 									x+33 				h310 0x11
-	Gui, Add, Text, 									x+34 				h310 0x11
-	Gui, Add, Text, 									x+33 				h310 0x11
-	Gui, Add, Text, 									x+34 				h310 0x11
-	Gui, Add, Text, 									x+33 				h310 0x11
-	Gui, Add, Text, 									x+5 	y23		w1	h441 0x7
-	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
-
-	Gui, Add, Text, 									x447 	y51 		h135 0x11
+	Gui, Add, Text, 									x59 	y62 		h366 0x11
+	Gui, Add, Text, 									x+33 				h366 0x11
+	Gui, Add, Text, 									x+34 				h366 0x11
+	Gui, Add, Text, 									x+33 				h366 0x11
+	Gui, Add, Text, 									x+34 				h366 0x11
+	Gui, Add, Text, 									x+33 				h366 0x11
+	Gui, Add, Text, 									x+5 	y23		w1	h483 0x7
+	Gui, Add, Text, 									x+1 	y23		w1	h483 0x7
 
 
-	Gui, Font, Bold
-	Gui, Add, Text, 					Section					x292 	y30, 				Flask Profile Management:
+	Gui,Font,s9 cBlack 
+	Gui Add, GroupBox, 		Section	w227 h66				x292 	y30 , 				Auto-Quit settings
+	Gui,Font,
+	;Gui Add, Text, 											x292 	y30, 				Auto-Quit:
+	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				xs+5 ys+16, 						%varTextAutoQuit20%
+	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
+	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
+	Gui Add, Text, 										xs+5 	y+10, 				Quit via:
+	Gui, Add, Radio, Group	vRadioCritQuit Checked%RadioCritQuit%					x+5		y+-13,				LutBot Method
+	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+7	,				normal /exit
+
+	Gui,Font,s9 cBlack 
+	Gui Add, GroupBox, 		Section	w90 h46				x+10 	y30 , 				Auto-Mine
+	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+15	ys+20				, Enable
+	DetonateMines_TT:="Enable this to automatically Detonate Mines when placed"
+	Gui,Font,
+
+	Gui, Font, Bold s9 cBlack
+	Gui, Add, GroupBox, 					Section		w324 h176			x292 	ys+70, 				Profile Management:
 	Gui, Font
-	Gui, Add, Button, gsubmitProfile1 xs-2 ys+22 w50 h21, Save 1
+	Gui, Add, Text, 									xs+161 	ys+41 		h135 0x11
+
+	;Gui,Font,s9 cBlack Bold Underline
+	;Gui,Add,GroupBox, xs+5 ys+10 w190 h35											,
+	Gui,Add,text, xs+10 ys+18 											,Character Name:
+	;Gui,Font,
+	Gui, Add, Edit, vCharName x+5 yp-2 w150 h19, %CharName%
+
+	Gui, Add, Button, gsubmitProfile1 xs+4 ys+42 w50 h21, Save 1
 	Gui, Add, Button, gsubmitProfile2 w50 h21, Save 2
 	Gui, Add, Button, gsubmitProfile3 w50 h21, Save 3
 	Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
 	Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
 
-	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x+1 ys+23 w50 h19, %ProfileText1%
+	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x+1 ys+43 w50 h19, %ProfileText1%
 	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
 	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
 	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
 	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
 
-	Gui, Add, Button, greadProfile1 x+1 ys+22 w50 h21, Load 1
+	Gui, Add, Button, greadProfile1 x+1 ys+42 w50 h21, Load 1
 	Gui, Add, Button, greadProfile2 w50 h21, Load 2
 	Gui, Add, Button, greadProfile3 w50 h21, Load 3
 	Gui, Add, Button, greadProfile4 w50 h21, Load 4
 	Gui, Add, Button, greadProfile5 w50 h21, Load 5
 
-	Gui, Add, Button, gsubmitProfile6 x+10 ys+22 w50 h21, Save 6
+	Gui, Add, Button, gsubmitProfile6 x+10 ys+42 w50 h21, Save 6
 	Gui, Add, Button, gsubmitProfile7 w50 h21, Save 7
 	Gui, Add, Button, gsubmitProfile8 w50 h21, Save 8
 	Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
 	Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
 
-	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x+1 ys+23 w50 h19, %ProfileText6%
+	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x+1 ys+43 w50 h19, %ProfileText6%
 	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
 	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
 	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
 	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
 
-	Gui, Add, Button, greadProfile6 x+1 ys+22 w50 h21, Load 6
+	Gui, Add, Button, greadProfile6 x+1 ys+42 w50 h21, Load 6
 	Gui, Add, Button, greadProfile7 w50 h21, Load 7
 	Gui, Add, Button, greadProfile8 w50 h21, Load 8
 	Gui, Add, Button, greadProfile9 w50 h21, Load 9
 	Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
-	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section xs+10 y+15 w160 h45											,Character Name:
-	Gui,Font,
-	Gui, Add, Edit, vCharName xs+5 ys+18 w150 h19, %CharName%
-
-	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section x+20 ys w120 h60											,QS on attack:
-	Gui,Font,
-	Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xs+5 ys+20 , Primary Attack
-	Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack%  , Secondary Attack
-
-	Gui, Font, Bold
-	Gui Add, Text, 								section		x292 	y250, 				Utility Management:
+	Gui, Font, Bold s9 cBlack
+	Gui Add, GroupBox, 						w324 h176		section		x292 	y+15, 				Utility Management:
 	Gui, Font,
 
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility1 +BackgroundTrans Checked%YesUtility1%		y+34	, %A_Space%
+	Gui Add, Checkbox, gUpdateUtility	vYesUtility1 +BackgroundTrans Checked%YesUtility1%		ys+42 xs+5	, %A_Space%
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility2 +BackgroundTrans Checked%YesUtility2%		y+12	, %A_Space%
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility3 +BackgroundTrans Checked%YesUtility3%		y+12	, %A_Space%
 	Gui Add, Checkbox, gUpdateUtility	vYesUtility4 +BackgroundTrans Checked%YesUtility4%		y+12	, %A_Space%
@@ -988,21 +1043,21 @@
 	GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
 	GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
 
-	Gui Add, Text, 										x292 	ys+25, 	ON:
+	Gui Add, Text, 										xs+5 	ys+25, 	ON:
 	Gui Add, Text, 										x+25 	, 	CD:
 	Gui Add, Text, 										x+40 	, 	Key:
 	Gui Add, Text, 										x+31 	, 	QS:
 	Gui Add, Text, 										x+28 	, 	Life:
 	Gui Add, Text, 										x+47 	, 	ES:
 
-	Gui, Add, Text, 									x317 	ys+25 		h145 0x11
+	Gui, Add, Text, 									xs+30 	ys+25 		h145 0x11
 	Gui, Add, Text, 									x+52 	 		h145 0x11
 	Gui, Add, Text, 									x+52 	 		h145 0x11
 	Gui, Add, Text, 									x+27 	 		h145 0x11
 	Gui, Add, Text, 									x+57 	 		h145 0x11
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
@@ -1066,8 +1121,8 @@
 	AutoUpdateOff_TT:="Enable this to not check for new updates when launching the script"
 	Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
 	YesPersistantToggle_TT:="Enable this to have toggles remain after exiting and restarting the script"
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|UltraWide
-	ResolutionScale_TT:="Adjust the resolution the script scales its values from`nStandard is 16/9`nUltraWide is 32/9"
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|Cinematic|UltraWide
+	ResolutionScale_TT:="Adjust the resolution the script scales its values from`nStandard is 16/9`nCinematic is 21/9`nUltraWide is 32/9"
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
@@ -1108,8 +1163,6 @@
 	StockWisdom_TT:="Enable this to restock Wisdom scrolls when more than 10 are missing"
 	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
 	AlternateGemOnSecondarySlot_TT:="Enable this to Swap Weapons for your Alternate Gem Swap location"
-	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           		y+8				, Detonate Mines?
-	DetonateMines_TT:="Enable this to automatically Detonate Mines when placed"
 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
 	DebugMessages_TT:="Enable this to show debug messages, previous functions have been moved to gamestates"
@@ -1171,7 +1224,9 @@
 	Gui Add, Checkbox, gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 , Loot Vacuum?
 	LootVacuum_TT:="Enable the Loot Vacuum function`nUses the hotkey assigned to Item Pickup"
 	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	     y+8 , Pop Flasks Respect CD?
-	PopFlaskRespectCD_TT:="Enable this option to limit flasks on CD when Popping all Flasks"
+	PopFlaskRespectCD_TT:="Enable this option to limit flasks on CD when Popping all Flasks`nThis will always fire any extra keys that are present in the bindings`nThis over-rides the option below"
+	Gui Add, Checkbox, gUpdateExtra	vYesPopAllExtraKeys Checked%YesPopAllExtraKeys%                         	     y+8 , Pop Flasks Uses any extra keys?
+	YesPopAllExtraKeys_TT:="Enable this option to press any extra keys in each flasks bindings when Popping all Flasks`nIf disabled, it will only fire the primary key assigned to the flask slot."
 
 	;~ =========================================================================================== Subgroup: Hints
 	Gui,Font,Bold
@@ -1796,6 +1851,10 @@
 		Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
 		CurrentTab:=0
+		tQ := 0
+		tGQ := 0
+		SortFlask := {}
+		SortGem := {}
 		SortFirst := {}
 		Loop 32
 		{
@@ -2212,6 +2271,7 @@
 						}
 						If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
 						{
+							SortFirst[StashTabFlaskQuality].Push({"C":C,"R":R})
 							Continue
 						}
 						If (Prop.RarityGem)
@@ -2249,7 +2309,17 @@
 							Continue
 						If (Prop.RarityCurrency)
 							Continue
+						If (Prop.RarityGem&&(Stats.Quality>0))
+							Q := Stats.Quality
+							tGQ += Q
+							SortGem.Push({"C":C,"R":R,"Q":Q})
+							Continue
 						If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
+							Continue
+						If (Prop.Flask&&(Stats.Quality>0))
+							Q := Stats.Quality
+							tQ += Q
+							SortFlask.Push({"C":C,"R":R,"Q":Q})
 							Continue
 						If ( Prop.SpecialType="" )
 						{
@@ -2281,8 +2351,102 @@
 						GridY := InventoryGridY[R]
 						Grid := RandClick(GridX, GridY)
 						CtrlClick(Grid.X,Grid.Y)
-						Continue
 					}
+				}
+			}
+			If (OnVendor && RunningToggle && YesVendor && tQ >= 40)
+			{
+				overQ := mod(tQ, 40)
+				For Item, Iv in SortFlask
+				{
+					If overQ < 5
+						Continue
+					if overQ > 10
+					{
+						Q := SortFlask[Item]["Q"]
+						If (Q > 10 && Q <= overQ)
+						{
+							overQ -= Q
+							tQ -= Q
+							SortFlask.Delete(Item)
+						}
+					}
+				}
+				overQ := mod(tQ, 40)
+				For Item, Iv in SortFlask
+				{
+					If overQ < 5
+						Continue
+					if Q <= overQ
+					{
+						If (overQ - Q) >= 0
+						{
+							overQ -= Q
+							tQ -= Q
+							SortFlask.Delete(Item)
+						}
+					}
+				}
+				overQ := mod(tQ, 40)
+				Ding(2000,"Total Flask Quality: " . tQ,"Extra Quality: " . overQ)
+				For Item in SortFlask
+				{
+					C := SortFlask[Item]["C"]
+					R := SortFlask[Item]["R"]
+					GridX := InventoryGridX[C]
+					GridY := InventoryGridY[R]
+					Grid := RandClick(GridX, GridY)
+					CtrlClick(Grid.X,Grid.Y)
+					RandomSleep(45,90)
+
+					Continue
+				}
+			}
+			If (OnVendor && RunningToggle && YesVendor && tGQ >= 40)
+			{
+				overQ := mod(tGQ, 40)
+				if overQ > 10
+				{
+					For Item, Iv in SortGem
+					{
+						If overQ < 5
+							Continue
+						Q := SortGem[Item]["Q"]
+						If (Q > 10 && Q <= overQ)
+						{
+							overQ -= Q
+							tGQ -= Q
+							SortGem.Delete(Item)
+						}
+					}
+				}
+				overQ := mod(tGQ, 40)
+				For Item, Iv in SortGem
+				{
+					If overQ < 5
+						Continue
+					if Q <= overQ
+					{
+						If (overQ - Q) >= 0
+						{
+							overQ -= Q
+							tGQ -= Q
+							SortGem.Delete(Item)
+						}
+					}
+				}
+				overQ := mod(tGQ, 40)
+				Ding(2000,"Total Gem Quality: " . tGQ,"Extra Quality: " . overQ)
+				For Item in SortGem
+				{
+					C := SortGem[Item]["C"]
+					R := SortGem[Item]["R"]
+					GridX := InventoryGridX[C]
+					GridY := InventoryGridY[R]
+					Grid := RandClick(GridX, GridY)
+					CtrlClick(Grid.X,Grid.Y)
+					RandomSleep(45,90)
+					Continue
 				}
 			}
 			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
@@ -5438,27 +5602,27 @@
 	; TimerPassthrough - Passthrough Timer
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerPassthrough:
-		If ( GetKeyState(1, "P") ) {
+		If ( GetKeyState(KeyFlask1Proper, "P") ) {
 			OnCooldown[1]:=1
 			settimer, TimerFlask1, %CooldownFlask1%
 			SendMSG(3, 1)
 		}
-		If ( GetKeyState(2, "P") ) {
+		If ( GetKeyState(KeyFlask2Proper, "P") ) {
 			OnCooldown[2]:=1
 			settimer, TimerFlask2, %CooldownFlask2%
 			SendMSG(3, 2)
 		}
-		If ( GetKeyState(3, "P") ) {
+		If ( GetKeyState(KeyFlask3Proper, "P") ) {
 			OnCooldown[3]:=1
 			settimer, TimerFlask3, %CooldownFlask3%
 			SendMSG(3, 3)
 		}
-		If ( GetKeyState(4, "P") ) {
+		If ( GetKeyState(KeyFlask4Proper, "P") ) {
 			OnCooldown[4]:=1
 			settimer, TimerFlask4, %CooldownFlask4%
 			SendMSG(3, 4)
 		}
-		If ( GetKeyState(5, "P") ) {
+		If ( GetKeyState(KeyFlask5Proper, "P") ) {
 			OnCooldown[5]:=1
 			settimer, TimerFlask5, %CooldownFlask5%
 			SendMSG(3, 5)
@@ -5603,7 +5767,8 @@
 			FLVal:=SubStr(Trigger,FL,1)+0
 			if (FLVal > 0) {
 				if (OnCooldown[FL]=0) {
-					send %FL%
+					key := keyFlask%FL%
+					send %key%
 					SendMSG(3, FL)
 					OnCooldown[FL]:=1 
 					Cooldown:=CooldownFlask%FL%
@@ -5631,7 +5796,8 @@
 		}
 		Else If !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) {
 			FL:=FlaskList.RemoveAt(1)
-			send %FL%
+			key := keyFlask%FL%
+			send %key%
 			OnCooldown[FL] := 1 
 			Cooldown:=CooldownFlask%FL%
 			settimer, TimerFlask%FL%, %Cooldown%
@@ -5981,31 +6147,46 @@
 			If PopFlaskRespectCD
 				TriggerFlask(11111)
 			Else {
-				Send 1
+				If YesPopAllExtraKeys 
+					Send %keyFlask1% 
+				Else
+					Send %KeyFlask1Proper%
 				OnCooldown[1]:=1 
 				SendMSG(3, 1)
 				Cooldown:=CooldownFlask1
 				settimer, TimerFlask1, %Cooldown%
 				RandomSleep(-99,99)
-				Send 4
-				OnCooldown[4]:=1 
-				Cooldown:=CooldownFlask4
-				SendMSG(3, 4)
-				settimer, TimerFlask4, %Cooldown%
-				RandomSleep(-99,99)
-				Send 3
-				OnCooldown[3]:=1 
-				SendMSG(3, 3)
-				Cooldown:=CooldownFlask3
-				settimer, TimerFlask3, %Cooldown%
-				RandomSleep(-99,99)
-				Send 2
+				If YesPopAllExtraKeys 
+					Send %keyFlask2% 
+				Else
+					Send %KeyFlask2Proper%
 				OnCooldown[2]:=1 
 				SendMSG(3, 2)
 				Cooldown:=CooldownFlask2
 				settimer, TimerFlask2, %Cooldown%
 				RandomSleep(-99,99)
-				Send 5
+				If YesPopAllExtraKeys 
+					Send %keyFlask3% 
+				Else
+					Send %KeyFlask3Proper%
+				OnCooldown[3]:=1 
+				SendMSG(3, 3)
+				Cooldown:=CooldownFlask3
+				settimer, TimerFlask3, %Cooldown%
+				RandomSleep(-99,99)
+				If YesPopAllExtraKeys 
+					Send %keyFlask4% 
+				Else
+					Send %KeyFlask4Proper%
+				OnCooldown[4]:=1 
+				Cooldown:=CooldownFlask4
+				SendMSG(3, 4)
+				settimer, TimerFlask4, %Cooldown%
+				RandomSleep(-99,99)
+				If YesPopAllExtraKeys 
+					Send %keyFlask5% 
+				Else
+					Send %KeyFlask5Proper%
 				OnCooldown[5]:=1 
 				SendMSG(3, 5)
 				Cooldown:=CooldownFlask5
@@ -6216,6 +6397,7 @@
 			IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
 			IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
 			IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
+			IniRead, YesPopAllExtraKeys, settings.ini, General, YesPopAllExtraKeys, 0
 			IniRead, ManaThreshold, settings.ini, General, ManaThreshold, 0
 			
 			;Stash Tab Management
@@ -6418,6 +6600,20 @@
 			IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
 			IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
 			IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
+
+			;Flask Keys
+			IniRead, keyFlask1, settings.ini, Flask Keys, keyFlask1, 1
+			IniRead, keyFlask2, settings.ini, Flask Keys, keyFlask2, 2
+			IniRead, keyFlask3, settings.ini, Flask Keys, keyFlask3, 3
+			IniRead, keyFlask4, settings.ini, Flask Keys, keyFlask4, 4
+			IniRead, keyFlask5, settings.ini, Flask Keys, keyFlask5, 5
+			
+			Loop 5
+			{
+				key := keyFlask%A_Index%
+				str := StrSplit(key, " ", ,2)
+				KeyFlask%A_Index%Proper := str[1]
+			}
 			
 			;Gem Swap
 			IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX, 1353
@@ -6864,6 +7060,7 @@
 			IniWrite, %CharName%, settings.ini, General, CharName
 			IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
 			IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
+			IniWrite, %YesPopAllExtraKeys%, settings.ini, General, YesPopAllExtraKeys
 			IniWrite, %QSonMainAttack%, settings.ini, General, QSonMainAttack
 			IniWrite, %QSonSecondaryAttack%, settings.ini, General, QSonSecondaryAttack
 
@@ -6936,6 +7133,13 @@
 			IniWrite, %CooldownFlask3%, settings.ini, Flask Cooldowns, CooldownFlask3
 			IniWrite, %CooldownFlask4%, settings.ini, Flask Cooldowns, CooldownFlask4
 			IniWrite, %CooldownFlask5%, settings.ini, Flask Cooldowns, CooldownFlask5	
+
+			;Flask Keys
+			IniWrite, %keyFlask1%, settings.ini, Flask Keys, keyFlask1
+			IniWrite, %keyFlask2%, settings.ini, Flask Keys, keyFlask2
+			IniWrite, %keyFlask3%, settings.ini, Flask Keys, keyFlask3
+			IniWrite, %keyFlask4%, settings.ini, Flask Keys, keyFlask4
+			IniWrite, %keyFlask5%, settings.ini, Flask Keys, keyFlask5	
 			
 			;Gem Swap
 			IniWrite, %CurrentGemX%, settings.ini, Gem Swap, CurrentGemX
@@ -7207,6 +7411,11 @@
 			GuiControl,, CooldownFlask3, %CooldownFlask3%
 			GuiControl,, CooldownFlask4, %CooldownFlask4%
 			GuiControl,, CooldownFlask5, %CooldownFlask5%
+			GuiControl,, keyFlask1, %keyFlask1%
+			GuiControl,, keyFlask2, %keyFlask2%
+			GuiControl,, keyFlask3, %keyFlask3%
+			GuiControl,, keyFlask4, %keyFlask4%
+			GuiControl,, keyFlask5, %keyFlask5%
 			GuiControl,, RadioNormalQuit, %RadioNormalQuit%
 			GuiControl,, RadioCritQuit, %RadioCritQuit%
 			GuiControl,, RadioLife, %RadioLife%
@@ -7884,6 +8093,12 @@
 			IniWrite, %RadioHybrid%, settings.ini, Profile%Profile%, Hybrid	
 			IniWrite, %RadioCi%, settings.ini, Profile%Profile%, Ci	
 			
+			;AutoMines
+			IniWrite, %DetonateMines%, settings.ini, Profile%Profile%, DetonateMines
+
+			;ManaThreshold
+			IniWrite, %ManaThreshold%, settings.ini, Profile%Profile%, ManaThreshold
+
 			;AutoQuit
 			IniWrite, %RadioQuit20%, settings.ini, Profile%Profile%, Quit20
 			IniWrite, %RadioQuit30%, settings.ini, Profile%Profile%, Quit30
@@ -8282,6 +8497,14 @@
 			IniRead, RadioCi, settings.ini, Profile%Profile%, Ci, 0
 			GuiControl, , RadioCi, %RadioCi%
 			
+			;AutoMines
+			IniRead, DetonateMines, settings.ini, Profile%Profile%, DetonateMines, 0
+			GuiControl, , DetonateMines, %DetonateMines%
+
+			;ManaThreshold
+			IniRead, ManaThreshold, settings.ini, Profile%Profile%, ManaThreshold, 0
+			GuiControl, , ManaThreshold, %ManaThreshold%
+
 			;AutoQuit
 			IniRead, RadioQuit20, settings.ini, Profile%Profile%, Quit20, 1
 			GuiControl, , RadioQuit20, %RadioQuit20%
@@ -8368,7 +8591,7 @@
 			GuiControl, , KeyUtility5, %KeyUtility5%
 
 			;Update UI
-			if(RadioLife==1) {
+			if (RadioLife=1) {
 				varTextAutoQuit20:="20 % Life"
 				varTextAutoQuit30:="30 % Life"
 				varTextAutoQuit40:="40 % Life"
@@ -8394,7 +8617,7 @@
 					GuiControl, Disable, RadioUncheck%A_Index%ES
 				}
 			}
-			else if(RadioHybrid==1) {
+			else if (RadioHybrid=1) {
 				varTextAutoQuit20:="20 % Life"
 				varTextAutoQuit30:="30 % Life"
 				varTextAutoQuit40:="40 % Life"
@@ -8420,7 +8643,7 @@
 					GuiControl, Enable, RadioUncheck%A_Index%ES
 				}
 			}
-			else if(RadioCi==1) {
+			else if (RadioCi=1) {
 				varTextAutoQuit20:="20 % ES"
 				varTextAutoQuit30:="30 % ES"
 				varTextAutoQuit40:="40 % ES"
@@ -9514,6 +9737,7 @@
 			IniWrite, %HighBits%, settings.ini, General, HighBits
 			IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
 			IniWrite, %YesPersistantToggle%, settings.ini, General, YesPersistantToggle
+			IniWrite, %YesPopAllExtraKeys%, settings.ini, General, YesPopAllExtraKeys
 			If (YesPersistantToggle)
 				AutoReset()
 			If (DetonateMines&&!Detonated)

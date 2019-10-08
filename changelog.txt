@@ -1,6 +1,44 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.04 October/08/2019
+--------------------------------------------------------------------------------
+New flask keybindings to allow any key(s) to be pressed
+    Assign the key for flask first with a space afterwards
+    any letters or digits after the space will also fire at the same time
+    Only the key in front of the space will be considered the flasks "key"
+        This is for the passthrough timer to check if you manually use the flask
+    A key with value of "3 Q R" will fire the number 3 as flask key and also fire Q & R
+        these extra keys have no CD, use the utility section for that
+        Make sure these abilities are instant if you are trying to cast more than one
+    A key with a value of "e {RButton}" will fire the letter e and Right mouse
+        Use the {} wrap on anything that needs to be spelled out
+
+Added the ability to sell quality gems and flasks in bulk
+    Will now group quality Flasks/Gems together in incriments of 40 quality
+    Attempts to remove extra quality items and then vendors
+    Turn on debug messages to see information about quality and extra Q
+
+New option for Pop All Flasks
+    When Pop Flasks Respect CD is disabled, you can have it only force cast flasks
+    It will not fire any of the extra keys present in the bindings
+        Enable "Pop Flasks Uses any extra keys" to force cast all keys in the binds
+    When Pop Flasks Respect CD is enabled, it fires all bindings for flasks not on CD
+        This includes any extra keys present in the flask bindings
+
+Added Merge request for Cinematic ratio scaling (21:9)
+    Thank to SamyBrom for the contribution of their datapoints
+    I have not verified the positions, please report any issues.
+
+Added a version check to the start of the script.
+    Notifies you when you have an old version of AutoHotkey installed
+    Takes you straight to the download page so you can update
+
+Improvements to the Flasks and Utility tab
+    moved things around a little and put into group boxes
+    also moved the Auto-Mine function here and added to profiles
+    Moved the QS settings together into a groupbox
+
 Version .06.03 October/04/2019
 --------------------------------------------------------------------------------
 Improvements to the script messaging system, mostly streamlined code

@@ -1985,6 +1985,84 @@
 					;calculate the height of each tab
 					global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
 				}
+				Else If (ResolutionScale="Cinematic") {
+                    ; Item Inventory Grid
+                    Global InventoryGridX := [ Round(A_ScreenWidth/(2560/1914)), Round(A_ScreenWidth/(2560/1967)), Round(A_ScreenWidth/(2560/2018)), Round(A_ScreenWidth/(2560/2072)), Round(A_ScreenWidth/(2560/2125)), Round(A_ScreenWidth/(2560/2178)), Round(A_ScreenWidth/(2560/2230)), Round(A_ScreenWidth/(2560/2281)), Round(A_ScreenWidth/(2560/2336)), Round(A_ScreenWidth/(2560/2388)), Round(A_ScreenWidth/(2560/2440)), Round(A_ScreenWidth/(2560/2493)) ]
+                    Global InventoryGridY := [ Round(A_ScreenHeight/(1080/638)), Round(A_ScreenHeight/(1080/690)), Round(A_ScreenHeight/(1080/743)), Round(A_ScreenHeight/(1080/796)), Round(A_ScreenHeight/(1080/848)) ]
+                    ;Detonate Mines
+                    Global DetonateDelveX:=X + Round(A_ScreenWidth/(2560/2185))
+                    Global DetonateX:=X + Round(A_ScreenWidth/(2560/2298))
+                    Global DetonateY:=Y + Round(A_ScreenHeight/(1080/901))
+                    ;Scrolls in currency tab
+                    Global WisdomStockX:=X + Round(A_ScreenWidth/(2560/125))
+                    Global PortalStockX:=X + Round(A_ScreenWidth/(2560/175))
+                    Global WPStockY:=Y + Round(A_ScreenHeight/(1080/262))
+                    ;Status Check OnHideout
+                    global vX_OnHideout:=X + Round(A_ScreenWidth / (2560 / 1887))
+                    global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
+                    global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+                    ;Status Check OnMenu
+                    global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
+                    global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+                    ;Status Check OnChar
+                    global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
+                    global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+                    ;Status Check OnChat
+                    global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
+                    global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+                    ;Status Check OnInventory
+                    global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 2223))
+                    global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+                    ;Status Check OnStash
+                    global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
+                    global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+                    ;Status Check OnVendor
+                    global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 618))
+                    global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+                    ;Status Check OnDiv
+                    global vX_OnDiv:=X + Round(A_ScreenWidth / (2560 / 618))
+                    global vY_OnDiv:=Y + Round(A_ScreenHeight / ( 1080 / 135))
+                    ;Life %'s
+                    global vX_Life:=X + Round(A_ScreenWidth / (2560 / 95))
+                    global vY_Life20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+                    global vY_Life30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+                    global vY_Life40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+                    global vY_Life50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+                    global vY_Life60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+                    global vY_Life70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+                    global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+                    global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+                    ;ES %'s
+                    global vX_ES:=X + Round(A_ScreenWidth / (2560 / 180))
+                    global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
+                    global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
+                    global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
+                    global vY_ES50:=Y + Round(A_ScreenHeight / ( 1080 / 974))
+                    global vY_ES60:=Y + Round(A_ScreenHeight / ( 1080 / 954))
+                    global vY_ES70:=Y + Round(A_ScreenHeight / ( 1080 / 934))
+                    global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
+                    global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
+                    ;Mana
+                    global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 2468))
+                    global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
+                    global vY_Mana90:=Y + Round(A_ScreenHeight / (1080 / 876))
+                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
+                    ;GUI overlay
+                    global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
+                    global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+                    ;Divination Y locations
+                    Global vY_DivTrade:=Y + Round(A_ScreenHeight / (1080 / 736))
+                    Global vY_DivItem:=Y + Round(A_ScreenHeight / (1080 / 605))
+                    ;Stash tabs menu button
+                    global vX_StashTabMenu := X + Round(A_ScreenWidth / (2560 / 640))
+                    global vY_StashTabMenu := Y + Round(A_ScreenHeight / ( 1080 / 146))
+                    ;Stash tabs menu list
+                    global vX_StashTabList := X + Round(A_ScreenWidth / (2560 / 706))
+                    global vY_StashTabList := Y + Round(A_ScreenHeight / ( 1080 / 120))
+                    ;calculate the height of each tab
+                    global vY_StashTabSize := Round(A_ScreenHeight / ( 1080 / 22))
+				} 
 				Else If (ResolutionScale="UltraWide") {
 					; Item Inventory Grid
 					Global InventoryGridX := [ Round(A_ScreenWidth/(3840/3193)), Round(A_ScreenWidth/(3840/3246)), Round(A_ScreenWidth/(3840/3299)), Round(A_ScreenWidth/(3840/3352)), Round(A_ScreenWidth/(3840/3404)), Round(A_ScreenWidth/(3840/3457)), Round(A_ScreenWidth/(3840/3510)), Round(A_ScreenWidth/(3840/3562)), Round(A_ScreenWidth/(3840/3615)), Round(A_ScreenWidth/(3840/3668)), Round(A_ScreenWidth/(3840/3720)), Round(A_ScreenWidth/(3840/3773)) ]
