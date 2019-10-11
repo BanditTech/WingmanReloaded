@@ -3,14 +3,26 @@ Patch Notes
 --------------------------------------------------------------------------------
 Version .06.05 October/11/2019
 --------------------------------------------------------------------------------
+Added options for Pop Flasks Hotkey
+    Can now choose which flask slots will fire when pressing hotkey
+    Affects both modes, Respect CD or forced trigger
+
 Fixed a strange bug with mismatching in the ~ evaluator
     Applied the string split to all the fields not just stats
     Should now work as intended in all fields, use | as the delimiter
     Capitalization is not required when using ~
         Otherwise it is required when using = or != evaluator
+    ~ evaluator can match any portion of the string its evaluating, Ex. ItemClass:
+        to match one hand or two hand just put "hand" in the Min field
+        Alternately, match multiple parts "Two | one | dAgGeR"
+        or "hand | DAGGER | MACe | Bow"
 
 Changed Title matchmode to 2 from 3
-    this is an attempt to fix some reports that the title is not being matched
+    this is an attempt to fix window title is not being matched
+    Possibly fix the error of the SendMsg bug as well
+
+Moved the Ninja Database update after the GUI shows
+    This will make the script seem to load faster, but its loading in background
     Possibly fix the error of the SendMsg bug as well
 
 Version .06.04 October/08/2019

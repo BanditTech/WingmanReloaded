@@ -268,34 +268,6 @@
 	}
 	If needReload
 		Reload
-	If YesNinjaDatabase
-	{
-		IfNotExist, %A_ScriptDir%\data\Ninja.json
-		{
-			For k, apiKey in apiList
-				ScrapeNinjaData(apiKey)
-			JSONtext := JSON.Dump(Ninja)
-			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
-		}
-		Else
-		{
-			If ((Date_now - LastDatabaseParseDate) >= UpdateDatabaseInterval)
-			{
-				For k, apiKey in apiList
-					ScrapeNinjaData(apiKey)
-				JSONtext := JSON.Dump(Ninja)
-				FileDelete, %A_ScriptDir%\data\Ninja.json
-				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
-			}
-			Else
-			{
-				FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
-				Ninja := JSON.Load(JSONtext)
-			}
-		}
-	}
 
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -621,6 +593,13 @@
 	;Quicksilver
 		global TriggerQuicksilverDelay=0.8
 		global TriggerQuicksilver=00000
+	;PopFlasks
+		global PopFlasks1=1
+		global PopFlasks2=1
+		global PopFlasks3=1
+		global PopFlasks4=1
+		global PopFlasks5=1
+		global TriggerPopFlasks=11111
 	;Chat Functions
 		Global CharName := "ReplaceWithCharName"
 		Global RecipientName := "NothingYet"
@@ -722,7 +701,7 @@
 	Gui Add, Text, 										x12 	y30, 				Flask Settings
 	Gui, Font,
 
-	Gui Add, GroupBox, 				Section		w160 h35				x+12 	yp-5, 				Character Type:
+	Gui Add, GroupBox, 				Section		w160 h35				x+12 	yp-7, 				Character Type:
 	Gui, Font, cRed
 	Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					xs+8 ys+14 gUpdateCharacterType, 	Life
 	Gui, Font, cPurple
@@ -860,14 +839,14 @@
 		}
 
 	Gui,Font,cBlack
-	Gui Add, GroupBox, 	Section	w257 h30								x11 	y+8, Mana `%
+	Gui Add, GroupBox, 	Section	w257 h30								x11 	y+1, Mana `%
 	Gui,Font
 	Gui, Add, text, section x20 ys+13 w35, %ManaThreshold%
 	Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
-	Gui Add, CheckBox, 		vRadiobox1Mana10 	gUtilityCheck		x+20		ys 	w13 h13
+	Gui Add, CheckBox, 		vRadiobox1Mana10 	gUtilityCheck		x+20		ys-2 	w13 h13
 	vFlask=2
 	loop 4 {
-		Gui Add, CheckBox, 		vRadiobox%vFlask%Mana10 gUtilityCheck		x+28	ys 	w13 h13
+		Gui Add, CheckBox, 		vRadiobox%vFlask%Mana10 gUtilityCheck		x+28	ys-2 	w13 h13
 		vFlask:=vFlask+1
 		}
 	Loop, 5 {	
@@ -876,9 +855,24 @@
 		valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
 		GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
 		}
+	Gui,Font,cBlack
+	Gui Add, GroupBox, 	Section	w257 h30								x11 	y+2
+	Gui,Font
+	Gui Add, Text, 					Section								x13 	yp+12, 				Pop Flsk:
+	Gui Add, Checkbox, 		vPopFlasks1 			x75 	ys 	w13 h13
+	Gui Add, Checkbox, 		vPopFlasks2 		x+28 			w13 h13
+	Gui Add, Checkbox, 		vPopFlasks3 		x+28 			w13 h13
+	Gui Add, Checkbox, 		vPopFlasks4 		x+28 			w13 h13
+	Gui Add, Checkbox, 		vPopFlasks5 		x+28 			w13 h13
+
+	Loop, 5 {	
+		valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
+		GuiControl, , PopFlasks%A_Index%, %valuePopFlasks%
+		}
+
 
 	Gui,Font,cBlack
-	Gui Add, GroupBox, 			Section						x11 	y+14 	w257 h58,  	Attack:
+	Gui Add, GroupBox, 			Section						x11 	y+13 	w257 h58,  	Attack:
 	Gui Add, text, vFlaskColumn1									xp+53 	ys-8 	, Flask 1
 	Gui Add, text, vFlaskColumn2									xp+42 	ys-8 	, Flask 2
 	Gui Add, text, vFlaskColumn3									xp+41 	ys-8 	, Flask 3
@@ -909,7 +903,7 @@
 
 
 	Gui,Font,s9 cBlack 
-	Gui Add, GroupBox, 		Section	w257 h66				x12 	y+15 , 				Quicksilver settings
+	Gui Add, GroupBox, 		Section	w257 h66				x12 	y+5 , 				Quicksilver settings
 	Gui,Font,
 	Gui Add, Text, 										xs+10 	ys+16, 				Quicksilver Flask Delay (in s):
 	Gui Add, Edit, 			vTriggerQuicksilverDelay	x+10 	yp 	w22 h17, 	%TriggerQuicksilverDelay%
@@ -919,12 +913,12 @@
 
 
 	;Vertical Grey Lines
-	Gui, Add, Text, 									x59 	y62 		h366 0x11
-	Gui, Add, Text, 									x+33 				h366 0x11
-	Gui, Add, Text, 									x+34 				h366 0x11
-	Gui, Add, Text, 									x+33 				h366 0x11
-	Gui, Add, Text, 									x+34 				h366 0x11
-	Gui, Add, Text, 									x+33 				h366 0x11
+	Gui, Add, Text, 									x59 	y62 		h381 0x11
+	Gui, Add, Text, 									x+33 				h381 0x11
+	Gui, Add, Text, 									x+34 				h381 0x11
+	Gui, Add, Text, 									x+33 				h381 0x11
+	Gui, Add, Text, 									x+34 				h381 0x11
+	Gui, Add, Text, 									x+33 				h381 0x11
 	Gui, Add, Text, 									x+5 	y23		w1	h483 0x7
 	Gui, Add, Text, 									x+1 	y23		w1	h483 0x7
 
@@ -1706,9 +1700,38 @@
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings - Start Scaling resolution values
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;~  Start Scaling resolution values and setup ignore slots
+;~  Grab Ninja Database, Start Scaling resolution values, and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+	;Update ninja Database
+	If YesNinjaDatabase
+	{
+		IfNotExist, %A_ScriptDir%\data\Ninja.json
+		{
+			For k, apiKey in apiList
+				ScrapeNinjaData(apiKey)
+			JSONtext := JSON.Dump(Ninja)
+			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+		}
+		Else
+		{
+			If ((Date_now - LastDatabaseParseDate) >= UpdateDatabaseInterval)
+			{
+				For k, apiKey in apiList
+					ScrapeNinjaData(apiKey)
+				JSONtext := JSON.Dump(Ninja)
+				FileDelete, %A_ScriptDir%\data\Ninja.json
+				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+			}
+			Else
+			{
+				FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
+				Ninja := JSON.Load(JSONtext)
+			}
+		}
+	}
+	;Begin scaling resolution values
 	IfWinExist, ahk_group POEGameGroup
 		{
 		Rescale()
@@ -6190,52 +6213,67 @@
 		PopFlasksCommand:
 			Thread, NoTimers, true		;Critical
 			If PopFlaskRespectCD
-				TriggerFlask(11111)
+				TriggerFlask(TriggerPopFlasks)
 			Else {
-				If YesPopAllExtraKeys 
-					Send %keyFlask1% 
-				Else
-					Send %KeyFlask1Proper%
-				OnCooldown[1]:=1 
-				SendMSG(3, 1)
-				Cooldown:=CooldownFlask1
-				settimer, TimerFlask1, %Cooldown%
-				RandomSleep(-99,99)
-				If YesPopAllExtraKeys 
-					Send %keyFlask2% 
-				Else
-					Send %KeyFlask2Proper%
-				OnCooldown[2]:=1 
-				SendMSG(3, 2)
-				Cooldown:=CooldownFlask2
-				settimer, TimerFlask2, %Cooldown%
-				RandomSleep(-99,99)
-				If YesPopAllExtraKeys 
-					Send %keyFlask3% 
-				Else
-					Send %KeyFlask3Proper%
-				OnCooldown[3]:=1 
-				SendMSG(3, 3)
-				Cooldown:=CooldownFlask3
-				settimer, TimerFlask3, %Cooldown%
-				RandomSleep(-99,99)
-				If YesPopAllExtraKeys 
-					Send %keyFlask4% 
-				Else
-					Send %KeyFlask4Proper%
-				OnCooldown[4]:=1 
-				Cooldown:=CooldownFlask4
-				SendMSG(3, 4)
-				settimer, TimerFlask4, %Cooldown%
-				RandomSleep(-99,99)
-				If YesPopAllExtraKeys 
-					Send %keyFlask5% 
-				Else
-					Send %KeyFlask5Proper%
-				OnCooldown[5]:=1 
-				SendMSG(3, 5)
-				Cooldown:=CooldownFlask5
-				settimer, TimerFlask5, %Cooldown%
+				If PopFlasks1
+				{
+					If YesPopAllExtraKeys 
+						Send %keyFlask1% 
+					Else
+						Send %KeyFlask1Proper%
+					OnCooldown[1]:=1 
+					SendMSG(3, 1)
+					Cooldown:=CooldownFlask1
+					settimer, TimerFlask1, %Cooldown%
+					RandomSleep(-99,99)
+				}
+				If PopFlasks2
+				{
+					If YesPopAllExtraKeys 
+						Send %keyFlask2% 
+					Else
+						Send %KeyFlask2Proper%
+					OnCooldown[2]:=1 
+					SendMSG(3, 2)
+					Cooldown:=CooldownFlask2
+					settimer, TimerFlask2, %Cooldown%
+					RandomSleep(-99,99)
+				}
+				If PopFlasks3
+				{
+					If YesPopAllExtraKeys 
+						Send %keyFlask3% 
+					Else
+						Send %KeyFlask3Proper%
+					OnCooldown[3]:=1 
+					SendMSG(3, 3)
+					Cooldown:=CooldownFlask3
+					settimer, TimerFlask3, %Cooldown%
+					RandomSleep(-99,99)
+				}
+				If PopFlasks4
+				{
+					If YesPopAllExtraKeys 
+						Send %keyFlask4% 
+					Else
+						Send %KeyFlask4Proper%
+					OnCooldown[4]:=1 
+					Cooldown:=CooldownFlask4
+					SendMSG(3, 4)
+					settimer, TimerFlask4, %Cooldown%
+					RandomSleep(-99,99)
+				}
+				If PopFlasks5
+				{
+					If YesPopAllExtraKeys 
+						Send %keyFlask5% 
+					Else
+						Send %KeyFlask5Proper%
+					OnCooldown[5]:=1 
+					SendMSG(3, 5)
+					Cooldown:=CooldownFlask5
+					settimer, TimerFlask5, %Cooldown%
+				}
 			}
 		return
 		}
@@ -6698,6 +6736,13 @@
 			Loop, 5 {	
 				valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
 				GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
+			}
+			
+			;Pop Flasks
+			IniRead, TriggerPopFlasks, settings.ini, PopFlasks, TriggerPopFlasks, 11111
+			Loop, 5 {	
+				valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
+				GuiControl, , PopFlasks%A_Index%, %valuePopFlasks%
 			}
 			
 			;CharacterTypeCheck
@@ -7246,6 +7291,9 @@
 			;Quicksilver Flasks
 			IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
 			IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver
+			
+			;Pop Flasks
+			IniWrite, %PopFlasks1%%PopFlasks2%%PopFlasks3%%PopFlasks4%%PopFlasks5%, settings.ini, PopFlasks, TriggerPopFlasks
 			
 			;CharacterTypeCheck
 			IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
