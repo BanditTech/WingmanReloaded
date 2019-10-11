@@ -80,7 +80,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.04
+    Global VersionNumber := .06.05
 
 	Global Null := 0
     
@@ -4354,12 +4354,44 @@
 								nomatched := True
 							else if eval = ~
 							{
-								minarr := StrSplit(min, "|"," ")
-								for k, v in minarr
-									if InStr(arrval, v)
+								If min contains |
+								{
+								;MsgBox % "Inside   " arrval " arrval    " eval " eval    " min " min"
+									minarr := StrSplit(min, "|"," ")
+									for k, v in minarr
+									{
+										;MsgBox % k " Key    " v " Val     " InStr(arrval, v) " InStr?  "
+										if InStr(arrval, v)
+										{
+											matched := True
+											;MsgBox % v " was matched against " arrval
+											break
+										}
+										Else
+										{
+											matched := False
+											;MsgBox % v " was not matched against " arrval
+										}
+									}
+									if !matched
+									{
+										nomatched := True
+									}
+								}
+								Else
+								{
+								;MsgBox % "Outside   " arrval " arrval    " eval " eval    " min " min"
+									if InStr(arrval, min)
+									{
 										matched := True
-								if !matched
-									nomatched := True
+										;MsgBox % min " was matched against " arrval
+									}
+									Else
+									{
+										nomatched := True
+										;MsgBox % min " was not matched against " arrval
+									}
+								}
 							}
 						}
 					}
