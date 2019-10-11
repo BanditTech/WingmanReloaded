@@ -1,11 +1,17 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .06.05 October/10/2019
+Version .06.05 October/11/2019
 --------------------------------------------------------------------------------
 Fixed a strange bug with mismatching in the ~ evaluator
-    required an extra flag for matched to be false
-    Also applied the string split to all the fields not just stats
+    Applied the string split to all the fields not just stats
+    Should now work as intended in all fields, use | as the delimiter
+    Capitalization is not required when using ~
+        Otherwise it is required when using = or != evaluator
+
+Changed Title matchmode to 2 from 3
+    this is an attempt to fix some reports that the title is not being matched
+    Possibly fix the error of the SendMsg bug as well
 
 Version .06.04 October/08/2019
 --------------------------------------------------------------------------------

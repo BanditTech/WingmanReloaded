@@ -71,7 +71,7 @@
     OnMessage(0x5556, "MsgMonitor")
 	OnMessage( 0xF, "WM_PAINT")
     
-    SetTitleMatchMode 3 
+    SetTitleMatchMode 2
     CoordMode, Mouse, Screen
     CoordMode, Pixel, Screen
     SetWorkingDir %A_ScriptDir%  
@@ -6269,15 +6269,19 @@
 				global GuiX, GuiY, RescaleRan, ToggleExist
 				If (!RescaleRan)
 					Rescale()
-				If (!ToggleExist) {
+				If (!ToggleExist) 
+				{
 					Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 					ToggleExist := True
 					WinActivate, ahk_group POEGameGroup
 					If (YesPersistantToggle)
 						AutoReset()
 				}
-			} Else {
-				If (ToggleExist){
+			} 
+			Else 
+			{
+				If (ToggleExist)
+				{
 					Gui 2: Show, Hide
 					ToggleExist := False
 				}
@@ -7355,7 +7359,6 @@
 			If (YesPersistantToggle)
 				AutoReset()
 			GuiUpdate()
-			SetTitleMatchMode 2
 			IfWinExist, ahk_group POEGameGroup
 				{
 				WinActivate, ahk_group POEGameGroup
@@ -9968,7 +9971,6 @@
 
 		CleanUp(){
 			DetectHiddenWindows, On
-			SetTitleMatchMode, 2
 			
 			WinGet, PID, PID, %A_ScriptDir%\GottaGoFast.ahk
 			Process, Close, %PID%

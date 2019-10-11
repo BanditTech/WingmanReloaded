@@ -41,7 +41,7 @@ for n, exe in POEGameArr {
 }
 Hotkey, IfWinActive, ahk_group POEGameGroup
 
-SetTitleMatchMode 3 
+SetTitleMatchMode 2
 CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
 SetWorkingDir %A_ScriptDir%  
