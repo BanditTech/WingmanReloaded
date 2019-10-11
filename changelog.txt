@@ -5,6 +5,7 @@ Version .06.05 October/10/2019
 --------------------------------------------------------------------------------
 Fixed a strange bug with mismatching in the ~ evaluator
     required an extra flag for matched to be false
+    Also applied the string split to all the fields not just stats
 
 Version .06.04 October/08/2019
 --------------------------------------------------------------------------------

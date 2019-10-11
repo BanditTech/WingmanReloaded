@@ -4285,10 +4285,25 @@
 								Else
 								nomatched := True
 							else if eval = ~
-								If InStr(arrval, min)
-								matched := True
-								Else
-								nomatched := True
+							{
+								minarr := StrSplit(min, "|"," ")
+								for k, v in minarr
+								{
+									if InStr(arrval, v)
+									{
+										matched := True
+										break
+									}
+									Else
+									{
+										matched := False
+									}
+								}
+								if !matched
+								{
+									nomatched := True
+								}
+							}
 						}
 					}
 					if InStr(SKey, "Prop")
@@ -4319,10 +4334,25 @@
 								Else
 								nomatched := True
 							else if eval = ~
-								If InStr(arrval, min)
-								matched := True
-								Else
-								nomatched := True
+							{
+								minarr := StrSplit(min, "|"," ")
+								for k, v in minarr
+								{
+									if InStr(arrval, v)
+									{
+										matched := True
+										break
+									}
+									Else
+									{
+										matched := False
+									}
+								}
+								if !matched
+								{
+									nomatched := True
+								}
+							}
 						}
 					}
 					if InStr(SKey, "Stats")
@@ -4354,43 +4384,22 @@
 								nomatched := True
 							else if eval = ~
 							{
-								If min contains |
+								minarr := StrSplit(min, "|"," ")
+								for k, v in minarr
 								{
-								;MsgBox % "Inside   " arrval " arrval    " eval " eval    " min " min"
-									minarr := StrSplit(min, "|"," ")
-									for k, v in minarr
-									{
-										;MsgBox % k " Key    " v " Val     " InStr(arrval, v) " InStr?  "
-										if InStr(arrval, v)
-										{
-											matched := True
-											;MsgBox % v " was matched against " arrval
-											break
-										}
-										Else
-										{
-											matched := False
-											;MsgBox % v " was not matched against " arrval
-										}
-									}
-									if !matched
-									{
-										nomatched := True
-									}
-								}
-								Else
-								{
-								;MsgBox % "Outside   " arrval " arrval    " eval " eval    " min " min"
-									if InStr(arrval, min)
+									if InStr(arrval, v)
 									{
 										matched := True
-										;MsgBox % min " was matched against " arrval
+										break
 									}
 									Else
 									{
-										nomatched := True
-										;MsgBox % min " was not matched against " arrval
+										matched := False
 									}
+								}
+								if !matched
+								{
+									nomatched := True
 								}
 							}
 						}
