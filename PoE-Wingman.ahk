@@ -717,41 +717,41 @@
 	Gui Add, Text, 										x+8, 						Flask 4
 	Gui Add, Text, 										x+7, 						Flask 5
 
-	Gui Add, Text, 										x12 	y+5, 				Duration:
-	Gui Add, Edit, 			vCooldownFlask1 			x63 	y+-15 	w34	h17, 	%CooldownFlask1%
+	Gui Add, Text, 			Section						x12 	y+5, 				Duration:
+	Gui Add, Edit, 			vCooldownFlask1 			x63 	ys-2 	w34	h17, 	%CooldownFlask1%
 	Gui Add, Edit, 			vCooldownFlask2 			x+8 			w34	h17, 	%CooldownFlask2%
 	Gui Add, Edit, 			vCooldownFlask3 			x+7 			w34	h17, 	%CooldownFlask3%
 	Gui Add, Edit, 			vCooldownFlask4 			x+8 			w34	h17, 	%CooldownFlask4%
 	Gui Add, Edit, 			vCooldownFlask5 			x+7 			w34	h17, 	%CooldownFlask5%
 
-	Gui Add, Text, 										x13 	y+5, % 			   "  IG Key:"
-	Gui Add, Edit, 			vkeyFlask1 			x63 	y+-15 	w34	h17, 	%keyFlask1%
+	Gui Add, Text, 			Section				x13 	y+5, % 			   "  IG Key:"
+	Gui Add, Edit, 			vkeyFlask1 			x63 	ys-2 	w34	h17, 	%keyFlask1%
 	Gui Add, Edit, 			vkeyFlask2 			x+8 			w34	h17, 	%keyFlask2%
 	Gui Add, Edit, 			vkeyFlask3 			x+7 			w34	h17, 	%keyFlask3%
 	Gui Add, Edit, 			vkeyFlask4 			x+8 			w34	h17, 	%keyFlask4%
 	Gui Add, Edit, 			vkeyFlask5 			x+7 			w34	h17, 	%keyFlask5%
 
 	Gui, Font, cRed
-	Gui Add, Text,										x62	 	y+5, 				Life
+	Gui Add, Text,			Section							x62	 	y+5, 				Life
 	Gui Add, Text,										x+25, 						Life
 	Gui Add, Text,										x+24, 						Life
 	Gui Add, Text,										x+24, 						Life
 	Gui Add, Text,										x+24, 						Life
 	Gui, Font
-	Gui Add, Text,										x80	 	y+-13,				|
+	Gui Add, Text,										x80	 	ys,				|
 	Gui Add, Text,										x+40, 						|
 	Gui Add, Text,										x+39, 						|
 	Gui Add, Text,										x+39, 						|
 	Gui Add, Text,										x+39, 						|
 	Gui, Font, cBlue
-	Gui Add, Text,										x83	 	y+-13,				ES
+	Gui Add, Text,										x83	 	ys,				ES
 	Gui Add, Text,										x+28, 						ES
 	Gui Add, Text,										x+27, 						ES
 	Gui Add, Text,										x+27, 						ES
 	Gui Add, Text,										x+27, 						ES
 	Gui, Font
 
-	Gui Add, Text, 										x23 	y+5, 				< 90`%:
+	Gui Add, Text, 			Section							x23 	y+5, 				< 90`%:
 	Gui Add, Text, 												y+5, 				< 80`%:
 	Gui Add, Text, 												y+5, 				< 70`%:
 	Gui Add, Text, 												y+5, 				< 60`%:
@@ -763,7 +763,7 @@
 
 	loop 5 
 		{
-		Gui Add, Radio, Group 	vRadiobox%A_Index%Life90 gFlaskCheck		x+12	y+-157 	w13 h13
+		Gui Add, Radio, Group 	vRadiobox%A_Index%Life90 gFlaskCheck		x+12	ys  	w13 h13
 		Gui Add, Radio, 		vRadiobox%A_Index%Life80 gFlaskCheck				y+5 	w13 h13
 		Gui Add, Radio, 		vRadiobox%A_Index%Life70 gFlaskCheck				y+5 	w13 h13
 		Gui Add, Radio, 		vRadiobox%A_Index%Life60 gFlaskCheck				y+5 	w13 h13
@@ -773,7 +773,7 @@
 		Gui Add, Radio, 		vRadiobox%A_Index%Life20 gFlaskCheck				y+5 	w13 h13
 		Gui Add, Radio, 		vRadioUncheck%A_Index%Life 					y+5 	w13 h13
 		
-		Gui Add, Radio, Group 	vRadiobox%A_Index%ES90 gFlaskCheck			x+3 	y+-157 	w13 h13
+		Gui Add, Radio, Group 	vRadiobox%A_Index%ES90 gFlaskCheck			x+3 	ys  	w13 h13
 		Gui Add, Radio, 		vRadiobox%A_Index%ES80 gFlaskCheck					y+5		w13 h13
 		Gui Add, Radio, 		vRadiobox%A_Index%ES70 gFlaskCheck					y+5		w13 h13
 		Gui Add, Radio, 		vRadiobox%A_Index%ES60 gFlaskCheck					y+5		w13 h13
@@ -822,7 +822,7 @@
 		GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
 		}	
 
-	Gui Add, Text, 					Section								x16 	y+12, 				Quicks.:
+	Gui Add, Text, 					Section								x16 	y+8, 				Quicks.:
 	;Gui,Font,cBlack
 	Gui,Font,cBlack
 	Gui Add, GroupBox, 		w257 h26								xp-5 	yp-9, 
@@ -840,7 +840,7 @@
 		}
 
 	Gui,Font,cBlack
-	Gui Add, GroupBox, 	Section	w257 h30								x11 	y+1, Mana `%
+	Gui Add, GroupBox, 	Section	w257 h30								x11 	y+3, Mana `%
 	Gui,Font
 	Gui, Add, text, section x20 ys+13 w35, %ManaThreshold%
 	Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
@@ -861,10 +861,15 @@
 	Gui,Font
 	Gui Add, Text, 					Section								x13 	yp+12, 				Pop Flsk:
 	Gui Add, Checkbox, 		vPopFlasks1 			x75 	ys 	w13 h13
+	PopFlasks1_TT:="Enable flask slot 1 when using Pop Flasks hotkey"
 	Gui Add, Checkbox, 		vPopFlasks2 		x+28 			w13 h13
+	PopFlasks2_TT:="Enable flask slot 2 when using Pop Flasks hotkey"
 	Gui Add, Checkbox, 		vPopFlasks3 		x+28 			w13 h13
+	PopFlasks3_TT:="Enable flask slot 3 when using Pop Flasks hotkey"
 	Gui Add, Checkbox, 		vPopFlasks4 		x+28 			w13 h13
+	PopFlasks4_TT:="Enable flask slot 4 when using Pop Flasks hotkey"
 	Gui Add, Checkbox, 		vPopFlasks5 		x+28 			w13 h13
+	PopFlasks5_TT:="Enable flask slot 5 when using Pop Flasks hotkey"
 
 	Loop, 5 {	
 		valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
@@ -1805,7 +1810,7 @@
 		}
 		Else
 		{
-			If ((Date_now - LastDatabaseParseDate) >= UpdateDatabaseInterval)
+			If DaysSince()
 			{
 				For k, apiKey in apiList
 					ScrapeNinjaData(apiKey)
@@ -1813,6 +1818,7 @@
 				FileDelete, %A_ScriptDir%\data\Ninja.json
 				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
 				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+				LastDatabaseParseDate := Date_now
 			}
 			Else
 			{
@@ -1848,6 +1854,8 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Check for window to open
 	SetTimer, PoEWindowCheck, 5000
+	; Check once an hour to see if we should updated database
+	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 25
 	; Detonate mines timer check
@@ -6330,6 +6338,27 @@
 			}
 			Return
 		}
+; DBUpdateCheck - Check if the database should be updated 
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DBUpdateCheck()
+	{
+		Global Date_now, LastDatabaseParseDate
+		IfWinExist, ahk_group POEGameGroup 
+		{
+			Return
+		} 
+		Else If (YesNinjaDatabase && DaysSince())
+		{
+			For k, apiKey in apiList
+				ScrapeNinjaData(apiKey)
+			JSONtext := JSON.Dump(Ninja)
+			FileDelete, %A_ScriptDir%\data\Ninja.json
+			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+			LastDatabaseParseDate := Date_now
+		}
+		Return
+	}
 ; MsgMonitor - Receive Messages from other scripts
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	MsgMonitor(wParam, lParam, msg)

@@ -1430,7 +1430,6 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 /** * Functions to Monitor File Changes
- * Lib: PoEClick.ahk
  *     Found on page: https://autohotkey.com/board/topic/6416-tail-the-last-lines-of-a-text-file/
  * Version:
  *     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
@@ -1463,6 +1462,40 @@
         Size0 = %Size% ; File size increased!
     Return True
     }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+/** * DaysSince - Function to determine the time in days between two dates
+ *     Basic function found on page: https://autohotkey.com/board/topic/82024-calculate-the-number-of-days-between-two-dates/#entry521362
+ * Version:
+ *     v1.0.1 [updated 10/12/2019 (MM/DD/YYYY)]
+ */
+    ; DaysSince - Check how many days has it been since the last update
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    DaysSince()
+    {
+        Global Date_now, LastDatabaseParseDate, UpdateDatabaseInterval
+		FormatTime, Date_now, A_Now, yyyyMMdd
+        If Date_now = LastDatabaseParseDate ;
+            Return False
+        daysCount := Date_now
+        daysCount -= LastDatabaseParseDate, days
+        If daysCount=
+        {
+            ;the value is too large of a dif to calculate, this means we should update
+            Return True
+        }
+        Else If (daysCount >= UpdateDatabaseInterval)
+        {
+            ;The Count between the two dates is at/above the threshold, this means we should update
+            Return daysCount
+        }
+        Else
+        {
+            ;The Count between the two dates is below the threshold, this means we should not
+            Return False
+        }
+    }
+
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 /** * Function to Replace Nth instance of Needle in Haystack
