@@ -1955,7 +1955,10 @@
 					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
 					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 					;ES %'s
-					global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
+                    If YesEldritchBattery
+					    global vX_ES:=X + Round(A_ScreenWidth / (1920 / 1740))
+					Else
+                        global vX_ES:=X + Round(A_ScreenWidth / (1920 / 180))
 					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
 					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
 					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
@@ -2033,7 +2036,10 @@
                     global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
                     global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
                     ;ES %'s
-                    global vX_ES:=X + Round(A_ScreenWidth / (2560 / 180))
+                    If YesEldritchBattery
+					    global vX_ES:=X + Round(A_ScreenWidth / (2560 / 2380))
+                    Else
+                        global vX_ES:=X + Round(A_ScreenWidth / (2560 / 180))
                     global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
                     global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
                     global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))
@@ -2043,7 +2049,7 @@
                     global vY_ES80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
                     global vY_ES90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
                     ;Mana
-                    global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 2468))
+                    global vX_Mana:=X + Round(A_ScreenWidth / (2560 / 2465))
                     global vY_Mana10:=Y + Round(A_ScreenHeight / (1080 / 1054))
                     global vY_Mana90:=Y + Round(A_ScreenHeight / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
@@ -2111,7 +2117,10 @@
 					global vY_Life80:=Y + Round(A_ScreenHeight / ( 1080 / 914))
 					global vY_Life90:=Y + Round(A_ScreenHeight / ( 1080 / 894))
 					;ES %'s
-					global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
+                    If YesEldritchBattery
+					    global vX_ES:=X + Round(A_ScreenWidth / (3840 / 3660))
+                    Else
+					    global vX_ES:=X + Round(A_ScreenWidth / (3840 / 180))
 					global vY_ES20:=Y + Round(A_ScreenHeight / ( 1080 / 1034))
 					global vY_ES30:=Y + Round(A_ScreenHeight / ( 1080 / 1014))
 					global vY_ES40:=Y + Round(A_ScreenHeight / ( 1080 / 994))

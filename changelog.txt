@@ -3,6 +3,10 @@ Patch Notes
 --------------------------------------------------------------------------------
 Version .06.05 October/11/2019
 --------------------------------------------------------------------------------
+Added option to enable Eldritch Battery
+    Changes the ES sample from the left side to the right side
+    Only works properly when using Hybrid mode
+
 Added options for Pop Flasks Hotkey
     Can now choose which flask slots will fire when pressing hotkey
     Affects both modes, Respect CD or forced trigger

@@ -530,6 +530,7 @@
 		global Radiobox1Life90, Radiobox2Life90, Radiobox3Life90, Radiobox4Life90, Radiobox5Life90
 		global RadioUncheck1Life, RadioUncheck2Life, RadioUncheck3Life, RadioUncheck4Life, RadioUncheck5Life
 	;ES Triggers
+		Global YesEldritchBattery := 1
 		global TriggerES20:=00000
 		global TriggerES30:=00000
 		global TriggerES40:=00000
@@ -935,13 +936,16 @@
 	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+7	,				normal /exit
 
 	Gui,Font,s9 cBlack 
-	Gui Add, GroupBox, 		Section	w90 h46				x+10 	y30 , 				Auto-Mine
-	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+15	ys+20				, Enable
+	Gui Add, GroupBox, 		Section	w90 h32				x+10 	y31 , 				Auto-Mine
+	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+15	ys+15				, Enable
 	DetonateMines_TT:="Enable this to automatically Detonate Mines when placed"
+	Gui Add, GroupBox, 		Section	w90 h32	vEldritchBatteryGroupbox			xs 	y+5 , 				Eldritch Battery
+	Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery%           	xs+15	ys+15				, Enable
+	YesEldritchBattery_TT:="Enable this to sample the energy shield on the mana globe instead"
 	Gui,Font,
 
 	Gui, Font, Bold s9 cBlack
-	Gui, Add, GroupBox, 					Section		w324 h176			x292 	ys+70, 				Profile Management:
+	Gui, Add, GroupBox, 					Section		w324 h176			x292 	y+7, 				Profile Management:
 	Gui, Font
 	Gui, Add, Text, 									xs+161 	ys+41 		h135 0x11
 
@@ -1702,35 +1706,6 @@
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  Grab Ninja Database, Start Scaling resolution values, and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	;Update ninja Database
-	If YesNinjaDatabase
-	{
-		IfNotExist, %A_ScriptDir%\data\Ninja.json
-		{
-			For k, apiKey in apiList
-				ScrapeNinjaData(apiKey)
-			JSONtext := JSON.Dump(Ninja)
-			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
-		}
-		Else
-		{
-			If ((Date_now - LastDatabaseParseDate) >= UpdateDatabaseInterval)
-			{
-				For k, apiKey in apiList
-					ScrapeNinjaData(apiKey)
-				JSONtext := JSON.Dump(Ninja)
-				FileDelete, %A_ScriptDir%\data\Ninja.json
-				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
-			}
-			Else
-			{
-				FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
-				Ninja := JSON.Load(JSONtext)
-			}
-		}
-	}
 	;Begin scaling resolution values
 	IfWinExist, ahk_group POEGameGroup
 		{
@@ -1801,22 +1776,51 @@
 		}
 
 	;Ignore Slot setup
-		IfNotExist, %A_ScriptDir%\data\IgnoredSlot.json
+	IfNotExist, %A_ScriptDir%\data\IgnoredSlot.json
+	{
+		For C, GridX in InventoryGridX
 		{
-			For C, GridX in InventoryGridX
+			IgnoredSlot[C] := {}
+			For R, GridY in InventoryGridY
 			{
-				IgnoredSlot[C] := {}
-				For R, GridY in InventoryGridY
-				{
-					IgnoredSlot[C][R] := False
-				}
+				IgnoredSlot[C][R] := False
 			}
-			SaveIgnoreArray()
-		} 
+		}
+		SaveIgnoreArray()
+	} 
+	Else
+		LoadIgnoreArray()
+
+
+	;Update ninja Database
+	If YesNinjaDatabase
+	{
+		IfNotExist, %A_ScriptDir%\data\Ninja.json
+		{
+			For k, apiKey in apiList
+				ScrapeNinjaData(apiKey)
+			JSONtext := JSON.Dump(Ninja)
+			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+		}
 		Else
-			LoadIgnoreArray()
-
-
+		{
+			If ((Date_now - LastDatabaseParseDate) >= UpdateDatabaseInterval)
+			{
+				For k, apiKey in apiList
+					ScrapeNinjaData(apiKey)
+				JSONtext := JSON.Dump(Ninja)
+				FileDelete, %A_ScriptDir%\data\Ninja.json
+				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+			}
+			Else
+			{
+				FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
+				Ninja := JSON.Load(JSONtext)
+			}
+		}
+	}
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -6486,6 +6490,7 @@
 			IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
 			IniRead, YesPopAllExtraKeys, settings.ini, General, YesPopAllExtraKeys, 0
 			IniRead, ManaThreshold, settings.ini, General, ManaThreshold, 0
+			IniRead, YesEldritchBattery, settings.ini, General, YesEldritchBattery, 0
 			
 			;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -7157,6 +7162,7 @@
 			IniWrite, %YesPopAllExtraKeys%, settings.ini, General, YesPopAllExtraKeys
 			IniWrite, %QSonMainAttack%, settings.ini, General, QSonMainAttack
 			IniWrite, %QSonSecondaryAttack%, settings.ini, General, QSonSecondaryAttack
+			IniWrite, %YesEldritchBattery%, settings.ini, General, YesEldritchBattery
 
 			;~ Hotkeys 
 			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
@@ -8192,6 +8198,9 @@
 			;AutoMines
 			IniWrite, %DetonateMines%, settings.ini, Profile%Profile%, DetonateMines
 
+			;EldritchBattery
+			IniWrite, %YesEldritchBattery%, settings.ini, Profile%Profile%, YesEldritchBattery
+
 			;ManaThreshold
 			IniWrite, %ManaThreshold%, settings.ini, Profile%Profile%, ManaThreshold
 
@@ -8242,6 +8251,13 @@
 			IniWrite, %KeyUtility3%, settings.ini, Profile%Profile%, KeyUtility3
 			IniWrite, %KeyUtility4%, settings.ini, Profile%Profile%, KeyUtility4
 			IniWrite, %KeyUtility5%, settings.ini, Profile%Profile%, KeyUtility5
+
+			;Pop Flasks Keys
+			IniWrite, %PopFlasks1%, settings.ini, Profile%Profile%, PopFlasks1
+			IniWrite, %PopFlasks2%, settings.ini, Profile%Profile%, PopFlasks2
+			IniWrite, %PopFlasks3%, settings.ini, Profile%Profile%, PopFlasks3
+			IniWrite, %PopFlasks4%, settings.ini, Profile%Profile%, PopFlasks4
+			IniWrite, %PopFlasks5%, settings.ini, Profile%Profile%, PopFlasks5
 			
 		return
 		}
@@ -8597,6 +8613,10 @@
 			IniRead, DetonateMines, settings.ini, Profile%Profile%, DetonateMines, 0
 			GuiControl, , DetonateMines, %DetonateMines%
 
+			;EldritchBattery
+			IniRead, YesEldritchBattery, settings.ini, Profile%Profile%, YesEldritchBattery, 0
+			GuiControl, , YesEldritchBattery, %YesEldritchBattery%
+
 			;ManaThreshold
 			IniRead, ManaThreshold, settings.ini, Profile%Profile%, ManaThreshold, 0
 			GuiControl, , ManaThreshold, %ManaThreshold%
@@ -8685,6 +8705,18 @@
 			GuiControl, , KeyUtility4, %KeyUtility4%
 			IniRead, KeyUtility5, settings.ini, Profile%Profile%, KeyUtility5, t
 			GuiControl, , KeyUtility5, %KeyUtility5%
+
+			;Pop Flasks Keys
+			IniRead, PopFlasks1, settings.ini, Profile%Profile%, PopFlasks1, 1
+			GuiControl, , PopFlasks1, %PopFlasks1%
+			IniRead, PopFlasks2, settings.ini, Profile%Profile%, PopFlasks2, 1
+			GuiControl, , PopFlasks2, %PopFlasks2%
+			IniRead, PopFlasks3, settings.ini, Profile%Profile%, PopFlasks3, 1
+			GuiControl, , PopFlasks3, %PopFlasks3%
+			IniRead, PopFlasks4, settings.ini, Profile%Profile%, PopFlasks4, 1
+			GuiControl, , PopFlasks4, %PopFlasks4%
+			IniRead, PopFlasks5, settings.ini, Profile%Profile%, PopFlasks5, 1
+			GuiControl, , PopFlasks5, %PopFlasks5%
 
 			;Update UI
 			if (RadioLife=1) {
@@ -9854,6 +9886,12 @@
 				}
 			}
 			
+		Return
+
+		UpdateEldritchBattery:
+			Gui, Submit, NoHide
+			IniWrite, %YesEldritchBattery%, settings.ini, General, YesEldritchBattery
+			Rescale()
 		Return
 
 		UpdateResolutionScale:
