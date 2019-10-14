@@ -1,6 +1,31 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.06 October/14/2019
+--------------------------------------------------------------------------------
+New source of Base item information at:
+    https://raw.githubusercontent.com/brather1ng/RePoE/master/data/base_items.min.json
+    Amulets, rings now parse their base types
+
+New Prop.DropLevel and Prop.CraftingBase added to custom loot filter
+    DropLevel is a digit value
+    CraftingBase is either 0, "T1", "T2", "T3" based on filterblades tiers
+
+T1: Opal Ring, Steel Ring, Vermillion Ring
+T2: Blue Pearl Amulet, Bone Helmet, Cerulean Ring, Convoking Wand, Crystal Belt, 
+    Fingerless Silk Gloves, Gripped Gloves, Marble Amulet, Sacrificial Garb, 
+    Spiked Gloves, Stygian Vise, Two-Toned Boots, Vanguard Belt
+T3: Colossal Tower Shield, Eternal Burgonet, Hubris Circlet, Lion Pelt, 
+    Sorcerer Boots, Sorcerer Gloves, Titanium Spirit Shield, Vaal Regalia, 
+    Diamond Ring, Onyx Amulet, Two-Stone Ring
+
+New Stash tab option for crafting bases
+    Assign the stash tab and leave it enabled or uncheck to disable
+    Select the ID/Vend/Stash options which Tiers and rarity are enabled (default on)
+
+Bugfix for Evasion Rating not being parsed correctly
+Bugfix for Chance to Block not being parsed correctly
+
 Version .06.05 October/12/2019
 --------------------------------------------------------------------------------
 Added option to enable Eldritch Battery

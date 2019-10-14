@@ -58,6 +58,36 @@
 		, "Fossil"
 		, "Beast"]
 
+	Global craftingBasesT1 := ["Opal Ring"
+		, "Steel Ring"
+		, "Vermillion Ring"]
+
+	Global craftingBasesT2 := ["Blue Pearl Amulet"
+		, "Bone Helmet"
+		, "Cerulean Ring"
+		, "Convoking Wand"
+		, "Crystal Belt"
+		, "Fingerless Silk Gloves"
+		, "Gripped Gloves"
+		, "Marble Amulet"
+		, "Sacrificial Garb"
+		, "Spiked Gloves"
+		, "Stygian Vise"
+		, "Two-Toned Boots"
+		, "Vanguard Belt"]
+
+	Global craftingBasesT3 := ["Colossal Tower Shield"
+		, "Eternal Burgonet"
+		, "Hubris Circlet"
+		, "Lion Pelt"
+		, "Sorcerer Boots"
+		, "Sorcerer Gloves"
+		, "Titanium Spirit Shield"
+		, "Vaal Regalia"
+		, "Diamond Ring"
+		, "Onyx Amulet"
+		, "Two-Stone Ring"]
+
     ; Create a container for the sub-script
     Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     ; Create Executable group for gameHotkey, IfWinActive
@@ -80,7 +110,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.05
+    Global VersionNumber := .06.06
 
 	Global Null := 0
     
@@ -110,7 +140,7 @@
         readFromFile()
 	Global Enchantment  := []
 	Global Corruption := []
-	Global WeaponBases, ArmourBases, BeltBases
+	Global Bases
 	IfNotExist, %A_ScriptDir%\data
 		FileCreateDir, %A_ScriptDir%\data
 	
@@ -215,56 +245,23 @@
  			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "LootFilter.ahk")
 		}
 	}
-	IfNotExist, %A_ScriptDir%\data\ArmourBases.json
+	IfNotExist, %A_ScriptDir%\data\Bases.json
 	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/ArmourBases.json, %A_ScriptDir%\data\ArmourBases.json
+    	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/data/base_items.min.json, %A_ScriptDir%\data\Bases.json
 		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "ArmourBases.json")
-			MsgBox, Error ED02 : There was a problem downloading ArmourBases.json
+ 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Bases.json")
+			MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "ArmourBases.json")
-			needReload:=true
+ 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Bases.json")
+			FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
+			Bases := JSON.Load(JSONtext)
 		}
 	}
 	Else
 	{
-		FileRead, JSONtext, %A_ScriptDir%\data\ArmourBases.json
-		ArmourBases := JSON.Load(JSONtext)
-	}
-	IfNotExist, %A_ScriptDir%\data\WeaponBases.json
-	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/WeaponBases.json, %A_ScriptDir%\data\WeaponBases.json
-		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "WeaponBases.json")
-			MsgBox, Error ED02 : There was a problem downloading WeaponBases.json
-		}
-		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "WeaponBases.json")
-			needReload:=true
-		}
-	}
-	Else
-	{
-		FileRead, JSONtext, %A_ScriptDir%\data\WeaponBases.json
-		WeaponBases := JSON.Load(JSONtext)
-	}
-	IfNotExist, %A_ScriptDir%\data\BeltBases.json
-	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/BeltBases.json, %A_ScriptDir%\data\BeltBases.json
-		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "BeltBases.json")
-			MsgBox, Error ED02 : There was a problem downloading BeltBases.json
-		}
-		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "BeltBases.json")
-			needReload:=true
-		}
-	}
-	Else
-	{
-		FileRead, JSONtext, %A_ScriptDir%\data\BeltBases.json
-		BeltBases := JSON.Load(JSONtext)
+		FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
+		Bases := JSON.Load(JSONtext)
 	}
 	If needReload
 		Reload
@@ -386,6 +383,7 @@
 		Global StashTabOil := 1
 		Global StashTabFossil := 1
 		Global StashTabResonator := 1
+		Global StashTabCrafting := 1
 		Global StashTabProphecy := 1
 	;Checkbox to activate each tab
 		Global StashTabYesCurrency := 1
@@ -403,8 +401,16 @@
 		Global StashTabYesOil := 1
 		Global StashTabYesFossil := 1
 		Global StashTabYesResonator := 1
+		Global StashTabYesCrafting := 1
 		Global StashTabYesProphecy := 1
-		;Controller
+	;Crafting bases to stash
+		Global YesStashT1 := 1
+		Global YesStashT2 := 1
+		Global YesStashT3 := 1
+		Global YesStashCraftingNormal := 1
+		Global YesStashCraftingMagic := 1
+		Global YesStashCraftingRare := 1
+	;Controller
 		Global YesController := 1
 		global checkvar:=0
 		Global YesMovementKeys := 0
@@ -452,9 +458,6 @@
 
 	;Inventory Colors
 		global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
-		global varMouseoverColor := [0x011C01]
-		global varIdColor := [0x1C0101]
-		global varUnIdColor := [0x01012A]
 	;Failsafe Colors
 		global varOnHideout:=0xB5EFFE
 		global varOnHideoutMin:=0xCDF6FE
@@ -1284,6 +1287,7 @@
 	Gui, Add, DropDownList, gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabCrafting Choose%StashTabCrafting% w40 ,  %textList%
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x195 y55, Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% y+14, Quality Gem Tab
@@ -1293,6 +1297,7 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% y+14, Unique Ring Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% y+14, Fossil Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% y+14, Resonator Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% y+14, Crafting Tab
 
 
 	Gui Add, Checkbox, x+95 ym+30	vYesStashKeys Checked%YesStashKeys%                         	         , Enable stash hotkeys?
@@ -1335,12 +1340,30 @@
 	Gui, Font, Bold
 	Gui Add, Text, 										xm 	y330, 				ID/Vend/Stash Options:
 	Gui, Font,
-	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%                         	          , Identify Items?
-	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%                         	        	  , Deposit at stash?
-	Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%                         	              , Sell at vendor?
-	Gui Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%                         	              	  , Trade Divination?
-	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%                         	          , Leave Map Un-ID?
-	Gui Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst%                         	      , Group Items before stashing?
+	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%   				, Identify Items?
+	YesIdentify_TT:="This option is for the Identify logic`nEnable to Identify items when the inventory panel is open"
+	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%         				, Deposit at stash?
+	YesStash_TT:="This option is for the Stash logic`nEnable to stash items to assigned tabs when the stash panel is open"
+	Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%       				, Sell at vendor?
+	YesVendor_TT:="This option is for the Vendor logic`nEnable to sell items to vendors when the sell panel is open"
+	Gui Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%             				, Trade Divination?
+	YesDiv_TT:="This option is for the Divination Trade logic`nEnable to sell stacks of divination cards at the trade panel"
+	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%     				, Leave Map Un-ID?
+	YesMapUnid_TT:="This option is for the Identify logic`nEnable to avoid identifying maps"
+	Gui Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst% 				, Group Items before stashing?
+	YesSortFirst_TT:="This option is for the Stash logic`nEnable to send items to stash after all have been scanned"
+	Gui Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     				, T1?
+	YesStashT1_TT:="This option is for the Crafting stash tab`nEnable to stash T1 crafting bases"
+	Gui Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
+	YesStashT2_TT:="This option is for the Crafting stash tab`nEnable to stash T2 crafting bases"
+	Gui Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
+	YesStashT3_TT:="This option is for the Crafting stash tab`nEnable to stash T3 crafting bases"
+	Gui Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xm	y+8		, Normal?
+	YesStashCraftingNormal_TT:="This option is for the Crafting stash tab`nEnable to stash Normal crafting bases"
+	Gui Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
+	YesStashCraftingMagic_TT:="This option is for the Crafting stash tab`nEnable to stash Magic crafting bases"
+	Gui Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
+	YesStashCraftingRare_TT:="This option is for the Crafting stash tab`nEnable to stash Rare crafting bases"
 
 	Gui, Font, Bold
 	Gui Add, Text, 										xm+170 	y330, 				Inventory Instructions:
@@ -2174,6 +2197,18 @@
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
+						If StashTabYesCrafting 
+							&& ((YesStashT1 && Prop.CraftingBase = "T1") 
+								|| (YesStashT2 && Prop.CraftingBase = "T2") 
+								|| (YesStashT3 && Prop.CraftingBase = "T3"))
+							&& ((YesStashCraftingNormal && Prop.RarityNormal)
+								|| (YesStashCraftingMagic && Prop.RarityMagic)
+								|| (YesStashCraftingRare && Prop.RarityRare))
+						{
+							MoveStash(StashTabCrafting)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
 					}
 					If (OnStash && YesStash && YesSortFirst) 
 					{
@@ -2335,6 +2370,17 @@
 						If (Prop.Oil&&StashTabYesOil)
 						{
 							SortFirst[StashTabOil].Push({"C":C,"R":R})
+							Continue
+						}
+						If StashTabYesCrafting 
+							&& ((YesStashT1 && Prop.CraftingBase = "T1") 
+								|| (YesStashT2 && Prop.CraftingBase = "T2") 
+								|| (YesStashT3 && Prop.CraftingBase = "T3"))
+							&& ((YesStashCraftingNormal && Prop.RarityNormal)
+								|| (YesStashCraftingMagic && Prop.RarityMagic)
+								|| (YesStashCraftingRare && Prop.RarityRare))
+						{
+							SortFirst[StashTabCrafting].Push({"C":C,"R":R})
 							Continue
 						}
 					}
@@ -2573,6 +2619,8 @@
 			, Width : 1
 			, Height : 1
 			, Variant : 0
+			, CraftingBase : 0
+			, DropLevel : 0
 			, ItemLevel : 0}
 
 		Stats := { PhysLo : False
@@ -2804,76 +2852,34 @@
 					Prop.ItemName := Prop.ItemName . A_LoopField . "`n" ; Add a line of name
 					StandardBase := StrReplace(A_LoopField, "Superior ", "")
 					PossibleBase := StrSplit(StandardBase, " of ")
-					NoPrefixMagicBase := PossibleBase[1]
+					StandardBase := PossibleBase[1]
 					PossibleBase := StrSplit(PossibleBase[1], " ",,2)
 					PrefixMagicBase := PossibleBase[2]
 
-					If ArmourBases.HasKey(StandardBase){
-						Prop.Width := ArmourBases[StandardBase]["Width"]
-						Prop.Height := ArmourBases[StandardBase]["Height"]
-						Stats.ItemClass := ArmourBases[StandardBase]["Item Class"]
-						Prop.ItemBase := StandardBase
-						Continue
+					For k, v in Bases
+					{
+						If (Bases[k]["name"] = StandardBase) || (Bases[k]["name"] = PrefixMagicBase)
+						{
+							Prop.Width := Bases[k]["inventory_width"]
+							Prop.Height := Bases[k]["inventory_height"]
+							Stats.ItemClass := Bases[k]["item_class"]
+							Prop.ItemBase := Bases[k]["name"]
+							Prop.DropLevel := Bases[k]["drop_level"]
+							Break
+						}
 					}
-					If WeaponBases.HasKey(StandardBase){
-						Prop.Width := WeaponBases[StandardBase]["Width"]
-						Prop.Height := WeaponBases[StandardBase]["Height"]
-						Stats.ItemClass := WeaponBases[StandardBase]["Item Class"]
-						Prop.ItemBase := StandardBase
-						Continue
-					}
-					If BeltBases.HasKey(StandardBase){
-						Prop.Width := BeltBases[StandardBase]["Width"]
-						Prop.Height := BeltBases[StandardBase]["Height"]
-						Prop.Belt := True
-						Stats.ItemClass := BeltBases[StandardBase]["Item Class"]
-						Prop.ItemBase := StandardBase
-						Continue
-					}
-					If ArmourBases.HasKey(NoPrefixMagicBase){
-						Prop.Width := ArmourBases[NoPrefixMagicBase]["Width"]
-						Prop.Height := ArmourBases[NoPrefixMagicBase]["Height"]
-						Stats.ItemClass := ArmourBases[NoPrefixMagicBase]["Item Class"]
-						Prop.ItemBase := NoPrefixMagicBase
-						Continue
-					}
-					If WeaponBases.HasKey(NoPrefixMagicBase){
-						Prop.Width := WeaponBases[NoPrefixMagicBase]["Width"]
-						Prop.Height := WeaponBases[NoPrefixMagicBase]["Height"]
-						Stats.ItemClass := WeaponBases[NoPrefixMagicBase]["Item Class"]
-						Prop.ItemBase := NoPrefixMagicBase
-						Continue
-					}
-					If BeltBases.HasKey(NoPrefixMagicBase){
-						Prop.Width := BeltBases[NoPrefixMagicBase]["Width"]
-						Prop.Height := BeltBases[NoPrefixMagicBase]["Height"]
-						Prop.Belt := True
-						Stats.ItemClass := BeltBases[NoPrefixMagicBase]["Item Class"]
-						Prop.ItemBase := NoPrefixMagicBase
-						Continue
-					}
-					If ArmourBases.HasKey(PrefixMagicBase){
-						Prop.Width := ArmourBases[PrefixMagicBase]["Width"]
-						Prop.Height := ArmourBases[PrefixMagicBase]["Height"]
-						Stats.ItemClass := ArmourBases[PrefixMagicBase]["Item Class"]
-						Prop.ItemBase := PrefixMagicBase
-						Continue
-					}
-					If WeaponBases.HasKey(PrefixMagicBase){
-						Prop.Width := WeaponBases[PrefixMagicBase]["Width"]
-						Prop.Height := WeaponBases[PrefixMagicBase]["Height"]
-						Stats.ItemClass := WeaponBases[PrefixMagicBase]["Item Class"]
-						Prop.ItemBase := PrefixMagicBase
-						Continue
-					}
-					If BeltBases.HasKey(PrefixMagicBase){
-						Prop.Width := BeltBases[PrefixMagicBase]["Width"]
-						Prop.Height := BeltBases[PrefixMagicBase]["Height"]
-						Prop.Belt := True
-						Stats.ItemClass := BeltBases[PrefixMagicBase]["Item Class"]
-						Prop.ItemBase := PrefixMagicBase
-						Continue
-					}
+					; If Bases.HasKey(StandardBase){
+					; 	Prop.Width := Bases[StandardBase]["Width"]
+					; 	Prop.Height := Bases[StandardBase]["Height"]
+					; 	Continue
+					; }
+					; If Bases.HasKey(PrefixMagicBase){
+					; 	Prop.Width := Bases[PrefixMagicBase]["Width"]
+					; 	Prop.Height := Bases[PrefixMagicBase]["Height"]
+					; 	Stats.ItemClass := Bases[PrefixMagicBase]["Item Class"]
+					; 	Prop.ItemBase := PrefixMagicBase
+					; 	Continue
+					; }
 					IfInString, A_LoopField, Ring
 					{
 						IfInString, A_LoopField, Ringmail
@@ -3186,13 +3192,13 @@
 			IfInString, A_LoopField, Evasion Rating:
 			{
 				StringSplit, arr, A_LoopField, %A_Space%
-				Stats.RatingEvasion := arr2
+				Stats.RatingEvasion := arr3
 				Continue
 			}
 			IfInString, A_LoopField, Chance to Block:
 			{
-				StringSplit, arr, A_LoopField, %A_Space%
-				Stats.RatingBlock := arr2
+				StringSplit, arr, A_LoopField, %A_Space%, `%
+				Stats.RatingBlock := arr4
 				Continue
 			}
 			; Get quality
@@ -4239,6 +4245,13 @@
 		If Prop.ItemBase =
 		Prop.ItemBase := nameArr[2]
 
+		If indexOf(Prop.ItemBase, craftingBasesT1) 
+			Prop.CraftingBase := "T1"
+		Else if indexOf(Prop.ItemBase, craftingBasesT2)
+			Prop.CraftingBase := "T2"
+		Else if indexOf(Prop.ItemBase, craftingBasesT3) 
+			Prop.CraftingBase := "T3"
+		
 		If Prop.RarityGem
 		{
 			If Stats.GemLevel >= 20
@@ -6520,6 +6533,12 @@
 			IniRead, YesPopAllExtraKeys, settings.ini, General, YesPopAllExtraKeys, 0
 			IniRead, ManaThreshold, settings.ini, General, ManaThreshold, 0
 			IniRead, YesEldritchBattery, settings.ini, General, YesEldritchBattery, 0
+			IniRead, YesStashT1, settings.ini, General, YesStashT1, 1
+			IniRead, YesStashT2, settings.ini, General, YesStashT2, 1
+			IniRead, YesStashT3, settings.ini, General, YesStashT3, 1
+			IniRead, YesStashCraftingNormal, settings.ini, General, YesStashCraftingNormal, 1
+			IniRead, YesStashCraftingMagic, settings.ini, General, YesStashCraftingMagic, 1
+			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
 			
 			;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -6537,6 +6556,7 @@
 			IniRead, StashTabOil, settings.ini, Stash Tab, StashTabOil, 1
 			IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil, 1
 			IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator, 1
+			IniRead, StashTabCrafting, settings.ini, Stash Tab, StashTabCrafting, 1
 			IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
 			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency, 1
 			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap, 1
@@ -6553,6 +6573,7 @@
 			IniRead, StashTabYesOil, settings.ini, Stash Tab, StashTabYesOil, 1
 			IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil, 1
 			IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator, 1
+			IniRead, StashTabYesCrafting, settings.ini, Stash Tab, StashTabYesCrafting, 1
 			IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
 			
 			;Inventory Colors
@@ -7192,6 +7213,13 @@
 			IniWrite, %QSonMainAttack%, settings.ini, General, QSonMainAttack
 			IniWrite, %QSonSecondaryAttack%, settings.ini, General, QSonSecondaryAttack
 			IniWrite, %YesEldritchBattery%, settings.ini, General, YesEldritchBattery
+			IniWrite, %YesStashT1%, settings.ini, General, YesStashT1
+			IniWrite, %YesStashT2%, settings.ini, General, YesStashT2
+			IniWrite, %YesStashT3%, settings.ini, General, YesStashT3
+
+			IniWrite, %YesStashCraftingNormal%, settings.ini, General, YesStashCraftingNormal
+			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
+			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
 
 			;~ Hotkeys 
 			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
@@ -7301,6 +7329,7 @@
 			IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
 			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
 			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
+			IniWrite, %StashTabCrafting%, settings.ini, Stash Tab, StashTabCrafting
 			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
 			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
 			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
@@ -7317,6 +7346,7 @@
 			IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
 			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
 			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
+			IniWrite, %StashTabYesCrafting%, settings.ini, Stash Tab, StashTabYesCrafting
 			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
 			
 			;Attack Flasks
@@ -9858,6 +9888,7 @@
 			IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
 			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
 			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
+			IniWrite, %StashTabCrafting%, settings.ini, Stash Tab, StashTabCrafting
 			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
 			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
 			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
@@ -9874,6 +9905,7 @@
 			IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
 			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
 			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
+			IniWrite, %StashTabYesCrafting%, settings.ini, Stash Tab, StashTabYesCrafting
 			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
 		Return
 
@@ -9883,6 +9915,12 @@
 			IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
 			IniWrite, %YesVendor%, settings.ini, General, YesVendor
 			IniWrite, %YesStash%, settings.ini, General, YesStash
+			IniWrite, %YesStashT1%, settings.ini, General, YesStashT1
+			IniWrite, %YesStashT2%, settings.ini, General, YesStashT2
+			IniWrite, %YesStashT3%, settings.ini, General, YesStashT3
+			IniWrite, %YesStashCraftingNormal%, settings.ini, General, YesStashCraftingNormal
+			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
+			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
 			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
 			IniWrite, %YesDiv%, settings.ini, General, YesDiv
 			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid

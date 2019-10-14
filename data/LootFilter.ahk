@@ -79,7 +79,9 @@ Prop := {ItemName: ""
     , Width : 1
     , Height : 1
     , Variant : 0
-    , ItemLevel : 0}
+    , ItemLevel : 0
+	, CraftingBase : 0
+    , DropLevel : 0}
 
 textListProp= 
 For k, v in Prop
