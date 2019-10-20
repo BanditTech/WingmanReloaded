@@ -146,6 +146,7 @@ Affix := { SupportGem : ""
 	, IncreasedLightningDamage : 0
 	, IncreasedPhysicalDamage : 0
 	, IncreasedSpellDamage : 0
+	, IncreasedChaosDamage : 0
 	, PseudoColdResist : 0
 	, PseudoFireResist : 0
 	, PseudoLightningResist : 0
@@ -241,6 +242,8 @@ Affix := { SupportGem : ""
 	, GainColdToExtraChaos : 0
 	, GainLightningToExtraChaos : 0
 	, GainPhysicalToExtraChaos : 0
+	, PsudoTotalAddedEleAvg : 0
+	, PsudoTotalAddedAvg : 0
 	, Implicit : ""}
 
 textListAffix= 

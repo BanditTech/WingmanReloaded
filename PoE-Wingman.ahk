@@ -8,6 +8,7 @@
     #Persistent 
     #InstallMouseHook
     #InstallKeybdHook
+	#MaxThreads 10
     #MaxThreadsPerHotkey 2
     ListLines Off
     Process, Priority, , A
@@ -110,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.06
+    Global VersionNumber := .06.07
 
 	Global Null := 0
     
@@ -298,6 +299,7 @@
 		Global QSonSecondaryAttack := 1
 		Global YesPersistantToggle := 1
 		Global YesSortFirst := 1
+		Global YesAutoSkillUp := 1
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
 		Global AreaScale := 2
@@ -1169,6 +1171,8 @@
 	StockWisdom_TT:="Enable this to restock Wisdom scrolls when more than 10 are missing"
 	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
 	AlternateGemOnSecondarySlot_TT:="Enable this to Swap Weapons for your Alternate Gem Swap location"
+	Gui Add, Checkbox, 	vYesAutoSkillUp Checked%YesAutoSkillUp%  	y+8				, Auto Skill Up?
+	YesAutoSkillUp_TT:="Enable this to Automatically level up skill gems"
 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
 	DebugMessages_TT:="Enable this to show debug messages, previous functions have been moved to gamestates"
@@ -1873,7 +1877,7 @@
 			Hotkeys()
 		}
 
-; Timers for : game window open, Flask presses, Detonate mines
+; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Check for window to open
 	SetTimer, PoEWindowCheck, 5000
@@ -1881,6 +1885,8 @@
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 25
+	; Check for Flask presses
+	SetTimer, AutoSkillUp, 100
 	; Detonate mines timer check
 	If (DetonateMines&&!Detonated)
 		SetTimer, TMineTick, 100
@@ -2678,6 +2684,7 @@
 			, IncreasedLightningDamage : 0
 			, IncreasedPhysicalDamage : 0
 			, IncreasedSpellDamage : 0
+			, IncreasedChaosDamage : 0
 			, PseudoColdResist : 0
 			, PseudoFireResist : 0
 			, PseudoLightningResist : 0
@@ -2773,8 +2780,11 @@
 			, GainColdToExtraChaos : 0
 			, GainLightningToExtraChaos : 0
 			, GainPhysicalToExtraChaos : 0
-			, Implicit : ""}
+			, Implicit : ""
+			, PseudoTotalAddedAvg : 0
+			, PseudoTotalAddedEleAvg : 0}
 
+		
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -2868,18 +2878,6 @@
 							Break
 						}
 					}
-					; If Bases.HasKey(StandardBase){
-					; 	Prop.Width := Bases[StandardBase]["Width"]
-					; 	Prop.Height := Bases[StandardBase]["Height"]
-					; 	Continue
-					; }
-					; If Bases.HasKey(PrefixMagicBase){
-					; 	Prop.Width := Bases[PrefixMagicBase]["Width"]
-					; 	Prop.Height := Bases[PrefixMagicBase]["Height"]
-					; 	Stats.ItemClass := Bases[PrefixMagicBase]["Item Class"]
-					; 	Prop.ItemBase := PrefixMagicBase
-					; 	Continue
-					; }
 					IfInString, A_LoopField, Ring
 					{
 						IfInString, A_LoopField, Ringmail
@@ -3266,15 +3264,18 @@
 				Continue
 			}
 			; Get Gem Level
-			IfInString, A_LoopField, Level:
+			If Prop.RarityGem && !Stats.GemLevel
 			{
-				StringSplit, GemLevelArray, A_LoopField, %A_Space%
-				Stats.GemLevel := GemLevelArray2
-				Continue
+				IfInString, A_LoopField, Level:
+				{
+					StringSplit, GemLevelArray, A_LoopField, %A_Space%
+					Stats.GemLevel := GemLevelArray2
+					Continue
+				}
 			}
 			;Capture Implicit and Affixes after the Item Level
 			If (itemLevelIsDone > 0 && itemLevelIsDone < 4) {
-				If A_LoopField = --------
+				If InStr(A_LoopField, "----")
 				{
 					++itemLevelIsDone
 					If (itemLevelIsDone = 3 && captureLines = 1){
@@ -3296,17 +3297,34 @@
 				{
 					If (itemLevelIsDone=2 && !Affix.LabEnchant && captureLines < 1) {
 						imp := RegExReplace(A_LoopField, "i)([-.0-9]+)", "#")
-						if (indexOf(imp, Enchantment)) {
+						if (indexOf(imp, Enchantment)) 
+						{
 							Affix.LabEnchant := A_LoopField
 							itemLevelIsDone := 1
-						Continue
+							Continue
 						}
 					}
-					If (itemLevelIsDone=2 && !Affix.Talisman && captureLines < 1) {
+					If (itemLevelIsDone=2 && !Affix.TalismanTier && captureLines < 1) {
 						IfInString, A_LoopField, Talisman Tier:
 						{	
 							StringSplit, Arr, A_LoopField, %A_Space%
 							Affix.TalismanTier := Arr3
+							itemLevelIsDone := 1
+						Continue
+						}
+					}
+					If (itemLevelIsDone=2 && !Affix.Annointment && captureLines < 1) {
+						IfInString, A_LoopField, Allocates
+						{	
+							Arr := StrSplit(A_LoopField, "Allocates ")
+							Affix.Annointment := Arr[2]
+							itemLevelIsDone := 1
+						Continue
+						}
+						IfInString, A_LoopField, Your
+						{	
+							Arr := StrSplit(A_LoopField, "Your ")
+							Affix.Annointment := Arr[2]
 							itemLevelIsDone := 1
 						Continue
 						}
@@ -3327,6 +3345,11 @@
 					}
 					If (captureLines < 2)
 						possibleImplicit:=A_LoopField
+					If (InStr(possibleImplicit, "Life gained for each Enemy hit by Attacks") && InStr(A_LoopField, "Mana gained for each Enemy hit by Attacks"))
+					{
+						possibleImplicit := possibleImplicit . "`n" . A_LoopField
+						captureLines -= 1
+					}
 					IfInString, A_LoopField, Socketed Gems are
 					{
 						++Affix.CountSupportGem
@@ -3799,6 +3822,12 @@
 						Affix.IncreasedSpellDamage := Affix.IncreasedSpellDamage + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, increased Chaos Damage
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedChaosDamage := Affix.IncreasedChaosDamage + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, increased Cold Damage
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
@@ -3993,6 +4022,14 @@
 							Affix.PhysicalDamageAttackLo := Arr2
 							Affix.PhysicalDamageAttackHi := Arr4
 							Affix.PhysicalDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Physical Damage to Bow Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.PhysicalDamageBowAttackLo := Arr2
+							Affix.PhysicalDamageBowAttackHi := Arr4
+							Affix.PhysicalDamageBowAttackAvg := round(((Arr2 + Arr4) / 2),1)
 						Continue
 						}
 						IfInString, A_LoopField, Fire Damage to Attacks
@@ -4239,11 +4276,17 @@
 		Affix.PseudoTotalEleResist := Affix.PseudoColdResist + Affix.PseudoFireResist + Affix.PseudoLightningResist
 		Affix.PseudoTotalResist := Affix.PseudoTotalEleResist + Affix.PseudoChaosResist
 		
+		Affix.PseudoTotalAddedEleAvg := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
+		Affix.PseudoTotalAddedAvg := (Affix.PseudoTotalAddedEleAvg?Affix.PseudoTotalAddedEleAvg:0) + (Affix.PhysicalDamageAttackAvg?Affix.PhysicalDamageAttackAvg:0) + (Affix.PhysicalDamageBowAttackAvg?Affix.PhysicalDamageBowAttackAvg:0)
+
 		nameArr := StrSplit(Prop.ItemName, "`n")
 		Prop.ItemName := nameArr[1]
 
 		If Prop.ItemBase =
 		Prop.ItemBase := nameArr[2]
+
+		If (possibleCorruption = possibleImplicit && !Prop.Corrupted)
+			Affix.Implicit := possibleImplicit
 
 		If indexOf(Prop.ItemBase, craftingBasesT1) 
 			Prop.CraftingBase := "T1"
@@ -5126,27 +5169,46 @@
 	LootScan(){
 		LootScanCommand:
 			Pressed := GetKeyState(hotkeyLootScan)
+			as := AreaScale
+			last := LootColors.Count()
 			While (Pressed&&LootVacuum)
 			{
-				For k, ColorHex in LootColors
+				If AreaScale
 				{
-					Pressed := GetKeyState(hotkeyLootScan)
-					Sleep, -1
-					MouseGetPos CenterX, CenterY
-					ScanX1:=(CenterX-AreaScale)
-					ScanY1:=(CenterY-AreaScale)
-					ScanX2:=(CenterX+AreaScale)
-					ScanY2:=(CenterY+AreaScale)
-					PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
-					If (ErrorLevel = 0){
+					For k, ColorHex in LootColors
+					{
 						Pressed := GetKeyState(hotkeyLootScan)
-						If !(Pressed)
-							Break 2
+						;Sleep, -1
 						MouseGetPos CenterX, CenterY
-						SwiftClick(CenterX, CenterY)
+						ScanX1:=(CenterX-as)
+						ScanY1:=(CenterY-as)
+						ScanX2:=(CenterX+as)
+						ScanY2:=(CenterY+as)
+						PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast ; RGB
+						If (ErrorLevel = 0){
+							as := AreaScale
+							Pressed := GetKeyState(hotkeyLootScan)
+							If !(Pressed)
+								Break 2
+							; MouseGetPos CenterX, CenterY
+							SwiftClick(ScanPx, ScanPy)
+							}
+						Else If (ErrorLevel = 1)
+						{
+							; If (A_Index = last)
+							; 	as += 1
+							;Tooltip, %as% %A_Index%
+							Continue
 						}
-					Else If (ErrorLevel = 1)
-						Continue
+					}
+				}
+				Else
+				{
+					MouseGetPos CenterX, CenterY
+					PixelGetColor, scolor, CenterX, CenterY
+					Pressed := GetKeyState(hotkeyLootScan)
+					If indexOf(scolor,LootColors)
+						SwiftClick(CenterX, CenterY)
 				}
 			}
 		Return
@@ -6324,6 +6386,33 @@
 		return
 		}
 
+; AutoSkillUp - Check for gems that are ready to level up, and click them.
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	AutoSkillUp()
+	{
+		Pressed := GetKeyState("LButton")
+		If (YesAutoSkillUp && !Pressed)
+		{
+			IfWinActive, ahk_group POEGameGroup 
+			{
+				;ok=0
+				;Text:="|<Skill Up>0x000000@0.93$11.3U70C0QDzzzzy70C0Q0sE"
+				Text:="|<Skill Up>0xD07900@0.51$16.zzvzzzszzXzyDzszk0D00w03zXzyDzszzXzyDzzzzzy"
+
+				if (ok:=FindText( Round(A_ScreenWidth * .93) , Round(A_ScreenHeight * .15), Round(A_ScreenWidth * .07) , Round(A_ScreenHeight * .7), 0, 0, Text))
+				{
+				CoordMode, Mouse
+				X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, Comment:=ok.1.5, X+=W//2, Y+=H//2
+				MouseGetPos, mX, mY
+				BlockInput, MouseMove
+				SwiftClick(X,Y)
+				MouseMove, mX, mY, 0
+				BlockInput, MouseMoveOff
+				}
+			}
+		}
+		Return
+	}
 ; PoEWindowCheck - Check for the game window. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	PoEWindowCheck(){
@@ -6539,6 +6628,7 @@
 			IniRead, YesStashCraftingNormal, settings.ini, General, YesStashCraftingNormal, 1
 			IniRead, YesStashCraftingMagic, settings.ini, General, YesStashCraftingMagic, 1
 			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
+			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
 			
 			;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -7216,10 +7306,10 @@
 			IniWrite, %YesStashT1%, settings.ini, General, YesStashT1
 			IniWrite, %YesStashT2%, settings.ini, General, YesStashT2
 			IniWrite, %YesStashT3%, settings.ini, General, YesStashT3
-
 			IniWrite, %YesStashCraftingNormal%, settings.ini, General, YesStashCraftingNormal
 			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
 			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
+			IniWrite, %YesAutoSkillUp%, settings.ini, General, YesAutoSkillUp
 
 			;~ Hotkeys 
 			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options

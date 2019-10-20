@@ -7,6 +7,7 @@
 #Warn  
 #Persistent 
 #InstallMouseHook
+#MaxThreads 10
 #MaxThreadsPerHotkey 2
 #NoTrayIcon
 ListLines Off
@@ -34,7 +35,6 @@ Global Latency := 1
 Global YesPersistantToggle := 1
 
 Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
-Global scriptPOEWingmanSecondary := "WingmanReloaded ahk_exe AutoHotkey.exe"
 global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
 for n, exe in POEGameArr {
      GroupAdd, POEGameGroup, ahk_exe %exe%
@@ -547,18 +547,20 @@ MsgMonitor(wParam, lParam, msg)
 }
 ; Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SendMSG(wParam:=0, lParam:=0, script:="PoE-Wingman.ahk ahk_exe AutoHotkey.exe"){
+SendMSG(wParam:=0, lParam:=0){
      DetectHiddenWindows On
-     if WinExist(script) 
+     if WinExist(scriptPOEWingman)
+     {
+          ; Ding(1000,"Script Found`nSending CD to main script")
           PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
-     else if WinExist(scriptPOEWingmanSecondary)
-          PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
+     }
      else
-          Ding(1000,"Wingman Script Not Found") ;Turn on debug messages to see error information from GGF sendMSG
+          Ding(1000,"Wingman Script Not Found`nUnable to share CD") ;Turn on debug messages to see error information from GGF sendMSG
      DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
      Return
 }
 PoEWindowCheck(){
+     DetectHiddenWindows On
      IfWinExist, ahk_group POEGameGroup 
      {
           global GuiX, GuiY, RescaleRan, ToggleExist
@@ -578,6 +580,7 @@ PoEWindowCheck(){
                ToggleExist := False
           }
      }
+     DetectHiddenWindows Off
      Return
 }
 
