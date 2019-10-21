@@ -1,13 +1,11 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .06.07 October/20/2019
+Version .06.07 October/21/2019
 --------------------------------------------------------------------------------
-New Feature added to the script
-    Automatically level up your gems!
-    Every half second it checks if there are gems to level and clicks on them
-    will return your mouse to the position it was before clicking
-        debating if it should save the state of Left MB and re-click
+New Feature added to the script that automatically level up your gems!
+    Every 1/5 second it checks if there are gems to level and clicks on them
+        returns your mouse to the position/state it was before clicking
     Enable this option in the QOL settings on the configuration tab
     ***Does not dermine which gem is leveling, use at your own discretion***
 
@@ -26,15 +24,20 @@ Adjustments to SendMsg
 
 Added detect hidden windows to the POE window check to maybe fix that issue
 
-Maximum Simultanious Threads increased to 10, may see some slight improvements
-    This is to allow the multiple timers of the script to run simultaniously
-    Some portions of the code block all timers for their duration though
+MaximumThreads increased to 10, may see some slight improvements
+    This does not truely enable multiple threads, but attempts to force it
 
 Adjustments to the loot vacuum
-    Trying to speed up the rate at which it clicks on items under the cursor
-        The smaller the area around the mouse the better
+    Cleaning up the code, and removing extra steps it was taking
+        All calculations are done in-line and no longer save unnecessarily
     Removed the RGB option, now uses BGR like everything else in the script
-        This will allow for easier color sampling using the Coord tool
+        This lets you add colors easier using the Coord tool
+    Added AreaScale to GUI for adjustment, will allow to adjust the search size
+        Default setting is now 0 which is the fastest setting
+            changes to a pixelgetcolor scan on mouse location at setting 0
+            now dragging over several items quickly will be picked up better
+        when using a controller its better at a setting of 3 or 4
+            because its harder to drag the mouse exactly over the background color
 
 New function added to the Library called FindText
     Allows for image to be converted to ASCII representation

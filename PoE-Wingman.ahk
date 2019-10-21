@@ -302,7 +302,7 @@
 		Global YesAutoSkillUp := 1
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
-		Global AreaScale := 2
+		Global AreaScale := 0
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
@@ -344,10 +344,10 @@
 			, 2 : 0xFFFFFF}
 
 		; Use this as an example of adding more colors into the loot vacuum (This adds tan and red at postion 2,3)
-		Global ExampleColors := { 1 : 0xFFFFFF
+		Global ExampleColors := { 4 : 0xFFFFFF
 			, 2 : 0xFCDDB2
 			, 3 : 0xFE2222
-			, 4 : 0x222222}
+			, 1 : 0x222222}
 
 		;Item Parse blank Arrays
 		Global Prop := {}
@@ -1116,7 +1116,7 @@
 	UpdateDetonateDelveBtn_TT:="Calibrate the Detonate Mines Color while in Delve`nThis color determines if the detonate mine button is visible`nLocated above mana flask on the left"
 
 	Gui, Font, Bold
-	Gui Add, Text, 										xs 	y+10, 				Additional Interface Options:
+	Gui Add, Text, 					Section					xs 	y+10, 				Additional Interface Options:
 	Gui, Font, 
 
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
@@ -1133,9 +1133,12 @@
 	ResolutionScale_TT:="Adjust the resolution the script scales its values from`nStandard is 16/9`nCinematic is 21/9`nUltraWide is 32/9"
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
-	Gui, Add, DropDownList, R5 gUpdateExtra vLatency Choose%Latency% w30 x+-149 y+10,  1|2|3
+	Gui, Add, DropDownList, gUpdateExtra vLatency w30 xs y+10,  %Latency%||1|2|3
 	Latency_TT:="Use this to multiply the sleep timers by this value`nOnly use in situations where you have extreme lag"
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
+	Gui, Add, DropDownList, gUpdateExtra vAreaScale w30 xs y+10,  %AreaScale%||0|1|2|3|4|5|6
+	AreaScale_TT:="Use this to scale the area for the Loot Vacuum`nKeep in mind that you need to mouse over the item to activate the proper color`nDefault setting is 0`nFor controller use 3 or 4"
+	Gui Add, Text, 										x+10 y+-18							, Adjust AreaScale
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x292 	y30, 				QoL Settings
@@ -1885,8 +1888,8 @@
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 25
-	; Check for Flask presses
-	SetTimer, AutoSkillUp, 100
+	; Check for gems to level
+	SetTimer, AutoSkillUp, 200
 	; Detonate mines timer check
 	If (DetonateMines&&!Detonated)
 		SetTimer, TMineTick, 100
@@ -5169,46 +5172,27 @@
 	LootScan(){
 		LootScanCommand:
 			Pressed := GetKeyState(hotkeyLootScan)
-			as := AreaScale
-			last := LootColors.Count()
 			While (Pressed&&LootVacuum)
 			{
 				If AreaScale
 				{
 					For k, ColorHex in LootColors
 					{
-						Pressed := GetKeyState(hotkeyLootScan)
-						;Sleep, -1
-						MouseGetPos CenterX, CenterY
-						ScanX1:=(CenterX-as)
-						ScanY1:=(CenterY-as)
-						ScanX2:=(CenterX+as)
-						ScanY2:=(CenterY+as)
-						PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast ; RGB
-						If (ErrorLevel = 0){
-							as := AreaScale
-							Pressed := GetKeyState(hotkeyLootScan)
-							If !(Pressed)
-								Break 2
-							; MouseGetPos CenterX, CenterY
+						MouseGetPos mX, mY
+						PixelSearch, ScanPx, ScanPy ,% mX - AreaScale ,% mY - AreaScale ,% mX + AreaScale ,% mY + AreaScale , ColorHex, 0, Fast
+						If !(Pressed := GetKeyState(hotkeyLootScan))
+							Break 2
+						If (ErrorLevel = 0)
 							SwiftClick(ScanPx, ScanPy)
-							}
-						Else If (ErrorLevel = 1)
-						{
-							; If (A_Index = last)
-							; 	as += 1
-							;Tooltip, %as% %A_Index%
-							Continue
-						}
 					}
 				}
 				Else
 				{
-					MouseGetPos CenterX, CenterY
-					PixelGetColor, scolor, CenterX, CenterY
+					MouseGetPos mX, mY
+					PixelGetColor, scolor, mX, mY
 					Pressed := GetKeyState(hotkeyLootScan)
 					If indexOf(scolor,LootColors)
-						SwiftClick(CenterX, CenterY)
+						SwiftClick(mX, mY)
 				}
 			}
 		Return
@@ -6390,24 +6374,33 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	AutoSkillUp()
 	{
-		Pressed := GetKeyState("LButton")
-		If (YesAutoSkillUp && !Pressed)
+		If YesAutoSkillUp
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
-				;ok=0
-				;Text:="|<Skill Up>0x000000@0.93$11.3U70C0QDzzzzy70C0Q0sE"
 				Text:="|<Skill Up>0xD07900@0.51$16.zzvzzzszzXzyDzszk0D00w03zXzyDzszzXzyDzzzzzy"
-
 				if (ok:=FindText( Round(A_ScreenWidth * .93) , Round(A_ScreenHeight * .15), Round(A_ScreenWidth * .07) , Round(A_ScreenHeight * .7), 0, 0, Text))
 				{
-				CoordMode, Mouse
-				X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, Comment:=ok.1.5, X+=W//2, Y+=H//2
-				MouseGetPos, mX, mY
-				BlockInput, MouseMove
-				SwiftClick(X,Y)
-				MouseMove, mX, mY, 0
-				BlockInput, MouseMoveOff
+					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, Comment:=ok.1.5, X+=W//2, Y+=H//2
+					If (Lpressed := GetKeyState("LButton"))
+						Click, up
+					If (Rpressed := GetKeyState("RButton"))
+						Click, Right, up
+					MouseGetPos, mX, mY
+					BlockInput, MouseMove
+					SwiftClick(X,Y)
+					MouseMove, mX, mY, 0
+					BlockInput, MouseMoveOff
+					If Lpressed
+					{
+						Sleep, 60
+						Click, down
+					}
+					If Rpressed
+					{
+						Sleep, 60
+						Click, Right, down
+					}
 				}
 			}
 		}
@@ -6629,6 +6622,7 @@
 			IniRead, YesStashCraftingMagic, settings.ini, General, YesStashCraftingMagic, 1
 			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
 			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
+			IniRead, AreaScale, settings.ini, General, AreaScale, 0
 			
 			;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -7310,6 +7304,7 @@
 			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
 			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
 			IniWrite, %YesAutoSkillUp%, settings.ini, General, YesAutoSkillUp
+			IniWrite, %AreaScale%, settings.ini, General, AreaScale
 
 			;~ Hotkeys 
 			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
@@ -10023,6 +10018,7 @@
 			IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
 			IniWrite, %YesPersistantToggle%, settings.ini, General, YesPersistantToggle
 			IniWrite, %YesPopAllExtraKeys%, settings.ini, General, YesPopAllExtraKeys
+			IniWrite, %AreaScale%, settings.ini, General, AreaScale
 			If (YesPersistantToggle)
 				AutoReset()
 			If (DetonateMines&&!Detonated)
