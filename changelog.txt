@@ -28,16 +28,16 @@ MaximumThreads increased to 10, may see some slight improvements
     This does not truely enable multiple threads, but attempts to force it
 
 Adjustments to the loot vacuum
-    Cleaning up the code, and removing extra steps it was taking
-        All calculations are done in-line and no longer save unnecessarily
-    Removed the RGB option, now uses BGR like everything else in the script
-        This lets you add colors easier using the Coord tool
     Added AreaScale to GUI for adjustment, will allow to adjust the search size
         Default setting is now 0 which is the fastest setting
             changes to a pixelgetcolor scan on mouse location at setting 0
             now dragging over several items quickly will be picked up better
         when using a controller its better at a setting of 3 or 4
             because its harder to drag the mouse exactly over the background color
+    Cleaning up the code, and removing extra steps it was taking
+        All calculations are done in-line and no longer save unnecessarily
+    Removed the RGB option, now uses BGR like everything else in the script
+        This lets you add colors easier using the Coord tool
 
 New function added to the Library called FindText
     Allows for image to be converted to ASCII representation
