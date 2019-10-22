@@ -8,7 +8,7 @@
     #Persistent 
     #InstallMouseHook
     #InstallKeybdHook
-	#MaxThreads 10
+	;#MaxThreads 10
     #MaxThreadsPerHotkey 2
     ListLines Off
     Process, Priority, , A
@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.07
+    Global VersionNumber := .06.08
 
 	Global Null := 0
     
@@ -1887,7 +1887,7 @@
 	; Check once an hour to see if we should updated database
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
-	SetTimer, TimerPassthrough, 25
+	SetTimer, TimerPassthrough, 15
 	; Check for gems to level
 	SetTimer, AutoSkillUp, 200
 	; Detonate mines timer check
@@ -5097,9 +5097,9 @@
 			Click, Up, Left, 1
 			Sleep, 45*Latency
 			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-			Sleep, 90*Latency
+			Sleep, 120*Latency
 			send {Enter}
-			Sleep, 115*Latency
+			Sleep, 120*Latency
 			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
 			Sleep, 45*Latency
 			Click, Down, Left, 1
@@ -5198,17 +5198,17 @@
 		Return
 		}
 
-; Main Script Logic Timers - TGameTick, TMineTick, TimerPassthrough, TimerMainAttack, TimerSecondaryAttack
+; Main Script Logic Timers - TGameTick, TMineTick, TimerPassthrough
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; TGameTick - Flask Logic timer
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TGameTick(){
+	TGameTick(GuiCheck:=True)
+	{
 		IfWinActive, ahk_group POEGameGroup
 		{
 			; Check what status is your character in the game
 			GuiStatus()
-			if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnMenu) { 
-				;GuiUpdate()																									   
+			if (GuiCheck && (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnMenu)) { 
 				Exit
 			}
 			
@@ -5726,7 +5726,7 @@
 			GuiUpdate()
 		}
 		Return
-		}
+	}
 	; TMineTick - Detonate Mines timer
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TMineTick(){
@@ -5766,26 +5766,6 @@
 			settimer, TimerFlask5, %CooldownFlask5%
 			SendMSG(3, 5)
 		}
-	Return
-	; Attack Key timers - TimerMainAttack, TimerSecondaryAttack
-	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TimerMainAttack:
-		MainAttackPressed:=GetKeyState(hotkeyMainAttack)
-		If (MainAttackPressed && TriggerMainAttack > 0 )
-			MainAttackCommand()
-		If (MainAttackPressed && QSonMainAttack)
-			SendMSG(5,1)
-		If (!MainAttackPressed)
-			settimer,TimerMainAttack,delete
-	Return
-	TimerSecondaryAttack:
-		SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack)
-		If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
-			SecondaryAttackCommand()
-		If (SecondaryAttackPressed && QSonSecondaryAttack)
-			SendMSG(5,1)
-		If (!SecondaryAttackPressed)
-			settimer,TimerSecondaryAttack,delete
 	Return
 ; Toggle Main Script Timers - AutoQuit, AutoFlask, AutoReset, GuiUpdate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5855,47 +5835,107 @@
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	MainAttackCommand(){
 		MainAttackCommand:
+		If MainAttackPressedActive
+			Return
 		if (AutoFlask || AutoQuicksilver) {
 			GuiStatus()
 			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
 				return
 			If AutoFlask {
 				TriggerFlask(TriggerMainAttack)
-				SetTimer, TimerMainAttack, 400
+				SetTimer, TimerMainAttack, %Tick%
+				MainAttackPressedActive := True
 			}
 			If (AutoQuicksilver && QSonMainAttack) {
 				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
 					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
 						Return
 					SendMSG(5,1)
-					SetTimer, TimerMainAttack, 400
+					SetTimer, TimerMainAttack, %Tick%
+					MainAttackPressedActive := True
 				}
 			}
 		}
 		Return	
+
+		TimerMainAttack:
+			MainAttackPressed:=GetKeyState(hotkeyMainAttack)
+			If (MainAttackPressed && TriggerMainAttack > 0 )
+			{
+				GuiStatus()
+				If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+					return
+				If (AutoFlask) {
+					TriggerFlask(TriggerMainAttack)
+					TGameTick(False)
+				}
+				If (MainAttackPressed && QSonMainAttack) {
+					If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+						If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+							Return
+						SendMSG(5,1)
+					}
+				}
+			}
+			Else If (!MainAttackPressed){
+				MainAttackPressedActive := False
+				settimer,TimerMainAttack,delete
+			}
+		Return
 		}
 	; SecondaryAttackCommand - Secondary attack Flasks
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	SecondaryAttackCommand(){
 		SecondaryAttackCommand:
+		If SecondaryAttackPressedActive
+			Return
 		if (AutoFlask || AutoQuicksilver) {
 			GuiStatus()
 			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
 				return
-			If AutoFlask {
+			If (AutoFlask) {
 				TriggerFlask(TriggerSecondaryAttack)
-				SetTimer, TimerSecondaryAttack, 400
+				SetTimer, TimerSecondaryAttack, %Tick%
+				SecondaryAttackPressedActive := True
 			}
 			If (AutoQuicksilver && QSonSecondaryAttack) {
 				If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
 					If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
 						Return
 					SendMSG(5,1)
-					SetTimer, TimerSecondaryAttack, 400
+					SetTimer, TimerSecondaryAttack, %Tick%
+					SecondaryAttackPressedActive := True
 				}
 			}
 		}
 		Return	
+
+		TimerSecondaryAttack:
+			SecondaryAttackPressed:=GetKeyState(hotkeySecondaryAttack)
+			If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
+			{
+				GuiStatus()
+				If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+				{
+					return
+				}
+				If (AutoFlask) {
+					TriggerFlask(TriggerSecondaryAttack)
+					TGameTick(False)
+				}
+				If (SecondaryAttackPressed && QSonSecondaryAttack) {
+					If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
+						If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+							Return
+						SendMSG(5,1)
+					}
+				}
+			}
+			Else If (!SecondaryAttackPressed){
+				SecondaryAttackPressedActive := False
+				settimer,TimerSecondaryAttack,delete
+			}
+		Return
 		}
 
 	; TriggerFlask - Flask Trigger check

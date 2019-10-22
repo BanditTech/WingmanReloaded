@@ -1,6 +1,18 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.08 October/23/2019
+--------------------------------------------------------------------------------
+Fix for issue while holding down attack keys not letting main flask logic run
+    Inserted main flask logic into the attack key timers 
+    Adjusted the main flask logic to allow true/false for doing GuiStatus
+    This allows other functions to do their own GuiStatus and call the flask routine
+    Main and Secondary attack timers moved inside their respective Functions
+        this allows them to share static variables with each other
+
+Reverted the MaximumThreads line
+    caused the game to hang as logged out if you pressed one of the flask hotkeys AND hit logout
+
 Version .06.07 October/21/2019
 --------------------------------------------------------------------------------
 New Feature added to the script that automatically level up your gems!
