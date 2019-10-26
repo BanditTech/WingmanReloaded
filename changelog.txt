@@ -1,6 +1,39 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.09 October/25/2019
+--------------------------------------------------------------------------------
+Major improvements to the Loot Vacuum
+    AreaScale is now able to go much larger than before
+    Can now detect Un-Highlighted Loot backgrounds
+    from a value of 0 to 500 for nearly the screen size
+        When set to 0 is like before and active mousing over
+        when above 0 it scans the area around the mouse +- areascale
+    with high areascale it now speed clicks on items across the screen
+    AreaScale setting has been moved into the new GUI for Loot Vacuum
+
+New GUI for Loot Vacuum Settings, find it on the Configuration tab
+    Check the box to enable or disable the loot vacuum
+    Click the button to assign loot colors and adjust the AreaScale
+    Can support more or less colors than default, adjust your INI file
+        It is not recommended, but add or remove entries in groups of 2
+            There are 4 default colors, remove 2 to only search for 1 background
+            Or add 2 more to search for a third background, etc...
+        Find them in the settings.ini by searching for [Loot Colors]
+            First entry is Highlighted color second is non-highlighted
+        Once you add or remove entries, hit load and go to loot vacuum settings
+            It will now reflect the number of entries from your INI file
+            To reset them to default just delete the [Loot Colors] section
+
+Loot filter colors have been adjusted to make them slightly off white/black
+    black has +60 red and white has -60 red
+    update the loot filter files in your Documents
+    This doesn't auto-update, grab the newest FilterBlade.zip file from github
+    https://github.com/BanditTech/WingmanReloaded/raw/master/FilterBlade.zip
+
+New functions in library hexArrToStr, toRGBfromBGR and hexGRBtoRGB
+    this is for the ability to save and view the colors in the GUI
+
 Version .06.08 October/23/2019
 --------------------------------------------------------------------------------
 Fix for issue while holding down attack keys not letting main flask logic run

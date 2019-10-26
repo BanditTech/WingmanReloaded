@@ -2363,6 +2363,18 @@
             Str := LTrim(Str, ",")
             return Str
         }
+    ; Transform an array to a comma separated string
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    hexArrToStr(array){
+            Str := ""
+            For Index, Value In array
+                {
+                value := Format("0x{1:06X}", value)
+                Str .= "," . Value
+                }
+            Str := LTrim(Str, ",")
+            return Str
+        }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -2593,19 +2605,36 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Compare Hex color code within variation
- * Lib: Util.ahk
+/** * hex color tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
+ * Lib: ColorTools.ahk
+ *     ToRGBfromBGR function
  *     ToRGB function
+ *     hexBGRToRGB function
  *     CompareHex function
  */
 
-    ; Converts a hex color into its R G B elements
+    ; Converts a hex BGR color into its R G B elements
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ToRGB(color) {
+    ToRGBfromBGR(color) {
         return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
         }
 
-    ; Compares two converted HEX codes as R G B within the variance range
+    ; Converts a hex RGB color into its R G B elements
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ToRGB(color) {
+        return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
+        }
+
+    ; Converts a hex BGR color into RGB format or vice versa
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    hexBGRToRGB(color) {
+            b := Format("{1:02X}",(color >> 16) & 0xFF)
+            g := Format("{1:02X}",(color >> 8) & 0xFF)
+            r := Format("{1:02X}",color & 0xFF)
+        return "0x" . r . g . b
+        }
+
+    ; Compares two converted HEX codes as R G B within the variance range (use ToRGB to convert first)
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CompareHex(c1, c2, vary:=1) {
         rdiff := Abs( c1.r - c2.r )

@@ -111,9 +111,9 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.08
+    Global VersionNumber := .06.09
 
-	Global Null := 0
+	;Global Null := 0
     
     checkUpdate()
     
@@ -324,30 +324,12 @@
 		Global OnDiv := False
 		Global RescaleRan := False
 		Global ToggleExist := False
-		; These colors are from filterblade.xyz filter creator
-		; Choose one of the default background colors with no transparency
-		; These are the mouseover Hex for each of the default colors
-		Global ColorKey := { Red: 0xFE2222
-			, Brown : 0xDA8B4D
-			, Tan : 0xFCDDB2
-			, Yellow : 0xEFDB27
-			, Green : 0x22AB22
-			, Baby Blue : 0x45F2F2
-			, Blue : 0x2222FE
-			, Lavender : 0x8F8FFE
-			, White : 0xFFFFFF
-			, Black : 0x222222}
 
-		; Use the colorkey above to choose your background colors.
-		; The example below uses two colors black and white
-		Global LootColors := { 1 : 0x222222
-			, 2 : 0xFFFFFF}
-
-		; Use this as an example of adding more colors into the loot vacuum (This adds tan and red at postion 2,3)
-		Global ExampleColors := { 4 : 0xFFFFFF
-			, 2 : 0xFCDDB2
-			, 3 : 0xFE2222
-			, 1 : 0x222222}
+		; Loot colors for the vacuum
+		Global LootColors := { 1 : 0x222265
+			, 2 : 0x000038
+			, 3 : 0xFEFEED
+			, 4 : 0xFEFEC3}
 
 		;Item Parse blank Arrays
 		Global Prop := {}
@@ -1136,9 +1118,6 @@
 	Gui, Add, DropDownList, gUpdateExtra vLatency w30 xs y+10,  %Latency%||1|2|3
 	Latency_TT:="Use this to multiply the sleep timers by this value`nOnly use in situations where you have extreme lag"
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
-	Gui, Add, DropDownList, gUpdateExtra vAreaScale w30 xs y+10,  %AreaScale%||0|1|2|3|4|5|6
-	AreaScale_TT:="Use this to scale the area for the Loot Vacuum`nKeep in mind that you need to mouse over the item to activate the proper color`nDefault setting is 0`nFor controller use 3 or 4"
-	Gui Add, Text, 										x+10 y+-18							, Adjust AreaScale
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x292 	y30, 				QoL Settings
@@ -1234,9 +1213,11 @@
 	hotkeyWeaponSwapKey_TT:="Put your ingame assigned hotkey to Weapon Swap here"
 	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
 	hotkeyLootScan_TT:="Put your ingame assigned hotkey for Item Pickup Key here"
-	Gui Add, Checkbox, gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 , Loot Vacuum?
+	Gui Add, Checkbox, section gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 ; Loot Vacuum?
 	LootVacuum_TT:="Enable the Loot Vacuum function`nUses the hotkey assigned to Item Pickup"
-	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	     y+8 , Pop Flasks Respect CD?
+	Gui Add, Button, gLootColorsMenu    vLootVacuumSettings                      	      h19  x+0 yp-3, Loot Vacuum Settings
+	LootVacuumSettings_TT:="Assign your own loot colors and adjust the AreaScale`nEdit the INI directly for more than 2 groups or less`nThe menu is built to support any number of color groups`nEach group must contain Normal and Hovered colors"
+	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	    xs y+6 , Pop Flasks Respect CD?
 	PopFlaskRespectCD_TT:="Enable this option to limit flasks on CD when Popping all Flasks`nThis will always fire any extra keys that are present in the bindings`nThis over-rides the option below"
 	Gui Add, Checkbox, gUpdateExtra	vYesPopAllExtraKeys Checked%YesPopAllExtraKeys%                         	     y+8 , Pop Flasks Uses any extra keys?
 	YesPopAllExtraKeys_TT:="Enable this option to press any extra keys in each flasks bindings when Popping all Flasks`nIf disabled, it will only fire the primary key assigned to the flask slot."
@@ -5183,7 +5164,11 @@
 						If !(Pressed := GetKeyState(hotkeyLootScan))
 							Break 2
 						If (ErrorLevel = 0)
-							SwiftClick(ScanPx, ScanPy)
+						{
+							ScanPx += 30
+							ScanPy += 30
+							Click %ScanPx%, %ScanPy%
+						}
 					}
 				}
 				Else
@@ -5192,7 +5177,9 @@
 					PixelGetColor, scolor, mX, mY
 					Pressed := GetKeyState(hotkeyLootScan)
 					If indexOf(scolor,LootColors)
-						SwiftClick(mX, mY)
+					{
+						click %mX%, %mY%
+					}
 				}
 			}
 		Return
@@ -5723,7 +5710,7 @@
 				; }
 			}
 			
-			GuiUpdate()
+			;GuiUpdate()
 		}
 		Return
 	}
@@ -5995,10 +5982,8 @@
 		GuiStatus("OnInventory")
 		GuiStatus("OnMenu")
 		
-		if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, menu open, chat open, or open inventory
-			GuiUpdate()
+		if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, menu open, chat open, or open inventory
 			Exit
-		}
 		If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
 			key:=KeyUtility%Utility%
 			Send %key%
@@ -6702,14 +6687,13 @@
 			
 			;Inventory Colors
 			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
-			IniRead, varMouseoverColor, settings.ini, Inventory Colors, MouseoverColor, 0x011C01
-			IniRead, varUnIdColor, settings.ini, Inventory Colors, UnIdColor, 0x01012A
-			IniRead, varIdColor, settings.ini, Inventory Colors, IdColor, 0x1C0101
 			;Create an array out of the read string
 			varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
-			varMouseoverColor := StrSplit(varMouseoverColor, ",")
-			varUnIdColor := StrSplit(varUnIdColor, ",")
-			varIdColor := StrSplit(varIdColor, ",")
+
+			;Loot Vacuum Colors
+			IniRead, LootColors, settings.ini, Loot Colors, LootColors, 0x222265, 0x000038, 0xFEFEED, 0xFEFEC3
+			;Create an array out of the read string
+			LootColors := StrSplit(LootColors, ",")
 
 			;Failsafe Colors
 			IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
@@ -9291,7 +9275,7 @@
 					}
 				}
 
-				strToSave := arrToStr(varEmptyInvSlotColor)
+				strToSave := hexArrToStr(varEmptyInvSlotColor)
 
 				IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
 				readFromFile()
@@ -9648,7 +9632,7 @@
 								}
 							}
 						}
-						strToSave := arrToStr(varEmptyInvSlotColor)
+						strToSave := hexArrToStr(varEmptyInvSlotColor)
 						NewString := StringReplaceN(strToSave,",",",`n",4)
 						NewString := StringReplaceN(NewString,",",",`n",11)
 						NewString := StringReplaceN(NewString,",",",`n",18)
@@ -9807,6 +9791,104 @@
 			WizardClose:
 				Gui, Wizard: Destroy
 				Gui, 1: Show
+			Return
+		}
+	}
+
+	{ ; Loot Colors Menu
+		LootColorsMenu()
+		{
+			DrawLootColors:
+				gui,LootColors: new, LabelLootColors
+				gui,LootColors: -MinimizeBox
+				gui,LootColors: add, groupbox,% "section w320 h" 24 * (LootColors.Count() / 2) + 25 , Loot Colors:
+				gui,LootColors: add, Button, gSaveLootColorArray yp-5 xp+70 h22, Save to INI
+				Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 x+20 yp+1,  %AreaScale%||0|30|60|100|200|300|400|500
+				AreaScale_TT:="Use this to scale the area for the Loot Vacuum`nDefault setting is 0`nFor controller use 30 to 200"
+				Gui,LootColors: Add, Text, 										x+3 yp+5							, Adjust AreaScale
+
+				For k, val in LootColors
+				{
+					color := hexBGRToRGB(Format("0x{1:06X}",val))
+					If !Mod(k,2) ;Check for a remainder when dividing by 2, this groups the colors
+					{
+						gui,LootColors: add, Progress, x+1 yp w50 h20 c%color% BackgroundBlack,100
+						gui,LootColors: add, Button, gResampleLootColor yp x+5 h20,% "Resample " Item
+						continue
+					}
+					Item++
+					If A_Index = 1
+					{
+						gui,LootColors: add, text, yp+28 xs+10,% "Background " Item " Colors: "
+						gui,LootColors: add, Progress, x+10 yp-5 w50 h20 c%color% BackgroundBlack,100
+						continue
+					}
+					gui,LootColors: add, text, yp+29 xs+10,% "Background " Item " Colors: "
+					gui,LootColors: add, Progress, x+10 yp-5 w50 h20 c%color% BackgroundBlack,100
+				}
+				Gui,LootColors: show,,Loot Vacuum settings
+			return
+
+			ResampleLootColor:
+				groupNumber := StrSplit(A_GuiControl, A_Space)
+				groupNumber := GroupNumber[2]
+				MO_Index := (groupNumber * 2) - 1
+				BG_Index := MO_Index + 1
+				IfWinExist, ahk_group POEGameGroup
+				{
+					WinActivate, ahk_group POEGameGroup
+					Rescale()
+				} else {
+					MsgBox % "PoE Window does not exist. `nCannot sample the loot color."
+					Return
+				}
+				; LootColors[MO_Index] := 0xFFFFFF
+				; LootColors[BG_Index] := 0x000000
+				ToolTip,% "Press ""A"" to sample loot background"
+					. "`nHold Escape and press ""A"" to cancel"
+					, % ScrCenter.X - 115 , % ScrCenter.Y -30
+				KeyWait, a, D
+				ToolTip
+				KeyWait, a
+				If GetKeyState("Escape", "P")
+				{
+					MsgBox % "Escape key was held`n"
+					. "Canceling the sample!"
+					Gui, LootColors: Show
+					Exit
+				}
+				if WinActive(ahk_group POEGameGroup){
+					BlockInput, MouseMove
+					MouseGetPos, mX, mY
+					pixelgetcolor, BG_Color, mX, mY
+					LootColors[BG_Index] := Format("0x{1:06X}",BG_Color)
+					Sleep, 100
+					SendInput {%hotkeyLootScan% down}
+					Sleep, 200
+					pixelgetcolor, MO_Color, mX, mY
+					LootColors[MO_Index] := Format("0x{1:06X}",MO_Color)
+					SendInput {%hotkeyLootScan% up}
+					BlockInput, MouseMoveOff
+				} else {
+					MsgBox % "PoE Window is not active. `nSampling the loot color didn't work"
+					Gui, LootColors: Show
+					Exit
+				}
+				
+				Gui, LootColors: Destroy
+				LootColorsMenu()
+			Return
+
+			SaveLootColorArray:
+				LCstr := hexArrToStr(LootColors)
+				IniWrite, %LCstr%, settings.ini, Loot Colors, LootColors
+				MsgBox % "LootColors saved with the following hex values:"
+					. "`n" . LCstr
+			Return
+
+			LootColorsClose:
+			LootColorsEscape:
+				Gui, LootColors: Destroy
 			Return
 		}
 	}
