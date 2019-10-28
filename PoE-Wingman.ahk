@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.10
+    Global VersionNumber := .06.11
 
 	;Global Null := 0
     
@@ -1111,8 +1111,8 @@
 	AutoUpdateOff_TT:="Enable this to not check for new updates when launching the script"
 	Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
 	YesPersistantToggle_TT:="Enable this to have toggles remain after exiting and restarting the script"
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|Cinematic|UltraWide
-	ResolutionScale_TT:="Adjust the resolution the script scales its values from`nStandard is 16/9`nCinematic is 21/9`nUltraWide is 32/9"
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|Classic|Cinematic|UltraWide
+	ResolutionScale_TT:="Adjust the resolution the script scales its values from`nStandard is 16:9`nClassic is 4:3 aka 12:9`nCinematic is 21:9`nUltraWide is 32:9"
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, gUpdateExtra vLatency w30 xs y+10,  %Latency%||1|2|3
