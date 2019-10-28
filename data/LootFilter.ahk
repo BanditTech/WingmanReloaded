@@ -27,6 +27,7 @@ Global LootFilter := {}
 Global LootFilterTabs := {}
 
 Prop := {ItemName: ""
+    , ItemBase : ""
     , IsItem : False
     , IsWeapon : False
     , IsMap : False

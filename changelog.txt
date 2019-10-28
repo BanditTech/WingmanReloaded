@@ -1,6 +1,22 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.10 October/28/2019
+--------------------------------------------------------------------------------
+Adjusted loot vacuum to break out of loop each time it finds a color
+    this will cause it rescan and find the same item to click
+    reduces the amount of toggling between two items if close by each other
+    Added Loot Vacuum adjustments to the controller functions 
+
+Fix for missing Mouseover colors when checking for Unique items left in inventory
+    Now just uses the empty inventory color instead
+    also adjusted the sleep timer a bit longer between checking if its stashed
+
+Added Prop.ItemBase to the Loot filter, another oversight
+    This will let you filter items more specifically than the Stats.ItemClass
+
+Fix bug which caused error "you are not on character" when using item sort
+
 Version .06.09 October/25/2019
 --------------------------------------------------------------------------------
 Major improvements to the Loot Vacuum

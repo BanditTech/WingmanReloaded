@@ -231,6 +231,7 @@ IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
 IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
 IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
 IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
+IniRead, AreaScale, settings.ini, General, AreaScale, 0
 
 ;Coordinates
 IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
@@ -597,6 +598,7 @@ ReadFromFile(){
      IniRead, TriggerUtilityKey, settings.ini, General, TriggerUtilityKey, 1
      IniRead, YesMovementKeys, settings.ini, General, YesMovementKeys, 0
      IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
+     IniRead, AreaScale, settings.ini, General, AreaScale, 0
      ;Coordinates
      IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
      IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
@@ -1299,25 +1301,33 @@ JoyButtons_Handler:
                GetKeyState, joy%A_Index%, %JoystickNumber%joy%A_Index%
                if (joy%A_Index% = "D") && (pressed%A_Index%)  && (pressedVacuum = A_Index) 
                {
-                    For k, ColorHex in LootColors
-                    {
-                         Sleep, -1
-                         MouseGetPos CenterX, CenterY
-                         ScanX1:=(CenterX-AreaScale)
-                         ScanY1:=(CenterY-AreaScale)
-                         ScanX2:=(CenterX+AreaScale)
-                         ScanY2:=(CenterY+AreaScale)
-                         PixelSearch, ScanPx, ScanPy, ScanX1, ScanY1, ScanX2, ScanY2, ColorHex, 0, Fast RGB
-                         If (ErrorLevel = 0){
-                              GetKeyState, joy%buttonIndex%, %JoystickNumber%joy%buttonIndex%
-                              If !(joy%buttonIndex% = "D")
-                                   Break
-                              Sleep, -1
-                              SwiftClick(ScanPx, ScanPy)
-                              }
-                         Else If (ErrorLevel = 1)
-                              Continue
-                    }
+				If AreaScale
+				{
+					For k, ColorHex in LootColors
+					{
+						MouseGetPos mX, mY
+						PixelSearch, ScanPx, ScanPy ,% mX - AreaScale ,% mY - AreaScale ,% mX + AreaScale ,% mY + AreaScale , ColorHex, 0, Fast
+						If !(Pressed := GetKeyState(hotkeyLootScan))
+							Break 2
+						If (ErrorLevel = 0)
+						{
+							ScanPx += 15
+							ScanPy += 15
+							Click %ScanPx%, %ScanPy%
+							Break
+						}
+					}
+				}
+				Else
+				{
+					MouseGetPos mX, mY
+					PixelGetColor, scolor, mX, mY
+					Pressed := GetKeyState(hotkeyLootScan)
+					If indexOf(scolor,LootColors)
+					{
+						click %mX%, %mY%
+					}
+				}
                }
                if (joy%A_Index% = "D") && !(pressed%A_Index%) 
                {
@@ -1548,6 +1558,19 @@ DetectJoystick(){
      }
      Return
 }
+
+; Check if a specific value is part of an array and return the index
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+indexOf(var, Arr, fromIndex:=1) {
+          for index, value in Arr {
+               if (index < fromIndex){
+               Continue
+               }else if (value = var){
+               return index
+               }
+          }
+     }
+
 
 ; Swift Click at Coord
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

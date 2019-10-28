@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.09
+    Global VersionNumber := .06.10
 
 	;Global Null := 0
     
@@ -1911,6 +1911,7 @@
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
 		{
+			GuiStatus()
 			If (!OnChar) { ;Need to be on Character 
 				MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
 				Return
@@ -1924,7 +1925,6 @@
 				return  ; End this thread so that the one underneath will resume and see the change made by the line above.
 				}
 			RunningToggle := True
-			GuiStatus()
 			
 
 			For C, GridX in InventoryGridX
@@ -2090,18 +2090,18 @@
 							}
 							If (StashTabYesUniqueRing)
 							{
-								Sleep, 135*Latency
+								Sleep, 200*Latency
 								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
+								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueRing)
 								CtrlClick(Grid.X,Grid.Y)
 							}
 							If (StashTabYesUniqueDump)
 							{
-								Sleep, 135*Latency
+								Sleep, 200*Latency
 								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
+								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueDump)
 								CtrlClick(Grid.X,Grid.Y)
@@ -2118,9 +2118,9 @@
 							}
 							If (StashTabYesUniqueDump)
 							{
-								Sleep, 135*Latency
+								Sleep, 200*Latency
 								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
+								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueDump)
 								CtrlClick(Grid.X,Grid.Y)
@@ -2277,18 +2277,18 @@
 							}
 							If (StashTabYesUniqueRing)
 							{
-								Sleep, 135*Latency
+								Sleep, 200*Latency
 								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
+								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueRing)
 								CtrlClick(Grid.X,Grid.Y)
 							}
 							If (StashTabYesUniqueDump)
 							{
-								Sleep, 135*Latency
+								Sleep, 200*Latency
 								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
+								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueDump)
 								CtrlClick(Grid.X,Grid.Y)
@@ -2305,9 +2305,9 @@
 							}
 							If (StashTabYesUniqueDump)
 							{
-								Sleep, 135*Latency
+								Sleep, 200*Latency
 								pixelgetcolor, Pitem, GridX, GridY
-								if !(indexOfHex(Pitem, varMouseoverColor))
+								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueDump)
 								CtrlClick(Grid.X,Grid.Y)
@@ -5165,9 +5165,10 @@
 							Break 2
 						If (ErrorLevel = 0)
 						{
-							ScanPx += 30
-							ScanPy += 30
+							ScanPx += 15
+							ScanPy += 15
 							Click %ScanPx%, %ScanPy%
+							Break
 						}
 					}
 				}
