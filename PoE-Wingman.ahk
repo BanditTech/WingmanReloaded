@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.11
+    Global VersionNumber := .06.12
 
 	;Global Null := 0
     

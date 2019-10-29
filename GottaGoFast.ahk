@@ -1031,114 +1031,114 @@ TriggerUtilityForce(Utility){
 Rescale(){
      IfWinExist, ahk_group POEGameGroup 
      {
-          WinGetPos, X, Y, W, H
+          WinGetPos, X, Y, GameW, GameH
           If (ResolutionScale="Standard") {
                ;Status Check OnHideout
-               global vX_OnHideout:=X + Round(A_ScreenWidth / (1920 / 1178))
-               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-               global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+               global vX_OnHideout:=X + Round(GameW / (1920 / 1178))
+               global vY_OnHideout:=Y + Round(GameH / (1080 / 930))
+               global vY_OnHideoutMin:=Y + Round(GameH / (1080 / 1053))
                ;Status Check OnChar
-               global vX_OnChar:=X + Round(A_ScreenWidth / (1920 / 41))
-               global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+               global vX_OnChar:=X + Round(GameW / (1920 / 41))
+               global vY_OnChar:=Y + Round(GameH / ( 1080 / 915))
                ;Status Check OnChat
-               global vX_OnChat:=X + Round(A_ScreenWidth / (1920 / 0))
-               global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+               global vX_OnChat:=X + Round(GameW / (1920 / 0))
+               global vY_OnChat:=Y + Round(GameH / ( 1080 / 653))
                ;Status Check OnInventory
-               global vX_OnInventory:=X + Round(A_ScreenWidth / (1920 / 1583))
-               global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+               global vX_OnInventory:=X + Round(GameW / (1920 / 1583))
+               global vY_OnInventory:=Y + Round(GameH / ( 1080 / 36))
                ;Status Check OnStash
-               global vX_OnStash:=X + Round(A_ScreenWidth / (1920 / 336))
-               global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+               global vX_OnStash:=X + Round(GameW / (1920 / 336))
+               global vY_OnStash:=Y + Round(GameH / ( 1080 / 32))
                ;Status Check OnVendor
-               global vX_OnVendor:=X + Round(A_ScreenWidth / (1920 / 618))
-               global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+               global vX_OnVendor:=X + Round(GameW / (1920 / 618))
+               global vY_OnVendor:=Y + Round(GameH / ( 1080 / 88))
                ;Status Check OnMenu
-               global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-               global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+               global vX_OnMenu:=X + Round(GameW / 2)
+               global vY_OnMenu:=Y + Round(GameH / (1080 / 54))
                ;GUI overlay
-               global GuiX:=X + Round(A_ScreenWidth / (1920 / -10))
-               global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+               global GuiX:=X + Round(GameW / (1920 / -10))
+               global GuiY:=Y + Round(GameH / (1080 / 1027))
           }
           Else If (ResolutionScale="Classic") {
                ;Status Check OnHideout
-               global vX_OnHideout:=X + Round(A_ScreenWidth / (1440 / 698))
-               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-               global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+               global vX_OnHideout:=X + Round(GameW / (1440 / 698))
+               global vY_OnHideout:=Y + Round(GameH / (1080 / 930))
+               global vY_OnHideoutMin:=Y + Round(GameH / (1080 / 1053))
                ;Status Check OnMenu
-               global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-               global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+               global vX_OnMenu:=X + Round(GameW / 2)
+               global vY_OnMenu:=Y + Round(GameH / (1080 / 54))
                ;Status Check OnChar
-               global vX_OnChar:=X + Round(A_ScreenWidth / (1440 / 41))
-               global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+               global vX_OnChar:=X + Round(GameW / (1440 / 41))
+               global vY_OnChar:=Y + Round(GameH / ( 1080 / 915))
                ;Status Check OnChat
-               global vX_OnChat:=X + Round(A_ScreenWidth / (1440 / 0))
-               global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+               global vX_OnChat:=X + Round(GameW / (1440 / 0))
+               global vY_OnChat:=Y + Round(GameH / ( 1080 / 653))
                ;Status Check OnInventory
-               global vX_OnInventory:=X + Round(A_ScreenWidth / (1440 / 1103))
-               global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+               global vX_OnInventory:=X + Round(GameW / (1440 / 1103))
+               global vY_OnInventory:=Y + Round(GameH / ( 1080 / 36))
                ;Status Check OnStash
-               global vX_OnStash:=X + Round(A_ScreenWidth / (1440 / 336))
-               global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+               global vX_OnStash:=X + Round(GameW / (1440 / 336))
+               global vY_OnStash:=Y + Round(GameH / ( 1080 / 32))
                ;Status Check OnVendor
-               global vX_OnVendor:=X + Round(A_ScreenWidth / (1440 / 378))
-               global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+               global vX_OnVendor:=X + Round(GameW / (1440 / 378))
+               global vY_OnVendor:=Y + Round(GameH / ( 1080 / 88))
                ;GUI overlay
-               global GuiX:=X + Round(A_ScreenWidth / (1440 / -10))
-               global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+               global GuiX:=X + Round(GameW / (1440 / -10))
+               global GuiY:=Y + Round(GameH / (1080 / 1027))
           }
           Else If (ResolutionScale="Cinematic") {
                ;Status Check OnHideout
-               global vX_OnHideout:=X + Round(A_ScreenWidth / (2560 / 1887))
-               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-               global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+               global vX_OnHideout:=X + Round(GameW / (2560 / 1887))
+               global vY_OnHideout:=Y + Round(GameH / (1080 / 930))
+               global vY_OnHideoutMin:=Y + Round(GameH / (1080 / 1053))
                ;Status Check OnChar
-               global vX_OnChar:=X + Round(A_ScreenWidth / (2560 / 41))
-               global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+               global vX_OnChar:=X + Round(GameW / (2560 / 41))
+               global vY_OnChar:=Y + Round(GameH / ( 1080 / 915))
                ;Status Check OnChat
-               global vX_OnChat:=X + Round(A_ScreenWidth / (2560 / 0))
-               global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+               global vX_OnChat:=X + Round(GameW / (2560 / 0))
+               global vY_OnChat:=Y + Round(GameH / ( 1080 / 653))
                ;Status Check OnInventory
-               global vX_OnInventory:=X + Round(A_ScreenWidth / (2560 / 2223))
-               global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+               global vX_OnInventory:=X + Round(GameW / (2560 / 2223))
+               global vY_OnInventory:=Y + Round(GameH / ( 1080 / 36))
                ;Status Check OnStash
-               global vX_OnStash:=X + Round(A_ScreenWidth / (2560 / 336))
-               global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+               global vX_OnStash:=X + Round(GameW / (2560 / 336))
+               global vY_OnStash:=Y + Round(GameH / ( 1080 / 32))
                ;Status Check OnVendor
-               global vX_OnVendor:=X + Round(A_ScreenWidth / (2560 / 618))
-               global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+               global vX_OnVendor:=X + Round(GameW / (2560 / 618))
+               global vY_OnVendor:=Y + Round(GameH / ( 1080 / 88))
                ;Status Check OnMenu
-               global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-               global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+               global vX_OnMenu:=X + Round(GameW / 2)
+               global vY_OnMenu:=Y + Round(GameH / (1080 / 54))
                ;GUI overlay
-               global GuiX:=X + Round(A_ScreenWidth / (2560 / -10))
-               global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+               global GuiX:=X + Round(GameW / (2560 / -10))
+               global GuiY:=Y + Round(GameH / (1080 / 1027))
           } 
           Else If (ResolutionScale="UltraWide") {
                ;Status Check OnHideout
-               global vX_OnHideout:=X + Round(A_ScreenWidth / (3840 / 3098))
-               global vY_OnHideout:=Y + Round(A_ScreenHeight / (1080 / 930))
-               global vY_OnHideoutMin:=Y + Round(A_ScreenHeight / (1080 / 1053))
+               global vX_OnHideout:=X + Round(GameW / (3840 / 3098))
+               global vY_OnHideout:=Y + Round(GameH / (1080 / 930))
+               global vY_OnHideoutMin:=Y + Round(GameH / (1080 / 1053))
                ;Status Check OnChar
-               global vX_OnChar:=X + Round(A_ScreenWidth / (3840 / 41))
-               global vY_OnChar:=Y + Round(A_ScreenHeight / ( 1080 / 915))
+               global vX_OnChar:=X + Round(GameW / (3840 / 41))
+               global vY_OnChar:=Y + Round(GameH / ( 1080 / 915))
                ;Status Check OnChat
-               global vX_OnChat:=X + Round(A_ScreenWidth / (3840 / 0))
-               global vY_OnChat:=Y + Round(A_ScreenHeight / ( 1080 / 653))
+               global vX_OnChat:=X + Round(GameW / (3840 / 0))
+               global vY_OnChat:=Y + Round(GameH / ( 1080 / 653))
                ;Status Check OnInventory
-               global vX_OnInventory:=X + Round(A_ScreenWidth / (3840 / 3503))
-               global vY_OnInventory:=Y + Round(A_ScreenHeight / ( 1080 / 36))
+               global vX_OnInventory:=X + Round(GameW / (3840 / 3503))
+               global vY_OnInventory:=Y + Round(GameH / ( 1080 / 36))
                ;Status Check OnStash
-               global vX_OnStash:=X + Round(A_ScreenWidth / (3840 / 336))
-               global vY_OnStash:=Y + Round(A_ScreenHeight / ( 1080 / 32))
+               global vX_OnStash:=X + Round(GameW / (3840 / 336))
+               global vY_OnStash:=Y + Round(GameH / ( 1080 / 32))
                ;Status Check OnVendor
-               global vX_OnVendor:=X + Round(A_ScreenWidth / (3840 / 1578))
-               global vY_OnVendor:=Y + Round(A_ScreenHeight / ( 1080 / 88))
+               global vX_OnVendor:=X + Round(GameW / (3840 / 1578))
+               global vY_OnVendor:=Y + Round(GameH / ( 1080 / 88))
                ;Status Check OnMenu
-               global vX_OnMenu:=X + Round(A_ScreenWidth / 2)
-               global vY_OnMenu:=Y + Round(A_ScreenHeight / (1080 / 54))
+               global vX_OnMenu:=X + Round(GameW / 2)
+               global vY_OnMenu:=Y + Round(GameH / (1080 / 54))
                ;GUI overlay
-               global GuiX:=X + Round(A_ScreenWidth / (3840 / -10))
-               global GuiY:=Y + Round(A_ScreenHeight / (1080 / 1027))
+               global GuiX:=X + Round(GameW / (3840 / -10))
+               global GuiY:=Y + Round(GameH / (1080 / 1027))
           }
 
           ; Controller support section, finds the center of the screen.
