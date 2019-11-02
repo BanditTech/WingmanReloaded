@@ -1,10 +1,25 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.13 November/02/2019
+--------------------------------------------------------------------------------
+Added a pause function for the Auto-Detonate Mines
+    Double tap the detonate key to pause Auto-Detonate, press again to resume
+
+Adjustments to the ingame loot filter for using loot vacuum
+    New default colors are 0x6565A3, 0x383877, 0xC4FEF6, 0x99FECC
+        Update your loot filters if not already set to custom colors
+        I have uploaded the new pack to the github page
+
+This link will allow you to load the filter and edit to your liking
+    It now uses slightly redish brown and Yellow as the backgrounds
+https://www.filterblade.xyz/?profile=throwawaysfortheplebs&saveState=Wingman&platform=pc
+
 Version .06.12 October/28/2019
 --------------------------------------------------------------------------------
 Fix for Rescale function to use the width and height of the game window instead
-    
+    Adds offsets to inventory panel for using non-primary monitor as game window
+
 Version .06.11 October/28/2019
 --------------------------------------------------------------------------------
 Added new ratio "Classic" for 4:3 ratio 

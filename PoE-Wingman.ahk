@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.12
+    Global VersionNumber := .06.13
 
 	;Global Null := 0
     
@@ -326,10 +326,10 @@
 		Global ToggleExist := False
 
 		; Loot colors for the vacuum
-		Global LootColors := { 1 : 0x222265
-			, 2 : 0x000038
-			, 3 : 0xFEFEED
-			, 4 : 0xFEFEC3}
+		Global LootColors := { 1 : 0x6565A3
+			, 2 : 0x383877
+			, 3 : 0xC4FEF6
+			, 4 : 0x99FECC}
 
 		;Item Parse blank Arrays
 		Global Prop := {}
@@ -429,7 +429,7 @@
 		global hotkeyWeaponSwapKey:=x
 		global hotkeyMainAttack:=RButton
 		global hotkeySecondaryAttack:=w
-
+		global hotkeyDetonate:=d
 	;Coordinates
 		global PortalScrollX:=1825
 		global PortalScrollY:=825
@@ -1888,7 +1888,27 @@
 	#Escape::
 		ExitApp
 		Return
-	; Test ItemInfo function
+	; Hotkey to pause the detonate mines
+	#MaxThreadsPerHotkey, 1
+	~d::
+		KeyWait, d, T0.3 ; Wait .3 seconds until Detonate key is released.
+		If ErrorLevel = 1 ; If not released, just exit out
+			Exit
+		KeyWait, d, D T0.2 ; ErrorLevel = 1 if Detonate Key not down within 0.2 seconds.
+		if ((ErrorLevel = 0) && ( A_PriorHotKey = "~d" ) ) ; Is a double tap on Detonate key?
+		{
+			SetTimer, TDetonated, Delete
+			Detonated := True
+			Tooltip, Auto-Mines Paused, % A_ScreenWidth / 2 - 57, % A_ScreenHeight / 8
+		}
+		Else If (ErrorLevel = 1)
+		{
+			Detonated := False
+			Tooltip
+		}
+	Return
+	#MaxThreadsPerHotkey, 2
+
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Inventory Management Functions - ItemSortCommand, ClipItem, ParseClip, ItemInfo, MatchLootFilter, MatchNinjaPrice, GraphNinjaPrices, MoveStash, StockScrolls, LootScan
@@ -5078,9 +5098,9 @@
 			Click, Up, Left, 1
 			Sleep, 45*Latency
 			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-			Sleep, 120*Latency
+			Sleep, 195*Latency
 			send {Enter}
-			Sleep, 120*Latency
+			Sleep, 45*Latency
 			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
 			Sleep, 45*Latency
 			Click, Down, Left, 1
@@ -5200,8 +5220,14 @@
 				Exit
 			}
 			
-			if (RadioLife=1)	{
-				If ((TriggerLife20!="00000")|| ( AutoQuit && RadioQuit20 ) || ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+			if (RadioLife=1) {
+				If ((TriggerLife20!="00000") 
+					|| ( AutoQuit && RadioQuit20 ) 
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life20, vX_Life, vY_Life20 
 					if (Life20!=varLife20) {
 						GuiStatus("OnChar")
@@ -5219,7 +5245,13 @@
 							TriggerFlask(TriggerLife20)
 						}
 				}
-				If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
+				If ((TriggerLife30!="00000") 
+					|| (AutoQuit && RadioQuit30) 
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life30, vX_Life, vY_Life30 
 					if (Life30!=varLife30) {
 						GuiStatus("OnChar")
@@ -5237,7 +5269,13 @@
 							TriggerFlask(TriggerLife30)
 						}
 				}
-				If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
+				If ((TriggerLife40!="00000") 
+					|| (AutoQuit && RadioQuit40) 
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life40, vX_Life, vY_Life40 
 					if (Life40!=varLife40) {
 						GuiStatus("OnChar")
@@ -5255,7 +5293,12 @@
 							TriggerFlask(TriggerLife40)
 						}
 				}
-				If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
+				If ((TriggerLife50!="00000") 
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life50, vX_Life, vY_Life50
 					if (Life50!=varLife50) {
 						GuiStatus("OnChar")
@@ -5269,7 +5312,12 @@
 							TriggerFlask(TriggerLife50)
 						}
 				}
-				If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
+				If ((TriggerLife60!="00000") 
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life60, vX_Life, vY_Life60
 					if (Life60!=varLife60) {
 						GuiStatus("OnChar")
@@ -5283,7 +5331,12 @@
 							TriggerFlask(TriggerLife60)
 						}
 				}
-				If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
+				If ((TriggerLife70!="00000") 
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life70, vX_Life, vY_Life70
 					if (Life70!=varLife70) {
 						GuiStatus("OnChar")
@@ -5297,7 +5350,12 @@
 							TriggerFlask(TriggerLife70)
 						}
 				}
-				If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
+				If ((TriggerLife80!="00000") 
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life80, vX_Life, vY_Life80
 					if (Life80!=varLife80) {
 						GuiStatus("OnChar")
@@ -5311,7 +5369,12 @@
 							TriggerFlask(TriggerLife80)
 						}
 				}
-				If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
+				If ((TriggerLife90!="00000") 
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life90, vX_Life, vY_Life90
 					if (Life90!=varLife90) {
 						GuiStatus("OnChar")
@@ -5328,7 +5391,13 @@
 			}
 			
 			if (RadioHybrid=1) {
-				If ((TriggerLife20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerLife20!="00000") 
+					|| (AutoQuit&&RadioQuit20)
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life20, vX_Life, vY_Life20 
 					if (Life20!=varLife20) {
 						GuiStatus("OnChar")
@@ -5346,7 +5415,13 @@
 							TriggerFlask(TriggerLife20)
 						}
 				}
-				If ((TriggerLife30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerLife30!="00000") 
+					|| (AutoQuit&&RadioQuit30)
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life30, vX_Life, vY_Life30 
 					if (Life30!=varLife30) {
 						GuiStatus("OnChar")
@@ -5364,7 +5439,13 @@
 							TriggerFlask(TriggerLife30)
 						}
 				}
-				If ((TriggerLife40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerLife40!="00000") 
+					|| (AutoQuit&&RadioQuit40)
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life40, vX_Life, vY_Life40 
 					if (Life40!=varLife40) {
 						GuiStatus("OnChar")
@@ -5382,7 +5463,12 @@
 							TriggerFlask(TriggerLife40)
 						}
 				}
-				If ((TriggerLife50!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerLife50!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life50, vX_Life, vY_Life50
 					if (Life50!=varLife50) {
 						GuiStatus("OnChar")
@@ -5396,7 +5482,12 @@
 							TriggerFlask(TriggerLife50)
 						}
 				}
-				If ((TriggerLife60!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerLife60!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life60, vX_Life, vY_Life60
 					if (Life60!=varLife60) {
 						GuiStatus("OnChar")
@@ -5410,7 +5501,12 @@
 							TriggerFlask(TriggerLife60)
 						}
 				}
-				If ((TriggerLife70!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerLife70!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life70, vX_Life, vY_Life70
 					if (Life70!=varLife70) {
 						GuiStatus("OnChar")
@@ -5424,7 +5520,12 @@
 							TriggerFlask(TriggerLife70)
 						}
 				}
-				If ((TriggerLife80!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerLife80!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life80, vX_Life, vY_Life80
 					if (Life80!=varLife80) {
 						GuiStatus("OnChar")
@@ -5438,7 +5539,12 @@
 							TriggerFlask(TriggerLife80)
 						}
 				}
-				If ((TriggerLife90!="00000")|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerLife90!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, Life90, vX_Life, vY_Life90
 					if (Life90!=varLife90) {
 						GuiStatus("OnChar")
@@ -5452,7 +5558,12 @@
 							TriggerFlask(TriggerLife90)
 						}
 				}
-				If ((TriggerES20!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES20!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES20, vX_ES, vY_ES20 
 					if (ES20!=varES20) {
 						GuiStatus("OnChar")
@@ -5466,7 +5577,12 @@
 							TriggerFlask(TriggerES20)
 					}
 				}
-				If ((TriggerES30!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES30!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES30, vX_ES, vY_ES30 
 					if (ES30!=varES30) {
 						GuiStatus("OnChar")
@@ -5480,7 +5596,12 @@
 							TriggerFlask(TriggerES30)
 					}
 				}
-				If ((TriggerES40!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES40!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES40, vX_ES, vY_ES40 
 					if (ES40!=varES40) {
 						GuiStatus("OnChar")
@@ -5494,7 +5615,12 @@
 							TriggerFlask(TriggerES40)
 					}
 				}
-				If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES50!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES50, vX_ES, vY_ES50
 					if (ES50!=varES50) {
 						GuiStatus("OnChar")
@@ -5508,7 +5634,12 @@
 							TriggerFlask(TriggerES50)
 					}
 				}
-				If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES60!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES60, vX_ES, vY_ES60
 					if (ES60!=varES60) {
 						GuiStatus("OnChar")
@@ -5522,7 +5653,12 @@
 							TriggerFlask(TriggerES60)
 					}
 				}
-				If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES70!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES70, vX_ES, vY_ES70
 					if (ES70!=varES70) {
 						GuiStatus("OnChar")
@@ -5536,7 +5672,12 @@
 							TriggerFlask(TriggerES70)
 					}
 				}
-				If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES80!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES80, vX_ES, vY_ES80
 					if (ES80!=varES80) {
 						GuiStatus("OnChar")
@@ -5548,9 +5689,15 @@
 						}
 						If (TriggerES80!="00000")
 							TriggerFlask(TriggerES80)
+			
 					}
 				}
-				If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES90!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES90, vX_ES, vY_ES90
 					if (ES90!=varES90) {
 						GuiStatus("OnChar")
@@ -5562,12 +5709,19 @@
 						}
 						If (TriggerES90!="00000")
 							TriggerFlask(TriggerES90)
+			
 					}
 				}
 			}
 			
 			if (RadioCi=1) {
-				If ((TriggerES20!="00000")||(AutoQuit&&RadioQuit20)|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES20!="00000") 
+					|| (AutoQuit&&RadioQuit20)
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES20, vX_ES, vY_ES20 
 					if (ES20!=varES20) {
 						GuiStatus("OnChar")
@@ -5585,7 +5739,13 @@
 							TriggerFlask(TriggerES20)
 					}
 				}
-				If ((TriggerES30!="00000")||(AutoQuit&&RadioQuit30)|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES30!="00000") 
+					|| (AutoQuit&&RadioQuit30)
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES30, vX_ES, vY_ES30 
 					if (ES30!=varES30) {
 						GuiStatus("OnChar")
@@ -5603,7 +5763,13 @@
 							TriggerFlask(TriggerES30)
 					}
 				}
-				If ((TriggerES40!="00000")||(AutoQuit&&RadioQuit40)|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES40!="00000") 
+					|| (AutoQuit&&RadioQuit40)
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES40, vX_ES, vY_ES40 
 					if (ES40!=varES40) {
 						GuiStatus("OnChar")
@@ -5621,7 +5787,12 @@
 							TriggerFlask(TriggerES40)
 					}
 				}
-				If ((TriggerES50!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES50!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES50, vX_ES, vY_ES50
 					if (ES50!=varES50) {
 						GuiStatus("OnChar")
@@ -5635,7 +5806,12 @@
 							TriggerFlask(TriggerES50)
 					}
 				}
-				If ((TriggerES60!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES60!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES60, vX_ES, vY_ES60
 					if (ES60!=varES60) {
 						GuiStatus("OnChar")
@@ -5649,7 +5825,12 @@
 							TriggerFlask(TriggerES60)
 					}
 				}
-				If ((TriggerES70!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES70!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES70, vX_ES, vY_ES70
 					if (ES70!=varES70) {
 						GuiStatus("OnChar")
@@ -5663,7 +5844,12 @@
 							TriggerFlask(TriggerES70)
 					}
 				}
-				If ((TriggerES80!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES80!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES80, vX_ES, vY_ES80
 					if (ES80!=varES80) {
 						GuiStatus("OnChar")
@@ -5675,9 +5861,15 @@
 						}
 						If (TriggerES80!="00000")
 							TriggerFlask(TriggerES80)
+			
 					}
 				}
-				If ((TriggerES90!="00000")|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) || ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) || ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) || ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) || ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
+				If ( (TriggerES90!="00000")
+					|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
+					|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
+					|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
+					|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
+					|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
 					pixelgetcolor, ES90, vX_ES, vY_ES90
 					if (ES90!=varES90) {
 						GuiStatus("OnChar")
@@ -5689,29 +5881,20 @@
 						}
 						If (TriggerES90!="00000")
 							TriggerFlask(TriggerES90)
+			
 					}
 				}
 			}
 			
 			If (TriggerMana10!="00000") {
 				pixelgetcolor, ManaPerc, vX_Mana, vY_ManaThreshold
-				;ToolTip % ManaPerc "        " varManaThreshold
 				if (ManaPerc!=varManaThreshold) {
 					GuiStatus("OnChar")
 					if !(OnChar)
 						Exit
 					TriggerMana(TriggerMana10)
 				}
-				; pixelgetcolor, Mana10, vX_Mana, vY_Mana10
-				; if (Mana10!=varMana10) {
-				; 	GuiStatus("OnChar")
-				; 	if !(OnChar)
-				; 		Exit
-				; 	TriggerMana(TriggerMana10)
-				; }
 			}
-			
-			;GuiUpdate()
 		}
 		Return
 	}
@@ -5725,7 +5908,7 @@
 		}
 		Return
 		}
-
+	
 	; TimerPassthrough - Passthrough Timer
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerPassthrough:
@@ -6006,7 +6189,7 @@
 			If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
 				Sendraw, d
 				Detonated:=1
-				Settimer, TDetonated, 500
+				Settimer, TDetonated, -500
 				Return
 			}
 			Return	
@@ -6692,7 +6875,7 @@
 			varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
 
 			;Loot Vacuum Colors
-			IniRead, LootColors, settings.ini, Loot Colors, LootColors, 0x222265, 0x000038, 0xFEFEED, 0xFEFEC3
+			IniRead, LootColors, settings.ini, Loot Colors, LootColors, 0x6565A3, 0x383877, 0xC4FEF6, 0x99FECC
 			;Create an array out of the read string
 			LootColors := StrSplit(LootColors, ",")
 
