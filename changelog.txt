@@ -1,6 +1,35 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .06.14 November/04/2019
+--------------------------------------------------------------------------------
+Massive Improvements to the Custom Loot Filter's usability
+    Added new GUI that pops up when creating a new group or editing old one
+        Edit the group without needing to reload the entire Main GUI
+        Click the Finish button to reload the Main GUI
+            When done adding/editing groups dont forget to Save Loot Filter
+        or click Delete group to remove from array and reload Main GUI
+    Added tooltip to indicate its loading the menu structure
+    Added GroupBox around each section to better visualize the layout
+
+Adjustments to the Loot Vacuum
+    Added delay option for loot vacuum after finding and clicking an item
+        Use the dropdown list to choose the number of MS to sleep after clicking
+        Default is now 15 ms (one cycle)
+    Default AreaScale is now set to 60 for fresh install
+    This should fix the issue people are having with being disconnected
+
+Added new stash tab for Veiled items
+    Find its settings in the Inventory Tab
+    Default is enabled, disable if you want to keep them in inventory
+
+Improvements to the Auto-Quicksilver script GottaGoFast
+    Fix for it seeming to pause the QS for several seconds
+    Reformated parts of the flask logic code
+        removed extra lines as well as unnecessarily saved vars
+
+Implimented width and height for resonators into the item parser
+
 Version .06.13 November/02/2019
 --------------------------------------------------------------------------------
 Added a pause function for the Auto-Detonate Mines

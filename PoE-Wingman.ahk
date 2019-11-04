@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .06.13
+    Global VersionNumber := .06.14
 
 	;Global Null := 0
     
@@ -303,6 +303,7 @@
 		Global FlaskList := []
 		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
 		Global AreaScale := 0
+		Global LVdelay := 0
 		Global LootVacuum := 1
 		Global YesVendor := 1
 		Global YesStash := 1
@@ -1257,6 +1258,7 @@
 	Gui, Add, DropDownList, gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabVeiled Choose%StashTabVeiled% w40 ,  %textList%
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% y+14, Oil Tab
@@ -1266,6 +1268,7 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% y+14, Collection Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% y+14, Veiled Tab
 
 	Gui, Add, DropDownList, gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  %textList%
@@ -2207,6 +2210,12 @@
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
+						If (Prop.Veiled&&StashTabYesVeiled)
+						{
+							MoveStash(StashTabVeiled)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
 						If StashTabYesCrafting 
 							&& ((YesStashT1 && Prop.CraftingBase = "T1") 
 								|| (YesStashT2 && Prop.CraftingBase = "T2") 
@@ -2380,6 +2389,11 @@
 						If (Prop.Oil&&StashTabYesOil)
 						{
 							SortFirst[StashTabOil].Push({"C":C,"R":R})
+							Continue
+						}
+						If (Prop.Veiled&&StashTabYesVeiled)
+						{
+							SortFirst[StashTabVeiled].Push({"C":C,"R":R})
 							Continue
 						}
 						If StashTabYesCrafting 
@@ -4323,6 +4337,18 @@
 				Prop.Variant := variantStr
 			}
 		}
+		If Prop.Resonator
+		{
+			If (InStr(Prop.ItemName, "Primitive") || InStr(Prop.ItemName, "Potent"))
+				Prop.Width := 1
+			Else
+				Prop.Width := 2
+			
+			If (InStr(Prop.ItemName, "Primitive"))
+				Prop.Height := 1
+			Else
+				Prop.Height := 2
+		}
 		MatchNinjaPrice()
 		If InStr(Prop.ItemName, "Chaos Orb")
 			Prop.ChaosValue := 1
@@ -5100,7 +5126,7 @@
 			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
 			Sleep, 195*Latency
 			send {Enter}
-			Sleep, 45*Latency
+			Sleep, 75*Latency
 			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
 			Sleep, 45*Latency
 			Click, Down, Left, 1
@@ -5188,6 +5214,8 @@
 							ScanPx += 15
 							ScanPy += 15
 							Click %ScanPx%, %ScanPy%
+							If (LVdelay > 0)
+								Sleep, %LVdelay%
 							Break
 						}
 					}
@@ -6831,7 +6859,8 @@
 			IniRead, YesStashCraftingMagic, settings.ini, General, YesStashCraftingMagic, 1
 			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
 			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
-			IniRead, AreaScale, settings.ini, General, AreaScale, 0
+			IniRead, AreaScale, settings.ini, General, AreaScale, 60
+			IniRead, LVdelay, settings.ini, General, LVdelay, 15
 			
 			;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -6851,6 +6880,7 @@
 			IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator, 1
 			IniRead, StashTabCrafting, settings.ini, Stash Tab, StashTabCrafting, 1
 			IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
+			IniRead, StashTabVeiled, settings.ini, Stash Tab, StashTabVeiled, 1
 			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency, 1
 			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap, 1
 			IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination, 1
@@ -6868,6 +6898,7 @@
 			IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator, 1
 			IniRead, StashTabYesCrafting, settings.ini, Stash Tab, StashTabYesCrafting, 1
 			IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
+			IniRead, StashTabYesVeiled, settings.ini, Stash Tab, StashTabYesVeiled, 1
 			
 			;Inventory Colors
 			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
@@ -7513,6 +7544,7 @@
 			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
 			IniWrite, %YesAutoSkillUp%, settings.ini, General, YesAutoSkillUp
 			IniWrite, %AreaScale%, settings.ini, General, AreaScale
+			IniWrite, %LVdelay%, settings.ini, General, LVdelay
 
 			;~ Hotkeys 
 			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
@@ -7624,6 +7656,7 @@
 			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
 			IniWrite, %StashTabCrafting%, settings.ini, Stash Tab, StashTabCrafting
 			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
+			IniWrite, %StashTabVeiled%, settings.ini, Stash Tab, StashTabVeiled
 			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
 			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
 			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
@@ -7641,6 +7674,7 @@
 			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
 			IniWrite, %StashTabYesCrafting%, settings.ini, Stash Tab, StashTabYesCrafting
 			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
+			IniWrite, %StashTabYesVeiled%, settings.ini, Stash Tab, StashTabYesVeiled
 			
 			;Attack Flasks
 			IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
@@ -9987,9 +10021,10 @@
 				gui,LootColors: -MinimizeBox
 				gui,LootColors: add, groupbox,% "section w320 h" 24 * (LootColors.Count() / 2) + 25 , Loot Colors:
 				gui,LootColors: add, Button, gSaveLootColorArray yp-5 xp+70 h22, Save to INI
-				Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 x+20 yp+1,  %AreaScale%||0|30|60|100|200|300|400|500
-				AreaScale_TT:="Use this to scale the area for the Loot Vacuum`nDefault setting is 0`nFor controller use 30 to 200"
-				Gui,LootColors: Add, Text, 										x+3 yp+5							, Adjust AreaScale
+				Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 x+10 yp+1,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
+				Gui,LootColors: Add, Text, 										x+3 yp+5							, AreaScale
+				Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-6,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
+				Gui,LootColors: Add, Text, 										x+3 yp+5							, Delay
 
 				For k, val in LootColors
 				{
@@ -10011,6 +10046,7 @@
 					gui,LootColors: add, Progress, x+10 yp-5 w50 h20 c%color% BackgroundBlack,100
 				}
 				Gui,LootColors: show,,Loot Vacuum settings
+				OnMessage(0x200, "WM_MOUSEMOVE")
 			return
 
 			ResampleLootColor:
@@ -10281,6 +10317,7 @@
 			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
 			IniWrite, %StashTabCrafting%, settings.ini, Stash Tab, StashTabCrafting
 			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
+			IniWrite, %StashTabVeiled%, settings.ini, Stash Tab, StashTabVeiled
 			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
 			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
 			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
@@ -10298,6 +10335,7 @@
 			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
 			IniWrite, %StashTabYesCrafting%, settings.ini, Stash Tab, StashTabYesCrafting
 			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
+			IniWrite, %StashTabYesVeiled%, settings.ini, Stash Tab, StashTabYesVeiled
 		Return
 
 		UpdateExtra:
@@ -10325,6 +10363,7 @@
 			IniWrite, %YesPersistantToggle%, settings.ini, General, YesPersistantToggle
 			IniWrite, %YesPopAllExtraKeys%, settings.ini, General, YesPopAllExtraKeys
 			IniWrite, %AreaScale%, settings.ini, General, AreaScale
+			IniWrite, %LVdelay%, settings.ini, General, LVdelay
 			If (YesPersistantToggle)
 				AutoReset()
 			If (DetonateMines&&!Detonated)

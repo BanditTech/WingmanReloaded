@@ -224,7 +224,7 @@ global KeyUtility1, KeyUtility2, KeyUtility3, KeyUtility4, KeyUtility5
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;General
 IniRead, Speed, settings.ini, General, Speed, 1
-IniRead, QTick, settings.ini, General, QTick, 50
+IniRead, QTick, settings.ini, General, QTick, 150
 IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
 IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
 IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
@@ -424,7 +424,7 @@ Loop, 5 {
 ;Pop all flasks
 PopFlaskCooldowns(){
      If (PopFlaskRespectCD)
-     TriggerFlaskCD(11111)
+          TriggerFlaskCD(11111)
      Else {
           OnCooldown[1]:=1 
           settimer, TimmerFlask1, %CooldownFlask1%
@@ -831,17 +831,18 @@ GuiStatus(Fetch:=""){
 TQuickTick(){
      IfWinActive, Path of Exile
      {
-          ;pixelgetcolor, OnHideout, vX_OnHideout, vY_OnHideout
-          ;pixelgetcolor, OnChar, vX_OnChar, vY_OnChar
-          GuiStatus()
-          
-          if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, chat open, or open inventory, open atlas
-               GuiUpdate()
-               Exit
-          }
-          if ((AutoQuick=1)&&((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))) {
-               TriggerFlask(TriggerQuicksilver)
-          }
+          if ( (AutoQuick=1) 
+          && ( (QuicksilverSlot1=1) 
+          || (QuicksilverSlot2=1) 
+          || (QuicksilverSlot3=1) 
+          || (QuicksilverSlot4=1) 
+          || (QuicksilverSlot5=1) ) ) 
+               If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) 
+               || ((QuicksilverSlot2=1)&&(OnCooldown[2])) 
+               || ((QuicksilverSlot3=1)&&(OnCooldown[3])) 
+               || ((QuicksilverSlot4=1)&&(OnCooldown[4])) 
+               || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ; Check if all the flasks are off cooldown
+                    TriggerFlask(TriggerQuicksilver)
      }
 }
 
@@ -849,113 +850,98 @@ TUtilityTick(){
      IfWinActive, Path of Exile
      {
           GuiStatus()
-          
-          if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, chat open, or open inventory
-               GuiUpdate()
+          if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
                Exit
-          }
-          
-          if ( ( (YesUtility1) && !(YesUtility1Quicksilver) && (YesUtility1LifePercent="Off") && (YesUtility1ESPercent="Off") ) || ( (YesUtility2) && !(YesUtility2Quicksilver) && (YesUtility2LifePercent="Off") && (YesUtility2ESPercent="Off") ) || ( (YesUtility3) && !(YesUtility3Quicksilver) && (YesUtility3LifePercent="Off") && (YesUtility3ESPercent="Off") ) || ( (YesUtility4) && !(YesUtility4Quicksilver) && (YesUtility4LifePercent="Off") && (YesUtility4ESPercent="Off") ) || ( (YesUtility5) && !(YesUtility5Quicksilver) && (YesUtility5LifePercent="Off") && (YesUtility5ESPercent="Off") ) ) {
-               Loop, 5 {
+          if ( ( (YesUtility1) && !(YesUtility1Quicksilver) && (YesUtility1LifePercent="Off") && (YesUtility1ESPercent="Off") ) 
+          || ( (YesUtility2) && !(YesUtility2Quicksilver) && (YesUtility2LifePercent="Off") && (YesUtility2ESPercent="Off") ) 
+          || ( (YesUtility3) && !(YesUtility3Quicksilver) && (YesUtility3LifePercent="Off") && (YesUtility3ESPercent="Off") ) 
+          || ( (YesUtility4) && !(YesUtility4Quicksilver) && (YesUtility4LifePercent="Off") && (YesUtility4ESPercent="Off") ) 
+          || ( (YesUtility5) && !(YesUtility5Quicksilver) && (YesUtility5LifePercent="Off") && (YesUtility5ESPercent="Off") ) ) 
+               Loop, 5
                     If (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && !(YesUtility%A_Index%LifePercent!="Off") && !(YesUtility%A_Index%ESPercent!="Off")
-                    TriggerUtility(A_Index)
-               }
-          }
+                         TriggerUtility(A_Index)
      }
 }
 
 TriggerFlask(Trigger){
      GuiStatus()
-
-     if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, chat open, or open inventory
+     if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
           Exit
-     }
-
-     If ((!FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
-          QFL:=1
-          loop, 5 {
-               QFLVal:=SubStr(Trigger,QFL,1)+0
-               if (QFLVal > 0) {
-                    if (OnCooldown[QFL]=0)
-                         FlaskListQS.Push(QFL)
-               }
-               ++QFL
-          }
-     } 
-     Else If ((FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ){
-          
+     If !(FlaskListQS.Count())
+          loop, 5 
+               if ((SubStr(Trigger,A_Index,1)+0) > 0) 
+                    FlaskListQS.Push(A_Index)
+     If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) 
+     || ((QuicksilverSlot2=1)&&(OnCooldown[2])) 
+     || ((QuicksilverSlot3=1)&&(OnCooldown[3])) 
+     || ((QuicksilverSlot4=1)&&(OnCooldown[4])) 
+     || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) 
+     { ; If all the flasks are off cooldown, then we are ready to fire one
           LButtonPressed := GetKeyState("LButton", "P")
           MainPressed := GetKeyState(hotkeyMainAttack, "P")
           SecondaryPressed := GetKeyState(hotkeySecondaryAttack, "P")
-          if (LButtonPressed || (MainPressed && QSonMainAttack) || (SecondaryPressed && QSonSecondaryAttack) ) {
-               If (TriggerQuicksilverDelay > 0){
-                    if (LButtonPressed) {
-                         Keywait, LButton, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
-                         if (ErrorLevel=0) {
+          if (LButtonPressed || (MainPressed && QSonMainAttack) || (SecondaryPressed && QSonSecondaryAttack) ) 
+          {
+               If (TriggerQuicksilverDelay > 0) 
+               {
+                    if (LButtonPressed) 
+                    {
+                         Keywait, LButton, t%TriggerQuicksilverDelay% ;Wait for the key to be released
+                         if (ErrorLevel=0)
                               Return
-                         }
-                    } Else If (MainPressed && QSonMainAttack){
-                         Keywait, %hotkeyMainAttack%, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
-                         if (ErrorLevel=0) {
+                    }
+                    Else If (MainPressed && QSonMainAttack) 
+                    {
+                         Keywait, %hotkeyMainAttack%, t%TriggerQuicksilverDelay% ;Wait for the key to be released
+                         if (ErrorLevel=0) 
                               Return
-                         }
-                    } Else If (SecondaryPressed && QSonSecondaryAttack){
-                         Keywait, %hotkeySecondaryAttack%, t%TriggerQuicksilverDelay% ;time to wait how long left mouse button has to be pressed
-                         if (ErrorLevel=0) {
+                    }
+                    Else If (SecondaryPressed && QSonSecondaryAttack) 
+                    {
+                         Keywait, %hotkeySecondaryAttack%, t%TriggerQuicksilverDelay% ;Wait for the key to be released
+                         if (ErrorLevel=0) 
                               Return
-                         }
                     }
                }
-               QFL:=FlaskListQS.RemoveAt(1)
+               QFL := FlaskListQS.RemoveAt(1)
                If (!QFL)
                     Return
-               key := keyFlask%QFL%
-               send %key%
+               send % keyFlask%QFL%
+               settimer, TimmerFlask%QFL%, % CooldownFlask%QFL%
                OnCooldown[QFL] := 1 
-               Cooldown:=CooldownFlask%QFL%
-               settimer, TimmerFlask%QFL%, %Cooldown%
                SendMSG(3, QFL)
-               Loop, 5 {
-                    If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver){
+               Loop, 5
+                    If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver)
                          TriggerUtility(A_Index)
-                    }
-               }
           }
      }
      Return
 }
+
 TriggerFlaskForce(Trigger){
      GuiStatus()
-
-     if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, chat open, or open inventory
+     if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
           Exit
-     }
-     If ((!FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ) {
-          QFL:=1
-          loop, 5 {
-               QFLVal:=SubStr(Trigger,QFL,1)+0
-               if (QFLVal > 0) {
-                    if (OnCooldown[QFL]=0)
-                         FlaskListQS.Push(QFL)
-               }
-               ++QFL
-          }
-     } 
-     Else If ((FlaskListQS.Count()) && !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) ){
+     If !(FlaskListQS.Count())
+          loop, 5 
+               if ((SubStr(Trigger,A_Index,1)+0) > 0)
+                    FlaskListQS.Push(A_Index)
+     If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) 
+     || ((QuicksilverSlot2=1)&&(OnCooldown[2])) 
+     || ((QuicksilverSlot3=1)&&(OnCooldown[3])) 
+     || ((QuicksilverSlot4=1)&&(OnCooldown[4])) 
+     || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) 
+     { ; If all the flasks are off cooldown, then we are ready to fire one
           QFL:=FlaskListQS.RemoveAt(1)
           If (!QFL)
-          Return
-          key := keyFlask%QFL%
-          send %key%
+               Return
+          send % keyFlask%QFL%
           OnCooldown[QFL] := 1 
-          Cooldown:=CooldownFlask%QFL%
-          settimer, TimmerFlask%QFL%, %Cooldown%
+          settimer, TimmerFlask%QFL%, % CooldownFlask%QFL%
           SendMSG(3, QFL)
-          Loop, 5 {
-               If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver){
+          Loop, 5
+               If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver)
                     TriggerUtility(A_Index)
-               }
-          }
      }
      Return
 }
@@ -999,34 +985,17 @@ Ding(Timeout:=500,Message:="Ding", Message2:="", Message3:="", Message4:="", Mes
 
 TriggerUtility(Utility){
      GuiStatus()
-     if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, chat open, or open inventory
+     if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
           Exit
-     }
-     If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
-          key:=KeyUtility%Utility%
-          Send %key%
-          SendMSG(4, Utility)
+     If (!OnCooldownUtility%Utility%)
+     {
+          Send % KeyUtility%Utility%
           OnCooldownUtility%Utility%:=1
-          Cooldown:=CooldownUtility%Utility%
-          SetTimer, TimerUtility%Utility%, %Cooldown%
+          SetTimer, TimerUtility%Utility%, % CooldownUtility%Utility%
+          SendMSG(4, Utility)
      }
      Return
-} 
-TriggerUtilityForce(Utility){
-     GuiStatus()
-     if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) { ;in Hideout, not on char, chat open, or open inventory
-          Exit
-     }
-     If (!OnCooldownUtility%Utility%){
-          key:=KeyUtility%Utility%
-          Send %key%
-          SendMSG(4, Utility)
-          OnCooldownUtility%Utility%:=1
-          Cooldown:=CooldownUtility%Utility%
-          SetTimer, TimerUtility%Utility%, %Cooldown%
-     }
-     Return
-} 
+}
 
 Rescale(){
      IfWinExist, ahk_group POEGameGroup 
@@ -1154,19 +1123,14 @@ Rescale(){
 }
 
 TriggerFlaskCD(Trigger){
-     QFL=1
      loop, 5 {
-          QFLVal:=SubStr(Trigger,QFL,1)+0
-          if (QFLVal > 0) {
-               if (OnCooldown[QFL]=0) {
-                    if (ErrorLevel=1) {
-                         OnCooldown[QFL]:=1 
-                         Cooldown:=CooldownFlask%QFL%
-                         settimer, TimmerFlask%QFL%, %Cooldown%
-                    }					
+          QFLValCD:=SubStr(Trigger,A_Index,1)+0
+          if (QFLValCD > 0) {
+               if (OnCooldown[A_Index]=0) {
+                    OnCooldown[A_Index]:=1 
+                    settimer, TimmerFlask%A_Index%, % CooldownFlask%A_Index%
                }
           }
-          ++QFL
      }
      Return
 }
@@ -1227,7 +1191,7 @@ Joystick_Handler:
                }
                if (YesTriggerUtilityJoystickKey && HeldCountJoystick > 20)
                {
-                    TriggerUtilityForce(utilityKeyToFire)
+                    TriggerUtility(utilityKeyToFire)
                }
                if (AutoQuick && HeldCountJoystick > 60)
                {
@@ -1512,7 +1476,7 @@ IfWinActive ahk_group POEGameGroup
                }
                newposition := false
                If (YesTriggerUtilityKey)
-                    TriggerUtilityForce(utilityKeyToFire)
+                    TriggerUtility(utilityKeyToFire)
                if (AutoQuick)
                {
                     if ((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))
