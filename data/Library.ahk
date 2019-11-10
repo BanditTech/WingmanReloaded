@@ -1588,6 +1588,872 @@
     }
     Gui, _MouseTip_: Destroy
     }
+; Capture GUI for FindText
+
+
+  ; if (A_IsCompiled or A_LineFile!=A_ScriptFullPath)
+  ;   Goto, ft_End
+
+  ft_Start:
+
+  ;IfNotEqual, ft_ToolTip_Text,, Goto, ft_Main_Window
+  If CaptureGUIFirstLoad
+   Goto, ft_Main_Window
+  ;   #NoEnv
+  ;   #SingleInstance force
+  ;   SetBatchLines, -1
+  ;   Menu, Tray, Add
+  ;   Menu, Tray, Add, FinText, ft_Main_Window
+  ;   if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+  ;   {
+  ;     Menu, Tray, Default, FinText
+  ;     Menu, Tray, Click, 1
+  ;     Menu, Tray, Icon, Shell32.dll, 23
+  ;   }
+  ; The capture range can be changed by adjusting the numbers
+  ;----------------------------
+    ft_ww:=15, ft_hh:=15
+  ;----------------------------
+  ft_nW:=2*ft_ww+1, ft_nH:=2*ft_hh+1
+  Gosub, ft_MakeCaptureWindow
+  Gosub, ft_MakeMainWindow
+  Gosub, ft_Load_ToolTip_Text
+  return
+
+  ft_Load_ToolTip_Text:
+    CaptureGUIFirstLoad := True
+  return
+
+  ft_Main_Window:
+  Gui, ft_Main:Show, Center
+  return
+
+  ft_MakeMainWindow:
+  Gui, ft_Main:Default
+  Gui, +AlwaysOnTop
+  Gui, Margin, 15, 15
+  Gui, Color, DDEEFF
+  Gui, Font, s6 bold, Verdana
+  Gui, Add, Edit, xm w660 r25 vft_MyPic -Wrap -VScroll
+  Gui, Font, s12 norm, Verdana
+  Gui, Add, Button, w220 gft_MainRun, Capture
+  Gui, Add, Button, x+0 wp gft_MainRun, Test
+  Gui, Add, Button, x+0 wp gft_MainRun Section, Copy
+  Gui, Font, s10
+  	Gui, Add, text, xm+25 y+5 w35, Width: %A_Space%
+  	Gui, Add, text, vft_ww_t x+0 yp w35, %ft_ww%
+	Gui, Add, UpDown, vft_ww Range1-60, %ft_ww%
+  	Gui, Add, text, x+5 yp w35, Height: %A_Space%
+  	Gui, Add, text, vft_hh_t x+0 yp w35, %ft_hh%
+	Gui, Add, UpDown, vft_hh Range1-30, %ft_hh%
+
+  Gui, Add, Text, xm, Click Text String to See ASCII Search Text in the Above
+  ;   Gui, Add, Checkbox, xs yp w220 r1 -Wrap -Checked vft_AddFunc, Additional FindText() in Copy
+  Gui, Font, s12 cBlue, Verdana
+  Gui, Add, Edit, xm w660 h350 vft_scr Hwndft_hscr -Wrap HScroll
+  Gui, Show,, Capture Image To Text And Find Text Tool
+  ;---------------------------------------
+  OnMessage(0x100, Func("ft_EditEvents1"))  ; WM_KEYDOWN
+  OnMessage(0x201, Func("ft_EditEvents2"))  ; WM_LBUTTONDOWN
+  OnMessage(0x200, Func("ft_ShowToolTip"))  ; WM_MOUSEMOVE
+  return
+
+  UpdateWWHH:
+    ft_old_ww := ft_ww, ft_old_hh := ft_hh
+    Gui, Submit, NoHide
+    If (ft_old_ww != ft_ww || ft_old_hh != ft_hh)
+    {
+        Tooltip, Building Menu for new capture area
+        ft_nW:=2*ft_ww+1, ft_nH:=2*ft_hh+1
+        Gui, ft_Capture: Destroy
+        Gosub, ft_MakeCaptureWindow
+        Tooltip
+    }
+  Return
+
+  ft_EditEvents1()
+  {
+    ListLines, Off
+    if (A_Gui="ft_Main" && A_GuiControl="ft_scr")
+      SetTimer, ft_ShowPic, -100
+  }
+
+  ft_EditEvents2()
+  {
+    ListLines, Off
+    if (A_Gui="ft_Capture")
+      ft_WM_LBUTTONDOWN()
+    else
+      ft_EditEvents1()
+  }
+
+  ft_ShowPic:
+    ListLines, Off
+    Critical
+    ControlGet, i, CurrentLine,,, ahk_id %ft_hscr%
+    ControlGet, s, Line, %i%,, ahk_id %ft_hscr%
+    GuiControl, ft_Main:, ft_MyPic, % Trim(ASCII(s),"`n")
+  return
+
+  ft_MainRun:
+    k:="ft_" . A_GuiControl
+    WinMinimize
+    Gui, Hide
+    DetectHiddenWindows, Off
+    Gui, +LastFound
+    WinWaitClose, % "ahk_id " WinExist()
+    if IsLabel(k)
+      Gosub, %k%
+    Gui, ft_Main: Show
+    GuiControl, ft_Main: Focus, ft_scr
+  return
+
+  ft_Copy:
+    GuiControlGet, s,, ft_scr
+    GuiControlGet, r,, ft_AddFunc
+    if (r != 1)
+      s:=RegExReplace(s,"\n\K[\s;=]+ Copy The[\s\S]*")
+    ExportString := StrReplace(ExportString,"Text:=","")
+    ExportString:=Clipboard:=StrReplace(ExportString,"`n","")
+    s=
+    Gui, ft_Main: Hide
+    Gui, ft_Capture: Hide
+    Gui, ft_Mini: Hide
+    Exit
+  Return
+
+  ft_Capture:
+    GoSub, UpdateWWHH
+    Thread, NoTimers, true ;Critical
+    Gui, ft_Mini:Default
+    Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow +E0x08000000
+    Gui, Color, Red
+    d:=2, w:=ft_nW+2*d, h:=ft_nH+2*d, i:=w-d, j:=h-d
+    Gui, Show, Hide w%w% h%h%
+    s=0-0 %w%-0 %w%-%h% 0-%h% 0-0
+    s=%s%  %d%-%d% %i%-%d% %i%-%j% %d%-%j% %d%-%d%
+    WinSet, Region, %s%
+    ;------------------------------
+    Hotkey, $*a, ft_Akey_Off, On
+    ListLines, Off
+    CoordMode, Mouse
+    ft_oldx:=ft_oldy:=""
+    Loop {
+      Sleep, 50
+      MouseGetPos, x, y
+      if (ft_oldx=x and ft_oldy=y)
+        Continue
+      ft_oldx:=x, ft_oldy:=y
+      ;---------------
+      Gui, Show, % "NA x" (x-w//2) " y" (y-h//2)
+      ToolTip, % "Mark the Position : " x "," y
+        . "`nFirst: Press the A key to mark area"
+    } Until GetKeyState("a", "P")
+    KeyWait, a
+    ft_px:=x, ft_py:=y, ft_oldx:=ft_oldy:=""
+    Loop {
+      Sleep, 50
+      MouseGetPos, x, y
+      if (ft_oldx=x and ft_oldy=y)
+        Continue
+      ft_oldx:=x, ft_oldy:=y
+      ;---------------
+      ToolTip, % "The Capture Position : " ft_px "," ft_py
+        . "`nSecond: Press the A key to capture"
+    } Until GetKeyState("a", "P")
+    KeyWait, a
+    ToolTip
+    ListLines, On
+    Gui, Destroy
+    WinWaitClose
+    ft_cors:=ft_getc(ft_px,ft_py,ft_ww,ft_hh)
+    Hotkey, $*a, ft_Akey_Off, Off
+    Goto, ft_ShowCaptureWindow
+    ft_Akey_Off:
+  return
+
+  ft_ShowCaptureWindow:
+    ft_cors.Event:="", ft_cors.Result:=""
+    ;--------------------------------
+    Gui, ft_Capture:Default
+    k:=ft_nW*ft_nH+1
+    Loop, % ft_nW
+      GuiControl,, % ft_C_[k++], 0
+    Loop, 6
+      GuiControl,, Edit%A_Index%
+    GuiControl,, ft_Modify, % ft_Modify:=0
+    GuiControl,, ft_GrayDiff, 50
+    GuiControl, Focus, ft_Threshold
+    Gosub, ft_Reset
+    Gui, Show, Center
+    DetectHiddenWindows, Off
+    Gui, +LastFound
+    WinWaitClose, % "ahk_id " WinExist()
+    ;--------------------------------
+    if InStr(ft_cors.Event,"OK")
+    {
+      if !A_IsCompiled
+      {
+        FileRead, s, %A_LineFile%
+        s:=SubStr(s, s~="i)\n[;=]+ Copy The")
+      } else s:=""
+      GuiControl, ft_Main:, ft_scr, % ft_cors.Result "`n" s
+      ft_cors.Result:=s:=""
+      return
+    }
+    if InStr(ft_cors.Event,"Add")
+      ft_add(ft_cors.Result, 0), ft_cors.Result:=""
+  return
+
+  ft_WM_LBUTTONDOWN()
+  {
+    global
+    ListLines, Off
+    Critical
+    MouseGetPos,,,, j
+    IfNotInString, j, progress
+      return
+    Gui, ft_Capture:Default
+    MouseGetPos,,,, j, 2
+    For k,v in ft_C_
+      if (v=j)
+      {
+        if (k>ft_nW*ft_nH)
+        {
+          GuiControlGet, i,, %v%
+          GuiControl,, %v%, % i ? 0:100
+        }
+        else if (ft_Modify and ft_bg!="")
+        {
+          c:=ft_ascii[k], ft_ascii[k]:=c="0" ? "_" : c="_" ? "0" : c
+          c:=c="0" ? "White" : c="_" ? "Black" : ft_WindowColor
+          Gosub, ft_SetColor
+        }
+        else
+        {
+          c:=ft_cors[k], ft_cors.SelPos:=k
+          r:=(c>>16)&0xFF, g:=(c>>8)&0xFF, b:=c&0xFF
+          GuiControl,, ft_SelGray, % (r*38+g*75+b*15)>>7
+          GuiControl,, ft_SelColor, %c%
+          GuiControl,, ft_SelR, %r%
+          GuiControl,, ft_SelG, %g%
+          GuiControl,, ft_SelB, %b%
+        }
+        return
+      }
+  }
+
+  ft_getc(px, py, ww, hh)
+  {
+    xywh2xywh(px-ww,py-hh,2*ww+1,2*hh+1,x,y,w,h)
+    if (w<1 or h<1)
+      return, 0
+    bch:=A_BatchLines
+    SetBatchLines, -1
+    ;--------------------------------------
+    GetBitsFromScreen(x,y,w,h,Scan0,Stride,1)
+    ;--------------------------------------
+    cors:=[], k:=0, nW:=2*ww+1, nH:=2*hh+1
+    lls:=A_ListLines=0 ? "Off" : "On"
+    ListLines, Off
+    fmt:=A_FormatInteger
+    SetFormat, IntegerFast, H
+    Loop, %nH% {
+      j:=py-hh+A_Index-1
+      Loop, %nW% {
+        i:=px-ww+A_Index-1, k++
+        if (i>=x and i<=x+w-1 and j>=y and j<=y+h-1)
+          c:=NumGet(Scan0+0,(j-y)*Stride+(i-x)*4,"uint")
+            , cors[k]:="0x" . SubStr(0x1000000|c,-5)
+        else
+          cors[k]:="0xFFFFFF"
+      }
+    }
+    SetFormat, IntegerFast, %fmt%
+    ListLines, %lls%
+    cors.LeftCut:=Abs(px-ww-x)
+    cors.RightCut:=Abs(px+ww-(x+w-1))
+    cors.UpCut:=Abs(py-hh-y)
+    cors.DownCut:=Abs(py+hh-(y+h-1))
+    SetBatchLines, %bch%
+    return, cors
+  }
+
+  ft_Test:
+    GuiControlGet, s, ft_Main:, ft_scr
+    s:="`n#NoEnv`nMenu, Tray, Click, 1`n"
+      . "Gui, _ok_:Show, Hide, _ok_`n"
+      . s "`nExitApp`n#SingleInstance off`n"
+    if (!A_IsCompiled) and InStr(s,"MCode(")
+    {
+      ft_Exec(s)
+      DetectHiddenWindows, On
+      WinWait, _ok_ ahk_class AutoHotkeyGUI,, 3
+      if !ErrorLevel
+        WinWaitClose, _ok_ ahk_class AutoHotkeyGUI
+    }
+    else
+    {
+      CoordMode, Mouse
+      t:=A_TickCount, RegExMatch(s,"\[\d+,\s*\d+\]",r)
+      RegExMatch(s,"=""\K[^$\n]+\$\d+\.[\w+/]+",v)
+      k:=FindText(0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, v)
+      X:=k.1.1, Y:=k.1.2, W:=k.1.3, H:=k.1.4, cX:=X + W//2, cY:=Y + H//2
+      MsgBox, 4096,, % "Time:`t" (A_TickCount-t) " ms`n`n"
+        . "Pos:`t" r "  " X ", " Y ", " W ", " H "`n`n"
+        . "Result:`t" (k ? "Found " k.MaxIndex() :"Failed !") , 3
+      for i,v in k
+        if i<=4
+          MouseTip(v.1+v.3//2, v.2+v.4//2)
+      k:=""
+    }
+  return
+
+  ft_Exec(s)
+  {
+    Ahk:=A_IsCompiled ? A_ScriptDir "\AutoHotkey.exe":A_AhkPath
+    s:=RegExReplace(s, "\R", "`r`n")
+    Try {
+      shell:=ComObjCreate("WScript.Shell")
+      oExec:=shell.Exec(Ahk " /f /ErrorStdOut *")
+      oExec.StdIn.Write(s)
+      oExec.StdIn.Close()
+    }
+    catch {
+      f:=A_Temp "\~test1.tmp", s:="`r`n FileDelete, " f "`r`n" s
+      FileDelete, %f%
+      FileAppend, %s%, %f%
+      Run, %Ahk% /f "%f%",, UseErrorLevel
+    }
+  }
+
+  ft_MakeCaptureWindow:
+    ft_WindowColor:="0xCCDDEE"
+    Gui, ft_Capture:Default
+    Gui, +LastFound +AlwaysOnTop +ToolWindow
+    Gui, Margin, 15, 15
+    Gui, Color, %ft_WindowColor%
+    Gui, Font, s14, Verdana
+    Gui, -Theme
+    w:=800//ft_nW, h:=(A_ScreenHeight-300)//ft_nH, w:=h<w ? h-1:w-1
+    Loop, % ft_nW*(ft_nH) {
+      i:=A_Index, j:=i=1 ? "" : Mod(i,ft_nW)=1 ? "xm y+1" : "x+1"
+      j.=i>ft_nW*ft_nH ? " cRed BackgroundFFFFAA":""
+      Gui, Add, Progress, w%w% h%w% %j%
+    }
+    WinGet, s, ControlListHwnd
+    ft_C_:=StrSplit(s,"`n"), s:=""
+    Loop, % ft_nW*(ft_nH+1)
+      Control, ExStyle, -0x20000,, % "ahk_id " ft_C_[A_Index]
+    Gui, +Theme
+    Gui, Add, Button, xm+95  w45 gft_Run, U
+    Gui, Add, Button, x+0    wp gft_Run, U3
+    ;--------------
+    Gui, Add, Text,   x+42 yp+3 Section, Gray
+    Gui, Add, Edit,   x+3 yp-3 w60 vft_SelGray ReadOnly
+    Gui, Add, Text,   x+15 ys, Color
+    Gui, Add, Edit,   x+3 yp-3 w120 vft_SelColor ReadOnly
+    Gui, Add, Text,   x+15 ys, R
+    Gui, Add, Edit,   x+3 yp-3 w60 vft_SelR ReadOnly
+    Gui, Add, Text,   x+5 ys, G
+    Gui, Add, Edit,   x+3 yp-3 w60 vft_SelG ReadOnly
+    Gui, Add, Text,   x+5 ys, B
+    Gui, Add, Edit,   x+3 yp-3 w60 vft_SelB ReadOnly
+    ;--------------
+    Gui, Add, Button, xm     w45 gft_Run, L
+    Gui, Add, Button, x+0    wp gft_Run, L3
+    Gui, Add, Button, x+15   w70 gft_Run, Auto
+    Gui, Add, Button, x+15   w45 gft_Run, R
+    Gui, Add, Button, x+0    wp gft_Run Section, R3
+    Gui, Add, Button, xm+95  w45 gft_Run, D
+    Gui, Add, Button, x+0    wp gft_Run, D3
+    ;------------------
+    Gui, Add, Tab3,   ys-8 -Wrap, Gray|GrayDiff|Color||ColorPos|ColorDiff
+    Gui, Tab, 1
+    Gui, Add, Text,   x+15 y+15, Gray Threshold
+    Gui, Add, Edit,   x+15 w100 vft_Threshold
+    Gui, Add, Button, x+15 yp-3 gft_Run Default, Gray2Two
+    Gui, Tab, 2
+    Gui, Add, Text,   x+15 y+15, Gray Difference
+    Gui, Add, Edit,   x+15 w100 vft_GrayDiff, 50
+    Gui, Add, Button, x+15 yp-3 gft_Run, GrayDiff2Two
+    Gui, Tab, 3
+    Gui, Add, Text,   x+15 y+15, Similarity 0
+    Gui, Add, Slider
+      , x+0 w100 vft_Similar gft_Run Page1 NoTicks ToolTip Center, 98
+    Gui, Add, Text,   x+0, 100
+    Gui, Add, Button, x+15 yp-3 gft_Run, Color2Two
+    Gui, Tab, 4
+    Gui, Add, Text,   x+15 y+15, Similarity 0
+    Gui, Add, Slider
+      , x+0 w100 vft_Similar2 gft_Run Page1 NoTicks ToolTip Center, 98
+    Gui, Add, Text,   x+0, 100
+    Gui, Add, Button, x+15 yp-3 gft_Run, ColorPos2Two
+    Gui, Tab, 5
+    Gui, Add, Text,   x+15 y+15, R
+    Gui, Add, Edit,   x+3 w70 vft_DiffR Limit3
+    Gui, Add, UpDown, vft_dR Range0-255
+    Gui, Add, Text,   x+10, G
+    Gui, Add, Edit,   x+3 w70 vft_DiffG Limit3
+    Gui, Add, UpDown, vft_dG Range0-255
+    Gui, Add, Text,   x+10, B
+    Gui, Add, Edit,   x+3 w70 vft_DiffB Limit3
+    Gui, Add, UpDown, vft_dB Range0-255
+    Gui, Add, Button, x+12 yp-3 gft_Run, ColorDiff2Two
+    Gui, Tab
+    ;------------------
+    Gui, Add, Checkbox, xm   gft_Run vft_Modify, Modify
+    Gui, Add, Button, x+5    yp-3 gft_Run, Reset
+    Gui, Add, Text,   x+15   yp+3, Comment
+    Gui, Add, Edit,   x+5    w132 vft_Comment
+    ; Gui, Add, Button, x+10   yp-3 gft_Run, SplitAdd
+    ; Gui, Add, Button, x+10   gft_Run, AllAdd
+    Gui, Add, Button, x+10   yp-3 w80 gft_Run, OK
+    Gui, Add, Button, x+10   gft_Run, Close
+    Gui, Show, Autosize Hide, Capture Image To Text
+  return
+
+  ft_Run:
+    Critical
+    k:=A_GuiControl
+    k:= k="L" ? "LeftCut"  : k="L3" ? "LeftCut3"
+      : k="R" ? "RightCut" : k="R3" ? "RightCut3"
+      : k="U" ? "UpCut"    : k="U3" ? "UpCut3"
+      : k="D" ? "DownCut"  : k="D3" ? "DownCut3" : k
+    Gui, +OwnDialogs
+    k:=InStr(k,"ft_") ? k : "ft_" k
+    if IsLabel(k)
+      Gosub, %k%
+  return
+
+  ft_Close:
+    Gui, Cancel
+    Exit
+  return
+
+  ft_Modify:
+  GuiControlGet, ft_Modify
+  return
+
+  ft_Similar:
+  ft_Similar2:
+    ListLines, Off
+    GuiControl,, % InStr(A_ThisLabel,"2")
+      ? "ft_Similar":"ft_Similar2", % %A_ThisLabel%
+  return
+
+  ft_SetColor:
+    c:=c="White" ? 0xFFFFFF : c="Black" ? 0x000000
+      : ((c&0xFF)<<16)|(c&0xFF00)|((c&0xFF0000)>>16)
+    SendMessage, 0x2001, 0, c,, % "ahk_id " . ft_C_[k]
+  return
+
+  ft_Reset:
+    if !IsObject(ft_ascii)
+      ft_ascii:=[], ft_gs:=[]
+    ft_left:=ft_right:=ft_up:=ft_down:=k:=0, ft_bg:=""
+    Loop, % ft_nW*ft_nH {
+      ft_ascii[++k]:=1, c:=ft_cors[k]
+      ft_gs[k]:=(((c>>16)&0xFF)*38+((c>>8)&0xFF)*75+(c&0xFF)*15)>>7
+      Gosub, ft_SetColor
+    }
+    Loop, % ft_cors.LeftCut
+      Gosub, ft_LeftCut
+    Loop, % ft_cors.RightCut
+      Gosub, ft_RightCut
+    Loop, % ft_cors.UpCut
+      Gosub, ft_UpCut
+    Loop, % ft_cors.DownCut
+      Gosub, ft_DownCut
+  return
+
+  ft_Gray2Two:
+    GuiControl, Focus, ft_Threshold
+    GuiControlGet, ft_Threshold
+    if (ft_Threshold="")
+    {
+      ft_pp:=[]
+      Loop, 256
+        ft_pp[A_Index-1]:=0
+      Loop, % ft_nW*ft_nH
+        if (ft_ascii[A_Index]!="")
+          ft_pp[ft_gs[A_Index]]++
+      ft_Threshold:=ft_GetThreshold(ft_pp)
+      GuiControl,, ft_Threshold, %ft_Threshold%
+    }
+    ft_Threshold:=Round(ft_Threshold)
+    ft_color:="*" ft_Threshold, k:=i:=0
+    Loop, % ft_nW*ft_nH {
+      if (ft_ascii[++k]="")
+        Continue
+      if (ft_gs[k]<=ft_Threshold)
+        ft_ascii[k]:="0", c:="Black", i++
+      else
+        ft_ascii[k]:="_", c:="White", i--
+      Gosub, ft_SetColor
+    }
+    ft_bg:=i>0 ? "0":"_"
+  return
+
+  ft_GetThreshold(pp)
+  {
+    IP:=IS:=0
+    Loop, 256
+      k:=A_Index-1, IP+=k*pp[k], IS+=pp[k]
+    NewThreshold:=Floor(IP/IS)
+    Loop, 20 {
+      Threshold:=NewThreshold
+      IP1:=IS1:=0
+      Loop, % Threshold+1
+        k:=A_Index-1, IP1+=k*pp[k], IS1+=pp[k]
+      IP2:=IP-IP1, IS2:=IS-IS1
+      if (IS1!=0 and IS2!=0)
+        NewThreshold:=Floor((IP1/IS1+IP2/IS2)/2)
+      if (NewThreshold=Threshold)
+        Break
+    }
+    return, NewThreshold
+  }
+
+  ft_GrayDiff2Two:
+    GuiControlGet, ft_GrayDiff
+    if (ft_GrayDiff="")
+    {
+      MsgBox, 4096, Tip
+        , `n  Please Set Gray Difference First !  `n, 1
+      Return
+    }
+    if (ft_left=ft_cors.LeftCut)
+      Gosub, ft_LeftCut
+    if (ft_right=ft_cors.RightCut)
+      Gosub, ft_RightCut
+    if (ft_up=ft_cors.UpCut)
+      Gosub, ft_UpCut
+    if (ft_down=ft_cors.DownCut)
+      Gosub, ft_DownCut
+    ft_GrayDiff:=Round(ft_GrayDiff)
+    ft_color:="**" ft_GrayDiff, k:=i:=0, n:=ft_nW
+    Loop, % ft_nW*ft_nH {
+      if (ft_ascii[++k]="")
+        Continue
+      j:=ft_gs[k]+ft_GrayDiff
+      if ( ft_gs[k-1]>j   or ft_gs[k+1]>j
+        or ft_gs[k-n]>j   or ft_gs[k+n]>j
+        or ft_gs[k-n-1]>j or ft_gs[k-n+1]>j
+        or ft_gs[k+n-1]>j or ft_gs[k+n+1]>j )
+          ft_ascii[k]:="0", c:="Black", i++
+      else
+        ft_ascii[k]:="_", c:="White", i--
+      Gosub, ft_SetColor
+    }
+    ft_bg:=i>0 ? "0":"_"
+  return
+
+  ft_Color2Two:
+  ft_ColorPos2Two:
+    GuiControlGet, c,, ft_SelColor
+    if (c="")
+    {
+      MsgBox, 4096, Tip
+        , `n  Please Select a Color First !  `n, 1
+      return
+    }
+    ft_UsePos:=InStr(A_ThisLabel,"ColorPos2Two") ? 1:0
+    GuiControlGet, n,, ft_Similar
+    n:=Round(n/100,2), ft_color:=c "@" n
+    n:=Floor(9*255*255*(1-n)*(1-n)), k:=i:=0
+    ft_rr:=(c>>16)&0xFF, ft_gg:=(c>>8)&0xFF, ft_bb:=c&0xFF
+    Loop, % ft_nW*ft_nH {
+      if (ft_ascii[++k]="")
+        Continue
+      c:=ft_cors[k], r:=((c>>16)&0xFF)-ft_rr
+        , g:=((c>>8)&0xFF)-ft_gg, b:=(c&0xFF)-ft_bb
+      if (3*r*r+4*g*g+2*b*b<=n)
+        ft_ascii[k]:="0", c:="Black", i++
+      else
+        ft_ascii[k]:="_", c:="White", i--
+      Gosub, ft_SetColor
+    }
+    ft_bg:=i>0 ? "0":"_"
+  return
+
+  ft_ColorDiff2Two:
+    GuiControlGet, c,, ft_SelColor
+    if (c="")
+    {
+      MsgBox, 4096, Tip
+        , `n  Please Select a Color First !  `n, 1
+      return
+    }
+    GuiControlGet, ft_dR
+    GuiControlGet, ft_dG
+    GuiControlGet, ft_dB
+    ft_rr:=(c>>16)&0xFF, ft_gg:=(c>>8)&0xFF, ft_bb:=c&0xFF
+    n:=Format("{:06X}",(ft_dR<<16)|(ft_dG<<8)|ft_dB)
+    ft_color:=StrReplace(c "-" n,"0x"), k:=i:=0
+    Loop, % ft_nW*ft_nH {
+      if (ft_ascii[++k]="")
+        Continue
+      c:=ft_cors[k], r:=(c>>16)&0xFF, g:=(c>>8)&0xFF, b:=c&0xFF
+      if ( Abs(r-ft_rr)<=ft_dR
+        and Abs(g-ft_gg)<=ft_dG
+        and Abs(b-ft_bb)<=ft_dB )
+          ft_ascii[k]:="0", c:="Black", i++
+      else
+        ft_ascii[k]:="_", c:="White", i--
+      Gosub, ft_SetColor
+    }
+    ft_bg:=i>0 ? "0":"_"
+  return
+
+  ft_gui_del:
+    ft_ascii[k]:="", c:=ft_WindowColor
+    Gosub, ft_SetColor
+  return
+
+  ft_LeftCut3:
+    Loop, 3
+      Gosub, ft_LeftCut
+  return
+
+  ft_LeftCut:
+    if (ft_left+ft_right>=ft_nW)
+      return
+    ft_left++, k:=ft_left
+    Loop, %ft_nH% {
+      Gosub, ft_gui_del
+      k+=ft_nW
+    }
+  return
+
+  ft_RightCut3:
+    Loop, 3
+      Gosub, ft_RightCut
+  return
+
+  ft_RightCut:
+    if (ft_left+ft_right>=ft_nW)
+      return
+    ft_right++, k:=ft_nW+1-ft_right
+    Loop, %ft_nH% {
+      Gosub, ft_gui_del
+      k+=ft_nW
+    }
+  return
+
+  ft_UpCut3:
+    Loop, 3
+      Gosub, ft_UpCut
+  return
+
+  ft_UpCut:
+    if (ft_up+ft_down>=ft_nH)
+      return
+    ft_up++, k:=(ft_up-1)*ft_nW
+    Loop, %ft_nW% {
+      k++
+      Gosub, ft_gui_del
+    }
+  return
+
+  ft_DownCut3:
+    Loop, 3
+      Gosub, ft_DownCut
+  return
+
+  ft_DownCut:
+    if (ft_up+ft_down>=ft_nH)
+      return
+    ft_down++, k:=(ft_nH-ft_down)*ft_nW
+    Loop, %ft_nW% {
+      k++
+      Gosub, ft_gui_del
+    }
+  return
+
+  ft_getwz:
+    ft_wz:=""
+    if (ft_bg="")
+      return
+    k:=0
+    Loop, %ft_nH% {
+      v:=""
+      Loop, %ft_nW%
+        v.=ft_ascii[++k]
+      ft_wz.=v="" ? "" : v "`n"
+    }
+  return
+
+  ft_Auto:
+    Gosub, ft_getwz
+    if (ft_wz="")
+    {
+      MsgBox, 4096, Tip
+        , `nPlease Click Color2Two or Gray2Two First !, 1
+      return
+    }
+    While InStr(ft_wz, ft_bg) {
+      if (ft_wz~="^" ft_bg "+\n")
+      {
+        ft_wz:=RegExReplace(ft_wz,"^" ft_bg "+\n")
+        Gosub, ft_UpCut
+      }
+      else if !(ft_wz~="m`n)[^\n" ft_bg "]$")
+      {
+        ft_wz:=RegExReplace(ft_wz,"m`n)" ft_bg "$")
+        Gosub, ft_RightCut
+      }
+      else if (ft_wz~="\n" ft_bg "+\n$")
+      {
+        ft_wz:=RegExReplace(ft_wz,"\n\K" ft_bg "+\n$")
+        Gosub, ft_DownCut
+      }
+      else if !(ft_wz~="m`n)^[^\n" ft_bg "]")
+      {
+        ft_wz:=RegExReplace(ft_wz,"m`n)^" ft_bg)
+        Gosub, ft_LeftCut
+      }
+      else Break
+    }
+    ft_wz:=""
+  return
+
+  ft_OK:
+  ft_AllAdd:
+  ft_SplitAdd:
+    Gosub, ft_getwz
+    if ft_wz=
+    {
+      MsgBox, 4096, Tip
+        , `nPlease Click Color2Two or Gray2Two First !, 1
+      return
+    }
+    if InStr(ft_color,"@") and (ft_UsePos)
+    {
+      StringSplit, r, ft_color, @
+      k:=i:=j:=0
+      Loop, % ft_nW*ft_nH {
+        if (ft_ascii[++k]="")
+          Continue
+        i++
+        if (k=ft_cors.SelPos)
+        {
+          j:=i
+          Break
+        }
+      }
+      if (j=0)
+      {
+        MsgBox, 4096, Tip
+          , Please select the core color again !, 3
+        return
+      }
+      ft_color:="#" . j . "@" . r2
+    }
+    GuiControlGet, ft_Comment
+    ft_cors.Event:=A_ThisLabel
+    if InStr(A_ThisLabel, "SplitAdd")
+    {
+      if InStr(ft_color,"#")
+      {
+        MsgBox, 4096, Tip
+          , % "Can't be used in ColorPos mode, "
+          . "because it can cause position errors", 3
+        return
+      }
+      SetFormat, IntegerFast, d
+      ft_bg:=StrLen(StrReplace(ft_wz,"_"))
+        > StrLen(StrReplace(ft_wz,"0")) ? "0":"_"
+      s:="", k:=ft_nW*ft_nH+1+ft_left
+        , i:=0, w:=ft_nW-ft_left-ft_right
+      Loop, % w {
+        i++
+        GuiControlGet, j,, % ft_C_[k++]
+        if (j=0 and A_Index<w)
+          Continue
+        v:=RegExReplace(ft_wz,"m`n)^(.{" i "}).*","$1")
+        ft_wz:=RegExReplace(ft_wz,"m`n)^.{" i "}"), i:=0
+        While InStr(v, ft_bg) {
+          if (v~="^" ft_bg "+\n")
+            v:=RegExReplace(v,"^" ft_bg "+\n")
+          else if !(v~="m`n)[^\n" ft_bg "]$")
+            v:=RegExReplace(v,"m`n)" ft_bg "$")
+          else if (v~="\n" ft_bg "+\n$")
+            v:=RegExReplace(v,"\n\K" ft_bg "+\n$")
+          else if !(v~="m`n)^[^\n" ft_bg "]")
+            v:=RegExReplace(v,"m`n)^" ft_bg)
+          else Break
+        }
+        if v!=
+          s.=ft_towz(ft_color, v, SubStr(ft_Comment,1,1))
+        ft_Comment:=SubStr(ft_Comment, 2)
+      }
+      ft_cors.Result:=s
+      Gui, Hide
+      return
+    }
+    s:=ft_towz(ft_color, ft_wz, ft_Comment)
+    if InStr(A_ThisLabel, "AllAdd")
+    {
+      ft_cors.Result:=s
+      Gui, Hide
+      return
+    }
+    x:=ft_px-ft_ww+ft_left+(ft_nW-ft_left-ft_right)//2
+    y:=ft_py-ft_hh+ft_up+(ft_nH-ft_up-ft_down)//2
+    s:=StrReplace(s, "Text.=", "Text:=")
+    Global ExportString := s
+    s=
+    (
+    ;Sample Code
+    t1:=A_TickCount
+
+    %s%
+
+    if (ok:=FindText(0, 0, A_ScreenWidth, A_ScreenHeight, 0, 0, Text))
+    {
+      CoordMode, Mouse
+      X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, Comment:=ok.1.5, X+=W//2, Y+=H//2
+      ; Click, `%X`%, `%Y`%
+    }
+    MsgBox, 4096, `% ok.MaxIndex(), `% "Time:``t" (A_TickCount-t1) " ms``n``n"
+      . "Pos:``t[%x%, %y%]  " X ", " Y "``n``n"
+      . "Result:``t" (ok ? "Success ! " Comment : "Failed !")
+
+    for i,v in ok
+      if i<=2
+        MouseTip(v.1+v.3//2, v.2+v.4//2)
+
+    )
+    ft_cors.Result:=s
+    Gui, Hide
+  return
+
+  ft_towz(color,wz,comment="")
+  {
+    SetFormat, IntegerFast, d
+    wz:=StrReplace(StrReplace(wz,"0","1"),"_","0")
+    wz:=(InStr(wz,"`n")-1) "." bit2base64(wz)
+    return, "Text.=""|<" comment ">" color "$" wz """"
+  }
+
+  ft_add(s, rn=1)
+  {
+    global ft_hscr
+    if (rn=1)
+      s:="`n" s "`n"
+    ; s:=RegExReplace(s,"\N","")
+    ; s:=RegExReplace(s,"\R","")
+    s:=RegExReplace(s,"\R","`r`n")
+    ControlGet, i, CurrentCol,,, ahk_id %ft_hscr%
+    if i>1
+      ControlSend,, {Home}{Down}, ahk_id %ft_hscr%
+    Control, EditPaste, %s%,, ahk_id %ft_hscr%
+  }
+
+  ft_End:
+  Trim("")
+
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 ;{[Function] Decimal2Fraction
@@ -2546,45 +3412,54 @@
  *     Display tooltip which can be disabled later at once
  *     Additional messages are given new lines
  * Version:
- *     v1.0.0
+ *     v1.0.1
  */
 
     ; Debug messages within script
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Ding(Timeout:=500,Message:="Ding", Message2:="", Message3:="", Message4:="", Message5:="", Message6:="", Message7:="" ){
+    Ding(Timeout:=500, MultiTooltip:=0 , Message*)
+    {
         If (!DebugMessages)
             Return
-        Else If (DebugMessages){
-            debugStr:=Message
-            If (Message2!=""){
-                debugStr.="`n"
-                debugStr.=Message2
+        Else
+        {
+            debugStr := ""
+            If Message.Count()
+            {
+                For mkey, mval in Message
+                {
+                    If mval=
+                        Continue
+                    If A_Index = 1
+                    {
+                        If MultiTooltip
+                            ToolTip, %mval%, 100, % 50 + MultiTooltip * 23, %MultiTooltip% 
+                        Else
+                            debugStr .= Message.A_Index
+                    }
+                    Else if A_Index <= 20
+                    {
+                        If MultiTooltip
+                            ToolTip, %mval%, 100, % 50 + A_Index * 23, %A_Index% 
+                        Else
+                            debugStr .= "`n" . Message.A_Index
+                    }
                 }
-            If (Message3!=""){
-                debugStr.="`n"
-                debugStr.=Message3
-                }
-            If (Message4!=""){
-                debugStr.="`n"
-                debugStr.=Message4
-                }
-            If (Message5!=""){
-                debugStr.="`n"
-                debugStr.=Message5
-                }
-            If (Message6!=""){
-                debugStr.="`n"
-                debugStr.=Message6
-                }
-            If (Message7!=""){
-                debugStr.="`n"
-                debugStr.=Message7
-                }
-            Tooltip, %debugStr%
+                If !MultiTooltip
+                    Tooltip, %debugStr%
             }
-        SetTimer, RemoveTooltip, %Timeout%
-        Return
+            Else
+            {
+                If MultiTooltip
+                    ToolTip, Ding, 100, % 50 + MultiTooltip * 23, %MultiTooltip% 
+                Else
+                    Tooltip, Ding
+            }
         }
+        If Timeout
+            SetTimer, RemoveTooltip, %Timeout%
+        Return
+    }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -2602,7 +3477,21 @@
             Val := Max
         Return
         }
-
+    ; Clamp Value function
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ClampGameScreen(ByRef ValX, ByRef ValY) 
+    {
+        Global GameWindow
+        If (ValY < GameWindow.BBarY)
+            ValY := GameWindow.BBarY
+        If (ValX < GameWindow.X)
+            ValX := GameWindow.X
+        If (ValY > GameWindow.Y + GameWindow.H)
+            ValT := GameWindow.Y + GameWindow.H
+        If (ValX > GameWindow.X + GameWindow.W)
+            ValX := GameWindow.X + GameWindow.W
+        Return
+    }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 /** * hex color tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
@@ -2653,85 +3542,85 @@
 	Rescale(){
 			IfWinExist, ahk_group POEGameGroup 
 			{
-				WinGetPos, X, Y, GameW, GameH
+				WinGetPos, GameX, GameY, GameW, GameH
 				If (ResolutionScale="Standard") {
 					; Item Inventory Grid
-					Global InventoryGridX := [ X + Round(GameW/(1920/1274)), X + Round(GameW/(1920/1326)), X + Round(GameW/(1920/1379)), X + Round(GameW/(1920/1432)), X + Round(GameW/(1920/1484)), X + Round(GameW/(1920/1537)), X + Round(GameW/(1920/1590)), X + Round(GameW/(1920/1642)), X + Round(GameW/(1920/1695)), X + Round(GameW/(1920/1748)), X + Round(GameW/(1920/1800)), X + Round(GameW/(1920/1853)) ]
-					Global InventoryGridY := [ Y + Round(GameH/(1080/638)), Y + Round(GameH/(1080/690)), Y + Round(GameH/(1080/743)), Y + Round(GameH/(1080/796)), Y + Round(GameH/(1080/848)) ]  
+					Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
+					Global InventoryGridY := [ GameY + Round(GameH/(1080/638)), GameY + Round(GameH/(1080/690)), GameY + Round(GameH/(1080/743)), GameY + Round(GameH/(1080/796)), GameY + Round(GameH/(1080/848)) ]  
 					;Detonate Mines
-					Global DetonateDelveX:=X + Round(GameW/(1920/1542))
-					Global DetonateX:=X + Round(GameW/(1920/1658))
-					Global DetonateY:=Y + Round(GameH/(1080/901))
+					Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
+					Global DetonateX:=GameX + Round(GameW/(1920/1658))
+					Global DetonateY:=GameY + Round(GameH/(1080/901))
 					;Scrolls in currency tab
-					Global WisdomStockX:=X + Round(GameW/(1920/125))
-					Global PortalStockX:=X + Round(GameW/(1920/175))
-					Global WPStockY:=Y + Round(GameH/(1080/262))
+					Global WisdomStockX:=GameX + Round(GameW/(1920/125))
+					Global PortalStockX:=GameX + Round(GameW/(1920/175))
+					Global WPStockY:=GameY + Round(GameH/(1080/262))
 					;Status Check OnHideout
-					global vX_OnHideout:=X + Round(GameW / (1920 / 1178))
-					global vY_OnHideout:=Y + Round(GameH / (1080 / 930))
-					global vY_OnHideoutMin:=Y + Round(GameH / (1080 / 1053))
+					global vX_OnHideout:=GameX + Round(GameW / (1920 / 1178))
+					global vY_OnHideout:=GameY + Round(GameH / (1080 / 930))
+					global vY_OnHideoutMin:=GameY + Round(GameH / (1080 / 1053))
 					;Status Check OnMenu
-					global vX_OnMenu:=X + Round(GameW / 2)
-					global vY_OnMenu:=Y + Round(GameH / (1080 / 54))
+					global vX_OnMenu:=GameX + Round(GameW / 2)
+					global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
 					;Status Check OnChar
-					global vX_OnChar:=X + Round(GameW / (1920 / 41))
-					global vY_OnChar:=Y + Round(GameH / ( 1080 / 915))
+					global vX_OnChar:=GameX + Round(GameW / (1920 / 41))
+					global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
 					;Status Check OnChat
-					global vX_OnChat:=X + Round(GameW / (1920 / 0))
-					global vY_OnChat:=Y + Round(GameH / ( 1080 / 653))
+					global vX_OnChat:=GameX + Round(GameW / (1920 / 0))
+					global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
 					;Status Check OnInventory
-					global vX_OnInventory:=X + Round(GameW / (1920 / 1583))
-					global vY_OnInventory:=Y + Round(GameH / ( 1080 / 36))
+					global vX_OnInventory:=GameX + Round(GameW / (1920 / 1583))
+					global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
 					;Status Check OnStash
-					global vX_OnStash:=X + Round(GameW / (1920 / 336))
-					global vY_OnStash:=Y + Round(GameH / ( 1080 / 32))
+					global vX_OnStash:=GameX + Round(GameW / (1920 / 336))
+					global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
 					;Status Check OnVendor
-					global vX_OnVendor:=X + Round(GameW / (1920 / 618))
-					global vY_OnVendor:=Y + Round(GameH / ( 1080 / 88))
+					global vX_OnVendor:=GameX + Round(GameW / (1920 / 618))
+					global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
 					;Status Check OnDiv
-					global vX_OnDiv:=X + Round(GameW / (1920 / 618))
-					global vY_OnDiv:=Y + Round(GameH / ( 1080 / 135))
+					global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
+					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
 					;Life %'s
-					global vX_Life:=X + Round(GameW / (1920 / 95))
-					global vY_Life20:=Y + Round(GameH / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(GameH / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(GameH / ( 1080 / 994))
-					global vY_Life50:=Y + Round(GameH / ( 1080 / 974))
-					global vY_Life60:=Y + Round(GameH / ( 1080 / 954))
-					global vY_Life70:=Y + Round(GameH / ( 1080 / 934))
-					global vY_Life80:=Y + Round(GameH / ( 1080 / 914))
-					global vY_Life90:=Y + Round(GameH / ( 1080 / 894))
+					global vX_Life:=GameX + Round(GameW / (1920 / 95))
+					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
+					global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
+					global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
+					global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
+					global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
+					global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
+					global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
+					global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
 					;ES %'s
                     If YesEldritchBattery
-					    global vX_ES:=X + Round(GameW / (1920 / 1740))
+					    global vX_ES:=GameX + Round(GameW / (1920 / 1740))
 					Else
-                        global vX_ES:=X + Round(GameW / (1920 / 180))
-					global vY_ES20:=Y + Round(GameH / ( 1080 / 1034))
-					global vY_ES30:=Y + Round(GameH / ( 1080 / 1014))
-					global vY_ES40:=Y + Round(GameH / ( 1080 / 994))
-					global vY_ES50:=Y + Round(GameH / ( 1080 / 974))
-					global vY_ES60:=Y + Round(GameH / ( 1080 / 954))
-					global vY_ES70:=Y + Round(GameH / ( 1080 / 934))
-					global vY_ES80:=Y + Round(GameH / ( 1080 / 914))
-					global vY_ES90:=Y + Round(GameH / ( 1080 / 894))
+                        global vX_ES:=GameX + Round(GameW / (1920 / 180))
+					global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
+					global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
+					global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
+					global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
+					global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
+					global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
+					global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
+					global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
 					;Mana
-					global vX_Mana:=X + Round(GameW / (1920 / 1825))
-					global vY_Mana10:=Y + Round(GameH / (1080 / 1054))
-					global vY_Mana90:=Y + Round(GameH / (1080 / 876))
+					global vX_Mana:=GameX + Round(GameW / (1920 / 1825))
+					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
+					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
                     Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
 					;GUI overlay
-					global GuiX:=X + Round(GameW / (1920 / -10))
-					global GuiY:=Y + Round(GameH / (1080 / 1027))
+					global GuiX:=GameX + Round(GameW / (1920 / -10))
+					global GuiY:=GameY + Round(GameH / (1080 / 1027))
 					;Divination Y locations
-					Global vY_DivTrade:=Y + Round(GameH / (1080 / 736))
-					Global vY_DivItem:=Y + Round(GameH / (1080 / 605))
+					Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
+					Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
 					;Stash tabs menu button
-					global vX_StashTabMenu := X + Round(GameW / (1920 / 640))
-					global vY_StashTabMenu := Y + Round(GameH / ( 1080 / 146))
+					global vX_StashTabMenu := GameX + Round(GameW / (1920 / 640))
+					global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
 					;Stash tabs menu list
-					global vX_StashTabList := X + Round(GameW / (1920 / 706))
-					global vY_StashTabList := Y + Round(GameH / ( 1080 / 120))
+					global vX_StashTabList := GameX + Round(GameW / (1920 / 706))
+					global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
 					;calculate the height of each tab
 					global vY_StashTabSize := Round(GameH / ( 1080 / 22))
 				}
@@ -2740,79 +3629,79 @@
 					Global InventoryGridX := [ Round(GameW/(1440/794)) , Round(GameW/(1440/846)) , Round(GameW/(1440/899)) , Round(GameW/(1440/952)) , Round(GameW/(1440/1004)) , Round(GameW/(1440/1057)) , Round(GameW/(1440/1110)) , Round(GameW/(1440/1162)) , Round(GameW/(1440/1215)) , Round(GameW/(1440/1268)) , Round(GameW/(1440/1320)) , Round(GameW/(1440/1373)) ]
 					Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
 					;Detonate Mines
-					Global DetonateDelveX:=X + Round(GameW/(1440/1062))
-					Global DetonateX:=X + Round(GameW/(1440/1178))
-					Global DetonateY:=Y + Round(GameH/(1080/901))
+					Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
+					Global DetonateX:=GameX + Round(GameW/(1440/1178))
+					Global DetonateY:=GameY + Round(GameH/(1080/901))
 					;Scrolls in currency tab
-					Global WisdomStockX:=X + Round(GameW/(1440/125))
-					Global PortalStockX:=X + Round(GameW/(1440/175))
-					Global WPStockY:=Y + Round(GameH/(1080/262))
+					Global WisdomStockX:=GameX + Round(GameW/(1440/125))
+					Global PortalStockX:=GameX + Round(GameW/(1440/175))
+					Global WPStockY:=GameY + Round(GameH/(1080/262))
 					;Status Check OnHideout
-					global vX_OnHideout:=X + Round(GameW / (1440 / 698))
-					global vY_OnHideout:=Y + Round(GameH / (1080 / 930))
-					global vY_OnHideoutMin:=Y + Round(GameH / (1080 / 1053))
+					global vX_OnHideout:=GameX + Round(GameW / (1440 / 698))
+					global vY_OnHideout:=GameY + Round(GameH / (1080 / 930))
+					global vY_OnHideoutMin:=GameY + Round(GameH / (1080 / 1053))
 					;Status Check OnMenu
-					global vX_OnMenu:=X + Round(GameW / 2)
-					global vY_OnMenu:=Y + Round(GameH / (1080 / 54))
+					global vX_OnMenu:=GameX + Round(GameW / 2)
+					global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
 					;Status Check OnChar
-					global vX_OnChar:=X + Round(GameW / (1440 / 41))
-					global vY_OnChar:=Y + Round(GameH / ( 1080 / 915))
+					global vX_OnChar:=GameX + Round(GameW / (1440 / 41))
+					global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
 					;Status Check OnChat
-					global vX_OnChat:=X + Round(GameW / (1440 / 0))
-					global vY_OnChat:=Y + Round(GameH / ( 1080 / 653))
+					global vX_OnChat:=GameX + Round(GameW / (1440 / 0))
+					global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
 					;Status Check OnInventory
-					global vX_OnInventory:=X + Round(GameW / (1440 / 1103))
-					global vY_OnInventory:=Y + Round(GameH / ( 1080 / 36))
+					global vX_OnInventory:=GameX + Round(GameW / (1440 / 1103))
+					global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
 					;Status Check OnStash
-					global vX_OnStash:=X + Round(GameW / (1440 / 336))
-					global vY_OnStash:=Y + Round(GameH / ( 1080 / 32))
+					global vX_OnStash:=GameX + Round(GameW / (1440 / 336))
+					global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
 					;Status Check OnVendor
-					global vX_OnVendor:=X + Round(GameW / (1440 / 378))
-					global vY_OnVendor:=Y + Round(GameH / ( 1080 / 88))
+					global vX_OnVendor:=GameX + Round(GameW / (1440 / 378))
+					global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
 					;Status Check OnDiv
-					global vX_OnDiv:=X + Round(GameW / (1440 / 378))
-					global vY_OnDiv:=Y + Round(GameH / ( 1080 / 135))
+					global vX_OnDiv:=GameX + Round(GameW / (1440 / 378))
+					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
 					;Life %'s
-					global vX_Life:=X + Round(GameW / (1440 / 95))
-					global vY_Life20:=Y + Round(GameH / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(GameH / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(GameH / ( 1080 / 994))
-					global vY_Life50:=Y + Round(GameH / ( 1080 / 974))
-					global vY_Life60:=Y + Round(GameH / ( 1080 / 954))
-					global vY_Life70:=Y + Round(GameH / ( 1080 / 934))
-					global vY_Life80:=Y + Round(GameH / ( 1080 / 914))
-					global vY_Life90:=Y + Round(GameH / ( 1080 / 894))
+					global vX_Life:=GameX + Round(GameW / (1440 / 95))
+					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
+					global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
+					global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
+					global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
+					global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
+					global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
+					global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
+					global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
 					;ES %'s
                     If YesEldritchBattery
-					    global vX_ES:=X + Round(GameW / (1440 / 1260))
+					    global vX_ES:=GameX + Round(GameW / (1440 / 1260))
 					Else
-                        global vX_ES:=X + Round(GameW / (1440 / 180))
-					global vY_ES20:=Y + Round(GameH / ( 1080 / 1034))
-					global vY_ES30:=Y + Round(GameH / ( 1080 / 1014))
-					global vY_ES40:=Y + Round(GameH / ( 1080 / 994))
-					global vY_ES50:=Y + Round(GameH / ( 1080 / 974))
-					global vY_ES60:=Y + Round(GameH / ( 1080 / 954))
-					global vY_ES70:=Y + Round(GameH / ( 1080 / 934))
-					global vY_ES80:=Y + Round(GameH / ( 1080 / 914))
-					global vY_ES90:=Y + Round(GameH / ( 1080 / 894))
+                        global vX_ES:=GameX + Round(GameW / (1440 / 180))
+					global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
+					global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
+					global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
+					global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
+					global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
+					global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
+					global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
+					global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
 					;Mana
-					global vX_Mana:=X + Round(GameW / (1440 / 1345))
-					global vY_Mana10:=Y + Round(GameH / (1080 / 1054))
-					global vY_Mana90:=Y + Round(GameH / (1080 / 876))
+					global vX_Mana:=GameX + Round(GameW / (1440 / 1345))
+					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
+					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
                     Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
 					;GUI overlay
-					global GuiX:=X + Round(GameW / (1440 / -10))
-					global GuiY:=Y + Round(GameH / (1080 / 1027))
+					global GuiX:=GameX + Round(GameW / (1440 / -10))
+					global GuiY:=GameY + Round(GameH / (1080 / 1027))
 					;Divination Y locations
-					Global vY_DivTrade:=Y + Round(GameH / (1080 / 736))
-					Global vY_DivItem:=Y + Round(GameH / (1080 / 605))
+					Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
+					Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
 					;Stash tabs menu button
-					global vX_StashTabMenu := X + Round(GameW / (1440 / 640))
-					global vY_StashTabMenu := Y + Round(GameH / ( 1080 / 146))
+					global vX_StashTabMenu := GameX + Round(GameW / (1440 / 640))
+					global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
 					;Stash tabs menu list
-					global vX_StashTabList := X + Round(GameW / (1440 / 706))
-					global vY_StashTabList := Y + Round(GameH / ( 1080 / 120))
+					global vX_StashTabList := GameX + Round(GameW / (1440 / 706))
+					global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
 					;calculate the height of each tab
 					global vY_StashTabSize := Round(GameH / ( 1080 / 22))
 				}
@@ -2821,79 +3710,79 @@
                     Global InventoryGridX := [ Round(GameW/(2560/1914)), Round(GameW/(2560/1967)), Round(GameW/(2560/2018)), Round(GameW/(2560/2072)), Round(GameW/(2560/2125)), Round(GameW/(2560/2178)), Round(GameW/(2560/2230)), Round(GameW/(2560/2281)), Round(GameW/(2560/2336)), Round(GameW/(2560/2388)), Round(GameW/(2560/2440)), Round(GameW/(2560/2493)) ]
                     Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]
                     ;Detonate Mines
-                    Global DetonateDelveX:=X + Round(GameW/(2560/2185))
-                    Global DetonateX:=X + Round(GameW/(2560/2298))
-                    Global DetonateY:=Y + Round(GameH/(1080/901))
+                    Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
+                    Global DetonateX:=GameX + Round(GameW/(2560/2298))
+                    Global DetonateY:=GameY + Round(GameH/(1080/901))
                     ;Scrolls in currency tab
-                    Global WisdomStockX:=X + Round(GameW/(2560/125))
-                    Global PortalStockX:=X + Round(GameW/(2560/175))
-                    Global WPStockY:=Y + Round(GameH/(1080/262))
+                    Global WisdomStockX:=GameX + Round(GameW/(2560/125))
+                    Global PortalStockX:=GameX + Round(GameW/(2560/175))
+                    Global WPStockY:=GameY + Round(GameH/(1080/262))
                     ;Status Check OnHideout
-                    global vX_OnHideout:=X + Round(GameW / (2560 / 1887))
-                    global vY_OnHideout:=Y + Round(GameH / (1080 / 930))
-                    global vY_OnHideoutMin:=Y + Round(GameH / (1080 / 1053))
+                    global vX_OnHideout:=GameX + Round(GameW / (2560 / 1887))
+                    global vY_OnHideout:=GameY + Round(GameH / (1080 / 930))
+                    global vY_OnHideoutMin:=GameY + Round(GameH / (1080 / 1053))
                     ;Status Check OnMenu
-                    global vX_OnMenu:=X + Round(GameW / 2)
-                    global vY_OnMenu:=Y + Round(GameH / (1080 / 54))
+                    global vX_OnMenu:=GameX + Round(GameW / 2)
+                    global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
                     ;Status Check OnChar
-                    global vX_OnChar:=X + Round(GameW / (2560 / 41))
-                    global vY_OnChar:=Y + Round(GameH / ( 1080 / 915))
+                    global vX_OnChar:=GameX + Round(GameW / (2560 / 41))
+                    global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
                     ;Status Check OnChat
-                    global vX_OnChat:=X + Round(GameW / (2560 / 0))
-                    global vY_OnChat:=Y + Round(GameH / ( 1080 / 653))
+                    global vX_OnChat:=GameX + Round(GameW / (2560 / 0))
+                    global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
                     ;Status Check OnInventory
-                    global vX_OnInventory:=X + Round(GameW / (2560 / 2223))
-                    global vY_OnInventory:=Y + Round(GameH / ( 1080 / 36))
+                    global vX_OnInventory:=GameX + Round(GameW / (2560 / 2223))
+                    global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
                     ;Status Check OnStash
-                    global vX_OnStash:=X + Round(GameW / (2560 / 336))
-                    global vY_OnStash:=Y + Round(GameH / ( 1080 / 32))
+                    global vX_OnStash:=GameX + Round(GameW / (2560 / 336))
+                    global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
                     ;Status Check OnVendor
-                    global vX_OnVendor:=X + Round(GameW / (2560 / 618))
-                    global vY_OnVendor:=Y + Round(GameH / ( 1080 / 88))
+                    global vX_OnVendor:=GameX + Round(GameW / (2560 / 618))
+                    global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
                     ;Status Check OnDiv
-                    global vX_OnDiv:=X + Round(GameW / (2560 / 618))
-                    global vY_OnDiv:=Y + Round(GameH / ( 1080 / 135))
+                    global vX_OnDiv:=GameX + Round(GameW / (2560 / 618))
+                    global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
                     ;Life %'s
-                    global vX_Life:=X + Round(GameW / (2560 / 95))
-                    global vY_Life20:=Y + Round(GameH / ( 1080 / 1034))
-                    global vY_Life30:=Y + Round(GameH / ( 1080 / 1014))
-                    global vY_Life40:=Y + Round(GameH / ( 1080 / 994))
-                    global vY_Life50:=Y + Round(GameH / ( 1080 / 974))
-                    global vY_Life60:=Y + Round(GameH / ( 1080 / 954))
-                    global vY_Life70:=Y + Round(GameH / ( 1080 / 934))
-                    global vY_Life80:=Y + Round(GameH / ( 1080 / 914))
-                    global vY_Life90:=Y + Round(GameH / ( 1080 / 894))
+                    global vX_Life:=GameX + Round(GameW / (2560 / 95))
+                    global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
+                    global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
+                    global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
+                    global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
+                    global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
+                    global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
+                    global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
+                    global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
                     ;ES %'s
                     If YesEldritchBattery
-					    global vX_ES:=X + Round(GameW / (2560 / 2380))
+					    global vX_ES:=GameX + Round(GameW / (2560 / 2380))
                     Else
-                        global vX_ES:=X + Round(GameW / (2560 / 180))
-                    global vY_ES20:=Y + Round(GameH / ( 1080 / 1034))
-                    global vY_ES30:=Y + Round(GameH / ( 1080 / 1014))
-                    global vY_ES40:=Y + Round(GameH / ( 1080 / 994))
-                    global vY_ES50:=Y + Round(GameH / ( 1080 / 974))
-                    global vY_ES60:=Y + Round(GameH / ( 1080 / 954))
-                    global vY_ES70:=Y + Round(GameH / ( 1080 / 934))
-                    global vY_ES80:=Y + Round(GameH / ( 1080 / 914))
-                    global vY_ES90:=Y + Round(GameH / ( 1080 / 894))
+                        global vX_ES:=GameX + Round(GameW / (2560 / 180))
+                    global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
+                    global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
+                    global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
+                    global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
+                    global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
+                    global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
+                    global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
+                    global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
                     ;Mana
-                    global vX_Mana:=X + Round(GameW / (2560 / 2465))
-                    global vY_Mana10:=Y + Round(GameH / (1080 / 1054))
-                    global vY_Mana90:=Y + Round(GameH / (1080 / 876))
+                    global vX_Mana:=GameX + Round(GameW / (2560 / 2465))
+                    global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
+                    global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
                     Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
                     ;GUI overlay
-                    global GuiX:=X + Round(GameW / (2560 / -10))
-                    global GuiY:=Y + Round(GameH / (1080 / 1027))
+                    global GuiX:=GameX + Round(GameW / (2560 / -10))
+                    global GuiY:=GameY + Round(GameH / (1080 / 1027))
                     ;Divination Y locations
-                    Global vY_DivTrade:=Y + Round(GameH / (1080 / 736))
-                    Global vY_DivItem:=Y + Round(GameH / (1080 / 605))
+                    Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
+                    Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
                     ;Stash tabs menu button
-                    global vX_StashTabMenu := X + Round(GameW / (2560 / 640))
-                    global vY_StashTabMenu := Y + Round(GameH / ( 1080 / 146))
+                    global vX_StashTabMenu := GameX + Round(GameW / (2560 / 640))
+                    global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
                     ;Stash tabs menu list
-                    global vX_StashTabList := X + Round(GameW / (2560 / 706))
-                    global vY_StashTabList := Y + Round(GameH / ( 1080 / 120))
+                    global vX_StashTabList := GameX + Round(GameW / (2560 / 706))
+                    global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
                     ;calculate the height of each tab
                     global vY_StashTabSize := Round(GameH / ( 1080 / 22))
 				} 
@@ -2902,84 +3791,85 @@
 					Global InventoryGridX := [ Round(GameW/(3840/3193)), Round(GameW/(3840/3246)), Round(GameW/(3840/3299)), Round(GameW/(3840/3352)), Round(GameW/(3840/3404)), Round(GameW/(3840/3457)), Round(GameW/(3840/3510)), Round(GameW/(3840/3562)), Round(GameW/(3840/3615)), Round(GameW/(3840/3668)), Round(GameW/(3840/3720)), Round(GameW/(3840/3773)) ]
 					Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
 					;Detonate Mines
-					Global DetonateDelveX:=X + Round(GameW/(3840/3462))
-					Global DetonateX:=X + Round(GameW/(3840/3578))
-					Global DetonateY:=Y + Round(GameH/(1080/901))
+					Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
+					Global DetonateX:=GameX + Round(GameW/(3840/3578))
+					Global DetonateY:=GameY + Round(GameH/(1080/901))
 					;Scrolls in currency tab
-					Global WisdomStockX:=X + Round(GameW/(3840/125))
-					Global PortalStockX:=X + Round(GameW/(3840/175))
-					Global WPStockY:=Y + Round(GameH/(1080/262))
+					Global WisdomStockX:=GameX + Round(GameW/(3840/125))
+					Global PortalStockX:=GameX + Round(GameW/(3840/175))
+					Global WPStockY:=GameY + Round(GameH/(1080/262))
 					;Status Check OnHideout
-					global vX_OnHideout:=X + Round(GameW / (3840 / 3098))
-					global vY_OnHideout:=Y + Round(GameH / (1080 / 930))
-					global vY_OnHideoutMin:=Y + Round(GameH / (1080 / 1053))
+					global vX_OnHideout:=GameX + Round(GameW / (3840 / 3098))
+					global vY_OnHideout:=GameY + Round(GameH / (1080 / 930))
+					global vY_OnHideoutMin:=GameY + Round(GameH / (1080 / 1053))
 					;Status Check OnMenu
-					global vX_OnMenu:=X + Round(GameW / 2)
-					global vY_OnMenu:=Y + Round(GameH / (1080 / 54))
+					global vX_OnMenu:=GameX + Round(GameW / 2)
+					global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
 					;Status Check OnChar
-					global vX_OnChar:=X + Round(GameW / (3840 / 41))
-					global vY_OnChar:=Y + Round(GameH / ( 1080 / 915))
+					global vX_OnChar:=GameX + Round(GameW / (3840 / 41))
+					global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
 					;Status Check OnChat
-					global vX_OnChat:=X + Round(GameW / (3840 / 0))
-					global vY_OnChat:=Y + Round(GameH / ( 1080 / 653))
+					global vX_OnChat:=GameX + Round(GameW / (3840 / 0))
+					global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
 					;Status Check OnInventory
-					global vX_OnInventory:=X + Round(GameW / (3840 / 3503))
-					global vY_OnInventory:=Y + Round(GameH / ( 1080 / 36))
+					global vX_OnInventory:=GameX + Round(GameW / (3840 / 3503))
+					global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
 					;Status Check OnStash
-					global vX_OnStash:=X + Round(GameW / (3840 / 336))
-					global vY_OnStash:=Y + Round(GameH / ( 1080 / 32))
+					global vX_OnStash:=GameX + Round(GameW / (3840 / 336))
+					global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
 					;Status Check OnVendor
-					global vX_OnVendor:=X + Round(GameW / (3840 / 1578))
-					global vY_OnVendor:=Y + Round(GameH / ( 1080 / 88))
+					global vX_OnVendor:=GameX + Round(GameW / (3840 / 1578))
+					global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
 					;Status Check OnDiv
-					global vX_OnDiv:=X + Round(GameW / (3840 / 1578))
-					global vY_OnDiv:=Y + Round(GameH / ( 1080 / 135))
+					global vX_OnDiv:=GameX + Round(GameW / (3840 / 1578))
+					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
 					;Life %'s
-					global vX_Life:=X + Round(GameW / (3840 / 95))
-					global vY_Life20:=Y + Round(GameH / ( 1080 / 1034))
-					global vY_Life30:=Y + Round(GameH / ( 1080 / 1014))
-					global vY_Life40:=Y + Round(GameH / ( 1080 / 994))
-					global vY_Life50:=Y + Round(GameH / ( 1080 / 974))
-					global vY_Life60:=Y + Round(GameH / ( 1080 / 954))
-					global vY_Life70:=Y + Round(GameH / ( 1080 / 934))
-					global vY_Life80:=Y + Round(GameH / ( 1080 / 914))
-					global vY_Life90:=Y + Round(GameH / ( 1080 / 894))
+					global vX_Life:=GameX + Round(GameW / (3840 / 95))
+					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
+					global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
+					global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
+					global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
+					global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
+					global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
+					global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
+					global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
 					;ES %'s
                     If YesEldritchBattery
-					    global vX_ES:=X + Round(GameW / (3840 / 3660))
+					    global vX_ES:=GameX + Round(GameW / (3840 / 3660))
                     Else
-					    global vX_ES:=X + Round(GameW / (3840 / 180))
-					global vY_ES20:=Y + Round(GameH / ( 1080 / 1034))
-					global vY_ES30:=Y + Round(GameH / ( 1080 / 1014))
-					global vY_ES40:=Y + Round(GameH / ( 1080 / 994))
-					global vY_ES50:=Y + Round(GameH / ( 1080 / 974))
-					global vY_ES60:=Y + Round(GameH / ( 1080 / 954))
-					global vY_ES70:=Y + Round(GameH / ( 1080 / 934))
-					global vY_ES80:=Y + Round(GameH / ( 1080 / 914))
-					global vY_ES90:=Y + Round(GameH / ( 1080 / 894))
+					    global vX_ES:=GameX + Round(GameW / (3840 / 180))
+					global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
+					global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
+					global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
+					global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
+					global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
+					global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
+					global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
+					global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
 					;Mana
-					global vX_Mana:=X + Round(GameW / (3840 / 3745))
-					global vY_Mana10:=Y + Round(GameH / (1080 / 1054))
-					global vY_Mana90:=Y + Round(GameH / (1080 / 876))
+					global vX_Mana:=GameX + Round(GameW / (3840 / 3745))
+					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
+					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
                     Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
 					;GUI overlay
-					global GuiX:=X + Round(GameW / (3840 / -10))
-					global GuiY:=Y + Round(GameH / (1080 / 1027))
+					global GuiX:=GameX + Round(GameW / (3840 / -10))
+					global GuiY:=GameY + Round(GameH / (1080 / 1027))
 					;Divination Y locations
-					Global vY_DivTrade:=Y + Round(GameH / (1080 / 736))
-					Global vY_DivItem:=Y + Round(GameH / (1080 / 605))
+					Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
+					Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
 					;Stash tabs menu button
-					global vX_StashTabMenu := X + Round(GameW / (3840 / 640))
-					global vY_StashTabMenu := Y + Round(GameH / ( 1080 / 146))
+					global vX_StashTabMenu := GameX + Round(GameW / (3840 / 640))
+					global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
 					;Stash tabs menu list
-					global vX_StashTabList := X + Round(GameW / (3840 / 706))
-					global vY_StashTabList := Y + Round(GameH / ( 1080 / 120))
+					global vX_StashTabList := GameX + Round(GameW / (3840 / 706))
+					global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
 					;calculate the height of each tab
 					global vY_StashTabSize := Round(GameH / ( 1080 / 22))
 				} 
-                Global ScrCenter := { "X" : X + Round(GameW / 2) , "Y" : Y + Round(GameH / 2) }
+                Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) }
 				RescaleRan := True
+                Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
 			}
 		return
 		}
@@ -2989,32 +3879,65 @@
 
 /** * tooltip management
  */
-    ; Tooltip Management
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	WM_MOUSEMOVE(){
-			static CurrControl, PrevControl, _TT
-			CurrControl := A_GuiControl
-			If (CurrControl <> PrevControl and not InStr(CurrControl, " ")){
-				SetTimer, DisplayToolTip, -300 	; shorter wait, shows the tooltip quicker
-				PrevControl := CurrControl
-			}
-		return
+  ; OLD Tooltip Management
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ; WM_MOUSEMOVE(){
+  ; 		static CurrControl, PrevControl, _TT
+  ; 		CurrControl := A_GuiControl
+  ; 		If (CurrControl <> PrevControl and not InStr(CurrControl, " ")){
+  ; 			SetTimer, DisplayToolTip, -300 	; shorter wait, shows the tooltip quicker
+  ; 			PrevControl := CurrControl
+  ; 		}
+  ; 	return
+  
+  ; 	DisplayToolTip:
+  ; 		try
+  ; 		ToolTip % %CurrControl%_TT
+  ; 		catch
+  ; 		ToolTip
+  ; 		SetTimer, RemoveToolTip, -10000
+  ; 	return
+  ; 	return
+  ; 	}
+  
+  RemoveToolTip:
+  	SetTimer, RemoveToolTip, Off
+      Loop, 20
+  	    ToolTip,,,,%A_Index%
+  return
 
-		DisplayToolTip:
-			try
-			ToolTip % %CurrControl%_TT
-			catch
-			ToolTip
-			SetTimer, RemoveToolTip, -10000
-		return
-		return
-		}
+  ft_ShowToolTip()
+  {
+    ListLines, Off
+    global ft_ToolTip_Text
+    static CurrControl, PrevControl, _TT
+    CurrControl := A_GuiControl
+    if (CurrControl != PrevControl)
+    {
+      PrevControl := CurrControl
+      ToolTip
+      if (CurrControl != "")
+        SetTimer, ft_DisplayToolTip, -500
+    }
+    return
 
-	RemoveToolTip:
-		SetTimer, RemoveToolTip, Off
-		ToolTip
-	return
+    ft_DisplayToolTip:
+    ListLines, Off
+    MouseGetPos,,, _TT
+    WinGetClass, _TT, ahk_id %_TT%
+    if (_TT = "AutoHotkeyGUI")
+    {
+      ToolTip, % RegExMatch(ft_ToolTip_Text, "m`n)^"
+        . StrReplace(CurrControl,"ft_") . "\K\s*=.*", _TT)
+        ? StrReplace(Trim(_TT,"`t ="),"\n","`n") : ""
+      SetTimer, ft_RemoveToolTip, -5000
+    }
+    return
 
+    ft_RemoveToolTip:
+    ToolTip
+    return
+  }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 /** * Chat functions : ResetChat and GrabRecipientName
@@ -3044,7 +3967,7 @@
 				RecipientName1 := RecipientNameArr[1]
 				RecipientName := StrReplace(RecipientName1, "@")
 				}
-				Ding( ,%RecipientName%)
+				Ding(, 1,%RecipientName%)
 			}
 		Sleep, 60
 		Return
@@ -3265,4 +4188,76 @@
 	return
 
 
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+/** * Overhead Healthbar detection and a method to get health percent
+ */
+    CheckOHB()
+    {
+        Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex
+        If WinActive(GameStr)
+        {
+            WinGetPos, GameX, GameY, GameW, GameH
+            if (ok:=FindText(GameX, GameY, GameW, Round(GameH/2), 0, 0, HealthBarStr))
+            {
+                ok.1.3 -= 1
+                ok.1.4 += 8
+
+                OHB := { "X" : ok.1.1
+                    , "Y" : ok.1.2
+                    , "rX" : ok.1.1 + ok.1.3
+                    , "W" : ok.1.3
+                    , "H" : ok.1.4
+                    , "hpY" : ok.1.2 - (ok.1.4 // 2)
+                    , "mY" : ok.1.2 + (ok.1.4 // 2)
+                    , "esY" : ok.1.2 - 2
+                    , "ebY" : ok.1.2 + 2 }
+                OHB["pX"] := { 1 : Round(ok.1.1 + (ok.1.3 * 0.10))
+                    , 2 : Round(ok.1.1 + (ok.1.3 * 0.20))
+                    , 3 : Round(ok.1.1 + (ok.1.3 * 0.30))
+                    , 4 : Round(ok.1.1 + (ok.1.3 * 0.40))
+                    , 5 : Round(ok.1.1 + (ok.1.3 * 0.50))
+                    , 6 : Round(ok.1.1 + (ok.1.3 * 0.60))
+                    , 7 : Round(ok.1.1 + (ok.1.3 * 0.70))
+                    , 8 : Round(ok.1.1 + (ok.1.3 * 0.80))
+                    , 9 : Round(ok.1.1 + (ok.1.3 * 0.90))
+                    , 10 : Round(ok.1.1 + ok.1.3) }
+                If !OHBLHealthHex
+                    PixelGetColor, OHBLHealthHex, % OHB.X + 1, % OHB.hpY, RGB
+                If (!OHBLESHex && (RadioHybrid || RadioCi) && !YesEldritchBattery)
+                    PixelGetColor, OHBLESHex, % OHB.X + 1, % OHB.esY, RGB
+                Else If (!OHBLEBHex && (RadioHybrid || RadioCi) && YesEldritchBattery)
+                    PixelGetColor, OHBLEBHex, % OHB.X + 1, % OHB.ebY, RGB
+                Return OHB.X + OHB.Y
+            }
+            Else
+            {
+                Ding(500,5,"OHB Not Found")
+                Return False
+            }
+        }
+        Else 
+            Return False
+    }
+
+    GetPercent(CID, PosY, Variance)
+    {
+        Global OHB
+        Found := OHB.X
+        Loop 10
+        {
+            PixelSearch, pX, pY, % OHB.pX[A_Index], % PosY, % OHB.pX[A_Index], % PosY, %CID%, %Variance%, RGB Fast
+            If ErrorLevel = 0
+                Found := pX
+            Else 
+            {
+                Break
+            }
+        }
+        PixelGetColor, checkHex, % OHB.X + 1, % OHB.hpY, RGB
+        If (CheckHex != OHBLHealthHex)
+            Exit
+        Else
+            Return Round(100 * (1 - ( (OHB.rX - Found) / OHB.W ) ) )
+    }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

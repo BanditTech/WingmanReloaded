@@ -1,6 +1,122 @@
 --------------------------------------------------------------------------------
+Release Notes 
+--------------------------------------------------------------------------------
+Version .07.00 November/10/2019
+--------------------------------------------------------------------------------
+Major Additions in this version:
+    
+Utility section can now check for a buff icon!
+    To use this new feature set up a Utility hotkey 
+    Disable QS, Life, or ES checks or they will override this
+    duration is how often to check if the buff is present, keep this above 150
+    Enter a string created with the Icon GUI tool
+
+Utility Icon string is captured using the ASCII Image conversion tool GUI
+    Adjust the Width or height to capture a different area around the mouse
+    The default settings and Tool (Color) are selected for you
+    Select a bright color then Click Color2Two to see result
+        Dark squares are the match areas, white squares are not matching
+        If you do not get a good capture, cancel and retry
+        Adjust the Similarity slider +/- to dial in the best match
+        It is best not to use dark colors with low Similarity
+        Once you have a good match, click auto to trim the blank area
+        To finish this all up, Add a comment and then click ok
+    Click test to see if the capture will work, ensure no extra matches.
+    Click copy to finish, then paste into the Icon editbox for that Utility
+
+New Overhead Health Bar function that Finally fixes issues with Delve Darkness!
+        Automatically finds the OHB since its constantly moving
+        Function estimates the Health percentage based on where it was last found
+            Unfortunately we cannot use PixelSearch fast mode going right to left
+        All action logic triggers together when reaching a new HP percent
+
+Since the last major release number there have been several changes:
+
+    Mana threshold can now be adjusted
+    Added support for Eldritch Battery builds
+    Added support for non default flask hotkeys
+        Supports extra buttons when fired, like "1 r" fires 1 and r
+    Pop Flask hotkey can now selectively fire flask slots
+    Vendor logic adjusted for Quality flasks and Gems in bulk
+    New stash tabs for Crafting item bases and Veiled items
+    Loot Vacuum can now pick up items in a large area, but ignores buffs at top
+    Loot Vacuum can now have custom saved colors in its config GUI
+        Can also adjust the AreaScale and Delay here
+    New function to auto level up skill gems
+    Can now pause auto-detonate by double tapping the detonate key "d"
+
+New Supported Resolution Ratios:
+
+    21:9 and 4:3
+
+Improvements to several of the key functions of the script:
+
+    Item Sort has been improved with new grouping methods
+    Item Parser has been tweaked and added to
+    Menu GUI has been cleaned up and improved visually
+    Attack key functions have been improved
+    The main GUI is now set to AlwaysOnTop
+
+--------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.00 November/10/2019
+--------------------------------------------------------------------------------
+New feature for the Utility function
+    Configure a Buff Icon string and paste into the editbox
+    When its CD expires, will check if the buff icon is present
+        If there is no buff icon it will recast
+        otherwise places it back on CD
+    This only works when that utility is not tied to QS, Life, or ES
+
+New Function that fixes Delve darkness issues for hybrid and life
+    Enable the Overhead Health Bar to scan the OHB instead of health globe
+    This is another wonderful feature enabled by the FindText Library
+    Scans the screen for an ASCII representation of colors
+    In my testing it was capturing the OHB in 140-250ms
+    It took a lot of trial and error to find the best color
+        And now I know! It's the color between both mana and health reserved
+        When captured correctly it creates a 2 x 104 pixel bar
+        It matched the Healthbar across every character type & reserved state
+    I set up the offsets for Mana, ES, Eldritch Battery for later use
+
+The main GUI is now set to AlwaysOnTop
+    Decided it makes it easier to use the menu while moving around
+    Hit Escape to exit the menu when it is focused
+
+Fix for parsing items from the Chat window
+
+Adjustment to loot vacuum
+    the search area is now clamped to the Gameplay area
+    Will not search within the buff area at the top of screen
+
+Adjustment to the Right Click menu from the Windows taskbar
+    Removed unnecessary menu options
+    Added the Image conversion GUI to the options "Capture new Buff Icon"
+    Added Gamestates GUI to the tray menu
+    Added Calibration Wizard to the tray menu
+
+Rewrite of the Ding Debug Tooltip function to a variadic function
+    Ding(Timeout,MultiTooltip,"AHK ","Maximum ","Of ","20 ","Tooltips",...)
+    Can now assign message 1 to specific tooltip #1-20 with MultiTooltip
+    Can now set timeout to 0 for a persistant tooltip
+
+Some debug messages have been added for the HP scan and OHB
+    Turn off debug messages in the Configuration tab. 
+
+Used the method for tooltip management from FindText library
+    Can now support tooltips on any of the GUI's
+    Will be adding more of the missing tooltips into the menu later
+
+Adjusted the icon detection for Auto-Skillup
+    This will hopefully keep it from trying to click on greyed out skills
+
+Modification to the FindText Library GUI
+    Removed extra buttons we will not use, left their functions for later
+    Added way to adjust the scale of the capture area.
+        High values cause significant delay when reloading the capture GUI
+    Default values for color sliders set to 98 instead of 100
+
 Version .06.14 November/04/2019
 --------------------------------------------------------------------------------
 Massive Improvements to the Custom Loot Filter's usability
@@ -375,7 +491,7 @@ New ingame loot filter pack to use with Loot Vacuum
 Ignored Slot system to skip positions of the inventory and items already clipped
 New database parser for PoE.Ninja that grabs price info (1-7 days between updates)
 Update League info from the POE servers by pressing Update Leagues in Item Parse tab
-Tons of bugfixes and adjustments
+Tons of bugfixes and adjustments25
 
 --------------------------------------------------------------------------------
 Patch Notes
@@ -383,7 +499,7 @@ Patch Notes
 Version .05.11 September/22/2019
 --------------------------------------------------------------------------------
 Added Ignored Inventory slots menu, open in the inventory tab
-    Check any box which you want the inventory scanner to skip
+    Check any box which you want the inventory scanner to skip1-8
     Wisdom and Portal scroll locations are automatically skipped already
         The slots they occupy will not appear to be checked, but they are skipped
 
