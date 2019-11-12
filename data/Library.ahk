@@ -4244,6 +4244,9 @@
     {
         Global OHB
         Found := OHB.X
+        PixelGetColor, checkHex, % OHB.X + 1, % OHB.hpY, RGB
+        If (CheckHex != OHBLHealthHex)
+            Exit
         Loop 10
         {
             PixelSearch, pX, pY, % OHB.pX[A_Index], % PosY, % OHB.pX[A_Index], % PosY, %CID%, %Variance%, RGB Fast

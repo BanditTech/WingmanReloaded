@@ -1,4 +1,14 @@
 --------------------------------------------------------------------------------
+Patch Notes
+--------------------------------------------------------------------------------
+Version .07.01 November/11/2019
+--------------------------------------------------------------------------------
+Found another issue with the OHB moving
+    If the OHB moved the MS that the scan starts, but moved back in < than 15 ms
+    Added another pixel check at the moment OHB health check starts to catch this
+    Seems to have worked, am no longer getting DC's when using dash etc..
+
+--------------------------------------------------------------------------------
 Release Notes 
 --------------------------------------------------------------------------------
 Version .07.00 November/10/2019
