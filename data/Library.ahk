@@ -3457,7 +3457,12 @@
             }
         }
         If Timeout
-            SetTimer, RemoveTooltip, %Timeout%
+        {
+            If MultiTooltip
+                SetTimer, RemoveTT%MultiTooltip%, %Timeout%
+            Else
+                SetTimer, RemoveToolTip, %Timeout%
+        }
         Return
     }
 
@@ -3900,11 +3905,113 @@
   ; 	return
   ; 	}
   
-  RemoveToolTip:
-  	SetTimer, RemoveToolTip, Off
-      Loop, 20
-  	    ToolTip,,,,%A_Index%
-  return
+    RemoveToolTip()
+    {
+        SetTimer, , Off
+        Loop, 20
+            ToolTip,,,,%A_Index%
+        return
+
+        RemoveTT1:
+            SetTimer, , Off
+            ToolTip,,,,1
+        Return
+
+        RemoveTT2:
+            SetTimer, , Off
+            ToolTip,,,,2
+        Return
+
+        RemoveTT3:
+            SetTimer, , Off
+            ToolTip,,,,3
+        Return
+
+        RemoveTT4:
+            SetTimer, , Off
+            ToolTip,,,,4
+        Return
+
+        RemoveTT5:
+            SetTimer, , Off
+            ToolTip,,,,5
+        Return
+
+        RemoveTT6:
+            SetTimer, , Off
+            ToolTip,,,,6
+        Return
+
+        RemoveTT7:
+            SetTimer, , Off
+            ToolTip,,,,7
+        Return
+
+        RemoveTT8:
+            SetTimer, , Off
+            ToolTip,,,,8
+        Return
+
+        RemoveTT9:
+            SetTimer, , Off
+            ToolTip,,,,9
+        Return
+
+        RemoveTT10:
+            SetTimer, , Off
+            ToolTip,,,,10
+        Return
+
+        RemoveTT11:
+            SetTimer, , Off
+            ToolTip,,,,11
+        Return
+
+        RemoveTT12:
+            SetTimer, , Off
+            ToolTip,,,,12
+        Return
+
+        RemoveTT13:
+            SetTimer, , Off
+            ToolTip,,,,13
+        Return
+
+        RemoveTT14:
+            SetTimer, , Off
+            ToolTip,,,,14
+        Return
+
+        RemoveTT15:
+            SetTimer, , Off
+            ToolTip,,,,15
+        Return
+
+        RemoveTT16:
+            SetTimer, , Off
+            ToolTip,,,,16
+        Return
+
+        RemoveTT17:
+            SetTimer, , Off
+            ToolTip,,,,17
+        Return
+
+        RemoveTT18:
+            SetTimer, , Off
+            ToolTip,,,,18
+        Return
+
+        RemoveTT19:
+            SetTimer, , Off
+            ToolTip,,,,19
+        Return
+
+        RemoveTT20:
+            SetTimer, , Off
+            ToolTip,,,,20
+        Return
+    }
 
   ft_ShowToolTip()
   {
@@ -4194,7 +4301,7 @@
  */
     CheckOHB()
     {
-        Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex
+        Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
         If WinActive(GameStr)
         {
             WinGetPos, GameX, GameY, GameW, GameH
@@ -4228,6 +4335,8 @@
                     PixelGetColor, OHBLESHex, % OHB.X + 1, % OHB.esY, RGB
                 Else If (!OHBLEBHex && (RadioHybrid || RadioCi) && YesEldritchBattery)
                     PixelGetColor, OHBLEBHex, % OHB.X + 1, % OHB.ebY, RGB
+                If !OHBCheckHex
+                    PixelGetColor, OHBCheckHex, % OHB.X, % OHB.Y, RGB
                 Return OHB.X + OHB.Y
             }
             Else
@@ -4242,14 +4351,17 @@
 
     GetPercent(CID, PosY, Variance)
     {
-        Global OHB
+        Global OHB, OHBLHealthHex
         Found := OHB.X
-        PixelGetColor, checkHex, % OHB.X + 1, % OHB.hpY, RGB
-        If (CheckHex != OHBLHealthHex)
-            Exit
+        PixelSearch, checkX, checkY, % OHB.X + 1, % OHB.hpY, % OHB.X + 1, % OHB.hpY, %OHBLHealthHex%, 50, RGB Fast
+        If ErrorLevel = 1
+        {
+            Ding(500,4,"OHB Moved before scan")
+            Return 100
+        }
         Loop 10
         {
-            PixelSearch, pX, pY, % OHB.pX[A_Index], % PosY, % OHB.pX[A_Index], % PosY, %CID%, %Variance%, RGB Fast
+            PixelSearch, pX, pY, % OHB.pX[A_Index], % PosY-1, % OHB.pX[A_Index], % PosY+1, %CID%, %Variance%, RGB Fast
             If ErrorLevel = 0
                 Found := pX
             Else 
@@ -4257,9 +4369,12 @@
                 Break
             }
         }
-        PixelGetColor, checkHex, % OHB.X + 1, % OHB.hpY, RGB
-        If (CheckHex != OHBLHealthHex)
-            Exit
+        PixelSearch, checkX, checkY, % OHB.X + 1, % OHB.hpY, % OHB.X + 1, % OHB.hpY, %OHBLHealthHex%, 50, RGB Fast
+        If ErrorLevel = 1
+        {
+            Ding(500,4,"OHB Moved after scan")
+            Return 100
+        }
         Else
             Return Round(100 * (1 - ( (OHB.rX - Found) / OHB.W ) ) )
     }

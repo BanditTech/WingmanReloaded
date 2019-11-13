@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .07.01
+    Global VersionNumber := .07.02
 
 	;Global Null := 0
     
@@ -270,6 +270,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
+		global OutsideTimer:=0
 		global Trigger:=00000
 		global AutoQuit:=0 
 		global AutoFlask:=0
@@ -412,6 +413,7 @@
 		UpdateLeaguesBtn                          = Use this button when there is a new league
 		LVdelay                                   = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
 		AreaScale                                 = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
+		YesTimeMS                                 = Enable to show the time in MS for each portion of the health scan
 		)
     ;General
 		Global Latency := 1
@@ -450,7 +452,8 @@
 		Global ToggleExist := False
 		Global YesOHB := True
 		Global HPerc := 100
-		Global GameX, GameY, GameW, GameH, mouseX, mouseY, OHB, OHBLHealthHex
+		Global GameX, GameY, GameW, GameH, mouseX, mouseY
+		Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
 		Global GameStr := "ahk_group POEGameGroup"
 		Global HealthBarStr := "|<Middle Bar>0x221415@0.98$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
 
@@ -469,6 +472,7 @@
 		global CritQuit := 1
 		global CurrentTab := 0
 		global DebugMessages := 0
+		global YesTimeMS := 0
 		global ShowPixelGrid := 0
 		global ShowItemInfo := 0
 		global Latency := 1
@@ -812,6 +816,11 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13
+	Gui Add, Text, 										x515	y5, 				Debug Messages:
+	Gui Add, Checkbox, 	vYesTimeMS Checked%YesTimeMS%  gUpdateDebug   	x490 	y5 	    w13 h13
+	Gui Add, Text, 				vYesTimeMS_t						x437	y5, 				Scan MS:
+
 	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller|Item Parse
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
@@ -1253,8 +1262,6 @@
 	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
 	Gui Add, Checkbox, 	vYesAutoSkillUp Checked%YesAutoSkillUp%  	y+8				, Auto Skill Up?
 
-	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13	
-	Gui Add, Text, 										x515	y5, 				Debug Messages:
 
 	Gui, Font, Bold
 	Gui Add, Text, 										x295 	y148, 				Keybinds:
@@ -5322,6 +5329,8 @@ Return
 	{
 		IfWinActive, ahk_group POEGameGroup
 		{
+			OutsideTimer := A_TickCount - OutsideTimer
+			t1 := A_TickCount
 			; Check what status is your character in the game
 			if (GuiCheck)
 			{
@@ -5330,7 +5339,8 @@ Return
 					Exit
 			}
 			
-			if (RadioLife=1) {
+			if (RadioLife) {
+				t2 := A_TickCount
 				If YesOHB
 				{
 					If CheckOHB()
@@ -5614,10 +5624,10 @@ Return
 							}
 					}
 				}
+				t2 := A_TickCount - t1
 			}
-			
-			if (RadioHybrid=1) {
-				t1 := A_TickCount
+			Else if (RadioHybrid) {
+				t2 := A_TickCount
 				If YesOHB
 				{
 					If CheckOHB()
@@ -5899,7 +5909,7 @@ Return
 							}
 					}
 				}
-				t2 := A_TickCount - t1
+				t2 := A_TickCount - t2
 				t3 := A_TickCount
 				If ( (TriggerES20!="00000")
 					|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
@@ -6055,12 +6065,10 @@ Return
 			
 					}
 				}
-				Ding(0,6,"Total Time:`t" . A_TickCount - t1 . "MS")
-				Ding(0,7,"Health Time:`t" . t2 . "MS")
-				Ding(0,8,"ES Time:`t" . A_TickCount - t3 . "MS")
+				t3 := A_TickCount - t3
 			}
-			
-			if (RadioCi=1) {
+			Else if (RadioCi) {
+				t3 := A_TickCount
 				If ( (TriggerES20!="00000") 
 					|| (AutoQuit&&RadioQuit20)
 					|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
@@ -6230,9 +6238,11 @@ Return
 			
 					}
 				}
+				t3 := A_TickCount - t3
 			}
 			
 			If (TriggerMana10!="00000") {
+				t4 := A_TickCount
 				pixelgetcolor, ManaPerc, vX_Mana, vY_ManaThreshold
 				if (ManaPerc!=varManaThreshold) {
 					GuiStatus("OnChar")
@@ -6240,7 +6250,19 @@ Return
 						Exit
 					TriggerMana(TriggerMana10)
 				}
+				t4 := A_TickCount - t4
 			}
+
+			If (YesTimeMS)
+			{
+				Ding(3000,6,"Total Time:`t" . A_TickCount - t1 . "MS")
+				Ding(3000,7,"Health Time:`t" . t2 . "MS")
+				Ding(3000,8,"E. S. Time:`t" . t3 . "MS")
+				Ding(3000,9,"Mana Time:`t" . t4 . "MS")
+				If (OutsideTimer < 999999)
+					Ding(3000,10,"Out loop:`t" . OutsideTimer . "MS")
+			}
+			OutsideTimer := A_TickCount
 		}
 		Return
 	}
@@ -6922,7 +6944,7 @@ Return
 			} 
 			Else 
 				Send {Enter} /exit {Enter}
-			Ding(500,0,"Exit with " . HPerc . "`% Life")
+			Ding(5000,1,"Exit with " . HPerc . "`% Life")
 		return
 		}
 
@@ -7144,6 +7166,7 @@ Return
 			IniRead, Tick, settings.ini, General, Tick, 50
 			IniRead, QTick, settings.ini, General, QTick, 250
 			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
+			IniRead, YesTimeMS, settings.ini, General, YesTimeMS, 0
 			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid, 0
 			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo, 0
 			IniRead, DetonateMines, settings.ini, General, DetonateMines, 0
@@ -7853,6 +7876,7 @@ Return
 			
 			;Bandit Extra options
 			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
+			IniWrite, %YesTimeMS%, settings.ini, General, YesTimeMS
 			IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
 			IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
 			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
@@ -10781,7 +10805,18 @@ Return
 
 		UpdateDebug:
 			Gui, Submit, NoHide
+			If (DebugMessages)
+			{
+				GuiControl, Show, YesTimeMS
+				GuiControl, Show, YesTimeMS_t
+			}
+			Else
+			{
+				GuiControl, Hide, YesTimeMS
+				GuiControl, Hide, YesTimeMS_t
+			}
 			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
+			IniWrite, %YesTimeMS%, settings.ini, General, YesTimeMS
 		Return
 
 		UpdateUtility:

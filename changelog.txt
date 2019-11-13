@@ -1,6 +1,20 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.02 November/12/2019
+--------------------------------------------------------------------------------
+Debug messages have been improved
+    Now can have optional readout of the MS time
+        Enable Scan MS which appears when Debug Messages is enabled
+    Mostly for displaying issues with the OHB
+    The checkboxes have been moved out of the tabs and into main window
+        you can now access them from any tab
+
+Adjustments to the OHB's movement check 
+    instead of doing a pixelgetcolor it instead uses PixelSearch
+    This is to prevent color matching issues (when ES covers but then is gone)
+    adds a few MS to health scan, but fixes issues with reliability
+
 Version .07.01 November/11/2019
 --------------------------------------------------------------------------------
 Found another issue with the OHB moving
