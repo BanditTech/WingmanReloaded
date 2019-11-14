@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .07.02
+    Global VersionNumber := .07.03
 
 	;Global Null := 0
     
@@ -355,6 +355,10 @@
 		UpdateOnMenuBtn                           = Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
 		UpdateDetonateBtn                         = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the right
 		UpdateDetonateDelveBtn                    = Calibrate the Detonate Mines Color while in Delve`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the left
+		CalibrateOHBBtn                           = Calibrate the life color of the Overhead Health Bar`rMake sure the OHB is visible
+		ShowSampleIndBtn                          = Open the Sample GUI which allows you to recalibrate one at a time
+		ShowDebugGamestatesBtn                    = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
+		StartCalibrationWizardBtn                 = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
 		YesOHB                                    = Uses the new Overhead Health Bar detection`rAllows to use life builds in delve`rCurrently only affects Health Detection
 		ShowOnStart                               = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
 		Steam                                     = These settings are for the LutBot Quit method`rEnable this to set the EXE as Steam version
@@ -455,7 +459,7 @@
 		Global GameX, GameY, GameW, GameH, mouseX, mouseY
 		Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
 		Global GameStr := "ahk_group POEGameGroup"
-		Global HealthBarStr := "|<Middle Bar>0x221415@0.98$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
+		Global HealthBarStr := "|<Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
 
 		; Loot colors for the vacuum
 		Global LootColors := { 1 : 0x6565A3
@@ -1199,27 +1203,41 @@
 	Gui, Font, Bold
 	Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
 	Gui, Add, Button, ghelpCalibration 	x+10 ys-4		w20 h20, 	?
-	Gui, Add, Button, gStartCalibrationWizard 	xs	ys+20 Section	w110 h25, 	Run Wizard
-	Gui, Add, Button, gShowDebugGamestates 	x+8	yp				w110 h25, 	Show Gamestates
-	Gui, Font
+	Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn	xs	ys+20 Section	w110 h25, 	Run Wizard
+	Gui, Add, Button, gShowDebugGamestates vShowDebugGamestatesBtn	x+8	yp				w110 h25, 	Show Gamestates
 	;Update calibration for pixel check
-	Gui, Add, Button, gupdateOnHideout vUpdateOnHideoutBtn	xs	ys+35				w110, 	OnHideout Color
-	Gui, Add, Button, gupdateOnChar vUpdateOnCharBtn	 		y+3					w110, 	OnChar Color
-	Gui, Add, Button, gupdateOnChat vUpdateOnChatBtn	 		y+3					w110, 	OnChat Color
-	Gui, Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			y+3					w110, 	OnDiv Color
-	Gui, Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn y+3			 	w110, 	Empty Inventory
-
-	Gui, Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	 x+8 ys+35		w110, 	OnHideoutMin Color
-	Gui, Add, Button, gupdateOnInventory vUpdateOnInventoryBtn		y+3				w110, 	OnInventory Color
-	Gui, Add, Button, gupdateOnStash vUpdateOnStashBtn	 			y+3				w110, 	OnStash Color
-	Gui, Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		y+3				w110, 	OnVendor Color
-	Gui, Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			y+3				w110, 	OnMenu Color
-
-	Gui, Font, Bold
-	Gui, Add, Text, 				section						xs 	y+10, 				AutoDetonate Calibration:
+	Gui, Add, Button, gShowSampleInd vShowSampleIndBtn		xs	ys+35			w110, 	Individual Sample
+	Gui, Add, Button, gCalibrateOHB vCalibrateOHBBtn 		x+8 ys+35		 	w110, 	Sample OHB
 	Gui, Font
-	Gui, Add, Button, gupdateDetonate vUpdateDetonateBtn xs ys+20					w100, 	Detonate Color
-	Gui, Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 ys+20		w100, 	Detonate in Delve
+
+
+	Gui,SampleInd: Font, Bold
+	Gui,SampleInd: Add, Text, 				section						xm 	ym+5, 				Gamestate Calibration:
+	Gui,SampleInd: Font
+
+	Gui,SampleInd: Add, Button, gupdateOnHideout vUpdateOnHideoutBtn		xs ys+20		w110, 	OnHideout Color
+	Gui,SampleInd: Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	x+8 yp			w110, 	OnHideoutMin Color
+	Gui,SampleInd: Add, Button, gupdateOnChar vUpdateOnCharBtn	 			xs y+3			w110, 	OnChar Color
+	Gui,SampleInd: Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	x+8	yp			w110, 	OnInventory Color
+	Gui,SampleInd: Add, Button, gupdateOnChat vUpdateOnChatBtn	 			xs y+3			w110, 	OnChat Color
+	Gui,SampleInd: Add, Button, gupdateOnStash vUpdateOnStashBtn	 		x+8	yp			w110, 	OnStash Color
+	Gui,SampleInd: Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			xs y+3			w110, 	OnDiv Color
+	Gui,SampleInd: Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		x+8	yp			w110, 	OnVendor Color
+	Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			xs y+3			w110, 	OnMenu Color
+
+
+	Gui,SampleInd: Font, Bold
+	Gui,SampleInd: Add, Text, 				section						xm 	y+10, 				Inventory Calibration:
+	Gui,SampleInd: Font
+	Gui,SampleInd: Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20			 	w110, 	Empty Inventory
+
+	Gui,SampleInd: Font, Bold
+	Gui,SampleInd: Add, Text, 				section						xm 	y+10, 				AutoDetonate Calibration:
+	Gui,SampleInd: Font
+	Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn 		xs ys+20					w110, 	Detonate Color
+	Gui,SampleInd: Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 yp		w110, 	Detonate in Delve
+
+	Gui,SampleInd: +AlwaysOnTop
 
 	Gui, Font, Bold
 	Gui Add, Text, 					Section					xs 	y+10, 				Additional Interface Options:
@@ -2983,26 +3001,16 @@ Return
 					}
 					IfInString, A_LoopField, Ring
 					{
-						IfInString, A_LoopField, Ringmail
+						IfNotInString, A_LoopField, Ringmail
 						{
-							Sleep, -1
-						}
-						Else
-						{
-						Prop.Ring := True
-						Stats.ItemClass := "Rings"
-						Continue
+							Prop.Ring := True
+							Stats.ItemClass := "Rings"
+							Continue
 						}
 					}
 					IfInString, A_LoopField, Amulet
 					{
 						Prop.Amulet := True
-						Stats.ItemClass := "Amulets"
-						If Prop.Scarab
-						{
-						Prop.Scarab := False
-						Prop.SpecialType := ""
-						}
 						Continue
 					}
 					IfInString, A_LoopField, Map
@@ -3122,8 +3130,6 @@ Return
 					}
 					IfInString, A_LoopField, Scarab
 					{
-						If Prop.Amulet
-						continue
 						Prop.Scarab := True
 						Prop.SpecialType := "Scarab"
 						Continue
@@ -4437,6 +4443,15 @@ Return
 		MatchNinjaPrice()
 		If InStr(Prop.ItemName, "Chaos Orb")
 			Prop.ChaosValue := 1
+
+		If (Stats.ItemClass = "Amulet")
+		{
+			If Prop.Scarab
+			{
+				Prop.Scarab := False
+				Prop.SpecialType := ""
+			}
+		}
 		Return
 	}
 	; ItemInfo - Display information about item under cursor
@@ -7266,6 +7281,9 @@ Return
 			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
 			IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xC5E2F6
 			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
+
+			;OHB Colors
+			IniRead, OHBLHealthHex, settings.ini, OHB, OHBLHealthHex, 0x19A631
 			
 			;Life Colors
 			IniRead, varLife20, settings.ini, Life Colors, Life20, 0x181145
@@ -9703,7 +9721,7 @@ Return
 	{ ; Calibration color sample functions - updateOnHideout, updateOnHideoutMin, updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
 	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate, updateDetonateDelve
 		updateOnHideout:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
 				Rescale()
@@ -9727,7 +9745,7 @@ Return
 		return
 
 		updateOnHideoutMin:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
 				Rescale()
@@ -9752,7 +9770,7 @@ Return
 		return
 
 		updateOnChar:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
 				Rescale()
@@ -9775,7 +9793,7 @@ Return
 		return
 
 		updateOnInventory:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -9800,7 +9818,7 @@ Return
 		return
 
 		updateOnMenu:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -9825,7 +9843,7 @@ Return
 		return
 
 		updateOnStash:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
 				Rescale()
@@ -9848,7 +9866,7 @@ Return
 		return
 
 		updateEmptyColor:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			Thread, NoTimers, true		;Critical
 
 			IfWinExist, ahk_group POEGameGroup
@@ -9915,7 +9933,7 @@ Return
 		return
 
 		updateOnChat:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
 				Rescale()
@@ -9939,7 +9957,7 @@ Return
 		return
 
 		updateOnVendor:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -9963,7 +9981,7 @@ Return
 		return
 
 		updateOnDiv:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -9987,7 +10005,7 @@ Return
 		return
 
 		updateDetonate:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
 				Rescale()
@@ -10010,7 +10028,7 @@ Return
 		return
 
 		updateDetonateDelve:
-			Gui, Submit, NoHide
+			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
 				Rescale()
@@ -10031,6 +10049,61 @@ Return
 			hotkeys()
 			
 		return
+
+		CalibrateOHB:
+			Gui,1: Submit ; , NoHide
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OHB didn't work"
+				Return
+			}
+			
+			if WinActive(ahk_group POEGameGroup){
+				Sleep, 500
+				If CheckOHB()
+				{
+					PixelGetColor, OHBLHealthHex, % OHB.X + 1, % OHB.hpY, RGB
+					IniWrite, %OHBLHealthHex%, settings.ini, OHB, OHBLHealthHex
+					; If ((RadioHybrid || RadioCi) && !YesEldritchBattery)
+					; {
+					;     PixelGetColor, OHBLESHex, % OHB.X + 1, % OHB.esY, RGB
+					; 	IniWrite, %OHBLESHex%, settings.ini, OHB, OHBLESHex
+					; }
+					; Else If ((RadioHybrid || RadioCi) && YesEldritchBattery)
+					; {
+					;     PixelGetColor, OHBLEBHex, % OHB.X + 1, % OHB.ebY, RGB
+					; 	IniWrite, %OHBLEBHex%, settings.ini, OHB, OHBLEBHex
+					; }
+					readFromFile()
+					MsgBox % "OHB recalibrated!`nTook color hex: " . OHBLHealthHex . " `nAt coords x: " . OHB.X + 1 . " and y: " . OHB.hpY
+					; . "`n`nTook color hex: " . OHBLESHex . " `nAt coords x: " . OHB.X + 1 . " and y: " . OHB.esY
+					; . "`n`nTook color hex: " . OHBLEBHex . " `nAt coords x: " . OHB.X + 1 . " and y: " . OHB.ebY
+				}
+				Else
+				{
+					MsgBox % "OHB has not been found!`nMake sure you see the overhead health-bar"
+				}
+				
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OHB didn't work"
+			
+			hotkeys()
+			
+		return
+
+		ShowSampleInd:
+			Gui, Submit
+			Gui,SampleInd: Show, Autosize Center
+		return
+
+		SampleIndGuiClose:
+		SampleIndGuiEscape:
+			Gui,SampleInd: Cancel
+			Gui,1: Show
+		Return
 	}
 
 	{ ; Calibration Wizard
@@ -11058,7 +11131,9 @@ Return
 		Return
 
 		helpCalibration:
+			Gui, submit
 			MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnHideout -- Not Mandatory - Pauses Auto-Functions`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- ID/Vend/Stash`nOnStash -- ID/Vend/Stash`nOnDiv -- ID/Vend/Stash`nOnVendor -- ID/Vend/Stash`nEmpty Inventory -- ID/Vend/Stash`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
+			Hotkeys()
 		Return
 	}
 

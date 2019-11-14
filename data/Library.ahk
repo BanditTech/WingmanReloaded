@@ -4329,14 +4329,6 @@
                     , 8 : Round(ok.1.1 + (ok.1.3 * 0.80))
                     , 9 : Round(ok.1.1 + (ok.1.3 * 0.90))
                     , 10 : Round(ok.1.1 + ok.1.3) }
-                If !OHBLHealthHex
-                    PixelGetColor, OHBLHealthHex, % OHB.X + 1, % OHB.hpY, RGB
-                If (!OHBLESHex && (RadioHybrid || RadioCi) && !YesEldritchBattery)
-                    PixelGetColor, OHBLESHex, % OHB.X + 1, % OHB.esY, RGB
-                Else If (!OHBLEBHex && (RadioHybrid || RadioCi) && YesEldritchBattery)
-                    PixelGetColor, OHBLEBHex, % OHB.X + 1, % OHB.ebY, RGB
-                If !OHBCheckHex
-                    PixelGetColor, OHBCheckHex, % OHB.X, % OHB.Y, RGB
                 Return OHB.X + OHB.Y
             }
             Else

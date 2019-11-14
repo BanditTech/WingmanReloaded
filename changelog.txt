@@ -1,6 +1,21 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.03 November/14/2019
+--------------------------------------------------------------------------------
+Calibration section has been restructured
+    Added optional calibration to resample the OHB health color
+        Default health color is now provided in the INI load
+        fixes a bug when loading from hideout to map directly on top of the Portal
+        Only occured when first scan of the OHB was in the map after being in H.O.
+        This will ensure a consistent sample for comparison
+    Individual Samples have been given a button that opens their own GUI
+    The ? button has been improved since it was showing up behind the GUI
+
+Similarity of the OHB string has been reduced to 97 from 98
+    Seems to reduce the amount of "OHB moved before scan" errors
+    only seemed to be an issue when there are spell effects directly below OHB
+
 Version .07.02 November/12/2019
 --------------------------------------------------------------------------------
 Debug messages have been improved
@@ -14,6 +29,10 @@ Adjustments to the OHB's movement check
     instead of doing a pixelgetcolor it instead uses PixelSearch
     This is to prevent color matching issues (when ES covers but then is gone)
     adds a few MS to health scan, but fixes issues with reliability
+
+Rework of the RemoveToolTip label into a function group
+    Ding tooltips assigned to specific tooltip # have independent timers
+    Allows some tooltips to refresh quickly while others can have longer timeout
 
 Version .07.01 November/11/2019
 --------------------------------------------------------------------------------
