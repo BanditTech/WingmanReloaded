@@ -349,6 +349,7 @@ Redraw:
     BuildMenu(90,999)
     }
     tooltip
+    Gui, +AlwaysOnTop
     if ((xpos="first") || !(xpos && ypos))
         Gui, show, w640 h475 ; if first run, show gui at default positon
     else

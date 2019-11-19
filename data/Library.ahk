@@ -1,44 +1,44 @@
-﻿/** * JSON v2.1.3 : JSON lib for AutoHotkey.
- * Lib: JSON.ahk
- *     JSON lib for AutoHotkey.
- * Version:
- *     v2.1.3 [updated 04/18/2016 (MM/DD/YYYY)]
- * License:
- *     WTFPL [http://wtfpl.net/]
- * Requirements:
- *     Latest version of AutoHotkey (v1.1+ or v2.0-a+)
- * Installation:
- *     Use #Include JSON.ahk or copy into a function library folder and then
- *     use #Include <JSON>
- * Links:
- *     GitHub:     - https://github.com/cocobelgica/AutoHotkey-JSON
- *     Forum Topic - http://goo.gl/r0zI8t
- *     Email:      - cocobelgica <at> gmail <dot> com
- */
+﻿/*** JSON v2.1.3 : JSON lib for AutoHotkey.
+* Lib: JSON.ahk
+*     JSON lib for AutoHotkey.
+* Version:
+*     v2.1.3 [updated 04/18/2016 (MM/DD/YYYY)]
+* License:
+*     WTFPL [http://wtfpl.net/]
+* Requirements:
+*     Latest version of AutoHotkey (v1.1+ or v2.0-a+)
+* Installation:
+*     Use #Include JSON.ahk or copy into a function library folder and then
+*     use #Include <JSON>
+* Links:
+*     GitHub:     - https://github.com/cocobelgica/AutoHotkey-JSON
+*     Forum Topic - http://goo.gl/r0zI8t
+*     Email:      - cocobelgica <at> gmail <dot> com
+*/
 
 
 /**
- * Class: JSON
- *     The JSON object contains methods for parsing JSON and converting values
- *     to JSON. Callable - NO; Instantiable - YES; Subclassable - YES;
- *     Nestable(via #Include) - NO.
- * Methods:
- *     Load() - see relevant documentation before method definition header
- *     Dump() - see relevant documentation before method definition header
- */
+* Class: JSON
+*     The JSON object contains methods for parsing JSON and converting values
+*     to JSON. Callable - NO; Instantiable - YES; Subclassable - YES;
+*     Nestable(via #Include) - NO.
+* Methods:
+*     Load() - see relevant documentation before method definition header
+*     Dump() - see relevant documentation before method definition header
+*/
     class JSON
     {
         /**
-        * Method: Load
-        *     Parses a JSON string into an AHK value
-        * Syntax:
-        *     value := JSON.Load( text [, reviver ] )
-        * Parameter(s):
-        *     value      [retval] - parsed value
-        *     text    [in, ByRef] - JSON formatted string
-        *     reviver   [in, opt] - function object, similar to JavaScript's
-        *                           JSON.parse() 'reviver' parameter
-        */
+       * Method: Load
+       *     Parses a JSON string into an AHK value
+       * Syntax:
+       *     value := JSON.Load( text [, reviver ] )
+       * Parameter(s):
+       *     value      [retval] - parsed value
+       *     text    [in, ByRef] - JSON formatted string
+       *     reviver   [in, opt] - function object, similar to JavaScript's
+       *                           JSON.parse() 'reviver' parameter
+      */
         class Load extends JSON.Functor
         {
             Call(self, ByRef text, reviver:="")
@@ -214,18 +214,18 @@
         }
 
         /**
-        * Method: Dump
-        *     Converts an AHK value into a JSON string
-        * Syntax:
-        *     str := JSON.Dump( value [, replacer, space ] )
-        * Parameter(s):
-        *     str        [retval] - JSON representation of an AHK value
-        *     value          [in] - any value(object, string, number)
-        *     replacer  [in, opt] - function object, similar to JavaScript's
-        *                           JSON.stringify() 'replacer' parameter
-        *     space     [in, opt] - similar to JavaScript's JSON.stringify()
-        *                           'space' parameter
-        */
+       * Method: Dump
+       *     Converts an AHK value into a JSON string
+       * Syntax:
+       *     str := JSON.Dump( value [, replacer, space ] )
+       * Parameter(s):
+       *     str        [retval] - JSON representation of an AHK value
+       *     value          [in] - any value(object, string, number)
+       *     replacer  [in, opt] - function object, similar to JavaScript's
+       *                           JSON.stringify() 'replacer' parameter
+       *     space     [in, opt] - similar to JavaScript's JSON.stringify()
+       *                           'space' parameter
+      */
         class Dump extends JSON.Functor
         {
             Call(self, value, replacer:="", space:="")
@@ -336,20 +336,20 @@
         }
 
         /**
-        * Property: Undefined
-        *     Proxy for 'undefined' type
-        * Syntax:
-        *     undefined := JSON.Undefined
-        * Remarks:
-        *     For use with reviver and replacer functions since AutoHotkey does not
-        *     have an 'undefined' type. Returning blank("") or 0 won't work since these
-        *     can't be distnguished from actual JSON values. This leaves us with objects.
-        *     Replacer() - the caller may return a non-serializable AHK objects such as
-        *     ComObject, Func, BoundFunc, FileObject, RegExMatchObject, and Property to
-        *     mimic the behavior of returning 'undefined' in JavaScript but for the sake
-        *     of code readability and convenience, it's better to do 'return JSON.Undefined'.
-        *     Internally, the property returns a ComObject with the variant type of VT_EMPTY.
-        */
+       * Property: Undefined
+       *     Proxy for 'undefined' type
+       * Syntax:
+       *     undefined := JSON.Undefined
+       * Remarks:
+       *     For use with reviver and replacer functions since AutoHotkey does not
+       *     have an 'undefined' type. Returning blank("") or 0 won't work since these
+       *     can't be distnguished from actual JSON values. This leaves us with objects.
+       *     Replacer() - the caller may return a non-serializable AHK objects such as
+       *     ComObject, Func, BoundFunc, FileObject, RegExMatchObject, and Property to
+       *     mimic the behavior of returning 'undefined' in JavaScript but for the sake
+       *     of code readability and convenience, it's better to do 'return JSON.Undefined'.
+       *     Internally, the property returns a ComObject with the variant type of VT_EMPTY.
+      */
         Undefined[]
         {
             get {
@@ -375,23 +375,15 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 /* XGraph v1.1.1.0 : Real time data plotting.
-     __    __  __          __ __       __    __                 _       __                   
-    / /_  / /_/ /_____  _ / // /____ _/ /_  / /________________(_)___  / /_ ____  _______
-   / __ \/ __/ __/ __ \(_) // // __ '/ __ \/ //_/ ___/ ___/ __/ / __ \/ __// __ \/ __/ _ \     
-  / / / / /_/ /_/ /_/ / / // // /_/ / / / / ,< (__  ) /__/ / / / /_/ / /__/ /_/ / / / // / 
- /_/ /_/\__/\__/ .___(_) // / \__,_/_/ /_/_/|_/____/\___/_/ /_/ .___/\__(_)____/_/  \__ /  
-              /_/     /_//_/                                 /_/                   (___/   
-              
-  Script      :  XGraph v1.1.1.0 : Real time data plotting.
-                 http://ahkscript.org/boards/viewtopic.php?t=3492
-                 Created: 24-Apr-2014,  Last Modified: 09-May-2014 
-
-  Description :  Easy to use, Light weight, fast, efficient GDI based function library for 
-                 graphically plotting real time data.
-
-  Author      :  SKAN - Suresh Kumar A N ( arian.suresh@gmail.com )
-  Demos       :  CPU Load Monitor > http://ahkscript.org/boards/viewtopic.php?t=3413
-  
+*  Script      :  XGraph v1.1.1.0 : Real time data plotting.
+*                 http://ahkscript.org/boards/viewtopic.php?t=3492
+*                 Created: 24-Apr-2014,  Last Modified: 09-May-2014 
+*
+*  Description :  Easy to use, Light weight, fast, efficient GDI based function library for 
+*                 graphically plotting real time data.
+*
+*  Author      :  SKAN - Suresh Kumar A N ( arian.suresh@gmail.com )
+*  Demos       :  CPU Load Monitor > http://ahkscript.org/boards/viewtopic.php?t=3413
 - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 */
 
@@ -431,13 +423,13 @@
 
     ; Derive Columns, BitBlt dimensions, Movement coords for Lineto() and MoveToEx()  
     Columns := ( BitmapW - MarginL - MarginR ) // ColumnW 
-    BitBltW := Columns * ColumnW,                BitBltH := BitmapH - MarginT - MarginB
+    BitBltW := Columns* ColumnW,                BitBltH := BitmapH - MarginT - MarginB
     MX1     := BitBltW - ColumnW,                    MY1 := BitBltH - 1 
     MX2     := MX1 + ColumnW - ( PenSize < 1 ) ;     MY2 := < user defined >
 
     ; Initialize Memory Bitmap
     hSourceDC  := DllCall( "CreateCompatibleDC", "Ptr",0, "Ptr" ) 
-    hSourceBM  := DllCall( "CopyImage", "Ptr",hTargetBM, "UInt",0, "Int",ColumnW * 2 + BitBltW
+    hSourceBM  := DllCall( "CopyImage", "Ptr",hTargetBM, "UInt",0, "Int",ColumnW* 2 + BitBltW
                         , "Int",BitBltH, "UInt",LR_CREATEDIBSECTION, "Ptr" )   
     DllCall( "SaveDC", "Ptr",hSourceDC ) 
     DllCall( "SelectObject", "Ptr",hSourceDC, "Ptr",hSourceBM )
@@ -453,7 +445,7 @@
     , DllCall( "FillRect", "Ptr",hTempDC, "Ptr",&RECT, "Ptr",hBrush )
     , DllCall( "DeleteObject", "Ptr",hBrush )
     
-    DllCall( "BitBlt", "Ptr",hSourceDC, "Int",ColumnW * 2, "Int",0, "Int",BitBltW, "Int",BitBltH
+    DllCall( "BitBlt", "Ptr",hSourceDC, "Int",ColumnW* 2, "Int",0, "Int",BitBltW, "Int",BitBltH
                     , "Ptr",hTempDC,   "Int",MarginL, "Int",MarginT, "UInt",SRCCOPY )
     DllCall( "BitBlt", "Ptr",hSourceDC, "Int",0, "Int",0, "Int",BitBltW, "Int",BitBltH
                     , "Ptr",hTempDC,   "Int",MarginL, "Int",MarginT, "UInt",SRCCOPY )
@@ -478,13 +470,13 @@
     DllCall( "DeleteObject", "Ptr",hOldBM )
 
     ; Create / Update Graph structure
-    DataSz := ( SV = 1 ? Columns * 8 : 0 )
+    DataSz := ( SV = 1 ? Columns* 8 : 0 )
     pGraph := DllCall( "GlobalAlloc", "UInt",GPTR, "Ptr",cbSize + DataSz, "UPtr" )
     NumPut( DataSz, pGraph + cbSize - 8   )     
     VarL := "cbSize / hCtrl / hTargetDC / hSourceDC / hSourceBM / hSourcePen / ColumnW / Columns / "
             . "MarginL / MarginT / MarginR / MarginB / MX1 / MX2 / BitBltW / BitBltH" 
     Loop, Parse, VarL, /, %A_Space%
-        NumPut( %A_LoopField%, pGraph + 0, ( A_Index - 1 ) * 8 )
+        NumPut( %A_LoopField%, pGraph + 0, ( A_Index - 1 )* 8 )
 
     Return pGraph          
     }
@@ -503,20 +495,20 @@
     VarL := "cbSize / hCtrl / hTargetDC / hSourceDC / hSourceBM / hSourcePen / ColumnW / Columns / "
             . "MarginL / MarginT / MarginR / MarginB / MX1 / MX2 / BitBltW / BitBltH" 
     Loop, Parse, VarL, /, %A_Space%
-        Offset := ( A_Index - 1 ) * 8,         %A_LoopField% := NumGet( pGraph + 0, OffSet )
+        Offset := ( A_Index - 1 )* 8,         %A_LoopField% := NumGet( pGraph + 0, OffSet )
     , RAW    .= SubStr( Offset SP,1,3 ) T SubStr( A_LoopField SP,1,16 ) T %A_LoopField% LF
     
     hTargetBM := DllCall( "SendMessage", "Ptr",hCtrl, "UInt",STM_GETIMAGE, "Ptr",0, "Ptr",0 )
     VarSetCapacity( BITMAP,32,0 )
     DllCall( "GetObject", "Ptr",hTargetBM, "Int",( A_PtrSize = 8 ? 32 : 24 ), "Ptr",&BITMAP )
     TBMW := NumGet( BITMAP,  4, "UInt" ),            TBMH := NumGet( BITMAP, 8, "UInt" )
-    TBMB := NumGet( BITMAP, 12, "UInt" ) * TBMH,     TBMZ := Round( TBMB/1024,2 )
+    TBMB := NumGet( BITMAP, 12, "UInt" )* TBMH,     TBMZ := Round( TBMB/1024,2 )
     TBPP := NumGet( BITMAP, 18, "UShort" )
     Adj := ( Adj := TBMW - MarginL - BitBltW - MarginR ) ? " (-" Adj ")" : ""
 
     DllCall( "GetObject", "Ptr",hSourceBM, "Int",( A_PtrSize = 8 ? 32 : 24 ), "Ptr",&BITMAP )
     SBMW := NumGet( BITMAP,  4, "UInt" ),            SBMH := NumGet( BITMAP, 8, "UInt" )
-    SBMB := NumGet( BITMAP, 12, "UInt" ) * SBMH,     SBMZ := Round( SBMB/1024,2 )
+    SBMB := NumGet( BITMAP, 12, "UInt" )* SBMH,     SBMZ := Round( SBMB/1024,2 )
     SBPP := NumGet( BITMAP, 18, "UShort" )
     
     Return "GRAPH Properties" LF LF
@@ -537,7 +529,7 @@
     AFF := A_FormatFloat 
     SetFormat, FloatFast, %FormatFloat%
     Loop % DataSz // 8  
-        Values .= SubStr( A_Index "   ", 1, 4  ) T NumGet( pData - 8, A_Index * 8, "Double" ) LF
+        Values .= SubStr( A_Index "   ", 1, 4  ) T NumGet( pData - 8, A_Index* 8, "Double" ) LF
     SetFormat, FloatFast, %AFF%
     StringTrimRight, Values, Values, 1                                                                          
 
@@ -588,7 +580,7 @@
         DllCall( "RtlMoveMemory", "Ptr",pData, "Ptr",pData + 8, "Ptr",DataSz - 8 )
         , pNumPut := pData + DataSz 
     else Columns := NumGet( pGraph + 56 ) 
-        , pNumPut := pData + ( Column < 0 or Column > Columns ? Columns * 8 : Column * 8 )
+        , pNumPut := pData + ( Column < 0 or Column > Columns ? Columns* 8 : Column* 8 )
 
     Return NumPut( Double, pNumPut - 8, 0, "Double" ) - 8       
     }
@@ -604,7 +596,7 @@
     pData   := pGraph + NumGet( pGraph + 0 ),   DataSz  := Numget( pData - 8 )
     Columns := NumGet( pGraph + 56 )
     If not ( Column = "" or DataSz = 0 or Column < 1 or Column > Columns )
-        Return NumGet( pData - 8, Column * 8, "Double" ),    ErrorLevel := Column
+        Return NumGet( pData - 8, Column* 8, "Double" ),    ErrorLevel := Column
 
     hCtrl   := NumGet( pGraph + 8   ),          ColumnW := NumGet( pGraph + 48 )                      
     , BitBltW := NumGet( pGraph + 112 ),          MarginL := NumGet( pGraph + 64 )
@@ -618,7 +610,7 @@
     , MY := NumGet( RECT,12, "Int" ) - NumGet( RECT, 4, "Int" )
 
     , Column := ( MX >= 0 and MY >= 0 and MX < BitBltW and MY < BitBltH ) ? MX // ColumnW + 1 : 0
-    Return ( DataSz and Column ) ? NumGet( pData - 8, Column * 8, "Double" ) : "",    ErrorLevel := Column  
+    Return ( DataSz and Column ) ? NumGet( pData - 8, Column* 8, "Double" ) : "",    ErrorLevel := Column  
     }
 
     ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -630,11 +622,11 @@
     IfEqual, DataSz, 0, Return 0,     ErrorLevel := 0
 
     Columns := NumGet( pGraph + 56 )
-    pDataEnd := pGraph + NumGet( pGraph + 0 ) + ( Columns * 8 )
+    pDataEnd := pGraph + NumGet( pGraph + 0 ) + ( Columns* 8 )
     TailCols := ( TailCols = "" or TailCols < 1 or Tailcols > Columns ) ? Columns : TailCols
 
     Loop %TailCols%
-        Value += NumGet( pDataEnd - ( A_Index * 8 ), 0, "Double"  )
+        Value += NumGet( pDataEnd - ( A_Index* 8 ), 0, "Double"  )
 
     Return Value / TailCols,            ErrorLevel := TailCols
     }
@@ -646,7 +638,7 @@
     
     VarL := "cbSize / hCtrl / hTargetDC / hSourceDC / hSourceBM / hSourcePen"
     Loop, Parse, VarL, /, %A_Space%
-        %A_LoopField% := NumGet( pGraph + 0, ( A_Index - 1 ) * 8 )
+        %A_LoopField% := NumGet( pGraph + 0, ( A_Index - 1 )* 8 )
 
     DllCall( "ReleaseDC",    "Ptr",hCtrl, "Ptr",hTargetDC )
     DllCall( "RestoreDC",    "Ptr",hSourceDC, "Int",-1  )
@@ -664,7 +656,7 @@
         ,  LR_Flag2 := 0x200C ; LR_CREATEDIBSECTION := 0x2000 | LR_COPYDELETEORG := 8 | LR_COPYRETURNORG := 4 
         ,  DC_PEN := 19
 
-    BMPW := CellW * Cols + 1,  BMPH := CellH * Rows + 1
+    BMPW := CellW* Cols + 1,  BMPH := CellH* Rows + 1
     hTempDC := DllCall( "CreateCompatibleDC", "Ptr",0, "Ptr" )
     DllCall( "SaveDC", "Ptr",hTempDC )
     
@@ -708,13 +700,13 @@
             ,  LR_Flag2 := 0x200C ; LR_CREATEDIBSECTION := 0x2000 | LR_COPYDELETEORG := 8 | LR_COPYRETURNORG := 4 
             ,  LR_Flag3 := 0x0008 ; LR_COPYDELETEORG := 8
 
-        WB := Ceil( ( W * 3 ) / 2 ) * 2,  VarSetCapacity( BMBITS, WB * H + 1, 0 ),  P := &BMBITS
+        WB := Ceil( ( W* 3 ) / 2 )* 2,  VarSetCapacity( BMBITS, WB* H + 1, 0 ),  P := &BMBITS
         Loop, Parse, PixelData, |
-            P := Numput( "0x" A_LoopField, P+0, 0, "UInt" ) - ( W & 1 and Mod( A_Index * 3, W * 3 ) = 0 ? 0 : 1 )
+            P := Numput( "0x" A_LoopField, P+0, 0, "UInt" ) - ( W & 1 and Mod( A_Index* 3, W* 3 ) = 0 ? 0 : 1 )
 
         hBM := DllCall( "CreateBitmap", "Int",W, "Int",H, "UInt",1, "UInt",24, "Ptr",0, "Ptr" )    
         hBM := DllCall( "CopyImage", "Ptr",hBM, "UInt",0, "Int",0, "Int",0, "UInt",LR_Flag1, "Ptr" ) 
-        DllCall( "SetBitmapBits", "Ptr",hBM, "UInt",WB * H, "Ptr",&BMBITS )
+        DllCall( "SetBitmapBits", "Ptr",hBM, "UInt",WB* H, "Ptr",&BMBITS )
 
         If not ( Gradient + 0 )
             hBM := DllCall( "CopyImage", "Ptr",hBM, "UInt",0, "Int",0, "Int",0, "UInt",LR_Flag3, "Ptr" )  
@@ -874,7 +866,7 @@
         GuiArraySize:
         if !(A_GuiWidth || A_GuiHeight) ; Minimized
             return
-        GuiControl, Move, GuiArrayTree, % "w" A_GuiWidth - (GuiArrayTreeX * 2) " h" A_GuiHeight - (GuiArrayTreeY * 2)
+        GuiControl, Move, GuiArrayTree, % "w" A_GuiWidth - (GuiArrayTreeX* 2) " h" A_GuiHeight - (GuiArrayTreeY* 2)
         return
     }
  
@@ -1915,7 +1907,7 @@
     s:=RegExReplace(s, "\R", "`r`n")
     Try {
       shell:=ComObjCreate("WScript.Shell")
-      oExec:=shell.Exec(Ahk " /f /ErrorStdOut *")
+      oExec:=shell.Exec(Ahk " /f /ErrorStdOut*")
       oExec.StdIn.Write(s)
       oExec.StdIn.Close()
     }
@@ -2497,13 +2489,13 @@
         else
             Precision := RegExReplace(Options,"\D*(\d*)\D*","$1")
         if (Options ~= "i)AA")
-            Feet := Floor(Decimal), Decimal -= Feet, Inches := Floor(Decimal * 12), Decimal := Decimal * 12 - Inches
+            Feet := Floor(Decimal), Decimal -= Feet, Inches := Floor(Decimal* 12), Decimal := Decimal* 12 - Inches
         if !(Options ~= "i)I")
             Whole := Floor(Decimal), Decimal -= Whole
         RegExMatch(Decimal,"^(\d*)\.?(\d*?)0*$",Match), N := Match1 Match2
-        D := 10 ** StrLen(Match2)
+        D := 10** StrLen(Match2)
         if Precision
-            N := Round(N / D * Precision), D := Precision
+            N := Round(N / D* Precision), D := Precision
         Repeat_Digits:
         Original_N := N, Original_D := D 
         Repeat_Reduce:
@@ -2640,12 +2632,11 @@
     }
 ;}
 
-/** * Class_CtlColors
+/*** Class_CtlColors
  * Lib: Class_CtlColors.ahk
  *     Found on page: https://github.com/AHK-just-me/Class_CtlColors
  * Version:
  *     v1.0.03 [updated 10/31/2017 (MM/DD/YYYY)]
-
  * Class_CtlColors
  *    Choose your own background and/or text colors for some AHK GUI controls.
  *
@@ -2828,10 +2819,10 @@
                 Return False
         }
         Else If (CtrlClass = "ComboBox") {
-            VarSetCapacity(CBBI, 40 + (A_PtrSize * 3), 0)
-            NumPut(40 + (A_PtrSize * 3), CBBI, 0, "UInt")
+            VarSetCapacity(CBBI, 40 + (A_PtrSize* 3), 0)
+            NumPut(40 + (A_PtrSize* 3), CBBI, 0, "UInt")
             DllCall("User32.dll\GetComboBoxInfo", "Ptr", CtrlHwnd, "Ptr", &CBBI)
-            Hwnds.Insert(NumGet(CBBI, 40 + (A_PtrSize * 2, "UPtr")) + 0)
+            Hwnds.Insert(NumGet(CBBI, 40 + (A_PtrSize* 2, "UPtr")) + 0)
             Hwnds.Insert(Numget(CBBI, 40 + A_PtrSize, "UPtr") + 0)
             Classes := ["Edit", "Static", "ListBox"]
         }
@@ -2981,11 +2972,11 @@
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Functions to Monitor File Changes
- *     Found on page: https://autohotkey.com/board/topic/6416-tail-the-last-lines-of-a-text-file/
- * Version:
- *     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
- */
+/*** Functions to Monitor File Changes
+*     Found on page: https://autohotkey.com/board/topic/6416-tail-the-last-lines-of-a-text-file/
+* Version:
+*     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
+*/
     ; str_getTailf - Return the last line from a file
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     str_getTailf(ByRef _Str) {
@@ -3016,11 +3007,11 @@
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * DaysSince - Function to determine the time in days between two dates
- *     Basic function found on page: https://autohotkey.com/board/topic/82024-calculate-the-number-of-days-between-two-dates/#entry521362
- * Version:
- *     v1.0.1 [updated 10/12/2019 (MM/DD/YYYY)]
- */
+/*** DaysSince - Function to determine the time in days between two dates
+*     Basic function found on page: https://autohotkey.com/board/topic/82024-calculate-the-number-of-days-between-two-dates/#entry521362
+* Version:
+*     v1.0.1 [updated 10/12/2019 (MM/DD/YYYY)]
+*/
     ; DaysSince - Check how many days has it been since the last update
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     DaysSince()
@@ -3050,11 +3041,11 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Function to Replace Nth instance of Needle in Haystack
- * Replaces the 'Instance'th instance of 'Needle' in 'Haystack' with 'Replacement'. If 'Instance' is
- * negative, it counts instances from the right end of 'Haystack'. If 'Instance' is zero, it
- * replaces all instances.
- */
+/*** Function to Replace Nth instance of Needle in Haystack
+* Replaces the 'Instance'th instance of 'Needle' in 'Haystack' with 'Replacement'. If 'Instance' is
+* negative, it counts instances from the right end of 'Haystack'. If 'Instance' is zero, it
+* replaces all instances.
+*/
     StringReplaceN( Haystack, Needle, Replacement="", Instance=1 ) 
     { 
         If !( Instance := 0 | Instance )
@@ -3073,13 +3064,13 @@
     } 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
  
-/** * PoE Click v1.0.1 : PoE Click Lib for AutoHotkey.
- * Lib: PoEClick.ahk
- *     Path of Exile Click functions for AutoHotkey.
- *     Developed by Bandit
- * Version:
- *     v1.0.1 [updated 10/02/2019 (MM/DD/YYYY)]
- */
+/*** PoE Click v1.0.1 : PoE Click Lib for AutoHotkey.
+* Lib: PoEClick.ahk
+*     Path of Exile Click functions for AutoHotkey.
+*     Developed by Bandit
+* Version:
+*     v1.0.1 [updated 10/02/2019 (MM/DD/YYYY)]
+*/
 
     ; SwiftClick - Left Click at Coord with no wait between up and down
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3156,8 +3147,8 @@
     ; RandClick - Randomize Click area around middle of cell using Coord
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     RandClick(x, y){
-            Random, Rx, x+10, x+40
-            Random, Ry, y-40, y-10
+            Random, Rx, x+10, x+30
+            Random, Ry, y-30, y-10
         return {"X": Rx, "Y": Ry}
         }
 
@@ -3185,14 +3176,14 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Array functions v1.0.0 : Index matching.
- * Lib: ArrayCheck.ahk
- *     Returns the index of a value within an array.
- *     Also can color match within variance from an array
- *     Developed by SauronDev and Bandit
- * Version:
- *     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
- */
+/*** Array functions v1.0.0 : Index matching.
+* Lib: ArrayCheck.ahk
+*     Returns the index of a value within an array.
+*     Also can color match within variance from an array
+*     Developed by SauronDev and Bandit
+* Version:
+*     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
+*/
 
     ; Check if a specific hex value is part of an array within a variance and return the index
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3244,12 +3235,12 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Lib from LutBot : Extracted from lite version
- * Lib: LutBotLite.ahk
- *     Path of Exile Quick disconnect.
- * Version:
- *     v?
- */
+/*** Lib from LutBot : Extracted from lite version
+* Lib: LutBotLite.ahk
+*     Path of Exile Quick disconnect.
+* Version:
+*     v?
+*/
 
     ; Main function of the LutBot logout method
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3282,7 +3273,7 @@
                 DllCall(EnumProcesses, "Ptr", &a, "UInt", s, "UIntP", r)
                 Loop, % r // 4
                 {
-                    id := NumGet(a, A_Index * 4, "UInt")
+                    id := NumGet(a, A_Index* 4, "UInt")
                     
                     h := DllCall("OpenProcess", "UInt", 0x0010 | 0x0400, "Int", false, "UInt", id, "Ptr")
                     
@@ -3326,7 +3317,7 @@
                 Loop %num%
                 {
                     cutby := a_index - 1
-                    cutby *= 24
+                    cutby*= 24
                     ownerPID := NumGet(&TcpTable,cutby+24,"UInt")
                     for index, element in poePID {
                         if ( ownerPID = element )
@@ -3393,8 +3384,8 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * RandomSleep Timers: 
- */
+/*** RandomSleep Timers: 
+*/
 
     ; Provides a call for simpler random sleep timers
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3407,13 +3398,13 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Ding Debug tooltip message : WingMan
- * Lib: Ding.ahk
- *     Display tooltip which can be disabled later at once
- *     Additional messages are given new lines
- * Version:
- *     v1.0.1
- */
+/*** Ding Debug tooltip message : WingMan
+* Lib: Ding.ahk
+*     Display tooltip which can be disabled later at once
+*     Additional messages are given new lines
+* Version:
+*     v1.0.1
+*/
 
     ; Debug messages within script
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3433,14 +3424,14 @@
                     If A_Index = 1
                     {
                         If MultiTooltip
-                            ToolTip, %mval%, 100, % 50 + MultiTooltip * 23, %MultiTooltip% 
+                            ToolTip, %mval%, 100, % 50 + MultiTooltip* 23, %MultiTooltip% 
                         Else
                             debugStr .= Message.A_Index
                     }
                     Else if A_Index <= 20
                     {
                         If MultiTooltip
-                            ToolTip, %mval%, 100, % 50 + A_Index * 23, %A_Index% 
+                            ToolTip, %mval%, 100, % 50 + A_Index* 23, %A_Index% 
                         Else
                             debugStr .= "`n" . Message.A_Index
                     }
@@ -3451,7 +3442,7 @@
             Else
             {
                 If MultiTooltip
-                    ToolTip, Ding, 100, % 50 + MultiTooltip * 23, %MultiTooltip% 
+                    ToolTip, Ding, 100, % 50 + MultiTooltip* 23, %MultiTooltip% 
                 Else
                     Tooltip, Ding
             }
@@ -3468,10 +3459,10 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Clamp value 
- * Lib: Clamp.ahk
- *     Clamp function
- */
+/*** Clamp value 
+* Lib: Clamp.ahk
+*     Clamp function
+*/
 
     ; Clamp Value function
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3499,13 +3490,13 @@
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * hex color tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
- * Lib: ColorTools.ahk
- *     ToRGBfromBGR function
- *     ToRGB function
- *     hexBGRToRGB function
- *     CompareHex function
- */
+/*** hex color tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
+* Lib: ColorTools.ahk
+*     ToRGBfromBGR function
+*     ToRGB function
+*     hexBGRToRGB function
+*     CompareHex function
+*/
 
     ; Converts a hex BGR color into its R G B elements
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3540,8 +3531,8 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Rescale : Resolution scaling for pixel locations taken at a sample resolution.
-    */
+/*** Rescale : Resolution scaling for pixel locations taken at a sample resolution.
+  */
     ; Rescale - Rescales values of the script to the user's resolution
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Rescale(){
@@ -3613,7 +3604,7 @@
 					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
 					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
+                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
 					;GUI overlay
 					global GuiX:=GameX + Round(GameW / (1920 / -10))
 					global GuiY:=GameY + Round(GameH / (1080 / 1027))
@@ -3694,7 +3685,7 @@
 					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
 					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
+                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
 					;GUI overlay
 					global GuiX:=GameX + Round(GameW / (1440 / -10))
 					global GuiY:=GameY + Round(GameH / (1080 / 1027))
@@ -3775,7 +3766,7 @@
                     global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
                     global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
+                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
                     ;GUI overlay
                     global GuiX:=GameX + Round(GameW / (2560 / -10))
                     global GuiY:=GameY + Round(GameH / (1080 / 1027))
@@ -3856,7 +3847,7 @@
 					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
 					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
                     Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar * (ManaThreshold / 100))
+                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
 					;GUI overlay
 					global GuiX:=GameX + Round(GameW / (3840 / -10))
 					global GuiY:=GameY + Round(GameH / (1080 / 1027))
@@ -3882,8 +3873,8 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * tooltip management
- */
+/*** tooltip management
+*/
   ; OLD Tooltip Management
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; WM_MOUSEMOVE(){
@@ -4047,8 +4038,8 @@
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Chat functions : ResetChat and GrabRecipientName
- */
+/*** Chat functions : ResetChat and GrabRecipientName
+*/
     ; Reset Chat
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ResetChat(){
@@ -4082,8 +4073,8 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * API scraper for PoE.Ninja : Pulls all the information into one database file
- */
+/*** API scraper for PoE.Ninja : Pulls all the information into one database file
+*/
     ; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaose Equivalent
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ScrapeNinjaData(apiString)
@@ -4223,8 +4214,8 @@
 	}
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * API scraper for Path of Exile Leagues
- */
+/*** API scraper for Path of Exile Leagues
+*/
     UpdateLeagues:
         UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
         FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
@@ -4236,8 +4227,8 @@
     Return
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Cooldown Timers
- */
+/*** Cooldown Timers
+*/
     ; TimerFlask - Flask CD Timers
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TimerFlask1:
@@ -4297,8 +4288,8 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/** * Overhead Healthbar detection and a method to get health percent
- */
+/*** CheckOHB - GetPercent - Overhead Healthbar detection and a method to get health percent
+*/
     CheckOHB()
     {
         Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
@@ -4319,15 +4310,15 @@
                     , "mY" : ok.1.2 + (ok.1.4 // 2)
                     , "esY" : ok.1.2 - 2
                     , "ebY" : ok.1.2 + 2 }
-                OHB["pX"] := { 1 : Round(ok.1.1 + (ok.1.3 * 0.10))
-                    , 2 : Round(ok.1.1 + (ok.1.3 * 0.20))
-                    , 3 : Round(ok.1.1 + (ok.1.3 * 0.30))
-                    , 4 : Round(ok.1.1 + (ok.1.3 * 0.40))
-                    , 5 : Round(ok.1.1 + (ok.1.3 * 0.50))
-                    , 6 : Round(ok.1.1 + (ok.1.3 * 0.60))
-                    , 7 : Round(ok.1.1 + (ok.1.3 * 0.70))
-                    , 8 : Round(ok.1.1 + (ok.1.3 * 0.80))
-                    , 9 : Round(ok.1.1 + (ok.1.3 * 0.90))
+                OHB["pX"] := { 1 : Round(ok.1.1 + (ok.1.3* 0.10))
+                    , 2 : Round(ok.1.1 + (ok.1.3* 0.20))
+                    , 3 : Round(ok.1.1 + (ok.1.3* 0.30))
+                    , 4 : Round(ok.1.1 + (ok.1.3* 0.40))
+                    , 5 : Round(ok.1.1 + (ok.1.3* 0.50))
+                    , 6 : Round(ok.1.1 + (ok.1.3* 0.60))
+                    , 7 : Round(ok.1.1 + (ok.1.3* 0.70))
+                    , 8 : Round(ok.1.1 + (ok.1.3* 0.80))
+                    , 9 : Round(ok.1.1 + (ok.1.3* 0.90))
                     , 10 : Round(ok.1.1 + ok.1.3) }
                 Return OHB.X + OHB.Y
             }
@@ -4368,6 +4359,607 @@
             Return 100
         }
         Else
-            Return Round(100 * (1 - ( (OHB.rX - Found) / OHB.W ) ) )
+            Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
+    }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+/*** GroupByFourty - Mathematic function to sort quality into groups of 40
+*     Path of Exile Mathematic grouping function for AutoHotkey.
+*     Developed by Bandit
+* Version:
+*     v1.0.0 [updated 11/19/2019 (MM/DD/YYYY)]
+*/
+    GroupByFourty(ArrList) {
+        GroupList := {}
+        tQ := 0
+        ; Get total of Value before
+        For k, v in ArrList
+            allQ += v.Q 
+        ; Begin adding values to GroupList
+        Loop, 20
+            GroupTotal%ind% := 0
+        Gosub, Group_Add
+        Gosub, Group_Swap
+        Gosub, Group_Move
+        Gosub, Group_Cleanup
+        Gosub, Group_Cleanup
+        Gosub, Group_Add
+        Gosub, Group_Swap
+        Gosub, Group_Cleanup
+        ; Gosub, Group_Move
+        ; Gosub, Group_Cleanup
+        ; Gosub, Group_Add
+        ; Gosub, Group_Move
+        ; Gosub, Group_Cleanup
+        ; Gosub, RebaseTotals
+
+        ; Final tallies
+        For k, v in ArrList
+            remainQ += v.Q 
+        If !remainQ
+            remainQ:=0
+        tQ=
+        For k, v in GroupList
+            For kk, vv in v
+                tQ += vv.Q 
+        If !tQ
+            tQ:= 0
+        overQ := mod(tQ, 40)
+        If !overQ
+            overQ:= 0
+        ; Catch for high quality gems in low quantities
+        If (tQ = 0 && remainQ >= 40 && remainQ <= 57)
+        {
+            Loop, 20
+            {
+                ind := A_Index
+                For k, v in ArrList
+                {
+                    If (GroupTotal%ind% >= 40)
+                        Continue
+                    If (GroupTotal%ind% + v.Q <= 57)
+                    {
+                        If !IsObject(GroupList[ind])
+                            GroupList[ind]:={}
+                        GroupList[ind].Push(ArrList.Delete(k))
+                        GroupTotal%ind% += v.Q
+                    }
+                }
+            }
+            remainQ=
+            For k, v in ArrList
+                remainQ += v.Q 
+            If !remainQ
+                remainQ:=0
+            tQ=
+            For k, v in GroupList
+                For kk, vv in v
+                    tQ += vv.Q 
+            If !tQ
+                tQ:= 0
+            overQ := mod(tQ, 40)
+            If !overQ
+                overQ:= 0
+        }
+        expectC := Round((tQ - overQ) / 40)
+        ; Display Tooltips
+        ToolTip,Total Quality:`t %allQ%`%,100,180,15
+        ToolTip,Currency Value:`t %expectC% orbs,100,200,18
+        ToolTip,Groups Quality:`t %tQ%`%,100,220,16
+        ToolTip,Excess Groups Q:`t %overQ%`%,100,240,17
+        ToolTip,Leftover Quality:`t %remainQ%`%,100,260,19
+        SetTimer, RemoveToolTip, -20000
+        Return GroupList
+
+        RebaseTotals:
+            tt=
+            tt2=
+            For k, v in GroupList
+            {
+                tt .= GroupTotal%k% . "`r"
+                GroupTotal%k% := 0
+                For kk, vv in v
+                {
+                    GroupTotal%k% += vv.Q
+                }
+            }
+            For k, v in GroupList
+                tt2 .= GroupTotal%k% . "`r"
+            If (tt != tt2)
+                MsgBox,% "Mismatch Found!`r`rFirst Values`r" . tt . "`r`rSecond Values`r" . tt2
+        Return
+
+        Group_Batch:
+            Gosub, Group_Trim
+            Gosub, Group_Trade
+            Gosub, Group_Add
+            Gosub, Group_Swap
+        Return
+
+        Group_Cleanup:
+            ; Remove groups that didnt make it to 40
+            Loop, 3
+            For k, v in GroupList
+            {
+                If (GroupTotal%k% < 40)
+                {
+                    For kk, vv in v
+                    {
+                        ArrList.Push(v.Delete(kk))
+                        GroupTotal%k% -= vv.Q
+                    }
+                }
+            }
+        Return
+
+        Group_Swap:
+            ; Swap values Between groups to move closer to 40
+            For k, v in GroupList
+            {
+                If (GroupTotal%k% <= 40)
+                    Continue
+                For kk, vv in v
+                {
+                    If (GroupTotal%k% <= 40)
+                        Continue
+                    For kg, vg in GroupList
+                    {
+                        If (k = kg)
+                            Continue
+                        For kkg, vvg in vg
+                        {
+                            newk := GroupTotal%k% - vv.Q + vvg.Q
+                            newkg := GroupTotal%kg% + vv.Q - vvg.Q
+                            If (GroupTotal%kg% >= 40 && newkg < 40)
+                                Continue
+                            If (newk >= 40 && newk < GroupTotal%k%)
+                            {
+                                GroupList[kg].Push(GroupList[k].Delete(kk))
+                                GroupList[k].Push(GroupList[kg].Delete(kkg))
+                                GroupTotal%k% := newk, GroupTotal%kg% := newkg
+                                Break 2
+                            }
+                        }
+                    }
+                }
+            }
+        Return
+
+        Group_Trade:
+            ; Swap values from group to arrList to move closer to 40
+            For k, v in GroupList
+            {
+                If (GroupTotal%k% <= 40)
+                    Continue
+                For kk, vv in v
+                {
+                    If (GroupTotal%k% <= 40)
+                        Continue
+                    For kg, vg in ArrList
+                    {
+                        newk := GroupTotal%k% - vv.Q + vvg.Q
+                        If (newk >= 40 && newk < GroupTotal%k%)
+                        {
+                            ArrList.Push(GroupList[k].Delete(kk))
+                            GroupList[k].Push(ArrList.Delete(kg))
+                            GroupTotal%k% := newk
+                            Break
+                        }
+                    }
+                }
+            }
+        Return
+
+        Group_Move:
+            ; Move values from incomplete groups to add as close to 40
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 40)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Cleanup
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 41)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 42)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 43)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 44)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 45)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 46)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 47)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 48)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 49)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 50)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 51)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 52)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 53)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 54)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 55)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+        Return
+
+        Group_Add:
+            ; Find any values to add to incomplete groups
+            Loop, 20
+            {
+                ind := A_Index
+                For k, v in ArrList
+                {
+                    If (GroupTotal%ind% >= 40)
+                        Continue
+                    If (GroupTotal%ind% + v.Q <= 40)
+                    {
+                        If !IsObject(GroupList[ind])
+                            GroupList[ind]:={}
+                        GroupList[ind].Push(ArrList.Delete(k))
+                        GroupTotal%ind% += v.Q
+                    }
+                }
+            }
+        Return
+
+        Group_Trim:
+            ; Trim excess values if group above 40
+            Loop 20
+            {
+                ind := A_Index
+                If GroupTotal%ind% > 40
+                {
+                    For k, v in GroupList[ind]
+                    {
+                        If (GroupTotal%ind% - v.Q >= 40)
+                        {
+                            ArrList.Push(GroupList[ind].Delete(k))
+                            GroupTotal%ind% -= v.Q
+                        }
+                    }
+                }
+            }
+        Return
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

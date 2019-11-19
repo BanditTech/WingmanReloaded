@@ -1,6 +1,47 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.04 November/19/2019
+--------------------------------------------------------------------------------
+New Automation Options in the Inventory Tab for the Id/Vend/Stash hotkey
+    Enable "search for stash" to find the stash on screen if no panels are open
+        If found it will wait to walk and open the Stash, then proceed to sort
+    Enable "Move to vendor after stash" to find vendor and click after Stashing
+        Only goes to vendor if there are items left over in inventory
+        Select which master string it searches for from the 3 options
+            MasterStr is for any of the Masters
+            NavaliStr is for Navali
+            HelenaStr is for Helena
+        A Vendor must be visible from the stash location (on same screen)
+            If using MasterStr will click the first it finds
+
+Rework of the item sort function to allow chaining actions
+    Identify, Vendor, Stash, and Divination have been given their own functions
+
+Improvement to the MoveStash function
+    First tab it goes to always uses the old method to make sure of starting point
+        Tabs after the first use the left and right arrows to make it much faster
+        If the tab is over 20 spaces away it will reselect in the dropdownlist
+
+Other fixes for GUI being always on top
+    Custom Loot Filter GUI is now AlwaysOnTop as well
+
+Added tooltips to the Stash Management section of the Inventory Tab
+
+Bulk vendor function has been drastically improved and is much more accurate
+    20 quality flask are treated as 40 quality for sorting purposes
+    Flasks/Gems are grouped as close to 40 as possible
+    Once they are sorted it will vendor them in the order of each group
+    Also provides more information about the total values
+        gives the total quality, orb value, grouped q, excess q, and un-used q
+    Is more accurate with many at once, but will always get a valid result
+
+Fix for GUI showing twice if game was open and Show GUI on Startup was checked
+
+Fix for items being missed sometimes
+    Random click area was a little too large, tightened up by 10 pixels
+    Also added a little delay between clicks when going through grouped items
+
 Version .07.03 November/14/2019
 --------------------------------------------------------------------------------
 Calibration section has been restructured

@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .07.03
+    Global VersionNumber := .07.04
 
 	;Global Null := 0
     
@@ -293,133 +293,178 @@
 
 		ft_ToolTip_Text=
 		(LTrim
-		Capture                                   = Initiate Image Capture Sequence
-		Test                                      = Test Results of Code
-		Copy                                      = Copy Code to Clipboard
-		AddFunc                                   = Additional FindText() in Copy
-		U                                         = Cut the Upper Edge by 1
-		U3                                        = Cut the Upper Edge by 3
-		L                                         = Cut the Left Edge by 1
-		L3                                        = Cut the Left Edge by 3
-		R                                         = Cut the Right Edge by 1
-		R3                                        = Cut the Right Edge by 3
-		D                                         = Cut the Lower Edge by 1
-		D3                                        = Cut the Lower Edge by 3
-		ww                                        = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
-		hh                                        = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
-		ww_t                                      = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
-		hh_t                                      = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
-		SelR                                      = Red component of the selected color
-		SelG                                      = Green component of the selected color
-		SelB                                      = Blue component of the selected color
-		DiffR                                     = Red Difference which Determines Black or White Pixel Conversion (0-255)
-		DiffG                                     = Green Difference which Determines Black or White Pixel Conversion (0-255)
-		DiffB                                     = Blue Difference which Determines Black or White Pixel Conversion (0-255)
-		Auto                                      = Automatic Cutting Edge
-		Similar                                   = Adjust color similarity as Equivalent to The Selected Color
-		Similar2                                  = Adjust color similarity as Equivalent to The Selected Color
-		SelColor                                  = The selected color
-		SelGray                                   = Gray value of the selected color
-		Threshold                                 = Gray Threshold which Determines Black or White Pixel Conversion (0-255)
-		GrayDiff                                  = Gray Difference which Determines Black or White Pixel Conversion (0-255)
-		UsePos                                    = Use position instead of color value to suit any color
-		Modify                                    = Allows Modify the Black and White Image
-		Reset                                     = Reset to Original Captured Image
-		Comment                                   = Optional Comment used to Label Code ( Within <> )
-		SplitAdd                                  = Using Markup Segmentation to Generate Text Library
-		AllAdd                                    = Append Another FindText Search Text into Previously Generated Code
-		OK                                        = Create New FindText Code for Testing
-		Close                                     = Close the Window Don't Do Anything
-		Gray2Two                                  = Converts Image Pixels from Grays to Black or White
-		GrayDiff2Two                              = Converts Image Pixels from Gray Difference to Black or White
-		Color2Two                                 = Converts Image Pixels from Color to Black or White
-		ColorPos2Two                              = Converts Image Pixels from Color Position to Black or White
-		ColorDiff2Two                             = Converts Image Pixels from Color Difference to Black or White
-		ManaThreshold                             = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
-		PopFlasks1                                = Enable flask slot 1 when using Pop Flasks hotkey
-		PopFlasks2                                = Enable flask slot 2 when using Pop Flasks hotkey
-		PopFlasks3                                = Enable flask slot 3 when using Pop Flasks hotkey
-		PopFlasks4                                = Enable flask slot 4 when using Pop Flasks hotkey
-		PopFlasks5                                = Enable flask slot 5 when using Pop Flasks hotkey
-		DetonateMines                             = Enable this to automatically Detonate Mines when placed
-		YesEldritchBattery                        = Enable this to sample the energy shield on the mana globe instead
-		UpdateOnHideoutBtn                        = Calibrate the OnHideout Color`rThis color determines if you are in a Hideout`rMake sure the Hideout menu next to abilities is visible
-		UpdateOnCharBtn                           = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
-		UpdateOnChatBtn                           = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
-		UpdateOnDivBtn                            = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
-		UdateEmptyInvSlotColorBtn                 = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
-		UpdateOnHideoutMinBtn                     = Calibrate the OnHideoutMin Color`rThis color determines if you are in a Hideout`rMake sure the Hideout menu next to abilities is minimized
-		UpdateOnInventoryBtn                      = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
-		UpdateOnStashBtn                          = Calibrate the OnStash Color`rThis color determines if the Stash panel is open`rSample is located at the top of the Stash panel
-		UpdateOnVendorBtn                         = Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
-		UpdateOnMenuBtn                           = Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
-		UpdateDetonateBtn                         = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the right
-		UpdateDetonateDelveBtn                    = Calibrate the Detonate Mines Color while in Delve`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the left
-		CalibrateOHBBtn                           = Calibrate the life color of the Overhead Health Bar`rMake sure the OHB is visible
-		ShowSampleIndBtn                          = Open the Sample GUI which allows you to recalibrate one at a time
-		ShowDebugGamestatesBtn                    = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
-		StartCalibrationWizardBtn                 = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
-		YesOHB                                    = Uses the new Overhead Health Bar detection`rAllows to use life builds in delve`rCurrently only affects Health Detection
-		ShowOnStart                               = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
-		Steam                                     = These settings are for the LutBot Quit method`rEnable this to set the EXE as Steam version
-		HighBits                                  = These settings are for the LutBot Quit method`rEnable this to set the EXE as 64bit version
-		AutoUpdateOff                             = Enable this to not check for new updates when launching the script
-		YesPersistantToggle                       = Enable this to have toggles remain after exiting and restarting the script
-		ResolutionScale                           = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rUltraWide is 32:9
-		Latency                                   = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
-		PortalScrollX                             = Select the X location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
-		PortalScrollY                             = Select the Y location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
-		WisdomScrollX                             = Select the X location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
-		WisdomScrollY                             = Select the Y location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
-		CurrentGemX                               = Select the X location of the Gem to swap from`rUse the Coord tool to find the X and Y
-		CurrentGemY                               = Select the Y location of the Gem to swap from`rUse the Coord tool to find the X and Y
-		AlternateGemX                             = Select the X location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
-		AlternateGemY                             = Select the Y location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
-		StockPortal                               = Enable this to restock Portal scrolls when more than 10 are missing
-		StockWisdom                               = Enable this to restock Wisdom scrolls when more than 10 are missing
-		AlternateGemOnSecondarySlot               = Enable this to Swap Weapons for your Alternate Gem Swap location
-		YesAutoSkillUp                            = Enable this to Automatically level up skill gems
-		DebugMessages                             = Enable this to show debug messages, previous functions have been moved to gamestates
-		hotkeyOptions                             = Set your hotkey to open the options GUI
-		hotkeyAutoFlask                           = Set your hotkey to turn on and off AutoFlask
-		hotkeyAutoQuit                            = Set your hotkey to turn on and off AutoQuit
-		hotkeyLogout                              = Set your hotkey to Log out of the game
-		hotkeyAutoQuicksilver                     = Set your hotkey to Turn on and off AutoQuicksilver
-		hotkeyGetMouseCoords                      = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
-		hotkeyQuickPortal                         = Set your hotkey to use a portal scroll from inventory
-		hotkeyGemSwap                             = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
-		hotkeyPopFlasks                           = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
-		hotkeyItemSort                            = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
-		hotkeyItemInfo                            = Set your hotkey to display information about an item`rWill graph price info if there is any match
-		hotkeyCloseAllUI                          = Put your ingame assigned hotkey to Close All User Interface here
-		hotkeyInventory                           = Put your ingame assigned hotkey to open inventory panel here
-		hotkeyWeaponSwapKey                       = Put your ingame assigned hotkey to Weapon Swap here
-		hotkeyLootScan                            = Put your ingame assigned hotkey for Item Pickup Key here
-		LootVacuum                                = Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
-		LootVacuumSettings                        = Assign your own loot colors and adjust the AreaScale`rEdit the INI directly for more than 2 groups or less`rThe menu is built to support any number of color groups`rEach group must contain Normal and Hovered colors
-		PopFlaskRespectCD                         = Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
-		YesPopAllExtraKeys                        = Enable this option to press any extra keys in each flasks bindings when Popping all Flasks`rIf disabled, it will only fire the primary key assigned to the flask slot.
-		LaunchHelp                                = Opens the AutoHotkey List of Keys
-		YesIdentify                               = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
-		YesStash                                  = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
-		YesVendor                                 = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
-		YesDiv                                    = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
-		YesMapUnid                                = This option is for the Identify logic`rEnable to avoid identifying maps
-		YesSortFirst                              = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
-		YesStashT1                                = This option is for the Crafting stash tab`rEnable to stash T1 crafting bases
-		YesStashT2                                = This option is for the Crafting stash tab`rEnable to stash T2 crafting bases
-		YesStashT3                                = This option is for the Crafting stash tab`rEnable to stash T3 crafting bases
-		YesStashCraftingNormal                    = This option is for the Crafting stash tab`rEnable to stash Normal crafting bases
-		YesStashCraftingMagic                     = This option is for the Crafting stash tab`rEnable to stash Magic crafting bases
-		YesStashCraftingRare                      = This option is for the Crafting stash tab`rEnable to stash Rare crafting bases
-		UpdateDatabaseInterval                    = How many days between database updates?
-		selectedLeague                            = Which league are you playing on?
-		UpdateLeaguesBtn                          = Use this button when there is a new league
-		LVdelay                                   = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
-		AreaScale                                 = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
-		YesTimeMS                                 = Enable to show the time in MS for each portion of the health scan
+		Capture = Initiate Image Capture Sequence
+		Test = Test Results of Code
+		Copy = Copy Code to Clipboard
+		AddFunc = Additional FindText() in Copy
+		U = Cut the Upper Edge by 1
+		U3 = Cut the Upper Edge by 3
+		L = Cut the Left Edge by 1
+		L3 = Cut the Left Edge by 3
+		R = Cut the Right Edge by 1
+		R3 = Cut the Right Edge by 3
+		D = Cut the Lower Edge by 1
+		D3 = Cut the Lower Edge by 3
+		ww = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
+		hh = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
+		ww_t = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
+		hh_t = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
+		SelR = Red component of the selected color
+		SelG = Green component of the selected color
+		SelB = Blue component of the selected color
+		DiffR = Red Difference which Determines Black or White Pixel Conversion (0-255)
+		DiffG = Green Difference which Determines Black or White Pixel Conversion (0-255)
+		DiffB = Blue Difference which Determines Black or White Pixel Conversion (0-255)
+		Auto = Automatic Cutting Edge
+		Similar = Adjust color similarity as Equivalent to The Selected Color
+		Similar2 = Adjust color similarity as Equivalent to The Selected Color
+		SelColor = The selected color
+		SelGray = Gray value of the selected color
+		Threshold = Gray Threshold which Determines Black or White Pixel Conversion (0-255)
+		GrayDiff = Gray Difference which Determines Black or White Pixel Conversion (0-255)
+		UsePos = Use position instead of color value to suit any color
+		Modify = Allows Modify the Black and White Image
+		Reset = Reset to Original Captured Image
+		Comment = Optional Comment used to Label Code ( Within <> )
+		SplitAdd = Using Markup Segmentation to Generate Text Library
+		AllAdd = Append Another FindText Search Text into Previously Generated Code
+		OK = Create New FindText Code for Testing
+		Close = Close the Window Don't Do Anything
+		Gray2Two = Converts Image Pixels from Grays to Black or White
+		GrayDiff2Two = Converts Image Pixels from Gray Difference to Black or White
+		Color2Two = Converts Image Pixels from Color to Black or White
+		ColorPos2Two = Converts Image Pixels from Color Position to Black or White
+		ColorDiff2Two = Converts Image Pixels from Color Difference to Black or White
+		ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
+		PopFlasks1 = Enable flask slot 1 when using Pop Flasks hotkey
+		PopFlasks2 = Enable flask slot 2 when using Pop Flasks hotkey
+		PopFlasks3 = Enable flask slot 3 when using Pop Flasks hotkey
+		PopFlasks4 = Enable flask slot 4 when using Pop Flasks hotkey
+		PopFlasks5 = Enable flask slot 5 when using Pop Flasks hotkey
+		DetonateMines = Enable this to automatically Detonate Mines when placed`rDouble tap the D key to pause until next manual detonate
+		YesEldritchBattery = Enable this to sample the energy shield on the mana globe instead
+		UpdateOnHideoutBtn = Calibrate the OnHideout Color`rThis color determines if you are in a Hideout`rMake sure the Hideout menu next to abilities is visible
+		UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
+		UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
+		UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
+		UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
+		UpdateOnHideoutMinBtn = Calibrate the OnHideoutMin Color`rThis color determines if you are in a Hideout`rMake sure the Hideout menu next to abilities is minimized
+		UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
+		UpdateOnStashBtn = Calibrate the OnStash Color`rThis color determines if the Stash panel is open`rSample is located at the top of the Stash panel
+		UpdateOnVendorBtn = Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
+		UpdateOnMenuBtn = Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
+		UpdateDetonateBtn = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the right
+		UpdateDetonateDelveBtn = Calibrate the Detonate Mines Color while in Delve`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the left
+		CalibrateOHBBtn = Calibrate the life color of the Overhead Health Bar`rMake sure the OHB is visible
+		ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
+		ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
+		StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
+		YesOHB = Uses the new Overhead Health Bar detection`rAllows to use life builds in delve`rCurrently only affects Health Detection
+		ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
+		Steam = These settings are for the LutBot Quit method`rEnable this to set the EXE as Steam version
+		HighBits = These settings are for the LutBot Quit method`rEnable this to set the EXE as 64bit version
+		AutoUpdateOff = Enable this to not check for new updates when launching the script
+		YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
+		ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rUltraWide is 32:9
+		Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
+		PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
+		PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
+		WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
+		WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
+		CurrentGemX = Select the X location of the Gem to swap from`rUse the Coord tool to find the X and Y
+		CurrentGemY = Select the Y location of the Gem to swap from`rUse the Coord tool to find the X and Y
+		AlternateGemX = Select the X location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
+		AlternateGemY = Select the Y location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
+		StockPortal = Enable this to restock Portal scrolls when more than 10 are missing
+		StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing
+		AlternateGemOnSecondarySlot = Enable this to Swap Weapons for your Alternate Gem Swap location
+		YesAutoSkillUp = Enable this to Automatically level up skill gems
+		DebugMessages = Enable this to show debug messages, previous functions have been moved to gamestates
+		hotkeyOptions = Set your hotkey to open the options GUI
+		hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
+		hotkeyAutoQuit = Set your hotkey to turn on and off AutoQuit
+		hotkeyLogout = Set your hotkey to Log out of the game
+		hotkeyAutoQuicksilver = Set your hotkey to Turn on and off AutoQuicksilver
+		hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
+		hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
+		hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
+		hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
+		hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
+		hotkeyItemInfo = Set your hotkey to display information about an item`rWill graph price info if there is any match
+		hotkeyCloseAllUI = Put your ingame assigned hotkey to Close All User Interface here
+		hotkeyInventory = Put your ingame assigned hotkey to open inventory panel here
+		hotkeyWeaponSwapKey = Put your ingame assigned hotkey to Weapon Swap here
+		hotkeyLootScan = Put your ingame assigned hotkey for Item Pickup Key here
+		LootVacuum = Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
+		LootVacuumSettings = Assign your own loot colors and adjust the AreaScale`rEdit the INI directly for more than 2 groups or less`rThe menu is built to support any number of color groups`rEach group must contain Normal and Hovered colors
+		PopFlaskRespectCD = Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
+		YesPopAllExtraKeys = Enable this option to press any extra keys in each flasks bindings when Popping all Flasks`rIf disabled, it will only fire the primary key assigned to the flask slot.
+		LaunchHelp = Opens the AutoHotkey List of Keys
+		YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
+		YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
+		YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
+		YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
+		YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
+		YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
+		YesStashT1 = This option is for the Crafting stash tab`rEnable to stash T1 crafting bases
+		YesStashT2 = This option is for the Crafting stash tab`rEnable to stash T2 crafting bases
+		YesStashT3 = This option is for the Crafting stash tab`rEnable to stash T3 crafting bases
+		YesStashCraftingNormal = This option is for the Crafting stash tab`rEnable to stash Normal crafting bases
+		YesStashCraftingMagic = This option is for the Crafting stash tab`rEnable to stash Magic crafting bases
+		YesStashCraftingRare = This option is for the Crafting stash tab`rEnable to stash Rare crafting bases
+		UpdateDatabaseInterval = How many days between database updates?
+		selectedLeague = Which league are you playing on?
+		UpdateLeaguesBtn = Use this button when there is a new league
+		LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
+		AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
+		YesTimeMS = Enable to show the time in MS for each portion of the health scan
+		StashTabCurrency = Assign the Stash tab for Currency items
+		StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
+		StashTabOil = Assign the Stash tab for Oil items
+		StashTabYesOil = Enable to send Oil items to the assigned tab on the left
+		StashTabMap = Assign the Stash tab for Map items
+		StashTabYesMap = Enable to send Map items to the assigned tab on the left
+		StashTabFragment = Assign the Stash tab for Fragment items
+		StashTabYesFragment = Enable to send Fragment items to the assigned tab on the left
+		StashTabDivination = Assign the Stash tab for Divination items
+		StashTabYesDivination = Enable to send Divination items to the assigned tab on the left
+		StashTabCollection = Assign the Stash tab for Collection items`rThis is where Uniques will first be attempted to stash
+		StashTabYesCollection = Enable to send Collection items to the assigned tab on the left`rThis is where Uniques will first be attempted to stash
+		StashTabEssence = Assign the Stash tab for Essence items
+		StashTabYesEssence = Enable to send Essence items to the assigned tab on the left
+		StashTabProphecy = Assign the Stash tab for Prophecy items
+		StashTabYesProphecy = Enable to send Prophecy items to the assigned tab on the left
+		StashTabVeiled = Assign the Stash tab for Veiled items
+		StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
+		StashTabGem = Assign the Stash tab for Normal Gem items
+		StashTabYesGem = Enable to send Normal Gem items to the assigned tab on the left
+		StashTabGemQuality = Assign the Stash tab for Quality Gem items
+		StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
+		StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
+		StashTabYesFlaskQuality = Enable to send Quality Flask items to the assigned tab on the left
+		StashTabLinked = Assign the Stash tab for 6 or 5 Linked items
+		StashTabYesLinked = Enable to send 6 or 5 Linked items to the assigned tab on the left
+		StashTabUniqueDump = Assign the Stash tab for Unique items`rIf Collection is enabled, this will be where overflow goes
+		StashTabYesUniqueDump = Enable to send Unique items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow goes
+		StashTabUniqueRing = Assign the Stash tab for Unique Ring items`rIf Collection is enabled, this will be where overflow rings go
+		StashTabYesUniqueRing = Enable to send Unique Ring items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow rings go
+		StashTabFossil = Assign the Stash tab for Fossil items
+		StashTabYesFossil = Enable to send Fossil items to the assigned tab on the left
+		StashTabResonator = Assign the Stash tab for Resonator items
+		StashTabYesResonator = Enable to send Resonator items to the assigned tab on the left
+		StashTabCrafting = Assign the Stash tab for Crafting items
+		StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
 		)
-    ;General
+	; ASCII converted strings of images
+		Global HealthBarStr := "|<Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
+		Global MasterStr := "|<Master>**80$48.1kS000003tzzzzzw6NUU31kA49AgPBtaBBDyTDtmBB76FDNm9ZXaF1NaObkaF1MAE2QqFCMAnnwqF896aHQqFDdXYF1aF1tlwTzblzzT00S00000U"
+		Global NavaliStr := "|<Navali>**80$58.s7U0000002kK00000009V8CC3VksCX4VtwSD7ly6GAoF9aN6MBMVNYY9YNYRaaWmomEaEqG/+OF92NXNAYt9YY9b5hHFhWOEaK6U5YY0d2NASSG6nmZtYNn9gGNCRaEr8WH94M6T1zXtwwTzz00003U0002"
+		Global HelenaStr := "|<Helena>**85$64.wDU00000002EW000000009280C00Q71kY9jzwTzsyDWEaUSF0wmNa92PBN6PlhY8btYwY9x3oom06HmEbY7GF92N1922KB9YbtY4Y89QpWOEaHmEbZkI0d2N89SELVnmY9YybNxP6NCEWEO1UpaN4T3tzjzzSDwTU"
+		Global SellItemsStr := "|<Sell Items>**80$82.000Qs000000000003zk000000007w08l0y0000000sM0nY1800000030U1+E4bU000009mTYd0GnrvzzXwbv7GY1+9ltnXMOCM5+E4cC1U470gRCQd0Gnnb6CRusQtmY199CQwtntkk7+E4gY1mmb3VXDwd0GmHz/+S23AnmY1/9AwgdiDwnv+E4gwymmbwtX2Qd0GnEb/+RnUS1mY191UQgdkPzDxvk7bzzyyzzXkD0000D3k001sU"
+		Global StashStr := "|<Stash>**85$48.Dk000000MM000000k803UwSDbDzbnzyDbs0gn1m9Xf6cGNm9lzbuOTG9kNYG+CHtQ9YH/3E16BYlDVE13BYU4lntzBZbbtm9a9ZAatm9UNZ8W3G9zlxszzSDD0000w00U"
+	; Click Vendor after stash
+		Global YesVendorAfterStashStr, YesVendorAfterStash
+    ; General
 		Global Latency := 1
 		Global ShowOnStart := 0
 		Global PopFlaskRespectCD := 1
@@ -459,7 +504,6 @@
 		Global GameX, GameY, GameW, GameH, mouseX, mouseY
 		Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
 		Global GameStr := "ahk_group POEGameGroup"
-		Global HealthBarStr := "|<Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
 
 		; Loot colors for the vacuum
 		Global LootColors := { 1 : 0x6565A3
@@ -488,7 +532,7 @@
 		; Dont change the speed & the tick unless you know what you are doing
 			global Speed:=1
 			global Tick:=50
-	;Inventory
+	; Inventory
 		Global StashTabCurrency := 1
 		Global StashTabMap := 1
 		Global StashTabDivination := 1
@@ -506,7 +550,8 @@
 		Global StashTabResonator := 1
 		Global StashTabCrafting := 1
 		Global StashTabProphecy := 1
-	;Checkbox to activate each tab
+		Global StashTabVeiled := 1
+	; Checkbox to activate each tab
 		Global StashTabYesCurrency := 1
 		Global StashTabYesMap := 1
 		Global StashTabYesDivination := 1
@@ -524,14 +569,15 @@
 		Global StashTabYesResonator := 1
 		Global StashTabYesCrafting := 1
 		Global StashTabYesProphecy := 1
-	;Crafting bases to stash
+		Global StashTabYesVeiled := 1
+	; Crafting bases to stash
 		Global YesStashT1 := 1
 		Global YesStashT2 := 1
 		Global YesStashT3 := 1
 		Global YesStashCraftingNormal := 1
 		Global YesStashCraftingMagic := 1
 		Global YesStashCraftingRare := 1
-	;Controller
+	; Controller
 		Global YesController := 1
 		global checkvar:=0
 		Global YesMovementKeys := 0
@@ -547,7 +593,7 @@
 		global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerButton9,hotkeyControllerButton10,hotkeyControllerJoystick2
 		global YesTriggerUtilityJoystickKey := 1
 		global YesTriggerJoystick2Key := 1
-	;~ Hotkeys
+	; ~ Hotkeys
 	; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
 		global hotkeyOptions:=!F10
 		global hotkeyAutoFlask:=!F11
@@ -567,7 +613,7 @@
 		global hotkeyMainAttack:=RButton
 		global hotkeySecondaryAttack:=w
 		global hotkeyDetonate:=d
-	;Coordinates
+	; Coordinates
 		global PortalScrollX:=1825
 		global PortalScrollY:=825
 		global WisdomScrollX:=1875
@@ -577,9 +623,9 @@
 		global GuiX:=-5
 		global GuiY:=1005
 
-	;Inventory Colors
+	; Inventory Colors
 		global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
-	;Failsafe Colors
+	; Failsafe Colors
 		global varOnHideout:=0xB5EFFE
 		global varOnHideoutMin:=0xCDF6FE
 		global varOnMenu:=0x7BB9D6
@@ -591,7 +637,7 @@
 		global varOnDiv:=0xC5E2F6
 		Global DetonateHex := 0x412037
 
-	;Life Colors
+	; Life Colors
 		global varLife20
 		global varLife30
 		global varLife40
@@ -601,7 +647,7 @@
 		global varLife80
 		global varLife90
 		
-	;ES Colors
+	; ES Colors
 		global varES20
 		global varES30
 		global varES40
@@ -611,30 +657,30 @@
 		global varES80
 		global varES90
 
-	;Mana Colors
+	; Mana Colors
 		global varMana10
 		global varManaThreshold
 		Global ManaThreshold
 
-	;Gem Swap
+	; Gem Swap
 		global CurrentGemX:=1483
 		global CurrentGemY:=372
 		global AlternateGemX:=1379 
 		global AlternateGemY:=171
 		global AlternateGemOnSecondarySlot:=1
 
-	;Attack Triggers
+	; Attack Triggers
 		global TriggerMainAttack:=00000
 		global TriggerSecondaryAttack:=00000
 		Global MainAttackbox1,MainAttackbox2,MainAttackbox3,MainAttackbox4,MainAttackbox5
 		Global SecondaryAttackbox1,SecondaryAttackbox2,SecondaryAttackbox3,SecondaryAttackbox4,SecondaryAttackbox5
 
-	;CharacterTypeCheck
+	; CharacterTypeCheck
 		global Life:=1
 		global Hybrid:=0
 		global Ci:=0
 
-	;Life Triggers
+	; Life Triggers
 		global TriggerLife20:=00000
 		global TriggerLife30:=00000
 		global TriggerLife40:=00000
@@ -653,7 +699,7 @@
 		global Radiobox1Life80, Radiobox2Life80, Radiobox3Life80, Radiobox4Life80, Radiobox5Life80
 		global Radiobox1Life90, Radiobox2Life90, Radiobox3Life90, Radiobox4Life90, Radiobox5Life90
 		global RadioUncheck1Life, RadioUncheck2Life, RadioUncheck3Life, RadioUncheck4Life, RadioUncheck5Life
-	;ES Triggers
+	; ES Triggers
 		Global YesEldritchBattery := 1
 		global TriggerES20:=00000
 		global TriggerES30:=00000
@@ -674,22 +720,22 @@
 		global Radiobox1ES90, Radiobox2ES90, Radiobox3ES90, Radiobox4ES90, Radiobox5ES90
 		global RadioUncheck1ES, RadioUncheck2ES, RadioUncheck3ES, RadioUncheck4ES, RadioUncheck5ES
 
-	;Mana Triggers
+	; Mana Triggers
 		global TriggerMana10:=00000
 
-	;AutoQuit
+	; AutoQuit
 		global RadioQuit20, RadioQuit30, RadioQuit40, RadioCritQuit, RadioNormalQuit
 
-	;Character Type
+	; Character Type
 		global RadioCi, RadioHybrid, RadioLife
 		
-	;Utility Buttons
+	; Utility Buttons
 		global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
 		global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
 		global YesUtility1LifePercent, YesUtility2LifePercent, YesUtility3LifePercent, YesUtility4LifePercent, YesUtility5LifePercent
 		global YesUtility1ESPercent, YesUtility2ESPercent, YesUtility3ESPercent, YesUtility4ESPercent, YesUtility5ESPercent
 
-	;Utility Cooldowns
+	; Utility Cooldowns
 		global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
 		global OnCooldownUtility1 := 0
 		global OnCooldownUtility2 := 0
@@ -697,19 +743,19 @@
 		global OnCooldownUtility4 := 0
 		global OnCooldownUtility5 := 0
 
-	;Utility Keys
+	; Utility Keys
 		global KeyUtility1, KeyUtility2, KeyUtility3, KeyUtility4, KeyUtility5
-	;Utility Icons
+	; Utility Icons
 		global IconStringUtility1, IconStringUtility2, IconStringUtility3, IconStringUtility4, IconStringUtility5
 
-	;Flask Cooldowns
+	; Flask Cooldowns
 		global CooldownFlask1:=5000
 		global CooldownFlask2:=5000
 		global CooldownFlask3:=5000
 		global CooldownFlask4:=5000
 		global CooldownFlask5:=5000
 		global Cooldown:=5000
-	;Flask hotkeys
+	; Flask hotkeys
 		global keyFlask1:=1
 		global keyFlask2:=2
 		global keyFlask3:=3
@@ -717,17 +763,17 @@
 		global keyFlask5:=5
 		Global KeyFlask1Proper,KeyFlask2Proper,KeyFlask3Proper,KeyFlask4Proper,KeyFlask5Proper
 
-	;Quicksilver
+	; Quicksilver
 		global TriggerQuicksilverDelay=0.8
 		global TriggerQuicksilver=00000
-	;PopFlasks
+	; PopFlasks
 		global PopFlasks1=1
 		global PopFlasks2=1
 		global PopFlasks3=1
 		global PopFlasks4=1
 		global PopFlasks5=1
 		global TriggerPopFlasks=11111
-	;Chat Functions
+	; Chat Functions
 		Global CharName := "ReplaceWithCharName"
 		Global RecipientName := "NothingYet"
 		Global fn1, fn2, fn3
@@ -738,7 +784,7 @@
 		Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
 		Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
 		Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
-	;ItemInfo GUI
+	; ItemInfo GUI
 		Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
 		Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21, 
 		Global PComment1 := "LongDataTextNameSpace"
@@ -825,7 +871,7 @@
 	Gui Add, Checkbox, 	vYesTimeMS Checked%YesTimeMS%  gUpdateDebug   	x490 	y5 	    w13 h13
 	Gui Add, Text, 				vYesTimeMS_t						x437	y5, 				Scan MS:
 
-	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller|Item Parse
+	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
@@ -1255,6 +1301,28 @@
 	Gui, Add, DropDownList, gUpdateExtra vLatency w30 xs y+10,  %Latency%||1|2|3
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 
+
+	IfNotExist, %A_ScriptDir%\data\leagues.json
+	{
+		UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+	}
+	FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+	LeagueIndex := JSON.Load(JSONtext)
+	textList= 
+	For K, V in LeagueIndex
+		textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+
+	Gui, Font, Bold
+	Gui Add, GroupBox, 			Section		w210 h95				xm+5 	y+15, 				Item Parse Settings
+	Gui, Font,
+	Gui, Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja Database?
+		YesNinjaDatabase_TT:="Disable to remove this function"
+	Gui, Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
+	Gui, Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
+	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Update leagues
+	Gui, Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Force a match with the 6 Link price
+
+
 	Gui, Font, Bold
 	Gui Add, Text, 										x292 	y30, 				QoL Settings
 	Gui, Font
@@ -1335,7 +1403,7 @@
 	Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
@@ -1426,10 +1494,10 @@
 	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
 
 
-	Gui, Add, Button, gLaunchLootFilter xm y290, Custom Loot Filter
-	Gui, Add, Button, gBuildIgnoreMenu x+10, Assign Ignored Slots
 	Gui, Font, Bold
-	Gui Add, Text, 										xm 	y330, 				ID/Vend/Stash Options:
+	Gui, Add, Button, gLaunchLootFilter xm y300, Custom Loot Filter
+	Gui, Add, Button, gBuildIgnoreMenu x+10, Assign Ignored Slots
+	Gui Add, Text, 		Section								xm 	y330, 				ID/Vend/Stash Options:
 	Gui, Font,
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%   				, Identify Items?
 	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%         				, Deposit at stash?
@@ -1437,22 +1505,26 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%             				, Trade Divination?
 	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%     				, Leave Map Un-ID?
 	Gui Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst% 				, Group Items before stashing?
-	Gui Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     				, T1?
+
+	Gui, Font, Bold s9 cBlack
+	Gui Add, GroupBox, 						w180 h60		section		xm+180 	ys+5, 				Crafting Tab:
+	Gui, Font,
+	Gui Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     xs+5	ys+18			, T1?
 	Gui Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
 	Gui Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
-	Gui Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xm	y+8		, Normal?
+	Gui Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xs+5	y+8		, Normal?
 	Gui Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
 	Gui Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
 
-	Gui, Font, Bold
-	Gui Add, Text, 										xm+170 	y330, 				Inventory Instructions:
+	Gui, Font, Bold s9 cBlack
+	Gui Add, GroupBox, 						w180 h90		section		xm+370 	ys, 				Automation:
 	Gui, Font,
-	Gui Add, Text, 										 	y+5, 				Use the dropdown list to choose which stash tab the item type will be sent.
-	Gui Add, Text, 										 	y+5, 				The checkbox is to enable or disable that type of item being stashed.
-	Gui Add, Text, 										 	y+5, 				The options to the left affect which portion of the Inventory functions are enabled.
+	Gui Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     xs+5	ys+18			, Search for stash?
+	Gui Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8			, Move to vendor after stash?
+	Gui Add, DropDownList, gUpdateExtra	vYesVendorAfterStashStr      y+8	, %YesVendorAfterStashStr%||MasterStr|NavaliStr|HelenaStr
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 	;#######################################################################################################Controller Tab
@@ -1514,32 +1586,7 @@
 	Gui,Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton2, %hotkeyControllerButton2%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
-	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
-	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
-	;#######################################################################################################Item Parse
-	Gui, Tab, Item Parse
-	Gui, Font, Bold
-	Gui Add, Text, 			Section						x12 	y30, 				Item Parse Settings
-	Gui, Font,
-	IfNotExist, %A_ScriptDir%\data\leagues.json
-	{
-		UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-	}
-	FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-	LeagueIndex := JSON.Load(JSONtext)
-	textList= 
-	For K, V in LeagueIndex
-		textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
-
-	Gui, Add, Checkbox, vYesNinjaDatabase xs+5 y+15 Checked%YesNinjaDatabase%, Enable PoE.Ninja Database?
-		YesNinjaDatabase_TT:="Disable to remove this function"
-	Gui, Add, DropDownList, vUpdateDatabaseInterval x+5 yp-3 w50 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
-	Gui, Add, DropDownList, vselectedLeague x+5 , %selectedLeague%||%textList%
-	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Update leagues
-	Gui, Add, Checkbox, vForceMatch6Link xs+5 y+15 Checked%ForceMatch6Link%, Force a match with the 6 Link price
-	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 	;#######################################################################################################Chat Tab
@@ -1547,7 +1594,7 @@
 	Gui Add, Checkbox, gUpdateExtra	vEnableChatHotkeys Checked%EnableChatHotkeys%     xm ym+20                    	          	, Enable chat Hotkeys?
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y430	w180 h23, 	Save Configuration
+	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
@@ -1577,7 +1624,7 @@
 	Gui,Add,GroupBox,Section x+10 ys w300 h275											,Commands
 	Gui,Font,
 	Gui,Font,s9,Arial
-	DefaultCommands := [ "/Hideout","/menagerie","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
+	DefaultCommands := [ "/Hideout","/Menagerie","/Delve","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
 	textList=
 	For k, v in DefaultCommands
 		textList .= (!textList ? "" : "|") v
@@ -1633,8 +1680,6 @@
 
 	Gui, +LastFound
 	Gui, +AlwaysOnTop
-	If (ShowOnStart)
-		Gui, Show, Autosize Center, 	WingmanReloaded
 	Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
 	Menu, Tray, NoStandard
 	Menu, Tray, Add, 				WingmanReloaded, optionsCommand
@@ -1953,7 +1998,7 @@
 	Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
 
 	IfWinExist, ahk_group POEGameGroup
-		{
+	{
 		Rescale()
 		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 		ToggleExist := True
@@ -1962,7 +2007,10 @@
 			AutoReset()
 		If (ShowOnStart)
 			Hotkeys()
-		}
+	}
+	Else If (ShowOnStart)
+		Hotkeys()
+
 
 ; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2021,653 +2069,864 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ItemSortCommand:
 		Thread, NoTimers, true		;Critical
-		BlackList := Array_DeepClone(IgnoredSlot)
-		CurrentTab:=0
-		tQ := 0
-		tGQ := 0
-		SortFlask := {}
-		SortGem := {}
-		SortFirst := {}
-		Loop 32
-		{
-			SortFirst[A_Index] := {}
-		}
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
 		{
-			GuiStatus()
-			If (!OnChar) { ;Need to be on Character 
-				MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
-				Return
-				} Else If (!OnInventory&&OnChar){ ;Need to be on Character and have Inventory Open
-				Send {%hotkeyInventory%}
-				Return
-				}
 			If RunningToggle  ; This means an underlying thread is already running the loop below.
-				{
+			{
 				RunningToggle := False  ; Signal that thread's loop to stop.
-				return  ; End this thread so that the one underneath will resume and see the change made by the line above.
-				}
+				exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
+			}
 			RunningToggle := True
-			
-
-			For C, GridX in InventoryGridX
-			{
-				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-					Break
-				For R, GridY in InventoryGridY
+			GuiStatus()
+			If (!OnChar) 
+			{ ;Need to be on Character 
+				MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
+				RunningToggle := False
+				Return
+			} 
+			Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
+			{ 
+				If (YesSearchForStash && (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr)))
 				{
-					If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+					LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
+					Loop, 666
+					{
+						GuiStatus()
+						If OnStash
 						Break
-					If BlackList[C][R]
-						Continue
-					Grid := RandClick(GridX, GridY)
-					If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-					{   
-						;Unmark the below lines to check if it is going into scroll area during run
-						;MsgBox, Hit Scroll
-						;Return
-						Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-					} 
-					pixelgetcolor, PointColor, GridX, GridY
-					
-					If indexOf(PointColor, varEmptyInvSlotColor) {
-						;Seems to be an empty slot, no need to clip item info
-						Continue
-					}
-					
-					; If !( indexOfHex(PointColor, varIdColor) || indexOfHex(PointColor, varUnIdColor) ) {
-					; 	;Seems to not match with either identified or UnIdentified color arrays
-					; 	Continue
-					; }
-					
-					ClipItem(Grid.X,Grid.Y)
-					addToBlacklist(C, R)
-					If (OnDiv && YesDiv) 
-					{
-						If (Prop.RarityDivination && (Stats.Stack = Stats.StackMax)){
-							CtrlClick(Grid.X,Grid.Y)
-							RandomSleep(150,200)
-							LeftClick(vX_OnDiv,vY_DivTrade)
-							CtrlClick(vX_OnDiv,vY_DivItem)
-						}
-						Continue
-					}
-					If (!Prop.Identified&&YesIdentify)
-					{
-						If (Prop.IsMap&&!YesMapUnid)
-						{
-							WisdomScroll(Grid.X,Grid.Y)
-							ClipItem(Grid.X,Grid.Y)
-						}
-						Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
-						{
-							WisdomScroll(Grid.X,Grid.Y)
-							ClipItem(Grid.X,Grid.Y)
-						}
-						Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
-						{
-							WisdomScroll(Grid.X,Grid.Y)
-							ClipItem(Grid.X,Grid.Y)
-						}
-						Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
-						{
-							WisdomScroll(Grid.X,Grid.Y)
-							ClipItem(Grid.X,Grid.Y)
-						}
-					}
-					If (OnStash && YesStash && !YesSortFirst) 
-					{
-						If (sendstash:=MatchLootFilter())
-						{
-							MoveStash(sendstash)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
-						{
-							MoveStash(StashTabCurrency)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.IsMap&&StashTabYesMap)
-						{
-							MoveStash(StashTabMap)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.BreachSplinter&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.SacrificeFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.MortalFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.GuardianFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.ProphecyFragment&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Offering&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Vessel&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Scarab&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.TimelessSplinter&&StashTabYesFragment)
-						{
-							MoveStash(StashTabFragment)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.RarityDivination&&StashTabYesDivination)
-						{
-							MoveStash(StashTabDivination)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.RarityUnique&&Prop.Ring)
-						{
-							If (StashTabYesCollection)
-							{
-								MoveStash(StashTabCollection)
-								RandomSleep(30,45)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							If (StashTabYesUniqueRing)
-							{
-								Sleep, 200*Latency
-								pixelgetcolor, Pitem, GridX, GridY
-								if (indexOfHex(Pitem, varEmptyInvSlotColor))
-									Continue
-								MoveStash(StashTabUniqueRing)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							If (StashTabYesUniqueDump)
-							{
-								Sleep, 200*Latency
-								pixelgetcolor, Pitem, GridX, GridY
-								if (indexOfHex(Pitem, varEmptyInvSlotColor))
-									Continue
-								MoveStash(StashTabUniqueDump)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							Continue
-						}
-						Else If (Prop.RarityUnique)
-						{
-							If (StashTabYesCollection)
-							{
-								MoveStash(StashTabCollection)
-								RandomSleep(30,45)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							If (StashTabYesUniqueDump)
-							{
-								Sleep, 200*Latency
-								pixelgetcolor, Pitem, GridX, GridY
-								if (indexOfHex(Pitem, varEmptyInvSlotColor))
-									Continue
-								MoveStash(StashTabUniqueDump)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							Continue
-						}
-						If (Prop.Essence&&StashTabYesEssence)
-						{
-							MoveStash(StashTabEssence)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Fossil&&StashTabYesFossil)
-						{
-							MoveStash(StashTabFossil)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Resonator&&StashTabYesResonator)
-						{
-							MoveStash(StashTabResonator)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-						{
-							MoveStash(StashTabFlaskQuality)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.RarityGem)
-						{
-							If ((Stats.Quality>0)&&StashTabYesGemQuality)
-							{
-								MoveStash(StashTabGemQuality)
-								CtrlClick(Grid.X,Grid.Y)
-								Continue
-							}
-							Else If (StashTabYesGem)
-							{
-								MoveStash(StashTabGem)
-								CtrlClick(Grid.X,Grid.Y)
-								Continue
-							}
-						}
-						If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
-						{
-							MoveStash(StashTabLinked)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Prophecy&&StashTabYesProphecy)
-						{
-							MoveStash(StashTabProphecy)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Oil&&StashTabYesOil)
-						{
-							MoveStash(StashTabOil)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If (Prop.Veiled&&StashTabYesVeiled)
-						{
-							MoveStash(StashTabVeiled)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						If StashTabYesCrafting 
-							&& ((YesStashT1 && Prop.CraftingBase = "T1") 
-								|| (YesStashT2 && Prop.CraftingBase = "T2") 
-								|| (YesStashT3 && Prop.CraftingBase = "T3"))
-							&& ((YesStashCraftingNormal && Prop.RarityNormal)
-								|| (YesStashCraftingMagic && Prop.RarityMagic)
-								|| (YesStashCraftingRare && Prop.RarityRare))
-						{
-							MoveStash(StashTabCrafting)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-					}
-					If (OnStash && YesStash && YesSortFirst) 
-					{
-						If (sendstash:=MatchLootFilter())
-						{
-							SortFirst[sendstash].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
-						{
-							SortFirst[StashTabCurrency].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.IsMap&&StashTabYesMap)
-						{
-							SortFirst[StashTabMap].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.BreachSplinter&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.SacrificeFragment&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.MortalFragment&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.GuardianFragment&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.ProphecyFragment&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Offering&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Vessel&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Scarab&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.TimelessSplinter&&StashTabYesFragment)
-						{
-							SortFirst[StashTabFragment].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.RarityDivination&&StashTabYesDivination)
-						{
-							SortFirst[StashTabDivination].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.RarityUnique&&Prop.Ring)
-						{
-							If (StashTabYesCollection)
-							{
-								MoveStash(StashTabCollection)
-								RandomSleep(30,45)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							If (StashTabYesUniqueRing)
-							{
-								Sleep, 200*Latency
-								pixelgetcolor, Pitem, GridX, GridY
-								if (indexOfHex(Pitem, varEmptyInvSlotColor))
-									Continue
-								MoveStash(StashTabUniqueRing)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							If (StashTabYesUniqueDump)
-							{
-								Sleep, 200*Latency
-								pixelgetcolor, Pitem, GridX, GridY
-								if (indexOfHex(Pitem, varEmptyInvSlotColor))
-									Continue
-								MoveStash(StashTabUniqueDump)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							Continue
-						}
-						Else If (Prop.RarityUnique)
-						{
-							If (StashTabYesCollection)
-							{
-								MoveStash(StashTabCollection)
-								RandomSleep(30,45)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							If (StashTabYesUniqueDump)
-							{
-								Sleep, 200*Latency
-								pixelgetcolor, Pitem, GridX, GridY
-								if (indexOfHex(Pitem, varEmptyInvSlotColor))
-									Continue
-								MoveStash(StashTabUniqueDump)
-								CtrlClick(Grid.X,Grid.Y)
-							}
-							Continue
-						}
-						If (Prop.Essence&&StashTabYesEssence)
-						{
-							SortFirst[StashTabEssence].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Fossil&&StashTabYesFossil)
-						{
-							SortFirst[StashTabFossil].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Resonator&&StashTabYesResonator)
-						{
-							SortFirst[StashTabResonator].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-						{
-							SortFirst[StashTabFlaskQuality].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.RarityGem)
-						{
-							If ((Stats.Quality>0)&&StashTabYesGemQuality)
-							{
-								SortFirst[StashTabGemQuality].Push({"C":C,"R":R})
-								Continue
-							}
-							Else If (StashTabYesGem)
-							{
-								SortFirst[StashTabGem].Push({"C":C,"R":R})
-								Continue
-							}
-						}
-						If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
-						{
-							SortFirst[StashTabLinked].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Prophecy&&StashTabYesProphecy)
-						{
-							SortFirst[StashTabProphecy].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Oil&&StashTabYesOil)
-						{
-							SortFirst[StashTabOil].Push({"C":C,"R":R})
-							Continue
-						}
-						If (Prop.Veiled&&StashTabYesVeiled)
-						{
-							SortFirst[StashTabVeiled].Push({"C":C,"R":R})
-							Continue
-						}
-						If StashTabYesCrafting 
-							&& ((YesStashT1 && Prop.CraftingBase = "T1") 
-								|| (YesStashT2 && Prop.CraftingBase = "T2") 
-								|| (YesStashT3 && Prop.CraftingBase = "T3"))
-							&& ((YesStashCraftingNormal && Prop.RarityNormal)
-								|| (YesStashCraftingMagic && Prop.RarityMagic)
-								|| (YesStashCraftingRare && Prop.RarityRare))
-						{
-							SortFirst[StashTabCrafting].Push({"C":C,"R":R})
-							Continue
-						}
-					}
-					If (OnVendor&&YesVendor)
-					{
-						If MatchLootFilter()
-							Continue
-						If (Prop.RarityCurrency)
-							Continue
-						If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
-							Continue
-						If ( Prop.Flask && ( Stats.Quality > 0 ))
-						{
-							Q := Stats.Quality
-							tQ += Q
-							SortFlask.Push({"C":C,"R":R,"Q":Q})
-							Continue
-						}
-						If ( Prop.RarityGem && ( Stats.Quality > 0 ))
-						{
-							Q := Stats.Quality
-							tGQ += Q
-							SortGem.Push({"C":C,"R":R,"Q":Q})
-							Continue
-						}
-						If ( Prop.SpecialType="" )
-						{
-							Sleep, 30*Latency
-							CtrlClick(Grid.X,Grid.Y)
-							Sleep, 10*Latency
-							Continue
-						}
 					}
 				}
-				MouseGetPos Checkx, Checky
-				If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-					Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-					Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
-					MouseMove, RX, RY, 0
-					Sleep, 45*Latency
+				Else
+				{
+					Send {%hotkeyInventory%}
+					RunningToggle := False
+					Return
 				}
 			}
-			If (OnStash && RunningToggle && YesStash && YesSortFirst)
-			{
-				For Tab, Tv in SortFirst
-				{
-					For Item, Iv in Tv
-					{
-						MoveStash(Tab)
-						C := SortFirst[Tab][Item]["C"]
-						R := SortFirst[Tab][Item]["R"]
-						GridX := InventoryGridX[C]
-						GridY := InventoryGridY[R]
-						Grid := RandClick(GridX, GridY)
-						CtrlClick(Grid.X,Grid.Y)
-					}
-				}
-			}
-			If (OnVendor && RunningToggle && YesVendor && tQ >= 40)
-			{
-				overQ := mod(tQ, 40)
-				For Item, Iv in SortFlask
-				{
-					If overQ < 5
-						Continue
-					if overQ > 10
-					{
-						Q := SortFlask[Item]["Q"]
-						If (Q > 10 && Q <= overQ)
-						{
-							overQ -= Q
-							tQ -= Q
-							SortFlask.Delete(Item)
-						}
-					}
-				}
-				overQ := mod(tQ, 40)
-				For Item, Iv in SortFlask
-				{
-					If overQ < 5
-						Continue
-					if Q <= overQ
-					{
-						If (overQ - Q) >= 0
-						{
-							overQ -= Q
-							tQ -= Q
-							SortFlask.Delete(Item)
-						}
-					}
-				}
-				overQ := mod(tQ, 40)
-				Ding(2000,0,"Total Flask Quality: " . tQ,"Extra Quality: " . overQ)
-				For Item in SortFlask
-				{
-					C := SortFlask[Item]["C"]
-					R := SortFlask[Item]["R"]
-					GridX := InventoryGridX[C]
-					GridY := InventoryGridY[R]
-					Grid := RandClick(GridX, GridY)
-					CtrlClick(Grid.X,Grid.Y)
-					RandomSleep(45,90)
-
-					Continue
-				}
-			}
-			If (OnVendor && RunningToggle && YesVendor && tGQ >= 40)
-			{
-				overQ := mod(tGQ, 40)
-				if overQ > 10
-				{
-					For Item, Iv in SortGem
-					{
-						If overQ < 5
-							Continue
-						Q := SortGem[Item]["Q"]
-						If (Q > 10 && Q <= overQ)
-						{
-							overQ -= Q
-							tGQ -= Q
-							SortGem.Delete(Item)
-						}
-					}
-				}
-				overQ := mod(tGQ, 40)
-				For Item, Iv in SortGem
-				{
-					If overQ < 5
-						Continue
-					if Q <= overQ
-					{
-						If (overQ - Q) >= 0
-						{
-							overQ -= Q
-							tGQ -= Q
-							SortGem.Delete(Item)
-						}
-					}
-				}
-				overQ := mod(tGQ, 40)
-				Ding(2000,0,"Total Gem Quality: " . tGQ,"Extra Quality: " . overQ)
-				For Item in SortGem
-				{
-					C := SortGem[Item]["C"]
-					R := SortGem[Item]["R"]
-					GridX := InventoryGridX[C]
-					GridY := InventoryGridY[R]
-					Grid := RandClick(GridX, GridY)
-					CtrlClick(Grid.X,Grid.Y)
-					RandomSleep(45,90)
-					Continue
-				}
-			}
-			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-			{
-				StockScrolls()
-			}
+			If (OnDiv && YesDiv)
+				DivRoutine()
+			Else If (OnStash && YesStash)
+				StashRoutine()
+			Else If (OnVendor && YesVendor)
+				VendorRoutine()
+			Else If (OnInventory&&YesIdentify)
+				IdentifyRoutine()
 		}
 		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
 		CurrentTab:=0
 		MouseMove, xx, yy, 0
 	Return
+	; VendorRoutine - Does vendor functions
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	VendorRoutine()
+	{
+		Thread, NoTimers, true		;Critical
+		tQ := 0
+		tGQ := 0
+		SortFlask := {}
+		SortGem := {}
+		BlackList := Array_DeepClone(IgnoredSlot)
+		; Main loop through inventory
+		For C, GridX in InventoryGridX
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			For R, GridY in InventoryGridY
+			{
+				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+					Break
+				If BlackList[C][R]
+					Continue
+				Grid := RandClick(GridX, GridY)
+				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+				{   
+					Ding(500,1,"Hit Scroll")
+					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+				} 
+				pixelgetcolor, PointColor, GridX, GridY
+				
+				If indexOf(PointColor, varEmptyInvSlotColor) {
+					;Seems to be an empty slot, no need to clip item info
+					Continue
+				}
+				
+				ClipItem(Grid.X,Grid.Y)
+				addToBlacklist(C, R)
+				If (!Prop.Identified&&YesIdentify)
+				{
+					If (Prop.IsMap&&!YesMapUnid)
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+				}
+				If (OnVendor&&YesVendor)
+				{
+					If MatchLootFilter()
+						Continue
+					If (Prop.RarityCurrency)
+						Continue
+					If (Prop.RarityUnique && (Prop.Ring||Prop.Amulet||Prop.Jewel||Prop.Flask))
+						Continue
+					If ( Prop.Flask && ( Stats.Quality > 0 ))
+					{
+						If Stats.Quality >= 20
+							Q := 40 
+						Else 
+							Q := Stats.Quality
+						tQ += Q
+						SortFlask.Push({"C":C,"R":R,"Q":Q})
+						Continue
+					}
+					If ( Prop.RarityGem && ( Stats.Quality > 0 ))
+					{
+						If Stats.Quality >= 20
+							Continue 
+						Else 
+							Q := Stats.Quality
+						Q := Stats.Quality
+						tGQ += Q
+						SortGem.Push({"C":C,"R":R,"Q":Q})
+						Continue
+					}
+					If ( Prop.SpecialType="" )
+					{
+						Sleep, 30*Latency
+						CtrlClick(Grid.X,Grid.Y)
+						Sleep, 10*Latency
+						Continue
+					}
+				}
+			}
+			; Move mouse out of the way after a column
+			MouseGetPos Checkx, Checky
+			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+				MouseMove, RX, RY, 0
+				Sleep, 45*Latency
+			}
+		}
+		; Sell any bulk Flasks or Gems
+		If (OnVendor && RunningToggle && YesVendor && tQ >= 40)
+		{
+			Grouped := GroupByFourty(SortFlask)
+			For k, v in Grouped
+			{
+				If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+					exit
+				For kk, vv in v
+				{
+					If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+						exit
+					Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
+					CtrlClick(Grid.X,Grid.Y)
+					RandomSleep(45,90)
+				}
+			}
+		}
+		If (OnVendor && RunningToggle && YesVendor && tGQ >= 40)
+		{
+			Grouped := GroupByFourty(SortGem)
+			For k, v in Grouped
+			{
+				If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+					exit
+				For kk, vv in v
+				{
+					If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+						exit
+					Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
+					CtrlClick(Grid.X,Grid.Y)
+					RandomSleep(45,90)
+				}
+			}
+		}
+		Return
+	}
+	; StashRoutine - Does stash functions
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	StashRoutine()
+	{
+		Thread, NoTimers, true		;Critical
+		CurrentTab:=0
+		SortFirst := {}
+		Loop 32
+		{
+			SortFirst[A_Index] := {}
+		}
+		BlackList := Array_DeepClone(IgnoredSlot)
+		; Main loop through inventory
+		For C, GridX in InventoryGridX
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			For R, GridY in InventoryGridY
+			{
+				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+					Break
+				If BlackList[C][R]
+					Continue
+				Grid := RandClick(GridX, GridY)
+				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+				{   
+					Ding(500,1,"Hit Scroll")
+					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+				} 
+				pixelgetcolor, PointColor, GridX, GridY
+				
+				If indexOf(PointColor, varEmptyInvSlotColor) {
+					;Seems to be an empty slot, no need to clip item info
+					Continue
+				}
+				
+				ClipItem(Grid.X,Grid.Y)
+				addToBlacklist(C, R)
+				If (!Prop.Identified&&YesIdentify)
+				{
+					If (Prop.IsMap&&!YesMapUnid)
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+				}
+				If (OnStash && YesStash && !YesSortFirst) 
+				{
+					If (sendstash:=MatchLootFilter())
+					{
+						MoveStash(sendstash)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
+					{
+						MoveStash(StashTabCurrency)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.IsMap&&StashTabYesMap)
+					{
+						MoveStash(StashTabMap)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.BreachSplinter&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.SacrificeFragment&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.MortalFragment&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.GuardianFragment&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.ProphecyFragment&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Offering&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Vessel&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Scarab&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.TimelessSplinter&&StashTabYesFragment)
+					{
+						MoveStash(StashTabFragment)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.RarityDivination&&StashTabYesDivination)
+					{
+						MoveStash(StashTabDivination)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.RarityUnique&&Prop.Ring)
+					{
+						If (StashTabYesCollection)
+						{
+							MoveStash(StashTabCollection)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						If (StashTabYesUniqueRing)
+						{
+							Sleep, 200*Latency
+							pixelgetcolor, Pitem, GridX, GridY
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueRing)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						If (StashTabYesUniqueDump)
+						{
+							Sleep, 200*Latency
+							pixelgetcolor, Pitem, GridX, GridY
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueDump)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						Continue
+					}
+					Else If (Prop.RarityUnique)
+					{
+						If (StashTabYesCollection)
+						{
+							MoveStash(StashTabCollection)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						If (StashTabYesUniqueDump)
+						{
+							Sleep, 200*Latency
+							pixelgetcolor, Pitem, GridX, GridY
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueDump)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						Continue
+					}
+					Else If (Prop.Essence&&StashTabYesEssence)
+					{
+						MoveStash(StashTabEssence)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Fossil&&StashTabYesFossil)
+					{
+						MoveStash(StashTabFossil)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Resonator&&StashTabYesResonator)
+					{
+						MoveStash(StashTabResonator)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
+					{
+						MoveStash(StashTabFlaskQuality)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.RarityGem)
+					{
+						If ((Stats.Quality>0)&&StashTabYesGemQuality)
+						{
+							MoveStash(StashTabGemQuality)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+						Else If (StashTabYesGem)
+						{
+							MoveStash(StashTabGem)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
+					}
+					Else If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
+					{
+						MoveStash(StashTabLinked)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Prophecy&&StashTabYesProphecy)
+					{
+						MoveStash(StashTabProphecy)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Oil&&StashTabYesOil)
+					{
+						MoveStash(StashTabOil)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If (Prop.Veiled&&StashTabYesVeiled)
+					{
+						MoveStash(StashTabVeiled)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else If StashTabYesCrafting 
+						&& ((YesStashT1 && Prop.CraftingBase = "T1") 
+							|| (YesStashT2 && Prop.CraftingBase = "T2") 
+							|| (YesStashT3 && Prop.CraftingBase = "T3"))
+						&& ((YesStashCraftingNormal && Prop.RarityNormal)
+							|| (YesStashCraftingMagic && Prop.RarityMagic)
+							|| (YesStashCraftingRare && Prop.RarityRare))
+					{
+						MoveStash(StashTabCrafting)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
+					Else
+						++Unstashed
+				}
+				If (OnStash && YesStash && YesSortFirst) 
+				{
+					If (sendstash:=MatchLootFilter())
+					{
+						SortFirst[sendstash].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
+					{
+						SortFirst[StashTabCurrency].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.IsMap&&StashTabYesMap)
+					{
+						SortFirst[StashTabMap].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.BreachSplinter&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.SacrificeFragment&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					If (Prop.MortalFragment&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.GuardianFragment&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.ProphecyFragment&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Offering&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Vessel&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Scarab&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.TimelessSplinter&&StashTabYesFragment)
+					{
+						SortFirst[StashTabFragment].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.RarityDivination&&StashTabYesDivination)
+					{
+						SortFirst[StashTabDivination].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.RarityUnique&&Prop.Ring)
+					{
+						If (StashTabYesCollection)
+						{
+							MoveStash(StashTabCollection)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						If (StashTabYesUniqueRing)
+						{
+							Sleep, 200*Latency
+							pixelgetcolor, Pitem, GridX, GridY
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueRing)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						If (StashTabYesUniqueDump)
+						{
+							Sleep, 200*Latency
+							pixelgetcolor, Pitem, GridX, GridY
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueDump)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						Continue
+					}
+					Else If (Prop.RarityUnique)
+					{
+						If (StashTabYesCollection)
+						{
+							MoveStash(StashTabCollection)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						If (StashTabYesUniqueDump)
+						{
+							Sleep, 200*Latency
+							pixelgetcolor, Pitem, GridX, GridY
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueDump)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						Continue
+					}
+					Else If (Prop.Essence&&StashTabYesEssence)
+					{
+						SortFirst[StashTabEssence].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Fossil&&StashTabYesFossil)
+					{
+						SortFirst[StashTabFossil].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Resonator&&StashTabYesResonator)
+					{
+						SortFirst[StashTabResonator].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
+					{
+						SortFirst[StashTabFlaskQuality].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.RarityGem)
+					{
+						If ((Stats.Quality>0)&&StashTabYesGemQuality)
+						{
+							SortFirst[StashTabGemQuality].Push({"C":C,"R":R})
+							Continue
+						}
+						Else If (StashTabYesGem)
+						{
+							SortFirst[StashTabGem].Push({"C":C,"R":R})
+							Continue
+						}
+					}
+					Else If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
+					{
+						SortFirst[StashTabLinked].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Prophecy&&StashTabYesProphecy)
+					{
+						SortFirst[StashTabProphecy].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Oil&&StashTabYesOil)
+					{
+						SortFirst[StashTabOil].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If (Prop.Veiled&&StashTabYesVeiled)
+					{
+						SortFirst[StashTabVeiled].Push({"C":C,"R":R})
+						Continue
+					}
+					Else If StashTabYesCrafting 
+						&& ((YesStashT1 && Prop.CraftingBase = "T1") 
+							|| (YesStashT2 && Prop.CraftingBase = "T2") 
+							|| (YesStashT3 && Prop.CraftingBase = "T3"))
+						&& ((YesStashCraftingNormal && Prop.RarityNormal)
+							|| (YesStashCraftingMagic && Prop.RarityMagic)
+							|| (YesStashCraftingRare && Prop.RarityRare))
+					{
+						SortFirst[StashTabCrafting].Push({"C":C,"R":R})
+						Continue
+					}
+					Else
+						++Unstashed
+				}
+			}
+			MouseGetPos Checkx, Checky
+			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+				MouseMove, RX, RY, 0
+				Sleep, 45*Latency
+			}
+		}
+		; Sorted items are sent together
+		If (OnStash && RunningToggle && YesStash && !YesSortFirst)
+		{
+			If (YesVendorAfterStash && Unstashed)
+			{
+				If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+					StockScrolls()
+				SendInput, {%hotkeyCloseAllUI%}
+				Sleep, 45*Latency
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameW / 3 , GameH, 0, 0, %YesVendorAfterStashStr%))
+				{
+					LeftClick(Vendor.1.1, Vendor.1.2)
+				}
+				If Vendor
+				{
+					Loop, 666
+					{
+						If (Sell:=FindText( GameX + GameW / 3, GameY, GameW / 3, GameH, 0, 0, SellItemsStr))
+						{
+							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
+							Sleep, 60*Latency
+							Break
+						}
+					}
+					GuiStatus()
+					VendorRoutine()
+					Return
+				}
+			}
+		}
+		If (OnStash && RunningToggle && YesStash && YesSortFirst)
+		{
+			For Tab, Tv in SortFirst
+			{
+				For Item, Iv in Tv
+				{
+					MoveStash(Tab)
+					C := SortFirst[Tab][Item]["C"]
+					R := SortFirst[Tab][Item]["R"]
+					GridX := InventoryGridX[C]
+					GridY := InventoryGridY[R]
+					Grid := RandClick(GridX, GridY)
+					CtrlClick(Grid.X,Grid.Y)
+					Sleep, 30*Latency
+				}
+			}
+			If (YesVendorAfterStash && Unstashed)
+			{
+				If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+					StockScrolls()
+				SendInput, {%hotkeyCloseAllUI%}
+				Sleep, 45*Latency
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameW / 3 , GameH, 0, 0, %YesVendorAfterStashStr%))
+				{
+					LeftClick(Vendor.1.1, Vendor.1.2)
+				}
+				If Vendor
+				{
+					Loop, 666
+					{
+						If (Sell:=FindText( GameX + GameW / 3, GameY, GameW / 3, GameH, 0, 0, SellItemsStr))
+						{
+							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
+							Sleep, 60*Latency
+							Break
+						}
+					}
+					GuiStatus()
+					VendorRoutine()
+					Return
+				}
+			}
+		}
+		If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+			StockScrolls()
+		Return
+	}
+	; DivRoutine - Does divination trading function
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	DivRoutine()
+	{
+		Thread, NoTimers, true		;Critical
+		BlackList := Array_DeepClone(IgnoredSlot)
+		; Main loop through inventory
+		For C, GridX in InventoryGridX
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			For R, GridY in InventoryGridY
+			{
+				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+					Break
+				If BlackList[C][R]
+					Continue
+				Grid := RandClick(GridX, GridY)
+				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+				{   
+					Ding(500,1,"Hit Scroll")
+					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+				} 
+				pixelgetcolor, PointColor, GridX, GridY
+				
+				If indexOf(PointColor, varEmptyInvSlotColor) {
+					;Seems to be an empty slot, no need to clip item info
+					Continue
+				}
+				
+				ClipItem(Grid.X,Grid.Y)
+				addToBlacklist(C, R)
+				; Trade full div stacks
+				If (OnDiv && YesDiv) 
+				{
+					If (Prop.RarityDivination && (Stats.Stack = Stats.StackMax)){
+						CtrlClick(Grid.X,Grid.Y)
+						RandomSleep(150,200)
+						LeftClick(vX_OnDiv,vY_DivTrade)
+						CtrlClick(vX_OnDiv,vY_DivItem)
+					}
+					Continue
+				}
+			}
+			; Move mouse out of the way after a column
+			MouseGetPos Checkx, Checky
+			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+				MouseMove, RX, RY, 0
+				Sleep, 45*Latency
+			}
+		}
+		Return
+	}
+	; IdentifyRoutine - Does basic function when not at other windows
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	IdentifyRoutine()
+	{
+		Thread, NoTimers, true		;Critical
+		BlackList := Array_DeepClone(IgnoredSlot)
+		; Main loop through inventory
+		For C, GridX in InventoryGridX
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			For R, GridY in InventoryGridY
+			{
+				If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+					Break
+				If BlackList[C][R]
+					Continue
+				Grid := RandClick(GridX, GridY)
+				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+				{   
+					Ding(500,1,"Hit Scroll")
+					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+				} 
+				pixelgetcolor, PointColor, GridX, GridY
+				
+				If indexOf(PointColor, varEmptyInvSlotColor) {
+					;Seems to be an empty slot, no need to clip item info
+					Continue
+				}
+				
+				ClipItem(Grid.X,Grid.Y)
+				addToBlacklist(C, R)
+				; Trade full div stacks
+				If (!Prop.Identified&&YesIdentify)
+				{
+					If (Prop.IsMap&&!YesMapUnid)
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+					Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
+					{
+						WisdomScroll(Grid.X,Grid.Y)
+						ClipItem(Grid.X,Grid.Y)
+					}
+				}
+			}
+			; Move mouse out of the way after a column
+			MouseGetPos Checkx, Checky
+			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+				MouseMove, RX, RY, 0
+				Sleep, 45*Latency
+			}
+		}
+		Return
+	}
 	; ClipItem - Capture Clip at Coord
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ClipItem(x, y){
@@ -5213,31 +5472,55 @@ Return
 			Return
 		If (CurrentTab=Tab)
 			return
-		If (CurrentTab!=Tab) {
-			MouseGetPos MSx, MSy
-			BlockInput, MouseMove
-			Sleep, 45*Latency
-			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-			Sleep, 45*Latency
-			Click, Down, Left, 1
-			Sleep, 45*Latency
-			Click, Up, Left, 1
-			Sleep, 45*Latency
-			MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-			Sleep, 195*Latency
-			send {Enter}
-			Sleep, 75*Latency
-			MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-			Sleep, 45*Latency
-			Click, Down, Left, 1
-			Sleep, 45*Latency
-			Click, Up, Left, 1
-			Sleep, 45*Latency
-			CurrentTab:=Tab
-			MouseMove, MSx, MSy, 0
-			Sleep, 90*Latency
-			BlockInput, MouseMoveOff
+		If (CurrentTab!=Tab) 
+		{
+			Sleep, 60*Latency
+			Dif:=(CurrentTab-Tab)
+			If (CurrentTab = 0 || (Abs(Dif) > 20))
+			{
+				MouseGetPos MSx, MSy
+				BlockInput, MouseMove
+				Sleep, 90*Latency
+				MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+				Sleep, 45*Latency
+				Click, Down, Left, 1
+				Sleep, 45*Latency
+				Click, Up, Left, 1
+				Sleep, 45*Latency
+				MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
+				Sleep, 195*Latency
+				send {Enter}
+				Sleep, 75*Latency
+				MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
+				Sleep, 45*Latency
+				Click, Down, Left, 1
+				Sleep, 45*Latency
+				Click, Up, Left, 1
+				Sleep, 45*Latency
+				CurrentTab:=Tab
+				MouseMove, MSx, MSy, 0
+				Sleep, 195*Latency
+				BlockInput, MouseMoveOff
 			}
+			Else
+			{
+				Loop % Abs(Dif)
+				{
+					If (Dif > 0)
+					{
+						SendInput {Left}
+						Sleep 15*Latency
+					}
+					Else
+					{
+						SendInput {Right}
+						Sleep 15*Latency
+					}
+				}
+				CurrentTab:=Tab
+				Sleep, 170*Latency
+			}
+		}
 		return
 		}
 
@@ -7219,8 +7502,10 @@ Return
 			IniRead, AreaScale, settings.ini, General, AreaScale, 60
 			IniRead, LVdelay, settings.ini, General, LVdelay, 15
 
-			;Settings for the Overhead Health Bar
-			IniRead, YesOHB, settings.ini, OHB, YesOHB, 1
+			;Settings for Auto-Vendor
+			IniRead, YesSearchForStash, settings.ini, General, YesSearchForStash, 0
+			IniRead, YesVendorAfterStash, settings.ini, General, YesVendorAfterStash, 0
+			IniRead, YesVendorAfterStashStr, settings.ini, General, YesVendorAfterStashStr, MasterStr
 			
 			;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -7260,6 +7545,12 @@ Return
 			IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
 			IniRead, StashTabYesVeiled, settings.ini, Stash Tab, StashTabYesVeiled, 1
 			
+			;Settings for the Overhead Health Bar
+			IniRead, YesOHB, settings.ini, OHB, YesOHB, 1
+			
+			;OHB Colors
+			IniRead, OHBLHealthHex, settings.ini, OHB, OHBLHealthHex, 0x19A631
+			
 			;Inventory Colors
 			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
 			;Create an array out of the read string
@@ -7282,9 +7573,6 @@ Return
 			IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xC5E2F6
 			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
 
-			;OHB Colors
-			IniRead, OHBLHealthHex, settings.ini, OHB, OHBLHealthHex, 0x19A631
-			
 			;Life Colors
 			IniRead, varLife20, settings.ini, Life Colors, Life20, 0x181145
 			IniRead, varLife30, settings.ini, Life Colors, Life30, 0x181264
@@ -7625,7 +7913,7 @@ Return
 			IniRead, 1Suffix9, settings.ini, Chat Hotkeys, 1Suffix9, 9
 
 			IniRead, 1Suffix1Text, settings.ini, Chat Hotkeys, 1Suffix1Text, /Hideout
-			IniRead, 1Suffix2Text, settings.ini, Chat Hotkeys, 1Suffix2Text, /menagerie
+			IniRead, 1Suffix2Text, settings.ini, Chat Hotkeys, 1Suffix2Text, /Delve
 			IniRead, 1Suffix3Text, settings.ini, Chat Hotkeys, 1Suffix3Text, /cls
 			IniRead, 1Suffix4Text, settings.ini, Chat Hotkeys, 1Suffix4Text, /ladder
 			IniRead, 1Suffix5Text, settings.ini, Chat Hotkeys, 1Suffix5Text, /reset_xp
@@ -10842,6 +11130,9 @@ Return
 			IniWrite, %AreaScale%, settings.ini, General, AreaScale
 			IniWrite, %LVdelay%, settings.ini, General, LVdelay
 			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
+			IniWrite, %YesSearchForStash%, settings.ini, General, YesSearchForStash
+			IniWrite, %YesVendorAfterStash%, settings.ini, General, YesVendorAfterStash
+			IniWrite, %YesVendorAfterStashStr%, settings.ini, General, YesVendorAfterStashStr
 			If (YesPersistantToggle)
 				AutoReset()
 			If (DetonateMines&&!Detonated)
