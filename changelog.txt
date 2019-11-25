@@ -1,6 +1,27 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.06 November/25/2019
+--------------------------------------------------------------------------------
+New method of Auto-Quit is now available, leave by portaling out!
+    Got the idea when adding the option to auto click portal
+    Can now choose to exit area by means of portal instead of D/C or /exit
+    Obviously will be much slower than instant D/C
+        Use caution when using a low setting like 20%
+    If using PortalQuit and inside the Town, Hideout or Mines, Logout hotkey will D/C
+
+New Options for the Quick-Portal hotkey
+    Can now choose to auto-click the portal after opening it
+    Can now choose to re-open the map overlay after opening portal
+
+Bugfix for GottaGoFast gui not displaying properly
+    Also fixes the hidden window appearing named NoActivate
+    Somehow it was showing two GUI for the script
+
+Forgot to mention in last patchnotes:
+    Stash hotkeys has a new binding to reset the current tab
+    This is for when you have moved the stash tab to a new location manually
+
 Version .07.05 November/24/2019
 --------------------------------------------------------------------------------
 New setting in the Configuration Tab to point to your Client.txt location

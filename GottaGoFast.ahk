@@ -264,7 +264,6 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     Gui, New
      Gui, Color, 0X130F13
      Gui +LastFound +AlwaysOnTop +ToolWindow
      WinSet, TransColor, 0X130F13
@@ -274,7 +273,7 @@
      IfWinExist, ahk_group POEGameGroup
      {
           Rescale()
-          Gui, Show, x%GuiX% y%GuiY%, NoActivate 
+          Gui, Show, x%GuiX% y%GuiY% NoActivate 
           ToggleExist := True
           WinActivate, ahk_group POEGameGroup
           If (YesPersistantToggle)
@@ -453,7 +452,7 @@
                If (!RescaleRan)
                Rescale()
                If (!ToggleExist) {
-                    Gui 1: Show, x%GuiX% y%GuiY%, NoActivate 
+                    Gui, Show, x%GuiX% y%GuiY% NoActivate 
                     ToggleExist := True
                     DetectJoystick()
                     WinActivate, ahk_group POEGameGroup
@@ -462,7 +461,7 @@
                }
           } Else {
                If (ToggleExist){
-                    Gui 1: Show, Hide
+                    Gui, Show, Hide
                     ToggleExist := False
                }
           }
@@ -617,13 +616,7 @@
           If hotkeyAutoQuicksilver
                hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
           IfWinExist, ahk_group POEGameGroup
-          {
                Rescale()
-               If (!ToggleExist){
-                    Gui, Show, x%GuiX% y%GuiY%, NoActivate 
-                    WinActivate, ahk_group POEGameGroup
-               }
-          }
           
           ;Set up timer if checkbox ticked
           If (YesController)

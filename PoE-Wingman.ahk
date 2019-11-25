@@ -302,7 +302,8 @@
 				,"Oriath" ]
 
 		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
-
+		Global YesOpenMap := True
+		Global YesClickPortal := True
 		ft_ToolTip_Text=
 			(LTrim
 			Capture = Initiate Image Capture Sequence
@@ -533,7 +534,6 @@
 		Global Affix := {}
 
 		global Detonated := 0
-		global CritQuit := 1
 		global CurrentTab := 0
 		global DebugMessages := 0
 		global YesTimeMS := 0
@@ -738,7 +738,7 @@
 		global TriggerMana10:=00000
 
 	; AutoQuit
-		global RadioQuit20, RadioQuit30, RadioQuit40, RadioCritQuit, RadioNormalQuit
+		global RadioQuit20, RadioQuit30, RadioQuit40, RadioCritQuit, RadioNormalQuit, RadioPortalQuit
 
 	; Character Type
 		global RadioCi, RadioHybrid, RadioLife
@@ -1143,9 +1143,10 @@
 	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				xs+5 ys+16, 						%varTextAutoQuit20%
 	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
 	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
-	Gui Add, Text, 										xs+5 	y+10, 				Quit via:
-	Gui, Add, Radio, Group	vRadioCritQuit Checked%RadioCritQuit%					x+5		y+-13,				LutBot Method
-	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+7	,				normal /exit
+	Gui Add, Text, 										xs+5 	y+8, 				Quit via:
+	Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+5		y+-13,			LutBot D/C
+	Gui, Add, Radio, 		vRadioPortalQuit Checked%RadioPortalQuit%			x+3	,				Portal
+	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+3	,				/exit
 
 	Gui,Font,s9 cBlack 
 	Gui Add, GroupBox, 		Section	w90 h32				x+10 	y31 , 				Auto-Mine
@@ -1431,16 +1432,18 @@
 	Gui Add, Button, gLootColorsMenu    vLootVacuumSettings                      	      h19  x+0 yp-3, Loot Vacuum Settings
 	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	    xs y+6 , Pop Flasks Respect CD?
 	Gui Add, Checkbox, gUpdateExtra	vYesPopAllExtraKeys Checked%YesPopAllExtraKeys%                         	     y+8 , Pop Flasks Uses any extra keys?
+	Gui Add, Checkbox, gUpdateExtra	vYesClickPortal Checked%YesClickPortal%                         	     y+8 , Click portal after opening?
+	Gui Add, Checkbox, gUpdateExtra	vYesOpenMap Checked%YesOpenMap%                         	     y+8 , Open Map after portal?
 
 	;~ =========================================================================================== Subgroup: Hints
 	Gui,Font,Bold
-	Gui,Add,GroupBox,Section xs	x450 y330  w120 h89							,Hotkey Modifiers
-	Gui, Add, Button,  		gLaunchHelp vLaunchHelp		x558 y330 w18 h18 , 	?
+	Gui,Add,GroupBox,Section xs	x450 y+10  w120 h80							,Hotkey Modifiers
+	Gui, Add, Button,  		gLaunchHelp vLaunchHelp		xs+108 ys w18 h18 , 	?
 	Gui,Font,Norm
 	Gui,Font,s8,Arial
-	Gui,Add,Text,	 		 	x465 y350					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
-	Gui,Add,Text,	 		   		y+9					,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
-	Gui,Add,Text,	 		   		y+9					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
+	Gui,Add,Text,	 		 	xs+15 ys+17					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
+	Gui,Add,Text,	 		   		y+5					,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
+	Gui,Add,Text,	 		   		y+5					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
@@ -2848,7 +2851,7 @@ Return
 					GridY := InventoryGridY[R]
 					Grid := RandClick(GridX, GridY)
 					CtrlClick(Grid.X,Grid.Y)
-					Sleep, 30*Latency
+					Sleep, 45*Latency
 				}
 			}
 			If (YesVendorAfterStash && Unstashed)
@@ -7098,8 +7101,10 @@ Return
 
 ; QuickPortal - Open Town Portal
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	QuickPortal(){
+	QuickPortal(ChickenFlag := False){
 		QuickPortalCommand:
+			If (OnTown || OnHideout || OnMines)
+				Return
 			Thread, NoTimers, true		;Critical
 			Keywait, Alt
 			BlockInput On
@@ -7119,7 +7124,15 @@ Return
 			RandomSleep(56,68)
 			
 			Send {%hotkeyInventory%}
-			MouseMove, xx, yy, 0
+			If YesOpenMap
+				Send {Tab}
+			If YesClickPortal || ChickenFlag
+			{
+				Sleep, 90*Latency
+				LeftClick(GameX + Round(GameW/2),GameY + Round(GameH/2.427))
+			}
+			Else
+				MouseMove, xx, yy, 0
 			BlockInput Off
 			RandomSleep(300,600)
 		return
@@ -7201,7 +7214,7 @@ Return
 	LogoutCommand(){
 		LogoutCommand:
 			Thread, NoTimers, true		;Critical
-			if (CritQuit=1) {
+			if (RadioCritQuit || (RadioPortalQuit && (OnMines || OnTown || OnHideout))) {
 				global executable, backupExe
 				succ := logout(executable)
 				if (succ == 0) && backupExe != "" {
@@ -7211,10 +7224,20 @@ Return
 						error("ED13")
 					}
 				}
+				If RelogOnQuit
+				{
+					RandomSleep(90,120)
+					Send {Enter}
+					RandomSleep(200,350)
+					Send {Enter}
+				}
 			} 
-			Else 
+			Else If RadioPortalQuit
+				QuickPortal(True)
+			Else If RadioNormalQuit
 				Send {Enter} /exit {Enter}
-			Ding(5000,1,"Exit with " . HPerc . "`% Life")
+			If YesOHB && OnMines
+				Ding(5000,1,"Exit with " . HPerc . "`% Life")
 		return
 		}
 
@@ -7470,6 +7493,8 @@ Return
 			IniRead, YesStashCraftingMagic, settings.ini, General, YesStashCraftingMagic, 1
 			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
 			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
+			IniRead, YesClickPortal, settings.ini, General, YesClickPortal, 0
+			IniRead, YesOpenMap, settings.ini, General, YesOpenMap, 0
 			IniRead, AreaScale, settings.ini, General, AreaScale, 60
 			IniRead, LVdelay, settings.ini, General, LVdelay, 15
 
@@ -7792,6 +7817,7 @@ Return
 			IniRead, RadioQuit30, settings.ini, AutoQuit, Quit30, 0
 			IniRead, RadioQuit40, settings.ini, AutoQuit, Quit40, 0
 			IniRead, RadioCritQuit, settings.ini, AutoQuit, CritQuit, 1
+			IniRead, RadioPortalQuit, settings.ini, AutoQuit, PortalQuit, 0
 			IniRead, RadioNormalQuit, settings.ini, AutoQuit, NormalQuit, 0
 			
 			;Profile Editbox
@@ -8206,6 +8232,8 @@ Return
 			IniWrite, %YesAutoSkillUp%, settings.ini, General, YesAutoSkillUp
 			IniWrite, %AreaScale%, settings.ini, General, AreaScale
 			IniWrite, %LVdelay%, settings.ini, General, LVdelay
+			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
+			IniWrite, %YesOpenMap%, settings.ini, General, YesOpenMap
 
 			; Overhead Health Bar
 			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
@@ -8375,6 +8403,7 @@ Return
 			IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30
 			IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
 			IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
+			IniWrite, %RadioPortalQuit%, settings.ini, AutoQuit, PortalQuit
 			IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
 
 			;Chat Hotkeys
@@ -8585,6 +8614,7 @@ Return
 			GuiControl,, keyFlask5, %keyFlask5%
 			GuiControl,, RadioNormalQuit, %RadioNormalQuit%
 			GuiControl,, RadioCritQuit, %RadioCritQuit%
+			GuiControl,, RadioPortalQuit, %RadioPortalQuit%
 			GuiControl,, RadioLife, %RadioLife%
 			GuiControl,, RadioHybrid, %RadioHybrid%
 			GuiControl,, RadioCi, %RadioCi%
@@ -9288,6 +9318,7 @@ Return
 			IniWrite, %RadioQuit30%, settings.ini, Profile%Profile%, Quit30
 			IniWrite, %RadioQuit40%, settings.ini, Profile%Profile%, Quit40
 			IniWrite, %RadioCritQuit%, settings.ini, Profile%Profile%, CritQuit
+			IniWrite, %RadioPortalQuit%, settings.ini, Profile%Profile%, PortalQuit
 			IniWrite, %RadioNormalQuit%, settings.ini, Profile%Profile%, NormalQuit
 			
 			;Utility Buttons
@@ -9716,6 +9747,8 @@ Return
 			GuiControl, , RadioQuit40, %RadioQuit40%
 			IniRead, RadioCritQuit, settings.ini, Profile%Profile%, CritQuit, 1
 			GuiControl, , RadioCritQuit, %RadioCritQuit%
+			IniRead, RadioPortalQuit, settings.ini, Profile%Profile%, PortalQuit, 0
+			GuiControl, , RadioPortalQuit, %RadioPortalQuit%
 			IniRead, RadioNormalQuit, settings.ini, Profile%Profile%, NormalQuit, 0
 			GuiControl, , RadioNormalQuit, %RadioNormalQuit%
 
@@ -11044,6 +11077,8 @@ Return
 			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
 			IniWrite, %YesSearchForStash%, settings.ini, General, YesSearchForStash
 			IniWrite, %YesVendorAfterStash%, settings.ini, General, YesVendorAfterStash
+			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
+			IniWrite, %YesOpenMap%, settings.ini, General, YesOpenMap
 			If (YesPersistantToggle)
 				AutoReset()
 			If (DetonateMines&&!Detonated)
