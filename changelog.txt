@@ -1,6 +1,49 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.05 November/24/2019
+--------------------------------------------------------------------------------
+New setting in the Configuration Tab to point to your Client.txt location
+    Its set up for steam client on C: drive, but simply locate your own otherwise
+    Will pause the script when entering town or hideout, and switch on OHB in mines
+    Automatically scans log for location at start, and anytime you zone
+    
+*** Script will prompt the user if they do not have a valid Client.txt Location ***
+
+GuiStatus has been reduced from 280 ms to just over 100 ms
+    Half of the status checks have been moved out of the Flask logic
+    Only the Id/Vend/Stash hotkey will check for Stash, Div and Vendor
+    OnHideout, OnMines, OnTown is now handled by the Client log
+        OnHideout and OnHideoutMin are no longer necessary, and has been removed
+
+Discovered that the FindText library will only work for others running on 1080 Height
+    This means OHB, Find Stash, and Vendor after stash are affected
+    To fix this, I Introduced a new Strings Tab for custom FindText strings
+        Use the dropdown list to Select the 1080 defaults, or paste in your own
+        Capture the strings by clicking the Get Icon button, adjust the w/h and go
+        If setting huge width (max) set height to something low (20) so it wont crash
+            These extreme values are there if someone is using huge resolutions
+        Most of the time to capture a simple text, w = 30 , h = 15 , are good values
+
+Fixes for Overhead Health Bar
+    OHB detection now only occurs within the center area of the screen
+        Fixes false matches that will occur on the sides and bottom
+    OHB now scales based on the string's pixel width
+        Enter your custom string in the Strings Tab
+        Width should end up as an even number
+    OHB Percentage logic now checks to determines if OHB itself moved/gone
+        Finally fixed a lot of the false negatives
+
+"Use OHB for health?" is now "Switch to OHB for Delve?"
+    Setting now determines if you switch into OHB while in Azurite Mines
+    Use Auto-Quit at your discretion, can have false negatives on rare occasion
+
+Added loading tooltips when starting the script
+
+Cleaning up in the GottaGoFast script, implimented library and removed clutter
+    Now always uses the ReadFromFile() instead of two INI load sections
+    Duplicate functions from Library have been removed
+
 Version .07.04 November/19/2019
 --------------------------------------------------------------------------------
 New Automation Options in the Inventory Tab for the Id/Vend/Stash hotkey

@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .07.04
+    Global VersionNumber := .07.05
 
 	;Global Null := 0
     
@@ -290,180 +290,196 @@
 		Global LootFilterTabs := {}
 		Global IgnoredSlot := {}
 		Global BlackList := {}
+		Global OHBxy := 0
+		Global CurrentLocation := ""
+		Global ClientTowns := [ "Lioneye's Watch"
+				,"The Forest Encampment"
+				,"The Sarn Encampment"
+				,"Highgate"
+				,"Overseer's Tower"
+				,"The Bridge Encampment"
+				,"Oriath Docks"
+				,"Oriath" ]
+
+		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 
 		ft_ToolTip_Text=
-		(LTrim
-		Capture = Initiate Image Capture Sequence
-		Test = Test Results of Code
-		Copy = Copy Code to Clipboard
-		AddFunc = Additional FindText() in Copy
-		U = Cut the Upper Edge by 1
-		U3 = Cut the Upper Edge by 3
-		L = Cut the Left Edge by 1
-		L3 = Cut the Left Edge by 3
-		R = Cut the Right Edge by 1
-		R3 = Cut the Right Edge by 3
-		D = Cut the Lower Edge by 1
-		D3 = Cut the Lower Edge by 3
-		ww = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
-		hh = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
-		ww_t = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
-		hh_t = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
-		SelR = Red component of the selected color
-		SelG = Green component of the selected color
-		SelB = Blue component of the selected color
-		DiffR = Red Difference which Determines Black or White Pixel Conversion (0-255)
-		DiffG = Green Difference which Determines Black or White Pixel Conversion (0-255)
-		DiffB = Blue Difference which Determines Black or White Pixel Conversion (0-255)
-		Auto = Automatic Cutting Edge
-		Similar = Adjust color similarity as Equivalent to The Selected Color
-		Similar2 = Adjust color similarity as Equivalent to The Selected Color
-		SelColor = The selected color
-		SelGray = Gray value of the selected color
-		Threshold = Gray Threshold which Determines Black or White Pixel Conversion (0-255)
-		GrayDiff = Gray Difference which Determines Black or White Pixel Conversion (0-255)
-		UsePos = Use position instead of color value to suit any color
-		Modify = Allows Modify the Black and White Image
-		Reset = Reset to Original Captured Image
-		Comment = Optional Comment used to Label Code ( Within <> )
-		SplitAdd = Using Markup Segmentation to Generate Text Library
-		AllAdd = Append Another FindText Search Text into Previously Generated Code
-		OK = Create New FindText Code for Testing
-		Close = Close the Window Don't Do Anything
-		Gray2Two = Converts Image Pixels from Grays to Black or White
-		GrayDiff2Two = Converts Image Pixels from Gray Difference to Black or White
-		Color2Two = Converts Image Pixels from Color to Black or White
-		ColorPos2Two = Converts Image Pixels from Color Position to Black or White
-		ColorDiff2Two = Converts Image Pixels from Color Difference to Black or White
-		ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
-		PopFlasks1 = Enable flask slot 1 when using Pop Flasks hotkey
-		PopFlasks2 = Enable flask slot 2 when using Pop Flasks hotkey
-		PopFlasks3 = Enable flask slot 3 when using Pop Flasks hotkey
-		PopFlasks4 = Enable flask slot 4 when using Pop Flasks hotkey
-		PopFlasks5 = Enable flask slot 5 when using Pop Flasks hotkey
-		DetonateMines = Enable this to automatically Detonate Mines when placed`rDouble tap the D key to pause until next manual detonate
-		YesEldritchBattery = Enable this to sample the energy shield on the mana globe instead
-		UpdateOnHideoutBtn = Calibrate the OnHideout Color`rThis color determines if you are in a Hideout`rMake sure the Hideout menu next to abilities is visible
-		UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
-		UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
-		UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
-		UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
-		UpdateOnHideoutMinBtn = Calibrate the OnHideoutMin Color`rThis color determines if you are in a Hideout`rMake sure the Hideout menu next to abilities is minimized
-		UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
-		UpdateOnStashBtn = Calibrate the OnStash Color`rThis color determines if the Stash panel is open`rSample is located at the top of the Stash panel
-		UpdateOnVendorBtn = Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
-		UpdateOnMenuBtn = Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
-		UpdateDetonateBtn = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the right
-		UpdateDetonateDelveBtn = Calibrate the Detonate Mines Color while in Delve`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the left
-		CalibrateOHBBtn = Calibrate the life color of the Overhead Health Bar`rMake sure the OHB is visible
-		ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
-		ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
-		StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
-		YesOHB = Uses the new Overhead Health Bar detection`rAllows to use life builds in delve`rCurrently only affects Health Detection
-		ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
-		Steam = These settings are for the LutBot Quit method`rEnable this to set the EXE as Steam version
-		HighBits = These settings are for the LutBot Quit method`rEnable this to set the EXE as 64bit version
-		AutoUpdateOff = Enable this to not check for new updates when launching the script
-		YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
-		ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rUltraWide is 32:9
-		Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
-		PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
-		PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
-		WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
-		WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
-		CurrentGemX = Select the X location of the Gem to swap from`rUse the Coord tool to find the X and Y
-		CurrentGemY = Select the Y location of the Gem to swap from`rUse the Coord tool to find the X and Y
-		AlternateGemX = Select the X location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
-		AlternateGemY = Select the Y location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
-		StockPortal = Enable this to restock Portal scrolls when more than 10 are missing
-		StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing
-		AlternateGemOnSecondarySlot = Enable this to Swap Weapons for your Alternate Gem Swap location
-		YesAutoSkillUp = Enable this to Automatically level up skill gems
-		DebugMessages = Enable this to show debug messages, previous functions have been moved to gamestates
-		hotkeyOptions = Set your hotkey to open the options GUI
-		hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
-		hotkeyAutoQuit = Set your hotkey to turn on and off AutoQuit
-		hotkeyLogout = Set your hotkey to Log out of the game
-		hotkeyAutoQuicksilver = Set your hotkey to Turn on and off AutoQuicksilver
-		hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
-		hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
-		hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
-		hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
-		hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
-		hotkeyItemInfo = Set your hotkey to display information about an item`rWill graph price info if there is any match
-		hotkeyCloseAllUI = Put your ingame assigned hotkey to Close All User Interface here
-		hotkeyInventory = Put your ingame assigned hotkey to open inventory panel here
-		hotkeyWeaponSwapKey = Put your ingame assigned hotkey to Weapon Swap here
-		hotkeyLootScan = Put your ingame assigned hotkey for Item Pickup Key here
-		LootVacuum = Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
-		LootVacuumSettings = Assign your own loot colors and adjust the AreaScale`rEdit the INI directly for more than 2 groups or less`rThe menu is built to support any number of color groups`rEach group must contain Normal and Hovered colors
-		PopFlaskRespectCD = Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
-		YesPopAllExtraKeys = Enable this option to press any extra keys in each flasks bindings when Popping all Flasks`rIf disabled, it will only fire the primary key assigned to the flask slot.
-		LaunchHelp = Opens the AutoHotkey List of Keys
-		YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
-		YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
-		YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
-		YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
-		YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
-		YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
-		YesStashT1 = This option is for the Crafting stash tab`rEnable to stash T1 crafting bases
-		YesStashT2 = This option is for the Crafting stash tab`rEnable to stash T2 crafting bases
-		YesStashT3 = This option is for the Crafting stash tab`rEnable to stash T3 crafting bases
-		YesStashCraftingNormal = This option is for the Crafting stash tab`rEnable to stash Normal crafting bases
-		YesStashCraftingMagic = This option is for the Crafting stash tab`rEnable to stash Magic crafting bases
-		YesStashCraftingRare = This option is for the Crafting stash tab`rEnable to stash Rare crafting bases
-		UpdateDatabaseInterval = How many days between database updates?
-		selectedLeague = Which league are you playing on?
-		UpdateLeaguesBtn = Use this button when there is a new league
-		LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
-		AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
-		YesTimeMS = Enable to show the time in MS for each portion of the health scan
-		StashTabCurrency = Assign the Stash tab for Currency items
-		StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
-		StashTabOil = Assign the Stash tab for Oil items
-		StashTabYesOil = Enable to send Oil items to the assigned tab on the left
-		StashTabMap = Assign the Stash tab for Map items
-		StashTabYesMap = Enable to send Map items to the assigned tab on the left
-		StashTabFragment = Assign the Stash tab for Fragment items
-		StashTabYesFragment = Enable to send Fragment items to the assigned tab on the left
-		StashTabDivination = Assign the Stash tab for Divination items
-		StashTabYesDivination = Enable to send Divination items to the assigned tab on the left
-		StashTabCollection = Assign the Stash tab for Collection items`rThis is where Uniques will first be attempted to stash
-		StashTabYesCollection = Enable to send Collection items to the assigned tab on the left`rThis is where Uniques will first be attempted to stash
-		StashTabEssence = Assign the Stash tab for Essence items
-		StashTabYesEssence = Enable to send Essence items to the assigned tab on the left
-		StashTabProphecy = Assign the Stash tab for Prophecy items
-		StashTabYesProphecy = Enable to send Prophecy items to the assigned tab on the left
-		StashTabVeiled = Assign the Stash tab for Veiled items
-		StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
-		StashTabGem = Assign the Stash tab for Normal Gem items
-		StashTabYesGem = Enable to send Normal Gem items to the assigned tab on the left
-		StashTabGemQuality = Assign the Stash tab for Quality Gem items
-		StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
-		StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
-		StashTabYesFlaskQuality = Enable to send Quality Flask items to the assigned tab on the left
-		StashTabLinked = Assign the Stash tab for 6 or 5 Linked items
-		StashTabYesLinked = Enable to send 6 or 5 Linked items to the assigned tab on the left
-		StashTabUniqueDump = Assign the Stash tab for Unique items`rIf Collection is enabled, this will be where overflow goes
-		StashTabYesUniqueDump = Enable to send Unique items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow goes
-		StashTabUniqueRing = Assign the Stash tab for Unique Ring items`rIf Collection is enabled, this will be where overflow rings go
-		StashTabYesUniqueRing = Enable to send Unique Ring items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow rings go
-		StashTabFossil = Assign the Stash tab for Fossil items
-		StashTabYesFossil = Enable to send Fossil items to the assigned tab on the left
-		StashTabResonator = Assign the Stash tab for Resonator items
-		StashTabYesResonator = Enable to send Resonator items to the assigned tab on the left
-		StashTabCrafting = Assign the Stash tab for Crafting items
-		StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
-		)
+			(LTrim
+			Capture = Initiate Image Capture Sequence
+			Test = Test Results of Code
+			Copy = Copy Code to Clipboard
+			AddFunc = Additional FindText() in Copy
+			U = Cut the Upper Edge by 1
+			U3 = Cut the Upper Edge by 3
+			L = Cut the Left Edge by 1
+			L3 = Cut the Left Edge by 3
+			R = Cut the Right Edge by 1
+			R3 = Cut the Right Edge by 3
+			D = Cut the Lower Edge by 1
+			D3 = Cut the Lower Edge by 3
+			ww = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
+			hh = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
+			ww_t = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
+			hh_t = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
+			SelR = Red component of the selected color
+			SelG = Green component of the selected color
+			SelB = Blue component of the selected color
+			DiffR = Red Difference which Determines Black or White Pixel Conversion (0-255)
+			DiffG = Green Difference which Determines Black or White Pixel Conversion (0-255)
+			DiffB = Blue Difference which Determines Black or White Pixel Conversion (0-255)
+			Auto = Automatic Cutting Edge
+			Similar = Adjust color similarity as Equivalent to The Selected Color
+			Similar2 = Adjust color similarity as Equivalent to The Selected Color
+			SelColor = The selected color
+			SelGray = Gray value of the selected color
+			Threshold = Gray Threshold which Determines Black or White Pixel Conversion (0-255)
+			GrayDiff = Gray Difference which Determines Black or White Pixel Conversion (0-255)
+			UsePos = Use position instead of color value to suit any color
+			Modify = Allows Modify the Black and White Image
+			Reset = Reset to Original Captured Image
+			Comment = Optional Comment used to Label Code ( Within <> )
+			SplitAdd = Using Markup Segmentation to Generate Text Library
+			AllAdd = Append Another FindText Search Text into Previously Generated Code
+			OK = Create New FindText Code for Testing
+			Close = Close the Window Don't Do Anything
+			Gray2Two = Converts Image Pixels from Grays to Black or White
+			GrayDiff2Two = Converts Image Pixels from Gray Difference to Black or White
+			Color2Two = Converts Image Pixels from Color to Black or White
+			ColorPos2Two = Converts Image Pixels from Color Position to Black or White
+			ColorDiff2Two = Converts Image Pixels from Color Difference to Black or White
+			ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
+			PopFlasks1 = Enable flask slot 1 when using Pop Flasks hotkey
+			PopFlasks2 = Enable flask slot 2 when using Pop Flasks hotkey
+			PopFlasks3 = Enable flask slot 3 when using Pop Flasks hotkey
+			PopFlasks4 = Enable flask slot 4 when using Pop Flasks hotkey
+			PopFlasks5 = Enable flask slot 5 when using Pop Flasks hotkey
+			DetonateMines = Enable this to automatically Detonate Mines when placed`rDouble tap the D key to pause until next manual detonate
+			YesEldritchBattery = Enable this to sample the energy shield on the mana globe instead
+			UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
+			UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
+			UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
+			UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
+			UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
+			UpdateOnStashBtn = Calibrate the OnStash Color`rThis color determines if the Stash panel is open`rSample is located at the top of the Stash panel
+			UpdateOnVendorBtn = Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
+			UpdateOnMenuBtn = Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
+			UpdateDetonateBtn = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the right
+			UpdateDetonateDelveBtn = Calibrate the Detonate Mines Color while in Delve`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the left
+			CalibrateOHBBtn = Calibrate the life color of the Overhead Health Bar`rMake sure the OHB is visible
+			ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
+			ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
+			StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
+			YesOHB = Uses the new Overhead Health Bar detection in delve`rRequires a working Client.txt logfile location`rOnly affects Health Detection
+			ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
+			Steam = These settings are for the LutBot Quit method`rEnable this to set the EXE as Steam version
+			HighBits = These settings are for the LutBot Quit method`rEnable this to set the EXE as 64bit version
+			AutoUpdateOff = Enable this to not check for new updates when launching the script
+			YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
+			ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rUltraWide is 32:9
+			Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
+			PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
+			PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
+			WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
+			WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
+			CurrentGemX = Select the X location of the Gem to swap from`rUse the Coord tool to find the X and Y
+			CurrentGemY = Select the Y location of the Gem to swap from`rUse the Coord tool to find the X and Y
+			AlternateGemX = Select the X location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
+			AlternateGemY = Select the Y location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
+			StockPortal = Enable this to restock Portal scrolls when more than 10 are missing
+			StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing
+			AlternateGemOnSecondarySlot = Enable this to Swap Weapons for your Alternate Gem Swap location
+			YesAutoSkillUp = Enable this to Automatically level up skill gems
+			DebugMessages = Enable this to show debug messages, previous functions have been moved to gamestates
+			hotkeyOptions = Set your hotkey to open the options GUI
+			hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
+			hotkeyAutoQuit = Set your hotkey to turn on and off AutoQuit
+			hotkeyLogout = Set your hotkey to Log out of the game
+			hotkeyAutoQuicksilver = Set your hotkey to Turn on and off AutoQuicksilver
+			hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
+			hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
+			hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
+			hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
+			hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
+			hotkeyItemInfo = Set your hotkey to display information about an item`rWill graph price info if there is any match
+			hotkeyCloseAllUI = Put your ingame assigned hotkey to Close All User Interface here
+			hotkeyInventory = Put your ingame assigned hotkey to open inventory panel here
+			hotkeyWeaponSwapKey = Put your ingame assigned hotkey to Weapon Swap here
+			hotkeyLootScan = Put your ingame assigned hotkey for Item Pickup Key here
+			LootVacuum = Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
+			LootVacuumSettings = Assign your own loot colors and adjust the AreaScale`rEdit the INI directly for more than 2 groups or less`rThe menu is built to support any number of color groups`rEach group must contain Normal and Hovered colors
+			PopFlaskRespectCD = Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
+			YesPopAllExtraKeys = Enable this option to press any extra keys in each flasks bindings when Popping all Flasks`rIf disabled, it will only fire the primary key assigned to the flask slot.
+			LaunchHelp = Opens the AutoHotkey List of Keys
+			YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
+			YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
+			YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
+			YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
+			YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
+			YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
+			YesStashT1 = This option is for the Crafting stash tab`rEnable to stash T1 crafting bases
+			YesStashT2 = This option is for the Crafting stash tab`rEnable to stash T2 crafting bases
+			YesStashT3 = This option is for the Crafting stash tab`rEnable to stash T3 crafting bases
+			YesStashCraftingNormal = This option is for the Crafting stash tab`rEnable to stash Normal crafting bases
+			YesStashCraftingMagic = This option is for the Crafting stash tab`rEnable to stash Magic crafting bases
+			YesStashCraftingRare = This option is for the Crafting stash tab`rEnable to stash Rare crafting bases
+			UpdateDatabaseInterval = How many days between database updates?
+			selectedLeague = Which league are you playing on?
+			UpdateLeaguesBtn = Use this button when there is a new league
+			LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
+			AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
+			YesTimeMS = Enable to show the time in MS for each portion of the health scan
+			StashTabCurrency = Assign the Stash tab for Currency items
+			StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
+			StashTabOil = Assign the Stash tab for Oil items
+			StashTabYesOil = Enable to send Oil items to the assigned tab on the left
+			StashTabMap = Assign the Stash tab for Map items
+			StashTabYesMap = Enable to send Map items to the assigned tab on the left
+			StashTabFragment = Assign the Stash tab for Fragment items
+			StashTabYesFragment = Enable to send Fragment items to the assigned tab on the left
+			StashTabDivination = Assign the Stash tab for Divination items
+			StashTabYesDivination = Enable to send Divination items to the assigned tab on the left
+			StashTabCollection = Assign the Stash tab for Collection items`rThis is where Uniques will first be attempted to stash
+			StashTabYesCollection = Enable to send Collection items to the assigned tab on the left`rThis is where Uniques will first be attempted to stash
+			StashTabEssence = Assign the Stash tab for Essence items
+			StashTabYesEssence = Enable to send Essence items to the assigned tab on the left
+			StashTabProphecy = Assign the Stash tab for Prophecy items
+			StashTabYesProphecy = Enable to send Prophecy items to the assigned tab on the left
+			StashTabVeiled = Assign the Stash tab for Veiled items
+			StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
+			StashTabGem = Assign the Stash tab for Normal Gem items
+			StashTabYesGem = Enable to send Normal Gem items to the assigned tab on the left
+			StashTabGemQuality = Assign the Stash tab for Quality Gem items
+			StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
+			StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
+			StashTabYesFlaskQuality = Enable to send Quality Flask items to the assigned tab on the left
+			StashTabLinked = Assign the Stash tab for 6 or 5 Linked items
+			StashTabYesLinked = Enable to send 6 or 5 Linked items to the assigned tab on the left
+			StashTabUniqueDump = Assign the Stash tab for Unique items`rIf Collection is enabled, this will be where overflow goes
+			StashTabYesUniqueDump = Enable to send Unique items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow goes
+			StashTabUniqueRing = Assign the Stash tab for Unique Ring items`rIf Collection is enabled, this will be where overflow rings go
+			StashTabYesUniqueRing = Enable to send Unique Ring items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow rings go
+			StashTabFossil = Assign the Stash tab for Fossil items
+			StashTabYesFossil = Enable to send Fossil items to the assigned tab on the left
+			StashTabResonator = Assign the Stash tab for Resonator items
+			StashTabYesResonator = Enable to send Resonator items to the assigned tab on the left
+			StashTabCrafting = Assign the Stash tab for Crafting items
+			StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
+			YesNinjaDatabase = Enable to Update Ninja Database and load at start
+			)
 	; ASCII converted strings of images
-		Global HealthBarStr := "|<Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
-		Global MasterStr := "|<Master>**80$48.1kS000003tzzzzzw6NUU31kA49AgPBtaBBDyTDtmBB76FDNm9ZXaF1NaObkaF1MAE2QqFCMAnnwqF896aHQqFDdXYF1aF1tlwTzblzzT00S00000U"
-		Global NavaliStr := "|<Navali>**80$58.s7U0000002kK00000009V8CC3VksCX4VtwSD7ly6GAoF9aN6MBMVNYY9YNYRaaWmomEaEqG/+OF92NXNAYt9YY9b5hHFhWOEaK6U5YY0d2NASSG6nmZtYNn9gGNCRaEr8WH94M6T1zXtwwTzz00003U0002"
-		Global HelenaStr := "|<Helena>**85$64.wDU00000002EW000000009280C00Q71kY9jzwTzsyDWEaUSF0wmNa92PBN6PlhY8btYwY9x3oom06HmEbY7GF92N1922KB9YbtY4Y89QpWOEaHmEbZkI0d2N89SELVnmY9YybNxP6NCEWEO1UpaN4T3tzjzzSDwTU"
-		Global SellItemsStr := "|<Sell Items>**80$82.000Qs000000000003zk000000007w08l0y0000000sM0nY1800000030U1+E4bU000009mTYd0GnrvzzXwbv7GY1+9ltnXMOCM5+E4cC1U470gRCQd0Gnnb6CRusQtmY199CQwtntkk7+E4gY1mmb3VXDwd0GmHz/+S23AnmY1/9AwgdiDwnv+E4gwymmbwtX2Qd0GnEb/+RnUS1mY191UQgdkPzDxvk7bzzyyzzXkD0000D3k001sU"
-		Global StashStr := "|<Stash>**85$48.Dk000000MM000000k803UwSDbDzbnzyDbs0gn1m9Xf6cGNm9lzbuOTG9kNYG+CHtQ9YH/3E16BYlDVE13BYU4lntzBZbbtm9a9ZAatm9UNZ8W3G9zlxszzSDD0000w00U"
+		Global 1080_HealthBarStr := "|<1080 Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
+			, 1080_MasterStr := "|<1080 Master>*100$46.wy1043UDVtZXNiAy7byDbslmCDsyTX78wDXsCAw3sSDVs7U7lsyTUSSTXXty8ntiSDbslDW3sy1XW"
+			, 1080_NavaliStr := "|<1080 Navali>*100$56.TtzzzzzzznyTzzzzzzwTbxxzTjrx3tyCDXnsy0ST3ntsTDk3bkwSS7nw8Nt77D8wz36SNtnmDDks7USBw3nwD1k3mS0Qz3sQwwDbbDkz6TD3ntngDtblswyA38"
+			, 1080_HelenaStr := "|<1080 Helena>*100$62.DlzzzzzzzznwTzzzzzzzwz7zxzzvyzjDlkCDUQT7nnwSPnwrXnsQz7bwzDsQy701tzDny3D8k0S3nw7YHnAz7Vwz3tYw3DltzDnyMC0HwSTnwzb3bYz7bwvDtsntDls70kCTAy8"
+			, 1080_ZanaStr := "|<1080 Zana>*100$44.U3zzzzzs0zzzzzyyTrvyzjz7twT7nzXwDXnsTsz3sQy7wTYS3D8yDtbYHnDXy1tYw3lz0CMC0Mznnb3ba01wtsnt02T6TAy8"
+			, 1080_SellItemsStr := "|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
+			, 1080_StashStr := "|<1080 Stash>*100$46.kzzzzzzy1zzzzzznbzzTnvyDk1ty3bkTMr3nCT0TXwDDtwUyDYQTbnVsyNsS0D7Xs7ks0yCD0DXbntswwz6T37XbnQtw0yCT47bm"
+			, 1080_SkillUpStr := "|<1080 Skill Up>0xF18C03@0.45$12.wDyDyDyDSC000000yDyDyDyDU"
+			, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
+	; FindText strings
+		Global StashStr, VendorStr, HealthBarStr, SellItemsStr, SkillUpStr
 	; Click Vendor after stash
-		Global YesVendorAfterStashStr, YesVendorAfterStash
+		Global YesVendorAfterStash
     ; General
 		Global Latency := 1
 		Global ShowOnStart := 0
@@ -475,7 +491,6 @@
 		Global YesSortFirst := 1
 		Global YesAutoSkillUp := 1
 		Global FlaskList := []
-		; Use this area scale value to change how the pixel search behaves, Increasing the AreaScale will add +-(AreaScale) 
 		Global AreaScale := 0
 		Global LVdelay := 0
 		Global LootVacuum := 1
@@ -487,7 +502,8 @@
 		Global YesStashKeys := 1
 		Global YesPopAllExtraKeys := 1
 		Global OnHideout := False
-		Global OnHideoutMin := False
+		Global OnTown := False
+		Global OnMines := False
 		Global DetonateMines := False
 		Global DetonateDelve := False
 		Global OnMenu := False
@@ -531,7 +547,7 @@
 		Global EnableChatHotkeys := 0
 		; Dont change the speed & the tick unless you know what you are doing
 			global Speed:=1
-			global Tick:=50
+			global Tick:=150
 	; Inventory
 		Global StashTabCurrency := 1
 		Global StashTabMap := 1
@@ -626,8 +642,6 @@
 	; Inventory Colors
 		global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
 	; Failsafe Colors
-		global varOnHideout:=0xB5EFFE
-		global varOnHideoutMin:=0xCDF6FE
 		global varOnMenu:=0x7BB9D6
 		global varOnChar:=0x4F6980
 		global varOnChat:=0x3B6288
@@ -866,12 +880,39 @@
 
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Tooltip, Loading GUI 00`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13
 	Gui Add, Text, 										x515	y5, 				Debug Messages:
 	Gui Add, Checkbox, 	vYesTimeMS Checked%YesTimeMS%  gUpdateDebug   	x490 	y5 	    w13 h13
 	Gui Add, Text, 				vYesTimeMS_t						x437	y5, 				Scan MS:
 
-	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Inventory|Chat|Controller
+	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Strings|Inventory|Chat|Controller
+	;#######################################################################################################Strings Tab
+	Gui, Tab, Strings
+	Gui, Font,
+	Gui, Font, Bold cBlack
+	Gui Add, GroupBox, 		Section		w605 h435						x12 	y30, 				String Samples - Only Adjust if not 1080 Height
+	Gui, Font,
+
+	Gui +Delimiter?
+	Gui, Add, Text, xs+10 ys+20 , OHB 2 pixel bar, starting at center
+	Gui, Add, ComboBox, xp y+8 w580 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"
+	Gui, Add, Text, xp y+20 , Capture of the vendor nameplate
+	Gui, Add, ComboBox, y+8 w580 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"
+	Gui, Add, Text, xp y+20 , Capture of the words Sell Items
+	Gui, Add, ComboBox, y+8 w580 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"
+	Gui, Add, Text, xp y+20 , Capture of the Stash
+	Gui, Add, ComboBox, y+8 w580 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
+	Gui, Add, Text, xp y+20 , Capture of the Skill up icon
+	Gui, Add, ComboBox, y+8 w580 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"
+	Gui +Delimiter|
+	;Save Setting
+	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
+	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+	Gui, Add, Button,  		gft_Start 		x+5			 		h23, 	Grab Icon
+
+	Tooltip, Loading GUI 10`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;#######################################################################################################Flasks and Utility Tab
 	Gui, Tab, Flasks and Utility
 	Gui, Font,
@@ -1084,7 +1125,6 @@
 	Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xs+5 ys+15 , Primary Attack
 	Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
-
 	;Vertical Grey Lines
 	Gui, Add, Text, 									x59 	y62 		h381 0x11
 	Gui, Add, Text, 									x+33 				h381 0x11
@@ -1118,6 +1158,8 @@
 	Gui, Add, GroupBox, 					Section		w324 h176			x292 	y+7, 				Profile Management:
 	Gui, Font
 	Gui, Add, Text, 									xs+161 	ys+41 		h135 0x11
+
+	Tooltip, Loading GUI 20`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 
 	;Gui,Font,s9 cBlack Bold Underline
 	;Gui,Add,GroupBox, xs+5 ys+10 w190 h35											,
@@ -1237,6 +1279,7 @@
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 	Gui, Add, Button,  		gft_Start 		x+5			 		h23, 	Grab Icon
 
+	Tooltip, Loading GUI 30`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;#######################################################################################################Configuration Tab
 	Gui, Tab, Configuration
 	Gui, Add, Text, 									x279 	y23		w1	h441 0x7
@@ -1261,8 +1304,6 @@
 	Gui,SampleInd: Add, Text, 				section						xm 	ym+5, 				Gamestate Calibration:
 	Gui,SampleInd: Font
 
-	Gui,SampleInd: Add, Button, gupdateOnHideout vUpdateOnHideoutBtn		xs ys+20		w110, 	OnHideout Color
-	Gui,SampleInd: Add, Button, gupdateOnHideoutMin vUpdateOnHideoutMinBtn	x+8 yp			w110, 	OnHideoutMin Color
 	Gui,SampleInd: Add, Button, gupdateOnChar vUpdateOnCharBtn	 			xs y+3			w110, 	OnChar Color
 	Gui,SampleInd: Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	x+8	yp			w110, 	OnInventory Color
 	Gui,SampleInd: Add, Button, gupdateOnChat vUpdateOnChatBtn	 			xs y+3			w110, 	OnChat Color
@@ -1289,7 +1330,7 @@
 	Gui Add, Text, 					Section					xs 	y+10, 				Additional Interface Options:
 	Gui, Font, 
 
-	Gui Add, Checkbox, gUpdateExtra	vYesOHB Checked%YesOHB%                         	          			, Use OHB for health?
+	Gui Add, Checkbox, gUpdateExtra	vYesOHB Checked%YesOHB%                         	          			, Switch to OHB for Delve?
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
 	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
 	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
@@ -1300,8 +1341,8 @@
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, gUpdateExtra vLatency w30 xs y+10,  %Latency%||1|2|3
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
-
-
+	Gui Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
+	Gui add, Button, gSelectClientLog x+5 , Locate Logfile
 	IfNotExist, %A_ScriptDir%\data\leagues.json
 	{
 		UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
@@ -1316,7 +1357,6 @@
 	Gui Add, GroupBox, 			Section		w210 h95				xm+5 	y+15, 				Item Parse Settings
 	Gui, Font,
 	Gui, Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja Database?
-		YesNinjaDatabase_TT:="Disable to remove this function"
 	Gui, Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
 	Gui, Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
 	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Update leagues
@@ -1407,6 +1447,7 @@
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
+	Tooltip, Loading GUI 40`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;#######################################################################################################Inventory Tab
 	Gui, Tab, Inventory
 	Gui, Font, Bold
@@ -1438,6 +1479,8 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% y+14, Veiled Tab
 
+	Tooltip, Loading GUI 45`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
+
 	Gui, Add, DropDownList, gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  %textList%
@@ -1458,14 +1501,24 @@
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% y+14, Resonator Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% y+14, Crafting Tab
 
+	Tooltip, Loading GUI 50`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 
-	Gui Add, Checkbox, x+95 ym+30	vYesStashKeys Checked%YesStashKeys%                         	         , Enable stash hotkeys?
+	Gui Add, Checkbox, x+65 ym+30	vYesStashKeys Checked%YesStashKeys%                         	         , Enable stash hotkeys?
+
+
 	Gui,Font,s9 cBlack Bold Underline
-	Gui,Add,GroupBox,Section xp-5 yp+20 w60 h85											,Modifier
+	Gui,Add,GroupBox,Section xp-5 yp+20 w100 h85											,Modifier
 	Gui,Font,
 	Gui,Font,s9,Arial
-	Gui Add, Edit, xs+4 ys+20 w50 h23 vstashPrefix1, %stashPrefix1%
-	Gui Add, Edit, y+8        w50 h23 vstashPrefix2, %stashPrefix2%
+	Gui Add, Edit, xs+4 ys+20 w90 h23 vstashPrefix1, %stashPrefix1%
+	Gui Add, Edit, y+8        w90 h23 vstashPrefix2, %stashPrefix2%
+
+	Gui,Font,s9 cBlack Bold Underline
+	Gui,Add,GroupBox, xp-5 y+20 w100 h55											,Reset Tab
+	Gui,Font,
+	Gui,Font,s9,Arial
+	Gui Add, Edit, xp+4 yp+20 w90 h23 vstashReset, %stashReset%
+
 	Gui,Font,s9 cBlack Bold Underline
 	Gui,Add,GroupBox,Section x+10 ys w100 h275											,Keys
 	Gui,Font,
@@ -1479,6 +1532,9 @@
 	Gui Add, Edit, y+5        w90 h23 vstashSuffix7, %stashSuffix7%
 	Gui Add, Edit, y+5        w90 h23 vstashSuffix8, %stashSuffix8%
 	Gui Add, Edit, y+5        w90 h23 vstashSuffix9, %stashSuffix9%
+
+	Tooltip, Loading GUI 55`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
+
 	Gui,Font,s9 cBlack Bold Underline
 	Gui,Add,GroupBox,Section x+10 ys w50 h275											,Tab
 	Gui,Font,
@@ -1493,6 +1549,7 @@
 	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
 	Gui Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
 
+	Tooltip, Loading GUI 60`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 
 	Gui, Font, Bold
 	Gui, Add, Button, gLaunchLootFilter xm y300, Custom Loot Filter
@@ -1517,16 +1574,17 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
 
 	Gui, Font, Bold s9 cBlack
-	Gui Add, GroupBox, 						w180 h90		section		xm+370 	ys, 				Automation:
+	Gui Add, GroupBox, 						w180 h60		section		xm+370 	ys, 				Automation:
 	Gui, Font,
 	Gui Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     xs+5	ys+18			, Search for stash?
 	Gui Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8			, Move to vendor after stash?
-	Gui Add, DropDownList, gUpdateExtra	vYesVendorAfterStashStr      y+8	, %YesVendorAfterStashStr%||MasterStr|NavaliStr|HelenaStr
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
+	Tooltip, Loading GUI 70`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;#######################################################################################################Controller Tab
 
 	Gui, Tab, Controller
@@ -1555,6 +1613,8 @@
 	Gui,Add,Checkbox, xs+5 ys+30 		Checked%YesTriggerUtilityJoystickKey%			vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
 	Gui,Add,GroupBox,  xs ys+90 w80 h40												,9 / L3
 	Gui,Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton9, %hotkeyControllerButton9%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+	Tooltip, Loading GUI 75`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 
 	Gui,Add,GroupBox,section  xs+190 ys w80 h80												,Joystick2
 	Gui,Add,Checkbox, xp+5 y+-53 		Checked%YesTriggerJoystick2Key%			vYesTriggerJoystick2Key, Use key?
@@ -1589,6 +1649,8 @@
 	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
+	Tooltip, Loading GUI 80`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;#######################################################################################################Chat Tab
 	Gui, Tab, Chat
 	Gui Add, Checkbox, gUpdateExtra	vEnableChatHotkeys Checked%EnableChatHotkeys%     xm ym+20                    	          	, Enable chat Hotkeys?
@@ -1641,6 +1703,9 @@
 	Gui,Font,s9 cBlack Bold Underline
 	Gui,Add,GroupBox,Section  w60 h85											,Modifier
 	Gui,Font,
+
+	Tooltip, Loading GUI 85`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
+
 	Gui,Font,s9,Arial
 	Gui Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
 	Gui Add, Edit, y+8        w50 h23 v2Prefix2, %2Prefix2%
@@ -1678,6 +1743,7 @@
 	GuiControl % (MainGuiTabs = "Chat") ? "Show" : "Hide", InnerTab
 	WinSet Top,, ahk_id %InnerTab%
 
+	Tooltip, Loading GUI 90`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	Gui, +LastFound
 	Gui, +AlwaysOnTop
 	Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
@@ -1865,11 +1931,14 @@
 	Gui, ItemInfo: Add, Edit, vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
 	;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
 	;Gui, ItemInfo: Hide
+	Tooltip, Loading GUI 100`%, %GuiX%, %GuiY%, 1 
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-;~  END of Wingman Gui Settings - Start Scaling resolution values
+;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  Grab Ninja Database, Start Scaling resolution values, and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Rescale()
+	Tooltip, Loading Ninja Database,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;Begin scaling resolution values
 	IfWinExist, ahk_group POEGameGroup
 		{
@@ -1884,9 +1953,6 @@
 		Global PortalStockX:=175
 		Global WPStockY:=262
 		
-		global vX_OnHideout:=1178
-		global vY_OnHideout:=930
-		global vY_OnHideoutMin:=1053
 		global vX_OnMenu:=960
 		global vY_OnMenu:=54
 		global vX_OnChar:=41
@@ -1940,6 +2006,7 @@
 		}
 
 	;Ignore Slot setup
+					apiList.MaxIndex()
 	IfNotExist, %A_ScriptDir%\data\IgnoredSlot.json
 	{
 		For C, GridX in InventoryGridX
@@ -1972,6 +2039,11 @@
 			If DaysSince()
 			{
 				For k, apiKey in apiList
+				{
+					ScrapeNinjaData(apiKey)
+					Round((A_Index / apiList.MaxIndex()) * 100)
+					Tooltip,% "Updating Ninja Database " Round((A_Index / apiList.MaxIndex()) * 100)"`%",% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
+				}
 					ScrapeNinjaData(apiKey)
 				JSONtext := JSON.Dump(Ninja)
 				FileDelete, %A_ScriptDir%\data\Ninja.json
@@ -1988,6 +2060,7 @@
 	}
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Tooltip,
 
 	Gui 2:Color, 0X130F13
 	Gui 2:+LastFound +AlwaysOnTop +ToolWindow
@@ -2020,6 +2093,8 @@
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 15
+	; Check for Client Log Updates
+	SetTimer, CheckLocation, 15
 	; Check for gems to level
 	SetTimer, AutoSkillUp, 200
 	; Detonate mines timer check
@@ -2079,6 +2154,9 @@ Return
 			}
 			RunningToggle := True
 			GuiStatus()
+			GuiStatus("OnDiv")
+			GuiStatus("OnStash")
+			GuiStatus("OnVendor")
 			If (!OnChar) 
 			{ ;Need to be on Character 
 				MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
@@ -2092,7 +2170,7 @@ Return
 					LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
 					Loop, 666
 					{
-						GuiStatus()
+						GuiStatus("OnStash")
 						If OnStash
 						Break
 					}
@@ -2114,7 +2192,6 @@ Return
 				IdentifyRoutine()
 		}
 		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
-		CurrentTab:=0
 		MouseMove, xx, yy, 0
 	Return
 	; VendorRoutine - Does vendor functions
@@ -2736,7 +2813,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameW / 3 , GameH, 0, 0, %YesVendorAfterStashStr%))
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameW / 3 , GameH, 0, 0, VendorStr))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2751,7 +2828,8 @@ Return
 							Break
 						}
 					}
-					GuiStatus()
+					GuiStatus("OnStash")
+					GuiStatus("OnVendor")
 					VendorRoutine()
 					Return
 				}
@@ -2779,7 +2857,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameW / 3 , GameH, 0, 0, %YesVendorAfterStashStr%))
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameW / 3 , GameH, 0, 0, VendorStr))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2794,7 +2872,8 @@ Return
 							Break
 						}
 					}
-					GuiStatus()
+					GuiStatus("OnStash")
+					GuiStatus("OnVendor")
 					VendorRoutine()
 					Return
 				}
@@ -5481,22 +5560,13 @@ Return
 				MouseGetPos MSx, MSy
 				BlockInput, MouseMove
 				Sleep, 90*Latency
-				MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-				Sleep, 45*Latency
-				Click, Down, Left, 1
-				Sleep, 45*Latency
-				Click, Up, Left, 1
-				Sleep, 45*Latency
+				LeftClick(vX_StashTabMenu, vY_StashTabMenu)
 				MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
 				Sleep, 195*Latency
+				send {WheelUp 20}
 				send {Enter}
-				Sleep, 75*Latency
-				MouseMove, vX_StashTabMenu, vY_StashTabMenu, 0
-				Sleep, 45*Latency
-				Click, Down, Left, 1
-				Sleep, 45*Latency
-				Click, Up, Left, 1
-				Sleep, 45*Latency
+				Sleep, 90*Latency
+				LeftClick(vX_StashTabMenu, vY_StashTabMenu)
 				CurrentTab:=Tab
 				MouseMove, MSx, MSy, 0
 				Sleep, 195*Latency
@@ -5627,24 +5697,27 @@ Return
 	{
 		IfWinActive, ahk_group POEGameGroup
 		{
+			If (OnTown||OnHideout)
+				Return
 			OutsideTimer := A_TickCount - OutsideTimer
 			t1 := A_TickCount
 			; Check what status is your character in the game
 			if (GuiCheck)
 			{
 				GuiStatus()
-				if (OnHideout||!OnChar||OnChat||OnInventory||OnStash||OnVendor||OnMenu)
-					Exit
+				if (!OnChar||OnChat||OnInventory||OnMenu)
+					Return
+				t5 := A_TickCount - t1
 			}
 			
 			if (RadioLife) {
 				t2 := A_TickCount
-				If YesOHB
+				If (YesOHB && OnMines)
 				{
-					If CheckOHB()
+					If (OHBxy := CheckOHB())
 					{
 						Global OHBLHealthHex, OHB
-						HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 50)
+						HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
 						If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40))
 						{
 							GuiStatus("OnChar")
@@ -5922,16 +5995,16 @@ Return
 							}
 					}
 				}
-				t2 := A_TickCount - t1
+				t2 := A_TickCount - t2
 			}
 			Else if (RadioHybrid) {
 				t2 := A_TickCount
-				If YesOHB
+				If (YesOHB && OnMines)
 				{
-					If CheckOHB()
+					If (OHBxy := CheckOHB())
 					{
 						Global OHBLHealthHex, OHB
-						HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 50)
+						HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
 						If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40))
 						{
 							GuiStatus("OnChar")
@@ -6557,8 +6630,9 @@ Return
 				Ding(3000,7,"Health Time:`t" . t2 . "MS")
 				Ding(3000,8,"E. S. Time:`t" . t3 . "MS")
 				Ding(3000,9,"Mana Time:`t" . t4 . "MS")
+				Ding(3000,10,"Status Time:`t" . t5 . "MS")
 				If (OutsideTimer < 999999)
-					Ding(3000,10,"Out loop:`t" . OutsideTimer . "MS")
+					Ding(3000,11,"Out loop:`t" . OutsideTimer . "MS")
 			}
 			OutsideTimer := A_TickCount
 		}
@@ -6569,6 +6643,8 @@ Return
 	TMineTick(){
 		IfWinActive, ahk_group POEGameGroup
 		{	
+			If (OnTown||OnHideout)
+				Return
 			If (DetonateMines&&!Detonated) 
 				DetonateMines()
 		}
@@ -6674,9 +6750,11 @@ Return
 		MainAttackCommand:
 		If MainAttackPressedActive
 			Return
+		If (OnTown||OnHideout)
+			Return
 		if (AutoFlask || AutoQuicksilver) {
 			GuiStatus()
-			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+			If (!OnChar||OnChat||OnInventory||OnMenu)
 				return
 			If AutoFlask {
 				TriggerFlask(TriggerMainAttack)
@@ -6700,7 +6778,7 @@ Return
 			If (MainAttackPressed && TriggerMainAttack > 0 )
 			{
 				GuiStatus()
-				If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+				If (!OnChar||OnChat||OnInventory||OnMenu)
 					return
 				If (AutoFlask) {
 					TriggerFlask(TriggerMainAttack)
@@ -6726,9 +6804,11 @@ Return
 		SecondaryAttackCommand:
 		If SecondaryAttackPressedActive
 			Return
+		If (OnTown||OnHideout)
+			Return
 		if (AutoFlask || AutoQuicksilver) {
 			GuiStatus()
-			If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
+			If (!OnChar||OnChat||OnInventory||OnMenu)
 				return
 			If (AutoFlask) {
 				TriggerFlask(TriggerSecondaryAttack)
@@ -6752,10 +6832,8 @@ Return
 			If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
 			{
 				GuiStatus()
-				If (OnChat||OnHideout||OnVendor||OnStash||!OnChar||OnMenu)
-				{
+				If (!OnChar||OnChat||OnInventory||OnMenu)
 					return
-				}
 				If (AutoFlask) {
 					TriggerFlask(TriggerSecondaryAttack)
 					TGameTick(False)
@@ -6826,15 +6904,12 @@ Return
 	; TriggerUtility - Trigger named Utility
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TriggerUtility(Utility){
-		GuiStatus("OnHideout")
-		GuiStatus("OnChar")
-		GuiStatus("OnChat")
-		GuiStatus("OnInventory")
-		GuiStatus("OnMenu")
-		
-		if (OnHideout || !OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, menu open, chat open, or open inventory
-			Exit
+		If (OnTown||OnHideout)
+			Return
 		If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
+			GuiStatus()
+			if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, menu open, chat open, or open inventory
+				Return
 			key:=KeyUtility%Utility%
 			Send %key%
 			SendMSG(4, Utility)
@@ -6847,9 +6922,11 @@ Return
 	; DetonateMines - Auto Detonate Mines
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	DetonateMines(){
-			GuiStatus("OnChat")
-			If (OnChat)
-				exit
+			If (OnTown||OnHideout)
+				Return
+			GuiStatus()
+			If (!OnChar||OnChat||OnInventory||OnMenu)
+				return
 			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
 			pixelgetcolor, Mine, DetonateX, DetonateY
 			If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
@@ -6859,103 +6936,6 @@ Return
 				Return
 			}
 			Return	
-		}
-
-; GuiStatus - Pixelcheck for different parts of the screen to see what your status is in game. 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GuiStatus(Fetch:=""){
-		If (Fetch="DetonateMines")
-			{
-			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
-			pixelgetcolor, Mine, DetonateX, DetonateY
-			if (Mine = DetonateHex) {
-				DetonateMines:=True
-				} Else {
-				DetonateMines:=False
-				}
-			if (DelveMine = DetonateHex) {
-				DetonateDelve:=True
-				} Else {
-				DetonateDelve:=False
-				}
-			Return
-			}
-		If (Fetch="OnHideout")
-			{
-			pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-			pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
-			if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
-				OnHideout:=True
-				} Else {
-				OnHideout:=False
-				}
-			Return
-			}
-		If !(Fetch="")
-			{
-			pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
-			If (P%Fetch%=var%Fetch%){
-				%Fetch%:=True
-				} Else {
-				%Fetch%:=False
-				}
-			Return
-			}
-		pixelgetcolor, POnHideout, vX_OnHideout, vY_OnHideout
-		pixelgetcolor, POnHideoutMin, vX_OnHideout, vY_OnHideoutMin
-		if ((POnHideout=varOnHideout) || (POnHideoutMin=varOnHideoutMin)) {
-			OnHideout:=True
-			} Else {
-			OnHideout:=False
-			}
-		if (POnHideoutMin=varOnHideoutMin) {
-			OnHideoutMin:=True
-			} Else {
-			OnHideoutMin:=False
-			}
-		pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
-		If (POnChar=varOnChar)  {
-			OnChar:=True
-			} Else {
-			OnChar:=False
-			}
-		pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-		If (POnChat=varOnChat) {
-			OnChat:=True
-			} Else {
-			OnChat:=False
-			}
-		pixelgetcolor, POnMenu, vX_OnMenu, vY_OnMenu
-		If (POnMenu=varOnMenu) {
-			OnMenu:=True
-			} Else {
-			OnMenu:=False
-			}
-		pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-		If (POnInventory=varOnInventory) {
-			OnInventory:=True
-			} Else {
-			OnInventory:=False
-			}
-		pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-		If (POnStash=varOnStash) {
-			OnStash:=True
-			} Else {
-			OnStash:=False
-			}
-		pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
-		If (POnVendor=varOnVendor) {
-			OnVendor:=True
-			} Else {
-			OnVendor:=False
-			}
-		pixelgetcolor, POnDiv, vX_OnDiv, vY_OnDiv
-		If (POnDiv=varOnDiv) {
-			OnDiv:=True
-			} Else {
-			OnDiv:=False
-			}
-		Return
 		}
 
 ; DebugGamestates - Show a GUI which will update based on the state of the game
@@ -6969,10 +6949,6 @@ Return
 			Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
 			Gui, States: Margin, 10, 10
 			; ----------------------------------------------------------------------------------------------------------------------
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnHideout hwndCTIDOnHideout, % "       OnHideout "
-			CtlColors.Attach(CTIDOnHideout, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnHideoutMin hwndCTIDOnHideoutMin, % "    OnHideoutMin "
-			CtlColors.Attach(CTIDOnHideoutMin, "", "Red")
 			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnChar hwndCTIDOnChar, % "          OnChar "
 			CtlColors.Attach(CTIDOnChar, "", "Red")
 			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnInventory hwndCTIDOnInventory, % "      OnInventory "
@@ -7014,14 +6990,9 @@ Return
 		CheckGamestates:
 			GuiStatus()
 			GuiStatus("DetonateMines")
-			If (OnHideout)
-				CtlColors.Change(CTIDOnHideout, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnHideout, "", "Red")
-			If (OnHideoutMin)
-				CtlColors.Change(CTIDOnHideoutMin, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnHideoutMin, "", "Red")
+			GuiStatus("OnStash")
+			GuiStatus("OnVendor")
+			GuiStatus("OnDiv")
 			If (OnChar)
 				CtlColors.Change(CTIDOnChar, "Lime", "")
 			Else
@@ -7150,6 +7121,7 @@ Return
 			Send {%hotkeyInventory%}
 			MouseMove, xx, yy, 0
 			BlockInput Off
+			RandomSleep(300,600)
 		return
 		}
 
@@ -7254,8 +7226,7 @@ Return
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
-				Text:="|<Skill Up>0xF18C03@0.45$12.wDyDyDyDSC000000yDyDyDyDU"
-				if (ok:=FindText( Round(A_ScreenWidth * .93) , Round(A_ScreenHeight * .15), Round(A_ScreenWidth * .07) , Round(A_ScreenHeight * .7), 0, 0, Text))
+				if (ok:=FindText( Round(A_ScreenWidth * .93) , Round(A_ScreenHeight * .15), Round(A_ScreenWidth * .07) , Round(A_ScreenHeight * .7), 0, 0, SkillUpStr))
 				{
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, Comment:=ok.1.5, X+=W//2, Y+=H//2
 					If (Lpressed := GetKeyState("LButton"))
@@ -7505,7 +7476,6 @@ Return
 			;Settings for Auto-Vendor
 			IniRead, YesSearchForStash, settings.ini, General, YesSearchForStash, 0
 			IniRead, YesVendorAfterStash, settings.ini, General, YesVendorAfterStash, 0
-			IniRead, YesVendorAfterStashStr, settings.ini, General, YesVendorAfterStashStr, MasterStr
 			
 			;Stash Tab Management
 			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
@@ -7545,12 +7515,35 @@ Return
 			IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
 			IniRead, StashTabYesVeiled, settings.ini, Stash Tab, StashTabYesVeiled, 1
 			
+			;Settings for the Client Log file location
+			IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
+			
 			;Settings for the Overhead Health Bar
 			IniRead, YesOHB, settings.ini, OHB, YesOHB, 1
 			
 			;OHB Colors
 			IniRead, OHBLHealthHex, settings.ini, OHB, OHBLHealthHex, 0x19A631
-			
+
+			;Ascii strings
+			IniRead, HealthBarStr, settings.ini, FindText Strings, HealthBarStr, %1080_HealthBarStr%
+			If HealthBarStr
+			{
+				HealthBarStr := """" . HealthBarStr . """"
+				OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
+			}
+			IniRead, VendorStr, settings.ini, FindText Strings, VendorStr, %1080_MasterStr%
+			If VendorStr
+				VendorStr := """" . VendorStr . """"
+			IniRead, SellItemsStr, settings.ini, FindText Strings, SellItemsStr, %1080_SellItemsStr%
+			If SellItemsStr
+				SellItemsStr := """" . SellItemsStr . """"
+			IniRead, StashStr, settings.ini, FindText Strings, StashStr, %1080_StashStr%
+			If StashStr
+				StashStr := """" . StashStr . """"
+			IniRead, SkillUpStr, settings.ini, FindText Strings, SkillUpStr, %1080_SkillUpStr%
+			If SkillUpStr
+				SkillUpStr := """" . SkillUpStr . """"
+
 			;Inventory Colors
 			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
 			;Create an array out of the read string
@@ -7562,8 +7555,6 @@ Return
 			LootColors := StrSplit(LootColors, ",")
 
 			;Failsafe Colors
-			IniRead, varOnHideout, settings.ini, Failsafe Colors, OnHideout, 0xB5EFFE
-			IniRead, varOnHideoutMin, settings.ini, Failsafe Colors, OnHideoutMin, 0xCDF6FE
 			IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0x7BB9D6
 			IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
 			IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
@@ -7944,6 +7935,7 @@ Return
 			IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
 			IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
 
+			IniRead, stashReset, settings.ini, Stash Hotkeys, stashReset, NumpadDot
 			IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, Numpad0
 			IniRead, stashPrefix2, settings.ini, Stash Hotkeys, stashPrefix2, %A_Space%
 			IniRead, stashSuffix1, settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
@@ -8151,7 +8143,7 @@ Return
 				ToolTip % "Resampled the Life, ES, and Mana colors`nMake sure you were on your character!"
 					SetTimer, RemoveToolTip, -5000
 			} Else {
-				MsgBox % "Game is not Open`nWill not Resample the Life, ES, or Mana colors!`nAll other settings will save."
+				MsgBox, 262144, No resample, % "Game is not Open`nWill not Resample the Life, ES, or Mana colors!`nAll other settings will save."
 				Gui, Submit, NoHide
 			}
 			
@@ -8217,6 +8209,13 @@ Return
 
 			; Overhead Health Bar
 			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
+
+			; ASCII Search Strings
+			IniWrite, %HealthBarStr%, Settings.ini, FindText Strings, HealthBarStr
+			IniWrite, %VendorStr%, Settings.ini, FindText Strings, VendorStr
+			IniWrite, %SellItemsStr%, Settings.ini, FindText Strings, SellItemsStr
+			IniWrite, %StashStr%, Settings.ini, FindText Strings, StashStr
+			IniWrite, %SkillUpStr%, Settings.ini, FindText Strings, SkillUpStr
 
 			;~ Hotkeys 
 			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
@@ -8423,6 +8422,7 @@ Return
 			IniWrite, %2Suffix8Text%, settings.ini, Chat Hotkeys, 2Suffix8Text
 			IniWrite, %2Suffix9Text%, settings.ini, Chat Hotkeys, 2Suffix9Text
 
+			IniWrite, %stashReset%, settings.ini, Stash Hotkeys, stashReset
 			IniWrite, %stashPrefix1%, settings.ini, Stash Hotkeys, stashPrefix1
 			IniWrite, %stashPrefix2%, settings.ini, Stash Hotkeys, stashPrefix2
 			IniWrite, %stashSuffix1%, settings.ini, Stash Hotkeys, stashSuffix1
@@ -8684,29 +8684,39 @@ Return
 					Hotkey, *%stashSuffix8%, FireStashHotkey8, off
 				If stashSuffix9 != A_Space
 					Hotkey, *%stashSuffix9%, FireStashHotkey9, off
+				If stashReset != A_Space
+					Hotkey, *%stashReset%, FireStashReset, off
 
 			Gui Submit, NoHide
 			fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
 			Hotkey If, % fn1
 			Loop, 9 {
 				If (1Suffix%A_Index% != A_Space)
+				{
 					keyval := 1Suffix%A_Index%
 					Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
 				}
+			}
 			fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
 			Hotkey If, % fn2
 			Loop, 9 {
 				If (2Suffix%A_Index% != A_Space)
+				{
 					keyval := 2Suffix%A_Index%
 					Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
 				}
+			}
 			fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
 			Hotkey If, % fn3
 			Loop, 9 {
 				If (stashSuffix%A_Index% != A_Space)
+				{
 					keyval := stashSuffix%A_Index%
 					Hotkey, ~*%keyval%, FireStashHotkey%A_Index%, On
 				}
+			}
+			If (stashReset != A_Space)
+				Hotkey, ~*%stashReset%, FireStashReset, On
 			Return
 			}
 		; HotkeyShouldFire - Functions to evaluate keystate
@@ -9080,6 +9090,10 @@ Return
 			{	
 				MoveStash(stashSuffixTab9)
 			}
+		return
+		}	
+		FireStashReset() {
+			CurrentTab := 0
 		return
 		}	
 	}
@@ -10006,57 +10020,8 @@ Return
 		return	
 	}
 
-	{ ; Calibration color sample functions - updateOnHideout, updateOnHideoutMin, updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
+	{ ; Calibration color sample functions - updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
 	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate, updateDetonateDelve
-		updateOnHideout:
-			Gui, Submit ; , NoHide
-			IfWinExist, ahk_group POEGameGroup
-			{
-				Rescale()
-				WinActivate, ahk_group POEGameGroup
-			} else {
-				MsgBox % "PoE Window does not exist `nRecalibrate of OnHideout didn't work"
-				Return
-			}
-			
-			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout	
-				IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
-				readFromFile()
-				MsgBox % "OnHideout recalibrated!`nTook color hex: " . varOnHideout . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideout
-			} else
-			MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
-			
-			
-			hotkeys()
-			
-		return
-
-		updateOnHideoutMin:
-			Gui, Submit ; , NoHide
-			IfWinExist, ahk_group POEGameGroup
-			{
-				Rescale()
-				WinActivate, ahk_group POEGameGroup
-			} else {
-				MsgBox % "PoE Window does not exist `nRecalibrate of OnHideoutMin didn't work"
-				Return
-			}
-			
-			if WinActive(ahk_group POEGameGroup){
-				Sleep, 1000
-				pixelgetcolor, varOnHideoutMin, vX_OnHideout, vY_OnHideoutMin	
-				IniWrite, %varOnHideoutMin%, settings.ini, Failsafe Colors, OnHideoutMin
-				readFromFile()
-				MsgBox % "OnHideoutMin recalibrated!`nTook color hex: " . varOnHideoutMin . " `nAt coords x: " . vX_OnHideout . " and y: " . vY_OnHideoutMin
-			} else
-			MsgBox % "PoE Window is not active. `nRecalibrate of OnHideoutMin didn't work"
-			
-			
-			hotkeys()
-			
-		return
-
 		updateOnChar:
 			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
@@ -10417,8 +10382,7 @@ Return
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnVendor            xp   y+10            w100 h20 , OnVendor
 				Gui, Wizard: Add, CheckBox, vCalibrationOnDiv               xp   y+10            w100 h20 , OnDiv
 
-				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnHideout   x342 y39             w100 h20 , OnHideout
-				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu              xp   y+10            w100 h20 , OnMenu
+				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu              x342 y39             w100 h20 , OnMenu
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty               xp   y+10            w100 h20 , Empty Inventory
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnStash             xp   y+10            w100 h20 , OnStash
 				Gui, Wizard: Add, CheckBox, vCalibrationDetonate            xp   y+10            w100 h20 , Detonate Mines
@@ -10464,53 +10428,6 @@ Return
 						SampleTT .= "OnChar            took BGR color hex: " . varOnChar . "    At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
-				}
-				If CalibrationOnHideout
-				{
-					ToolTip,% "This will sample the OnHideout Color`n"
-						. "Make sure you are in a hideout`n"
-						. "Make sure the hideout menu is Visible`n"
-						. "Press ""A"" to sample`n"
-						. "Hold Escape and press ""A"" to cancel"
-						, % ScrCenter.X - 110 , % ScrCenter.Y -30
-					KeyWait, a, D
-					ToolTip
-					KeyWait, a
-					If GetKeyState("Escape", "P")
-					{
-						MsgBox % "Escape key was held`n"
-						. "Canceling the Wizard!"
-						Gui, Wizard: Show
-						Exit
-					}
-					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnHideout, vX_OnHideout, vY_OnHideout
-						SampleTT .= "OnHideout       took BGR color hex: " . varOnHideout . "    At coords x: " . vX_OnHideout . " and y: " . vY_OnHideout . "`n"
-					} else
-					MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
-						
-						
-					ToolTip,% "This will sample the OnHideoutMin Color`n"
-						. "From the hideout menu being visible, minimize the menu`n"
-						. "Make sure the hideout menu is not Visible`n"
-						. "Press ""A"" to sample`n"
-						. "Hold Escape and press ""A"" to cancel"
-						, % ScrCenter.X - 160 , % ScrCenter.Y -30
-					KeyWait, a, D
-					ToolTip
-					KeyWait, a
-					If GetKeyState("Escape", "P")
-					{
-						MsgBox % "Escape key was held`n"
-						. "Canceling the Wizard!"
-						Gui, Wizard: Show
-						Exit
-					}
-					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnHideoutMin, vX_OnHideout, vY_OnHideoutMin	
-						SampleTT .= "OnHideoutMin took BGR color hex: " . varOnHideoutMin . "    At coords x: " . vX_OnHideout . " and y: " . vY_OnHideoutMin . "`n"
-					} else
-					MsgBox % "PoE Window is not active. `nRecalibrate of OnHideout didn't work"
 				}
 				If CalibrationOnChat
 				{
@@ -10743,11 +10660,6 @@ Return
 			SaveWizardResults:
 				If CalibrationOnChar
 					IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar        
-				If CalibrationOnHideout
-				{
-					IniWrite, %varOnHideout%, settings.ini, Failsafe Colors, OnHideout
-					IniWrite, %varOnHideoutMin%, settings.ini, Failsafe Colors, OnHideoutMin
-				}
 				If CalibrationOnChat
 					IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
 				If CalibrationOnMenu
@@ -11132,7 +11044,6 @@ Return
 			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
 			IniWrite, %YesSearchForStash%, settings.ini, General, YesSearchForStash
 			IniWrite, %YesVendorAfterStash%, settings.ini, General, YesVendorAfterStash
-			IniWrite, %YesVendorAfterStashStr%, settings.ini, General, YesVendorAfterStashStr
 			If (YesPersistantToggle)
 				AutoReset()
 			If (DetonateMines&&!Detonated)
@@ -11159,6 +11070,13 @@ Return
 			Gui, Submit, NoHide
 			IniWrite, %YesEldritchBattery%, settings.ini, General, YesEldritchBattery
 			Rescale()
+		Return
+
+		UpdateStringEdit:
+			Gui, Submit, NoHide
+			IniWrite,% %A_GuiControl%, Settings.ini, FindText Strings,%  A_GuiControl
+			If A_GuiControl = HealthBarStr
+				OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
 		Return
 
 		UpdateResolutionScale:
@@ -11423,8 +11341,28 @@ Return
 
 		helpCalibration:
 			Gui, submit
-			MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnHideout -- Not Mandatory - Pauses Auto-Functions`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- ID/Vend/Stash`nOnStash -- ID/Vend/Stash`nOnDiv -- ID/Vend/Stash`nOnVendor -- ID/Vend/Stash`nEmpty Inventory -- ID/Vend/Stash`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
+			MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- ID/Vend/Stash`nOnStash -- ID/Vend/Stash`nOnDiv -- ID/Vend/Stash`nOnVendor -- ID/Vend/Stash`nEmpty Inventory -- ID/Vend/Stash`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
 			Hotkeys()
+		Return
+
+		SelectClientLog:
+			If (A_GuiControl = "ClientLog")
+			{
+				Gui, submit, NoHide
+				IniWrite, %ClientLog%, Settings.ini, Log, ClientLog
+			}
+			Else
+			{
+				Gui, submit
+				FileSelectFile, SelectClientLog, 1, 0, Select the location of your Client Log file, Client.txt
+				If SelectClientLog !=
+				{
+					ClientLog := SelectClientLog
+					GuiControl,, ClientLog, %SelectClientLog%
+					IniWrite, %SelectClientLog%, Settings.ini, Log, ClientLog
+				}
+				Hotkeys()
+			}
 		Return
 	}
 
