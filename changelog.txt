@@ -18,6 +18,8 @@ Bugfix for GottaGoFast gui not displaying properly
     Also fixes the hidden window appearing named NoActivate
     Somehow it was showing two GUI for the script
 
+New option to Relog into the game after Auto-Quit or Logout hotkey
+
 Forgot to mention in last patchnotes:
     Stash hotkeys has a new binding to reset the current tab
     This is for when you have moved the stash tab to a new location manually

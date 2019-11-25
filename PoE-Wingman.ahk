@@ -304,6 +304,7 @@
 		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 		Global YesOpenMap := True
 		Global YesClickPortal := True
+		Global RelogOnQuit := True
 		ft_ToolTip_Text=
 			(LTrim
 			Capture = Initiate Image Capture Sequence
@@ -1143,15 +1144,16 @@
 	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				xs+5 ys+16, 						%varTextAutoQuit20%
 	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
 	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
-	Gui Add, Text, 										xs+5 	y+8, 				Quit via:
-	Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+5		y+-13,			LutBot D/C
+	Gui Add, Text, 										xs+5 	y+7, 				Quit via:
+	Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+5		y+-13,			D/C
 	Gui, Add, Radio, 		vRadioPortalQuit Checked%RadioPortalQuit%			x+3	,				Portal
 	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+3	,				/exit
+	Gui Add, Checkbox, gUpdateExtra	vRelogOnQuit Checked%RelogOnQuit%           	xs+5	y+2				, Log back in afterwards?
 
 	Gui,Font,s9 cBlack 
-	Gui Add, GroupBox, 		Section	w90 h32				x+10 	y31 , 				Auto-Mine
+	Gui Add, GroupBox, 		Section	w90 h32				xs+230 	ys , 				Auto-Mine
 	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+15	ys+15				, Enable
-	Gui Add, GroupBox, 		Section	w90 h32	vEldritchBatteryGroupbox			xs 	y+5 , 				Eldritch Battery
+	Gui Add, GroupBox, 		Section	w90 h32	vEldritchBatteryGroupbox			xs 	y+6 , 				Eldritch Battery
 	Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery%           	xs+15	ys+15				, Enable
 	Gui,Font,
 
@@ -7226,16 +7228,23 @@ Return
 				}
 				If RelogOnQuit
 				{
-					RandomSleep(90,120)
+					RandomSleep(200,250)
 					Send {Enter}
-					RandomSleep(200,350)
+					RandomSleep(500,550)
 					Send {Enter}
 				}
 			} 
 			Else If RadioPortalQuit
 				QuickPortal(True)
 			Else If RadioNormalQuit
+			{
 				Send {Enter} /exit {Enter}
+				If RelogOnQuit
+				{
+					RandomSleep(300,400)
+					Send {Enter}
+				}
+			}
 			If YesOHB && OnMines
 				Ding(5000,1,"Exit with " . HPerc . "`% Life")
 		return
@@ -7495,6 +7504,7 @@ Return
 			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
 			IniRead, YesClickPortal, settings.ini, General, YesClickPortal, 0
 			IniRead, YesOpenMap, settings.ini, General, YesOpenMap, 0
+			IniRead, RelogOnQuit, settings.ini, General, RelogOnQuit, 0
 			IniRead, AreaScale, settings.ini, General, AreaScale, 60
 			IniRead, LVdelay, settings.ini, General, LVdelay, 15
 
@@ -8234,6 +8244,7 @@ Return
 			IniWrite, %LVdelay%, settings.ini, General, LVdelay
 			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
 			IniWrite, %YesOpenMap%, settings.ini, General, YesOpenMap
+			IniWrite, %RelogOnQuit%, settings.ini, General, RelogOnQuit
 
 			; Overhead Health Bar
 			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
@@ -11079,6 +11090,7 @@ Return
 			IniWrite, %YesVendorAfterStash%, settings.ini, General, YesVendorAfterStash
 			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
 			IniWrite, %YesOpenMap%, settings.ini, General, YesOpenMap
+			IniWrite, %RelogOnQuit%, settings.ini, General, RelogOnQuit
 			If (YesPersistantToggle)
 				AutoReset()
 			If (DetonateMines&&!Detonated)
