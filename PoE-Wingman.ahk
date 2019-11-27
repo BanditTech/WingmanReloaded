@@ -861,6 +861,7 @@
 	readFromFile()
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Thread, NoTimers, true		;Critical
 	Tooltip, Loading GUI 00`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13
 	Gui Add, Text, 										x515	y5, 				Debug Messages:
@@ -1919,6 +1920,7 @@
 	;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
 	;Gui, ItemInfo: Hide
 	Tooltip, Loading GUI 100`%, %GuiX%, %GuiY%, 1 
+	Thread, NoTimers, False		;Critical
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2074,8 +2076,8 @@
 
 ; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	; Check for window to open
-	SetTimer, PoEWindowCheck, 5000
+	; Check for window to be active
+	SetTimer, PoEWindowCheck, 15
 	; Check once an hour to see if we should updated database
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
@@ -5682,7 +5684,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TGameTick(GuiCheck:=True)
 	{
-		IfWinActive, ahk_group POEGameGroup
+		If WinActive(GameStr)
 		{
 			If (OnTown||OnHideout)
 				Exit
@@ -6659,13 +6661,16 @@ Return
 
 			If (YesTimeMS)
 			{
-				Ding(3000,6,"Total Time:`t" . A_TickCount - t1 . "MS")
-				Ding(3000,7,"Health Time:`t" . t2 . "MS")
-				Ding(3000,8,"E. S. Time:`t" . t3 . "MS")
-				Ding(3000,9,"Mana Time:`t" . t4 . "MS")
-				Ding(3000,10,"Status Time:`t" . t5 . "MS")
-				If (OutsideTimer < 999999)
-					Ding(3000,11,"Out loop:`t" . OutsideTimer . "MS")
+				If WinActive(GameStr)
+				{
+					Ding(3000,6,"Total Time:`t" . A_TickCount - t1 . "MS")
+					Ding(3000,7,"Health Time:`t" . t2 . "MS")
+					Ding(3000,8,"E. S. Time:`t" . t3 . "MS")
+					Ding(3000,9,"Mana Time:`t" . t4 . "MS")
+					Ding(3000,10,"Status Time:`t" . t5 . "MS")
+					If (OutsideTimer < 999999)
+						Ding(3000,11,"Out loop:`t" . OutsideTimer . "MS")
+				}
 			}
 			OutsideTimer := A_TickCount
 		}
@@ -7259,13 +7264,13 @@ Return
 				{
 					RandomSleep(300,300)
 					Send {Enter}
-					RandomSleep(550,550)
+					RandomSleep(650,650)
 					Send {Enter}
 				}
 			} 
 			Else If RadioPortalQuit
 			{
-				If ((A_TickCount - LastLogout) > 30000)
+				If ((A_TickCount - LastLogout) > 10000)
 				{
 					QuickPortal(True)
 					LastLogout := A_TickCount

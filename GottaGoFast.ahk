@@ -289,7 +289,7 @@
 
 ; Set timers section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     SetTimer, PoEWindowCheck, 5000
+     SetTimer, PoEWindowCheck, 15
      SetTimer, CheckLocation, 15
 
 ; Start timer for active Utility that is not triggered by Life, ES, or QS

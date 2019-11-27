@@ -8,6 +8,10 @@ New options for Auto-Quit at 50% and 60%
 Bugfix for PortalQuit
     Forgot to properly initialize the LastLogout variable
 
+The GUI overlay now hides/shows nearly instantly when game is not active
+
+Scan MS setting will no longer show tooltips when game is not active
+
 Version .07.07 November/27/2019
 --------------------------------------------------------------------------------
 Bugfix for PortalQuit to wait 30 seconds after firing
