@@ -1,6 +1,24 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.07 November/25/2019
+--------------------------------------------------------------------------------
+Bugfix for PortalQuit to wait 30 seconds after firing
+    Was causing issues when you died, it would keep trying to portal out
+
+Bugfix for memory issue of > 64 mb logfile
+    Increased the memory limit of variables to 256 mb
+    Massive improvements to the Client Log reading method
+    From upwards of .188 seconds its now operating at .0007 seconds or less
+    No longer loads the file into memory, now uses a FileObject instead
+    The script is still using 42MB because of the different arrays it is using
+        To really optimize I would need to rewrite all the arrays into classes/obj
+
+Additions to the library:
+    CoolTime - Allows for more precise display of MS of an action - to swap later
+    ASMLastLine - Grabs the tail of the file using asembly code, for speed
+    LastLineInit - Set the marker to the end of a FileObject
+
 Version .07.06 November/25/2019
 --------------------------------------------------------------------------------
 New method of Auto-Quit is now available, leave by portaling out!

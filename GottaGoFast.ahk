@@ -7,9 +7,9 @@
      ;#Warn  
      #Persistent 
      #InstallMouseHook
-     #MaxThreads 10
      #MaxThreadsPerHotkey 2
      #NoTrayIcon
+	#MaxMem 256
      ListLines Off
      Process, Priority, , A
      SetBatchLines, -1
@@ -24,7 +24,7 @@
      CoordMode, Mouse, Screen
      CoordMode, Pixel, Screen
      SetWorkingDir %A_ScriptDir%  
-     Thread, interrupt, 0
+     ; Thread, interrupt, 0
      OnMessage(0x5555, "MsgMonitor")
      OnMessage(0x5556, "MsgMonitor")
      Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
@@ -236,9 +236,14 @@
      global IconStringUtility1, IconStringUtility2, IconStringUtility3, IconStringUtility4, IconStringUtility5
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Standard ini read
+; Standard ini read - Client Log Setup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      ReadFromFile()
+     ; Setup the client log after loading INI
+     Global CLogFO := FileOpen(ClientLog, "r")
+     CLogFo.Seek(0)
+     CLogFo.ReadLine()
+     Global FirstLineLength := CLogFo.Tell()
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Scale positions for status check
@@ -264,6 +269,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     Gui, 1: Default
      Gui, Color, 0X130F13
      Gui +LastFound +AlwaysOnTop +ToolWindow
      WinSet, TransColor, 0X130F13
@@ -273,7 +279,8 @@
      IfWinExist, ahk_group POEGameGroup
      {
           Rescale()
-          Gui, Show, x%GuiX% y%GuiY% NoActivate 
+          Gui, 1: Show, x%GuiX% y%GuiY% NoActivate 
+          RescaleRan := True
           ToggleExist := True
           WinActivate, ahk_group POEGameGroup
           If (YesPersistantToggle)
@@ -445,14 +452,15 @@
 ; PoEWindowCheck - Check if game is active
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      PoEWindowCheck(){
+          Critical
           DetectHiddenWindows On
-          IfWinExist, ahk_group POEGameGroup 
+          IfWinActive, ahk_group POEGameGroup 
           {
                global GuiX, GuiY, RescaleRan, ToggleExist
                If (!RescaleRan)
                Rescale()
                If (!ToggleExist) {
-                    Gui, Show, x%GuiX% y%GuiY% NoActivate 
+                    Gui, 1: Show, x%GuiX% y%GuiY% NoActivate 
                     ToggleExist := True
                     DetectJoystick()
                     WinActivate, ahk_group POEGameGroup
@@ -461,7 +469,7 @@
                }
           } Else {
                If (ToggleExist){
-                    Gui, Show, Hide
+                    Gui, 1: Show, Hide
                     ToggleExist := False
                }
           }

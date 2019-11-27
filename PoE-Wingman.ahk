@@ -8,8 +8,8 @@
     #Persistent 
     #InstallMouseHook
     #InstallKeybdHook
-	;#MaxThreads 10
     #MaxThreadsPerHotkey 2
+	#MaxMem 256
     ListLines Off
     Process, Priority, , A
     SetBatchLines, -1
@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .07.06
+    Global VersionNumber := .07.07
 
 	;Global Null := 0
     
@@ -301,10 +301,14 @@
 				,"Oriath Docks"
 				,"Oriath" ]
 
-		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 		Global YesOpenMap := True
 		Global YesClickPortal := True
 		Global RelogOnQuit := True
+		Global CLogFO := FileOpen(ClientLog, "r")
+		CLogFo.Seek(0)
+		CLogFo.ReadLine()
+		Global FirstLineLength := CLogFo.Tell()
+
 		ft_ToolTip_Text=
 			(LTrim
 			Capture = Initiate Image Capture Sequence
@@ -1144,11 +1148,11 @@
 	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				xs+5 ys+16, 						%varTextAutoQuit20%
 	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
 	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
-	Gui Add, Text, 										xs+5 	y+7, 				Quit via:
+	Gui Add, Text, 										xs+5 	y+4, 				Quit via:
 	Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+5		y+-13,			D/C
 	Gui, Add, Radio, 		vRadioPortalQuit Checked%RadioPortalQuit%			x+3	,				Portal
 	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+3	,				/exit
-	Gui Add, Checkbox, gUpdateExtra	vRelogOnQuit Checked%RelogOnQuit%           	xs+5	y+2				, Log back in afterwards?
+	Gui Add, Checkbox, gUpdateExtra	vRelogOnQuit Checked%RelogOnQuit%           	xs+5	y+4				, Log back in afterwards?
 
 	Gui,Font,s9 cBlack 
 	Gui Add, GroupBox, 		Section	w90 h32				xs+230 	ys , 				Auto-Mine
@@ -3017,7 +3021,7 @@ Return
 			BlockInput, MouseMove
 			Clipboard := ""
 			MouseMove %x%, %y%
-			Sleep, 75*Latency
+			Sleep, 90*Latency
 			Send ^c
 			ClipWait, 0
 			ParseClip()
@@ -5703,7 +5707,7 @@ Return
 		IfWinActive, ahk_group POEGameGroup
 		{
 			If (OnTown||OnHideout)
-				Return
+				Exit
 			OutsideTimer := A_TickCount - OutsideTimer
 			t1 := A_TickCount
 			; Check what status is your character in the game
@@ -5711,7 +5715,7 @@ Return
 			{
 				GuiStatus()
 				if (!OnChar||OnChat||OnInventory||OnMenu)
-					Return
+					Exit
 				t5 := A_TickCount - t1
 			}
 			
@@ -6457,7 +6461,7 @@ Return
 						GuiStatus("OnChar")
 						if !(OnChar)
 							Exit
-						if (AutoQuit=1) && (RadioQuit20=1) {
+						if (AutoQuit && (RadioQuit20 || RadioQuit30 || RadioQuit40)) {
 							LogoutCommand()
 							Exit
 						}
@@ -6481,7 +6485,7 @@ Return
 						GuiStatus("OnChar")
 						if !(OnChar)
 							Exit
-						if (AutoQuit=1) && (RadioQuit30=1) {
+						if (AutoQuit && (RadioQuit30 || RadioQuit40)) {
 							LogoutCommand()
 							Exit
 						}
@@ -6505,7 +6509,7 @@ Return
 						GuiStatus("OnChar")
 						if !(OnChar)
 							Exit
-						if (AutoQuit=1) && (RadioQuit40=1) {
+						if (AutoQuit && RadioQuit40) {
 							LogoutCommand()
 							Exit
 						}
@@ -6649,7 +6653,7 @@ Return
 		IfWinActive, ahk_group POEGameGroup
 		{	
 			If (OnTown||OnHideout)
-				Return
+				Exit
 			If (DetonateMines&&!Detonated) 
 				DetonateMines()
 		}
@@ -6760,7 +6764,7 @@ Return
 		if (AutoFlask || AutoQuicksilver) {
 			GuiStatus()
 			If (!OnChar||OnChat||OnInventory||OnMenu)
-				return
+				Exit
 			If AutoFlask {
 				TriggerFlask(TriggerMainAttack)
 				SetTimer, TimerMainAttack, %Tick%
@@ -6784,7 +6788,7 @@ Return
 			{
 				GuiStatus()
 				If (!OnChar||OnChat||OnInventory||OnMenu)
-					return
+					Exit
 				If (AutoFlask) {
 					TriggerFlask(TriggerMainAttack)
 					TGameTick(False)
@@ -6814,7 +6818,7 @@ Return
 		if (AutoFlask || AutoQuicksilver) {
 			GuiStatus()
 			If (!OnChar||OnChat||OnInventory||OnMenu)
-				return
+				Exit
 			If (AutoFlask) {
 				TriggerFlask(TriggerSecondaryAttack)
 				SetTimer, TimerSecondaryAttack, %Tick%
@@ -6837,8 +6841,8 @@ Return
 			If (SecondaryAttackPressed && TriggerSecondaryAttack > 0 )
 			{
 				GuiStatus()
-				If (!OnChar||OnChat||OnInventory||OnMenu)
-					return
+				If (!OnChar||OnChat||OnInventory||OnMenu||OnTown||OnHideout)
+					Exit
 				If (AutoFlask) {
 					TriggerFlask(TriggerSecondaryAttack)
 					TGameTick(False)
@@ -6931,7 +6935,7 @@ Return
 				Return
 			GuiStatus()
 			If (!OnChar||OnChat||OnInventory||OnMenu)
-				return
+				Exit
 			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
 			pixelgetcolor, Mine, DetonateX, DetonateY
 			If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
@@ -7216,6 +7220,7 @@ Return
 	LogoutCommand(){
 		LogoutCommand:
 			Thread, NoTimers, true		;Critical
+			Static LastLogout
 			if (RadioCritQuit || (RadioPortalQuit && (OnMines || OnTown || OnHideout))) {
 				global executable, backupExe
 				succ := logout(executable)
@@ -7228,14 +7233,20 @@ Return
 				}
 				If RelogOnQuit
 				{
-					RandomSleep(200,250)
+					RandomSleep(300,300)
 					Send {Enter}
-					RandomSleep(500,550)
+					RandomSleep(550,550)
 					Send {Enter}
 				}
 			} 
 			Else If RadioPortalQuit
-				QuickPortal(True)
+			{
+				If ((A_TickCount - LastLogout) > 30000)
+				{
+					QuickPortal(True)
+					LastLogout := A_TickCount
+				}
+			}
 			Else If RadioNormalQuit
 			{
 				Send {Enter} /exit {Enter}
@@ -7288,7 +7299,7 @@ Return
 ; PoEWindowCheck - Check for the game window. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	PoEWindowCheck(){
-			IfWinExist, ahk_group POEGameGroup 
+			IfWinActive, ahk_group POEGameGroup 
 			{
 				global GuiX, GuiY, RescaleRan, ToggleExist
 				If (!RescaleRan)
@@ -7308,6 +7319,7 @@ Return
 				{
 					Gui 2: Show, Hide
 					ToggleExist := False
+					RescaleRan := False
 				}
 			}
 			Return

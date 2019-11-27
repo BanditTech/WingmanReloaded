@@ -370,6 +370,9 @@
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /* XGraph v1.1.1.0 : Real time data plotting.
 *  Script      :  XGraph v1.1.1.0 : Real time data plotting.
 *                 http://ahkscript.org/boards/viewtopic.php?t=3492
@@ -711,6 +714,9 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /* DeepClone v1 : A library of functions to make unlinked array Clone
     ;
     ; Function:
@@ -891,6 +897,9 @@
     }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /* FindText - Capture screen image into text and then find it
     ;--------------------------------
@@ -2444,6 +2453,9 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 ;{[Function] Decimal2Fraction
     ; Fanatic Guru
     ; 2013 12 21
@@ -2558,6 +2570,9 @@
         return A
     }
 ;}
+
+
+
 
 ;{[Function] Fraction2Decimal
     ; Fanatic Guru
@@ -2968,6 +2983,10 @@
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
+
 /*** GuiStatus - Pixelcheck for different parts of the screen to see what your status is in game. 
 * Version:
 *     v1.0.0 [updated 11/24/2019 (MM/DD/YYYY)]
@@ -3057,10 +3076,85 @@
 
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-/*** CheckLocation - Parse Client log for Town, Mine, or Hideout
+
+
+
+
+/*** File Tail Functions - Check Location - Use the Client Log file to determine where you are!
 * Version:
-*     v1.0.0 [updated 11/23/2019 (MM/DD/YYYY)]
+*     v1.0.0 [updated 11/26/2019 (MM/DD/YYYY)]
 */
+    ; FileCheck - Checks for changes in file size
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    FileCheck(file){
+        Static Size0
+        FileGetSize Size, %file%
+        If (Size0 >= Size)
+            Return False
+        If (Size0 = "")
+        {
+            Size0 := Size ; Size has not been captured yet
+            Return False
+        }
+        Size0 := Size ; File size increased!
+    Return True
+    }
+
+    ; Seek the End of a File Object
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    LastLineInit(FileObject) {
+        static SEEK_END := 2
+        FileObject.Seek(0, SEEK_END)
+        return
+    }
+
+    ; ASM lastline for speed. Returns the last line of a file - Written by CloakerSmoker
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ASMLastLine(FileObject, Mode := 0) {
+        static Bytes := [ 0x55, 0x48, 0x8B, 0xEC, 0x40, 0x80, 0xEC, 0x08, 0x4C, 0x8B, 0xFC, 0x4C, 0x8B, 0xE1, 0x48, 0x8B
+                        , 0xFA, 0x4D, 0x8B, 0xF0, 0x49, 0x8B, 0xCC, 0xC7, 0xC2, 0xFF, 0xFF, 0xFF, 0xFF, 0x45, 0x33, 0xC0
+                        , 0x45, 0x33, 0xC9, 0x41, 0xFF, 0xC1, 0x41, 0xFF, 0xD6, 0x49, 0x8B, 0xCC, 0x48, 0x8B, 0xD4, 0x45
+                        , 0x33, 0xC0, 0x41, 0xFF, 0xC0, 0x40, 0x80, 0xEC, 0x08, 0x4C, 0x8B, 0xCC, 0x40, 0x80, 0xEC, 0x20
+                        , 0xFF, 0xD7, 0x40, 0x80, 0xC4, 0x20, 0x40, 0x80, 0xC4, 0x08, 0x41, 0x0F, 0xBE, 0x07, 0xC7, 0xC3
+                        , 0x0A, 0x00, 0x00, 0x00, 0x3B, 0xC3, 0x0F, 0x84, 0x1A, 0x00, 0x00, 0x00, 0x49, 0x8B, 0xCC, 0xC7
+                        , 0xC2, 0xFF, 0xFF, 0xFF, 0xFF, 0x45, 0x33, 0xC0, 0x45, 0x33, 0xC9, 0x41, 0xFF, 0xC1, 0x41, 0xFF
+                        , 0xD6, 0xE9, 0x9E, 0xFF, 0xFF, 0xFF, 0x40, 0x80, 0xC4, 0x08, 0x5D, 0xC3]
+        static pReadFile
+        static pSetFilePointer
+        static pMemory
+        
+        static _blank := ASMLastLine(0, 1)
+
+        if (Mode = 1) {
+            hKernel32 := DllCall("GetModuleHandle", "Str", "kernel32", "Ptr")
+            pReadFile := DllCall("GetProcAddress", "Ptr", hKernel32, "AStr", "ReadFile", "Ptr")
+            pSetFilePointer := DllCall("GetProcAddress", "Ptr", hKernel32, "AStr", "SetFilePointer", "Ptr")
+        
+            pMemory := DllCall("VirtualAlloc", "UInt64", 0, "Ptr", Bytes.Count(), "Int", 0x00001000 | 0x00002000, "Int", 0x04)
+            
+            for k, v in Bytes {
+                NumPut(v, pMemory + 0, A_Index - 1, "Char")
+            }
+        
+            DllCall("VirtualProtect", "Ptr", pMemory, "Ptr", Bytes.Count(), "UInt", 0x20, "UInt*", OldProtection)
+            return OnExit(Func("ASMLastLine").Bind(0, 2))
+        }
+        else if (Mode = 2) {
+            return DllCall("VirtualFree", "Ptr", pMemory, "Ptr", Bytes.Count(), "UInt", 0x00008000)
+        }
+        else {
+            DllCall(pMemory, "Ptr", FileObject.__Handle, "Ptr", pReadFile, "Ptr", pSetFilePointer)
+        }
+        
+        OldIndex := FileObject.Tell() - 1
+        Line := FileObject.ReadLine()
+        FileObject.Seek(OldIndex)
+        
+        return Line
+    }
+
+    ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CheckLocation:
         If !FileExist(ClientLog)
         {
@@ -3073,8 +3167,14 @@
         }
         If FileCheck(ClientLog)
         {
-            FileRead, ClientLogText, %ClientLog%
-            ClientLogText := str_getTail(ClientLogText,2)
+            ClientLogText := ""
+            LastLineInit(CLogFO)
+            While ClientLogText = ""
+            {
+                ClientLogText := ASMLastLine(CLogFO)
+                If (CLogFO.Tell() <= FirstLineLength)
+                    Break
+            }
             If InStr(ClientLogText, ": You have entered")
             {
                 CurrentLocation := StrSplit(StrSplit(ClientLogText, " : You have entered")[2], ".", A_Space)[1]
@@ -3096,12 +3196,10 @@
         }
         Else If !(CurrentLocation)
         {
-            FileRead, ClientLogT, %ClientLog%
-            CLines := TF_CountLines(ClientLogT)
-            Loop, %CLines%
+            LastLineInit(CLogFO)
+            Loop
             {
-                LineN := CLines - A_Index + 1
-                ClientLogText := TF_ReadLines(ClientLogT,LineN,LineN,1)
+                ClientLogText := ASMLastLine(CLogFO)
                 If InStr(ClientLogText, ": You have entered")
                 {
                     CurrentLocation := StrSplit(StrSplit(ClientLogText, " : You have entered")[2], ".", A_Space)[1]
@@ -3121,46 +3219,36 @@
                         OnMines := False
                     Break
                 }
+                If (CLogFO.Tell() <= FirstLineLength)
+                    Break
             }
         }
     Return
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
-/*** Functions to Monitor File Changes
-*     Found on page: https://autohotkey.com/board/topic/6416-tail-the-last-lines-of-a-text-file/
+
+
+
+/*** Cooltime - Accurate MS readout.
+* From AHK discord
 * Version:
-*     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
+*     v1.0.0 [updated 11/26/2019 (MM/DD/YYYY)]
 */
-    ; str_getTailf - Return the last line from a file
+    ; CoolTime - Return a more accurate MS value
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    str_getTailf(ByRef _Str) {
-        Return SubStr(_Str,InStr(_Str,"`n",False,0)+1)
+    CoolTime() {
+        VarSetCapacity(PerformanceCount, 8, 0)
+        VarSetCapacity(PerformanceFreq, 8, 0)
+        DllCall("QueryPerformanceCounter", "Ptr", &PerformanceCount)
+        DllCall("QueryPerformanceFrequency", "Ptr", &PerformanceFreq)
+        return NumGet(PerformanceCount, 0, "Int64") / NumGet(PerformanceFreq, 0, "Int64")
     }
-    ; str_getTail - Return the last n lines from a file
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    str_getTail(_Str, _LineNum = 1)
-    {
-        StringGetPos, Pos, _Str, `n, R%_LineNum%
-        StringTrimLeft, _Str, _Str, % ++Pos
-        Return _Str
-    }
-    ; FileCheck - Checks for changes in file size
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    FileCheck(file){
-        Static Size0
-        FileGetSize Size, %file%
-        If (Size0 >= Size)
-            Return False
-        If (Size0 = "")
-        {
-            Size0 := Size ; Size has not been captured yet
-            Return False
-        }
-        Size0 := Size ; File size increased!
-    Return True
-    }
+
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** DaysSince - Function to determine the time in days between two dates
 *     Basic function found on page: https://autohotkey.com/board/topic/82024-calculate-the-number-of-days-between-two-dates/#entry521362
@@ -3196,6 +3284,9 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /*** Function to Replace Nth instance of Needle in Haystack
 * Replaces the 'Instance'th instance of 'Needle' in 'Haystack' with 'Replacement'. If 'Instance' is
 * negative, it counts instances from the right end of 'Haystack'. If 'Instance' is zero, it
@@ -3218,7 +3309,10 @@
         Return HayStack Replacement Needle
     } 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
- 
+
+
+
+
 /*** PoE Click v1.0.1 : PoE Click Lib for AutoHotkey.
 * Lib: PoEClick.ahk
 *     Path of Exile Click functions for AutoHotkey.
@@ -3331,6 +3425,9 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /*** Array functions v1.0.0 : Index matching.
 * Lib: ArrayCheck.ahk
 *     Returns the index of a value within an array.
@@ -3389,6 +3486,9 @@
         }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** Lib from LutBot : Extracted from lite version
 * Lib: LutBotLite.ahk
@@ -3539,6 +3639,9 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /*** RandomSleep Timers: 
 */
 
@@ -3552,6 +3655,9 @@
         }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** Ding Debug tooltip message : WingMan
 * Lib: Ding.ahk
@@ -3614,6 +3720,9 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /*** Clamp value 
 * Lib: Clamp.ahk
 *     Clamp function
@@ -3644,6 +3753,9 @@
         Return
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** hex color tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
 * Lib: ColorTools.ahk
@@ -3685,6 +3797,9 @@
         }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** Rescale : Resolution scaling for pixel locations taken at a sample resolution.
   */
@@ -4017,6 +4132,9 @@
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /*** tooltip management
 */
   ; OLD Tooltip Management
@@ -4182,6 +4300,9 @@
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /*** Chat functions : ResetChat and GrabRecipientName
 */
     ; Reset Chat
@@ -4216,6 +4337,9 @@
 		}
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** API scraper for PoE.Ninja : Pulls all the information into one database file
 */
@@ -4358,6 +4482,9 @@
 	}
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
+
+
+
 /*** API scraper for Path of Exile Leagues
 */
     UpdateLeagues:
@@ -4370,6 +4497,9 @@
         GuiControl, , selectedLeague, |%selectedLeague%||%textList%
     Return
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** Cooldown Timers
 */
@@ -4431,6 +4561,9 @@
 
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** CheckOHB - GetPercent - Overhead Healthbar detection and a method to get health percent
 */ ; 
@@ -4506,6 +4639,9 @@
         Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*** GroupByFourty - Mathematic function to sort quality into groups of 40
 *     Path of Exile Mathematic grouping function for AutoHotkey.
@@ -5107,6 +5243,9 @@
         Return
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
 
 /*Name          : TF: Textfile & String Library for AutoHotkey
 Version       : 3.7
