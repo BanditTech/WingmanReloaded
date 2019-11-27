@@ -111,7 +111,7 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .07.07
+    Global VersionNumber := .07.08
 
 	;Global Null := 0
     
@@ -743,7 +743,7 @@
 		global TriggerMana10:=00000
 
 	; AutoQuit
-		global RadioQuit20, RadioQuit30, RadioQuit40, RadioCritQuit, RadioNormalQuit, RadioPortalQuit
+		global RadioQuit20, RadioQuit30, RadioQuit40, RadioQuit50, RadioQuit60, RadioCritQuit, RadioNormalQuit, RadioPortalQuit
 
 	; Character Type
 		global RadioCi, RadioHybrid, RadioLife
@@ -859,30 +859,6 @@
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	readFromFile()
-; Wingman Gui Variables
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	if RadioLife=1 
-		{
-		varTextAutoQuit20:="20 % Life"
-		varTextAutoQuit30:="30 % Life"
-		varTextAutoQuit40:="40 % Life"
-		} 
-	else if RadioHybrid=1 
-		{
-		varTextAutoQuit20:="20 % Life"
-		varTextAutoQuit30:="30 % Life"
-		varTextAutoQuit40:="40 % Life"
-		}
-	else if RadioCi=1 
-		{
-		varTextAutoQuit20:="20 % ES"
-		varTextAutoQuit30:="30 % ES"
-		varTextAutoQuit40:="40 % ES"
-		}
-	GuiControl,, RadioQuit20, %varTextAutoQuit20%
-	GuiControl,, RadioQuit30, %varTextAutoQuit30%
-	GuiControl,, RadioQuit40, %varTextAutoQuit40%
-
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Tooltip, Loading GUI 00`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
@@ -1145,9 +1121,11 @@
 	Gui Add, GroupBox, 		Section	w227 h66				x292 	y30 , 				Auto-Quit settings
 	Gui,Font,
 	;Gui Add, Text, 											x292 	y30, 				Auto-Quit:
-	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				xs+5 ys+16, 						%varTextAutoQuit20%
-	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+5, 						%varTextAutoQuit30%
-	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+5, 						%varTextAutoQuit40%
+	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				xs+5 ys+16, 						20`%
+	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+1, 								30`%
+	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+1, 								40`%
+	Gui Add, Radio, 		vRadioQuit50 Checked%RadioQuit50% 				x+1, 								50`%
+	Gui Add, Radio, 		vRadioQuit60 Checked%RadioQuit60% 				x+1, 								60`%
 	Gui Add, Text, 										xs+5 	y+4, 				Quit via:
 	Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+5		y+-13,			D/C
 	Gui, Add, Radio, 		vRadioPortalQuit Checked%RadioPortalQuit%			x+3	,				Portal
@@ -5727,7 +5705,7 @@ Return
 					{
 						Global OHBLHealthHex, OHB
 						HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
-						If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40))
+						If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60))
 						{
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -5743,6 +5721,16 @@ Return
 								Exit
 							}
 							Else if (RadioQuit40 && HPerc < 40)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (RadioQuit50 && HPerc < 50)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (RadioQuit60 && HPerc < 60)
 							{
 								LogoutCommand()
 								Exit
@@ -5836,8 +5824,8 @@ Return
 				}
 				Else
 				{
-					If ((TriggerLife20!="00000") 
-						|| ( AutoQuit && RadioQuit20 ) 
+					If ( (TriggerLife20!="00000") 
+						|| (AutoQuit&&RadioQuit20)
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
@@ -5848,7 +5836,7 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit=1) && (RadioQuit20=1) {
+							if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
 								LogoutCommand()
 								Exit
 							}
@@ -5860,8 +5848,8 @@ Return
 								TriggerFlask(TriggerLife20)
 							}
 					}
-					If ((TriggerLife30!="00000") 
-						|| (AutoQuit && RadioQuit30) 
+					If ( (TriggerLife30!="00000") 
+						|| (AutoQuit&&RadioQuit30)
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
@@ -5872,7 +5860,7 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit=1) && (RadioQuit30=1) {
+							if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
 								LogoutCommand()
 								Exit
 							}
@@ -5884,8 +5872,8 @@ Return
 								TriggerFlask(TriggerLife30)
 							}
 					}
-					If ((TriggerLife40!="00000") 
-						|| (AutoQuit && RadioQuit40) 
+					If ( (TriggerLife40!="00000") 
+						|| (AutoQuit&&RadioQuit40)
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
@@ -5896,7 +5884,7 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit=1) && (RadioQuit40=1) {
+							if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
 								LogoutCommand()
 								Exit
 							}
@@ -5908,7 +5896,7 @@ Return
 								TriggerFlask(TriggerLife40)
 							}
 					}
-					If ((TriggerLife50!="00000") 
+					If ( (TriggerLife50!="00000")
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
@@ -5919,6 +5907,10 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
+							if (AutoQuit && (RadioQuit50||RadioQuit60)) {
+								LogoutCommand()
+								Exit
+							}
 							Loop, 5 {
 								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
 									TriggerUtility(A_Index)
@@ -5927,7 +5919,7 @@ Return
 								TriggerFlask(TriggerLife50)
 							}
 					}
-					If ((TriggerLife60!="00000") 
+					If ( (TriggerLife60!="00000")
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
@@ -5938,6 +5930,10 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
+							if (AutoQuit && RadioQuit60) {
+								LogoutCommand()
+								Exit
+							}
 							Loop, 5 {
 								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
 									TriggerUtility(A_Index)
@@ -5946,7 +5942,7 @@ Return
 								TriggerFlask(TriggerLife60)
 							}
 					}
-					If ((TriggerLife70!="00000") 
+					If ( (TriggerLife70!="00000") 
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
@@ -5965,7 +5961,7 @@ Return
 								TriggerFlask(TriggerLife70)
 							}
 					}
-					If ((TriggerLife80!="00000") 
+					If ( (TriggerLife80!="00000") 
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
@@ -5984,7 +5980,7 @@ Return
 								TriggerFlask(TriggerLife80)
 							}
 					}
-					If ((TriggerLife90!="00000") 
+					If ( (TriggerLife90!="00000") 
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
@@ -6014,7 +6010,7 @@ Return
 					{
 						Global OHBLHealthHex, OHB
 						HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
-						If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40))
+						If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60))
 						{
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6030,6 +6026,16 @@ Return
 								Exit
 							}
 							Else if (RadioQuit40 && HPerc < 40)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (RadioQuit50 && HPerc < 50)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (RadioQuit60 && HPerc < 60)
 							{
 								LogoutCommand()
 								Exit
@@ -6133,7 +6139,7 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit=1) && (RadioQuit20=1) {
+							if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
 								LogoutCommand()
 								Exit
 							}
@@ -6157,7 +6163,7 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit=1) && (RadioQuit30=1) {
+							if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
 								LogoutCommand()
 								Exit
 							}
@@ -6181,7 +6187,7 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit=1) && (RadioQuit40=1) {
+							if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
 								LogoutCommand()
 								Exit
 							}
@@ -6204,6 +6210,10 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
+							if (AutoQuit && (RadioQuit50||RadioQuit60)) {
+								LogoutCommand()
+								Exit
+							}
 							Loop, 5 {
 								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
 									TriggerUtility(A_Index)
@@ -6223,6 +6233,10 @@ Return
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
+							if (AutoQuit && RadioQuit60) {
+								LogoutCommand()
+								Exit
+							}
 							Loop, 5 {
 								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
 									TriggerUtility(A_Index)
@@ -6461,7 +6475,7 @@ Return
 						GuiStatus("OnChar")
 						if !(OnChar)
 							Exit
-						if (AutoQuit && (RadioQuit20 || RadioQuit30 || RadioQuit40)) {
+						if (AutoQuit && (RadioQuit20 || RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
 							LogoutCommand()
 							Exit
 						}
@@ -6485,7 +6499,7 @@ Return
 						GuiStatus("OnChar")
 						if !(OnChar)
 							Exit
-						if (AutoQuit && (RadioQuit30 || RadioQuit40)) {
+						if (AutoQuit && (RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
 							LogoutCommand()
 							Exit
 						}
@@ -6509,7 +6523,7 @@ Return
 						GuiStatus("OnChar")
 						if !(OnChar)
 							Exit
-						if (AutoQuit && RadioQuit40) {
+						if (AutoQuit && (RadioQuit40 || RadioQuit50 || RadioQuit60)) {
 							LogoutCommand()
 							Exit
 						}
@@ -6522,6 +6536,7 @@ Return
 					}
 				}
 				If ( (TriggerES50!="00000")
+					|| (AutoQuit&&RadioQuit50)
 					|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
 					|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
 					|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
@@ -6532,6 +6547,10 @@ Return
 						GuiStatus("OnChar")
 						if !(OnChar)
 							Exit
+						if (AutoQuit && (RadioQuit50 || RadioQuit60)) {
+							LogoutCommand()
+							Exit
+						}
 						Loop, 5 {
 							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
 								TriggerUtility(A_Index)
@@ -6541,6 +6560,7 @@ Return
 					}
 				}
 				If ( (TriggerES60!="00000")
+					|| (AutoQuit&&RadioQuit60)
 					|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
 					|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
 					|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
@@ -6551,6 +6571,10 @@ Return
 						GuiStatus("OnChar")
 						if !(OnChar)
 							Exit
+						if (AutoQuit && RadioQuit60) {
+							LogoutCommand()
+							Exit
+						}
 						Loop, 5 {
 							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
 								TriggerUtility(A_Index)
@@ -7220,7 +7244,7 @@ Return
 	LogoutCommand(){
 		LogoutCommand:
 			Thread, NoTimers, true		;Critical
-			Static LastLogout
+			Static LastLogout := 0
 			if (RadioCritQuit || (RadioPortalQuit && (OnMines || OnTown || OnHideout))) {
 				global executable, backupExe
 				succ := logout(executable)
@@ -7838,6 +7862,8 @@ Return
 			IniRead, RadioQuit20, settings.ini, AutoQuit, Quit20, 1
 			IniRead, RadioQuit30, settings.ini, AutoQuit, Quit30, 0
 			IniRead, RadioQuit40, settings.ini, AutoQuit, Quit40, 0
+			IniRead, RadioQuit50, settings.ini, AutoQuit, Quit50, 0
+			IniRead, RadioQuit60, settings.ini, AutoQuit, Quit60, 0
 			IniRead, RadioCritQuit, settings.ini, AutoQuit, CritQuit, 1
 			IniRead, RadioPortalQuit, settings.ini, AutoQuit, PortalQuit, 0
 			IniRead, RadioNormalQuit, settings.ini, AutoQuit, NormalQuit, 0
@@ -8425,6 +8451,8 @@ Return
 			IniWrite, %RadioQuit20%, settings.ini, AutoQuit, Quit20
 			IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30
 			IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
+			IniWrite, %RadioQuit50%, settings.ini, AutoQuit, Quit50
+			IniWrite, %RadioQuit60%, settings.ini, AutoQuit, Quit60
 			IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
 			IniWrite, %RadioPortalQuit%, settings.ini, AutoQuit, PortalQuit
 			IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
@@ -8542,9 +8570,6 @@ Return
 			readFromFile()
 			;Update UI
 			if(RadioLife==1) {
-				varTextAutoQuit20:="20 % Life"
-				varTextAutoQuit30:="30 % Life"
-				varTextAutoQuit40:="40 % Life"
 				loop 5 {
 					GuiControl, Enable, Radiobox%A_Index%Life90
 						GuiControl, Enable, Radiobox%A_Index%Life80
@@ -8568,9 +8593,6 @@ Return
 				}
 			}
 			else if(RadioHybrid==1) {
-				varTextAutoQuit20:="20 % Life"
-				varTextAutoQuit30:="30 % Life"
-				varTextAutoQuit40:="40 % Life"
 				loop 5 {
 					GuiControl, Enable, Radiobox%A_Index%Life90
 						GuiControl, Enable, Radiobox%A_Index%Life80
@@ -8594,9 +8616,6 @@ Return
 				}
 			}
 			else if(RadioCi==1) {
-				varTextAutoQuit20:="20 % ES"
-				varTextAutoQuit30:="30 % ES"
-				varTextAutoQuit40:="40 % ES"
 				loop 5 {
 					GuiControl, Disable, Radiobox%A_Index%Life90
 						GuiControl, Disable, Radiobox%A_Index%Life80
@@ -8619,12 +8638,11 @@ Return
 					GuiControl, Enable, RadioUncheck%A_Index%ES
 				}
 			}
-			GuiControl,, RadioQuit20, %varTextAutoQuit20%
-			GuiControl,, RadioQuit30, %varTextAutoQuit30%
-			GuiControl,, RadioQuit40, %varTextAutoQuit40%
 			GuiControl,, RadioQuit20, %RadioQuit20%
 			GuiControl,, RadioQuit30, %RadioQuit30%
 			GuiControl,, RadioQuit40, %RadioQuit40%
+			GuiControl,, RadioQuit50, %RadioQuit50%
+			GuiControl,, RadioQuit60, %RadioQuit60%
 			GuiControl,, CooldownFlask1, %CooldownFlask1%
 			GuiControl,, CooldownFlask2, %CooldownFlask2%
 			GuiControl,, CooldownFlask3, %CooldownFlask3%
@@ -9340,6 +9358,8 @@ Return
 			IniWrite, %RadioQuit20%, settings.ini, Profile%Profile%, Quit20
 			IniWrite, %RadioQuit30%, settings.ini, Profile%Profile%, Quit30
 			IniWrite, %RadioQuit40%, settings.ini, Profile%Profile%, Quit40
+			IniWrite, %RadioQuit50%, settings.ini, Profile%Profile%, Quit50
+			IniWrite, %RadioQuit60%, settings.ini, Profile%Profile%, Quit60
 			IniWrite, %RadioCritQuit%, settings.ini, Profile%Profile%, CritQuit
 			IniWrite, %RadioPortalQuit%, settings.ini, Profile%Profile%, PortalQuit
 			IniWrite, %RadioNormalQuit%, settings.ini, Profile%Profile%, NormalQuit
@@ -9768,6 +9788,10 @@ Return
 			GuiControl, , RadioQuit30, %RadioQuit30%
 			IniRead, RadioQuit40, settings.ini, Profile%Profile%, Quit40, 0
 			GuiControl, , RadioQuit40, %RadioQuit40%
+			IniRead, RadioQuit50, settings.ini, Profile%Profile%, Quit50, 0
+			GuiControl, , RadioQuit50, %RadioQuit50%
+			IniRead, RadioQuit60, settings.ini, Profile%Profile%, Quit60, 0
+			GuiControl, , RadioQuit60, %RadioQuit60%
 			IniRead, RadioCritQuit, settings.ini, Profile%Profile%, CritQuit, 1
 			GuiControl, , RadioCritQuit, %RadioCritQuit%
 			IniRead, RadioPortalQuit, settings.ini, Profile%Profile%, PortalQuit, 0
@@ -9884,9 +9908,6 @@ Return
 
 			;Update UI
 			if (RadioLife=1) {
-				varTextAutoQuit20:="20 % Life"
-				varTextAutoQuit30:="30 % Life"
-				varTextAutoQuit40:="40 % Life"
 				loop 5 {
 					GuiControl, Enable, Radiobox%A_Index%Life90
 						GuiControl, Enable, Radiobox%A_Index%Life80
@@ -9910,9 +9931,6 @@ Return
 				}
 			}
 			else if (RadioHybrid=1) {
-				varTextAutoQuit20:="20 % Life"
-				varTextAutoQuit30:="30 % Life"
-				varTextAutoQuit40:="40 % Life"
 				loop 5 {
 					GuiControl, Enable, Radiobox%A_Index%Life90
 						GuiControl, Enable, Radiobox%A_Index%Life80
@@ -9936,9 +9954,6 @@ Return
 				}
 			}
 			else if (RadioCi=1) {
-				varTextAutoQuit20:="20 % ES"
-				varTextAutoQuit30:="30 % ES"
-				varTextAutoQuit40:="40 % ES"
 				loop 5 {
 					GuiControl, Disable, Radiobox%A_Index%Life90
 						GuiControl, Disable, Radiobox%A_Index%Life80
@@ -9961,10 +9976,6 @@ Return
 					GuiControl, Enable, RadioUncheck%A_Index%ES
 				}
 			}
-			GuiControl,, RadioQuit20, %varTextAutoQuit20%
-			GuiControl,, RadioQuit30, %varTextAutoQuit30%
-			GuiControl,, RadioQuit40, %varTextAutoQuit40%
-			
 		return  
 		}
 
@@ -10948,9 +10959,6 @@ Return
 		updateCharacterType:
 			Gui, Submit, NoHide
 			if(RadioLife==1) {
-				varTextAutoQuit20:="20 % Life"
-				varTextAutoQuit30:="30 % Life"
-				varTextAutoQuit40:="40 % Life"
 				loop 5 {
 					GuiControl, Enable, Radiobox%A_Index%Life90
 						GuiControl, Enable, Radiobox%A_Index%Life80
@@ -10974,9 +10982,6 @@ Return
 				}
 			}
 			else if(RadioHybrid==1) {
-				varTextAutoQuit20:="20 % Life"
-				varTextAutoQuit30:="30 % Life"
-				varTextAutoQuit40:="40 % Life"
 				loop 5 {
 					GuiControl, Enable, Radiobox%A_Index%Life90
 						GuiControl, Enable, Radiobox%A_Index%Life80
@@ -11000,9 +11005,6 @@ Return
 				}
 			}
 			else if(RadioCi==1) {
-				varTextAutoQuit20:="20 % ES"
-				varTextAutoQuit30:="30 % ES"
-				varTextAutoQuit40:="40 % ES"
 				loop 5 {
 					GuiControl, Disable, Radiobox%A_Index%Life90
 						GuiControl, Disable, Radiobox%A_Index%Life80
@@ -11025,9 +11027,6 @@ Return
 					GuiControl, Enable, RadioUncheck%A_Index%ES
 				}
 			}
-			GuiControl,, RadioQuit20, %varTextAutoQuit20%
-			GuiControl,, RadioQuit30, %varTextAutoQuit30%
-			GuiControl,, RadioQuit40, %varTextAutoQuit40%
 		return
 
 		UpdateStash:

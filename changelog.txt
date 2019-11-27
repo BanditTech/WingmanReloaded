@@ -1,6 +1,13 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.08 November/27/2019
+--------------------------------------------------------------------------------
+New options for Auto-Quit at 50% and 60% 
+
+Bugfix for PortalQuit
+    Forgot to properly initialize the LastLogout variable
+
 Version .07.07 November/27/2019
 --------------------------------------------------------------------------------
 Bugfix for PortalQuit to wait 30 seconds after firing
