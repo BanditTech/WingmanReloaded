@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .07.07 November/25/2019
+Version .07.07 November/26/2019
 --------------------------------------------------------------------------------
 Bugfix for PortalQuit to wait 30 seconds after firing
     Was causing issues when you died, it would keep trying to portal out
