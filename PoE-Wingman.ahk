@@ -325,8 +325,6 @@
 			D3 = Cut the Lower Edge by 3
 			ww = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
 			hh = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
-			ww_t = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
-			hh_t = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
 			SelR = Red component of the selected color
 			SelG = Green component of the selected color
 			SelB = Blue component of the selected color
@@ -2132,15 +2130,15 @@ Return
 	; ItemSortCommand - Sort inventory and determine action
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ItemSortCommand:
+		If RunningToggle  ; This means an underlying thread is already running the loop below.
+		{
+			RunningToggle := False  ; Signal that thread's loop to stop.
+			exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
+		}
 		Thread, NoTimers, true		;Critical
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
 		{
-			If RunningToggle  ; This means an underlying thread is already running the loop below.
-			{
-				RunningToggle := False  ; Signal that thread's loop to stop.
-				exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
-			}
 			RunningToggle := True
 			GuiStatus()
 			GuiStatus("OnDiv")
