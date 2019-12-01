@@ -146,8 +146,6 @@
      global YAxisMultiplier = 1
 
      ;Coordinates
-     global GuiX:=-5
-     global GuiY:=1005
 
      ;Failsafe Colors
      global varOnChar
@@ -265,6 +263,8 @@
           global vY_OnStash:=32
           global vX_OnVendor:=618
           global vY_OnVendor:=88
+          global GuiX:=-10
+          global GuiY:=1027
      }
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Ingame Overlay (default bottom left)
@@ -280,7 +280,6 @@
      {
           Rescale()
           Gui, 1: Show, x%GuiX% y%GuiY% NoActivate 
-          RescaleRan := True
           ToggleExist := True
           WinActivate, ahk_group POEGameGroup
           If (YesPersistantToggle)
@@ -289,7 +288,8 @@
 
 ; Set timers section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     SetTimer, PoEWindowCheck, 15
+     SetTimer, PoEWindowCheck, 150
+     Gosub, CheckLocation
      SetTimer, CheckLocation, 15
 
 ; Start timer for active Utility that is not triggered by Life, ES, or QS
@@ -452,7 +452,6 @@
 ; PoEWindowCheck - Check if game is active
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      PoEWindowCheck(){
-          Critical
           DetectHiddenWindows On
           IfWinActive, ahk_group POEGameGroup 
           {
@@ -462,7 +461,8 @@
                If (!ToggleExist) {
                     Gui, 1: Show, x%GuiX% y%GuiY% NoActivate 
                     ToggleExist := True
-                    DetectJoystick()
+                    If YesController
+                         DetectJoystick()
                     WinActivate, ahk_group POEGameGroup
                     If (YesPersistantToggle)
                          AutoReset()
@@ -471,6 +471,7 @@
                If (ToggleExist){
                     Gui, 1: Show, Hide
                     ToggleExist := False
+                    RescaleRan := False
                }
           }
           DetectHiddenWindows Off
@@ -686,7 +687,7 @@
 
      TriggerFlask(Trigger){
           If (OnTown || OnHideout)
-               Return
+               Exit
           GuiStatus()
           if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
                Exit
@@ -743,10 +744,10 @@
 
      TriggerFlaskForce(Trigger){
           If (OnTown || OnHideout)
-               Return
+               Exit
           GuiStatus()
           if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
-               Return
+               Exit
           If !(FlaskListQS.Count())
                loop, 5 
                     if ((SubStr(Trigger,A_Index,1)+0) > 0)
@@ -790,10 +791,10 @@
           IfWinActive, Path of Exile
           {
                If (OnTown || OnHideout)
-                    Return
+                    Exit
                GuiStatus()
                if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
-                    Return
+                    Exit
                Loop, 5
                {
                     If (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") && !(IconStringUtility%A_Index%)
@@ -817,10 +818,10 @@
 
      TriggerUtility(Utility){
           If (OnTown || OnHideout)
-               Return
+               Exit
           GuiStatus()
           if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
-               Return
+               Exit
           If (!OnCooldownUtility%Utility%)
           {
                Send % KeyUtility%Utility%

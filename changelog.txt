@@ -1,6 +1,26 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.10 November/29/2019
+--------------------------------------------------------------------------------
+Another attempt to resolve issues with Client Log parser.
+    Possible issue with overlapping timers on scan
+        Thread, NoTimers, true
+        should hopefully resolve this issue
+    Added new debug messages option, C Log for location output
+        Will display the OnTown, OnHideout, and OnMines status
+        Will also display the Location string that was evaluated
+
+Updated 1080 strings for Auto Skillup and Stash
+    Clicks stash and not Guild Stash
+    Only click Skills that can level up, ignoring greyed out ones
+    Make sure you update strings in the Strings Tab
+        Open the dropdown list for Capture of the Stash, select new default
+        Open the dropdown list for Capture of the Skill up icon, select new default
+
+Fix for Auto-Quicksilver overlay not showing up in the correct location
+    Was affecting script when opened while game was closed
+
 Version .07.09 November/29/2019
 --------------------------------------------------------------------------------
 Switched out the ASM tail function with AHK fileobject function

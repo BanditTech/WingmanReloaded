@@ -111,10 +111,8 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .07.09
+    Global VersionNumber := .07.10
 
-	;Global Null := 0
-    
     checkUpdate()
     
     full_command_line := DllCall("GetCommandLine", "str")
@@ -432,6 +430,7 @@
 			LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
 			AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
 			YesTimeMS = Enable to show the time in MS for each portion of the health scan
+			YesLocation = Enable to show the results of the Client Log parser
 			StashTabCurrency = Assign the Stash tab for Currency items
 			StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
 			StashTabOil = Assign the Stash tab for Oil items
@@ -477,8 +476,8 @@
 			, 1080_HelenaStr := "|<1080 Helena>*100$62.DlzzzzzzzznwTzzzzzzzwz7zxzzvyzjDlkCDUQT7nnwSPnwrXnsQz7bwzDsQy701tzDny3D8k0S3nw7YHnAz7Vwz3tYw3DltzDnyMC0HwSTnwzb3bYz7bwvDtsntDls70kCTAy8"
 			, 1080_ZanaStr := "|<1080 Zana>*100$44.U3zzzzzs0zzzzzyyTrvyzjz7twT7nzXwDXnsTsz3sQy7wTYS3D8yDtbYHnDXy1tYw3lz0CMC0Mznnb3ba01wtsnt02T6TAy8"
 			, 1080_SellItemsStr := "|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
-			, 1080_StashStr := "|<1080 Stash>*100$46.kzzzzzzy1zzzzzznbzzTnvyDk1ty3bkTMr3nCT0TXwDDtwUyDYQTbnVsyNsS0D7Xs7ks0yCD0DXbntswwz6T37XbnQtw0yCT47bm"
-			, 1080_SkillUpStr := "|<1080 Skill Up>0xF18C03@0.45$12.wDyDyDyDSC000000yDyDyDyDU"
+			, 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
+			, 1080_SkillUpStr := "|<1080 Skill up>0xE98A03@0.73$9.Mr7kk0000sz7so"
 			, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 	; FindText strings
 		Global StashStr, VendorStr, HealthBarStr, SellItemsStr, SkillUpStr
@@ -540,6 +539,7 @@
 		global CurrentTab := 0
 		global DebugMessages := 0
 		global YesTimeMS := 0
+		global YesLocation := 0
 		global ShowPixelGrid := 0
 		global ShowItemInfo := 0
 		global Latency := 1
@@ -864,7 +864,9 @@
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13
 	Gui Add, Text, 										x515	y5, 				Debug Messages:
 	Gui Add, Checkbox, 	vYesTimeMS Checked%YesTimeMS%  gUpdateDebug   	x490 	y5 	    w13 h13
-	Gui Add, Text, 				vYesTimeMS_t						x437	y5, 				Scan MS:
+	Gui Add, Text, 				vYesTimeMS_t						x437	y5, 				Flask MS:
+	Gui Add, Checkbox, 	vYesLocation Checked%YesLocation%  gUpdateDebug   	x420 	y5 	    w13 h13
+	Gui Add, Text, 				vYesLocation_t						x387	y5, 				C log:
 
 	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Strings|Inventory|Chat|Controller
 	;#######################################################################################################Strings Tab
@@ -1918,13 +1920,27 @@
 	;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
 	;Gui, ItemInfo: Hide
 	Tooltip, Loading GUI 100`%, %GuiX%, %GuiY%, 1 
+	If (DebugMessages)
+	{
+		GuiControl, Show, YesTimeMS
+		GuiControl, Show, YesTimeMS_t
+		GuiControl, Show, YesLocation
+		GuiControl, Show, YesLocation_t
+	}
+	Else
+	{
+		GuiControl, Hide, YesTimeMS
+		GuiControl, Hide, YesTimeMS_t
+		GuiControl, Hide, YesLocation
+		GuiControl, Hide, YesLocation_t
+	}
 	Thread, NoTimers, False		;Critical
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  Grab Ninja Database, Start Scaling resolution values, and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Rescale()
+	; Rescale()
 	Tooltip, Loading Ninja Database,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;Begin scaling resolution values
 	IfWinExist, ahk_group POEGameGroup
@@ -1990,6 +2006,8 @@
 		global vY_StashTabList := 120
 		global vY_StashTabSize := 22
 	    Global ScrCenter := { X : 960 , Y : 540 }
+		global GuiX:=-10
+		global GuiY:=1027
 		}
 
 	;Ignore Slot setup
@@ -2075,12 +2093,13 @@
 ; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Check for window to be active
-	SetTimer, PoEWindowCheck, 15
+	SetTimer, PoEWindowCheck, 150
 	; Check once an hour to see if we should updated database
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 15
 	; Check for Client Log Updates
+	Gosub, CheckLocation
 	SetTimer, CheckLocation, 15
 	; Check for gems to level
 	SetTimer, AutoSkillUp, 200
@@ -7507,6 +7526,7 @@ Return
 			IniRead, QTick, settings.ini, General, QTick, 250
 			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
 			IniRead, YesTimeMS, settings.ini, General, YesTimeMS, 0
+			IniRead, YesLocation, settings.ini, General, YesLocation, 0
 			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid, 0
 			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo, 0
 			IniRead, DetonateMines, settings.ini, General, DetonateMines, 0
@@ -8252,6 +8272,7 @@ Return
 			;Bandit Extra options
 			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
 			IniWrite, %YesTimeMS%, settings.ini, General, YesTimeMS
+			IniWrite, %YesLocation%, settings.ini, General, YesLocation
 			IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
 			IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
 			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
@@ -11152,14 +11173,19 @@ Return
 			{
 				GuiControl, Show, YesTimeMS
 				GuiControl, Show, YesTimeMS_t
+				GuiControl, Show, YesLocation
+				GuiControl, Show, YesLocation_t
 			}
 			Else
 			{
 				GuiControl, Hide, YesTimeMS
 				GuiControl, Hide, YesTimeMS_t
+				GuiControl, Hide, YesLocation
+				GuiControl, Hide, YesLocation_t
 			}
 			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
 			IniWrite, %YesTimeMS%, settings.ini, General, YesTimeMS
+			IniWrite, %YesLocation%, settings.ini, General, YesLocation
 		Return
 
 		UpdateUtility:

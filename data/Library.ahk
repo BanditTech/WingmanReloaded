@@ -4723,6 +4723,7 @@ Structure of most functions:
     ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CheckLocation:
+        Thread, NoTimers, true		;Critical
         If !FileExist(ClientLog)
         {
             If !WarningCLog
@@ -4784,6 +4785,13 @@ Structure of most functions:
                 If (CLogFO.Tell() <= FirstLineLength)
                     Break
             }
+        }
+        If DebugMessages && YesLocation && WinActive(GameStr)
+        {
+            Ding(300,14,"OnTown   `t" OnTown)
+            Ding(300,15,"OnHideout`t" OnHideout)
+            Ding(300,16,"OnMines  `t" OnMines)
+            Ding(300,17,CurrentLocation)
         }
     Return
 
