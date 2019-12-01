@@ -22,8 +22,12 @@
     CoordMode, Pixel, Screen
     FileEncoding , UTF-8
     SendMode Input
+    StringCaseSense, On ; Match strings with case.
+	FormatTime, Date_now, A_Now, yyyyMMdd
+    Global VersionNumber := .07.11
 	If A_AhkVersion < 1.1.28
 	{
+		Log("Load Error","Too Low version")
 		msgbox 1, ,% "Version " A_AhkVersion " AutoHotkey has been found`nThe script requires minimum version 1.1.28+`nPress OK to go to download page"
 		IfMsgBox, OK
 		{
@@ -33,8 +37,6 @@
 		Else 
 			ExitApp
 	}
-    StringCaseSense, On ; Match strings with case.
-	FormatTime, Date_now, A_Now, yyyyMMdd
 	Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
 	IniRead, LastDatabaseParseDate, Settings.ini, Database, LastDatabaseParseDate, 20190913
 	IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Blight
@@ -111,7 +113,6 @@
     IfExist, %I_Icon%
         Menu, Tray, Icon, %I_Icon%
     
-    Global VersionNumber := .07.10
 
     checkUpdate()
     
@@ -147,22 +148,22 @@
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/InventorySlots.png, %A_ScriptDir%\data\InventorySlots.png
 		if ErrorLevel{
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "InventorySlots.png")
+ 			Log("data","uhoh", "InventorySlots.png")
 			MsgBox, Error ED02 : There was a problem downloading InventorySlots.png
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "InventorySlots.png")
+ 			Log("data","pass", "InventorySlots.png")
 		}
 	}
 	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
 		if ErrorLevel{
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "boot_enchantment_mods")
+ 			Log("data","uhoh", "boot_enchantment_mods")
 			MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "boot_enchantment_mods")
+ 			Log("data","pass", "boot_enchantment_mods")
 		}
 	}
 	Loop, Read, %A_ScriptDir%\data\boot_enchantment_mods.txt
@@ -175,11 +176,11 @@
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
 		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "helmet_enchantment_mods")
+ 			Log("data","uhoh", "helmet_enchantment_mods")
 			MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "helmet_enchantment_mods")
+ 			Log("data","pass", "helmet_enchantment_mods")
 		}
 	}
 	Loop, Read, %A_ScriptDir%\data\helmet_enchantment_mods.txt
@@ -192,11 +193,11 @@
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
 		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "glove_enchantment_mods")
+ 			Log("data","uhoh", "glove_enchantment_mods")
 			MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "glove_enchantment_mods")
+ 			Log("data","pass", "glove_enchantment_mods")
 		}
 	}
 	Loop, Read, %A_ScriptDir%\data\glove_enchantment_mods.txt
@@ -209,11 +210,11 @@
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
 		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "item_corrupted_mods")
+ 			Log("data","uhoh", "item_corrupted_mods")
 			MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "item_corrupted_mods")
+ 			Log("data","pass", "item_corrupted_mods")
 		}
 	}
 	Loop, read, %A_ScriptDir%\data\item_corrupted_mods.txt
@@ -226,33 +227,33 @@
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Controller.png, %A_ScriptDir%\data\Controller.png
 		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
+ 			Log("data","uhoh", "Controller.png")
 			MsgBox, Error ED02 : There was a problem downloading Controller.png
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Controller.png")
+ 			Log("data","pass", "Controller.png")
 		}
 	}
 	IfNotExist, %A_ScriptDir%\data\LootFilter.ahk
 	{
     	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
 		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "LootFilter.ahk")
+ 			Log("data","uhoh", "LootFilter.ahk")
 			MsgBox, Error ED02 : There was a problem downloading LootFilter.ahk
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "LootFilter.ahk")
+ 			Log("data","pass", "LootFilter.ahk")
 		}
 	}
 	IfNotExist, %A_ScriptDir%\data\Bases.json
 	{
     	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/data/base_items.min.json, %A_ScriptDir%\data\Bases.json
 		if ErrorLevel {
- 			error("data","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Bases.json")
+ 			Log("data","uhoh", "Bases.json")
 			MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
 		}
 		Else if (ErrorLevel=0){
- 			error("data","pass", A_ScriptFullPath, VersionNumber, A_AhkVersion, "Bases.json")
+ 			Log("data","pass", "Bases.json")
 			FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
 			Bases := JSON.Load(JSONtext)
 		}
@@ -302,10 +303,11 @@
 		Global YesOpenMap := True
 		Global YesClickPortal := True
 		Global RelogOnQuit := True
-		Global CLogFO := FileOpen(ClientLog, "r")
-		CLogFo.Seek(0)
-		CLogFo.ReadLine()
-		Global FirstLineLength := CLogFo.Tell()
+		Global CLogFO, FirstLineLength
+		; Global CLogFO := FileOpen(ClientLog, "r")
+		; CLogFo.Seek(0)
+		; CLogFo.ReadLine()
+		; Global FirstLineLength := CLogFo.Tell()
 
 		ft_ToolTip_Text=
 			(LTrim
@@ -5856,6 +5858,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+								Log("Exit with < 20`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -5880,6 +5883,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+								Log("Exit with < 30`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -5904,6 +5908,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
+								Log("Exit with < 40`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -5927,6 +5932,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && (RadioQuit50||RadioQuit60)) {
+								Log("Exit with < 50`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -5950,6 +5956,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && RadioQuit60) {
+								Log("Exit with < 60`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -6159,6 +6166,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+								Log("Exit with < 20`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -6183,6 +6191,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+								Log("Exit with < 30`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -6207,6 +6216,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
+								Log("Exit with < 40`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -6230,6 +6240,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && (RadioQuit50||RadioQuit60)) {
+								Log("Exit with < 50`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -6253,6 +6264,7 @@ Return
 							if !(OnChar)
 								Exit
 							if (AutoQuit && RadioQuit60) {
+								Log("Exit with < 60`% Life", CurrentLocation)
 								LogoutCommand()
 								Exit
 							}
@@ -6495,7 +6507,8 @@ Return
 						if !(OnChar)
 							Exit
 						if (AutoQuit && (RadioQuit20 || RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-							LogoutCommand()
+								Log("Exit with < 20`% Energy Shield", CurrentLocation)
+								LogoutCommand()
 							Exit
 						}
 						Loop, 5 {
@@ -6519,7 +6532,8 @@ Return
 						if !(OnChar)
 							Exit
 						if (AutoQuit && (RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-							LogoutCommand()
+								Log("Exit with < 30`% Energy Shield", CurrentLocation)
+								LogoutCommand()
 							Exit
 						}
 						Loop, 5 {
@@ -6543,7 +6557,8 @@ Return
 						if !(OnChar)
 							Exit
 						if (AutoQuit && (RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-							LogoutCommand()
+								Log("Exit with < 40`% Energy Shield", CurrentLocation)
+								LogoutCommand()
 							Exit
 						}
 						Loop, 5 {
@@ -6567,7 +6582,8 @@ Return
 						if !(OnChar)
 							Exit
 						if (AutoQuit && (RadioQuit50 || RadioQuit60)) {
-							LogoutCommand()
+								Log("Exit with < 50`% Energy Shield", CurrentLocation)
+								LogoutCommand()
 							Exit
 						}
 						Loop, 5 {
@@ -6591,7 +6607,8 @@ Return
 						if !(OnChar)
 							Exit
 						if (AutoQuit && RadioQuit60) {
-							LogoutCommand()
+								Log("Exit with < 60`% Energy Shield", CurrentLocation)
+								LogoutCommand()
 							Exit
 						}
 						Loop, 5 {
@@ -7272,9 +7289,9 @@ Return
 				succ := logout(executable)
 				if (succ == 0) && backupExe != "" {
 					newSucc := logout(backupExe)
-					error("ED12",executable,backupExe)
+					Log("ED12",executable,backupExe)
 					if (newSucc == 0) {
-						error("ED13")
+						Log("ED13")
 					}
 				}
 				If RelogOnQuit
@@ -7303,7 +7320,7 @@ Return
 				}
 			}
 			If YesOHB && OnMines
-				Ding(5000,1,"Exit with " . HPerc . "`% Life")
+				Log("Exit with " . HPerc . "`% Life", CurrentLocation)
 		return
 		}
 
@@ -7611,6 +7628,15 @@ Return
 			
 			;Settings for the Client Log file location
 			IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
+			If FileExist(ClientLog)
+			{
+				CLogFO := FileOpen(ClientLog, "r")
+				CLogFo.Seek(0)
+				CLogFo.ReadLine()
+				FirstLineLength := CLogFo.Tell()
+			}
+			Else
+				Log("Client Log not Found",ClientLog)
 			
 			;Settings for the Overhead Health Bar
 			IniRead, YesOHB, settings.ini, OHB, YesOHB, 1
@@ -10093,15 +10119,15 @@ Return
 				Fail:=true
 			}
 			if Fail {
-				error("update","fail",A_ScriptFullPath, VersionNumber, A_AhkVersion)
-				error("ED07")
+				Log("update","fail",A_ScriptFullPath, VersionNumber, A_AhkVersion)
+				Log("ED07")
 			}
 			else {
-				error("update","pass",A_ScriptFullPath, VersionNumber, A_AhkVersion)
+				Log("update","pass",A_ScriptFullPath, VersionNumber, A_AhkVersion)
 				Run "%A_ScriptFullPath%"
 			}
 			Sleep 5000 ;This shouldn't ever hit.
-			error("update","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion)
+			Log("update","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion)
 		Return
 
 		dontUpdate:
@@ -11436,7 +11462,14 @@ Return
 			If (A_GuiControl = "ClientLog")
 			{
 				Gui, submit, NoHide
-				IniWrite, %ClientLog%, Settings.ini, Log, ClientLog
+				If FileExist(ClientLog)
+				{
+					IniWrite, %ClientLog%, Settings.ini, Log, ClientLog
+					Global CLogFO := FileOpen(ClientLog, "r")
+					CLogFo.Seek(0)
+					CLogFo.ReadLine()
+					Global FirstLineLength := CLogFo.Tell()
+				}
 			}
 			Else
 			{
@@ -11447,6 +11480,10 @@ Return
 					ClientLog := SelectClientLog
 					GuiControl,, ClientLog, %SelectClientLog%
 					IniWrite, %SelectClientLog%, Settings.ini, Log, ClientLog
+					Global CLogFO := FileOpen(ClientLog, "r")
+					CLogFo.Seek(0)
+					CLogFo.ReadLine()
+					Global FirstLineLength := CLogFo.Tell()
 				}
 				Hotkeys()
 			}

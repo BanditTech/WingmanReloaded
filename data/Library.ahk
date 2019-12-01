@@ -3,24 +3,24 @@
 *     JSON lib for AutoHotkey.
 * Version:
 *     v2.1.3 [updated 04/18/2016 (MM/DD/YYYY)]
-* License:
-*     WTFPL [http://wtfpl.net/]
-* Requirements:
-*     Latest version of AutoHotkey (v1.1+ or v2.0-a+)
-* Installation:
-*     Use #Include JSON.ahk or copy into a function library folder and then
-*     use #Include <JSON>
-* Links:
-*     GitHub:     - https://github.com/cocobelgica/AutoHotkey-JSON
-*     Forum Topic - http://goo.gl/r0zI8t
-*     Email:      - cocobelgica <at> gmail <dot> com
-* Class: JSON
-*     The JSON object contains methods for parsing JSON and converting values
-*     to JSON. Callable - NO; Instantiable - YES; Subclassable - YES;
-*     Nestable(via #Include) - NO.
-* Methods:
-*     Load() - see relevant documentation before method definition header
-*     Dump() - see relevant documentation before method definition header
+ * License:
+ *     WTFPL [http://wtfpl.net/]
+ * Requirements:
+ *     Latest version of AutoHotkey (v1.1+ or v2.0-a+)
+ * Installation:
+ *     Use #Include JSON.ahk or copy into a function library folder and then
+ *     use #Include <JSON>
+ * Links:
+ *     GitHub:     - https://github.com/cocobelgica/AutoHotkey-JSON
+ *     Forum Topic - http://goo.gl/r0zI8t
+ *     Email:      - cocobelgica <at> gmail <dot> com
+ * Class: JSON
+ *     The JSON object contains methods for parsing JSON and converting values
+ *     to JSON. Callable - NO; Instantiable - YES; Subclassable - YES;
+ *     Nestable(via #Include) - NO.
+ * Methods:
+ *     Load() - see relevant documentation before method definition header
+ *     Dump() - see relevant documentation before method definition header
 */
     class JSON
     {
@@ -4180,6 +4180,10 @@ Structure of most functions:
     }
 ;}
 
+
+
+
+
 /*** Class_CtlColors
  * Lib: Class_CtlColors.ahk
  *     Found on page: https://github.com/AHK-just-me/Class_CtlColors
@@ -5134,7 +5138,7 @@ Structure of most functions:
                 
                 IfEqual, num, 0
                 {
-                    error("ED11",num,l,executable)
+                    Log("ED11",num,l,executable)
                     return False
                 }
                 
@@ -5156,7 +5160,7 @@ Structure of most functions:
                             result := DllCall(SetEntry, UInt, &newEntry)
                             IfNotEqual, result, 0
                             {
-                                error("TCP" . result,out,result,l,executable)
+                                Log("TCP" . result,out,result,l,executable)
                                 return False
                             }
                             out++
@@ -5164,29 +5168,32 @@ Structure of most functions:
                     }
                 }
                 if ( out = 0 ) {
-                    error("ED10",out,l,executable)
+                    Log("ED10",out,l,executable)
                     return False
                 } else {
-                    error(l . ":" . A_TickCount - start,out,l,executable)
+                    Log(l . ":" . A_TickCount - start,out,l,executable)
                 }
             } 
             catch e
             {
-                error("ED14","catcherror",e)
+                Log("ED14","catcherror",e)
                 return False
             }
             
         return True
         }
 
-    ; Error capture from LutLogout to error.txt
+    ; Log file function
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    error(var,var2:="",var3:="",var4:="",var5:="",var6:="",var7:="") {
-        GuiControl,1:, guiErr, %var%
-        print := A_Now . "," . var . "," . var2 . "," . var3 . "," . var4 . "," . var5 . "," . var6 . "," . var7 . "`n"
-        FileAppend, %print%, error.txt, UTF-16
+    Log(var*) 
+    {
+        print := A_Now
+        For k, v in var
+            print .= " , " . v
+        print .= A_ScriptFullPath . " , " . VersionNumber . " , " . A_AhkVersion . "`n"
+        FileAppend, %print%, Log.txt, UTF-16
         return
-        }
+    }
 
     ; checkActiveType - Check for backup executable
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

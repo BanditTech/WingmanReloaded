@@ -1,6 +1,19 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.11 December/01/2019
+--------------------------------------------------------------------------------
+Bugfix for assigning the file object when loading an alternate Client.txt 
+    Realized the file object was being assigned before INI load
+    Now assigns after INI load
+    Checks for valid Client.txt when Selected/Edited in the GUI
+        If it finds a valid file, it will assign it as the new File Object
+
+Error function has been converted to a voradic function and renamed Log()
+    can now receive any number of variables as messages
+    Output file will now be Log.txt
+    Auto-Quit now writes to the log
+
 Version .07.10 November/29/2019
 --------------------------------------------------------------------------------
 Another attempt to resolve issues with Client Log parser.
