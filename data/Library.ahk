@@ -4630,68 +4630,15 @@ Structure of most functions:
     FileCheck(file){
         Static Size0
         FileGetSize Size, %file%
-        If (Size0 >= Size)
-            Return False
         If (Size0 = "")
         {
             Size0 := Size ; Size has not been captured yet
             Return False
         }
+        If (Size0 >= Size)
+            Return False
         Size0 := Size ; File size increased!
     Return True
-    }
-
-    ; Seek the End of a File Object
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    LastLineInit(FileObject) {
-        static SEEK_END := 2
-        FileObject.Seek(0, SEEK_END)
-        return
-    }
-
-    ; ASM lastline for speed. Returns the last line of a file - Written by CloakerSmoker
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ASMLastLine(FileObject, Mode := 0) {
-        static Bytes := [ 0x55, 0x48, 0x8B, 0xEC, 0x40, 0x80, 0xEC, 0x08, 0x4C, 0x8B, 0xFC, 0x4C, 0x8B, 0xE1, 0x48, 0x8B
-                        , 0xFA, 0x4D, 0x8B, 0xF0, 0x49, 0x8B, 0xCC, 0xC7, 0xC2, 0xFF, 0xFF, 0xFF, 0xFF, 0x45, 0x33, 0xC0
-                        , 0x45, 0x33, 0xC9, 0x41, 0xFF, 0xC1, 0x41, 0xFF, 0xD6, 0x49, 0x8B, 0xCC, 0x48, 0x8B, 0xD4, 0x45
-                        , 0x33, 0xC0, 0x41, 0xFF, 0xC0, 0x40, 0x80, 0xEC, 0x08, 0x4C, 0x8B, 0xCC, 0x40, 0x80, 0xEC, 0x20
-                        , 0xFF, 0xD7, 0x40, 0x80, 0xC4, 0x20, 0x40, 0x80, 0xC4, 0x08, 0x41, 0x0F, 0xBE, 0x07, 0xC7, 0xC3
-                        , 0x0A, 0x00, 0x00, 0x00, 0x3B, 0xC3, 0x0F, 0x84, 0x1A, 0x00, 0x00, 0x00, 0x49, 0x8B, 0xCC, 0xC7
-                        , 0xC2, 0xFF, 0xFF, 0xFF, 0xFF, 0x45, 0x33, 0xC0, 0x45, 0x33, 0xC9, 0x41, 0xFF, 0xC1, 0x41, 0xFF
-                        , 0xD6, 0xE9, 0x9E, 0xFF, 0xFF, 0xFF, 0x40, 0x80, 0xC4, 0x08, 0x5D, 0xC3]
-        static pReadFile
-        static pSetFilePointer
-        static pMemory
-        
-        static _blank := ASMLastLine(0, 1)
-
-        if (Mode = 1) {
-            hKernel32 := DllCall("GetModuleHandle", "Str", "kernel32", "Ptr")
-            pReadFile := DllCall("GetProcAddress", "Ptr", hKernel32, "AStr", "ReadFile", "Ptr")
-            pSetFilePointer := DllCall("GetProcAddress", "Ptr", hKernel32, "AStr", "SetFilePointer", "Ptr")
-        
-            pMemory := DllCall("VirtualAlloc", "UInt64", 0, "Ptr", Bytes.Count(), "Int", 0x00001000 | 0x00002000, "Int", 0x04)
-            
-            for k, v in Bytes {
-                NumPut(v, pMemory + 0, A_Index - 1, "Char")
-            }
-        
-            DllCall("VirtualProtect", "Ptr", pMemory, "Ptr", Bytes.Count(), "UInt", 0x20, "UInt*", OldProtection)
-            return OnExit(Func("ASMLastLine").Bind(0, 2))
-        }
-        else if (Mode = 2) {
-            return DllCall("VirtualFree", "Ptr", pMemory, "Ptr", Bytes.Count(), "UInt", 0x00008000)
-        }
-        else {
-            DllCall(pMemory, "Ptr", FileObject.__Handle, "Ptr", pReadFile, "Ptr", pSetFilePointer)
-        }
-        
-        OldIndex := FileObject.Tell() - 1
-        Line := FileObject.ReadLine()
-        FileObject.Seek(OldIndex)
-        
-        return Line
     }
 
     ; AHK version of the Tail function
@@ -4726,25 +4673,13 @@ Structure of most functions:
 
     ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CheckLocation:
-        Thread, NoTimers, true		;Critical
-        If !FileExist(ClientLog)
+    CompareLocation(cStr:="",cLang:="English")
+    {
+        If (cLang = "English") ; Impliment for later when cLang becomes global from INI read
         {
-            If !WarningCLog
+            If InStr(cStr, ": You have entered")
             {
-                MsgBox, Client.txt Log File not found!`nAssign the location in Configuration Tab`nClick ""Locate Logfile"" to find yours
-                ++WarningCLog
-            }
-            Return
-        }
-        If FileCheck(ClientLog)
-        {
-            ClientLogText := ""
-            LastLineInit(CLogFO)
-            ClientLogText := LastLine(CLogFO)
-            If InStr(ClientLogText, ": You have entered")
-            {
-                CurrentLocation := StrSplit(StrSplit(ClientLogText, " : You have entered")[2], ".", A_Space)[1]
+                CurrentLocation := StrSplit(StrSplit(cStr, " : You have entered")[2], ".", A_Space)[1]
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
@@ -4759,46 +4694,69 @@ Structure of most functions:
                     OnMines := True
                 Else
                     OnMines := False
+                Return True
             }
         }
-        Else If !(CurrentLocation)
+        Return False
+    }
+
+    ; Monitor for changes in log since initialized
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Monitor_GameLogs(Initialize:=0) 
+    {
+        global ClientLog, CLogFO, CurrentLocation
+        SetTimer,% A_ThisFunc, 500 ; auto set timer
+        timeMon := CoolTime()
+        if (Initialize) 
         {
-            LastLineInit(CLogFO)
+            CLogFO := FileOpen(ClientLog, "r")
+            CLogFo.Seek(0)
+            CLogFo.ReadLine()
+            FirstLineLength := CLogFo.Tell()
+            CLogFO.Seek(0, 2) ; Seek to end of file
             Loop
             {
                 ClientLogText := LastLine(CLogFO)
-                If InStr(ClientLogText, ": You have entered")
-                {
-                    CurrentLocation := StrSplit(StrSplit(ClientLogText, " : You have entered")[2], ".", A_Space)[1]
-                    If indexOf(CurrentLocation,ClientTowns)
-                        OnTown := True
-                    Else
-                        OnTown := False
-                    
-                    If InStr(CurrentLocation, "Hideout")
-                        OnHideout := True
-                    Else
-                        OnHideout := False
-
-                    If (CurrentLocation = "Azurite Mine")
-                        OnMines := True
-                    Else
-                        OnMines := False
+                If CompareLocation(ClientLogText)
                     Break
-                }
                 If (CLogFO.Tell() <= FirstLineLength)
                     Break
             }
+            CLogFO.Seek(0, 2) ; Seek to end of file
+            timeMon := Round((CoolTime() - timeMon) * 1000000,1)
+            If DebugMessages && YesLocation && WinActive(GameStr)
+            {
+                Ding(6000,14,"OnTown   `t" OnTown)
+                Ding(6000,15,"OnHideout`t" OnHideout)
+                Ding(6000,16,"OnMines  `t" OnMines)
+                Ding(6000,17,CurrentLocation)
+                Ding(6000,19,"First Load`t" timeMon " MicroSeconds")
+            }
+            Return
         }
+
+        latestFileContent := CLogFo.Read()
+
+        if (latestFileContent) 
+        {
+            Loop, Parse,% latestFileContent,`n,`r 
+            {
+                ClientLogText := A_LoopField
+                ; MsgBox, line %A_LoopField%
+                CompareLocation(ClientLogText)
+            }
+        }
+        timeMon := Round((CoolTime() - timeMon) * 1000000,1)
         If DebugMessages && YesLocation && WinActive(GameStr)
         {
-            Ding(300,14,"OnTown   `t" OnTown)
-            Ding(300,15,"OnHideout`t" OnHideout)
-            Ding(300,16,"OnMines  `t" OnMines)
-            Ding(300,17,CurrentLocation)
+            Ding(2000,14,"OnTown   `t" OnTown)
+            Ding(2000,15,"OnHideout`t" OnHideout)
+            Ding(2000,16,"OnMines  `t" OnMines)
+            Ding(2000,17,CurrentLocation)
+            Ding(2000,18,"MicroSeconds  " timeMon)
         }
-    Return
-
+        Return
+    }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
@@ -5190,7 +5148,7 @@ Structure of most functions:
         print := A_Now
         For k, v in var
             print .= " , " . v
-        print .= A_ScriptFullPath . " , " . VersionNumber . " , " . A_AhkVersion . "`n"
+        print .= " , Script: " . A_ScriptFullPath . " , Script Version: " . VersionNumber . " , AHK version: " . A_AhkVersion . "`n"
         FileAppend, %print%, Log.txt, UTF-16
         return
     }

@@ -361,7 +361,7 @@ Redraw:
 return
 
 RedrawNewGroup:
-    Gui,2: -Resize -MinimizeBox -MaximizeBox  +0x300000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
+    Gui,2: -Resize +AlwaysOnTop -MinimizeBox -MaximizeBox  +0x300000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
                             ;+Resize (allows resize of windows)
     Gui,2: Add, Text, Section y+-5 w1 h1
     Gui,2: add, button, gFinishAddGroup xs y+20 HwndFinishButton, Click here to Finish and Return to CLF
@@ -422,7 +422,7 @@ ExportGroup:
     exportArr := LootFilter[GKey]
     Clipboard := JSON.Dump(exportArr)
     SetTimer, ChangeButtonNamesVar, 10
-    MsgBox 3, Export String,% Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy"
+    MsgBox 262147, Export String,% Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy"
     IfMsgBox, Yes
         Return
     IfMsgBox, No
@@ -974,7 +974,7 @@ SendMSG(wParam:=0, lParam:=0){
     else if WinExist(scriptPOEWingmanSecondary)
         PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
     else
-        MsgBox, Either Script Window Not Found
+        MsgBox 262147, Either Script Window Not Found
     DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
     Return
 }

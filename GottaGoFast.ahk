@@ -237,11 +237,6 @@
 ; Standard ini read - Client Log Setup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      ReadFromFile()
-     ; Setup the client log after loading INI
-     Global CLogFO := FileOpen(ClientLog, "r")
-     CLogFo.Seek(0)
-     CLogFo.ReadLine()
-     Global FirstLineLength := CLogFo.Tell()
 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Scale positions for status check
@@ -288,9 +283,9 @@
 
 ; Set timers section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     SetTimer, PoEWindowCheck, 150
-     Gosub, CheckLocation
-     SetTimer, CheckLocation, 15
+     SetTimer, PoEWindowCheck, 1000
+     ; Gosub, CheckLocation
+     ; SetTimer, CheckLocation, 15
 
 ; Start timer for active Utility that is not triggered by Life, ES, or QS
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -496,6 +491,8 @@
           IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
           ;Settings for the Client Log file location
           IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
+          If FileExist(ClientLog)
+               Monitor_GameLogs(1)
           ;Coordinates
           IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
           IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027

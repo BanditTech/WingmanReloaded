@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .07.11
+    Global VersionNumber := .07.12
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -290,6 +290,10 @@
 		Global IgnoredSlot := {}
 		Global BlackList := {}
 		Global OHBxy := 0
+		Global YesOpenMap := True
+		Global YesClickPortal := True
+		Global RelogOnQuit := True
+		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 		Global CurrentLocation := ""
 		Global ClientTowns := [ "Lioneye's Watch"
 				,"The Forest Encampment"
@@ -299,15 +303,7 @@
 				,"The Bridge Encampment"
 				,"Oriath Docks"
 				,"Oriath" ]
-
-		Global YesOpenMap := True
-		Global YesClickPortal := True
-		Global RelogOnQuit := True
-		Global CLogFO, FirstLineLength
-		; Global CLogFO := FileOpen(ClientLog, "r")
-		; CLogFo.Seek(0)
-		; CLogFo.ReadLine()
-		; Global FirstLineLength := CLogFo.Tell()
+		Global CLogFO
 
 		ft_ToolTip_Text=
 			(LTrim
@@ -616,24 +612,24 @@
 		global YesTriggerJoystick2Key := 1
 	; ~ Hotkeys
 	; Legend:   ! = Alt      ^ = Ctrl     + = Shift 
-		global hotkeyOptions:=!F10
-		global hotkeyAutoFlask:=!F11
-		global hotkeyAutoQuit:=!F12
-		global hotkeyLogout:=F12
-		global hotkeyAutoQuicksilver:=!MButton
-		global hotkeyPopFlasks:=CapsLock
-		global hotkeyItemSort:=F6
-		global hotkeyItemInfo:=F5
-		global hotkeyLootScan:=f
-		global hotkeyQuickPortal:=!q
-		global hotkeyGemSwap:=!e
-		global hotkeyGetMouseCoords:=!o
-		global hotkeyCloseAllUI:=Space
-		global hotkeyInventory:=c
-		global hotkeyWeaponSwapKey:=x
-		global hotkeyMainAttack:=RButton
-		global hotkeySecondaryAttack:=w
-		global hotkeyDetonate:=d
+		global hotkeyOptions:="!F10"
+		global hotkeyAutoFlask:="!F11"
+		global hotkeyAutoQuit:="!F12"
+		global hotkeyLogout:="F12"
+		global hotkeyAutoQuicksilver:="!MButton"
+		global hotkeyPopFlasks:="CapsLock"
+		global hotkeyItemSort:="F6"
+		global hotkeyItemInfo:="F5"
+		global hotkeyLootScan:="f"
+		global hotkeyQuickPortal:="!q"
+		global hotkeyGemSwap:="!e"
+		global hotkeyGetMouseCoords:="!o"
+		global hotkeyCloseAllUI:="Space"
+		global hotkeyInventory:="c"
+		global hotkeyWeaponSwapKey:="x"
+		global hotkeyMainAttack:="RButton"
+		global hotkeySecondaryAttack:="w"
+		global hotkeyDetonate:="d"
 	; Coordinates
 		global PortalScrollX:=1825
 		global PortalScrollY:=825
@@ -2095,14 +2091,15 @@
 ; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Check for window to be active
-	SetTimer, PoEWindowCheck, 150
+	SetTimer, PoEWindowCheck, 1000
 	; Check once an hour to see if we should updated database
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 15
 	; Check for Client Log Updates
-	Gosub, CheckLocation
-	SetTimer, CheckLocation, 15
+	; Gosub, CheckLocation
+	; SetTimer, CheckLocation, 15
+	; Monitor_GameLogs(1)
 	; Check for gems to level
 	SetTimer, AutoSkillUp, 200
 	; Detonate mines timer check
@@ -2161,10 +2158,8 @@ Return
 		IfWinActive, ahk_group POEGameGroup
 		{
 			RunningToggle := True
-			GuiStatus()
-			GuiStatus("OnDiv")
-			GuiStatus("OnStash")
-			GuiStatus("OnVendor")
+			GuiStatus("OnChar")
+			GuiStatus("OnInventory")
 			If (!OnChar) 
 			{ ;Need to be on Character 
 				MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
@@ -2173,14 +2168,23 @@ Return
 			} 
 			Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
 			{ 
-				If (YesSearchForStash && (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr)))
+				If (YesSearchForStash && (OnTown || OnHideout || OnMines))
 				{
-					LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
-					Loop, 666
+					If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
 					{
-						GuiStatus("OnStash")
-						If OnStash
-						Break
+						LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
+						Loop, 666
+						{
+							GuiStatus("OnStash")
+							If OnStash
+							Break
+						}
+					}
+					Else
+					{
+						Send {%hotkeyInventory%}
+						RunningToggle := False
+						Return
 					}
 				}
 				Else
@@ -2190,6 +2194,9 @@ Return
 					Return
 				}
 			}
+			GuiStatus("OnDiv")
+			GuiStatus("OnStash")
+			GuiStatus("OnVendor")
 			If (OnDiv && YesDiv)
 				DivRoutine()
 			Else If (OnStash && YesStash)
@@ -2815,7 +2822,7 @@ Return
 		; Sorted items are sent together
 		If (OnStash && RunningToggle && YesStash && !YesSortFirst)
 		{
-			If (YesVendorAfterStash && Unstashed)
+			If (YesVendorAfterStash && Unstashed && OnHideout)
 			{
 				If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
 					StockScrolls()
@@ -2859,7 +2866,7 @@ Return
 					Sleep, 45*Latency
 				}
 			}
-			If (YesVendorAfterStash && Unstashed)
+			If (YesVendorAfterStash && Unstashed && OnHideout)
 			{
 				If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
 					StockScrolls()
@@ -7628,15 +7635,14 @@ Return
 			
 			;Settings for the Client Log file location
 			IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
+
 			If FileExist(ClientLog)
-			{
-				CLogFO := FileOpen(ClientLog, "r")
-				CLogFo.Seek(0)
-				CLogFo.ReadLine()
-				FirstLineLength := CLogFo.Tell()
-			}
+				Monitor_GameLogs(1)
 			Else
+			{
+                MsgBox, 262144, Client Log Error, Client.txt Log File not found!`nAssign the location in Configuration Tab`nClick ""Locate Logfile"" to find yours
 				Log("Client Log not Found",ClientLog)
+			}
 			
 			;Settings for the Overhead Health Bar
 			IniRead, YesOHB, settings.ini, OHB, YesOHB, 1
@@ -11465,10 +11471,7 @@ Return
 				If FileExist(ClientLog)
 				{
 					IniWrite, %ClientLog%, Settings.ini, Log, ClientLog
-					Global CLogFO := FileOpen(ClientLog, "r")
-					CLogFo.Seek(0)
-					CLogFo.ReadLine()
-					Global FirstLineLength := CLogFo.Tell()
+					Monitor_GameLogs(1)
 				}
 			}
 			Else
@@ -11480,10 +11483,7 @@ Return
 					ClientLog := SelectClientLog
 					GuiControl,, ClientLog, %SelectClientLog%
 					IniWrite, %SelectClientLog%, Settings.ini, Log, ClientLog
-					Global CLogFO := FileOpen(ClientLog, "r")
-					CLogFo.Seek(0)
-					CLogFo.ReadLine()
-					Global FirstLineLength := CLogFo.Tell()
+					Monitor_GameLogs(1)
 				}
 				Hotkeys()
 			}

@@ -1,6 +1,30 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.12 December/03/2019
+--------------------------------------------------------------------------------
+Reworked how the Id/Vend/Stash hotkey starts
+    Now scans for just OnChar and OnInventory at very start
+    Using the location status it determines if it should look for the stash
+    Searching for vendor after stash now only happens in hideout
+        thinking of adding vendors for each town to use in town as well
+    now opens inventory nearly instantly when out in the field
+        press twice to open inventory and then Id everything
+
+Fix for CLF edit menu and Export msgbox not being AlwaysOnTop
+    Will once again display over the main window
+
+Warning for Missing Client.txt file is now always on top
+
+Fresh install will default to Client text in steam library on the C: drive
+
+Big thanks to tsivilay for their contribution of a reworked log parser!
+    They have created an alternative method of gathering the current location
+    Massively faster than the previous method, measuring in MicroSeconds
+    Now it checks all lines since the last loop, and should ALWAYS capture changes
+        Because of this, the loop can run at a much slower rate
+    Removed some of the old code that is not needed
+
 Version .07.11 December/01/2019
 --------------------------------------------------------------------------------
 Bugfix for assigning the file object when loading an alternate Client.txt 
