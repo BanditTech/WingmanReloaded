@@ -3140,12 +3140,10 @@ Structure of most functions:
                     OnTown := True
                 Else
                     OnTown := False
-                
-                If InStr(CurrentLocation, "Hideout")
+                If (InStr(CurrentLocation, "Hideout") && !InStr(CurrentLocation, "Syndicate"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
                 If (CurrentLocation = "Azurite Mine")
                     OnMines := True
                 Else
