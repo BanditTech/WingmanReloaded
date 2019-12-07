@@ -7359,10 +7359,10 @@ for i,v in ok
 
     ;Label for assigning hotkeys
     ft_LV_DblClick:
-        If a_guicontrolevent <> DoubleClick
+        If a_guicontrolevent != DoubleClick
             return
         Gui, ft_Main:Default
-        varstr := StrSplit(Trim(A_GuiControl),"lvar_")[2]
+        ; varstr := StrSplit(Trim(A_GuiControl),"lvar_")[2]
         if (!ft_FuncBind2)
             ft_FuncBind2:=Func("ft_Gui").Bind("ScreenShot")
         Gui, ListView, %a_guicontrol%
@@ -7372,8 +7372,7 @@ for i,v in ok
             Hotkey, %old%,, Off UseErrorLevel
         LV_Delete(1)
         LV_Add("","",newHK:=Hotkey("+Default1 -LR -Symbols +Tooltips","Hold down your key combination","            Submit to bind    Cancel to clear","Select Screenshot Hotkey"))
-        ; WinWaitClose, Select Hotkey
-        %varstr% := newHK
+        ; %varstr% := newHK
         Hotkey, IfWinActive
         if (newHK!="")
             Hotkey, %newHK%, %ft_FuncBind2%, On UseErrorLevel
