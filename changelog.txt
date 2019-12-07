@@ -1,6 +1,35 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .07.13 December/06/2019
+--------------------------------------------------------------------------------
+Updated library for FindText() function
+    Lib now offers ways of capturing and manipulating screenshots
+        using this I have reduced the delay of the OHB from +400MS to ~100MS
+        incidentally this also fixes issues with the healthbar quickly moving
+    Lib has improved edit menu that remains the same size when scaling area
+        you can now scroll the edit panel to select the correct pixels
+    Can now assign a screenshot hotkey in the findtext GUI
+        grab a screenshot and go back to capture buffs / debuffs later
+    Can now test strings straight from the clipboard
+
+General adjustments for other parts of the scripts that use FindText()
+    Coordinate input has been adjusted to match the new format
+    GGF script finally utilizes variables coming from the Rescale function
+        Should allow for people using a secondary monitor to play the game
+
+Opening the FindText GUI is now its own thread seperated from the main script
+    This allows for using the screenshot feature without it being overwritten
+    Pressing escape will exit the app while its active, closing the window as well
+        Minimize allows you to keep it open for using the screenshot hotkey
+
+Introducing Advanced Hotkeys library for easier binding of hotkeys
+    as a proof of concept I have modified the FindText lib Screnshot hotkey to use this
+    Double click on the binding editbox to bring up the hotkey assignment window
+
+Also added DynaRun and CreateScript in library for later use
+    These allow for scripts which can be run in a seperate thread
+
 Version .07.12 December/03/2019
 --------------------------------------------------------------------------------
 Reworked how the Id/Vend/Stash hotkey starts

@@ -40,7 +40,7 @@
      global AutoFlask:=0
      global AutoQuick:=0 
      global OnCooldown:=[0,0,0,0,0]
-
+     Global GameX, GameY, GameW, GameH
      global newposition := false
      global newpositionPOV := false
      global JoystickNumber := 0
@@ -800,7 +800,7 @@
                     {
                          If !(OnCooldownUtility%A_Index%)
                          {
-                              If FindText(0, 0, A_ScreenWidth, A_ScreenHeight / ( 1080 / 75 ), 0, 0, IconStringUtility%A_Index%)
+                              If FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%)
                               {
                                    OnCooldownUtility%A_Index%:=1
                                    SetTimer, TimerUtility%A_Index%, % CooldownUtility%A_Index%

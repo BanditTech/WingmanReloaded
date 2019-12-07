@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .07.12
+    Global VersionNumber := .07.13
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -105,6 +105,7 @@
     OnMessage(0x5555, "MsgMonitor")
     OnMessage(0x5556, "MsgMonitor")
 	OnMessage( 0xF, "WM_PAINT")
+	OnMessage(0x200, Func("ShowToolTip"))  ; WM_MOUSEMOVE
     
     SetTitleMatchMode 2
     SetWorkingDir %A_ScriptDir%  
@@ -307,46 +308,6 @@
 
 		ft_ToolTip_Text=
 			(LTrim
-			Capture = Initiate Image Capture Sequence
-			Test = Test Results of Code
-			Copy = Copy Code to Clipboard
-			AddFunc = Additional FindText() in Copy
-			U = Cut the Upper Edge by 1
-			U3 = Cut the Upper Edge by 3
-			L = Cut the Left Edge by 1
-			L3 = Cut the Left Edge by 3
-			R = Cut the Right Edge by 1
-			R3 = Cut the Right Edge by 3
-			D = Cut the Lower Edge by 1
-			D3 = Cut the Lower Edge by 3
-			ww = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
-			hh = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
-			SelR = Red component of the selected color
-			SelG = Green component of the selected color
-			SelB = Blue component of the selected color
-			DiffR = Red Difference which Determines Black or White Pixel Conversion (0-255)
-			DiffG = Green Difference which Determines Black or White Pixel Conversion (0-255)
-			DiffB = Blue Difference which Determines Black or White Pixel Conversion (0-255)
-			Auto = Automatic Cutting Edge
-			Similar = Adjust color similarity as Equivalent to The Selected Color
-			Similar2 = Adjust color similarity as Equivalent to The Selected Color
-			SelColor = The selected color
-			SelGray = Gray value of the selected color
-			Threshold = Gray Threshold which Determines Black or White Pixel Conversion (0-255)
-			GrayDiff = Gray Difference which Determines Black or White Pixel Conversion (0-255)
-			UsePos = Use position instead of color value to suit any color
-			Modify = Allows Modify the Black and White Image
-			Reset = Reset to Original Captured Image
-			Comment = Optional Comment used to Label Code ( Within <> )
-			SplitAdd = Using Markup Segmentation to Generate Text Library
-			AllAdd = Append Another FindText Search Text into Previously Generated Code
-			OK = Create New FindText Code for Testing
-			Close = Close the Window Don't Do Anything
-			Gray2Two = Converts Image Pixels from Grays to Black or White
-			GrayDiff2Two = Converts Image Pixels from Gray Difference to Black or White
-			Color2Two = Converts Image Pixels from Color to Black or White
-			ColorPos2Two = Converts Image Pixels from Color Position to Black or White
-			ColorDiff2Two = Converts Image Pixels from Color Difference to Black or White
 			ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
 			PopFlasks1 = Enable flask slot 1 when using Pop Flasks hotkey
 			PopFlasks2 = Enable flask slot 2 when using Pop Flasks hotkey
@@ -1745,7 +1706,7 @@
 	Menu, Tray, Add
 	Menu, Tray, Add, 				Show Gamestates, ShowDebugGamestates
 	Menu, Tray, Add
-	Menu, Tray, Add, 				Capture new Buff Icon, ft_Start
+	Menu, Tray, Add, 				Open FindText interface, ft_Start
 	Menu, Tray, Add
 	Menu, Tray, add, 				Window Spy, WINSPY
 	Menu, Tray, Add
@@ -1755,7 +1716,6 @@
 	; Menu, Tray, NoStandard
 	; Menu, Tray, Standard
 	;Gui, Hide
-	OnMessage(0x200, Func("ft_ShowToolTip"))  ; WM_MOUSEMOVE
 	if ( Steam ) {
 		if ( HighBits ) {
 			executable := "PathOfExile_x64Steam.exe"
@@ -2828,7 +2788,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameW / 3 , GameH, 0, 0, VendorStr))
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2836,7 +2796,7 @@ Return
 				{
 					Loop, 666
 					{
-						If (Sell:=FindText( GameX + GameW / 3, GameY, GameW / 3, GameH, 0, 0, SellItemsStr))
+						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
 							Sleep, 60*Latency
@@ -2872,7 +2832,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameW / 3 , GameH, 0, 0, VendorStr))
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2880,7 +2840,7 @@ Return
 				{
 					Loop, 666
 					{
-						If (Sell:=FindText( GameX + GameW / 3, GameY, GameW / 3, GameH, 0, 0, SellItemsStr))
+						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
 							Sleep, 60*Latency
@@ -7339,28 +7299,23 @@ Return
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
-				if (ok:=FindText( Round(A_ScreenWidth * .93) , Round(A_ScreenHeight * .15), Round(A_ScreenWidth * .07) , Round(A_ScreenHeight * .7), 0, 0, SkillUpStr))
+				if (ok:=FindText( Round(GameW * .93) , Round(GameW * .15), GameW , Round(GameH * .9), 0, 0, SkillUpStr))
 				{
-					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, Comment:=ok.1.5, X+=W//2, Y+=H//2
-					If (Lpressed := GetKeyState("LButton"))
+					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
+					If (GetKeyState("LButton","P"))
 						Click, up
-					If (Rpressed := GetKeyState("RButton"))
+					If (GetKeyState("RButton","P"))
 						Click, Right, up
 					MouseGetPos, mX, mY
 					BlockInput, MouseMove
-					SwiftClick(X,Y)
+					LeftClick(X,Y)
 					MouseMove, mX, mY, 0
-					BlockInput, MouseMoveOff
-					If Lpressed
-					{
-						Sleep, 60
+					Sleep, 60
+					If (GetKeyState("LButton","P"))
 						Click, down
-					}
-					If Rpressed
-					{
-						Sleep, 60
+					If (GetKeyState("RButton","P"))
 						Click, Right, down
-					}
+					BlockInput, MouseMoveOff
 				}
 			}
 		}
@@ -10146,6 +10101,7 @@ Return
 	{ ; Calibration color sample functions - updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
 	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate, updateDetonateDelve
 		updateOnChar:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -10169,6 +10125,7 @@ Return
 		return
 
 		updateOnInventory:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			
 			IfWinExist, ahk_group POEGameGroup
@@ -10194,6 +10151,7 @@ Return
 		return
 
 		updateOnMenu:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			
 			IfWinExist, ahk_group POEGameGroup
@@ -10219,6 +10177,7 @@ Return
 		return
 
 		updateOnStash:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -10242,8 +10201,8 @@ Return
 		return
 
 		updateEmptyColor:
-			Gui, Submit ; , NoHide
 			Thread, NoTimers, true		;Critical
+			Gui, Submit ; , NoHide
 
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -10309,6 +10268,7 @@ Return
 		return
 
 		updateOnChat:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -10333,6 +10293,7 @@ Return
 		return
 
 		updateOnVendor:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			
 			IfWinExist, ahk_group POEGameGroup
@@ -10357,6 +10318,7 @@ Return
 		return
 
 		updateOnDiv:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			
 			IfWinExist, ahk_group POEGameGroup
@@ -10381,6 +10343,7 @@ Return
 		return
 
 		updateDetonate:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -10404,6 +10367,7 @@ Return
 		return
 
 		updateDetonateDelve:
+			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -10427,6 +10391,7 @@ Return
 		return
 
 		CalibrateOHB:
+			Thread, NoTimers, True
 			Gui,1: Submit ; , NoHide
 			IfWinExist, ahk_group POEGameGroup
 			{
@@ -10845,7 +10810,6 @@ Return
 					gui,LootColors: add, Progress, x+10 yp-5 w50 h20 c%color% BackgroundBlack,100
 				}
 				Gui,LootColors: show,,Loot Vacuum settings
-				OnMessage(0x200, Func("ft_ShowToolTip"))  ; WM_MOUSEMOVE
 			return
 
 			ResampleLootColor:
@@ -11341,7 +11305,7 @@ Return
 		Return
 	}
 
-	{ ; Launch Webpages from button, Tray labels
+	{ ; Launch Webpages from button
 		LaunchHelp:
 			Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
 		Return
@@ -11353,19 +11317,6 @@ Return
 		LaunchDonate:
 			Run, https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&item_name=Open+Source+Script+Building&currency_code=USD&source=url ; Open the donation page for the script
 		Return
-
-		WINSPY:
-			SplitPath, A_AhkPath, , AHKDIR
-			Run, %AHKDIR%\WindowSpy.ahk
-		Return
-
-		RELOAD:
-			Reload
-		Return
-
-		QuitNow:
-			ExitApp
-		Return
 	}
 
 	{ ; Basic GUI functions - Script Cleanup, UpdateProfileText, helpCalibration
@@ -11373,13 +11324,10 @@ Return
 			hotkeys()
 		return
 
-		hotkeys(){
-			global
-			Gui, Show, Autosize Center, 	WingmanReloaded
-			processWarningFound:=0
-			Gui,6:Hide
-		return
-		}
+		ft_Start:
+		Gui, Submit
+		Run, Library.ahk, %A_ScriptDir%\data\
+		Return
 
 		GuiEscape:
 			Gui, Cancel
