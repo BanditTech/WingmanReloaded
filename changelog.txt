@@ -1,6 +1,14 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.02 December/07/2019
+--------------------------------------------------------------------------------
+Added a check for being on character before resampling health and mana values
+    This affects the Save Configuration button
+    Will receive messagebox prompts if there is an issue resampling
+    will not resample if script cannot detect being on character
+    If everything checks out, it instead displays a tooltip that it's all clear
+
 Version .08.01 December/07/2019
 --------------------------------------------------------------------------------
 Quick patch to fix Location issue with Syndicate Hideout

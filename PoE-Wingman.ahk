@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.01
+    Global VersionNumber := .08.02
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -8181,56 +8181,59 @@ Return
 				Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 				ToggleExist := True
 				WinActivate, ahk_group POEGameGroup
-
-				;Life Resample
-				pixelgetcolor, varLife20, vX_Life, vY_Life20
-				pixelgetcolor, varLife30, vX_Life, vY_Life30
-				pixelgetcolor, varLife40, vX_Life, vY_Life40
-				pixelgetcolor, varLife50, vX_Life, vY_Life50
-				pixelgetcolor, varLife60, vX_Life, vY_Life60
-				pixelgetcolor, varLife70, vX_Life, vY_Life70
-				pixelgetcolor, varLife80, vX_Life, vY_Life80
-				pixelgetcolor, varLife90, vX_Life, vY_Life90
+				GuiStatus("OnChar")
+				If (OnChar) {
+					;Life Resample
+					pixelgetcolor, varLife20, vX_Life, vY_Life20
+					pixelgetcolor, varLife30, vX_Life, vY_Life30
+					pixelgetcolor, varLife40, vX_Life, vY_Life40
+					pixelgetcolor, varLife50, vX_Life, vY_Life50
+					pixelgetcolor, varLife60, vX_Life, vY_Life60
+					pixelgetcolor, varLife70, vX_Life, vY_Life70
+					pixelgetcolor, varLife80, vX_Life, vY_Life80
+					pixelgetcolor, varLife90, vX_Life, vY_Life90
+						
+					IniWrite, %varLife20%, settings.ini, Life Colors, Life20
+					IniWrite, %varLife30%, settings.ini, Life Colors, Life30
+					IniWrite, %varLife40%, settings.ini, Life Colors, Life40
+					IniWrite, %varLife50%, settings.ini, Life Colors, Life50
+					IniWrite, %varLife60%, settings.ini, Life Colors, Life60
+					IniWrite, %varLife70%, settings.ini, Life Colors, Life70
+					IniWrite, %varLife80%, settings.ini, Life Colors, Life80
+					IniWrite, %varLife90%, settings.ini, Life Colors, Life90
+					;ES Resample
+					pixelgetcolor, varES20, vX_ES, vY_ES20
+					pixelgetcolor, varES30, vX_ES, vY_ES30
+					pixelgetcolor, varES40, vX_ES, vY_ES40
+					pixelgetcolor, varES50, vX_ES, vY_ES50
+					pixelgetcolor, varES60, vX_ES, vY_ES60
+					pixelgetcolor, varES70, vX_ES, vY_ES70
+					pixelgetcolor, varES80, vX_ES, vY_ES80
+					pixelgetcolor, varES90, vX_ES, vY_ES90
 					
-				IniWrite, %varLife20%, settings.ini, Life Colors, Life20
-				IniWrite, %varLife30%, settings.ini, Life Colors, Life30
-				IniWrite, %varLife40%, settings.ini, Life Colors, Life40
-				IniWrite, %varLife50%, settings.ini, Life Colors, Life50
-				IniWrite, %varLife60%, settings.ini, Life Colors, Life60
-				IniWrite, %varLife70%, settings.ini, Life Colors, Life70
-				IniWrite, %varLife80%, settings.ini, Life Colors, Life80
-				IniWrite, %varLife90%, settings.ini, Life Colors, Life90
-				;ES Resample
-				pixelgetcolor, varES20, vX_ES, vY_ES20
-				pixelgetcolor, varES30, vX_ES, vY_ES30
-				pixelgetcolor, varES40, vX_ES, vY_ES40
-				pixelgetcolor, varES50, vX_ES, vY_ES50
-				pixelgetcolor, varES60, vX_ES, vY_ES60
-				pixelgetcolor, varES70, vX_ES, vY_ES70
-				pixelgetcolor, varES80, vX_ES, vY_ES80
-				pixelgetcolor, varES90, vX_ES, vY_ES90
-				
-				IniWrite, %varES20%, settings.ini, ES Colors, ES20
-				IniWrite, %varES30%, settings.ini, ES Colors, ES30
-				IniWrite, %varES40%, settings.ini, ES Colors, ES40
-				IniWrite, %varES50%, settings.ini, ES Colors, ES50
-				IniWrite, %varES60%, settings.ini, ES Colors, ES60
-				IniWrite, %varES70%, settings.ini, ES Colors, ES70
-				IniWrite, %varES80%, settings.ini, ES Colors, ES80
-				IniWrite, %varES90%, settings.ini, ES Colors, ES90
-				;Mana Resample
-				pixelgetcolor, varMana10, vX_Mana, vY_Mana10
-				pixelgetcolor, varManaThreshold, vX_Mana, vY_ManaThreshold
-				IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
-				IniWrite, %varManaThreshold%, settings.ini, Mana Colors, ManaThreshold
-				;Messagebox	
-				ToolTip % "Resampled the Life, ES, and Mana colors`nMake sure you were on your character!"
-					SetTimer, RemoveToolTip, -5000
+					IniWrite, %varES20%, settings.ini, ES Colors, ES20
+					IniWrite, %varES30%, settings.ini, ES Colors, ES30
+					IniWrite, %varES40%, settings.ini, ES Colors, ES40
+					IniWrite, %varES50%, settings.ini, ES Colors, ES50
+					IniWrite, %varES60%, settings.ini, ES Colors, ES60
+					IniWrite, %varES70%, settings.ini, ES Colors, ES70
+					IniWrite, %varES80%, settings.ini, ES Colors, ES80
+					IniWrite, %varES90%, settings.ini, ES Colors, ES90
+					;Mana Resample
+					pixelgetcolor, varMana10, vX_Mana, vY_Mana10
+					pixelgetcolor, varManaThreshold, vX_Mana, vY_ManaThreshold
+					IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
+					IniWrite, %varManaThreshold%, settings.ini, Mana Colors, ManaThreshold
+					;Messagebox	
+					ToolTip, % "Script detects you are on Character`rGrabbed new Samples for Life, ES, and Mana colors"
+					SetTimer, RemoveTT1, -5000
+				} Else {
+					MsgBox, 262144, No resample, % "Script Could not detect you on a character`rMake sure you calibrate OnChar if you have not`rCannot sample Life, ES, or Mana colors`nAll other settings will save."
+				}
 			} Else {
-				MsgBox, 262144, No resample, % "Game is not Open`nWill not Resample the Life, ES, or Mana colors!`nAll other settings will save."
-				Gui, Submit, NoHide
+				MsgBox, 262144, No resample, % "Game is not Open`nWill not sample the Life, ES, or Mana colors!`nAll other settings will save."
 			}
-			
+			Gui, Submit, NoHide
 			;Life Flasks
 			IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
 			IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
