@@ -42,16 +42,16 @@ return
     class JSON
     {
         /**
-       * Method: Load
-       *     Parses a JSON string into an AHK value
-       * Syntax:
-       *     value := JSON.Load( text [, reviver ] )
-       * Parameter(s):
-       *     value      [retval] - parsed value
-       *     text    [in, ByRef] - JSON formatted string
-       *     reviver   [in, opt] - function object, similar to JavaScript's
-       *                           JSON.parse() 'reviver' parameter
-      */
+        * Method: Load
+        *     Parses a JSON string into an AHK value
+        * Syntax:
+        *     value := JSON.Load( text [, reviver ] )
+        * Parameter(s):
+        *     value      [retval] - parsed value
+        *     text    [in, ByRef] - JSON formatted string
+        *     reviver   [in, opt] - function object, similar to JavaScript's
+        *                           JSON.parse() 'reviver' parameter
+        */
         class Load extends JSON.Functor
         {
             Call(self, ByRef text, reviver:="")
@@ -61,35 +61,28 @@ return
             ; we can enumerate them in the order they appear in the document/text instead
             ; of alphabetically. Skip if no reviver function is specified.
                 this.keys := this.rev ? {} : false
-
                 static quot := Chr(34), bashq := "\" . quot
                     , json_value := quot . "{[01234567890-tfn"
                     , json_value_or_array_closing := quot . "{[]01234567890-tfn"
                     , object_key_or_object_closing := quot . "}"
-
                 key := ""
                 is_key := false
                 root := {}
                 stack := [root]
                 next := json_value
                 pos := 0
-
                 while ((ch := SubStr(text, ++pos, 1)) != "") {
                     if InStr(" `t`r`n", ch)
                         continue
                     if !InStr(next, ch, 1)
                         this.ParseError(next, text, pos)
-
                     holder := stack[1]
                     is_array := holder.IsArray
-
                     if InStr(",:", ch) {
                         next := (is_key := !is_array && ch == ",") ? quot : json_value
-
                     } else if InStr("}]", ch) {
                         ObjRemoveAt(stack, 1)
                         next := stack[1]==root ? "" : stack[1].IsArray ? ",]" : ",}"
-
                     } else {
                         if InStr("{[", ch) {
                         ; Check if Array() is overridden and if its return value has
@@ -107,7 +100,6 @@ return
                                 , next := json_value_or_array_closing )
                             
                             ObjInsertAt(stack, 1, value)
-
                             if (this.keys)
                                 this.keys[value] := []
                         
@@ -116,15 +108,12 @@ return
                                 i := pos
                                 while (i := InStr(text, quot,, i+1)) {
                                     value := StrReplace(SubStr(text, pos+1, i-pos-1), "\\", "\u005c")
-
                                     static tail := A_AhkVersion<"2" ? 0 : -1
                                     if (SubStr(value, tail) != "\")
                                         break
                                 }
-
                                 if (!i)
                                     this.ParseError("'", text, pos)
-
                                 value := StrReplace(value,  "\/",  "/")
                                 , value := StrReplace(value, bashq, quot)
                                 , value := StrReplace(value,  "\b", "`b")
@@ -132,19 +121,16 @@ return
                                 , value := StrReplace(value,  "\n", "`n")
                                 , value := StrReplace(value,  "\r", "`r")
                                 , value := StrReplace(value,  "\t", "`t")
-
                                 pos := i ; update pos
                                 
                                 i := 0
                                 while (i := InStr(value, "\",, i+1)) {
                                     if !(SubStr(value, i+1, 1) == "u")
                                         this.ParseError("\", text, pos - StrLen(SubStr(value, i+1)))
-
                                     uffff := Abs("0x" . SubStr(value, i+2, 4))
                                     if (A_IsUnicode || uffff < 0x100)
                                         value := SubStr(value, 1, i-1) . Chr(uffff) . SubStr(value, i+6)
                                 }
-
                                 if (is_key) {
                                     key := value, next := ":"
                                     continue
@@ -152,7 +138,6 @@ return
                             
                             } else {
                                 value := SubStr(text, pos, i := RegExMatch(text, "[\]\},\s]|$",, pos)-pos)
-
                                 static number := "number", integer :="integer"
                                 if value is %number%
                                 {
@@ -167,24 +152,18 @@ return
                                 ; we can do more here to pinpoint the actual culprit
                                 ; but that's just too much extra work.
                                     this.ParseError(next, text, pos, i)
-
                                 pos += i-1
                             }
-
                             next := holder==root ? "" : is_array ? ",]" : ",}"
                         } ; If InStr("{[", ch) { ... } else
-
                         is_array? key := ObjPush(holder, value) : holder[key] := value
-
                         if (this.keys && this.keys.HasKey(holder))
                             this.keys[holder].Push(key)
                     }
                 
                 } ; while ( ... )
-
                 return this.rev ? this.Walk(root, "") : root[""]
             }
-
             ParseError(expect, ByRef text, pos, len:=1)
             {
                 static quot := Chr(34), qurly := quot . "}"
@@ -203,11 +182,9 @@ return
                     : InStr(expect, "]") ? "Expecting JSON value or array closing ']'"
                     :                      "Expecting JSON value(string, number, true, false, null, object or array)"
                 , line, col, pos)
-
                 static offset := A_AhkVersion<"2" ? -3 : -4
                 throw Exception(msg, offset, SubStr(text, pos, len))
             }
-
             Walk(holder, key)
             {
                 value := holder[key]
@@ -225,26 +202,24 @@ return
                 return this.rev.Call(holder, key, value)
             }
         }
-
         /**
-       * Method: Dump
-       *     Converts an AHK value into a JSON string
-       * Syntax:
-       *     str := JSON.Dump( value [, replacer, space ] )
-       * Parameter(s):
-       *     str        [retval] - JSON representation of an AHK value
-       *     value          [in] - any value(object, string, number)
-       *     replacer  [in, opt] - function object, similar to JavaScript's
-       *                           JSON.stringify() 'replacer' parameter
-       *     space     [in, opt] - similar to JavaScript's JSON.stringify()
-       *                           'space' parameter
-      */
+        * Method: Dump
+        *     Converts an AHK value into a JSON string
+        * Syntax:
+        *     str := JSON.Dump( value [, replacer, space ] )
+        * Parameter(s):
+        *     str        [retval] - JSON representation of an AHK value
+        *     value          [in] - any value(object, string, number)
+        *     replacer  [in, opt] - function object, similar to JavaScript's
+        *                           JSON.stringify() 'replacer' parameter
+        *     space     [in, opt] - similar to JavaScript's JSON.stringify()
+        *                           'space' parameter
+        */
         class Dump extends JSON.Functor
         {
             Call(self, value, replacer:="", space:="")
             {
                 this.rep := IsObject(replacer) ? replacer : ""
-
                 this.gap := ""
                 if (space) {
                     static integer := "integer"
@@ -253,20 +228,15 @@ return
                             this.gap .= " "
                     else
                         this.gap := SubStr(space, 1, 10)
-
                     this.indent := "`n"
                 }
-
                 return this.Str({"": value}, "")
             }
-
             Str(holder, key)
             {
                 value := holder[key]
-
                 if (this.rep)
                     value := this.rep.Call(holder, key, ObjHasKey(holder, key) ? value : JSON.Undefined)
-
                 if IsObject(value) {
                 ; Check object type, skip serialization for other object types such as
                 ; ComObject, Func, BoundFunc, FileObject, RegExMatchObject, Property, etc.
@@ -276,7 +246,6 @@ return
                             stepback := this.indent
                             this.indent .= this.gap
                         }
-
                         is_array := value.IsArray
                     ; Array() is not overridden, rollback to old method of
                     ; identifying array-like objects. Due to the use of a for-loop
@@ -286,7 +255,6 @@ return
                                 is_array := i == A_Index
                             until !is_array
                         }
-
                         str := ""
                         if (is_array) {
                             Loop, % value.Length() {
@@ -303,32 +271,26 @@ return
                                 if (v != "") {
                                     if (this.gap)
                                         str .= this.indent
-
                                     str .= this.Quote(k) . colon . v . ","
                                 }
                             }
                         }
-
                         if (str != "") {
                             str := RTrim(str, ",")
                             if (this.gap)
                                 str .= stepback
                         }
-
                         if (this.gap)
                             this.indent := stepback
-
                         return is_array ? "[" . str . "]" : "{" . str . "}"
                     }
                 
                 } else ; is_number ? value : "value"
                     return ObjGetCapacity([value], 1)=="" ? value : this.Quote(value)
             }
-
             Quote(string)
             {
                 static quot := Chr(34), bashq := "\" . quot
-
                 if (string != "") {
                     string := StrReplace(string,  "\",  "\\")
                     ; , string := StrReplace(string,  "/",  "\/") ; optional in ECMAScript
@@ -338,31 +300,28 @@ return
                     , string := StrReplace(string, "`n",  "\n")
                     , string := StrReplace(string, "`r",  "\r")
                     , string := StrReplace(string, "`t",  "\t")
-
                     static rx_escapable := A_AhkVersion<"2" ? "O)[^\x20-\x7e]" : "[^\x20-\x7e]"
                     while RegExMatch(string, rx_escapable, m)
                         string := StrReplace(string, m.Value, Format("\u{1:04x}", Ord(m.Value)))
                 }
-
                 return quot . string . quot
             }
         }
-
         /**
-       * Property: Undefined
-       *     Proxy for 'undefined' type
-       * Syntax:
-       *     undefined := JSON.Undefined
-       * Remarks:
-       *     For use with reviver and replacer functions since AutoHotkey does not
-       *     have an 'undefined' type. Returning blank("") or 0 won't work since these
-       *     can't be distnguished from actual JSON values. This leaves us with objects.
-       *     Replacer() - the caller may return a non-serializable AHK objects such as
-       *     ComObject, Func, BoundFunc, FileObject, RegExMatchObject, and Property to
-       *     mimic the behavior of returning 'undefined' in JavaScript but for the sake
-       *     of code readability and convenience, it's better to do 'return JSON.Undefined'.
-       *     Internally, the property returns a ComObject with the variant type of VT_EMPTY.
-      */
+        * Property: Undefined
+        *     Proxy for 'undefined' type
+        * Syntax:
+        *     undefined := JSON.Undefined
+        * Remarks:
+        *     For use with reviver and replacer functions since AutoHotkey does not
+        *     have an 'undefined' type. Returning blank("") or 0 won't work since these
+        *     can't be distnguished from actual JSON values. This leaves us with objects.
+        *     Replacer() - the caller may return a non-serializable AHK objects such as
+        *     ComObject, Func, BoundFunc, FileObject, RegExMatchObject, and Property to
+        *     mimic the behavior of returning 'undefined' in JavaScript but for the sake
+        *     of code readability and convenience, it's better to do 'return JSON.Undefined'.
+        *     Internally, the property returns a ComObject with the variant type of VT_EMPTY.
+        */
         Undefined[]
         {
             get {
@@ -370,7 +329,6 @@ return
                 return vt_empty
             }
         }
-
         class Functor
         {
             __Call(method, ByRef arg, args*)
@@ -3128,23 +3086,77 @@ Structure of most functions:
     }
 
     ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
+    ; Use this for creating translations
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CompareLocation(cStr:="",cLang:="English")
+    CompareLocation(cStr:="",c_Lang := "")
     {
-        If (cLang = "English") ; Impliment for later when cLang becomes global from INI read
+        Static Lang := "English"
+        If (c_Lang)
         {
+            Lang := c_Lang
+            Return
+        }
+
+        If (Lang = "English") ; This is the default setting
+        {
+            ; first we confirm if this line contains our zone change phrase
             If InStr(cStr, ": You have entered")
             {
-                CurrentLocation := StrSplit(StrSplit(cStr, " : You have entered")[2], ".", A_Space)[1]
+                ; We split away the rest of the sentence for only location
+
+                CurrentLocation := StrSplit(cStr, " : You have entered "," .`r`n" )[2]
+
+                ; We should now have our location name and can begin comparing
+                ; This compares the captured string to a list of town names
+
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
+
+                ; Now we check if it's a hideout, make sure to whitelist Syndicate
                 If (InStr(CurrentLocation, "Hideout") && !InStr(CurrentLocation, "Syndicate"))
                     OnHideout := True
                 Else
                     OnHideout := False
+
+                ; Now we check if we match mines
                 If (CurrentLocation = "Azurite Mine")
+                    OnMines := True
+                Else
+                    OnMines := False
+
+                Return True
+            }
+        }
+        Else If (Lang = "Spanish") ; This is for Translation
+        {
+            ; This phrase must only be contained in zone changes.
+            If InStr(cStr, " : Has entrado a ")
+            {
+                ; We split away the rest of the sentence for only location
+
+                ; Spanish:
+                CurrentLocation := StrSplit(cStr, " : Has entrado a "," .`r`n")[2]
+
+                ; We should now have our location name and can begin comparing
+                ; This compares the captured string to a list of town names
+
+                If indexOf(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+
+                ; Now we check if it's a hideout, make sure to whitelist Syndicate
+                ; Look for a definitive word that only shows up when your on the hideout
+
+                If (InStr(CurrentLocation, "Guarida") && !InStr(CurrentLocation, "Sindicato"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+
+                ; Now we check if we match mines
+                If (CurrentLocation = "Mina de Azurita")
                     OnMines := True
                 Else
                     OnMines := False
@@ -3173,8 +3185,13 @@ Structure of most functions:
                 ClientLogText := LastLine(CLogFO)
                 If CompareLocation(ClientLogText)
                     Break
-                If (CLogFO.Tell() <= FirstLineLength)
+                If (CLogFO.Tell() <= FirstLineLength || A_Index > 300)
+                {
+                    SetTimer,% A_ThisFunc, Off ; turn off auto set timer
+                    Log("Something is wrong with parsing the Client Log","Client Log parser has been disabled",ClientLog)
+                    MsgBox, 262144, ERROR in Client Log, "There is an issue parsing the file`nOver 300 lines without location, or reached end of file`nClient log parser is being disabled"
                     Break
+                }
             }
             CLogFO.Seek(0, 2) ; Seek to end of file
             timeMon := Round((CoolTime() - timeMon) * 1000000,1)
@@ -6736,6 +6753,7 @@ ft_Gui(cmd)
     Gui, +LastFound
     Critical, Off
     WinWaitClose, % "ahk_id " WinExist()
+    Gui, ft_Main:Default
     ;--------------------------------
     if (Event="ButtonOK")
     {
@@ -6745,33 +6763,23 @@ ft_Gui(cmd)
         s:=SubStr(s, s~="i)\n[;=]+ Copy The")
       }
       else s:=""
-      GuiControl, ft_Main:, scr, % Result "`n" s
+      GuiControl,, scr, % Result "`n" s
+      GuiControl,, MyPic, % Trim(ASCII(Result),"`n")
       Result:=s:=""
     }
     else if (Event="SplitAdd") or (Event="AllAdd")
     {
-      s:=RegExReplace(Result,"\R","`r`n")
-      ControlGet, i, CurrentCol,,, ahk_id %hscr%
-      if (i>1)
-        ControlSend,, {Home}{Down}, ahk_id %hscr%
-      Control, EditPaste, %s%,, ahk_id %hscr%
+      GuiControlGet, s,, scr
+      i:=j:=0, r:="\|<[^>\n]*>[^$\n]+\$\d+\.[\w+/]+"
+      While j:=RegExMatch(s,r,"",j+1)
+        i:=InStr(s,"`n",0,j)
+      GuiControl,, scr, % SubStr(s,1,i-1) . "`n" . Result . SubStr(s,i+1)
+      GuiControl,, MyPic, % Trim(ASCII(Result),"`n")
       Result:=s:=""
     }
     ;----------------------
-    Gui, ft_Main:Show
-    GuiControl, ft_Main:Focus, scr
-    if (Event="ButtonOK")
-    {
-        ControlSend,, {Home}{Down 2}, ahk_id %hscr%
-        ft_Gui("ShowPic")
-        ControlSend,, {Down}, ahk_id %hscr%
-    }
-    if (Event="AllAdd")
-    {
-        ControlSend,, {Home}{Up}, ahk_id %hscr%
-        ft_Gui("ShowPic")
-        ControlSend,, {Down}, ahk_id %hscr%
-    }
+    Gui, Show
+    GuiControl, Focus, scr
     ft_RButton_Off:
     return
   }
@@ -7250,6 +7258,7 @@ ft_Gui(cmd)
         {
           v:=Format("{:d}",InStr(v,"`n")-1) "." bit2base64(v)
           s.="`nText.=""|<" SubStr(Comment,1,1) ">" color "$" v """`n"
+          copyString.="|<" SubStr(Comment,1,1) ">" color "$" v
           Comment:=SubStr(Comment, 2)
         }
       }
@@ -7266,14 +7275,20 @@ ft_Gui(cmd)
       Gui, Hide
       return
     }
-    x:=px-ww+CutLeft+(nW-CutLeft-CutRight)//2
-    y:=py-hh+CutUp+(nH-CutUp-CutDown)//2
+    x:=(bx:=(px-ww+CutLeft))+(bw:=(nW-CutLeft-CutRight))//2
+    y:=(by:=(py-hh+CutUp))+(bh:=(nH-CutUp-CutDown))//2
+    bx2:=bx+bw, by2:=by+bh
     s:=StrReplace(s, "Text.=", "Text:=")
+    If !MonN
+    ft_Gui("Edges")
+    ldif := Abs(EdgeL - bx), tdif := Abs(EdgeT - by)
+    rdif := Abs(EdgeR - bx2), bdif := Abs(EdgeB - by2)
     s=
     (
 t1:=A_TickCount
 %s%
-if (ok:=FindText(%x%-150000, %y%-150000, 150000, 150000, 0, 0, Text))
+`;X1,Y1,X2,Y2 are adjusted to screen edges
+if (ok:=FindText(%bx%-%ldif%, %by%-%tdif%, %bx2%+%rdif%, %by2%+%bdif%, 0, 0, Text))
 {
   CoordMode, Mouse
   X:=ok.1.x, Y:=ok.1.y, Comment:=ok.1.id
@@ -7329,7 +7344,7 @@ for i,v in ok
       {
         c:=cors[k], cors.SelPos:=k
         r:=(c>>16)&0xFF, g:=(c>>8)&0xFF, b:=c&0xFF
-        GuiControl,, SelGray, % (r*38+g*75+b*15)>>7
+        GuiControl,, SelGray, % gray[k]
         GuiControl,, SelColor, %c%
         GuiControl,, SelR, %r%
         GuiControl,, SelG, %g%
@@ -7391,6 +7406,18 @@ for i,v in ok
     Sleep, 1000
     Gui, Destroy
     return
+  }
+  If (cmd="Edges")
+  {
+    EdgeL:=EdgeT:=EdgeR:=EdgeB:=0
+    SysGet, MonN, 80
+    loop, %MonN%
+    {
+      SysGet, Mon%A_Index%, Monitor, %A_Index%
+      EdgeL := (Mon%A_Index%Left < EdgeL ? Mon%A_Index%Left : EdgeL ), EdgeR := (Mon%A_Index%Right > EdgeR ? Mon%A_Index%Right : EdgeR )
+      EdgeT := (Mon%A_Index%Top < EdgeT ? Mon%A_Index%Top : EdgeT ), EdgeB := (Mon%A_Index%Bottom > EdgeB ? Mon%A_Index%Bottom : EdgeB )
+    }
+    Return
   }
 
   ft_MainGuiClose:
@@ -8155,12 +8182,14 @@ for i,v in ok
     ; and Use Pic(Text,1) to add the text library to Pic()'s Lib,
     ; Use Pic("comment1|comment2|...") to get text images from Lib
 
-    Pic(comments, add_to_Lib=0)
+    Pic(comments, add_to_Lib:=0, ind:=1)
     {
-        static Lib:=[]
+        static Lib:={"1":[]}
         SetFormat, IntegerFast, d
         if (add_to_Lib)
         {
+            If !IsObject(Lib[ind])
+                Lib[ind]:=[]
             re:="<([^>]*)>[^$]+\$\d+\.[\w+/]+"
             Loop, Parse, comments, |
             if RegExMatch(A_LoopField,re,r)
@@ -8168,9 +8197,9 @@ for i,v in ok
                 s1:=Trim(r1), s2:=""
                 Loop, Parse, s1
                 s2.="_" . Ord(A_LoopField)
-                Lib[s2]:=r
+                Lib[ind][s2]:=r
             }
-            Lib[""]:=""
+            Lib[ind][""]:=""
         }
         else
         {
@@ -8180,15 +8209,15 @@ for i,v in ok
             s1:=Trim(A_LoopField), s2:=""
             Loop, Parse, s1
                 s2.="_" . Ord(A_LoopField)
-            Text.="|" . Lib[s2]
+            Text.="|" . Lib[ind][s2]
             }
             return, Text
         }
     }
 
-    PicN(Number)
+    PicN(Number, ind:=1)
     {
-        return, Pic( RegExReplace(Number, ".", "|$0") )
+        return, Pic( RegExReplace(Number, ".", "|$0"), 0, ind )
     }
 
     ; Use PicX(Text) to automatically cut into multiple characters

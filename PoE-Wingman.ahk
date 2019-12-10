@@ -97,9 +97,9 @@
     Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     ; Create Executable group for gameHotkey, IfWinActive
     global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
-    for n, exe in POEGameArr {
+    for n, exe in POEGameArr
         GroupAdd, POEGameGroup, ahk_exe %exe%
-    }
+	Global GameStr := "ahk_group POEGameGroup"
     Hotkey, IfWinActive, ahk_group POEGameGroup
         
     OnMessage(0x5555, "MsgMonitor")
@@ -294,15 +294,17 @@
 		Global YesOpenMap := True
 		Global YesClickPortal := True
 		Global RelogOnQuit := True
+		Global cLang := "English"
+		CompareLocation("",cLang)
 		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 		Global CurrentLocation := ""
-		Global ClientTowns := [ "Lioneye's Watch"
-				,"The Forest Encampment"
-				,"The Sarn Encampment"
-				,"Highgate"
-				,"Overseer's Tower"
-				,"The Bridge Encampment"
-				,"Oriath Docks"
+		Global ClientTowns := [ "Lioneye's Watch", "La Vigilancia de Lioneye"
+				,"The Forest Encampment", "El Campamento Forestal"
+				,"The Sarn Encampment", "El Campamento de Sarn"
+				,"Highgate", "Atalaya"
+				,"Overseer's Tower", "La Torre del Capataz"
+				,"The Bridge Encampment", "El Campamento del Puente"
+				,"Oriath Docks", "Las DÃ¡rsenas de Oriath"
 				,"Oriath" ]
 		Global CLogFO
 
@@ -481,7 +483,6 @@
 		Global HPerc := 100
 		Global GameX, GameY, GameW, GameH, mouseX, mouseY
 		Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
-		Global GameStr := "ahk_group POEGameGroup"
 
 		; Loot colors for the vacuum
 		Global LootColors := { 1 : 0x6565A3
@@ -1288,6 +1289,8 @@
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 	Gui Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
 	Gui add, Button, gSelectClientLog x+5 , Locate Logfile
+	Gui add, DropDownList, vcLang gClientLanguage xs y+10 , %cLang%||English|Spanish
+	Gui add, Text, x+10, Language of Client.txt
 	IfNotExist, %A_ScriptDir%\data\leagues.json
 	{
 		UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
@@ -2167,6 +2170,7 @@ Return
 				IdentifyRoutine()
 		}
 		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+		RandomSleep(60,90)
 		MouseMove, xx, yy, 0
 	Return
 	; VendorRoutine - Does vendor functions
@@ -7299,7 +7303,7 @@ Return
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
-				if (ok:=FindText( Round(GameW * .93) , Round(GameW * .15), GameW , Round(GameH * .9), 0, 0, SkillUpStr))
+				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr))
 				{
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
 					If (GetKeyState("LButton","P"))
@@ -7308,7 +7312,7 @@ Return
 						Click, Right, up
 					MouseGetPos, mX, mY
 					BlockInput, MouseMove
-					LeftClick(X,Y)
+					SwiftClick(X,Y)
 					MouseMove, mX, mY, 0
 					Sleep, 60
 					If (GetKeyState("LButton","P"))
@@ -7590,6 +7594,8 @@ Return
 			
 			;Settings for the Client Log file location
 			IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
+			IniRead, cLang, Settings.ini, Log, cLang, English
+			CompareLocation("",cLang)
 
 			If FileExist(ClientLog)
 				Monitor_GameLogs(1)
@@ -11413,6 +11419,12 @@ Return
 			Gui, submit
 			MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- ID/Vend/Stash`nOnStash -- ID/Vend/Stash`nOnDiv -- ID/Vend/Stash`nOnVendor -- ID/Vend/Stash`nEmpty Inventory -- ID/Vend/Stash`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
 			Hotkeys()
+		Return
+
+		ClientLanguage:
+			Gui, submit, NoHide
+			IniWrite, %cLang%, Settings.ini, Log, cLang
+			CompareLocation("",cLang)
 		Return
 
 		SelectClientLog:

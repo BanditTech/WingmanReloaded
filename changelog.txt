@@ -1,6 +1,25 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.03 December/10/2019
+--------------------------------------------------------------------------------
+Improved the auto Skillup, new default string to search for
+    this needs to be manually updated, click and select new default in dropdown
+
+I have added in the system for parsing different laguages of Client.txt files
+    For now Spanish has been added, looking for submissions to add more languages
+    Look for new option in Configuration tab, under where you choose file location
+    I added comments into the code for anyone attempting to make translations
+
+Added log.txt message for issues with client.txt file
+    Will report if reaching 300 lines or end of file without a Location
+    this is likely caused by language issues, will allow script to continue
+
+Added adjustments from FindText adjustment edit 220
+    He has developed a better way of inserting the Text:="|<>ResultColor" lines
+Added adjustments of my own, added indexes to Pic function and PicN
+    This is for eventually creating OCR libraries for buff duration, vendor text etc 
+
 Version .08.02 December/07/2019
 --------------------------------------------------------------------------------
 Added a check for being on character before resampling health and mana values

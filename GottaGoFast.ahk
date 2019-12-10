@@ -75,6 +75,7 @@
      Global AreaScale := 2
      Global LootColors := { 1 : 0x222222
           , 2 : 0xFFFFFF}
+     Global cLang := "English"
      Global CurrentLocation := ""
      Global ClientTowns := [ "Lioneye's Watch"
                ,"The Forest Encampment"
