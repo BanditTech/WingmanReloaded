@@ -1,24 +1,27 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .08.03 December/10/2019
+Version .08.03 December/11/2019
 --------------------------------------------------------------------------------
-Improved the auto Skillup, new default string to search for
-    this needs to be manually updated, click and select new default in dropdown
+Bugfix for the Client.txt file load
+    Was getting caught in a loop of reading the file contents
+    new method reverses the file when first reading it
+        this allows for a standard parse loop which is much more reliable
+    This should fix any script hangups on load
+
+Improved the auto Skillup string, new default string to use
+    This needs to be manually updated, click and select new default in dropdown
+    New string has 100% match rate for skillup while not clicking greyed out ones
+    This also makes it much faster :D
 
 I have added in the system for parsing different laguages of Client.txt files
-    For now Spanish has been added, looking for submissions to add more languages
+    I have been able to add Spanish, looking for submissions to add more languages
     Look for new option in Configuration tab, under where you choose file location
     I added comments into the code for anyone attempting to make translations
 
-Added log.txt message for issues with client.txt file
-    Will report if reaching 300 lines or end of file without a Location
-    this is likely caused by language issues, will allow script to continue
-
-Added adjustments from FindText adjustment edit 220
+Library update to FindText 7.1
     He has developed a better way of inserting the Text:="|<>ResultColor" lines
-Added adjustments of my own, added indexes to Pic function and PicN
-    This is for eventually creating OCR libraries for buff duration, vendor text etc 
+    also added new functions for PicLib, PicInfo
 
 Version .08.02 December/07/2019
 --------------------------------------------------------------------------------
