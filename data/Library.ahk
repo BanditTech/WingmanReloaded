@@ -3035,56 +3035,10 @@ Structure of most functions:
 
 
 
-/*** File Tail Functions - Check Location - Use the Client Log file to determine where you are!
+/*** Monitor_GameLogs - CompareLocation - Use the Client Log file to determine where you are!
 * Version:
-*     v1.0.0 [updated 11/26/2019 (MM/DD/YYYY)]
+*     v1.0.3 [updated 12/11/2019 (MM/DD/YYYY)]
 */
-    ; FileCheck - Checks for changes in file size
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    FileCheck(file){
-        Static Size0
-        FileGetSize Size, %file%
-        If (Size0 = "")
-        {
-            Size0 := Size ; Size has not been captured yet
-            Return False
-        }
-        If (Size0 >= Size)
-            Return False
-        Size0 := Size ; File size increased!
-    Return True
-    }
-
-    ; AHK version of the Tail function
-    LastLine(SomeFileObject, L:=1) {
-        static SEEK_CUR := 1
-        static SEEK_END := 2
-        LineCount := 0
-        loop {
-            SomeFileObject.Seek(-1, SEEK_CUR)
-            
-            if (SomeFileObject.Read(1) = "`n") {
-                StartPosition := SomeFileObject.Tell()
-                
-                Line := SomeFileObject.ReadLine()
-                SomeFileObject.Seek(StartPosition - 1)
-                If (Line != "")
-                {
-                    If !LineCount
-                        LineStr := Line
-                    Else
-                        LineStr .= "`n" . Line 
-                    ++LineCount
-                }
-                If (L=LineCount)
-                    return LineStr
-            }
-            else {
-                SomeFileObject.Seek(-1, SEEK_CUR)
-            }
-        }
-    }
-
     ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
     ; Use this for creating translations
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
