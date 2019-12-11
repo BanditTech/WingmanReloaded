@@ -6451,7 +6451,7 @@ ft_Gui(cmd)
       +Center Page20 Line20 NoTicks AltSubmit
     GuiControlGet, Pic, Pos, %hPic%
     PicW:=Round(PicW), PicH:=Round(PicH), MySlider1:=MySlider2:=0
-    Gui, Add, Button, xm+110 w50 vRepU  gft_Run, -U
+    Gui, Add, Button, xm+125 w50 vRepU  gft_Run, -U
     Gui, Add, Button, x+0    wp  vCutU  gft_Run, U
     Gui, Add, Button, x+0    wp  vCutU3 gft_Run, U3
     ;--------------
@@ -6473,7 +6473,7 @@ ft_Gui(cmd)
     Gui, Add, Button, x+15   w50 vRepR  gft_Run, -R
     Gui, Add, Button, x+0    wp  vCutR  gft_Run, R
     Gui, Add, Button, x+0    wp  vCutR3 gft_Run Section, R3
-    Gui, Add, Button, xm+110 w50 vRepD  gft_Run, -D
+    Gui, Add, Button, xm+125 w50 vRepD  gft_Run, -D
     Gui, Add, Button, x+0    wp  vCutD  gft_Run, D
     Gui, Add, Button, x+0    wp  vCutD3 gft_Run, D3
     ;--------------
@@ -7241,7 +7241,7 @@ if (ok:=FindText(%bx%-%ldif%, %by%-%tdif%, %bx2%+%rdif%, %by2%+%bdif%, 0, 0, Tex
 
 MsgBox, 4096,Test Results, `% "Found :``t" Round(ok.MaxIndex()) "``n``n"
   . "Time  :``t" (A_TickCount-t1) " ms``n``n"
-  . "Pos   :``t " X ", " Y "``n``n"
+  . "Pos   :``t" X ", " Y "``n``n"
   . "Result:``t" (ok ? "Success ! " Comment : "Failed !")
 
 for i,v in ok
@@ -7344,7 +7344,7 @@ for i,v in ok
     Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
     Gui, Color, Yellow
     Gui, Font, cRed s48 bold
-    Gui, Add, Text,, Succeed
+    Gui, Add, Text,, Success
     WinSet, Transparent, 200
     Gui, Show, NA y0, ScreenShot Tip
     Sleep, 1000
@@ -7444,7 +7444,7 @@ for i,v in ok
             ft_EditEvents1()
     }
 
-    ft_ShowToolTip(cmd="")
+    ft_ShowToolTip(cmd:="")
     {
         static
         ListLines, Off
@@ -7479,7 +7479,7 @@ for i,v in ok
         }
     }
 
-    ft_getc(px, py, ww, hh, ScreenShot=1)
+    ft_getc(px, py, ww, hh, ScreenShot:=1)
     {
         local  ; Unaffected by Super-global variables
         xywh2xywh(px-ww,py-hh,2*ww+1,2*hh+1,x,y,w,h)
@@ -7513,7 +7513,7 @@ for i,v in ok
         return, cors
     }
 
-    ft_ShowScreenShot(Show=1) {
+    ft_ShowScreenShot(Show:=1) {
         local  ; Unaffected by Super-global variables
         static hBM, Ptr:=A_PtrSize ? "UPtr":"UInt"
         Gui, ft_ScreenShot:Destroy
@@ -8132,17 +8132,15 @@ for i,v in ok
     }
 
     ; You can put the text library at the beginning of the script,
-    ; and Use Pic(Text,1) to add the text library to Pic()'s Lib,
+    ; and Use Pic(Text,1) to add the text library to PicLib()'s Lib,
     ; Use PicLib("comment1|comment2|...") to get text images from Lib
 
     PicLib(comments, add_to_Lib:=0, index:=1)
     {
-        static Lib:={"1":[]}
+        static Lib:=[]
         SetFormat, IntegerFast, d
         if (add_to_Lib)
         {
-            If !IsObject(Lib[ind])
-                Lib[ind]:=[]
             re:="<([^>]*)>[^$]+\$\d+\.[\w+/]+"
             Loop, Parse, comments, |
             if RegExMatch(A_LoopField,re,r)
@@ -8229,7 +8227,7 @@ for i,v in ok
     ; based on the result returned by FindText()
     ; Return Association array {ocr:Text, x:X, y:Y}
 
-    OcrOK(ok, offsetX=20, offsetY=20)
+    OcrOK(ok, offsetX:=20, offsetY:=20)
     {
         ocr_Text:=ocr_X:=ocr_Y:=min_X:=""
         For k,v in ok
@@ -8275,7 +8273,7 @@ for i,v in ok
     ; Sort the results returned by FindText() from left to right
     ; and top to bottom, ignore slight height difference
 
-    SortOK(ok, dy=10)
+    SortOK(ok, dy:=10)
     {
         if !IsObject(ok)
             return, ok
@@ -8323,7 +8321,7 @@ for i,v in ok
 
     ; Prompt mouse position in remote assistance
 
-    MouseTip(x="", y="")
+    MouseTip(x:="", y:="")
     {
         if (x="")
         {
