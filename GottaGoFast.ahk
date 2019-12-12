@@ -77,14 +77,6 @@
           , 2 : 0xFFFFFF}
      Global cLang := "English"
      Global CurrentLocation := ""
-     Global ClientTowns := [ "Lioneye's Watch"
-               ,"The Forest Encampment"
-               ,"The Sarn Encampment"
-               ,"Highgate"
-               ,"Overseer's Tower"
-               ,"The Bridge Encampment"
-               ,"Oriath Docks"
-               ,"Oriath" ]
      Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 
 ; Ensure is Admin
@@ -492,6 +484,8 @@
           IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
           ;Settings for the Client Log file location
           IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
+          IniRead, cLang, Settings.ini, Log, cLang, English
+          CompareLocation("",cLang)
           If FileExist(ClientLog)
                Monitor_GameLogs(1)
           ;Coordinates
@@ -801,7 +795,7 @@
                     {
                          If !(OnCooldownUtility%A_Index%)
                          {
-                              If FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%)
+                              If FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
                               {
                                    OnCooldownUtility%A_Index%:=1
                                    SetTimer, TimerUtility%A_Index%, % CooldownUtility%A_Index%

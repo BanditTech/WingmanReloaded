@@ -1,6 +1,16 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.04 December/11/2019
+--------------------------------------------------------------------------------
+Chinese, Korean, German, Russian, French, Portuguese, and Thai added
+    This should cover all the different available languages
+    These translations require you to encode your Client.txt file in UFT-8-BOM
+    In notepad, open client.txt then save as, open encoding dropdown > UFT-8 with BOM
+        This fixes accents and special characters
+
+Added log output for zone change when the C log debug messages option is checked
+
 Version .08.03 December/11/2019
 --------------------------------------------------------------------------------
 Bugfix for the Client.txt file load

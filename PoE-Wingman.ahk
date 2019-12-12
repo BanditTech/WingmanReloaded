@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.03
+    Global VersionNumber := .08.04
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -137,8 +137,6 @@
     Run "%A_ScriptDir%\GottaGoFast.ahk"
     OnExit("CleanUp")
     
-    If FileExist("settings.ini")
-        readFromFile()
 	Global Enchantment  := []
 	Global Corruption := []
 	Global Bases
@@ -294,19 +292,6 @@
 		Global YesOpenMap := True
 		Global YesClickPortal := True
 		Global RelogOnQuit := True
-		Global cLang := "English"
-		CompareLocation("",cLang)
-		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
-		Global CurrentLocation := ""
-		Global ClientTowns := [ "Lioneye's Watch", "La Vigilancia de Lioneye"
-				,"The Forest Encampment", "El Campamento Forestal"
-				,"The Sarn Encampment", "El Campamento de Sarn"
-				,"Highgate", "Atalaya"
-				,"Overseer's Tower", "La Torre del Capataz"
-				,"The Bridge Encampment", "El Campamento del Puente"
-				,"Oriath Docks", "Las DÃ¡rsenas de Oriath"
-				,"Oriath" ]
-		Global CLogFO
 
 		ft_ToolTip_Text=
 			(LTrim
@@ -430,6 +415,12 @@
 			StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
 			YesNinjaDatabase = Enable to Update Ninja Database and load at start
 			)
+	; Globals For client.txt file
+		Global cLang := "English"
+		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
+		Global CurrentLocation := ""
+		Global SupportedLanguages := "English|Spanish|Chinese|Korean|German|Russian|Portuguese|Thai|French"
+		Global CLogFO
 	; ASCII converted strings of images
 		Global 1080_HealthBarStr := "|<1080 Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
 			, 1080_MasterStr := "|<1080 Master>*100$46.wy1043UDVtZXNiAy7byDbslmCDsyTX78wDXsCAw3sSDVs7U7lsyTUSSTXXty8ntiSDbslDW3sy1XW"
@@ -1289,7 +1280,7 @@
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 	Gui Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
 	Gui add, Button, gSelectClientLog x+5 , Locate Logfile
-	Gui add, DropDownList, vcLang gClientLanguage xs y+10 , %cLang%||English|Spanish
+	Gui add, DropDownList, vcLang gClientLanguage xs y+10 , %cLang%||%SupportedLanguages%
 	Gui add, Text, x+10, Language of Client.txt
 	IfNotExist, %A_ScriptDir%\data\leagues.json
 	{
@@ -2059,10 +2050,6 @@
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 15
-	; Check for Client Log Updates
-	; Gosub, CheckLocation
-	; SetTimer, CheckLocation, 15
-	; Monitor_GameLogs(1)
 	; Check for gems to level
 	SetTimer, AutoSkillUp, 200
 	; Detonate mines timer check
@@ -2133,7 +2120,7 @@ Return
 			{ 
 				If (YesSearchForStash && (OnTown || OnHideout || OnMines))
 				{
-					If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
+					If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr,0))
 					{
 						LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
 						Loop, 666
@@ -2792,7 +2779,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr))
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr, 0))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2800,7 +2787,7 @@ Return
 				{
 					Loop, 666
 					{
-						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr))
+						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr, 0))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
 							Sleep, 60*Latency
@@ -2836,7 +2823,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr))
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr, 0))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2844,7 +2831,7 @@ Return
 				{
 					Loop, 666
 					{
-						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr))
+						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr, 0))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
 							Sleep, 60*Latency
@@ -7303,7 +7290,7 @@ Return
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
-				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr))
+				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr, 0))
 				{
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
 					If (GetKeyState("LButton","P"))
