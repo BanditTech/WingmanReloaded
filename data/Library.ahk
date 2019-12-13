@@ -6431,6 +6431,7 @@ Structure of most functions:
                     If (A_Index > 1000)
                     {
                         CurrentLocation := "1k Line Break"
+                        Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
                         Break
                     }
                 }
