@@ -792,7 +792,7 @@
                     {
                          If !(OnCooldownUtility%A_Index%)
                          {
-                              If FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
+                              If FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%)
                               {
                                    OnCooldownUtility%A_Index%:=1
                                    SetTimer, TimerUtility%A_Index%, % CooldownUtility%A_Index%

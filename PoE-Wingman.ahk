@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.05
+    Global VersionNumber := .08.06
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -2116,7 +2116,7 @@ Return
 			{ 
 				If (YesSearchForStash && (OnTown || OnHideout || OnMines))
 				{
-					If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr,0))
+					If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
 					{
 						LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
 						Loop, 666
@@ -2775,7 +2775,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr, 0))
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2783,7 +2783,7 @@ Return
 				{
 					Loop, 666
 					{
-						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr, 0))
+						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
 							Sleep, 60*Latency
@@ -2819,7 +2819,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr, 0))
+				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2827,7 +2827,7 @@ Return
 				{
 					Loop, 666
 					{
-						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr, 0))
+						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
 							Sleep, 60*Latency
@@ -7286,7 +7286,7 @@ Return
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
-				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr, 0))
+				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr))
 				{
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
 					If (GetKeyState("LButton","P"))
@@ -7303,6 +7303,7 @@ Return
 					If (GetKeyState("RButton","P"))
 						Click, Right, down
 					BlockInput, MouseMoveOff
+					ok:=""
 				}
 			}
 		}
