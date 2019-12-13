@@ -1,6 +1,22 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.07 December/13/2019
+--------------------------------------------------------------------------------
+Bugfix for Vendor after stash
+    was not searching entire screen like it was supposed to
+
+Fixes for Auto-Quit
+    Bugfix for 50 and 60% threshold quit
+    Bugfix for portal quit, release mouse buttons so it can cast portal
+
+Adjusted Skillup string again by 2 shades
+    Was clicking greyed out skills, update to new default on strings tab
+    Also checks if you have the options screen open
+        Was getting false positives when there was greyed out skill on options
+
+GuiStatus can return true or false when called for a single status
+
 Version .08.06 December/12/2019
 --------------------------------------------------------------------------------
 Bugfix for Auto-Skillup

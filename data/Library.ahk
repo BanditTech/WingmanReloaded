@@ -2975,7 +2975,7 @@ Structure of most functions:
 				} Else {
 				%Fetch%:=False
 				}
-			Return
+			Return %Fetch%
 			}
 		pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
 		If (POnChar=varOnChar)  {

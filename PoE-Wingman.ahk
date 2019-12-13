@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.06
+    Global VersionNumber := .08.07
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -427,7 +427,7 @@
 			, 1080_ZanaStr := "|<1080 Zana>*100$44.U3zzzzzs0zzzzzyyTrvyzjz7twT7nzXwDXnsTsz3sQy7wTYS3D8yDtbYHnDXy1tYw3lz0CMC0Mznnb3ba01wtsnt02T6TAy8"
 			, 1080_SellItemsStr := "|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
 			, 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
-			, 1080_SkillUpStr := "|<Skill Up>0xAA6204@0.62$9.sz7ss0000sz7sw"
+			, 1080_SkillUpStr := "|<Skill Up>0xAA6204@0.64$9.sz7ss0000sz7sw"
 			, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 	; FindText strings from INI
 		Global StashStr, VendorStr, HealthBarStr, SellItemsStr, SkillUpStr
@@ -2775,7 +2775,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr))
+				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, VendorStr))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2783,7 +2783,7 @@ Return
 				{
 					Loop, 666
 					{
-						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr))
+						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
 							Sleep, 60*Latency
@@ -2819,7 +2819,7 @@ Return
 					StockScrolls()
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, VendorStr))
+				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, VendorStr))
 				{
 					LeftClick(Vendor.1.1, Vendor.1.2)
 				}
@@ -2827,7 +2827,7 @@ Return
 				{
 					Loop, 666
 					{
-						If (Sell:=FindText( GameX + GameW / 3, GameY, GameX + GameW / 2 / 3 , GameH, 0, 0, SellItemsStr))
+						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
 							Sleep, 60*Latency
@@ -5875,6 +5875,7 @@ Return
 							}
 					}
 					If ( (TriggerLife50!="00000")
+						|| (AutoQuit&&RadioQuit50)
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
@@ -5899,6 +5900,7 @@ Return
 							}
 					}
 					If ( (TriggerLife60!="00000")
+						|| (AutoQuit&&RadioQuit60)
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
@@ -6183,6 +6185,7 @@ Return
 							}
 					}
 					If ( (TriggerLife50!="00000")
+						|| (AutoQuit&&RadioQuit50)
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
@@ -6207,6 +6210,7 @@ Return
 							}
 					}
 					If ( (TriggerLife60!="00000")
+						|| (AutoQuit&&RadioQuit60)
 						|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
 						|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
@@ -7131,6 +7135,11 @@ Return
 			Thread, NoTimers, true		;Critical
 			Keywait, Alt
 			BlockInput On
+			BlockInput MouseMove
+			If (GetKeyState("LButton","P"))
+				Click, up
+			If (GetKeyState("RButton","P"))
+				Click, Right, up
 			MouseGetPos xx, yy
 			RandomSleep(53,87)
 			
@@ -7140,12 +7149,8 @@ Return
 			Send {%hotkeyInventory%}
 			RandomSleep(56,68)
 			
-			MouseMove, PortalScrollX, PortalScrollY, 0
-			RandomSleep(56,68)
-			
-			Click Right
-			RandomSleep(56,68)
-			
+			RightClick(PortalScrollX, PortalScrollY)
+
 			Send {%hotkeyInventory%}
 			If YesOpenMap
 				Send {Tab}
@@ -7157,6 +7162,7 @@ Return
 			Else
 				MouseMove, xx, yy, 0
 			BlockInput Off
+			BlockInput MouseMoveOff
 			RandomSleep(300,600)
 		return
 		}
@@ -7282,12 +7288,14 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	AutoSkillUp()
 	{
-		If YesAutoSkillUp
+		If (YesAutoSkillUp && OnChar)
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
 				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr))
 				{
+					If !GuiStatus("OnChar")
+						Return
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
 					If (GetKeyState("LButton","P"))
 						Click, up
