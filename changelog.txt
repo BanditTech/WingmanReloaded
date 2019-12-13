@@ -1,6 +1,20 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.08 December/13/2019
+--------------------------------------------------------------------------------
+Standardized town names for adding Town specific vendors later
+Created a function to compare a value to an array of arrays and return parent index
+    All towns have been grouped with their translations
+    CompareLocation can now return the english name of the current town
+
+Item bases updated for 3.9 located %A_ScriptDir%\Data\Bases.json
+    Update for the location of the Item Bases
+    Delete old file and reload script to update that, or download from master github
+
+Quest items are now auto clicked by Loot Vacuum!
+    Will click the Green text, this includes new league mechanic
+
 Version .08.07 December/13/2019
 --------------------------------------------------------------------------------
 Bugfix for Vendor after stash

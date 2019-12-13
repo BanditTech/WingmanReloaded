@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.07
+    Global VersionNumber := .08.08
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -246,7 +246,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\Bases.json
 	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/data/base_items.min.json, %A_ScriptDir%\data\Bases.json
+    	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.min.json, %A_ScriptDir%\data\Bases.json
 		if ErrorLevel {
  			Log("data","uhoh", "Bases.json")
 			MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
@@ -2056,6 +2056,7 @@
 
 ; Hotkeys to reload or exit script
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	#IfWinActive
 	; Reload Script with Alt+Escape
 	!Escape::
 		Reload
@@ -2065,6 +2066,7 @@
 	#Escape::
 		ExitApp
 		Return
+    #IfWinActive, ahk_group POEGameGroup
 	; Hotkey to pause the detonate mines
 	#MaxThreadsPerHotkey, 1
 	~d::
@@ -2085,7 +2087,6 @@
 		}
 	Return
 	#MaxThreadsPerHotkey, 2
-
 Return
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5613,6 +5614,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	LootScan(){
 		LootScanCommand:
+			Static GreenHex := 0x24DE32
 			Pressed := GetKeyState(hotkeyLootScan)
 			While (Pressed&&LootVacuum)
 			{
@@ -5624,9 +5626,10 @@ Return
 						ClampGameScreen(ASx := mX - AreaScale, ASy := mY - AreaScale)
 						ClampGameScreen(ASxx := mX + AreaScale, ASyy := mY + AreaScale)
 						PixelSearch, ScanPx, ScanPy, ASx, ASy, ASxx, ASyy, ColorHex, 0, Fast
+						checksrch := ErrorLevel
 						If !(Pressed := GetKeyState(hotkeyLootScan))
 							Break 2
-						If (ErrorLevel = 0)
+						If (checksrch = 0)
 						{
 							ScanPx += 15
 							ScanPy += 15
@@ -5636,13 +5639,25 @@ Return
 							Break
 						}
 					}
+					PixelSearch, ScanPx, ScanPy, ASx, ASy, ASxx, ASyy, GreenHex, 30, Fast
+					checksrch := ErrorLevel
+					If !(Pressed := GetKeyState(hotkeyLootScan))
+						return
+					If (checksrch = 0)
+					{
+						; ScanPx += 15
+						; ScanPy += 15
+						Click %ScanPx%, %ScanPy%
+						If (LVdelay > 0)
+							Sleep, %LVdelay%
+					}
 				}
 				Else
 				{
 					MouseGetPos mX, mY
 					PixelGetColor, scolor, mX, mY
 					Pressed := GetKeyState(hotkeyLootScan)
-					If indexOf(scolor,LootColors)
+					If (indexOf(scolor,LootColors) || CompareHex(scolor,GreenHex,53,1))
 					{
 						click %mX%, %mY%
 					}

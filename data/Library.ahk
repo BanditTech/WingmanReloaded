@@ -3250,7 +3250,7 @@ Structure of most functions:
                 h2 := ToRGB(var) 
                 if (index < fromIndex){
                     Continue
-                }else if (CompareHex(h1, h2, vary)){
+                }else if (CompareRGB(h1, h2, vary)){
                     return index
                 }
             }
@@ -3267,6 +3267,21 @@ Structure of most functions:
                 }
             }
         }
+
+    ; Check if a specific value is part of an array's array and return the parent index
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    indexOfArr(var, Arr, fromIndex:=1) 
+    {
+        for index, a in Arr 
+        {
+            if (index < fromIndex)
+                Continue
+            for k, value in a
+                if (value = var)
+                    return index
+        }
+        Return False
+    }
 
     ; Transform an array to a comma separated string
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3567,12 +3582,29 @@ Structure of most functions:
 
 /*** hex color tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
 * Lib: ColorTools.ahk
+*     ColorCompare function
 *     ToRGBfromBGR function
 *     ToRGB function
 *     hexBGRToRGB function
-*     CompareHex function
+*     CompareRGB function
 */
 
+    ; Compare two hex colors as their R G B elements, puts all the below together
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    CompareHex(color1, color2, vary:=1, BGR:=0)
+    {
+        If BGR
+        {
+            c1 := ToRGBfromBGR(color1)
+            c2 := ToRGBfromBGR(color2)
+        }
+        Else
+        {
+            c1 := ToRGB(color1)
+            c2 := ToRGB(color2)
+        }
+        Return CompareRGB(c1,c2,vary)
+    }
     ; Converts a hex BGR color into its R G B elements
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ToRGBfromBGR(color) {
@@ -3596,7 +3628,7 @@ Structure of most functions:
 
     ; Compares two converted HEX codes as R G B within the variance range (use ToRGB to convert first)
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CompareHex(c1, c2, vary:=1) {
+    CompareRGB(c1, c2, vary:=1) {
         rdiff := Abs( c1.r - c2.r )
         gdiff := Abs( c1.g - c2.g )
         bdiff := Abs( c1.b - c2.b )
@@ -4407,7 +4439,7 @@ Structure of most functions:
         Found := OHB.X
         ScreenShot(GameX, GameY, GameX + GameW, GameY + GameH)
         temp1 := ToRGB(CID), temp2 := ToRGB(ScreenShot_GetColor(OHB.X+1, PosY))
-        If !CompareHex(temp1,temp2,Variance)
+        If !CompareRGB(temp1,temp2,Variance)
         {
             Ding(500,4,"OHB Obscured, Moved, or Dead" )
             Return HPerc
@@ -4416,7 +4448,7 @@ Structure of most functions:
         {
             pX:= OHB.pX[A_Index]
             temp1 := ToRGB(CID), temp2 := ToRGB(ScreenShot_GetColor(pX, PosY))
-            If CompareHex(temp1,temp2,Variance)
+            If CompareRGB(temp1,temp2,Variance)
                 Found := pX
             Else 
             {
@@ -6194,17 +6226,19 @@ Structure of most functions:
     CompareLocation(cStr:="")
     {
         Static Lang := ""
-        ;                            English / Thai                 French                 German                     Russian                       Spanish                Portuguese              Chinese          Korean
-        Static ClientTowns :=  [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"      , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"    , "라이온아이 초소에"
-                                ,"The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"         , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"    , "숲 야영지에"
-                                ,"The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"    , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"    , "사안 야영지에"
-                                ,"Highgate"              , "Hautevoie"              , "Hohenpforte"           , "Македы"                , "Atalaya"                                             , "統治者之殿"  , "하이게이트에"
-                                ,"Overseer's Tower"      , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"    , "감시탑에"
-                                ,"The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"      , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"    , "다리 야영지에"
-                                ,"Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath"  , "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"  , "오리아스 부두에"
-                                ,"Oriath"                                                                     , "Ориат"                                                                         , "奧瑞亞"      , "오리아스에" ]
+        ;                                                       English / Thai                 French                 German                     Russian                       Spanish                Portuguese              Chinese          Korean
+        Static ClientTowns :=  { "Lioneye's Watch" :        [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"      , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"    , "라이온아이 초소에" ]
+                                , "The Forest Encampment" : [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"         , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"    , "숲 야영지에" ]
+                                , "The Sarn Encampment" :   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"    , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"    , "사안 야영지에" ]
+                                , "Highgate" :              [ "Highgate"              , "Hautevoie"              , "Hohenpforte"           , "Македы"                , "Atalaya"                                             , "統治者之殿"  , "하이게이트에" ]
+                                , "Overseer's Tower" :      [ "Overseer's Tower"      , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"    , "감시탑에" ]
+                                , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"      , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"    , "다리 야영지에" ]
+                                , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath"  , "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"  , "오리아스 부두에" ]
+                                , "Oriath" :                [ "Oriath"                                                                     , "Ориат"                                                                         , "奧瑞亞"      , "오리아스에" ] }
         Static LangString :=    { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"     , "German" : " : Ihr habt '"
                                 , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
+        If (cStr="Town")
+            Return indexOfArr(CurrentLocation,ClientTowns)
         If (Lang = "")
         {
             For k, v in LangString
@@ -6226,7 +6260,7 @@ Structure of most functions:
                 CurrentLocation := StrSplit(cStr, " : You have entered "," .`r`n" )[2]
                 ; We should now have our location name and can begin comparing
                 ; This compares the captured string to a list of town names
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
@@ -6248,7 +6282,7 @@ Structure of most functions:
             If InStr(cStr, " : Has entrado a ")
             {
                 CurrentLocation := StrSplit(cStr, " : Has entrado a "," .`r`n")[2]
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
@@ -6268,7 +6302,7 @@ Structure of most functions:
             If InStr(cStr, " : 你已進入：")
             {
                 CurrentLocation := StrSplit(cStr, " : 你已進入："," .。`r`n")[2]
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
@@ -6288,7 +6322,7 @@ Structure of most functions:
             If InStr(cStr, "진입했습니다")
             {
                 CurrentLocation := StrSplit(StrSplit(cStr,"] : ")[2], "진입했습니다"," .`r`n")[1]
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
@@ -6308,7 +6342,7 @@ Structure of most functions:
             If InStr(cStr, " : Ihr habt '")
             {
                 CurrentLocation := StrSplit(StrSplit(cStr," : Ihr habt '")[2], "' betreten"," .`r`n")[1]
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
@@ -6328,7 +6362,7 @@ Structure of most functions:
             If InStr(cStr, " : Вы вошли в область ")
             {
                 CurrentLocation := StrSplit(cStr," : Вы вошли в область "," .`r`n")[2]
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
@@ -6348,7 +6382,7 @@ Structure of most functions:
             If InStr(cStr, " : Vous êtes à présent dans : ")
             {
                 CurrentLocation := StrSplit(cStr," : Vous êtes à présent dans : "," .`r`n")[2]
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
@@ -6368,7 +6402,7 @@ Structure of most functions:
             If InStr(cStr, " : Você entrou em: ")
             {
                 CurrentLocation := StrSplit(cStr," : Você entrou em: "," .`r`n")[2]
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
@@ -6388,7 +6422,7 @@ Structure of most functions:
             If InStr(cStr, " : คุณเข้าสู่ ")
             {
                 CurrentLocation := StrSplit(cStr," : คุณเข้าสู่ "," .`r`n")[2]
-                If indexOf(CurrentLocation,ClientTowns)
+                If indexOfArr(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
