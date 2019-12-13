@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.04
+    Global VersionNumber := .08.05
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -416,10 +416,8 @@
 			YesNinjaDatabase = Enable to Update Ninja Database and load at start
 			)
 	; Globals For client.txt file
-		Global cLang := "English"
 		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 		Global CurrentLocation := ""
-		Global SupportedLanguages := "English|Spanish|Chinese|Korean|German|Russian|Portuguese|Thai|French"
 		Global CLogFO
 	; ASCII converted strings of images
 		Global 1080_HealthBarStr := "|<1080 Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
@@ -1280,8 +1278,6 @@
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 	Gui Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
 	Gui add, Button, gSelectClientLog x+5 , Locate Logfile
-	Gui add, DropDownList, vcLang gClientLanguage xs y+10 , %cLang%||%SupportedLanguages%
-	Gui add, Text, x+10, Language of Client.txt
 	IfNotExist, %A_ScriptDir%\data\leagues.json
 	{
 		UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
@@ -7581,8 +7577,6 @@ Return
 			
 			;Settings for the Client Log file location
 			IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
-			IniRead, cLang, Settings.ini, Log, cLang, English
-			CompareLocation("",cLang)
 
 			If FileExist(ClientLog)
 				Monitor_GameLogs(1)
@@ -11406,12 +11400,6 @@ Return
 			Gui, submit
 			MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- ID/Vend/Stash`nOnStash -- ID/Vend/Stash`nOnDiv -- ID/Vend/Stash`nOnVendor -- ID/Vend/Stash`nEmpty Inventory -- ID/Vend/Stash`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
 			Hotkeys()
-		Return
-
-		ClientLanguage:
-			Gui, submit, NoHide
-			IniWrite, %cLang%, Settings.ini, Log, cLang
-			CompareLocation("",cLang)
 		Return
 
 		SelectClientLog:

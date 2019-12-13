@@ -75,7 +75,6 @@
      Global AreaScale := 2
      Global LootColors := { 1 : 0x222222
           , 2 : 0xFFFFFF}
-     Global cLang := "English"
      Global CurrentLocation := ""
      Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 
@@ -484,8 +483,6 @@
           IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
           ;Settings for the Client Log file location
           IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
-          IniRead, cLang, Settings.ini, Log, cLang, English
-          CompareLocation("",cLang)
           If FileExist(ClientLog)
                Monitor_GameLogs(1)
           ;Coordinates

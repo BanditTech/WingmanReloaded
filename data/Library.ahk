@@ -6191,83 +6191,71 @@ Structure of most functions:
     ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
     ; Use this for creating translations
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CompareLocation(cStr:="",c_Lang := "")
+    CompareLocation(cStr:="")
     {
-        Static Lang := "English"
-        If (c_Lang)
+        Static Lang := ""
+        ;                            English / Thai                 French                 German                     Russian                       Spanish                Portuguese              Chinese          Korean
+        Static ClientTowns :=  [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"      , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"    , "라이온아이 초소에"
+                                ,"The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"         , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"    , "숲 야영지에"
+                                ,"The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"    , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"    , "사안 야영지에"
+                                ,"Highgate"              , "Hautevoie"              , "Hohenpforte"           , "Македы"                , "Atalaya"                                             , "統治者之殿"  , "하이게이트에"
+                                ,"Overseer's Tower"      , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"    , "감시탑에"
+                                ,"The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"      , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"    , "다리 야영지에"
+                                ,"Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath"  , "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"  , "오리아스 부두에"
+                                ,"Oriath"                                                                     , "Ориат"                                                                         , "奧瑞亞"      , "오리아스에" ]
+        Static LangString :=    { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"     , "German" : " : Ihr habt '"
+                                , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
+        If (Lang = "")
         {
-            Lang := c_Lang
-            Return
+            For k, v in LangString
+            {
+                If InStr(cStr, v)
+                {
+                    Lang := k
+                    Log("Client.txt language has been detected as: " Lang)
+                    Break
+                }
+            }
         }
-        ;                    English / Thai                 French                 German                     Russian                       Spanish                Portuguese              Chinese          Korean
-        ClientTowns := [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"      , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"    , "라이온아이 초소에"
-                        ,"The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"         , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"    , "숲 야영지에"
-                        ,"The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"    , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"    , "사안 야영지에"
-                        ,"Highgate"              , "Hautevoie"              , "Hohenpforte"           , "Македы"                , "Atalaya"                                             , "統治者之殿"  , "하이게이트에"
-                        ,"Overseer's Tower"      , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"    , "감시탑에"
-                        ,"The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"      , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"    , "다리 야영지에"
-                        ,"Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath"  , "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"  , "오리아스 부두에"
-                        ,"Oriath"                                                                     , "Ориат"                                                                         , "奧瑞亞"      , "오리아스에" ]
-
         If (Lang = "English") ; This is the default setting
         {
             ; first we confirm if this line contains our zone change phrase
             If InStr(cStr, ": You have entered")
             {
                 ; We split away the rest of the sentence for only location
-
                 CurrentLocation := StrSplit(cStr, " : You have entered "," .`r`n" )[2]
-
                 ; We should now have our location name and can begin comparing
                 ; This compares the captured string to a list of town names
-
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
                 ; Now we check if it's a hideout, make sure to whitelist Syndicate
                 If (InStr(CurrentLocation, "Hideout") && !InStr(CurrentLocation, "Syndicate"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
                 ; Now we check if we match mines
                 If (CurrentLocation = "Azurite Mine")
                     OnMines := True
                 Else
                     OnMines := False
-
                 Return True
             }
         }
-        Else If (Lang = "Spanish") ; This is for Translation
+        Else If (Lang = "Spanish") 
         {
-            ; This phrase must only be contained in zone changes.
             If InStr(cStr, " : Has entrado a ")
             {
-                ; We split away the rest of the sentence for only location
-
-                ; Spanish:
                 CurrentLocation := StrSplit(cStr, " : Has entrado a "," .`r`n")[2]
-
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-                ;MsgBox %CurrentLocation%
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                ; Look for a definitive word that only shows up when your on the hideout
-
                 If (InStr(CurrentLocation, "Guarida") && !InStr(CurrentLocation, "Sindicato"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
-                ; Now we check if we match mines
                 If (CurrentLocation = "Mina de Azurita")
                     OnMines := True
                 Else
@@ -6275,33 +6263,19 @@ Structure of most functions:
                 Return True
             }
         }
-        Else If (Lang = "Chinese") ; This is for Translation
+        Else If (Lang = "Chinese") 
         {
-            ; This phrase must only be contained in zone changes.
-            If InStr(cStr, " : 你已經進入")
+            If InStr(cStr, " : 你已進入：")
             {
-                ; We split away the rest of the sentence for only location
-
-                ; Chinese:
-                CurrentLocation := StrSplit(cStr, " : 你已經進入"," .`r`n")[2]
-
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-
+                CurrentLocation := StrSplit(cStr, " : 你已進入："," .。`r`n")[2]
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                ; Look for a definitive word that only shows up when your on the hideout
-
                 If (InStr(CurrentLocation, "藏身處") && !InStr(CurrentLocation, "永生密教"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
-                ; Now we check if we match mines
                 If (CurrentLocation = "碧藍礦坑")
                     OnMines := True
                 Else
@@ -6309,33 +6283,19 @@ Structure of most functions:
                 Return True
             }
         }
-        Else If (Lang = "Korean") ; This is for Translation
+        Else If (Lang = "Korean") 
         {
-            ; This phrase must only be contained in zone changes.
             If InStr(cStr, "진입했습니다")
             {
-                ; We split away the rest of the sentence for only location
-
-                ; Chinese:
                 CurrentLocation := StrSplit(StrSplit(cStr,"] : ")[2], "진입했습니다"," .`r`n")[1]
-
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                ; Look for a definitive word that only shows up when your on the hideout
-
                 If (InStr(CurrentLocation, "은신처에") && !InStr(CurrentLocation, "신디케이트"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
-                ; Now we check if we match mines
                 If (CurrentLocation = "남동석 광산에")
                     OnMines := True
                 Else
@@ -6343,32 +6303,19 @@ Structure of most functions:
                 Return True
             }
         }
-        Else If (Lang = "German") ; This is for Translation
+        Else If (Lang = "German") 
         {
-            ; This phrase must only be contained in zone changes.
             If InStr(cStr, " : Ihr habt '")
             {
-                ; We split away the rest of the sentence for only location
-                ; Chinese:
                 CurrentLocation := StrSplit(StrSplit(cStr," : Ihr habt '")[2], "' betreten"," .`r`n")[1]
-
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                ; Look for a definitive word that only shows up when your on the hideout
-
                 If (InStr(CurrentLocation, "Versteckter") && !InStr(CurrentLocation, "Syndikat"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
-                ; Now we check if we match mines
                 If (CurrentLocation = "Azuritmine")
                     OnMines := True
                 Else
@@ -6376,32 +6323,19 @@ Structure of most functions:
                 Return True
             }
         }
-        Else If (Lang = "Russian") ; This is for Translation
+        Else If (Lang = "Russian") 
         {
-            ; This phrase must only be contained in zone changes.
             If InStr(cStr, " : Вы вошли в область ")
             {
-                ; We split away the rest of the sentence for only location
-                ; Chinese:
                 CurrentLocation := StrSplit(cStr," : Вы вошли в область "," .`r`n")[2]
-
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                ; Look for a definitive word that only shows up when your on the hideout
-
                 If (InStr(CurrentLocation, "убежище") && !InStr(CurrentLocation, "синдикат"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
-                ; Now we check if we match mines
                 If (CurrentLocation = "Азуритовая шахта")
                     OnMines := True
                 Else
@@ -6409,32 +6343,19 @@ Structure of most functions:
                 Return True
             }
         }
-        Else If (Lang = "French") ; This is for Translation
+        Else If (Lang = "French") 
         {
-            ; This phrase must only be contained in zone changes.
             If InStr(cStr, " : Vous êtes à présent dans : ")
             {
-                ; We split away the rest of the sentence for only location
-                ; Chinese:
                 CurrentLocation := StrSplit(cStr," : Vous êtes à présent dans : "," .`r`n")[2]
-
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                ; Look for a definitive word that only shows up when your on the hideout
-
                 If (InStr(CurrentLocation, "Repaire") && !InStr(CurrentLocation, "Syndicat"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
-                ; Now we check if we match mines
                 If (CurrentLocation = "La Mine d'Azurite")
                     OnMines := True
                 Else
@@ -6442,32 +6363,19 @@ Structure of most functions:
                 Return True
             }
         }
-        Else If (Lang = "Portuguese") ; This is for Translation
+        Else If (Lang = "Portuguese") 
         {
-            ; This phrase must only be contained in zone changes.
             If InStr(cStr, " : Você entrou em: ")
             {
-                ; We split away the rest of the sentence for only location
-                ; Chinese:
                 CurrentLocation := StrSplit(cStr," : Você entrou em: "," .`r`n")[2]
-
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                ; Look for a definitive word that only shows up when your on the hideout
-
                 If (InStr(CurrentLocation, "Refúgio") && !InStr(CurrentLocation, "Sindicato"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
-                ; Now we check if we match mines
                 If (CurrentLocation = "Mina de Azurita")
                     OnMines := True
                 Else
@@ -6475,32 +6383,19 @@ Structure of most functions:
                 Return True
             }
         }
-        Else If (Lang = "Thai") ; This is for Translation
+        Else If (Lang = "Thai") 
         {
-            ; This phrase must only be contained in zone changes.
             If InStr(cStr, " : คุณเข้าสู่ ")
             {
-                ; We split away the rest of the sentence for only location
-                ; Chinese:
                 CurrentLocation := StrSplit(cStr," : คุณเข้าสู่ "," .`r`n")[2]
-
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-
                 If indexOf(CurrentLocation,ClientTowns)
                     OnTown := True
                 Else
                     OnTown := False
-
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                ; Look for a definitive word that only shows up when your on the hideout
-
                 If (InStr(CurrentLocation, "Hideout") && !InStr(CurrentLocation, "Syndicate"))
                     OnHideout := True
                 Else
                     OnHideout := False
-
-                ; Now we check if we match mines
                 If (CurrentLocation = "Azurite Mine")
                     OnMines := True
                 Else

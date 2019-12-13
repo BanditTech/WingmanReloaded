@@ -1,6 +1,12 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.05 December/12/2019
+--------------------------------------------------------------------------------
+Chinese parser fixed
+
+Client.txt language is now detected automatically on load
+
 Version .08.04 December/12/2019
 --------------------------------------------------------------------------------
 Chinese, Korean, German, Russian, French, Portuguese, and Thai added
