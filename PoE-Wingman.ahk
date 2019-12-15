@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.08
+    Global VersionNumber := .08.09
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -289,7 +289,6 @@
 		Global IgnoredSlot := {}
 		Global BlackList := {}
 		Global OHBxy := 0
-		Global YesOpenMap := True
 		Global YesClickPortal := True
 		Global RelogOnQuit := True
 
@@ -425,12 +424,15 @@
 			, 1080_NavaliStr := "|<1080 Navali>*100$56.TtzzzzzzznyTzzzzzzwTbxxzTjrx3tyCDXnsy0ST3ntsTDk3bkwSS7nw8Nt77D8wz36SNtnmDDks7USBw3nwD1k3mS0Qz3sQwwDbbDkz6TD3ntngDtblswyA38"
 			, 1080_HelenaStr := "|<1080 Helena>*100$62.DlzzzzzzzznwTzzzzzzzwz7zxzzvyzjDlkCDUQT7nnwSPnwrXnsQz7bwzDsQy701tzDny3D8k0S3nw7YHnAz7Vwz3tYw3DltzDnyMC0HwSTnwzb3bYz7bwvDtsntDls70kCTAy8"
 			, 1080_ZanaStr := "|<1080 Zana>*100$44.U3zzzzzs0zzzzzyyTrvyzjz7twT7nzXwDXnsTsz3sQy7wTYS3D8yDtbYHnDXy1tYw3lz0CMC0Mznnb3ba01wtsnt02T6TAy8"
+			, 1080_GreustStr := "|<1080 Greust>*100$61.zzzzzzzzzzz3zzzzzzzzy0TzzzzzzzyDDzzzTjbzyDi0s77XUU37z6SPXtaKBbzX7Dlwnz7nzlXbsyMzXsyMnkSTC7lwSA3sTDbVsyDa1wzbnswT3n4STnvyCDktX7DstrD7w0llUS1sDXznzzzznzTzzzzzzzzzzzy"
 			, 1080_SellItemsStr := "|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
 			, 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
-			, 1080_SkillUpStr := "|<Skill Up>0xAA6204@0.64$9.sz7ss0000sz7sw"
+			, 1080_SkillUpStr := "|<1080 Skill Up>0xAA6204@0.66$9.sz7ss0000sz7sw"
 			, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 	; FindText strings from INI
-		Global StashStr, VendorStr, HealthBarStr, SellItemsStr, SkillUpStr
+		Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr
+		, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
+		, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
 	; Click Vendor after stash
 		Global YesVendorAfterStash
     ; General
@@ -474,10 +476,10 @@
 		Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
 
 		; Loot colors for the vacuum
-		Global LootColors := { 1 : 0x6565A3
-			, 2 : 0x383877
-			, 3 : 0xC4FEF6
-			, 4 : 0x99FECC}
+		Global LootColors := { 1 : 0xC4FEF6
+			, 2 : 0x99FECC
+			, 3 : 0x6565A3
+			, 4 : 0x383877}
 
 		;Item Parse blank Arrays
 		Global Prop := {}
@@ -820,22 +822,23 @@
 	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap gSelectMainGuiTabs, Flasks and Utility|Configuration|Strings|Inventory|Chat|Controller
 	;#######################################################################################################Strings Tab
 	Gui, Tab, Strings
+	Gui, Add, Button, x1 y1 w1 h1, 
 	Gui, Font,
 	Gui, Font, Bold cBlack
-	Gui Add, GroupBox, 		Section		w605 h435						x12 	y30, 				String Samples - Only Adjust if not 1080 Height
+	Gui Add, GroupBox, 		Section		w605 h435						x12 	y30, 				String Samples from the FindText library - Use the dropdown to select from 1080 defaults
 	Gui, Font,
 
 	Gui +Delimiter?
-	Gui, Add, Text, xs+10 ys+20 , OHB 2 pixel bar, starting at center
-	Gui, Add, ComboBox, xp y+8 w580 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"
-	Gui, Add, Text, xp y+20 , Capture of the vendor nameplate
-	Gui, Add, ComboBox, y+8 w580 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"
-	Gui, Add, Text, xp y+20 , Capture of the words Sell Items
-	Gui, Add, ComboBox, y+8 w580 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"
-	Gui, Add, Text, xp y+20 , Capture of the Stash
-	Gui, Add, ComboBox, y+8 w580 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
-	Gui, Add, Text, xp y+20 , Capture of the Skill up icon
-	Gui, Add, ComboBox, y+8 w580 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"
+	Gui, Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
+	Gui, Add, ComboBox, xp y+8 w280 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"
+	Gui, Add, Text, x+10 x+10 ys , Capture of the Skill up icon
+	Gui, Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"
+	Gui, Add, Text, xs y+15 section , Capture of the words Sell Items
+	Gui, Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"
+	Gui, Add, Text, x+10 ys , Capture of the Stash
+	Gui, Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
+	Gui, Add, Text, xs y+15 section, Capture of the Hideout vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"
 	Gui +Delimiter|
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
@@ -1367,7 +1370,6 @@
 	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	    xs y+6 , Pop Flasks Respect CD?
 	Gui Add, Checkbox, gUpdateExtra	vYesPopAllExtraKeys Checked%YesPopAllExtraKeys%                         	     y+8 , Pop Flasks Uses any extra keys?
 	Gui Add, Checkbox, gUpdateExtra	vYesClickPortal Checked%YesClickPortal%                         	     y+8 , Click portal after opening?
-	Gui Add, Checkbox, gUpdateExtra	vYesOpenMap Checked%YesOpenMap%                         	     y+8 , Open Map after portal?
 
 	;~ =========================================================================================== Subgroup: Hints
 	Gui,Font,Bold
@@ -5612,57 +5614,50 @@ Return
 
 	; LootScan - Finds matching colors under the cursor while key pressed
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	LootScan(){
+	LootScan(Reset:=0){
 		LootScanCommand:
-			Static GreenHex := 0x24DE32
+			Static NewStyle := 1, GreenHex := 0x24DE32
+			If (!ComboHex || Reset)
+			{
+				ComboHex := Hex2FindText(GreenHex,12,1,0,0)
+				ComboHex .= Hex2FindText(LootColors,0,1,1,1)
+				ComboHex := """" . ComboHex . """"
+				If Reset
+					Return
+			}
 			Pressed := GetKeyState(hotkeyLootScan)
-			While (Pressed&&LootVacuum)
+			If (Pressed&&LootVacuum)
+			Loop
 			{
 				If AreaScale
 				{
-					For k, ColorHex in LootColors
+					MouseGetPos mX, mY
+					ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
+					ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
+					Pressed := GetKeyState(hotkeyLootScan)
+					If (loot := FindText(x,y,xx,yy,0,0,ComboHex,1,0))
 					{
-						MouseGetPos mX, mY
-						ClampGameScreen(ASx := mX - AreaScale, ASy := mY - AreaScale)
-						ClampGameScreen(ASxx := mX + AreaScale, ASyy := mY + AreaScale)
-						PixelSearch, ScanPx, ScanPy, ASx, ASy, ASxx, ASyy, ColorHex, 0, Fast
-						checksrch := ErrorLevel
-						If !(Pressed := GetKeyState(hotkeyLootScan))
-							Break 2
-						If (checksrch = 0)
-						{
-							ScanPx += 15
-							ScanPy += 15
+						ScanPx := loot.1.x, ScanPy := loot.1.y
+						If (loot.1.id = "FIVE")
+							ScanPx += 15, ScanPy += 15
+						If (Pressed := GetKeyState(hotkeyLootScan))
 							Click %ScanPx%, %ScanPy%
-							If (LVdelay > 0)
-								Sleep, %LVdelay%
-							Break
-						}
-					}
-					PixelSearch, ScanPx, ScanPy, ASx, ASy, ASxx, ASyy, GreenHex, 30, Fast
-					checksrch := ErrorLevel
-					If !(Pressed := GetKeyState(hotkeyLootScan))
-						return
-					If (checksrch = 0)
-					{
-						; ScanPx += 15
-						; ScanPy += 15
-						Click %ScanPx%, %ScanPy%
-						If (LVdelay > 0)
+						If (LVdelay >= 60)
 							Sleep, %LVdelay%
+						else
+							Sleep, 60
 					}
 				}
 				Else
 				{
 					MouseGetPos mX, mY
 					PixelGetColor, scolor, mX, mY
-					Pressed := GetKeyState(hotkeyLootScan)
 					If (indexOf(scolor,LootColors) || CompareHex(scolor,GreenHex,53,1))
 					{
 						click %mX%, %mY%
 					}
 				}
-			}
+			} Until !Pressed
 		Return
 		}
 
@@ -7158,17 +7153,14 @@ Return
 			MouseGetPos xx, yy
 			RandomSleep(53,87)
 			
-			Send {%hotkeyCloseAllUI%} 
-			RandomSleep(53,68)
-			
-			Send {%hotkeyInventory%}
-			RandomSleep(56,68)
-			
+			If !(OnInventory)
+			{
+				Send {%hotkeyInventory%}
+				RandomSleep(56,68)
+			}
 			RightClick(PortalScrollX, PortalScrollY)
 
 			Send {%hotkeyInventory%}
-			If YesOpenMap
-				Send {Tab}
 			If YesClickPortal || ChickenFlag
 			{
 				Sleep, 90*Latency
@@ -7552,7 +7544,6 @@ Return
 			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
 			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
 			IniRead, YesClickPortal, settings.ini, General, YesClickPortal, 0
-			IniRead, YesOpenMap, settings.ini, General, YesOpenMap, 0
 			IniRead, RelogOnQuit, settings.ini, General, RelogOnQuit, 0
 			IniRead, AreaScale, settings.ini, General, AreaScale, 60
 			IniRead, LVdelay, settings.ini, General, LVdelay, 15
@@ -7642,7 +7633,7 @@ Return
 			varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
 
 			;Loot Vacuum Colors
-			IniRead, LootColors, settings.ini, Loot Colors, LootColors, 0x6565A3, 0x383877, 0xC4FEF6, 0x99FECC
+			IniRead, LootColors, settings.ini, Loot Colors, LootColors, 0xC4FEF6, 0x99FECC, 0x6565A3, 0x383877
 			;Create an array out of the read string
 			LootColors := StrSplit(LootColors, ",")
 
@@ -8306,7 +8297,6 @@ Return
 			IniWrite, %AreaScale%, settings.ini, General, AreaScale
 			IniWrite, %LVdelay%, settings.ini, General, LVdelay
 			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
-			IniWrite, %YesOpenMap%, settings.ini, General, YesOpenMap
 			IniWrite, %RelogOnQuit%, settings.ini, General, RelogOnQuit
 
 			; Overhead Health Bar
@@ -10794,15 +10784,19 @@ Return
 		LootColorsMenu()
 		{
 			DrawLootColors:
+				Static LG_Add, LG_Rem
+				Global LootColors, LG_Vary
 				Gui, Submit
 				gui,LootColors: new, LabelLootColors
 				gui,LootColors: -MinimizeBox
-				gui,LootColors: add, groupbox,% "section w320 h" 24 * (LootColors.Count() / 2) + 25 , Loot Colors:
+				gui,LootColors: add, groupbox,% "section w320 h" 24 * (LootColors.Count() / 2) + 25 + 40 , Loot Colors:
 				gui,LootColors: add, Button, gSaveLootColorArray yp-5 xp+70 h22, Save to INI
 				Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 x+10 yp+1,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
 				Gui,LootColors: Add, Text, 										x+3 yp+5							, AreaScale
 				Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-6,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
 				Gui,LootColors: Add, Text, 										x+3 yp+5							, Delay
+				gui,LootColors: add, Button, gAdjustLootGroup vLG_Add y+10 xm+50 h22 w100, Add Color Set
+				gui,LootColors: add, Button, gAdjustLootGroup vLG_Rem yp x+20 h22 w100, Rem Color Set
 
 				For k, val in LootColors
 				{
@@ -10816,7 +10810,7 @@ Return
 					Item++
 					If A_Index = 1
 					{
-						gui,LootColors: add, text, yp+28 xs+10,% "Background " Item " Colors: "
+						gui,LootColors: add, text, yp+38 xs+10,% "Background " Item " Colors: "
 						gui,LootColors: add, Progress, x+10 yp-5 w50 h20 c%color% BackgroundBlack,100
 						continue
 					}
@@ -10826,24 +10820,39 @@ Return
 				Gui,LootColors: show,,Loot Vacuum settings
 			return
 
+			AdjustLootGroup:
+				Global LootColors
+				Gui, Submit
+				ind := LootColors.MaxIndex()
+				If (A_GuiControl = "LG_Add")
+				{
+					LootColors[ind + 1] := 0xFFFFFF
+					LootColors[ind + 2] := 0xFFFFFF
+				}
+				Else If (A_GuiControl = "LG_Rem" && ind > 2)
+				{
+					LootColors.Pop(ind)
+					LootColors.Pop(ind - 1)
+				}
+				Gui, LootColors: Destroy
+				LootColorsMenu()
+			Return
+
 			ResampleLootColor:
-				groupNumber := StrSplit(A_GuiControl, A_Space)
-				groupNumber := GroupNumber[2]
-				MO_Index := (groupNumber * 2) - 1
-				BG_Index := MO_Index + 1
+				Thread, NoTimers, True ; Critical
+				groupNumber := StrSplit(A_GuiControl, A_Space)[2]
+				MO_Index := (BG_Index := groupNumber * 2) - 1
 				IfWinExist, ahk_group POEGameGroup
 				{
 					WinActivate, ahk_group POEGameGroup
-					Rescale()
 				} else {
 					MsgBox % "PoE Window does not exist. `nCannot sample the loot color."
 					Return
 				}
-				; LootColors[MO_Index] := 0xFFFFFF
-				; LootColors[BG_Index] := 0x000000
+				RemoveToolTip()
 				ToolTip,% "Press ""A"" to sample loot background"
 					. "`nHold Escape and press ""A"" to cancel"
-					, % ScrCenter.X - 115 , % ScrCenter.Y -30
+					, % ScrCenter.X - 115 , % ScrCenter.Y - GameH // 3
 				KeyWait, a, D
 				ToolTip
 				KeyWait, a
@@ -10871,7 +10880,7 @@ Return
 					Gui, LootColors: Show
 					Exit
 				}
-				
+				Critical, Off
 				Gui, LootColors: Destroy
 				LootColorsMenu()
 			Return
@@ -10879,6 +10888,7 @@ Return
 			SaveLootColorArray:
 				LCstr := hexArrToStr(LootColors)
 				IniWrite, %LCstr%, settings.ini, Loot Colors, LootColors
+				LootScan(1)
 				MsgBox % "LootColors saved with the following hex values:"
 					. "`n" . LCstr
 			Return
@@ -11134,7 +11144,6 @@ Return
 			IniWrite, %YesSearchForStash%, settings.ini, General, YesSearchForStash
 			IniWrite, %YesVendorAfterStash%, settings.ini, General, YesVendorAfterStash
 			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
-			IniWrite, %YesOpenMap%, settings.ini, General, YesOpenMap
 			IniWrite, %RelogOnQuit%, settings.ini, General, RelogOnQuit
 			If (YesPersistantToggle)
 				AutoReset()
@@ -11166,7 +11175,7 @@ Return
 
 		UpdateStringEdit:
 			Gui, Submit, NoHide
-			IniWrite,% %A_GuiControl%, Settings.ini, FindText Strings,%  A_GuiControl
+			IniWrite,% %A_GuiControl%, Settings.ini, FindText Strings,% A_GuiControl
 			If A_GuiControl = HealthBarStr
 				OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
 		Return

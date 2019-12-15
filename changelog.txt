@@ -1,6 +1,40 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.09 December/15/2019
+--------------------------------------------------------------------------------
+Adjusted Skillup string again by 2 shades more strict
+    update to new default on strings tab
+Re-arranging the string tab to make room for town vendors
+
+Library stuff - Changes and additions
+    CompareHex has been renamed CompareRGB, new function named CompareHex
+        CompareHex will accept RGB or BGR hex input and compare within variance
+    Function added to library to build Findtext strings from single pixel color
+        Can accept arrays of colors or individually, and assign variance
+        Use this to build 1 or 5 pixel squares to use for searching colors
+
+Loot Vacuum adjustments and improvements
+    Loot Vacuum now uses the FindText strings from Hex2FindText
+        Searches all colors at once instead of individually
+        This makes it much much faster, once again FindText library coming through!
+    Now that we search faster, we can add more colors
+        Add or remove sets of colors for your own custom filter colors
+        As always ensure the background is not transparent or it will not match
+        Will not let you remove the last set of colors
+    Default color order has been flipped, rarer items prioritized
+        Quest color is now also first
+
+Reverted Client.txt first scan method, no longer flips file contents
+    I think I have found all the issues, and client will parse as long as encoded
+    Just simply stops after 1000 loops if it still has not found location
+        Will write to log informing that you may need to encode your file with BOM
+    This method had no issues with large files, no need to load into memory
+
+Decided next major version I will finally swap all values using BGR to RGB
+    This will allow for consistency between different parts of the script
+    But will cause a need to recalibrate all samples which are using BGR
+
 Version .08.08 December/13/2019
 --------------------------------------------------------------------------------
 Standardized town names for adding Town specific vendors later

@@ -3605,6 +3605,27 @@ Structure of most functions:
         }
         Return CompareRGB(c1,c2,vary)
     }
+    ; Convert a color to a two/five pixel square findtext string
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Hex2FindText(Color,vary:=0,BGR:=0,Arr:=0,Five:=0)
+    {
+        If Arr
+        {
+            build := ""
+            For k, v in Color
+            {
+                If BGR
+                    v := hexBGRToRGB(v)
+                build .= "|<FIVE>" . v . "@" . Round((100-vary)/100,2) . (Five ? "$5.zzzzk" : "$2.y")
+            }
+            Return build
+        }
+        Else
+        {
+            Return "|<TWO>" . Color . "@" . Round((100-vary)/100,2) . (Five ? "$5.zzzzk" : "$2.y")
+        }
+    }
+
     ; Converts a hex BGR color into its R G B elements
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ToRGBfromBGR(color) {
@@ -3983,7 +4004,10 @@ Structure of most functions:
     {
         SetTimer, , Off
         Loop, 20
+        {
+            SetTimer, RemoveTT%A_Index%, Off
             ToolTip,,,,%A_Index%
+        }
         return
 
         RemoveTT1:
@@ -6451,29 +6475,33 @@ Structure of most functions:
         if (Initialize) 
         {
             CLogFO := FileOpen(ClientLog, "r")
-            FileGetSize, errchk, ClientLog, M
-            If (errchk >= 128)
-                CurrentLocation := "Log too large"
-            Else
+            CLogFo.Seek(0)
+            CLogFo.ReadLine()
+            FirstLineLength := CLogFo.Tell()
+            CLogFO.Seek(0, 2) ; Seek to end of file
+            Loop
             {
-                latestFileContent := CLogFo.Read()
-                latestFileContent := TF_ReverseLines(latestFileContent)
-                Loop, Parse,% latestFileContent,`n,`r
+                ClientLogText := LastLine(CLogFO)
+                If CompareLocation(ClientLogText)
+                    Break
+                If (CLogFO.Tell() <= FirstLineLength)
                 {
-                    If CompareLocation(A_LoopField)
-                        Break
-                    If (A_Index > 1000)
-                    {
-                        CurrentLocation := "1k Line Break"
-                        Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
-                        Break
-                    }
+                    CurrentLocation := "End of File"
+                    Log("End of File reached, ensure the file is encoded with UTF-8-BOM")
+                    Break
                 }
-                If CurrentLocation = ""
-                    CurrentLocation := "Nothing Found"
+                If (A_Index > 1000)
+                {
+                    CurrentLocation := "1k Line Break"
+                    Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
+                    Break
+                }
             }
+            If CurrentLocation = ""
+                CurrentLocation := "Nothing Found"
+            CLogFO.Seek(0, 2) ; Seek to end of file
             timeMon := Round((CoolTime() - timeMon) * 1000,1)
-            If DebugMessages && YesLocation && WinActive(GameStr)
+            If (DebugMessages && YesLocation && WinActive(GameStr))
             {
                 Ding(6000,14,"OnTown   `t" OnTown)
                 Ding(6000,15,"OnHideout`t" OnHideout)
@@ -6483,32 +6511,63 @@ Structure of most functions:
             }
             Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
             Return
-        }
+        } Else {
+            latestFileContent := CLogFo.Read()
 
-        latestFileContent := CLogFo.Read()
-
-        if (latestFileContent) 
-        {
-            Loop, Parse,% latestFileContent,`n,`r 
+            if (latestFileContent) 
             {
-                ClientLogText := A_LoopField
-                ; MsgBox, line %A_LoopField%
-                CompareLocation(ClientLogText)
+                Loop, Parse,% latestFileContent,`n,`r 
+                {
+                    ClientLogText := A_LoopField
+                    ; MsgBox, line %A_LoopField%
+                    CompareLocation(ClientLogText)
+                }
+            }
+            timeMon := Round((CoolTime() - timeMon) * 1000000,1)
+            If DebugMessages && YesLocation && WinActive(GameStr)
+            {
+                Ding(2000,14,"OnTown   `t" OnTown)
+                Ding(2000,15,"OnHideout`t" OnHideout)
+                Ding(2000,16,"OnMines  `t" OnMines)
+                Ding(2000,17,CurrentLocation)
+                Ding(2000,18,"MicroSeconds  " timeMon)
+            }
+            If YesLocation && (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
+                Log("Zone Change Detected","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
+            Return
+        }
+    }
+
+    ; AHK version of the Tail function
+    LastLine(SomeFileObject, L:=1) {
+        static SEEK_CUR := 1
+        static SEEK_END := 2
+        LineCount := 0
+        loop {
+            SomeFileObject.Seek(-1, SEEK_CUR)
+            
+            if (SomeFileObject.Read(1) = "`n") {
+                StartPosition := SomeFileObject.Tell()
+                
+                Line := SomeFileObject.ReadLine()
+                SomeFileObject.Seek(StartPosition - 1)
+                If (Line != "")
+                {
+                    If !LineCount
+                        LineStr := Line
+                    Else
+                        LineStr .= "`n" . Line 
+                    ++LineCount
+                }
+                If (L=LineCount)
+                    return LineStr
+            }
+            else {
+                SomeFileObject.Seek(-1, SEEK_CUR)
             }
         }
-        timeMon := Round((CoolTime() - timeMon) * 1000000,1)
-        If DebugMessages && YesLocation && WinActive(GameStr)
-        {
-            Ding(2000,14,"OnTown   `t" OnTown)
-            Ding(2000,15,"OnHideout`t" OnHideout)
-            Ding(2000,16,"OnMines  `t" OnMines)
-            Ding(2000,17,CurrentLocation)
-            Ding(2000,18,"MicroSeconds  " timeMon)
-        }
-        If YesLocation && (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
-            Log("Zone Change Detected","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
-        Return
     }
+
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
