@@ -6270,6 +6270,7 @@ Structure of most functions:
                 If InStr(cStr, v)
                 {
                     Lang := k
+                    If (VersionNumber > 0)
                     Log("Client.txt language has been detected as: " Lang)
                     Break
                 }
@@ -6472,44 +6473,53 @@ Structure of most functions:
         OldTown := OnTown, OldHideout := OnHideout, OldMines := OnMines, OldLocation := CurrentLocation
         SetTimer,% A_ThisFunc, 500 ; auto set timer
         timeMon := CoolTime()
-        if (Initialize) 
+        if (Initialize)
         {
-            CLogFO := FileOpen(ClientLog, "r")
-            CLogFo.Seek(0)
-            CLogFo.ReadLine()
-            FirstLineLength := CLogFo.Tell()
-            CLogFO.Seek(0, 2) ; Seek to end of file
-            Loop
+            Try
             {
-                ClientLogText := LastLine(CLogFO)
-                If CompareLocation(ClientLogText)
-                    Break
-                If (CLogFO.Tell() <= FirstLineLength)
+                CLogFO := FileOpen(ClientLog, "r")
+                CLogFo.Seek(0)
+                CLogFo.ReadLine()
+                FirstLineLength := CLogFo.Tell()
+                CLogFO.Seek(0, 2) ; Seek to end of file
+                Loop
                 {
-                    CurrentLocation := "End of File"
-                    Log("End of File reached, ensure the file is encoded with UTF-8-BOM")
-                    Break
+                    ClientLogText := LastLine(CLogFO)
+                    If CompareLocation(ClientLogText)
+                        Break
+                    If (CLogFO.Tell() <= FirstLineLength)
+                    {
+                        CurrentLocation := "End of File"
+                        Log("End of File reached, ensure the file is encoded with UTF-8-BOM")
+                        Break
+                    }
+                    If (A_Index > 1000)
+                    {
+                        CurrentLocation := "1k Line Break"
+                        Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
+                        Break
+                    }
                 }
-                If (A_Index > 1000)
+                If CurrentLocation = ""
+                    CurrentLocation := "Nothing Found"
+                CLogFO.Seek(0, 2) ; Seek to end of file
+                timeMon := Round((CoolTime() - timeMon) * 1000,1)
+                If (DebugMessages && YesLocation && WinActive(GameStr))
                 {
-                    CurrentLocation := "1k Line Break"
-                    Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
-                    Break
+                    Ding(6000,14,"OnTown   `t" OnTown)
+                    Ding(6000,15,"OnHideout`t" OnHideout)
+                    Ding(6000,16,"OnMines  `t" OnMines)
+                    Ding(6000,17,CurrentLocation)
+                    Ding(6000,19,"First Load`t" timeMon " MilliSeconds")
                 }
+                If (VersionNumber != "")
+                Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
             }
-            If CurrentLocation = ""
-                CurrentLocation := "Nothing Found"
-            CLogFO.Seek(0, 2) ; Seek to end of file
-            timeMon := Round((CoolTime() - timeMon) * 1000,1)
-            If (DebugMessages && YesLocation && WinActive(GameStr))
+            Catch, loaderror
             {
-                Ding(6000,14,"OnTown   `t" OnTown)
-                Ding(6000,15,"OnHideout`t" OnHideout)
-                Ding(6000,16,"OnMines  `t" OnMines)
-                Ding(6000,17,CurrentLocation)
-                Ding(6000,19,"First Load`t" timeMon " MilliSeconds")
+                CurrentLocation := "Client File Load Error"
+                Log("Error loading File, Submit information about your client.txt",loaderror)
             }
-            Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
             Return
         } Else {
             latestFileContent := CLogFo.Read()
@@ -6524,7 +6534,7 @@ Structure of most functions:
                 }
             }
             timeMon := Round((CoolTime() - timeMon) * 1000000,1)
-            If DebugMessages && YesLocation && WinActive(GameStr)
+            If (DebugMessages && YesLocation && WinActive(GameStr))
             {
                 Ding(2000,14,"OnTown   `t" OnTown)
                 Ding(2000,15,"OnHideout`t" OnHideout)
@@ -6539,10 +6549,9 @@ Structure of most functions:
     }
 
     ; AHK version of the Tail function
-    LastLine(SomeFileObject, L:=1) {
+    LastLine(SomeFileObject) {
         static SEEK_CUR := 1
         static SEEK_END := 2
-        LineCount := 0
         loop {
             SomeFileObject.Seek(-1, SEEK_CUR)
             
@@ -6551,21 +6560,13 @@ Structure of most functions:
                 
                 Line := SomeFileObject.ReadLine()
                 SomeFileObject.Seek(StartPosition - 1)
-                If (Line != "")
-                {
-                    If !LineCount
-                        LineStr := Line
-                    Else
-                        LineStr .= "`n" . Line 
-                    ++LineCount
-                }
-                If (L=LineCount)
-                    return LineStr
+                return Line
             }
             else {
                 SomeFileObject.Seek(-1, SEEK_CUR)
             }
-        }
+        } until (A_Index >= 1000000)
+        Return ; this should never happen
     }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

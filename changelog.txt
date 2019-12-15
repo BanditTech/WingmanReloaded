@@ -1,6 +1,24 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.10 December/15/2019
+--------------------------------------------------------------------------------
+Trying to catch the error thats going on with the log loader for some
+    I prefer this method because it doesnt put the contents of the file in memory
+    but people are randomly having issues so here is another revision
+    This time we return with no exception, each line is returned including blank
+    One line is returned at a time no matter what now for simplicity
+
+I also wrapped the section in a try/catch, but im not sure this will help or not?
+    Then I added an exception for if it loops a million times, which it should never
+    This seems like some kind of loadtime error, so not sure
+
+Changed how many log messages there are, and how it behaves
+    C log will work in background if you disable debug messages, and write to log
+        this makes it easy to add new towns for later
+    If both enabled it shows the tooltips on the left as well
+    Only the main script will log language detection and initialization message
+
 Version .08.09 December/15/2019
 --------------------------------------------------------------------------------
 Adjusted Skillup string again by 2 shades more strict
