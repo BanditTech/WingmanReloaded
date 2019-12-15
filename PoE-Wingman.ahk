@@ -4755,6 +4755,8 @@ Return
 				Prop.SpecialType := ""
 			}
 		}
+		If (Stats.ItemClass = "Belt")
+			Prop.Belt := True
 		Return
 	}
 	; ItemInfo - Display information about item under cursor
@@ -5616,11 +5618,13 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	LootScan(Reset:=0){
 		LootScanCommand:
-			Static NewStyle := 1, GreenHex := 0x24DE32
+			Static GreenHex := 0x24DE32
+			, ChestStr := "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
 			If (!ComboHex || Reset)
 			{
 				ComboHex := Hex2FindText(GreenHex,12,1,0,0)
 				ComboHex .= Hex2FindText(LootColors,0,1,1,1)
+				ComboHex .= ChestStr
 				ComboHex := """" . ComboHex . """"
 				If Reset
 					Return
@@ -5634,7 +5638,6 @@ Return
 					MouseGetPos mX, mY
 					ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
 					ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-					Pressed := GetKeyState(hotkeyLootScan)
 					If (loot := FindText(x,y,xx,yy,0,0,ComboHex,1,0))
 					{
 						ScanPx := loot.1.x, ScanPy := loot.1.y
@@ -5653,10 +5656,10 @@ Return
 					MouseGetPos mX, mY
 					PixelGetColor, scolor, mX, mY
 					If (indexOf(scolor,LootColors) || CompareHex(scolor,GreenHex,53,1))
-					{
-						click %mX%, %mY%
-					}
+						If (Pressed := GetKeyState(hotkeyLootScan))
+							click %mX%, %mY%
 				}
+				Pressed := GetKeyState(hotkeyLootScan)
 			} Until !Pressed
 		Return
 		}
