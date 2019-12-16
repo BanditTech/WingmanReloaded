@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.10
+    Global VersionNumber := .08.11
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -420,17 +420,24 @@
 		Global CLogFO
 	; ASCII converted strings of images
 		Global 1080_HealthBarStr := "|<1080 Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
+			, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 			, 1080_MasterStr := "|<1080 Master>*100$46.wy1043UDVtZXNiAy7byDbslmCDsyTX78wDXsCAw3sSDVs7U7lsyTUSSTXXty8ntiSDbslDW3sy1XW"
 			, 1080_NavaliStr := "|<1080 Navali>*100$56.TtzzzzzzznyTzzzzzzwTbxxzTjrx3tyCDXnsy0ST3ntsTDk3bkwSS7nw8Nt77D8wz36SNtnmDDks7USBw3nwD1k3mS0Qz3sQwwDbbDkz6TD3ntngDtblswyA38"
 			, 1080_HelenaStr := "|<1080 Helena>*100$62.DlzzzzzzzznwTzzzzzzzwz7zxzzvyzjDlkCDUQT7nnwSPnwrXnsQz7bwzDsQy701tzDny3D8k0S3nw7YHnAz7Vwz3tYw3DltzDnyMC0HwSTnwzb3bYz7bwvDtsntDls70kCTAy8"
 			, 1080_ZanaStr := "|<1080 Zana>*100$44.U3zzzzzs0zzzzzyyTrvyzjz7twT7nzXwDXnsTsz3sQy7wTYS3D8yDtbYHnDXy1tYw3lz0CMC0Mznnb3ba01wtsnt02T6TAy8"
-			, 1080_GreustStr := "|<1080 Greust>*100$61.zzzzzzzzzzz3zzzzzzzzy0TzzzzzzzyDDzzzTjbzyDi0s77XUU37z6SPXtaKBbzX7Dlwnz7nzlXbsyMzXsyMnkSTC7lwSA3sTDbVsyDa1wzbnswT3n4STnvyCDktX7DstrD7w0llUS1sDXznzzzznzTzzzzzzzzzzzy"
 			, 1080_SellItemsStr := "|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
 			, 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
 			, 1080_SkillUpStr := "|<1080 Skill Up>0xAA6204@0.66$9.sz7ss0000sz7sw"
-			, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
+			, 1080_BestelStr := "|<1080 Bestel>*100$54.zzzzzzzzzUzzzzzzzzUTzzzzzzzbDzwzzzyzbC1s80UQTbDBn/6nSTUTDnz7nyTUDDlz7nyTb71sT7kSTb73wD7kyTbbDyD7nyTbbDz77nyTbDDrD7nyRUT0kT7kC1zzzxzzzzzzzzzzzzzzU"
+			, 1080_GreustStr := "|<1080 Greust>*100$61.zzzzzzzzzzz3zzzzzzzzy0TzzzzzzzyDDzzzTjbzyDi0s77XUU37z6SPXtaKBbzX7Dlwnz7nzlXbsyMzXsyMnkSTC7lwSA3sTDbVsyDa1wzbnswT3n4STnvyCDktX7DstrD7w0llUS1sDXznzzzznzTzzzzzzzzzzzy"
+			, 1080_ClarissaStr := "|<1080 Clarissa>*100$73.zzzzzzzzzzzzz3zzzzzzzzzzy0TzzzzzzzzzyDCzxzzvwzDxyDiDwy0sw71wz7zbwD6SQnAwDbzny7X7CTby7nztyFlXb7lyFszwzAsnnkwDAwTyTUQ3twD3USDzDU61wz7lU73vbnn4STlwHnklnXtX7CtiHtw1s1wFlb1kNwTrzzzzzzvyzzzzzzzzzzzzzzy"
+			, 1080_PetarusStr := "|<1080 Petarus>*100$69.zzzzzzzzzzzw7zzzzzzzzzzUDzzzzzzzzzwtzzzzTzyzTDb61U3ns3XlkQsthXQD6QTAnb7DwTVslXtbwttzXt76ATATUT1wTAsnntkwDsTXs70yTD3bzDwS0M7ntwQztzXnn4STTlbzDwQyMllniQzs7Xbl770w7zzzzzzzzyTvzzzzzzzzzzzzU"
+			, 1080_LaniStr := "|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"
+			, 1080_ChestStr := "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
+			, 1080_ChestStr .= "|<1080 Trunk>*100$57.zzzzzzzzzw0DzzzzzzzU1zzzzzzzxlzzrvrxvvyD0QSAT6CDlsnXtlttnyD6ATC7DAzlslXtkNtDyD6STCFD3zls7ntn9sDyD0yTCMD9zlsXnvnVtbyD6CCSSDATlsss7nttlzzzznzzzzzzzzzzzzzzU"
+			, 1080_ChestStr .= "|<1080 Rack>*100$41.zzzzzzz1zzzzzy0zzzzzwtzTwyytlwzUMsnXkyANnb7VsxnDCSFnzYy1wnbz3w3s7Dy3tXU6DwbnbDATtbb4yQQn7D1wQ3b7zzzyTzzzzzzzzs"
 	; FindText strings from INI
-		Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr
+		Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr
 		, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
 		, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
 	; Click Vendor after stash
@@ -480,7 +487,7 @@
 			, 2 : 0x99FECC
 			, 3 : 0x6565A3
 			, 4 : 0x383877}
-
+		Global YesLootChests := 1
 		;Item Parse blank Arrays
 		Global Prop := {}
 		Global Stats := {}
@@ -839,6 +846,24 @@
 	Gui, Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
 	Gui, Add, Text, xs y+15 section, Capture of the Hideout vendor nameplate
 	Gui, Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"
+	Gui, Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"
+	Gui, Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorLioneyeStr gUpdateStringEdit , %VendorLioneyeStr%??"%1080_BestelStr%"
+	Gui, Add, Text, x+10 ys , Capture of the Forest vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorForestStr gUpdateStringEdit , %VendorForestStr%??"%1080_GreustStr%"
+	Gui, Add, Text, xs y+15 section, Capture of the Sarn vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorSarnStr gUpdateStringEdit , %VendorSarnStr%??"%1080_ClarissaStr%"
+	Gui, Add, Text, x+10 ys , Capture of the Highgate vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorHighgateStr gUpdateStringEdit , %VendorHighgateStr%??"%1080_PetarusStr%"
+	Gui, Add, Text, xs y+15 section, Capture of the Overseer vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorOverseerStr gUpdateStringEdit , %VendorOverseerStr%??"%1080_LaniStr%"
+	Gui, Add, Text, x+10 ys , Capture of the Bridge vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorBridgeStr gUpdateStringEdit , %VendorBridgeStr%??"%1080_HelenaStr%"
+	Gui, Add, Text, xs y+15 section, Capture of the Docks vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"
+	Gui, Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
+	Gui, Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"
 	Gui +Delimiter|
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
@@ -2772,18 +2797,62 @@ Return
 		; Sorted items are sent together
 		If (OnStash && RunningToggle && YesStash && !YesSortFirst)
 		{
-			If (YesVendorAfterStash && Unstashed && OnHideout)
+			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+				StockScrolls()
+			If (YesVendorAfterStash && Unstashed && (OnHideout || OnTown || OnMines))
 			{
-				If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-					StockScrolls()
+				If OnHideout
+					SearchStr := VendorStr
+				Else If OnMines
+				{
+					SearchStr := VendorMineStr
+					Town := "Mines"
+				}
+				Else
+				{
+					Town := CompareLocation("Town")
+					If (Town = "Lioneye's Watch")
+						SearchStr := VendorLioneyeStr
+					Else If (Town = "The Forest Encampment")
+						SearchStr := VendorForestStr
+					Else If (Town = "The Sarn Encampment")
+						SearchStr := VendorSarnStr
+					Else If (Town = "Highgate")
+						SearchStr := VendorHighgateStr
+					Else If (Town = "Overseer's Tower")
+						SearchStr := VendorOverseerStr
+					Else If (Town = "The Bridge Encampment")
+						SearchStr := VendorBridgeStr
+					Else If (Town = "Oriath Docks")
+						SearchStr := VendorDocksStr
+					Else If (Town = "Oriath")
+						SearchStr := VendorOriathStr
+					Else
+						Return
+				}
 				SendInput, {%hotkeyCloseAllUI%}
 				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, VendorStr))
+				If (Town = "The Sarn Encampment")
 				{
-					LeftClick(Vendor.1.1, Vendor.1.2)
+					LeftClick(GameX + GameW//6, GameY + GameH//1.5)
+					Sleep, 600
+					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 				}
-				If Vendor
+				Else If (Town = "Oriath Docks")
 				{
+					LeftClick(GameX + 5, GameY + GameH//2)
+					Sleep, 1200
+					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+				}
+				Else If (Town = "Mines")
+				{
+					LeftClick(GameX + GameW//3, GameY + GameH//5)
+					Sleep, 800
+					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+				}
+				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+				{
+					LeftClick(Vendor.1.x, Vendor.1.y)
 					Loop, 666
 					{
 						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
@@ -2816,18 +2885,62 @@ Return
 					Sleep, 45*Latency
 				}
 			}
-			If (YesVendorAfterStash && Unstashed && OnHideout)
+			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+				StockScrolls()
+			If (YesVendorAfterStash && Unstashed && (OnHideout || OnTown || OnMines))
 			{
-				If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-					StockScrolls()
-				SendInput, {%hotkeyCloseAllUI%}
-				Sleep, 45*Latency
-				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, VendorStr))
+				If OnHideout
+					SearchStr := VendorStr
+				Else If OnMines
 				{
-					LeftClick(Vendor.1.1, Vendor.1.2)
+					SearchStr := VendorMineStr
+					Town := "Mines"
 				}
-				If Vendor
+				Else
 				{
+					Town := CompareLocation("Town")
+					If (Town = "Lioneye's Watch")
+						SearchStr := VendorLioneyeStr
+					Else If (Town = "The Forest Encampment")
+						SearchStr := VendorForestStr
+					Else If (Town = "The Sarn Encampment")
+						SearchStr := VendorSarnStr
+					Else If (Town = "Highgate")
+						SearchStr := VendorHighgateStr
+					Else If (Town = "Overseer's Tower")
+						SearchStr := VendorOverseerStr
+					Else If (Town = "The Bridge Encampment")
+						SearchStr := VendorBridgeStr
+					Else If (Town = "Oriath Docks")
+						SearchStr := VendorDocksStr
+					Else If (Town = "Oriath")
+						SearchStr := VendorOriathStr
+					Else
+						Return
+				}
+				SendInput, {%hotkeyCloseAllUI%}
+				If (Town = "The Sarn Encampment")
+				{
+					LeftClick(GameX + GameW//6, GameY + GameH//1.5)
+					Sleep, 600
+					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+				}
+				Else If (Town = "Oriath Docks")
+				{
+					LeftClick(GameX + 5, GameY + GameH//2)
+					Sleep, 1200
+					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+				}
+				Else If (Town = "Mines")
+				{
+					LeftClick(GameX + GameW//3, GameY + GameH//5)
+					Sleep, 800
+					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+				}
+				Sleep, 45*Latency
+				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+				{
+					LeftClick(Vendor.1.x, Vendor.1.y)
 					Loop, 666
 					{
 						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
@@ -2844,8 +2957,6 @@ Return
 				}
 			}
 		}
-		If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-			StockScrolls()
 		Return
 	}
 	; DivRoutine - Does divination trading function
@@ -5619,12 +5730,10 @@ Return
 	LootScan(Reset:=0){
 		LootScanCommand:
 			Static GreenHex := 0x24DE32
-			, ChestStr := "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
 			If (!ComboHex || Reset)
 			{
 				ComboHex := Hex2FindText(GreenHex,12,1,0,0)
 				ComboHex .= Hex2FindText(LootColors,0,1,1,1)
-				ComboHex .= ChestStr
 				ComboHex := """" . ComboHex . """"
 				If Reset
 					Return
@@ -5649,6 +5758,21 @@ Return
 							Sleep, %LVdelay%
 						else
 							Sleep, 60
+						Continue
+					}
+					MouseGetPos mX, mY
+					ClampGameScreen(x := mX - AreaScale * 2, y := mY - AreaScale * 2)
+					ClampGameScreen(xx := mX + AreaScale * 2, yy := mY + AreaScale * 2)
+					If (loot := FindText(x,y,xx,yy,0,0,ChestStr,1,0))
+					{
+						ScanPx := loot.1.x, ScanPy := loot.1.y
+						If (Pressed := GetKeyState(hotkeyLootScan))
+							Click %ScanPx%, %ScanPy%
+						If (LVdelay >= 60)
+							Sleep, %LVdelay%
+						else
+							Sleep, 60
+						Continue
 					}
 				}
 				Else
@@ -7550,6 +7674,7 @@ Return
 			IniRead, RelogOnQuit, settings.ini, General, RelogOnQuit, 0
 			IniRead, AreaScale, settings.ini, General, AreaScale, 60
 			IniRead, LVdelay, settings.ini, General, LVdelay, 15
+			IniRead, YesLootChests, settings.ini, General, YesLootChests, 1
 
 			;Settings for Auto-Vendor
 			IniRead, YesSearchForStash, settings.ini, General, YesSearchForStash, 0
@@ -7617,6 +7742,9 @@ Return
 				HealthBarStr := """" . HealthBarStr . """"
 				OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
 			}
+			IniRead, ChestStr, settings.ini, FindText Strings, ChestStr, %1080_ChestStr%
+			If ChestStr
+				ChestStr := """" . ChestStr . """"
 			IniRead, VendorStr, settings.ini, FindText Strings, VendorStr, %1080_MasterStr%
 			If VendorStr
 				VendorStr := """" . VendorStr . """"
@@ -7629,6 +7757,33 @@ Return
 			IniRead, SkillUpStr, settings.ini, FindText Strings, SkillUpStr, %1080_SkillUpStr%
 			If SkillUpStr
 				SkillUpStr := """" . SkillUpStr . """"
+			IniRead, VendorLioneyeStr, settings.ini, FindText Strings, VendorLioneyeStr, %1080_BestelStr%
+			If VendorLioneyeStr
+				VendorLioneyeStr := """" . VendorLioneyeStr . """"
+			IniRead, VendorForestStr, settings.ini, FindText Strings, VendorForestStr, %1080_GreustStr%
+			If VendorForestStr
+				VendorForestStr := """" . VendorForestStr . """"
+			IniRead, VendorSarnStr, settings.ini, FindText Strings, VendorSarnStr, %1080_ClarissaStr%
+			If VendorSarnStr
+				VendorSarnStr := """" . VendorSarnStr . """"
+			IniRead, VendorHighgateStr, settings.ini, FindText Strings, VendorHighgateStr, %1080_PetarusStr%
+			If VendorHighgateStr
+				VendorHighgateStr := """" . VendorHighgateStr . """"
+			IniRead, VendorOverseerStr, settings.ini, FindText Strings, VendorOverseerStr, %1080_LaniStr%
+			If VendorOverseerStr
+				VendorOverseerStr := """" . VendorOverseerStr . """"
+			IniRead, VendorBridgeStr, settings.ini, FindText Strings, VendorBridgeStr, %1080_HelenaStr%
+			If VendorBridgeStr
+				VendorBridgeStr := """" . VendorBridgeStr . """"
+			IniRead, VendorDocksStr, settings.ini, FindText Strings, VendorDocksStr, %1080_LaniStr%
+			If VendorDocksStr
+				VendorDocksStr := """" . VendorDocksStr . """"
+			IniRead, VendorOriathStr, settings.ini, FindText Strings, VendorOriathStr, %1080_LaniStr%
+			If VendorOriathStr
+				VendorOriathStr := """" . VendorOriathStr . """"
+			IniRead, VendorMineStr, settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
+			If VendorMineStr
+				VendorMineStr := """" . VendorMineStr . """"
 
 			;Inventory Colors
 			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
@@ -10792,14 +10947,18 @@ Return
 				Gui, Submit
 				gui,LootColors: new, LabelLootColors
 				gui,LootColors: -MinimizeBox
-				gui,LootColors: add, groupbox,% "section w320 h" 24 * (LootColors.Count() / 2) + 25 + 40 , Loot Colors:
-				gui,LootColors: add, Button, gSaveLootColorArray yp-5 xp+70 h22, Save to INI
-				Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 x+10 yp+1,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
-				Gui,LootColors: Add, Text, 										x+3 yp+5							, AreaScale
-				Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-6,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
-				Gui,LootColors: Add, Text, 										x+3 yp+5							, Delay
-				gui,LootColors: add, Button, gAdjustLootGroup vLG_Add y+10 xm+50 h22 w100, Add Color Set
-				gui,LootColors: add, Button, gAdjustLootGroup vLG_Rem yp x+20 h22 w100, Rem Color Set
+				Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
+				Gui,LootColors: Add, Text, 										x+3 yp+5							, AreaScale of search
+				Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
+				Gui,LootColors: Add, Text, 										x+3 yp+5							, Delay after click
+				gui,LootColors: add, CheckBox, gUpdateExtra vYesLootChests Checked%YesLootChests% Right xm h22, Open Containers?
+				Gui,LootColors:  +Delimiter?
+				Gui,LootColors: Add, ComboBox, x+5 w210 vChestStr gUpdateStringEdit , %ChestStr%??"%1080_ChestStr%"
+				Gui,LootColors:  +Delimiter|
+				gui,LootColors: add, groupbox,% "section xm y+10 w330 h" 24 * (LootColors.Count() / 2) + 30 , Loot Colors:
+				gui,LootColors: add, Button, gSaveLootColorArray yp-5 xp+70 h22 w80, Save to INI
+				gui,LootColors: add, Button, gAdjustLootGroup vLG_Add yp x+5 h22 wp, Add Color Set
+				gui,LootColors: add, Button, gAdjustLootGroup vLG_Rem yp x+5 h22 wp, Rem Color Set
 
 				For k, val in LootColors
 				{
@@ -11148,6 +11307,7 @@ Return
 			IniWrite, %YesVendorAfterStash%, settings.ini, General, YesVendorAfterStash
 			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
 			IniWrite, %RelogOnQuit%, settings.ini, General, RelogOnQuit
+			IniWrite, %YesLootChests%, settings.ini, General, YesLootChests
 			If (YesPersistantToggle)
 				AutoReset()
 			If (DetonateMines&&!Detonated)

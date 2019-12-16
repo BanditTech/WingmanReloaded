@@ -1,6 +1,19 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.11 December/16/2019
+--------------------------------------------------------------------------------
+Loot Vacuum can now automatically open Chests, Trunks and Racks
+    Enable or disable in the Loot vacuum settings
+    You can also edit the string to add more containers or for your resolution
+
+Vendor after stash now works in Town, Mines or Hideout
+    Detects which town you are in no matter your language
+    Searches for the Vendor that is closest to the stash
+    Will attempt to move toward vendor in difficult towns (Azurite Mines, Docks, Sarn)
+
+All town vendors have been added to the strings tab for customization
+
 Version .08.10 December/15/2019
 --------------------------------------------------------------------------------
 Trying to catch the error thats going on with the log loader for some
