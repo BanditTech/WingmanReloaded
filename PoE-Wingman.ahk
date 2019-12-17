@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.11
+    Global VersionNumber := .08.12
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -436,6 +436,8 @@
 			, 1080_ChestStr := "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
 			, 1080_ChestStr .= "|<1080 Trunk>*100$57.zzzzzzzzzw0DzzzzzzzU1zzzzzzzxlzzrvrxvvyD0QSAT6CDlsnXtlttnyD6ATC7DAzlslXtkNtDyD6STCFD3zls7ntn9sDyD0yTCMD9zlsXnvnVtbyD6CCSSDATlsss7nttlzzzznzzzzzzzzzzzzzzU"
 			, 1080_ChestStr .= "|<1080 Rack>*100$41.zzzzzzz1zzzzzy0zzzzzwtzTwyytlwzUMsnXkyANnb7VsxnDCSFnzYy1wnbz3w3s7Dy3tXU6DwbnbDATtbb4yQQn7D1wQ3b7zzzyTzzzzzzzzs"
+			, 1080_ChestStr .= "|<1080 Cocoon>*100$71.zzzzzzzzzzzzwDzzzzzzzzzzU7zzzzzzzzzyDDnznzDzDvysyy1y1s7s7Xslztlslb7b7XnbzXnXqDCDD3bDzDXDwyAyC3CDyT6TtwNwQWQTwyAznsnstYsztwMzblbln1kyltlz7b7bb3kllXln6D6DD7k7kTkD1z1yTDxzvztzjzjzzzzzzzzzzzzzzs"
+			, 1080_ChestStr .= "|<1080 Bundle>*100$64.zzzzzzzzzzy3zzzzzzzzzs7zzzzzzzzzbDTjTrzzjzyQswMyA1wT0tnXtlttVtyPUSDb3bb7bty0syQ6SSCTbtlntm9tsty3b7DbAbbXbsSSQyQkSSSTbttnvnVtttyTbD7DD7bDbNy1y1wyS1y1UTzyTzzzzzzzzzzzzzzzzzy"
 	; FindText strings from INI
 		Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr
 		, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
@@ -3231,6 +3233,8 @@ Return
 			, IncreasedEvasion : 0
 			, IncreasedArmour : 0
 			, IncreasedAttackSpeed : 0
+			, IncreasedAttackSpeedWithMoveSkill : 0
+			, IncreasedDamageWithMoveSkill : 0
 			, IncreasedAttackCastSpeed : 0
 			, IncreasedMovementSpeed : 0
 			, ReducedEnemyStunThreshold : 0
@@ -3854,23 +3858,23 @@ Return
 					}
 					++captureLines
 					If (itemLevelIsDone >= 1 && !doneCorruption && captureLines < 3) {
-						imp := RegExReplace(A_LoopField, "i)([-.0-9]+)", "#")
+						imp := RegExReplace(StrSplit(A_LoopField, "(implicit)", " ")[1], "i)([-.0-9]+)", "#")
 						if (indexOf(imp, Corruption)) {
 							If (countCorruption < 1){
-							possibleCorruption := A_LoopField
+							possibleCorruption := StrSplit(A_LoopField, "(implicit)", " ")[1]
 							++countCorruption
 							}Else If (countCorruption = 1){
-							possibleCorruption2 := A_LoopField
+							possibleCorruption2 := StrSplit(A_LoopField, "(implicit)", " ")[1]
 							++countCorruption
 							}
 							itemLevelIsDone := 1
 						}
 					}
 					If (captureLines < 2)
-						possibleImplicit:=A_LoopField
+						possibleImplicit:= StrSplit(A_LoopField, "(implicit)", " ")[1]
 					If (InStr(possibleImplicit, "Life gained for each Enemy hit by Attacks") && InStr(A_LoopField, "Mana gained for each Enemy hit by Attacks"))
 					{
-						possibleImplicit := possibleImplicit . "`n" . A_LoopField
+						possibleImplicit := possibleImplicit . "`n" . StrSplit(A_LoopField, "(implicit)", " ")[1]
 						captureLines -= 1
 					}
 					IfInString, A_LoopField, Socketed Gems are
@@ -4253,6 +4257,18 @@ Return
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedAttackCastSpeed := Affix.IncreasedAttackCastSpeed + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Attack Speed with Movement Skills
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedAttackSpeedWithMoveSkill := Affix.IncreasedAttackSpeedWithMoveSkill + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Damage with Movement Skills
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedDamageWithMoveSkill := Affix.IncreasedDamageWithMoveSkill + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, increased Attack Speed
@@ -5729,7 +5745,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	LootScan(Reset:=0){
 		LootScanCommand:
-			Static GreenHex := 0x24DE32
+			Static GreenHex := 0x24DE32, OrganHex := 0x2ED500
 			If (!ComboHex || Reset)
 			{
 				ComboHex := Hex2FindText(GreenHex,12,1,0,0)

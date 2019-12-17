@@ -6478,31 +6478,27 @@ Structure of most functions:
             Try
             {
                 CLogFO := FileOpen(ClientLog, "r")
-                CLogFo.Seek(0)
-                CLogFo.ReadLine()
-                FirstLineLength := CLogFo.Tell()
-                CLogFO.Seek(0, 2) ; Seek to end of file
-                Loop
+                FileGetSize, errchk, %ClientLog%, M
+                If (errchk >= 128)
+                    CurrentLocation := "Log too large"
+                Else
                 {
-                    ClientLogText := LastLine(CLogFO)
-                    If CompareLocation(ClientLogText)
-                        Break
-                    If (CLogFO.Tell() <= FirstLineLength)
+                    latestFileContent := CLogFo.Read()
+                    latestFileContent := TF_ReverseLines(latestFileContent)
+                    Loop, Parse,% latestFileContent,`n,`r
                     {
-                        CurrentLocation := "End of File"
-                        Log("End of File reached, ensure the file is encoded with UTF-8-BOM")
-                        Break
+                        If CompareLocation(A_LoopField)
+                            Break
+                        If (A_Index > 1000)
+                        {
+                            CurrentLocation := "1k Line Break"
+                            Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
+                            Break
+                        }
                     }
-                    If (A_Index > 1000)
-                    {
-                        CurrentLocation := "1k Line Break"
-                        Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
-                        Break
-                    }
+                    If CurrentLocation = ""
+                        CurrentLocation := "Nothing Found"
                 }
-                If CurrentLocation = ""
-                    CurrentLocation := "Nothing Found"
-                CLogFO.Seek(0, 2) ; Seek to end of file
                 timeMon := Round((CoolTime() - timeMon) * 1000,1)
                 If (DebugMessages && YesLocation && WinActive(GameStr))
                 {
@@ -6581,56 +6577,63 @@ Structure of most functions:
 ;  https://autohotkey.com/boards/viewtopic.php?f=6&t=17834
 ;
 ;  Author  :  FeiYue
-;  Version :  7.0
-;  Date    :  2019-11-30
+;  Version :  7.2
+;  Date    :  2019-12-16
 ;
- ;  Usage:
- ;  1. Capture the image to text string.
- ;  2. Test find the text string on full Screen.
- ;  3. When test is successful, you may copy the code
- ;     and paste it into your own script.
- ;     Note: Copy the "FindText()" function and the following
- ;     functions and paste it into your own script Just once.
- ;  4. The more recommended way is to save the script as
- ;     "FindText.ahk" and copy it to the "Lib" subdirectory
- ;     of AHK program, instead of copying the "FindText()"
- ;     function and the following functions, add a line to
- ;     the beginning of your script: #Include <FindText>
- ;
- ;  Note:
- ;     After upgrading to v7.0, the search scope using
- ;     the upper left  corner coordinates (X1, Y1)
- ;     and lower right corner coordinates (X2, Y2), similar to ImageSearch.
- ;     This makes it easier for novices to understand and use.
- ;
- ;===========================================
- ;  Introduction of function parameters:
- ;
- ;  returnArray := FindText(
- ;      X1 --> the search scope's upper left corner X coordinates
- ;    , Y1 --> the search scope's upper left corner Y coordinates
- ;    , X2 --> the search scope's lower right corner X coordinates
- ;    , Y2 --> the search scope's lower right corner Y coordinates
- ;    , err1 --> Character "0" fault-tolerant in percentage(0.1=10%)
- ;    , err0 --> Character "_" fault-tolerant in percentage(0.1=10%)
- ;    , Text --> can be a lot of text parsed into images, separated by "|"
- ;    , ScreenShot --> if the value is 0, the last screenshot will be used
- ;    , FindAll --> if the value is 0, Just find one result and return
- ;    , JoinText --> if the value is 1, Join all Text for combination lookup
- ;    , offsetX --> Set the max text offset for combination lookup
- ;    , offsetY --> Set the max text offset for combination lookup
- ;  )
- ;
- ;  The function returns a second-order array containing
- ;  all lookup results, Any result is an associative array
- ;  {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment}
- ;  if no image is found, the function returns 0.
- ;
- ;  If the return variable is ok, then (ok.1.x, ok.1.y)
- ;  is the central coordinate of the first lookup result,
- ;  ok.1.x can also be written as ok[1].x, which supports variables.
- ;===========================================
- ;*/
+;  Usage:
+;  1. Capture the image to text string.
+;  2. Test find the text string on full Screen.
+;  3. When test is successful, you may copy the code
+;     and paste it into your own script.
+;     Note: Copy the "FindText()" function and the following
+;     functions and paste it into your own script Just once.
+;  4. The more recommended way is to save the script as
+;     "FindText.ahk" and copy it to the "Lib" subdirectory
+;     of AHK program, instead of copying the "FindText()"
+;     function and the following functions, add a line to
+;     the beginning of your script: #Include <FindText>
+;
+;  Note:
+;     After upgrading to v7.0, the search scope using
+;     the upper left  corner coordinates (X1, Y1)
+;     and lower right corner coordinates (X2, Y2), similar to ImageSearch.
+;     This makes it easier for novices to understand and use.
+;
+;===========================================
+;  Introduction of function parameters:
+;
+;  returnArray := FindText(
+;      X1 --> the search scope's upper left corner X coordinates
+;    , Y1 --> the search scope's upper left corner Y coordinates
+;    , X2 --> the search scope's lower right corner X coordinates
+;    , Y2 --> the search scope's lower right corner Y coordinates
+;    , err1 --> Character "0" fault-tolerant in percentage(0.1=10%)
+;    , err0 --> Character "_" fault-tolerant in percentage(0.1=10%)
+;    , Text --> can be a lot of text parsed into images, separated by "|"
+;    , ScreenShot --> if the value is 0, the last screenshot will be used
+;    , FindAll --> if the value is 0, Just find one result and return
+;    , JoinText --> if the value is 1, Join all Text for combination lookup
+;    , offsetX --> Set the max text offset for combination lookup
+;    , offsetY --> Set the max text offset for combination lookup
+;  )
+;
+;  The function returns a second-order array containing
+;  all lookup results, Any result is an associative array
+;  {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment}
+;  if no image is found, the function returns 0.
+;
+;  If the return variable is set to "ok", ok.1 is the first result found.
+;  Where ok.1.1 is the X coordinate of the upper left corner of the found image,
+;  and ok.1.2 is the Y coordinate of the upper left corner of the found image,
+;  ok.1.3 is the width of the found image, and ok.1.4 is the height of the found image,
+;  ok.1.x <==> ok.1.1+ok.1.3//2 ( is the Center X coordinate of the found image ),
+;  ok.1.y <==> ok.1.2+ok.1.4//2 ( is the Center Y coordinate of the found image ),
+;  ok.1.id is the comment text, which is included in the <> of its parameter.
+;  ok.1.x can also be written as ok[1].x, which supports variables. (eg: ok[A_Index].x)
+;
+;  All coordinates are relative to Screen, and color is in RGB format.
+;===========================================
+;*/
 
 
 ft_Gui(cmd)
@@ -6662,8 +6665,7 @@ ft_Gui(cmd)
         Menu, Tray, add
         Menu, Tray, add, Exit, QuitNow ; added exit script option
     }
-    ft_BatchLines:=A_BatchLines
-    ft_IsCritical:=A_IsCritical
+    ft_BatchLines:=A_BatchLines, ft_IsCritical:=A_IsCritical
     Critical
     ww:=35, hh:=16, WindowColor:="0xDDEEFF"
     ft_Gui("MakeCaptureWindow")
@@ -6674,8 +6676,8 @@ ft_Gui(cmd)
     OnMessage(0x200, Func("ft_ShowToolTip"))  ; WM_MOUSEMOVE
     Gui, ft_Main:Show, Center
     GuiControl, Focus, capture
-    Critical, %ft_IsCritical%
     SetBatchLines, %ft_BatchLines%
+    Critical, %ft_IsCritical%
     return
     ;-------------------
     ft_Run:
@@ -6867,7 +6869,7 @@ ft_Gui(cmd)
     Gui, +LastFound
     WinMinimize
     Gui, Hide
-    ShowScreenShot:=(cmd="CaptureS")
+    ShowScreenShot:=(cmd="CaptureS") and (ScreenShotData=1)
     if (ShowScreenShot)
       ft_ShowScreenShot(1)
     ;----------------------
@@ -6921,7 +6923,7 @@ ft_Gui(cmd)
     ListLines, %lls%
     Gui, Destroy
     WinWaitClose,,, 10
-    cors:=ft_getc(px,py,ww,hh,!ShowScreenShot)
+    cors:=ft_getc(px,py,ww,hh,!ShowScreenShot), ScreenShotData:=1
     Hotkey, $*RButton, ft_RButton_Off, Off
     if (ShowScreenShot)
       ft_ShowScreenShot(0)
@@ -7095,6 +7097,8 @@ ft_Gui(cmd)
   if (cmd="RepL")
   {
     if (CutLeft<=cors.CutLeft)
+    or (bg!="" and InStr(color,"**")
+    and CutLeft=cors.CutLeft+1)
       return
     k:=CutLeft-nW, CutLeft--
     Loop, %nH%
@@ -7121,6 +7125,8 @@ ft_Gui(cmd)
   if (cmd="RepR")
   {
     if (CutRight<=cors.CutRight)
+    or (bg!="" and InStr(color,"**")
+    and CutRight=cors.CutRight+1)
       return
     k:=1-CutRight, CutRight--
     Loop, %nH%
@@ -7147,6 +7153,8 @@ ft_Gui(cmd)
   if (cmd="RepU")
   {
     if (CutUp<=cors.CutUp)
+    or (bg!="" and InStr(color,"**")
+    and CutUp=cors.CutUp+1)
       return
     k:=(CutUp-1)*nW, CutUp--
     Loop, %nW%
@@ -7173,6 +7181,8 @@ ft_Gui(cmd)
   if (cmd="RepD")
   {
     if (CutDown<=cors.CutDown)
+    or (bg!="" and InStr(color,"**")
+    and CutDown=cors.CutDown+1)
       return
     k:=(nH-CutDown)*nW, CutDown--
     Loop, %nW%
@@ -7584,7 +7594,7 @@ for i,v in ok
   if (cmd="ScreenShot")
   {
     Critical
-    ScreenShot()
+    ScreenShot(), ScreenShotData:=1
     Gui, ft_Tip:New
     ; WS_EX_NOACTIVATE:=0x08000000, WS_EX_TRANSPARENT:=0x20
     Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
@@ -7727,8 +7737,7 @@ for i,v in ok
 
     ft_getc(px, py, ww, hh, ScreenShot:=1)
     {
-        local  ; Unaffected by Super-global variables
-        xywh2xywh(px-ww,py-hh,2*ww+1,2*hh+1,x,y,w,h)
+        xywh2xywh(px-ww,py-hh,2*ww+1,2*hh+1,x,y,w,h,zx,zy,zw,zh)
         if (w<1 or h<1)
             return
         bch:=A_BatchLines
@@ -7736,7 +7745,7 @@ for i,v in ok
         if (ScreenShot)
             ScreenShot()
         ;--------------------------------------
-        GetBitsFromScreen(x,y,w,h,Scan0,Stride,0,zx,zy,zw,zh)
+        bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh)
         ;--------------------------------------
         cors:=[], k:=0
         lls:=A_ListLines=0 ? "Off" : "On"
@@ -7746,9 +7755,9 @@ for i,v in ok
             j:=py-hh-zy+A_Index-1
             Loop, % 2*ww+1
             i:=px-ww-zx+A_Index-1
-            , cors[++k]:=(i<0 or i>zw-1 or j<0 or j>zh-1)
+            , cors[++k]:=(i<0 or i>zw-1 or j<0 or j>zh-1 or !bits.1)
             ? "0xFFFFFF" : Format("0x{:06X}"
-            ,NumGet(Scan0+j*Stride+i*4,"uint")&0xFFFFFF)
+            ,NumGet(bits.1+j*bits.2+i*4,"uint")&0xFFFFFF)
         }
         ListLines, %lls%
         cors.CutLeft:=Abs(px-ww-x)
@@ -7761,21 +7770,20 @@ for i,v in ok
 
     ft_ShowScreenShot(Show:=1) {
         local  ; Unaffected by Super-global variables
-        static hBM, Ptr:=A_PtrSize ? "UPtr":"UInt"
+        static hBM, Ptr:=A_PtrSize ? "UPtr" : "UInt"
         Gui, ft_ScreenShot:Destroy
         if (hBM)
             DllCall("DeleteObject",Ptr,hBM), hBM:=""
         if (!Show)
             return
-        n:=150000, xywh2xywh(-n,-n,2*n,2*n,x1,y1,w1,h1)
-        GetBitsFromScreen(x1,y1,w1,h1,Scan0,Stride,0,x,y,w,h)
+        bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy), zw:=bits.3, zh:=bits.4
         ;---------------------
         VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
-        NumPut(w, bi, 4, "int"), NumPut(-h, bi, 8, "int")
-        NumPut(1, bi, 12, "short"), NumPut(32, bi, 14, "short")
+        NumPut(zw, bi, 4, "int"), NumPut(-zh, bi, 8, "int")
+        NumPut(1, bi, 12, "short"), NumPut(bpp:=32, bi, 14, "short")
         if (hBM:=DllCall("CreateDIBSection", Ptr,0, Ptr,&bi
-            , "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr))
-            DllCall("RtlMoveMemory", Ptr,ppvBits, Ptr,Scan0, Ptr,Stride*h)
+        , "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr)) and (bits.1)
+            DllCall("RtlMoveMemory",Ptr,ppvBits,Ptr,bits.1,Ptr,bits.2*zh)
         ;-------------------------
         win:=DllCall("GetDesktopWindow", Ptr)
         hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
@@ -7783,7 +7791,7 @@ for i,v in ok
         oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
         hBrush:=DllCall("CreateSolidBrush", "uint",0xFFFFFF, Ptr)
         oBrush:=DllCall("SelectObject", Ptr,mDC, Ptr,hBrush, Ptr)
-        DllCall("BitBlt", Ptr,mDC, "int",0, "int",0, "int",w, "int",h
+        DllCall("BitBlt", Ptr,mDC, "int",0, "int",0, "int",zw, "int",zh
             , Ptr,mDC, "int",0, "int",0, "uint",0xC000CA)
         DllCall("SelectObject", Ptr,mDC, Ptr,oBrush)
         DllCall("DeleteObject", Ptr,hBrush)
@@ -7793,9 +7801,9 @@ for i,v in ok
         ;-------------------------
         Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
         Gui, ft_ScreenShot:Margin, 0, 0
-        Gui, ft_ScreenShot:Add, Picture, x0 y0 w%w% h%h% +HwndhPic +0xE
+        Gui, ft_ScreenShot:Add, Picture, x0 y0 w%zw% h%zh% +HwndhPic +0xE
         SendMessage, 0x172, 0, hBM,, ahk_id %hPic%
-        Gui, ft_ScreenShot:Show, NA x%x% y%y% w%w% h%h%, Show ScreenShot
+        Gui, ft_ScreenShot:Show, NA x%zx% y%zy% w%zw% h%zh%, Show ScreenShot
     }
 
     ft_Exec(s)
@@ -7838,7 +7846,8 @@ for i,v in ok
     ; containing all lookup results, Any result is an associative array
     ; {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment},
     ; if no image is found, the function returns 0.
-    ;--------------------------------
+	; All coordinates are relative to Screen, and color is in RGB format
+	;--------------------------------
 
     FindText( x1, y1, x2, y2, err1, err0, text, ScreenShot:=1
     , FindAll:=1, JoinText:=0, offsetX:=20, offsetY:=10 )
@@ -7848,27 +7857,27 @@ for i,v in ok
         SetBatchLines, -1
         x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
         , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
-        , xywh2xywh(x,y,w,h,x,y,w,h)
+        , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
         if (w<1 or h<1)
         {
             SetBatchLines, %bch%
             return, 0
         }
         ;-------------------------------
-        GetBitsFromScreen(x,y,w,h,Scan0,Stride,ScreenShot,zx,zy)
+        bits:=GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
         ;-------------------------------
         sx:=x-zx, sy:=y-zy, sw:=w, sh:=h, arr:=[], info:=[]
         Loop, Parse, text, |
-            if (j:=PicInfo(A_LoopField))
+          if IsObject(j:=PicInfo(A_LoopField))
             info.Push(j)
-        if (!(num:=info.MaxIndex()) or !Stride)
+        if (!(num:=info.MaxIndex()) or !bits.1)
         {
             SetBatchLines, %bch%
             return, 0
         }
         VarSetCapacity(input, num*7*4), k:=0
         Loop, % num
-            k+=(info[A_Index].2)*(info[A_Index].3)
+            k+=Round(info[A_Index].2 * info[A_Index].3)
         VarSetCapacity(s1, k*4), VarSetCapacity(s0, k*4)
         , VarSetCapacity(gs, sw*sh), VarSetCapacity(ss, sw*sh)
         , allpos_max:=(FindAll ? 1024 : 1)
@@ -7886,14 +7895,14 @@ for i,v in ok
             {
                 j:=info[A_Index], w1+=j.2+1, comment.=j.11
                 Loop, 7
-                k:=(A_Index=1 ? StrLen(v)
+                NumPut((A_Index=1 ? StrLen(v)
                 : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
                 : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
-                : j[A_Index]), NumPut(k,input,4*(i++),"int")
+                : j[A_Index]), input, 4*(i++), "int")
                 v.=j.1
             }
             ok:=PicFind( mode,color,n,offsetX,offsetY
-            , Scan0,Stride,sx,sy,sw,sh,gs,ss,v,s1,s0
+            , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
             , input,num*7,allpos,allpos_max )
             Loop, % ok
                 pos:=NumGet(allpos, 4*(A_Index-1), "uint")
@@ -7908,12 +7917,12 @@ for i,v in ok
                 mode:=j.8, color:=j.9, n:=j.10, comment:=j.11
                 , w1:=j.2, h1:=j.3, v:=j.1
                 Loop, 7
-                k:=(A_Index=1 ? 0
+                NumPut((A_Index=1 ? 0
                 : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
                 : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
-                : j[A_Index]), NumPut(k,input,4*(A_Index-1),"int")
+                : j[A_Index]), input, 4*(A_Index-1), "int")
                 ok:=PicFind( mode,color,n,offsetX,offsetY
-                , Scan0,Stride,sx,sy,sw,sh,gs,ss,v,s1,s0
+                , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
                 , input,7,allpos,allpos_max )
                 Loop, % ok
                 pos:=NumGet(allpos, 4*(A_Index-1), "uint")
@@ -7936,6 +7945,63 @@ for i,v in ok
         SetBatchLines, %bch%
         return, arr.MaxIndex() ? arr:0
     }
+
+	xywh2xywh(x1,y1,w1,h1, ByRef x,ByRef y,ByRef w,ByRef h
+	  , ByRef zx:="", ByRef zy:="", ByRef zw:="", ByRef zh:="")
+	{
+	  SysGet, zx, 76
+	  SysGet, zy, 77
+	  SysGet, zw, 78
+	  SysGet, zh, 79
+	  left:=x1, right:=x1+w1-1, up:=y1, down:=y1+h1-1
+	  left:=left<zx ? zx:left, right:=right>zx+zw-1 ? zx+zw-1:right
+	  up:=up<zy ? zy:up, down:=down>zy+zh-1 ? zy+zh-1:down
+	  x:=left, y:=up, w:=right-left+1, h:=down-up+1
+	}
+
+	GetBitsFromScreen(x, y, w, h, ScreenShot:=1
+	  , ByRef zx:="", ByRef zy:="", ByRef zw:="", ByRef zh:="")
+	{
+	  local  ; Unaffected by Super-global variables
+	  static hBM, oldzw, oldzh, bits:=[]
+	  static Ptr:=A_PtrSize ? "UPtr" : "UInt"
+	  bch:=A_BatchLines, cri:=A_IsCritical
+	  Critical
+	  if (zw<1 or zh<1)
+	  {
+	    SysGet, zx, 76
+	    SysGet, zy, 77
+	    SysGet, zw, 78
+	    SysGet, zh, 79
+	  }
+	  if (zw>oldzw or zh>oldzh or !hBM)
+	  {
+	    DllCall("DeleteObject", Ptr,hBM), hBM:="", bpp:=32
+	    VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
+	    NumPut(zw, bi, 4, "int"), NumPut(-zh, bi, 8, "int")
+	    NumPut(1, bi, 12, "short"), NumPut(bpp, bi, 14, "short")
+	    hBM:=DllCall("CreateDIBSection", Ptr,0, Ptr,&bi
+	      , "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr)
+	    Scan0:=(!hBM ? 0:ppvBits), Stride:=((zw*bpp+31)//32)*4
+	    bits.1:=Scan0, bits.2:=Stride, bits.3:=zw, bits.4:=zh
+	    oldzw:=zw, oldzh:=zh
+	  }
+	  if (ScreenShot and hBM)
+	  {
+	    win:=DllCall("GetDesktopWindow", Ptr)
+	    hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
+	    mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
+	    oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
+	    DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+	      , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020) ; |0x40000000)
+	    DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
+	    DllCall("DeleteDC", Ptr,mDC)
+	    DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
+	  }
+	  SetBatchLines, %bch%
+	  Critical, %cri%
+	  return, bits
+	}
 
     PicInfo(text)
     {
@@ -7982,12 +8048,12 @@ for i,v in ok
     }
 
     PicFind(mode, color, n, offsetX, offsetY
-    , Scan0, Stride, sx, sy, sw, sh
+    , bits, sx, sy, sw, sh
     , ByRef gs, ByRef ss, ByRef text, ByRef s1, ByRef s0
     , ByRef input, num, ByRef allpos, allpos_max)
     {
         static MyFunc, Ptr:=A_PtrSize ? "UPtr" : "UInt"
-        static init:=PicFind(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+        static init:=PicFind(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
         if (!MyFunc)
         {
             x32:="5557565383EC788B8424CC0000008BBC24CC000000C7442"
@@ -8252,63 +8318,15 @@ for i,v in ok
             . "8759383C7014801F54889D84139FC0F8562FFFFFFE968F7FFF"
             . "F31C9E9D9F8FFFF909090909090909090909090"
             MCode(MyFunc, A_PtrSize=8 ? x64:x32)
-            IfLess, Scan0, 10, return
+            IfEqual, num, 0, return
         }
-        return, DllCall(&MyFunc, "int",mode, "uint",color
-            , "uint",n, "int",offsetX, "int",offsetY, Ptr,Scan0
-            , "int",Stride, "int",sx, "int",sy, "int",sw, "int",sh
+        return, !bits.1 ? 0:DllCall(&MyFunc, "int",mode, "uint",color
+            , "uint",n, "int",offsetX, "int",offsetY, Ptr,bits.1
+            , "int",bits.2, "int",sx, "int",sy, "int",sw, "int",sh
             , Ptr,&gs, Ptr,&ss, "AStr",text, Ptr,&s1, Ptr,&s0
             , Ptr,&input, "int",num, Ptr,&allpos, "int",allpos_max)
     }
 
-    xywh2xywh(x1,y1,w1,h1,ByRef x,ByRef y,ByRef w,ByRef h)
-    {
-        SysGet, zx, 76
-        SysGet, zy, 77
-        SysGet, zw, 78
-        SysGet, zh, 79
-        left:=x1, right:=x1+w1-1, up:=y1, down:=y1+h1-1
-        left:=left<zx ? zx:left, right:=right>zx+zw-1 ? zx+zw-1:right
-        up:=up<zy ? zy:up, down:=down>zy+zh-1 ? zy+zh-1:down
-        x:=left, y:=up, w:=right-left+1, h:=down-up+1
-    }
-
-    GetBitsFromScreen(x, y, w, h, ByRef Scan0:="", ByRef Stride:=""
-    , ScreenShot:=1, ByRef zx:="", ByRef zy:="", ByRef zw:="", ByRef zh:="")
-    {
-        static bits, oldx, oldy, oldw, oldh, bpp:=32
-        static Ptr:=A_PtrSize ? "UPtr" : "UInt"
-        if (ScreenShot or x<oldx or y<oldy
-            or x+w>oldx+oldw or y+h>oldy+oldh) and !(w<1 or h<1)
-        {
-            oldx:=x, oldy:=y, oldw:=w, oldh:=h, ScreenShot:=1
-            VarSetCapacity(bits, w*h*4)
-        }
-        Scan0:=&bits, Stride:=((oldw*bpp+31)//32)*4
-        , zx:=oldx, zy:=oldy, zw:=oldw, zh:=oldh
-        if (!ScreenShot or w<1 or h<1)
-            return
-        win:=DllCall("GetDesktopWindow", Ptr)
-        hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
-        mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
-        ;-------------------------
-        VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
-        NumPut(w, bi, 4, "int"), NumPut(-h, bi, 8, "int")
-        NumPut(1, bi, 12, "short"), NumPut(bpp, bi, 14, "short")
-        ;-------------------------
-        if (hBM:=DllCall("CreateDIBSection", Ptr,mDC, Ptr,&bi
-            , "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr))
-        {
-            oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
-            DllCall("BitBlt", Ptr,mDC, "int",0, "int",0, "int",w, "int",h
-            , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020|0x40000000)
-            DllCall("RtlMoveMemory", Ptr,Scan0, Ptr,ppvBits, Ptr,Stride*h)
-            DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
-            DllCall("DeleteObject", Ptr,hBM)
-        }
-        DllCall("DeleteDC", Ptr,mDC)
-        DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
-    }
 
     MCode(ByRef code, hex)
     {
@@ -8320,7 +8338,7 @@ for i,v in ok
         Loop, % len
             NumPut("0x" SubStr(hex,2*A_Index-1,2),code,A_Index-1,"uchar")
         ListLines, %lls%
-        Ptr:=A_PtrSize ? "UPtr" : "UInt", PtrP:=Ptr . "*"
+        Ptr:=A_PtrSize ? "UPtr" : "UInt", PtrP:=Ptr "*"
         DllCall("VirtualProtect",Ptr,&code, Ptr,len,"uint",0x40,PtrP,0)
         SetBatchLines, %bch%
     }
@@ -8378,7 +8396,7 @@ for i,v in ok
     }
 
     ; You can put the text library at the beginning of the script,
-    ; and Use Pic(Text,1) to add the text library to PicLib()'s Lib,
+    ; and Use PicLib(Text,1) to add the text library to PicLib()'s Lib,
     ; Use PicLib("comment1|comment2|...") to get text images from Lib
 
     PicLib(comments, add_to_Lib:=0, index:=1)
@@ -8414,7 +8432,7 @@ for i,v in ok
 
     PicN(Number, index:=1)
     {
-        return, PicLib( RegExReplace(Number, ".", "|$0"), 0, index )
+        return, PicLib(RegExReplace(Number,".","|$0"), 0, index)
     }
 
     ; Use PicX(Text) to automatically cut into multiple characters
@@ -8445,29 +8463,29 @@ for i,v in ok
 
     ; Screenshot and retained as the last screenshot.
 
-    ScreenShot(x1="", y1="", x2="", y2="")
+    ScreenShot(x1:="", y1:="", x2:="", y2:="")
     {
         if (x1+y1+x2+y2="")
             n:=150000, x:=y:=-n, w:=h:=2*n
         else
             x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
             , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
-        xywh2xywh(x,y,w,h,x,y,w,h)
-        GetBitsFromScreen(x,y,w,h)
+        xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
+		if !(w<1 or h<1)
+        	GetBitsFromScreen(x,y,w,h,1,zx,zy,zw,zh)
     }
 
     ; Get the RGB color of a point from the last screenshot.
     ; If the point to get the color is beyond the range of
-    ; the last screenshot, an empty string will return.
+    ; Screen, it will return White color (0xFFFFFF).
 
-    ScreenShot_GetColor(x,y)
-    {
-        local  ; Unaffected by Super-global variables
-        GetBitsFromScreen(0,0,0,0,Scan0,Stride,0,zx,zy,zw,zh)
-        return, (x<zx or x>zx+zw-1 or y<zy or y>zy+zh-1 or !Stride)
-            ? "" : Format("0x{:06X}",NumGet(Scan0
-            +(y-zy)*Stride+(x-zx)*4,"uint")&0xFFFFFF)
-    }
+	ScreenShot_GetColor(x,y)
+	{
+	  bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh:="")
+	  return, (x<zx or x>zx+zw-1 or y<zy or y>zy+zh-1 or !bits.1)
+	    ? "0xFFFFFF" : Format("0x{:06X}",NumGet(bits.1
+	    +(y-zy)*bits.2+(x-zx)*4,"uint")&0xFFFFFF)
+	}
 
     ; Identify a line of text or verification code
     ; based on the result returned by FindText()

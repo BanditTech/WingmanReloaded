@@ -1,6 +1,27 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .08.12 December/16/2019
+--------------------------------------------------------------------------------
+Found a change made to the Clipboard contents, Implicit is now flagged in-line
+    This makes it much easier to ensure we grabbed the implicits
+Other Additions to the parser:
+    Increased Damage/Attack speed with movement skills
+
+Added Cocoon and Bundle to the list of Opened containers with LootVacuum
+
+Reverted the Client.txt load system back until I can figure out why its crashing
+    This old method has a known issue with files over the memory limit.
+    If your file is too large, your location will show up as "Log too Large"
+    When loading large log file, you will need to zone change to update location
+
+FindText Library has been updated to version 7.2
+    This version is a function update, I helped discover a potential crash situation
+    This situation was not present in the script, found in a testbench I was working on
+    Another change resolves the mouse flicker that was present when using ScreenShot()
+        This was only used in delve, and was not extremely noticable
+        This will allow me to redisign the GuiStatus function to use this new faster method
+
 Version .08.11 December/16/2019
 --------------------------------------------------------------------------------
 Loot Vacuum can now automatically open Chests, Trunks and Racks
