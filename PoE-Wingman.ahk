@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .08.12
+    Global VersionNumber := .09.00
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -268,6 +268,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
+		global PauseTooltips:=0
 		global OutsideTimer:=0
 		global Trigger:=00000
 		global AutoQuit:=0 
@@ -433,7 +434,8 @@
 			, 1080_ClarissaStr := "|<1080 Clarissa>*100$73.zzzzzzzzzzzzz3zzzzzzzzzzy0TzzzzzzzzzyDCzxzzvwzDxyDiDwy0sw71wz7zbwD6SQnAwDbzny7X7CTby7nztyFlXb7lyFszwzAsnnkwDAwTyTUQ3twD3USDzDU61wz7lU73vbnn4STlwHnklnXtX7CtiHtw1s1wFlb1kNwTrzzzzzzvyzzzzzzzzzzzzzzy"
 			, 1080_PetarusStr := "|<1080 Petarus>*100$69.zzzzzzzzzzzw7zzzzzzzzzzUDzzzzzzzzzwtzzzzTzyzTDb61U3ns3XlkQsthXQD6QTAnb7DwTVslXtbwttzXt76ATATUT1wTAsnntkwDsTXs70yTD3bzDwS0M7ntwQztzXnn4STTlbzDwQyMllniQzs7Xbl770w7zzzzzzzzyTvzzzzzzzzzzzzU"
 			, 1080_LaniStr := "|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"
-			, 1080_ChestStr := "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
+			, 1080_ChestStr := "|<1080 Door>*100$47.zzzzzzzz0zzzzzzy0TzzzzzwwTnznzztsS1y1s3nstltllbblXnXnX7DXDXDX6CT6T6T6AwyAyAyA3twNwNwM7ntltltl7b7lXlXX70TkTkT77zzvzvzzzzzzzzzzs"
+			, 1080_ChestStr .= "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
 			, 1080_ChestStr .= "|<1080 Trunk>*100$57.zzzzzzzzzw0DzzzzzzzU1zzzzzzzxlzzrvrxvvyD0QSAT6CDlsnXtlttnyD6ATC7DAzlslXtkNtDyD6STCFD3zls7ntn9sDyD0yTCMD9zlsXnvnVtbyD6CCSSDATlsss7nttlzzzznzzzzzzzzzzzzzzU"
 			, 1080_ChestStr .= "|<1080 Rack>*100$41.zzzzzzz1zzzzzy0zzzzzwtzTwyytlwzUMsnXkyANnb7VsxnDCSFnzYy1wnbz3w3s7Dy3tXU6DwbnbDATtbb4yQQn7D1wQ3b7zzzyTzzzzzzzzs"
 			, 1080_ChestStr .= "|<1080 Cocoon>*100$71.zzzzzzzzzzzzwDzzzzzzzzzzU7zzzzzzzzzyDDnznzDzDvysyy1y1s7s7Xslztlslb7b7XnbzXnXqDCDD3bDzDXDwyAyC3CDyT6TtwNwQWQTwyAznsnstYsztwMzblbln1kyltlz7b7bb3kllXln6D6DD7k7kTkD1z1yTDxzvztzjzjzzzzzzzzzzzzzzs"
@@ -485,10 +487,10 @@
 		Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
 
 		; Loot colors for the vacuum
-		Global LootColors := { 1 : 0xC4FEF6
-			, 2 : 0x99FECC
-			, 3 : 0x6565A3
-			, 4 : 0x383877}
+		Global LootColors := { 1 : 0xF6FEC4
+			, 2 : 0xCCFE99
+			, 3 : 0xA36565
+			, 4 : 0x773838}
 		Global YesLootChests := 1
 		;Item Parse blank Arrays
 		Global Prop := {}
@@ -605,14 +607,14 @@
 	; Inventory Colors
 		global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
 	; Failsafe Colors
-		global varOnMenu:=0x7BB9D6
-		global varOnChar:=0x4F6980
-		global varOnChat:=0x3B6288
-		global varOnInventory:=0x8CC6DD
-		global varOnStash:=0x9BD6E7
-		global varOnVendor:=0x7BB1CC
-		global varOnDiv:=0xC5E2F6
-		Global DetonateHex := 0x412037
+		global varOnMenu:=0xD6B97B
+		global varOnChar:=0x6B5543
+		global varOnChat:=0x88623B
+		global varOnInventory:=0xDCC289
+		global varOnStash:=0xECDBA6
+		global varOnVendor:=0xCEB178
+		global varOnDiv:=0xF6E2C5
+		Global DetonateHex := 0x5D4661
 
 	; Life Colors
 		global varLife20
@@ -820,6 +822,7 @@
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Thread, NoTimers, true		;Critical
+	Critical
 	Tooltip, Loading GUI 00`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13
 	Gui Add, Text, 										x515	y5, 				Debug Messages:
@@ -1911,7 +1914,6 @@
 		GuiControl, Hide, YesLocation
 		GuiControl, Hide, YesLocation_t
 	}
-	Thread, NoTimers, False		;Critical
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2040,6 +2042,8 @@
 			}
 		}
 	}
+	Thread, NoTimers, False		;Critical
+	Critical, Off
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Tooltip,
@@ -2107,11 +2111,13 @@
 		{
 			SetTimer, TDetonated, Delete
 			Detonated := True
+			PauseTooltips := 1
 			Tooltip, Auto-Mines Paused, % A_ScreenWidth / 2 - 57, % A_ScreenHeight / 8
 		}
 		Else If (ErrorLevel = 1)
 		{
 			Detonated := False
+			PauseTooltips := 0
 			Tooltip
 		}
 	Return
@@ -2186,6 +2192,19 @@ Return
 		RandomSleep(60,90)
 		MouseMove, xx, yy, 0
 	Return
+	; ShooMouse - Move mouse out of the inventory area
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ShooMouse()
+	{
+		Critical
+		MouseGetPos Checkx, Checky
+		If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+			Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
+			Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+			MouseMove, RX, RY, 0
+			Sleep, 45*Latency
+		}
+	}
 	; VendorRoutine - Does vendor functions
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	VendorRoutine()
@@ -2196,6 +2215,9 @@ Return
 		SortFlask := {}
 		SortGem := {}
 		BlackList := Array_DeepClone(IgnoredSlot)
+		; Move mouse out of the way to grab screenshot
+		ShooMouse()
+		ScreenShot()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2213,7 +2235,7 @@ Return
 					Ding(500,1,"Hit Scroll")
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 				} 
-				pixelgetcolor, PointColor, GridX, GridY
+				PointColor := ScreenShot_GetColor(GridX,GridY)
 				
 				If indexOf(PointColor, varEmptyInvSlotColor) {
 					;Seems to be an empty slot, no need to clip item info
@@ -2283,14 +2305,6 @@ Return
 					}
 				}
 			}
-			; Move mouse out of the way after a column
-			MouseGetPos Checkx, Checky
-			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
-				MouseMove, RX, RY, 0
-				Sleep, 45*Latency
-			}
 		}
 		; Sell any bulk Flasks or Gems
 		If (OnVendor && RunningToggle && YesVendor && tQ >= 40)
@@ -2341,6 +2355,9 @@ Return
 			SortFirst[A_Index] := {}
 		}
 		BlackList := Array_DeepClone(IgnoredSlot)
+		; Move mouse away for Screenshot
+		ShooMouse()
+		ScreenShot()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2358,7 +2375,7 @@ Return
 					Ding(500,1,"Hit Scroll")
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 				} 
-				pixelgetcolor, PointColor, GridX, GridY
+				PointColor := ScreenShot_GetColor(GridX,GridY)
 				
 				If indexOf(PointColor, varEmptyInvSlotColor) {
 					;Seems to be an empty slot, no need to clip item info
@@ -2489,7 +2506,7 @@ Return
 						If (StashTabYesUniqueRing)
 						{
 							Sleep, 200*Latency
-							pixelgetcolor, Pitem, GridX, GridY
+							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueRing)
@@ -2498,7 +2515,7 @@ Return
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							pixelgetcolor, Pitem, GridX, GridY
+							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
@@ -2517,7 +2534,7 @@ Return
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							pixelgetcolor, Pitem, GridX, GridY
+							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
@@ -2684,7 +2701,7 @@ Return
 						If (StashTabYesUniqueRing)
 						{
 							Sleep, 200*Latency
-							pixelgetcolor, Pitem, GridX, GridY
+							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueRing)
@@ -2693,7 +2710,7 @@ Return
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							pixelgetcolor, Pitem, GridX, GridY
+							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
@@ -2712,7 +2729,7 @@ Return
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							pixelgetcolor, Pitem, GridX, GridY
+							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
@@ -2967,6 +2984,7 @@ Return
 	{
 		Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
+		ShooMouse(), ScreenShot()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2984,7 +3002,7 @@ Return
 					Ding(500,1,"Hit Scroll")
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 				} 
-				pixelgetcolor, PointColor, GridX, GridY
+				PointColor := ScreenShot_GetColor(GridX,GridY)
 				
 				If indexOf(PointColor, varEmptyInvSlotColor) {
 					;Seems to be an empty slot, no need to clip item info
@@ -3022,6 +3040,7 @@ Return
 	{
 		Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
+		ShooMouse(), ScreenShot()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -3039,7 +3058,7 @@ Return
 					Ding(500,1,"Hit Scroll")
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 				} 
-				pixelgetcolor, PointColor, GridX, GridY
+				PointColor := ScreenShot_GetColor(GridX,GridY)
 				
 				If indexOf(PointColor, varEmptyInvSlotColor) {
 					;Seems to be an empty slot, no need to clip item info
@@ -5745,11 +5764,12 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	LootScan(Reset:=0){
 		LootScanCommand:
-			Static GreenHex := 0x24DE32, OrganHex := 0x2ED500
+			Static GreenHex := 0x32DE24, OrganHex := 0x00D52E
 			If (!ComboHex || Reset)
 			{
-				ComboHex := Hex2FindText(GreenHex,12,1,0,0)
-				ComboHex .= Hex2FindText(LootColors,0,1,1,1)
+				ComboHex := Hex2FindText(GreenHex,12,0,0,0)
+				ComboHex .= Hex2FindText(LootColors,0,0,1,1)
+				; ComboHex .= ChestStr
 				ComboHex := """" . ComboHex . """"
 				If Reset
 					Return
@@ -5767,37 +5787,46 @@ Return
 					{
 						ScanPx := loot.1.x, ScanPy := loot.1.y
 						If (loot.1.id = "FIVE")
-							ScanPx += 15, ScanPy += 15
+							ScanPx += 30, ScanPy += 10
 						If (Pressed := GetKeyState(hotkeyLootScan))
-							Click %ScanPx%, %ScanPy%
-						If (LVdelay >= 60)
-							Sleep, %LVdelay%
-						else
-							Sleep, 60
+						{
+							MouseMove, ScanPx, ScanPy
+							; Sleep, 15
+							Click ScanPx, ScanPy
+							; MouseMove, %ScanPx%, %ScanPy%
+						}
+						Sleep, %LVdelay%
 						Continue
 					}
 					MouseGetPos mX, mY
-					ClampGameScreen(x := mX - AreaScale * 2, y := mY - AreaScale * 2)
-					ClampGameScreen(xx := mX + AreaScale * 2, yy := mY + AreaScale * 2)
-					If (loot := FindText(x,y,xx,yy,0,0,ChestStr,1,0))
+					ClampGameScreen(x := mX - AreaScale * 2.5, y := mY - AreaScale * 2.5)
+					ClampGameScreen(xx := mX + AreaScale * 2.5, yy := mY + AreaScale * 2.5)
+					If (loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0))
 					{
 						ScanPx := loot.1.x, ScanPy := loot.1.y
+						If (loot.1.id ~= "Door")
+							ScanPy += 50
 						If (Pressed := GetKeyState(hotkeyLootScan))
-							Click %ScanPx%, %ScanPy%
-						If (LVdelay >= 60)
-							Sleep, %LVdelay%
-						else
-							Sleep, 60
+						{
+							MouseMove, ScanPx, ScanPy
+							; Sleep, 15
+							Click ScanPx, ScanPy
+							; MouseMove, %ScanPx%, %ScanPy%
+						}
+						Sleep, %LVdelay%
 						Continue
 					}
 				}
 				Else
 				{
 					MouseGetPos mX, mY
-					PixelGetColor, scolor, mX, mY
+					PixelGetColor, scolor, mX, mY, RGB
 					If (indexOf(scolor,LootColors) || CompareHex(scolor,GreenHex,53,1))
 						If (Pressed := GetKeyState(hotkeyLootScan))
+						{
 							click %mX%, %mY%
+							Sleep, %LVdelay%
+						}
 				}
 				Pressed := GetKeyState(hotkeyLootScan)
 			} Until !Pressed
@@ -5959,7 +5988,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life20, vX_Life, vY_Life20 
+						Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
 						if (Life20!=varLife20) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -5984,7 +6013,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life30, vX_Life, vY_Life30 
+						Life30 := ScreenShot_GetColor(vX_Life,vY_Life30) 
 						if (Life30!=varLife30) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6009,7 +6038,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life40, vX_Life, vY_Life40 
+						Life40 := ScreenShot_GetColor(vX_Life,vY_Life40) 
 						if (Life40!=varLife40) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6034,7 +6063,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life50, vX_Life, vY_Life50
+						Life50 := ScreenShot_GetColor(vX_Life,vY_Life50)
 						if (Life50!=varLife50) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6059,7 +6088,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life60, vX_Life, vY_Life60
+						Life60 := ScreenShot_GetColor(vX_Life,vY_Life60)
 						if (Life60!=varLife60) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6083,7 +6112,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life70, vX_Life, vY_Life70
+						Life70 := ScreenShot_GetColor(vX_Life,vY_Life70)
 						if (Life70!=varLife70) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6102,7 +6131,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life80, vX_Life, vY_Life80
+						Life80 := ScreenShot_GetColor(vX_Life,vY_Life80)
 						if (Life80!=varLife80) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6121,7 +6150,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life90, vX_Life, vY_Life90
+						Life90 := ScreenShot_GetColor(vX_Life,vY_Life90)
 						if (Life90!=varLife90) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6269,7 +6298,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life20, vX_Life, vY_Life20 
+						Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
 						if (Life20!=varLife20) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6294,7 +6323,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life30, vX_Life, vY_Life30 
+						Life30 := ScreenShot_GetColor(vX_Life,vY_Life30) 
 						if (Life30!=varLife30) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6319,7 +6348,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life40, vX_Life, vY_Life40 
+						Life40 := ScreenShot_GetColor(vX_Life,vY_Life40) 
 						if (Life40!=varLife40) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6344,7 +6373,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life50, vX_Life, vY_Life50
+						Life50 := ScreenShot_GetColor(vX_Life,vY_Life50)
 						if (Life50!=varLife50) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6369,7 +6398,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life60, vX_Life, vY_Life60
+						Life60 := ScreenShot_GetColor(vX_Life,vY_Life60)
 						if (Life60!=varLife60) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6393,7 +6422,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life70, vX_Life, vY_Life70
+						Life70 := ScreenShot_GetColor(vX_Life,vY_Life70)
 						if (Life70!=varLife70) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6412,7 +6441,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life80, vX_Life, vY_Life80
+						Life80 := ScreenShot_GetColor(vX_Life,vY_Life80)
 						if (Life80!=varLife80) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6431,7 +6460,7 @@ Return
 						|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
 						|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
 						|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
-						pixelgetcolor, Life90, vX_Life, vY_Life90
+						Life90 := ScreenShot_GetColor(vX_Life,vY_Life90)
 						if (Life90!=varLife90) {
 							GuiStatus("OnChar")
 							if !(OnChar)
@@ -6453,7 +6482,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES20, vX_ES, vY_ES20 
+					ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
 					if (ES20!=varES20) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6472,7 +6501,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES30, vX_ES, vY_ES30 
+					ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
 					if (ES30!=varES30) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6491,7 +6520,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES40, vX_ES, vY_ES40 
+					ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
 					if (ES40!=varES40) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6510,7 +6539,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES50, vX_ES, vY_ES50
+					ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
 					if (ES50!=varES50) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6529,7 +6558,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES60, vX_ES, vY_ES60
+					ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
 					if (ES60!=varES60) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6548,7 +6577,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES70, vX_ES, vY_ES70
+					ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
 					if (ES70!=varES70) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6567,7 +6596,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES80, vX_ES, vY_ES80
+					ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
 					if (ES80!=varES80) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6587,7 +6616,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES90, vX_ES, vY_ES90
+					ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
 					if (ES90!=varES90) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6612,7 +6641,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES20, vX_ES, vY_ES20 
+					ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
 					if (ES20!=varES20) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6637,7 +6666,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES30, vX_ES, vY_ES30 
+					ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
 					if (ES30!=varES30) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6662,7 +6691,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES40, vX_ES, vY_ES40 
+					ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
 					if (ES40!=varES40) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6687,7 +6716,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES50, vX_ES, vY_ES50
+					ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
 					if (ES50!=varES50) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6712,7 +6741,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES60, vX_ES, vY_ES60
+					ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
 					if (ES60!=varES60) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6736,7 +6765,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES70, vX_ES, vY_ES70
+					ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
 					if (ES70!=varES70) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6755,7 +6784,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES80, vX_ES, vY_ES80
+					ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
 					if (ES80!=varES80) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6775,7 +6804,7 @@ Return
 					|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
 					|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
 					|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
-					pixelgetcolor, ES90, vX_ES, vY_ES90
+					ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
 					if (ES90!=varES90) {
 						GuiStatus("OnChar")
 						if !(OnChar)
@@ -6794,7 +6823,7 @@ Return
 			
 			If (TriggerMana10!="00000") {
 				t4 := A_TickCount
-				pixelgetcolor, ManaPerc, vX_Mana, vY_ManaThreshold
+				ManaPerc := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
 				if (ManaPerc!=varManaThreshold) {
 					GuiStatus("OnChar")
 					if !(OnChar)
@@ -7110,8 +7139,8 @@ Return
 			GuiStatus()
 			If (!OnChar||OnChat||OnInventory||OnMenu)
 				Exit
-			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
-			pixelgetcolor, Mine, DetonateX, DetonateY
+			DelveMine := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+			Mine := ScreenShot_GetColor(DetonateX,DetonateY)
 			If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
 				Sendraw, d
 				Detonated:=1
@@ -7221,11 +7250,12 @@ Return
 				TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
 			}else{
 				TT := "Grid information:" . "`n"
+				ScreenShot()
 				For C, GridX in InventoryGridX	
 				{
 					For R, GridY in InventoryGridY
 					{
-						pixelgetcolor, PointColor, GridX, GridY
+						PointColor := ScreenShot_GetColor(GridX,GridY)
 						if (indexOf(PointColor, varEmptyInvSlotColor)) {				
 							TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
 						}else{
@@ -7306,8 +7336,8 @@ Return
 			Send {%hotkeyInventory%}
 			If YesClickPortal || ChickenFlag
 			{
-				Sleep, 90*Latency
-				LeftClick(GameX + Round(GameW/2),GameY + Round(GameH/2.427))
+				Sleep, 75*Latency
+				SwiftClick(GameX + Round(GameW/2),GameY + Round(GameH/2.427))
 			}
 			Else
 				MouseMove, xx, yy, 0
@@ -7447,20 +7477,20 @@ Return
 					If !GuiStatus("OnChar")
 						Return
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
-					If (GetKeyState("LButton","P"))
+					If GetKeyState("LButton","P")
 						Click, up
-					If (GetKeyState("RButton","P"))
+					If GetKeyState("RButton","P")
 						Click, Right, up
 					MouseGetPos, mX, mY
 					BlockInput, MouseMove
 					SwiftClick(X,Y)
 					MouseMove, mX, mY, 0
-					Sleep, 60
-					If (GetKeyState("LButton","P"))
-						Click, down
-					If (GetKeyState("RButton","P"))
-						Click, Right, down
 					BlockInput, MouseMoveOff
+					Sleep, 60
+					If GetKeyState("LButton","P")
+						Click, down
+					If GetKeyState("RButton","P")
+						Click, Right, down
 					ok:=""
 				}
 			}
@@ -7631,7 +7661,8 @@ Return
 		CoordCommand:
 			MouseGetPos x, y
 			PixelGetColor, xycolor , x, y
-			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor 
+			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor
+			PauseTooltips := 1
 			Tooltip, %TT%
 			SetTimer, RemoveToolTip, 10000
 		Return
@@ -7689,7 +7720,7 @@ Return
 			IniRead, YesClickPortal, settings.ini, General, YesClickPortal, 0
 			IniRead, RelogOnQuit, settings.ini, General, RelogOnQuit, 0
 			IniRead, AreaScale, settings.ini, General, AreaScale, 60
-			IniRead, LVdelay, settings.ini, General, LVdelay, 15
+			IniRead, LVdelay, settings.ini, General, LVdelay, 30
 			IniRead, YesLootChests, settings.ini, General, YesLootChests, 1
 
 			;Settings for Auto-Vendor
@@ -7802,48 +7833,48 @@ Return
 				VendorMineStr := """" . VendorMineStr . """"
 
 			;Inventory Colors
-			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905
+			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
 			;Create an array out of the read string
 			varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
 
 			;Loot Vacuum Colors
-			IniRead, LootColors, settings.ini, Loot Colors, LootColors, 0xC4FEF6, 0x99FECC, 0x6565A3, 0x383877
+			IniRead, LootColors, settings.ini, Loot Colors, LootColors, 0xF6FEC4,0xCCFE99,0xFEFE9E,0xFADF72,0xA36565,0x773838
 			;Create an array out of the read string
 			LootColors := StrSplit(LootColors, ",")
 
 			;Failsafe Colors
-			IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0x7BB9D6
-			IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
-			IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
-			IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
-			IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
-			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
-			IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xC5E2F6
-			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x412037
+			IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0xD6B97B
+			IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x6B5543
+			IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x88623B
+			IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0xDCC289
+			IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0xECDBA6
+			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0xCEB178
+			IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xF6E2C5
+			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x5D4661
 
 			;Life Colors
-			IniRead, varLife20, settings.ini, Life Colors, Life20, 0x181145
-			IniRead, varLife30, settings.ini, Life Colors, Life30, 0x181264
-			IniRead, varLife40, settings.ini, Life Colors, Life40, 0x190F7D
-			IniRead, varLife50, settings.ini, Life Colors, Life50, 0x2318A5
-			IniRead, varLife60, settings.ini, Life Colors, Life60, 0x2215B4
-			IniRead, varLife70, settings.ini, Life Colors, Life70, 0x2413B3
-			IniRead, varLife80, settings.ini, Life Colors, Life80, 0x2B2385
-			IniRead, varLife90, settings.ini, Life Colors, Life90, 0x664564
+			IniRead, varLife20, settings.ini, Life Colors, Life20, 0x4D0D11
+			IniRead, varLife30, settings.ini, Life Colors, Life30, 0x640E13
+			IniRead, varLife40, settings.ini, Life Colors, Life40, 0x7D0E14
+			IniRead, varLife50, settings.ini, Life Colors, Life50, 0xA0161E
+			IniRead, varLife60, settings.ini, Life Colors, Life60, 0xB51521
+			IniRead, varLife70, settings.ini, Life Colors, Life70, 0xB31326
+			IniRead, varLife80, settings.ini, Life Colors, Life80, 0x841F26
+			IniRead, varLife90, settings.ini, Life Colors, Life90, 0x662027
 				
 			;ES Colors
-			IniRead, varES20, settings.ini, ES Colors, ES20, 0xFFC445
-			IniRead, varES30, settings.ini, ES Colors, ES30, 0xFFCE66
-			IniRead, varES40, settings.ini, ES Colors, ES40, 0xFFFF85
-			IniRead, varES50, settings.ini, ES Colors, ES50, 0xFFFF82
-			IniRead, varES60, settings.ini, ES Colors, ES60, 0xFFFF95
-			IniRead, varES70, settings.ini, ES Colors, ES70, 0xFFD07F
-			IniRead, varES80, settings.ini, ES Colors, ES80, 0xE89C5E
-			IniRead, varES90, settings.ini, ES Colors, ES90, 0xE79435
+			IniRead, varES20, settings.ini, ES Colors, ES20, 0x46C6FF
+			IniRead, varES30, settings.ini, ES Colors, ES30, 0x68D3FF
+			IniRead, varES40, settings.ini, ES Colors, ES40, 0x83FFFF
+			IniRead, varES50, settings.ini, ES Colors, ES50, 0x81FFFF
+			IniRead, varES60, settings.ini, ES Colors, ES60, 0x97FFFF
+			IniRead, varES70, settings.ini, ES Colors, ES70, 0x7DCFFF
+			IniRead, varES80, settings.ini, ES Colors, ES80, 0x5C9DDC
+			IniRead, varES90, settings.ini, ES Colors, ES90, 0x3C93D9
 			
 			;Mana Colors
-			IniRead, varMana10, settings.ini, Mana Colors, Mana10, 0x3C201D
-			IniRead, varManaThreshold, settings.ini, Mana Colors, ManaThreshold, 0x3C201D
+			IniRead, varMana10, settings.ini, Mana Colors, Mana10, 0x1B203D
+			IniRead, varManaThreshold, settings.ini, Mana Colors, ManaThreshold, 0x1B203D
 			
 			;Life Triggers
 			IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20, 00000
@@ -8055,16 +8086,16 @@ Return
 			IniRead, RadioNormalQuit, settings.ini, AutoQuit, NormalQuit, 0
 			
 			;Profile Editbox
-			Iniread, ProfileText1, settings.ini, Profiles, ProfileText1, Profile 1
-			Iniread, ProfileText2, settings.ini, Profiles, ProfileText2, Profile 2
-			Iniread, ProfileText3, settings.ini, Profiles, ProfileText3, Profile 3
-			Iniread, ProfileText4, settings.ini, Profiles, ProfileText4, Profile 4
-			Iniread, ProfileText5, settings.ini, Profiles, ProfileText5, Profile 5
-			Iniread, ProfileText6, settings.ini, Profiles, ProfileText6, Profile 6
-			Iniread, ProfileText7, settings.ini, Profiles, ProfileText7, Profile 7
-			Iniread, ProfileText8, settings.ini, Profiles, ProfileText8, Profile 8
-			Iniread, ProfileText9, settings.ini, Profiles, ProfileText9, Profile 9
-			Iniread, ProfileText10, settings.ini, Profiles, ProfileText10, Profile 10
+			Iniread, ProfileText1, profiles.ini, Profiles, ProfileText1, Profile 1
+			Iniread, ProfileText2, profiles.ini, Profiles, ProfileText2, Profile 2
+			Iniread, ProfileText3, profiles.ini, Profiles, ProfileText3, Profile 3
+			Iniread, ProfileText4, profiles.ini, Profiles, ProfileText4, Profile 4
+			Iniread, ProfileText5, profiles.ini, Profiles, ProfileText5, Profile 5
+			Iniread, ProfileText6, profiles.ini, Profiles, ProfileText6, Profile 6
+			Iniread, ProfileText7, profiles.ini, Profiles, ProfileText7, Profile 7
+			Iniread, ProfileText8, profiles.ini, Profiles, ProfileText8, Profile 8
+			Iniread, ProfileText9, profiles.ini, Profiles, ProfileText9, Profile 9
+			Iniread, ProfileText10, profiles.ini, Profiles, ProfileText10, Profile 10
 
 			;~ hotkeys reset
 			hotkey, IfWinActive, ahk_group POEGameGroup
@@ -8357,17 +8388,16 @@ Return
 				Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
 				ToggleExist := True
 				WinActivate, ahk_group POEGameGroup
-				GuiStatus("OnChar")
-				If (OnChar) {
+				If (GuiStatus("OnChar")) {
 					;Life Resample
-					pixelgetcolor, varLife20, vX_Life, vY_Life20
-					pixelgetcolor, varLife30, vX_Life, vY_Life30
-					pixelgetcolor, varLife40, vX_Life, vY_Life40
-					pixelgetcolor, varLife50, vX_Life, vY_Life50
-					pixelgetcolor, varLife60, vX_Life, vY_Life60
-					pixelgetcolor, varLife70, vX_Life, vY_Life70
-					pixelgetcolor, varLife80, vX_Life, vY_Life80
-					pixelgetcolor, varLife90, vX_Life, vY_Life90
+					varLife20 := ScreenShot_GetColor(vX_Life,vY_Life20)
+					varLife30 := ScreenShot_GetColor(vX_Life,vY_Life30)
+					varLife40 := ScreenShot_GetColor(vX_Life,vY_Life40)
+					varLife50 := ScreenShot_GetColor(vX_Life,vY_Life50)
+					varLife60 := ScreenShot_GetColor(vX_Life,vY_Life60)
+					varLife70 := ScreenShot_GetColor(vX_Life,vY_Life70)
+					varLife80 := ScreenShot_GetColor(vX_Life,vY_Life80)
+					varLife90 := ScreenShot_GetColor(vX_Life,vY_Life90)
 						
 					IniWrite, %varLife20%, settings.ini, Life Colors, Life20
 					IniWrite, %varLife30%, settings.ini, Life Colors, Life30
@@ -8378,14 +8408,14 @@ Return
 					IniWrite, %varLife80%, settings.ini, Life Colors, Life80
 					IniWrite, %varLife90%, settings.ini, Life Colors, Life90
 					;ES Resample
-					pixelgetcolor, varES20, vX_ES, vY_ES20
-					pixelgetcolor, varES30, vX_ES, vY_ES30
-					pixelgetcolor, varES40, vX_ES, vY_ES40
-					pixelgetcolor, varES50, vX_ES, vY_ES50
-					pixelgetcolor, varES60, vX_ES, vY_ES60
-					pixelgetcolor, varES70, vX_ES, vY_ES70
-					pixelgetcolor, varES80, vX_ES, vY_ES80
-					pixelgetcolor, varES90, vX_ES, vY_ES90
+					varES20 := ScreenShot_GetColor(vX_ES,vY_ES20)
+					varES30 := ScreenShot_GetColor(vX_ES,vY_ES30)
+					varES40 := ScreenShot_GetColor(vX_ES,vY_ES40)
+					varES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
+					varES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
+					varES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
+					varES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
+					varES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
 					
 					IniWrite, %varES20%, settings.ini, ES Colors, ES20
 					IniWrite, %varES30%, settings.ini, ES Colors, ES30
@@ -8396,8 +8426,8 @@ Return
 					IniWrite, %varES80%, settings.ini, ES Colors, ES80
 					IniWrite, %varES90%, settings.ini, ES Colors, ES90
 					;Mana Resample
-					pixelgetcolor, varMana10, vX_Mana, vY_Mana10
-					pixelgetcolor, varManaThreshold, vX_Mana, vY_ManaThreshold
+					varMana10 := ScreenShot_GetColor(vX_Mana,vY_Mana10)
+					varManaThreshold := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
 					IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
 					IniWrite, %varManaThreshold%, settings.ini, Mana Colors, ManaThreshold
 					;Messagebox	
@@ -9365,248 +9395,248 @@ Return
 			
 			;Life Flasks
 			
-			IniWrite, %Radiobox1Life20%, settings.ini, Profile%Profile%, Radiobox1Life20
-			IniWrite, %Radiobox2Life20%, settings.ini, Profile%Profile%, Radiobox2Life20
-			IniWrite, %Radiobox3Life20%, settings.ini, Profile%Profile%, Radiobox3Life20
-			IniWrite, %Radiobox4Life20%, settings.ini, Profile%Profile%, Radiobox4Life20
-			IniWrite, %Radiobox5Life20%, settings.ini, Profile%Profile%, Radiobox5Life20
+			IniWrite, %Radiobox1Life20%, profiles.ini, Profile%Profile%, Radiobox1Life20
+			IniWrite, %Radiobox2Life20%, profiles.ini, Profile%Profile%, Radiobox2Life20
+			IniWrite, %Radiobox3Life20%, profiles.ini, Profile%Profile%, Radiobox3Life20
+			IniWrite, %Radiobox4Life20%, profiles.ini, Profile%Profile%, Radiobox4Life20
+			IniWrite, %Radiobox5Life20%, profiles.ini, Profile%Profile%, Radiobox5Life20
 
-			IniWrite, %Radiobox1Life30%, settings.ini, Profile%Profile%, Radiobox1Life30
-			IniWrite, %Radiobox2Life30%, settings.ini, Profile%Profile%, Radiobox2Life30
-			IniWrite, %Radiobox3Life30%, settings.ini, Profile%Profile%, Radiobox3Life30
-			IniWrite, %Radiobox4Life30%, settings.ini, Profile%Profile%, Radiobox4Life30
-			IniWrite, %Radiobox5Life30%, settings.ini, Profile%Profile%, Radiobox5Life30
+			IniWrite, %Radiobox1Life30%, profiles.ini, Profile%Profile%, Radiobox1Life30
+			IniWrite, %Radiobox2Life30%, profiles.ini, Profile%Profile%, Radiobox2Life30
+			IniWrite, %Radiobox3Life30%, profiles.ini, Profile%Profile%, Radiobox3Life30
+			IniWrite, %Radiobox4Life30%, profiles.ini, Profile%Profile%, Radiobox4Life30
+			IniWrite, %Radiobox5Life30%, profiles.ini, Profile%Profile%, Radiobox5Life30
 
-			IniWrite, %Radiobox1Life40%, settings.ini, Profile%Profile%, Radiobox1Life40
-			IniWrite, %Radiobox2Life40%, settings.ini, Profile%Profile%, Radiobox2Life40
-			IniWrite, %Radiobox3Life40%, settings.ini, Profile%Profile%, Radiobox3Life40
-			IniWrite, %Radiobox4Life40%, settings.ini, Profile%Profile%, Radiobox4Life40
-			IniWrite, %Radiobox5Life40%, settings.ini, Profile%Profile%, Radiobox5Life40
+			IniWrite, %Radiobox1Life40%, profiles.ini, Profile%Profile%, Radiobox1Life40
+			IniWrite, %Radiobox2Life40%, profiles.ini, Profile%Profile%, Radiobox2Life40
+			IniWrite, %Radiobox3Life40%, profiles.ini, Profile%Profile%, Radiobox3Life40
+			IniWrite, %Radiobox4Life40%, profiles.ini, Profile%Profile%, Radiobox4Life40
+			IniWrite, %Radiobox5Life40%, profiles.ini, Profile%Profile%, Radiobox5Life40
 
-			IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
-			IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
-			IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
-			IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
-			IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
+			IniWrite, %Radiobox1Life50%, profiles.ini, Profile%Profile%, Radiobox1Life50
+			IniWrite, %Radiobox2Life50%, profiles.ini, Profile%Profile%, Radiobox2Life50
+			IniWrite, %Radiobox3Life50%, profiles.ini, Profile%Profile%, Radiobox3Life50
+			IniWrite, %Radiobox4Life50%, profiles.ini, Profile%Profile%, Radiobox4Life50
+			IniWrite, %Radiobox5Life50%, profiles.ini, Profile%Profile%, Radiobox5Life50
 
-			IniWrite, %Radiobox1Life50%, settings.ini, Profile%Profile%, Radiobox1Life50
-			IniWrite, %Radiobox2Life50%, settings.ini, Profile%Profile%, Radiobox2Life50
-			IniWrite, %Radiobox3Life50%, settings.ini, Profile%Profile%, Radiobox3Life50
-			IniWrite, %Radiobox4Life50%, settings.ini, Profile%Profile%, Radiobox4Life50
-			IniWrite, %Radiobox5Life50%, settings.ini, Profile%Profile%, Radiobox5Life50
+			IniWrite, %Radiobox1Life50%, profiles.ini, Profile%Profile%, Radiobox1Life50
+			IniWrite, %Radiobox2Life50%, profiles.ini, Profile%Profile%, Radiobox2Life50
+			IniWrite, %Radiobox3Life50%, profiles.ini, Profile%Profile%, Radiobox3Life50
+			IniWrite, %Radiobox4Life50%, profiles.ini, Profile%Profile%, Radiobox4Life50
+			IniWrite, %Radiobox5Life50%, profiles.ini, Profile%Profile%, Radiobox5Life50
 
-			IniWrite, %Radiobox1Life60%, settings.ini, Profile%Profile%, Radiobox1Life60
-			IniWrite, %Radiobox2Life60%, settings.ini, Profile%Profile%, Radiobox2Life60
-			IniWrite, %Radiobox3Life60%, settings.ini, Profile%Profile%, Radiobox3Life60
-			IniWrite, %Radiobox4Life60%, settings.ini, Profile%Profile%, Radiobox4Life60
-			IniWrite, %Radiobox5Life60%, settings.ini, Profile%Profile%, Radiobox5Life60
+			IniWrite, %Radiobox1Life60%, profiles.ini, Profile%Profile%, Radiobox1Life60
+			IniWrite, %Radiobox2Life60%, profiles.ini, Profile%Profile%, Radiobox2Life60
+			IniWrite, %Radiobox3Life60%, profiles.ini, Profile%Profile%, Radiobox3Life60
+			IniWrite, %Radiobox4Life60%, profiles.ini, Profile%Profile%, Radiobox4Life60
+			IniWrite, %Radiobox5Life60%, profiles.ini, Profile%Profile%, Radiobox5Life60
 
-			IniWrite, %Radiobox1Life70%, settings.ini, Profile%Profile%, Radiobox1Life70
-			IniWrite, %Radiobox2Life70%, settings.ini, Profile%Profile%, Radiobox2Life70
-			IniWrite, %Radiobox3Life70%, settings.ini, Profile%Profile%, Radiobox3Life70
-			IniWrite, %Radiobox4Life70%, settings.ini, Profile%Profile%, Radiobox4Life70
-			IniWrite, %Radiobox5Life70%, settings.ini, Profile%Profile%, Radiobox5Life70
+			IniWrite, %Radiobox1Life70%, profiles.ini, Profile%Profile%, Radiobox1Life70
+			IniWrite, %Radiobox2Life70%, profiles.ini, Profile%Profile%, Radiobox2Life70
+			IniWrite, %Radiobox3Life70%, profiles.ini, Profile%Profile%, Radiobox3Life70
+			IniWrite, %Radiobox4Life70%, profiles.ini, Profile%Profile%, Radiobox4Life70
+			IniWrite, %Radiobox5Life70%, profiles.ini, Profile%Profile%, Radiobox5Life70
 
-			IniWrite, %Radiobox1Life80%, settings.ini, Profile%Profile%, Radiobox1Life80
-			IniWrite, %Radiobox2Life80%, settings.ini, Profile%Profile%, Radiobox2Life80
-			IniWrite, %Radiobox3Life80%, settings.ini, Profile%Profile%, Radiobox3Life80
-			IniWrite, %Radiobox4Life80%, settings.ini, Profile%Profile%, Radiobox4Life80
-			IniWrite, %Radiobox5Life80%, settings.ini, Profile%Profile%, Radiobox5Life80
+			IniWrite, %Radiobox1Life80%, profiles.ini, Profile%Profile%, Radiobox1Life80
+			IniWrite, %Radiobox2Life80%, profiles.ini, Profile%Profile%, Radiobox2Life80
+			IniWrite, %Radiobox3Life80%, profiles.ini, Profile%Profile%, Radiobox3Life80
+			IniWrite, %Radiobox4Life80%, profiles.ini, Profile%Profile%, Radiobox4Life80
+			IniWrite, %Radiobox5Life80%, profiles.ini, Profile%Profile%, Radiobox5Life80
 
-			IniWrite, %Radiobox1Life90%, settings.ini, Profile%Profile%, Radiobox1Life90
-			IniWrite, %Radiobox2Life90%, settings.ini, Profile%Profile%, Radiobox2Life90
-			IniWrite, %Radiobox3Life90%, settings.ini, Profile%Profile%, Radiobox3Life90
-			IniWrite, %Radiobox4Life90%, settings.ini, Profile%Profile%, Radiobox4Life90
-			IniWrite, %Radiobox5Life90%, settings.ini, Profile%Profile%, Radiobox5Life90
+			IniWrite, %Radiobox1Life90%, profiles.ini, Profile%Profile%, Radiobox1Life90
+			IniWrite, %Radiobox2Life90%, profiles.ini, Profile%Profile%, Radiobox2Life90
+			IniWrite, %Radiobox3Life90%, profiles.ini, Profile%Profile%, Radiobox3Life90
+			IniWrite, %Radiobox4Life90%, profiles.ini, Profile%Profile%, Radiobox4Life90
+			IniWrite, %Radiobox5Life90%, profiles.ini, Profile%Profile%, Radiobox5Life90
 
-			IniWrite, %RadioUncheck1Life%, settings.ini, Profile%Profile%, RadioUncheck1Life
-			IniWrite, %RadioUncheck2Life%, settings.ini, Profile%Profile%, RadioUncheck2Life
-			IniWrite, %RadioUncheck3Life%, settings.ini, Profile%Profile%, RadioUncheck3Life
-			IniWrite, %RadioUncheck4Life%, settings.ini, Profile%Profile%, RadioUncheck4Life
-			IniWrite, %RadioUncheck5Life%, settings.ini, Profile%Profile%, RadioUncheck5Life
+			IniWrite, %RadioUncheck1Life%, profiles.ini, Profile%Profile%, RadioUncheck1Life
+			IniWrite, %RadioUncheck2Life%, profiles.ini, Profile%Profile%, RadioUncheck2Life
+			IniWrite, %RadioUncheck3Life%, profiles.ini, Profile%Profile%, RadioUncheck3Life
+			IniWrite, %RadioUncheck4Life%, profiles.ini, Profile%Profile%, RadioUncheck4Life
+			IniWrite, %RadioUncheck5Life%, profiles.ini, Profile%Profile%, RadioUncheck5Life
 			
 			;ES Flasks
-			IniWrite, %Radiobox1ES20%, settings.ini, Profile%Profile%, Radiobox1ES20
-			IniWrite, %Radiobox2ES20%, settings.ini, Profile%Profile%, Radiobox2ES20
-			IniWrite, %Radiobox3ES20%, settings.ini, Profile%Profile%, Radiobox3ES20
-			IniWrite, %Radiobox4ES20%, settings.ini, Profile%Profile%, Radiobox4ES20
-			IniWrite, %Radiobox5ES20%, settings.ini, Profile%Profile%, Radiobox5ES20
+			IniWrite, %Radiobox1ES20%, profiles.ini, Profile%Profile%, Radiobox1ES20
+			IniWrite, %Radiobox2ES20%, profiles.ini, Profile%Profile%, Radiobox2ES20
+			IniWrite, %Radiobox3ES20%, profiles.ini, Profile%Profile%, Radiobox3ES20
+			IniWrite, %Radiobox4ES20%, profiles.ini, Profile%Profile%, Radiobox4ES20
+			IniWrite, %Radiobox5ES20%, profiles.ini, Profile%Profile%, Radiobox5ES20
 			
-			IniWrite, %Radiobox1ES30%, settings.ini, Profile%Profile%, Radiobox1ES30
-			IniWrite, %Radiobox2ES30%, settings.ini, Profile%Profile%, Radiobox2ES30
-			IniWrite, %Radiobox3ES30%, settings.ini, Profile%Profile%, Radiobox3ES30
-			IniWrite, %Radiobox4ES30%, settings.ini, Profile%Profile%, Radiobox4ES30
-			IniWrite, %Radiobox5ES30%, settings.ini, Profile%Profile%, Radiobox5ES30
+			IniWrite, %Radiobox1ES30%, profiles.ini, Profile%Profile%, Radiobox1ES30
+			IniWrite, %Radiobox2ES30%, profiles.ini, Profile%Profile%, Radiobox2ES30
+			IniWrite, %Radiobox3ES30%, profiles.ini, Profile%Profile%, Radiobox3ES30
+			IniWrite, %Radiobox4ES30%, profiles.ini, Profile%Profile%, Radiobox4ES30
+			IniWrite, %Radiobox5ES30%, profiles.ini, Profile%Profile%, Radiobox5ES30
 			
-			IniWrite, %Radiobox1ES40%, settings.ini, Profile%Profile%, Radiobox1ES40
-			IniWrite, %Radiobox2ES40%, settings.ini, Profile%Profile%, Radiobox2ES40
-			IniWrite, %Radiobox3ES40%, settings.ini, Profile%Profile%, Radiobox3ES40
-			IniWrite, %Radiobox4ES40%, settings.ini, Profile%Profile%, Radiobox4ES40
-			IniWrite, %Radiobox5ES40%, settings.ini, Profile%Profile%, Radiobox5ES40
+			IniWrite, %Radiobox1ES40%, profiles.ini, Profile%Profile%, Radiobox1ES40
+			IniWrite, %Radiobox2ES40%, profiles.ini, Profile%Profile%, Radiobox2ES40
+			IniWrite, %Radiobox3ES40%, profiles.ini, Profile%Profile%, Radiobox3ES40
+			IniWrite, %Radiobox4ES40%, profiles.ini, Profile%Profile%, Radiobox4ES40
+			IniWrite, %Radiobox5ES40%, profiles.ini, Profile%Profile%, Radiobox5ES40
 			
-			IniWrite, %Radiobox1ES50%, settings.ini, Profile%Profile%, Radiobox1ES50
-			IniWrite, %Radiobox2ES50%, settings.ini, Profile%Profile%, Radiobox2ES50
-			IniWrite, %Radiobox3ES50%, settings.ini, Profile%Profile%, Radiobox3ES50
-			IniWrite, %Radiobox4ES50%, settings.ini, Profile%Profile%, Radiobox4ES50
-			IniWrite, %Radiobox5ES50%, settings.ini, Profile%Profile%, Radiobox5ES50
+			IniWrite, %Radiobox1ES50%, profiles.ini, Profile%Profile%, Radiobox1ES50
+			IniWrite, %Radiobox2ES50%, profiles.ini, Profile%Profile%, Radiobox2ES50
+			IniWrite, %Radiobox3ES50%, profiles.ini, Profile%Profile%, Radiobox3ES50
+			IniWrite, %Radiobox4ES50%, profiles.ini, Profile%Profile%, Radiobox4ES50
+			IniWrite, %Radiobox5ES50%, profiles.ini, Profile%Profile%, Radiobox5ES50
 			
-			IniWrite, %Radiobox1ES50%, settings.ini, Profile%Profile%, Radiobox1ES50
-			IniWrite, %Radiobox2ES50%, settings.ini, Profile%Profile%, Radiobox2ES50
-			IniWrite, %Radiobox3ES50%, settings.ini, Profile%Profile%, Radiobox3ES50
-			IniWrite, %Radiobox4ES50%, settings.ini, Profile%Profile%, Radiobox4ES50
-			IniWrite, %Radiobox5ES50%, settings.ini, Profile%Profile%, Radiobox5ES50
+			IniWrite, %Radiobox1ES50%, profiles.ini, Profile%Profile%, Radiobox1ES50
+			IniWrite, %Radiobox2ES50%, profiles.ini, Profile%Profile%, Radiobox2ES50
+			IniWrite, %Radiobox3ES50%, profiles.ini, Profile%Profile%, Radiobox3ES50
+			IniWrite, %Radiobox4ES50%, profiles.ini, Profile%Profile%, Radiobox4ES50
+			IniWrite, %Radiobox5ES50%, profiles.ini, Profile%Profile%, Radiobox5ES50
 			
-			IniWrite, %Radiobox1ES60%, settings.ini, Profile%Profile%, Radiobox1ES60
-			IniWrite, %Radiobox2ES60%, settings.ini, Profile%Profile%, Radiobox2ES60
-			IniWrite, %Radiobox3ES60%, settings.ini, Profile%Profile%, Radiobox3ES60
-			IniWrite, %Radiobox4ES60%, settings.ini, Profile%Profile%, Radiobox4ES60
-			IniWrite, %Radiobox5ES60%, settings.ini, Profile%Profile%, Radiobox5ES60
+			IniWrite, %Radiobox1ES60%, profiles.ini, Profile%Profile%, Radiobox1ES60
+			IniWrite, %Radiobox2ES60%, profiles.ini, Profile%Profile%, Radiobox2ES60
+			IniWrite, %Radiobox3ES60%, profiles.ini, Profile%Profile%, Radiobox3ES60
+			IniWrite, %Radiobox4ES60%, profiles.ini, Profile%Profile%, Radiobox4ES60
+			IniWrite, %Radiobox5ES60%, profiles.ini, Profile%Profile%, Radiobox5ES60
 			
-			IniWrite, %Radiobox1ES70%, settings.ini, Profile%Profile%, Radiobox1ES70
-			IniWrite, %Radiobox2ES70%, settings.ini, Profile%Profile%, Radiobox2ES70
-			IniWrite, %Radiobox3ES70%, settings.ini, Profile%Profile%, Radiobox3ES70
-			IniWrite, %Radiobox4ES70%, settings.ini, Profile%Profile%, Radiobox4ES70
-			IniWrite, %Radiobox5ES70%, settings.ini, Profile%Profile%, Radiobox5ES70
+			IniWrite, %Radiobox1ES70%, profiles.ini, Profile%Profile%, Radiobox1ES70
+			IniWrite, %Radiobox2ES70%, profiles.ini, Profile%Profile%, Radiobox2ES70
+			IniWrite, %Radiobox3ES70%, profiles.ini, Profile%Profile%, Radiobox3ES70
+			IniWrite, %Radiobox4ES70%, profiles.ini, Profile%Profile%, Radiobox4ES70
+			IniWrite, %Radiobox5ES70%, profiles.ini, Profile%Profile%, Radiobox5ES70
 			
-			IniWrite, %Radiobox1ES80%, settings.ini, Profile%Profile%, Radiobox1ES80
-			IniWrite, %Radiobox2ES80%, settings.ini, Profile%Profile%, Radiobox2ES80
-			IniWrite, %Radiobox3ES80%, settings.ini, Profile%Profile%, Radiobox3ES80
-			IniWrite, %Radiobox4ES80%, settings.ini, Profile%Profile%, Radiobox4ES80
-			IniWrite, %Radiobox5ES80%, settings.ini, Profile%Profile%, Radiobox5ES80
+			IniWrite, %Radiobox1ES80%, profiles.ini, Profile%Profile%, Radiobox1ES80
+			IniWrite, %Radiobox2ES80%, profiles.ini, Profile%Profile%, Radiobox2ES80
+			IniWrite, %Radiobox3ES80%, profiles.ini, Profile%Profile%, Radiobox3ES80
+			IniWrite, %Radiobox4ES80%, profiles.ini, Profile%Profile%, Radiobox4ES80
+			IniWrite, %Radiobox5ES80%, profiles.ini, Profile%Profile%, Radiobox5ES80
 			
-			IniWrite, %Radiobox1ES90%, settings.ini, Profile%Profile%, Radiobox1ES90
-			IniWrite, %Radiobox2ES90%, settings.ini, Profile%Profile%, Radiobox2ES90
-			IniWrite, %Radiobox3ES90%, settings.ini, Profile%Profile%, Radiobox3ES90
-			IniWrite, %Radiobox4ES90%, settings.ini, Profile%Profile%, Radiobox4ES90
-			IniWrite, %Radiobox5ES90%, settings.ini, Profile%Profile%, Radiobox5ES90
+			IniWrite, %Radiobox1ES90%, profiles.ini, Profile%Profile%, Radiobox1ES90
+			IniWrite, %Radiobox2ES90%, profiles.ini, Profile%Profile%, Radiobox2ES90
+			IniWrite, %Radiobox3ES90%, profiles.ini, Profile%Profile%, Radiobox3ES90
+			IniWrite, %Radiobox4ES90%, profiles.ini, Profile%Profile%, Radiobox4ES90
+			IniWrite, %Radiobox5ES90%, profiles.ini, Profile%Profile%, Radiobox5ES90
 			
-			IniWrite, %RadioUncheck1ES%, settings.ini, Profile%Profile%, RadioUncheck1ES
-			IniWrite, %RadioUncheck2ES%, settings.ini, Profile%Profile%, RadioUncheck2ES
-			IniWrite, %RadioUncheck3ES%, settings.ini, Profile%Profile%, RadioUncheck3ES
-			IniWrite, %RadioUncheck4ES%, settings.ini, Profile%Profile%, RadioUncheck4ES
-			IniWrite, %RadioUncheck5ES%, settings.ini, Profile%Profile%, RadioUncheck5ES
+			IniWrite, %RadioUncheck1ES%, profiles.ini, Profile%Profile%, RadioUncheck1ES
+			IniWrite, %RadioUncheck2ES%, profiles.ini, Profile%Profile%, RadioUncheck2ES
+			IniWrite, %RadioUncheck3ES%, profiles.ini, Profile%Profile%, RadioUncheck3ES
+			IniWrite, %RadioUncheck4ES%, profiles.ini, Profile%Profile%, RadioUncheck4ES
+			IniWrite, %RadioUncheck5ES%, profiles.ini, Profile%Profile%, RadioUncheck5ES
 			
 			;Mana Flasks
-			IniWrite, %Radiobox1Mana10%, settings.ini, Profile%Profile%, Radiobox1Mana10
-			IniWrite, %Radiobox2Mana10%, settings.ini, Profile%Profile%, Radiobox2Mana10
-			IniWrite, %Radiobox3Mana10%, settings.ini, Profile%Profile%, Radiobox3Mana10
-			IniWrite, %Radiobox4Mana10%, settings.ini, Profile%Profile%, Radiobox4Mana10
-			IniWrite, %Radiobox5Mana10%, settings.ini, Profile%Profile%, Radiobox5Mana10
+			IniWrite, %Radiobox1Mana10%, profiles.ini, Profile%Profile%, Radiobox1Mana10
+			IniWrite, %Radiobox2Mana10%, profiles.ini, Profile%Profile%, Radiobox2Mana10
+			IniWrite, %Radiobox3Mana10%, profiles.ini, Profile%Profile%, Radiobox3Mana10
+			IniWrite, %Radiobox4Mana10%, profiles.ini, Profile%Profile%, Radiobox4Mana10
+			IniWrite, %Radiobox5Mana10%, profiles.ini, Profile%Profile%, Radiobox5Mana10
 			
 			;Flask Cooldowns
-			IniWrite, %CooldownFlask1%, settings.ini, Profile%Profile%, CooldownFlask1
-			IniWrite, %CooldownFlask2%, settings.ini, Profile%Profile%, CooldownFlask2
-			IniWrite, %CooldownFlask3%, settings.ini, Profile%Profile%, CooldownFlask3
-			IniWrite, %CooldownFlask4%, settings.ini, Profile%Profile%, CooldownFlask4
-			IniWrite, %CooldownFlask5%, settings.ini, Profile%Profile%, CooldownFlask5	
+			IniWrite, %CooldownFlask1%, profiles.ini, Profile%Profile%, CooldownFlask1
+			IniWrite, %CooldownFlask2%, profiles.ini, Profile%Profile%, CooldownFlask2
+			IniWrite, %CooldownFlask3%, profiles.ini, Profile%Profile%, CooldownFlask3
+			IniWrite, %CooldownFlask4%, profiles.ini, Profile%Profile%, CooldownFlask4
+			IniWrite, %CooldownFlask5%, profiles.ini, Profile%Profile%, CooldownFlask5	
 			
 			;Attack Flasks
-			IniWrite, %MainAttackbox1%, settings.ini, Profile%Profile%, MainAttackbox1
-			IniWrite, %MainAttackbox2%, settings.ini, Profile%Profile%, MainAttackbox2
-			IniWrite, %MainAttackbox3%, settings.ini, Profile%Profile%, MainAttackbox3
-			IniWrite, %MainAttackbox4%, settings.ini, Profile%Profile%, MainAttackbox4
-			IniWrite, %MainAttackbox5%, settings.ini, Profile%Profile%, MainAttackbox5
+			IniWrite, %MainAttackbox1%, profiles.ini, Profile%Profile%, MainAttackbox1
+			IniWrite, %MainAttackbox2%, profiles.ini, Profile%Profile%, MainAttackbox2
+			IniWrite, %MainAttackbox3%, profiles.ini, Profile%Profile%, MainAttackbox3
+			IniWrite, %MainAttackbox4%, profiles.ini, Profile%Profile%, MainAttackbox4
+			IniWrite, %MainAttackbox5%, profiles.ini, Profile%Profile%, MainAttackbox5
 			
-			IniWrite, %SecondaryAttackbox1%, settings.ini, Profile%Profile%, SecondaryAttackbox1
-			IniWrite, %SecondaryAttackbox2%, settings.ini, Profile%Profile%, SecondaryAttackbox2
-			IniWrite, %SecondaryAttackbox3%, settings.ini, Profile%Profile%, SecondaryAttackbox3
-			IniWrite, %SecondaryAttackbox4%, settings.ini, Profile%Profile%, SecondaryAttackbox4
-			IniWrite, %SecondaryAttackbox5%, settings.ini, Profile%Profile%, SecondaryAttackbox5
+			IniWrite, %SecondaryAttackbox1%, profiles.ini, Profile%Profile%, SecondaryAttackbox1
+			IniWrite, %SecondaryAttackbox2%, profiles.ini, Profile%Profile%, SecondaryAttackbox2
+			IniWrite, %SecondaryAttackbox3%, profiles.ini, Profile%Profile%, SecondaryAttackbox3
+			IniWrite, %SecondaryAttackbox4%, profiles.ini, Profile%Profile%, SecondaryAttackbox4
+			IniWrite, %SecondaryAttackbox5%, profiles.ini, Profile%Profile%, SecondaryAttackbox5
 			
 			;Attack Keys
-			IniWrite, %hotkeyMainAttack%, settings.ini, Profile%Profile%, MainAttack
-			IniWrite, %hotkeySecondaryAttack%, settings.ini, Profile%Profile%, SecondaryAttack
+			IniWrite, %hotkeyMainAttack%, profiles.ini, Profile%Profile%, MainAttack
+			IniWrite, %hotkeySecondaryAttack%, profiles.ini, Profile%Profile%, SecondaryAttack
 			
 			;QS on Attack Keys
-			IniWrite, %QSonMainAttack%, settings.ini, Profile%Profile%, QSonMainAttack
-			IniWrite, %QSonSecondaryAttack%, settings.ini, Profile%Profile%, QSonSecondaryAttack
+			IniWrite, %QSonMainAttack%, profiles.ini, Profile%Profile%, QSonMainAttack
+			IniWrite, %QSonSecondaryAttack%, profiles.ini, Profile%Profile%, QSonSecondaryAttack
 			
 			;Quicksilver Flasks
-			IniWrite, %TriggerQuicksilverDelay%, settings.ini, Profile%Profile%, TriggerQuicksilverDelay
-			IniWrite, %Radiobox1QS%, settings.ini, Profile%Profile%, QuicksilverSlot1
-			IniWrite, %Radiobox2QS%, settings.ini, Profile%Profile%, QuicksilverSlot2
-			IniWrite, %Radiobox3QS%, settings.ini, Profile%Profile%, QuicksilverSlot3
-			IniWrite, %Radiobox4QS%, settings.ini, Profile%Profile%, QuicksilverSlot4
-			IniWrite, %Radiobox5QS%, settings.ini, Profile%Profile%, QuicksilverSlot5
+			IniWrite, %TriggerQuicksilverDelay%, profiles.ini, Profile%Profile%, TriggerQuicksilverDelay
+			IniWrite, %Radiobox1QS%, profiles.ini, Profile%Profile%, QuicksilverSlot1
+			IniWrite, %Radiobox2QS%, profiles.ini, Profile%Profile%, QuicksilverSlot2
+			IniWrite, %Radiobox3QS%, profiles.ini, Profile%Profile%, QuicksilverSlot3
+			IniWrite, %Radiobox4QS%, profiles.ini, Profile%Profile%, QuicksilverSlot4
+			IniWrite, %Radiobox5QS%, profiles.ini, Profile%Profile%, QuicksilverSlot5
 			
 			;CharacterTypeCheck
-			IniWrite, %RadioLife%, settings.ini, Profile%Profile%, Life
-			IniWrite, %RadioHybrid%, settings.ini, Profile%Profile%, Hybrid	
-			IniWrite, %RadioCi%, settings.ini, Profile%Profile%, Ci	
+			IniWrite, %RadioLife%, profiles.ini, Profile%Profile%, Life
+			IniWrite, %RadioHybrid%, profiles.ini, Profile%Profile%, Hybrid	
+			IniWrite, %RadioCi%, profiles.ini, Profile%Profile%, Ci	
 			
 			;AutoMines
-			IniWrite, %DetonateMines%, settings.ini, Profile%Profile%, DetonateMines
+			IniWrite, %DetonateMines%, profiles.ini, Profile%Profile%, DetonateMines
 
 			;EldritchBattery
-			IniWrite, %YesEldritchBattery%, settings.ini, Profile%Profile%, YesEldritchBattery
+			IniWrite, %YesEldritchBattery%, profiles.ini, Profile%Profile%, YesEldritchBattery
 
 			;ManaThreshold
-			IniWrite, %ManaThreshold%, settings.ini, Profile%Profile%, ManaThreshold
+			IniWrite, %ManaThreshold%, profiles.ini, Profile%Profile%, ManaThreshold
 
 			;AutoQuit
-			IniWrite, %RadioQuit20%, settings.ini, Profile%Profile%, Quit20
-			IniWrite, %RadioQuit30%, settings.ini, Profile%Profile%, Quit30
-			IniWrite, %RadioQuit40%, settings.ini, Profile%Profile%, Quit40
-			IniWrite, %RadioQuit50%, settings.ini, Profile%Profile%, Quit50
-			IniWrite, %RadioQuit60%, settings.ini, Profile%Profile%, Quit60
-			IniWrite, %RadioCritQuit%, settings.ini, Profile%Profile%, CritQuit
-			IniWrite, %RadioPortalQuit%, settings.ini, Profile%Profile%, PortalQuit
-			IniWrite, %RadioNormalQuit%, settings.ini, Profile%Profile%, NormalQuit
+			IniWrite, %RadioQuit20%, profiles.ini, Profile%Profile%, Quit20
+			IniWrite, %RadioQuit30%, profiles.ini, Profile%Profile%, Quit30
+			IniWrite, %RadioQuit40%, profiles.ini, Profile%Profile%, Quit40
+			IniWrite, %RadioQuit50%, profiles.ini, Profile%Profile%, Quit50
+			IniWrite, %RadioQuit60%, profiles.ini, Profile%Profile%, Quit60
+			IniWrite, %RadioCritQuit%, profiles.ini, Profile%Profile%, CritQuit
+			IniWrite, %RadioPortalQuit%, profiles.ini, Profile%Profile%, PortalQuit
+			IniWrite, %RadioNormalQuit%, profiles.ini, Profile%Profile%, NormalQuit
 			
 			;Utility Buttons
-			IniWrite, %YesUtility1%, settings.ini, Profile%Profile%, YesUtility1
-			IniWrite, %YesUtility2%, settings.ini, Profile%Profile%, YesUtility2
-			IniWrite, %YesUtility3%, settings.ini, Profile%Profile%, YesUtility3
-			IniWrite, %YesUtility4%, settings.ini, Profile%Profile%, YesUtility4
-			IniWrite, %YesUtility5%, settings.ini, Profile%Profile%, YesUtility5
-			IniWrite, %YesUtility1Quicksilver%, settings.ini, Profile%Profile%, YesUtility1Quicksilver
-			IniWrite, %YesUtility2Quicksilver%, settings.ini, Profile%Profile%, YesUtility2Quicksilver
-			IniWrite, %YesUtility3Quicksilver%, settings.ini, Profile%Profile%, YesUtility3Quicksilver
-			IniWrite, %YesUtility4Quicksilver%, settings.ini, Profile%Profile%, YesUtility4Quicksilver
-			IniWrite, %YesUtility5Quicksilver%, settings.ini, Profile%Profile%, YesUtility5Quicksilver
+			IniWrite, %YesUtility1%, profiles.ini, Profile%Profile%, YesUtility1
+			IniWrite, %YesUtility2%, profiles.ini, Profile%Profile%, YesUtility2
+			IniWrite, %YesUtility3%, profiles.ini, Profile%Profile%, YesUtility3
+			IniWrite, %YesUtility4%, profiles.ini, Profile%Profile%, YesUtility4
+			IniWrite, %YesUtility5%, profiles.ini, Profile%Profile%, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, profiles.ini, Profile%Profile%, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, profiles.ini, Profile%Profile%, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, profiles.ini, Profile%Profile%, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, profiles.ini, Profile%Profile%, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, profiles.ini, Profile%Profile%, YesUtility5Quicksilver
 			
 			;Utility Percents	
-			IniWrite, %YesUtility1LifePercent%, settings.ini, Profile%Profile%, YesUtility1LifePercent
-			IniWrite, %YesUtility2LifePercent%, settings.ini, Profile%Profile%, YesUtility2LifePercent
-			IniWrite, %YesUtility3LifePercent%, settings.ini, Profile%Profile%, YesUtility3LifePercent
-			IniWrite, %YesUtility4LifePercent%, settings.ini, Profile%Profile%, YesUtility4LifePercent
-			IniWrite, %YesUtility5LifePercent%, settings.ini, Profile%Profile%, YesUtility5LifePercent
-			IniWrite, %YesUtility1EsPercent%, settings.ini, Profile%Profile%, YesUtility1EsPercent
-			IniWrite, %YesUtility2EsPercent%, settings.ini, Profile%Profile%, YesUtility2EsPercent
-			IniWrite, %YesUtility3EsPercent%, settings.ini, Profile%Profile%, YesUtility3EsPercent
-			IniWrite, %YesUtility4EsPercent%, settings.ini, Profile%Profile%, YesUtility4EsPercent
-			IniWrite, %YesUtility5EsPercent%, settings.ini, Profile%Profile%, YesUtility5EsPercent
+			IniWrite, %YesUtility1LifePercent%, profiles.ini, Profile%Profile%, YesUtility1LifePercent
+			IniWrite, %YesUtility2LifePercent%, profiles.ini, Profile%Profile%, YesUtility2LifePercent
+			IniWrite, %YesUtility3LifePercent%, profiles.ini, Profile%Profile%, YesUtility3LifePercent
+			IniWrite, %YesUtility4LifePercent%, profiles.ini, Profile%Profile%, YesUtility4LifePercent
+			IniWrite, %YesUtility5LifePercent%, profiles.ini, Profile%Profile%, YesUtility5LifePercent
+			IniWrite, %YesUtility1EsPercent%, profiles.ini, Profile%Profile%, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, profiles.ini, Profile%Profile%, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, profiles.ini, Profile%Profile%, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, profiles.ini, Profile%Profile%, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, profiles.ini, Profile%Profile%, YesUtility5EsPercent
 			
 			;Utility Cooldowns
-			IniWrite, %CooldownUtility1%, settings.ini, Profile%Profile%, CooldownUtility1
-			IniWrite, %CooldownUtility2%, settings.ini, Profile%Profile%, CooldownUtility2
-			IniWrite, %CooldownUtility3%, settings.ini, Profile%Profile%, CooldownUtility3
-			IniWrite, %CooldownUtility4%, settings.ini, Profile%Profile%, CooldownUtility4
-			IniWrite, %CooldownUtility5%, settings.ini, Profile%Profile%, CooldownUtility5
+			IniWrite, %CooldownUtility1%, profiles.ini, Profile%Profile%, CooldownUtility1
+			IniWrite, %CooldownUtility2%, profiles.ini, Profile%Profile%, CooldownUtility2
+			IniWrite, %CooldownUtility3%, profiles.ini, Profile%Profile%, CooldownUtility3
+			IniWrite, %CooldownUtility4%, profiles.ini, Profile%Profile%, CooldownUtility4
+			IniWrite, %CooldownUtility5%, profiles.ini, Profile%Profile%, CooldownUtility5
 			
 			;Character Name
-			IniWrite, %CharName%, settings.ini, Profile%Profile%, CharName
+			IniWrite, %CharName%, profiles.ini, Profile%Profile%, CharName
 
 			;Utility Keys
-			IniWrite, %KeyUtility1%, settings.ini, Profile%Profile%, KeyUtility1
-			IniWrite, %KeyUtility2%, settings.ini, Profile%Profile%, KeyUtility2
-			IniWrite, %KeyUtility3%, settings.ini, Profile%Profile%, KeyUtility3
-			IniWrite, %KeyUtility4%, settings.ini, Profile%Profile%, KeyUtility4
-			IniWrite, %KeyUtility5%, settings.ini, Profile%Profile%, KeyUtility5
+			IniWrite, %KeyUtility1%, profiles.ini, Profile%Profile%, KeyUtility1
+			IniWrite, %KeyUtility2%, profiles.ini, Profile%Profile%, KeyUtility2
+			IniWrite, %KeyUtility3%, profiles.ini, Profile%Profile%, KeyUtility3
+			IniWrite, %KeyUtility4%, profiles.ini, Profile%Profile%, KeyUtility4
+			IniWrite, %KeyUtility5%, profiles.ini, Profile%Profile%, KeyUtility5
 
 			;Utility Icon Strings
-			IniWrite, %IconStringUtility1%, settings.ini, Profile%Profile%, IconStringUtility1
-			IniWrite, %IconStringUtility2%, settings.ini, Profile%Profile%, IconStringUtility2
-			IniWrite, %IconStringUtility3%, settings.ini, Profile%Profile%, IconStringUtility3
-			IniWrite, %IconStringUtility4%, settings.ini, Profile%Profile%, IconStringUtility4
-			IniWrite, %IconStringUtility5%, settings.ini, Profile%Profile%, IconStringUtility5
+			IniWrite, %IconStringUtility1%, profiles.ini, Profile%Profile%, IconStringUtility1
+			IniWrite, %IconStringUtility2%, profiles.ini, Profile%Profile%, IconStringUtility2
+			IniWrite, %IconStringUtility3%, profiles.ini, Profile%Profile%, IconStringUtility3
+			IniWrite, %IconStringUtility4%, profiles.ini, Profile%Profile%, IconStringUtility4
+			IniWrite, %IconStringUtility5%, profiles.ini, Profile%Profile%, IconStringUtility5
 
 			;Pop Flasks Keys
-			IniWrite, %PopFlasks1%, settings.ini, Profile%Profile%, PopFlasks1
-			IniWrite, %PopFlasks2%, settings.ini, Profile%Profile%, PopFlasks2
-			IniWrite, %PopFlasks3%, settings.ini, Profile%Profile%, PopFlasks3
-			IniWrite, %PopFlasks4%, settings.ini, Profile%Profile%, PopFlasks4
-			IniWrite, %PopFlasks5%, settings.ini, Profile%Profile%, PopFlasks5
+			IniWrite, %PopFlasks1%, profiles.ini, Profile%Profile%, PopFlasks1
+			IniWrite, %PopFlasks2%, profiles.ini, Profile%Profile%, PopFlasks2
+			IniWrite, %PopFlasks3%, profiles.ini, Profile%Profile%, PopFlasks3
+			IniWrite, %PopFlasks4%, profiles.ini, Profile%Profile%, PopFlasks4
+			IniWrite, %PopFlasks5%, profiles.ini, Profile%Profile%, PopFlasks5
 			
 		return
 		}
@@ -9656,443 +9686,443 @@ Return
 		readProfile(Profile){  
 			global
 			;Life Flasks
-			IniRead, Radiobox1Life20, settings.ini, Profile%Profile%, Radiobox1Life20, 0
+			IniRead, Radiobox1Life20, profiles.ini, Profile%Profile%, Radiobox1Life20, 0
 			GuiControl, , Radiobox1Life20, %Radiobox1Life20%
-			IniRead, Radiobox2Life20, settings.ini, Profile%Profile%, Radiobox2Life20, 0
+			IniRead, Radiobox2Life20, profiles.ini, Profile%Profile%, Radiobox2Life20, 0
 			GuiControl, , Radiobox2Life20, %Radiobox2Life20%
-			IniRead, Radiobox3Life20, settings.ini, Profile%Profile%, Radiobox3Life20, 0
+			IniRead, Radiobox3Life20, profiles.ini, Profile%Profile%, Radiobox3Life20, 0
 			GuiControl, , Radiobox3Life20, %Radiobox3Life20%
-			IniRead, Radiobox4Life20, settings.ini, Profile%Profile%, Radiobox4Life20, 0
+			IniRead, Radiobox4Life20, profiles.ini, Profile%Profile%, Radiobox4Life20, 0
 			GuiControl, , Radiobox4Life20, %Radiobox4Life20%
-			IniRead, Radiobox5Life20, settings.ini, Profile%Profile%, Radiobox5Life20, 0
+			IniRead, Radiobox5Life20, profiles.ini, Profile%Profile%, Radiobox5Life20, 0
 			GuiControl, , Radiobox5Life20, %Radiobox5Life20%
 
-			IniRead, Radiobox1Life30, settings.ini, Profile%Profile%, Radiobox1Life30, 0
+			IniRead, Radiobox1Life30, profiles.ini, Profile%Profile%, Radiobox1Life30, 0
 			GuiControl, , Radiobox1Life30, %Radiobox1Life30%
-			IniRead, Radiobox2Life30, settings.ini, Profile%Profile%, Radiobox2Life30, 0
+			IniRead, Radiobox2Life30, profiles.ini, Profile%Profile%, Radiobox2Life30, 0
 			GuiControl, , Radiobox2Life30, %Radiobox2Life30%
-			IniRead, Radiobox3Life30, settings.ini, Profile%Profile%, Radiobox3Life30, 0
+			IniRead, Radiobox3Life30, profiles.ini, Profile%Profile%, Radiobox3Life30, 0
 			GuiControl, , Radiobox3Life30, %Radiobox3Life30%
-			IniRead, Radiobox4Life30, settings.ini, Profile%Profile%, Radiobox4Life30, 0
+			IniRead, Radiobox4Life30, profiles.ini, Profile%Profile%, Radiobox4Life30, 0
 			GuiControl, , Radiobox4Life30, %Radiobox4Life30%
-			IniRead, Radiobox5Life30, settings.ini, Profile%Profile%, Radiobox5Life30, 0
+			IniRead, Radiobox5Life30, profiles.ini, Profile%Profile%, Radiobox5Life30, 0
 			GuiControl, , Radiobox5Life30, %Radiobox5Life30%
 
-			IniRead, Radiobox1Life40, settings.ini, Profile%Profile%, Radiobox1Life40, 0
+			IniRead, Radiobox1Life40, profiles.ini, Profile%Profile%, Radiobox1Life40, 0
 			GuiControl, , Radiobox1Life40, %Radiobox1Life40%
-			IniRead, Radiobox2Life40, settings.ini, Profile%Profile%, Radiobox2Life40, 0
+			IniRead, Radiobox2Life40, profiles.ini, Profile%Profile%, Radiobox2Life40, 0
 			GuiControl, , Radiobox2Life40, %Radiobox2Life40%
-			IniRead, Radiobox3Life40, settings.ini, Profile%Profile%, Radiobox3Life40, 0
+			IniRead, Radiobox3Life40, profiles.ini, Profile%Profile%, Radiobox3Life40, 0
 			GuiControl, , Radiobox3Life40, %Radiobox3Life40%
-			IniRead, Radiobox4Life40, settings.ini, Profile%Profile%, Radiobox4Life40, 0
+			IniRead, Radiobox4Life40, profiles.ini, Profile%Profile%, Radiobox4Life40, 0
 			GuiControl, , Radiobox4Life40, %Radiobox4Life40%
-			IniRead, Radiobox5Life40, settings.ini, Profile%Profile%, Radiobox5Life40, 0
+			IniRead, Radiobox5Life40, profiles.ini, Profile%Profile%, Radiobox5Life40, 0
 			GuiControl, , Radiobox5Life40, %Radiobox5Life40%
 
-			IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50, 0
+			IniRead, Radiobox1Life50, profiles.ini, Profile%Profile%, Radiobox1Life50, 0
 			GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-			IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50, 0
+			IniRead, Radiobox2Life50, profiles.ini, Profile%Profile%, Radiobox2Life50, 0
 			GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-			IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50, 0
+			IniRead, Radiobox3Life50, profiles.ini, Profile%Profile%, Radiobox3Life50, 0
 			GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-			IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50, 0
+			IniRead, Radiobox4Life50, profiles.ini, Profile%Profile%, Radiobox4Life50, 0
 			GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-			IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50, 0
+			IniRead, Radiobox5Life50, profiles.ini, Profile%Profile%, Radiobox5Life50, 0
 			GuiControl, , Radiobox5Life50, %Radiobox5Life50%
 
-			IniRead, Radiobox1Life50, settings.ini, Profile%Profile%, Radiobox1Life50, 0
+			IniRead, Radiobox1Life50, profiles.ini, Profile%Profile%, Radiobox1Life50, 0
 			GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-			IniRead, Radiobox2Life50, settings.ini, Profile%Profile%, Radiobox2Life50, 0
+			IniRead, Radiobox2Life50, profiles.ini, Profile%Profile%, Radiobox2Life50, 0
 			GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-			IniRead, Radiobox3Life50, settings.ini, Profile%Profile%, Radiobox3Life50, 0
+			IniRead, Radiobox3Life50, profiles.ini, Profile%Profile%, Radiobox3Life50, 0
 			GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-			IniRead, Radiobox4Life50, settings.ini, Profile%Profile%, Radiobox4Life50, 0
+			IniRead, Radiobox4Life50, profiles.ini, Profile%Profile%, Radiobox4Life50, 0
 			GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-			IniRead, Radiobox5Life50, settings.ini, Profile%Profile%, Radiobox5Life50, 0
+			IniRead, Radiobox5Life50, profiles.ini, Profile%Profile%, Radiobox5Life50, 0
 			GuiControl, , Radiobox5Life50, %Radiobox5Life50%
 
-			IniRead, Radiobox1Life60, settings.ini, Profile%Profile%, Radiobox1Life60, 0
+			IniRead, Radiobox1Life60, profiles.ini, Profile%Profile%, Radiobox1Life60, 0
 			GuiControl, , Radiobox1Life60, %Radiobox1Life60%
-			IniRead, Radiobox2Life60, settings.ini, Profile%Profile%, Radiobox2Life60, 0
+			IniRead, Radiobox2Life60, profiles.ini, Profile%Profile%, Radiobox2Life60, 0
 			GuiControl, , Radiobox2Life60, %Radiobox2Life60%
-			IniRead, Radiobox3Life60, settings.ini, Profile%Profile%, Radiobox3Life60, 0
+			IniRead, Radiobox3Life60, profiles.ini, Profile%Profile%, Radiobox3Life60, 0
 			GuiControl, , Radiobox3Life60, %Radiobox3Life60%
-			IniRead, Radiobox4Life60, settings.ini, Profile%Profile%, Radiobox4Life60, 0
+			IniRead, Radiobox4Life60, profiles.ini, Profile%Profile%, Radiobox4Life60, 0
 			GuiControl, , Radiobox4Life60, %Radiobox4Life60%
-			IniRead, Radiobox5Life60, settings.ini, Profile%Profile%, Radiobox5Life60, 0
+			IniRead, Radiobox5Life60, profiles.ini, Profile%Profile%, Radiobox5Life60, 0
 			GuiControl, , Radiobox5Life60, %Radiobox5Life60%
 
-			IniRead, Radiobox1Life70, settings.ini, Profile%Profile%, Radiobox1Life70, 0
+			IniRead, Radiobox1Life70, profiles.ini, Profile%Profile%, Radiobox1Life70, 0
 			GuiControl, , Radiobox1Life70, %Radiobox1Life70%
-			IniRead, Radiobox2Life70, settings.ini, Profile%Profile%, Radiobox2Life70, 0
+			IniRead, Radiobox2Life70, profiles.ini, Profile%Profile%, Radiobox2Life70, 0
 			GuiControl, , Radiobox2Life70, %Radiobox2Life70%
-			IniRead, Radiobox3Life70, settings.ini, Profile%Profile%, Radiobox3Life70, 0
+			IniRead, Radiobox3Life70, profiles.ini, Profile%Profile%, Radiobox3Life70, 0
 			GuiControl, , Radiobox3Life70, %Radiobox3Life70%
-			IniRead, Radiobox4Life70, settings.ini, Profile%Profile%, Radiobox4Life70, 0
+			IniRead, Radiobox4Life70, profiles.ini, Profile%Profile%, Radiobox4Life70, 0
 			GuiControl, , Radiobox4Life70, %Radiobox4Life70%
-			IniRead, Radiobox5Life70, settings.ini, Profile%Profile%, Radiobox5Life70, 0
+			IniRead, Radiobox5Life70, profiles.ini, Profile%Profile%, Radiobox5Life70, 0
 			GuiControl, , Radiobox5Life70, %Radiobox5Life70%
 
-			IniRead, Radiobox1Life80, settings.ini, Profile%Profile%, Radiobox1Life80, 0
+			IniRead, Radiobox1Life80, profiles.ini, Profile%Profile%, Radiobox1Life80, 0
 			GuiControl, , Radiobox1Life80, %Radiobox1Life80%
-			IniRead, Radiobox2Life80, settings.ini, Profile%Profile%, Radiobox2Life80, 0
+			IniRead, Radiobox2Life80, profiles.ini, Profile%Profile%, Radiobox2Life80, 0
 			GuiControl, , Radiobox2Life80, %Radiobox2Life80%
-			IniRead, Radiobox3Life80, settings.ini, Profile%Profile%, Radiobox3Life80, 0
+			IniRead, Radiobox3Life80, profiles.ini, Profile%Profile%, Radiobox3Life80, 0
 			GuiControl, , Radiobox3Life80, %Radiobox3Life80%
-			IniRead, Radiobox4Life80, settings.ini, Profile%Profile%, Radiobox4Life80, 0
+			IniRead, Radiobox4Life80, profiles.ini, Profile%Profile%, Radiobox4Life80, 0
 			GuiControl, , Radiobox4Life80, %Radiobox4Life80%
-			IniRead, Radiobox5Life80, settings.ini, Profile%Profile%, Radiobox5Life80, 0
+			IniRead, Radiobox5Life80, profiles.ini, Profile%Profile%, Radiobox5Life80, 0
 			GuiControl, , Radiobox5Life80, %Radiobox5Life80%
 
-			IniRead, Radiobox1Life90, settings.ini, Profile%Profile%, Radiobox1Life90, 0
+			IniRead, Radiobox1Life90, profiles.ini, Profile%Profile%, Radiobox1Life90, 0
 			GuiControl, , Radiobox1Life90, %Radiobox1Life90%
-			IniRead, Radiobox2Life90, settings.ini, Profile%Profile%, Radiobox2Life90, 0
+			IniRead, Radiobox2Life90, profiles.ini, Profile%Profile%, Radiobox2Life90, 0
 			GuiControl, , Radiobox2Life90, %Radiobox2Life90%
-			IniRead, Radiobox3Life90, settings.ini, Profile%Profile%, Radiobox3Life90, 0
+			IniRead, Radiobox3Life90, profiles.ini, Profile%Profile%, Radiobox3Life90, 0
 			GuiControl, , Radiobox3Life90, %Radiobox3Life90%
-			IniRead, Radiobox4Life90, settings.ini, Profile%Profile%, Radiobox4Life90, 0
+			IniRead, Radiobox4Life90, profiles.ini, Profile%Profile%, Radiobox4Life90, 0
 			GuiControl, , Radiobox4Life90, %Radiobox4Life90%
-			IniRead, Radiobox5Life90, settings.ini, Profile%Profile%, Radiobox5Life90, 0
+			IniRead, Radiobox5Life90, profiles.ini, Profile%Profile%, Radiobox5Life90, 0
 			GuiControl, , Radiobox5Life90, %Radiobox5Life90%
 
-			IniRead, RadioUncheck1Life, settings.ini, Profile%Profile%, RadioUncheck1Life, 1
+			IniRead, RadioUncheck1Life, profiles.ini, Profile%Profile%, RadioUncheck1Life, 1
 			GuiControl, , RadioUncheck1Life, %RadioUncheck1Life%
-			IniRead, RadioUncheck2Life, settings.ini, Profile%Profile%, RadioUncheck2Life, 1
+			IniRead, RadioUncheck2Life, profiles.ini, Profile%Profile%, RadioUncheck2Life, 1
 			GuiControl, , RadioUncheck2Life, %RadioUncheck2Life%
-			IniRead, RadioUncheck3Life, settings.ini, Profile%Profile%, RadioUncheck3Life, 1
+			IniRead, RadioUncheck3Life, profiles.ini, Profile%Profile%, RadioUncheck3Life, 1
 			GuiControl, , RadioUncheck3Life, %RadioUncheck3Life%
-			IniRead, RadioUncheck4Life, settings.ini, Profile%Profile%, RadioUncheck4Life, 1
+			IniRead, RadioUncheck4Life, profiles.ini, Profile%Profile%, RadioUncheck4Life, 1
 			GuiControl, , RadioUncheck4Life, %RadioUncheck4Life%
-			IniRead, RadioUncheck5Life, settings.ini, Profile%Profile%, RadioUncheck5Life, 1
+			IniRead, RadioUncheck5Life, profiles.ini, Profile%Profile%, RadioUncheck5Life, 1
 			GuiControl, , RadioUncheck5Life, %RadioUncheck5Life%
 			
 			;ES Flasks
-			IniRead, Radiobox1ES20, settings.ini, Profile%Profile%, Radiobox1ES20, 0
+			IniRead, Radiobox1ES20, profiles.ini, Profile%Profile%, Radiobox1ES20, 0
 			GuiControl, , Radiobox1ES20, %Radiobox1ES20%
-			IniRead, Radiobox2ES20, settings.ini, Profile%Profile%, Radiobox2ES20, 0
+			IniRead, Radiobox2ES20, profiles.ini, Profile%Profile%, Radiobox2ES20, 0
 			GuiControl, , Radiobox2ES20, %Radiobox2ES20%
-			IniRead, Radiobox3ES20, settings.ini, Profile%Profile%, Radiobox3ES20, 0
+			IniRead, Radiobox3ES20, profiles.ini, Profile%Profile%, Radiobox3ES20, 0
 			GuiControl, , Radiobox3ES20, %Radiobox3ES20%
-			IniRead, Radiobox4ES20, settings.ini, Profile%Profile%, Radiobox4ES20, 0
+			IniRead, Radiobox4ES20, profiles.ini, Profile%Profile%, Radiobox4ES20, 0
 			GuiControl, , Radiobox4ES20, %Radiobox4ES20%
-			IniRead, Radiobox5ES20, settings.ini, Profile%Profile%, Radiobox5ES20, 0
+			IniRead, Radiobox5ES20, profiles.ini, Profile%Profile%, Radiobox5ES20, 0
 			GuiControl, , Radiobox5ES20, %Radiobox5ES20%
 			
-			IniRead, Radiobox1ES30, settings.ini, Profile%Profile%, Radiobox1ES30, 0
+			IniRead, Radiobox1ES30, profiles.ini, Profile%Profile%, Radiobox1ES30, 0
 			GuiControl, , Radiobox1ES30, %Radiobox1ES30%
-			IniRead, Radiobox2ES30, settings.ini, Profile%Profile%, Radiobox2ES30, 0
+			IniRead, Radiobox2ES30, profiles.ini, Profile%Profile%, Radiobox2ES30, 0
 			GuiControl, , Radiobox2ES30, %Radiobox2ES30%
-			IniRead, Radiobox3ES30, settings.ini, Profile%Profile%, Radiobox3ES30, 0
+			IniRead, Radiobox3ES30, profiles.ini, Profile%Profile%, Radiobox3ES30, 0
 			GuiControl, , Radiobox3ES30, %Radiobox3ES30%
-			IniRead, Radiobox4ES30, settings.ini, Profile%Profile%, Radiobox4ES30, 0
+			IniRead, Radiobox4ES30, profiles.ini, Profile%Profile%, Radiobox4ES30, 0
 			GuiControl, , Radiobox4ES30, %Radiobox4ES30%
-			IniRead, Radiobox5ES30, settings.ini, Profile%Profile%, Radiobox5ES30, 0
+			IniRead, Radiobox5ES30, profiles.ini, Profile%Profile%, Radiobox5ES30, 0
 			GuiControl, , Radiobox5ES30, %Radiobox5ES30%
 			
-			IniRead, Radiobox1ES40, settings.ini, Profile%Profile%, Radiobox1ES40, 0
+			IniRead, Radiobox1ES40, profiles.ini, Profile%Profile%, Radiobox1ES40, 0
 			GuiControl, , Radiobox1ES40, %Radiobox1ES40%
-			IniRead, Radiobox2ES40, settings.ini, Profile%Profile%, Radiobox2ES40, 0
+			IniRead, Radiobox2ES40, profiles.ini, Profile%Profile%, Radiobox2ES40, 0
 			GuiControl, , Radiobox2ES40, %Radiobox2ES40%
-			IniRead, Radiobox3ES40, settings.ini, Profile%Profile%, Radiobox3ES40, 0
+			IniRead, Radiobox3ES40, profiles.ini, Profile%Profile%, Radiobox3ES40, 0
 			GuiControl, , Radiobox3ES40, %Radiobox3ES40%
-			IniRead, Radiobox4ES40, settings.ini, Profile%Profile%, Radiobox4ES40, 0
+			IniRead, Radiobox4ES40, profiles.ini, Profile%Profile%, Radiobox4ES40, 0
 			GuiControl, , Radiobox4ES40, %Radiobox4ES40%
-			IniRead, Radiobox5ES40, settings.ini, Profile%Profile%, Radiobox5ES40, 0
+			IniRead, Radiobox5ES40, profiles.ini, Profile%Profile%, Radiobox5ES40, 0
 			GuiControl, , Radiobox5ES40, %Radiobox5ES40%
 			
-			IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50, 0
+			IniRead, Radiobox1ES50, profiles.ini, Profile%Profile%, Radiobox1ES50, 0
 			GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-			IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50, 0
+			IniRead, Radiobox2ES50, profiles.ini, Profile%Profile%, Radiobox2ES50, 0
 			GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-			IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50, 0
+			IniRead, Radiobox3ES50, profiles.ini, Profile%Profile%, Radiobox3ES50, 0
 			GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-			IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50, 0
+			IniRead, Radiobox4ES50, profiles.ini, Profile%Profile%, Radiobox4ES50, 0
 			GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-			IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50, 0
+			IniRead, Radiobox5ES50, profiles.ini, Profile%Profile%, Radiobox5ES50, 0
 			GuiControl, , Radiobox5ES50, %Radiobox5ES50%
 			
-			IniRead, Radiobox1ES50, settings.ini, Profile%Profile%, Radiobox1ES50, 0
+			IniRead, Radiobox1ES50, profiles.ini, Profile%Profile%, Radiobox1ES50, 0
 			GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-			IniRead, Radiobox2ES50, settings.ini, Profile%Profile%, Radiobox2ES50, 0
+			IniRead, Radiobox2ES50, profiles.ini, Profile%Profile%, Radiobox2ES50, 0
 			GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-			IniRead, Radiobox3ES50, settings.ini, Profile%Profile%, Radiobox3ES50, 0
+			IniRead, Radiobox3ES50, profiles.ini, Profile%Profile%, Radiobox3ES50, 0
 			GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-			IniRead, Radiobox4ES50, settings.ini, Profile%Profile%, Radiobox4ES50, 0
+			IniRead, Radiobox4ES50, profiles.ini, Profile%Profile%, Radiobox4ES50, 0
 			GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-			IniRead, Radiobox5ES50, settings.ini, Profile%Profile%, Radiobox5ES50, 0
+			IniRead, Radiobox5ES50, profiles.ini, Profile%Profile%, Radiobox5ES50, 0
 			GuiControl, , Radiobox5ES50, %Radiobox5ES50%
 			
-			IniRead, Radiobox1ES60, settings.ini, Profile%Profile%, Radiobox1ES60, 0
+			IniRead, Radiobox1ES60, profiles.ini, Profile%Profile%, Radiobox1ES60, 0
 			GuiControl, , Radiobox1ES60, %Radiobox1ES60%
-			IniRead, Radiobox2ES60, settings.ini, Profile%Profile%, Radiobox2ES60, 0
+			IniRead, Radiobox2ES60, profiles.ini, Profile%Profile%, Radiobox2ES60, 0
 			GuiControl, , Radiobox2ES60, %Radiobox2ES60%
-			IniRead, Radiobox3ES60, settings.ini, Profile%Profile%, Radiobox3ES60, 0
+			IniRead, Radiobox3ES60, profiles.ini, Profile%Profile%, Radiobox3ES60, 0
 			GuiControl, , Radiobox3ES60, %Radiobox3ES60%
-			IniRead, Radiobox4ES60, settings.ini, Profile%Profile%, Radiobox4ES60, 0
+			IniRead, Radiobox4ES60, profiles.ini, Profile%Profile%, Radiobox4ES60, 0
 			GuiControl, , Radiobox4ES60, %Radiobox4ES60%
-			IniRead, Radiobox5ES60, settings.ini, Profile%Profile%, Radiobox5ES60, 0
+			IniRead, Radiobox5ES60, profiles.ini, Profile%Profile%, Radiobox5ES60, 0
 			GuiControl, , Radiobox5ES60, %Radiobox5ES60%
 			
-			IniRead, Radiobox1ES70, settings.ini, Profile%Profile%, Radiobox1ES70, 0
+			IniRead, Radiobox1ES70, profiles.ini, Profile%Profile%, Radiobox1ES70, 0
 			GuiControl, , Radiobox1ES70, %Radiobox1ES70%
-			IniRead, Radiobox2ES70, settings.ini, Profile%Profile%, Radiobox2ES70, 0
+			IniRead, Radiobox2ES70, profiles.ini, Profile%Profile%, Radiobox2ES70, 0
 			GuiControl, , Radiobox2ES70, %Radiobox2ES70%
-			IniRead, Radiobox3ES70, settings.ini, Profile%Profile%, Radiobox3ES70, 0
+			IniRead, Radiobox3ES70, profiles.ini, Profile%Profile%, Radiobox3ES70, 0
 			GuiControl, , Radiobox3ES70, %Radiobox3ES70%
-			IniRead, Radiobox4ES70, settings.ini, Profile%Profile%, Radiobox4ES70, 0
+			IniRead, Radiobox4ES70, profiles.ini, Profile%Profile%, Radiobox4ES70, 0
 			GuiControl, , Radiobox4ES70, %Radiobox4ES70%
-			IniRead, Radiobox5ES70, settings.ini, Profile%Profile%, Radiobox5ES70, 0
+			IniRead, Radiobox5ES70, profiles.ini, Profile%Profile%, Radiobox5ES70, 0
 			GuiControl, , Radiobox5ES70, %Radiobox5ES70%
 			
-			IniRead, Radiobox1ES80, settings.ini, Profile%Profile%, Radiobox1ES80, 0
+			IniRead, Radiobox1ES80, profiles.ini, Profile%Profile%, Radiobox1ES80, 0
 			GuiControl, , Radiobox1ES80, %Radiobox1ES80%
-			IniRead, Radiobox2ES80, settings.ini, Profile%Profile%, Radiobox2ES80, 0
+			IniRead, Radiobox2ES80, profiles.ini, Profile%Profile%, Radiobox2ES80, 0
 			GuiControl, , Radiobox2ES80, %Radiobox2ES80%
-			IniRead, Radiobox3ES80, settings.ini, Profile%Profile%, Radiobox3ES80, 0
+			IniRead, Radiobox3ES80, profiles.ini, Profile%Profile%, Radiobox3ES80, 0
 			GuiControl, , Radiobox3ES80, %Radiobox3ES80%
-			IniRead, Radiobox4ES80, settings.ini, Profile%Profile%, Radiobox4ES80, 0
+			IniRead, Radiobox4ES80, profiles.ini, Profile%Profile%, Radiobox4ES80, 0
 			GuiControl, , Radiobox4ES80, %Radiobox4ES80%
-			IniRead, Radiobox5ES80, settings.ini, Profile%Profile%, Radiobox5ES80, 0
+			IniRead, Radiobox5ES80, profiles.ini, Profile%Profile%, Radiobox5ES80, 0
 			GuiControl, , Radiobox5ES80, %Radiobox5ES80%
 			
-			IniRead, Radiobox1ES90, settings.ini, Profile%Profile%, Radiobox1ES90, 0
+			IniRead, Radiobox1ES90, profiles.ini, Profile%Profile%, Radiobox1ES90, 0
 			GuiControl, , Radiobox1ES90, %Radiobox1ES90%
-			IniRead, Radiobox2ES90, settings.ini, Profile%Profile%, Radiobox2ES90, 0
+			IniRead, Radiobox2ES90, profiles.ini, Profile%Profile%, Radiobox2ES90, 0
 			GuiControl, , Radiobox2ES90, %Radiobox2ES90%
-			IniRead, Radiobox3ES90, settings.ini, Profile%Profile%, Radiobox3ES90, 0
+			IniRead, Radiobox3ES90, profiles.ini, Profile%Profile%, Radiobox3ES90, 0
 			GuiControl, , Radiobox3ES90, %Radiobox3ES90%
-			IniRead, Radiobox4ES90, settings.ini, Profile%Profile%, Radiobox4ES90, 0
+			IniRead, Radiobox4ES90, profiles.ini, Profile%Profile%, Radiobox4ES90, 0
 			GuiControl, , Radiobox4ES90, %Radiobox4ES90%
-			IniRead, Radiobox5ES90, settings.ini, Profile%Profile%, Radiobox5ES90, 0
+			IniRead, Radiobox5ES90, profiles.ini, Profile%Profile%, Radiobox5ES90, 0
 			GuiControl, , Radiobox5ES90, %Radiobox5ES90%
 			
-			IniRead, RadioUncheck1ES, settings.ini, Profile%Profile%, RadioUncheck1ES, 1
+			IniRead, RadioUncheck1ES, profiles.ini, Profile%Profile%, RadioUncheck1ES, 1
 			GuiControl, , RadioUncheck1ES, %RadioUncheck1ES%
-			IniRead, RadioUncheck2ES, settings.ini, Profile%Profile%, RadioUncheck2ES, 1
+			IniRead, RadioUncheck2ES, profiles.ini, Profile%Profile%, RadioUncheck2ES, 1
 			GuiControl, , RadioUncheck2ES, %RadioUncheck2ES%
-			IniRead, RadioUncheck3ES, settings.ini, Profile%Profile%, RadioUncheck3ES, 1
+			IniRead, RadioUncheck3ES, profiles.ini, Profile%Profile%, RadioUncheck3ES, 1
 			GuiControl, , RadioUncheck3ES, %RadioUncheck3ES%
-			IniRead, RadioUncheck4ES, settings.ini, Profile%Profile%, RadioUncheck4ES, 1
+			IniRead, RadioUncheck4ES, profiles.ini, Profile%Profile%, RadioUncheck4ES, 1
 			GuiControl, , RadioUncheck4ES, %RadioUncheck4ES%
-			IniRead, RadioUncheck5ES, settings.ini, Profile%Profile%, RadioUncheck5ES, 1
+			IniRead, RadioUncheck5ES, profiles.ini, Profile%Profile%, RadioUncheck5ES, 1
 			GuiControl, , RadioUncheck5ES, %RadioUncheck5ES%
 			
 			;Mana Flasks
-			IniRead, Radiobox1Mana10, settings.ini, Profile%Profile%, Radiobox1Mana10, 0
+			IniRead, Radiobox1Mana10, profiles.ini, Profile%Profile%, Radiobox1Mana10, 0
 			GuiControl, , Radiobox1Mana10, %Radiobox1Mana10%
-			IniRead, Radiobox2Mana10, settings.ini, Profile%Profile%, Radiobox2Mana10, 0
+			IniRead, Radiobox2Mana10, profiles.ini, Profile%Profile%, Radiobox2Mana10, 0
 			GuiControl, , Radiobox2Mana10, %Radiobox2Mana10%
-			IniRead, Radiobox3Mana10, settings.ini, Profile%Profile%, Radiobox3Mana10, 0
+			IniRead, Radiobox3Mana10, profiles.ini, Profile%Profile%, Radiobox3Mana10, 0
 			GuiControl, , Radiobox3Mana10, %Radiobox3Mana10%
-			IniRead, Radiobox4Mana10, settings.ini, Profile%Profile%, Radiobox4Mana10, 0
+			IniRead, Radiobox4Mana10, profiles.ini, Profile%Profile%, Radiobox4Mana10, 0
 			GuiControl, , Radiobox4Mana10, %Radiobox4Mana10%
-			IniRead, Radiobox5Mana10, settings.ini, Profile%Profile%, Radiobox5Mana10, 0
+			IniRead, Radiobox5Mana10, profiles.ini, Profile%Profile%, Radiobox5Mana10, 0
 			GuiControl, , Radiobox5Mana10, %Radiobox5Mana10%
 			
 			;Flask Cooldowns
-			IniRead, CooldownFlask1, settings.ini, Profile%Profile%, CooldownFlask1, 4800
+			IniRead, CooldownFlask1, profiles.ini, Profile%Profile%, CooldownFlask1, 4800
 			GuiControl, , CooldownFlask1, %CooldownFlask1%
-			IniRead, CooldownFlask2, settings.ini, Profile%Profile%, CooldownFlask2, 4800
+			IniRead, CooldownFlask2, profiles.ini, Profile%Profile%, CooldownFlask2, 4800
 			GuiControl, , CooldownFlask2, %CooldownFlask2%
-			IniRead, CooldownFlask3, settings.ini, Profile%Profile%, CooldownFlask3, 4800
+			IniRead, CooldownFlask3, profiles.ini, Profile%Profile%, CooldownFlask3, 4800
 			GuiControl, , CooldownFlask3, %CooldownFlask3%
-			IniRead, CooldownFlask4, settings.ini, Profile%Profile%, CooldownFlask4, 4800
+			IniRead, CooldownFlask4, profiles.ini, Profile%Profile%, CooldownFlask4, 4800
 			GuiControl, , CooldownFlask4, %CooldownFlask4%
-			IniRead, CooldownFlask5, settings.ini, Profile%Profile%, CooldownFlask5	, 4800
+			IniRead, CooldownFlask5, profiles.ini, Profile%Profile%, CooldownFlask5	, 4800
 			GuiControl, , CooldownFlask5, %CooldownFlask5%
 			
 			;Attack Flasks
-			IniRead, MainAttackbox1, settings.ini, Profile%Profile%, MainAttackbox1, 0
+			IniRead, MainAttackbox1, profiles.ini, Profile%Profile%, MainAttackbox1, 0
 			GuiControl, , MainAttackbox1, %MainAttackbox1%
-			IniRead, MainAttackbox2, settings.ini, Profile%Profile%, MainAttackbox2, 0
+			IniRead, MainAttackbox2, profiles.ini, Profile%Profile%, MainAttackbox2, 0
 			GuiControl, , MainAttackbox2, %MainAttackbox2%
-			IniRead, MainAttackbox3, settings.ini, Profile%Profile%, MainAttackbox3, 0
+			IniRead, MainAttackbox3, profiles.ini, Profile%Profile%, MainAttackbox3, 0
 			GuiControl, , MainAttackbox3, %MainAttackbox3%
-			IniRead, MainAttackbox4, settings.ini, Profile%Profile%, MainAttackbox4, 0
+			IniRead, MainAttackbox4, profiles.ini, Profile%Profile%, MainAttackbox4, 0
 			GuiControl, , MainAttackbox4, %MainAttackbox4%
-			IniRead, MainAttackbox5, settings.ini, Profile%Profile%, MainAttackbox5, 0
+			IniRead, MainAttackbox5, profiles.ini, Profile%Profile%, MainAttackbox5, 0
 			GuiControl, , MainAttackbox5, %MainAttackbox5%
 			
-			IniRead, SecondaryAttackbox1, settings.ini, Profile%Profile%, SecondaryAttackbox1, 0
+			IniRead, SecondaryAttackbox1, profiles.ini, Profile%Profile%, SecondaryAttackbox1, 0
 			GuiControl, , SecondaryAttackbox1, %SecondaryAttackbox1%
-			IniRead, SecondaryAttackbox2, settings.ini, Profile%Profile%, SecondaryAttackbox2, 0
+			IniRead, SecondaryAttackbox2, profiles.ini, Profile%Profile%, SecondaryAttackbox2, 0
 			GuiControl, , SecondaryAttackbox2, %SecondaryAttackbox2%
-			IniRead, SecondaryAttackbox3, settings.ini, Profile%Profile%, SecondaryAttackbox3, 0
+			IniRead, SecondaryAttackbox3, profiles.ini, Profile%Profile%, SecondaryAttackbox3, 0
 			GuiControl, , SecondaryAttackbox3, %SecondaryAttackbox3%
-			IniRead, SecondaryAttackbox4, settings.ini, Profile%Profile%, SecondaryAttackbox4, 0
+			IniRead, SecondaryAttackbox4, profiles.ini, Profile%Profile%, SecondaryAttackbox4, 0
 			GuiControl, , SecondaryAttackbox4, %SecondaryAttackbox4%
-			IniRead, SecondaryAttackbox5, settings.ini, Profile%Profile%, SecondaryAttackbox5, 0
+			IniRead, SecondaryAttackbox5, profiles.ini, Profile%Profile%, SecondaryAttackbox5, 0
 			GuiControl, , SecondaryAttackbox5, %SecondaryAttackbox5%
 			
 			;Attack Keys
-			IniRead, hotkeyMainAttack, settings.ini, Profile%Profile%, MainAttack, RButton
+			IniRead, hotkeyMainAttack, profiles.ini, Profile%Profile%, MainAttack, RButton
 			GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
-			IniRead, hotkeySecondaryAttack, settings.ini, Profile%Profile%, SecondaryAttack, w
+			IniRead, hotkeySecondaryAttack, profiles.ini, Profile%Profile%, SecondaryAttack, w
 			GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
 			
 			;QS on Attack Keys
-			IniRead, QSonMainAttack, settings.ini, Profile%Profile%, QSonMainAttack, 0
+			IniRead, QSonMainAttack, profiles.ini, Profile%Profile%, QSonMainAttack, 0
 			GuiControl, , QSonMainAttack, %QSonMainAttack%
-			IniRead, QSonSecondaryAttack, settings.ini, Profile%Profile%, QSonSecondaryAttack, 0
+			IniRead, QSonSecondaryAttack, profiles.ini, Profile%Profile%, QSonSecondaryAttack, 0
 			GuiControl, , QSonSecondaryAttack, %QSonSecondaryAttack%
 			
 			;Quicksilver Flasks
-			IniRead, TriggerQuicksilverDelay, settings.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
+			IniRead, TriggerQuicksilverDelay, profiles.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
 			GuiControl, , TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
-			IniRead, Radiobox1QS, settings.ini, Profile%Profile%, QuicksilverSlot1, 0
+			IniRead, Radiobox1QS, profiles.ini, Profile%Profile%, QuicksilverSlot1, 0
 			GuiControl, , Radiobox1QS, %Radiobox1QS%
-			IniRead, Radiobox2QS, settings.ini, Profile%Profile%, QuicksilverSlot2, 0
+			IniRead, Radiobox2QS, profiles.ini, Profile%Profile%, QuicksilverSlot2, 0
 			GuiControl, , Radiobox2QS, %Radiobox2QS%
-			IniRead, Radiobox3QS, settings.ini, Profile%Profile%, QuicksilverSlot3, 0
+			IniRead, Radiobox3QS, profiles.ini, Profile%Profile%, QuicksilverSlot3, 0
 			GuiControl, , Radiobox3QS, %Radiobox3QS%
-			IniRead, Radiobox4QS, settings.ini, Profile%Profile%, QuicksilverSlot4, 0
+			IniRead, Radiobox4QS, profiles.ini, Profile%Profile%, QuicksilverSlot4, 0
 			GuiControl, , Radiobox4QS, %Radiobox4QS%
-			IniRead, Radiobox5QS, settings.ini, Profile%Profile%, QuicksilverSlot5, 0
+			IniRead, Radiobox5QS, profiles.ini, Profile%Profile%, QuicksilverSlot5, 0
 			GuiControl, , Radiobox5QS, %Radiobox5QS%
 			
 			;CharacterTypeCheck
-			IniRead, RadioLife, settings.ini, Profile%Profile%, Life, 1
+			IniRead, RadioLife, profiles.ini, Profile%Profile%, Life, 1
 			GuiControl, , RadioLife, %RadioLife%
-			IniRead, RadioHybrid, settings.ini, Profile%Profile%, Hybrid, 0
+			IniRead, RadioHybrid, profiles.ini, Profile%Profile%, Hybrid, 0
 			GuiControl, , RadioHybrid, %RadioHybrid%
-			IniRead, RadioCi, settings.ini, Profile%Profile%, Ci, 0
+			IniRead, RadioCi, profiles.ini, Profile%Profile%, Ci, 0
 			GuiControl, , RadioCi, %RadioCi%
 			
 			;AutoMines
-			IniRead, DetonateMines, settings.ini, Profile%Profile%, DetonateMines, 0
+			IniRead, DetonateMines, profiles.ini, Profile%Profile%, DetonateMines, 0
 			GuiControl, , DetonateMines, %DetonateMines%
 
 			;EldritchBattery
-			IniRead, YesEldritchBattery, settings.ini, Profile%Profile%, YesEldritchBattery, 0
+			IniRead, YesEldritchBattery, profiles.ini, Profile%Profile%, YesEldritchBattery, 0
 			GuiControl, , YesEldritchBattery, %YesEldritchBattery%
 
 			;ManaThreshold
-			IniRead, ManaThreshold, settings.ini, Profile%Profile%, ManaThreshold, 0
+			IniRead, ManaThreshold, profiles.ini, Profile%Profile%, ManaThreshold, 0
 			GuiControl, , ManaThreshold, %ManaThreshold%
 
 			;AutoQuit
-			IniRead, RadioQuit20, settings.ini, Profile%Profile%, Quit20, 1
+			IniRead, RadioQuit20, profiles.ini, Profile%Profile%, Quit20, 1
 			GuiControl, , RadioQuit20, %RadioQuit20%
-			IniRead, RadioQuit30, settings.ini, Profile%Profile%, Quit30, 0
+			IniRead, RadioQuit30, profiles.ini, Profile%Profile%, Quit30, 0
 			GuiControl, , RadioQuit30, %RadioQuit30%
-			IniRead, RadioQuit40, settings.ini, Profile%Profile%, Quit40, 0
+			IniRead, RadioQuit40, profiles.ini, Profile%Profile%, Quit40, 0
 			GuiControl, , RadioQuit40, %RadioQuit40%
-			IniRead, RadioQuit50, settings.ini, Profile%Profile%, Quit50, 0
+			IniRead, RadioQuit50, profiles.ini, Profile%Profile%, Quit50, 0
 			GuiControl, , RadioQuit50, %RadioQuit50%
-			IniRead, RadioQuit60, settings.ini, Profile%Profile%, Quit60, 0
+			IniRead, RadioQuit60, profiles.ini, Profile%Profile%, Quit60, 0
 			GuiControl, , RadioQuit60, %RadioQuit60%
-			IniRead, RadioCritQuit, settings.ini, Profile%Profile%, CritQuit, 1
+			IniRead, RadioCritQuit, profiles.ini, Profile%Profile%, CritQuit, 1
 			GuiControl, , RadioCritQuit, %RadioCritQuit%
-			IniRead, RadioPortalQuit, settings.ini, Profile%Profile%, PortalQuit, 0
+			IniRead, RadioPortalQuit, profiles.ini, Profile%Profile%, PortalQuit, 0
 			GuiControl, , RadioPortalQuit, %RadioPortalQuit%
-			IniRead, RadioNormalQuit, settings.ini, Profile%Profile%, NormalQuit, 0
+			IniRead, RadioNormalQuit, profiles.ini, Profile%Profile%, NormalQuit, 0
 			GuiControl, , RadioNormalQuit, %RadioNormalQuit%
 
 
 			;Utility Buttons
-			IniRead, YesUtility1, settings.ini, Profile%Profile%, YesUtility1, 0
+			IniRead, YesUtility1, profiles.ini, Profile%Profile%, YesUtility1, 0
 			GuiControl, , YesUtility1, %YesUtility1%
-			IniRead, YesUtility2, settings.ini, Profile%Profile%, YesUtility2, 0
+			IniRead, YesUtility2, profiles.ini, Profile%Profile%, YesUtility2, 0
 			GuiControl, , YesUtility2, %YesUtility2%
-			IniRead, YesUtility3, settings.ini, Profile%Profile%, YesUtility3, 0
+			IniRead, YesUtility3, profiles.ini, Profile%Profile%, YesUtility3, 0
 			GuiControl, , YesUtility3, %YesUtility3%
-			IniRead, YesUtility4, settings.ini, Profile%Profile%, YesUtility4, 0
+			IniRead, YesUtility4, profiles.ini, Profile%Profile%, YesUtility4, 0
 			GuiControl, , YesUtility4, %YesUtility4%
-			IniRead, YesUtility5, settings.ini, Profile%Profile%, YesUtility5, 0
+			IniRead, YesUtility5, profiles.ini, Profile%Profile%, YesUtility5, 0
 			GuiControl, , YesUtility5, %YesUtility5%
-			IniRead, YesUtility1Quicksilver, settings.ini, Profile%Profile%, YesUtility1Quicksilver, 0
+			IniRead, YesUtility1Quicksilver, profiles.ini, Profile%Profile%, YesUtility1Quicksilver, 0
 			GuiControl, , YesUtility1Quicksilver, %YesUtility1Quicksilver%
-			IniRead, YesUtility2Quicksilver, settings.ini, Profile%Profile%, YesUtility2Quicksilver, 0
+			IniRead, YesUtility2Quicksilver, profiles.ini, Profile%Profile%, YesUtility2Quicksilver, 0
 			GuiControl, , YesUtility2Quicksilver, %YesUtility2Quicksilver%
-			IniRead, YesUtility3Quicksilver, settings.ini, Profile%Profile%, YesUtility3Quicksilver, 0
+			IniRead, YesUtility3Quicksilver, profiles.ini, Profile%Profile%, YesUtility3Quicksilver, 0
 			GuiControl, , YesUtility3Quicksilver, %YesUtility3Quicksilver%
-			IniRead, YesUtility4Quicksilver, settings.ini, Profile%Profile%, YesUtility4Quicksilver, 0
+			IniRead, YesUtility4Quicksilver, profiles.ini, Profile%Profile%, YesUtility4Quicksilver, 0
 			GuiControl, , YesUtility4Quicksilver, %YesUtility4Quicksilver%
-			IniRead, YesUtility5Quicksilver, settings.ini, Profile%Profile%, YesUtility5Quicksilver, 0
+			IniRead, YesUtility5Quicksilver, profiles.ini, Profile%Profile%, YesUtility5Quicksilver, 0
 			GuiControl, , YesUtility5Quicksilver, %YesUtility5Quicksilver%
 			
 			;Utility Percents	
-			IniRead, YesUtility1LifePercent, settings.ini, Profile%Profile%, YesUtility1LifePercent, Off
+			IniRead, YesUtility1LifePercent, profiles.ini, Profile%Profile%, YesUtility1LifePercent, Off
 			GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
-			IniRead, YesUtility2LifePercent, settings.ini, Profile%Profile%, YesUtility2LifePercent, Off
+			IniRead, YesUtility2LifePercent, profiles.ini, Profile%Profile%, YesUtility2LifePercent, Off
 			GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
-			IniRead, YesUtility3LifePercent, settings.ini, Profile%Profile%, YesUtility3LifePercent, Off
+			IniRead, YesUtility3LifePercent, profiles.ini, Profile%Profile%, YesUtility3LifePercent, Off
 			GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
-			IniRead, YesUtility4LifePercent, settings.ini, Profile%Profile%, YesUtility4LifePercent, Off
+			IniRead, YesUtility4LifePercent, profiles.ini, Profile%Profile%, YesUtility4LifePercent, Off
 			GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
-			IniRead, YesUtility5LifePercent, settings.ini, Profile%Profile%, YesUtility5LifePercent, Off
+			IniRead, YesUtility5LifePercent, profiles.ini, Profile%Profile%, YesUtility5LifePercent, Off
 			GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
-			IniRead, YesUtility1EsPercent, settings.ini, Profile%Profile%, YesUtility1EsPercent, Off
+			IniRead, YesUtility1EsPercent, profiles.ini, Profile%Profile%, YesUtility1EsPercent, Off
 			GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-			IniRead, YesUtility2EsPercent, settings.ini, Profile%Profile%, YesUtility2EsPercent, Off
+			IniRead, YesUtility2EsPercent, profiles.ini, Profile%Profile%, YesUtility2EsPercent, Off
 			GuiControl, ChooseString, YesUtility2EsPercent, %YesUtility2EsPercent%
-			IniRead, YesUtility3EsPercent, settings.ini, Profile%Profile%, YesUtility3EsPercent, Off
+			IniRead, YesUtility3EsPercent, profiles.ini, Profile%Profile%, YesUtility3EsPercent, Off
 			GuiControl, ChooseString, YesUtility3EsPercent, %YesUtility3EsPercent%
-			IniRead, YesUtility4EsPercent, settings.ini, Profile%Profile%, YesUtility4EsPercent, Off
+			IniRead, YesUtility4EsPercent, profiles.ini, Profile%Profile%, YesUtility4EsPercent, Off
 			GuiControl, ChooseString, YesUtility4EsPercent, %YesUtility4EsPercent%
-			IniRead, YesUtility5EsPercent, settings.ini, Profile%Profile%, YesUtility5EsPercent, Off
+			IniRead, YesUtility5EsPercent, profiles.ini, Profile%Profile%, YesUtility5EsPercent, Off
 			GuiControl, ChooseString, YesUtility5EsPercent, %YesUtility5EsPercent%
 			
 			;Utility Cooldowns
-			IniRead, CooldownUtility1, settings.ini, Profile%Profile%, CooldownUtility1, 5000
+			IniRead, CooldownUtility1, profiles.ini, Profile%Profile%, CooldownUtility1, 5000
 			GuiControl, , CooldownUtility1, %CooldownUtility1%
-			IniRead, CooldownUtility2, settings.ini, Profile%Profile%, CooldownUtility2, 5000
+			IniRead, CooldownUtility2, profiles.ini, Profile%Profile%, CooldownUtility2, 5000
 			GuiControl, , CooldownUtility2, %CooldownUtility2%
-			IniRead, CooldownUtility3, settings.ini, Profile%Profile%, CooldownUtility3, 5000
+			IniRead, CooldownUtility3, profiles.ini, Profile%Profile%, CooldownUtility3, 5000
 			GuiControl, , CooldownUtility3, %CooldownUtility3%
-			IniRead, CooldownUtility4, settings.ini, Profile%Profile%, CooldownUtility4, 5000
+			IniRead, CooldownUtility4, profiles.ini, Profile%Profile%, CooldownUtility4, 5000
 			GuiControl, , CooldownUtility4, %CooldownUtility4%
-			IniRead, CooldownUtility5, settings.ini, Profile%Profile%, CooldownUtility5, 5000
+			IniRead, CooldownUtility5, profiles.ini, Profile%Profile%, CooldownUtility5, 5000
 			GuiControl, , CooldownUtility5, %CooldownUtility5%
 			
 			;Character Name
-			IniRead, CharName, settings.ini, Profile%Profile%, CharName, ReplaceWithCharName
+			IniRead, CharName, profiles.ini, Profile%Profile%, CharName, ReplaceWithCharName
 			GuiControl, , CharName, %CharName%
 
 			;Utility Keys
-			IniRead, KeyUtility1, settings.ini, Profile%Profile%, KeyUtility1, q
+			IniRead, KeyUtility1, profiles.ini, Profile%Profile%, KeyUtility1, q
 			GuiControl, , KeyUtility1, %KeyUtility1%
-			IniRead, KeyUtility2, settings.ini, Profile%Profile%, KeyUtility2, w
+			IniRead, KeyUtility2, profiles.ini, Profile%Profile%, KeyUtility2, w
 			GuiControl, , KeyUtility2, %KeyUtility2%
-			IniRead, KeyUtility3, settings.ini, Profile%Profile%, KeyUtility3, e
+			IniRead, KeyUtility3, profiles.ini, Profile%Profile%, KeyUtility3, e
 			GuiControl, , KeyUtility3, %KeyUtility3%
-			IniRead, KeyUtility4, settings.ini, Profile%Profile%, KeyUtility4, r
+			IniRead, KeyUtility4, profiles.ini, Profile%Profile%, KeyUtility4, r
 			GuiControl, , KeyUtility4, %KeyUtility4%
-			IniRead, KeyUtility5, settings.ini, Profile%Profile%, KeyUtility5, t
+			IniRead, KeyUtility5, profiles.ini, Profile%Profile%, KeyUtility5, t
 			GuiControl, , KeyUtility5, %KeyUtility5%
 
 			;Utility Icon Strings
-			IniRead, IconStringUtility1, settings.ini, Profile%Profile%, IconStringUtility1, %A_Space%
+			IniRead, IconStringUtility1, profiles.ini, Profile%Profile%, IconStringUtility1, %A_Space%
 			If IconStringUtility1
 				IconStringUtility1 := """" . IconStringUtility1 . """"
 			GuiControl, , IconStringUtility1, %IconStringUtility1%
-			IniRead, IconStringUtility2, settings.ini, Profile%Profile%, IconStringUtility2, %A_Space%
+			IniRead, IconStringUtility2, profiles.ini, Profile%Profile%, IconStringUtility2, %A_Space%
 			If IconStringUtility2
 				IconStringUtility2 := """" . IconStringUtility2 . """"
 			GuiControl, , IconStringUtility2, %IconStringUtility2%
-			IniRead, IconStringUtility3, settings.ini, Profile%Profile%, IconStringUtility3, %A_Space%
+			IniRead, IconStringUtility3, profiles.ini, Profile%Profile%, IconStringUtility3, %A_Space%
 			If IconStringUtility3
 				IconStringUtility3 := """" . IconStringUtility3 . """"
 			GuiControl, , IconStringUtility3, %IconStringUtility3%
-			IniRead, IconStringUtility4, settings.ini, Profile%Profile%, IconStringUtility4, %A_Space%
+			IniRead, IconStringUtility4, profiles.ini, Profile%Profile%, IconStringUtility4, %A_Space%
 			If IconStringUtility4
 				IconStringUtility4 := """" . IconStringUtility4 . """"
 			GuiControl, , IconStringUtility4, %IconStringUtility4%
-			IniRead, IconStringUtility5, settings.ini, Profile%Profile%, IconStringUtility5, %A_Space%
+			IniRead, IconStringUtility5, profiles.ini, Profile%Profile%, IconStringUtility5, %A_Space%
 			If IconStringUtility5
 				IconStringUtility5 := """" . IconStringUtility5 . """"
 			GuiControl, , IconStringUtility5, %IconStringUtility5%
 
 			;Pop Flasks Keys
-			IniRead, PopFlasks1, settings.ini, Profile%Profile%, PopFlasks1, 1
+			IniRead, PopFlasks1, profiles.ini, Profile%Profile%, PopFlasks1, 1
 			GuiControl, , PopFlasks1, %PopFlasks1%
-			IniRead, PopFlasks2, settings.ini, Profile%Profile%, PopFlasks2, 1
+			IniRead, PopFlasks2, profiles.ini, Profile%Profile%, PopFlasks2, 1
 			GuiControl, , PopFlasks2, %PopFlasks2%
-			IniRead, PopFlasks3, settings.ini, Profile%Profile%, PopFlasks3, 1
+			IniRead, PopFlasks3, profiles.ini, Profile%Profile%, PopFlasks3, 1
 			GuiControl, , PopFlasks3, %PopFlasks3%
-			IniRead, PopFlasks4, settings.ini, Profile%Profile%, PopFlasks4, 1
+			IniRead, PopFlasks4, profiles.ini, Profile%Profile%, PopFlasks4, 1
 			GuiControl, , PopFlasks4, %PopFlasks4%
-			IniRead, PopFlasks5, settings.ini, Profile%Profile%, PopFlasks5, 1
+			IniRead, PopFlasks5, profiles.ini, Profile%Profile%, PopFlasks5, 1
 			GuiControl, , PopFlasks5, %PopFlasks5%
 
 			;Update UI
@@ -10291,7 +10321,8 @@ Return
 			}
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
+				ScreenShot()
+				varOnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar)
 				IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
 				readFromFile()
 				MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . vX_OnChar . " and y: " . vY_OnChar
@@ -10317,7 +10348,8 @@ Return
 			
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+				ScreenShot()
+				varOnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory)
 				IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
 				readFromFile()
 				MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . vX_OnInventory . " and y: " . vY_OnInventory
@@ -10343,7 +10375,8 @@ Return
 			
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, varOnMenu, vX_OnMenu, vY_OnMenu
+				ScreenShot()
+				varOnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu)
 				IniWrite, %varOnMenu%, settings.ini, Failsafe Colors, OnMenu
 				readFromFile()
 				MsgBox % "OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . vX_OnMenu . " and y: " . vY_OnMenu
@@ -10367,7 +10400,8 @@ Return
 			}
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+				ScreenShot()
+				varOnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash)
 				IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
 				readFromFile()
 				MsgBox % "OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . vX_OnStash . " and y: " . vY_OnStash
@@ -10413,11 +10447,12 @@ Return
 				varEmptyInvSlotColor := []
 				WinActivate, ahk_group POEGameGroup
 
+				ScreenShot()
 				;Loop through the whole grid, and add unknown colors to the lists
 				For c, GridX in InventoryGridX	{
 					For r, GridY in InventoryGridY
 					{
-						pixelgetcolor, PointColor, GridX, GridY
+						PointColor := ScreenShot_GetColor(GridX,GridY)
 
 						if !(indexOf(PointColor, varEmptyInvSlotColor)){
 							;We dont have this Empty color already
@@ -10459,7 +10494,8 @@ Return
 			
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
+				ScreenShot()
+				varOnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat)
 				IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
 				readFromFile()
 				MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . vX_OnChat . " and y: " . vY_OnChat
@@ -10484,7 +10520,8 @@ Return
 			}
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
+				ScreenShot()
+				varOnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor)
 				IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
 				readFromFile()
 				MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . vX_OnVendor . " and y: " . vY_OnVendor
@@ -10509,7 +10546,8 @@ Return
 			}
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, varOnDiv, vX_OnDiv, vY_OnDiv
+				ScreenShot()
+				varOnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv)
 				IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
 				readFromFile()
 				MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . vX_OnDiv . " and y: " . vY_OnDiv
@@ -10533,7 +10571,8 @@ Return
 			}
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, DetonateHex, DetonateX, DetonateY
+				ScreenShot()
+				DetonateHex := ScreenShot_GetColor(DetonateX,DetonateY)
 				IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
 				readFromFile()
 				MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateX . " and y: " . DetonateY
@@ -10557,7 +10596,8 @@ Return
 			}
 			
 			if WinActive(ahk_group POEGameGroup){
-				pixelgetcolor, DetonateHex, DetonateDelveX, DetonateY
+				ScreenShot()
+				DetonateHex := ScreenShot_GetColor(DetonateDelveX,DetonateY)
 				IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
 				readFromFile()
 				MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateDelveX . " and y: " . DetonateY
@@ -10660,6 +10700,8 @@ Return
 			Return
 
 			RunWizard:
+				Thread, NoTimers, True
+				PauseTooltips:=1
 				Gui, Wizard: Submit
 				IfWinExist, ahk_group POEGameGroup
 				{
@@ -10690,7 +10732,7 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnChar, vX_OnChar, vY_OnChar
+						ScreenShot(), varOnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar)
 						SampleTT .= "OnChar            took BGR color hex: " . varOnChar . "    At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
@@ -10714,7 +10756,7 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnChat, vX_OnChat, vY_OnChat
+						ScreenShot(), varOnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat)
 						SampleTT .= "OnChat            took BGR color hex: " . varOnChat . "    At coords x: " . vX_OnChat . " and y: " . vY_OnChat . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnChat didn't work"
@@ -10738,7 +10780,7 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnMenu, vX_OnMenu, vY_OnMenu
+						ScreenShot(), varOnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu)
 						SampleTT .= "OnMenu          took BGR color hex: " . varOnMenu . "    At coords x: " . vX_OnMenu . " and y: " . vY_OnMenu . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
@@ -10761,7 +10803,7 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnInventory, vX_OnInventory, vY_OnInventory
+						ScreenShot(), varOnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory)
 						SampleTT .= "OnInventory     took BGR color hex: " . varOnInventory . "    At coords x: " . vX_OnInventory . " and y: " . vY_OnInventory . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
@@ -10786,11 +10828,12 @@ Return
 					}
 					if WinActive(ahk_group POEGameGroup){
 						varEmptyInvSlotColor := []
+						ScreenShot()
 						For c, GridX in InventoryGridX	
 						{
 							For r, GridY in InventoryGridY
 							{
-								pixelgetcolor, PointColor, GridX, GridY
+								PointColor := ScreenShot_GetColor(GridX,GridY)
 								if !(indexOf(PointColor, varEmptyInvSlotColor)){
 									varEmptyInvSlotColor.Push(PointColor)
 								}
@@ -10828,7 +10871,7 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnVendor, vX_OnVendor, vY_OnVendor
+						ScreenShot(), varOnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor)
 						SampleTT .= "OnVendor        took BGR color hex: " . varOnVendor . "    At coords x: " . vX_OnVendor . " and y: " . vY_OnVendor . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
@@ -10851,7 +10894,7 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnStash, vX_OnStash, vY_OnStash
+						ScreenShot(), varOnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash)
 						SampleTT .= "OnStash          took BGR color hex: " . varOnStash . "    At coords x: " . vX_OnStash . " and y: " . vY_OnStash . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnStash didn't work"
@@ -10874,7 +10917,7 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, varOnDiv, vX_OnDiv, vY_OnDiv
+						ScreenShot(), varOnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv)
 						SampleTT .= "OnDiv             took BGR color hex: " . varOnDiv . "    At coords x: " . vX_OnDiv . " and y: " . vY_OnDiv . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
@@ -10898,12 +10941,12 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						pixelgetcolor, DetonateHex, DetonateX, DetonateY
+						ScreenShot(), DetonateHex := ScreenShot_GetColor(DetonateX,DetonateY)
 						SampleTT .= "Detonate Mines took BGR color hex: " . DetonateHex . "    At coords x: " . DetonateX . " and y: " . DetonateY . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
 				}
-
+				PauseTooltips:=0
 				If SampleTT =
 				{
 					MsgBox, No Sample Taken
@@ -10976,9 +11019,9 @@ Return
 				gui,LootColors: add, Button, gAdjustLootGroup vLG_Add yp x+5 h22 wp, Add Color Set
 				gui,LootColors: add, Button, gAdjustLootGroup vLG_Rem yp x+5 h22 wp, Rem Color Set
 
-				For k, val in LootColors
+				For k, color in LootColors
 				{
-					color := hexBGRToRGB(Format("0x{1:06X}",val))
+					; color := val ; hexBGRToRGB(Format("0x{1:06X}",val))
 					If !Mod(k,2) ;Check for a remainder when dividing by 2, this groups the colors
 					{
 						gui,LootColors: add, Progress, x+1 yp w50 h20 c%color% BackgroundBlack,100
@@ -11018,6 +11061,8 @@ Return
 
 			ResampleLootColor:
 				Thread, NoTimers, True ; Critical
+				RemoveToolTip()
+				PauseTooltips := 1
 				groupNumber := StrSplit(A_GuiControl, A_Space)[2]
 				MO_Index := (BG_Index := groupNumber * 2) - 1
 				IfWinExist, ahk_group POEGameGroup
@@ -11027,7 +11072,6 @@ Return
 					MsgBox % "PoE Window does not exist. `nCannot sample the loot color."
 					Return
 				}
-				RemoveToolTip()
 				ToolTip,% "Press ""A"" to sample loot background"
 					. "`nHold Escape and press ""A"" to cancel"
 					, % ScrCenter.X - 115 , % ScrCenter.Y - GameH // 3
@@ -11044,12 +11088,12 @@ Return
 				if WinActive(ahk_group POEGameGroup){
 					BlockInput, MouseMove
 					MouseGetPos, mX, mY
-					pixelgetcolor, BG_Color, mX, mY
+					ScreenShot(), BG_Color := ScreenShot_GetColor(mX,mY)
 					LootColors[BG_Index] := Format("0x{1:06X}",BG_Color)
 					Sleep, 100
 					SendInput {%hotkeyLootScan% down}
 					Sleep, 200
-					pixelgetcolor, MO_Color, mX, mY
+					ScreenShot(), MO_Color := ScreenShot_GetColor(mX,mY)
 					LootColors[MO_Index] := Format("0x{1:06X}",MO_Color)
 					SendInput {%hotkeyLootScan% up}
 					BlockInput, MouseMoveOff
@@ -11060,6 +11104,7 @@ Return
 				}
 				Critical, Off
 				Gui, LootColors: Destroy
+				PauseTooltips := 0
 				LootColorsMenu()
 			Return
 
@@ -11551,61 +11596,61 @@ Return
 		UpdateProfileText1:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText1, , ProfileText1
-			IniWrite, %ProfileText1%, settings.ini, Profiles, ProfileText1
+			IniWrite, %ProfileText1%, profiles.ini, Profiles, ProfileText1
 		Return
 
 		UpdateProfileText2:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText2, , ProfileText2
-			IniWrite, %ProfileText2%, settings.ini, Profiles, ProfileText2
+			IniWrite, %ProfileText2%, profiles.ini, Profiles, ProfileText2
 		Return
 
 		UpdateProfileText3:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText3, , ProfileText3
-			IniWrite, %ProfileText3%, settings.ini, Profiles, ProfileText3
+			IniWrite, %ProfileText3%, profiles.ini, Profiles, ProfileText3
 		Return
 
 		UpdateProfileText4:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText4, , ProfileText4
-			IniWrite, %ProfileText4%, settings.ini, Profiles, ProfileText4
+			IniWrite, %ProfileText4%, profiles.ini, Profiles, ProfileText4
 		Return
 
 		UpdateProfileText5:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText5, , ProfileText5
-			IniWrite, %ProfileText5%, settings.ini, Profiles, ProfileText5
+			IniWrite, %ProfileText5%, profiles.ini, Profiles, ProfileText5
 		Return
 
 		UpdateProfileText6:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText6, , ProfileText6, 
-			IniWrite, %ProfileText6%, settings.ini, Profiles, ProfileText6
+			IniWrite, %ProfileText6%, profiles.ini, Profiles, ProfileText6
 		Return
 
 		UpdateProfileText7:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText7, , ProfileText7
-			IniWrite, %ProfileText7%, settings.ini, Profiles, ProfileText7
+			IniWrite, %ProfileText7%, profiles.ini, Profiles, ProfileText7
 		Return
 
 		UpdateProfileText8:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText8, , ProfileText8
-			IniWrite, %ProfileText8%, settings.ini, Profiles, ProfileText8
+			IniWrite, %ProfileText8%, profiles.ini, Profiles, ProfileText8
 		Return
 
 		UpdateProfileText9:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText9, , ProfileText9
-			IniWrite, %ProfileText9%, settings.ini, Profiles, ProfileText9
+			IniWrite, %ProfileText9%, profiles.ini, Profiles, ProfileText9
 		Return
 
 		UpdateProfileText10:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText10, , ProfileText10
-			IniWrite, %ProfileText10%, settings.ini, Profiles, ProfileText10
+			IniWrite, %ProfileText10%, profiles.ini, Profiles, ProfileText10
 		Return
 
 		helpCalibration:

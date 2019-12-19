@@ -1,7 +1,52 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .08.12 December/16/2019
+Version .09.00 December/17/2019
+--------------------------------------------------------------------------------
+-----------------------Script has been converted to RGB-------------------------
+--------------------------------------------------------------------------------
+------------------Update Will Require Re-Sampling EVERYTHING--------------------
+--------------------------------------------------------------------------------
+I have created a transition script that will take old settings.ini and update
+    It will move all profiles into their own INI file
+    It will swap all BGR values to RGB
+        When swapping, it asks if you want to delete your old Loot Colors key
+        This is to allow for using the new defaults
+
+It is an easy process to check if its all working, check gamestates to confirm
+If they are not registering, go to hideout and run the wizard
+Once your done, save your configuration and your new samples are set!
+
+Loot Vacuum has been adjusted to remove the need of flipping from BGR to RGB
+If you have custom colors set up for the loot vacuum, you will want to swap R and B
+    I would recommend using the transition script to swap the colors
+    The transition script can allow for new defaults from an old settings.ini
+        When swapping the colors and it finds Loot Colors it will ask what to do
+        Click Yes to just swap your old colors and continue using your loot filter
+        Click No if you want to use the new loot filter and new default colors
+    Load the loot vacuum settings to confirm the colors are correct
+
+All default samples have been updated for the latest patch using RGB
+    It is still recommended to do calibration
+
+The reason for all this adjustment, is to standardize the script for a new method
+Complete replacement of PixelGetColor with ScreenShot and ScreenShot_GetColor
+    This provides a massive speed increase for all the pixel sampling
+    Instead of sampling the screen multiple times, we capture once and reuse
+    This also solves issues of false positives where the screen has changed
+
+Massive speed boost for the script, cutting the overall flask MS time to 40-90ms
+    We can sample as many screen positions in our status check with marginal difference
+Same change has been done to the inventory scan, and its MUCH faster now
+    The things slowing it down was moving the mouse and empty slots
+        Screenshoting the inventory removes the need to move the mouse away each collumn
+        And sampling the status of each slot has become milliseconds
+
+Added Doors to the openable list for Loot Vacuum
+
+First load seeks to end of file if log too large
+
+Version .08.12 December/17/2019
 --------------------------------------------------------------------------------
 Found a change made to the Clipboard contents, Implicit is now flagged in-line
     This makes it much easier to ensure we grabbed the implicits
