@@ -25,7 +25,8 @@
         , IsItem : False
         , IsWeapon : False
         , IsMap : False
-        , ShowAffix : False
+        , HasAffix : False
+        , AffixCount : 0
         , Rarity : ""
         , SpecialType : ""
         , RarityCurrency : False
@@ -61,6 +62,7 @@
         , MortalFragment : False
         , GuardianFragment : False
         , ProphecyFragment : False
+        , IsOrgan : ""
         , Scarab : False
         , Offering : False
         , Vessel : False

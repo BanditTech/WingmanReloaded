@@ -246,7 +246,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\Bases.json
 	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.min.json, %A_ScriptDir%\data\Bases.json
+    	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
 		if ErrorLevel {
  			Log("data","uhoh", "Bases.json")
 			MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
@@ -2196,7 +2196,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ShooMouse()
 	{
-		Critical
+		Thread, NoTimers, true		;Critical
 		MouseGetPos Checkx, Checky
 		If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
 			Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
@@ -2217,7 +2217,7 @@ Return
 		BlackList := Array_DeepClone(IgnoredSlot)
 		; Move mouse out of the way to grab screenshot
 		ShooMouse()
-		ScreenShot()
+		ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2495,6 +2495,13 @@ Return
 						CtrlClick(Grid.X,Grid.Y)
 						Continue
 					}
+					Else If (Prop.IsOrgan&&StashTabYesOrgan)
+					{
+						MoveStash(StashTabDivination)
+						RandomSleep(30,45)
+						CtrlClick(Grid.X,Grid.Y)
+						Continue
+					}
 					Else If (Prop.RarityUnique&&Prop.Ring)
 					{
 						If (StashTabYesCollection)
@@ -2523,7 +2530,7 @@ Return
 						}
 						Continue
 					}
-					Else If (Prop.RarityUnique)
+					Else If (Prop.RarityUnique&&!Prop.IsOrgan)
 					{
 						If (StashTabYesCollection)
 						{
@@ -3130,7 +3137,8 @@ Return
 			, IsItem : False
 			, IsWeapon : False
 			, IsMap : False
-			, ShowAffix : False
+			, HasAffix : False
+			, AffixCount : 0
 			, Rarity : ""
 			, SpecialType : ""
 			, RarityCurrency : False
@@ -3151,6 +3159,7 @@ Return
 			, Incubator : False
 			, Fossil : False
 			, Resonator : False
+			, IsOrgan : ""
 			, Sockets : 0
 			, RawSockets : ""
 			, LinkCount : 0
@@ -3662,6 +3671,36 @@ Return
 							Continue
 						}
 					}
+					IfInString, A_LoopField, 's Lung
+					{
+						Prop.IsOrgan := "Lung"
+						Prop.SpecialType := "Organ"
+						Continue
+					}
+					IfInString, A_LoopField, 's Heart
+					{
+						Prop.IsOrgan := "Heart"
+						Prop.SpecialType := "Organ"
+						Continue
+					}
+					IfInString, A_LoopField, 's Brain
+					{
+						Prop.IsOrgan := "Brain"
+						Prop.SpecialType := "Organ"
+						Continue
+					}
+					IfInString, A_LoopField, 's Liver
+					{
+						Prop.IsOrgan := "Liver"
+						Prop.SpecialType := "Organ"
+						Continue
+					}
+					IfInString, A_LoopField, 's Eye
+					{
+						Prop.IsOrgan := "Eye"
+						Prop.SpecialType := "Organ"
+						Continue
+					}
 				}
 				Continue
 			}
@@ -3830,7 +3869,7 @@ Return
 					}
 					Else If (itemLevelIsDone = 2 && countCorruption > 0 && !doneCorruption && captureLines < 3){
 						doneCorruption := True
-						captureLines := 1
+						; captureLines := 1
 					}
 					Else If (!Affix.Implicit && itemLevelIsDone = 3 && captureLines > 0){
 						Prop.HasAffix := True
@@ -3841,6 +3880,8 @@ Return
 				}
 				Else
 				{
+					If (A_LoopField = "")
+						Continue
 					If (itemLevelIsDone=2 && !Affix.LabEnchant && captureLines < 1) {
 						imp := RegExReplace(A_LoopField, "i)([-.0-9]+)", "#")
 						if (indexOf(imp, Enchantment)) 
@@ -3875,6 +3916,7 @@ Return
 						Continue
 						}
 					}
+					if !InStr(A_LoopField, "(implicit)")
 					++captureLines
 					If (itemLevelIsDone >= 1 && !doneCorruption && captureLines < 3) {
 						imp := RegExReplace(StrSplit(A_LoopField, "(implicit)", " ")[1], "i)([-.0-9]+)", "#")
@@ -3894,11 +3936,11 @@ Return
 					If (InStr(possibleImplicit, "Life gained for each Enemy hit by Attacks") && InStr(A_LoopField, "Mana gained for each Enemy hit by Attacks"))
 					{
 						possibleImplicit := possibleImplicit . "`n" . StrSplit(A_LoopField, "(implicit)", " ")[1]
-						captureLines -= 1
 					}
 					IfInString, A_LoopField, Socketed Gems are
 					{
 						++Affix.CountSupportGem
+						--captureLines
 						If (Affix.CountSupportGem = 1) {
 							StringSplit, Arr, A_LoopField, %A_Space%
 							Affix.SupportGemLevel := Arr7
@@ -4242,12 +4284,6 @@ Return
 						Affix.LifeRegeneration := Affix.LifeRegeneration + Arr1
 					Continue	
 					}
-					IfInString, A_LoopField, chance to deal Double Damage
-					{
-						StringSplit, Arr, A_LoopField, %A_Space%, `%
-						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
-					Continue	
-					}
 					IfInString, A_LoopField, chance to Avoid Elemental Ailments
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
@@ -4262,6 +4298,7 @@ Return
 					}
 					IfInString, A_LoopField, chance to deal Double Damage
 					{
+						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
 					Continue	
@@ -4328,6 +4365,7 @@ Return
 					}
 					IfInString, A_LoopField, chance to Poison on Hit
 					{
+						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChancePoison := Affix.ChancePoison + Arr1
 					Continue	
@@ -4346,6 +4384,7 @@ Return
 					}
 					IfInString, A_LoopField, chance to cause Bleeding on Hit
 					{
+						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChanceBleed := Affix.ChanceBleed + Arr1
 					Continue	
@@ -4412,24 +4451,28 @@ Return
 					}
 					IfInString, A_LoopField, chance to Ignite
 					{
+						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChanceIgnite := Affix.ChanceIgnite + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, chance to Freeze
 					{
+						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChanceFreeze := Affix.ChanceFreeze + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, chance to Shock
 					{
+						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChanceShock := Affix.ChanceShock + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, increased Light Radius
 					{
+						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedLightRadius := Affix.IncreasedLightRadius + Arr1
 					Continue	
@@ -4772,11 +4815,16 @@ Return
 			; Get total Elemental damage
 			IfInString, A_LoopField, Elemental Damage:
 			{
+				If !IsObject(Stats.EleLo)
+					Stats.EleLo := 0
+				If !IsObject(Stats.EleHi)
+					Stats.EleHi := 0
 				Prop.IsWeapon := True
-				StringSplit, Arr, A_LoopField, %A_Space%
-				StringSplit, Arr, Arr3, -
-				Stats.EleLo := Arr1
-				Stats.EleHi := Arr2
+				For k, v in StrSplit(StrSplit(A_LoopField, "Elemental Damage:", " ")[2],","," ")
+				{
+					s := StrSplit(StrSplit(v, A_Space)[1],"-")
+					Stats.EleLo += s[1], Stats.EleHi += s[2]
+				}
 				Continue
 			}
 			; Get total Chaos damage
@@ -4903,6 +4951,8 @@ Return
 		}
 		If (Stats.ItemClass = "Belt")
 			Prop.Belt := True
+		If captureLines
+			Prop.AffixCount := captureLines
 		Return
 	}
 	; ItemInfo - Display information about item under cursor
@@ -5774,7 +5824,7 @@ Return
 				If Reset
 					Return
 			}
-			Pressed := GetKeyState(hotkeyLootScan)
+			Pressed := GetKeyState(hotkeyLootScan,"P")
 			If (Pressed&&LootVacuum)
 			Loop
 			{
@@ -5787,13 +5837,15 @@ Return
 					{
 						ScanPx := loot.1.x, ScanPy := loot.1.y
 						If (loot.1.id = "FIVE")
-							ScanPx += 30, ScanPy += 10
-						If (Pressed := GetKeyState(hotkeyLootScan))
+							ScanPx += 10, ScanPy += 10
+						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 						{
+							BlockInput, on
 							MouseMove, ScanPx, ScanPy
 							; Sleep, 15
-							Click ScanPx, ScanPy
+							Click %ScanPx%, %ScanPy%
 							; MouseMove, %ScanPx%, %ScanPy%
+							BlockInput, off
 						}
 						Sleep, %LVdelay%
 						Continue
@@ -5806,12 +5858,14 @@ Return
 						ScanPx := loot.1.x, ScanPy := loot.1.y
 						If (loot.1.id ~= "Door")
 							ScanPy += 50
-						If (Pressed := GetKeyState(hotkeyLootScan))
+						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 						{
+							BlockInput, on
 							MouseMove, ScanPx, ScanPy
 							; Sleep, 15
-							Click ScanPx, ScanPy
+							Click %ScanPx%, %ScanPy%
 							; MouseMove, %ScanPx%, %ScanPy%
+							BlockInput, off
 						}
 						Sleep, %LVdelay%
 						Continue
@@ -5822,13 +5876,13 @@ Return
 					MouseGetPos mX, mY
 					PixelGetColor, scolor, mX, mY, RGB
 					If (indexOf(scolor,LootColors) || CompareHex(scolor,GreenHex,53,1))
-						If (Pressed := GetKeyState(hotkeyLootScan))
+						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 						{
 							click %mX%, %mY%
 							Sleep, %LVdelay%
 						}
 				}
-				Pressed := GetKeyState(hotkeyLootScan)
+				Pressed := GetKeyState(hotkeyLootScan,"P")
 			} Until !Pressed
 		Return
 		}
@@ -11102,7 +11156,6 @@ Return
 					Gui, LootColors: Show
 					Exit
 				}
-				Critical, Off
 				Gui, LootColors: Destroy
 				PauseTooltips := 0
 				LootColorsMenu()

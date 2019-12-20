@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .09.00 December/17/2019
+Version .09.00 December/20/2019
 --------------------------------------------------------------------------------
 -----------------------Script has been converted to RGB-------------------------
 --------------------------------------------------------------------------------
@@ -45,6 +45,22 @@ Same change has been done to the inventory scan, and its MUCH faster now
 Added Doors to the openable list for Loot Vacuum
 
 First load seeks to end of file if log too large
+
+Fixed Elemental DPS parser, now gives readout of all added ele damage
+    was only parsing the first elemental damage before
+
+Added suggestion by danmarzola for Organ Parts
+    Prop.IsOrgan will read the type of organ it is for further matching with CLF
+    to match for specific type use ~ Heart|Lung|Brain|Liver|Eye
+    Or match Prop.SpecialType = Organ
+
+Basic implimentation of an affix count has been introduced to the parser
+    Does not account for all double affixes, but I put exceptions for unique ones
+    Double basic affixes will be more difficult to determine if its an extra line
+
+Finally found the reason for the CPU load at the scripts start
+    The minimized JSON file for item bases was too long for a single line of AHK
+    I changed it to the standard version and it has resolved this mystery bug
 
 Version .08.12 December/17/2019
 --------------------------------------------------------------------------------

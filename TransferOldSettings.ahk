@@ -49,30 +49,22 @@ IfMsgBox, Yes
         , "Life Colors"
         , "ES Colors"
         , "Mana Colors"
-        , "Loot Colors"]
+        , "Loot Colors" ]
     For k, items in SectionList
     If InStr(Sections, items)
     {
-        If (items = "Loot Colors")
-        {
-            MsgBox, 3, Loot Vacuum Colors, The colors for the script have been changed in sequence and number`nIt is recommended to delete the key so you can load new defaults`nClick Yes to Swap your custom colors`nClick No to delete the key to load defaults`nClick Cancel to quit
-            IfMsgBox, Yes
-            {
-                IniRead, ColorStr, settings.ini, %items%
-                ColorStr := RegExReplace(ColorStr, "0x(\w{2})(\w{2})(\w{2})", "0x$3$2$1")
-                IniWrite, %ColorStr%, settings.ini, %items%
-            }
-            IfMsgBox, No
-            {
-                IniDelete, settings.ini, %items%
-            }
-        }
-        Else
-        {
-            IniRead, ColorStr, settings.ini, %items%
-            ColorStr := RegExReplace(ColorStr, "0x(\w{2})(\w{2})(\w{2})", "0x$3$2$1")
-            IniWrite, %ColorStr%, settings.ini, %items%
-        }
+        IniRead, ColorStr, settings.ini, %items%
+        ColorStr := RegExReplace(ColorStr, "0x(\w{2})(\w{2})(\w{2})", "0x$3$2$1")
+        IniWrite, %ColorStr%, settings.ini, %items%
+    }
+}
+
+If InStr(Sections, "Loot Colors")
+{
+    MsgBox, 3, Loot Vacuum Colors, The colors for the script have been changed in sequence and number`nIt is recommended to delete the key so you can load new defaults`nClick Yes to delete the key to load defaults`nClick Cancel to quit
+    IfMsgBox, Yes
+    {
+        IniDelete, settings.ini, "Loot Colors"
     }
 }
 
