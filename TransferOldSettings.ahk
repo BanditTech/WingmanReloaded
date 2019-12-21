@@ -10,10 +10,22 @@ else
     Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
 
 Sleep, 200
+MsgBox, 3, Backup Settings, Do you want to backup your settings.ini?`n`nClick yes to back up settings`n`nClick Cancel to quit
+
+IfMsgBox, Cancel
+ExitApp
+
+IfMsgBox, Yes
+{
+    FileRead, bak, settings.ini
+    bak := "`;----------------------------------------`n`;---Settings Backup---" . A_Year . "/" . A_Mon . "/" . A_DD . "-" . A_Hour . ":" . A_Min . ":" . A_Sec . "`n`;----------------------------------------`n`n" . bak . "`n`;----End of Backup----`n`n"
+    FileAppend, %bak%, settings.bak
+}
+
 
 IniRead, Sections, settings.ini
 
-MsgBox, 3, Transfer Profiles, Would you like to transfer your profiles?
+MsgBox, 3, Transfer Profiles, Would you like to transfer your profiles?`n`nClick Yes to transfer your profiles`n`nClick cancel to quit
 
 IfMsgBox, Cancel
 ExitApp
@@ -37,7 +49,7 @@ IfMsgBox, Yes
     }
 }
 
-MsgBox, 3, Convert BGR to RGB, Would you like to convert old samples to RGB?
+MsgBox, 3, Convert BGR to RGB, Would you like to convert old samples to RGB?`n`nClick Yes to swap old calibrations`n`nClick cancel to quit
 
 IfMsgBox, Cancel
 ExitApp
@@ -61,7 +73,7 @@ IfMsgBox, Yes
 
 If InStr(Sections, "Loot Colors")
 {
-    MsgBox, 3, Loot Vacuum Colors, The colors for the script have been changed in sequence and number`nIt is recommended to delete the key so you can load new defaults`nClick Yes to delete the key to load defaults`nClick Cancel to quit
+    MsgBox, 3, Loot Vacuum Colors, The colors for the script have been changed in sequence and number`n`nIt is recommended to delete the key so you can load new defaults`n`nClick Yes to delete the key to load defaults`n`nClick Cancel to quit
     IfMsgBox, Yes
     {
         IniDelete, settings.ini, "Loot Colors"

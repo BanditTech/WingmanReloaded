@@ -25,7 +25,6 @@
         , IsItem : False
         , IsWeapon : False
         , IsMap : False
-        , HasAffix : False
         , AffixCount : 0
         , Rarity : ""
         , SpecialType : ""
@@ -218,12 +217,10 @@
         , ChanceShock : 0
         , ChanceIgnite : 0
         , ChanceAvoidElementalAilment : 0
-        , ChanceIgnite : 0
-        , ChanceIgnite : 0
-        , ChanceIgnite : 0
         , IncreasedBurningDamage : 0
         , IncreasedSpellCritChance : 0
         , IncreasedCritChance : 0
+		, IncreasedCritChanceOnKill : 0
         , IncreasedManaRegeneration : 0
         , IncreasedCastSpeed : 0
         , IncreasedPoisonDuration : 0

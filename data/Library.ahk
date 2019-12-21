@@ -3562,7 +3562,7 @@ Structure of most functions:
             {
                 If BGR
                     v := hexBGRToRGB(v)
-                build .= "|<FIVE>" . v . "@" . Round((100-vary)/100,2) . (Five ? "$9.zzzzzzzzzzzzzw" : "$2.y")
+                build .= "|<FIVE>" . v . "@" . Round((100-vary)/100,2) . (Five ? "$7.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzk" : "$2.y")
             }
             Return build
         }

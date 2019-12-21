@@ -254,7 +254,21 @@
 		Else if (ErrorLevel=0){
  			Log("data","pass", "Bases.json")
 			FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
+			Holder := []
 			Bases := JSON.Load(JSONtext)
+			For k, v in Bases
+			{
+				temp := {"name":v["name"]
+					,"item_class":v["item_class"]
+					,"inventory_width":v["inventory_width"]
+					,"inventory_height":v["inventory_height"]
+					,"drop_level":v["drop_level"]}
+				Holder.Push(temp)
+			}
+			Bases := Holder
+			JSONtext := JSON.Dump(Bases,,2)
+			FileDelete, %A_ScriptDir%\data\Bases.json
+			FileAppend, %JSONtext%, %A_ScriptDir%\data\Bases.json
 		}
 	}
 	Else
@@ -2014,7 +2028,7 @@
 		{
 			For k, apiKey in apiList
 				ScrapeNinjaData(apiKey)
-			JSONtext := JSON.Dump(Ninja)
+			JSONtext := JSON.Dump(Ninja,,2)
 			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
 			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
 		}
@@ -2029,7 +2043,7 @@
 					Tooltip,% "Updating Ninja Database " Round((A_Index / apiList.MaxIndex()) * 100)"`%",% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 				}
 					ScrapeNinjaData(apiKey)
-				JSONtext := JSON.Dump(Ninja)
+				JSONtext := JSON.Dump(Ninja,,2)
 				FileDelete, %A_ScriptDir%\data\Ninja.json
 				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
 				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
@@ -3137,7 +3151,6 @@ Return
 			, IsItem : False
 			, IsWeapon : False
 			, IsMap : False
-			, HasAffix : False
 			, AffixCount : 0
 			, Rarity : ""
 			, SpecialType : ""
@@ -3324,12 +3337,10 @@ Return
 			, ChanceShock : 0
 			, ChanceIgnite : 0
 			, ChanceAvoidElementalAilment : 0
-			, ChanceIgnite : 0
-			, ChanceIgnite : 0
-			, ChanceIgnite : 0
 			, IncreasedBurningDamage : 0
 			, IncreasedSpellCritChance : 0
 			, IncreasedCritChance : 0
+			, IncreasedCritChanceOnKill : 0
 			, IncreasedManaRegeneration : 0
 			, IncreasedCastSpeed : 0
 			, IncreasedPoisonDuration : 0
@@ -3544,7 +3555,7 @@ Return
 						Prop.SpecialType := "Mortal Fragment"
 						Continue
 					}
-					IfInString, A_LoopField, Fragment of the
+					IfInString, A_LoopField, Fragment of
 					{
 						Prop.GuardianFragment := True
 						Prop.SpecialType := "Guardian Fragment"
@@ -3863,19 +3874,12 @@ Return
 				If InStr(A_LoopField, "----")
 				{
 					++itemLevelIsDone
-					If (itemLevelIsDone = 3 && captureLines = 1){
-						Prop.HasAffix := True
+					If (itemLevelIsDone = 3 && captureLines < 1){
 						Affix.Implicit := possibleImplicit
 					}
 					Else If (itemLevelIsDone = 2 && countCorruption > 0 && !doneCorruption && captureLines < 3){
 						doneCorruption := True
 						; captureLines := 1
-					}
-					Else If (!Affix.Implicit && itemLevelIsDone = 3 && captureLines > 0){
-						Prop.HasAffix := True
-					}
-					Else If (Affix.Implicit && itemLevelIsDone = 4 && captureLines > 0){
-						Prop.HasAffix := True
 					}
 				}
 				Else
@@ -3918,7 +3922,7 @@ Return
 					}
 					if !InStr(A_LoopField, "(implicit)")
 					++captureLines
-					If (itemLevelIsDone >= 1 && !doneCorruption && captureLines < 3) {
+					If (itemLevelIsDone >= 1 && !doneCorruption && captureLines < 1) {
 						imp := RegExReplace(StrSplit(A_LoopField, "(implicit)", " ")[1], "i)([-.0-9]+)", "#")
 						if (indexOf(imp, Corruption)) {
 							If (countCorruption < 1){
@@ -3931,7 +3935,7 @@ Return
 							itemLevelIsDone := 1
 						}
 					}
-					If (captureLines < 2)
+					If (captureLines < 1)
 						possibleImplicit:= StrSplit(A_LoopField, "(implicit)", " ")[1]
 					If (InStr(possibleImplicit, "Life gained for each Enemy hit by Attacks") && InStr(A_LoopField, "Mana gained for each Enemy hit by Attacks"))
 					{
@@ -4363,9 +4367,14 @@ Return
 						Affix.IncreasedPoisonDuration := Affix.IncreasedPoisonDuration + Arr1
 					Continue	
 					}
-					IfInString, A_LoopField, chance to Poison on Hit
+					IfInString, A_LoopField, chance to Poison
 					{
-						--captureLines
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.ChancePoison := Affix.ChancePoison + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, chance to Maim
+					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChancePoison := Affix.ChancePoison + Arr1
 					Continue	
@@ -4382,9 +4391,8 @@ Return
 						Affix.IncreasedBleedDuration := Affix.IncreasedBleedDuration + Arr1
 					Continue	
 					}
-					IfInString, A_LoopField, chance to cause Bleeding on Hit
+					IfInString, A_LoopField, chance to cause Bleeding
 					{
-						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChanceBleed := Affix.ChanceBleed + Arr1
 					Continue	
@@ -4399,6 +4407,13 @@ Return
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.IncreasedSpellCritChance := Affix.IncreasedSpellCritChance + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, increased Critical Strike Chance if you have Killed Recently
+					{
+						--captureLines
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedCritChanceOnKill := Affix.IncreasedCritChanceOnKill + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, increased Critical Strike Chance
@@ -4856,11 +4871,6 @@ Return
 					Continue
 				}
 			}
-		}
-		;Determine if affixes complete on certain items
-		If (itemLevelIsDone = 2 && captureLines >= 1)
-		{
-			Prop.HasAffix := True
 		}
 		; DPS calculations
 		If (Prop.IsWeapon) {
@@ -5814,11 +5824,11 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	LootScan(Reset:=0){
 		LootScanCommand:
-			Static GreenHex := 0x32DE24, OrganHex := 0x00D52E
+			Static GreenHex := 0x32DE24, QuestHex := 0x47E635
 			If (!ComboHex || Reset)
 			{
-				ComboHex := Hex2FindText(GreenHex,12,0,0,0)
-				ComboHex .= Hex2FindText(LootColors,0,0,1,1)
+				ComboHex := Hex2FindText(LootColors,0,0,1,1)
+				ComboHex .= Hex2FindText(QuestHex,2,0,0,0)
 				; ComboHex .= ChestStr
 				ComboHex := """" . ComboHex . """"
 				If Reset
@@ -5836,15 +5846,13 @@ Return
 					If (loot := FindText(x,y,xx,yy,0,0,ComboHex,1,0))
 					{
 						ScanPx := loot.1.x, ScanPy := loot.1.y
-						If (loot.1.id = "FIVE")
-							ScanPx += 10, ScanPy += 10
+						; If (loot.1.id = "FIVE")
+						; 	ScanPx += 10, ScanPy += 10
 						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 						{
 							BlockInput, on
 							MouseMove, ScanPx, ScanPy
-							; Sleep, 15
 							Click %ScanPx%, %ScanPy%
-							; MouseMove, %ScanPx%, %ScanPy%
 							BlockInput, off
 						}
 						Sleep, %LVdelay%
@@ -5862,9 +5870,7 @@ Return
 						{
 							BlockInput, on
 							MouseMove, ScanPx, ScanPy
-							; Sleep, 15
 							Click %ScanPx%, %ScanPy%
-							; MouseMove, %ScanPx%, %ScanPy%
 							BlockInput, off
 						}
 						Sleep, %LVdelay%
@@ -7592,7 +7598,7 @@ Return
 		{
 			For k, apiKey in apiList
 				ScrapeNinjaData(apiKey)
-			JSONtext := JSON.Dump(Ninja)
+			JSONtext := JSON.Dump(Ninja,,2)
 			FileDelete, %A_ScriptDir%\data\Ninja.json
 			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
 			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
@@ -11244,7 +11250,7 @@ Return
 		{
 			SaveIgnoreArray:
 			Gui, Ignore: Submit, NoHide
-			JSONtext := JSON.Dump(IgnoredSlot)
+			JSONtext := JSON.Dump(IgnoredSlot,,2)
 			FileDelete, %A_ScriptDir%\data\IgnoredSlot.json
 			FileAppend, %JSONtext%, %A_ScriptDir%\data\IgnoredSlot.json
 			LoadIgnoreArray()
