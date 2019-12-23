@@ -25,6 +25,8 @@
         , IsItem : False
         , IsWeapon : False
         , IsMap : False
+        , Support : False
+        , VaalGem : False
         , AffixCount : 0
         , Rarity : ""
         , SpecialType : ""

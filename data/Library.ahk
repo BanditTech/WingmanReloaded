@@ -3553,8 +3553,19 @@ Structure of most functions:
     }
     ; Convert a color to a two/five pixel square findtext string
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Hex2FindText(Color,vary:=0,BGR:=0,Arr:=0,Five:=0)
+    Hex2FindText(Color,vary:=0,BGR:=0,Arr:=0,Width:=2,Height:=2)
     {
+        If (Width < 1)
+            Width := 1
+        If (Height < 1)
+            Height := 1
+        bitstr := ""
+        Loop % Width
+            bitstr .= "1"
+        endstr := bitstr
+        Loop % Height - 1
+        endstr .= "`n" . bitstr
+        bitstr := bit2base64(endstr)
         If Arr
         {
             build := ""
@@ -3562,13 +3573,15 @@ Structure of most functions:
             {
                 If BGR
                     v := hexBGRToRGB(v)
-                build .= "|<FIVE>" . v . "@" . Round((100-vary)/100,2) . (Five ? "$7.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzk" : "$2.y")
+                build .= "|<" k ">" . v . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
             }
             Return build
         }
         Else
         {
-            Return "|<TWO>" . Color . "@" . Round((100-vary)/100,2) . (Five ? "$5.zzzzk" : "$2.y")
+            If BGR
+                Color := hexBGRToRGB(Color)
+            Return "|<Single>" . Color . "@" . Round((100-vary)/100,2) . (Five ? "$5.zzzzk" : "$2.y")
         }
     }
 

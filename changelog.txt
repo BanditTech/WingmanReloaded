@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 Release Notes
 --------------------------------------------------------------------------------
-Version .09.00 December/20/2019
+Version .09.00 December/22/2019
 --------------------------------------------------------------------------------
 -----------------------Script has been converted to RGB-------------------------
 --------------------------------------------------------------------------------
@@ -68,3 +68,30 @@ Adjustments to the way JSON files are stored
     Saved in pretified format
     Bases.json has been updated to remove unnecessary clutter
     Ninja.json is no longer one line
+
+Default league updated to Metamorph for Ninja Parser
+
+Rewrite of how implicits and corruptions are parsed
+    This helps with simplifying the affix count
+
+Matches Vaal Skillgems properly now
+    Use Prop.VaalGem with the CLF to sort them
+
+Added Stash tab option for Organs and Support Gems
+
+Item Parser displays Custom Loot Filter matching group and the tab it will go
+
+Loot Vacuum now lets go of left or right mouse when its about to click
+    Returns your mouse to its former state afterwards
+    This lets you move or cast skills while looting
+
+MoveStash now optionally checks for GuiStatus("OnStash") to not interfere with screenshot
+
+Rewrite of Hex2FindText to allow for any shape of rectangle or square
+
+Loot Vacuum will allow for looting while holding down RButton
+	It now stops LButton
+	
+AutoSkillup now only fires when your not holding a mouse button down
+
+Now detects for Quest items and skips them

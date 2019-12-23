@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.00
+    Global VersionNumber := .09.0x01
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -39,7 +39,7 @@
 	}
 	Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
 	IniRead, LastDatabaseParseDate, Settings.ini, Database, LastDatabaseParseDate, 20190913
-	IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Blight
+	IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Metamorph
 	IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
 	IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
 	Global Ninja := {}
@@ -276,6 +276,24 @@
 		FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
 		Bases := JSON.Load(JSONtext)
 	}
+	IfNotExist, %A_ScriptDir%\data\Quest.json
+	{
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Quest.json, %A_ScriptDir%\data\Quest.json
+		if ErrorLevel {
+ 			Log("data","uhoh", "Quest.json")
+			MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "Quest.json")
+			FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
+			QuestItems := JSON.Load(JSONtext)
+		}
+	}
+	Else
+	{
+		FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
+		QuestItems := JSON.Load(JSONtext)
+	}
 	If needReload
 		Reload
 
@@ -409,6 +427,10 @@
 			StashTabYesProphecy = Enable to send Prophecy items to the assigned tab on the left
 			StashTabVeiled = Assign the Stash tab for Veiled items
 			StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
+			StashTabGemSupport = Assign the Stash tab for Support Gem items
+			StashTabYesGemSupport = Enable to send Support Gem items to the assigned tab on the left
+			StashTabOrgan = Assign the Stash tab for Organ Part items
+			StashTabYesOrgan = Enable to send Organ Part items to the assigned tab on the left
 			StashTabGem = Assign the Stash tab for Normal Gem items
 			StashTabYesGem = Enable to send Normal Gem items to the assigned tab on the left
 			StashTabGemQuality = Assign the Stash tab for Quality Gem items
@@ -546,6 +568,8 @@
 		Global StashTabCrafting := 1
 		Global StashTabProphecy := 1
 		Global StashTabVeiled := 1
+		Global StashTabGemSupport := 1
+		Global StashTabOrgan := 1
 	; Checkbox to activate each tab
 		Global StashTabYesCurrency := 1
 		Global StashTabYesMap := 1
@@ -565,6 +589,8 @@
 		Global StashTabYesCrafting := 1
 		Global StashTabYesProphecy := 1
 		Global StashTabYesVeiled := 1
+		Global StashTabYesGemSupport := 1
+		Global StashTabYesOrgan := 1
 	; Crafting bases to stash
 		Global YesStashT1 := 1
 		Global YesStashT2 := 1
@@ -1443,6 +1469,7 @@
 		textList .= (!textList ? "" : "|") v
 
 	Gui, Add, DropDownList, gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  , %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabOrgan Choose%StashTabOrgan% w40  , %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabOil Choose%StashTabOil% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  %textList%
@@ -1453,6 +1480,7 @@
 	Gui, Add, DropDownList, gUpdateStash vStashTabVeiled Choose%StashTabVeiled% w40 ,  %textList%
 
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan% y+14, Organ Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% y+14, Oil Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% y+14, Map Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% y+14, Fragment Tab
@@ -1464,8 +1492,9 @@
 
 	Tooltip, Loading GUI 45`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 
-	Gui, Add, DropDownList, gUpdateStash vStashTabGem Choose%StashTabGem% x150 y50 w40 ,  %textList%
-	Gui, Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% x150 y50 w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabGemSupport Choose%StashTabGemSupport% w40 ,  %textList%
+	Gui, Add, DropDownList, gUpdateStash vStashTabGem Choose%StashTabGem% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  %textList%
@@ -1474,8 +1503,9 @@
 	Gui, Add, DropDownList, gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  %textList%
 	Gui, Add, DropDownList, gUpdateStash vStashTabCrafting Choose%StashTabCrafting% w40 ,  %textList%
 
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x195 y55, Gem Tab
-	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% y+14, Quality Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x195 y55, Quality Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% y+14, Support Gem Tab
+	Gui, Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% y+14, Gem Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% y+14, Quality Flask Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% y+14, Linked Tab
 	Gui, Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% y+14, Unique Dump Tab
@@ -1535,8 +1565,6 @@
 	Tooltip, Loading GUI 60`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 
 	Gui, Font, Bold
-	Gui, Add, Button, gLaunchLootFilter xm y300, Custom Loot Filter
-	Gui, Add, Button, gBuildIgnoreMenu x+10, Assign Ignored Slots
 	Gui Add, Text, 		Section								xm 	y330, 				ID/Vend/Stash Options:
 	Gui, Font,
 	Gui Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%   				, Identify Items?
@@ -1561,6 +1589,11 @@
 	Gui, Font,
 	Gui Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     xs+5	ys+18			, Search for stash?
 	Gui Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8			, Move to vendor after stash?
+
+	Gui, Font, Bold
+	Gui, Add, Button, gLaunchLootFilter xm+200 y+20, Custom Loot Filter
+	Gui, Add, Button, gBuildIgnoreMenu x+10, Assign Ignored Slots
+	Gui, Font,
 
 	;Save Setting
 	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
@@ -2056,7 +2089,7 @@
 			}
 		}
 	}
-	Thread, NoTimers, False		;Critical
+	Thread, NoTimers, False		;End Critical
 	Critical, Off
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2149,7 +2182,7 @@ Return
 			RunningToggle := False  ; Signal that thread's loop to stop.
 			exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
 		}
-		Thread, NoTimers, true		;Critical
+		; Thread, NoTimers, true		;Critical
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
 		{
@@ -2210,7 +2243,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ShooMouse()
 	{
-		Thread, NoTimers, true		;Critical
+		Thread, NoTimers, True		;Critical
 		MouseGetPos Checkx, Checky
 		If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
 			Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
@@ -2218,12 +2251,13 @@ Return
 			MouseMove, RX, RY, 0
 			Sleep, 45*Latency
 		}
+		Thread, NoTimers, False		;Critical
 	}
 	; VendorRoutine - Does vendor functions
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	VendorRoutine()
 	{
-		Thread, NoTimers, true		;Critical
+		; Thread, NoTimers, true		;Critical
 		tQ := 0
 		tGQ := 0
 		SortFlask := {}
@@ -2361,7 +2395,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	StashRoutine()
 	{
-		Thread, NoTimers, true		;Critical
+		; Thread, NoTimers, true		;Critical
 		CurrentTab:=0
 		SortFirst := {}
 		Loop 32
@@ -2423,7 +2457,9 @@ Return
 				}
 				If (OnStash && YesStash && !YesSortFirst) 
 				{
-					If (sendstash:=MatchLootFilter())
+					If (Prop.SpecialType = "Quest Item")
+						Continue
+					Else If (sendstash:=MatchLootFilter())
 					{
 						MoveStash(sendstash)
 						CtrlClick(Grid.X,Grid.Y)
@@ -2509,9 +2545,9 @@ Return
 						CtrlClick(Grid.X,Grid.Y)
 						Continue
 					}
-					Else If (Prop.IsOrgan&&StashTabYesOrgan)
+					Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
 					{
-						MoveStash(StashTabDivination)
+						MoveStash(StashTabOrgan)
 						RandomSleep(30,45)
 						CtrlClick(Grid.X,Grid.Y)
 						Continue
@@ -2544,7 +2580,7 @@ Return
 						}
 						Continue
 					}
-					Else If (Prop.RarityUnique&&!Prop.IsOrgan)
+					Else If (Prop.RarityUnique&&Prop.IsOrgan="")
 					{
 						If (StashTabYesCollection)
 						{
@@ -2598,6 +2634,13 @@ Return
 							CtrlClick(Grid.X,Grid.Y)
 							Continue
 						}
+						Else If (Prop.Support && StashTabYesGemSupport)
+						{
+							MoveStash(StashTabGemSupport)
+							RandomSleep(30,45)
+							CtrlClick(Grid.X,Grid.Y)
+							Continue
+						}
 						Else If (StashTabYesGem)
 						{
 							MoveStash(StashTabGem)
@@ -2646,7 +2689,9 @@ Return
 				}
 				If (OnStash && YesStash && YesSortFirst) 
 				{
-					If (sendstash:=MatchLootFilter())
+					If (Prop.SpecialType = "Quest Item")
+						Continue
+					Else If (sendstash:=MatchLootFilter())
 					{
 						SortFirst[sendstash].Push({"C":C,"R":R})
 						Continue
@@ -2711,6 +2756,11 @@ Return
 						SortFirst[StashTabDivination].Push({"C":C,"R":R})
 						Continue
 					}
+					Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
+					{
+						SortFirst[StashTabOrgan].Push({"C":C,"R":R})
+						Continue
+					}
 					Else If (Prop.RarityUnique&&Prop.Ring)
 					{
 						If (StashTabYesCollection)
@@ -2739,7 +2789,7 @@ Return
 						}
 						Continue
 					}
-					Else If (Prop.RarityUnique)
+					Else If (Prop.RarityUnique&&Prop.IsOrgan="")
 					{
 						If (StashTabYesCollection)
 						{
@@ -2825,13 +2875,6 @@ Return
 					Else
 						++Unstashed
 				}
-			}
-			MouseGetPos Checkx, Checky
-			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
-				MouseMove, RX, RY, 0
-				Sleep, 45*Latency
 			}
 		}
 		; Sorted items are sent together
@@ -3003,7 +3046,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	DivRoutine()
 	{
-		Thread, NoTimers, true		;Critical
+		; Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
 		ShooMouse(), ScreenShot()
 		; Main loop through inventory
@@ -3059,7 +3102,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	IdentifyRoutine()
 	{
-		Thread, NoTimers, true		;Critical
+		; Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
 		ShooMouse(), ScreenShot()
 		; Main loop through inventory
@@ -3140,17 +3183,19 @@ Return
 	; ParseClip - Checks the contents of the clipboard and parses the information from the tooltip capture
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ParseClip(){
+		Global QuestItems
 		;Reset Variables
 		NameIsDone := False
 		IgnoreDash := False
 		itemLevelIsDone := 0
 		captureLines := 0
 		countCorruption := 0
-		doneCorruption := False
 		Prop := {ItemName: ""
 			, IsItem : False
 			, IsWeapon : False
 			, IsMap : False
+			, Support : False
+			, VaalGem : False
 			, AffixCount : 0
 			, Rarity : ""
 			, SpecialType : ""
@@ -3361,6 +3406,8 @@ Return
 			, PseudoTotalAddedEleAvg : 0}
 
 		
+		If InStr(Clipboard, "`nCorrupted", 1)
+			Prop.Corrupted := True
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -3437,22 +3484,46 @@ Return
 				{
 					Prop.ItemName := Prop.ItemName . A_LoopField . "`n" ; Add a line of name
 					Prop.ItemName := StrReplace(Prop.ItemName, "<<set:MS>><<set:M>><<set:S>>", "")
-					StandardBase := StrReplace(A_LoopField, "Superior ", "")
-					StandardBase := StrReplace(StandardBase, "<<set:MS>><<set:M>><<set:S>>", "")
+					StandardBase := StrReplace(StrReplace(A_LoopField, "Superior ", ""), "<<set:MS>><<set:M>><<set:S>>", "")
 					PossibleBase := StrSplit(StandardBase, " of ")
 					StandardBase := PossibleBase[1]
 					PossibleBase := StrSplit(PossibleBase[1], " ",,2)
 					PrefixMagicBase := PossibleBase[2]
 
+					For k, v in QuestItems
+					{
+						If (v["Name"] = A_LoopField)
+						{
+							Prop.Width := v["Width"]
+							Prop.Height := v["Height"]
+							Prop.SpecialType := "Quest Item"
+							Break
+						}
+					}
 					For k, v in Bases
 					{
-						If (Bases[k]["name"] = StandardBase) || (Bases[k]["name"] = PrefixMagicBase)
+						If (v["name"] = A_LoopField) || (v["name"] = StandardBase) || (v["name"] = PrefixMagicBase)
 						{
-							Prop.Width := Bases[k]["inventory_width"]
-							Prop.Height := Bases[k]["inventory_height"]
-							Stats.ItemClass := Bases[k]["item_class"]
-							Prop.ItemBase := Bases[k]["name"]
-							Prop.DropLevel := Bases[k]["drop_level"]
+							Prop.Width := v["inventory_width"]
+							Prop.Height := v["inventory_height"]
+							Stats.ItemClass := v["item_class"]
+							Prop.ItemBase := v["name"]
+							Prop.DropLevel := v["drop_level"]
+							If Prop.Corrupted
+							{
+								If InStr(Clipboard, "Vaal " . Prop.ItemBase, 1)
+								{
+									Prop.VaalGem := True
+									Prop.ItemBase := "Vaal " . Prop.ItemBase
+									Prop.ItemName := "Vaal " . Prop.ItemName
+								}
+								Else If InStr(Clipboard, "Vaal " . StrReplace(Prop.ItemBase,"Purity","Impurity"),1)
+								{
+									Prop.VaalGem := True
+									Prop.ItemBase := "Vaal " . StrReplace(Prop.ItemBase,"Purity","Impurity")
+									Prop.ItemName := "Vaal " . StrReplace(Prop.ItemName,"Purity","Impurity")
+								}
+							}
 							Break
 						}
 					}
@@ -3682,35 +3753,38 @@ Return
 							Continue
 						}
 					}
-					IfInString, A_LoopField, 's Lung
+					If InStr(Clipboard, "Combine this with four other different samples in Tane's Laboratory.")
 					{
-						Prop.IsOrgan := "Lung"
-						Prop.SpecialType := "Organ"
-						Continue
-					}
-					IfInString, A_LoopField, 's Heart
-					{
-						Prop.IsOrgan := "Heart"
-						Prop.SpecialType := "Organ"
-						Continue
-					}
-					IfInString, A_LoopField, 's Brain
-					{
-						Prop.IsOrgan := "Brain"
-						Prop.SpecialType := "Organ"
-						Continue
-					}
-					IfInString, A_LoopField, 's Liver
-					{
-						Prop.IsOrgan := "Liver"
-						Prop.SpecialType := "Organ"
-						Continue
-					}
-					IfInString, A_LoopField, 's Eye
-					{
-						Prop.IsOrgan := "Eye"
-						Prop.SpecialType := "Organ"
-						Continue
+						IfInString, A_LoopField, 's Lung
+						{
+							Prop.IsOrgan := "Lung"
+							Prop.SpecialType := "Organ"
+							Continue
+						}
+						IfInString, A_LoopField, 's Heart
+						{
+							Prop.IsOrgan := "Heart"
+							Prop.SpecialType := "Organ"
+							Continue
+						}
+						IfInString, A_LoopField, 's Brain
+						{
+							Prop.IsOrgan := "Brain"
+							Prop.SpecialType := "Organ"
+							Continue
+						}
+						IfInString, A_LoopField, 's Liver
+						{
+							Prop.IsOrgan := "Liver"
+							Prop.SpecialType := "Organ"
+							Continue
+						}
+						IfInString, A_LoopField, 's Eye
+						{
+							Prop.IsOrgan := "Eye"
+							Prop.SpecialType := "Organ"
+							Continue
+						}
 					}
 				}
 				Continue
@@ -3870,17 +3944,13 @@ Return
 				}
 			}
 			;Capture Implicit and Affixes after the Item Level
-			If (itemLevelIsDone > 0 && itemLevelIsDone < 4) {
+			If (itemLevelIsDone > 0 && itemLevelIsDone < 3) {
 				If InStr(A_LoopField, "----")
 				{
-					++itemLevelIsDone
-					If (itemLevelIsDone = 3 && captureLines < 1){
-						Affix.Implicit := possibleImplicit
-					}
-					Else If (itemLevelIsDone = 2 && countCorruption > 0 && !doneCorruption && captureLines < 3){
-						doneCorruption := True
-						; captureLines := 1
-					}
+					If !ExtraSection
+						++itemLevelIsDone
+					Else
+						--ExtraSection
 				}
 				Else
 				{
@@ -3891,7 +3961,7 @@ Return
 						if (indexOf(imp, Enchantment)) 
 						{
 							Affix.LabEnchant := A_LoopField
-							itemLevelIsDone := 1
+							ExtraSection := 1
 							Continue
 						}
 					}
@@ -3900,7 +3970,7 @@ Return
 						{	
 							StringSplit, Arr, A_LoopField, %A_Space%
 							Affix.TalismanTier := Arr3
-							itemLevelIsDone := 1
+							ExtraSection := 1
 						Continue
 						}
 					}
@@ -3909,37 +3979,50 @@ Return
 						{	
 							Arr := StrSplit(A_LoopField, "Allocates ")
 							Affix.Annointment := Arr[2]
-							itemLevelIsDone := 1
+							ExtraSection := 1
 						Continue
 						}
 						IfInString, A_LoopField, Your
 						{	
 							Arr := StrSplit(A_LoopField, "Your ")
 							Affix.Annointment := Arr[2]
-							itemLevelIsDone := 1
+							ExtraSection := 1
 						Continue
 						}
 					}
-					if !InStr(A_LoopField, "(implicit)")
-					++captureLines
-					If (itemLevelIsDone >= 1 && !doneCorruption && captureLines < 1) {
-						imp := RegExReplace(StrSplit(A_LoopField, "(implicit)", " ")[1], "i)([-.0-9]+)", "#")
-						if (indexOf(imp, Corruption)) {
-							If (countCorruption < 1){
-							possibleCorruption := StrSplit(A_LoopField, "(implicit)", " ")[1]
-							++countCorruption
-							}Else If (countCorruption = 1){
-							possibleCorruption2 := StrSplit(A_LoopField, "(implicit)", " ")[1]
-							++countCorruption
+					if InStr(A_LoopField, "(implicit)")
+					{
+						If (captureLines < 1) 
+						{
+							imp := RegExReplace(StrSplit(A_LoopField, "(implicit)", " ")[1], "i)([-.0-9]+)", "#")
+							if (indexOf(imp, Corruption)) 
+							{
+								If (countCorruption < 1)
+								{
+									Affix.Corruption := StrSplit(A_LoopField, "(implicit)", " ")[1]
+									++countCorruption
+									Prop.Corrupted := True
+								}
+								Else If (countCorruption = 1)
+								{
+									Affix.Corruption2 := StrSplit(A_LoopField, "(implicit)", " ")[1]
+									++countCorruption
+								}
+								ExtraSection := 1
 							}
-							itemLevelIsDone := 1
+							Else
+							{
+								If (Affix.Implicit = "")
+									Affix.Implicit := StrSplit(A_LoopField, "(implicit)", " ")[1]
+								Else
+									Affix.Implicit := Affix.Implicit . "`n" . StrSplit(A_LoopField, "(implicit)", " ")[1]
+								ExtraSection := 1
+							}
 						}
 					}
-					If (captureLines < 1)
-						possibleImplicit:= StrSplit(A_LoopField, "(implicit)", " ")[1]
-					If (InStr(possibleImplicit, "Life gained for each Enemy hit by Attacks") && InStr(A_LoopField, "Mana gained for each Enemy hit by Attacks"))
+					Else
 					{
-						possibleImplicit := possibleImplicit . "`n" . StrSplit(A_LoopField, "(implicit)", " ")[1]
+						++captureLines
 					}
 					IfInString, A_LoopField, Socketed Gems are
 					{
@@ -4302,7 +4385,6 @@ Return
 					}
 					IfInString, A_LoopField, chance to deal Double Damage
 					{
-						--captureLines
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
 						Affix.ChanceDoubleDamage := Affix.ChanceDoubleDamage + Arr1
 					Continue	
@@ -4810,11 +4892,24 @@ Return
 				Prop.SpecialType := "Prophecy"
 				continue
 			}
-			; Flag Veiled
-			IfInString, A_LoopField, Veiled%A_Space%
+			; Flag Veiled Prefix
+			IfInString, A_LoopField, Veiled Prefix
 			{
 				Prop.Veiled := True
-				Prop.SpecialType := "Veiled"
+				If (Prop.SpecialType ~= "Veiled Suffix") || (Prop.SpecialType ~= "Prefix and Suffix")
+					Prop.SpecialType := "Veiled Prefix and Suffix"
+				Else
+					Prop.SpecialType := "Veiled Prefix"
+				continue
+			}
+			; Flag Veiled Suffix
+			IfInString, A_LoopField, Veiled Suffix
+			{
+				Prop.Veiled := True
+				If (Prop.SpecialType ~= "Veiled Prefix") || (Prop.SpecialType ~= "Prefix and Suffix")
+					Prop.SpecialType := "Veiled Prefix and Suffix"
+				Else
+					Prop.SpecialType := "Veiled Suffix"
 				continue
 			}
 			; Get total physical damage
@@ -4901,9 +4996,6 @@ Return
 		If Prop.ItemBase =
 		Prop.ItemBase := nameArr[2]
 
-		If (possibleCorruption = possibleImplicit && !Prop.Corrupted)
-			Affix.Implicit := possibleImplicit
-
 		If indexOf(Prop.ItemBase, craftingBasesT1) 
 			Prop.CraftingBase := "T1"
 		Else if indexOf(Prop.ItemBase, craftingBasesT2)
@@ -4916,7 +5008,8 @@ Return
 			If Stats.GemLevel >= 20
 			{
 				variantStr := Stats.GemLevel
-				If Stats.Quality >= 20 && Stats.Quality < 23
+				variantStr := (variantStr>21?21:variantStr)
+				If Stats.Quality >= 18 && Stats.Quality < 23
 					variantStr .= "/20"
 				Else If Stats.Quality = 23
 					variantStr .= "/23"
@@ -4927,11 +5020,15 @@ Return
 			Else If Stats.GemLevel < 20 && Stats.Quality >= 15
 			{
 				variantStr := "1/20"
+				If Prop.Corrupted && Prop.VaalGem
+				variantStr := "20/20c"
 				Prop.Variant := variantStr
 			}
 			Else If Stats.GemLevel < 20 && Stats.Quality < 15
 			{
 				variantStr := "20"
+				If Prop.Corrupted 
+					variantStr .= "c"
 				Prop.Variant := variantStr
 			}
 		}
@@ -4961,6 +5058,8 @@ Return
 		}
 		If (Stats.ItemClass = "Belt")
 			Prop.Belt := True
+		If (Stats.ItemClass = "Support Skill Gem")
+			Prop.Support := True
 		If captureLines
 			Prop.AffixCount := captureLines
 		Return
@@ -4971,12 +5070,14 @@ Return
 		ItemInfoCommand:
 		MouseGetPos, Mx, My
 		ClipItem(Mx, My)
+		Prop.CLF_SendTab := MatchLootFilter()
+		Prop.CLF_MatchGroup := MatchLootFilter(1)
 		MatchNinjaPrice(True)
 		Return
 	}
 	; MatchLootFilter - Evaluate Loot Filter Match
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MatchLootFilter()
+	MatchLootFilter(GroupOut:=0)
 	{
 		For GKey, Groups in LootFilter
 		{
@@ -5139,7 +5240,12 @@ Return
 				}
 			}
 			If matched && !nomatched
+			{
+				If GroupOut
+				Return GKey
+				Else
 				Return LootFilterTabs[GKey]
+			}
 		}
 	Return False
 	}
@@ -5718,7 +5824,9 @@ Return
 	}
 	; MoveStash - Input any digit and it will move to that Stash tab, only tested up to 25 tabs
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MoveStash(Tab){
+	MoveStash(Tab,CheckStatus:=0)
+	{
+		If CheckStatus
 		GuiStatus("OnStash")
 		If (!OnStash)
 			Return
@@ -5765,7 +5873,7 @@ Return
 			}
 		}
 		return
-		}
+	}
 
 	; StockScrolls - Restock scrolls that have more than 10 missing
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5827,8 +5935,8 @@ Return
 			Static GreenHex := 0x32DE24, QuestHex := 0x47E635
 			If (!ComboHex || Reset)
 			{
-				ComboHex := Hex2FindText(LootColors,0,0,1,1)
-				ComboHex .= Hex2FindText(QuestHex,2,0,0,0)
+				ComboHex := Hex2FindText(LootColors,0,0,1,2,2)
+				ComboHex .= Hex2FindText(QuestHex,2)
 				; ComboHex .= ChestStr
 				ComboHex := """" . ComboHex . """"
 				If Reset
@@ -5845,14 +5953,32 @@ Return
 					ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
 					If (loot := FindText(x,y,xx,yy,0,0,ComboHex,1,0))
 					{
-						ScanPx := loot.1.x, ScanPy := loot.1.y
+						ScanPx := loot.1.1 + loot.1.3, ScanPy := loot.1.2 + loot.1.4, ScanId := loot.1.id
+						, difX := Abs(ScanPx - mX), difY := Abs(ScanPy - mY)
+						; If (ScanId != "Single")
+						; {
+						; 	If (ScanPx < mX && difX > (AreaScale - 8))
+						; 		ScanPx -= 15
+						; 	Else
+						; 		ScanPx += 15
+						; 	If (ScanPy < mY && difY > (AreaScale - 8))
+						; 		ScanPy -= 15
+						; 	Else
+						; 		ScanPy += 15
+						; }
 						; If (loot.1.id = "FIVE")
-						; 	ScanPx += 10, ScanPy += 10
+						 	ScanPx += 10, ScanPy += 10
 						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 						{
 							BlockInput, on
-							MouseMove, ScanPx, ScanPy
+							If GetKeyState("RButton","P")
+							Send {RButton Up}
+							If GetKeyState("LButton","P")
+							Send {LButton Up}
+							; MouseMove, ScanPx, ScanPy
 							Click %ScanPx%, %ScanPy%
+							If GetKeyState("RButton","P")
+							Send {RButton Down}
 							BlockInput, off
 						}
 						Sleep, %LVdelay%
@@ -5869,8 +5995,14 @@ Return
 						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 						{
 							BlockInput, on
-							MouseMove, ScanPx, ScanPy
+							If GetKeyState("RButton","P")
+							Send {RButton Up}
+							If GetKeyState("LButton","P")
+							Send {LButton Up}
+							; MouseMove, ScanPx, ScanPy
 							Click %ScanPx%, %ScanPy%
+							If GetKeyState("RButton","P")
+							Send {RButton Down}
 							BlockInput, off
 						}
 						Sleep, %LVdelay%
@@ -7404,6 +7536,7 @@ Return
 			BlockInput Off
 			BlockInput MouseMoveOff
 			RandomSleep(300,600)
+			Thread, NoTimers, False		;End Critical
 		return
 		}
 
@@ -7414,7 +7547,8 @@ Return
 			Thread, NoTimers, true		;Critical
 			If PopFlaskRespectCD
 				TriggerFlask(TriggerPopFlasks)
-			Else {
+			Else 
+			{
 				If PopFlasks1
 				{
 					If YesPopAllExtraKeys 
@@ -7475,6 +7609,7 @@ Return
 					settimer, TimerFlask5, %Cooldown%
 				}
 			}
+			Thread, NoTimers, False		;End Critical
 		return
 		}
 
@@ -7521,6 +7656,7 @@ Return
 			}
 			If YesOHB && OnMines
 				Log("Exit with " . HPerc . "`% Life", CurrentLocation)
+			Thread, NoTimers, False		;End Critical
 		return
 		}
 
@@ -7532,6 +7668,8 @@ Return
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
+				If (GetKeyState("LButton","P") || GetKeyState("RButton","P"))
+					Return
 				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr))
 				{
 					If !GuiStatus("OnChar")
@@ -7544,13 +7682,9 @@ Return
 					MouseGetPos, mX, mY
 					BlockInput, MouseMove
 					SwiftClick(X,Y)
+					sleep, 15
 					MouseMove, mX, mY, 0
 					BlockInput, MouseMoveOff
-					Sleep, 60
-					If GetKeyState("LButton","P")
-						Click, down
-					If GetKeyState("RButton","P")
-						Click, Right, down
 					ok:=""
 				}
 			}
@@ -7806,11 +7940,15 @@ Return
 			IniRead, StashTabCrafting, settings.ini, Stash Tab, StashTabCrafting, 1
 			IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
 			IniRead, StashTabVeiled, settings.ini, Stash Tab, StashTabVeiled, 1
+			IniRead, StashTabOrgan, settings.ini, Stash Tab, StashTabOrgan, 1
+			IniRead, StashTabYesOrgan, settings.ini, Stash Tab, StashTabYesOrgan, 1
+			IniRead, StashTabGemSupport, settings.ini, Stash Tab, StashTabGemSupport, 1
 			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency, 1
 			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap, 1
 			IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination, 1
 			IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem, 1
 			IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality, 1
+			IniRead, StashTabYesGemSupport, settings.ini, Stash Tab, StashTabYesGemSupport, 1
 			IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality, 1
 			IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked, 1
 			IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection, 1
@@ -8341,6 +8479,7 @@ Return
 
 			RegisterHotkeys()
 			checkActiveType()
+			Thread, NoTimers, False		;End Critical
 		Return
 		}
 
@@ -8686,6 +8825,7 @@ Return
 			IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
 			IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
 			IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
+			IniWrite, %StashTabYesOrgan%, settings.ini, Stash Tab, StashTabYesOrgan
 			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
 			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
 			IniWrite, %StashTabCrafting%, settings.ini, Stash Tab, StashTabCrafting
@@ -8696,6 +8836,7 @@ Return
 			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
 			IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
 			IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
+			IniWrite, %StashTabYesGemSupport%, settings.ini, Stash Tab, StashTabYesGemSupport
 			IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
 			IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
 			IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
@@ -8842,6 +8983,7 @@ Return
 				WinActivate, ahk_group POEGameGroup
 				}
 			SendMSG(1)
+			Thread, NoTimers, False		;End Critical
 		return  
 		}
 
@@ -9382,63 +9524,63 @@ Return
 		FireStashHotkey1() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab1)
+				MoveStash(stashSuffixTab1,1)
 			}
 		return
 		}
 		FireStashHotkey2() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab2)
+				MoveStash(stashSuffixTab2,1)
 			}
 		return
 		}
 		FireStashHotkey3() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab3)
+				MoveStash(stashSuffixTab3,1)
 			}
 		return
 		}
 		FireStashHotkey4() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab4)
+				MoveStash(stashSuffixTab4,1)
 			}
 		return
 		}
 		FireStashHotkey5() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab5)
+				MoveStash(stashSuffixTab5,1)
 			}
 		return
 		}
 		FireStashHotkey6() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab6)
+				MoveStash(stashSuffixTab6,1)
 			}
 		return
 		}
 		FireStashHotkey7() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab7)
+				MoveStash(stashSuffixTab7,1)
 			}
 		return
 		}
 		FireStashHotkey8() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab8)
+				MoveStash(stashSuffixTab8,1)
 			}
 		return
 		}
 		FireStashHotkey9() {
 			IfWinActive, ahk_group POEGameGroup
 			{	
-				MoveStash(stashSuffixTab9)
+				MoveStash(stashSuffixTab9,1)
 			}
 		return
 		}	
@@ -10538,6 +10680,7 @@ Return
 			}
 
 			hotkeys()
+			Thread, NoTimers, False		;End Critical
 		return
 
 		updateOnChat:
@@ -11165,6 +11308,7 @@ Return
 				Gui, LootColors: Destroy
 				PauseTooltips := 0
 				LootColorsMenu()
+				Thread, NoTimers, False		;End Critical
 			Return
 
 			SaveLootColorArray:
@@ -11362,6 +11506,7 @@ Return
 			IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
 			IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
 			IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
+			IniWrite, %StashTabGemSupport%, settings.ini, Stash Tab, StashTabGemSupport
 			IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
 			IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
 			IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
@@ -11371,6 +11516,7 @@ Return
 			IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
 			IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
 			IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
+			IniWrite, %StashTabOrgan%, settings.ini, Stash Tab, StashTabOrgan
 			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
 			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
 			IniWrite, %StashTabCrafting%, settings.ini, Stash Tab, StashTabCrafting
@@ -11380,6 +11526,7 @@ Return
 			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
 			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
 			IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
+			IniWrite, %StashTabYesGemSupport%, settings.ini, Stash Tab, StashTabYesGemSupport
 			IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
 			IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
 			IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
@@ -11389,6 +11536,7 @@ Return
 			IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
 			IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
 			IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
+			IniWrite, %StashTabYesOrgan%, settings.ini, Stash Tab, StashTabYesOrgan
 			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
 			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
 			IniWrite, %StashTabYesCrafting%, settings.ini, Stash Tab, StashTabYesCrafting
