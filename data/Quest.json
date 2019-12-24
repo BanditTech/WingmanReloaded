@@ -1,5 +1,15 @@
 [
   {
+    "Name": "Book of Skill",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Treasure Key",
+    "Width": 1,
+    "Height": 1
+  },
+  {
     "Name": "Tower Key",
     "Width": 1,
     "Height": 2
@@ -88,5 +98,25 @@
     "Name": "Kishara's Star",
     "Width": 1,
     "Height": 1
+  },
+  {
+    "Name": "Ankh of Eternity",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Wings of Vastiri",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Sun Orb",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Moon Orb",
+    "Width": 2,
+    "Height": 2
   }
 ]

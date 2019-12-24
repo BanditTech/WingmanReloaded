@@ -95,3 +95,11 @@ Loot Vacuum will allow for looting while holding down RButton
 AutoSkillup now only fires when your not holding a mouse button down
 
 Now detects for Quest items and skips them
+
+FilterBlade URL has been added to the FilterBlade.zip file
+    this lets you load the filter and customize which things hide or show
+
+Reworked the output from GuiStatus
+    It now returns true when OnChar and No panels are open
+
+GottaGoFast updated to use new GuiStatus checks

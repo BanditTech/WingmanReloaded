@@ -2964,7 +2964,6 @@ Structure of most functions:
         {
             P%Fetch% := ScreenShot_GetColor(vX_%Fetch%,vY_%Fetch%)
             temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
-
             Return temp
         }
 		POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
@@ -2974,7 +2973,10 @@ Structure of most functions:
 		POnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash), OnStash := (POnStash=varOnStash?True:False)
         POnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor), OnVendor := (POnVendor=varOnVendor?True:False)
         POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
-		Return
+        POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
+        POnSynd := ScreenShot_GetColor(vX_OnSynd,vY_OnSynd), OnSynd := (POnSynd=varOnSynd?True:False)
+        POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnSynd||OnDelveChart))
 	}
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -3156,19 +3158,21 @@ Structure of most functions:
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	WisdomScroll(x, y){
 			BlockInput, MouseMove
-			;Sleep, 15*Latency
-			MouseMove %WisdomScrollX%, %WisdomScrollY%
-			Sleep, 30*Latency
-			Click, Down, Right, 1
-			Sleep, 60*Latency
-			Click, Up, Right, 1
-			Sleep, 30*Latency
-			MouseMove %x%, %y%
-			Sleep, 30*Latency
-			Click, Down, Left, 1
-			Sleep, 60*Latency
-			Click, Up, Left, 1
-			Sleep, 30*Latency
+			; ;Sleep, 15*Latency
+			; MouseMove %WisdomScrollX%, %WisdomScrollY%
+			; Sleep, 30*Latency
+			; Click, Down, Right, 1
+			; Sleep, 60*Latency
+			; Click, Up, Right, 1
+			; Sleep, 30*Latency
+			; MouseMove %x%, %y%
+			; Sleep, 30*Latency
+			; Click, Down, Left, 1
+			; Sleep, 60*Latency
+			; Click, Up, Left, 1
+			; Sleep, 30*Latency
+            RightClick(WisdomScrollX,WisdomScrollY)
+            LeftClick(x,y)
 			BlockInput, MouseMoveOff
 		return
 		}
@@ -3663,6 +3667,15 @@ Structure of most functions:
 					;Status Check OnDiv
 					global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
 					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+					;Status Check OnLeft
+					global vX_OnLeft:=GameX + Round(GameW / (1920 / 252))
+					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+					;Status Check OnSynd
+					global vX_OnSynd:=GameX + Round(GameW / (1920 / 1372))
+					global vY_OnSynd:=GameY + Round(GameH / ( 1080 / 933))
+					;Status Check OnDelveChart
+					global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
+					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
 					;Life %'s
 					global vX_Life:=GameX + Round(GameW / (1920 / 95))
 					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -3740,6 +3753,9 @@ Structure of most functions:
 					;Status Check OnDiv
 					global vX_OnDiv:=GameX + Round(GameW / (1440 / 378))
 					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+					;Status Check OnLeft
+					global vX_OnLeft:=GameX + Round(GameW / (1440 / 252))
+					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
 					;Life %'s
 					global vX_Life:=GameX + Round(GameW / (1440 / 95))
 					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -3817,6 +3833,9 @@ Structure of most functions:
                     ;Status Check OnDiv
                     global vX_OnDiv:=GameX + Round(GameW / (2560 / 618))
                     global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+                    ;Status Check OnLeft
+                    global vX_OnLeft:=GameX + Round(GameW / (2560 / 252))
+                    global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
                     ;Life %'s
                     global vX_Life:=GameX + Round(GameW / (2560 / 95))
                     global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -3894,6 +3913,9 @@ Structure of most functions:
 					;Status Check OnDiv
 					global vX_OnDiv:=GameX + Round(GameW / (3840 / 1578))
 					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+					;Status Check OnLeft
+					global vX_OnLeft:=GameX + Round(GameW / (3840 / 252))
+					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
 					;Life %'s
 					global vX_Life:=GameX + Round(GameW / (3840 / 95))
 					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -4382,9 +4404,7 @@ Structure of most functions:
         Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
         If WinActive(GameStr)
         {
-            WinGetPos, GameX, GameY, GameW, GameH
-            ; if (ok:=FindText(GameX + Round(GameW / (1920 / 907)), GameY + Round(GameH / (1080 / 177)), 106, Round(GameH / (1080 / 370)) - Round(GameH / (1080 / 177)), 0, 0, HealthBarStr,0))
-            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
+            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,1))
             {
                 ok.1.3 -= 1
                 ok.1.4 += 8
@@ -4424,19 +4444,17 @@ Structure of most functions:
     {
         Thread, NoTimers, true		;Critical
         Global OHB, OHBLHealthHex
-        Found := OHB.X
-        ScreenShot(GameX, GameY, GameX + GameW, GameY + GameH)
-        temp1 := ToRGB(CID), temp2 := ToRGB(ScreenShot_GetColor(OHB.X+1, PosY))
-        If !CompareRGB(temp1,temp2,Variance)
+        If !CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(OHB.X+1, PosY)),Variance)
         {
             Ding(500,4,"OHB Obscured, Moved, or Dead" )
             Return HPerc
         }
+        Else
+        Found := OHB.X + 1
         Loop 10
         {
             pX:= OHB.pX[A_Index]
-            temp1 := ToRGB(CID), temp2 := ToRGB(ScreenShot_GetColor(pX, PosY))
-            If CompareRGB(temp1,temp2,Variance)
+            If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
                 Found := pX
             Else 
             {
@@ -4454,6 +4472,7 @@ Structure of most functions:
                     Break
             }
         }
+        Thread, NoTimers, False		;End Critical
         Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
