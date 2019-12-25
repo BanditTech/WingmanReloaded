@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 Release Notes
 --------------------------------------------------------------------------------
-Version .09.00 December/22/2019
+Version .09.00 December/24/2019
 --------------------------------------------------------------------------------
 -----------------------Script has been converted to RGB-------------------------
 --------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ This new speed does come at the cost of processing power
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .09.00 December/20/2019
+Version .09.00 December/24/2019
 --------------------------------------------------------------------------------
 Loot Vacuum has been adjusted to remove the need of flipping from BGR to RGB
 If you have custom colors set up for the loot vacuum, you will want to swap R and B
@@ -99,7 +99,32 @@ Now detects for Quest items and skips them
 FilterBlade URL has been added to the FilterBlade.zip file
     this lets you load the filter and customize which things hide or show
 
+Added new sample locations for OnSynd, OnLeft and OnDelveChart
+    added these to all the supported ratios
+    The allow the script to pause when
+        Investigation panel is open
+        Voltaxic generator panel, Challenges, settings etc is open
+        Subterranean Chart is open
+
 Reworked the output from GuiStatus
     It now returns true when OnChar and No panels are open
 
 GottaGoFast updated to use new GuiStatus checks
+
+Coord tool reverted to messagebox
+    Now allows for copying the Coordinates to the clipboard
+    Or copy both color and coords
+
+ItemSort now temporarily disables the main logic loop
+    For some reason they slowed down the inventory scan when not in town
+
+Main Logic loop has been changed slightly to improve speed
+    DetonateMines is no longer in a seperate loop
+        Checks to determine detonation are now done in GuiStatus
+        Detonation of mines is now nearly instantaneous
+    Main logic loop will now always be running instead of toggled on or off
+        If all relevant options are disabled it just returns at start
+
+Fixed overlapping variables related to AutoDetonate
+    This was effecting the Gamestates panel using DetonateMines var
+    Renamed to OnDetonate and OnDetonateDelve

@@ -2956,8 +2956,8 @@ Structure of most functions:
         {
             DelveMine := ScreenShot_GetColor(DetonateDelveX,DetonateY)
             Mine := ScreenShot_GetColor(DetonateX,DetonateY)
-            DetonateMines := (Mine=DetonateHex?True:False)
-            DetonateDelve := (DelveMine=DetonateHex?True:False)
+            OnDetonate := (Mine=DetonateHex?True:False)
+            OnDetonateDelve := (DelveMine=DetonateHex?True:False)
             Return
         }
 		If !(Fetch="")
@@ -2976,6 +2976,9 @@ Structure of most functions:
         POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
         POnSynd := ScreenShot_GetColor(vX_OnSynd,vY_OnSynd), OnSynd := (POnSynd=varOnSynd?True:False)
         POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+        If DetonateMines
+        POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+        , OnDetonate := ((POnDetonateDelve=DetonateHex || POnDetonate=DetonateHex)?True:False)
 		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnSynd||OnDelveChart))
 	}
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -3444,10 +3447,12 @@ Structure of most functions:
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     Ding(Timeout:=500, MultiTooltip:=0 , Message*)
     {
-        If (!DebugMessages)
+        If (!DebugMessages && MultiTooltip >= 0)
             Return
         Else
         {
+            If MultiTooltip < 0
+                MultiTooltip := Abs(MultiTooltip)
             debugStr := ""
             If Message.Count()
             {
@@ -3756,6 +3761,12 @@ Structure of most functions:
 					;Status Check OnLeft
 					global vX_OnLeft:=GameX + Round(GameW / (1440 / 252))
 					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+					;Status Check OnSynd
+					global vX_OnSynd:=GameX + Round(GameW / (1440 / 892))
+					global vY_OnSynd:=GameY + Round(GameH / ( 1080 / 933))
+					;Status Check OnDelveChart
+					global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
+					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
 					;Life %'s
 					global vX_Life:=GameX + Round(GameW / (1440 / 95))
 					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -3836,6 +3847,12 @@ Structure of most functions:
                     ;Status Check OnLeft
                     global vX_OnLeft:=GameX + Round(GameW / (2560 / 252))
                     global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+                    ;Status Check OnSynd
+                    global vX_OnSynd:=GameX + Round(GameW / (2560 / 2012))
+                    global vY_OnSynd:=GameY + Round(GameH / ( 1080 / 933))
+                    ;Status Check OnDelveChart
+                    global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
+                    global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
                     ;Life %'s
                     global vX_Life:=GameX + Round(GameW / (2560 / 95))
                     global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -3916,6 +3933,12 @@ Structure of most functions:
 					;Status Check OnLeft
 					global vX_OnLeft:=GameX + Round(GameW / (3840 / 252))
 					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+					;Status Check OnSynd
+					global vX_OnSynd:=GameX + Round(GameW / (3840 / 3292))
+					global vY_OnSynd:=GameY + Round(GameH / ( 1080 / 933))
+					;Status Check OnDelveChart
+					global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
+					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
 					;Life %'s
 					global vX_Life:=GameX + Round(GameW / (3840 / 95))
 					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))

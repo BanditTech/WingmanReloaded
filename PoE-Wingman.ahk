@@ -371,6 +371,7 @@
 			StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing
 			AlternateGemOnSecondarySlot = Enable this to Swap Weapons for your Alternate Gem Swap location
 			YesAutoSkillUp = Enable this to Automatically level up skill gems
+			YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
 			DebugMessages = Enable this to show debug messages, previous functions have been moved to gamestates
 			hotkeyOptions = Set your hotkey to open the options GUI
 			hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
@@ -494,6 +495,7 @@
 		Global YesPersistantToggle := 1
 		Global YesSortFirst := 1
 		Global YesAutoSkillUp := 1
+		Global YesWaitAutoSkillUp := 1
 		Global FlaskList := []
 		Global AreaScale := 0
 		Global LVdelay := 0
@@ -509,7 +511,8 @@
 		Global OnTown := False
 		Global OnMines := False
 		Global DetonateMines := False
-		Global DetonateDelve := False
+		Global OnDetonate := False
+		Global OnDetonateDelve := False
 		Global OnMenu := False
 		Global OnChar := False
 		Global OnChat := False
@@ -1405,6 +1408,7 @@
 	Gui Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         		y+8				, Stock Wisdom?
 	Gui Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
 	Gui Add, Checkbox, 	vYesAutoSkillUp Checked%YesAutoSkillUp%  	y+8				, Auto Skill Up?
+	Gui Add, Checkbox, 	vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%  	x+5 yp			, Wait?
 
 
 	Gui, Font, Bold
@@ -2144,11 +2148,8 @@
 	SetTimer, TimerPassthrough, 15
 	; Check for gems to level
 	SetTimer, AutoSkillUp, 200
-	; Detonate mines timer check
-	If (DetonateMines&&!Detonated)
-		SetTimer, TMineTick, 100
-	Else If (!DetonateMines)
-		SetTimer, TMineTick, off
+	; Main Game Timer
+	SetTimer, TGameTick, %Tick%
 
 ; Hotkeys to reload or exit script
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2196,19 +2197,23 @@ Return
 		If RunningToggle  ; This means an underlying thread is already running the loop below.
 		{
 			RunningToggle := False  ; Signal that thread's loop to stop.
+			If (AutoQuit || AutoFlask || DetonateMines)
+				SetTimer, TGameTick, On
 			exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
 		}
-		Thread, NoTimers, True		;Critical
 		MouseGetPos xx, yy
 		IfWinActive, ahk_group POEGameGroup
 		{
 			RunningToggle := True
+			If (AutoQuit || AutoFlask || DetonateMines)
+				SetTimer, TGameTick, Off
 			GuiStatus()
-			; GuiStatus("OnInventory")
 			If (!OnChar) 
 			{ ;Need to be on Character 
 				MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
 				RunningToggle := False
+				If (AutoQuit || AutoFlask || DetonateMines)
+					SetTimer, TGameTick, On
 				Return
 			} 
 			Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
@@ -2229,6 +2234,8 @@ Return
 					{
 						Send {%hotkeyInventory%}
 						RunningToggle := False
+						If (AutoQuit || AutoFlask || DetonateMines)
+							SetTimer, TGameTick, On
 						Return
 					}
 				}
@@ -2236,12 +2243,11 @@ Return
 				{
 					Send {%hotkeyInventory%}
 					RunningToggle := False
+					If (AutoQuit || AutoFlask || DetonateMines)
+						SetTimer, TGameTick, On
 					Return
 				}
 			}
-			; GuiStatus("OnDiv")
-			; GuiStatus("OnStash")
-			; GuiStatus("OnVendor")
 			If (OnDiv && YesDiv)
 				DivRoutine()
 			Else If (OnStash && YesStash)
@@ -2254,13 +2260,13 @@ Return
 		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
 		RandomSleep(60,90)
 		MouseMove, xx, yy, 0
-		Thread, NoTimers, False		;End Critical
+		If (AutoQuit || AutoFlask || DetonateMines)
+			SetTimer, TGameTick, On
 	Return
 	; ShooMouse - Move mouse out of the inventory area
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ShooMouse()
 	{
-		Thread, NoTimers, True		;Critical
 		MouseGetPos Checkx, Checky
 		If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
 			Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
@@ -2268,13 +2274,11 @@ Return
 			MouseMove, RX, RY, 0
 			Sleep, 45*Latency
 		}
-		Thread, NoTimers, False		;Critical
 	}
 	; VendorRoutine - Does vendor functions
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	VendorRoutine()
 	{
-		; Thread, NoTimers, true		;Critical
 		tQ := 0
 		tGQ := 0
 		SortFlask := {}
@@ -2410,7 +2414,6 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	StashRoutine()
 	{
-		; Thread, NoTimers, true		;Critical
 		CurrentTab:=0
 		SortFirst := {}
 		Loop 32
@@ -3061,7 +3064,6 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	DivRoutine()
 	{
-		; Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
 		ShooMouse(), ScreenShot()
 		; Main loop through inventory
@@ -3102,14 +3104,6 @@ Return
 					Continue
 				}
 			}
-			; Move mouse out of the way after a column
-			MouseGetPos Checkx, Checky
-			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
-				MouseMove, RX, RY, 0
-				Sleep, 45*Latency
-			}
 		}
 		Return
 	}
@@ -3117,7 +3111,6 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	IdentifyRoutine()
 	{
-		; Thread, NoTimers, true		;Critical
 		BlackList := Array_DeepClone(IgnoredSlot)
 		ShooMouse(), ScreenShot()
 		; Main loop through inventory
@@ -3170,14 +3163,6 @@ Return
 						ClipItem(Grid.X,Grid.Y)
 					}
 				}
-			}
-			; Move mouse out of the way after a column
-			MouseGetPos Checkx, Checky
-			If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-				Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-				Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
-				MouseMove, RX, RY, 0
-				Sleep, 45*Latency
 			}
 		}
 		Return
@@ -6040,7 +6025,7 @@ Return
 		Return
 		}
 
-; Main Script Logic Timers - TGameTick, TMineTick, TimerPassthrough
+; Main Script Logic Timers - TGameTick, TimerPassthrough
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; TGameTick - Flask Logic timer
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -6048,7 +6033,7 @@ Return
 	{
 		If WinActive(GameStr)
 		{
-			If (OnTown||OnHideout)
+			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines))
 				Exit
 			OutsideTimer := A_TickCount - OutsideTimer
 			t1 := A_TickCount
@@ -6059,986 +6044,997 @@ Return
 					Exit
 				t5 := A_TickCount - t1
 			}
-			
-			if (RadioLife) {
-				t2 := A_TickCount
-				If (YesOHB && OnMines)
-				{
-					If (OHBxy := CheckOHB())
+			If (AutoFlask || AutoQuit)
+			{
+				if (RadioLife) {
+					t2 := A_TickCount
+					If (YesOHB && OnMines)
 					{
-						Global OHBLHealthHex, OHB
-						HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
-						If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60))
+						If (OHBxy := CheckOHB())
 						{
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit ; Ensure we do not exit during screen transition
-							if (RadioQuit20 && HPerc < 20)
+							Global OHBLHealthHex, OHB
+							HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
+							If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60))
 							{
-								LogoutCommand()
-								Exit
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit ; Ensure we do not exit during screen transition
+								if (RadioQuit20 && HPerc < 20)
+								{
+									LogoutCommand()
+									Exit
+								}
+								Else if (RadioQuit30 && HPerc < 30)
+								{
+									LogoutCommand()
+									Exit
+								}
+								Else if (RadioQuit40 && HPerc < 40)
+								{
+									LogoutCommand()
+									Exit
+								}
+								Else if (RadioQuit50 && HPerc < 50)
+								{
+									LogoutCommand()
+									Exit
+								}
+								Else if (RadioQuit60 && HPerc < 60)
+								{
+									LogoutCommand()
+									Exit
+								}
 							}
-							Else if (RadioQuit30 && HPerc < 30)
+
+							If (AutoFlask && DisableLife != "11111" )
 							{
-								LogoutCommand()
-								Exit
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								If ( TriggerLife20 != "00000" && HPerc < 20) 
+									TriggerFlask(TriggerLife20)
+								If ( TriggerLife30 != "00000" && HPerc < 30) 
+									TriggerFlask(TriggerLife30)
+								If ( TriggerLife40 != "00000" && HPerc < 40) 
+									TriggerFlask(TriggerLife40)
+								If ( TriggerLife50 != "00000" && HPerc < 50) 
+									TriggerFlask(TriggerLife50)
+								If ( TriggerLife60 != "00000" && HPerc < 60) 
+									TriggerFlask(TriggerLife60)
+								If ( TriggerLife70 != "00000" && HPerc < 70) 
+									TriggerFlask(TriggerLife70)
+								If ( TriggerLife80 != "00000" && HPerc < 80) 
+									TriggerFlask(TriggerLife80)
+								If ( TriggerLife90 != "00000" && HPerc < 90) 
+									TriggerFlask(TriggerLife90)
 							}
-							Else if (RadioQuit40 && HPerc < 40)
-							{
-								LogoutCommand()
-								Exit
-							}
-							Else if (RadioQuit50 && HPerc < 50)
-							{
-								LogoutCommand()
-								Exit
-							}
-							Else if (RadioQuit60 && HPerc < 60)
-							{
-								LogoutCommand()
-								Exit
+
+							If ( (YesUtility1 && !OnCooldownUtility1) 
+								|| (YesUtility2 && !OnCooldownUtility2) 
+								|| (YesUtility3 && !OnCooldownUtility3) 
+								|| (YesUtility4 && !OnCooldownUtility4) 
+								|| (YesUtility5 && !OnCooldownUtility5) ) { 
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+
+								If (HPerc < 20)
+								{
+									Loop, 5
+										If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20"&& !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 30)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="30" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 40)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="40" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 50)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="50" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 60)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="60" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 70)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="70" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 80)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="80" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 90)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="90" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
 							}
 						}
-
-						If (AutoFlask && DisableLife != "11111" )
-						{
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							If ( TriggerLife20 != "00000" && HPerc < 20) 
-								TriggerFlask(TriggerLife20)
-							If ( TriggerLife30 != "00000" && HPerc < 30) 
-								TriggerFlask(TriggerLife30)
-							If ( TriggerLife40 != "00000" && HPerc < 40) 
-								TriggerFlask(TriggerLife40)
-							If ( TriggerLife50 != "00000" && HPerc < 50) 
-								TriggerFlask(TriggerLife50)
-							If ( TriggerLife60 != "00000" && HPerc < 60) 
-								TriggerFlask(TriggerLife60)
-							If ( TriggerLife70 != "00000" && HPerc < 70) 
-								TriggerFlask(TriggerLife70)
-							If ( TriggerLife80 != "00000" && HPerc < 80) 
-								TriggerFlask(TriggerLife80)
-							If ( TriggerLife90 != "00000" && HPerc < 90) 
-								TriggerFlask(TriggerLife90)
-						}
-
-						If ( (YesUtility1 && !OnCooldownUtility1) 
-							|| (YesUtility2 && !OnCooldownUtility2) 
-							|| (YesUtility3 && !OnCooldownUtility3) 
-							|| (YesUtility4 && !OnCooldownUtility4) 
-							|| (YesUtility5 && !OnCooldownUtility5) ) { 
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-
-							If (HPerc < 20)
-							{
-								Loop, 5
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20"&& !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 30)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="30" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 40)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="40" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 50)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="50" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 60)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="60" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 70)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="70" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 80)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="80" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 90)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="90" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-						}
+						Else
+							HPerc := 100
 					}
 					Else
-						HPerc := 100
+					{
+						If ( (TriggerLife20!="00000") 
+							|| (AutoQuit&&RadioQuit20)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+							Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
+							if (Life20!=varLife20) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+									Log("Exit with < 20`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife20!="00000")
+									TriggerFlask(TriggerLife20)
+								}
+						}
+						If ( (TriggerLife30!="00000") 
+							|| (AutoQuit&&RadioQuit30)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
+							Life30 := ScreenShot_GetColor(vX_Life,vY_Life30) 
+							if (Life30!=varLife30) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+									Log("Exit with < 30`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife30!="00000")
+									TriggerFlask(TriggerLife30)
+								}
+						}
+						If ( (TriggerLife40!="00000") 
+							|| (AutoQuit&&RadioQuit40)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
+							Life40 := ScreenShot_GetColor(vX_Life,vY_Life40) 
+							if (Life40!=varLife40) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
+									Log("Exit with < 40`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife40!="00000")
+									TriggerFlask(TriggerLife40)
+								}
+						}
+						If ( (TriggerLife50!="00000")
+							|| (AutoQuit&&RadioQuit50)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
+							Life50 := ScreenShot_GetColor(vX_Life,vY_Life50)
+							if (Life50!=varLife50) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && (RadioQuit50||RadioQuit60)) {
+									Log("Exit with < 50`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife50!="00000")
+									TriggerFlask(TriggerLife50)
+								}
+						}
+						If ( (TriggerLife60!="00000")
+							|| (AutoQuit&&RadioQuit60)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
+							Life60 := ScreenShot_GetColor(vX_Life,vY_Life60)
+							if (Life60!=varLife60) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && RadioQuit60) {
+									Log("Exit with < 60`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife60!="00000")
+									TriggerFlask(TriggerLife60)
+								}
+						}
+						If ( (TriggerLife70!="00000") 
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
+							Life70 := ScreenShot_GetColor(vX_Life,vY_Life70)
+							if (Life70!=varLife70) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife70!="00000")
+									TriggerFlask(TriggerLife70)
+								}
+						}
+						If ( (TriggerLife80!="00000") 
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
+							Life80 := ScreenShot_GetColor(vX_Life,vY_Life80)
+							if (Life80!=varLife80) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife80!="00000")
+									TriggerFlask(TriggerLife80)
+								}
+						}
+						If ( (TriggerLife90!="00000") 
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
+							Life90 := ScreenShot_GetColor(vX_Life,vY_Life90)
+							if (Life90!=varLife90) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife90!="00000")
+									TriggerFlask(TriggerLife90)
+								}
+						}
+					}
+					t2 := A_TickCount - t2
 				}
-				Else
-				{
-					If ( (TriggerLife20!="00000") 
+				Else if (RadioHybrid) {
+					t2 := A_TickCount
+					If (YesOHB && OnMines)
+					{
+						If (OHBxy := CheckOHB())
+						{
+							Global OHBLHealthHex, OHB
+							HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
+							If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60))
+							{
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (RadioQuit20 && HPerc < 20)
+								{
+									LogoutCommand()
+									Exit
+								}
+								Else if (RadioQuit30 && HPerc < 30)
+								{
+									LogoutCommand()
+									Exit
+								}
+								Else if (RadioQuit40 && HPerc < 40)
+								{
+									LogoutCommand()
+									Exit
+								}
+								Else if (RadioQuit50 && HPerc < 50)
+								{
+									LogoutCommand()
+									Exit
+								}
+								Else if (RadioQuit60 && HPerc < 60)
+								{
+									LogoutCommand()
+									Exit
+								}
+							}
+							If (AutoFlask && DisableLife != "11111" )
+							{
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								If ( TriggerLife20 != "00000" && HPerc < 20) 
+									TriggerFlask(TriggerLife20)
+								If ( TriggerLife30 != "00000" && HPerc < 30) 
+									TriggerFlask(TriggerLife30)
+								If ( TriggerLife40 != "00000" && HPerc < 40) 
+									TriggerFlask(TriggerLife40)
+								If ( TriggerLife50 != "00000" && HPerc < 50) 
+									TriggerFlask(TriggerLife50)
+								If ( TriggerLife60 != "00000" && HPerc < 60) 
+									TriggerFlask(TriggerLife60)
+								If ( TriggerLife70 != "00000" && HPerc < 70) 
+									TriggerFlask(TriggerLife70)
+								If ( TriggerLife80 != "00000" && HPerc < 80) 
+									TriggerFlask(TriggerLife80)
+								If ( TriggerLife90 != "00000" && HPerc < 90) 
+									TriggerFlask(TriggerLife90)
+							}
+							If ( (YesUtility1 && !OnCooldownUtility1) 
+								|| (YesUtility2 && !OnCooldownUtility2) 
+								|| (YesUtility3 && !OnCooldownUtility3) 
+								|| (YesUtility4 && !OnCooldownUtility4) 
+								|| (YesUtility5 && !OnCooldownUtility5) ) { 
+
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								If (HPerc < 20)
+								{
+									Loop, 5
+										If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20"&& !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 30)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="30" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 40)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="40" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 50)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="50" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 60)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="60" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 70)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="70" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 80)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="80" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+								If (HPerc < 90)
+								{
+									Loop, 5 
+										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="90" && !OnCooldownUtility%A_Index%)
+											TriggerUtility(A_Index)
+								}
+							}
+						}
+						Else
+							HPerc := 100
+					}
+					Else
+					{
+						If ( (TriggerLife20!="00000") 
+							|| (AutoQuit&&RadioQuit20)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+							Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
+							if (Life20!=varLife20) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+									Log("Exit with < 20`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife20!="00000")
+									TriggerFlask(TriggerLife20)
+								}
+						}
+						If ( (TriggerLife30!="00000") 
+							|| (AutoQuit&&RadioQuit30)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
+							Life30 := ScreenShot_GetColor(vX_Life,vY_Life30) 
+							if (Life30!=varLife30) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+									Log("Exit with < 30`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife30!="00000")
+									TriggerFlask(TriggerLife30)
+								}
+						}
+						If ( (TriggerLife40!="00000") 
+							|| (AutoQuit&&RadioQuit40)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
+							Life40 := ScreenShot_GetColor(vX_Life,vY_Life40) 
+							if (Life40!=varLife40) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
+									Log("Exit with < 40`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife40!="00000")
+									TriggerFlask(TriggerLife40)
+								}
+						}
+						If ( (TriggerLife50!="00000")
+							|| (AutoQuit&&RadioQuit50)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
+							Life50 := ScreenShot_GetColor(vX_Life,vY_Life50)
+							if (Life50!=varLife50) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && (RadioQuit50||RadioQuit60)) {
+									Log("Exit with < 50`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife50!="00000")
+									TriggerFlask(TriggerLife50)
+								}
+						}
+						If ( (TriggerLife60!="00000")
+							|| (AutoQuit&&RadioQuit60)
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
+							Life60 := ScreenShot_GetColor(vX_Life,vY_Life60)
+							if (Life60!=varLife60) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								if (AutoQuit && RadioQuit60) {
+									Log("Exit with < 60`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife60!="00000")
+									TriggerFlask(TriggerLife60)
+								}
+						}
+						If ( (TriggerLife70!="00000")
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
+							Life70 := ScreenShot_GetColor(vX_Life,vY_Life70)
+							if (Life70!=varLife70) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife70!="00000")
+									TriggerFlask(TriggerLife70)
+								}
+						}
+						If ( (TriggerLife80!="00000")
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
+							Life80 := ScreenShot_GetColor(vX_Life,vY_Life80)
+							if (Life80!=varLife80) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife80!="00000")
+									TriggerFlask(TriggerLife80)
+								}
+						}
+						If ( (TriggerLife90!="00000")
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
+							Life90 := ScreenShot_GetColor(vX_Life,vY_Life90)
+							if (Life90!=varLife90) {
+								GuiStatus("OnChar")
+								if !(OnChar)
+									Exit
+								Loop, 5 {
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
+										TriggerUtility(A_Index)
+								}
+								If (TriggerLife90!="00000")
+									TriggerFlask(TriggerLife90)
+								}
+						}
+					}
+					t2 := A_TickCount - t2
+					t3 := A_TickCount
+					If ( (TriggerES20!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+						ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
+						if (ES20!=varES20) {
+							GuiStatus("OnChar")
+							if !(OnChar)
+								Exit
+							Loop, 5 {
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
+									TriggerUtility(A_Index)
+							}
+							If (TriggerES20!="00000")
+								TriggerFlask(TriggerES20)
+						}
+					}
+					If ( (TriggerES30!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
+						ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
+						if (ES30!=varES30) {
+							GuiStatus("OnChar")
+							if !(OnChar)
+								Exit
+							Loop, 5 {
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
+									TriggerUtility(A_Index)
+							}
+							If (TriggerES30!="00000")
+								TriggerFlask(TriggerES30)
+						}
+					}
+					If ( (TriggerES40!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
+						ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
+						if (ES40!=varES40) {
+							GuiStatus("OnChar")
+							if !(OnChar)
+								Exit
+							Loop, 5 {
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
+									TriggerUtility(A_Index)
+							}
+							If (TriggerES40!="00000")
+								TriggerFlask(TriggerES40)
+						}
+					}
+					If ( (TriggerES50!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
+						ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
+						if (ES50!=varES50) {
+							GuiStatus("OnChar")
+							if !(OnChar)
+								Exit
+							Loop, 5 {
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
+									TriggerUtility(A_Index)
+							}
+							If (TriggerES50!="00000")
+								TriggerFlask(TriggerES50)
+						}
+					}
+					If ( (TriggerES60!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
+						ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
+						if (ES60!=varES60) {
+							GuiStatus("OnChar")
+							if !(OnChar)
+								Exit
+							Loop, 5 {
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
+									TriggerUtility(A_Index)
+							}
+							If (TriggerES60!="00000")
+								TriggerFlask(TriggerES60)
+						}
+					}
+					If ( (TriggerES70!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
+						ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
+						if (ES70!=varES70) {
+							GuiStatus("OnChar")
+							if !(OnChar)
+								Exit
+							Loop, 5 {
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
+									TriggerUtility(A_Index)
+							}
+							If (TriggerES70!="00000")
+								TriggerFlask(TriggerES70)
+						}
+					}
+					If ( (TriggerES80!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
+						ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
+						if (ES80!=varES80) {
+							GuiStatus("OnChar")
+							if !(OnChar)
+								Exit
+							Loop, 5 {
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
+									TriggerUtility(A_Index)
+							}
+							If (TriggerES80!="00000")
+								TriggerFlask(TriggerES80)
+				
+						}
+					}
+					If ( (TriggerES90!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
+						ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
+						if (ES90!=varES90) {
+							GuiStatus("OnChar")
+							if !(OnChar)
+								Exit
+							Loop, 5 {
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
+									TriggerUtility(A_Index)
+							}
+							If (TriggerES90!="00000")
+								TriggerFlask(TriggerES90)
+				
+						}
+					}
+					t3 := A_TickCount - t3
+				}
+				Else if (RadioCi) {
+					t3 := A_TickCount
+					If ( (TriggerES20!="00000") 
 						|| (AutoQuit&&RadioQuit20)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
-						Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
-						if (Life20!=varLife20) {
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+						ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
+						if (ES20!=varES20) {
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
-								Log("Exit with < 20`% Life", CurrentLocation)
-								LogoutCommand()
+							if (AutoQuit && (RadioQuit20 || RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
+									Log("Exit with < 20`% Energy Shield", CurrentLocation)
+									LogoutCommand()
 								Exit
 							}
 							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
 									TriggerUtility(A_Index)
 							}
-							If (TriggerLife20!="00000")
-								TriggerFlask(TriggerLife20)
-							}
+							If (TriggerES20!="00000")
+								TriggerFlask(TriggerES20)
+						}
 					}
-					If ( (TriggerLife30!="00000") 
+					If ( (TriggerES30!="00000") 
 						|| (AutoQuit&&RadioQuit30)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
-						Life30 := ScreenShot_GetColor(vX_Life,vY_Life30) 
-						if (Life30!=varLife30) {
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
+						ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
+						if (ES30!=varES30) {
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
-								Log("Exit with < 30`% Life", CurrentLocation)
-								LogoutCommand()
+							if (AutoQuit && (RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
+									Log("Exit with < 30`% Energy Shield", CurrentLocation)
+									LogoutCommand()
 								Exit
 							}
 							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
 									TriggerUtility(A_Index)
 							}
-							If (TriggerLife30!="00000")
-								TriggerFlask(TriggerLife30)
-							}
+							If (TriggerES30!="00000")
+								TriggerFlask(TriggerES30)
+						}
 					}
-					If ( (TriggerLife40!="00000") 
+					If ( (TriggerES40!="00000") 
 						|| (AutoQuit&&RadioQuit40)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
-						Life40 := ScreenShot_GetColor(vX_Life,vY_Life40) 
-						if (Life40!=varLife40) {
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
+						ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
+						if (ES40!=varES40) {
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
-								Log("Exit with < 40`% Life", CurrentLocation)
-								LogoutCommand()
+							if (AutoQuit && (RadioQuit40 || RadioQuit50 || RadioQuit60)) {
+									Log("Exit with < 40`% Energy Shield", CurrentLocation)
+									LogoutCommand()
 								Exit
 							}
 							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
 									TriggerUtility(A_Index)
 							}
-							If (TriggerLife40!="00000")
-								TriggerFlask(TriggerLife40)
-							}
+							If (TriggerES40!="00000")
+								TriggerFlask(TriggerES40)
+						}
 					}
-					If ( (TriggerLife50!="00000")
+					If ( (TriggerES50!="00000")
 						|| (AutoQuit&&RadioQuit50)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
-						Life50 := ScreenShot_GetColor(vX_Life,vY_Life50)
-						if (Life50!=varLife50) {
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
+						ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
+						if (ES50!=varES50) {
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
-							if (AutoQuit && (RadioQuit50||RadioQuit60)) {
-								Log("Exit with < 50`% Life", CurrentLocation)
-								LogoutCommand()
+							if (AutoQuit && (RadioQuit50 || RadioQuit60)) {
+									Log("Exit with < 50`% Energy Shield", CurrentLocation)
+									LogoutCommand()
 								Exit
 							}
 							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
 									TriggerUtility(A_Index)
 							}
-							If (TriggerLife50!="00000")
-								TriggerFlask(TriggerLife50)
-							}
+							If (TriggerES50!="00000")
+								TriggerFlask(TriggerES50)
+						}
 					}
-					If ( (TriggerLife60!="00000")
+					If ( (TriggerES60!="00000")
 						|| (AutoQuit&&RadioQuit60)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
-						Life60 := ScreenShot_GetColor(vX_Life,vY_Life60)
-						if (Life60!=varLife60) {
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
+						ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
+						if (ES60!=varES60) {
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
 							if (AutoQuit && RadioQuit60) {
-								Log("Exit with < 60`% Life", CurrentLocation)
-								LogoutCommand()
+									Log("Exit with < 60`% Energy Shield", CurrentLocation)
+									LogoutCommand()
 								Exit
 							}
 							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
 									TriggerUtility(A_Index)
 							}
-							If (TriggerLife60!="00000")
-								TriggerFlask(TriggerLife60)
-							}
+							If (TriggerES60!="00000")
+								TriggerFlask(TriggerES60)
+						}
 					}
-					If ( (TriggerLife70!="00000") 
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
-						Life70 := ScreenShot_GetColor(vX_Life,vY_Life70)
-						if (Life70!=varLife70) {
+					If ( (TriggerES70!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
+						ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
+						if (ES70!=varES70) {
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
 							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
 									TriggerUtility(A_Index)
 							}
-							If (TriggerLife70!="00000")
-								TriggerFlask(TriggerLife70)
-							}
+							If (TriggerES70!="00000")
+								TriggerFlask(TriggerES70)
+						}
 					}
-					If ( (TriggerLife80!="00000") 
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
-						Life80 := ScreenShot_GetColor(vX_Life,vY_Life80)
-						if (Life80!=varLife80) {
+					If ( (TriggerES80!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
+						ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
+						if (ES80!=varES80) {
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
 							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
 									TriggerUtility(A_Index)
 							}
-							If (TriggerLife80!="00000")
-								TriggerFlask(TriggerLife80)
-							}
+							If (TriggerES80!="00000")
+								TriggerFlask(TriggerES80)
+				
+						}
 					}
-					If ( (TriggerLife90!="00000") 
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
-						Life90 := ScreenShot_GetColor(vX_Life,vY_Life90)
-						if (Life90!=varLife90) {
+					If ( (TriggerES90!="00000")
+						|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
+						|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
+						|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
+						|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
+						|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
+						ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
+						if (ES90!=varES90) {
 							GuiStatus("OnChar")
 							if !(OnChar)
 								Exit
 							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
+								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
 									TriggerUtility(A_Index)
 							}
-							If (TriggerLife90!="00000")
-								TriggerFlask(TriggerLife90)
-							}
+							If (TriggerES90!="00000")
+								TriggerFlask(TriggerES90)
+				
+						}
 					}
+					t3 := A_TickCount - t3
 				}
-				t2 := A_TickCount - t2
+				
+				If (TriggerMana10!="00000") {
+					t4 := A_TickCount
+					ManaPerc := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
+					if (ManaPerc!=varManaThreshold) {
+						GuiStatus("OnChar")
+						if !(OnChar)
+							Exit
+						TriggerMana(TriggerMana10)
+					}
+					t4 := A_TickCount - t4
+				}
 			}
-			Else if (RadioHybrid) {
-				t2 := A_TickCount
-				If (YesOHB && OnMines)
+			If (DetonateMines&&!Detonated)
+			{
+				If (OnDetonate)
 				{
-					If (OHBxy := CheckOHB())
-					{
-						Global OHBLHealthHex, OHB
-						HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
-						If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60))
-						{
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							if (RadioQuit20 && HPerc < 20)
-							{
-								LogoutCommand()
-								Exit
-							}
-							Else if (RadioQuit30 && HPerc < 30)
-							{
-								LogoutCommand()
-								Exit
-							}
-							Else if (RadioQuit40 && HPerc < 40)
-							{
-								LogoutCommand()
-								Exit
-							}
-							Else if (RadioQuit50 && HPerc < 50)
-							{
-								LogoutCommand()
-								Exit
-							}
-							Else if (RadioQuit60 && HPerc < 60)
-							{
-								LogoutCommand()
-								Exit
-							}
-						}
-						If (AutoFlask && DisableLife != "11111" )
-						{
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							If ( TriggerLife20 != "00000" && HPerc < 20) 
-								TriggerFlask(TriggerLife20)
-							If ( TriggerLife30 != "00000" && HPerc < 30) 
-								TriggerFlask(TriggerLife30)
-							If ( TriggerLife40 != "00000" && HPerc < 40) 
-								TriggerFlask(TriggerLife40)
-							If ( TriggerLife50 != "00000" && HPerc < 50) 
-								TriggerFlask(TriggerLife50)
-							If ( TriggerLife60 != "00000" && HPerc < 60) 
-								TriggerFlask(TriggerLife60)
-							If ( TriggerLife70 != "00000" && HPerc < 70) 
-								TriggerFlask(TriggerLife70)
-							If ( TriggerLife80 != "00000" && HPerc < 80) 
-								TriggerFlask(TriggerLife80)
-							If ( TriggerLife90 != "00000" && HPerc < 90) 
-								TriggerFlask(TriggerLife90)
-						}
-						If ( (YesUtility1 && !OnCooldownUtility1) 
-							|| (YesUtility2 && !OnCooldownUtility2) 
-							|| (YesUtility3 && !OnCooldownUtility3) 
-							|| (YesUtility4 && !OnCooldownUtility4) 
-							|| (YesUtility5 && !OnCooldownUtility5) ) { 
-
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							If (HPerc < 20)
-							{
-								Loop, 5
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20"&& !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 30)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="30" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 40)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="40" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 50)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="50" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 60)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="60" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 70)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="70" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 80)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="80" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (HPerc < 90)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="90" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-						}
-					}
-					Else
-						HPerc := 100
+					Sendraw, d
+					Detonated:=1
+					Settimer, TDetonated, -500
+					Return
 				}
-				Else
-				{
-					If ( (TriggerLife20!="00000") 
-						|| (AutoQuit&&RadioQuit20)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
-						Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
-						if (Life20!=varLife20) {
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
-								Log("Exit with < 20`% Life", CurrentLocation)
-								LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerLife20!="00000")
-								TriggerFlask(TriggerLife20)
-							}
-					}
-					If ( (TriggerLife30!="00000") 
-						|| (AutoQuit&&RadioQuit30)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
-						Life30 := ScreenShot_GetColor(vX_Life,vY_Life30) 
-						if (Life30!=varLife30) {
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
-								Log("Exit with < 30`% Life", CurrentLocation)
-								LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerLife30!="00000")
-								TriggerFlask(TriggerLife30)
-							}
-					}
-					If ( (TriggerLife40!="00000") 
-						|| (AutoQuit&&RadioQuit40)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
-						Life40 := ScreenShot_GetColor(vX_Life,vY_Life40) 
-						if (Life40!=varLife40) {
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
-								Log("Exit with < 40`% Life", CurrentLocation)
-								LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerLife40!="00000")
-								TriggerFlask(TriggerLife40)
-							}
-					}
-					If ( (TriggerLife50!="00000")
-						|| (AutoQuit&&RadioQuit50)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
-						Life50 := ScreenShot_GetColor(vX_Life,vY_Life50)
-						if (Life50!=varLife50) {
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							if (AutoQuit && (RadioQuit50||RadioQuit60)) {
-								Log("Exit with < 50`% Life", CurrentLocation)
-								LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerLife50!="00000")
-								TriggerFlask(TriggerLife50)
-							}
-					}
-					If ( (TriggerLife60!="00000")
-						|| (AutoQuit&&RadioQuit60)
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
-						Life60 := ScreenShot_GetColor(vX_Life,vY_Life60)
-						if (Life60!=varLife60) {
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							if (AutoQuit && RadioQuit60) {
-								Log("Exit with < 60`% Life", CurrentLocation)
-								LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerLife60!="00000")
-								TriggerFlask(TriggerLife60)
-							}
-					}
-					If ( (TriggerLife70!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
-						Life70 := ScreenShot_GetColor(vX_Life,vY_Life70)
-						if (Life70!=varLife70) {
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerLife70!="00000")
-								TriggerFlask(TriggerLife70)
-							}
-					}
-					If ( (TriggerLife80!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
-						Life80 := ScreenShot_GetColor(vX_Life,vY_Life80)
-						if (Life80!=varLife80) {
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerLife80!="00000")
-								TriggerFlask(TriggerLife80)
-							}
-					}
-					If ( (TriggerLife90!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
-						Life90 := ScreenShot_GetColor(vX_Life,vY_Life90)
-						if (Life90!=varLife90) {
-							GuiStatus("OnChar")
-							if !(OnChar)
-								Exit
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerLife90!="00000")
-								TriggerFlask(TriggerLife90)
-							}
-					}
-				}
-				t2 := A_TickCount - t2
-				t3 := A_TickCount
-				If ( (TriggerES20!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
-					ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
-					if (ES20!=varES20) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES20!="00000")
-							TriggerFlask(TriggerES20)
-					}
-				}
-				If ( (TriggerES30!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
-					ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
-					if (ES30!=varES30) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES30!="00000")
-							TriggerFlask(TriggerES30)
-					}
-				}
-				If ( (TriggerES40!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
-					ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
-					if (ES40!=varES40) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES40!="00000")
-							TriggerFlask(TriggerES40)
-					}
-				}
-				If ( (TriggerES50!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
-					ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
-					if (ES50!=varES50) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES50!="00000")
-							TriggerFlask(TriggerES50)
-					}
-				}
-				If ( (TriggerES60!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
-					ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
-					if (ES60!=varES60) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES60!="00000")
-							TriggerFlask(TriggerES60)
-					}
-				}
-				If ( (TriggerES70!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
-					ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
-					if (ES70!=varES70) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES70!="00000")
-							TriggerFlask(TriggerES70)
-					}
-				}
-				If ( (TriggerES80!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
-					ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
-					if (ES80!=varES80) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES80!="00000")
-							TriggerFlask(TriggerES80)
-			
-					}
-				}
-				If ( (TriggerES90!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
-					ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
-					if (ES90!=varES90) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES90!="00000")
-							TriggerFlask(TriggerES90)
-			
-					}
-				}
-				t3 := A_TickCount - t3
 			}
-			Else if (RadioCi) {
-				t3 := A_TickCount
-				If ( (TriggerES20!="00000") 
-					|| (AutoQuit&&RadioQuit20)
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
-					ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
-					if (ES20!=varES20) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						if (AutoQuit && (RadioQuit20 || RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-								Log("Exit with < 20`% Energy Shield", CurrentLocation)
-								LogoutCommand()
-							Exit
-						}
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES20!="00000")
-							TriggerFlask(TriggerES20)
-					}
-				}
-				If ( (TriggerES30!="00000") 
-					|| (AutoQuit&&RadioQuit30)
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
-					ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
-					if (ES30!=varES30) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						if (AutoQuit && (RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-								Log("Exit with < 30`% Energy Shield", CurrentLocation)
-								LogoutCommand()
-							Exit
-						}
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES30!="00000")
-							TriggerFlask(TriggerES30)
-					}
-				}
-				If ( (TriggerES40!="00000") 
-					|| (AutoQuit&&RadioQuit40)
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
-					ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
-					if (ES40!=varES40) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						if (AutoQuit && (RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-								Log("Exit with < 40`% Energy Shield", CurrentLocation)
-								LogoutCommand()
-							Exit
-						}
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES40!="00000")
-							TriggerFlask(TriggerES40)
-					}
-				}
-				If ( (TriggerES50!="00000")
-					|| (AutoQuit&&RadioQuit50)
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
-					ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
-					if (ES50!=varES50) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						if (AutoQuit && (RadioQuit50 || RadioQuit60)) {
-								Log("Exit with < 50`% Energy Shield", CurrentLocation)
-								LogoutCommand()
-							Exit
-						}
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES50!="00000")
-							TriggerFlask(TriggerES50)
-					}
-				}
-				If ( (TriggerES60!="00000")
-					|| (AutoQuit&&RadioQuit60)
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
-					ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
-					if (ES60!=varES60) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						if (AutoQuit && RadioQuit60) {
-								Log("Exit with < 60`% Energy Shield", CurrentLocation)
-								LogoutCommand()
-							Exit
-						}
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES60!="00000")
-							TriggerFlask(TriggerES60)
-					}
-				}
-				If ( (TriggerES70!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
-					ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
-					if (ES70!=varES70) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES70!="00000")
-							TriggerFlask(TriggerES70)
-					}
-				}
-				If ( (TriggerES80!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
-					ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
-					if (ES80!=varES80) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES80!="00000")
-							TriggerFlask(TriggerES80)
-			
-					}
-				}
-				If ( (TriggerES90!="00000")
-					|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
-					|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
-					|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
-					|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
-					|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
-					ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
-					if (ES90!=varES90) {
-						GuiStatus("OnChar")
-						if !(OnChar)
-							Exit
-						Loop, 5 {
-							If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
-								TriggerUtility(A_Index)
-						}
-						If (TriggerES90!="00000")
-							TriggerFlask(TriggerES90)
-			
-					}
-				}
-				t3 := A_TickCount - t3
-			}
-			
-			If (TriggerMana10!="00000") {
-				t4 := A_TickCount
-				ManaPerc := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
-				if (ManaPerc!=varManaThreshold) {
-					GuiStatus("OnChar")
-					if !(OnChar)
-						Exit
-					TriggerMana(TriggerMana10)
-				}
-				t4 := A_TickCount - t4
-			}
-
 			If (YesTimeMS)
 			{
 				If WinActive(GameStr)
@@ -7056,18 +7052,6 @@ Return
 		}
 		Return
 	}
-	; TMineTick - Detonate Mines timer
-	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TMineTick(){
-		IfWinActive, ahk_group POEGameGroup
-		{	
-			If (OnTown||OnHideout)
-				Exit
-			If (DetonateMines&&!Detonated) 
-				DetonateMines()
-		}
-		Return
-		}
 	
 	; TimerPassthrough - Passthrough Timer
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7106,11 +7090,11 @@ Return
 		AutoQuitCommand:
 			AutoQuit := !AutoQuit
 			IniWrite, %AutoQuit%, settings.ini, Previous Toggles, AutoQuit
-			if ((!AutoFlask) && (!AutoQuit)) {
-				SetTimer TGameTick, Off
-			} else if ((AutoFlask) || (AutoQuit)){
-				SetTimer TGameTick, %Tick%
-			} 
+			; if ((!AutoFlask) && (!AutoQuit)) {
+			; 	SetTimer TGameTick, Off
+			; } else if ((AutoFlask) || (AutoQuit)){
+			; 	SetTimer TGameTick, %Tick%
+			; } 
 			GuiUpdate()
 		return
 		}
@@ -7121,11 +7105,11 @@ Return
 		AutoFlaskCommand:	
 			AutoFlask := !AutoFlask
 			IniWrite, %AutoFlask%, settings.ini, Previous Toggles, AutoFlask
-			if ((!AutoFlask) and (!AutoQuit)) {
-				SetTimer TGameTick, Off
-			} else if ((AutoFlask) || (AutoQuit)) {
-				SetTimer TGameTick, %Tick%
-			}
+			; if ((!AutoFlask) and (!AutoQuit)) {
+			; 	SetTimer TGameTick, Off
+			; } else if ((AutoFlask) || (AutoQuit)) {
+			; 	SetTimer TGameTick, %Tick%
+			; }
 			GuiUpdate()	
 		return
 		}
@@ -7135,11 +7119,11 @@ Return
 	AutoReset(){
 		IniRead, AutoQuit, settings.ini, Previous Toggles, AutoQuit, 0
 		IniRead, AutoFlask, settings.ini, Previous Toggles, AutoFlask, 0
-		if ((!AutoFlask) and (!AutoQuit)) {
-			SetTimer TGameTick, Off
-		} else if ((AutoFlask) || (AutoQuit)) {
-			SetTimer TGameTick, %Tick%
-		}
+		; if ((!AutoFlask) and (!AutoQuit)) {
+		; 	SetTimer TGameTick, Off
+		; } else if ((AutoFlask) || (AutoQuit)) {
+		; 	SetTimer TGameTick, %Tick%
+		; }
 		GuiUpdate()	
 		return
 		}
@@ -7196,7 +7180,7 @@ Return
 			{
 				If !GuiStatus()
 					Exit
-				If (AutoFlask) {
+				If (AutoFlask||AutoQuit) {
 					TriggerFlask(TriggerMainAttack)
 					TGameTick(False)
 				}
@@ -7248,7 +7232,7 @@ Return
 			{
 				If (!GuiStatus() || OnTown || OnHideout)
 					Exit
-				If (AutoFlask) {
+				If (AutoFlask||AutoQuit) {
 					TriggerFlask(TriggerSecondaryAttack)
 					TGameTick(False)
 				}
@@ -7332,23 +7316,6 @@ Return
 		}
 		Return
 	} 
-	; DetonateMines - Auto Detonate Mines
-	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	DetonateMines(){
-			If (OnTown||OnHideout)
-				Return
-			If !GuiStatus()
-				Exit
-			DelveMine := ScreenShot_GetColor(DetonateDelveX,DetonateY)
-			Mine := ScreenShot_GetColor(DetonateX,DetonateY)
-			If ((Mine = DetonateHex)||(DelveMine = DetonateHex)){
-				Sendraw, d
-				Detonated:=1
-				Settimer, TDetonated, -500
-				Return
-			}
-			Return	
-		}
 
 ; DebugGamestates - Show a GUI which will update based on the state of the game
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7447,11 +7414,11 @@ Return
 				CtlColors.Change(CTIDOnVendor, "Lime", "")
 			Else
 				CtlColors.Change(CTIDOnVendor, "", "Red")
-			If (DetonateMines)
+			If (OnDetonate)
 				CtlColors.Change(CTIDDetonateMines, "Lime", "")
 			Else
 				CtlColors.Change(CTIDDetonateMines, "", "Red")
-			If (DetonateDelve)
+			If (OnDetonateDelve)
 				CtlColors.Change(CTIDDetonateDelve, "Lime", "")
 			Else
 				CtlColors.Change(CTIDDetonateDelve, "", "Red")
@@ -7694,22 +7661,26 @@ Return
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
-				If (GetKeyState("LButton","P") || GetKeyState("RButton","P"))
+				If (YesWaitAutoSkillUp && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
 					Return
 				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr))
 				{
 					If !GuiStatus("OnChar")
 						Return
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
+					MouseGetPos, mX, mY
 					If GetKeyState("LButton","P")
 						Click, up
 					If GetKeyState("RButton","P")
 						Click, Right, up
-					MouseGetPos, mX, mY
 					BlockInput, MouseMove
-					SwiftClick(X,Y)
-					sleep, 15
+					Click %X%, %Y%
+					sleep, 1
 					MouseMove, mX, mY, 0
+					If GetKeyState("LButton","P")
+						Click, down
+					If GetKeyState("RButton","P")
+						Click, Right, down
 					BlockInput, MouseMoveOff
 					ok:=""
 				}
@@ -7880,11 +7851,16 @@ Return
 	Coord(){
 		CoordCommand:
 			MouseGetPos x, y
-			PixelGetColor, xycolor , x, y
+			PixelGetColor, xycolor , x, y, RGB
 			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor
-			PauseTooltips := 1
-			Tooltip, %TT%
-			SetTimer, RemoveToolTip, 10000
+			; PauseTooltips := 1
+			; Tooltip, %TT%
+			; SetTimer, RemoveToolTip, 10000
+			MsgBox, 3, Cursor info, % TT . "`n`nClick Yes to copy only Coords`nClick No to copy Color and Coords"
+			IfMsgBox Yes
+				Clipboard := x "," y
+			IfMsgBox No
+				Clipboard := xycolor " @ " x "," y
 		Return
 	}
 
@@ -7937,6 +7913,7 @@ Return
 			IniRead, YesStashCraftingMagic, settings.ini, General, YesStashCraftingMagic, 1
 			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
 			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
+			IniRead, YesWaitAutoSkillUp, settings.ini, General, YesWaitAutoSkillUp, 0
 			IniRead, YesClickPortal, settings.ini, General, YesClickPortal, 0
 			IniRead, RelogOnQuit, settings.ini, General, RelogOnQuit, 0
 			IniRead, AreaScale, settings.ini, General, AreaScale, 60
@@ -8726,6 +8703,7 @@ Return
 			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
 			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
 			IniWrite, %YesAutoSkillUp%, settings.ini, General, YesAutoSkillUp
+			IniWrite, %YesWaitAutoSkillUp%, settings.ini, General, YesWaitAutoSkillUp
 			IniWrite, %AreaScale%, settings.ini, General, AreaScale
 			IniWrite, %LVdelay%, settings.ini, General, LVdelay
 			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
@@ -11721,10 +11699,6 @@ Return
 			IniWrite, %YesLootChests%, settings.ini, General, YesLootChests
 			If (YesPersistantToggle)
 				AutoReset()
-			If (DetonateMines&&!Detonated)
-				SetTimer, TMineTick, 100
-			Else If (!DetonateMines)
-				SetTimer, TMineTick, off
 			if ( Steam ) {
 				if ( HighBits ) {
 					executable := "PathOfExile_x64Steam.exe"
