@@ -20,7 +20,52 @@
     "Height": 2
   },
   {
+    "Name": "Ammonite Glyph",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Haliotis Glyph",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Roseus Glyph",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Medicine Chest",
+    "Width": 2,
+    "Height": 3
+  },
+  {
+    "Name": "Alira's Amulet",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Kraityn's Amulet",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Oak's Amulet",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "The Apex",
+    "Width": 1,
+    "Height": 1
+  },
+  {
     "Name": "Treasure Key",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Sewer Keys",
     "Width": 1,
     "Height": 1
   },
@@ -30,9 +75,24 @@
     "Height": 2
   },
   {
+    "Name": "Allflame",
+    "Width": 1,
+    "Height": 2
+  },
+  {
     "Name": "Tower Key",
     "Width": 1,
     "Height": 2
+  },
+  {
+    "Name": "Thaumetic Emblem",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Deshret's Banner",
+    "Width": 2,
+    "Height": 3
   },
   {
     "Name": "Deshret's Banner",
@@ -138,5 +198,25 @@
     "Name": "Moon Orb",
     "Width": 2,
     "Height": 2
+  },
+  {
+    "Name": "Bottled Storm",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Basilisk Acid",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Sekhema Feather",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Silver Locket",
+    "Width": 1,
+    "Height": 1
   }
 ]

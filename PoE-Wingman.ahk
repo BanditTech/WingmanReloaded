@@ -7672,15 +7672,21 @@ Return
 					If GetKeyState("LButton","P")
 						Click, up
 					If GetKeyState("RButton","P")
+					{
 						Click, Right, up
+						DllCall("Sleep", "UInt", 5)
+					}
 					BlockInput, MouseMove
 					Click %X%, %Y%
-					sleep, 1
+					DllCall("Sleep", "UInt", 15)
 					MouseMove, mX, mY, 0
 					If GetKeyState("LButton","P")
 						Click, down
 					If GetKeyState("RButton","P")
+					{
+						DllCall("Sleep", "UInt", 20)
 						Click, Right, down
+					}
 					BlockInput, MouseMoveOff
 					ok:=""
 				}
