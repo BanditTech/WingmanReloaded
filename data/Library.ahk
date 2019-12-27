@@ -2974,12 +2974,11 @@ Structure of most functions:
         POnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor), OnVendor := (POnVendor=varOnVendor?True:False)
         POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
         POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
-        POnSynd := ScreenShot_GetColor(vX_OnSynd,vY_OnSynd), OnSynd := (POnSynd=varOnSynd?True:False)
         POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
         If DetonateMines
         POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
         , OnDetonate := ((POnDetonateDelve=DetonateHex || POnDetonate=DetonateHex)?True:False)
-		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnSynd||OnDelveChart))
+		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))
 	}
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -3675,9 +3674,6 @@ Structure of most functions:
 					;Status Check OnLeft
 					global vX_OnLeft:=GameX + Round(GameW / (1920 / 252))
 					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
-					;Status Check OnSynd
-					global vX_OnSynd:=GameX + Round(GameW / (1920 / 1372))
-					global vY_OnSynd:=GameY + Round(GameH / ( 1080 / 933))
 					;Status Check OnDelveChart
 					global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
 					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
@@ -3761,9 +3757,6 @@ Structure of most functions:
 					;Status Check OnLeft
 					global vX_OnLeft:=GameX + Round(GameW / (1440 / 252))
 					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
-					;Status Check OnSynd
-					global vX_OnSynd:=GameX + Round(GameW / (1440 / 892))
-					global vY_OnSynd:=GameY + Round(GameH / ( 1080 / 933))
 					;Status Check OnDelveChart
 					global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
 					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
@@ -3847,9 +3840,6 @@ Structure of most functions:
                     ;Status Check OnLeft
                     global vX_OnLeft:=GameX + Round(GameW / (2560 / 252))
                     global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
-                    ;Status Check OnSynd
-                    global vX_OnSynd:=GameX + Round(GameW / (2560 / 2012))
-                    global vY_OnSynd:=GameY + Round(GameH / ( 1080 / 933))
                     ;Status Check OnDelveChart
                     global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
                     global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
@@ -3933,9 +3923,6 @@ Structure of most functions:
 					;Status Check OnLeft
 					global vX_OnLeft:=GameX + Round(GameW / (3840 / 252))
 					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
-					;Status Check OnSynd
-					global vX_OnSynd:=GameX + Round(GameW / (3840 / 3292))
-					global vY_OnSynd:=GameY + Round(GameH / ( 1080 / 933))
 					;Status Check OnDelveChart
 					global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
 					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))

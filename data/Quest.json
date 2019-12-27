@@ -218,5 +218,15 @@
     "Name": "Silver Locket",
     "Width": 1,
     "Height": 1
+  },
+  {
+    "Name": "Trarthan Powder",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Elixir of Allure",
+    "Width": 2,
+    "Height": 2
   }
 ]

@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.0x01
+    Global VersionNumber := .09.00
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -338,7 +338,6 @@
 			UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
 			UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
 			UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
-			UpdateOnSyndBtn = Calibrate the OnSynd Color`rThis color determines if the Syndicate Investigation panel is open`rSample located at the bottom right of the Investigation screen
 			UpdateOnDelveChartBtn = Calibrate the OnDelveChart Color`rThis color determines if the Delve Chart panel is open`rSample located at the left of the Delve Chart panel
 			UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
 			UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
@@ -521,7 +520,6 @@
 		Global OnVendor := False
 		Global OnDiv := False
 		Global OnLeft := False
-		Global OnSynd := False
 		Global OnDelveChart := False
 		Global RescaleRan := False
 		Global ToggleExist := False
@@ -663,9 +661,8 @@
 		global varOnVendor:=0xCEB178
 		global varOnDiv:=0xF6E2C5
 		global varOnLeft:=0xB58C4D
-		global varOnSynd:=0xB58C4D
 		global varOnDelveChart:=0xB58C4D
-		Global DetonateHex := 0x5D4661
+		Global varOnDetonate := 0x5D4661
 
 	; Life Colors
 		global varLife20
@@ -1330,8 +1327,7 @@
 	Gui,SampleInd: Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			xs y+3			w110, 	OnDiv
 	Gui,SampleInd: Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		x+8	yp			w110, 	OnVendor
 	Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			xs y+3			w110, 	OnMenu
-	Gui,SampleInd: Add, Button, gupdateOnSynd vUpdateOnSyndBtn	 			x+8	yp			w110, 	OnSynd
-	Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn	xs y+3			w110, 	OnDelveChart
+	Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn	x+8	yp			w110, 	OnDelveChart
 
 
 	Gui,SampleInd: Font, Bold
@@ -2012,8 +2008,6 @@
 		global vY_OnDiv:=135
 		global vX_OnLeft:=252
 		global vY_OnLeft:=57
-		global vX_OnSynd:=1372
-		global vY_OnSynd:=933
 		global vX_OnDelveChart:=466
 		global vY_OnDelveChart:=89
 		
@@ -5989,8 +5983,10 @@ Return
 					ClampGameScreen(xx := mX + AreaScale * 2.5, yy := mY + AreaScale * 2.5)
 					If (loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0))
 					{
-						ScanPx := loot.1.x, ScanPy := loot.1.y
-						If (loot.1.id ~= "Door")
+						ScanPx := loot.1.1, ScanPy := loot.1.y
+						; If (loot.1.id ~= "Cocoon")
+						; 	ScanPy += 50
+						; Else If (loot.1.id ~= "Door")
 							ScanPy += 50
 						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 						{
@@ -7344,9 +7340,7 @@ Return
 			CtlColors.Attach(CTIDOnMenu, "", "Red")
 			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnLeft hwndCTIDOnLeft, % "         OnLeft "
 			CtlColors.Attach(CTIDOnLeft, "", "Red")
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnSynd hwndCTIDOnSynd, % "         OnSynd "
-			CtlColors.Attach(CTIDOnSynd, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnDelveChart hwndCTIDOnDelveChart, % "       OnDelveChart "
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDelveChart hwndCTIDOnDelveChart, % "       OnDelveChart "
 			CtlColors.Attach(CTIDOnDelveChart, "", "Red")
 			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTDetonateMines hwndCTIDDetonateMines, % "   DetonateMines "
 			CtlColors.Attach(CTIDDetonateMines, "", "Red")
@@ -7402,10 +7396,6 @@ Return
 				CtlColors.Change(CTIDOnLeft, "Lime", "")
 			Else
 				CtlColors.Change(CTIDOnLeft, "", "Red")
-			If (OnSynd)
-				CtlColors.Change(CTIDOnSynd, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnSynd, "", "Red")
 			If (OnDelveChart)
 				CtlColors.Change(CTIDOnDelveChart, "Lime", "")
 			Else
@@ -7674,17 +7664,17 @@ Return
 					If GetKeyState("RButton","P")
 					{
 						Click, Right, up
-						DllCall("Sleep", "UInt", 5)
+						DllCall("Sleep", "UInt", 15)
 					}
 					BlockInput, MouseMove
 					Click %X%, %Y%
-					DllCall("Sleep", "UInt", 15)
+					DllCall("Sleep", "UInt", 25)
 					MouseMove, mX, mY, 0
 					If GetKeyState("LButton","P")
 						Click, down
 					If GetKeyState("RButton","P")
 					{
-						DllCall("Sleep", "UInt", 20)
+						DllCall("Sleep", "UInt", 15)
 						Click, Right, down
 					}
 					BlockInput, MouseMoveOff
@@ -8058,9 +8048,8 @@ Return
 			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0xCEB178
 			IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xF6E2C5
 			IniRead, varOnLeft, settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
-			IniRead, varOnSynd, settings.ini, Failsafe Colors, OnSynd, 0xFEC076
 			IniRead, varOnDelveChart, settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
-			IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x5D4661
+			IniRead, varOnDetonate, settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
 
 			;Life Colors
 			IniRead, varLife20, settings.ini, Life Colors, Life20, 0x4D0D11
@@ -10602,33 +10591,6 @@ Return
 			
 		return
 
-		updateOnSynd:
-			Thread, NoTimers, True
-			Gui, Submit ; , NoHide
-			
-			IfWinExist, ahk_group POEGameGroup
-			{
-				Rescale()
-				WinActivate, ahk_group POEGameGroup
-			} else {
-				MsgBox % "PoE Window does not exist. `nRecalibrate of OnSynd didn't work"
-				Return
-			}
-			
-			
-			if WinActive(ahk_group POEGameGroup){
-				ScreenShot()
-				varOnSynd := ScreenShot_GetColor(vX_OnSynd,vY_OnSynd)
-				IniWrite, %varOnSynd%, settings.ini, Failsafe Colors, OnSynd
-				readFromFile()
-				MsgBox % "OnSynd recalibrated!`nTook color hex: " . varOnSynd . " `nAt coords x: " . vX_OnSynd . " and y: " . vY_OnSynd
-			}else
-			MsgBox % "PoE Window is not active. `nRecalibrate of OnSynd didn't work"
-			
-			hotkeys()
-			
-		return
-
 		updateOnDelveChart:
 			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
@@ -10839,18 +10801,18 @@ Return
 				Rescale()
 				WinActivate, ahk_group POEGameGroup
 			} else {
-				MsgBox % "PoE Window does not exist. `nRecalibrate of DetonateHex didn't work"
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnDetonate didn't work"
 				Return
 			}
 			
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
-				DetonateHex := ScreenShot_GetColor(DetonateX,DetonateY)
-				IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+				varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+				IniWrite, %varOnDetonate%, settings.ini, Failsafe Colors, OnDetonate
 				readFromFile()
-				MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateX . " and y: " . DetonateY
+				MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . DetonateX . " and y: " . DetonateY
 			}else
-			MsgBox % "PoE Window is not active. `nRecalibrate of DetonateHex didn't work"
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
 			
 			hotkeys()
 			
@@ -10864,18 +10826,18 @@ Return
 				Rescale()
 				WinActivate, ahk_group POEGameGroup
 			} else {
-				MsgBox % "PoE Window does not exist. `nRecalibrate of DetonateHex didn't work"
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnDetonate using delve position didn't work"
 				Return
 			}
 			
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
-				DetonateHex := ScreenShot_GetColor(DetonateDelveX,DetonateY)
-				IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+				varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+				IniWrite, %varOnDetonate%, settings.ini, Failsafe Colors, OnDetonate
 				readFromFile()
-				MsgBox % "DetonateHex recalibrated!`nTook color hex: " . DetonateHex . " `nAt coords x: " . DetonateDelveX . " and y: " . DetonateY
+				MsgBox % "OnDetonate recalibrated using delve position!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . DetonateDelveX . " and y: " . DetonateY
 			}else
-			MsgBox % "PoE Window is not active. `nRecalibrate of DetonateHex didn't work"
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonateDelve didn't work"
 			
 			hotkeys()
 			
@@ -10964,9 +10926,8 @@ Return
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu              x342 y39             w100 h20 , OnMenu
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty               xp   y+10            w100 h20 , Empty Inventory
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnStash             xp   y+10            w100 h20 , OnStash/OnLeft
-				Gui, Wizard: Add, CheckBox, vCalibrationOnSynd            			xp   y+10            w100 h20 , OnSynd
 				Gui, Wizard: Add, CheckBox, vCalibrationOnDelveChart            	xp   y+10            w100 h20 , OnDelveChart
-				Gui, Wizard: Add, CheckBox, vCalibrationDetonate            		xp   y+10            w100 h20 , Detonate Mines
+				Gui, Wizard: Add, CheckBox, vCalibrationDetonate            		xp   y+10            w100 h20 , OnDetonate
 
 				Gui, Wizard: Add, Button, x122 y239 w100 h30 gRunWizard, Run Wizard
 				Gui, Wizard: Add, Button, x252 y239 w100 h30 gWizardClose, Cancel Wizard
@@ -11218,33 +11179,10 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						ScreenShot(), DetonateHex := ScreenShot_GetColor(DetonateX,DetonateY)
-						SampleTT .= "Detonate Mines took BGR color hex: " . DetonateHex . "    At coords x: " . DetonateX . " and y: " . DetonateY . "`n"
+						ScreenShot(), varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+						SampleTT .= "Detonate Mines took BGR color hex: " . varOnDetonate . "    At coords x: " . DetonateX . " and y: " . DetonateY . "`n"
 					} else
-					MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
-				}
-				If CalibrationOnSynd
-				{
-					ToolTip,% "This will sample the OnSynd Color"
-						. "`nMake sure you have the Trade Divination panel open"
-						. "`nPress ""A"" to sample"
-						. "`nHold Escape and press ""A"" to cancel"
-						, % ScrCenter.X - 150 , % ScrCenter.Y -30
-					KeyWait, a, D
-					ToolTip
-					KeyWait, a
-					If GetKeyState("Escape", "P")
-					{
-						MsgBox % "Escape key was held`n"
-						. "Canceling the Wizard!"
-						Gui, Wizard: Show
-						Exit
-					}
-					if WinActive(ahk_group POEGameGroup){
-						ScreenShot(), varOnSynd := ScreenShot_GetColor(vX_OnSynd,vY_OnSynd)
-						SampleTT .= "OnSynd             took BGR color hex: " . varOnSynd . "    At coords x: " . vX_OnSynd . " and y: " . vY_OnSynd . "`n"
-					} else
-					MsgBox % "PoE Window is not active. `nRecalibrate of OnSynd didn't work"
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
 				}
 				If CalibrationOnDelveChart
 				{
@@ -11309,12 +11247,10 @@ Return
 				}
 				If CalibrationOnDiv
 					IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
-				If CalibrationOnSynd
-					IniWrite, %varOnSynd%, settings.ini, Failsafe Colors, OnSynd
 				If CalibrationOnDelveChart
 					IniWrite, %varOnDelveChart%, settings.ini, Failsafe Colors, OnDelveChart
 				If CalibrationDetonate
-					IniWrite, %DetonateHex%, settings.ini, Failsafe Colors, DetonateHex
+					IniWrite, %varOnDetonate%, settings.ini, Failsafe Colors, OnDetonate
 				Gui, Wizard: Submit
 				Gui, 1: show
 			Return
