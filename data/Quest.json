@@ -1,0 +1,232 @@
+[
+  {
+    "Name": "Book of Skill",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Book of Reform",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Book of Regrets",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Book of Regression",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Ammonite Glyph",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Haliotis Glyph",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Roseus Glyph",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Medicine Chest",
+    "Width": 2,
+    "Height": 3
+  },
+  {
+    "Name": "Alira's Amulet",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Kraityn's Amulet",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Oak's Amulet",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "The Apex",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Treasure Key",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Sewer Keys",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Golden Page",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Allflame",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Tower Key",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Thaumetic Emblem",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Deshret's Banner",
+    "Width": 2,
+    "Height": 3
+  },
+  {
+    "Name": "Deshret's Banner",
+    "Width": 2,
+    "Height": 3
+  },
+  {
+    "Name": "The Eye of Desire",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "The Eye of Fury",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Malachai's Lungs",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Malachai's Entrails",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Malachai's Heart",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Tukohama's Tooth",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Valako's Jaw",
+    "Width": 2,
+    "Height": 1
+  },
+  {
+    "Name": "Hinekora's Hair",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Miasmeter",
+    "Width": 1,
+    "Height": 3
+  },
+  {
+    "Name": "Sign of Purity",
+    "Width": 2,
+    "Height": 3
+  },
+  {
+    "Name": "Bestel's Manuscript",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "The Black Flag",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Maligaro's Map",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Greust's Necklace",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Firefly",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Kishara's Star",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Ankh of Eternity",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Wings of Vastiri",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Sun Orb",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Moon Orb",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Bottled Storm",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Basilisk Acid",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Sekhema Feather",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Silver Locket",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Trarthan Powder",
+    "Width": 2,
+    "Height": 2
+  },
+  {
+    "Name": "Elixir of Allure",
+    "Width": 2,
+    "Height": 2
+  }
+]

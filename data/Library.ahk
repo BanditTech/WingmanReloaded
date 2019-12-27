@@ -2947,88 +2947,38 @@ Structure of most functions:
 
 /*** GuiStatus - Pixelcheck for different parts of the screen to see what your status is in game. 
 * Version:
-*     v1.0.0 [updated 11/24/2019 (MM/DD/YYYY)]
+*     v1.0.1 [updated 12/17/2019 (MM/DD/YYYY)]
 */
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	GuiStatus(Fetch:=""){
+        ScreenShot()
 		If (Fetch="DetonateMines")
-			{
-			pixelgetcolor, DelveMine, DetonateDelveX, DetonateY
-			pixelgetcolor, Mine, DetonateX, DetonateY
-			if (Mine = DetonateHex) {
-				DetonateMines:=True
-				} Else {
-				DetonateMines:=False
-				}
-			if (DelveMine = DetonateHex) {
-				DetonateDelve:=True
-				} Else {
-				DetonateDelve:=False
-				}
-			Return
-			}
+        {
+            DelveMine := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+            Mine := ScreenShot_GetColor(DetonateX,DetonateY)
+            OnDetonate := (Mine=DetonateHex?True:False)
+            OnDetonateDelve := (DelveMine=DetonateHex?True:False)
+            Return
+        }
 		If !(Fetch="")
-			{
-			pixelgetcolor, P%Fetch%, vX_%Fetch%, vY_%Fetch%
-			If (P%Fetch%=var%Fetch%){
-				%Fetch%:=True
-				} Else {
-				%Fetch%:=False
-				}
-			Return %Fetch%
-			}
-		pixelgetcolor, POnChar, vX_OnChar, vY_OnChar
-		If (POnChar=varOnChar)  {
-			OnChar:=True
-			} Else {
-			OnChar:=False
-			}
-		pixelgetcolor, POnChat, vX_OnChat, vY_OnChat
-		If (POnChat=varOnChat) {
-			OnChat:=True
-			} Else {
-			OnChat:=False
-			}
-		pixelgetcolor, POnMenu, vX_OnMenu, vY_OnMenu
-		If (POnMenu=varOnMenu) {
-			OnMenu:=True
-			} Else {
-			OnMenu:=False
-			}
-		pixelgetcolor, POnInventory, vX_OnInventory, vY_OnInventory
-		If (POnInventory=varOnInventory) {
-			OnInventory:=True
-			} Else {
-			OnInventory:=False
-			}
-		If OnStash
-		{
-			pixelgetcolor, POnStash, vX_OnStash, vY_OnStash
-			If (POnStash=varOnStash) {
-				OnStash:=True
-				} Else {
-				OnStash:=False
-				}
-		}
-		If OnVendor
-		{
-			pixelgetcolor, POnVendor, vX_OnVendor, vY_OnVendor
-			If (POnVendor=varOnVendor) {
-				OnVendor:=True
-				} Else {
-				OnVendor:=False
-				}
-		}
-		If OnDiv
-		{
-			pixelgetcolor, POnDiv, vX_OnDiv, vY_OnDiv
-			If (POnDiv=varOnDiv) {
-				OnDiv:=True
-				} Else {
-				OnDiv:=False
-				}
-		}
-		Return
+        {
+            P%Fetch% := ScreenShot_GetColor(vX_%Fetch%,vY_%Fetch%)
+            temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
+            Return temp
+        }
+		POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
+		POnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat), OnChat := (POnChat=varOnChat?True:False)
+		POnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu), OnMenu := (POnMenu=varOnMenu?True:False)
+		POnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory), OnInventory := (POnInventory=varOnInventory?True:False)
+		POnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash), OnStash := (POnStash=varOnStash?True:False)
+        POnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor), OnVendor := (POnVendor=varOnVendor?True:False)
+        POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
+        POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
+        POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+        If DetonateMines
+        POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+        , OnDetonate := ((POnDetonateDelve=DetonateHex || POnDetonate=DetonateHex)?True:False)
+		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))
 	}
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -3210,19 +3160,21 @@ Structure of most functions:
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	WisdomScroll(x, y){
 			BlockInput, MouseMove
-			;Sleep, 15*Latency
-			MouseMove %WisdomScrollX%, %WisdomScrollY%
-			Sleep, 30*Latency
-			Click, Down, Right, 1
-			Sleep, 60*Latency
-			Click, Up, Right, 1
-			Sleep, 30*Latency
-			MouseMove %x%, %y%
-			Sleep, 30*Latency
-			Click, Down, Left, 1
-			Sleep, 60*Latency
-			Click, Up, Left, 1
-			Sleep, 30*Latency
+			; ;Sleep, 15*Latency
+			; MouseMove %WisdomScrollX%, %WisdomScrollY%
+			; Sleep, 30*Latency
+			; Click, Down, Right, 1
+			; Sleep, 60*Latency
+			; Click, Up, Right, 1
+			; Sleep, 30*Latency
+			; MouseMove %x%, %y%
+			; Sleep, 30*Latency
+			; Click, Down, Left, 1
+			; Sleep, 60*Latency
+			; Click, Up, Left, 1
+			; Sleep, 30*Latency
+            RightClick(WisdomScrollX,WisdomScrollY)
+            LeftClick(x,y)
 			BlockInput, MouseMoveOff
 		return
 		}
@@ -3494,10 +3446,12 @@ Structure of most functions:
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     Ding(Timeout:=500, MultiTooltip:=0 , Message*)
     {
-        If (!DebugMessages)
+        If (!DebugMessages && MultiTooltip >= 0)
             Return
         Else
         {
+            If MultiTooltip < 0
+                MultiTooltip := Abs(MultiTooltip)
             debugStr := ""
             If Message.Count()
             {
@@ -3607,8 +3561,19 @@ Structure of most functions:
     }
     ; Convert a color to a two/five pixel square findtext string
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Hex2FindText(Color,vary:=0,BGR:=0,Arr:=0,Five:=0)
+    Hex2FindText(Color,vary:=0,BGR:=0,Arr:=0,Width:=2,Height:=2)
     {
+        If (Width < 1)
+            Width := 1
+        If (Height < 1)
+            Height := 1
+        bitstr := ""
+        Loop % Width
+            bitstr .= "1"
+        endstr := bitstr
+        Loop % Height - 1
+        endstr .= "`n" . bitstr
+        bitstr := bit2base64(endstr)
         If Arr
         {
             build := ""
@@ -3616,13 +3581,15 @@ Structure of most functions:
             {
                 If BGR
                     v := hexBGRToRGB(v)
-                build .= "|<FIVE>" . v . "@" . Round((100-vary)/100,2) . (Five ? "$5.zzzzk" : "$2.y")
+                build .= "|<" k ">" . v . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
             }
             Return build
         }
         Else
         {
-            Return "|<TWO>" . Color . "@" . Round((100-vary)/100,2) . (Five ? "$5.zzzzk" : "$2.y")
+            If BGR
+                Color := hexBGRToRGB(Color)
+            Return "|<Single>" . Color . "@" . Round((100-vary)/100,2) . (Five ? "$5.zzzzk" : "$2.y")
         }
     }
 
@@ -3704,6 +3671,12 @@ Structure of most functions:
 					;Status Check OnDiv
 					global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
 					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+					;Status Check OnLeft
+					global vX_OnLeft:=GameX + Round(GameW / (1920 / 252))
+					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+					;Status Check OnDelveChart
+					global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
+					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
 					;Life %'s
 					global vX_Life:=GameX + Round(GameW / (1920 / 95))
 					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -3781,6 +3754,12 @@ Structure of most functions:
 					;Status Check OnDiv
 					global vX_OnDiv:=GameX + Round(GameW / (1440 / 378))
 					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+					;Status Check OnLeft
+					global vX_OnLeft:=GameX + Round(GameW / (1440 / 252))
+					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+					;Status Check OnDelveChart
+					global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
+					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
 					;Life %'s
 					global vX_Life:=GameX + Round(GameW / (1440 / 95))
 					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -3858,6 +3837,12 @@ Structure of most functions:
                     ;Status Check OnDiv
                     global vX_OnDiv:=GameX + Round(GameW / (2560 / 618))
                     global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+                    ;Status Check OnLeft
+                    global vX_OnLeft:=GameX + Round(GameW / (2560 / 252))
+                    global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+                    ;Status Check OnDelveChart
+                    global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
+                    global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
                     ;Life %'s
                     global vX_Life:=GameX + Round(GameW / (2560 / 95))
                     global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -3935,6 +3920,12 @@ Structure of most functions:
 					;Status Check OnDiv
 					global vX_OnDiv:=GameX + Round(GameW / (3840 / 1578))
 					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+					;Status Check OnLeft
+					global vX_OnLeft:=GameX + Round(GameW / (3840 / 252))
+					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+					;Status Check OnDelveChart
+					global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
+					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
 					;Life %'s
 					global vX_Life:=GameX + Round(GameW / (3840 / 95))
 					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -4008,6 +3999,7 @@ Structure of most functions:
             SetTimer, RemoveTT%A_Index%, Off
             ToolTip,,,,%A_Index%
         }
+        PauseTooltips := 0
         return
 
         RemoveTT1:
@@ -4113,8 +4105,10 @@ Structure of most functions:
 
     ShowToolTip()
     {
-        ListLines, Off
         global ft_ToolTip_Text
+        If PauseTooltips
+            Return
+        ListLines, Off
         static CurrControl, PrevControl, _TT
         CurrControl := A_GuiControl
         if (CurrControl != PrevControl)
@@ -4127,6 +4121,8 @@ Structure of most functions:
         return
 
         ft_DisplayToolTip:
+        If PauseTooltips
+            Return
         ListLines, Off
         MouseGetPos,,, _TT
         WinGetClass, _TT, ahk_id %_TT%
@@ -4418,9 +4414,7 @@ Structure of most functions:
         Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
         If WinActive(GameStr)
         {
-            WinGetPos, GameX, GameY, GameW, GameH
-            ; if (ok:=FindText(GameX + Round(GameW / (1920 / 907)), GameY + Round(GameH / (1080 / 177)), 106, Round(GameH / (1080 / 370)) - Round(GameH / (1080 / 177)), 0, 0, HealthBarStr,0))
-            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
+            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,1))
             {
                 ok.1.3 -= 1
                 ok.1.4 += 8
@@ -4460,19 +4454,17 @@ Structure of most functions:
     {
         Thread, NoTimers, true		;Critical
         Global OHB, OHBLHealthHex
-        Found := OHB.X
-        ScreenShot(GameX, GameY, GameX + GameW, GameY + GameH)
-        temp1 := ToRGB(CID), temp2 := ToRGB(ScreenShot_GetColor(OHB.X+1, PosY))
-        If !CompareRGB(temp1,temp2,Variance)
+        If !CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(OHB.X+1, PosY)),Variance)
         {
             Ding(500,4,"OHB Obscured, Moved, or Dead" )
             Return HPerc
         }
+        Else
+        Found := OHB.X + 1
         Loop 10
         {
             pX:= OHB.pX[A_Index]
-            temp1 := ToRGB(CID), temp2 := ToRGB(ScreenShot_GetColor(pX, PosY))
-            If CompareRGB(temp1,temp2,Variance)
+            If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
                 Found := pX
             Else 
             {
@@ -4490,6 +4482,7 @@ Structure of most functions:
                     Break
             }
         }
+        Thread, NoTimers, False		;End Critical
         Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -6217,6 +6210,50 @@ Structure of most functions:
 
 
 
+/*** GetProcessTimes - Evaluate the processing usage of a PID
+*/
+    ; Return values
+    ; -1 on first run 
+    ; -2 if process doesn't exist or you don't have access to it
+    ; Process cpu usage as percent of total CPU
+    GetProcessTimes(PID)    
+    {
+        static aPIDs := []
+        ; If called too frequently, will get mostly 0%, so it's better to just return the previous usage 
+        if aPIDs.HasKey(PID) && A_TickCount - aPIDs[PID, "tickPrior"] < 250
+            return aPIDs[PID, "usagePrior"] 
+
+        DllCall("GetSystemTimes", "Int64*", lpIdleTimeSystem, "Int64*", lpKernelTimeSystem, "Int64*", lpUserTimeSystem)
+        if !hProc := DllCall("OpenProcess", "UInt", 0x1000, "Int", 0, "Ptr", pid)
+            return -2, aPIDs.HasKey(PID) ? aPIDs.Remove(PID, "") : "" ; Process doesn't exist anymore or don't have access to it.
+        DllCall("GetProcessTimes", "Ptr", hProc, "Int64*", lpCreationTime, "Int64*", lpExitTime, "Int64*", lpKernelTimeProcess, "Int64*", lpUserTimeProcess)
+        DllCall("CloseHandle", "Ptr", hProc)
+        
+        if aPIDs.HasKey(PID) ; check if previously run
+        {
+            ; find the total system run time delta between the two calls
+            systemKernelDelta := lpKernelTimeSystem - aPIDs[PID, "lpKernelTimeSystem"] ;lpKernelTimeSystemOld
+            systemUserDelta := lpUserTimeSystem - aPIDs[PID, "lpUserTimeSystem"] ; lpUserTimeSystemOld
+            ; get the total process run time delta between the two calls 
+            procKernalDelta := lpKernelTimeProcess - aPIDs[PID, "lpKernelTimeProcess"] ; lpKernelTimeProcessOld
+            procUserDelta := lpUserTimeProcess - aPIDs[PID, "lpUserTimeProcess"] ;lpUserTimeProcessOld
+            ; sum the kernal + user time
+            totalSystem :=  systemKernelDelta + systemUserDelta
+            totalProcess := procKernalDelta + procUserDelta
+            ; The result is simply the process delta run time as a percent of system delta run time
+            result := 100 * totalProcess / totalSystem
+        }
+        else result := -1
+
+        aPIDs[PID, "lpKernelTimeSystem"] := lpKernelTimeSystem
+        aPIDs[PID, "lpUserTimeSystem"] := lpUserTimeSystem
+        aPIDs[PID, "lpKernelTimeProcess"] := lpKernelTimeProcess
+        aPIDs[PID, "lpUserTimeProcess"] := lpUserTimeProcess
+        aPIDs[PID, "tickPrior"] := A_TickCount
+        return aPIDs[PID, "usagePrior"] := result 
+    }
+
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
 
@@ -6480,7 +6517,10 @@ Structure of most functions:
                 CLogFO := FileOpen(ClientLog, "r")
                 FileGetSize, errchk, %ClientLog%, M
                 If (errchk >= 128)
+                {
                     CurrentLocation := "Log too large"
+                    CLogFO.Seek(0, 2)
+                }
                 Else
                 {
                     latestFileContent := CLogFo.Read()
@@ -6579,61 +6619,62 @@ Structure of most functions:
 ;  Author  :  FeiYue
 ;  Version :  7.2
 ;  Date    :  2019-12-16
-;
-;  Usage:
-;  1. Capture the image to text string.
-;  2. Test find the text string on full Screen.
-;  3. When test is successful, you may copy the code
-;     and paste it into your own script.
-;     Note: Copy the "FindText()" function and the following
-;     functions and paste it into your own script Just once.
-;  4. The more recommended way is to save the script as
-;     "FindText.ahk" and copy it to the "Lib" subdirectory
-;     of AHK program, instead of copying the "FindText()"
-;     function and the following functions, add a line to
-;     the beginning of your script: #Include <FindText>
-;
-;  Note:
-;     After upgrading to v7.0, the search scope using
-;     the upper left  corner coordinates (X1, Y1)
-;     and lower right corner coordinates (X2, Y2), similar to ImageSearch.
-;     This makes it easier for novices to understand and use.
-;
-;===========================================
-;  Introduction of function parameters:
-;
-;  returnArray := FindText(
-;      X1 --> the search scope's upper left corner X coordinates
-;    , Y1 --> the search scope's upper left corner Y coordinates
-;    , X2 --> the search scope's lower right corner X coordinates
-;    , Y2 --> the search scope's lower right corner Y coordinates
-;    , err1 --> Character "0" fault-tolerant in percentage(0.1=10%)
-;    , err0 --> Character "_" fault-tolerant in percentage(0.1=10%)
-;    , Text --> can be a lot of text parsed into images, separated by "|"
-;    , ScreenShot --> if the value is 0, the last screenshot will be used
-;    , FindAll --> if the value is 0, Just find one result and return
-;    , JoinText --> if the value is 1, Join all Text for combination lookup
-;    , offsetX --> Set the max text offset for combination lookup
-;    , offsetY --> Set the max text offset for combination lookup
-;  )
-;
-;  The function returns a second-order array containing
-;  all lookup results, Any result is an associative array
-;  {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment}
-;  if no image is found, the function returns 0.
-;
-;  If the return variable is set to "ok", ok.1 is the first result found.
-;  Where ok.1.1 is the X coordinate of the upper left corner of the found image,
-;  and ok.1.2 is the Y coordinate of the upper left corner of the found image,
-;  ok.1.3 is the width of the found image, and ok.1.4 is the height of the found image,
-;  ok.1.x <==> ok.1.1+ok.1.3//2 ( is the Center X coordinate of the found image ),
-;  ok.1.y <==> ok.1.2+ok.1.4//2 ( is the Center Y coordinate of the found image ),
-;  ok.1.id is the comment text, which is included in the <> of its parameter.
-;  ok.1.x can also be written as ok[1].x, which supports variables. (eg: ok[A_Index].x)
-;
-;  All coordinates are relative to Screen, and color is in RGB format.
-;===========================================
-;*/
+ ;
+ ;  Usage:
+ ;  1. Capture the image to text string.
+ ;  2. Test find the text string on full Screen.
+ ;  3. When test is successful, you may copy the code
+ ;     and paste it into your own script.
+ ;     Note: Copy the "FindText()" function and the following
+ ;     functions and paste it into your own script Just once.
+ ;  4. The more recommended way is to save the script as
+ ;     "FindText.ahk" and copy it to the "Lib" subdirectory
+ ;     of AHK program, instead of copying the "FindText()"
+ ;     function and the following functions, add a line to
+ ;     the beginning of your script: #Include <FindText>
+ ;
+ ;  Note:
+ ;     After upgrading to v7.0, the search scope using
+ ;     the upper left  corner coordinates (X1, Y1)
+ ;     and lower right corner coordinates (X2, Y2), similar to ImageSearch.
+ ;     This makes it easier for novices to understand and use.
+ ;
+ ;===========================================
+ ;  Introduction of function parameters:
+ ;
+ ;  returnArray := FindText(
+ ;      X1 --> the search scope's upper left corner X coordinates
+ ;    , Y1 --> the search scope's upper left corner Y coordinates
+ ;    , X2 --> the search scope's lower right corner X coordinates
+ ;    , Y2 --> the search scope's lower right corner Y coordinates
+ ;    , err1 --> Fault tolerance percentage of text       (0.1=10%)
+ ;    , err0 --> Fault tolerance percentage of background (0.1=10%)
+ ;    , Text --> can be a lot of text parsed into images, separated by "|"
+ ;    , ScreenShot --> if the value is 0, the last screenshot will be used
+ ;    , FindAll --> if the value is 0, Just find one result and return
+ ;    , JoinText --> if the value is 1, Join all Text for combination lookup
+ ;    , offsetX --> Set the max text offset for combination lookup
+ ;    , offsetY --> Set the max text offset for combination lookup
+ ;  )
+ ;
+ ;  The function returns a second-order array containing
+ ;  all lookup results, Any result is an associative array
+ ;  {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment}
+ ;  if no image is found, the function returns 0.
+ ;
+ ;  If the return variable is set to "ok", ok.1 is the first result found.
+ ;  Where ok.1.1 is the X coordinate of the upper left corner of the found image,
+ ;  and ok.1.2 is the Y coordinate of the upper left corner of the found image,
+ ;  ok.1.3 is the width of the found image, and ok.1.4 is the height of the found image,
+ ;  ok.1.x <==> ok.1.1+ok.1.3//2 ( is the Center X coordinate of the found image ),
+ ;  ok.1.y <==> ok.1.2+ok.1.4//2 ( is the Center Y coordinate of the found image ),
+ ;  ok.1.id is the comment text, which is included in the <> of its parameter.
+ ;  ok.1.x can also be written as ok[1].x, which supports variables. (eg: ok[A_Index].x)
+ ;
+ ;  All coordinates are relative to Screen, colors are in RGB format,
+ ;  and combination lookup must use uniform color mode
+ ;===========================================
+ ;*/
 
 
 ft_Gui(cmd)
@@ -6665,7 +6706,8 @@ ft_Gui(cmd)
         Menu, Tray, add
         Menu, Tray, add, Exit, QuitNow ; added exit script option
     }
-    ft_BatchLines:=A_BatchLines, ft_IsCritical:=A_IsCritical
+    ft_BatchLines:=A_BatchLines
+    ft_IsCritical:=A_IsCritical
     Critical
     ww:=35, hh:=16, WindowColor:="0xDDEEFF"
     ft_Gui("MakeCaptureWindow")
@@ -6676,8 +6718,8 @@ ft_Gui(cmd)
     OnMessage(0x200, Func("ft_ShowToolTip"))  ; WM_MOUSEMOVE
     Gui, ft_Main:Show, Center
     GuiControl, Focus, capture
-    SetBatchLines, %ft_BatchLines%
     Critical, %ft_IsCritical%
+    SetBatchLines, %ft_BatchLines%
     return
     ;-------------------
     ft_Run:
@@ -6869,7 +6911,7 @@ ft_Gui(cmd)
     Gui, +LastFound
     WinMinimize
     Gui, Hide
-    ShowScreenShot:=(cmd="CaptureS") and (ScreenShotData=1)
+    ShowScreenShot:=(cmd="CaptureS")
     if (ShowScreenShot)
       ft_ShowScreenShot(1)
     ;----------------------
@@ -6923,7 +6965,7 @@ ft_Gui(cmd)
     ListLines, %lls%
     Gui, Destroy
     WinWaitClose,,, 10
-    cors:=ft_getc(px,py,ww,hh,!ShowScreenShot), ScreenShotData:=1
+    cors:=ft_getc(px,py,ww,hh,!ShowScreenShot)
     Hotkey, $*RButton, ft_RButton_Off, Off
     if (ShowScreenShot)
       ft_ShowScreenShot(0)
@@ -7594,7 +7636,7 @@ for i,v in ok
   if (cmd="ScreenShot")
   {
     Critical
-    ScreenShot(), ScreenShotData:=1
+    ScreenShot()
     Gui, ft_Tip:New
     ; WS_EX_NOACTIVATE:=0x08000000, WS_EX_TRANSPARENT:=0x20
     Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
@@ -7737,27 +7779,21 @@ for i,v in ok
 
     ft_getc(px, py, ww, hh, ScreenShot:=1)
     {
-        xywh2xywh(px-ww,py-hh,2*ww+1,2*hh+1,x,y,w,h,zx,zy,zw,zh)
+  		xywh2xywh(px-ww,py-hh,2*ww+1,2*hh+1,x,y,w,h)
         if (w<1 or h<1)
             return
         bch:=A_BatchLines
         SetBatchLines, -1
         if (ScreenShot)
             ScreenShot()
-        ;--------------------------------------
-        bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh)
-        ;--------------------------------------
         cors:=[], k:=0
         lls:=A_ListLines=0 ? "Off" : "On"
         ListLines, Off
         Loop, % 2*hh+1
         {
-            j:=py-hh-zy+A_Index-1
+    		j:=py-hh+A_Index-1
             Loop, % 2*ww+1
-            i:=px-ww-zx+A_Index-1
-            , cors[++k]:=(i<0 or i>zw-1 or j<0 or j>zh-1 or !bits.1)
-            ? "0xFFFFFF" : Format("0x{:06X}"
-            ,NumGet(bits.1+j*bits.2+i*4,"uint")&0xFFFFFF)
+      		i:=px-ww+A_Index-1, cors[++k]:=ScreenShot_GetColor(i,j)
         }
         ListLines, %lls%
         cors.CutLeft:=Abs(px-ww-x)
@@ -7774,15 +7810,15 @@ for i,v in ok
         Gui, ft_ScreenShot:Destroy
         if (hBM)
             DllCall("DeleteObject",Ptr,hBM), hBM:=""
-        if (!Show)
+  		bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh)
+  		if (!Show or !bits.1 or zw<1 or zh<1)
             return
-        bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy), zw:=bits.3, zh:=bits.4
         ;---------------------
         VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
         NumPut(zw, bi, 4, "int"), NumPut(-zh, bi, 8, "int")
         NumPut(1, bi, 12, "short"), NumPut(bpp:=32, bi, 14, "short")
         if (hBM:=DllCall("CreateDIBSection", Ptr,0, Ptr,&bi
-        , "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr)) and (bits.1)
+  		, "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr))
             DllCall("RtlMoveMemory",Ptr,ppvBits,Ptr,bits.1,Ptr,bits.2*zh)
         ;-------------------------
         win:=DllCall("GetDesktopWindow", Ptr)
@@ -7836,7 +7872,7 @@ for i,v in ok
     ;--------------------------------
     ; X1, Y1 --> the search scope's upper left corner coordinates
     ; X2, Y2 --> the search scope's lower right corner coordinates
-    ; err1, err0 --> character "0" or "_" fault-tolerant in percentage
+    ; err1, err0 --> Fault tolerance percentage of text and background (0.1=10%)
     ; Text --> can be a lot of text parsed into images, separated by "|"
     ; ScreenShot --> if the value is 0, the last screenshot will be used
     ; FindAll --> if the value is 0, Just find one result and return
@@ -7846,7 +7882,8 @@ for i,v in ok
     ; containing all lookup results, Any result is an associative array
     ; {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment},
     ; if no image is found, the function returns 0.
-	; All coordinates are relative to Screen, and color is in RGB format
+	; All coordinates are relative to Screen, colors are in RGB format,
+	; and combination lookup must use uniform color mode
 	;--------------------------------
 
     FindText( x1, y1, x2, y2, err1, err0, text, ScreenShot:=1
@@ -7863,9 +7900,7 @@ for i,v in ok
             SetBatchLines, %bch%
             return, 0
         }
-        ;-------------------------------
         bits:=GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
-        ;-------------------------------
         sx:=x-zx, sy:=y-zy, sw:=w, sh:=h, arr:=[], info:=[]
         Loop, Parse, text, |
           if IsObject(j:=PicInfo(A_LoopField))
@@ -7882,7 +7917,6 @@ for i,v in ok
         , VarSetCapacity(gs, sw*sh), VarSetCapacity(ss, sw*sh)
         , allpos_max:=(FindAll ? 1024 : 1)
         , VarSetCapacity(allpos, allpos_max*4)
-        ;-------------------------------------
         Loop, 2
         {
             if (err1=0 and err0=0) and (num>1 or A_Index>1)
@@ -7963,8 +7997,14 @@ for i,v in ok
 	  , ByRef zx:="", ByRef zy:="", ByRef zw:="", ByRef zh:="")
 	{
 	  local  ; Unaffected by Super-global variables
-	  static hBM, oldzw, oldzh, bits:=[]
+  	  static hBM, oldzx, oldzy, oldzw, oldzh, bits:=[]
 	  static Ptr:=A_PtrSize ? "UPtr" : "UInt"
+	  static init:=!GetBitsFromScreen(0,0,0,0,1)
+	  if (!ScreenShot)
+	  {
+	    zx:=oldzx, zy:=oldzy, zw:=oldzw, zh:=oldzh
+	    return, bits
+	  }
 	  bch:=A_BatchLines, cri:=A_IsCritical
 	  Critical
 	  if (zw<1 or zh<1)
@@ -7983,23 +8023,24 @@ for i,v in ok
 	    hBM:=DllCall("CreateDIBSection", Ptr,0, Ptr,&bi
 	      , "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr)
 	    Scan0:=(!hBM ? 0:ppvBits), Stride:=((zw*bpp+31)//32)*4
-	    bits.1:=Scan0, bits.2:=Stride, bits.3:=zw, bits.4:=zh
-	    oldzw:=zw, oldzh:=zh
+	    bits.1:=Scan0, bits.2:=Stride
+	    oldzx:=zx, oldzy:=zy, oldzw:=zw, oldzh:=zh
+	    x:=zx, y:=zy, w:=zw, h:=zh
 	  }
-	  if (ScreenShot and hBM)
+	  if (hBM) and !(w<1 or h<1)
 	  {
 	    win:=DllCall("GetDesktopWindow", Ptr)
 	    hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
 	    mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
 	    oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
 	    DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
-	      , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020) ; |0x40000000)
+      	  , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020) ; |0x40000000)
 	    DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
 	    DllCall("DeleteDC", Ptr,mDC)
 	    DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
 	  }
-	  SetBatchLines, %bch%
 	  Critical, %cri%
+	  SetBatchLines, %bch%
 	  return, bits
 	}
 
@@ -8053,7 +8094,6 @@ for i,v in ok
     , ByRef input, num, ByRef allpos, allpos_max)
     {
         static MyFunc, Ptr:=A_PtrSize ? "UPtr" : "UInt"
-        static init:=PicFind(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
         if (!MyFunc)
         {
             x32:="5557565383EC788B8424CC0000008BBC24CC000000C7442"
@@ -8318,7 +8358,6 @@ for i,v in ok
             . "8759383C7014801F54889D84139FC0F8562FFFFFFE968F7FFF"
             . "F31C9E9D9F8FFFF909090909090909090909090"
             MCode(MyFunc, A_PtrSize=8 ? x64:x32)
-            IfEqual, num, 0, return
         }
         return, !bits.1 ? 0:DllCall(&MyFunc, "int",mode, "uint",color
             , "uint",n, "int",offsetX, "int",offsetY, Ptr,bits.1
@@ -8471,8 +8510,7 @@ for i,v in ok
             x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
             , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
         xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
-		if !(w<1 or h<1)
-        	GetBitsFromScreen(x,y,w,h,1,zx,zy,zw,zh)
+        GetBitsFromScreen(x,y,w,h,1,zx,zy,zw,zh)
     }
 
     ; Get the RGB color of a point from the last screenshot.
@@ -8481,7 +8519,7 @@ for i,v in ok
 
 	ScreenShot_GetColor(x,y)
 	{
-	  bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh:="")
+  	  bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh)
 	  return, (x<zx or x>zx+zw-1 or y<zy or y>zy+zh-1 or !bits.1)
 	    ? "0xFFFFFF" : Format("0x{:06X}",NumGet(bits.1
 	    +(y-zy)*bits.2+(x-zx)*4,"uint")&0xFFFFFF)

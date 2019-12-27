@@ -25,7 +25,9 @@
         , IsItem : False
         , IsWeapon : False
         , IsMap : False
-        , ShowAffix : False
+        , Support : False
+        , VaalGem : False
+        , AffixCount : 0
         , Rarity : ""
         , SpecialType : ""
         , RarityCurrency : False
@@ -61,6 +63,7 @@
         , MortalFragment : False
         , GuardianFragment : False
         , ProphecyFragment : False
+        , IsOrgan : ""
         , Scarab : False
         , Offering : False
         , Vessel : False
@@ -216,12 +219,10 @@
         , ChanceShock : 0
         , ChanceIgnite : 0
         , ChanceAvoidElementalAilment : 0
-        , ChanceIgnite : 0
-        , ChanceIgnite : 0
-        , ChanceIgnite : 0
         , IncreasedBurningDamage : 0
         , IncreasedSpellCritChance : 0
         , IncreasedCritChance : 0
+		, IncreasedCritChanceOnKill : 0
         , IncreasedManaRegeneration : 0
         , IncreasedCastSpeed : 0
         , IncreasedPoisonDuration : 0

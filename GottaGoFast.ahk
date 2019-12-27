@@ -146,6 +146,9 @@
      global varOnStash
      global varOnVendor
      global varOnMenu
+     global varOnDiv
+     global varOnLeft
+     global varOnDelveChart
 
      ;Flask Cooldowns
      global CooldownFlask1:=5000
@@ -181,6 +184,9 @@
      global OnStash:=False
      global OnVendor:=False
      global OnMenu:=False
+     global OnDiv:=False
+     global OnDelveChart:=False
+     global OnLeft:=False
 
      ;Hotkeys
      global hotkeyAutoQuicksilver
@@ -489,12 +495,16 @@
           IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
           IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
           ;Failsafe Colors
-          IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0x7BB9D6
-          IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x4F6980
-          IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x3B6288
-          IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0x7BB1CC
-          IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0x9BD6E7
-          IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0x8CC6DD
+          IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0xD6B97B
+          IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x6B5543
+          IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x88623B
+          IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0xDCC289
+          IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0xECDBA6
+          IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0xCEB178
+          IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xF6E2C5
+          IniRead, varOnLeft, settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
+          IniRead, varOnDelveChart, settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
+          IniRead, varOnDetonate, settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
           ;Utility Buttons
           IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
           IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
@@ -677,8 +687,7 @@
      TriggerFlask(Trigger){
           If (OnTown || OnHideout)
                Exit
-          GuiStatus()
-          if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
+          If !GuiStatus()
                Exit
           If !(FlaskListQS.Count())
                loop, 5 
@@ -734,8 +743,7 @@
      TriggerFlaskForce(Trigger){
           If (OnTown || OnHideout)
                Exit
-          GuiStatus()
-          if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
+          If !GuiStatus()
                Exit
           If !(FlaskListQS.Count())
                loop, 5 
@@ -781,8 +789,7 @@
           {
                If (OnTown || OnHideout)
                     Exit
-               GuiStatus()
-               if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
+               If !GuiStatus()
                     Exit
                Loop, 5
                {
@@ -808,8 +815,7 @@
      TriggerUtility(Utility){
           If (OnTown || OnHideout)
                Exit
-          GuiStatus()
-          if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
+          If !GuiStatus()
                Exit
           If (!OnCooldownUtility%Utility%)
           {
@@ -1155,8 +1161,7 @@
                     {
                          If (OnTown || OnHideout)
                               Return
-                         GuiStatus()
-                         if (!OnChar || OnChat || OnInventory || OnMenu) ;in Hideout, not on char, chat open, or open inventory
+                         If !GuiStatus()
                               Return
                          MouseMove, %x_final%, %y_final%			
                          Sleep, 45

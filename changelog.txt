@@ -1,232 +1,129 @@
 --------------------------------------------------------------------------------
-Patch Notes
+Release Notes
 --------------------------------------------------------------------------------
-Version .08.12 December/16/2019
+Version .09.00 December/26/2019
 --------------------------------------------------------------------------------
-Found a change made to the Clipboard contents, Implicit is now flagged in-line
-    This makes it much easier to ensure we grabbed the implicits
-Other Additions to the parser:
-    Increased Damage/Attack speed with movement skills
-
-Added Cocoon and Bundle to the list of Opened containers with LootVacuum
-
-Reverted the Client.txt load system back until I can figure out why its crashing
-    This old method has a known issue with files over the memory limit.
-    If your file is too large, your location will show up as "Log too Large"
-    When loading large log file, you will need to zone change to update location
-
-FindText Library has been updated to version 7.2
-    This version is a function update, I helped discover a potential crash situation
-    This situation was not present in the script, found in a testbench I was working on
-    Another change resolves the mouse flicker that was present when using ScreenShot()
-        This was only used in delve, and was not extremely noticable
-        This will allow me to redisign the GuiStatus function to use this new faster method
-
-Version .08.11 December/16/2019
+-----------------------Script has been converted to RGB-------------------------
 --------------------------------------------------------------------------------
-Loot Vacuum can now automatically open Chests, Trunks and Racks
-    Enable or disable in the Loot vacuum settings
-    You can also edit the string to add more containers or for your resolution
-
-Vendor after stash now works in Town, Mines or Hideout
-    Detects which town you are in no matter your language
-    Searches for the Vendor that is closest to the stash
-    Will attempt to move toward vendor in difficult towns (Azurite Mines, Docks, Sarn)
-
-All town vendors have been added to the strings tab for customization
-
-Version .08.10 December/15/2019
+---------------Update Will Require re-install and transition script-------------
 --------------------------------------------------------------------------------
-Trying to catch the error thats going on with the log loader for some
-    I prefer this method because it doesnt put the contents of the file in memory
-    but people are randomly having issues so here is another revision
-    This time we return with no exception, each line is returned including blank
-    One line is returned at a time no matter what now for simplicity
+I have created a transition script that will take old settings.ini and update
+    It asks to move all profiles into their own profiles.ini file
+    It asks to swap all BGR values to RGB
+    It asks if you want to delete your old Loot Colors key
+        This is to allow for using the new FilterBlade pack colors
 
-I also wrapped the section in a try/catch, but im not sure this will help or not?
-    Then I added an exception for if it loops a million times, which it should never
-    This seems like some kind of loadtime error, so not sure
+It is an easy process to check if its all working, check gamestates to confirm
+If they are not registering, go to hideout and run the wizard
+Once your done, save your configuration and your new samples are set!
 
-Changed how many log messages there are, and how it behaves
-    C log will work in background if you disable debug messages, and write to log
-        this makes it easy to add new towns for later
-    If both enabled it shows the tooltips on the left as well
-    Only the main script will log language detection and initialization message
+The reason for all this adjustment, is to standardize the script for a faster method
+Complete replacement of PixelGetColor with ScreenShot and ScreenShot_GetColor
+    This provides a massive speed increase for all the pixel sampling
+    Instead of sampling the screen multiple times, we capture once and reuse
+    This also solves issues of false positives where the screen has changed
 
-Version .08.09 December/15/2019
---------------------------------------------------------------------------------
-Adjusted Skillup string again by 2 shades more strict
-    update to new default on strings tab
-Re-arranging the string tab to make room for town vendors
+Massive speed boost for the script, cutting the overall flask MS time to 40-90ms
+    We can sample as many screen positions in our status check with marginal difference
+Same change has been done to the inventory scan, and its MUCH faster now
+    The things slowing it down was moving the mouse and empty slots
+        Screenshoting the inventory removes the need to move the mouse away each collumn
+        And sampling the status of each slot has become nearly instantaneous
 
-Library stuff - Changes and additions
-    CompareHex has been renamed CompareRGB, new function named CompareHex
-        CompareHex will accept RGB or BGR hex input and compare within variance
-    Function added to library to build Findtext strings from single pixel color
-        Can accept arrays of colors or individually, and assign variance
-        Use this to build 1 or 5 pixel squares to use for searching colors
-
-Loot Vacuum adjustments and improvements
-    Loot Vacuum now uses the FindText strings from Hex2FindText
-        Searches all colors at once instead of individually
-        This makes it much much faster, once again FindText library coming through!
-    Now that we search faster, we can add more colors
-        Add or remove sets of colors for your own custom filter colors
-        As always ensure the background is not transparent or it will not match
-        Will not let you remove the last set of colors
-    Default color order has been flipped, rarer items prioritized
-        Quest color is now also first
-
-Reverted Client.txt first scan method, no longer flips file contents
-    I think I have found all the issues, and client will parse as long as encoded
-    Just simply stops after 1000 loops if it still has not found location
-        Will write to log informing that you may need to encode your file with BOM
-    This method had no issues with large files, no need to load into memory
-
-Decided next major version I will finally swap all values using BGR to RGB
-    This will allow for consistency between different parts of the script
-    But will cause a need to recalibrate all samples which are using BGR
-
-Version .08.08 December/13/2019
---------------------------------------------------------------------------------
-Standardized town names for adding Town specific vendors later
-Created a function to compare a value to an array of arrays and return parent index
-    All towns have been grouped with their translations
-    CompareLocation can now return the english name of the current town
-
-Item bases updated for 3.9 located %A_ScriptDir%\Data\Bases.json
-    Update for the location of the Item Bases
-    Delete old file and reload script to update that, or download from master github
-
-Quest items are now auto clicked by Loot Vacuum!
-    Will click the Green text, this includes new league mechanic
-
-Version .08.07 December/13/2019
---------------------------------------------------------------------------------
-Bugfix for Vendor after stash
-    was not searching entire screen like it was supposed to
-
-Fixes for Auto-Quit
-    Bugfix for 50 and 60% threshold quit
-    Bugfix for portal quit, release mouse buttons so it can cast portal
-
-Adjusted Skillup string again by 2 shades
-    Was clicking greyed out skills, update to new default on strings tab
-    Also checks if you have the options screen open
-        Was getting false positives when there was greyed out skill on options
-
-GuiStatus can return true or false when called for a single status
-
-Version .08.06 December/12/2019
---------------------------------------------------------------------------------
-Bugfix for Auto-Skillup
-
-Version .08.05 December/12/2019
---------------------------------------------------------------------------------
-Chinese parser fixed
-
-Client.txt language is now detected automatically on load
-
-Version .08.04 December/12/2019
---------------------------------------------------------------------------------
-Chinese, Korean, German, Russian, French, Portuguese, and Thai added
-    This should cover all the different available languages
-    These translations require you to encode your Client.txt file in UFT-8-BOM
-    In notepad, open client.txt then save as, open encoding dropdown > UFT-8 with BOM
-        This fixes accents and special characters
-
-Added log output for zone change when the C log debug messages option is checked
-
-Version .08.03 December/11/2019
---------------------------------------------------------------------------------
-Bugfix for the Client.txt file load
-    Was getting caught in a loop of reading the file contents
-    new method reverses the file when first reading it
-        this allows for a standard parse loop which is much more reliable
-    This should fix any script hangups on load
-
-Improved the auto Skillup string, new default string to use
-    This needs to be manually updated, click and select new default in dropdown
-    New string has 100% match rate for skillup while not clicking greyed out ones
-    This also makes it much faster :D
-
-I have added in the system for parsing different laguages of Client.txt files
-    I have been able to add Spanish, looking for submissions to add more languages
-    Look for new option in Configuration tab, under where you choose file location
-    I added comments into the code for anyone attempting to make translations
-
-Library update to FindText 7.1
-    He has developed a better way of inserting the Text:="|<>ResultColor" lines
-    also added new functions for PicLib, PicInfo
-
-Version .08.02 December/07/2019
---------------------------------------------------------------------------------
-Added a check for being on character before resampling health and mana values
-    This affects the Save Configuration button
-    Will receive messagebox prompts if there is an issue resampling
-    will not resample if script cannot detect being on character
-    If everything checks out, it instead displays a tooltip that it's all clear
-
-Version .08.01 December/07/2019
---------------------------------------------------------------------------------
-Quick patch to fix Location issue with Syndicate Hideout
-    Since I assumed any zone with word Hideout was a Hideout, it paused script
-    It now makes an exception for this zone
-
---------------------------------------------------------------------------------
-Release Notes 
---------------------------------------------------------------------------------
-Version .08.00 December/06/2019
---------------------------------------------------------------------------------
-I have decided to incriment the major version and make this the new stable
-release for people to download. 
-
-This version finally fixes issues with the OHB for good! It should now be
-reliable to use Auto-Quit in the mines without being accidentally D/C
-
-Old changelogs can be read in the Changelog_Archive.txt file
-
-Summary of changes since last major version:
-    Bugfixes for OHB
-    Improvements to Debug messages, show readouts of Flask loop and Client log
-    Improvements to the Tooltip display system
-    Restructured calibration section in main menu
-    Improvements to bulk vendor of Flasks and Skill gems
-    Bugfixes for windows that need to be AlwaysOnTop
-    Added automation for searching for Stash to click on, or vendor after stash
-    Improved Movestash to use the arrow keys
-    Added loading indicators for when script is starting
-    New Client.txt monitor that checks for being in town, hideout, or mines
-    New options for Auto-Quit health thresholds, and exit using a portal 
+This new speed does come at the cost of processing power
+    Old script was around .7% and this can be 4-9% load
 
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .08.00 December/06/2019
+Version .09.00 December/26/2019
 --------------------------------------------------------------------------------
-Updated library for FindText() function
-    Lib now offers ways of capturing and manipulating screenshots
-        using this I have reduced the delay of the OHB from +400MS to ~100MS
-        incidentally this also fixes issues with the healthbar quickly moving
-    Lib has improved edit menu that remains the same size when scaling area
-        you can now scroll the edit panel to select the correct pixels
-    Can now assign a screenshot hotkey in the findtext GUI
-        grab a screenshot and go back to capture buffs / debuffs later
-    Can now test strings straight from the clipboard
+Main Logic loop has been changed slightly to improve speed
+    DetonateMines is no longer in a seperate loop
+        Checks to determine detonation are now done in GuiStatus
+        Detonation of mines is now nearly instantaneous
+    Main logic loop will now always be running instead of toggled on or off
+        If all relevant options are disabled it just returns at start
 
-General adjustments for other parts of the scripts that use FindText()
-    Coordinate input has been adjusted to match the new format
-    GGF script finally utilizes variables coming from the Rescale function
-        Should allow for people using a secondary monitor to play the game
+Loot Vacuum has been adjusted to remove the need of flipping from BGR to RGB
+If you have custom colors set up for the loot vacuum, you will want to swap R and B
+    I would recommend using the transition script to swap the colors
+    Load the loot vacuum settings to confirm the colors are correct
 
-Opening the FindText GUI is now its own thread seperated from the main script
-    This allows for using the screenshot feature without it being overwritten
-    Pressing escape will exit the app while its active, closing the window as well
-        Minimize allows you to keep it open for using the screenshot hotkey
+All default samples have been updated for the latest patch using RGB
+    It is still recommended to do calibration
 
-Introducing Advanced Hotkeys library for easier binding of hotkeys
-    as a proof of concept I have modified the FindText lib Screnshot hotkey to use this
-    Double click on the binding editbox to bring up the hotkey assignment window
+Added Doors to the openable list for Loot Vacuum
+    also adds an +y offset to the click so it is more accurate
+    I applied this offset to all the openables
 
-Also added DynaRun and CreateScript in library for later use
-    These allow for scripts which can be run in a seperate thread
+Fixed Elemental DPS parser, now gives readout of all added ele damage
+    was only parsing the first elemental damage before, now parses all fields
+
+Basic implimentation of an affix count has been introduced to the parser
+    Does not account for all double affixes, but I put exceptions for unique ones
+    Double basic affixes will be more difficult to determine if its an extra line
+
+Rewrite of how implicits and corruptions are parsed
+    This helps with simplifying the affix count
+
+Added suggestion by danmarzola for Organ Parts
+    Prop.IsOrgan will read the type of organ it is for further matching with CLF
+    to match for specific type use ~ Heart|Lung|Brain|Liver|Eye
+    Or match Prop.SpecialType = Organ
+
+Added Stash tab option for Organs and Support Gems
+
+Loot Vacuum now lets go of left or right mouse when its about to click
+    Returns your mouse to its former state afterwards
+    This lets you move or cast skills while looting
+
+Coord tool reverted to messagebox
+    Now allows for copying the Coordinates to the clipboard
+    Or copy both color and coords
+
+First load seeks to end of file if log too large
+
+Item Parser displays Custom Loot Filter matching group and the tab it will go
+
+Now detects for Quest items and skips them
+
+Adjustments to the way JSON files are stored
+    Saved in pretified format
+    Bases.json has been updated to remove unnecessary clutter
+    Ninja.json is no longer one line
+
+Default league updated to Metamorph for Ninja Parser
+
+Matches Vaal Skillgems properly now
+    Use Prop.VaalGem with the CLF to sort them
+
+MoveStash now optionally checks for GuiStatus("OnStash") to not interfere with screenshot
+
+Rewrite of Hex2FindText to allow for any shape of rectangle or square
+
+Loot Vacuum will allow for looting while holding down RButton
+	It now stops LButton
+	
+AutoSkillup now only fires when your not holding a mouse button down
+
+FilterBlade URL has been added to the FilterBlade.zip file
+    this lets you load the filter and customize which things hide or show
+
+Added new sample locations for OnLeft and OnDelveChart
+    added these to all the supported ratios
+    The allow the script to pause when
+        Voltaxic generator panel, Challenges, settings etc is open
+        Subterranean Chart is open
+
+Reworked the output from GuiStatus
+    It now returns true when OnChar and No panels are open
+
+GottaGoFast updated to use new GuiStatus checks
+
+ItemSort now temporarily disables the main logic loop
+    For some reason they slowed down the inventory scan when not in town
+
+Fixed overlapping variables related to AutoDetonate
+    This was effecting the Gamestates panel using DetonateMines var
+    Renamed to OnDetonate and OnDetonateDelve
