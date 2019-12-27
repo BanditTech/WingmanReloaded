@@ -147,7 +147,6 @@
      global varOnVendor
      global varOnMenu
      global varOnDiv
-     global varOnSynd
      global varOnLeft
      global varOnDelveChart
 
@@ -186,7 +185,6 @@
      global OnVendor:=False
      global OnMenu:=False
      global OnDiv:=False
-     global OnSynd:=False
      global OnDelveChart:=False
      global OnLeft:=False
 
@@ -505,9 +503,8 @@
           IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0xCEB178
           IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xF6E2C5
           IniRead, varOnLeft, settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
-          IniRead, varOnSynd, settings.ini, Failsafe Colors, OnSynd, 0xFEC076
           IniRead, varOnDelveChart, settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
-          IniRead, DetonateHex, settings.ini, Failsafe Colors, DetonateHex, 0x5D4661
+          IniRead, varOnDetonate, settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
           ;Utility Buttons
           IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
           IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
