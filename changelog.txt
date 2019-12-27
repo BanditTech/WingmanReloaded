@@ -38,6 +38,13 @@ Patch Notes
 --------------------------------------------------------------------------------
 Version .09.00 December/26/2019
 --------------------------------------------------------------------------------
+Main Logic loop has been changed slightly to improve speed
+    DetonateMines is no longer in a seperate loop
+        Checks to determine detonation are now done in GuiStatus
+        Detonation of mines is now nearly instantaneous
+    Main logic loop will now always be running instead of toggled on or off
+        If all relevant options are disabled it just returns at start
+
 Loot Vacuum has been adjusted to remove the need of flipping from BGR to RGB
 If you have custom colors set up for the loot vacuum, you will want to swap R and B
     I would recommend using the transition script to swap the colors
@@ -46,13 +53,9 @@ If you have custom colors set up for the loot vacuum, you will want to swap R an
 All default samples have been updated for the latest patch using RGB
     It is still recommended to do calibration
 
-All samples now use ScreenShot_GetColor instead of PixelGetColor
-
 Added Doors to the openable list for Loot Vacuum
     also adds an +y offset to the click so it is more accurate
     I applied this offset to all the openables
-
-First load seeks to end of file if log too large
 
 Fixed Elemental DPS parser, now gives readout of all added ele damage
     was only parsing the first elemental damage before, now parses all fields
@@ -61,10 +64,29 @@ Basic implimentation of an affix count has been introduced to the parser
     Does not account for all double affixes, but I put exceptions for unique ones
     Double basic affixes will be more difficult to determine if its an extra line
 
+Rewrite of how implicits and corruptions are parsed
+    This helps with simplifying the affix count
+
 Added suggestion by danmarzola for Organ Parts
     Prop.IsOrgan will read the type of organ it is for further matching with CLF
     to match for specific type use ~ Heart|Lung|Brain|Liver|Eye
     Or match Prop.SpecialType = Organ
+
+Added Stash tab option for Organs and Support Gems
+
+Loot Vacuum now lets go of left or right mouse when its about to click
+    Returns your mouse to its former state afterwards
+    This lets you move or cast skills while looting
+
+Coord tool reverted to messagebox
+    Now allows for copying the Coordinates to the clipboard
+    Or copy both color and coords
+
+First load seeks to end of file if log too large
+
+Item Parser displays Custom Loot Filter matching group and the tab it will go
+
+Now detects for Quest items and skips them
 
 Adjustments to the way JSON files are stored
     Saved in pretified format
@@ -73,19 +95,8 @@ Adjustments to the way JSON files are stored
 
 Default league updated to Metamorph for Ninja Parser
 
-Rewrite of how implicits and corruptions are parsed
-    This helps with simplifying the affix count
-
 Matches Vaal Skillgems properly now
     Use Prop.VaalGem with the CLF to sort them
-
-Added Stash tab option for Organs and Support Gems
-
-Item Parser displays Custom Loot Filter matching group and the tab it will go
-
-Loot Vacuum now lets go of left or right mouse when its about to click
-    Returns your mouse to its former state afterwards
-    This lets you move or cast skills while looting
 
 MoveStash now optionally checks for GuiStatus("OnStash") to not interfere with screenshot
 
@@ -95,8 +106,6 @@ Loot Vacuum will allow for looting while holding down RButton
 	It now stops LButton
 	
 AutoSkillup now only fires when your not holding a mouse button down
-
-Now detects for Quest items and skips them
 
 FilterBlade URL has been added to the FilterBlade.zip file
     this lets you load the filter and customize which things hide or show
@@ -112,19 +121,8 @@ Reworked the output from GuiStatus
 
 GottaGoFast updated to use new GuiStatus checks
 
-Coord tool reverted to messagebox
-    Now allows for copying the Coordinates to the clipboard
-    Or copy both color and coords
-
 ItemSort now temporarily disables the main logic loop
     For some reason they slowed down the inventory scan when not in town
-
-Main Logic loop has been changed slightly to improve speed
-    DetonateMines is no longer in a seperate loop
-        Checks to determine detonation are now done in GuiStatus
-        Detonation of mines is now nearly instantaneous
-    Main logic loop will now always be running instead of toggled on or off
-        If all relevant options are disabled it just returns at start
 
 Fixed overlapping variables related to AutoDetonate
     This was effecting the Gamestates panel using DetonateMines var
