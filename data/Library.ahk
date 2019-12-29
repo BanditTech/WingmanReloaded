@@ -2951,13 +2951,13 @@ Structure of most functions:
 */
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	GuiStatus(Fetch:=""){
-        ScreenShot()
-		If (Fetch="DetonateMines")
+        ScreenShot(Gamex,GameY,GameX+GameW,GameY+GameH)
+		If (Fetch="OnDetonate")
         {
             DelveMine := ScreenShot_GetColor(DetonateDelveX,DetonateY)
             Mine := ScreenShot_GetColor(DetonateX,DetonateY)
-            OnDetonate := (Mine=DetonateHex?True:False)
-            OnDetonateDelve := (DelveMine=DetonateHex?True:False)
+            OnDetonate := (Mine=varOnDetonate?True:False)
+            OnDetonateDelve := (DelveMine=varOnDetonate?True:False)
             Return
         }
 		If !(Fetch="")
@@ -2977,7 +2977,7 @@ Structure of most functions:
         POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
         If DetonateMines
         POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-        , OnDetonate := ((POnDetonateDelve=DetonateHex || POnDetonate=DetonateHex)?True:False)
+        , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
 		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))
 	}
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

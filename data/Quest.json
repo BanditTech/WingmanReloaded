@@ -228,5 +228,15 @@
     "Name": "Elixir of Allure",
     "Width": 2,
     "Height": 2
+  },
+  {
+    "Name": "The Staff of Purity",
+    "Width": 2,
+    "Height": 4
+  },
+  {
+    "Name": "Vault Key",
+    "Width": 1,
+    "Height": 1
   }
 ]

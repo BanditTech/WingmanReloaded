@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.00
+    Global VersionNumber := .09.01
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -334,6 +334,7 @@
 			PopFlasks4 = Enable flask slot 4 when using Pop Flasks hotkey
 			PopFlasks5 = Enable flask slot 5 when using Pop Flasks hotkey
 			DetonateMines = Enable this to automatically Detonate Mines when placed`rDouble tap the D key to pause until next manual detonate
+			DetonateMinesDelay = Delay for this long after detonating
 			YesEldritchBattery = Enable this to sample the energy shield on the mana globe instead
 			UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
 			UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
@@ -404,6 +405,7 @@
 			YesStashCraftingNormal = This option is for the Crafting stash tab`rEnable to stash Normal crafting bases
 			YesStashCraftingMagic = This option is for the Crafting stash tab`rEnable to stash Magic crafting bases
 			YesStashCraftingRare = This option is for the Crafting stash tab`rEnable to stash Rare crafting bases
+			YesSkipMaps = Select the column which you will begin skipping rolled maps`rThis includes magic, rare or unique maps >= the selected column
 			UpdateDatabaseInterval = How many days between database updates?
 			selectedLeague = Which league are you playing on?
 			UpdateLeaguesBtn = Use this button when there is a new league
@@ -510,6 +512,7 @@
 		Global OnTown := False
 		Global OnMines := False
 		Global DetonateMines := False
+		Global DetonateMinesDelay := 500
 		Global OnDetonate := False
 		Global OnDetonateDelve := False
 		Global OnMenu := False
@@ -604,6 +607,8 @@
 		Global YesStashCraftingNormal := 1
 		Global YesStashCraftingMagic := 1
 		Global YesStashCraftingRare := 1
+	; Skip Maps after column #
+		Global YesSkipMaps := 0
 	; Controller
 		Global YesController := 1
 		global checkvar:=0
@@ -664,30 +669,10 @@
 		global varOnDelveChart:=0xB58C4D
 		Global varOnDetonate := 0x5D4661
 
-	; Life Colors
-		global varLife20
-		global varLife30
-		global varLife40
-		global varLife50
-		global varLife60
-		global varLife70
-		global varLife80
-		global varLife90
-		
-	; ES Colors
-		global varES20
-		global varES30
-		global varES40
-		global varES50
-		global varES60
-		global varES70
-		global varES80
-		global varES90
-
-	; Mana Colors
-		global varMana10
-		global varManaThreshold
-		Global ManaThreshold
+	; Life, ES, Mana Colors
+		global varLife20, varLife30, varLife40, varLife50, varLife60, varLife70, varLife80, varLife90
+		global varES20, varES30, varES40, varES50, varES60, varES70, varES80, varES90
+		global varMana10, varManaThreshold, ManaThreshold
 
 	; Gem Swap
 		global CurrentGemX:=1483
@@ -1165,7 +1150,9 @@
 
 	Gui,Font,s9 cBlack 
 	Gui Add, GroupBox, 		Section	w90 h32				xs+230 	ys , 				Auto-Mine
-	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+15	ys+15				, Enable
+	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+5	ys+15				, Enable
+	Gui Add, Edit, 	  gUpdateExtra   vDetonateMinesDelay    h18	x+-2	yp-5  Number Limit w30				, %DetonateMinesDelay% 
+
 	Gui Add, GroupBox, 		Section	w90 h32	vEldritchBatteryGroupbox			xs 	y+6 , 				Eldritch Battery
 	Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery%           	xs+15	ys+15				, Enable
 	Gui,Font,
@@ -1581,8 +1568,10 @@
 	Gui Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%         				, Deposit at stash?
 	Gui Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%       				, Sell at vendor?
 	Gui Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%             				, Trade Divination?
-	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%     				, Leave Map Un-ID?
 	Gui Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst% 				, Group Items before stashing?
+	Gui Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%     				, Leave Map Un-ID?
+	Gui Add, DropDownList, w40 gUpdateExtra	vYesSkipMaps  				, %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
+	Gui Add, Text, yp x+5 , >`= Column to Skip rolled maps
 
 	Gui, Font, Bold s9 cBlack
 	Gui Add, GroupBox, 						w180 h60		section		xm+180 	ys+5, 				Crafting Tab:
@@ -2280,7 +2269,7 @@ Return
 		BlackList := Array_DeepClone(IgnoredSlot)
 		; Move mouse out of the way to grab screenshot
 		ShooMouse()
-		ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
+		ScreenShot()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2477,6 +2466,8 @@ Return
 						CtrlClick(Grid.X,Grid.Y)
 						Continue
 					}
+					If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
+						Continue
 					Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
 					{
 						MoveStash(StashTabCurrency)
@@ -2708,6 +2699,8 @@ Return
 						SortFirst[sendstash].Push({"C":C,"R":R})
 						Continue
 					}
+					If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
+						Continue
 					Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
 					{
 						SortFirst[StashTabCurrency].Push({"C":C,"R":R})
@@ -2953,12 +2946,11 @@ Return
 						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
-							Sleep, 60*Latency
+							Sleep, 120*Latency
 							Break
 						}
 					}
-					GuiStatus("OnStash")
-					GuiStatus("OnVendor")
+					GuiStatus()
 					VendorRoutine()
 					Return
 				}
@@ -3041,12 +3033,11 @@ Return
 						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
-							Sleep, 60*Latency
+							Sleep, 120*Latency
 							Break
 						}
 					}
-					GuiStatus("OnStash")
-					GuiStatus("OnVendor")
+					GuiStatus()
 					VendorRoutine()
 					Return
 				}
@@ -6040,6 +6031,15 @@ Return
 					Exit
 				t5 := A_TickCount - t1
 			}
+			If (DetonateMines&&!Detonated)
+			{
+				If (OnDetonate)
+				{
+					Sendraw, d
+					Detonated:=1
+					Settimer, TDetonated, -%DetonateMinesDelay%
+				}
+			}
 			If (AutoFlask || AutoQuit)
 			{
 				if (RadioLife) {
@@ -7021,16 +7021,6 @@ Return
 					t4 := A_TickCount - t4
 				}
 			}
-			If (DetonateMines&&!Detonated)
-			{
-				If (OnDetonate)
-				{
-					Sendraw, d
-					Detonated:=1
-					Settimer, TDetonated, -500
-					Return
-				}
-			}
 			If (YesTimeMS)
 			{
 				If WinActive(GameStr)
@@ -7140,7 +7130,7 @@ Return
 			Return
 		}
 
-; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, TriggerFlask, TriggerMana, TriggerUtility, DetonateMines
+; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, TriggerFlask, TriggerMana, TriggerUtility
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; MainAttackCommand - Main attack Flasks
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7342,10 +7332,10 @@ Return
 			CtlColors.Attach(CTIDOnLeft, "", "Red")
 			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDelveChart hwndCTIDOnDelveChart, % "       OnDelveChart "
 			CtlColors.Attach(CTIDOnDelveChart, "", "Red")
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTDetonateMines hwndCTIDDetonateMines, % "   DetonateMines "
-			CtlColors.Attach(CTIDDetonateMines, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTDetonateDelve hwndCTIDDetonateDelve, % "   DetonateDelve "
-			CtlColors.Attach(CTIDDetonateDelve, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDetonate hwndCTIDOnDetonate, % "       OnDetonate "
+			CtlColors.Attach(CTIDOnDetonate, "", "Red")
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnDetonateDelve hwndCTIDOnDetonateDelve, % "OnDetonateDelve"
+			CtlColors.Attach(CTIDOnDetonateDelve, "", "Red")
 			Gui, States: Add, Button, gCheckPixelGrid xm+5 y+15 w190 , Check Inventory Grid
 			; ----------------------------------------------------------------------------------------------------------------------
 			Gui, States: Show ,  , Check Gamestates
@@ -7368,10 +7358,7 @@ Return
 		; ----------------------------------------------------------------------------------------------------------------------
 		CheckGamestates:
 			GuiStatus()
-			GuiStatus("DetonateMines")
-			; GuiStatus("OnStash")
-			; GuiStatus("OnVendor")
-			; GuiStatus("OnDiv")
+			GuiStatus("OnDetonate")
 			If (OnChar)
 				CtlColors.Change(CTIDOnChar, "Lime", "")
 			Else
@@ -7405,13 +7392,13 @@ Return
 			Else
 				CtlColors.Change(CTIDOnVendor, "", "Red")
 			If (OnDetonate)
-				CtlColors.Change(CTIDDetonateMines, "Lime", "")
+				CtlColors.Change(CTIDOnDetonate, "Lime", "")
 			Else
-				CtlColors.Change(CTIDDetonateMines, "", "Red")
+				CtlColors.Change(CTIDOnDetonate, "", "Red")
 			If (OnDetonateDelve)
-				CtlColors.Change(CTIDDetonateDelve, "Lime", "")
+				CtlColors.Change(CTIDOnDetonateDelve, "Lime", "")
 			Else
-				CtlColors.Change(CTIDDetonateDelve, "", "Red")
+				CtlColors.Change(CTIDOnDetonateDelve, "", "Red")
 			If (OnMenu)
 				CtlColors.Change(CTIDOnMenu, "Lime", "")
 			Else
@@ -7659,25 +7646,31 @@ Return
 						Return
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
 					MouseGetPos, mX, mY
-					If GetKeyState("LButton","P")
-						Click, up
-					If GetKeyState("RButton","P")
+					LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
+					If (LP || RP)
 					{
-						Click, Right, up
-						DllCall("Sleep", "UInt", 15)
+						If LP
+							Click, up
+						If RP
+							Click, Right, up
+						DllCall("Sleep", "UInt", 25)
 					}
 					BlockInput, MouseMove
+					MouseMove, X, Y, 0
+					DllCall("Sleep", "UInt", 20)
 					Click %X%, %Y%
-					DllCall("Sleep", "UInt", 25)
+					DllCall("Sleep", "UInt", 45)
 					MouseMove, mX, mY, 0
-					If GetKeyState("LButton","P")
-						Click, down
-					If GetKeyState("RButton","P")
-					{
-						DllCall("Sleep", "UInt", 15)
-						Click, Right, down
-					}
 					BlockInput, MouseMoveOff
+					LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
+					If (LP || RP)
+					{
+						DllCall("Sleep", "UInt", 25)
+						If LP
+							Click, down
+						If RP
+							Click, Right, down
+					}
 					ok:=""
 				}
 			}
@@ -7878,6 +7871,7 @@ Return
 			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid, 0
 			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo, 0
 			IniRead, DetonateMines, settings.ini, General, DetonateMines, 0
+			IniRead, DetonateMinesDelay, settings.ini, General, DetonateMinesDelay, 500
 			IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
 			IniRead, YesVendor, settings.ini, General, YesVendor, 1
 			IniRead, YesStash, settings.ini, General, YesStash, 1
@@ -7908,6 +7902,7 @@ Return
 			IniRead, YesStashCraftingNormal, settings.ini, General, YesStashCraftingNormal, 1
 			IniRead, YesStashCraftingMagic, settings.ini, General, YesStashCraftingMagic, 1
 			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
+			IniRead, YesSkipMaps, settings.ini, General, YesSkipMaps, 11
 			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
 			IniRead, YesWaitAutoSkillUp, settings.ini, General, YesWaitAutoSkillUp, 0
 			IniRead, YesClickPortal, settings.ini, General, YesClickPortal, 0
@@ -8672,6 +8667,7 @@ Return
 			IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
 			IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
 			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
+			IniWrite, %DetonateMinesDelay%, settings.ini, General, DetonateMinesDelay
 			IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
 			IniWrite, %YesVendor%, settings.ini, General, YesVendor
 			IniWrite, %YesStash%, settings.ini, General, YesStash
@@ -8697,6 +8693,7 @@ Return
 			IniWrite, %YesStashCraftingNormal%, settings.ini, General, YesStashCraftingNormal
 			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
 			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
+			IniWrite, %YesSkipMaps%, settings.ini, General, YesSkipMaps
 			IniWrite, %YesAutoSkillUp%, settings.ini, General, YesAutoSkillUp
 			IniWrite, %YesWaitAutoSkillUp%, settings.ini, General, YesWaitAutoSkillUp
 			IniWrite, %AreaScale%, settings.ini, General, AreaScale
@@ -9770,6 +9767,7 @@ Return
 			
 			;AutoMines
 			IniWrite, %DetonateMines%, profiles.ini, Profile%Profile%, DetonateMines
+			IniWrite, %DetonateMinesDelay%, profiles.ini, Profile%Profile%, DetonateMinesDelay
 
 			;EldritchBattery
 			IniWrite, %YesEldritchBattery%, profiles.ini, Profile%Profile%, YesEldritchBattery
@@ -10194,7 +10192,9 @@ Return
 			
 			;AutoMines
 			IniRead, DetonateMines, profiles.ini, Profile%Profile%, DetonateMines, 0
+			IniRead, DetonateMinesDelay, profiles.ini, Profile%Profile%, DetonateMinesDelay, 500
 			GuiControl, , DetonateMines, %DetonateMines%
+			GuiControl, , DetonateMinesDelay, %DetonateMinesDelay%
 
 			;EldritchBattery
 			IniRead, YesEldritchBattery, profiles.ini, Profile%Profile%, YesEldritchBattery, 0
@@ -11610,6 +11610,7 @@ Return
 		UpdateExtra:
 			Gui, Submit, NoHide
 			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
+			IniWrite, %DetonateMinesDelay%, settings.ini, General, DetonateMinesDelay
 			IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
 			IniWrite, %YesVendor%, settings.ini, General, YesVendor
 			IniWrite, %YesStash%, settings.ini, General, YesStash
@@ -11619,6 +11620,7 @@ Return
 			IniWrite, %YesStashCraftingNormal%, settings.ini, General, YesStashCraftingNormal
 			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
 			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
+			IniWrite, %YesSkipMaps%, settings.ini, General, YesSkipMaps
 			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
 			IniWrite, %YesDiv%, settings.ini, General, YesDiv
 			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid

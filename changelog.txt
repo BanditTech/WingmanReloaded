@@ -1,4 +1,25 @@
 --------------------------------------------------------------------------------
+Patch Notes
+--------------------------------------------------------------------------------
+Version .09.01 December/29/2019
+--------------------------------------------------------------------------------
+Bugfix for AutoDetonate function
+    Fixed some incorrect variables, and in the GuiStatus
+    You can now customize the delay after detonation 
+        Change this in the flasks and utility tab in Auto-Mine section
+
+Timers for the AutoSkillup function are slightly loosened
+    It was too fast, was not clicking the icon properly
+    Added more delays between actions and mouse movement
+
+Magic, Rare, or Unique maps in the right 2 columns are skipped from stashing
+    To change the column it begins skipping adjust the dropdown list
+    change to 0 to disable, default is 11 to skip columns 11 and 12
+    Find this setting in the inventory tab
+
+More additions to the Quest items database
+
+--------------------------------------------------------------------------------
 Release Notes
 --------------------------------------------------------------------------------
 Version .09.00 December/26/2019
