@@ -285,19 +285,6 @@
      ; Gosub, CheckLocation
      ; SetTimer, CheckLocation, 15
 
-; Start timer for active Utility that is not triggered by Life, ES, or QS
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     Loop, 5 {
-          if ( (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") ){
-               SetTimer, TUtilityTick, 250
-               Break
-          }
-          Else If (YesUtility%A_Index%) && ( (YesUtility%A_Index%Quicksilver) || (YesUtility%A_Index%ESPercent!="Off") || (YesUtility%A_Index%LifePercent!="Off") )
-          SetTimer, TUtilityTick, Off
-          Else
-          SetTimer, TUtilityTick, Off
-     }
-
 ; PopFlaskCooldowns - Pop all flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      PopFlaskCooldowns(){
@@ -644,18 +631,6 @@
                SetTimer, WASD_Handler, 15
           Else
                SetTimer, WASD_Handler, Delete
-          ; Start timer for active Utility that is not triggered by Life, ES, or QS
-          ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-          Loop, 5 {
-               if ( (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") ){
-                    SetTimer, TUtilityTick, 250
-                    Break
-               }
-               Else If (YesUtility%A_Index%) && ( (YesUtility%A_Index%Quicksilver) || (YesUtility%A_Index%ESPercent!="Off") || (YesUtility%A_Index%LifePercent!="Off") )
-               SetTimer, TUtilityTick, Off
-               Else
-               SetTimer, TUtilityTick, Off
-          }
           Return
      }
 
@@ -782,41 +757,13 @@
           Return
      }
 
-; TUtilityTick - Main Utility Logic
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     TUtilityTick(){
-          IfWinActive, Path of Exile
-          {
-               If (OnTown || OnHideout)
-                    Exit
-               If !GuiStatus()
-                    Exit
-               Loop, 5
-               {
-                    If (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") && !(IconStringUtility%A_Index%)
-                         TriggerUtility(A_Index)
-                    Else If (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") && (IconStringUtility%A_Index%)
-                    {
-                         If !(OnCooldownUtility%A_Index%)
-                         {
-                              If FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%)
-                              {
-                                   OnCooldownUtility%A_Index%:=1
-                                   SetTimer, TimerUtility%A_Index%, % CooldownUtility%A_Index%
-                              }
-                              Else
-                                   TriggerUtility(A_Index)
-                         }
-                    }
-               }
-          }
-     }
-
-     TriggerUtility(Utility){
+     TriggerUtility(Utility,status:=0)
+     {
           If (OnTown || OnHideout)
                Exit
-          If !GuiStatus()
-               Exit
+          If status
+               If !GuiStatus()
+                    Return
           If (!OnCooldownUtility%Utility%)
           {
                Send % KeyUtility%Utility%
@@ -885,7 +832,7 @@
                     }
                     if (YesTriggerUtilityJoystickKey && HeldCountJoystick > 20)
                     {
-                         TriggerUtility(utilityKeyToFire)
+                         TriggerUtility(utilityKeyToFire,1)
                     }
                     if (AutoQuick && HeldCountJoystick > 60)
                     {
@@ -1172,7 +1119,7 @@
                          }
                          newposition := false
                          If (YesTriggerUtilityKey)
-                              TriggerUtility(utilityKeyToFire)
+                              TriggerUtility(utilityKeyToFire,1)
                          if (AutoQuick)
                          {
                               if ((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))

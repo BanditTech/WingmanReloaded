@@ -235,7 +235,17 @@
     "Height": 4
   },
   {
+    "Name": "The Teardrop",
+    "Width": 2,
+    "Height": 2
+  },
+  {
     "Name": "Vault Key",
+    "Width": 1,
+    "Height": 1
+  },
+  {
+    "Name": "Crimson Watchstone",
     "Width": 1,
     "Height": 1
   }

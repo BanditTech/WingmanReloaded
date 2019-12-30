@@ -2951,7 +2951,8 @@ Structure of most functions:
 */
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	GuiStatus(Fetch:=""){
-        ScreenShot(Gamex,GameY,GameX+GameW,GameY+GameH)
+		If (Fetch!="NoSS")
+            ScreenShot(Gamex,GameY,GameX+GameW,GameY+GameH)
 		If (Fetch="OnDetonate")
         {
             DelveMine := ScreenShot_GetColor(DetonateDelveX,DetonateY)
@@ -2960,7 +2961,7 @@ Structure of most functions:
             OnDetonateDelve := (DelveMine=varOnDetonate?True:False)
             Return
         }
-		If !(Fetch="")
+		If !(Fetch=""||Fetch="NoSS")
         {
             P%Fetch% := ScreenShot_GetColor(vX_%Fetch%,vY_%Fetch%)
             temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
@@ -4191,7 +4192,7 @@ Structure of most functions:
 	{
 		If InStr(apiString, "Fragment")
 		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/Get%apiString%Overview?league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
 			If ErrorLevel{
 				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
 			}
@@ -4266,11 +4267,11 @@ Structure of most functions:
 					{
 						for index, indexArr in objlist
 						{
-							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
+							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
 							grabPoeTrdId := (holder[obj][index]["poeTradeId"] ? holder[obj][index]["poeTradeId"] : False)
 							grabId := (holder[obj][index]["id"] ? holder[obj][index]["id"] : False)
 
-							holder[obj][index] := {"name":grabName
+							holder[obj][index] := {"currencyName":grabName
 								,"poeTradeId":grabPoeTrdId
 								,"id":grabId}
 
@@ -4414,7 +4415,7 @@ Structure of most functions:
         Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
         If WinActive(GameStr)
         {
-            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,1))
+            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
             {
                 ok.1.3 -= 1
                 ok.1.4 += 8
@@ -4466,21 +4467,8 @@ Structure of most functions:
             pX:= OHB.pX[A_Index]
             If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
                 Found := pX
-            Else 
-            {
-                If (OHBxy != NewOHBxy := CheckOHB())
-                {
-                    Ding(500,4,"OHB Moved" )
-                    Return HPerc
-                }
-                Else If (!OHBxy || !NewOHBxy)
-                {
-                    Ding(500,3,"OHB Error" )
-                    Return HPerc
-                }
-                Else
-                    Break
-            }
+            Else
+                Break
         }
         Thread, NoTimers, False		;End Critical
         Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )

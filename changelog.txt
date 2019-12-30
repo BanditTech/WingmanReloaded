@@ -1,6 +1,25 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.02 December/30/2019
+--------------------------------------------------------------------------------
+More adjustments towards removing extra screenshots
+    Delve OHB function is now running at max potential without resampling
+    Extrenuos checks were removed from the main flask logic
+    same for utility firing, all calls to utility are from main game timer
+
+Attack hotkeys have been refactored, and incuded into the main game timer
+    this removes competing timers that were unnecessary
+
+Utilities fired on cooldown have also been moved into the main game timer
+    Now uses the same screenshot to check for missing buffs
+        this lessens the overall processing load of the script
+    This also allows me to tie those utilities to the AutoFlasks hotkey
+        You can now stop them from firing by pausing AutoFlasks
+
+Bugfix for PoE.Ninja parser crash
+    API address has been updated, as well as the fields for currency data
+
 Version .09.01 December/29/2019
 --------------------------------------------------------------------------------
 Bugfix for AutoDetonate function
