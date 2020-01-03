@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.02
+    Global VersionNumber := .09.03
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -301,7 +301,8 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
 		global PauseTooltips:=0
-		global OutsideTimer:=0
+		Process, Exist
+		Global ScriptPID := ErrorLevel
 		global Trigger:=00000
 		global AutoQuit:=0 
 		global AutoFlask:=0
@@ -346,8 +347,7 @@
 			UpdateOnStashBtn = Calibrate the OnStash/OnLeft Colors`rThese colors determine if the Stash/Left panel is open`rSample is located at the top of the Stash panel
 			UpdateOnVendorBtn = Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
 			UpdateOnMenuBtn = Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
-			UpdateDetonateBtn = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the right
-			UpdateDetonateDelveBtn = Calibrate the Detonate Mines Color while in Delve`rThis color determines if the detonate mine button is visible`rLocated above mana flask on the left
+			UpdateDetonateBtn = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rWill determine if you are in mines and change sample location`rLocated above mana flask on the right
 			CalibrateOHBBtn = Calibrate the life color of the Overhead Health Bar`rMake sure the OHB is visible
 			ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
 			ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
@@ -1326,8 +1326,7 @@
 	Gui,SampleInd: Font, Bold
 	Gui,SampleInd: Add, Text, 				section						xm 	y+10, 				AutoDetonate Calibration:
 	Gui,SampleInd: Font
-	Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn 		xs ys+20					w110, 	Detonate Normal
-	Gui,SampleInd: Add, Button, gupdateDetonateDelve vUpdateDetonateDelveBtn	 x+8 yp		w110, 	Detonate in Delve
+	Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn 		xs ys+20					w110, 	OnDetonate
 
 	Gui,SampleInd: +AlwaysOnTop
 
@@ -2130,8 +2129,6 @@
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 15
-	; Check for gems to level
-	SetTimer, AutoSkillUp, 200
 	; Main Game Timer
 	SetTimer, TGameTick, %Tick%
 
@@ -2258,7 +2255,7 @@ Return
 			Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
 			Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
 			MouseMove, RX, RY, 0
-			Sleep, 45*Latency
+			Sleep, 105*Latency
 		}
 	}
 	; VendorRoutine - Does vendor functions
@@ -2271,8 +2268,7 @@ Return
 		SortGem := {}
 		BlackList := Array_DeepClone(IgnoredSlot)
 		; Move mouse out of the way to grab screenshot
-		ShooMouse()
-		ScreenShot()
+		ShooMouse(), ScreenShot()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2299,6 +2295,8 @@ Return
 				
 				ClipItem(Grid.X,Grid.Y)
 				addToBlacklist(C, R)
+				If !Prop.IsItem
+					ShooMouse(),ScreenShot(),Continue
 				If (!Prop.Identified&&YesIdentify)
 				{
 					If (Prop.IsMap&&!YesMapUnid)
@@ -2408,8 +2406,7 @@ Return
 		}
 		BlackList := Array_DeepClone(IgnoredSlot)
 		; Move mouse away for Screenshot
-		ShooMouse()
-		ScreenShot()
+		ShooMouse(), ScreenShot()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2461,7 +2458,7 @@ Return
 				}
 				If (OnStash && YesStash && !YesSortFirst) 
 				{
-					If (Prop.SpecialType = "Quest Item")
+					If (Prop.SpecialType = "Quest Item" || Prop.Incubator)
 						Continue
 					Else If (sendstash:=MatchLootFilter())
 					{
@@ -2695,14 +2692,14 @@ Return
 				}
 				If (OnStash && YesStash && YesSortFirst) 
 				{
-					If (Prop.SpecialType = "Quest Item")
+					If (Prop.SpecialType = "Quest Item" || Prop.SpecialType = "Incubator")
 						Continue
 					Else If (sendstash:=MatchLootFilter())
 					{
 						SortFirst[sendstash].Push({"C":C,"R":R})
 						Continue
 					}
-					If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
+					Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
 						Continue
 					Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
 					{
@@ -2843,6 +2840,11 @@ Return
 							SortFirst[StashTabGemQuality].Push({"C":C,"R":R})
 							Continue
 						}
+						Else If (Prop.Support && StashTabYesGemSupport)
+						{
+							SortFirst[StashTabGemSupport].Push({"C":C,"R":R})
+							Continue
+						}
 						Else If (StashTabYesGem)
 						{
 							SortFirst[StashTabGem].Push({"C":C,"R":R})
@@ -2944,8 +2946,9 @@ Return
 				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
 				{
 					LeftClick(Vendor.1.x, Vendor.1.y)
-					Loop, 666
+					Loop, 66
 					{
+						Sleep, 200
 						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
@@ -2953,7 +2956,7 @@ Return
 							Break
 						}
 					}
-					GuiStatus()
+					sleep, 200
 					VendorRoutine()
 					Return
 				}
@@ -3031,8 +3034,9 @@ Return
 				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
 				{
 					LeftClick(Vendor.1.x, Vendor.1.y)
-					Loop, 666
+					Loop, 66
 					{
+						Sleep, 200
 						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
@@ -3040,7 +3044,7 @@ Return
 							Break
 						}
 					}
-					GuiStatus()
+					Sleep, 200
 					VendorRoutine()
 					Return
 				}
@@ -3160,8 +3164,9 @@ Return
 	ClipItem(x, y){
 			BlockInput, MouseMove
 			Clipboard := ""
+			Sleep, 60
 			MouseMove %x%, %y%
-			Sleep, 105*Latency
+			Sleep, 60*Latency
 			Send ^c
 			ClipWait, 0
 			ParseClip()
@@ -3180,12 +3185,16 @@ Return
 		countCorruption := 0
 		Prop := {ItemName: ""
 			, IsItem : False
+			, ChaosValue : 0
+			, ExaltValue : 0
 			, IsWeapon : False
 			, IsMap : False
+			, MapTier : 0
 			, Support : False
 			, VaalGem : False
 			, AffixCount : 0
 			, Rarity : ""
+			, Influence : ""
 			, SpecialType : ""
 			, RarityCurrency : False
 			, RarityDivination : False
@@ -3272,6 +3281,8 @@ Return
 
 		Affix := { SupportGem : ""
 			, SupportGemLevel : 0
+			, GrantedSkill : 0
+			, GrantedSkillLevel : 0
 			, CountSupportGem : 0
 			, AllElementalResistances : 0
 			, ColdLightningResistance : 0
@@ -3397,7 +3408,17 @@ Return
 		If InStr(Clipboard, "`nCorrupted", 1)
 			Prop.Corrupted := True
 		If InStr(Clipboard, "`nCrusader Item", 1)
-			Prop.Influence := "Crusader"
+			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Crusader" : "Crusader")
+		If InStr(Clipboard, "`nWarlord Item", 1)
+			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Warlord" : "Warlord")
+		If InStr(Clipboard, "`nRedeemer Item", 1)
+			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Redeemer" : "Redeemer")
+		If InStr(Clipboard, "`nHunter Item", 1)
+			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Hunter" : "Hunter")
+		If InStr(Clipboard, "`nElder Item", 1)
+			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Elder" : "Elder")
+		If InStr(Clipboard, "`nShaper Item", 1)
+			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Shaper" : "Shaper")
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -3479,7 +3500,6 @@ Return
 					StandardBase := PossibleBase[1]
 					PossibleBase := StrSplit(PossibleBase[1], " ",,2)
 					PrefixMagicBase := PossibleBase[2]
-
 					For k, v in QuestItems
 					{
 						If (v["Name"] = A_LoopField)
@@ -3779,7 +3799,10 @@ Return
 				}
 				Continue
 			}
-
+			If InStr(A_LoopField,"Map Tier:")
+			{
+				Prop.MapTier := StrSplit(A_LoopField, "Map Tier:", " ")[2]
+			}
 			; Get Requirements
 
 			IfInString, A_LoopField, Requirements:
@@ -3985,7 +4008,7 @@ Return
 						If (captureLines < 1) 
 						{
 							imp := RegExReplace(StrSplit(A_LoopField, "(implicit)", " ")[1], "i)([-.0-9]+)", "#")
-							if (indexOf(imp, Corruption)) 
+							if (indexOf(imp, Corruption) && Prop.Corrupted) 
 							{
 								If (countCorruption < 1)
 								{
@@ -4111,6 +4134,30 @@ Return
 						Affix.AddedLevelChaosGems := Affix.AddedLevelChaosGems + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, to Strength and Dexterity
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedStrengthDexterity := Affix.AddedStrengthDexterity + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Dexterity and Intelligence
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedDexterityIntelligence := Affix.AddedDexterityIntelligence + Arr1
+						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
+					Continue	
+					}
+					IfInString, A_LoopField, to Strength and Intelligence
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, +
+						Affix.AddedStrengthIntelligence := Affix.AddedStrengthIntelligence + Arr1
+						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
+						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, to Intelligence
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, +
@@ -4139,30 +4186,6 @@ Return
 						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
 						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
 						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
-					Continue	
-					}
-					IfInString, A_LoopField, to Strength and Dexterity
-					{
-						StringSplit, Arr, A_LoopField, %A_Space%, +
-						Affix.AddedStrengthDexterity := Affix.AddedStrengthDexterity + Arr1
-						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
-						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
-					Continue	
-					}
-					IfInString, A_LoopField, to Dexterity and Intelligence
-					{
-						StringSplit, Arr, A_LoopField, %A_Space%, +
-						Affix.AddedDexterityIntelligence := Affix.AddedDexterityIntelligence + Arr1
-						Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
-						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
-					Continue	
-					}
-					IfInString, A_LoopField, to Strength and Intelligence
-					{
-						StringSplit, Arr, A_LoopField, %A_Space%, +
-						Affix.AddedStrengthIntelligence := Affix.AddedStrengthIntelligence + Arr1
-						Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
-						Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
 					Continue	
 					}
 					IfInString, A_LoopField, to Armour
@@ -4845,20 +4868,14 @@ Return
 						Continue
 						}
 					}
+					If InStr(A_LoopField,"Grants Level")
+					{
+						Arr := StrSplit(StrSplit(A_LoopField, "Grants Level", " ")[2]," ",,2)
+						Affix.GrantedSkill := StrReplace(Arr[2], " Skill") 
+						Affix.GrantedSkillLevel := Arr[1]
+					Continue
+					}
 				}
-			}
-			; Corrupted
-			IfInString, A_LoopField, Corrupted
-			{
-					If possibleCorruption{
-						Affix.Corruption := possibleCorruption
-						Prop.Corrupted := True
-					}
-					If possibleCorruption2 {
-						Affix.Corruption2 := possibleCorruption2
-						Prop.DoubleCorrupted := True
-					}
-				Continue
 			}
 			; Stack size
 			IfInString, A_LoopField, Stack Size:
@@ -4870,7 +4887,7 @@ Return
 				Continue
 			}
 			; Flag Unidentified
-			IfInString, A_LoopField, Unidentified
+			If (A_LoopField= "Unidentified")
 			{
 				Prop.Identified := False
 				continue
@@ -5265,7 +5282,7 @@ Return
 					}
 					Else If (Prop.IsMap)
 					{
-						If InStr(Prop.ItemName, Ninja[TKey][index]["name"])
+						If InStr(Prop.ItemName, Ninja[TKey][index]["name"]) && (Prop.RarityUnique || (!Prop.RarityUnique && Prop.MapTier = Ninja[TKey][index]["mapTier"]))
 						{
 							Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 							Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
@@ -5921,7 +5938,6 @@ Return
 	; LootScan - Finds matching colors under the cursor while key pressed
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	LootScan(Reset:=0){
-		LootScanCommand:
 			Static GreenHex := 0x32DE24, QuestHex := 0x47E635
 			If (!ComboHex || Reset)
 			{
@@ -5934,45 +5950,21 @@ Return
 			}
 			Pressed := GetKeyState(hotkeyLootScan,"P")
 			If (Pressed&&LootVacuum)
-			Loop
 			{
 				If AreaScale
 				{
 					MouseGetPos mX, mY
 					ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
 					ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-					If (loot := FindText(x,y,xx,yy,0,0,ComboHex,1,0))
+					If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0))
 					{
 						ScanPx := loot.1.1 + loot.1.3, ScanPy := loot.1.2 + loot.1.4, ScanId := loot.1.id
 						, difX := Abs(ScanPx - mX), difY := Abs(ScanPy - mY)
-						; If (ScanId != "Single")
-						; {
-						; 	If (ScanPx < mX && difX > (AreaScale - 8))
-						; 		ScanPx -= 15
-						; 	Else
-						; 		ScanPx += 15
-						; 	If (ScanPy < mY && difY > (AreaScale - 8))
-						; 		ScanPy -= 15
-						; 	Else
-						; 		ScanPy += 15
-						; }
-						; If (loot.1.id = "FIVE")
-						 	ScanPx += 10, ScanPy += 10
+					 	, ScanPx += 10, ScanPy += 10
 						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
-						{
-							BlockInput, on
-							If GetKeyState("RButton","P")
-							Send {RButton Up}
-							If GetKeyState("LButton","P")
-							Send {LButton Up}
-							; MouseMove, ScanPx, ScanPy
-							Click %ScanPx%, %ScanPy%
-							If GetKeyState("RButton","P")
-							Send {RButton Down}
-							BlockInput, off
-						}
+							GoSub LootScan_Click
 						Sleep, %LVdelay%
-						Continue
+						Return
 					}
 					MouseGetPos mX, mY
 					ClampGameScreen(x := mX - AreaScale * 2.5, y := mY - AreaScale * 2.5)
@@ -5980,25 +5972,10 @@ Return
 					If (loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0))
 					{
 						ScanPx := loot.1.1, ScanPy := loot.1.y
-						; If (loot.1.id ~= "Cocoon")
-						; 	ScanPy += 50
-						; Else If (loot.1.id ~= "Door")
-							ScanPy += 50
-						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
-						{
-							BlockInput, on
-							If GetKeyState("RButton","P")
-							Send {RButton Up}
-							If GetKeyState("LButton","P")
-							Send {LButton Up}
-							; MouseMove, ScanPx, ScanPy
-							Click %ScanPx%, %ScanPy%
-							If GetKeyState("RButton","P")
-							Send {RButton Down}
-							BlockInput, off
-						}
+						, ScanPy += 30
+						GoSub LootScan_Click
 						Sleep, %LVdelay%
-						Continue
+						Return
 					}
 				}
 				Else
@@ -6012,8 +5989,36 @@ Return
 							Sleep, %LVdelay%
 						}
 				}
-				Pressed := GetKeyState(hotkeyLootScan,"P")
-			} Until !Pressed
+				; Pressed := GetKeyState(hotkeyLootScan,"P")
+			}
+			Else
+				LootScanActive := False
+		Return
+
+		LootScanCommand:
+			If !LootScanActive
+			{
+				LootScanActive:=True
+				LootScan()
+			}
+		Return
+
+		LootScan_Click:
+			LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
+			If (LP || RP)
+			{
+				If LP
+					Click, up
+				If RP
+					Click, Right, up
+				Sleep, 25
+			}
+			; MouseMove, ScanPx, ScanPy
+			BlockInput, MouseMove
+			Click %ScanPx%, %ScanPy%
+			BlockInput, Mousemoveoff
+			If (GetKeyState("RButton","P"))
+				Click, Right, down
 		Return
 		}
 
@@ -6023,18 +6028,18 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TGameTick(GuiCheck:=True)
 	{
+		Static LastAverageTimer:=0, tallyMS:=0, tallyCPU:=0
 		If WinActive(GameStr)
 		{
-			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines))
+			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
 				Exit
-			OutsideTimer := A_TickCount - OutsideTimer
-			t1 := A_TickCount
+			If (DebugMessages && YesTimeMS)
+				t1 := A_TickCount
 			; Check what status is your character in the game
 			if (GuiCheck)
 			{
 				If !GuiStatus()
 					Exit
-				t5 := A_TickCount - t1
 			}
 			If (DetonateMines&&!Detonated)
 			{
@@ -6048,7 +6053,6 @@ Return
 			If (AutoFlask || AutoQuit)
 			{
 				if (RadioLife) {
-					t2 := A_TickCount
 					If (YesOHB && OnMines)
 					{
 						If (OHBxy := CheckOHB())
@@ -6324,10 +6328,8 @@ Return
 								}
 						}
 					}
-					t2 := A_TickCount - t2
 				}
 				Else if (RadioHybrid) {
-					t2 := A_TickCount
 					If (YesOHB && OnMines)
 					{
 						If (OHBxy := CheckOHB())
@@ -6601,8 +6603,6 @@ Return
 								}
 						}
 					}
-					t2 := A_TickCount - t2
-					t3 := A_TickCount
 					If ( (TriggerES20!="00000")
 						|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
 						|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
@@ -6733,10 +6733,8 @@ Return
 				
 						}
 					}
-					t3 := A_TickCount - t3
 				}
 				Else if (RadioCi) {
-					t3 := A_TickCount
 					If ( (TriggerES20!="00000") 
 						|| (AutoQuit&&RadioQuit20)
 						|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
@@ -6897,16 +6895,13 @@ Return
 				
 						}
 					}
-					t3 := A_TickCount - t3
 				}
 				
 				If (TriggerMana10!="00000") {
-					t4 := A_TickCount
 					ManaPerc := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
 					if (ManaPerc!=varManaThreshold) {
 						TriggerMana(TriggerMana10)
 					}
-					t4 := A_TickCount - t4
 				}
 
 				If (MainAttackPressedActive && TriggerMainAttack > 0 && AutoFlask)
@@ -6944,20 +6939,30 @@ Return
 					}
 				}
 			}
-			If (YesTimeMS)
+			If LootVacuum
+				LootScan()
+			AutoSkillUp()
+			If (DebugMessages && YesTimeMS)
 			{
 				If WinActive(GameStr)
 				{
-					Ding(3000,6,"Total Time:`t" . A_TickCount - t1 . "MS")
-					Ding(3000,7,"Health Time:`t" . t2 . "MS")
-					Ding(3000,8,"E. S. Time:`t" . t3 . "MS")
-					Ding(3000,9,"Mana Time:`t" . t4 . "MS")
-					Ding(3000,10,"Status Time:`t" . t5 . "MS")
-					If (OutsideTimer < 999999)
-						Ding(3000,11,"Out loop:`t" . OutsideTimer . "MS")
+					If ((t1-LastAverageTimer) > 500)
+					{
+						Ding(3000,2,"Total Time: `t" . tallyMS . "MS")
+						Ding(3000,3,"CPU Load:   `t" . Round(tallyCPU,2) . "`%")
+						tallyMS := 0
+						tallyCPU := 0
+						LastAverageTimer := A_TickCount
+					}
+					Else
+					{
+						t1 := A_TickCount - t1
+						tallyMS := (t1>tallyMS?t1:tallyMS)
+						load := GetProcessTimes(ScriptPID)
+						tallyCPU :=(load>tallyCPU?load:tallyCPU)
+					}
 				}
 			}
-			OutsideTimer := A_TickCount
 		}
 		Return
 	}
@@ -7063,7 +7068,7 @@ Return
 			Return
 		if AutoFlask
 		{
-			If !GuiStatus("NoSS")
+			If !GuiStatus(,0)
 				Exit
 			TriggerFlask(TriggerMainAttack)
 			MainAttackPressedActive := True
@@ -7078,7 +7083,7 @@ Return
 			Return
 		if AutoFlask
 		{
-			If !GuiStatus("NoSS")
+			If !GuiStatus(,0)
 				Exit
 			TriggerFlask(TriggerSecondaryAttack)
 		}
@@ -7178,10 +7183,8 @@ Return
 			CtlColors.Attach(CTIDOnLeft, "", "Red")
 			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDelveChart hwndCTIDOnDelveChart, % "       OnDelveChart "
 			CtlColors.Attach(CTIDOnDelveChart, "", "Red")
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDetonate hwndCTIDOnDetonate, % "       OnDetonate "
+			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnDetonate hwndCTIDOnDetonate, % "       OnDetonate "
 			CtlColors.Attach(CTIDOnDetonate, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnDetonateDelve hwndCTIDOnDetonateDelve, % "OnDetonateDelve"
-			CtlColors.Attach(CTIDOnDetonateDelve, "", "Red")
 			Gui, States: Add, Button, gCheckPixelGrid xm+5 y+15 w190 , Check Inventory Grid
 			; ----------------------------------------------------------------------------------------------------------------------
 			Gui, States: Show ,  , Check Gamestates
@@ -7204,7 +7207,6 @@ Return
 		; ----------------------------------------------------------------------------------------------------------------------
 		CheckGamestates:
 			GuiStatus()
-			GuiStatus("OnDetonate")
 			If (OnChar)
 				CtlColors.Change(CTIDOnChar, "Lime", "")
 			Else
@@ -7241,10 +7243,6 @@ Return
 				CtlColors.Change(CTIDOnDetonate, "Lime", "")
 			Else
 				CtlColors.Change(CTIDOnDetonate, "", "Red")
-			If (OnDetonateDelve)
-				CtlColors.Change(CTIDOnDetonateDelve, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnDetonateDelve, "", "Red")
 			If (OnMenu)
 				CtlColors.Change(CTIDOnMenu, "Lime", "")
 			Else
@@ -7480,16 +7478,16 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	AutoSkillUp()
 	{
-		If (YesAutoSkillUp && OnChar)
+		Static LastCheck:=0
+		If (YesAutoSkillUp && OnChar && (A_TickCount - LastCheck > 200))
 		{
 			IfWinActive, ahk_group POEGameGroup 
 			{
 				If (YesWaitAutoSkillUp && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
 					Return
-				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr))
+				LastCheck := A_TickCount
+				if (ok:=FindText( Round(GameX + GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr,0))
 				{
-					If !GuiStatus("OnChar")
-						Return
 					X:=ok.1.1, Y:=ok.1.2, W:=ok.1.3, H:=ok.1.4, X+=W//2, Y+=H//2
 					MouseGetPos, mX, mY
 					LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
@@ -7499,19 +7497,20 @@ Return
 							Click, up
 						If RP
 							Click, Right, up
-						DllCall("Sleep", "UInt", 25)
+						Sleep, 25
 					}
 					BlockInput, MouseMove
 					MouseMove, X, Y, 0
-					DllCall("Sleep", "UInt", 20)
+					Sleep, 20
 					Click %X%, %Y%
-					DllCall("Sleep", "UInt", 45)
+					Sleep, 30
 					MouseMove, mX, mY, 0
+					Sleep, 15
 					BlockInput, MouseMoveOff
 					LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
 					If (LP || RP)
 					{
-						DllCall("Sleep", "UInt", 25)
+						Sleep, 25
 						If LP
 							Click, down
 						If RP
@@ -10357,7 +10356,7 @@ Return
 	}
 
 	{ ; Calibration color sample functions - updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
-	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate, updateDetonateDelve
+	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate
 		updateOnChar:
 			Thread, NoTimers, True
 			Gui, Submit ; , NoHide
@@ -10653,37 +10652,15 @@ Return
 			
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
-				varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+				If OnMines
+					varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+				Else
+					varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
 				IniWrite, %varOnDetonate%, settings.ini, Failsafe Colors, OnDetonate
 				readFromFile()
-				MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . DetonateX . " and y: " . DetonateY
+				MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY
 			}else
 			MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
-			
-			hotkeys()
-			
-		return
-
-		updateDetonateDelve:
-			Thread, NoTimers, True
-			Gui, Submit ; , NoHide
-			IfWinExist, ahk_group POEGameGroup
-			{
-				Rescale()
-				WinActivate, ahk_group POEGameGroup
-			} else {
-				MsgBox % "PoE Window does not exist. `nRecalibrate of OnDetonate using delve position didn't work"
-				Return
-			}
-			
-			if WinActive(ahk_group POEGameGroup){
-				ScreenShot()
-				varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
-				IniWrite, %varOnDetonate%, settings.ini, Failsafe Colors, OnDetonate
-				readFromFile()
-				MsgBox % "OnDetonate recalibrated using delve position!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . DetonateDelveX . " and y: " . DetonateY
-			}else
-			MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonateDelve didn't work"
 			
 			hotkeys()
 			
@@ -11025,8 +11002,12 @@ Return
 						Exit
 					}
 					if WinActive(ahk_group POEGameGroup){
-						ScreenShot(), varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-						SampleTT .= "Detonate Mines took BGR color hex: " . varOnDetonate . "    At coords x: " . DetonateX . " and y: " . DetonateY . "`n"
+						ScreenShot()
+						If OnMines
+							varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+						Else
+							varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+						SampleTT .= "Detonate Mines took BGR color hex: " . varOnDetonate . "    At coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY . "`n"
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
 				}

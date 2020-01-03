@@ -425,7 +425,7 @@
                PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
           }
           else
-               Ding(1000,1,"Wingman Script Not Found`nUnable to share CD") ;Turn on debug messages to see error information from GGF sendMSG
+               Ding(1000,9,"Wingman Script Not Found`nUnable to share CD") ;Turn on debug messages to see error information from GGF sendMSG
           DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
           Return
      }

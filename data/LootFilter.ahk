@@ -22,13 +22,17 @@
 
     Prop := {ItemName: ""
         , ItemBase : ""
+        , ChaosValue : 0
+        , ExaltValue : 0
         , IsItem : False
         , IsWeapon : False
         , IsMap : False
+        , MapTier : 0
         , Support : False
         , VaalGem : False
         , AffixCount : 0
         , Rarity : ""
+        , Influence : ""
         , SpecialType : ""
         , RarityCurrency : False
         , RarityDivination : False
@@ -123,6 +127,8 @@
 
     Affix := { SupportGem : ""
         , SupportGemLevel : 0
+        , GrantedSkill : 0
+        , GrantedSkillLevel : 0
         , CountSupportGem : 0
         , AllElementalResistances : 0
         , ColdLightningResistance : 0

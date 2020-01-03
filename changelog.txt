@@ -1,6 +1,36 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.03 January/02/2020
+--------------------------------------------------------------------------------
+Additions to the Custom Loot Filter
+    Added inlfuence types to item parser
+        Prop.Influence ~ Elder|Shaper|Hunter|Redeemer|Warlord|Crusader
+    Prop.ChaosValue and Prop.ExaltValue added to selectable list
+    Prop.MapTier, Affix.GrantedSkill & Affix.GrantedSkillLevel have been added
+
+Ninja API Parser adjusted to acount for changes to maps
+    Now matches maps based on their tier
+    Unique maps will not match based on tier (they are inconsistant tiering)
+
+Debug messages have all been adjusted to take up less screen space
+    Simplified the FlaskMS readout to just simple MS time and CPU load
+        it will show the largest number in the last half second
+    C log output has also been simplified, shows status and current location
+
+CPU load has been reduced by removing CoolTime() from everything
+    It was great for determining exact ms values down to the microsecond
+    its purpose is done though, and we no longer need this
+
+Loot Vacuum has been implimented into the main timer, no longer loops on its own
+    This seems to speed up the first press of the hotkey
+    also allows the rest of script to keep running while pressed
+
+Calibration for OnDetonate has been streamlined
+    The two buttons have been combined, it just determines if you are OnMines
+    Same has been done to the calibration wizard
+    Same in gamestates, they are just one status OnDetonate
+
 Version .09.02 December/30/2019
 --------------------------------------------------------------------------------
 More adjustments towards removing extra screenshots

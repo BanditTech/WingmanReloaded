@@ -2950,18 +2950,16 @@ Structure of most functions:
 *     v1.0.1 [updated 12/17/2019 (MM/DD/YYYY)]
 */
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GuiStatus(Fetch:=""){
-		If (Fetch!="NoSS")
+	GuiStatus(Fetch:="",SS:=1){
+		If (SS)
             ScreenShot(Gamex,GameY,GameX+GameW,GameY+GameH)
 		If (Fetch="OnDetonate")
         {
-            DelveMine := ScreenShot_GetColor(DetonateDelveX,DetonateY)
-            Mine := ScreenShot_GetColor(DetonateX,DetonateY)
-            OnDetonate := (Mine=varOnDetonate?True:False)
-            OnDetonateDelve := (DelveMine=varOnDetonate?True:False)
-            Return
+            POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+            , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
+            Return OnDetonate
         }
-		If !(Fetch=""||Fetch="NoSS")
+		Else If !(Fetch="")
         {
             P%Fetch% := ScreenShot_GetColor(vX_%Fetch%,vY_%Fetch%)
             temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
@@ -3463,14 +3461,14 @@ Structure of most functions:
                     If A_Index = 1
                     {
                         If MultiTooltip
-                            ToolTip, %mval%, 100, % 50 + MultiTooltip* 23, %MultiTooltip% 
+                            ToolTip, %mval%, 20, % 40 + MultiTooltip* 23, %MultiTooltip% 
                         Else
                             debugStr .= Message.A_Index
                     }
                     Else if A_Index <= 20
                     {
                         If MultiTooltip
-                            ToolTip, %mval%, 100, % 50 + A_Index* 23, %A_Index% 
+                            ToolTip, %mval%, 20, % 40 + A_Index* 23, %A_Index% 
                         Else
                             debugStr .= "`n" . Message.A_Index
                     }
@@ -3481,7 +3479,7 @@ Structure of most functions:
             Else
             {
                 If MultiTooltip
-                    ToolTip, Ding, 100, % 50 + MultiTooltip* 23, %MultiTooltip% 
+                    ToolTip, Ding, 20, % 40 + MultiTooltip* 23, %MultiTooltip% 
                 Else
                     Tooltip, Ding
             }
@@ -4107,7 +4105,7 @@ Structure of most functions:
     ShowToolTip()
     {
         global ft_ToolTip_Text
-        If PauseTooltips
+        If (PauseTooltips || WinActive(GameStr))
             Return
         ListLines, Off
         static CurrControl, PrevControl, _TT
@@ -4201,7 +4199,7 @@ Structure of most functions:
 				holder := JSON.Load(JSONtext)
 				For obj, objlist in holder
 				{
-					If (obj != "currencyDetails") 
+					If (obj != "currencyDetails" || obj != "language") 
 					{
 						for index, indexArr in objlist
 						{ ; This will extract the information and standardize the chaos value to one variable.
@@ -4240,7 +4238,7 @@ Structure of most functions:
 				holder := JSON.Load(JSONtext)
 				For obj, objlist in holder
 				{
-					If (obj != "currencyDetails") 
+					If (obj != "currencyDetails" || obj != "language") 
 					{
 						for index, indexArr in objlist
 						{
@@ -4294,7 +4292,7 @@ Structure of most functions:
 				holder := JSON.Load(JSONtext)
 				For obj, objlist in holder
 				{
-					If (obj != "currencyDetails")
+					If (obj != "currencyDetails" || obj != "language")
 					{
 						for index, indexArr in objlist
 						{
@@ -4305,6 +4303,7 @@ Structure of most functions:
 							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
 							grabLinks := (holder[obj][index]["links"] ? holder[obj][index]["links"] : False)
 							grabVariant := (holder[obj][index]["variant"] ? holder[obj][index]["variant"] : False)
+							grabMapTier := (holder[obj][index]["mapTier"] ? holder[obj][index]["mapTier"] : False)
 							
 							holder[obj][index] := {"name":grabName
 								,"chaosValue":grabChaosVal
@@ -4313,6 +4312,8 @@ Structure of most functions:
 								,"lowConfidenceSparkline":grabLowSparklineVal
 								,"links":grabLinks
 								,"variant":grabVariant}
+                            If grabMapTier
+                                holder[obj][index]["mapTier"] := grabMapTier
 						}
 					}
 				}
@@ -4443,7 +4444,7 @@ Structure of most functions:
             }
             Else
             {
-                Ding(500,5,"OHB Not Found")
+                Ding(500,6,"OHB Not Found")
                 Return False
             }
         }
@@ -4457,7 +4458,7 @@ Structure of most functions:
         Global OHB, OHBLHealthHex
         If !CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(OHB.X+1, PosY)),Variance)
         {
-            Ding(500,4,"OHB Obscured, Moved, or Dead" )
+            Ding(500,7,"OHB Obscured, Moved, or Dead" )
             Return HPerc
         }
         Else
@@ -6497,7 +6498,6 @@ Structure of most functions:
         global ClientLog, CLogFO, CurrentLocation
         OldTown := OnTown, OldHideout := OnHideout, OldMines := OnMines, OldLocation := CurrentLocation
         SetTimer,% A_ThisFunc, 500 ; auto set timer
-        timeMon := CoolTime()
         if (Initialize)
         {
             Try
@@ -6527,14 +6527,10 @@ Structure of most functions:
                     If CurrentLocation = ""
                         CurrentLocation := "Nothing Found"
                 }
-                timeMon := Round((CoolTime() - timeMon) * 1000,1)
                 If (DebugMessages && YesLocation && WinActive(GameStr))
                 {
-                    Ding(6000,14,"OnTown   `t" OnTown)
-                    Ding(6000,15,"OnHideout`t" OnHideout)
-                    Ding(6000,16,"OnMines  `t" OnMines)
-                    Ding(6000,17,CurrentLocation)
-                    Ding(6000,19,"First Load`t" timeMon " MilliSeconds")
+                    Ding(6000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
+                    Ding(6000,5,CurrentLocation)
                 }
                 If (VersionNumber != "")
                 Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
@@ -6553,18 +6549,16 @@ Structure of most functions:
                 Loop, Parse,% latestFileContent,`n,`r 
                 {
                     ClientLogText := A_LoopField
+                    If InStr(A_LoopField, "] $") || InStr(A_LoopField, "] &") || InStr(A_LoopField, "] `%") || InStr(A_LoopField, "] #") || InStr(A_LoopField, "] @")
+                        Return
                     ; MsgBox, line %A_LoopField%
                     CompareLocation(ClientLogText)
                 }
             }
-            timeMon := Round((CoolTime() - timeMon) * 1000000,1)
             If (DebugMessages && YesLocation && WinActive(GameStr))
             {
-                Ding(2000,14,"OnTown   `t" OnTown)
-                Ding(2000,15,"OnHideout`t" OnHideout)
-                Ding(2000,16,"OnMines  `t" OnMines)
-                Ding(2000,17,CurrentLocation)
-                Ding(2000,18,"MicroSeconds  " timeMon)
+                Ding(2000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
+                Ding(2000,5,CurrentLocation)
             }
             If YesLocation && (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
                 Log("Zone Change Detected","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
