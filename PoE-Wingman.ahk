@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.03
+    Global VersionNumber := .09.04
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -358,7 +358,7 @@
 			HighBits = These settings are for the LutBot Quit method`rEnable this to set the EXE as 64bit version
 			AutoUpdateOff = Enable this to not check for new updates when launching the script
 			YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
-			ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rUltraWide is 32:9
+			ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rCinematic(43:18) is 43:18`rUltraWide is 32:9
 			Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
 			PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
 			PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
@@ -855,7 +855,7 @@
 	readFromFile()
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Thread, NoTimers, true		;Critical
+	Thread, Priority, 1		;Critical
 	Critical
 	Tooltip, Loading GUI 00`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13
@@ -1340,10 +1340,10 @@
 	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
 	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
 	Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w80               	    		, Standard|Classic|Cinematic|UltraWide
+	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w90               	    		, Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
-	Gui, Add, DropDownList, gUpdateExtra vLatency w30 xs y+10,  %Latency%||1|2|3
+	Gui, Add, DropDownList, gUpdateExtra vLatency w30 xs y+10,  %Latency%||1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
 	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
 	Gui Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
 	Gui add, Button, gSelectClientLog x+5 , Locate Logfile
@@ -2092,7 +2092,7 @@
 			}
 		}
 	}
-	Thread, NoTimers, False		;End Critical
+	Thread, Priority, 0		;End Critical
 	Critical, Off
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2179,7 +2179,7 @@ Return
 		If RunningToggle  ; This means an underlying thread is already running the loop below.
 		{
 			RunningToggle := False  ; Signal that thread's loop to stop.
-			If (AutoQuit || AutoFlask || DetonateMines)
+			If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
 				SetTimer, TGameTick, On
 			exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
 		}
@@ -2187,14 +2187,14 @@ Return
 		IfWinActive, ahk_group POEGameGroup
 		{
 			RunningToggle := True
-			If (AutoQuit || AutoFlask || DetonateMines)
+			If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
 				SetTimer, TGameTick, Off
 			GuiStatus()
 			If (!OnChar) 
 			{ ;Need to be on Character 
 				MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
 				RunningToggle := False
-				If (AutoQuit || AutoFlask || DetonateMines)
+				If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
 					SetTimer, TGameTick, On
 				Return
 			} 
@@ -2217,7 +2217,7 @@ Return
 					{
 						Send {%hotkeyInventory%}
 						RunningToggle := False
-						If (AutoQuit || AutoFlask || DetonateMines)
+						If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
 							SetTimer, TGameTick, On
 						Return
 					}
@@ -2226,7 +2226,7 @@ Return
 				{
 					Send {%hotkeyInventory%}
 					RunningToggle := False
-					If (AutoQuit || AutoFlask || DetonateMines)
+					If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
 						SetTimer, TGameTick, On
 					Return
 				}
@@ -2243,7 +2243,7 @@ Return
 		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
 		RandomSleep(60,90)
 		MouseMove, xx, yy, 0
-		If (AutoQuit || AutoFlask || DetonateMines)
+		If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
 			SetTimer, TGameTick, On
 	Return
 	; ShooMouse - Move mouse out of the inventory area
@@ -2268,7 +2268,7 @@ Return
 		SortGem := {}
 		BlackList := Array_DeepClone(IgnoredSlot)
 		; Move mouse out of the way to grab screenshot
-		ShooMouse(), ScreenShot()
+		ShooMouse(), GuiStatus()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2296,7 +2296,7 @@ Return
 				ClipItem(Grid.X,Grid.Y)
 				addToBlacklist(C, R)
 				If !Prop.IsItem
-					ShooMouse(),ScreenShot(),Continue
+					ShooMouse(),GuiStatus(),Continue
 				If (!Prop.Identified&&YesIdentify)
 				{
 					If (Prop.IsMap&&!YesMapUnid)
@@ -2406,7 +2406,7 @@ Return
 		}
 		BlackList := Array_DeepClone(IgnoredSlot)
 		; Move mouse away for Screenshot
-		ShooMouse(), ScreenShot()
+		ShooMouse(), GuiStatus()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2566,7 +2566,7 @@ Return
 						If (StashTabYesUniqueRing)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueRing)
@@ -2575,7 +2575,7 @@ Return
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
@@ -2594,7 +2594,7 @@ Return
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
@@ -2777,7 +2777,7 @@ Return
 						If (StashTabYesUniqueRing)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueRing)
@@ -2786,7 +2786,7 @@ Return
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
@@ -2805,7 +2805,7 @@ Return
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), ScreenShot(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
@@ -2948,15 +2948,15 @@ Return
 					LeftClick(Vendor.1.x, Vendor.1.y)
 					Loop, 66
 					{
-						Sleep, 200
-						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
+						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr,1,0))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
-							Sleep, 200*Latency
+							Sleep, 100*Latency
 							Break
 						}
+						Sleep, 100
 					}
-					sleep, 200
+					; sleep, 200
 					VendorRoutine()
 					Return
 				}
@@ -3036,15 +3036,15 @@ Return
 					LeftClick(Vendor.1.x, Vendor.1.y)
 					Loop, 66
 					{
-						Sleep, 200
 						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
 						{
 							LeftClick(Sell.1.1 + 5,Sell.1.2 + 5)
-							Sleep, 200*Latency
+							Sleep, 100*Latency
 							Break
 						}
+						Sleep, 100
 					}
-					Sleep, 200
+					; Sleep, 200
 					VendorRoutine()
 					Return
 				}
@@ -3057,7 +3057,7 @@ Return
 	DivRoutine()
 	{
 		BlackList := Array_DeepClone(IgnoredSlot)
-		ShooMouse(), ScreenShot()
+		ShooMouse(), GuiStatus()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -3104,7 +3104,7 @@ Return
 	IdentifyRoutine()
 	{
 		BlackList := Array_DeepClone(IgnoredSlot)
-		ShooMouse(), ScreenShot()
+		ShooMouse(), GuiStatus()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -3164,9 +3164,9 @@ Return
 	ClipItem(x, y){
 			BlockInput, MouseMove
 			Clipboard := ""
-			Sleep, 60
+			Sleep, 30
 			MouseMove %x%, %y%
-			Sleep, 60*Latency
+			Sleep, 30*Latency
 			Send ^c
 			ClipWait, 0
 			ParseClip()
@@ -3419,6 +3419,13 @@ Return
 			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Elder" : "Elder")
 		If InStr(Clipboard, "`nShaper Item", 1)
 			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Shaper" : "Shaper")
+		If InStr(Clipboard, "`nTravel to this Map by using it in a personal Map Device. Maps can only be used once.")
+		{
+			Prop.IsMap := True
+			Prop.SpecialType := "Map"
+			Stats.ItemClass := "Maps"
+		}
+
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -3549,13 +3556,6 @@ Return
 					IfInString, A_LoopField, Amulet
 					{
 						Prop.Amulet := True
-						Continue
-					}
-					IfInString, A_LoopField, Map
-					{
-						Prop.IsMap := True
-						Prop.SpecialType := "Map"
-						Stats.ItemClass := "Maps"
 						Continue
 					}
 					IfInString, A_LoopField, Incubator

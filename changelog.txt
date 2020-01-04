@@ -1,6 +1,23 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.04 January/03/2020
+--------------------------------------------------------------------------------
+Found the issue with OnDetonate, GuiStatus only sampled when Auto-Mines was on
+
+Bugfix for randomly selling maps, better method of determining if its a map
+
+Adjustments of action delays
+    ClipItem has been adjusted to make it much faster
+    All the PoE-Click library has been adjusted, I left the old methods there
+        if for some reason you want to use the old style, edit Old:=0 to Old:=1
+
+Latency setting has new options to allow for smaller incriments of adjustment
+    Allow for 1/10ths to give options like 1.4 latency
+
+Added the submission of a new Aspect ratio: Cinematic(43:18)
+    Thank you to ZeroneXYZ for their submission
+
 Version .09.03 January/02/2020
 --------------------------------------------------------------------------------
 Additions to the Custom Loot Filter

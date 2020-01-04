@@ -2974,9 +2974,10 @@ Structure of most functions:
         POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
         POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
         POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
-        If DetonateMines
-        POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-        , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
+        If OnMines
+        POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+        Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+        OnDetonate := (POnDetonate=varOnDetonate?True:False)
 		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))
 	}
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -3080,14 +3081,29 @@ Structure of most functions:
     SwiftClick(x, y){
             MouseMove, x, y	
             Sleep, 30*Latency
-            Send {Click, x, y }
+            Send {Click}
             Sleep, 30*Latency
         return
         }
 
     ; SwiftClick - Left Click at Coord
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    LeftClick(x, y){
+    LeftClick(x, y, Old:=0){
+        If Old
+        Goto OldStyleLeft
+        Else
+        {
+            BlockInput, MouseMove
+            Sleep, 45*Latency
+            MouseMove, x, y
+            Sleep, 45*Latency
+            Send {Click}
+            Sleep, 60*Latency
+            BlockInput, MouseMoveOff
+        }
+        Return
+        
+        OldStyleLeft:
             MouseMove, x, y	
             Sleep, 30*Latency
             Send {Click, Down x, y }
@@ -3099,7 +3115,22 @@ Structure of most functions:
 
     ; RightClick - Right Click at Coord
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    RightClick(x, y){
+    RightClick(x, y, Old:=0){
+        If Old
+        Goto OldStyleRight
+        Else
+        {
+            BlockInput, MouseMove
+            Sleep, 45*Latency
+            MouseMove, x, y
+            Sleep, 45*Latency
+            Send {Click, Right}
+            Sleep, 60*Latency
+            BlockInput, MouseMoveOff
+        }
+        Return
+
+        OldStyleRight:
             BlockInput, MouseMove
             MouseMove, x, y
             Sleep, 30*Latency
@@ -3113,7 +3144,23 @@ Structure of most functions:
 
     ; ShiftClick - Shift Click +Click at Coord
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ShiftClick(x, y){
+    ShiftClick(x, y, Old:=0){
+        If Old
+        Goto OldStyleShift
+        Else
+        {
+            BlockInput, MouseMove
+            Sleep, 45*Latency
+            MouseMove, x, y
+            Sleep, 45*Latency
+            Send +{Click}
+            Sleep, 60*Latency
+            BlockInput, MouseMoveOff
+        }
+        Return
+
+        
+        OldStyleShift:
             BlockInput, MouseMove
             MouseMove, x, y
             Sleep, 30*Latency
@@ -3131,14 +3178,29 @@ Structure of most functions:
 
     ; CtrlClick - Ctrl Click ^Click at Coord
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CtrlClick(x, y){
+    CtrlClick(x, y, Old:=0){
+        If Old
+        Goto OldStyleCtrl
+        Else
+        {
+            BlockInput, MouseMove
+            Sleep, 45*Latency
+            MouseMove, x, y
+            Sleep, 45*Latency
+            Send ^{Click}
+            Sleep, 60*Latency
+            BlockInput, MouseMoveOff
+        }
+        Return
+
+        OldStyleCtrl:
             BlockInput, MouseMove
             MouseMove, x, y
             Sleep, 30*Latency
             Send {Ctrl Down}
             Sleep, 45*Latency
             Send {Click, Down, x, y}
-            Sleep, 60*Latency
+            Sleep, 45*Latency
             Send {Click, Up, x, y}
             Sleep, 30*Latency
             Send {Ctrl Up}
@@ -3159,19 +3221,6 @@ Structure of most functions:
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	WisdomScroll(x, y){
 			BlockInput, MouseMove
-			; ;Sleep, 15*Latency
-			; MouseMove %WisdomScrollX%, %WisdomScrollY%
-			; Sleep, 30*Latency
-			; Click, Down, Right, 1
-			; Sleep, 60*Latency
-			; Click, Up, Right, 1
-			; Sleep, 30*Latency
-			; MouseMove %x%, %y%
-			; Sleep, 30*Latency
-			; Click, Down, Left, 1
-			; Sleep, 60*Latency
-			; Click, Up, Left, 1
-			; Sleep, 30*Latency
             RightClick(WisdomScrollX,WisdomScrollY)
             LeftClick(x,y)
 			BlockInput, MouseMoveOff
@@ -3886,6 +3935,83 @@ Structure of most functions:
                     ;calculate the height of each tab
                     global vY_StashTabSize := Round(GameH / ( 1080 / 22))
 				} 
+                Else If (ResolutionScale="Cinematic(43:18)") {
+                    ;Item Inventory Grid
+                    Global InventoryGridX := [ Round(GameW/(3440/2579)), Round(GameW/(3440/2649)), Round(GameW/(3440/2719)), Round(GameW/(3440/2789)), Round(GameW/(3440/2860)), Round(GameW/(3440/2930)), Round(GameW/(3440/3000)), Round(GameW/(3440/3070)), Round(GameW/(3440/3140)), Round(GameW/(3440/3211)), Round(GameW/(3440/3281)), Round(GameW/(3440/3351)) ]
+                    Global InventoryGridY := [ Round(GameH/(1440/851)), Round(GameH/(1440/921)), Round(GameH/(1440/992)), Round(GameH/(1440/1062)), Round(GameH/(1440/1132)) ]
+                    ;Detonate Mines
+                    Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
+                    Global DetonateX:=GameX + Round(GameW/(3440/3090))
+                    Global DetonateY:=GameY + Round(GameH/(1440/1202))
+                    ;Scrolls in currency tab
+                    Global WisdomStockX:=GameX + Round(GameW/(3440/164))
+                    Global PortalStockX:=GameX + Round(GameW/(3440/228))
+                    Global WPStockY:=GameY + Round(GameH/(1440/353))
+                    ;Status Check OnMenu
+                    global vX_OnMenu:=GameX + Round(GameW / 2)
+                    global vY_OnMenu:=GameY + Round(GameH / (1440 / 72))
+                    ;Status Check OnChar
+                    global vX_OnChar:=GameX + Round(GameW / (3440 / 54))
+                    global vY_OnChar:=GameY + Round(GameH / ( 1440 / 1217))
+                    ;Status Check OnChat
+                    global vX_OnChat:=GameX + Round(GameW / (3440 / 0))
+                    global vY_OnChat:=GameY + Round(GameH / ( 1440 / 850))
+                    ;Status Check OnInventory
+                    global vX_OnInventory:=GameX + Round(GameW / (3440 / 2991))
+                    global vY_OnInventory:=GameY + Round(GameH / ( 1440 / 47))
+                    ;Status Check OnStash
+                    global vX_OnStash:=GameX + Round(GameW / (3440 / 448))
+                    global vY_OnStash:=GameY + Round(GameH / ( 1440 / 42))
+                    ;Status Check OnVendor
+                    global vX_OnVendor:=GameX + Round(GameW / (3440 / 1264))
+                    global vY_OnVendor:=GameY + Round(GameH / ( 1440 / 146))
+                    ;Status Check OnDiv
+                    global vX_OnDiv:=GameX + Round(GameW / (3440 / 822))
+                    global vY_OnDiv:=GameY + Round(GameH / ( 1440 / 181))
+                    ;Life %'s
+                    global vX_Life:=GameX + Round(GameW / (3440 / 128))
+                    global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
+                    global vY_Life30:=GameY + Round(GameH / ( 1440 / 1356))
+                    global vY_Life40:=GameY + Round(GameH / ( 1440 / 1329))
+                    global vY_Life50:=GameY + Round(GameH / ( 1440 / 1302))
+                    global vY_Life60:=GameY + Round(GameH / ( 1440 / 1275))
+                    global vY_Life70:=GameY + Round(GameH / ( 1440 / 1248))
+                    global vY_Life80:=GameY + Round(GameH / ( 1440 / 1221))
+                    global vY_Life90:=GameY + Round(GameH / ( 1440 / 1194))
+                    ;ES %'s
+                    If YesEldritchBattery
+                        global vX_ES:=GameX + Round(GameW / (3440 / 3222))
+                    Else
+                        global vX_ES:=GameX + Round(GameW / (3440 / 225))
+                    global vY_ES20:=GameY + Round(GameH / ( 1440 / 1383))
+                    global vY_ES30:=GameY + Round(GameH / ( 1440 / 1356))
+                    global vY_ES40:=GameY + Round(GameH / ( 1440 / 1329))
+                    global vY_ES50:=GameY + Round(GameH / ( 1440 / 1302))
+                    global vY_ES60:=GameY + Round(GameH / ( 1440 / 1275))
+                    global vY_ES70:=GameY + Round(GameH / ( 1440 / 1248))
+                    global vY_ES80:=GameY + Round(GameH / ( 1440 / 1221))
+                    global vY_ES90:=GameY + Round(GameH / ( 1440 / 1194))
+                    ;Mana
+                    global vX_Mana:=GameX + Round(GameW / (3440 / 3314))
+                    global vY_Mana10:=GameY + Round(GameH / (1440 / 1409))
+                    global vY_Mana90:=GameY + Round(GameH / (1440 / 1165))
+                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+                    ;GUI overlay
+                    global GuiX:=GameX + Round(GameW / (3440 / -10))
+                    global GuiY:=GameY + Round(GameH / (1440 / 1370))
+                    ;Divination Y locations
+                    Global vY_DivTrade:=GameY + Round(GameH / (1440 / 983))
+                    Global vY_DivItem:=GameY + Round(GameH / (1440 / 805))
+                    ;Stash tabs menu button
+                    global vX_StashTabMenu := GameX + Round(GameW / (3440 / 853))
+                    global vY_StashTabMenu := GameY + Round(GameH / ( 1440 / 195))
+                    ;Stash tabs menu list
+                    global vX_StashTabList := GameX + Round(GameW / (3440 / 1000))
+                    global vY_StashTabList := GameY + Round(GameH / ( 1440 / 148))
+                    ;calculate the height of each tab
+                    global vY_StashTabSize := Round(GameH / ( 1440 / 29))
+                }
 				Else If (ResolutionScale="UltraWide") {
 					; Item Inventory Grid
 					Global InventoryGridX := [ Round(GameW/(3840/3193)), Round(GameW/(3840/3246)), Round(GameW/(3840/3299)), Round(GameW/(3840/3352)), Round(GameW/(3840/3404)), Round(GameW/(3840/3457)), Round(GameW/(3840/3510)), Round(GameW/(3840/3562)), Round(GameW/(3840/3615)), Round(GameW/(3840/3668)), Round(GameW/(3840/3720)), Round(GameW/(3840/3773)) ]
@@ -4468,8 +4594,6 @@ Structure of most functions:
             pX:= OHB.pX[A_Index]
             If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
                 Found := pX
-            Else
-                Break
         }
         Thread, NoTimers, False		;End Critical
         Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
