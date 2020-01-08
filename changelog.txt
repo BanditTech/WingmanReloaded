@@ -1,6 +1,37 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.05 January/07/2020
+--------------------------------------------------------------------------------
+Toned back some of the latency adjustments on click functions
+    I think I have gotten it tuned in properly now, and latency can adjust rest
+
+Adjusted default OHB string to 96 variance
+
+Changes to the parser backend, these affect the CLF
+    PhysAvg, EleAvg, and ChaosAvg have been added
+    ItemClass has been moved to Prop array, didnt make sense as a stat
+        This will require updating CLF, Replace Stats.ItemClass with Prop.ItemClass
+    dps totals have been given more standard names, will need to change in CLF
+        Changed to Dps, Dps_Phys, Dps_Chaos, Dps_Ele, and Dps_Q20
+        Quality 20 dps value is now always calculated, even when its already Q20
+            This is to make using it as an evaluation source more reliable
+    Prop.Rarity_Digit has been added to allow for > or < eval 
+        1 is normal, 2 is magic, 3 is rare, 4 is unique
+    <= and >= have been added as evaluator options
+    & can now be used with the ~ evaluator
+        so a min with this value: dagger|mace&two| word1 & word2 & word3
+        would match either daggers, or mace and two, or word1 and word2 and word3
+        This works very well with the zz_ItemText that now holds the entire item clip
+            To search easier, the percentages and digits have been replaced with #
+    width and height are now Item_Width and Item_Height
+
+Custom Loot Filter has been reworked to load main group list as text
+    Click edit to open the group and start modifying it
+    This makes the CLF build the main menu MUCH faster
+
+bugfix for the client log parser
+
 Version .09.04 January/03/2020
 --------------------------------------------------------------------------------
 Found the issue with OnDetonate, GuiStatus only sampled when Auto-Mines was on

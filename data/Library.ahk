@@ -3094,11 +3094,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 45*Latency
+            Sleep, 30*Latency
             MouseMove, x, y
             Sleep, 45*Latency
             Send {Click}
-            Sleep, 60*Latency
+            Sleep, 45*Latency
             BlockInput, MouseMoveOff
         }
         Return
@@ -3121,11 +3121,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 45*Latency
+            Sleep, 30*Latency
             MouseMove, x, y
             Sleep, 45*Latency
             Send {Click, Right}
-            Sleep, 60*Latency
+            Sleep, 45*Latency
             BlockInput, MouseMoveOff
         }
         Return
@@ -3152,9 +3152,9 @@ Structure of most functions:
             BlockInput, MouseMove
             Sleep, 45*Latency
             MouseMove, x, y
-            Sleep, 45*Latency
-            Send +{Click}
             Sleep, 60*Latency
+            Send +{Click}
+            Sleep, 45*Latency
             BlockInput, MouseMoveOff
         }
         Return
@@ -3186,9 +3186,9 @@ Structure of most functions:
             BlockInput, MouseMove
             Sleep, 45*Latency
             MouseMove, x, y
-            Sleep, 45*Latency
-            Send ^{Click}
             Sleep, 60*Latency
+            Send ^{Click}
+            Sleep, 45*Latency
             BlockInput, MouseMoveOff
         }
         Return
@@ -3637,7 +3637,7 @@ Structure of most functions:
         {
             If BGR
                 Color := hexBGRToRGB(Color)
-            Return "|<Single>" . Color . "@" . Round((100-vary)/100,2) . (Five ? "$5.zzzzk" : "$2.y")
+            Return "|<Single>" . Color . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
         }
     }
 
@@ -6672,11 +6672,8 @@ Structure of most functions:
             {
                 Loop, Parse,% latestFileContent,`n,`r 
                 {
-                    ClientLogText := A_LoopField
-                    If InStr(A_LoopField, "] $") || InStr(A_LoopField, "] &") || InStr(A_LoopField, "] `%") || InStr(A_LoopField, "] #") || InStr(A_LoopField, "] @")
-                        Return
-                    ; MsgBox, line %A_LoopField%
-                    CompareLocation(ClientLogText)
+                    If InStr(A_LoopField, "] :")
+                        CompareLocation(A_LoopField)
                 }
             }
             If (DebugMessages && YesLocation && WinActive(GameStr))
@@ -6685,7 +6682,7 @@ Structure of most functions:
                 Ding(2000,5,CurrentLocation)
             }
             If YesLocation && (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
-                Log("Zone Change Detected","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
+                Log("Zone Change Detected", (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))) , "Located:" CurrentLocation)
             Return
         }
     }

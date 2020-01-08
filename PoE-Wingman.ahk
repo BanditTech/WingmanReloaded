@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.04
+    Global VersionNumber := .09.05
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -461,7 +461,7 @@
 		Global CurrentLocation := ""
 		Global CLogFO
 	; ASCII converted strings of images
-		Global 1080_HealthBarStr := "|<1080 Middle Bar>0x221415@0.97$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
+		Global 1080_HealthBarStr := "|<1080 Middle Bar>0x221415@0.96$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
 			, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 			, 1080_MasterStr := "|<1080 Master>*100$46.wy1043UDVtZXNiAy7byDbslmCDsyTX78wDXsCAw3sSDVs7U7lsyTUSSTXXty8ntiSDbslDW3sy1XW"
 			, 1080_NavaliStr := "|<1080 Navali>*100$56.TtzzzzzzznyTzzzzzzwTbxxzTjrx3tyCDXnsy0ST3ntsTDk3bkwSS7nw8Nt77D8wz36SNtnmDDks7USBw3nwD1k3mS0Qz3sQwwDbbDkz6TD3ntngDtblswyA38"
@@ -2309,7 +2309,7 @@ Return
 						WisdomScroll(Grid.X,Grid.Y)
 						ClipItem(Grid.X,Grid.Y)
 					}
-					Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
+					Else If ( Prop.Jeweler && ( Prop.Gem_Links >= 5 || Prop.RarityRare || Prop.RarityUnique) )
 					{
 						WisdomScroll(Grid.X,Grid.Y)
 						ClipItem(Grid.X,Grid.Y)
@@ -2445,7 +2445,7 @@ Return
 						WisdomScroll(Grid.X,Grid.Y)
 						ClipItem(Grid.X,Grid.Y)
 					}
-					Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
+					Else If ( Prop.Jeweler && ( Prop.Gem_Links >= 5 || Prop.RarityRare || Prop.RarityUnique) )
 					{
 						WisdomScroll(Grid.X,Grid.Y)
 						ClipItem(Grid.X,Grid.Y)
@@ -2651,7 +2651,7 @@ Return
 							Continue
 						}
 					}
-					Else If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
+					Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
 					{
 						MoveStash(StashTabLinked)
 						CtrlClick(Grid.X,Grid.Y)
@@ -2851,7 +2851,7 @@ Return
 							Continue
 						}
 					}
-					Else If ((Prop.5Link||Prop.6Link)&&StashTabYesLinked)
+					Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
 					{
 						SortFirst[StashTabLinked].Push({"C":C,"R":R})
 						Continue
@@ -3144,7 +3144,7 @@ Return
 						WisdomScroll(Grid.X,Grid.Y)
 						ClipItem(Grid.X,Grid.Y)
 					}
-					Else If ( Prop.Jeweler && ( Prop.5Link || Prop.6Link || Prop.RarityRare || Prop.RarityUnique) )
+					Else If ( Prop.Jeweler && ( Prop.Gem_Links >= 5 || Prop.RarityRare || Prop.RarityUnique) )
 					{
 						WisdomScroll(Grid.X,Grid.Y)
 						ClipItem(Grid.X,Grid.Y)
@@ -3164,9 +3164,9 @@ Return
 	ClipItem(x, y){
 			BlockInput, MouseMove
 			Clipboard := ""
-			Sleep, 30
+			Sleep, 45*Latency
 			MouseMove %x%, %y%
-			Sleep, 30*Latency
+			Sleep, 45*Latency
 			Send ^c
 			ClipWait, 0
 			ParseClip()
@@ -3184,6 +3184,7 @@ Return
 		captureLines := 0
 		countCorruption := 0
 		Prop := {ItemName: ""
+			, ItemClass : ""
 			, IsItem : False
 			, ChaosValue : 0
 			, ExaltValue : 0
@@ -3196,6 +3197,7 @@ Return
 			, Rarity : ""
 			, Influence : ""
 			, SpecialType : ""
+			, Rarity_Digit : 0
 			, RarityCurrency : False
 			, RarityDivination : False
 			, RarityGem : False
@@ -3215,14 +3217,9 @@ Return
 			, Fossil : False
 			, Resonator : False
 			, IsOrgan : ""
-			, Sockets : 0
-			, RawSockets : ""
-			, LinkCount : 0
-			, 2Link : False
-			, 3Link : False
-			, 4Link : False
-			, 5Link : False
-			, 6Link : False
+			, Gem_Sockets : 0
+			, Gem_RawSockets : ""
+			, Gem_Links : 0
 			, Jeweler : False
 			, TimelessSplinter : False
 			, BreachSplinter : False
@@ -3240,28 +3237,28 @@ Return
 			, Oil : False
 			, Corrupted : False
 			, DoubleCorrupted : False
-			, Width : 1
-			, Height : 1
+			, Item_Width : 1
+			, Item_Height : 1
 			, Variant : 0
 			, CraftingBase : 0
 			, DropLevel : 0
 			, ItemLevel : 0}
 
-		Stats := { PhysLo : False
-			, PhysHi : False
-			, AttackSpeed : False
-			, PhysMult : False
-			, PhysDps : False
-			, EleDps : False
-			, TotalDps : False
-			, ChaosLo : False
-			, ChaosHi : False
-			, EleLo : False
-			, EleHi : False
-			, TotalPhysMult : False
-			, BasePhysDps : False
-			, Q20Dps : False
-			, ItemClass : ""
+		Stats := { PhysLo : 0
+			, PhysHi : 0
+			, PhysAvg : 0
+			, ChaosLo : 0
+			, ChaosHi : 0
+			, ChaosAvg : 0
+			, EleLo : 0
+			, EleHi : 0
+			, EleAvg : 0
+			, AttackSpeed : 0
+			, Dps_Phys : 0
+			, Dps_Ele : 0
+			, Dps_Chaos : 0
+			, Dps : 0
+			, Dps_Q20 : 0
 			, Quality : 0
 			, GemLevel : 0
 			, Stack : 0
@@ -3274,6 +3271,7 @@ Return
 			, RatingEnergyShield : 0
 			, RatingEvasion : 0
 			, RatingBlock : 0
+			, WeaponRange : 0
 			, MapTier : 0
 			, MapItemQuantity : 0
 			, MapItemRarity : 0
@@ -3401,6 +3399,7 @@ Return
 			, GainLightningToExtraChaos : 0
 			, GainPhysicalToExtraChaos : 0
 			, Implicit : ""
+			, PseudoTotalAddedStats : 0
 			, PseudoTotalAddedAvg : 0
 			, PseudoTotalAddedEleAvg : 0}
 
@@ -3423,9 +3422,9 @@ Return
 		{
 			Prop.IsMap := True
 			Prop.SpecialType := "Map"
-			Stats.ItemClass := "Maps"
+			Prop.ItemClass := "Maps"
 		}
-
+		Prop.zz_ItemText := "Trimmed Clipboard`n`n" RegExReplace(Clipboard, "i)([+`%.0-9]+)", "#") "`nRaw Clipboard`n`n" Clipboard
 		;Begin parsing information	
 		Loop, Parse, Clipboard, `n, `r
 		{
@@ -3460,21 +3459,25 @@ Return
 					{
 						Prop.RarityNormal := True
 						Prop.Rarity := "Normal"
+						Prop.Rarity_Digit := 1
 					}
 					IfInString, A_LoopField, Magic
 					{
 						Prop.RarityMagic := True
 						Prop.Rarity := "Magic"
+						Prop.Rarity_Digit := 2
 					}
 					IfInString, A_LoopField, Rare
 					{
 						Prop.RarityRare := True
 						Prop.Rarity := "Rare"
+						Prop.Rarity_Digit := 3
 					}
 					IfInString, A_LoopField, Unique
 					{
 						Prop.RarityUnique := True
 						Prop.Rarity := "Unique"
+						Prop.Rarity_Digit := 4
 					}
 					Continue
 				}
@@ -3511,8 +3514,8 @@ Return
 					{
 						If (v["Name"] = A_LoopField)
 						{
-							Prop.Width := v["Width"]
-							Prop.Height := v["Height"]
+							Prop.Item_Width := v["Width"]
+							Prop.Item_Height := v["Height"]
 							Prop.SpecialType := "Quest Item"
 							Break
 						}
@@ -3521,9 +3524,9 @@ Return
 					{
 						If (v["name"] = A_LoopField) || (v["name"] = StandardBase) || (v["name"] = PrefixMagicBase)
 						{
-							Prop.Width := v["inventory_width"]
-							Prop.Height := v["inventory_height"]
-							Stats.ItemClass := v["item_class"]
+							Prop.Item_Width := v["inventory_width"]
+							Prop.Item_Height := v["inventory_height"]
+							Prop.ItemClass := v["item_class"]
 							Prop.ItemBase := v["name"]
 							Prop.DropLevel := v["drop_level"]
 							If Prop.Corrupted
@@ -3549,7 +3552,7 @@ Return
 						IfNotInString, A_LoopField, Ringmail
 						{
 							Prop.Ring := True
-							Stats.ItemClass := "Rings"
+							Prop.ItemClass := "Rings"
 							Continue
 						}
 					}
@@ -3741,17 +3744,17 @@ Return
 					IfInString, A_LoopField, Flask
 					{
 						Prop.Flask := True
-						Stats.ItemClass := "Flasks"
-						Prop.Width := 1
-						Prop.Height := 2
+						Prop.ItemClass := "Flasks"
+						Prop.Item_Width := 1
+						Prop.Item_Height := 2
 						Continue
 					}
 					IfInString, A_LoopField, Quiver
 					{
 						Prop.Quiver := True
-						Stats.ItemClass := "Quivers"
-						Prop.Width := 2
-						Prop.Height := 3
+						Prop.ItemClass := "Quivers"
+						Prop.Item_Width := 2
+						Prop.Item_Height := 3
 						Continue
 					}
 					IfInString, A_LoopField, Oil
@@ -3893,8 +3896,8 @@ Return
 			IfInString, A_LoopField, Sockets:
 			{
 				StringSplit, RawSocketsArray, A_LoopField, %A_Space%
-				Prop.RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
-				For k, v in StrSplit(Prop.RawSockets, " ") 
+				Prop.Gem_RawSockets := RawSocketsArray2 . A_Space . RawSocketsArray3 . A_Space . RawSocketsArray4 . A_Space . RawSocketsArray5 . A_Space . RawSocketsArray6 . A_Space . RawSocketsArray7
+				For k, v in StrSplit(Prop.Gem_RawSockets, " ") 
 				{		
 					if (v ~= "B") && (v ~= "G") && (v ~= "R")
 						Prop.Chromatic := True
@@ -3902,39 +3905,39 @@ Return
 						Counter++
 					If (Counter=11)
 					{
-						Prop.6Link:=True
 						Prop.SpecialType := "6Link"
+						Prop.Gem_Links:= (6>Prop.Gem_Links?6:Prop.Gem_Links)
 					}
 					Else If (Counter=9)
 					{
-						Prop.5Link:=True
 						Prop.SpecialType := "5Link"
+						Prop.Gem_Links:= (5>Prop.Gem_Links?5:Prop.Gem_Links)
 					}
 					Else If (Counter=7)
 					{
-						Prop.4Link:=True
+						Prop.Gem_Links:= (4>Prop.Gem_Links?4:Prop.Gem_Links)
 					}
 					Else If (Counter=5)
 					{
-						Prop.3Link:=True
+						Prop.Gem_Links:= (3>Prop.Gem_Links?3:Prop.Gem_Links)
 					}
 					Else If (Counter=3)
 					{
-						Prop.2Link:=True
+						Prop.Gem_Links:= (2>Prop.Gem_Links?2:Prop.Gem_Links)
 					}
 					Counter:=0
 				}
-				Loop, parse, A_LoopField
-				{
-					if (A_LoopField ~= "[-]")
-						Prop.LinkCount++
-				}
+				; Loop, parse, A_LoopField
+				; {
+				; 	if (A_LoopField ~= "[-]")
+				; 		Prop.LinkCount++
+				; }
 				Loop, parse, A_LoopField
 				{
 					if (A_LoopField ~= "[BGR]")
-						Prop.Sockets++
+						Prop.Gem_Sockets++
 				}
-				If (Prop.Sockets = 6)
+				If (Prop.Gem_Sockets = 6)
 					Prop.Jeweler:=True
 				Continue
 			}
@@ -4964,12 +4967,10 @@ Return
 					Stats.AttackSpeed := Arr4
 					Continue
 				}
-
-				; Get percentage physical damage increase
-				IfInString, A_LoopField, increased Physical Damage
+				IfInString, A_LoopField, Weapon Range:
 				{
-					StringSplit, Arr, A_LoopField, %A_Space%, `%
-					Stats.PhysMult := Arr1
+					StringSplit, Arr, A_LoopField, %A_Space%
+					Stats.WeaponRange := Arr3
 					Continue
 				}
 			}
@@ -4977,18 +4978,20 @@ Return
 		; DPS calculations
 		If (Prop.IsWeapon) {
 
-			Stats.PhysDps := ((Stats.PhysLo + Stats.PhysHi) / 2) * Stats.AttackSpeed
-			Stats.EleDps := ((Stats.EleLo + Stats.EleHi) / 2) * Stats.AttackSpeed
-			Stats.ChaosDps := ((Stats.ChaosLo + Stats.ChaosHi) / 2) * Stats.AttackSpeed
+			Stats.Dps_Phys := Round((Stats.PhysAvg:=Round((Stats.PhysLo + Stats.PhysHi) / 2,1)) * Stats.AttackSpeed,1)
+			Stats.Dps_Ele := Round((Stats.EleAvg:=Round((Stats.EleLo + Stats.EleHi) / 2,1)) * Stats.AttackSpeed,1)
+			Stats.Dps_Chaos := Round((Stats.ChaosAvg:=Round((Stats.ChaosLo + Stats.ChaosHi) / 2,1)) * Stats.AttackSpeed,1)
 
-			Stats.TotalDps := Stats.PhysDps + Stats.EleDps + Stats.ChaosDps
+			Stats.Dps := Round(Stats.Dps_Phys + Stats.Dps_Ele + Stats.Dps_Chaos,1)
 			; Only show Q20 values if item is not Q20
 			If (Stats.Quality < 20)
 			{
-				Stats.TotalPhysMult := (Stats.PhysMult + Stats.Quality + 100) / 100
-				Stats.BasePhysDps := Stats.PhysDps / Stats.TotalPhysMult
-				Stats.Q20Dps := Stats.BasePhysDps * ((Stats.PhysMult + 120) / 100) + Stats.EleDps + Stats.ChaosDps
+				BasePhysDps := Round(Stats.Dps_Phys / ((Stats.Quality + 100) / 100),2)
+				Q20DpsPhys := Round(BasePhysDps * (120 / 100),2)
+				Stats.Dps_Q20 := Round(Q20DpsPhys + Stats.Dps_Ele + Stats.Dps_Chaos,1)
 			}
+			Else
+				Stats.Dps_Q20 := Stats.Dps
 		}
 
 		Affix.PseudoTotalEleResist := Affix.PseudoColdResist + Affix.PseudoFireResist + Affix.PseudoLightningResist
@@ -4996,6 +4999,7 @@ Return
 		
 		Affix.PseudoTotalAddedEleAvg := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
 		Affix.PseudoTotalAddedAvg := (Affix.PseudoTotalAddedEleAvg?Affix.PseudoTotalAddedEleAvg:0) + (Affix.PhysicalDamageAttackAvg?Affix.PhysicalDamageAttackAvg:0) + (Affix.PhysicalDamageBowAttackAvg?Affix.PhysicalDamageBowAttackAvg:0)
+		Affix.PseudoTotalAddedStats := Affix.PseudoAddedStrength + Affix.PseudoAddedDexterity + Affix.PseudoAddedIntelligence
 
 		nameArr := StrSplit(Prop.ItemName, "`n")
 		Prop.ItemName := nameArr[1]
@@ -5042,20 +5046,20 @@ Return
 		If Prop.Resonator
 		{
 			If (InStr(Prop.ItemName, "Primitive") || InStr(Prop.ItemName, "Potent"))
-				Prop.Width := 1
+				Prop.Item_Width := 1
 			Else
-				Prop.Width := 2
+				Prop.Item_Width := 2
 			
 			If (InStr(Prop.ItemName, "Primitive"))
-				Prop.Height := 1
+				Prop.Item_Height := 1
 			Else
-				Prop.Height := 2
+				Prop.Item_Height := 2
 		}
 		MatchNinjaPrice()
 		If InStr(Prop.ItemName, "Chaos Orb")
 			Prop.ChaosValue := 1
 
-		If (Stats.ItemClass = "Amulet")
+		If (Prop.ItemClass = "Amulet")
 		{
 			If Prop.Scarab
 			{
@@ -5063,9 +5067,9 @@ Return
 				Prop.SpecialType := ""
 			}
 		}
-		If (Stats.ItemClass = "Belt")
+		If (Prop.ItemClass = "Belt")
 			Prop.Belt := True
-		If (Stats.ItemClass = "Support Skill Gem")
+		If (Prop.ItemClass = "Support Skill Gem")
 			Prop.Support := True
 		If captureLines
 			Prop.AffixCount := captureLines
@@ -5109,6 +5113,11 @@ Return
 								matched := True
 								Else
 								nomatched := True
+							Else if eval = >=
+								If (arrval >= min)
+								matched := True
+								Else
+								nomatched := True
 							else if eval = =
 								if (arrval = min)
 								matched := True
@@ -5116,6 +5125,11 @@ Return
 								nomatched := True
 							else if eval = <
 								if (arrval < min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = <=
+								if (arrval <= min)
 								matched := True
 								Else
 								nomatched := True
@@ -5129,7 +5143,20 @@ Return
 								minarr := StrSplit(min, "|"," ")
 								for k, v in minarr
 								{
-									if InStr(arrval, v)
+									if InStr(v, "&")
+									{
+										for kk, vv in StrSplit(v, "&"," ")
+										{
+											If InStr(arrval, vv)
+												matched := True
+											Else
+											{
+												matched := False
+												Break
+											}
+										}
+									}
+									Else if InStr(arrval, v)
 									{
 										matched := True
 										break
@@ -5158,6 +5185,11 @@ Return
 								matched := True
 								Else
 								nomatched := True
+							else if eval = >=
+								If (arrval >= min)
+								matched := True
+								Else
+								nomatched := True
 							else if eval = =
 								if (arrval = min)
 								matched := True
@@ -5165,6 +5197,11 @@ Return
 								nomatched := True
 							else if eval = <
 								if (arrval < min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = <=
+								if (arrval <= min)
 								matched := True
 								Else
 								nomatched := True
@@ -5178,7 +5215,20 @@ Return
 								minarr := StrSplit(min, "|"," ")
 								for k, v in minarr
 								{
-									if InStr(arrval, v)
+									if InStr(v, "&")
+									{
+										for kk, vv in StrSplit(v, "&"," ")
+										{
+											If InStr(arrval, vv)
+												matched := True
+											Else
+											{
+												matched := False
+												Break
+											}
+										}
+									}
+									Else if InStr(arrval, v)
 									{
 										matched := True
 										break
@@ -5207,6 +5257,11 @@ Return
 								matched := True
 								Else
 								nomatched := True
+							Else if eval = >=
+								If (arrval >= min)
+								matched := True
+								Else
+								nomatched := True
 							else if eval = =
 								if (arrval = min)
 								matched := True
@@ -5214,6 +5269,11 @@ Return
 								nomatched := True
 							else if eval = <
 								if (arrval < min)
+								matched := True
+								Else
+								nomatched := True
+							else if eval = <=
+								if (arrval <= min)
 								matched := True
 								Else
 								nomatched := True
@@ -5227,7 +5287,20 @@ Return
 								minarr := StrSplit(min, "|"," ")
 								for k, v in minarr
 								{
-									if InStr(arrval, v)
+									if InStr(v, "&")
+									{
+										for kk, vv in StrSplit(v, "&"," ")
+										{
+											If InStr(arrval, vv)
+												matched := True
+											Else
+											{
+												matched := False
+												Break
+											}
+										}
+									}
+									Else if InStr(arrval, v)
 									{
 										matched := True
 										break
@@ -5305,7 +5378,7 @@ Return
 						}
 						Return True
 					}
-					Else If (Prop.ItemName = Ninja[TKey][index]["name"] && ((ForceMatch6Link && Ninja[TKey][index]["links"] = "6") || (Prop.6Link && Ninja[TKey][index]["links"] = "6") || (Prop.5Link && Ninja[TKey][index]["links"] = "5") || (Prop.LinkCount < 4 && Ninja[TKey][index]["links"] = "0")))
+					Else If (Prop.ItemName = Ninja[TKey][index]["name"] && ((ForceMatch6Link && Ninja[TKey][index]["links"] = "6") || (Prop.Gem_Links=6 && Ninja[TKey][index]["links"] = "6") || (Prop.Gem_Links=5 && Ninja[TKey][index]["links"] = "5") || (Prop.Gem_Links <= 4 && Ninja[TKey][index]["links"] = "0")))
 					{
 						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
 						Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
@@ -11227,13 +11300,13 @@ Return
 
 		addToBlacklist(C, R)
 		{
-			Loop % Prop.Height
+			Loop % Prop.Item_Height
 			{
 				addNum := A_Index - 1
 				addR := R + addNum
 				addC := C + 1
 				BlackList[C][addR] := True
-				If Prop.Width = 2
+				If Prop.Item_Width = 2
 					BlackList[addC][addR] := True
 			}
 		}

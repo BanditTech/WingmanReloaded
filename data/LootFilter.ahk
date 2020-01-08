@@ -21,10 +21,11 @@
     Global LootFilterTabs := {}
 
     Prop := {ItemName: ""
-        , ItemBase : ""
+        , ItemClass : ""
+        , zz_ItemText : ""
+        , IsItem : False
         , ChaosValue : 0
         , ExaltValue : 0
-        , IsItem : False
         , IsWeapon : False
         , IsMap : False
         , MapTier : 0
@@ -34,6 +35,7 @@
         , Rarity : ""
         , Influence : ""
         , SpecialType : ""
+        , Rarity_Digit : 0
         , RarityCurrency : False
         , RarityDivination : False
         , RarityGem : False
@@ -52,14 +54,10 @@
         , Incubator : False
         , Fossil : False
         , Resonator : False
-        , Sockets : 0
-        , RawSockets : ""
-        , LinkCount : 0
-        , 2Link : False
-        , 3Link : False
-        , 4Link : False
-        , 5Link : False
-        , 6Link : False
+        , IsOrgan : ""
+        , Gem_Sockets : 0
+        , Gem_RawSockets : ""
+        , Gem_Links : 0
         , Jeweler : False
         , TimelessSplinter : False
         , BreachSplinter : False
@@ -67,7 +65,6 @@
         , MortalFragment : False
         , GuardianFragment : False
         , ProphecyFragment : False
-        , IsOrgan : ""
         , Scarab : False
         , Offering : False
         , Vessel : False
@@ -81,29 +78,29 @@
         , Width : 1
         , Height : 1
         , Variant : 0
-        , ItemLevel : 0
         , CraftingBase : 0
-        , DropLevel : 0}
+        , DropLevel : 0
+        , ItemLevel : 0}
 
     textListProp= 
     For k, v in Prop
         textListProp .= (!textListProp ? "" : "|") "" k ""
 
-    Stats := { PhysLo : False
-        , PhysHi : False
-        , AttackSpeed : False
-        , PhysMult : False
-        , PhysDps : False
-        , EleDps : False
-        , TotalDps : False
-        , ChaosLo : False
-        , ChaosHi : False
-        , EleLo : False
-        , EleHi : False
-        , TotalPhysMult : False
-        , BasePhysDps : False
-        , Q20Dps : False
-        , ItemClass : ""
+    Stats := { PhysLo : 0
+        , PhysHi : 0
+        , PhysAvg : 0
+        , ChaosLo : 0
+        , ChaosHi : 0
+        , ChaosAvg : 0
+        , EleLo : 0
+        , EleHi : 0
+        , EleAvg : 0
+        , AttackSpeed : 0
+        , Dps_Phys : 0
+        , Dps_Ele : 0
+        , Dps_Chaos : 0
+        , Dps : 0
+        , Dps_Q20 : 0
         , Quality : 0
         , GemLevel : 0
         , Stack : 0
@@ -116,6 +113,7 @@
         , RatingEnergyShield : 0
         , RatingEvasion : 0
         , RatingBlock : 0
+        , WeaponRange : 0
         , MapTier : 0
         , MapItemQuantity : 0
         , MapItemRarity : 0
@@ -164,12 +162,13 @@
         , IncreasedEvasion : 0
         , IncreasedArmour : 0
         , IncreasedAttackSpeed : 0
+        , IncreasedAttackSpeedWithMoveSkill : 0
+        , IncreasedDamageWithMoveSkill : 0
         , IncreasedAttackCastSpeed : 0
         , IncreasedMovementSpeed : 0
         , ReducedEnemyStunThreshold : 0
         , IncreasedStunBlockRecovery : 0
         , LifeGainOnAttack : 0
-        , WeaponRange : 0
         , AddedIntelligence : 0
         , AddedStrength : 0
         , AddedDexterity : 0
@@ -228,7 +227,7 @@
         , IncreasedBurningDamage : 0
         , IncreasedSpellCritChance : 0
         , IncreasedCritChance : 0
-		, IncreasedCritChanceOnKill : 0
+        , IncreasedCritChanceOnKill : 0
         , IncreasedManaRegeneration : 0
         , IncreasedCastSpeed : 0
         , IncreasedPoisonDuration : 0
@@ -244,15 +243,16 @@
         , GainColdToExtraChaos : 0
         , GainLightningToExtraChaos : 0
         , GainPhysicalToExtraChaos : 0
-        , PsudoTotalAddedEleAvg : 0
-        , PsudoTotalAddedAvg : 0
-        , Implicit : ""}
+        , Implicit : ""
+        , PseudoTotalAddedStats : 0
+        , PseudoTotalAddedAvg : 0
+        , PseudoTotalAddedEleAvg : 0}
 
     textListAffix= 
     For k, v in Affix
         textListAffix .= (!textListAffix ? "" : "|") "" k ""
 
-    Eval := [ ">","=","<","!=","~" ]
+    Eval := [ "<","<=","=","!=",">=",">","~" ]
     textListEval= 
     For k, v in Eval
         textListEval .= (!textListEval ? "" : "|") v
@@ -275,7 +275,7 @@ Redraw:
 
     Gui, add, button, gAddGroup xs y+20, Add new Group
     Gui, add, DropDownList, gUpdateStashDefault vCLFStashTabDefault x+10 yp+1 w40, %CLFStashTabDefault%||%textListStashTabs%
-    ;Gui, add, button, gPrintout x+10 yp, Print Array
+    ; Gui, add, button, gPrintout x+10 yp, Print Array
     ;Gui, add, button, gPrintJSON x+10 yp, JSON string
     Gui, add, button, gLoadArray x+10 yp-1, Load Loot Filter
     Gui, add, button, gSaveArray x+10 yp, Save Loot Filter
@@ -505,56 +505,42 @@ AddNewGroupDDL:
     GoSub, RedrawNewGroup
 Return
 
-BuildMenu(Min,Max)
+BuildMenu(Min,Max,AllEdit:=0)
 {
     Global
     For GKey, Groups in LootFilter
     {
         totalHeight := 0
-        gkeyarr := StrSplit(GKey, , , 6)
-        if (gkeyarr[6] < Min) || (gkeyarr[6] > Max)
+        gkeyarr := StrSplit(GKey, , , 6)[6]
+        if (gkeyarr < Min) || (gkeyarr > Max)
             Continue
         For SKey, selectedItems in Groups
         {
-            ;MsgBox % selectedItems
-            totalHeight += (((LootFilter[GKey][SKey].Count() / 3) + 1) * 25) + 50
-            Gui, Add, GroupBox,% " section xs y+15 w127 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,%SKey%
-            Gui, Add, GroupBox,% " x+2 yp w54 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Eval:
-            Gui, Add, GroupBox,% " x+2 yp w94 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Min:
+            totalHeight += (((LootFilter[GKey][SKey].Count() / 3) + 1) * 25) + 30
+            Gui, Add, GroupBox,% " section xs y+15 w325 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,%SKey%
             For AKey, Val in selectedItems
                 {
-                    strLootFilterGSA := "LootFilter_" . GKey . "_" . SKey . "_" . AKey
-                    %strLootFilterGSA% := LootFilter[GKey][SKey][AKey]
-                    ;MsgBox % AKey
-                    If InStr(AKey, "Min"){
-                        Gui, Add, Edit, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w90 h21, % LootFilter[GKey][SKey][AKey]
-                        %strLootFilterGSA%_Remove := False
-                        Gui, Add, Button, v%strLootFilterGSA%_Remove gRemoveMenuItem x+6 w21 h21, X
-                    }
-                    else If InStr(AKey, "Eval")
-                        Gui, Add, DropDownList, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w50, % LootFilter[GKey][SKey][AKey] "||" textListEval
-                    Else
-                    {
-                        Gui, Add,  DropDownList, v%strLootFilterGSA% gUpdateLootFilterDDL xs+5 yp+25, % LootFilter[GKey][SKey][AKey] "||" textList%SKey%
-                        ;MsgBox % LootFilter[GKey][SKey][AKey] "  GKey: " GKey "  SKey: " SKey "  AKey: " AKey
-                        ;GuiControl, ,% vLootFilter[GKey][SKey][AKey], % LootFilter[GKey][SKey][AKey]
-                    }
+                    Gui, Font, Bold s10 cBlack
+                    If !InStr(AKey, "Eval") && !InStr(AKey, "Min")
+                        Gui, Add,  Text, w318 xs+5 yp+25 h19, % LootFilter[GKey][SKey][AKey] "  " LootFilter[GKey][SKey][AKey . "Eval"] "  " LootFilter[GKey][SKey][AKey . "Min"]
+                    Gui, Font,
                 }
-            Gui, add, button, gAddNewDDL xs yp+25, Add new %SKey% to %GKey%
+            Gui, add, button, xs yp+25 w1 h1,
         }
         Gui, Add, Text, y+15 ,______%GKey% Stash Tab:
         strLootFilterGroupStash := "LootFilter_" . GKey . "_Stash"
         %strLootFilterGroupStash% := LootFilterTabs[GKey]
-        Gui, Add,  DropDownList, v%strLootFilterGroupStash% gUpdateGroupStash w40 x+5 yp-6, % LootFilterTabs[GKey] "||" textListStashTabs
+        Gui, Add,  Text,  w30 x+5, % LootFilterTabs[GKey]
         strLootFilterEdit := "LootFilter_" . GKey . "_Edit"
-        Gui, Add, Button, v%strLootFilterEdit% gEditGroup w30 h21 x+5, Edit
+        Gui, Add, Button, v%strLootFilterEdit% gEditGroup w60 h21 x+0 yp-3, Edit
         strLootFilterExport := "LootFilter_" . GKey . "_Export"
         Gui, Add, Button, v%strLootFilterExport% gExportGroup w40 h21 x+5, Export
-        if (gkeyarr[6] < 10 ) 
-            gkeyarr[6] := 0 . gkeyarr[6]
-        Gui, Add, Button,gRemGroup x+5 yp-1 ,% "Rem: " gkeyarr[6]
-        Gui, Font, Bold s9 cBlack
-        Gui, Add, GroupBox, % "w335 h" . totalHeight . " xs-3 yp-" . totalHeight - 28 , %GKey%
+        if (gkeyarr < 10 ) 
+            gkeyarr := 0 . gkeyarr
+        Gui, Add, Button,gRemGroup x+5 yp-1 ,% "Rem: " gkeyarr
+        Gui, add, button, xs yp+25 w1 h1,
+        Gui, Font, Bold s10 cBlack
+        Gui, Add, GroupBox, % "w335 h" . totalHeight . " xs-3 yp-" . totalHeight - 5 , %GKey%
         Gui, Font
     }
 Return
@@ -567,14 +553,14 @@ BuildNewGroupMenu(GKey)
     {
         Gui,2: Add, GroupBox,% " section xs y+18 w127 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,%SKey%
         Gui,2: Add, GroupBox,% " x+2 yp w54 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Eval:
-        Gui,2: Add, GroupBox,% " x+2 yp w94 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Min:
+        Gui,2: Add, GroupBox,% " x+2 yp w204 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Min:
         For AKey, Val in selectedItems
         {
             strLootFilterGSA := "LootFilter_" . GKey . "_" . SKey . "_" . AKey
             %strLootFilterGSA% := LootFilter[GKey][SKey][AKey]
             ;MsgBox % AKey
             If InStr(AKey, "Min"){
-                Gui,2: Add, Edit, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w90 h21, % LootFilter[GKey][SKey][AKey]
+                Gui,2: Add, Edit, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w200 h21, % LootFilter[GKey][SKey][AKey]
                 %strLootFilterGSA%_Remove := False
                 Gui,2: Add, Button, v%strLootFilterGSA%_Remove gRemoveNewMenuItem x+6 w21 h21, X
             }
@@ -750,7 +736,7 @@ TestEval:
 Return
 
 Printout:
-    PrintArray(LootFilter)
+    Array_Gui(LootFilter)
 return
 
 PrintJSON:
