@@ -45,9 +45,9 @@
      global newpositionPOV := false
      global JoystickNumber := 0
      global JoystickActive := False
-     Global ClickLatency
      ; General
      Global Latency := 1
+     Global ClickLatency := 0
      Global YesPersistantToggle := 1
 
      global pressed1 := False
