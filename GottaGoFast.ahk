@@ -272,7 +272,7 @@
      IfWinExist, ahk_group POEGameGroup
      {
           Rescale()
-          Gui, 1: Show, x%GuiX% y%GuiY% NoActivate 
+          Gui, 1: Show, x%GuiX% y%GuiY%
           ToggleExist := True
           WinActivate, ahk_group POEGameGroup
           If (YesPersistantToggle)
@@ -439,7 +439,7 @@
                If (!RescaleRan)
                Rescale()
                If (!ToggleExist) {
-                    Gui, 1: Show, x%GuiX% y%GuiY% NoActivate 
+                    Gui, 1: Show, x%GuiX% y%GuiY%
                     ToggleExist := True
                     If YesController
                          DetectJoystick()

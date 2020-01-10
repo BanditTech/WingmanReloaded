@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.05
+    Global VersionNumber := .09.06
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -360,6 +360,7 @@
 			YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
 			ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rCinematic(43:18) is 43:18`rUltraWide is 32:9
 			Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
+			ClickLatency = Use this to add delay to click actions`rAdd this many multiples of 15ms to each delay
 			PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
 			PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
 			WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
@@ -848,6 +849,7 @@
 		global graphWidth := 219
 		global graphHeight := 221
 		Global ForceMatch6Link := False
+		Global ForceMatchGem20 := False
 
 
 ; ReadFromFile()
@@ -876,7 +878,8 @@
 
 	Gui +Delimiter?
 	Gui, Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
-	Gui, Add, ComboBox, xp y+8 w280 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"
+	Gui, Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"
+	Gui, Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
 	Gui, Add, Text, x+10 x+10 ys , Capture of the Skill up icon
 	Gui, Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"
 	Gui, Add, Text, xs y+15 section , Capture of the words Sell Items
@@ -1344,7 +1347,9 @@
 	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
 	Gui Add, Text, 			x+8 y+-18							 							, Aspect Ratio
 	Gui, Add, DropDownList, gUpdateExtra vLatency w30 xs y+10,  %Latency%||1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
-	Gui Add, Text, 										x+10 y+-18							, Adjust Latency
+	Gui Add, Text, 										x+10 yp+3 hp-3							, Adjust Latency
+	Gui, Add, DropDownList, gUpdateExtra vClickLatency w30 x+4 yp-3,  %ClickLatency%||0|1|2|3|4
+	Gui Add, Text, 										x+10 yp+3	hp-3						, Click Latency
 	Gui Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
 	Gui add, Button, gSelectClientLog x+5 , Locate Logfile
 	IfNotExist, %A_ScriptDir%\data\leagues.json
@@ -1358,13 +1363,14 @@
 		textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
 	Gui, Font, Bold
-	Gui Add, GroupBox, 			Section		w210 h95				xm+5 	y+15, 				Item Parse Settings
+	Gui Add, GroupBox, 			Section		w220 h120				xm+5 	y+15, 				Item Parse Settings
 	Gui, Font,
 	Gui, Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja Database?
 	Gui, Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
 	Gui, Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
 	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Update leagues
 	Gui, Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Force a match with the 6 Link price
+	Gui, Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Force a match with low level gems < 20
 
 
 	Gui, Font, Bold
@@ -2099,9 +2105,8 @@
 	Tooltip,
 
 	Gui 2:Color, 0X130F13
-	Gui 2:+LastFound +AlwaysOnTop +ToolWindow
+	Gui 2:+LastFound +AlwaysOnTop +ToolWindow -Caption
 	WinSet, TransColor, 0X130F13
-	Gui 2: -Caption
 	Gui 2:Font, bold cFFFFFF S10, Trebuchet MS
 	Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
 	Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
@@ -2109,7 +2114,7 @@
 	IfWinExist, ahk_group POEGameGroup
 	{
 		Rescale()
-		Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+		Gui 2: Show, x%GuiX% y%GuiY%
 		ToggleExist := True
 		WinActivate, ahk_group POEGameGroup
 		If (YesPersistantToggle)
@@ -3164,9 +3169,9 @@ Return
 	ClipItem(x, y){
 			BlockInput, MouseMove
 			Clipboard := ""
-			Sleep, 45*Latency
+			Sleep, 45+(ClickLatency*15)
 			MouseMove %x%, %y%
-			Sleep, 45*Latency
+			Sleep, 45+(ClickLatency*15)
 			Send ^c
 			ClipWait, 0
 			ParseClip()
@@ -5016,7 +5021,7 @@ Return
 		
 		If Prop.RarityGem
 		{
-			If Stats.GemLevel >= 20
+			If (Stats.GemLevel >= 20)
 			{
 				variantStr := Stats.GemLevel
 				variantStr := (variantStr>21?21:variantStr)
@@ -5028,14 +5033,14 @@ Return
 					variantStr .= "c"
 				Prop.Variant := variantStr
 			}
-			Else If Stats.GemLevel < 20 && Stats.Quality >= 15
+			Else If (Stats.GemLevel < 20 && Stats.Quality >= 15)
 			{
 				variantStr := "1/20"
 				If Prop.Corrupted && Prop.VaalGem
 				variantStr := "20/20c"
 				Prop.Variant := variantStr
 			}
-			Else If Stats.GemLevel < 20 && Stats.Quality < 15
+			Else If (Stats.GemLevel < 20 && ForceMatchGem20 && Stats.Quality < 15)
 			{
 				variantStr := "20"
 				If Prop.Corrupted 
@@ -6014,7 +6019,7 @@ Return
 			Static GreenHex := 0x32DE24, QuestHex := 0x47E635
 			If (!ComboHex || Reset)
 			{
-				ComboHex := Hex2FindText(LootColors,0,0,1,2,2)
+				ComboHex := Hex2FindText(LootColors)
 				ComboHex .= Hex2FindText(QuestHex,2)
 				; ComboHex .= ChestStr
 				ComboHex := """" . ComboHex . """"
@@ -7605,7 +7610,7 @@ Return
 					Rescale()
 				If (!ToggleExist) 
 				{
-					Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+					Gui 2: Show, x%GuiX% y%GuiY%
 					ToggleExist := True
 					WinActivate, ahk_group POEGameGroup
 					If (YesPersistantToggle)
@@ -7798,6 +7803,7 @@ Return
 			IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
 			IniRead, YesSortFirst, settings.ini, General, YesSortFirst, 1
 			IniRead, Latency, settings.ini, General, Latency, 1
+			IniRead, ClickLatency, settings.ini, General, ClickLatency, 0
 			IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
 			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
 			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
@@ -8390,6 +8396,7 @@ Return
 			IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
 			IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
 			IniRead, ForceMatch6Link, Settings.ini, Database, ForceMatch6Link, 0
+			IniRead, ForceMatchGem20, Settings.ini, Database, ForceMatchGem20, 0
 
 			RegisterHotkeys()
 			checkActiveType()
@@ -8498,7 +8505,7 @@ Return
 			{
 				Gui, Submit
 				Rescale()
-				Gui 2: Show, x%GuiX% y%GuiY%, NoActivate 
+				Gui 2: Show, x%GuiX% y%GuiY%
 				ToggleExist := True
 				WinActivate, ahk_group POEGameGroup
 				If (GuiStatus("OnChar")) {
@@ -8594,6 +8601,7 @@ Return
 			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
 			IniWrite, %YesSortFirst%, settings.ini, General, YesSortFirst
 			IniWrite, %Latency%, settings.ini, General, Latency
+			IniWrite, %ClickLatency%, settings.ini, General, ClickLatency
 			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
 			IniWrite, %Steam%, settings.ini, General, Steam
 			IniWrite, %HighBits%, settings.ini, General, HighBits
@@ -8890,6 +8898,7 @@ Return
 			IniWrite, %UpdateDatabaseInterval%, Settings.ini, Database, UpdateDatabaseInterval
 			IniWrite, %YesNinjaDatabase%, Settings.ini, Database, YesNinjaDatabase
 			IniWrite, %ForceMatch6Link%, Settings.ini, Database, ForceMatch6Link
+			IniWrite, %ForceMatchGem20%, Settings.ini, Database, ForceMatchGem20
 
 			readFromFile()
 			If (YesPersistantToggle)
@@ -11163,7 +11172,7 @@ Return
 		}
 	}
 
-	{ ; Loot Colors Menu
+	{ ; Individual Menus - LootColorsMenu, OHB_Editor
 		LootColorsMenu()
 		{
 			DrawLootColors:
@@ -11287,6 +11296,110 @@ Return
 				Gui, LootColors: Destroy
 				Gui, 1: show
 			Return
+		}
+
+		OHB_Editor()
+		{
+			Static OHB_Width := 104, OHB_Height := 2, OHB_Variance := 4, OHB_Split := ToRGB(0x221415), Initialized := 0, OHB_CReset, OHB_Test
+			global OHB_Preview,OHB_r,OHB_g,OHB_b, OHB_Color = 0x221415,OHB_StringEdit
+			If !Initialized
+			{
+				Gui, OHB: new
+				Gui, OHB: +AlwaysOnTop
+				Gui, OHB: Font, cBlack s20
+				Gui, OHB: add, Text, xm , Output String:
+				Gui, OHB: add, Button, x+120 yp hp wp vOHB_Test gOHBUpdate, Test String
+				Gui, OHB: Font,
+				Gui, OHB: add, edit, xm vOHB_StringEdit gOHBUpdate w480 h25, % """" Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height) """"
+				Gui, OHB: Font, cBlack s20
+				Gui, OHB: add, text, xm y+35, Width:
+				Gui, OHB: add, text, x+0 yp w65, %OHB_Width%
+				Gui, OHB: add, UpDown, vOHB_Width gOHBUpdate Range20-300 , %OHB_Width%
+				Gui, OHB: add, text, x+20 , Height:
+				Gui, OHB: add, text, x+0 yp w40, %OHB_Height%
+				Gui, OHB: add, UpDown, vOHB_Height gOHBUpdate Range1-5 , %OHB_Height%
+				Gui, OHB: add, text, x+20 , Variance:
+				Gui, OHB: add, text, x+0 yp w40, %OHB_Variance%
+				Gui, OHB: add, UpDown, vOHB_Variance gOHBUpdate , %OHB_Variance%
+
+				Gui, OHB: add, Edit, xm y+35 w140 h35 vOHB_Color gOHBUpdate, %OHB_Color%
+				Gui, OHB: add, text, x+20 yp, R:
+				Gui, OHB: add, text, x+0 yp w65,% OHB_Split.r
+				Gui, OHB: add, updown, vOHB_r gOHBUpdate range0-255, % OHB_Split.r
+				Gui, OHB: add, text, x+20 yp, G:
+				Gui, OHB: add, text, x+0 yp w65,% OHB_Split.g
+				Gui, OHB: add, updown, vOHB_g gOHBUpdate range0-255, % OHB_Split.g
+				Gui, OHB: add, text, x+20 yp, B:
+				Gui, OHB: add, text, x+0 yp w65,% OHB_Split.b
+				Gui, OHB: add, updown, vOHB_b gOHBUpdate range0-255, % OHB_Split.b
+				Gui, OHB: add, Progress, xm y+5 w140 h40 vOHB_Preview c%OHB_Color% BackgroundBlack,100
+				Gui, OHB: add, Button, x+90 yp hp wp+40 vOHB_CReset gOHBUpdate, Reset Color
+			}
+			Gui, OHB: show , w535 h300, OHB String Builder
+			Return
+
+			OHBUpdate:
+				If (A_GuiControl = "OHB_Test")
+				{
+					If WinExist(GameStr)
+					{
+						Gui, OHB: Submit
+						WinActivate, %GameStr%
+						Sleep, 145
+						WinGetPos, GameX, GameY, GameW, GameH
+					}
+					Else
+					{
+						MsgBox, 262144, Cannot find game, Make sure you have the game open
+						Return
+					}
+					If (Bar:=FindText(GameX + Round((GameW / 2)-(OHB_Width/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHB_Width/2)), Round(GameH / (1080 / 370)) , 0, 0, OHB_StringEdit))
+					{
+						MouseTip(Bar.1.1, Bar.1.2, Bar.1.3, Bar.1.4)
+						OHB_Editor()
+						MsgBox, 262144, String Found, OHB string was found!`nMake sure the highlighted matched area is the entire width of the healthbar`nThe red and blue flashing boxes should go to the very inner edge`n`nIf you are done, copy the string into the String Tab 
+					}
+					Else
+					{
+						MsgBox, 262144, Cannot find string, OHB string was not found!`nMake sure the width is an even number`nTry reset the color if its adjusted
+						OHB_Editor()
+					}
+				}
+				Else If (A_GuiControl = "OHB_EditorBtn")
+				{
+					Gui,1: submit
+					OHB_Editor()
+					return
+				}
+				Else
+				Gui, OHB: Submit, NoHide
+				If (A_GuiControl = "OHB_r" || A_GuiControl = "OHB_g" || A_GuiControl = "OHB_b")
+				{
+					OHB_Split.r := OHB_r, OHB_Split.g := OHB_g, OHB_Split.b := OHB_b, OHB_Color := ToHex(OHB_Split)
+					GuiControl,OHB: , OHB_Color, %OHB_Color%
+					GuiControl,OHB: +c%OHB_Color%, OHB_Preview
+				}
+				Else If (A_GuiControl = "OHB_Color" || A_GuiControl = "OHB_CReset")
+				{
+					If (A_GuiControl = "OHB_CReset")
+					{
+						OHB_Color = 0x221415
+						GuiControl,OHB: , OHB_Color, %OHB_Color%
+					}
+					OHB_Split := ToRGB(OHB_Color)
+					GuiControl,OHB: , OHB_r, % OHB_Split.r
+					GuiControl,OHB: , OHB_g, % OHB_Split.g
+					GuiControl,OHB: , OHB_b, % OHB_Split.b
+					GuiControl,OHB: +c%OHB_Color%, OHB_Preview
+				}
+				GuiControl, , OHB_StringEdit, % """" Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height) """"
+			Return
+
+			OHBGuiClose:
+			OHBGuiEscape:
+				Gui, OHB: hide
+				Gui, 1: show
+			return
 		}
 	}
 
@@ -11526,6 +11639,7 @@ Return
 			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
 			IniWrite, %YesSortFirst%, settings.ini, General, YesSortFirst
 			IniWrite, %Latency%, settings.ini, General, Latency
+			IniWrite, %ClickLatency%, settings.ini, General, ClickLatency
 			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
 			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
 			IniWrite, %Steam%, settings.ini, General, Steam

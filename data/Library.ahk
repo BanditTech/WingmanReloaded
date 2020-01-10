@@ -3080,9 +3080,9 @@ Structure of most functions:
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     SwiftClick(x, y){
             MouseMove, x, y	
-            Sleep, 30*Latency
+            Sleep, 30+(ClickLatency*15)
             Send {Click}
-            Sleep, 30*Latency
+            Sleep, 30+(ClickLatency*15)
         return
         }
 
@@ -3094,11 +3094,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 30*Latency
+            Sleep, 30+(ClickLatency*15)
             MouseMove, x, y
-            Sleep, 45*Latency
+            Sleep, 45+(ClickLatency*15)
             Send {Click}
-            Sleep, 45*Latency
+            Sleep, 45+(ClickLatency*15)
             BlockInput, MouseMoveOff
         }
         Return
@@ -3121,11 +3121,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 30*Latency
+            Sleep, 30+(ClickLatency*15)
             MouseMove, x, y
-            Sleep, 45*Latency
+            Sleep, 45+(ClickLatency*15)
             Send {Click, Right}
-            Sleep, 45*Latency
+            Sleep, 45+(ClickLatency*15)
             BlockInput, MouseMoveOff
         }
         Return
@@ -3150,11 +3150,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 45*Latency
+            Sleep, 45+(ClickLatency*15)
             MouseMove, x, y
-            Sleep, 60*Latency
+            Sleep, 60+(ClickLatency*15)
             Send +{Click}
-            Sleep, 45*Latency
+            Sleep, 45+(ClickLatency*15)
             BlockInput, MouseMoveOff
         }
         Return
@@ -3184,11 +3184,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 45*Latency
+            Sleep, 45+(ClickLatency*15)
             MouseMove, x, y
-            Sleep, 60*Latency
+            Sleep, 60+(ClickLatency*15)
             Send ^{Click}
-            Sleep, 45*Latency
+            Sleep, 45+(ClickLatency*15)
             BlockInput, MouseMoveOff
         }
         Return
@@ -3582,7 +3582,7 @@ Structure of most functions:
 
 
 
-/*** hex color tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
+/*** Hex Color Tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
 * Lib: ColorTools.ahk
 *     ColorCompare function
 *     ToRGBfromBGR function
@@ -3607,9 +3607,9 @@ Structure of most functions:
         }
         Return CompareRGB(c1,c2,vary)
     }
-    ; Convert a color to a two/five pixel square findtext string
+    ; Convert a color to a pixel findtext string
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Hex2FindText(Color,vary:=0,BGR:=0,Arr:=0,Width:=2,Height:=2)
+    Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2)
     {
         If (Width < 1)
             Width := 1
@@ -3622,7 +3622,7 @@ Structure of most functions:
         Loop % Height - 1
         endstr .= "`n" . bitstr
         bitstr := bit2base64(endstr)
-        If Arr
+        If IsObject(Color)
         {
             build := ""
             For k, v in Color
@@ -3637,10 +3637,9 @@ Structure of most functions:
         {
             If BGR
                 Color := hexBGRToRGB(Color)
-            Return "|<Single>" . Color . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
+            Return "|<" Comment ">" . Color . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
         }
     }
-
     ; Converts a hex BGR color into its R G B elements
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ToRGBfromBGR(color) {
@@ -3653,6 +3652,17 @@ Structure of most functions:
         return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
         }
 
+    ; Converts R G B elements back to hex
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ToHex(Color) {
+        If IsObject(Color)
+        {
+            C := (Color.r & 0xFF) << 16, C |= (Color.g & 0xFF) << 8, C |= (Color.b & 0xFF)
+            Return Format("0x{1:06X}",C)
+        }
+        Else
+            Return Format("0x{1:02X}",Color)
+        }
     ; Converts a hex BGR color into RGB format or vice versa
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     hexBGRToRGB(color) {
@@ -8726,14 +8736,14 @@ for i,v in ok
 
     ; Prompt mouse position in remote assistance
 
-    MouseTip(x:="", y:="")
+    MouseTip(x:="", y:="", w:=21, h:=21)
     {
         if (x="")
         {
             VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
             x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
         }
-        x:=Round(x-10), y:=Round(y-10), w:=h:=2*10+1
+        ; x:=Round(x-10), y:=Round(y-10)
         ;-------------------------
         Gui, _MouseTip_: +AlwaysOnTop -Caption +ToolWindow +Hwndmyid +E0x08000000
         Gui, _MouseTip_: Show, Hide w%w% h%h%

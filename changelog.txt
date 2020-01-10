@@ -1,6 +1,33 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.06 January/10/2020
+--------------------------------------------------------------------------------
+Added new function for converting split RGB elements back into hex
+
+adjustment to the Hex2FindText function, it now auto detects arrays
+    in the place of the array option is now comment for building a single color
+
+The default behavior with gems being set to lvl 20 variant has been changed
+    if a gem is below lvl 20, it will not be assigned a variant
+    Enable the option to force it to match ninja data for the lvl 20 version
+    This is to not over evaluate gems for general use of the scripts CLF ChaosValue
+    Find the setting in the Configuration tab under the Item Parse Settings
+
+There is now two seperate latency options, that work in seperate ways
+    The left option is to adjust the overall latency of the functions of the script
+        Base Latency * Latency Scale
+    The click latency option is to add incriments of 15ms to just click actions
+        Base Latency + (Click Latency * 15)
+        This option also affects the delay when clipping items
+
+I added an editor for building OHB string
+    When building a new string, ensure that the width is divisible by 2 (its even)
+    When testing, watch for the highlighted matching area
+    Make sure the matching area is the exact width of the inside edge of the healthbar
+    Height adjustment is only for scaled resolutions, do not adjust otherwise
+    Color adjustment is probably not recommended, but there in case needed
+
 Version .09.05 January/07/2020
 --------------------------------------------------------------------------------
 Toned back some of the latency adjustments on click functions
