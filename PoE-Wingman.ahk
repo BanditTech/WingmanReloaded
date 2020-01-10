@@ -326,7 +326,7 @@
 		Global YesClickPortal := True
 		Global RelogOnQuit := True
 		Global MainAttackPressedActive,SecondaryAttackPressedActive
-
+		Global ClickLatency
 		ft_ToolTip_Text=
 			(LTrim
 			ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
@@ -3169,9 +3169,9 @@ Return
 	ClipItem(x, y){
 			BlockInput, MouseMove
 			Clipboard := ""
-			Sleep, 45+(ClickLatency*15)
+			Sleep,% 45+(ClickLatency*15)
 			MouseMove %x%, %y%
-			Sleep, 45+(ClickLatency*15)
+			Sleep,% 45+(ClickLatency*15)
 			Send ^c
 			ClipWait, 0
 			ParseClip()

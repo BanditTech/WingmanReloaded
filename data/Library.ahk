@@ -3080,9 +3080,9 @@ Structure of most functions:
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     SwiftClick(x, y){
             MouseMove, x, y	
-            Sleep, 30+(ClickLatency*15)
+            Sleep,% 30+(ClickLatency*15)
             Send {Click}
-            Sleep, 30+(ClickLatency*15)
+            Sleep,% 30+(ClickLatency*15)
         return
         }
 
@@ -3094,11 +3094,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 30+(ClickLatency*15)
+            Sleep,% 30+(ClickLatency*15)
             MouseMove, x, y
-            Sleep, 45+(ClickLatency*15)
+            Sleep,% 45+(ClickLatency*15)
             Send {Click}
-            Sleep, 45+(ClickLatency*15)
+            Sleep,% 45+(ClickLatency*15)
             BlockInput, MouseMoveOff
         }
         Return
@@ -3121,11 +3121,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 30+(ClickLatency*15)
+            Sleep,% 30+(ClickLatency*15)
             MouseMove, x, y
-            Sleep, 45+(ClickLatency*15)
+            Sleep,% 45+(ClickLatency*15)
             Send {Click, Right}
-            Sleep, 45+(ClickLatency*15)
+            Sleep,% 45+(ClickLatency*15)
             BlockInput, MouseMoveOff
         }
         Return
@@ -3150,11 +3150,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 45+(ClickLatency*15)
+            Sleep,% 45+(ClickLatency*15)
             MouseMove, x, y
-            Sleep, 60+(ClickLatency*15)
+            Sleep,% 60+(ClickLatency*15)
             Send +{Click}
-            Sleep, 45+(ClickLatency*15)
+            Sleep,% 45+(ClickLatency*15)
             BlockInput, MouseMoveOff
         }
         Return
@@ -3184,11 +3184,11 @@ Structure of most functions:
         Else
         {
             BlockInput, MouseMove
-            Sleep, 45+(ClickLatency*15)
+            Sleep,% 45+(ClickLatency*15)
             MouseMove, x, y
-            Sleep, 60+(ClickLatency*15)
+            Sleep,% 60+(ClickLatency*15)
             Send ^{Click}
-            Sleep, 45+(ClickLatency*15)
+            Sleep,% 45+(ClickLatency*15)
             BlockInput, MouseMoveOff
         }
         Return
