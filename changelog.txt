@@ -1,6 +1,30 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.07 January/14/2020
+--------------------------------------------------------------------------------
+Menu has been split apart to reduce load time on first launch
+    There are new submenus for Inventory, Strings, Chat, and Controller
+    Open these new submenus from the Configuration tab
+
+Fix for typo on the Wizard's Delve chart calibration
+
+Adjustments for click actions, I know, I keep thinking its done....
+    Added special delay for Map, Div and Collection tab when moving stash
+    Adjusted the Ctrl and Shift click combining the old and new method
+        If you have previously adjusted click latency, try out the new default 0
+        There is also an option for -1 and -2 to speed up click actions
+            Use at your own discretion
+    Added option to adjust the clip latency alone
+    Adjusted delays for Auto vendor after stash logic
+    Other general Additions of base delays in inventory logic
+
+Added function that closes any notifications when doing an inventory scan
+    Sample any X button from the interface if resampling
+
+Organized Library file, grouped all the code written for wingman together
+    Mostly this is just for readability and finding functions
+
 Version .09.06 January/10/2020
 --------------------------------------------------------------------------------
 Added new function for converting split RGB elements back into hex

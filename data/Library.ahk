@@ -4,22 +4,2287 @@
   Return
 }
 
-hotkeys(){
-    global
-    if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+/*** Wingman Functions
+*    Contains all the assorted functions written for Wingman
+*/
+    ; PoE Click v1.0.1 : Developed by Bandit
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        ; SwiftClick - Left Click at Coord with no wait between up and down
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        SwiftClick(x, y){
+                MouseMove, x, y	
+                Sleep, 30+(ClickLatency*15)
+                Send {Click}
+                Sleep, 30+(ClickLatency*15)
+            return
+        }
+        ; SwiftClick - Left Click at Coord
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        LeftClick(x, y, Old:=0){
+            If Old
+            Goto OldStyleLeft
+            Else
+            {
+                BlockInput, MouseMove
+                MouseMove, x, y
+                Sleep, 60+(ClickLatency*15)
+                Send {Click}
+                Sleep, 60+(ClickLatency*15)
+                BlockInput, MouseMoveOff
+            }
+            Return
+            
+            OldStyleLeft:
+                MouseMove, x, y	
+                Sleep, 30*Latency
+                Send {Click, Down x, y }
+                Sleep, 60*Latency
+                Send {Click, Up x, y }
+                Sleep, 30*Latency
+            return
+        }
+        ; RightClick - Right Click at Coord
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        RightClick(x, y, Old:=0){
+            If Old
+            Goto OldStyleRight
+            Else
+            {
+                BlockInput, MouseMove
+                MouseMove, x, y
+                Sleep, 60+(ClickLatency*15)
+                Send {Click, Right}
+                Sleep, 60+(ClickLatency*15)
+                BlockInput, MouseMoveOff
+            }
+            Return
+
+            OldStyleRight:
+                BlockInput, MouseMove
+                MouseMove, x, y
+                Sleep, 30*Latency
+                Send {Click, Down x, y, Right}
+                Sleep, 60*Latency
+                Send {Click, Up x, y, Right}
+                Sleep, 30*Latency
+                BlockInput, MouseMoveOff
+            return
+        }
+        ; ShiftClick - Shift Click +Click at Coord
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        ShiftClick(x, y){
+            BlockInput, MouseMove
+            MouseMove, x, y
+            Sleep, 60+(ClickLatency*15)
+            Send {Shift Down}
+            Sleep, 30*Latency
+            Send {Click, Down, x, y}
+            Sleep, 60+(ClickLatency*15)
+            Send {Click, Up, x, y}
+            Sleep, 30*Latency
+            Send {Shift Up}
+            Sleep, 30*Latency
+            BlockInput, MouseMoveOff
+            return
+        }
+        ; CtrlClick - Ctrl Click ^Click at Coord
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        CtrlClick(x, y){
+            BlockInput, MouseMove
+            MouseMove, x, y
+            Sleep, 30+(ClickLatency*15)
+            Send {Ctrl Down}
+            Sleep, 45
+            Send {Click, Down, x, y}
+            Sleep, 45+(ClickLatency*15)
+            Send {Click, Up, x, y}
+            Sleep, 30
+            Send {Ctrl Up}
+            Sleep, 30+(ClickLatency*15)
+            BlockInput, MouseMoveOff
+            return
+        }
+        ; RandClick - Randomize Click area around middle of cell using Coord
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        RandClick(x, y){
+            Random, Rx, x+10, x+30
+            Random, Ry, y-30, y-10
+            return {"X": Rx, "Y": Ry}
+        }
+        ; WisdomScroll - Identify Item at Coord
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        WisdomScroll(x, y){
+            BlockInput, MouseMove
+            RightClick(WisdomScrollX,WisdomScrollY)
+            LeftClick(x,y)
+            Sleep, 30*Latency
+            BlockInput, MouseMoveOff
+            return
+        }
+    ;
+    ; Debug messages within script
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Ding(Timeout:=500, MultiTooltip:=0 , Message*)
+    {
+        If (!DebugMessages && MultiTooltip >= 0)
+            Return
+        Else
+        {
+            If MultiTooltip < 0
+                MultiTooltip := Abs(MultiTooltip)
+            debugStr := ""
+            If Message.Count()
+            {
+                For mkey, mval in Message
+                {
+                    If mval=
+                        Continue
+                    If A_Index = 1
+                    {
+                        If MultiTooltip
+                            ToolTip, %mval%, 20, % 40 + MultiTooltip* 23, %MultiTooltip% 
+                        Else
+                            debugStr .= Message.A_Index
+                    }
+                    Else if A_Index <= 20
+                    {
+                        If MultiTooltip
+                            ToolTip, %mval%, 20, % 40 + A_Index* 23, %A_Index% 
+                        Else
+                            debugStr .= "`n" . Message.A_Index
+                    }
+                }
+                If !MultiTooltip
+                    Tooltip, %debugStr%
+            }
+            Else
+            {
+                If MultiTooltip
+                    ToolTip, Ding, 20, % 40 + MultiTooltip* 23, %MultiTooltip% 
+                Else
+                    Tooltip, Ding
+            }
+        }
+        If Timeout
+        {
+            If MultiTooltip
+                SetTimer, RemoveTT%MultiTooltip%, %Timeout%
+            Else
+                SetTimer, RemoveToolTip, %Timeout%
+        }
+        Return
+    }
+    ; tooltip management
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    RemoveToolTip()
+    {
+        SetTimer, , Off
+        Loop, 20
+        {
+            SetTimer, RemoveTT%A_Index%, Off
+            ToolTip,,,,%A_Index%
+        }
+        PauseTooltips := 0
+        return
+
+        RemoveTT1:
+            SetTimer, , Off
+            ToolTip,,,,1
+        Return
+
+        RemoveTT2:
+            SetTimer, , Off
+            ToolTip,,,,2
+        Return
+
+        RemoveTT3:
+            SetTimer, , Off
+            ToolTip,,,,3
+        Return
+
+        RemoveTT4:
+            SetTimer, , Off
+            ToolTip,,,,4
+        Return
+
+        RemoveTT5:
+            SetTimer, , Off
+            ToolTip,,,,5
+        Return
+
+        RemoveTT6:
+            SetTimer, , Off
+            ToolTip,,,,6
+        Return
+
+        RemoveTT7:
+            SetTimer, , Off
+            ToolTip,,,,7
+        Return
+
+        RemoveTT8:
+            SetTimer, , Off
+            ToolTip,,,,8
+        Return
+
+        RemoveTT9:
+            SetTimer, , Off
+            ToolTip,,,,9
+        Return
+
+        RemoveTT10:
+            SetTimer, , Off
+            ToolTip,,,,10
+        Return
+
+        RemoveTT11:
+            SetTimer, , Off
+            ToolTip,,,,11
+        Return
+
+        RemoveTT12:
+            SetTimer, , Off
+            ToolTip,,,,12
+        Return
+
+        RemoveTT13:
+            SetTimer, , Off
+            ToolTip,,,,13
+        Return
+
+        RemoveTT14:
+            SetTimer, , Off
+            ToolTip,,,,14
+        Return
+
+        RemoveTT15:
+            SetTimer, , Off
+            ToolTip,,,,15
+        Return
+
+        RemoveTT16:
+            SetTimer, , Off
+            ToolTip,,,,16
+        Return
+
+        RemoveTT17:
+            SetTimer, , Off
+            ToolTip,,,,17
+        Return
+
+        RemoveTT18:
+            SetTimer, , Off
+            ToolTip,,,,18
+        Return
+
+        RemoveTT19:
+            SetTimer, , Off
+            ToolTip,,,,19
+        Return
+
+        RemoveTT20:
+            SetTimer, , Off
+            ToolTip,,,,20
+        Return
+    }
+    ShowToolTip()
+    {
+        global ft_ToolTip_Text
+        If (PauseTooltips || WinActive(GameStr))
+            Return
+        ListLines, Off
+        static CurrControl, PrevControl, _TT
+        CurrControl := A_GuiControl
+        if (CurrControl != PrevControl)
+        {
+        PrevControl := CurrControl
+        ToolTip
+        if (CurrControl != "")
+            SetTimer, ft_DisplayToolTip, -500
+        }
+        return
+
+        ft_DisplayToolTip:
+        If PauseTooltips
+            Return
+        ListLines, Off
+        MouseGetPos,,, _TT
+        WinGetClass, _TT, ahk_id %_TT%
+        if (_TT = "AutoHotkeyGUI")
+        {
+        ToolTip, % RegExMatch(ft_ToolTip_Text, "m`n)^"
+            . StrReplace(CurrControl,"ft_") . "\K\s*=.*", _TT)
+            ? StrReplace(Trim(_TT,"`t ="),"\n","`n") : ""
+        SetTimer, ft_RemoveToolTip, -5000
+        }
+        return
+
+        ft_RemoveToolTip:
+        ToolTip
+        return
+    }
+    ; GuiStatus - Determine the gamestates by checking for specific pixel colors
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GuiStatus(Fetch:="",SS:=1){
+		If (SS)
+            ScreenShot(Gamex,GameY,GameX+GameW,GameY+GameH)
+		If (Fetch="OnDetonate")
+        {
+            POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+            , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
+            Return OnDetonate
+        }
+		Else If !(Fetch="")
+        {
+            P%Fetch% := ScreenShot_GetColor(vX_%Fetch%,vY_%Fetch%)
+            temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
+            Return temp
+        }
+		POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
+		POnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat), OnChat := (POnChat=varOnChat?True:False)
+		POnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu), OnMenu := (POnMenu=varOnMenu?True:False)
+		POnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory), OnInventory := (POnInventory=varOnInventory?True:False)
+		POnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash), OnStash := (POnStash=varOnStash?True:False)
+        POnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor), OnVendor := (POnVendor=varOnVendor?True:False)
+        POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
+        POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
+        POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+        If OnMines
+        POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+        Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+        OnDetonate := (POnDetonate=varOnDetonate?True:False)
+		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))
+	}
+    ; CheckOHB - Determine the position of the OHB
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    CheckOHB()
+    {
+        Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
+        If WinActive(GameStr)
+        {
+            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
+            {
+                ok.1.3 -= 1
+                ok.1.4 += 8
+
+                OHB := { "X" : ok.1.1
+                    , "Y" : ok.1.2
+                    , "rX" : ok.1.1 + ok.1.3
+                    , "W" : ok.1.3
+                    , "H" : ok.1.4
+                    , "hpY" : ok.1.2 - (ok.1.4 // 2)
+                    , "mY" : ok.1.2 + (ok.1.4 // 2)
+                    , "esY" : ok.1.2 - 2
+                    , "ebY" : ok.1.2 + 2 }
+                OHB["pX"] := { 1 : Round(ok.1.1 + (ok.1.3* 0.10))
+                    , 2 : Round(ok.1.1 + (ok.1.3* 0.20))
+                    , 3 : Round(ok.1.1 + (ok.1.3* 0.30))
+                    , 4 : Round(ok.1.1 + (ok.1.3* 0.40))
+                    , 5 : Round(ok.1.1 + (ok.1.3* 0.50))
+                    , 6 : Round(ok.1.1 + (ok.1.3* 0.60))
+                    , 7 : Round(ok.1.1 + (ok.1.3* 0.70))
+                    , 8 : Round(ok.1.1 + (ok.1.3* 0.80))
+                    , 9 : Round(ok.1.1 + (ok.1.3* 0.90))
+                    , 10 : Round(ok.1.1 + ok.1.3) }
+                Return OHB.X + OHB.Y
+            }
+            Else
+            {
+                Ding(500,6,"OHB Not Found")
+                Return False
+            }
+        }
+        Else 
+            Return False
+    }
+    ; GetPercent - Determine the percentage of health
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    GetPercent(CID, PosY, Variance)
+    {
+        Thread, NoTimers, true		;Critical
+        Global OHB, OHBLHealthHex
+        If !CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(OHB.X+1, PosY)),Variance)
+        {
+            Ding(500,7,"OHB Obscured, Moved, or Dead" )
+            Return HPerc
+        }
+        Else
+        Found := OHB.X + 1
+        Loop 10
+        {
+            pX:= OHB.pX[A_Index]
+            If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
+                Found := pX
+        }
+        Thread, NoTimers, False		;End Critical
+        Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
+    }
+    ; Rescale - Rescales values of the script to the user's resolution
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	Rescale(){
+        Global GameX, GameY, GameW, GameH
+        IfWinExist, ahk_group POEGameGroup 
+        {
+            WinGetPos, GameX, GameY, GameW, GameH
+            If (ResolutionScale="Standard") {
+                ; Item Inventory Grid
+                Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
+                Global InventoryGridY := [ GameY + Round(GameH/(1080/638)), GameY + Round(GameH/(1080/690)), GameY + Round(GameH/(1080/743)), GameY + Round(GameH/(1080/796)), GameY + Round(GameH/(1080/848)) ]  
+                ;Detonate Mines
+                Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
+                Global DetonateX:=GameX + Round(GameW/(1920/1658))
+                Global DetonateY:=GameY + Round(GameH/(1080/901))
+                ;Scrolls in currency tab
+                Global WisdomStockX:=GameX + Round(GameW/(1920/125))
+                Global PortalStockX:=GameX + Round(GameW/(1920/175))
+                Global WPStockY:=GameY + Round(GameH/(1080/262))
+                ;Status Check OnMenu
+                global vX_OnMenu:=GameX + Round(GameW / 2)
+                global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+                ;Status Check OnChar
+                global vX_OnChar:=GameX + Round(GameW / (1920 / 41))
+                global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+                ;Status Check OnChat
+                global vX_OnChat:=GameX + Round(GameW / (1920 / 0))
+                global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+                ;Status Check OnInventory
+                global vX_OnInventory:=GameX + Round(GameW / (1920 / 1583))
+                global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+                ;Status Check OnStash
+                global vX_OnStash:=GameX + Round(GameW / (1920 / 336))
+                global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+                ;Status Check OnVendor
+                global vX_OnVendor:=GameX + Round(GameW / (1920 / 618))
+                global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+                ;Status Check OnDiv
+                global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
+                global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+                ;Status Check OnLeft
+                global vX_OnLeft:=GameX + Round(GameW / (1920 / 252))
+                global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+                ;Status Check OnDelveChart
+                global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
+                global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Life %'s
+                global vX_Life:=GameX + Round(GameW / (1920 / 95))
+                global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
+                global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
+                global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
+                global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
+                global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
+                global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
+                global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
+                global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
+                ;ES %'s
+                If YesEldritchBattery
+                    global vX_ES:=GameX + Round(GameW / (1920 / 1740))
+                Else
+                    global vX_ES:=GameX + Round(GameW / (1920 / 180))
+                global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
+                global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
+                global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
+                global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
+                global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
+                global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
+                global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
+                global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
+                ;Mana
+                global vX_Mana:=GameX + Round(GameW / (1920 / 1825))
+                global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
+                global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
+                Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+                ;GUI overlay
+                global GuiX:=GameX + Round(GameW / (1920 / -10))
+                global GuiY:=GameY + Round(GameH / (1080 / 1027))
+                ;Divination Y locations
+                Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
+                Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
+                ;Stash tabs menu button
+                global vX_StashTabMenu := GameX + Round(GameW / (1920 / 640))
+                global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
+                ;Stash tabs menu list
+                global vX_StashTabList := GameX + Round(GameW / (1920 / 706))
+                global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
+                ;calculate the height of each tab
+                global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+            }
+            Else If (ResolutionScale="Classic") {
+                ; Item Inventory Grid
+                Global InventoryGridX := [ Round(GameW/(1440/794)) , Round(GameW/(1440/846)) , Round(GameW/(1440/899)) , Round(GameW/(1440/952)) , Round(GameW/(1440/1004)) , Round(GameW/(1440/1057)) , Round(GameW/(1440/1110)) , Round(GameW/(1440/1162)) , Round(GameW/(1440/1215)) , Round(GameW/(1440/1268)) , Round(GameW/(1440/1320)) , Round(GameW/(1440/1373)) ]
+                Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
+                ;Detonate Mines
+                Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
+                Global DetonateX:=GameX + Round(GameW/(1440/1178))
+                Global DetonateY:=GameY + Round(GameH/(1080/901))
+                ;Scrolls in currency tab
+                Global WisdomStockX:=GameX + Round(GameW/(1440/125))
+                Global PortalStockX:=GameX + Round(GameW/(1440/175))
+                Global WPStockY:=GameY + Round(GameH/(1080/262))
+                ;Status Check OnMenu
+                global vX_OnMenu:=GameX + Round(GameW / 2)
+                global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+                ;Status Check OnChar
+                global vX_OnChar:=GameX + Round(GameW / (1440 / 41))
+                global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+                ;Status Check OnChat
+                global vX_OnChat:=GameX + Round(GameW / (1440 / 0))
+                global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+                ;Status Check OnInventory
+                global vX_OnInventory:=GameX + Round(GameW / (1440 / 1103))
+                global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+                ;Status Check OnStash
+                global vX_OnStash:=GameX + Round(GameW / (1440 / 336))
+                global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+                ;Status Check OnVendor
+                global vX_OnVendor:=GameX + Round(GameW / (1440 / 378))
+                global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+                ;Status Check OnDiv
+                global vX_OnDiv:=GameX + Round(GameW / (1440 / 378))
+                global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+                ;Status Check OnLeft
+                global vX_OnLeft:=GameX + Round(GameW / (1440 / 252))
+                global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+                ;Status Check OnDelveChart
+                global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
+                global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Life %'s
+                global vX_Life:=GameX + Round(GameW / (1440 / 95))
+                global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
+                global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
+                global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
+                global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
+                global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
+                global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
+                global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
+                global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
+                ;ES %'s
+                If YesEldritchBattery
+                    global vX_ES:=GameX + Round(GameW / (1440 / 1260))
+                Else
+                    global vX_ES:=GameX + Round(GameW / (1440 / 180))
+                global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
+                global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
+                global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
+                global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
+                global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
+                global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
+                global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
+                global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
+                ;Mana
+                global vX_Mana:=GameX + Round(GameW / (1440 / 1345))
+                global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
+                global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
+                Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+                ;GUI overlay
+                global GuiX:=GameX + Round(GameW / (1440 / -10))
+                global GuiY:=GameY + Round(GameH / (1080 / 1027))
+                ;Divination Y locations
+                Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
+                Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
+                ;Stash tabs menu button
+                global vX_StashTabMenu := GameX + Round(GameW / (1440 / 640))
+                global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
+                ;Stash tabs menu list
+                global vX_StashTabList := GameX + Round(GameW / (1440 / 706))
+                global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
+                ;calculate the height of each tab
+                global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+            }
+            Else If (ResolutionScale="Cinematic") {
+                ; Item Inventory Grid
+                Global InventoryGridX := [ Round(GameW/(2560/1914)), Round(GameW/(2560/1967)), Round(GameW/(2560/2018)), Round(GameW/(2560/2072)), Round(GameW/(2560/2125)), Round(GameW/(2560/2178)), Round(GameW/(2560/2230)), Round(GameW/(2560/2281)), Round(GameW/(2560/2336)), Round(GameW/(2560/2388)), Round(GameW/(2560/2440)), Round(GameW/(2560/2493)) ]
+                Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]
+                ;Detonate Mines
+                Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
+                Global DetonateX:=GameX + Round(GameW/(2560/2298))
+                Global DetonateY:=GameY + Round(GameH/(1080/901))
+                ;Scrolls in currency tab
+                Global WisdomStockX:=GameX + Round(GameW/(2560/125))
+                Global PortalStockX:=GameX + Round(GameW/(2560/175))
+                Global WPStockY:=GameY + Round(GameH/(1080/262))
+                ;Status Check OnMenu
+                global vX_OnMenu:=GameX + Round(GameW / 2)
+                global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+                ;Status Check OnChar
+                global vX_OnChar:=GameX + Round(GameW / (2560 / 41))
+                global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+                ;Status Check OnChat
+                global vX_OnChat:=GameX + Round(GameW / (2560 / 0))
+                global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+                ;Status Check OnInventory
+                global vX_OnInventory:=GameX + Round(GameW / (2560 / 2223))
+                global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+                ;Status Check OnStash
+                global vX_OnStash:=GameX + Round(GameW / (2560 / 336))
+                global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+                ;Status Check OnVendor
+                global vX_OnVendor:=GameX + Round(GameW / (2560 / 618))
+                global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+                ;Status Check OnDiv
+                global vX_OnDiv:=GameX + Round(GameW / (2560 / 618))
+                global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+                ;Status Check OnLeft
+                global vX_OnLeft:=GameX + Round(GameW / (2560 / 252))
+                global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+                ;Status Check OnDelveChart
+                global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
+                global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Life %'s
+                global vX_Life:=GameX + Round(GameW / (2560 / 95))
+                global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
+                global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
+                global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
+                global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
+                global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
+                global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
+                global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
+                global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
+                ;ES %'s
+                If YesEldritchBattery
+                    global vX_ES:=GameX + Round(GameW / (2560 / 2380))
+                Else
+                    global vX_ES:=GameX + Round(GameW / (2560 / 180))
+                global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
+                global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
+                global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
+                global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
+                global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
+                global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
+                global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
+                global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
+                ;Mana
+                global vX_Mana:=GameX + Round(GameW / (2560 / 2465))
+                global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
+                global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
+                Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+                ;GUI overlay
+                global GuiX:=GameX + Round(GameW / (2560 / -10))
+                global GuiY:=GameY + Round(GameH / (1080 / 1027))
+                ;Divination Y locations
+                Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
+                Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
+                ;Stash tabs menu button
+                global vX_StashTabMenu := GameX + Round(GameW / (2560 / 640))
+                global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
+                ;Stash tabs menu list
+                global vX_StashTabList := GameX + Round(GameW / (2560 / 706))
+                global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
+                ;calculate the height of each tab
+                global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+            } 
+            Else If (ResolutionScale="Cinematic(43:18)") {
+                ;Item Inventory Grid
+                Global InventoryGridX := [ Round(GameW/(3440/2579)), Round(GameW/(3440/2649)), Round(GameW/(3440/2719)), Round(GameW/(3440/2789)), Round(GameW/(3440/2860)), Round(GameW/(3440/2930)), Round(GameW/(3440/3000)), Round(GameW/(3440/3070)), Round(GameW/(3440/3140)), Round(GameW/(3440/3211)), Round(GameW/(3440/3281)), Round(GameW/(3440/3351)) ]
+                Global InventoryGridY := [ Round(GameH/(1440/851)), Round(GameH/(1440/921)), Round(GameH/(1440/992)), Round(GameH/(1440/1062)), Round(GameH/(1440/1132)) ]
+                ;Detonate Mines
+                Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
+                Global DetonateX:=GameX + Round(GameW/(3440/3090))
+                Global DetonateY:=GameY + Round(GameH/(1440/1202))
+                ;Scrolls in currency tab
+                Global WisdomStockX:=GameX + Round(GameW/(3440/164))
+                Global PortalStockX:=GameX + Round(GameW/(3440/228))
+                Global WPStockY:=GameY + Round(GameH/(1440/353))
+                ;Status Check OnMenu
+                global vX_OnMenu:=GameX + Round(GameW / 2)
+                global vY_OnMenu:=GameY + Round(GameH / (1440 / 72))
+                ;Status Check OnChar
+                global vX_OnChar:=GameX + Round(GameW / (3440 / 54))
+                global vY_OnChar:=GameY + Round(GameH / ( 1440 / 1217))
+                ;Status Check OnChat
+                global vX_OnChat:=GameX + Round(GameW / (3440 / 0))
+                global vY_OnChat:=GameY + Round(GameH / ( 1440 / 850))
+                ;Status Check OnInventory
+                global vX_OnInventory:=GameX + Round(GameW / (3440 / 2991))
+                global vY_OnInventory:=GameY + Round(GameH / ( 1440 / 47))
+                ;Status Check OnStash
+                global vX_OnStash:=GameX + Round(GameW / (3440 / 448))
+                global vY_OnStash:=GameY + Round(GameH / ( 1440 / 42))
+                ;Status Check OnVendor
+                global vX_OnVendor:=GameX + Round(GameW / (3440 / 1264))
+                global vY_OnVendor:=GameY + Round(GameH / ( 1440 / 146))
+                ;Status Check OnDiv
+                global vX_OnDiv:=GameX + Round(GameW / (3440 / 822))
+                global vY_OnDiv:=GameY + Round(GameH / ( 1440 / 181))
+                ;Life %'s
+                global vX_Life:=GameX + Round(GameW / (3440 / 128))
+                global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
+                global vY_Life30:=GameY + Round(GameH / ( 1440 / 1356))
+                global vY_Life40:=GameY + Round(GameH / ( 1440 / 1329))
+                global vY_Life50:=GameY + Round(GameH / ( 1440 / 1302))
+                global vY_Life60:=GameY + Round(GameH / ( 1440 / 1275))
+                global vY_Life70:=GameY + Round(GameH / ( 1440 / 1248))
+                global vY_Life80:=GameY + Round(GameH / ( 1440 / 1221))
+                global vY_Life90:=GameY + Round(GameH / ( 1440 / 1194))
+                ;ES %'s
+                If YesEldritchBattery
+                    global vX_ES:=GameX + Round(GameW / (3440 / 3222))
+                Else
+                    global vX_ES:=GameX + Round(GameW / (3440 / 225))
+                global vY_ES20:=GameY + Round(GameH / ( 1440 / 1383))
+                global vY_ES30:=GameY + Round(GameH / ( 1440 / 1356))
+                global vY_ES40:=GameY + Round(GameH / ( 1440 / 1329))
+                global vY_ES50:=GameY + Round(GameH / ( 1440 / 1302))
+                global vY_ES60:=GameY + Round(GameH / ( 1440 / 1275))
+                global vY_ES70:=GameY + Round(GameH / ( 1440 / 1248))
+                global vY_ES80:=GameY + Round(GameH / ( 1440 / 1221))
+                global vY_ES90:=GameY + Round(GameH / ( 1440 / 1194))
+                ;Mana
+                global vX_Mana:=GameX + Round(GameW / (3440 / 3314))
+                global vY_Mana10:=GameY + Round(GameH / (1440 / 1409))
+                global vY_Mana90:=GameY + Round(GameH / (1440 / 1165))
+                Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+                ;GUI overlay
+                global GuiX:=GameX + Round(GameW / (3440 / -10))
+                global GuiY:=GameY + Round(GameH / (1440 / 1370))
+                ;Divination Y locations
+                Global vY_DivTrade:=GameY + Round(GameH / (1440 / 983))
+                Global vY_DivItem:=GameY + Round(GameH / (1440 / 805))
+                ;Stash tabs menu button
+                global vX_StashTabMenu := GameX + Round(GameW / (3440 / 853))
+                global vY_StashTabMenu := GameY + Round(GameH / ( 1440 / 195))
+                ;Stash tabs menu list
+                global vX_StashTabList := GameX + Round(GameW / (3440 / 1000))
+                global vY_StashTabList := GameY + Round(GameH / ( 1440 / 148))
+                ;calculate the height of each tab
+                global vY_StashTabSize := Round(GameH / ( 1440 / 29))
+            }
+            Else If (ResolutionScale="UltraWide") {
+                ; Item Inventory Grid
+                Global InventoryGridX := [ Round(GameW/(3840/3193)), Round(GameW/(3840/3246)), Round(GameW/(3840/3299)), Round(GameW/(3840/3352)), Round(GameW/(3840/3404)), Round(GameW/(3840/3457)), Round(GameW/(3840/3510)), Round(GameW/(3840/3562)), Round(GameW/(3840/3615)), Round(GameW/(3840/3668)), Round(GameW/(3840/3720)), Round(GameW/(3840/3773)) ]
+                Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
+                ;Detonate Mines
+                Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
+                Global DetonateX:=GameX + Round(GameW/(3840/3578))
+                Global DetonateY:=GameY + Round(GameH/(1080/901))
+                ;Scrolls in currency tab
+                Global WisdomStockX:=GameX + Round(GameW/(3840/125))
+                Global PortalStockX:=GameX + Round(GameW/(3840/175))
+                Global WPStockY:=GameY + Round(GameH/(1080/262))
+                ;Status Check OnMenu
+                global vX_OnMenu:=GameX + Round(GameW / 2)
+                global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+                ;Status Check OnChar
+                global vX_OnChar:=GameX + Round(GameW / (3840 / 41))
+                global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+                ;Status Check OnChat
+                global vX_OnChat:=GameX + Round(GameW / (3840 / 0))
+                global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+                ;Status Check OnInventory
+                global vX_OnInventory:=GameX + Round(GameW / (3840 / 3503))
+                global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+                ;Status Check OnStash
+                global vX_OnStash:=GameX + Round(GameW / (3840 / 336))
+                global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+                ;Status Check OnVendor
+                global vX_OnVendor:=GameX + Round(GameW / (3840 / 1578))
+                global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+                ;Status Check OnDiv
+                global vX_OnDiv:=GameX + Round(GameW / (3840 / 1578))
+                global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+                ;Status Check OnLeft
+                global vX_OnLeft:=GameX + Round(GameW / (3840 / 252))
+                global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+                ;Status Check OnDelveChart
+                global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
+                global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Life %'s
+                global vX_Life:=GameX + Round(GameW / (3840 / 95))
+                global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
+                global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
+                global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
+                global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
+                global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
+                global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
+                global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
+                global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
+                ;ES %'s
+                If YesEldritchBattery
+                    global vX_ES:=GameX + Round(GameW / (3840 / 3660))
+                Else
+                    global vX_ES:=GameX + Round(GameW / (3840 / 180))
+                global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
+                global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
+                global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
+                global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
+                global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
+                global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
+                global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
+                global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
+                ;Mana
+                global vX_Mana:=GameX + Round(GameW / (3840 / 3745))
+                global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
+                global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
+                Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+                Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+                ;GUI overlay
+                global GuiX:=GameX + Round(GameW / (3840 / -10))
+                global GuiY:=GameY + Round(GameH / (1080 / 1027))
+                ;Divination Y locations
+                Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
+                Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
+                ;Stash tabs menu button
+                global vX_StashTabMenu := GameX + Round(GameW / (3840 / 640))
+                global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
+                ;Stash tabs menu list
+                global vX_StashTabList := GameX + Round(GameW / (3840 / 706))
+                global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
+                ;calculate the height of each tab
+                global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+            } 
+            x_center := GameX + GameW / 2
+            compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
+            y_center := GameY + GameH / 2 / compensation
+            offset_mod := y_offset / GameH
+            x_offset := GameW * (offset_mod / 1.5 )
+            Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) }
+            RescaleRan := True
+            Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
+        }
+        return
+    }
+    ; Compare two hex colors as their R G B elements, puts all the below together
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    CompareHex(color1, color2, vary:=1, BGR:=0)
+    {
+        If BGR
+        {
+            c1 := ToRGBfromBGR(color1)
+            c2 := ToRGBfromBGR(color2)
+        }
+        Else
+        {
+            c1 := ToRGB(color1)
+            c2 := ToRGB(color2)
+        }
+        Return CompareRGB(c1,c2,vary)
+    }
+    ; Convert a color to a pixel findtext string
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2)
+    {
+        If (Width < 1)
+            Width := 1
+        If (Height < 1)
+            Height := 1
+        bitstr := ""
+        Loop % Width
+            bitstr .= "1"
+        endstr := bitstr
+        Loop % Height - 1
+        endstr .= "`n" . bitstr
+        bitstr := bit2base64(endstr)
+        If IsObject(Color)
+        {
+            build := ""
+            For k, v in Color
+            {
+                If BGR
+                    v := hexBGRToRGB(v)
+                build .= "|<" k ">" . v . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
+            }
+            Return build
+        }
+        Else
+        {
+            If BGR
+                Color := hexBGRToRGB(Color)
+            Return "|<" Comment ">" . Color . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
+        }
+    }
+    ; Converts a hex BGR color into its R G B elements
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ToRGBfromBGR(color) {
+        return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
+    }
+    ; Converts a hex RGB color into its R G B elements
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ToRGB(color) {
+        return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
+    }
+    ; Converts R G B elements back to hex
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ToHex(Color) {
+        If IsObject(Color)
+        {
+            C := (Color.r & 0xFF) << 16, C |= (Color.g & 0xFF) << 8, C |= (Color.b & 0xFF)
+            Return Format("0x{1:06X}",C)
+        }
+        Else
+            Return Format("0x{1:02X}",Color)
+    }
+    ; Converts a hex BGR color into RGB format or vice versa
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    hexBGRToRGB(color) {
+            b := Format("{1:02X}",(color >> 16) & 0xFF)
+            g := Format("{1:02X}",(color >> 8) & 0xFF)
+            r := Format("{1:02X}",color & 0xFF)
+        return "0x" . r . g . b
+    }
+    ; Compares two converted HEX codes as R G B within the variance range (use ToRGB to convert first)
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    CompareRGB(c1, c2, vary:=1) {
+        rdiff := Abs( c1.r - c2.r )
+        gdiff := Abs( c1.g - c2.g )
+        bdiff := Abs( c1.b - c2.b )
+        return rdiff <= vary && gdiff <= vary && bdiff <= vary
+    }
+    ; Check if a specific hex value is part of an array within a variance and return the index
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    indexOfHex(var, Arr, fromIndex:=1, vary:=2) {
+        for index, value in Arr {
+            h1 := ToRGB(value) 
+            h2 := ToRGB(var) 
+            if (index < fromIndex){
+                Continue
+            }else if (CompareRGB(h1, h2, vary)){
+                return index
+            }
+        }
+    }
+    ; Check if a specific value is part of an array and return the index
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    indexOf(var, Arr, fromIndex:=1) {
+        for index, value in Arr {
+            if (index < fromIndex){
+                Continue
+            }else if (value = var){
+                return index
+            }
+        }
+    }
+    ; Check if a specific value is part of an array's array and return the parent index
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    indexOfArr(var, Arr, fromIndex:=1) 
+    {
+        for index, a in Arr 
+        {
+            if (index < fromIndex)
+                Continue
+            for k, value in a
+                if (value = var)
+                    return index
+        }
+        Return False
+    }
+    ; Transform an array to a comma separated string
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    arrToStr(array){
+        Str := ""
+        For Index, Value In array
+            Str .= "," . Value
+        Str := LTrim(Str, ",")
+        return Str
+    }
+    ; Transform an array to a comma separated string
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    hexArrToStr(array){
+        Str := ""
+        For Index, Value In array
+            {
+            value := Format("0x{1:06X}", value)
+            Str .= "," . Value
+            }
+        Str := LTrim(Str, ",")
+        return Str
+    }
+    ; Function to Replace Nth instance of Needle in Haystack
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    StringReplaceN( Haystack, Needle, Replacement="", Instance=1 ) 
+    { 
+        If !( Instance := 0 | Instance )
+        {
+            StringReplace, Haystack, Haystack, %Needle%, %Replacement%, A
+            Return Haystack
+        }
+        Else Instance := "L" Instance
+        StringReplace, Instance, Instance, L-, R
+        StringGetPos, Instance, Haystack, %Needle%, %Instance%
+        If ( ErrorLevel )
+            Return Haystack
+        StringTrimLeft, Needle, HayStack, Instance+ StrLen( Needle )
+        StringLeft, HayStack, HayStack, Instance
+        Return HayStack Replacement Needle
+    } 
+    ; Clamp Value function
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Clamp( Val, Min, Max) {
+        If Val < Min
+            Val := Min
+        If Val > Max
+            Val := Max
+        Return
+    }
+    ; ClampGameScreen - Ensure points do not go outside Game Window
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ClampGameScreen(ByRef ValX, ByRef ValY) 
+    {
+        Global GameWindow
+        If (ValY < GameWindow.BBarY)
+            ValY := GameWindow.BBarY
+        If (ValX < GameWindow.X)
+            ValX := GameWindow.X
+        If (ValY > GameWindow.Y + GameWindow.H)
+            ValT := GameWindow.Y + GameWindow.H
+        If (ValX > GameWindow.X + GameWindow.W)
+            ValX := GameWindow.X + GameWindow.W
+        Return
+    }
+    ; GroupByFourty - Mathematic function to sort quality into groups of 40
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    GroupByFourty(ArrList) {
+        GroupList := {}
+        tQ := 0
+        ; Get total of Value before
+        For k, v in ArrList
+            allQ += v.Q 
+        ; Begin adding values to GroupList
+        Loop, 20
+            GroupTotal%ind% := 0
+        Gosub, Group_Add
+        Gosub, Group_Swap
+        Gosub, Group_Move
+        Gosub, Group_Cleanup
+        Gosub, Group_Cleanup
+        Gosub, Group_Add
+        Gosub, Group_Swap
+        Gosub, Group_Cleanup
+        ; Gosub, Group_Move
+        ; Gosub, Group_Cleanup
+        ; Gosub, Group_Add
+        ; Gosub, Group_Move
+        ; Gosub, Group_Cleanup
+        ; Gosub, RebaseTotals
+
+        ; Final tallies
+        For k, v in ArrList
+            remainQ += v.Q 
+        If !remainQ
+            remainQ:=0
+        tQ=
+        For k, v in GroupList
+            For kk, vv in v
+                tQ += vv.Q 
+        If !tQ
+            tQ:= 0
+        overQ := mod(tQ, 40)
+        If !overQ
+            overQ:= 0
+        ; Catch for high quality gems in low quantities
+        If (tQ = 0 && remainQ >= 40 && remainQ <= 57)
+        {
+            Loop, 20
+            {
+                ind := A_Index
+                For k, v in ArrList
+                {
+                    If (GroupTotal%ind% >= 40)
+                        Continue
+                    If (GroupTotal%ind% + v.Q <= 57)
+                    {
+                        If !IsObject(GroupList[ind])
+                            GroupList[ind]:={}
+                        GroupList[ind].Push(ArrList.Delete(k))
+                        GroupTotal%ind% += v.Q
+                    }
+                }
+            }
+            remainQ=
+            For k, v in ArrList
+                remainQ += v.Q 
+            If !remainQ
+                remainQ:=0
+            tQ=
+            For k, v in GroupList
+                For kk, vv in v
+                    tQ += vv.Q 
+            If !tQ
+                tQ:= 0
+            overQ := mod(tQ, 40)
+            If !overQ
+                overQ:= 0
+        }
+        expectC := Round((tQ - overQ) / 40)
+        ; Display Tooltips
+        ToolTip,Total Quality:`t %allQ%`%,100,180,15
+        ToolTip,Currency Value:`t %expectC% orbs,100,200,18
+        ToolTip,Groups Quality:`t %tQ%`%,100,220,16
+        ToolTip,Excess Groups Q:`t %overQ%`%,100,240,17
+        ToolTip,Leftover Quality:`t %remainQ%`%,100,260,19
+        SetTimer, RemoveToolTip, -20000
+        Return GroupList
+
+        RebaseTotals:
+            tt=
+            tt2=
+            For k, v in GroupList
+            {
+                tt .= GroupTotal%k% . "`r"
+                GroupTotal%k% := 0
+                For kk, vv in v
+                {
+                    GroupTotal%k% += vv.Q
+                }
+            }
+            For k, v in GroupList
+                tt2 .= GroupTotal%k% . "`r"
+            If (tt != tt2)
+                MsgBox,% "Mismatch Found!`r`rFirst Values`r" . tt . "`r`rSecond Values`r" . tt2
+        Return
+
+        Group_Batch:
+            Gosub, Group_Trim
+            Gosub, Group_Trade
+            Gosub, Group_Add
+            Gosub, Group_Swap
+        Return
+
+        Group_Cleanup:
+            ; Remove groups that didnt make it to 40
+            Loop, 3
+            For k, v in GroupList
+            {
+                If (GroupTotal%k% < 40)
+                {
+                    For kk, vv in v
+                    {
+                        ArrList.Push(v.Delete(kk))
+                        GroupTotal%k% -= vv.Q
+                    }
+                }
+            }
+        Return
+
+        Group_Swap:
+            ; Swap values Between groups to move closer to 40
+            For k, v in GroupList
+            {
+                If (GroupTotal%k% <= 40)
+                    Continue
+                For kk, vv in v
+                {
+                    If (GroupTotal%k% <= 40)
+                        Continue
+                    For kg, vg in GroupList
+                    {
+                        If (k = kg)
+                            Continue
+                        For kkg, vvg in vg
+                        {
+                            newk := GroupTotal%k% - vv.Q + vvg.Q
+                            newkg := GroupTotal%kg% + vv.Q - vvg.Q
+                            If (GroupTotal%kg% >= 40 && newkg < 40)
+                                Continue
+                            If (newk >= 40 && newk < GroupTotal%k%)
+                            {
+                                GroupList[kg].Push(GroupList[k].Delete(kk))
+                                GroupList[k].Push(GroupList[kg].Delete(kkg))
+                                GroupTotal%k% := newk, GroupTotal%kg% := newkg
+                                Break 2
+                            }
+                        }
+                    }
+                }
+            }
+        Return
+
+        Group_Trade:
+            ; Swap values from group to arrList to move closer to 40
+            For k, v in GroupList
+            {
+                If (GroupTotal%k% <= 40)
+                    Continue
+                For kk, vv in v
+                {
+                    If (GroupTotal%k% <= 40)
+                        Continue
+                    For kg, vg in ArrList
+                    {
+                        newk := GroupTotal%k% - vv.Q + vvg.Q
+                        If (newk >= 40 && newk < GroupTotal%k%)
+                        {
+                            ArrList.Push(GroupList[k].Delete(kk))
+                            GroupList[k].Push(ArrList.Delete(kg))
+                            GroupTotal%k% := newk
+                            Break
+                        }
+                    }
+                }
+            }
+        Return
+
+        Group_Move:
+            ; Move values from incomplete groups to add as close to 40
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 40)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Cleanup
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 41)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 42)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 43)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 44)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 45)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 46)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 47)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 48)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 49)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 50)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 51)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 52)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 53)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 54)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+            Loop 20
+            {
+                ind := A_Index
+                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
+                    Continue
+                For k, v in GroupList
+                {
+                    If (ind = k || (GroupTotal%k% >= 40))
+                        Continue
+                    For kk, vv in v
+                    {
+                        If (GroupTotal%ind% + vv.Q <= 55)
+                        {
+                            If !IsObject(GroupList[ind])
+                                GroupList[ind]:={}
+                            GroupList[ind].Push(GroupList[k].Delete(kk))
+                            GroupTotal%ind% += vv.Q
+                            GroupTotal%k% -= vv.Q
+                        }
+                    }
+                }
+            }
+            Gosub, Group_Batch
+        Return
+
+        Group_Add:
+            ; Find any values to add to incomplete groups
+            Loop, 20
+            {
+                ind := A_Index
+                For k, v in ArrList
+                {
+                    If (GroupTotal%ind% >= 40)
+                        Continue
+                    If (GroupTotal%ind% + v.Q <= 40)
+                    {
+                        If !IsObject(GroupList[ind])
+                            GroupList[ind]:={}
+                        GroupList[ind].Push(ArrList.Delete(k))
+                        GroupTotal%ind% += v.Q
+                    }
+                }
+            }
+        Return
+
+        Group_Trim:
+            ; Trim excess values if group above 40
+            Loop 20
+            {
+                ind := A_Index
+                If GroupTotal%ind% > 40
+                {
+                    For k, v in GroupList[ind]
+                    {
+                        If (GroupTotal%ind% - v.Q >= 40)
+                        {
+                            ArrList.Push(GroupList[ind].Delete(k))
+                            GroupTotal%ind% -= v.Q
+                        }
+                    }
+                }
+            }
+        Return
+    }
+    ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    CompareLocation(cStr:="")
+    {
+        Static Lang := ""
+        ;                                                       English / Thai                 French                 German                     Russian                       Spanish                Portuguese              Chinese          Korean
+        Static ClientTowns :=  { "Lioneye's Watch" :        [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"      , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"    , "라이온아이 초소에" ]
+                                , "The Forest Encampment" : [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"         , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"    , "숲 야영지에" ]
+                                , "The Sarn Encampment" :   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"    , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"    , "사안 야영지에" ]
+                                , "Highgate" :              [ "Highgate"              , "Hautevoie"              , "Hohenpforte"           , "Македы"                , "Atalaya"                                             , "統治者之殿"  , "하이게이트에" ]
+                                , "Overseer's Tower" :      [ "Overseer's Tower"      , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"    , "감시탑에" ]
+                                , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"      , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"    , "다리 야영지에" ]
+                                , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath"  , "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"  , "오리아스 부두에" ]
+                                , "Oriath" :                [ "Oriath"                                                                     , "Ориат"                                                                         , "奧瑞亞"      , "오리아스에" ] }
+        Static LangString :=    { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"     , "German" : " : Ihr habt '"
+                                , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
+        If (cStr="Town")
+            Return indexOfArr(CurrentLocation,ClientTowns)
+        If (Lang = "")
+        {
+            For k, v in LangString
+            {
+                If InStr(cStr, v)
+                {
+                    Lang := k
+                    If (VersionNumber > 0)
+                    Log("Client.txt language has been detected as: " Lang)
+                    Break
+                }
+            }
+        }
+        If (Lang = "English") ; This is the default setting
+        {
+            ; first we confirm if this line contains our zone change phrase
+            If InStr(cStr, ": You have entered")
+            {
+                ; We split away the rest of the sentence for only location
+                CurrentLocation := StrSplit(cStr, " : You have entered "," .`r`n" )[2]
+                ; We should now have our location name and can begin comparing
+                ; This compares the captured string to a list of town names
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                ; Now we check if it's a hideout, make sure to whitelist Syndicate
+                If (InStr(CurrentLocation, "Hideout") && !InStr(CurrentLocation, "Syndicate"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                ; Now we check if we match mines
+                If (CurrentLocation = "Azurite Mine")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Else If (Lang = "Spanish") 
+        {
+            If InStr(cStr, " : Has entrado a ")
+            {
+                CurrentLocation := StrSplit(cStr, " : Has entrado a "," .`r`n")[2]
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                If (InStr(CurrentLocation, "Guarida") && !InStr(CurrentLocation, "Sindicato"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                If (CurrentLocation = "Mina de Azurita")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Else If (Lang = "Chinese") 
+        {
+            If InStr(cStr, " : 你已進入：")
+            {
+                CurrentLocation := StrSplit(cStr, " : 你已進入："," .。`r`n")[2]
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                If (InStr(CurrentLocation, "藏身處") && !InStr(CurrentLocation, "永生密教"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                If (CurrentLocation = "碧藍礦坑")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Else If (Lang = "Korean") 
+        {
+            If InStr(cStr, "진입했습니다")
+            {
+                CurrentLocation := StrSplit(StrSplit(cStr,"] : ")[2], "진입했습니다"," .`r`n")[1]
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                If (InStr(CurrentLocation, "은신처에") && !InStr(CurrentLocation, "신디케이트"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                If (CurrentLocation = "남동석 광산에")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Else If (Lang = "German") 
+        {
+            If InStr(cStr, " : Ihr habt '")
+            {
+                CurrentLocation := StrSplit(StrSplit(cStr," : Ihr habt '")[2], "' betreten"," .`r`n")[1]
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                If (InStr(CurrentLocation, "Versteckter") && !InStr(CurrentLocation, "Syndikat"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                If (CurrentLocation = "Azuritmine")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Else If (Lang = "Russian") 
+        {
+            If InStr(cStr, " : Вы вошли в область ")
+            {
+                CurrentLocation := StrSplit(cStr," : Вы вошли в область "," .`r`n")[2]
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                If (InStr(CurrentLocation, "убежище") && !InStr(CurrentLocation, "синдикат"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                If (CurrentLocation = "Азуритовая шахта")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Else If (Lang = "French") 
+        {
+            If InStr(cStr, " : Vous êtes à présent dans : ")
+            {
+                CurrentLocation := StrSplit(cStr," : Vous êtes à présent dans : "," .`r`n")[2]
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                If (InStr(CurrentLocation, "Repaire") && !InStr(CurrentLocation, "Syndicat"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                If (CurrentLocation = "La Mine d'Azurite")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Else If (Lang = "Portuguese") 
+        {
+            If InStr(cStr, " : Você entrou em: ")
+            {
+                CurrentLocation := StrSplit(cStr," : Você entrou em: "," .`r`n")[2]
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                If (InStr(CurrentLocation, "Refúgio") && !InStr(CurrentLocation, "Sindicato"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                If (CurrentLocation = "Mina de Azurita")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Else If (Lang = "Thai") 
+        {
+            If InStr(cStr, " : คุณเข้าสู่ ")
+            {
+                CurrentLocation := StrSplit(cStr," : คุณเข้าสู่ "," .`r`n")[2]
+                If indexOfArr(CurrentLocation,ClientTowns)
+                    OnTown := True
+                Else
+                    OnTown := False
+                If (InStr(CurrentLocation, "Hideout") && !InStr(CurrentLocation, "Syndicate"))
+                    OnHideout := True
+                Else
+                    OnHideout := False
+                If (CurrentLocation = "Azurite Mine")
+                    OnMines := True
+                Else
+                    OnMines := False
+                Return True
+            }
+        }
+        Return False
+    }
+    ; Monitor for changes in log since initialized
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Monitor_GameLogs(Initialize:=0) 
+    {
+        global ClientLog, CLogFO, CurrentLocation
+        OldTown := OnTown, OldHideout := OnHideout, OldMines := OnMines, OldLocation := CurrentLocation
+        SetTimer,% A_ThisFunc, 500 ; auto set timer
+        if (Initialize)
+        {
+            Try
+            {
+                CLogFO := FileOpen(ClientLog, "r")
+                FileGetSize, errchk, %ClientLog%, M
+                If (errchk >= 128)
+                {
+                    CurrentLocation := "Log too large"
+                    CLogFO.Seek(0, 2)
+                }
+                Else
+                {
+                    latestFileContent := CLogFo.Read()
+                    latestFileContent := TF_ReverseLines(latestFileContent)
+                    Loop, Parse,% latestFileContent,`n,`r
+                    {
+                        If CompareLocation(A_LoopField)
+                            Break
+                        If (A_Index > 1000)
+                        {
+                            CurrentLocation := "1k Line Break"
+                            Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
+                            Break
+                        }
+                    }
+                    If CurrentLocation = ""
+                        CurrentLocation := "Nothing Found"
+                }
+                If (DebugMessages && YesLocation && WinActive(GameStr))
+                {
+                    Ding(6000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
+                    Ding(6000,5,CurrentLocation)
+                }
+                If (VersionNumber != "")
+                Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
+            }
+            Catch, loaderror
+            {
+                CurrentLocation := "Client File Load Error"
+                Log("Error loading File, Submit information about your client.txt",loaderror)
+            }
+            Return
+        } Else {
+            latestFileContent := CLogFo.Read()
+
+            if (latestFileContent) 
+            {
+                Loop, Parse,% latestFileContent,`n,`r 
+                {
+                    If InStr(A_LoopField, "] :")
+                        CompareLocation(A_LoopField)
+                }
+            }
+            If (DebugMessages && YesLocation && WinActive(GameStr))
+            {
+                Ding(2000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
+                Ding(2000,5,CurrentLocation)
+            }
+            If YesLocation && (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
+                Log("Zone Change Detected", (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))) , "Located:" CurrentLocation)
+            Return
+        }
+    }
+    ; Tail Function for files
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    LastLine(SomeFileObject) {
+        static SEEK_CUR := 1
+        static SEEK_END := 2
+        loop {
+            SomeFileObject.Seek(-1, SEEK_CUR)
+            
+            if (SomeFileObject.Read(1) = "`n") {
+                StartPosition := SomeFileObject.Tell()
+                
+                Line := SomeFileObject.ReadLine()
+                SomeFileObject.Seek(StartPosition - 1)
+                return Line
+            }
+            else {
+                SomeFileObject.Seek(-1, SEEK_CUR)
+            }
+        } until (A_Index >= 1000000)
+        Return ; this should never happen
+    }
+    ; CoolTime - Return a more accurate MS value
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    CoolTime() {
+        VarSetCapacity(PerformanceCount, 8, 0)
+        VarSetCapacity(PerformanceFreq, 8, 0)
+        DllCall("QueryPerformanceCounter", "Ptr", &PerformanceCount)
+        DllCall("QueryPerformanceFrequency", "Ptr", &PerformanceFreq)
+        return NumGet(PerformanceCount, 0, "Int64") / NumGet(PerformanceFreq, 0, "Int64")
+    }
+    ; DaysSince - Check how many days has it been since the last update
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    DaysSince()
+    {
+        Global Date_now, LastDatabaseParseDate, UpdateDatabaseInterval
+		FormatTime, Date_now, A_Now, yyyyMMdd
+        If Date_now = LastDatabaseParseDate ;
+            Return False
+        daysCount := Date_now
+        daysCount -= LastDatabaseParseDate, days
+        If daysCount=
+        {
+            ;the value is too large of a dif to calculate, this means we should update
+            Return True
+        }
+        Else If (daysCount >= UpdateDatabaseInterval)
+        {
+            ;The Count between the two dates is at/above the threshold, this means we should update
+            Return daysCount
+        }
+        Else
+        {
+            ;The Count between the two dates is below the threshold, this means we should not
+            Return False
+        }
+    }
+    ; Provides a call for simpler random sleep timers
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    RandomSleep(min,max){
+            Random, r, min, max
+            r:=floor(r/Speed)
+            Sleep, r*Latency
+        return
+    }
+    ; Reset Chat
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ResetChat(){
+		Send {Enter}{Up}{Escape}
+	    return
+	}
+    ; Grab Reply whisper recipient
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	GrabRecipientName(){
+		Clipboard := ""
+		Send ^{Enter}^{A}^{C}{Escape}
+		ClipWait, 0
+		Loop, Parse, Clipboard, `n, `r
+			{
+			; Clipboard must have "@" in the first line
+			If A_Index = 1
+				{
+				IfNotInString, A_LoopField, @
+					{
+					Exit
+					}
+				RecipientNameArr := StrSplit(A_LoopField, " ", @)
+				RecipientName1 := RecipientNameArr[1]
+				RecipientName := StrReplace(RecipientName1, "@")
+				}
+				Ding(, 1,%RecipientName%)
+			}
+		Sleep, 60
+		Return
+	}
+    ; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaose Equivalent
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	ScrapeNinjaData(apiString)
+	{
+		If InStr(apiString, "Fragment")
+		{
+			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			If ErrorLevel{
+				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+			}
+			Else If (ErrorLevel=0){
+				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				holder := JSON.Load(JSONtext)
+				For obj, objlist in holder
+				{
+					If (obj != "currencyDetails" || obj != "language") 
+					{
+						for index, indexArr in objlist
+						{ ; This will extract the information and standardize the chaos value to one variable.
+							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
+							grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
+							grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
+							grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
+							grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
+							grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
+							grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
+							grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
+							holder[obj][index] := {"name":grabName
+								,"chaosValue":grabChaosVal
+								,"pay":grabPayVal
+								,"receive":grabRecVal
+								,"paySparkLine":grabPaySparklineVal
+								,"receiveSparkLine":grabRecSparklineVal
+								,"lowConfidencePaySparkLine":grabPayLowSparklineVal
+								,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+							Ninja[apiString] := holder[obj]
+						}
+					}
+				}
+				FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+			}
+			Return
+		}
+		Else If InStr(apiString, "Currency")
+		{
+			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			if ErrorLevel{
+				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+			}
+			Else if (ErrorLevel=0){
+				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				holder := JSON.Load(JSONtext)
+				For obj, objlist in holder
+				{
+					If (obj != "currencyDetails" || obj != "language") 
+					{
+						for index, indexArr in objlist
+						{
+							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
+							grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
+							grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
+							grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
+							grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
+							grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
+							grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
+							grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
+							holder[obj][index] := {"name":grabName
+								,"chaosValue":grabChaosVal
+								,"pay":grabPayVal
+								,"receive":grabRecVal
+								,"paySparkLine":grabPaySparklineVal
+								,"receiveSparkLine":grabRecSparklineVal
+								,"lowConfidencePaySparkLine":grabPayLowSparklineVal
+								,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+							Ninja[apiString] := holder[obj]
+						}
+					}
+					Else 
+					{
+						for index, indexArr in objlist
+						{
+							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
+							grabPoeTrdId := (holder[obj][index]["poeTradeId"] ? holder[obj][index]["poeTradeId"] : False)
+							grabId := (holder[obj][index]["id"] ? holder[obj][index]["id"] : False)
+
+							holder[obj][index] := {"currencyName":grabName
+								,"poeTradeId":grabPoeTrdId
+								,"id":grabId}
+
+							Ninja["currencyDetails"] := holder[obj]
+						}
+					}
+				}
+				FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+			}
+			Return
+		}
+		Else
+		{
+			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			if ErrorLevel{
+				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+			}
+			Else if (ErrorLevel=0){
+				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				holder := JSON.Load(JSONtext)
+				For obj, objlist in holder
+				{
+					If (obj != "currencyDetails" || obj != "language")
+					{
+						for index, indexArr in objlist
+						{
+							grabSparklineVal := (holder[obj][index]["sparkline"] ? holder[obj][index]["sparkline"] : False)
+							grabLowSparklineVal := (holder[obj][index]["lowConfidenceSparkline"] ? holder[obj][index]["lowConfidenceSparkline"] : False)
+							grabExaltVal := (holder[obj][index]["exaltedValue"] ? holder[obj][index]["exaltedValue"] : False)
+							grabChaosVal := (holder[obj][index]["chaosValue"] ? holder[obj][index]["chaosValue"] : False)
+							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
+							grabLinks := (holder[obj][index]["links"] ? holder[obj][index]["links"] : False)
+							grabVariant := (holder[obj][index]["variant"] ? holder[obj][index]["variant"] : False)
+							grabMapTier := (holder[obj][index]["mapTier"] ? holder[obj][index]["mapTier"] : False)
+							
+							holder[obj][index] := {"name":grabName
+								,"chaosValue":grabChaosVal
+								,"exaltedValue":grabExaltVal
+								,"sparkline":grabSparklineVal
+								,"lowConfidenceSparkline":grabLowSparklineVal
+								,"links":grabLinks
+								,"variant":grabVariant}
+                            If grabMapTier
+                                holder[obj][index]["mapTier"] := grabMapTier
+						}
+					}
+				}
+				Ninja[apiString] := holder[obj]
+			}
+			FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+		}
+			;MsgBox % "Download worked for Ninja Database  -  There are " Ninja.Count() " Entries in the array
+		Return
+	}
+    ; GetProcessTimes - Show CPU usage as precentage
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    GetProcessTimes(PID)    
+    {
+        static aPIDs := []
+        ; If called too frequently, will get mostly 0%, so it's better to just return the previous usage 
+        if aPIDs.HasKey(PID) && A_TickCount - aPIDs[PID, "tickPrior"] < 250
+            return aPIDs[PID, "usagePrior"] 
+
+        DllCall("GetSystemTimes", "Int64*", lpIdleTimeSystem, "Int64*", lpKernelTimeSystem, "Int64*", lpUserTimeSystem)
+        if !hProc := DllCall("OpenProcess", "UInt", 0x1000, "Int", 0, "Ptr", pid)
+            return -2, aPIDs.HasKey(PID) ? aPIDs.Remove(PID, "") : "" ; Process doesn't exist anymore or don't have access to it.
+        DllCall("GetProcessTimes", "Ptr", hProc, "Int64*", lpCreationTime, "Int64*", lpExitTime, "Int64*", lpKernelTimeProcess, "Int64*", lpUserTimeProcess)
+        DllCall("CloseHandle", "Ptr", hProc)
+        
+        if aPIDs.HasKey(PID) ; check if previously run
+        {
+            ; find the total system run time delta between the two calls
+            systemKernelDelta := lpKernelTimeSystem - aPIDs[PID, "lpKernelTimeSystem"] ;lpKernelTimeSystemOld
+            systemUserDelta := lpUserTimeSystem - aPIDs[PID, "lpUserTimeSystem"] ; lpUserTimeSystemOld
+            ; get the total process run time delta between the two calls 
+            procKernalDelta := lpKernelTimeProcess - aPIDs[PID, "lpKernelTimeProcess"] ; lpKernelTimeProcessOld
+            procUserDelta := lpUserTimeProcess - aPIDs[PID, "lpUserTimeProcess"] ;lpUserTimeProcessOld
+            ; sum the kernal + user time
+            totalSystem :=  systemKernelDelta + systemUserDelta
+            totalProcess := procKernalDelta + procUserDelta
+            ; The result is simply the process delta run time as a percent of system delta run time
+            result := 100 * totalProcess / totalSystem
+        }
+        else result := -1
+
+        aPIDs[PID, "lpKernelTimeSystem"] := lpKernelTimeSystem
+        aPIDs[PID, "lpUserTimeSystem"] := lpUserTimeSystem
+        aPIDs[PID, "lpKernelTimeProcess"] := lpKernelTimeProcess
+        aPIDs[PID, "lpUserTimeProcess"] := lpUserTimeProcess
+        aPIDs[PID, "tickPrior"] := A_TickCount
+        return aPIDs[PID, "usagePrior"] := result 
+    }
+    ; Hotkeys - Open main menu
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    hotkeys(){
+        global
+        if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+            Return
+        Gui, Show, Autosize Center, 	WingmanReloaded
+        processWarningFound:=0
+        Gui,6:Hide
+        return
+    }
+    ; UpdateLeagues - Grab the League info from GGG API
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    UpdateLeagues:
+        UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+        FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+        LeagueIndex := JSON.Load(JSONtext)
+        textList= 
+        For K, V in LeagueIndex
+            textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+        GuiControl, , selectedLeague, |%selectedLeague%||%textList%
     Return
-    Gui, Show, Autosize Center, 	WingmanReloaded
-    processWarningFound:=0
-    Gui,6:Hide
-return
-}
+    ; Cooldown Timers
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        ; TimerFlask - Flask CD Timers
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        TimerFlask1:
+            OnCooldown[1]:=0
+            settimer,TimerFlask1,delete
+        return
+        TimerFlask2:
+            OnCooldown[2]:=0
+            settimer,TimerFlask2,delete
+        return
+        TimerFlask3:
+            OnCooldown[3]:=0
+            settimer,TimerFlask3,delete
+        return
+        TimerFlask4:
+            OnCooldown[4]:=0
+            settimer,TimerFlask4,delete
+        return
+        TimerFlask5:
+            OnCooldown[5]:=0
+            settimer,TimerFlask5,delete
+        return
+        ; TimerUtility - Utility CD Timers
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        TimerUtility1:
+            OnCooldownUtility1 := 0
+            settimer,TimerUtility1,delete
+        Return
+        TimerUtility2:
+            OnCooldownUtility2 := 0
+            settimer,TimerUtility2,delete
+        Return
+        TimerUtility3:
+            OnCooldownUtility3 := 0
+            settimer,TimerUtility3,delete
+        Return
+        TimerUtility4:
+            OnCooldownUtility4 := 0
+            settimer,TimerUtility4,delete
+        Return
+        TimerUtility5:
+            OnCooldownUtility5 := 0
+            settimer,TimerUtility5,delete
+        Return
+        ; TDetonated - Detonate CD Timer
+        ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        TDetonated:
+            Detonated:=0
+            ;settimer,TDetonated,delete
+        return
+    ; Tray Labels
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        WINSPY:
+            SplitPath, A_AhkPath, , AHKDIR
+            Run, %AHKDIR%\WindowSpy.ahk
+        Return
+        RELOAD:
+            Reload
+        Return
+        QuitNow:
+            ExitApp
+        Return
+
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
 /*** JSON v2.1.3 : JSON lib for AutoHotkey.
-* Lib: JSON.ahk
-*     JSON lib for AutoHotkey.
-* Version:
-*     v2.1.3 [updated 04/18/2016 (MM/DD/YYYY)]
+ * Lib: JSON.ahk
+ *     JSON lib for AutoHotkey.
+ * Version:
+ *     v2.1.3 [updated 04/18/2016 (MM/DD/YYYY)]
  * License:
  *     WTFPL [http://wtfpl.net/]
  * Requirements:
@@ -38,7 +2303,7 @@ return
  * Methods:
  *     Load() - see relevant documentation before method definition header
  *     Dump() - see relevant documentation before method definition header
-*/
+ */
     class JSON
     {
         /**
@@ -346,47 +2611,14 @@ return
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-
-
-/*Name          : TF: Textfile & String Library for AutoHotkey
-Version       : 3.7
-Documentation : https://github.com/hi5/TF
-AHKScript.org : http://www.ahkscript.org/boards/viewtopic.php?f=6&t=576
-AutoHotkey.com: http://www.autohotkey.com/forum/topic46195.html (Also for examples)
-License       : see license.txt (GPL 2.0)
-Credits & History: See documentation at GH above.
-Structure of most functions:
-  TF_...(Text, other parameters)
-  {
-    ; get the basic data we need for further processing and returning the output:
-    TF_GetData(OW, Text, FileName)
-    ; OW = 0 Copy inputfile
-    ; OW = 1 Overwrite inputfile
-    ; OW = 2 Return variable
-    ; Text : either contents of file or the var that was passed on
-    ; FileName : Used in case OW is 0 or 1 (=file), not used for OW=2 (variable)
-    ; Creates a matchlist for use in Loop below
-    TF_MatchList:=_MakeMatchList(Text, StartLine, EndLine, 0, A_ThisFunc) ; A_ThisFunc useful for debugging your scripts
-    Loop, Parse, Text, `n, `r
-    {
-        If A_Index in %TF_MatchList%
-        {
-        ...
-        }
-        Else
-        {
-        ...
-        }
-    }
-    ; either copy or overwrite file or return variable
-    Return TF_ReturnOutPut(OW, OutPut, FileName, TrimTrailing, CreateNewFile)
-    ; OW 0 or 1 = file
-    ; Output = new content of file to save or variable to return
-    ; FileName
-    ; TrimTrailing: because of the loops used most functions will add trailing newline, this will remove it by default
-    ; CreateNewFile: To create a file that doesn't exist this parameter is needed, only used in few functions
-  }
-*/
+/* TF: Textfile & String Library for AutoHotkey
+ Version       : 3.7
+ Documentation : https://github.com/hi5/TF
+ AHKScript.org : http://www.ahkscript.org/boards/viewtopic.php?f=6&t=576
+ AutoHotkey.com: http://www.autohotkey.com/forum/topic46195.html (Also for examples)
+ License       : see license.txt (GPL 2.0)
+ Credits & History: See documentation at GH above.
+ */
 
     TF_CountLines(Text)
         {
@@ -1880,20 +4112,18 @@ Structure of most functions:
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-
-
 /* XGraph v1.1.1.0 : Real time data plotting.
-*  Script      :  XGraph v1.1.1.0 : Real time data plotting.
-*                 http://ahkscript.org/boards/viewtopic.php?t=3492
-*                 Created: 24-Apr-2014,  Last Modified: 09-May-2014 
-*
-*  Description :  Easy to use, Light weight, fast, efficient GDI based function library for 
-*                 graphically plotting real time data.
-*
-*  Author      :  SKAN - Suresh Kumar A N ( arian.suresh@gmail.com )
-*  Demos       :  CPU Load Monitor > http://ahkscript.org/boards/viewtopic.php?t=3413
-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-*/
+ *  Script      :  XGraph v1.1.1.0 : Real time data plotting.
+ *                 http://ahkscript.org/boards/viewtopic.php?t=3492
+ *                 Created: 24-Apr-2014,  Last Modified: 09-May-2014 
+ *
+ *  Description :  Easy to use, Light weight, fast, efficient GDI based function library for 
+ *                 graphically plotting real time data.
+ *
+ *  Author      :  SKAN - Suresh Kumar A N ( arian.suresh@gmail.com )
+ *  Demos       :  CPU Load Monitor > http://ahkscript.org/boards/viewtopic.php?t=3413
+ - -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ */
 
     XGraph( hCtrl, hBM := 0, ColumnW := 3, LTRB := "0,2,0,2", PenColor := 0x808080, PenSize := 1, SV := 0 ) {
     Static WM_SETREDRAW := 0xB, STM_SETIMAGE := 0x172, PS_SOLID := 0, cbSize := 136, SRCCOPY := 0x00CC0020 
@@ -2224,92 +4454,86 @@ Structure of most functions:
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-
-
 /* DeepClone v1 : A library of functions to make unlinked array Clone
-    ;
-    ; Function:
-    ; Array_Print
-    ; Description:
-    ; Quick and dirty text visualization of an array
-    ; Syntax:
-    ; Arrary_Print(Array)
-    ; Parameters:
-    ; Param1 - Array
-    ; An array, associative array, or object.
-    ; Return Value:
-    ; A text visualization of the input array
-    ; Remarks:
-    ; Supports sub-arrays
-    ; Related:
-    ; Array_Gui, Array_DeepClone, Array_IsCircle
-    ; Example:
-    ; MsgBox, % Array_Print({"A":["Aardvark", "Antelope"], "B":"Bananas"})
-    ;
-
-    ;
-    ; Function:
-    ; Array_Gui
-    ; Description:
-    ; Displays an array as a treeview in a GUI
-    ; Syntax:
-    ; Array_Gui(Array)
-    ; Parameters:
-    ; Param1 - Array
-    ; An array, associative array, or object.
-    ; Return Value:
-    ; Null
-    ; Remarks:
-    ; Resizeable
-    ; Related:
-    ; Array_Print, Array_DeepClone, Array_IsCircle
-    ; Example:
-    ; Array_Gui({"GeekDude":["Smart", "Charming", "Interesting"], "tidbit":"Weird"})
-    ;
-
-    ;
-    ; Function:
-    ; Array_DeepClone
-    ; Description:
-    ; Deep clone
-    ; Syntax:
-    ; Arrary_DeepClone(Array)
-    ; Parameters:
-    ; Param1 - Array
-    ; An array, associative array, or object.
-    ; Return Value:
-    ; A copy of the array, that is not linked to the original
-    ; Remarks:
-    ; Supports sub-arrays, and circular refrences
-    ; Related:
-    ; Array_Gui, Array_Print, Array_IsCircle
-    ; Example:
-    ; Array1 := {"A":["Aardvark", "Antelope"], "B":"Bananas"}
-    ; Array2 := Array_DeepClone(Array1)
-    ;
-
-    ;
-    ; Function:
-    ; Array_IsCircle
-    ; Description:
-    ; Checks for circular refrences that could crash my other functions
-    ; Syntax:
-    ; Arrary_IsCircle(Array)
-    ; Parameters:
-    ; Param1 - Array
-    ; An array, associative array, or object.
-    ; Return Value:
-    ; Boolean value according to whether it has a circular refrence
-    ; Remarks:
-    ; Takes an average of 0.023 seconds
-    ; Related:
-    ; Array_Gui, Array_Print(), Array_DeepClone()
-    ; Example:
-    ; Array1 := {"A":["Aardvark", "Antelope"], "B":"Bananas"}
-    ; Array2 := Array_Copy(Array1)
-    ;
-
-*/
+ ;
+ ; Function:
+ ; Array_Print
+ ; Description:
+ ; Quick and dirty text visualization of an array
+ ; Syntax:
+ ; Arrary_Print(Array)
+ ; Parameters:
+ ; Param1 - Array
+ ; An array, associative array, or object.
+ ; Return Value:
+ ; A text visualization of the input array
+ ; Remarks:
+ ; Supports sub-arrays
+ ; Related:
+ ; Array_Gui, Array_DeepClone, Array_IsCircle
+ ; Example:
+ ; MsgBox, % Array_Print({"A":["Aardvark", "Antelope"], "B":"Bananas"})
+ ;
+ ;
+ ; Function:
+ ; Array_Gui
+ ; Description:
+ ; Displays an array as a treeview in a GUI
+ ; Syntax:
+ ; Array_Gui(Array)
+ ; Parameters:
+ ; Param1 - Array
+ ; An array, associative array, or object.
+ ; Return Value:
+ ; Null
+ ; Remarks:
+ ; Resizeable
+ ; Related:
+ ; Array_Print, Array_DeepClone, Array_IsCircle
+ ; Example:
+ ; Array_Gui({"GeekDude":["Smart", "Charming", "Interesting"], "tidbit":"Weird"})
+ ;
+ ;
+ ; Function:
+ ; Array_DeepClone
+ ; Description:
+ ; Deep clone
+ ; Syntax:
+ ; Arrary_DeepClone(Array)
+ ; Parameters:
+ ; Param1 - Array
+ ; An array, associative array, or object.
+ ; Return Value:
+ ; A copy of the array, that is not linked to the original
+ ; Remarks:
+ ; Supports sub-arrays, and circular refrences
+ ; Related:
+ ; Array_Gui, Array_Print, Array_IsCircle
+ ; Example:
+ ; Array1 := {"A":["Aardvark", "Antelope"], "B":"Bananas"}
+ ; Array2 := Array_DeepClone(Array1)
+ ;
+ ;
+ ; Function:
+ ; Array_IsCircle
+ ; Description:
+ ; Checks for circular refrences that could crash my other functions
+ ; Syntax:
+ ; Arrary_IsCircle(Array)
+ ; Parameters:
+ ; Param1 - Array
+ ; An array, associative array, or object.
+ ; Return Value:
+ ; Boolean value according to whether it has a circular refrence
+ ; Remarks:
+ ; Takes an average of 0.023 seconds
+ ; Related:
+ ; Array_Gui, Array_Print(), Array_DeepClone()
+ ; Example:
+ ; Array1 := {"A":["Aardvark", "Antelope"], "B":"Bananas"}
+ ; Array2 := Array_Copy(Array1)
+ ;
+ */
  
     Array_Print(Array) {
     if Array_IsCircle(Array)
@@ -2406,8 +4630,6 @@ Structure of most functions:
     }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
 
 
 ;{[Function] Decimal2Fraction
@@ -2524,10 +4746,6 @@ Structure of most functions:
         return A
     }
 ;}
-
-
-
-
 ;{[Function] Fraction2Decimal
     ; Fanatic Guru
     ; 2013 12 18
@@ -2596,9 +4814,6 @@ Structure of most functions:
             return Output
     }
 ;}
-
-
-
 
 
 /*** Class_CtlColors
@@ -2942,2288 +5157,11 @@ Structure of most functions:
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-
-
-
-/*** GuiStatus - Pixelcheck for different parts of the screen to see what your status is in game. 
-* Version:
-*     v1.0.1 [updated 12/17/2019 (MM/DD/YYYY)]
-*/
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GuiStatus(Fetch:="",SS:=1){
-		If (SS)
-            ScreenShot(Gamex,GameY,GameX+GameW,GameY+GameH)
-		If (Fetch="OnDetonate")
-        {
-            POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-            , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
-            Return OnDetonate
-        }
-		Else If !(Fetch="")
-        {
-            P%Fetch% := ScreenShot_GetColor(vX_%Fetch%,vY_%Fetch%)
-            temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
-            Return temp
-        }
-		POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
-		POnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat), OnChat := (POnChat=varOnChat?True:False)
-		POnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu), OnMenu := (POnMenu=varOnMenu?True:False)
-		POnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory), OnInventory := (POnInventory=varOnInventory?True:False)
-		POnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash), OnStash := (POnStash=varOnStash?True:False)
-        POnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor), OnVendor := (POnVendor=varOnVendor?True:False)
-        POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
-        POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
-        POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
-        If OnMines
-        POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
-        Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-        OnDetonate := (POnDetonate=varOnDetonate?True:False)
-		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))
-	}
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Cooltime - Accurate MS readout.
-* From AHK discord
-* Version:
-*     v1.0.0 [updated 11/26/2019 (MM/DD/YYYY)]
-*/
-    ; CoolTime - Return a more accurate MS value
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CoolTime() {
-        VarSetCapacity(PerformanceCount, 8, 0)
-        VarSetCapacity(PerformanceFreq, 8, 0)
-        DllCall("QueryPerformanceCounter", "Ptr", &PerformanceCount)
-        DllCall("QueryPerformanceFrequency", "Ptr", &PerformanceFreq)
-        return NumGet(PerformanceCount, 0, "Int64") / NumGet(PerformanceFreq, 0, "Int64")
-    }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** DaysSince - Function to determine the time in days between two dates
-*     Basic function found on page: https://autohotkey.com/board/topic/82024-calculate-the-number-of-days-between-two-dates/#entry521362
-* Version:
-*     v1.0.1 [updated 10/12/2019 (MM/DD/YYYY)]
-*/
-    ; DaysSince - Check how many days has it been since the last update
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    DaysSince()
-    {
-        Global Date_now, LastDatabaseParseDate, UpdateDatabaseInterval
-		FormatTime, Date_now, A_Now, yyyyMMdd
-        If Date_now = LastDatabaseParseDate ;
-            Return False
-        daysCount := Date_now
-        daysCount -= LastDatabaseParseDate, days
-        If daysCount=
-        {
-            ;the value is too large of a dif to calculate, this means we should update
-            Return True
-        }
-        Else If (daysCount >= UpdateDatabaseInterval)
-        {
-            ;The Count between the two dates is at/above the threshold, this means we should update
-            Return daysCount
-        }
-        Else
-        {
-            ;The Count between the two dates is below the threshold, this means we should not
-            Return False
-        }
-    }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Function to Replace Nth instance of Needle in Haystack
-* Replaces the 'Instance'th instance of 'Needle' in 'Haystack' with 'Replacement'. If 'Instance' is
-* negative, it counts instances from the right end of 'Haystack'. If 'Instance' is zero, it
-* replaces all instances.
-*/
-    StringReplaceN( Haystack, Needle, Replacement="", Instance=1 ) 
-    { 
-        If !( Instance := 0 | Instance )
-        {
-            StringReplace, Haystack, Haystack, %Needle%, %Replacement%, A
-            Return Haystack
-        }
-        Else Instance := "L" Instance
-        StringReplace, Instance, Instance, L-, R
-        StringGetPos, Instance, Haystack, %Needle%, %Instance%
-        If ( ErrorLevel )
-            Return Haystack
-        StringTrimLeft, Needle, HayStack, Instance+ StrLen( Needle )
-        StringLeft, HayStack, HayStack, Instance
-        Return HayStack Replacement Needle
-    } 
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** PoE Click v1.0.1 : PoE Click Lib for AutoHotkey.
-* Lib: PoEClick.ahk
-*     Path of Exile Click functions for AutoHotkey.
-*     Developed by Bandit
-* Version:
-*     v1.0.1 [updated 10/02/2019 (MM/DD/YYYY)]
-*/
-
-    ; SwiftClick - Left Click at Coord with no wait between up and down
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    SwiftClick(x, y){
-            MouseMove, x, y	
-            Sleep, 30+(ClickLatency*15)
-            Send {Click}
-            Sleep, 30+(ClickLatency*15)
-        return
-        }
-
-    ; SwiftClick - Left Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    LeftClick(x, y, Old:=0){
-        If Old
-        Goto OldStyleLeft
-        Else
-        {
-            BlockInput, MouseMove
-            ; Sleep, 30+(ClickLatency*15)
-            MouseMove, x, y
-            Sleep, 45+(ClickLatency*15)
-            Send {Click}
-            Sleep, 45+(ClickLatency*15)
-            BlockInput, MouseMoveOff
-        }
-        Return
-        
-        OldStyleLeft:
-            MouseMove, x, y	
-            Sleep, 30*Latency
-            Send {Click, Down x, y }
-            Sleep, 60*Latency
-            Send {Click, Up x, y }
-            Sleep, 30*Latency
-        return
-        }
-
-    ; RightClick - Right Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    RightClick(x, y, Old:=0){
-        If Old
-        Goto OldStyleRight
-        Else
-        {
-            BlockInput, MouseMove
-            ; Sleep, 30+(ClickLatency*15)
-            MouseMove, x, y
-            Sleep, 45+(ClickLatency*15)
-            Send {Click, Right}
-            Sleep, 45+(ClickLatency*15)
-            BlockInput, MouseMoveOff
-        }
-        Return
-
-        OldStyleRight:
-            BlockInput, MouseMove
-            MouseMove, x, y
-            Sleep, 30*Latency
-            Send {Click, Down x, y, Right}
-            Sleep, 60*Latency
-            Send {Click, Up x, y, Right}
-            Sleep, 30*Latency
-            BlockInput, MouseMoveOff
-        return
-        }
-
-    ; ShiftClick - Shift Click +Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ShiftClick(x, y, Old:=0){
-        If Old
-        Goto OldStyleShift
-        Else
-        {
-            BlockInput, MouseMove
-            ; Sleep, 45+(ClickLatency*15)
-            MouseMove, x, y
-            Sleep, 60+(ClickLatency*15)
-            Send +{Click}
-            Sleep, 60+(ClickLatency*15)
-            BlockInput, MouseMoveOff
-        }
-        Return
-
-        
-        OldStyleShift:
-            BlockInput, MouseMove
-            MouseMove, x, y
-            Sleep, 30*Latency
-            Send {Shift Down}
-            Sleep, 30*Latency
-            Send {Click, Down, x, y}
-            Sleep, 60*Latency
-            Send {Click, Up, x, y}
-            Sleep, 30*Latency
-            Send {Shift Up}
-            Sleep, 30*Latency
-            BlockInput, MouseMoveOff
-        return
-        }
-
-    ; CtrlClick - Ctrl Click ^Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CtrlClick(x, y, Old:=0){
-        If Old
-        Goto OldStyleCtrl
-        Else
-        {
-            BlockInput, MouseMove
-            ; Sleep, 45+(ClickLatency*15)
-            MouseMove, x, y
-            Sleep, 60+(ClickLatency*15)
-            Send ^{Click}
-            Sleep, 60+(ClickLatency*15)
-            BlockInput, MouseMoveOff
-        }
-        Return
-
-        OldStyleCtrl:
-            BlockInput, MouseMove
-            MouseMove, x, y
-            Sleep, 30*Latency
-            Send {Ctrl Down}
-            Sleep, 45*Latency
-            Send {Click, Down, x, y}
-            Sleep, 45*Latency
-            Send {Click, Up, x, y}
-            Sleep, 30*Latency
-            Send {Ctrl Up}
-            Sleep, 30*Latency
-            BlockInput, MouseMoveOff
-        return
-        }
-
-    ; RandClick - Randomize Click area around middle of cell using Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    RandClick(x, y){
-            Random, Rx, x+10, x+30
-            Random, Ry, y-30, y-10
-        return {"X": Rx, "Y": Ry}
-        }
-
-    ; WisdomScroll - Identify Item at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	WisdomScroll(x, y){
-			BlockInput, MouseMove
-            RightClick(WisdomScrollX,WisdomScrollY)
-            LeftClick(x,y)
-			BlockInput, MouseMoveOff
-		return
-		}
-
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Array functions v1.0.0 : Index matching.
-* Lib: ArrayCheck.ahk
-*     Returns the index of a value within an array.
-*     Also can color match within variance from an array
-*     Developed by SauronDev and Bandit
-* Version:
-*     v1.0.0 [updated 09/24/2019 (MM/DD/YYYY)]
-*/
-
-    ; Check if a specific hex value is part of an array within a variance and return the index
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    indexOfHex(var, Arr, fromIndex:=1, vary:=2) {
-            for index, value in Arr {
-                h1 := ToRGB(value) 
-                h2 := ToRGB(var) 
-                if (index < fromIndex){
-                    Continue
-                }else if (CompareRGB(h1, h2, vary)){
-                    return index
-                }
-            }
-        }
-
-    ; Check if a specific value is part of an array and return the index
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    indexOf(var, Arr, fromIndex:=1) {
-            for index, value in Arr {
-                if (index < fromIndex){
-                    Continue
-                }else if (value = var){
-                    return index
-                }
-            }
-        }
-
-    ; Check if a specific value is part of an array's array and return the parent index
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    indexOfArr(var, Arr, fromIndex:=1) 
-    {
-        for index, a in Arr 
-        {
-            if (index < fromIndex)
-                Continue
-            for k, value in a
-                if (value = var)
-                    return index
-        }
-        Return False
-    }
-
-    ; Transform an array to a comma separated string
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    arrToStr(array){
-            Str := ""
-            For Index, Value In array
-                Str .= "," . Value
-            Str := LTrim(Str, ",")
-            return Str
-        }
-    ; Transform an array to a comma separated string
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    hexArrToStr(array){
-            Str := ""
-            For Index, Value In array
-                {
-                value := Format("0x{1:06X}", value)
-                Str .= "," . Value
-                }
-            Str := LTrim(Str, ",")
-            return Str
-        }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Lib from LutBot : Extracted from lite version
-* Lib: LutBotLite.ahk
-*     Path of Exile Quick disconnect.
-* Version:
-*     v?
-*/
-
-    ; Main function of the LutBot logout method
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    logout(executable){
-            global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
-            Thread, NoTimers, true		;Critical
-            start := A_TickCount
-            
-            poePID := Object()
-            s := 4096
-            Process, Exist 
-            h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", ErrorLevel, "Ptr")
-            
-            DllCall(OpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", t)
-            VarSetCapacity(ti, 16, 0)
-            NumPut(1, ti, 0, "UInt")
-            
-            DllCall(LookupPrivilegeValue, "Ptr", 0, "Str", "SeDebugPrivilege", "Int64P", luid)
-            NumPut(luid, ti, 4, "Int64")
-            NumPut(2, ti, 12, "UInt")
-            
-            r := DllCall(AdjustTokenPrivileges, "Ptr", t, "Int", false, "Ptr", &ti, "UInt", 0, "Ptr", 0, "Ptr", 0)
-            DllCall("CloseHandle", "Ptr", t)
-            DllCall("CloseHandle", "Ptr", h)
-            
-            try
-            {
-                s := VarSetCapacity(a, s)
-                c := 0
-                DllCall(EnumProcesses, "Ptr", &a, "UInt", s, "UIntP", r)
-                Loop, % r // 4
-                {
-                    id := NumGet(a, A_Index* 4, "UInt")
-                    
-                    h := DllCall("OpenProcess", "UInt", 0x0010 | 0x0400, "Int", false, "UInt", id, "Ptr")
-                    
-                    if !h
-                        continue
-                    VarSetCapacity(n, s, 0)
-                    e := DllCall("Psapi\GetModuleBaseName", "Ptr", h, "Ptr", 0, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
-                    if !e 
-                        if e := DllCall("Psapi\GetProcessImageFileName", "Ptr", h, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
-                        SplitPath n, n
-                    DllCall("CloseHandle", "Ptr", h)
-                    if (n && e)
-                    if (n == executable) {
-                        poePID.Insert(id)
-                    }
-                }
-                
-                l := poePID.Length()
-                if ( l = 0 ) {
-                    Process, wait, %executable%, 0.2
-                    if ( ErrorLevel > 0 ) {
-                        poePID.Insert(ErrorLevel)
-                    }
-                }
-                
-                VarSetCapacity(dwSize, 4, 0) 
-                result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
-                VarSetCapacity(TcpTable, NumGet(dwSize), 0) 
-                
-                result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
-                
-                num := NumGet(&TcpTable,0,"UInt")
-                
-                IfEqual, num, 0
-                {
-                    Log("ED11",num,l,executable)
-                    return False
-                }
-                
-                out := 0
-                Loop %num%
-                {
-                    cutby := a_index - 1
-                    cutby*= 24
-                    ownerPID := NumGet(&TcpTable,cutby+24,"UInt")
-                    for index, element in poePID {
-                        if ( ownerPID = element )
-                        {
-                            VarSetCapacity(newEntry, 20, 0) 
-                            NumPut(12,&newEntry,0,"UInt")
-                            NumPut(NumGet(&TcpTable,cutby+8,"UInt"),&newEntry,4,"UInt")
-                            NumPut(NumGet(&TcpTable,cutby+12,"UInt"),&newEntry,8,"UInt")
-                            NumPut(NumGet(&TcpTable,cutby+16,"UInt"),&newEntry,12,"UInt")
-                            NumPut(NumGet(&TcpTable,cutby+20,"UInt"),&newEntry,16,"UInt")
-                            result := DllCall(SetEntry, UInt, &newEntry)
-                            IfNotEqual, result, 0
-                            {
-                                Log("TCP" . result,out,result,l,executable)
-                                return False
-                            }
-                            out++
-                        }
-                    }
-                }
-                if ( out = 0 ) {
-                    Log("ED10",out,l,executable)
-                    return False
-                } else {
-                    Log(l . ":" . A_TickCount - start,out,l,executable)
-                }
-            } 
-            catch e
-            {
-                Log("ED14","catcherror",e)
-                return False
-            }
-            
-        return True
-        }
-
-    ; Log file function
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Log(var*) 
-    {
-        print := A_Now
-        For k, v in var
-            print .= "," . v
-        print .= ", Script: " . A_ScriptFullPath . " , Script Version: " . VersionNumber . " , AHK version: " . A_AhkVersion . "`n"
-        FileAppend, %print%, Log.txt, UTF-16
-        return
-    }
-
-    ; checkActiveType - Check for backup executable
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	checkActiveType() {
-			global executable, backupExe
-			Process, Exist, %executable%
-			if !ErrorLevel
-			{
-				WinGet, id, list,ahk_group POEGameGroup,, Program Manager
-				Loop, %id%
-				{
-					this_id := id%A_Index%
-					WinGet, this_name, ProcessName, ahk_id %this_id%
-					backupExe := this_name
-					found .= ", " . this_name
-				}
-			}
-		return
-		}
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** RandomSleep Timers: 
-*/
-
-    ; Provides a call for simpler random sleep timers
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    RandomSleep(min,max){
-            Random, r, min, max
-            r:=floor(r/Speed)
-            Sleep, r*Latency
-        return
-        }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Ding Debug tooltip message : WingMan
-* Lib: Ding.ahk
-*     Display tooltip which can be disabled later at once
-*     Additional messages are given new lines
-* Version:
-*     v1.0.1
-*/
-
-    ; Debug messages within script
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Ding(Timeout:=500, MultiTooltip:=0 , Message*)
-    {
-        If (!DebugMessages && MultiTooltip >= 0)
-            Return
-        Else
-        {
-            If MultiTooltip < 0
-                MultiTooltip := Abs(MultiTooltip)
-            debugStr := ""
-            If Message.Count()
-            {
-                For mkey, mval in Message
-                {
-                    If mval=
-                        Continue
-                    If A_Index = 1
-                    {
-                        If MultiTooltip
-                            ToolTip, %mval%, 20, % 40 + MultiTooltip* 23, %MultiTooltip% 
-                        Else
-                            debugStr .= Message.A_Index
-                    }
-                    Else if A_Index <= 20
-                    {
-                        If MultiTooltip
-                            ToolTip, %mval%, 20, % 40 + A_Index* 23, %A_Index% 
-                        Else
-                            debugStr .= "`n" . Message.A_Index
-                    }
-                }
-                If !MultiTooltip
-                    Tooltip, %debugStr%
-            }
-            Else
-            {
-                If MultiTooltip
-                    ToolTip, Ding, 20, % 40 + MultiTooltip* 23, %MultiTooltip% 
-                Else
-                    Tooltip, Ding
-            }
-        }
-        If Timeout
-        {
-            If MultiTooltip
-                SetTimer, RemoveTT%MultiTooltip%, %Timeout%
-            Else
-                SetTimer, RemoveToolTip, %Timeout%
-        }
-        Return
-    }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Clamp value 
-* Lib: Clamp.ahk
-*     Clamp function
-*/
-
-    ; Clamp Value function
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Clamp( Val, Min, Max) {
-        If Val < Min
-            Val := Min
-        If Val > Max
-            Val := Max
-        Return
-        }
-    ; Clamp Value function
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ClampGameScreen(ByRef ValX, ByRef ValY) 
-    {
-        Global GameWindow
-        If (ValY < GameWindow.BBarY)
-            ValY := GameWindow.BBarY
-        If (ValX < GameWindow.X)
-            ValX := GameWindow.X
-        If (ValY > GameWindow.Y + GameWindow.H)
-            ValT := GameWindow.Y + GameWindow.H
-        If (ValX > GameWindow.X + GameWindow.W)
-            ValX := GameWindow.X + GameWindow.W
-        Return
-    }
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Hex Color Tools: extract R G B elements from BGR or RGB hex, convert RGB <> BGR, or compare extracted RGB values against another color. 
-* Lib: ColorTools.ahk
-*     ColorCompare function
-*     ToRGBfromBGR function
-*     ToRGB function
-*     hexBGRToRGB function
-*     CompareRGB function
-*/
-
-    ; Compare two hex colors as their R G B elements, puts all the below together
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CompareHex(color1, color2, vary:=1, BGR:=0)
-    {
-        If BGR
-        {
-            c1 := ToRGBfromBGR(color1)
-            c2 := ToRGBfromBGR(color2)
-        }
-        Else
-        {
-            c1 := ToRGB(color1)
-            c2 := ToRGB(color2)
-        }
-        Return CompareRGB(c1,c2,vary)
-    }
-    ; Convert a color to a pixel findtext string
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2)
-    {
-        If (Width < 1)
-            Width := 1
-        If (Height < 1)
-            Height := 1
-        bitstr := ""
-        Loop % Width
-            bitstr .= "1"
-        endstr := bitstr
-        Loop % Height - 1
-        endstr .= "`n" . bitstr
-        bitstr := bit2base64(endstr)
-        If IsObject(Color)
-        {
-            build := ""
-            For k, v in Color
-            {
-                If BGR
-                    v := hexBGRToRGB(v)
-                build .= "|<" k ">" . v . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
-            }
-            Return build
-        }
-        Else
-        {
-            If BGR
-                Color := hexBGRToRGB(Color)
-            Return "|<" Comment ">" . Color . "@" . Round((100-vary)/100,2) . "$" . Width . "." . bitstr
-        }
-    }
-    ; Converts a hex BGR color into its R G B elements
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ToRGBfromBGR(color) {
-        return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
-        }
-
-    ; Converts a hex RGB color into its R G B elements
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ToRGB(color) {
-        return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
-        }
-
-    ; Converts R G B elements back to hex
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ToHex(Color) {
-        If IsObject(Color)
-        {
-            C := (Color.r & 0xFF) << 16, C |= (Color.g & 0xFF) << 8, C |= (Color.b & 0xFF)
-            Return Format("0x{1:06X}",C)
-        }
-        Else
-            Return Format("0x{1:02X}",Color)
-        }
-    ; Converts a hex BGR color into RGB format or vice versa
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    hexBGRToRGB(color) {
-            b := Format("{1:02X}",(color >> 16) & 0xFF)
-            g := Format("{1:02X}",(color >> 8) & 0xFF)
-            r := Format("{1:02X}",color & 0xFF)
-        return "0x" . r . g . b
-        }
-
-    ; Compares two converted HEX codes as R G B within the variance range (use ToRGB to convert first)
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CompareRGB(c1, c2, vary:=1) {
-        rdiff := Abs( c1.r - c2.r )
-        gdiff := Abs( c1.g - c2.g )
-        bdiff := Abs( c1.b - c2.b )
-
-        return rdiff <= vary && gdiff <= vary && bdiff <= vary
-        }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Rescale : Resolution scaling for pixel locations taken at a sample resolution.
-  */
-    ; Rescale - Rescales values of the script to the user's resolution
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Rescale(){
-            Global GameX, GameY, GameW, GameH
-			IfWinExist, ahk_group POEGameGroup 
-			{
-				WinGetPos, GameX, GameY, GameW, GameH
-				If (ResolutionScale="Standard") {
-					; Item Inventory Grid
-					Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
-					Global InventoryGridY := [ GameY + Round(GameH/(1080/638)), GameY + Round(GameH/(1080/690)), GameY + Round(GameH/(1080/743)), GameY + Round(GameH/(1080/796)), GameY + Round(GameH/(1080/848)) ]  
-					;Detonate Mines
-					Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
-					Global DetonateX:=GameX + Round(GameW/(1920/1658))
-					Global DetonateY:=GameY + Round(GameH/(1080/901))
-					;Scrolls in currency tab
-					Global WisdomStockX:=GameX + Round(GameW/(1920/125))
-					Global PortalStockX:=GameX + Round(GameW/(1920/175))
-					Global WPStockY:=GameY + Round(GameH/(1080/262))
-					;Status Check OnMenu
-					global vX_OnMenu:=GameX + Round(GameW / 2)
-					global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
-					;Status Check OnChar
-					global vX_OnChar:=GameX + Round(GameW / (1920 / 41))
-					global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
-					;Status Check OnChat
-					global vX_OnChat:=GameX + Round(GameW / (1920 / 0))
-					global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
-					;Status Check OnInventory
-					global vX_OnInventory:=GameX + Round(GameW / (1920 / 1583))
-					global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
-					;Status Check OnStash
-					global vX_OnStash:=GameX + Round(GameW / (1920 / 336))
-					global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
-					;Status Check OnVendor
-					global vX_OnVendor:=GameX + Round(GameW / (1920 / 618))
-					global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
-					;Status Check OnDiv
-					global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
-					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
-					;Status Check OnLeft
-					global vX_OnLeft:=GameX + Round(GameW / (1920 / 252))
-					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
-					;Status Check OnDelveChart
-					global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
-					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
-					;Life %'s
-					global vX_Life:=GameX + Round(GameW / (1920 / 95))
-					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-					global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-					global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-					global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-					global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-					global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-					global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-					global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-					;ES %'s
-                    If YesEldritchBattery
-					    global vX_ES:=GameX + Round(GameW / (1920 / 1740))
-					Else
-                        global vX_ES:=GameX + Round(GameW / (1920 / 180))
-					global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-					global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-					global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-					global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-					global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-					global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-					global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-					global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-					;Mana
-					global vX_Mana:=GameX + Round(GameW / (1920 / 1825))
-					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
-					;GUI overlay
-					global GuiX:=GameX + Round(GameW / (1920 / -10))
-					global GuiY:=GameY + Round(GameH / (1080 / 1027))
-					;Divination Y locations
-					Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-					Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-					;Stash tabs menu button
-					global vX_StashTabMenu := GameX + Round(GameW / (1920 / 640))
-					global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-					;Stash tabs menu list
-					global vX_StashTabList := GameX + Round(GameW / (1920 / 706))
-					global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-					;calculate the height of each tab
-					global vY_StashTabSize := Round(GameH / ( 1080 / 22))
-				}
-				Else If (ResolutionScale="Classic") {
-					; Item Inventory Grid
-					Global InventoryGridX := [ Round(GameW/(1440/794)) , Round(GameW/(1440/846)) , Round(GameW/(1440/899)) , Round(GameW/(1440/952)) , Round(GameW/(1440/1004)) , Round(GameW/(1440/1057)) , Round(GameW/(1440/1110)) , Round(GameW/(1440/1162)) , Round(GameW/(1440/1215)) , Round(GameW/(1440/1268)) , Round(GameW/(1440/1320)) , Round(GameW/(1440/1373)) ]
-					Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
-					;Detonate Mines
-					Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
-					Global DetonateX:=GameX + Round(GameW/(1440/1178))
-					Global DetonateY:=GameY + Round(GameH/(1080/901))
-					;Scrolls in currency tab
-					Global WisdomStockX:=GameX + Round(GameW/(1440/125))
-					Global PortalStockX:=GameX + Round(GameW/(1440/175))
-					Global WPStockY:=GameY + Round(GameH/(1080/262))
-					;Status Check OnMenu
-					global vX_OnMenu:=GameX + Round(GameW / 2)
-					global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
-					;Status Check OnChar
-					global vX_OnChar:=GameX + Round(GameW / (1440 / 41))
-					global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
-					;Status Check OnChat
-					global vX_OnChat:=GameX + Round(GameW / (1440 / 0))
-					global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
-					;Status Check OnInventory
-					global vX_OnInventory:=GameX + Round(GameW / (1440 / 1103))
-					global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
-					;Status Check OnStash
-					global vX_OnStash:=GameX + Round(GameW / (1440 / 336))
-					global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
-					;Status Check OnVendor
-					global vX_OnVendor:=GameX + Round(GameW / (1440 / 378))
-					global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
-					;Status Check OnDiv
-					global vX_OnDiv:=GameX + Round(GameW / (1440 / 378))
-					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
-					;Status Check OnLeft
-					global vX_OnLeft:=GameX + Round(GameW / (1440 / 252))
-					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
-					;Status Check OnDelveChart
-					global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
-					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
-					;Life %'s
-					global vX_Life:=GameX + Round(GameW / (1440 / 95))
-					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-					global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-					global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-					global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-					global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-					global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-					global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-					global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-					;ES %'s
-                    If YesEldritchBattery
-					    global vX_ES:=GameX + Round(GameW / (1440 / 1260))
-					Else
-                        global vX_ES:=GameX + Round(GameW / (1440 / 180))
-					global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-					global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-					global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-					global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-					global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-					global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-					global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-					global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-					;Mana
-					global vX_Mana:=GameX + Round(GameW / (1440 / 1345))
-					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
-					;GUI overlay
-					global GuiX:=GameX + Round(GameW / (1440 / -10))
-					global GuiY:=GameY + Round(GameH / (1080 / 1027))
-					;Divination Y locations
-					Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-					Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-					;Stash tabs menu button
-					global vX_StashTabMenu := GameX + Round(GameW / (1440 / 640))
-					global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-					;Stash tabs menu list
-					global vX_StashTabList := GameX + Round(GameW / (1440 / 706))
-					global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-					;calculate the height of each tab
-					global vY_StashTabSize := Round(GameH / ( 1080 / 22))
-				}
-				Else If (ResolutionScale="Cinematic") {
-                    ; Item Inventory Grid
-                    Global InventoryGridX := [ Round(GameW/(2560/1914)), Round(GameW/(2560/1967)), Round(GameW/(2560/2018)), Round(GameW/(2560/2072)), Round(GameW/(2560/2125)), Round(GameW/(2560/2178)), Round(GameW/(2560/2230)), Round(GameW/(2560/2281)), Round(GameW/(2560/2336)), Round(GameW/(2560/2388)), Round(GameW/(2560/2440)), Round(GameW/(2560/2493)) ]
-                    Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]
-                    ;Detonate Mines
-                    Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
-                    Global DetonateX:=GameX + Round(GameW/(2560/2298))
-                    Global DetonateY:=GameY + Round(GameH/(1080/901))
-                    ;Scrolls in currency tab
-                    Global WisdomStockX:=GameX + Round(GameW/(2560/125))
-                    Global PortalStockX:=GameX + Round(GameW/(2560/175))
-                    Global WPStockY:=GameY + Round(GameH/(1080/262))
-                    ;Status Check OnMenu
-                    global vX_OnMenu:=GameX + Round(GameW / 2)
-                    global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
-                    ;Status Check OnChar
-                    global vX_OnChar:=GameX + Round(GameW / (2560 / 41))
-                    global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
-                    ;Status Check OnChat
-                    global vX_OnChat:=GameX + Round(GameW / (2560 / 0))
-                    global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
-                    ;Status Check OnInventory
-                    global vX_OnInventory:=GameX + Round(GameW / (2560 / 2223))
-                    global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
-                    ;Status Check OnStash
-                    global vX_OnStash:=GameX + Round(GameW / (2560 / 336))
-                    global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
-                    ;Status Check OnVendor
-                    global vX_OnVendor:=GameX + Round(GameW / (2560 / 618))
-                    global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
-                    ;Status Check OnDiv
-                    global vX_OnDiv:=GameX + Round(GameW / (2560 / 618))
-                    global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
-                    ;Status Check OnLeft
-                    global vX_OnLeft:=GameX + Round(GameW / (2560 / 252))
-                    global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
-                    ;Status Check OnDelveChart
-                    global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
-                    global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
-                    ;Life %'s
-                    global vX_Life:=GameX + Round(GameW / (2560 / 95))
-                    global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-                    global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-                    global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-                    global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-                    global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-                    global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-                    global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-                    global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-                    ;ES %'s
-                    If YesEldritchBattery
-					    global vX_ES:=GameX + Round(GameW / (2560 / 2380))
-                    Else
-                        global vX_ES:=GameX + Round(GameW / (2560 / 180))
-                    global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-                    global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-                    global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-                    global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-                    global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-                    global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-                    global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-                    global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-                    ;Mana
-                    global vX_Mana:=GameX + Round(GameW / (2560 / 2465))
-                    global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-                    global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
-                    ;GUI overlay
-                    global GuiX:=GameX + Round(GameW / (2560 / -10))
-                    global GuiY:=GameY + Round(GameH / (1080 / 1027))
-                    ;Divination Y locations
-                    Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-                    Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-                    ;Stash tabs menu button
-                    global vX_StashTabMenu := GameX + Round(GameW / (2560 / 640))
-                    global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-                    ;Stash tabs menu list
-                    global vX_StashTabList := GameX + Round(GameW / (2560 / 706))
-                    global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-                    ;calculate the height of each tab
-                    global vY_StashTabSize := Round(GameH / ( 1080 / 22))
-				} 
-                Else If (ResolutionScale="Cinematic(43:18)") {
-                    ;Item Inventory Grid
-                    Global InventoryGridX := [ Round(GameW/(3440/2579)), Round(GameW/(3440/2649)), Round(GameW/(3440/2719)), Round(GameW/(3440/2789)), Round(GameW/(3440/2860)), Round(GameW/(3440/2930)), Round(GameW/(3440/3000)), Round(GameW/(3440/3070)), Round(GameW/(3440/3140)), Round(GameW/(3440/3211)), Round(GameW/(3440/3281)), Round(GameW/(3440/3351)) ]
-                    Global InventoryGridY := [ Round(GameH/(1440/851)), Round(GameH/(1440/921)), Round(GameH/(1440/992)), Round(GameH/(1440/1062)), Round(GameH/(1440/1132)) ]
-                    ;Detonate Mines
-                    Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
-                    Global DetonateX:=GameX + Round(GameW/(3440/3090))
-                    Global DetonateY:=GameY + Round(GameH/(1440/1202))
-                    ;Scrolls in currency tab
-                    Global WisdomStockX:=GameX + Round(GameW/(3440/164))
-                    Global PortalStockX:=GameX + Round(GameW/(3440/228))
-                    Global WPStockY:=GameY + Round(GameH/(1440/353))
-                    ;Status Check OnMenu
-                    global vX_OnMenu:=GameX + Round(GameW / 2)
-                    global vY_OnMenu:=GameY + Round(GameH / (1440 / 72))
-                    ;Status Check OnChar
-                    global vX_OnChar:=GameX + Round(GameW / (3440 / 54))
-                    global vY_OnChar:=GameY + Round(GameH / ( 1440 / 1217))
-                    ;Status Check OnChat
-                    global vX_OnChat:=GameX + Round(GameW / (3440 / 0))
-                    global vY_OnChat:=GameY + Round(GameH / ( 1440 / 850))
-                    ;Status Check OnInventory
-                    global vX_OnInventory:=GameX + Round(GameW / (3440 / 2991))
-                    global vY_OnInventory:=GameY + Round(GameH / ( 1440 / 47))
-                    ;Status Check OnStash
-                    global vX_OnStash:=GameX + Round(GameW / (3440 / 448))
-                    global vY_OnStash:=GameY + Round(GameH / ( 1440 / 42))
-                    ;Status Check OnVendor
-                    global vX_OnVendor:=GameX + Round(GameW / (3440 / 1264))
-                    global vY_OnVendor:=GameY + Round(GameH / ( 1440 / 146))
-                    ;Status Check OnDiv
-                    global vX_OnDiv:=GameX + Round(GameW / (3440 / 822))
-                    global vY_OnDiv:=GameY + Round(GameH / ( 1440 / 181))
-                    ;Life %'s
-                    global vX_Life:=GameX + Round(GameW / (3440 / 128))
-                    global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
-                    global vY_Life30:=GameY + Round(GameH / ( 1440 / 1356))
-                    global vY_Life40:=GameY + Round(GameH / ( 1440 / 1329))
-                    global vY_Life50:=GameY + Round(GameH / ( 1440 / 1302))
-                    global vY_Life60:=GameY + Round(GameH / ( 1440 / 1275))
-                    global vY_Life70:=GameY + Round(GameH / ( 1440 / 1248))
-                    global vY_Life80:=GameY + Round(GameH / ( 1440 / 1221))
-                    global vY_Life90:=GameY + Round(GameH / ( 1440 / 1194))
-                    ;ES %'s
-                    If YesEldritchBattery
-                        global vX_ES:=GameX + Round(GameW / (3440 / 3222))
-                    Else
-                        global vX_ES:=GameX + Round(GameW / (3440 / 225))
-                    global vY_ES20:=GameY + Round(GameH / ( 1440 / 1383))
-                    global vY_ES30:=GameY + Round(GameH / ( 1440 / 1356))
-                    global vY_ES40:=GameY + Round(GameH / ( 1440 / 1329))
-                    global vY_ES50:=GameY + Round(GameH / ( 1440 / 1302))
-                    global vY_ES60:=GameY + Round(GameH / ( 1440 / 1275))
-                    global vY_ES70:=GameY + Round(GameH / ( 1440 / 1248))
-                    global vY_ES80:=GameY + Round(GameH / ( 1440 / 1221))
-                    global vY_ES90:=GameY + Round(GameH / ( 1440 / 1194))
-                    ;Mana
-                    global vX_Mana:=GameX + Round(GameW / (3440 / 3314))
-                    global vY_Mana10:=GameY + Round(GameH / (1440 / 1409))
-                    global vY_Mana90:=GameY + Round(GameH / (1440 / 1165))
-                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
-                    ;GUI overlay
-                    global GuiX:=GameX + Round(GameW / (3440 / -10))
-                    global GuiY:=GameY + Round(GameH / (1440 / 1370))
-                    ;Divination Y locations
-                    Global vY_DivTrade:=GameY + Round(GameH / (1440 / 983))
-                    Global vY_DivItem:=GameY + Round(GameH / (1440 / 805))
-                    ;Stash tabs menu button
-                    global vX_StashTabMenu := GameX + Round(GameW / (3440 / 853))
-                    global vY_StashTabMenu := GameY + Round(GameH / ( 1440 / 195))
-                    ;Stash tabs menu list
-                    global vX_StashTabList := GameX + Round(GameW / (3440 / 1000))
-                    global vY_StashTabList := GameY + Round(GameH / ( 1440 / 148))
-                    ;calculate the height of each tab
-                    global vY_StashTabSize := Round(GameH / ( 1440 / 29))
-                }
-				Else If (ResolutionScale="UltraWide") {
-					; Item Inventory Grid
-					Global InventoryGridX := [ Round(GameW/(3840/3193)), Round(GameW/(3840/3246)), Round(GameW/(3840/3299)), Round(GameW/(3840/3352)), Round(GameW/(3840/3404)), Round(GameW/(3840/3457)), Round(GameW/(3840/3510)), Round(GameW/(3840/3562)), Round(GameW/(3840/3615)), Round(GameW/(3840/3668)), Round(GameW/(3840/3720)), Round(GameW/(3840/3773)) ]
-					Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
-					;Detonate Mines
-					Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
-					Global DetonateX:=GameX + Round(GameW/(3840/3578))
-					Global DetonateY:=GameY + Round(GameH/(1080/901))
-					;Scrolls in currency tab
-					Global WisdomStockX:=GameX + Round(GameW/(3840/125))
-					Global PortalStockX:=GameX + Round(GameW/(3840/175))
-					Global WPStockY:=GameY + Round(GameH/(1080/262))
-					;Status Check OnMenu
-					global vX_OnMenu:=GameX + Round(GameW / 2)
-					global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
-					;Status Check OnChar
-					global vX_OnChar:=GameX + Round(GameW / (3840 / 41))
-					global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
-					;Status Check OnChat
-					global vX_OnChat:=GameX + Round(GameW / (3840 / 0))
-					global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
-					;Status Check OnInventory
-					global vX_OnInventory:=GameX + Round(GameW / (3840 / 3503))
-					global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
-					;Status Check OnStash
-					global vX_OnStash:=GameX + Round(GameW / (3840 / 336))
-					global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
-					;Status Check OnVendor
-					global vX_OnVendor:=GameX + Round(GameW / (3840 / 1578))
-					global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
-					;Status Check OnDiv
-					global vX_OnDiv:=GameX + Round(GameW / (3840 / 1578))
-					global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
-					;Status Check OnLeft
-					global vX_OnLeft:=GameX + Round(GameW / (3840 / 252))
-					global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
-					;Status Check OnDelveChart
-					global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
-					global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
-					;Life %'s
-					global vX_Life:=GameX + Round(GameW / (3840 / 95))
-					global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-					global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-					global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-					global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-					global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-					global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-					global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-					global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-					;ES %'s
-                    If YesEldritchBattery
-					    global vX_ES:=GameX + Round(GameW / (3840 / 3660))
-                    Else
-					    global vX_ES:=GameX + Round(GameW / (3840 / 180))
-					global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-					global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-					global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-					global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-					global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-					global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-					global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-					global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-					;Mana
-					global vX_Mana:=GameX + Round(GameW / (3840 / 3745))
-					global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-					global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-                    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-                    Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
-					;GUI overlay
-					global GuiX:=GameX + Round(GameW / (3840 / -10))
-					global GuiY:=GameY + Round(GameH / (1080 / 1027))
-					;Divination Y locations
-					Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-					Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-					;Stash tabs menu button
-					global vX_StashTabMenu := GameX + Round(GameW / (3840 / 640))
-					global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-					;Stash tabs menu list
-					global vX_StashTabList := GameX + Round(GameW / (3840 / 706))
-					global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-					;calculate the height of each tab
-					global vY_StashTabSize := Round(GameH / ( 1080 / 22))
-				} 
-                x_center := GameX + GameW / 2
-                compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
-                y_center := GameY + GameH / 2 / compensation
-                offset_mod := y_offset / GameH
-                x_offset := GameW * (offset_mod / 1.5 )
-                Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) }
-				RescaleRan := True
-                Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
-			}
-		return
-		}
-
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** tooltip management
-*/
-  
-    RemoveToolTip()
-    {
-        SetTimer, , Off
-        Loop, 20
-        {
-            SetTimer, RemoveTT%A_Index%, Off
-            ToolTip,,,,%A_Index%
-        }
-        PauseTooltips := 0
-        return
-
-        RemoveTT1:
-            SetTimer, , Off
-            ToolTip,,,,1
-        Return
-
-        RemoveTT2:
-            SetTimer, , Off
-            ToolTip,,,,2
-        Return
-
-        RemoveTT3:
-            SetTimer, , Off
-            ToolTip,,,,3
-        Return
-
-        RemoveTT4:
-            SetTimer, , Off
-            ToolTip,,,,4
-        Return
-
-        RemoveTT5:
-            SetTimer, , Off
-            ToolTip,,,,5
-        Return
-
-        RemoveTT6:
-            SetTimer, , Off
-            ToolTip,,,,6
-        Return
-
-        RemoveTT7:
-            SetTimer, , Off
-            ToolTip,,,,7
-        Return
-
-        RemoveTT8:
-            SetTimer, , Off
-            ToolTip,,,,8
-        Return
-
-        RemoveTT9:
-            SetTimer, , Off
-            ToolTip,,,,9
-        Return
-
-        RemoveTT10:
-            SetTimer, , Off
-            ToolTip,,,,10
-        Return
-
-        RemoveTT11:
-            SetTimer, , Off
-            ToolTip,,,,11
-        Return
-
-        RemoveTT12:
-            SetTimer, , Off
-            ToolTip,,,,12
-        Return
-
-        RemoveTT13:
-            SetTimer, , Off
-            ToolTip,,,,13
-        Return
-
-        RemoveTT14:
-            SetTimer, , Off
-            ToolTip,,,,14
-        Return
-
-        RemoveTT15:
-            SetTimer, , Off
-            ToolTip,,,,15
-        Return
-
-        RemoveTT16:
-            SetTimer, , Off
-            ToolTip,,,,16
-        Return
-
-        RemoveTT17:
-            SetTimer, , Off
-            ToolTip,,,,17
-        Return
-
-        RemoveTT18:
-            SetTimer, , Off
-            ToolTip,,,,18
-        Return
-
-        RemoveTT19:
-            SetTimer, , Off
-            ToolTip,,,,19
-        Return
-
-        RemoveTT20:
-            SetTimer, , Off
-            ToolTip,,,,20
-        Return
-    }
-
-    ShowToolTip()
-    {
-        global ft_ToolTip_Text
-        If (PauseTooltips || WinActive(GameStr))
-            Return
-        ListLines, Off
-        static CurrControl, PrevControl, _TT
-        CurrControl := A_GuiControl
-        if (CurrControl != PrevControl)
-        {
-        PrevControl := CurrControl
-        ToolTip
-        if (CurrControl != "")
-            SetTimer, ft_DisplayToolTip, -500
-        }
-        return
-
-        ft_DisplayToolTip:
-        If PauseTooltips
-            Return
-        ListLines, Off
-        MouseGetPos,,, _TT
-        WinGetClass, _TT, ahk_id %_TT%
-        if (_TT = "AutoHotkeyGUI")
-        {
-        ToolTip, % RegExMatch(ft_ToolTip_Text, "m`n)^"
-            . StrReplace(CurrControl,"ft_") . "\K\s*=.*", _TT)
-            ? StrReplace(Trim(_TT,"`t ="),"\n","`n") : ""
-        SetTimer, ft_RemoveToolTip, -5000
-        }
-        return
-
-        ft_RemoveToolTip:
-        ToolTip
-        return
-    }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Chat functions : ResetChat and GrabRecipientName
-*/
-    ; Reset Chat
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	ResetChat(){
-		Send {Enter}{Up}{Escape}
-	    return
-	    }
-    ; Grab Reply whisper recipient
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	GrabRecipientName(){
-		Clipboard := ""
-		Send ^{Enter}^{A}^{C}{Escape}
-		ClipWait, 0
-		Loop, Parse, Clipboard, `n, `r
-			{
-			; Clipboard must have "@" in the first line
-			If A_Index = 1
-				{
-				IfNotInString, A_LoopField, @
-					{
-					Exit
-					}
-				RecipientNameArr := StrSplit(A_LoopField, " ", @)
-				RecipientName1 := RecipientNameArr[1]
-				RecipientName := StrReplace(RecipientName1, "@")
-				}
-				Ding(, 1,%RecipientName%)
-			}
-		Sleep, 60
-		Return
-		}
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** API scraper for PoE.Ninja : Pulls all the information into one database file
-*/
-    ; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaose Equivalent
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	ScrapeNinjaData(apiString)
-	{
-		If InStr(apiString, "Fragment")
-		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
-			If ErrorLevel{
-				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
-			}
-			Else If (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
-				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language") 
-					{
-						for index, indexArr in objlist
-						{ ; This will extract the information and standardize the chaos value to one variable.
-							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-							grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
-							grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
-							grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
-							grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
-							grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
-							grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
-							grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"pay":grabPayVal
-								,"receive":grabRecVal
-								,"paySparkLine":grabPaySparklineVal
-								,"receiveSparkLine":grabRecSparklineVal
-								,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-								,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
-							Ninja[apiString] := holder[obj]
-						}
-					}
-				}
-				FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
-			}
-			Return
-		}
-		Else If InStr(apiString, "Currency")
-		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
-			if ErrorLevel{
-				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
-			}
-			Else if (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
-				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language") 
-					{
-						for index, indexArr in objlist
-						{
-							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-							grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
-							grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
-							grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
-							grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
-							grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
-							grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
-							grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"pay":grabPayVal
-								,"receive":grabRecVal
-								,"paySparkLine":grabPaySparklineVal
-								,"receiveSparkLine":grabRecSparklineVal
-								,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-								,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
-							Ninja[apiString] := holder[obj]
-						}
-					}
-					Else 
-					{
-						for index, indexArr in objlist
-						{
-							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
-							grabPoeTrdId := (holder[obj][index]["poeTradeId"] ? holder[obj][index]["poeTradeId"] : False)
-							grabId := (holder[obj][index]["id"] ? holder[obj][index]["id"] : False)
-
-							holder[obj][index] := {"currencyName":grabName
-								,"poeTradeId":grabPoeTrdId
-								,"id":grabId}
-
-							Ninja["currencyDetails"] := holder[obj]
-						}
-					}
-				}
-				FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
-			}
-			Return
-		}
-		Else
-		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
-			if ErrorLevel{
-				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
-			}
-			Else if (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
-				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language")
-					{
-						for index, indexArr in objlist
-						{
-							grabSparklineVal := (holder[obj][index]["sparkline"] ? holder[obj][index]["sparkline"] : False)
-							grabLowSparklineVal := (holder[obj][index]["lowConfidenceSparkline"] ? holder[obj][index]["lowConfidenceSparkline"] : False)
-							grabExaltVal := (holder[obj][index]["exaltedValue"] ? holder[obj][index]["exaltedValue"] : False)
-							grabChaosVal := (holder[obj][index]["chaosValue"] ? holder[obj][index]["chaosValue"] : False)
-							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
-							grabLinks := (holder[obj][index]["links"] ? holder[obj][index]["links"] : False)
-							grabVariant := (holder[obj][index]["variant"] ? holder[obj][index]["variant"] : False)
-							grabMapTier := (holder[obj][index]["mapTier"] ? holder[obj][index]["mapTier"] : False)
-							
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"exaltedValue":grabExaltVal
-								,"sparkline":grabSparklineVal
-								,"lowConfidenceSparkline":grabLowSparklineVal
-								,"links":grabLinks
-								,"variant":grabVariant}
-                            If grabMapTier
-                                holder[obj][index]["mapTier"] := grabMapTier
-						}
-					}
-				}
-				Ninja[apiString] := holder[obj]
-			}
-			FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
-		}
-			;MsgBox % "Download worked for Ninja Database  -  There are " Ninja.Count() " Entries in the array
-		Return
-	}
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** API scraper for Path of Exile Leagues
-*/
-    UpdateLeagues:
-        UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-        FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-        LeagueIndex := JSON.Load(JSONtext)
-        textList= 
-        For K, V in LeagueIndex
-            textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
-        GuiControl, , selectedLeague, |%selectedLeague%||%textList%
-    Return
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** Cooldown Timers
-*/
-    ; TimerFlask - Flask CD Timers
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TimerFlask1:
-		OnCooldown[1]:=0
-		settimer,TimerFlask1,delete
-	return
-
-	TimerFlask2:
-		OnCooldown[2]:=0
-		settimer,TimerFlask2,delete
-	return
-
-	TimerFlask3:
-		OnCooldown[3]:=0
-		settimer,TimerFlask3,delete
-	return
-
-	TimerFlask4:
-		OnCooldown[4]:=0
-		settimer,TimerFlask4,delete
-	return
-
-	TimerFlask5:
-		OnCooldown[5]:=0
-		settimer,TimerFlask5,delete
-	return
-
-    ; TimerUtility - Utility CD Timers
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TimerUtility1:
-		OnCooldownUtility1 := 0
-		settimer,TimerUtility1,delete
-	Return
-	TimerUtility2:
-		OnCooldownUtility2 := 0
-		settimer,TimerUtility2,delete
-	Return
-	TimerUtility3:
-		OnCooldownUtility3 := 0
-		settimer,TimerUtility3,delete
-	Return
-	TimerUtility4:
-		OnCooldownUtility4 := 0
-		settimer,TimerUtility4,delete
-	Return
-	TimerUtility5:
-		OnCooldownUtility5 := 0
-		settimer,TimerUtility5,delete
-	Return
-    ; TDetonated - Detonate CD Timer
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	TDetonated:
-		Detonated:=0
-		;settimer,TDetonated,delete
-	return
-
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** CheckOHB - GetPercent - Overhead Healthbar detection and a method to get health percent
-*/ ; 
-    CheckOHB()
-    {
-        Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
-        If WinActive(GameStr)
-        {
-            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
-            {
-                ok.1.3 -= 1
-                ok.1.4 += 8
-
-                OHB := { "X" : ok.1.1
-                    , "Y" : ok.1.2
-                    , "rX" : ok.1.1 + ok.1.3
-                    , "W" : ok.1.3
-                    , "H" : ok.1.4
-                    , "hpY" : ok.1.2 - (ok.1.4 // 2)
-                    , "mY" : ok.1.2 + (ok.1.4 // 2)
-                    , "esY" : ok.1.2 - 2
-                    , "ebY" : ok.1.2 + 2 }
-                OHB["pX"] := { 1 : Round(ok.1.1 + (ok.1.3* 0.10))
-                    , 2 : Round(ok.1.1 + (ok.1.3* 0.20))
-                    , 3 : Round(ok.1.1 + (ok.1.3* 0.30))
-                    , 4 : Round(ok.1.1 + (ok.1.3* 0.40))
-                    , 5 : Round(ok.1.1 + (ok.1.3* 0.50))
-                    , 6 : Round(ok.1.1 + (ok.1.3* 0.60))
-                    , 7 : Round(ok.1.1 + (ok.1.3* 0.70))
-                    , 8 : Round(ok.1.1 + (ok.1.3* 0.80))
-                    , 9 : Round(ok.1.1 + (ok.1.3* 0.90))
-                    , 10 : Round(ok.1.1 + ok.1.3) }
-                Return OHB.X + OHB.Y
-            }
-            Else
-            {
-                Ding(500,6,"OHB Not Found")
-                Return False
-            }
-        }
-        Else 
-            Return False
-    }
-
-    GetPercent(CID, PosY, Variance)
-    {
-        Thread, NoTimers, true		;Critical
-        Global OHB, OHBLHealthHex
-        If !CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(OHB.X+1, PosY)),Variance)
-        {
-            Ding(500,7,"OHB Obscured, Moved, or Dead" )
-            Return HPerc
-        }
-        Else
-        Found := OHB.X + 1
-        Loop 10
-        {
-            pX:= OHB.pX[A_Index]
-            If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
-                Found := pX
-        }
-        Thread, NoTimers, False		;End Critical
-        Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
-    }
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-/*** GroupByFourty - Mathematic function to sort quality into groups of 40
-*     Path of Exile Mathematic grouping function for AutoHotkey.
-*     Developed by Bandit
-* Version:
-*     v1.0.0 [updated 11/19/2019 (MM/DD/YYYY)]
-*/
-    GroupByFourty(ArrList) {
-        GroupList := {}
-        tQ := 0
-        ; Get total of Value before
-        For k, v in ArrList
-            allQ += v.Q 
-        ; Begin adding values to GroupList
-        Loop, 20
-            GroupTotal%ind% := 0
-        Gosub, Group_Add
-        Gosub, Group_Swap
-        Gosub, Group_Move
-        Gosub, Group_Cleanup
-        Gosub, Group_Cleanup
-        Gosub, Group_Add
-        Gosub, Group_Swap
-        Gosub, Group_Cleanup
-        ; Gosub, Group_Move
-        ; Gosub, Group_Cleanup
-        ; Gosub, Group_Add
-        ; Gosub, Group_Move
-        ; Gosub, Group_Cleanup
-        ; Gosub, RebaseTotals
-
-        ; Final tallies
-        For k, v in ArrList
-            remainQ += v.Q 
-        If !remainQ
-            remainQ:=0
-        tQ=
-        For k, v in GroupList
-            For kk, vv in v
-                tQ += vv.Q 
-        If !tQ
-            tQ:= 0
-        overQ := mod(tQ, 40)
-        If !overQ
-            overQ:= 0
-        ; Catch for high quality gems in low quantities
-        If (tQ = 0 && remainQ >= 40 && remainQ <= 57)
-        {
-            Loop, 20
-            {
-                ind := A_Index
-                For k, v in ArrList
-                {
-                    If (GroupTotal%ind% >= 40)
-                        Continue
-                    If (GroupTotal%ind% + v.Q <= 57)
-                    {
-                        If !IsObject(GroupList[ind])
-                            GroupList[ind]:={}
-                        GroupList[ind].Push(ArrList.Delete(k))
-                        GroupTotal%ind% += v.Q
-                    }
-                }
-            }
-            remainQ=
-            For k, v in ArrList
-                remainQ += v.Q 
-            If !remainQ
-                remainQ:=0
-            tQ=
-            For k, v in GroupList
-                For kk, vv in v
-                    tQ += vv.Q 
-            If !tQ
-                tQ:= 0
-            overQ := mod(tQ, 40)
-            If !overQ
-                overQ:= 0
-        }
-        expectC := Round((tQ - overQ) / 40)
-        ; Display Tooltips
-        ToolTip,Total Quality:`t %allQ%`%,100,180,15
-        ToolTip,Currency Value:`t %expectC% orbs,100,200,18
-        ToolTip,Groups Quality:`t %tQ%`%,100,220,16
-        ToolTip,Excess Groups Q:`t %overQ%`%,100,240,17
-        ToolTip,Leftover Quality:`t %remainQ%`%,100,260,19
-        SetTimer, RemoveToolTip, -20000
-        Return GroupList
-
-        RebaseTotals:
-            tt=
-            tt2=
-            For k, v in GroupList
-            {
-                tt .= GroupTotal%k% . "`r"
-                GroupTotal%k% := 0
-                For kk, vv in v
-                {
-                    GroupTotal%k% += vv.Q
-                }
-            }
-            For k, v in GroupList
-                tt2 .= GroupTotal%k% . "`r"
-            If (tt != tt2)
-                MsgBox,% "Mismatch Found!`r`rFirst Values`r" . tt . "`r`rSecond Values`r" . tt2
-        Return
-
-        Group_Batch:
-            Gosub, Group_Trim
-            Gosub, Group_Trade
-            Gosub, Group_Add
-            Gosub, Group_Swap
-        Return
-
-        Group_Cleanup:
-            ; Remove groups that didnt make it to 40
-            Loop, 3
-            For k, v in GroupList
-            {
-                If (GroupTotal%k% < 40)
-                {
-                    For kk, vv in v
-                    {
-                        ArrList.Push(v.Delete(kk))
-                        GroupTotal%k% -= vv.Q
-                    }
-                }
-            }
-        Return
-
-        Group_Swap:
-            ; Swap values Between groups to move closer to 40
-            For k, v in GroupList
-            {
-                If (GroupTotal%k% <= 40)
-                    Continue
-                For kk, vv in v
-                {
-                    If (GroupTotal%k% <= 40)
-                        Continue
-                    For kg, vg in GroupList
-                    {
-                        If (k = kg)
-                            Continue
-                        For kkg, vvg in vg
-                        {
-                            newk := GroupTotal%k% - vv.Q + vvg.Q
-                            newkg := GroupTotal%kg% + vv.Q - vvg.Q
-                            If (GroupTotal%kg% >= 40 && newkg < 40)
-                                Continue
-                            If (newk >= 40 && newk < GroupTotal%k%)
-                            {
-                                GroupList[kg].Push(GroupList[k].Delete(kk))
-                                GroupList[k].Push(GroupList[kg].Delete(kkg))
-                                GroupTotal%k% := newk, GroupTotal%kg% := newkg
-                                Break 2
-                            }
-                        }
-                    }
-                }
-            }
-        Return
-
-        Group_Trade:
-            ; Swap values from group to arrList to move closer to 40
-            For k, v in GroupList
-            {
-                If (GroupTotal%k% <= 40)
-                    Continue
-                For kk, vv in v
-                {
-                    If (GroupTotal%k% <= 40)
-                        Continue
-                    For kg, vg in ArrList
-                    {
-                        newk := GroupTotal%k% - vv.Q + vvg.Q
-                        If (newk >= 40 && newk < GroupTotal%k%)
-                        {
-                            ArrList.Push(GroupList[k].Delete(kk))
-                            GroupList[k].Push(ArrList.Delete(kg))
-                            GroupTotal%k% := newk
-                            Break
-                        }
-                    }
-                }
-            }
-        Return
-
-        Group_Move:
-            ; Move values from incomplete groups to add as close to 40
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 40)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Cleanup
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 41)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 42)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 43)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 44)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 45)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 46)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 47)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 48)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 49)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 50)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 51)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 52)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 53)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 54)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-            Loop 20
-            {
-                ind := A_Index
-                If ((GroupTotal%ind% >= 40) || !GroupTotal%ind%)
-                    Continue
-                For k, v in GroupList
-                {
-                    If (ind = k || (GroupTotal%k% >= 40))
-                        Continue
-                    For kk, vv in v
-                    {
-                        If (GroupTotal%ind% + vv.Q <= 55)
-                        {
-                            If !IsObject(GroupList[ind])
-                                GroupList[ind]:={}
-                            GroupList[ind].Push(GroupList[k].Delete(kk))
-                            GroupTotal%ind% += vv.Q
-                            GroupTotal%k% -= vv.Q
-                        }
-                    }
-                }
-            }
-            Gosub, Group_Batch
-        Return
-
-        Group_Add:
-            ; Find any values to add to incomplete groups
-            Loop, 20
-            {
-                ind := A_Index
-                For k, v in ArrList
-                {
-                    If (GroupTotal%ind% >= 40)
-                        Continue
-                    If (GroupTotal%ind% + v.Q <= 40)
-                    {
-                        If !IsObject(GroupList[ind])
-                            GroupList[ind]:={}
-                        GroupList[ind].Push(ArrList.Delete(k))
-                        GroupTotal%ind% += v.Q
-                    }
-                }
-            }
-        Return
-
-        Group_Trim:
-            ; Trim excess values if group above 40
-            Loop 20
-            {
-                ind := A_Index
-                If GroupTotal%ind% > 40
-                {
-                    For k, v in GroupList[ind]
-                    {
-                        If (GroupTotal%ind% - v.Q >= 40)
-                        {
-                            ArrList.Push(GroupList[ind].Delete(k))
-                            GroupTotal%ind% -= v.Q
-                        }
-                    }
-                }
-            }
-        Return
-    }
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-
-
 ;_______________________ Hotkey() _______________________
-;____ Date: June 2006
-;____ AHK version: 1.0.44.06
-;____ Platform: WinXP
-;____ Authors: Sam & Roland
+ ;____ Date: June 2006
+ ;____ AHK version: 1.0.44.06
+ ;____ Platform: WinXP
+ ;____ Authors: Sam & Roland
 
 
     ;#################### Example Gui ########################
@@ -5277,29 +5215,24 @@ Structure of most functions:
     return
     */
 
-/*
-#############################################################################
-################################ Remarks ####################################
-#############################################################################
-
-
-  **************************************************** Remarks: **************************************************
-  * -It would have been to hard (and to messy) to compact everything into a single funtion, so we have a few globals.
-  *     All the globals (and all the subroutines) start with "Hotkey_" though, so this shouldn't be a problem
-  * -Both the keyboard and mouse hook will be installed 
-  * -"Critical" has to be turned off for the thread that called the funtion, to allow the threads in the funtion to run.
-  * This could cause problems obviously, although turning Critical back on after calling the funtion should work okay in most cases
-  * -When the user clicks "Submit", the funtion will create the hotkey (If non-blank) and check ErrorLevel (and If ErrorLevel <> 0 
-  *     display a Msgbox saying the hotkey is invalid and asking to notify the author). This way you shouldn't have to worry about 
-  * invalid hotkeys yourself.
-  * -You can easily change the default color and font by editing the default values right at the top of the funtion.
-  *     Should be easy to spot.
-  * -Also, You can easily change the default behavior by changing the Options param right at the top of the funtion
-  *     (for instance: Options = %Options% +Default1 -Mouse). You can also edit the keyList of course.
-
-
-########################## The main funtion ############################
-
+ /*
+ #############################################################################
+ ################################ Remarks ####################################
+ #############################################################################
+ **************************************************** Remarks: **************************************************
+ * -It would have been to hard (and to messy) to compact everything into a single funtion, so we have a few globals.
+ *     All the globals (and all the subroutines) start with "Hotkey_" though, so this shouldn't be a problem
+ * -Both the keyboard and mouse hook will be installed 
+ * -"Critical" has to be turned off for the thread that called the funtion, to allow the threads in the funtion to run.
+ * This could cause problems obviously, although turning Critical back on after calling the funtion should work okay in most cases
+ * -When the user clicks "Submit", the funtion will create the hotkey (If non-blank) and check ErrorLevel (and If ErrorLevel <> 0 
+ *     display a Msgbox saying the hotkey is invalid and asking to notify the author). This way you shouldn't have to worry about 
+ * invalid hotkeys yourself.
+ * -You can easily change the default color and font by editing the default values right at the top of the funtion.
+ *     Should be easy to spot.
+ * -Also, You can easily change the default behavior by changing the Options param right at the top of the funtion
+ *     (for instance: Options = %Options% +Default1 -Mouse). You can also edit the keyList of course.
+ ########################## The main funtion ############################
     Note: The following funtions must all be present (they are included here, but I thought 
             I had better mention it):
             
@@ -6168,15 +6101,10 @@ Structure of most functions:
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-
-
-
-
-
 /*** DynaRun - CreateScript - Run AHK in a pipe! 
-*     These functions allow for dynamically created scripts to be run
-*     Removes the need for creating temporary script files
-*/
+ *     These functions allow for dynamically created scripts to be run
+ *     Removes the need for creating temporary script files
+ */
     CreateScript(script){
     static mScript
     StringReplace,script,script,`n,`r`n,A
@@ -6331,397 +6259,155 @@ Structure of most functions:
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-
-
-/*** GetProcessTimes - Evaluate the processing usage of a PID
+/*** Lib from LutBot : Extracted from lite version
+* Lib: LutBotLite.ahk
+*     Path of Exile Quick disconnect.
 */
-    ; Return values
-    ; -1 on first run 
-    ; -2 if process doesn't exist or you don't have access to it
-    ; Process cpu usage as percent of total CPU
-    GetProcessTimes(PID)    
-    {
-        static aPIDs := []
-        ; If called too frequently, will get mostly 0%, so it's better to just return the previous usage 
-        if aPIDs.HasKey(PID) && A_TickCount - aPIDs[PID, "tickPrior"] < 250
-            return aPIDs[PID, "usagePrior"] 
 
-        DllCall("GetSystemTimes", "Int64*", lpIdleTimeSystem, "Int64*", lpKernelTimeSystem, "Int64*", lpUserTimeSystem)
-        if !hProc := DllCall("OpenProcess", "UInt", 0x1000, "Int", 0, "Ptr", pid)
-            return -2, aPIDs.HasKey(PID) ? aPIDs.Remove(PID, "") : "" ; Process doesn't exist anymore or don't have access to it.
-        DllCall("GetProcessTimes", "Ptr", hProc, "Int64*", lpCreationTime, "Int64*", lpExitTime, "Int64*", lpKernelTimeProcess, "Int64*", lpUserTimeProcess)
-        DllCall("CloseHandle", "Ptr", hProc)
-        
-        if aPIDs.HasKey(PID) ; check if previously run
-        {
-            ; find the total system run time delta between the two calls
-            systemKernelDelta := lpKernelTimeSystem - aPIDs[PID, "lpKernelTimeSystem"] ;lpKernelTimeSystemOld
-            systemUserDelta := lpUserTimeSystem - aPIDs[PID, "lpUserTimeSystem"] ; lpUserTimeSystemOld
-            ; get the total process run time delta between the two calls 
-            procKernalDelta := lpKernelTimeProcess - aPIDs[PID, "lpKernelTimeProcess"] ; lpKernelTimeProcessOld
-            procUserDelta := lpUserTimeProcess - aPIDs[PID, "lpUserTimeProcess"] ;lpUserTimeProcessOld
-            ; sum the kernal + user time
-            totalSystem :=  systemKernelDelta + systemUserDelta
-            totalProcess := procKernalDelta + procUserDelta
-            ; The result is simply the process delta run time as a percent of system delta run time
-            result := 100 * totalProcess / totalSystem
-        }
-        else result := -1
-
-        aPIDs[PID, "lpKernelTimeSystem"] := lpKernelTimeSystem
-        aPIDs[PID, "lpUserTimeSystem"] := lpUserTimeSystem
-        aPIDs[PID, "lpKernelTimeProcess"] := lpKernelTimeProcess
-        aPIDs[PID, "lpUserTimeProcess"] := lpUserTimeProcess
-        aPIDs[PID, "tickPrior"] := A_TickCount
-        return aPIDs[PID, "usagePrior"] := result 
-    }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-
-
-; Tray Labels
-
-    WINSPY:
-        SplitPath, A_AhkPath, , AHKDIR
-        Run, %AHKDIR%\WindowSpy.ahk
-    Return
-
-    RELOAD:
-        Reload
-    Return
-
-    QuitNow:
-        ExitApp
-    Return
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
-/*** Monitor_GameLogs - CompareLocation - Use the Client Log file to determine where you are!
-* Version:
-*     v1.0.3 [updated 12/11/2019 (MM/DD/YYYY)]
-*/
-    ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
-    ; Use this for creating translations
+    ; Main function of the LutBot logout method
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    CompareLocation(cStr:="")
-    {
-        Static Lang := ""
-        ;                                                       English / Thai                 French                 German                     Russian                       Spanish                Portuguese              Chinese          Korean
-        Static ClientTowns :=  { "Lioneye's Watch" :        [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"      , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"    , "라이온아이 초소에" ]
-                                , "The Forest Encampment" : [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"         , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"    , "숲 야영지에" ]
-                                , "The Sarn Encampment" :   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"    , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"    , "사안 야영지에" ]
-                                , "Highgate" :              [ "Highgate"              , "Hautevoie"              , "Hohenpforte"           , "Македы"                , "Atalaya"                                             , "統治者之殿"  , "하이게이트에" ]
-                                , "Overseer's Tower" :      [ "Overseer's Tower"      , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"    , "감시탑에" ]
-                                , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"      , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"    , "다리 야영지에" ]
-                                , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath"  , "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"  , "오리아스 부두에" ]
-                                , "Oriath" :                [ "Oriath"                                                                     , "Ориат"                                                                         , "奧瑞亞"      , "오리아스에" ] }
-        Static LangString :=    { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"     , "German" : " : Ihr habt '"
-                                , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
-        If (cStr="Town")
-            Return indexOfArr(CurrentLocation,ClientTowns)
-        If (Lang = "")
-        {
-            For k, v in LangString
+    logout(executable){
+            global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
+            Thread, NoTimers, true		;Critical
+            start := A_TickCount
+            
+            poePID := Object()
+            s := 4096
+            Process, Exist 
+            h := DllCall("OpenProcess", "UInt", 0x0400, "Int", false, "UInt", ErrorLevel, "Ptr")
+            
+            DllCall(OpenProcessToken, "Ptr", h, "UInt", 32, "PtrP", t)
+            VarSetCapacity(ti, 16, 0)
+            NumPut(1, ti, 0, "UInt")
+            
+            DllCall(LookupPrivilegeValue, "Ptr", 0, "Str", "SeDebugPrivilege", "Int64P", luid)
+            NumPut(luid, ti, 4, "Int64")
+            NumPut(2, ti, 12, "UInt")
+            
+            r := DllCall(AdjustTokenPrivileges, "Ptr", t, "Int", false, "Ptr", &ti, "UInt", 0, "Ptr", 0, "Ptr", 0)
+            DllCall("CloseHandle", "Ptr", t)
+            DllCall("CloseHandle", "Ptr", h)
+            
+            try
             {
-                If InStr(cStr, v)
+                s := VarSetCapacity(a, s)
+                c := 0
+                DllCall(EnumProcesses, "Ptr", &a, "UInt", s, "UIntP", r)
+                Loop, % r // 4
                 {
-                    Lang := k
-                    If (VersionNumber > 0)
-                    Log("Client.txt language has been detected as: " Lang)
-                    Break
+                    id := NumGet(a, A_Index* 4, "UInt")
+                    
+                    h := DllCall("OpenProcess", "UInt", 0x0010 | 0x0400, "Int", false, "UInt", id, "Ptr")
+                    
+                    if !h
+                        continue
+                    VarSetCapacity(n, s, 0)
+                    e := DllCall("Psapi\GetModuleBaseName", "Ptr", h, "Ptr", 0, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
+                    if !e 
+                        if e := DllCall("Psapi\GetProcessImageFileName", "Ptr", h, "Str", n, "UInt", A_IsUnicode ? s//2 : s)
+                        SplitPath n, n
+                    DllCall("CloseHandle", "Ptr", h)
+                    if (n && e)
+                    if (n == executable) {
+                        poePID.Insert(id)
+                    }
                 }
-            }
-        }
-        If (Lang = "English") ; This is the default setting
-        {
-            ; first we confirm if this line contains our zone change phrase
-            If InStr(cStr, ": You have entered")
-            {
-                ; We split away the rest of the sentence for only location
-                CurrentLocation := StrSplit(cStr, " : You have entered "," .`r`n" )[2]
-                ; We should now have our location name and can begin comparing
-                ; This compares the captured string to a list of town names
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                ; Now we check if it's a hideout, make sure to whitelist Syndicate
-                If (InStr(CurrentLocation, "Hideout") && !InStr(CurrentLocation, "Syndicate"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                ; Now we check if we match mines
-                If (CurrentLocation = "Azurite Mine")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Else If (Lang = "Spanish") 
-        {
-            If InStr(cStr, " : Has entrado a ")
-            {
-                CurrentLocation := StrSplit(cStr, " : Has entrado a "," .`r`n")[2]
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                If (InStr(CurrentLocation, "Guarida") && !InStr(CurrentLocation, "Sindicato"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                If (CurrentLocation = "Mina de Azurita")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Else If (Lang = "Chinese") 
-        {
-            If InStr(cStr, " : 你已進入：")
-            {
-                CurrentLocation := StrSplit(cStr, " : 你已進入："," .。`r`n")[2]
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                If (InStr(CurrentLocation, "藏身處") && !InStr(CurrentLocation, "永生密教"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                If (CurrentLocation = "碧藍礦坑")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Else If (Lang = "Korean") 
-        {
-            If InStr(cStr, "진입했습니다")
-            {
-                CurrentLocation := StrSplit(StrSplit(cStr,"] : ")[2], "진입했습니다"," .`r`n")[1]
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                If (InStr(CurrentLocation, "은신처에") && !InStr(CurrentLocation, "신디케이트"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                If (CurrentLocation = "남동석 광산에")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Else If (Lang = "German") 
-        {
-            If InStr(cStr, " : Ihr habt '")
-            {
-                CurrentLocation := StrSplit(StrSplit(cStr," : Ihr habt '")[2], "' betreten"," .`r`n")[1]
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                If (InStr(CurrentLocation, "Versteckter") && !InStr(CurrentLocation, "Syndikat"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                If (CurrentLocation = "Azuritmine")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Else If (Lang = "Russian") 
-        {
-            If InStr(cStr, " : Вы вошли в область ")
-            {
-                CurrentLocation := StrSplit(cStr," : Вы вошли в область "," .`r`n")[2]
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                If (InStr(CurrentLocation, "убежище") && !InStr(CurrentLocation, "синдикат"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                If (CurrentLocation = "Азуритовая шахта")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Else If (Lang = "French") 
-        {
-            If InStr(cStr, " : Vous êtes à présent dans : ")
-            {
-                CurrentLocation := StrSplit(cStr," : Vous êtes à présent dans : "," .`r`n")[2]
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                If (InStr(CurrentLocation, "Repaire") && !InStr(CurrentLocation, "Syndicat"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                If (CurrentLocation = "La Mine d'Azurite")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Else If (Lang = "Portuguese") 
-        {
-            If InStr(cStr, " : Você entrou em: ")
-            {
-                CurrentLocation := StrSplit(cStr," : Você entrou em: "," .`r`n")[2]
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                If (InStr(CurrentLocation, "Refúgio") && !InStr(CurrentLocation, "Sindicato"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                If (CurrentLocation = "Mina de Azurita")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Else If (Lang = "Thai") 
-        {
-            If InStr(cStr, " : คุณเข้าสู่ ")
-            {
-                CurrentLocation := StrSplit(cStr," : คุณเข้าสู่ "," .`r`n")[2]
-                If indexOfArr(CurrentLocation,ClientTowns)
-                    OnTown := True
-                Else
-                    OnTown := False
-                If (InStr(CurrentLocation, "Hideout") && !InStr(CurrentLocation, "Syndicate"))
-                    OnHideout := True
-                Else
-                    OnHideout := False
-                If (CurrentLocation = "Azurite Mine")
-                    OnMines := True
-                Else
-                    OnMines := False
-                Return True
-            }
-        }
-        Return False
-    }
-
-    ; Monitor for changes in log since initialized
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    Monitor_GameLogs(Initialize:=0) 
-    {
-        global ClientLog, CLogFO, CurrentLocation
-        OldTown := OnTown, OldHideout := OnHideout, OldMines := OnMines, OldLocation := CurrentLocation
-        SetTimer,% A_ThisFunc, 500 ; auto set timer
-        if (Initialize)
-        {
-            Try
-            {
-                CLogFO := FileOpen(ClientLog, "r")
-                FileGetSize, errchk, %ClientLog%, M
-                If (errchk >= 128)
-                {
-                    CurrentLocation := "Log too large"
-                    CLogFO.Seek(0, 2)
+                
+                l := poePID.Length()
+                if ( l = 0 ) {
+                    Process, wait, %executable%, 0.2
+                    if ( ErrorLevel > 0 ) {
+                        poePID.Insert(ErrorLevel)
+                    }
                 }
-                Else
+                
+                VarSetCapacity(dwSize, 4, 0) 
+                result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
+                VarSetCapacity(TcpTable, NumGet(dwSize), 0) 
+                
+                result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
+                
+                num := NumGet(&TcpTable,0,"UInt")
+                
+                IfEqual, num, 0
                 {
-                    latestFileContent := CLogFo.Read()
-                    latestFileContent := TF_ReverseLines(latestFileContent)
-                    Loop, Parse,% latestFileContent,`n,`r
-                    {
-                        If CompareLocation(A_LoopField)
-                            Break
-                        If (A_Index > 1000)
+                    Log("ED11",num,l,executable)
+                    return False
+                }
+                
+                out := 0
+                Loop %num%
+                {
+                    cutby := a_index - 1
+                    cutby*= 24
+                    ownerPID := NumGet(&TcpTable,cutby+24,"UInt")
+                    for index, element in poePID {
+                        if ( ownerPID = element )
                         {
-                            CurrentLocation := "1k Line Break"
-                            Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
-                            Break
+                            VarSetCapacity(newEntry, 20, 0) 
+                            NumPut(12,&newEntry,0,"UInt")
+                            NumPut(NumGet(&TcpTable,cutby+8,"UInt"),&newEntry,4,"UInt")
+                            NumPut(NumGet(&TcpTable,cutby+12,"UInt"),&newEntry,8,"UInt")
+                            NumPut(NumGet(&TcpTable,cutby+16,"UInt"),&newEntry,12,"UInt")
+                            NumPut(NumGet(&TcpTable,cutby+20,"UInt"),&newEntry,16,"UInt")
+                            result := DllCall(SetEntry, UInt, &newEntry)
+                            IfNotEqual, result, 0
+                            {
+                                Log("TCP" . result,out,result,l,executable)
+                                return False
+                            }
+                            out++
                         }
                     }
-                    If CurrentLocation = ""
-                        CurrentLocation := "Nothing Found"
                 }
-                If (DebugMessages && YesLocation && WinActive(GameStr))
-                {
-                    Ding(6000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
-                    Ding(6000,5,CurrentLocation)
+                if ( out = 0 ) {
+                    Log("ED10",out,l,executable)
+                    return False
+                } else {
+                    Log(l . ":" . A_TickCount - start,out,l,executable)
                 }
-                If (VersionNumber != "")
-                Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
-            }
-            Catch, loaderror
+            } 
+            catch e
             {
-                CurrentLocation := "Client File Load Error"
-                Log("Error loading File, Submit information about your client.txt",loaderror)
+                Log("ED14","catcherror",e)
+                return False
             }
-            Return
-        } Else {
-            latestFileContent := CLogFo.Read()
-
-            if (latestFileContent) 
-            {
-                Loop, Parse,% latestFileContent,`n,`r 
-                {
-                    If InStr(A_LoopField, "] :")
-                        CompareLocation(A_LoopField)
-                }
-            }
-            If (DebugMessages && YesLocation && WinActive(GameStr))
-            {
-                Ding(2000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
-                Ding(2000,5,CurrentLocation)
-            }
-            If YesLocation && (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
-                Log("Zone Change Detected", (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))) , "Located:" CurrentLocation)
-            Return
-        }
-    }
-
-    ; AHK version of the Tail function
-    LastLine(SomeFileObject) {
-        static SEEK_CUR := 1
-        static SEEK_END := 2
-        loop {
-            SomeFileObject.Seek(-1, SEEK_CUR)
             
-            if (SomeFileObject.Read(1) = "`n") {
-                StartPosition := SomeFileObject.Tell()
-                
-                Line := SomeFileObject.ReadLine()
-                SomeFileObject.Seek(StartPosition - 1)
-                return Line
-            }
-            else {
-                SomeFileObject.Seek(-1, SEEK_CUR)
-            }
-        } until (A_Index >= 1000000)
-        Return ; this should never happen
+        return True
+        }
+
+    ; Log file function
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Log(var*) 
+    {
+        print := A_Now
+        For k, v in var
+            print .= "," . v
+        print .= ", Script: " . A_ScriptFullPath . " , Script Version: " . VersionNumber . " , AHK version: " . A_AhkVersion . "`n"
+        FileAppend, %print%, Log.txt, UTF-16
+        return
     }
+
+    ; checkActiveType - Check for backup executable
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	checkActiveType() {
+			global executable, backupExe
+			Process, Exist, %executable%
+			if !ErrorLevel
+			{
+				WinGet, id, list,ahk_group POEGameGroup,, Program Manager
+				Loop, %id%
+				{
+					this_id := id%A_Index%
+					WinGet, this_name, ProcessName, ahk_id %this_id%
+					backupExe := this_name
+					found .= ", " . this_name
+				}
+			}
+		return
+		}
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-
-
-
 
 
 ;/*
