@@ -117,7 +117,7 @@
             BlockInput, MouseMove
             RightClick(WisdomScrollX,WisdomScrollY)
             LeftClick(x,y)
-            Sleep, 30*Latency
+            Sleep, 15+Abs(ClickLatency*15)
             BlockInput, MouseMoveOff
             return
         }

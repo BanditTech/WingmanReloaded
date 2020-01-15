@@ -1,6 +1,29 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.08 January/15/2020
+--------------------------------------------------------------------------------
+IncreasedMaximumEnergyShield has been added to affixes
+
+CLF has been adjusted to make the menu wider
+    Edit menu has been adjusted as well, to make the dropdownlists fit entire text
+
+Bugfix for the ~ evaluator, my implimentation of the & symbol was incorrect
+    I reworked the way it matches, and also revised the code to be less repetative
+
+Ignore slots menu is now alwaysontop
+
+CLF and Ignore slots buttons moved to main menu
+    added tooltips to these buttons and chat, controller
+    they are related to inventory, but that menu takes ages to load
+
+Clip Latency can now go to -2 and its been reworked
+    delay before mousemove can go into negative values
+    delay after mousemove will no longer go negative
+
+Delay for wisdom scrolls reworked, gives absolute value delay
+    now calculates as 15+Abs(ClickLatency*15)
+
 Version .09.07 January/14/2020
 --------------------------------------------------------------------------------
 Menu has been split apart to reduce load time on first launch

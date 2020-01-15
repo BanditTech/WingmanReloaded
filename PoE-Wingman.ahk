@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.07
+    Global VersionNumber := .09.08
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -458,6 +458,10 @@
 			YesNinjaDatabase = Enable to Update Ninja Database and load at start
 			WR_Btn_Inventory = Open the settings related to the inventory
 			WR_Btn_Strings = Open the settings related to the FindText Strings
+			WR_Btn_Chat = Open the settings related to the Chat Hotkeys
+			WR_Btn_Controller = Bind actions to joystick input
+			WR_Btn_CLF = Configure the Custom Loot Filter`rUse this to filter items by properties, affixes, or stats
+			WR_Btn_IgnoreSlot = Assign the ignored slots in your inventory`rThe script will not touch items in these locations
 			)
 	; Globals For client.txt file
 		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
@@ -1311,7 +1315,7 @@
 	Gui, Add, Text, 										x+5 yp+3 hp-3							, Latency
 	Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  %ClickLatency%||-2|-1|0|1|2|3|4
 	Gui, Add, Text, 										x+5 yp+3	hp-3						, Clicks
-	Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  %ClipLatency%||-1|0|1|2|3|4
+	Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  %ClipLatency%||-2|-1|0|1|2|3|4
 	Gui, Add, Text, 										x+5 yp+3	hp-3						, Clip
 	Gui, Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
 	Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
@@ -1321,6 +1325,8 @@
 	Gui, add, button, gWR_Update vWR_Btn_Strings 	x+10 yp w110, Strings
 	Gui, add, button, gWR_Update vWR_Btn_Chat 		xs y+10 w110, Chat
 	Gui, add, button, gWR_Update vWR_Btn_Controller x+10 yp w110, Controller
+	Gui, add, button, gLaunchLootFilter vWR_Btn_CLF	xs y+10 w110, C.L.F.
+	Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
 
 	Gui, Font, Bold
 	Gui Add, Text, 	Section									x295 	ym+25, 				Keybinds:
@@ -2816,7 +2822,7 @@ Return
 			Clipboard := ""
 			Sleep, 45+(ClipLatency*15)
 			MouseMove %x%, %y%
-			Sleep, 45+(ClipLatency*15)
+			Sleep, 45+(ClipLatency>0?ClipLatency*15:0)
 			Send ^c
 			ClipWait, 0
 			ParseClip()
@@ -2944,6 +2950,7 @@ Return
 			, IncreasedMaximumLife : 0
 			, MaximumEnergyShield : 0
 			, IncreasedEnergyShield : 0
+			, IncreasedMaximumEnergyShield : 0
 			, MaximumMana : 0
 			, IncreasedMaximumMana : 0
 			, IncreasedAttackSpeed : 0
@@ -3933,6 +3940,12 @@ Return
 						Affix.MaximumEnergyShield := Affix.MaximumEnergyShield + Arr1
 					Continue	
 					}
+					IfInString, A_LoopField, increased maximum Energy Shield
+					{
+						StringSplit, Arr, A_LoopField, %A_Space%, `%
+						Affix.IncreasedMaximumEnergyShield := Affix.IncreasedMaximumEnergyShield + Arr1
+					Continue	
+					}
 					IfInString, A_LoopField, increased Energy Shield
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, `%
@@ -4750,221 +4763,78 @@ Return
 				{
 					If (InStr(AKey, "Eval") || InStr(AKey, "Min"))
 						Continue
-					;MsgBox % "Key: " SKey "  Val: " Selected
 					if InStr(SKey, "Affix")
+						arrval := Affix[AVal]
+					else if InStr(SKey, "Prop")
+						arrval := Prop[AVal]
+					else if InStr(SKey, "Stats")
+						arrval := Stats[AVal]
+					eval := LootFilter[GKey][SKey][AKey . "Eval"]
+					min := LootFilter[GKey][SKey][AKey . "Min"]
+					if eval = >
+						If (arrval > min)
+						matched := True
+						Else
+						nomatched := True
+					Else if eval = >=
+						If (arrval >= min)
+						matched := True
+						Else
+						nomatched := True
+					else if eval = =
+						if (arrval = min)
+						matched := True
+						Else
+						nomatched := True
+					else if eval = <
+						if (arrval < min)
+						matched := True
+						Else
+						nomatched := True
+					else if eval = <=
+						if (arrval <= min)
+						matched := True
+						Else
+						nomatched := True
+					else if eval = !=
+						if (arrval != min)
+						matched := True
+						Else
+						nomatched := True
+					else if eval = ~
 					{
-						if Affix.haskey(AVal)
+						minarr := StrSplit(min, "|"," ")
+						for k, v in minarr
 						{
-							arrval := Affix[AVal]
-							eval := LootFilter[GKey][SKey][AKey . "Eval"]
-							min := LootFilter[GKey][SKey][AKey . "Min"]
-							if eval = >
-								If (arrval > min)
-								matched := True
-								Else
-								nomatched := True
-							Else if eval = >=
-								If (arrval >= min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = =
-								if (arrval = min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = <
-								if (arrval < min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = <=
-								if (arrval <= min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = !=
-								if (arrval != min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = ~
+							if InStr(v, "&")
 							{
-								minarr := StrSplit(min, "|"," ")
-								for k, v in minarr
+								mismatched := false
+								for kk, vv in StrSplit(v, "&"," ")
 								{
-									if InStr(v, "&")
-									{
-										for kk, vv in StrSplit(v, "&"," ")
-										{
-											If InStr(arrval, vv)
-												matched := True
-											Else
-											{
-												matched := False
-												Break
-											}
-										}
-									}
-									Else if InStr(arrval, v)
-									{
-										matched := True
-										break
-									}
-									Else
-									{
-										matched := False
-									}
+									If !InStr(arrval, vv)
+										mismatched := true
 								}
-								if !matched
+								if mismatched
+									matched := false
+								else
 								{
-									nomatched := True
+									matched := true
+									Break
 								}
+							}
+							Else if InStr(arrval, v)
+							{
+								matched := True
+								break
+							}
+							Else
+							{
+								matched := False
 							}
 						}
-					}
-					if InStr(SKey, "Prop")
-					{
-						if Prop.haskey(AVal)
+						if !matched
 						{
-							arrval := Prop[AVal]
-							eval := LootFilter[GKey][SKey][AKey . "Eval"]
-							min := LootFilter[GKey][SKey][AKey . "Min"]
-							if eval = >
-								If (arrval > min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = >=
-								If (arrval >= min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = =
-								if (arrval = min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = <
-								if (arrval < min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = <=
-								if (arrval <= min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = !=
-								if (arrval != min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = ~
-							{
-								minarr := StrSplit(min, "|"," ")
-								for k, v in minarr
-								{
-									if InStr(v, "&")
-									{
-										for kk, vv in StrSplit(v, "&"," ")
-										{
-											If InStr(arrval, vv)
-												matched := True
-											Else
-											{
-												matched := False
-												Break
-											}
-										}
-									}
-									Else if InStr(arrval, v)
-									{
-										matched := True
-										break
-									}
-									Else
-									{
-										matched := False
-									}
-								}
-								if !matched
-								{
-									nomatched := True
-								}
-							}
-						}
-					}
-					if InStr(SKey, "Stats")
-					{
-						if Stats.haskey(AVal)
-						{
-							arrval := Stats[AVal]
-							eval := LootFilter[GKey][SKey][AKey . "Eval"]
-							min := LootFilter[GKey][SKey][AKey . "Min"]
-							if eval = >
-								If (arrval > min)
-								matched := True
-								Else
-								nomatched := True
-							Else if eval = >=
-								If (arrval >= min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = =
-								if (arrval = min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = <
-								if (arrval < min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = <=
-								if (arrval <= min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = !=
-								if (arrval != min)
-								matched := True
-								Else
-								nomatched := True
-							else if eval = ~
-							{
-								minarr := StrSplit(min, "|"," ")
-								for k, v in minarr
-								{
-									if InStr(v, "&")
-									{
-										for kk, vv in StrSplit(v, "&"," ")
-										{
-											If InStr(arrval, vv)
-												matched := True
-											Else
-											{
-												matched := False
-												Break
-											}
-										}
-									}
-									Else if InStr(arrval, v)
-									{
-										matched := True
-										break
-									}
-									Else
-									{
-										matched := False
-									}
-								}
-								if !matched
-								{
-									nomatched := True
-								}
-							}
+							nomatched := True
 						}
 					}
 				}
@@ -11169,52 +11039,10 @@ Return
 					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst% 				, Group Items before stashing?
 					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%     				, Leave Map Un-ID?
 					Gui, Inventory: Add, DropDownList, w40 gUpdateExtra	vYesSkipMaps  				, %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
-					Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip rolled maps
-
-					Gui, Inventory: Font, Bold
-					Gui, Inventory: Add, Button, gLaunchLootFilter xm y+16, Custom Loot Filter
-					Gui, Inventory: Add, Button, gBuildIgnoreMenu  , Assign Ignored Slots
-					Gui, Inventory: Font,
-
-					IfNotExist, %A_ScriptDir%\data\leagues.json
-					{
-						UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-					}
-					FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-					LeagueIndex := JSON.Load(JSONtext)
-					textList= 
-					For K, V in LeagueIndex
-						textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+					Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
 
 					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 			Section		w220 h120				xs 	y+30, 				Item Parse Settings
-					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja Database?
-					Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
-					Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
-					Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Update leagues
-					Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Force a match with the 6 Link price
-					Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Force a match with low level gems < 20
-
-
-					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+180 	ym+25, 				Crafting Tab:
-					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     xs+5	ys+18			, T1?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xs+5	y+8		, Normal?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
-
-					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	ys, 				Automation:
-					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     xs+5	ys+18			, Search for stash?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8			, Move to vendor after stash?
-
-					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 				Section			w370 h120			xm+180 	y+30, 				Scroll and Gem Locations
+					Gui, Inventory: Add, GroupBox, 				Section			w370 h120			xm+180 	ym+25, 				Scroll and Gem Locations
 					Gui, Inventory: Font
 
 					Gui, Inventory: Add, Text, 										xs+93 	ys+15,				X-Pos
@@ -11236,11 +11064,45 @@ Return
 					Gui, Inventory: Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	xs+173     		ys+33				, Stock Portal?
 					Gui, Inventory: Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         		y+8				, Stock Wisdom?
 					Gui, Inventory: Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
-
 					Gui, Inventory: Add, Text, 									xs+84 	ys+15		h107 0x11
 					Gui, Inventory: Add, Text, 									x+33 		 		h107 0x11
 					Gui, Inventory: Add, Text, 									x+33 		 		h107 0x11
 
+					IfNotExist, %A_ScriptDir%\data\leagues.json
+					{
+						UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+					}
+					FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+					LeagueIndex := JSON.Load(JSONtext)
+					textList= 
+					For K, V in LeagueIndex
+						textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 			Section		w180 h120				xs 	y+10, 				Item Parse Settings
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
+					Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
+					Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
+					Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
+					Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
+					Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	ys, 				Crafting Tab:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     xs+5	ys+18			, T1?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xs+5	y+8		, Normal?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	y+20, 				Automation:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     xs+5	ys+18			, Search for stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8			, Move to vendor after stash?
 				}
 				Gui, Inventory: show , w600 h500, Inventory Settings
 			}
@@ -11517,7 +11379,7 @@ Return
 		IgnoreEscape:
 			SaveIgnoreArray()
 			Gui, Ignore: Destroy
-			Gui, Inventory: Show
+			Gui, 1: Show
 		Return
 
 		addToBlacklist(C, R)
@@ -11535,7 +11397,7 @@ Return
 
 		BuildIgnoreMenu:
 			Gui, Submit
-			Gui, Ignore: +LabelIgnore -MinimizeBox
+			Gui, Ignore: +LabelIgnore -MinimizeBox +AlwaysOnTop
 			Gui, Ignore: Font, Bold
 			Gui, Ignore: Add, GroupBox, w660 h305 Section xm ym, Ignored Inventory Slots:
 			Gui, Ignore: Add, Picture, w650 h-1 xs+5 ys+15, %A_ScriptDir%\data\InventorySlots.png

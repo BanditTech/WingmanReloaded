@@ -75,8 +75,8 @@
         , Oil : False
         , Corrupted : False
         , DoubleCorrupted : False
-        , Width : 1
-        , Height : 1
+        , Item_Width : 1
+        , Item_Height : 1
         , Variant : 0
         , CraftingBase : 0
         , DropLevel : 0
@@ -140,6 +140,7 @@
         , IncreasedMaximumLife : 0
         , MaximumEnergyShield : 0
         , IncreasedEnergyShield : 0
+        , IncreasedMaximumEnergyShield : 0
         , MaximumMana : 0
         , IncreasedMaximumMana : 0
         , IncreasedAttackSpeed : 0
@@ -358,9 +359,9 @@ Redraw:
     tooltip
     Gui, +AlwaysOnTop
     if ((xpos="first") || !(xpos && ypos))
-        Gui, show, w640 h475 ; if first run, show gui at default positon
+        Gui, show, w740 h575 ; if first run, show gui at default positon
     else
-        Gui, show, w640 h475 x%xpos% y%ypos%
+        Gui, show, w740 h575 x%xpos% y%ypos%
     If (Maxed)
         WinMaximize, LootFilter
     Gui,  +LastFound				;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
@@ -368,7 +369,7 @@ Redraw:
 return
 
 RedrawNewGroup:
-    Gui,2: -Resize +AlwaysOnTop -MinimizeBox -MaximizeBox  +0x300000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
+    Gui,2: -Resize +AlwaysOnTop -MinimizeBox -MaximizeBox  +0x200000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
                             ;+Resize (allows resize of windows)
     Gui,2: Add, Text, Section y+-5 w1 h1
     Gui,2: add, button, gFinishAddGroup xs y+20 HwndFinishButton, Click here to Finish and Return to CLF
@@ -376,7 +377,7 @@ RedrawNewGroup:
     Tooltip, Building menu... 
     BuildNewGroupMenu(groupKey)
     tooltip
-    Gui,2: show, w440 h375 , Add or Edit a Group
+    Gui,2: show, w600 h475 , Add or Edit a Group
     DisableCloseButton()
     Gui,2:  +LastFound				;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
     GroupAdd, MyGui, % "ahk_id " . WinExist()		;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
@@ -551,23 +552,23 @@ BuildNewGroupMenu(GKey)
     Global
     For SKey, selectedItems in LootFilter[GKey]
     {
-        Gui,2: Add, GroupBox,% " section xs y+18 w127 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,%SKey%
+        Gui,2: Add, GroupBox,% " section xs y+18 w247 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,%SKey%
         Gui,2: Add, GroupBox,% " x+2 yp w54 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Eval:
-        Gui,2: Add, GroupBox,% " x+2 yp w204 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Min:
+        Gui,2: Add, GroupBox,% " x+2 yp w254 h" ((LootFilter[GKey][SKey].Count() / 3) + 1) * 25 ,Min:
         For AKey, Val in selectedItems
         {
             strLootFilterGSA := "LootFilter_" . GKey . "_" . SKey . "_" . AKey
             %strLootFilterGSA% := LootFilter[GKey][SKey][AKey]
             ;MsgBox % AKey
             If InStr(AKey, "Min"){
-                Gui,2: Add, Edit, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w200 h21, % LootFilter[GKey][SKey][AKey]
+                Gui,2: Add, Edit, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w250 h21, % LootFilter[GKey][SKey][AKey]
                 %strLootFilterGSA%_Remove := False
                 Gui,2: Add, Button, v%strLootFilterGSA%_Remove gRemoveNewMenuItem x+6 w21 h21, X
             }
             else If InStr(AKey, "Eval")
                 Gui,2: Add, DropDownList, v%strLootFilterGSA% gUpdateLootFilterDDL x+6 w50, % LootFilter[GKey][SKey][AKey] "||" textListEval
             Else
-                Gui,2: Add,  DropDownList, v%strLootFilterGSA% gUpdateLootFilterDDL xs+5 yp+25, % LootFilter[GKey][SKey][AKey] "||" textList%SKey%
+                Gui,2: Add,  DropDownList, v%strLootFilterGSA% gUpdateLootFilterDDL xs+5 yp+25 w240, % LootFilter[GKey][SKey][AKey] "||" textList%SKey%
         }
         Gui,2: add, button, gAddNewGroupDDL xs yp+25, Add new %SKey% to %GKey%
     }
