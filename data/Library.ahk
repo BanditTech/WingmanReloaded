@@ -4,6 +4,8 @@
   Return
 }
 
+
+
 /*** Wingman Functions
 *    Contains all the assorted functions written for Wingman
 */
@@ -359,6 +361,21 @@
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CheckOHB()
     {
+        If WinActive(GameStr)
+        {
+            if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
+                Return ok.1.1 + ok.1.2
+            Else
+            {
+                Ding(500,6,"OHB Not Found")
+                Return False
+            }
+        }
+        Else 
+            Return False
+    }
+    CheckOHBold()
+    {
         Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
         If WinActive(GameStr)
         {
@@ -396,6 +413,26 @@
         }
         Else 
             Return False
+    }
+    ; ScanGlobe - Determine the percentage of Life, ES and Mana
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ScanGlobe(SS:=0)
+    {
+        Global Globe, Player
+        If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,0))
+            Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
+        If YesEldritchBattery
+        {
+            If (ES := FindText(Globe.ES.X1, Globe.ES.Y1, Globe.ES.X2, Globe.ES.Y2, 0,0,Globe.ES.Color.Str,SS,0))
+                Player.Percent.ES := Round(((Globe.ES.Y2 - ES.1.2) / Globe.ES.Height) * 100)
+        }
+        Else
+        {
+            If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,0))
+                Player.Percent.ES := Round(((Globe.EB.Y2 - EB.1.2) / Globe.EB.Height) * 100)
+        }
+        If (Mana := FindText(Globe.Mana.X1, Globe.Mana.Y1, Globe.Mana.X2, Globe.Mana.Y2, 0,0,Globe.Mana.Color.Str,SS,0))
+            Player.Percent.Mana := Round(((Globe.Mana.Y2 - Mana.1.2) / Globe.Mana.Height) * 100)
     }
     ; GetPercent - Determine the percentage of health
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1853,43 +1890,51 @@
     {
         global ClientLog, CLogFO, CurrentLocation
         OldTown := OnTown, OldHideout := OnHideout, OldMines := OnMines, OldLocation := CurrentLocation
-        SetTimer,% A_ThisFunc, 500 ; auto set timer
         if (Initialize)
         {
             Try
             {
                 CLogFO := FileOpen(ClientLog, "r")
                 FileGetSize, errchk, %ClientLog%, M
-                If (errchk >= 128)
+                If (errchk >= 64)
                 {
                     CurrentLocation := "Log too large"
                     CLogFO.Seek(0, 2)
-                }
-                Else
-                {
-                    latestFileContent := CLogFo.Read()
-                    latestFileContent := TF_ReverseLines(latestFileContent)
-                    Loop, Parse,% latestFileContent,`n,`r
+                    If (VersionNumber != "")
                     {
+                        Log("Client.txt Log File is too large (" . errchk . "MB)")
+                        Ding(5000,-11,"Client.txt file is too large (" . errchk . "MB)`nYou Must change zones to update Location")
+                    }
+                    Return
+                }
+                T1 := A_TickCount
+                If (VersionNumber != "")
+                    Ding(0,-10,"Parsing Client.txt Logfile")
+                latestFileContent := CLogFo.Read()
+                latestFileContent := TF_ReverseLines(latestFileContent)
+                Loop, Parse,% latestFileContent,`n,`r
+                {
+                    If InStr(A_LoopField, "] :")
                         If CompareLocation(A_LoopField)
                             Break
-                        If (A_Index > 1000)
-                        {
-                            CurrentLocation := "1k Line Break"
-                            Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
-                            Break
-                        }
+                    If (A_Index > 1000)
+                    {
+                        CurrentLocation := "1k Line Break"
+                        Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
+                        Break
                     }
-                    If CurrentLocation = ""
-                        CurrentLocation := "Nothing Found"
                 }
+                If (CurrentLocation = "")
+                    CurrentLocation := "Nothing Found"
+                If (VersionNumber != "")
+                    Ding(500,-10,"Parsed Client.txt logs in " . A_TickCount - T1 . "MS`nSize: " . errchk . "MB")
                 If (DebugMessages && YesLocation && WinActive(GameStr))
                 {
                     Ding(6000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
                     Ding(6000,5,CurrentLocation)
                 }
                 If (VersionNumber != "")
-                Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
+                    Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
             }
             Catch, loaderror
             {
@@ -2280,6 +2325,7 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
+
 /*** JSON v2.1.3 : JSON lib for AutoHotkey.
  * Lib: JSON.ahk
  *     JSON lib for AutoHotkey.
@@ -2358,7 +2404,7 @@
                         ; sacrifice readability for minor(actually negligible) performance gain
                             (ch == "{")
                                 ? ( is_key := true
-                                , value := {}
+                                , value := OrderedArray()
                                 , next := object_key_or_object_closing )
                             ; ch == "["
                                 : ( value := json_array ? new json_array : []
@@ -2609,6 +2655,7 @@
         }
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
 
 
 /* TF: Textfile & String Library for AutoHotkey
@@ -4112,6 +4159,7 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
+
 /* XGraph v1.1.1.0 : Real time data plotting.
  *  Script      :  XGraph v1.1.1.0 : Real time data plotting.
  *                 http://ahkscript.org/boards/viewtopic.php?t=3492
@@ -4454,6 +4502,7 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
+
 /* DeepClone v1 : A library of functions to make unlinked array Clone
  ;
  ; Function:
@@ -4608,7 +4657,7 @@
     Array_DeepClone(Array, Objs=0)
     {
         if !Objs
-            Objs := {}
+            Objs := OrderedArray()
         Obj := Array.Clone()
         Objs[&Array] := Obj ; Save this new array
         For Key, Val in Obj
@@ -4632,7 +4681,8 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-;{[Function] Decimal2Fraction
+
+;{[Function] Decimal2Fraction and Fraction2Decimal
     ; Fanatic Guru
     ; 2013 12 21
     ; Version 1.9
@@ -4745,8 +4795,7 @@
         B := Mod(A|0x0, A:=B)
         return A
     }
-;}
-;{[Function] Fraction2Decimal
+    ;{[Function] Fraction2Decimal
     ; Fanatic Guru
     ; 2013 12 18
     ; Version 1.6
@@ -4813,7 +4862,8 @@
             SetFormat, FloatFast, %FormatFloat%
             return Output
     }
-;}
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
 
 
 /*** Class_CtlColors
@@ -5155,6 +5205,7 @@
     }
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
 
 
 ;_______________________ Hotkey() _______________________
@@ -6101,6 +6152,7 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
+
 /*** DynaRun - CreateScript - Run AHK in a pipe! 
  *     These functions allow for dynamically created scripts to be run
  *     Removes the need for creating temporary script files
@@ -6259,10 +6311,11 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
+
 /*** Lib from LutBot : Extracted from lite version
-* Lib: LutBotLite.ahk
-*     Path of Exile Quick disconnect.
-*/
+ * Lib: LutBotLite.ahk
+ *     Path of Exile Quick disconnect.
+ */
 
     ; Main function of the LutBot logout method
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -6410,70 +6463,252 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
-;/*
-;===========================================
-;  FindText - Capture screen image into text and then find it
-;  https://autohotkey.com/boards/viewtopic.php?f=6&t=17834
-;
-;  Author  :  FeiYue
-;  Version :  7.2
-;  Date    :  2019-12-16
- ;
- ;  Usage:
- ;  1. Capture the image to text string.
- ;  2. Test find the text string on full Screen.
- ;  3. When test is successful, you may copy the code
- ;     and paste it into your own script.
- ;     Note: Copy the "FindText()" function and the following
- ;     functions and paste it into your own script Just once.
- ;  4. The more recommended way is to save the script as
- ;     "FindText.ahk" and copy it to the "Lib" subdirectory
- ;     of AHK program, instead of copying the "FindText()"
- ;     function and the following functions, add a line to
- ;     the beginning of your script: #Include <FindText>
- ;
- ;  Note:
- ;     After upgrading to v7.0, the search scope using
- ;     the upper left  corner coordinates (X1, Y1)
- ;     and lower right corner coordinates (X2, Y2), similar to ImageSearch.
- ;     This makes it easier for novices to understand and use.
- ;
- ;===========================================
- ;  Introduction of function parameters:
- ;
- ;  returnArray := FindText(
- ;      X1 --> the search scope's upper left corner X coordinates
- ;    , Y1 --> the search scope's upper left corner Y coordinates
- ;    , X2 --> the search scope's lower right corner X coordinates
- ;    , Y2 --> the search scope's lower right corner Y coordinates
- ;    , err1 --> Fault tolerance percentage of text       (0.1=10%)
- ;    , err0 --> Fault tolerance percentage of background (0.1=10%)
- ;    , Text --> can be a lot of text parsed into images, separated by "|"
- ;    , ScreenShot --> if the value is 0, the last screenshot will be used
- ;    , FindAll --> if the value is 0, Just find one result and return
- ;    , JoinText --> if the value is 1, Join all Text for combination lookup
- ;    , offsetX --> Set the max text offset for combination lookup
- ;    , offsetY --> Set the max text offset for combination lookup
- ;  )
- ;
- ;  The function returns a second-order array containing
- ;  all lookup results, Any result is an associative array
- ;  {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment}
- ;  if no image is found, the function returns 0.
- ;
- ;  If the return variable is set to "ok", ok.1 is the first result found.
- ;  Where ok.1.1 is the X coordinate of the upper left corner of the found image,
- ;  and ok.1.2 is the Y coordinate of the upper left corner of the found image,
- ;  ok.1.3 is the width of the found image, and ok.1.4 is the height of the found image,
- ;  ok.1.x <==> ok.1.1+ok.1.3//2 ( is the Center X coordinate of the found image ),
- ;  ok.1.y <==> ok.1.2+ok.1.4//2 ( is the Center Y coordinate of the found image ),
- ;  ok.1.id is the comment text, which is included in the <> of its parameter.
- ;  ok.1.x can also be written as ok[1].x, which supports variables. (eg: ok[A_Index].x)
- ;
- ;  All coordinates are relative to Screen, colors are in RGB format,
- ;  and combination lookup must use uniform color mode
- ;===========================================
- ;*/
+
+/* OrderedArray code by Lexikos
+ * Modifications and additional methods by rbrtryn
+ * http://tinyurl.com/lhtvalv
+ */
+    OrderedArray(prm*)
+    {
+        ; Define prototype object for ordered arrays:
+        static base := Object("__Set", "oaSet", "_NewEnum", "oaNewEnum"
+                            , "Remove", "oaRemove", "Insert", "oaInsert", "InsertBefore", "oaInsertBefore")
+        ; Create and return new ordered array object:
+        return Object("_keys", Object(), "base", base, prm*)
+    }
+
+    oaSet(obj, prm*)
+    {
+        ; If this function is called, the key must not already exist.
+        ; Sub-class array if necessary then add this new key to the key list
+        if prm.maxindex() > 2
+            ObjInsert(obj, prm[1], OrderedArray())
+        ObjInsert(obj._keys, prm[1])
+        ; Since we don't return a value, the default behaviour takes effect.
+        ; That is, a new key-value pair is created and stored in the object.
+    }
+
+    oaNewEnum(obj)
+    {
+        ; Define prototype object for custom enumerator:
+        static base := Object("Next", "oaEnumNext")
+        ; Return an enumerator wrapping our _keys array's enumerator:
+        return Object("obj", obj, "enum", obj._keys._NewEnum(), "base", base)
+    }
+
+    oaEnumNext(e, ByRef k, ByRef v="")
+    {
+        ; If Enum.Next() returns a "true" value, it has stored a key and
+        ; value in the provided variables. In this case, "i" receives the
+        ; current index in the _keys array and "k" receives the value at
+        ; that index, which is a key in the original object:
+        if r := e.enum.Next(i,k)
+            ; We want it to appear as though the user is simply enumerating
+            ; the key-value pairs of the original object, so store the value
+            ; associated with this key in the second output variable:
+            v := e.obj[k]
+        return r
+    }
+
+    oaRemove(obj, prm*)
+    {
+        r := ObjRemove(obj, prm*)         ; Remove keys from main object
+        Removed := []                     
+        for k, v in obj._keys             ; Get each index key pair
+            if not ObjHasKey(obj, v)      ; if key is not in main object
+                Removed.Insert(k)         ; Store that keys index to be removed later
+        for k, v in Removed               ; For each key to be removed
+            ObjRemove(obj._keys, v, "")   ; remove that key from key list
+        return r
+    }
+
+    oaInsert(obj, prm*)
+    {
+        r := ObjInsert(obj, prm*)            ; Insert keys into main object
+        enum := ObjNewEnum(obj)              ; Can't use for-loop because it would invoke oaNewEnum
+        while enum[k] {                      ; For each key in main object
+            if (k = "_keys")
+                continue 
+            for i, kv in obj._keys           ; Search for key in obj._keys
+                if (k = kv)                  ; If found...
+                    continue 2               ; Get next key in main object
+            ObjInsert(obj._keys, k)          ; Else insert key into obj._keys
+        }
+        return r
+    }
+
+    oaInsertBefore(obj, key, prm*)
+    {
+        OldKeys := obj._keys                 ; Save key list
+        obj._keys := []                      ; Clear key list
+        for idx, k in OldKeys {              ; Put the keys before key
+            if (k = key)                     ; back into key list
+                break
+            obj._keys.Insert(k)
+        }
+        
+        r := ObjInsert(obj, prm*)            ; Insert keys into main object
+        enum := ObjNewEnum(obj)              ; Can't use for-loop because it would invoke oaNewEnum
+        while enum[k] {                      ; For each key in main object
+            if (k = "_keys")
+                continue 
+            for i, kv in OldKeys             ; Search for key in OldKeys
+                if (k = kv)                  ; If found...
+                    continue 2               ; Get next key in main object
+            ObjInsert(obj._keys, k)          ; Else insert key into obj._keys
+        }
+        
+        for i, k in OldKeys {                ; Put the keys after key
+            if (i < idx)                     ; back into key list
+                continue
+            obj._keys.Insert(k)
+        }
+        return r
+    }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
+; Rectangular selection function written by Lexikos
+    LetUserSelectRect(PixelToo:=0)
+    {
+        Hotkey Ifwinactive
+        static r := 2
+        ; Create the "selection rectangle" GUIs (one for each edge).
+        Loop 4 {
+            Gui, Rect%A_Index%: -Caption +ToolWindow +AlwaysOnTop
+            Gui, Rect%A_Index%: Color, Red
+        }
+        PauseTooltips := 1
+        If PixelToo
+            Ding(0,-11,"Click and hold left mouse to draw box`nOr Press Ctrl to Clipboard the color and X,Y")
+        Else
+            Ding(0,-11,"Click and hold left mouse to begin")
+        ; Wait for release of LButton
+        KeyWait, LButton
+        ; Wait for release of Ctrl
+        If PixelToo
+            KeyWait, Ctrl
+        ; Disable LButton.
+        Hotkey, *LButton, lusr_return, On
+        Loop
+        {
+            ; Get initial coordinates.
+            MouseGetPos, xorigin, yorigin
+            PixelGetColor, col, %xorigin%, %yorigin%, RGB
+            ToolTip, % "   " xorigin "," yorigin (PixelToo?" " col:"")
+            If (GetKeyState("Ctrl", "P") && PixelToo)
+            {
+                Hotkey, *LButton, Off
+                Tooltip
+                Ding(1,-11,"")
+                PauseTooltips := 0
+                Clipboard := col " @ " xorigin "," yorigin
+                Return False
+            }
+        } Until GetKeyState("LButton", "P")
+        Tooltip
+        Ding(0,-11,"Drag the mouse then release to select the area")
+        ; Set timer for updating the selection rectangle.
+        SetTimer, lusr_update, 10
+        ; Wait for user to release LButton.
+        KeyWait, LButton
+        ; Re-enable LButton.
+        Hotkey, *LButton, Off
+        ; Disable timer.
+        SetTimer, lusr_update, Off
+        ; Destroy "selection rectangle" GUIs.
+        Loop 4
+            Gui, Rect%A_Index%: Destroy
+        PauseTooltips := 0
+        Ding(1,-11,"")
+        return { "X1":X1,"Y1":Y1,"X2":X2,"Y2":Y2 }
+    
+        lusr_update:
+            MouseGetPos, x, y
+            if (x = xlast && y = ylast)
+                ; Mouse hasn't moved so there's nothing to do.
+                return
+            if (x < xorigin)
+                x1 := x, x2 := xorigin
+            else x2 := x, x1 := xorigin
+            if (y < yorigin)
+                y1 := y, y2 := yorigin
+            else y2 := y, y1 := yorigin
+            ; Update the "selection rectangle".
+            Gui, Rect1:Show, % "NA X" x1 " Y" y1 " W" x2-x1 " H" r
+            Gui, Rect2:Show, % "NA X" x1 " Y" y2-r " W" x2-x1 " H" r
+            Gui, Rect3:Show, % "NA X" x1 " Y" y1 " W" r " H" y2-y1
+            Gui, Rect4:Show, % "NA X" x2-r " Y" y1 " W" r " H" y2-y1
+        lusr_return:
+        return
+    }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
+/* FindText - Capture screen image into text and then find it
+ *  https://autohotkey.com/boards/viewtopic.php?f=6&t=17834
+ *
+ *  Author  :  FeiYue
+ *  Version :  7.3
+ *  Date    :  2019-12-21
+ *
+ *  Usage:
+ *  1. Capture the image to text string.
+ *  2. Test find the text string on full Screen.
+ *  3. When test is successful, you may copy the code
+ *     and paste it into your own script.
+ *     Note: Copy the "FindText()" function and the following
+ *     functions and paste it into your own script Just once.
+ *  4. The more recommended way is to save the script as
+ *     "FindText.ahk" and copy it to the "Lib" subdirectory
+ *     of AHK program, instead of copying the "FindText()"
+ *     function and the following functions, add a line to
+ *     the beginning of your script: #Include <FindText>
+ *
+ *  Note:
+ *     After upgrading to v7.0, the search scope using
+ *     the upper left  corner coordinates (X1, Y1)
+ *     and lower right corner coordinates (X2, Y2), similar to ImageSearch.
+ *     This makes it easier for novices to understand and use.
+ *
+ *===========================================
+ *  Introduction of function parameters:
+ *
+ *  returnArray := FindText(
+ *      X1 --> the search scope's upper left corner X coordinates
+ *    , Y1 --> the search scope's upper left corner Y coordinates
+ *    , X2 --> the search scope's lower right corner X coordinates
+ *    , Y2 --> the search scope's lower right corner Y coordinates
+ *    , err1 --> Fault tolerance percentage of text       (0.1=10%)
+ *    , err0 --> Fault tolerance percentage of background (0.1=10%)
+ *    , Text --> can be a lot of text parsed into images, separated by "|"
+ *    , ScreenShot --> if the value is 0, the last screenshot will be used
+ *    , FindAll --> if the value is 0, Just find one result and return
+ *    , JoinText --> if the value is 1, Join all Text for combination lookup
+ *    , offsetX --> Set the max text offset for combination lookup
+ *    , offsetY --> Set the max text offset for combination lookup
+ *  )
+ *
+ *  The function returns a second-order array containing
+ *  all lookup results, Any result is an associative array
+ *  {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment}
+ *  if no image is found, the function returns 0.
+ *
+ *  If the return variable is set to "ok", ok.1 is the first result found.
+ *  Where ok.1.1 is the X coordinate of the upper left corner of the found image,
+ *  and ok.1.2 is the Y coordinate of the upper left corner of the found image,
+ *  ok.1.3 is the width of the found image, and ok.1.4 is the height of the found image,
+ *  ok.1.x <==> ok.1.1+ok.1.3//2 ( is the Center X coordinate of the found image ),
+ *  ok.1.y <==> ok.1.2+ok.1.4//2 ( is the Center Y coordinate of the found image ),
+ *  ok.1.id is the comment text, which is included in the <> of its parameter.
+ *  ok.1.x can also be written as ok[1].x, which supports variables. (eg: ok[A_Index].x)
+ *
+ *  All coordinates are relative to Screen, colors are in RGB format,
+ *  and combination lookup must use uniform color mode
+ *===========================================
+ */
 
 
 ft_Gui(cmd)
@@ -6608,6 +6843,8 @@ ft_Gui(cmd)
     Gui, Add, Button, x+30 yp-3 vAllAdd gft_Run, AllAdd
     Gui, Add, Button, x+10 w80 vButtonOK gft_Run, OK
     Gui, Add, Button, x+10 wp vClose gCancel, Close
+    Gui, Add, Button, xm   vBind1 gft_Run, BindWindow
+    Gui, Add, Button, x+15 vBind2 gft_Run, BindWindow+
     Gui, Show, Hide, Capture Image To Text
     return
   }
@@ -6623,7 +6860,8 @@ ft_Gui(cmd)
     {
       i:=A_Index, j:=i=1 ? "x0 y0" : Mod(i,nW)=1 ? "x0 y+1" : "x+1"
       j.=i>nW*nH ? " cRed BackgroundFFFFAA" : ""
-      Gui, Add, Progress, w%w% h%w% %j% +Hwndid -E0x20000
+      Gui, Add, Progress, w%w% h%w% %j% +Hwndid
+      Control, ExStyle, -0x20000,, ahk_id %id%
       C_[i]:=id
     }
     Gui, +Theme
@@ -6733,7 +6971,7 @@ ft_Gui(cmd)
     Loop
     {
       Sleep, 50
-      MouseGetPos, x, y
+      MouseGetPos, x, y, Bind_ID
       if (oldx=x and oldy=y)
         Continue
       oldx:=x, oldy:=y
@@ -6788,6 +7026,16 @@ ft_Gui(cmd)
     WinWaitClose, % "ahk_id " WinExist()
     Gui, ft_Main:Default
     ;--------------------------------
+    if (cors.bind!="")
+    {
+      WinGetTitle, tt, ahk_id %Bind_ID%
+      WinGetClass, tc, ahk_id %Bind_ID%
+      tt:=Trim(SubStr(tt,1,30) (tc ? " ahk_class " tc:""))
+      tt:=StrReplace(RegExReplace(tt,"[;``]","``$0"),"""","""""")
+      Result:="`nSetTitleMatchMode, 2`nid:=WinExist(""" tt """)"
+        . "`nBindWindow(id" (cors.bind ? ",1":"")
+        . ")  `; Unbind Window using Bindwindow(0)`n`n" Result
+    }
     if (Event="ButtonOK")
     {
       if (!A_IsCompiled)
@@ -6814,6 +7062,39 @@ ft_Gui(cmd)
     Gui, Show
     GuiControl, Focus, scr
     ft_RButton_Off:
+    return
+  }
+  if (cmd="Bind1") or (cmd="Bind2")
+  {
+    BindWindow(Bind_ID, (cmd="Bind2"))
+    Hotkey, $*RButton, ft_RButton_Off, On
+    lls:=A_ListLines=0 ? "Off" : "On"
+    ListLines, Off
+    CoordMode, Mouse
+    KeyWait, RButton
+    KeyWait, Ctrl
+    oldx:=oldy:=""
+    Loop
+    {
+      Sleep, 50
+      MouseGetPos, x, y
+      if (oldx=x and oldy=y)
+        Continue
+      oldx:=x, oldy:=y
+      ;---------------
+      cors:=ft_getc(px:=x,py:=y,ww,hh)
+      ft_Gui("Reset")
+      ToolTip, % "The Capture Position : " x "," y
+        . "`nPerspective binding window"
+        . "`nRight click to finish capture"
+    }
+    Until GetKeyState("RButton","P") or GetKeyState("Ctrl","P")
+    KeyWait, RButton
+    KeyWait, Ctrl
+    ToolTip
+    ListLines, %lls%
+    Hotkey, $*RButton, ft_RButton_Off, Off
+    BindWindow(0), cors.bind:=(cmd="Bind2")
     return
   }
   if (cmd="Test") or (cmd="TestClip")
@@ -6851,7 +7132,7 @@ ft_Gui(cmd)
       ok:=FindText(-n, -n, n, n, 0, 0, v)
       , X:=ok.1.x, Y:=ok.1.y, Comment:=ok.1.id
       MsgBox, 4096,Test Results, % "Found :`t" Round(ok.MaxIndex()) "`n`n"
-        . "Time  :`t" Round((CoolTime()-t)*1000) " ms`n`n"
+        . "Time  :`t" (A_TickCount-t) " ms`n`n"
         . "Pos   :`t"  X ", " Y "`n`n"
         . "Result:`t" (ok ? "Success ! " Comment : "Failed !"), 3
       for i,v in ok
@@ -7520,6 +7801,8 @@ for i,v in ok
         DiffR = Red Difference which Determines Black or White Pixel Conversion (0-255)
         DiffG = Green Difference which Determines Black or White Pixel Conversion (0-255)
         DiffB = Blue Difference which Determines Black or White Pixel Conversion (0-255)
+		Bind1 = Bind the window so that it can find images when obscured by other windows
+		Bind2 = Modify the window to support transparency and then bind the window
         )
         return, s
     }
@@ -7779,6 +8062,38 @@ for i,v in ok
         return, arr.MaxIndex() ? arr:0
     }
 
+	; Bind the window so that it can find images when obscured
+	; by other windows, it's equivalent to always being
+	; at the front desk. Unbind Window using Bindwindow(0)
+	
+	BindWindow(window_id:=0, set_exstyle:=0, get:=0)
+	{
+	  static id, old, Ptr:=A_PtrSize ? "UPtr" : "UInt"
+	  if (get)
+	    return, id
+	  if (window_id)
+	  {
+	    id:=window_id, old:=0
+	    if (set_exstyle)
+	    {
+	      WinGet, old, ExStyle, ahk_id %id%
+	      WinSet, Transparent, 255, ahk_id %id%
+	      Loop, 30
+	      {
+	        Sleep, 100
+	        WinGet, i, Transparent, ahk_id %id%
+	      }
+	      Until (i=255)
+	    }
+	  }
+	  else
+	  {
+	    if (old)
+	      WinSet, ExStyle, %old%, ahk_id %id%
+	    id:=old:=0
+	  }
+	}
+
 	xywh2xywh(x1,y1,w1,h1, ByRef x,ByRef y,ByRef w,ByRef h
 	  , ByRef zx:="", ByRef zy:="", ByRef zw:="", ByRef zh:="")
 	{
@@ -7834,9 +8149,26 @@ for i,v in ok
 	    oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
 	    DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
       	  , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020) ; |0x40000000)
+    DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
+    if (id:=BindWindow(0,0,1))
+      WinGet, id, ID, ahk_id %id%
+    if (id)
+    {
+      WinGetPos, wx, wy, ww, wh, ahk_id %id%
+      left:=x, right:=x+w-1, up:=y, down:=y+h-1
+      left:=left<wx ? wx:left, right:=right>wx+ww-1 ? wx+ww-1:right
+      up:=up<wy ? wy:up, down:=down>wy+wh-1 ? wy+wh-1:down
+      x:=left, y:=up, w:=right-left+1, h:=down-up+1
+    }
+    if (id) and !(w<1 or h<1)
+    {
+      hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
+      DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+        , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020|0x40000000)
+      DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
+    }
 	    DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
 	    DllCall("DeleteDC", Ptr,mDC)
-	    DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
 	  }
 	  Critical, %cri%
 	  SetBatchLines, %bch%
@@ -8436,7 +8768,7 @@ for i,v in ok
         ;-------------------------
         dhw:=A_DetectHiddenWindows
         DetectHiddenWindows, On
-        d:=4, i:=w-d, j:=h-d
+        d:=1, i:=w-d, j:=h-d
         s=0-0 %w%-0 %w%-%h% 0-%h% 0-0
         s=%s%  %d%-%d% %i%-%d% %i%-%j% %d%-%j% %d%-%d%
         WinSet, Region, %s%, ahk_id %myid%

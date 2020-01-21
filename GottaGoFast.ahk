@@ -264,7 +264,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      Gui, 1: Default
      Gui, Color, 0X130F13
-     Gui +LastFound +AlwaysOnTop +ToolWindow
+     Gui +LastFound +AlwaysOnTop +ToolWindow +E0x20
      WinSet, TransColor, 0X130F13
      Gui -Caption
      Gui, Font, bold cFFFFFF S10, Trebuchet MS
@@ -272,18 +272,17 @@
      IfWinExist, ahk_group POEGameGroup
      {
           Rescale()
-          Gui, 1: Show, x%GuiX% y%GuiY%
+          Gui, 1: Show, x%GuiX% y%GuiY% NA, StatusOverlay
           ToggleExist := True
-          WinActivate, ahk_group POEGameGroup
           If (YesPersistantToggle)
                AutoReset()
      }
 
 ; Set timers section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     SetTimer, PoEWindowCheck, 1000
-     ; Gosub, CheckLocation
-     ; SetTimer, CheckLocation, 15
+     SetTimer, PoEWindowCheck, 100
+     ; Start scanning client.txt changes
+     SetTimer, Monitor_GameLogs, 500
 
 ; PopFlaskCooldowns - Pop all flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -439,11 +438,10 @@
                If (!RescaleRan)
                Rescale()
                If (!ToggleExist) {
-                    Gui, 1: Show, x%GuiX% y%GuiY%
+                    Gui, 1: Show, x%GuiX% y%GuiY% NA, StatusOverlay
                     ToggleExist := True
                     If YesController
                          DetectJoystick()
-                    WinActivate, ahk_group POEGameGroup
                     If (YesPersistantToggle)
                          AutoReset()
                }

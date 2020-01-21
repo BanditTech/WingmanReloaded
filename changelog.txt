@@ -1,6 +1,66 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.09 January/21/2020
+--------------------------------------------------------------------------------
+New method of determining the Percentage of Life, ES, and Mana
+    This new scan method allows for anyone to use the script while in delve
+    Functions have had their behavior modified when this is enabled
+    Removes the need to resample health and mana colors everytime we save
+    Sample OHB menu option is now Adjust Globes
+        Use this menu to adjust the search area, color and variance
+        Full support for Eldritch Battery option
+        These settings go into effect immediately so they can be tested
+        When you finish, save to the JSON file if you want to keep your changes
+            This file is also very easy to edit, if you want to adjust manually
+    Health check logic slightly reworked to remove unnecessary code
+        instead of 3 sections, its just life and ES, if hybrid it does both
+
+Stash logic has been refactored and is much simpler flow
+    Instead of two sections for SortFirst and !SortFirst its now all one
+    Makes editing this function much easier, on surface no difference is seen
+
+Item parser has new parsed affixes and has been adjusted
+    Added IncreasedMinionDamage, PseudoTotalAddedEleAvgSpell
+    Item parser has been converted to an ordered list using OrderedArray() library
+        Most relevant affixes, properties and stats are at the top
+
+Scroll and gem locations can now be assigned with a button for easier setup
+
+Debug messages have been improved again
+    Flask MS has been renamed to Logic
+        Now provides a tooltip describing what is pausing the script
+        When running it now displays the current Life, ES, and Mana
+    C Log has been renamed to Location
+
+Coord function has been updated to provide better information
+    You can now use the tool to see color and pixel X,Y at cursor
+    Press Ctrl to stop and copy the information to the clipboard
+    OR click and drag to get information about the dimensions of a rectangle
+
+I added some more information to the Monitor_Gamelogs first load
+    I also reduced the size which it will begin triggering the "Log Too Large"
+    Loading the client.txt file will now show a tooltip to indicate what its doing
+    It will also give you how large the file is and how long it took to load
+
+Quit threshold options have been increased to 90%
+    it is now a dropdown list to conserve menu space
+
+CI character type option has been changed to ES, to make it easier to understand
+    Life is sampling only life, hybrid is both, ES is only Energy Shield
+
+Edited the JSON library to utilize the OrderedArray Class
+    This allows for files to be saved and loaded in the exact order they were created
+
+Bugfix for Stash Routine causing the GuiStatus to mark the character !OnStash
+    May have been related to ShooMouse() placing the mouse over items in the stash
+    Now it puts the mouse in a random area in the center of screen
+
+Status Overlays in bottom left finally fixed to not mess with game window!
+    I figured out how to get them both Clickthrough and NoActivate properly
+
+Crank added to list of openable Objects in loot vacuum
+
 Version .09.08 January/15/2020
 --------------------------------------------------------------------------------
 IncreasedMaximumEnergyShield has been added to affixes

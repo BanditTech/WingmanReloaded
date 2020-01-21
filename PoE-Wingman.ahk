@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.08
+    Global VersionNumber := .09.09
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -322,13 +322,16 @@
 		Global LootFilterTabs := {}
 		Global IgnoredSlot := {}
 		Global BlackList := {}
-		Global OHBxy := 0
 		Global YesClickPortal := True
 		Global RelogOnQuit := True
 		Global MainAttackPressedActive,SecondaryAttackPressedActive
 		ft_ToolTip_Text=
 			(LTrim
+			QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
 			ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
+			RadioLife = Samples only Life values
+			RadioHybrid = Samples both Life and ES values
+			RadioCi = Samples only ES values
 			PopFlasks1 = Enable flask slot 1 when using Pop Flasks hotkey
 			PopFlasks2 = Enable flask slot 2 when using Pop Flasks hotkey
 			PopFlasks3 = Enable flask slot 3 when using Pop Flasks hotkey
@@ -351,7 +354,8 @@
 			ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
 			ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
 			StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
-			YesOHB = Uses the new Overhead Health Bar detection in delve`rRequires a working Client.txt logfile location`rOnly affects Health Detection
+			YesOHB = Pauses the script when it cannot find the healthbar
+			YesGlobeScan = Use the new Globe scanning method to determine Life, ES and Mana
 			ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
 			Steam = These settings are for the LutBot Quit method`rEnable this to set the EXE as Steam version
 			HighBits = These settings are for the LutBot Quit method`rEnable this to set the EXE as 64bit version
@@ -361,20 +365,22 @@
 			Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
 			ClickLatency = Use this to modify delay to click actions`rAdd this many multiples of 15ms to each delay
 			ClipLatency = Use this to modify delay to Item clip`rAdd this many multiples of 15ms to each delay
-			PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
-			PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rUse the Coord tool to find the X and Y
-			WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
-			WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rUse the Coord tool to find the X and Y
-			CurrentGemX = Select the X location of the Gem to swap from`rUse the Coord tool to find the X and Y
-			CurrentGemY = Select the Y location of the Gem to swap from`rUse the Coord tool to find the X and Y
-			AlternateGemX = Select the X location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
-			AlternateGemY = Select the Y location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rUse the Coord tool to find the X and Y
-			StockPortal = Enable this to restock Portal scrolls when more than 10 are missing
-			StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing
+			PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rPress Locate to grab positions
+			PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
+			WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
+			WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
+			CurrentGemX = Select the X location of the Gem to swap from`rPress Locate to grab positions
+			CurrentGemY = Select the Y location of the Gem to swap from`rPress Locate to grab positions
+			AlternateGemX = Select the X location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rPress Locate to grab positions
+			AlternateGemY = Select the Y location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rPress Locate to grab positions
+			StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
+			StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
 			AlternateGemOnSecondarySlot = Enable this to Swap Weapons for your Alternate Gem Swap location
 			YesAutoSkillUp = Enable this to Automatically level up skill gems
 			YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
-			DebugMessages = Enable this to show debug messages, previous functions have been moved to gamestates
+			DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
+			YesTimeMS = Enable to show a tooltip when game logic is running
+			YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
 			hotkeyOptions = Set your hotkey to open the options GUI
 			hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
 			hotkeyAutoQuit = Set your hotkey to turn on and off AutoQuit
@@ -413,8 +419,6 @@
 			UpdateLeaguesBtn = Use this button when there is a new league
 			LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
 			AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
-			YesTimeMS = Enable to show the time in MS for each portion of the health scan
-			YesLocation = Enable to show the results of the Client Log parser
 			StashTabCurrency = Assign the Stash tab for Currency items
 			StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
 			StashTabOil = Assign the Stash tab for Oil items
@@ -462,6 +466,8 @@
 			WR_Btn_Controller = Bind actions to joystick input
 			WR_Btn_CLF = Configure the Custom Loot Filter`rUse this to filter items by properties, affixes, or stats
 			WR_Btn_IgnoreSlot = Assign the ignored slots in your inventory`rThe script will not touch items in these locations
+			WR_Reset_Globe = Loads unmodified default values and reloads UI
+			WR_Save_JSON_Globe = Save changes to disk`rThese changes will load on script launch
 			)
 	; Globals For client.txt file
 		Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
@@ -490,6 +496,7 @@
 			, 1080_ChestStr .= "|<1080 Cocoon>*100$71.zzzzzzzzzzzzwDzzzzzzzzzzU7zzzzzzzzzyDDnznzDzDvysyy1y1s7s7Xslztlslb7b7XnbzXnXqDCDD3bDzDXDwyAyC3CDyT6TtwNwQWQTwyAznsnstYsztwMzblbln1kyltlz7b7bb3kllXln6D6DD7k7kTkD1z1yTDxzvztzjzjzzzzzzzzzzzzzzs"
 			, 1080_ChestStr .= "|<1080 Bundle>*100$64.zzzzzzzzzzy3zzzzzzzzzs7zzzzzzzzzbDTjTrzzjzyQswMyA1wT0tnXtlttVtyPUSDb3bb7bty0syQ6SSCTbtlntm9tsty3b7DbAbbXbsSSQyQkSSSTbttnvnVtttyTbD7DD7bDbNy1y1wyS1y1UTzyTzzzzzzzzzzzzzzzzzy"
 			, 1080_ChestStr .= "|<1080 Lever>*100$46.DzzzzzzwzzzzzzznzzjvzzzDkATA3UAzatwtiAnyTXnbslDtzCSTX4zUwtsCAny7ljVs7DtzYyTUQzby7ty8naTsTbsl0M7ly1XXzzzjzzzs"
+			, 1080_ChestStr .= "|<1080 Crank>*100$54.wDzzzzzzzk3zzzzzzzXnzzrvyxx7r0TblwMs7z6T3swwtDz6D3sQwnDz6CFsAwb7z6SNt4wD7z0y1tYw77z0w0tUwb3v4QwtkwnVX69wtswlk771wNwwsyzzzzzzzzU"
 	; FindText strings from INI
 		Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr
 		, XButtonStr
@@ -540,6 +547,7 @@
 		Global RescaleRan := False
 		Global ToggleExist := False
 		Global YesOHB := True
+		Global YesGlobeScan := True
 		Global HPerc := 100
 		Global GameX, GameY, GameW, GameH, mouseX, mouseY
 		Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
@@ -569,8 +577,43 @@
 		Global AutoUpdateOff := 0
 		Global EnableChatHotkeys := 0
 		; Dont change the speed & the tick unless you know what you are doing
-			global Speed:=1
-			global Tick:=150
+		global Speed:=1
+		global Tick:=150
+	; Globe
+		Global Globe:= OrderedArray()
+		Globe.Life := OrderedArray("X1",106,"Y1",886,"X2",146,"Y2",1049)
+		Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+		Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+		Globe.Life.Color := OrderedArray()
+		Globe.Life.Color.hex := Format("0x{1:06X}",0xAF1525)
+		Globe.Life.Color.variance := 22
+		Globe.Life.Color.Str := Hex2FindText(Globe.Life.Color.hex,Globe.Life.Color.variance,0,"Life",1,1)
+		Globe.ES := OrderedArray("X1",165,"Y1",886,"X2",210,"Y2",1064)
+		Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+		Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+		Globe.ES.Color := OrderedArray()
+		Globe.ES.Color.hex := Format("0x{1:06X}",0x51DEFF)
+		Globe.ES.Color.variance := 8
+		Globe.ES.Color.Str := Hex2FindText(Globe.ES.Color.hex,Globe.ES.Color.variance,0,"ES",1,1)
+		Globe.EB := OrderedArray("X1",1720,"Y1",886,"X2",1800,"Y2",1064)
+		Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+		Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+		Globe.EB.Color := OrderedArray()
+		Globe.EB.Color.hex := Format("0x{1:06X}",0x51DEFF)
+		Globe.EB.Color.variance := 8
+		Globe.EB.Color.Str := Hex2FindText(Globe.EB.Color.hex,Globe.EB.Color.variance,0,"EB",1,1)
+		Globe.Mana := OrderedArray("X1",1760,"Y1",878,"X2",1830,"Y2",1060)
+		Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+		Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+		Globe.Mana.Color := OrderedArray()
+		Globe.Mana.Color.hex := Format("0x{1:06X}",0x1B2A5E)
+		Globe.Mana.Color.variance := 4
+		Globe.Mana.Color.Str := Hex2FindText(Globe.Mana.Color.hex,Globe.Mana.Color.variance,0,"Mana",1,1)
+		Global Base := OrderedArray()
+		Base.Globe := Array_DeepClone(Globe)
+	; Player
+		Global Player := OrderedArray()
+		Player.Percent := {"Life":100, "ES":100, "Mana":100}
 	; Inventory
 		Global StashTabCurrency := 1
 		Global StashTabMap := 1
@@ -753,7 +796,7 @@
 		global TriggerMana10:=00000
 
 	; AutoQuit
-		global RadioQuit20, RadioQuit30, RadioQuit40, RadioQuit50, RadioQuit60, RadioCritQuit, RadioNormalQuit, RadioPortalQuit
+		global QuitBelow, RadioCritQuit, RadioNormalQuit, RadioPortalQuit
 
 	; Character Type
 		global RadioCi, RadioHybrid, RadioLife
@@ -878,9 +921,9 @@
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13
 	Gui Add, Text, 										x515	y5, 				Debug Messages:
 	Gui Add, Checkbox, 	vYesTimeMS Checked%YesTimeMS%  gUpdateDebug   	x490 	y5 	    w13 h13
-	Gui Add, Text, 				vYesTimeMS_t						x437	y5, 				Flask MS:
-	Gui Add, Checkbox, 	vYesLocation Checked%YesLocation%  gUpdateDebug   	x420 	y5 	    w13 h13
-	Gui Add, Text, 				vYesLocation_t						x387	y5, 				C log:
+	Gui Add, Text, 				vYesTimeMS_t						x455	y5, 				Logic:
+	Gui Add, Checkbox, 	vYesLocation Checked%YesLocation%  gUpdateDebug   	x435 	y5 	    w13 h13
+	Gui Add, Text, 				vYesLocation_t						x385	y5, 				Location:
 
 	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap , Flasks and Utility|Configuration
 	;#######################################################################################################Flasks and Utility Tab
@@ -896,7 +939,7 @@
 	Gui, Font, cPurple
 	Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
 	Gui, Font, cBlue
-	Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	CI
+	Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	ES
 	Gui, Font
 
 	Gui Add, Text, 										x63 	y+10, 				Flask 1
@@ -1110,16 +1153,12 @@
 	Gui Add, GroupBox, 		Section	w227 h66				x292 	y30 , 				Auto-Quit settings
 	Gui,Font,
 	;Gui Add, Text, 											x292 	y30, 				Auto-Quit:
-	Gui Add, Radio, Group 	vRadioQuit20 Checked%RadioQuit20% 				xs+5 ys+16, 						20`%
-	Gui Add, Radio, 		vRadioQuit30 Checked%RadioQuit30% 				x+1, 								30`%
-	Gui Add, Radio, 		vRadioQuit40 Checked%RadioQuit40% 				x+1, 								40`%
-	Gui Add, Radio, 		vRadioQuit50 Checked%RadioQuit50% 				x+1, 								50`%
-	Gui Add, Radio, 		vRadioQuit60 Checked%RadioQuit60% 				x+1, 								60`%
-	Gui Add, Text, 										xs+5 	y+4, 				Quit via:
-	Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+5		y+-13,			D/C
-	Gui, Add, Radio, 		vRadioPortalQuit Checked%RadioPortalQuit%			x+3	,				Portal
-	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+3	,				/exit
-	Gui Add, Checkbox, gUpdateExtra	vRelogOnQuit Checked%RelogOnQuit%           	xs+5	y+4				, Log back in afterwards?
+	Gui Add, DropDownList, vQuitBelow  				h19 w37 r10 xs+5 ys+20, 						%QuitBelow%||20|30|40|50|60|70|80|90
+	Gui Add, Text, 										x+5 	yp+3, 				Quit via:
+	Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+1		y+-13,			D/C
+	Gui, Add, Radio, 		vRadioPortalQuit Checked%RadioPortalQuit%			x+1	,				Portal
+	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+1	,				/exit
+	Gui Add, Checkbox, gUpdateExtra	vRelogOnQuit Checked%RelogOnQuit%           	xs+5	y+8				, Log back in afterwards?
 
 	Gui,Font,s9 cBlack 
 	Gui Add, GroupBox, 		Section	w90 h32				xs+230 	ys , 				Auto-Mine
@@ -1268,7 +1307,7 @@
 	Gui, Add, Button, gShowDebugGamestates vShowDebugGamestatesBtn	x+8	yp				w110 h25, 	Show Gamestates
 	;Update calibration for pixel check
 	Gui, Add, Button, gShowSampleInd vShowSampleIndBtn		xs	ys+35			w110, 	Individual Sample
-	Gui, Add, Button, gCalibrateOHB vCalibrateOHBBtn 		x+8 ys+35		 	w110, 	Sample OHB
+	Gui, Add, Button, gWR_Update vWR_Btn_Globe		 		x+8 ys+35		 	w110, 	Adjust Globes
 	Gui, Font
 
 
@@ -1302,7 +1341,8 @@
 	Gui Add, Text, 					Section					xs 	y+10, 				Interface Options:
 	Gui, Font, 
 
-	Gui Add, Checkbox, gUpdateExtra	vYesOHB Checked%YesOHB%                         	          			, Switch to OHB for Delve?
+	Gui Add, Checkbox, gUpdateExtra	vYesOHB Checked%YesOHB%                         	          			, Pause script when OHB missing?
+	Gui Add, Checkbox, gUpdateExtra	vYesGlobeScan Checked%YesGlobeScan%                        				, Use Globe Scanner?
 	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
 	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
 	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
@@ -1732,7 +1772,7 @@
 	Tooltip,
 
 	Gui 2:Color, 0X130F13
-	Gui 2:+LastFound +AlwaysOnTop +ToolWindow -Caption
+	Gui 2:+LastFound +AlwaysOnTop +ToolWindow -Caption +E0x20
 	WinSet, TransColor, 0X130F13
 	Gui 2:Font, bold cFFFFFF S10, Trebuchet MS
 	Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
@@ -1741,9 +1781,8 @@
 	IfWinExist, ahk_group POEGameGroup
 	{
 		Rescale()
-		Gui 2: Show, x%GuiX% y%GuiY%
+		Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
 		ToggleExist := True
-		WinActivate, ahk_group POEGameGroup
 		If (YesPersistantToggle)
 			AutoReset()
 		If (ShowOnStart)
@@ -1756,13 +1795,15 @@
 ; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Check for window to be active
-	SetTimer, PoEWindowCheck, 1000
+	SetTimer, PoEWindowCheck, 100
 	; Check once an hour to see if we should updated database
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
 	SetTimer, TimerPassthrough, 15
 	; Main Game Timer
 	SetTimer, TGameTick, %Tick%
+	; Log file parser
+	SetTimer, Monitor_GameLogs, 500
 
 ; Hotkeys to reload or exit script
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1882,11 +1923,10 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	ShooMouse()
 	{
-		ClearNotifications()
 		MouseGetPos Checkx, Checky
 		If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
-			Random, RX, (A_ScreenWidth*0.2), (A_ScreenWidth*0.6)
-			Random, RY, (A_ScreenHeight*0.1), (A_ScreenHeight*0.8)
+			Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
+			Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
 			MouseMove, RX, RY, 0
 			Sleep, 105*Latency
 		}
@@ -1917,7 +1957,7 @@ Return
 		SortGem := {}
 		BlackList := Array_DeepClone(IgnoredSlot)
 		; Move mouse out of the way to grab screenshot
-		ShooMouse(), GuiStatus()
+		ShooMouse(), GuiStatus(), ClearNotifications()
 		If !OnVendor
 		Return
 		; Main loop through inventory
@@ -2057,7 +2097,7 @@ Return
 		}
 		BlackList := Array_DeepClone(IgnoredSlot)
 		; Move mouse away for Screenshot
-		ShooMouse(), GuiStatus()
+		ShooMouse(), GuiStatus(), ClearNotifications()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2107,421 +2147,81 @@ Return
 						ClipItem(Grid.X,Grid.Y)
 					}
 				}
-				If (OnStash && YesStash && !YesSortFirst) 
+				If (OnStash && YesStash) 
 				{
 					If (Prop.SpecialType = "Quest Item" || Prop.Incubator)
 						Continue
 					Else If (sendstash:=MatchLootFilter())
-					{
-						MoveStash(sendstash)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
-						Continue
-					Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
-					{
-						MoveStash(StashTabCurrency)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.IsMap&&StashTabYesMap)
-					{
-						MoveStash(StashTabMap)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.BreachSplinter&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.SacrificeFragment&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.MortalFragment&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.GuardianFragment&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.ProphecyFragment&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Offering&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Vessel&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Scarab&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.TimelessSplinter&&StashTabYesFragment)
-					{
-						MoveStash(StashTabFragment)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.RarityDivination&&StashTabYesDivination)
-					{
-						MoveStash(StashTabDivination)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
-					{
-						MoveStash(StashTabOrgan)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.RarityUnique&&Prop.Ring)
-					{
-						If (StashTabYesCollection)
-						{
-							MoveStash(StashTabCollection)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-						}
-						If (StashTabYesUniqueRing)
-						{
-							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
-							if (indexOfHex(Pitem, varEmptyInvSlotColor))
-								Continue
-							MoveStash(StashTabUniqueRing)
-							CtrlClick(Grid.X,Grid.Y)
-						}
-						If (StashTabYesUniqueDump)
-						{
-							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
-							if (indexOfHex(Pitem, varEmptyInvSlotColor))
-								Continue
-							MoveStash(StashTabUniqueDump)
-							CtrlClick(Grid.X,Grid.Y)
-						}
-						Continue
-					}
-					Else If (Prop.RarityUnique&&Prop.IsOrgan="")
-					{
-						If (StashTabYesCollection)
-						{
-							MoveStash(StashTabCollection)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-						}
-						If (StashTabYesUniqueDump)
-						{
-							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
-							if (indexOfHex(Pitem, varEmptyInvSlotColor))
-								Continue
-							MoveStash(StashTabUniqueDump)
-							CtrlClick(Grid.X,Grid.Y)
-						}
-						Continue
-					}
-					Else If (Prop.Essence&&StashTabYesEssence)
-					{
-						MoveStash(StashTabEssence)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Fossil&&StashTabYesFossil)
-					{
-						MoveStash(StashTabFossil)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Resonator&&StashTabYesResonator)
-					{
-						MoveStash(StashTabResonator)
-						RandomSleep(30,45)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-					{
-						MoveStash(StashTabFlaskQuality)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.RarityGem)
-					{
-						If ((Stats.Quality>0)&&StashTabYesGemQuality)
-						{
-							MoveStash(StashTabGemQuality)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						Else If (Prop.Support && StashTabYesGemSupport)
-						{
-							MoveStash(StashTabGemSupport)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-						Else If (StashTabYesGem)
-						{
-							MoveStash(StashTabGem)
-							CtrlClick(Grid.X,Grid.Y)
-							Continue
-						}
-					}
-					Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
-					{
-						MoveStash(StashTabLinked)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Prophecy&&StashTabYesProphecy)
-					{
-						MoveStash(StashTabProphecy)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Oil&&StashTabYesOil)
-					{
-						MoveStash(StashTabOil)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If (Prop.Veiled&&StashTabYesVeiled)
-					{
-						MoveStash(StashTabVeiled)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else If StashTabYesCrafting 
-						&& ((YesStashT1 && Prop.CraftingBase = "T1") 
-							|| (YesStashT2 && Prop.CraftingBase = "T2") 
-							|| (YesStashT3 && Prop.CraftingBase = "T3"))
-						&& ((YesStashCraftingNormal && Prop.RarityNormal)
-							|| (YesStashCraftingMagic && Prop.RarityMagic)
-							|| (YesStashCraftingRare && Prop.RarityRare))
-					{
-						MoveStash(StashTabCrafting)
-						CtrlClick(Grid.X,Grid.Y)
-						Continue
-					}
-					Else
-						++Unstashed
-				}
-				Else If (OnStash && YesStash && YesSortFirst) 
-				{
-					If (Prop.SpecialType = "Quest Item" || Prop.SpecialType = "Incubator")
-						Continue
-					Else If (sendstash:=MatchLootFilter())
-					{
-						SortFirst[sendstash].Push({"C":C,"R":R})
-						Continue
-					}
+						Sleep, -1
 					Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
 						Continue
 					Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
-					{
-						SortFirst[StashTabCurrency].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabCurrency
 					Else If (Prop.IsMap&&StashTabYesMap)
-					{
-						SortFirst[StashTabMap].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.BreachSplinter&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.SacrificeFragment&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
-					If (Prop.MortalFragment&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.GuardianFragment&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.ProphecyFragment&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.Offering&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.Vessel&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.Scarab&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.TimelessSplinter&&StashTabYesFragment)
-					{
-						SortFirst[StashTabFragment].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabMap
+					Else If ( StashTabYesFragment 
+						&& ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
+						|| Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
+						sendstash := StashTabFragment
 					Else If (Prop.RarityDivination&&StashTabYesDivination)
-					{
-						SortFirst[StashTabDivination].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabDivination
 					Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
-					{
-						SortFirst[StashTabOrgan].Push({"C":C,"R":R})
-						Continue
-					}
-					Else If (Prop.RarityUnique&&Prop.Ring)
-					{
-						If (StashTabYesCollection)
-						{
-							MoveStash(StashTabCollection)
-							RandomSleep(30,45)
-							CtrlClick(Grid.X,Grid.Y)
-						}
-						If (StashTabYesUniqueRing)
-						{
-							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
-							if (indexOfHex(Pitem, varEmptyInvSlotColor))
-								Continue
-							MoveStash(StashTabUniqueRing)
-							CtrlClick(Grid.X,Grid.Y)
-						}
-						If (StashTabYesUniqueDump)
-						{
-							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
-							if (indexOfHex(Pitem, varEmptyInvSlotColor))
-								Continue
-							MoveStash(StashTabUniqueDump)
-							CtrlClick(Grid.X,Grid.Y)
-						}
-						Continue
-					}
+						sendstash := StashTabOrgan
 					Else If (Prop.RarityUnique&&Prop.IsOrgan="")
 					{
 						If (StashTabYesCollection)
 						{
 							MoveStash(StashTabCollection)
-							RandomSleep(30,45)
+							RandomSleep(45,45)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+						If (StashTabYesUniqueRing&&Prop.Ring)
+						{
+							Sleep, 200*Latency
+							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueRing)
+							RandomSleep(45,45)
 							CtrlClick(Grid.X,Grid.Y)
 						}
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
+							RandomSleep(45,45)
 							CtrlClick(Grid.X,Grid.Y)
 						}
 						Continue
 					}
 					Else If (Prop.Essence&&StashTabYesEssence)
-					{
-						SortFirst[StashTabEssence].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabEssence
 					Else If (Prop.Fossil&&StashTabYesFossil)
-					{
-						SortFirst[StashTabFossil].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabFossil
 					Else If (Prop.Resonator&&StashTabYesResonator)
-					{
-						SortFirst[StashTabResonator].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabResonator
 					Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-					{
-						SortFirst[StashTabFlaskQuality].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabFlaskQuality
 					Else If (Prop.RarityGem)
 					{
 						If ((Stats.Quality>0)&&StashTabYesGemQuality)
-						{
-							SortFirst[StashTabGemQuality].Push({"C":C,"R":R})
-							Continue
-						}
+							sendstash := StashTabGemQuality
 						Else If (Prop.Support && StashTabYesGemSupport)
-						{
-							SortFirst[StashTabGemSupport].Push({"C":C,"R":R})
-							Continue
-						}
+							sendstash := StashTabGemSupport
 						Else If (StashTabYesGem)
-						{
-							SortFirst[StashTabGem].Push({"C":C,"R":R})
-							Continue
-						}
+							sendstash := StashTabGem
 					}
 					Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
-					{
-						SortFirst[StashTabLinked].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabLinked
 					Else If (Prop.Prophecy&&StashTabYesProphecy)
-					{
-						SortFirst[StashTabProphecy].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabProphecy
 					Else If (Prop.Oil&&StashTabYesOil)
-					{
-						SortFirst[StashTabOil].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabOil
 					Else If (Prop.Veiled&&StashTabYesVeiled)
-					{
-						SortFirst[StashTabVeiled].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabVeiled
 					Else If StashTabYesCrafting 
 						&& ((YesStashT1 && Prop.CraftingBase = "T1") 
 							|| (YesStashT2 && Prop.CraftingBase = "T2") 
@@ -2529,107 +2229,42 @@ Return
 						&& ((YesStashCraftingNormal && Prop.RarityNormal)
 							|| (YesStashCraftingMagic && Prop.RarityMagic)
 							|| (YesStashCraftingRare && Prop.RarityRare))
-					{
-						SortFirst[StashTabCrafting].Push({"C":C,"R":R})
-						Continue
-					}
+						sendstash := StashTabCrafting
 					Else
 						++Unstashed
+					If (sendstash > 0)
+					{
+						If YesSortFirst
+							SortFirst[sendstash].Push({"C":C,"R":R})
+						Else
+						{
+							MoveStash(sendstash)
+							RandomSleep(45,45)
+							CtrlClick(Grid.X,Grid.Y)
+						}
+					}
 				}
 			}
 		}
 		; Sorted items are sent together
-		If (OnStash && RunningToggle && YesStash && !YesSortFirst)
+		If (OnStash && RunningToggle && YesStash)
 		{
-			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-				StockScrolls()
-			Sleep, 45*Latency
-			If (YesVendorAfterStash && Unstashed && (OnHideout || OnTown || OnMines))
+			If YesSortFirst
 			{
-				If OnHideout
-					SearchStr := VendorStr
-				Else If OnMines
+				For Tab, Tv in SortFirst
 				{
-					SearchStr := VendorMineStr
-					Town := "Mines"
-				}
-				Else
-				{
-					Town := CompareLocation("Town")
-					If (Town = "Lioneye's Watch")
-						SearchStr := VendorLioneyeStr
-					Else If (Town = "The Forest Encampment")
-						SearchStr := VendorForestStr
-					Else If (Town = "The Sarn Encampment")
-						SearchStr := VendorSarnStr
-					Else If (Town = "Highgate")
-						SearchStr := VendorHighgateStr
-					Else If (Town = "Overseer's Tower")
-						SearchStr := VendorOverseerStr
-					Else If (Town = "The Bridge Encampment")
-						SearchStr := VendorBridgeStr
-					Else If (Town = "Oriath Docks")
-						SearchStr := VendorDocksStr
-					Else If (Town = "Oriath")
-						SearchStr := VendorOriathStr
-					Else
-						Return
-				}
-				Sleep, 45*Latency
-				SendInput, {%hotkeyCloseAllUI%}
-				Sleep, 45*Latency
-				If (Town = "The Sarn Encampment")
-				{
-					LeftClick(GameX + GameW//6, GameY + GameH//1.5)
-					Sleep, 600
-					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-				}
-				Else If (Town = "Oriath Docks")
-				{
-					LeftClick(GameX + 5, GameY + GameH//2)
-					Sleep, 1200
-					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-				}
-				Else If (Town = "Mines")
-				{
-					LeftClick(GameX + GameW//3, GameY + GameH//5)
-					Sleep, 800
-					LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-				}
-				if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
-				{
-					LeftClick(Vendor.1.x, Vendor.1.y)
-					Loop, 66
+					For Item, Iv in Tv
 					{
-						If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr,1,0))
-						{
-							Sleep, 30*Latency
-							LeftClick(Sell.1.x,Sell.1.y)
-							Sleep, 120*Latency
-							Break
-						}
-						Sleep, 100
+						MoveStash(Tab)
+						C := SortFirst[Tab][Item]["C"]
+						R := SortFirst[Tab][Item]["R"]
+						GridX := InventoryGridX[C]
+						GridY := InventoryGridY[R]
+						Grid := RandClick(GridX, GridY)
+						Sleep, 15*Latency
+						CtrlClick(Grid.X,Grid.Y)
+						Sleep, 45*Latency
 					}
-					VendorRoutine()
-					Return
-				}
-			}
-		}
-		Else If (OnStash && RunningToggle && YesStash && YesSortFirst)
-		{
-			For Tab, Tv in SortFirst
-			{
-				For Item, Iv in Tv
-				{
-					MoveStash(Tab)
-					C := SortFirst[Tab][Item]["C"]
-					R := SortFirst[Tab][Item]["R"]
-					GridX := InventoryGridX[C]
-					GridY := InventoryGridY[R]
-					Grid := RandClick(GridX, GridY)
-					Sleep, 15*Latency
-					CtrlClick(Grid.X,Grid.Y)
-					Sleep, 45*Latency
 				}
 			}
 			If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
@@ -2713,7 +2348,7 @@ Return
 	DivRoutine()
 	{
 		BlackList := Array_DeepClone(IgnoredSlot)
-		ShooMouse(), GuiStatus()
+		ShooMouse(), GuiStatus(), ClearNotifications()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2747,7 +2382,9 @@ Return
 						CtrlClick(Grid.X,Grid.Y)
 						RandomSleep(150,200)
 						LeftClick(vX_OnDiv,vY_DivTrade)
+						Sleep, Abs(ClickLatency*15)
 						CtrlClick(vX_OnDiv,vY_DivItem)
+						Sleep, Abs(ClickLatency*15)
 					}
 					Continue
 				}
@@ -2760,7 +2397,7 @@ Return
 	IdentifyRoutine()
 	{
 		BlackList := Array_DeepClone(IgnoredSlot)
-		ShooMouse(), GuiStatus()
+		ShooMouse(), GuiStatus(), ClearNotifications()
 		; Main loop through inventory
 		For C, GridX in InventoryGridX
 		{
@@ -2839,226 +2476,239 @@ Return
 		itemLevelIsDone := 0
 		captureLines := 0
 		countCorruption := 0
-		Prop := {ItemName: ""
-			, ItemClass : ""
-			, IsItem : False
-			, ChaosValue : 0
-			, ExaltValue : 0
-			, IsWeapon : False
-			, IsMap : False
-			, MapTier : 0
-			, Support : False
-			, VaalGem : False
-			, AffixCount : 0
-			, Rarity : ""
-			, Influence : ""
-			, SpecialType : ""
-			, Rarity_Digit : 0
-			, RarityCurrency : False
-			, RarityDivination : False
-			, RarityGem : False
-			, RarityNormal : False
-			, RarityMagic : False
-			, RarityRare : False
-			, RarityUnique : False
-			, Identified : True
-			, Ring : False
-			, Amulet : False
-			, Belt : False
-			, Chromatic : False
-			, Jewel : False
-			, AbyssJewel : False
-			, Essence : False
-			, Incubator : False
-			, Fossil : False
-			, Resonator : False
-			, IsOrgan : ""
-			, Gem_Sockets : 0
-			, Gem_RawSockets : ""
-			, Gem_Links : 0
-			, Jeweler : False
-			, TimelessSplinter : False
-			, BreachSplinter : False
-			, SacrificeFragment : False
-			, MortalFragment : False
-			, GuardianFragment : False
-			, ProphecyFragment : False
-			, Scarab : False
-			, Offering : False
-			, Vessel : False
-			, Incubator : False
-			, Flask : False
-			, Veiled : False
-			, Prophecy : False
-			, Oil : False
-			, Corrupted : False
-			, DoubleCorrupted : False
-			, Item_Width : 1
-			, Item_Height : 1
-			, Variant : 0
-			, CraftingBase : 0
-			, DropLevel : 0
-			, ItemLevel : 0}
+		Prop := OrderedArray()
+			Prop.ItemName := ""
+			Prop.ItemBase := ""
+			Prop.ItemClass := ""
+			Prop.Influence := ""
+			Prop.SpecialType := ""
+			Prop.Ring := False
+			Prop.Amulet := False
+			Prop.Belt := False
+			Prop.Chromatic := False
+			Prop.Jewel := False
+			Prop.AbyssJewel := False
+			Prop.Essence := False
+			Prop.Incubator := False
+			Prop.Fossil := False
+			Prop.Resonator := False
+			Prop.IsOrgan := ""
+			Prop.Jeweler := False
+			Prop.TimelessSplinter := False
+			Prop.BreachSplinter := False
+			Prop.SacrificeFragment := False
+			Prop.MortalFragment := False
+			Prop.GuardianFragment := False
+			Prop.ProphecyFragment := False
+			Prop.Scarab := False
+			Prop.Offering := False
+			Prop.Vessel := False
+			Prop.Incubator := False
+			Prop.Flask := False
+			Prop.Veiled := False
+			Prop.Prophecy := False
+			Prop.Oil := False
+			Prop.ItemLevel := 0
+			Prop.DropLevel := 0
+			Prop.ChaosValue := 0
+			Prop.ExaltValue := 0
+			Prop.Rarity := ""
+			Prop.RarityCurrency := False
+			Prop.RarityDivination := False
+			Prop.RarityGem := False
+			Prop.RarityNormal := False
+			Prop.RarityMagic := False
+			Prop.RarityRare := False
+			Prop.RarityUnique := False
+			Prop.Rarity_Digit := 0
+			Prop.Gem_Sockets := 0
+			Prop.Gem_RawSockets := ""
+			Prop.Gem_Links := 0
+			Prop.IsItem := False
+			Prop.Item_Width := 1
+			Prop.Item_Height := 1
+			Prop.IsWeapon := False
+			Prop.IsMap := False
+			Prop.MapTier := 0
+			Prop.Support := False
+			Prop.VaalGem := False
+			Prop.AffixCount := 0
+			Prop.Identified := True
+			Prop.Corrupted := False
+			Prop.DoubleCorrupted := False
+			Prop.Variant := 0
+			Prop.CraftingBase := 0
 
-		Stats := { PhysLo : 0
-			, PhysHi : 0
-			, PhysAvg : 0
-			, ChaosLo : 0
-			, ChaosHi : 0
-			, ChaosAvg : 0
-			, EleLo : 0
-			, EleHi : 0
-			, EleAvg : 0
-			, AttackSpeed : 0
-			, Dps_Phys : 0
-			, Dps_Ele : 0
-			, Dps_Chaos : 0
-			, Dps : 0
-			, Dps_Q20 : 0
-			, Quality : 0
-			, GemLevel : 0
-			, Stack : 0
-			, StackMax : 0
-			, RequiredLevel : 0
-			, RequiredStr : 0
-			, RequiredInt : 0
-			, RequiredDex : 0
-			, RatingArmour : 0
-			, RatingEnergyShield : 0
-			, RatingEvasion : 0
-			, RatingBlock : 0
-			, WeaponRange : 0
-			, MapTier : 0
-			, MapItemQuantity : 0
-			, MapItemRarity : 0
-			, MapMonsterPackSize : 0 }
+		Stats := OrderedArray()
+			Stats.MapTier := 0
+			Stats.MapItemQuantity := 0
+			Stats.MapItemRarity := 0
+			Stats.MapMonsterPackSize := 0
+			Stats.Dps := 0
+			Stats.Dps_Q20 := 0
+			Stats.Dps_Phys := 0
+			Stats.Dps_Ele := 0
+			Stats.Dps_Chaos := 0
+			Stats.AttackSpeed := 0
+			Stats.WeaponRange := 0
+			Stats.PhysAvg := 0
+			Stats.ChaosAvg := 0
+			Stats.EleAvg := 0
+			Stats.PhysLo := 0
+			Stats.PhysHi := 0
+			Stats.ChaosLo := 0
+			Stats.ChaosHi := 0
+			Stats.EleLo := 0
+			Stats.EleHi := 0
+			Stats.Quality := 0
+			Stats.GemLevel := 0
+			Stats.Stack := 0
+			Stats.StackMax := 0
+			Stats.RequiredLevel := 0
+			Stats.RequiredStr := 0
+			Stats.RequiredInt := 0
+			Stats.RequiredDex := 0
+			Stats.RatingArmour := 0
+			Stats.RatingEnergyShield := 0
+			Stats.RatingEvasion := 0
+			Stats.RatingBlock := 0
 
-		Affix := { SupportGem : ""
-			, SupportGemLevel : 0
-			, GrantedSkill : 0
-			, GrantedSkillLevel : 0
-			, CountSupportGem : 0
-			, AllElementalResistances : 0
-			, ColdLightningResistance : 0
-			, FireColdResistance : 0
-			, FireLightningResistance : 0
-			, ColdResistance : 0
-			, FireResistance : 0
-			, LightningResistance : 0
-			, ChaosResistance : 0
-			, MaximumLife : 0
-			, IncreasedMaximumLife : 0
-			, MaximumEnergyShield : 0
-			, IncreasedEnergyShield : 0
-			, IncreasedMaximumEnergyShield : 0
-			, MaximumMana : 0
-			, IncreasedMaximumMana : 0
-			, IncreasedAttackSpeed : 0
-			, IncreasedColdDamage : 0
-			, IncreasedFireDamage : 0
-			, IncreasedLightningDamage : 0
-			, IncreasedPhysicalDamage : 0
-			, IncreasedSpellDamage : 0
-			, IncreasedChaosDamage : 0
-			, PseudoColdResist : 0
-			, PseudoFireResist : 0
-			, PseudoLightningResist : 0
-			, PseudoChaosResist : 0
-			, PseudoTotalEleResist : 0
-			, PseudoTotalResist : 0
-			, PseudoTotalEleResist : 0
-			, LifeRegeneration : 0
-			, ChanceDoubleDamage : 0
-			, IncreasedRarity : 0
-			, IncreasedEvasion : 0
-			, IncreasedArmour : 0
-			, IncreasedAttackSpeed : 0
-			, IncreasedAttackSpeedWithMoveSkill : 0
-			, IncreasedDamageWithMoveSkill : 0
-			, IncreasedAttackCastSpeed : 0
-			, IncreasedMovementSpeed : 0
-			, ReducedEnemyStunThreshold : 0
-			, IncreasedStunBlockRecovery : 0
-			, LifeGainOnAttack : 0
-			, WeaponRange : 0
-			, AddedIntelligence : 0
-			, AddedStrength : 0
-			, AddedDexterity : 0
-			, AddedStrengthDexterity : 0
-			, AddedStrengthIntelligence : 0
-			, AddedDexterityIntelligence : 0
-			, AddedArmour : 0
-			, AddedEvasion : 0
-			, AddedAccuracy : 0
-			, AddedAllStats : 0
-			, PseudoAddedStrength : 0
-			, PseudoAddedDexterity : 0
-			, PseudoAddedIntelligence : 0
-			, IncreasedArmourEnergyShield : 0
-			, IncreasedArmourEvasion : 0
-			, IncreasedEvasionEnergyShield : 0
-			, PseudoIncreasedArmour : 0
-			, PseudoIncreasedEvasion : 0
-			, PseudoIncreasedEnergyShield : 0
-			, ChanceDodgeAttack : 0
-			, ChanceDodgeSpell : 0
-			, ChanceBlockSpell : 0
-			, BlockManaGain : 0
-			, PhysicalDamageReduction : 0
-			, ReducedAttributeRequirement : 0
-			, ReflectPhysical : 0
-			, EnergyShieldRegen : 0
-			, PhysicalLeechLife : 0
-			, PhysicalLeechMana : 0
-			, OnKillLife : 0
-			, OnKillMana : 0
-			, IncreasedElementalAttack : 0
-			, IncreasedFlaskLifeRecovery : 0
-			, IncreasedFlaskManaRecovery : 0
-			, IncreasedStunDuration : 0
-			, IncreasedFlaskDuration : 0
-			, IncreasedFlaskChargesGained : 0
-			, ReducedFlaskChargesUsed : 0
-			, GlobalCriticalChance : 0
-			, GlobalCriticalMultiplier : 0
-			, IncreasedProjectileSpeed : 0
-			, AddedLevelGems : 0
-			, AddedLevelMinionGems : 0
-			, AddedLevelMeleeGems : 0
-			, AddedLevelBowGems : 0
-			, AddedLevelFireGems : 0
-			, AddedLevelColdGems : 0
-			, AddedLevelLightningGems : 0
-			, AddedLevelChaosGems : 0
-			, ChaosDOTMult : 0
-			, ColdDOTMult : 0
-			, ChanceFreeze : 0
-			, ChanceShock : 0
-			, ChanceIgnite : 0
-			, ChanceAvoidElementalAilment : 0
-			, IncreasedBurningDamage : 0
-			, IncreasedSpellCritChance : 0
-			, IncreasedCritChance : 0
-			, IncreasedCritChanceOnKill : 0
-			, IncreasedManaRegeneration : 0
-			, IncreasedCastSpeed : 0
-			, IncreasedPoisonDuration : 0
-			, ChancePoison : 0
-			, IncreasedPoisonDamage : 0
-			, IncreasedBleedDuration : 0
-			, ChanceBleed : 0
-			, IncreasedBleedDamage : 0
-			, IncreasedLightRadius : 0
-			, IncreasedGlobalAccuracy : 0
-			, ChanceBlock : 0
-			, GainFireToExtraChaos : 0
-			, GainColdToExtraChaos : 0
-			, GainLightningToExtraChaos : 0
-			, GainPhysicalToExtraChaos : 0
-			, Implicit : ""
-			, PseudoTotalAddedStats : 0
-			, PseudoTotalAddedAvg : 0
-			, PseudoTotalAddedEleAvg : 0}
+		Affix := OrderedArray() 
+			Affix.Implicit := ""
+			Affix.Corruption := ""
+			Affix.Corruption2 := ""
+			Affix.Corruption3 := ""
+			Affix.Corruption4 := ""
+			Affix.Corruption5 := ""
+			Affix.LabEnchant := ""
+			Affix.Annointment := ""
+			Affix.MaximumLife := 0
+			Affix.IncreasedMaximumLife := 0
+			Affix.MaximumEnergyShield := 0
+			Affix.IncreasedEnergyShield := 0
+			Affix.IncreasedMaximumEnergyShield := 0
+			Affix.MaximumMana := 0
+			Affix.IncreasedMaximumMana := 0
+			Affix.IncreasedMovementSpeed := 0
+			Affix.WeaponRange := 0
+			Affix.PseudoTotalResist := 0
+			Affix.PseudoTotalEleResist := 0
+			Affix.PseudoFireResist := 0
+			Affix.PseudoColdResist := 0
+			Affix.PseudoLightningResist := 0
+			Affix.PseudoChaosResist := 0
+			Affix.PseudoTotalAddedStats := 0
+			Affix.PseudoAddedStrength := 0
+			Affix.PseudoAddedDexterity := 0
+			Affix.PseudoAddedIntelligence := 0
+			Affix.PseudoIncreasedArmour := 0
+			Affix.PseudoIncreasedEvasion := 0
+			Affix.PseudoIncreasedEnergyShield := 0
+			Affix.PseudoTotalAddedAvgAttack := 0
+			Affix.PseudoTotalAddedEleAvgAttack := 0
+			Affix.PseudoTotalAddedEleAvgSpell := 0
+			Affix.AllElementalResistances := 0
+			Affix.ColdLightningResistance := 0
+			Affix.FireColdResistance := 0
+			Affix.FireLightningResistance := 0
+			Affix.ColdResistance := 0
+			Affix.FireResistance := 0
+			Affix.LightningResistance := 0
+			Affix.ChaosResistance := 0
+			Affix.AddedLevelGems := 0
+			Affix.AddedLevelMinionGems := 0
+			Affix.AddedLevelMeleeGems := 0
+			Affix.AddedLevelBowGems := 0
+			Affix.AddedLevelFireGems := 0
+			Affix.AddedLevelColdGems := 0
+			Affix.AddedLevelLightningGems := 0
+			Affix.AddedLevelChaosGems := 0
+			Affix.ChaosDOTMult := 0
+			Affix.ColdDOTMult := 0
+			Affix.SupportGem := ""
+			Affix.SupportGemLevel := 0
+			Affix.SupportGem2 := ""
+			Affix.SupportGem2Level := 0
+			Affix.CountSupportGem := 0
+			Affix.GrantedSkill := 0
+			Affix.GrantedSkillLevel := 0
+			Affix.GainFireToExtraChaos := 0
+			Affix.GainColdToExtraChaos := 0
+			Affix.GainLightningToExtraChaos := 0
+			Affix.GainPhysicalToExtraChaos := 0
+			Affix.GlobalCriticalChance := 0
+			Affix.GlobalCriticalMultiplier := 0
+			Affix.IncreasedAttackSpeed := 0
+			Affix.IncreasedAttackSpeedWithMoveSkill := 0
+			Affix.IncreasedAttackCastSpeed := 0
+			Affix.AddedAccuracy := 0
+			Affix.LifeGainOnAttack := 0
+			Affix.PhysicalLeechLife := 0
+			Affix.PhysicalLeechMana := 0
+			Affix.EnergyShieldRegen := 0
+			Affix.LifeRegeneration := 0
+			Affix.PhysicalDamageReduction := 0
+			Affix.ChanceDoubleDamage := 0
+			Affix.ChanceDodgeAttack := 0
+			Affix.ChanceDodgeSpell := 0
+			Affix.ChanceBlock := 0
+			Affix.ChanceBlockSpell := 0
+			Affix.ChanceFreeze := 0
+			Affix.ChanceShock := 0
+			Affix.ChanceIgnite := 0
+			Affix.ChanceBleed := 0
+			Affix.ChancePoison := 0
+			Affix.ChanceAvoidElementalAilment := 0
+			Affix.AddedArmour := 0
+			Affix.AddedEvasion := 0
+			Affix.AddedAllStats := 0
+			Affix.IncreasedColdDamage := 0
+			Affix.IncreasedFireDamage := 0
+			Affix.IncreasedLightningDamage := 0
+			Affix.IncreasedPhysicalDamage := 0
+			Affix.IncreasedSpellDamage := 0
+			Affix.IncreasedChaosDamage := 0
+			Affix.IncreasedMinionDamage := 0
+			Affix.IncreasedDamageWithMoveSkill := 0
+			Affix.IncreasedRarity := 0
+			Affix.IncreasedArmour := 0
+			Affix.IncreasedEvasion := 0
+			Affix.IncreasedArmourEnergyShield := 0
+			Affix.IncreasedArmourEvasion := 0
+			Affix.IncreasedEvasionEnergyShield := 0
+			Affix.IncreasedElementalAttack := 0
+			Affix.IncreasedGlobalAccuracy := 0
+			Affix.IncreasedBurningDamage := 0
+			Affix.IncreasedPoisonDamage := 0
+			Affix.IncreasedBleedDamage := 0
+			Affix.IncreasedCritChance := 0
+			Affix.IncreasedSpellCritChance := 0
+			Affix.IncreasedCastSpeed := 0
+			Affix.IncreasedProjectileSpeed := 0
+			Affix.IncreasedCritChanceOnKill := 0
+			Affix.IncreasedPoisonDuration := 0
+			Affix.IncreasedBleedDuration := 0
+			Affix.IncreasedManaRegeneration := 0
+			Affix.IncreasedLightRadius := 0
+			Affix.IncreasedStunDuration := 0
+			Affix.IncreasedStunBlockRecovery := 0
+			Affix.IncreasedFlaskLifeRecovery := 0
+			Affix.IncreasedFlaskManaRecovery := 0
+			Affix.IncreasedFlaskDuration := 0
+			Affix.IncreasedFlaskChargesGained := 0
+			Affix.AddedStrength := 0
+			Affix.AddedDexterity := 0
+			Affix.AddedIntelligence := 0
+			Affix.AddedStrengthDexterity := 0
+			Affix.AddedStrengthIntelligence := 0
+			Affix.AddedDexterityIntelligence := 0
+			Affix.ReflectPhysical := 0
+			Affix.BlockManaGain := 0
+			Affix.OnKillLife := 0
+			Affix.OnKillMana := 0
+			Affix.ReducedFlaskChargesUsed := 0
+			Affix.ReducedEnemyStunThreshold := 0
+			Affix.ReducedAttributeRequirement := 0
 
 		
 		If InStr(Clipboard, "`nCorrupted", 1)
@@ -3764,6 +3414,11 @@ Return
 						Affix.AddedLevelMinionGems := Affix.AddedLevelMinionGems + Arr1
 					Continue	
 					}
+					If (InStr(A_LoopField, "Minions deal") && InStr(A_LoopField, "increased Damage"))
+					{
+						Affix.IncreasedMinionDamage := Affix.IncreasedMinionDamage + StrSplit(StrSplit(A_LoopField, "`%", " ")[1]," ")[3]
+					Continue	
+					}
 					IfInString, A_LoopField, to Level of Socketed Bow Gems
 					{
 						StringSplit, Arr, A_LoopField, %A_Space%, +
@@ -4399,6 +4054,7 @@ Return
 							Affix.PhysicalDamageAttackLo := Arr2
 							Affix.PhysicalDamageAttackHi := Arr4
 							Affix.PhysicalDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+							Affix.PseudoTotalAddedAvg
 						Continue
 						}
 						IfInString, A_LoopField, Physical Damage to Bow Attacks
@@ -4412,6 +4068,17 @@ Return
 						IfInString, A_LoopField, Fire Damage to Attacks
 						{
 							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.FireDamageAttackLo := Arr2
+							Affix.FireDamageAttackHi := Arr4
+							Affix.FireDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Fire Damage to Spells and Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.FireDamageSpellLo := Arr2
+							Affix.FireDamageSpellHi := Arr4
+							Affix.FireDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
 							Affix.FireDamageAttackLo := Arr2
 							Affix.FireDamageAttackHi := Arr4
 							Affix.FireDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
@@ -4433,6 +4100,17 @@ Return
 							Affix.ColdDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
 						Continue
 						}
+						IfInString, A_LoopField, Cold Damage to Spells and Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.ColdDamageSpellLo := Arr2
+							Affix.ColdDamageSpellHi := Arr4
+							Affix.ColdDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
+							Affix.ColdDamageAttackLo := Arr2
+							Affix.ColdDamageAttackHi := Arr4
+							Affix.ColdDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
 						IfInString, A_LoopField, Cold Damage to Spells
 						{
 							StringSplit, Arr, A_LoopField, %A_Space%
@@ -4444,6 +4122,17 @@ Return
 						IfInString, A_LoopField, Lightning Damage to Attacks
 						{
 							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.LightningDamageAttackLo := Arr2
+							Affix.LightningDamageAttackHi := Arr4
+							Affix.LightningDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
+						Continue
+						}
+						IfInString, A_LoopField, Lightning Damage to Spells and Attacks
+						{
+							StringSplit, Arr, A_LoopField, %A_Space%
+							Affix.LightningDamageSpellLo := Arr2
+							Affix.LightningDamageSpellHi := Arr4
+							Affix.LightningDamageSpellAvg := round(((Arr2 + Arr4) / 2),1)
 							Affix.LightningDamageAttackLo := Arr2
 							Affix.LightningDamageAttackHi := Arr4
 							Affix.LightningDamageAttackAvg := round(((Arr2 + Arr4) / 2),1)
@@ -4660,8 +4349,9 @@ Return
 		Affix.PseudoTotalEleResist := Affix.PseudoColdResist + Affix.PseudoFireResist + Affix.PseudoLightningResist
 		Affix.PseudoTotalResist := Affix.PseudoTotalEleResist + Affix.PseudoChaosResist
 		
-		Affix.PseudoTotalAddedEleAvg := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
-		Affix.PseudoTotalAddedAvg := (Affix.PseudoTotalAddedEleAvg?Affix.PseudoTotalAddedEleAvg:0) + (Affix.PhysicalDamageAttackAvg?Affix.PhysicalDamageAttackAvg:0) + (Affix.PhysicalDamageBowAttackAvg?Affix.PhysicalDamageBowAttackAvg:0)
+		Affix.PseudoTotalAddedEleAvgAttack := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
+		Affix.PseudoTotalAddedEleAvgSpell := (Affix.FireDamageSpellAvg?Affix.FireDamageSpellAvg:0) + ( (Affix.ColdDamageSpellAvg) ? (Affix.ColdDamageSpellAvg) : 0 ) + ( (Affix.LightningDamageSpellAvg) ? (Affix.LightningDamageSpellAvg) : 0 ) + ( (Affix.LightningDamageSpellAvg) ? (Affix.LightningDamageSpellAvg) : 0 )
+		Affix.PseudoTotalAddedAvgAttack := (Affix.PseudoTotalAddedEleAvgAttack?Affix.PseudoTotalAddedEleAvgAttack:0) + (Affix.PhysicalDamageAttackAvg?Affix.PhysicalDamageAttackAvg:0) + (Affix.PhysicalDamageBowAttackAvg?Affix.PhysicalDamageBowAttackAvg:0) + (Affix.ChaosDamageAttackAvg?Affix.ChaosDamageAttackAvg:0)
 		Affix.PseudoTotalAddedStats := Affix.PseudoAddedStrength + Affix.PseudoAddedDexterity + Affix.PseudoAddedIntelligence
 
 		nameArr := StrSplit(Prop.ItemName, "`n")
@@ -5608,18 +5298,51 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TGameTick(GuiCheck:=True)
 	{
-		Static LastAverageTimer:=0, tallyMS:=0, tallyCPU:=0
+		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0
 		If WinActive(GameStr)
 		{
-			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
-				Exit
 			If (DebugMessages && YesTimeMS)
 				t1 := A_TickCount
+			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
+			{
+				If WinActive(GameStr)
+				{
+					If (DebugMessages && YesTimeMS)
+					{
+						If ((t1-LastPauseMessage) > 100)
+						{
+							Ding(600,2,(OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum)?"All options disabled, pausing":"Error"))))
+							LastPauseMessage := A_TickCount
+						}
+					}
+				}
+				Exit
+			}
 			; Check what status is your character in the game
 			if (GuiCheck)
 			{
 				If !GuiStatus()
+				{
+					If WinActive(GameStr)
+						If (DebugMessages && YesTimeMS)
+							If ((t1-LastPauseMessage) > 100)
+							{
+								Ding(600,2,"Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":"Error"))))))))))
+								LastPauseMessage := A_TickCount
+							}
 					Exit
+				}
+				If (YesOHB && !CheckOHB())
+				{
+					If WinActive(GameStr)
+						If (DebugMessages && YesTimeMS)
+							If ((t1-LastPauseMessage) > 100)
+							{
+								Ding(600,2,"Script paused while no OHB")
+								LastPauseMessage := A_TickCount
+							}
+					Exit
+				}
 			}
 			If (DetonateMines&&!Detonated)
 			{
@@ -5632,125 +5355,135 @@ Return
 			}
 			If (AutoFlask || AutoQuit)
 			{
-				if (RadioLife) {
-					If (YesOHB && OnMines)
+				If YesGlobeScan
+					ScanGlobe()
+				if (!RadioCi) { ; Life
+					If (YesGlobeScan)
 					{
-						If (OHBxy := CheckOHB())
+						If (AutoQuit)
 						{
-							Global OHBLHealthHex, OHB
-							HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
-							If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60))
+							if (QuitBelow = 20 && Player.Percent.Life < 20)
 							{
-								if (RadioQuit20 && HPerc < 20)
-								{
-									LogoutCommand()
-									Exit
-								}
-								Else if (RadioQuit30 && HPerc < 30)
-								{
-									LogoutCommand()
-									Exit
-								}
-								Else if (RadioQuit40 && HPerc < 40)
-								{
-									LogoutCommand()
-									Exit
-								}
-								Else if (RadioQuit50 && HPerc < 50)
-								{
-									LogoutCommand()
-									Exit
-								}
-								Else if (RadioQuit60 && HPerc < 60)
-								{
-									LogoutCommand()
-									Exit
-								}
+								LogoutCommand()
+								Exit
 							}
-
-							If (AutoFlask && DisableLife != "11111" )
+							Else if (QuitBelow = 30 && Player.Percent.Life < 30)
 							{
-								If ( TriggerLife20 != "00000" && HPerc < 20) 
-									TriggerFlask(TriggerLife20)
-								If ( TriggerLife30 != "00000" && HPerc < 30) 
-									TriggerFlask(TriggerLife30)
-								If ( TriggerLife40 != "00000" && HPerc < 40) 
-									TriggerFlask(TriggerLife40)
-								If ( TriggerLife50 != "00000" && HPerc < 50) 
-									TriggerFlask(TriggerLife50)
-								If ( TriggerLife60 != "00000" && HPerc < 60) 
-									TriggerFlask(TriggerLife60)
-								If ( TriggerLife70 != "00000" && HPerc < 70) 
-									TriggerFlask(TriggerLife70)
-								If ( TriggerLife80 != "00000" && HPerc < 80) 
-									TriggerFlask(TriggerLife80)
-								If ( TriggerLife90 != "00000" && HPerc < 90) 
-									TriggerFlask(TriggerLife90)
+								LogoutCommand()
+								Exit
 							}
-
-							If ( (YesUtility1 && !OnCooldownUtility1) 
-								|| (YesUtility2 && !OnCooldownUtility2) 
-								|| (YesUtility3 && !OnCooldownUtility3) 
-								|| (YesUtility4 && !OnCooldownUtility4) 
-								|| (YesUtility5 && !OnCooldownUtility5) ) { 
-
-								If (HPerc < 20)
-								{
-									Loop, 5
-										If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20"&& !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 30)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="30" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 40)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="40" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 50)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="50" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 60)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="60" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 70)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="70" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 80)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="80" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 90)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="90" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
+							Else if (QuitBelow = 40 && Player.Percent.Life < 40)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 50 && Player.Percent.Life < 50)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 60 && Player.Percent.Life < 60)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 70 && Player.Percent.Life < 70)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 80 && Player.Percent.Life < 80)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 90 && Player.Percent.Life < 90)
+							{
+								LogoutCommand()
+								Exit
 							}
 						}
-						Else
-							HPerc := 100
+
+						If (AutoFlask && DisableLife != "11111" )
+						{
+							If ( TriggerLife20 != "00000" && Player.Percent.Life < 20) 
+								TriggerFlask(TriggerLife20)
+							If ( TriggerLife30 != "00000" && Player.Percent.Life < 30) 
+								TriggerFlask(TriggerLife30)
+							If ( TriggerLife40 != "00000" && Player.Percent.Life < 40) 
+								TriggerFlask(TriggerLife40)
+							If ( TriggerLife50 != "00000" && Player.Percent.Life < 50) 
+								TriggerFlask(TriggerLife50)
+							If ( TriggerLife60 != "00000" && Player.Percent.Life < 60) 
+								TriggerFlask(TriggerLife60)
+							If ( TriggerLife70 != "00000" && Player.Percent.Life < 70) 
+								TriggerFlask(TriggerLife70)
+							If ( TriggerLife80 != "00000" && Player.Percent.Life < 80) 
+								TriggerFlask(TriggerLife80)
+							If ( TriggerLife90 != "00000" && Player.Percent.Life < 90) 
+								TriggerFlask(TriggerLife90)
+						}
+
+						If ( (YesUtility1 && !OnCooldownUtility1) 
+							|| (YesUtility2 && !OnCooldownUtility2) 
+							|| (YesUtility3 && !OnCooldownUtility3) 
+							|| (YesUtility4 && !OnCooldownUtility4) 
+							|| (YesUtility5 && !OnCooldownUtility5) ) { 
+
+							If (Player.Percent.Life < 20)
+							{
+								Loop, 5
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20"&& !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.Life < 30)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="30" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.Life < 40)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="40" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.Life < 50)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="50" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.Life < 60)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="60" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.Life < 70)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="70" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.Life < 80)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="80" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.Life < 90)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="90" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+						}
 					}
 					Else
 					{
 						If ( (TriggerLife20!="00000") 
-							|| (AutoQuit&&RadioQuit20)
+							|| (AutoQuit&&QuitBelow = 20)
 							|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
 							|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
 							|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
@@ -5758,7 +5491,7 @@ Return
 							|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
 							Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
 							if (Life20!=varLife20) {
-								if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+								if (AutoQuit && QuitBelow >= 20) {
 									Log("Exit with < 20`% Life", CurrentLocation)
 									LogoutCommand()
 									Exit
@@ -5772,7 +5505,7 @@ Return
 								}
 						}
 						If ( (TriggerLife30!="00000") 
-							|| (AutoQuit&&RadioQuit30)
+							|| (AutoQuit&&QuitBelow = 30)
 							|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
 							|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
 							|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
@@ -5780,7 +5513,7 @@ Return
 							|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
 							Life30 := ScreenShot_GetColor(vX_Life,vY_Life30) 
 							if (Life30!=varLife30) {
-								if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
+								if (AutoQuit && QuitBelow >= 30) {
 									Log("Exit with < 30`% Life", CurrentLocation)
 									LogoutCommand()
 									Exit
@@ -5794,7 +5527,7 @@ Return
 								}
 						}
 						If ( (TriggerLife40!="00000") 
-							|| (AutoQuit&&RadioQuit40)
+							|| (AutoQuit&&QuitBelow = 40)
 							|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
 							|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
 							|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
@@ -5802,7 +5535,7 @@ Return
 							|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
 							Life40 := ScreenShot_GetColor(vX_Life,vY_Life40) 
 							if (Life40!=varLife40) {
-								if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
+								if (AutoQuit && QuitBelow >= 40) {
 									Log("Exit with < 40`% Life", CurrentLocation)
 									LogoutCommand()
 									Exit
@@ -5816,7 +5549,7 @@ Return
 								}
 						}
 						If ( (TriggerLife50!="00000")
-							|| (AutoQuit&&RadioQuit50)
+							|| (AutoQuit&&QuitBelow = 50)
 							|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
 							|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
 							|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
@@ -5824,7 +5557,7 @@ Return
 							|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
 							Life50 := ScreenShot_GetColor(vX_Life,vY_Life50)
 							if (Life50!=varLife50) {
-								if (AutoQuit && (RadioQuit50||RadioQuit60)) {
+								if (AutoQuit && QuitBelow >= 50) {
 									Log("Exit with < 50`% Life", CurrentLocation)
 									LogoutCommand()
 									Exit
@@ -5838,7 +5571,7 @@ Return
 								}
 						}
 						If ( (TriggerLife60!="00000")
-							|| (AutoQuit&&RadioQuit60)
+							|| (AutoQuit&&QuitBelow = 60)
 							|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
 							|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
 							|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
@@ -5846,7 +5579,7 @@ Return
 							|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
 							Life60 := ScreenShot_GetColor(vX_Life,vY_Life60)
 							if (Life60!=varLife60) {
-								if (AutoQuit && RadioQuit60) {
+								if (AutoQuit && QuitBelow >= 60) {
 									Log("Exit with < 60`% Life", CurrentLocation)
 									LogoutCommand()
 									Exit
@@ -5860,6 +5593,7 @@ Return
 								}
 						}
 						If ( (TriggerLife70!="00000") 
+							|| (AutoQuit&&QuitBelow = 70)
 							|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
 							|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
 							|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
@@ -5867,6 +5601,11 @@ Return
 							|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
 							Life70 := ScreenShot_GetColor(vX_Life,vY_Life70)
 							if (Life70!=varLife70) {
+								if (AutoQuit && QuitBelow >= 70) {
+									Log("Exit with < 70`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
 								Loop, 5 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
 										TriggerUtility(A_Index)
@@ -5876,6 +5615,7 @@ Return
 								}
 						}
 						If ( (TriggerLife80!="00000") 
+							|| (AutoQuit&&QuitBelow = 80)
 							|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
 							|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
 							|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
@@ -5883,6 +5623,11 @@ Return
 							|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
 							Life80 := ScreenShot_GetColor(vX_Life,vY_Life80)
 							if (Life80!=varLife80) {
+								if (AutoQuit && QuitBelow >= 80) {
+									Log("Exit with < 80`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
 								Loop, 5 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
 										TriggerUtility(A_Index)
@@ -5892,6 +5637,7 @@ Return
 								}
 						}
 						If ( (TriggerLife90!="00000") 
+							|| (AutoQuit&&QuitBelow = 90)
 							|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
 							|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
 							|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
@@ -5899,6 +5645,11 @@ Return
 							|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
 							Life90 := ScreenShot_GetColor(vX_Life,vY_Life90)
 							if (Life90!=varLife90) {
+								if (AutoQuit && QuitBelow >= 90) {
+									Log("Exit with < 90`% Life", CurrentLocation)
+									LogoutCommand()
+									Exit
+								}
 								Loop, 5 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
 										TriggerUtility(A_Index)
@@ -5909,578 +5660,325 @@ Return
 						}
 					}
 				}
-				Else if (RadioHybrid) {
-					If (YesOHB && OnMines)
-					{
-						If (OHBxy := CheckOHB())
-						{
-							Global OHBLHealthHex, OHB
-							HPerc := GetPercent(OHBLHealthHex, OHB.hpY, 70)
-							If (AutoQuit&&(RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60))
-							{
-								if (RadioQuit20 && HPerc < 20)
-								{
-									LogoutCommand()
-									Exit
-								}
-								Else if (RadioQuit30 && HPerc < 30)
-								{
-									LogoutCommand()
-									Exit
-								}
-								Else if (RadioQuit40 && HPerc < 40)
-								{
-									LogoutCommand()
-									Exit
-								}
-								Else if (RadioQuit50 && HPerc < 50)
-								{
-									LogoutCommand()
-									Exit
-								}
-								Else if (RadioQuit60 && HPerc < 60)
-								{
-									LogoutCommand()
-									Exit
-								}
-							}
-							If (AutoFlask && DisableLife != "11111" )
-							{
-								If ( TriggerLife20 != "00000" && HPerc < 20) 
-									TriggerFlask(TriggerLife20)
-								If ( TriggerLife30 != "00000" && HPerc < 30) 
-									TriggerFlask(TriggerLife30)
-								If ( TriggerLife40 != "00000" && HPerc < 40) 
-									TriggerFlask(TriggerLife40)
-								If ( TriggerLife50 != "00000" && HPerc < 50) 
-									TriggerFlask(TriggerLife50)
-								If ( TriggerLife60 != "00000" && HPerc < 60) 
-									TriggerFlask(TriggerLife60)
-								If ( TriggerLife70 != "00000" && HPerc < 70) 
-									TriggerFlask(TriggerLife70)
-								If ( TriggerLife80 != "00000" && HPerc < 80) 
-									TriggerFlask(TriggerLife80)
-								If ( TriggerLife90 != "00000" && HPerc < 90) 
-									TriggerFlask(TriggerLife90)
-							}
-							If ( (YesUtility1 && !OnCooldownUtility1) 
-								|| (YesUtility2 && !OnCooldownUtility2) 
-								|| (YesUtility3 && !OnCooldownUtility3) 
-								|| (YesUtility4 && !OnCooldownUtility4) 
-								|| (YesUtility5 && !OnCooldownUtility5) ) { 
 
-								If (HPerc < 20)
-								{
-									Loop, 5
-										If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20"&& !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 30)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="30" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 40)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="40" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 50)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="50" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 60)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="60" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 70)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="70" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 80)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="80" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
-								If (HPerc < 90)
-								{
-									Loop, 5 
-										If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="90" && !OnCooldownUtility%A_Index%)
-											TriggerUtility(A_Index)
-								}
+				if (!RadioLife) { ; Energy Shield
+					If (YesGlobeScan)
+					{
+						If (AutoQuit && RadioCi)
+						{
+							if (QuitBelow = 20 && Player.Percent.ES < 20)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 30 && Player.Percent.ES < 30)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 40 && Player.Percent.ES < 40)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 50 && Player.Percent.ES < 50)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 60 && Player.Percent.ES < 60)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 70 && Player.Percent.ES < 70)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 80 && Player.Percent.ES < 80)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 90 && Player.Percent.ES < 90)
+							{
+								LogoutCommand()
+								Exit
 							}
 						}
-						Else
-							HPerc := 100
+
+						If (AutoFlask && DisableES != "11111" )
+						{
+							If ( TriggerES20 != "00000" && Player.Percent.ES < 20) 
+								TriggerFlask(TriggerES20)
+							If ( TriggerES30 != "00000" && Player.Percent.ES < 30) 
+								TriggerFlask(TriggerES30)
+							If ( TriggerES40 != "00000" && Player.Percent.ES < 40) 
+								TriggerFlask(TriggerES40)
+							If ( TriggerES50 != "00000" && Player.Percent.ES < 50) 
+								TriggerFlask(TriggerES50)
+							If ( TriggerES60 != "00000" && Player.Percent.ES < 60) 
+								TriggerFlask(TriggerES60)
+							If ( TriggerES70 != "00000" && Player.Percent.ES < 70) 
+								TriggerFlask(TriggerES70)
+							If ( TriggerES80 != "00000" && Player.Percent.ES < 80) 
+								TriggerFlask(TriggerES80)
+							If ( TriggerES90 != "00000" && Player.Percent.ES < 90) 
+								TriggerFlask(TriggerES90)
+						}
+
+						If ( (YesUtility1 && !OnCooldownUtility1) 
+							|| (YesUtility2 && !OnCooldownUtility2) 
+							|| (YesUtility3 && !OnCooldownUtility3) 
+							|| (YesUtility4 && !OnCooldownUtility4) 
+							|| (YesUtility5 && !OnCooldownUtility5) ) { 
+
+							If (Player.Percent.ES < 20)
+							{
+								Loop, 5
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20"&& !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.ES < 30)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="30" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.ES < 40)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="40" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.ES < 50)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="50" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.ES < 60)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="60" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.ES < 70)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="70" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.ES < 80)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="80" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+							If (Player.Percent.ES < 90)
+							{
+								Loop, 5 
+									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="90" && !OnCooldownUtility%A_Index%)
+										TriggerUtility(A_Index)
+							}
+						}
 					}
 					Else
 					{
-						If ( (TriggerLife20!="00000") 
-							|| (AutoQuit&&RadioQuit20)
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
-							Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
-							if (Life20!=varLife20) {
-								if (AutoQuit && (RadioQuit20||RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
-									Log("Exit with < 20`% Life", CurrentLocation)
-									LogoutCommand()
+						If ( (TriggerES20!="00000") 
+							|| (AutoQuit&&RadioCi&&QuitBelow = 20)
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+							ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
+							if (ES20!=varES20) {
+								if (AutoQuit && RadioCi && QuitBelow >= 20) {
+										Log("Exit with < 20`% Energy Shield", CurrentLocation)
+										LogoutCommand()
 									Exit
 								}
 								Loop, 5 {
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
 										TriggerUtility(A_Index)
 								}
-								If (TriggerLife20!="00000")
-									TriggerFlask(TriggerLife20)
-								}
+								If (TriggerES20!="00000")
+									TriggerFlask(TriggerES20)
+							}
 						}
-						If ( (TriggerLife30!="00000") 
-							|| (AutoQuit&&RadioQuit30)
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="30")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="30")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="30")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="30")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="30")&&!(OnCooldownUtility5)) ) ) {
-							Life30 := ScreenShot_GetColor(vX_Life,vY_Life30) 
-							if (Life30!=varLife30) {
-								if (AutoQuit && (RadioQuit30||RadioQuit40||RadioQuit50||RadioQuit60)) {
-									Log("Exit with < 30`% Life", CurrentLocation)
-									LogoutCommand()
+						If ( (TriggerES30!="00000") 
+							|| (AutoQuit&&RadioCi&&QuitBelow = 30)
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
+							ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
+							if (ES30!=varES30) {
+								if (AutoQuit && RadioCi && QuitBelow >= 30) {
+										Log("Exit with < 30`% Energy Shield", CurrentLocation)
+										LogoutCommand()
 									Exit
 								}
 								Loop, 5 {
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
 										TriggerUtility(A_Index)
 								}
-								If (TriggerLife30!="00000")
-									TriggerFlask(TriggerLife30)
-								}
+								If (TriggerES30!="00000")
+									TriggerFlask(TriggerES30)
+							}
 						}
-						If ( (TriggerLife40!="00000") 
-							|| (AutoQuit&&RadioQuit40)
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="40")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="40")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="40")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="40")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="40")&&!(OnCooldownUtility5)) ) ) {
-							Life40 := ScreenShot_GetColor(vX_Life,vY_Life40) 
-							if (Life40!=varLife40) {
-								if (AutoQuit && (RadioQuit40||RadioQuit50||RadioQuit60)) {
-									Log("Exit with < 40`% Life", CurrentLocation)
-									LogoutCommand()
+						If ( (TriggerES40!="00000") 
+							|| (AutoQuit&&RadioCi&&QuitBelow = 40)
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
+							ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
+							if (ES40!=varES40) {
+								if (AutoQuit && RadioCi && QuitBelow >= 40) {
+										Log("Exit with < 40`% Energy Shield", CurrentLocation)
+										LogoutCommand()
 									Exit
 								}
 								Loop, 5 {
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
 										TriggerUtility(A_Index)
 								}
-								If (TriggerLife40!="00000")
-									TriggerFlask(TriggerLife40)
-								}
+								If (TriggerES40!="00000")
+									TriggerFlask(TriggerES40)
+							}
 						}
-						If ( (TriggerLife50!="00000")
-							|| (AutoQuit&&RadioQuit50)
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="50")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="50")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="50")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="50")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="50")&&!(OnCooldownUtility5)) ) ) {
-							Life50 := ScreenShot_GetColor(vX_Life,vY_Life50)
-							if (Life50!=varLife50) {
-								if (AutoQuit && (RadioQuit50||RadioQuit60)) {
-									Log("Exit with < 50`% Life", CurrentLocation)
-									LogoutCommand()
+						If ( (TriggerES50!="00000")
+							|| (AutoQuit&&RadioCi&&QuitBelow = 50)
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
+							ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
+							if (ES50!=varES50) {
+								if (AutoQuit && RadioCi && QuitBelow >= 50) {
+										Log("Exit with < 50`% Energy Shield", CurrentLocation)
+										LogoutCommand()
 									Exit
 								}
 								Loop, 5 {
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
 										TriggerUtility(A_Index)
 								}
-								If (TriggerLife50!="00000")
-									TriggerFlask(TriggerLife50)
-								}
+								If (TriggerES50!="00000")
+									TriggerFlask(TriggerES50)
+							}
 						}
-						If ( (TriggerLife60!="00000")
-							|| (AutoQuit&&RadioQuit60)
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="60")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="60")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="60")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="60")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="60")&&!(OnCooldownUtility5)) ) ) {
-							Life60 := ScreenShot_GetColor(vX_Life,vY_Life60)
-							if (Life60!=varLife60) {
-								if (AutoQuit && RadioQuit60) {
-									Log("Exit with < 60`% Life", CurrentLocation)
-									LogoutCommand()
+						If ( (TriggerES60!="00000")
+							|| (AutoQuit&&RadioCi&&QuitBelow = 60)
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
+							ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
+							if (ES60!=varES60) {
+								if (AutoQuit && RadioCi && QuitBelow >= 60) {
+										Log("Exit with < 60`% Energy Shield", CurrentLocation)
+										LogoutCommand()
 									Exit
 								}
 								Loop, 5 {
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
 										TriggerUtility(A_Index)
 								}
-								If (TriggerLife60!="00000")
-									TriggerFlask(TriggerLife60)
-								}
+								If (TriggerES60!="00000")
+									TriggerFlask(TriggerES60)
+							}
 						}
-						If ( (TriggerLife70!="00000")
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="70")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="70")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="70")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="70")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="70")&&!(OnCooldownUtility5)) ) ) {
-							Life70 := ScreenShot_GetColor(vX_Life,vY_Life70)
-							if (Life70!=varLife70) {
+						If ( (TriggerES70!="00000")
+							|| (AutoQuit&&RadioCi&&QuitBelow = 70)
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
+							ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
+							if (ES70!=varES70) {
+								if (AutoQuit && RadioCi && QuitBelow >= 70) {
+										Log("Exit with < 70`% Energy Shield", CurrentLocation)
+										LogoutCommand()
+									Exit
+								}
 								Loop, 5 {
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
 										TriggerUtility(A_Index)
 								}
-								If (TriggerLife70!="00000")
-									TriggerFlask(TriggerLife70)
-								}
+								If (TriggerES70!="00000")
+									TriggerFlask(TriggerES70)
+							}
 						}
-						If ( (TriggerLife80!="00000")
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="80")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="80")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="80")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="80")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="80")&&!(OnCooldownUtility5)) ) ) {
-							Life80 := ScreenShot_GetColor(vX_Life,vY_Life80)
-							if (Life80!=varLife80) {
+						If ( (TriggerES80!="00000")
+							|| (AutoQuit&&RadioCi&&QuitBelow = 80)
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
+							ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
+							if (ES80!=varES80) {
+								if (AutoQuit && RadioCi && QuitBelow >= 80) {
+										Log("Exit with < 80`% Energy Shield", CurrentLocation)
+										LogoutCommand()
+									Exit
+								}
 								Loop, 5 {
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
 										TriggerUtility(A_Index)
 								}
-								If (TriggerLife80!="00000")
-									TriggerFlask(TriggerLife80)
-								}
+								If (TriggerES80!="00000")
+									TriggerFlask(TriggerES80)
+					
+							}
 						}
-						If ( (TriggerLife90!="00000")
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="90")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="90")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="90")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="90")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="90")&&!(OnCooldownUtility5)) ) ) {
-							Life90 := ScreenShot_GetColor(vX_Life,vY_Life90)
-							if (Life90!=varLife90) {
+						If ( (TriggerES90!="00000")
+							|| (AutoQuit&&RadioCi&&QuitBelow = 90)
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
+							ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
+							if (ES90!=varES90) {
+								if (AutoQuit && RadioCi && QuitBelow >= 90) {
+										Log("Exit with < 90`% Energy Shield", CurrentLocation)
+										LogoutCommand()
+									Exit
+								}
 								Loop, 5 {
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
+									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
 										TriggerUtility(A_Index)
 								}
-								If (TriggerLife90!="00000")
-									TriggerFlask(TriggerLife90)
-								}
-						}
-					}
-					If ( (TriggerES20!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
-						ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
-						if (ES20!=varES20) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
-									TriggerUtility(A_Index)
+								If (TriggerES90!="00000")
+									TriggerFlask(TriggerES90)
+					
 							}
-							If (TriggerES20!="00000")
-								TriggerFlask(TriggerES20)
-						}
-					}
-					If ( (TriggerES30!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
-						ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
-						if (ES30!=varES30) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES30!="00000")
-								TriggerFlask(TriggerES30)
-						}
-					}
-					If ( (TriggerES40!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
-						ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
-						if (ES40!=varES40) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES40!="00000")
-								TriggerFlask(TriggerES40)
-						}
-					}
-					If ( (TriggerES50!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
-						ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
-						if (ES50!=varES50) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES50!="00000")
-								TriggerFlask(TriggerES50)
-						}
-					}
-					If ( (TriggerES60!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
-						ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
-						if (ES60!=varES60) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES60!="00000")
-								TriggerFlask(TriggerES60)
-						}
-					}
-					If ( (TriggerES70!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
-						ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
-						if (ES70!=varES70) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES70!="00000")
-								TriggerFlask(TriggerES70)
-						}
-					}
-					If ( (TriggerES80!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
-						ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
-						if (ES80!=varES80) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES80!="00000")
-								TriggerFlask(TriggerES80)
-				
-						}
-					}
-					If ( (TriggerES90!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
-						ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
-						if (ES90!=varES90) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES90!="00000")
-								TriggerFlask(TriggerES90)
-				
-						}
-					}
-				}
-				Else if (RadioCi) {
-					If ( (TriggerES20!="00000") 
-						|| (AutoQuit&&RadioQuit20)
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
-						ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
-						if (ES20!=varES20) {
-							if (AutoQuit && (RadioQuit20 || RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-									Log("Exit with < 20`% Energy Shield", CurrentLocation)
-									LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES20!="00000")
-								TriggerFlask(TriggerES20)
-						}
-					}
-					If ( (TriggerES30!="00000") 
-						|| (AutoQuit&&RadioQuit30)
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="30")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="30")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="30")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="30")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="30")&&!(OnCooldownUtility5)) ) ) {
-						ES30 := ScreenShot_GetColor(vX_ES,vY_ES30) 
-						if (ES30!=varES30) {
-							if (AutoQuit && (RadioQuit30 || RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-									Log("Exit with < 30`% Energy Shield", CurrentLocation)
-									LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES30!="00000")
-								TriggerFlask(TriggerES30)
-						}
-					}
-					If ( (TriggerES40!="00000") 
-						|| (AutoQuit&&RadioQuit40)
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="40")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="40")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="40")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="40")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="40")&&!(OnCooldownUtility5)) ) ) {
-						ES40 := ScreenShot_GetColor(vX_ES,vY_ES40) 
-						if (ES40!=varES40) {
-							if (AutoQuit && (RadioQuit40 || RadioQuit50 || RadioQuit60)) {
-									Log("Exit with < 40`% Energy Shield", CurrentLocation)
-									LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES40!="00000")
-								TriggerFlask(TriggerES40)
-						}
-					}
-					If ( (TriggerES50!="00000")
-						|| (AutoQuit&&RadioQuit50)
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="50")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="50")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="50")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="50")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="50")&&!(OnCooldownUtility5)) ) ) {
-						ES50 := ScreenShot_GetColor(vX_ES,vY_ES50)
-						if (ES50!=varES50) {
-							if (AutoQuit && (RadioQuit50 || RadioQuit60)) {
-									Log("Exit with < 50`% Energy Shield", CurrentLocation)
-									LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES50!="00000")
-								TriggerFlask(TriggerES50)
-						}
-					}
-					If ( (TriggerES60!="00000")
-						|| (AutoQuit&&RadioQuit60)
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="60")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="60")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="60")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="60")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="60")&&!(OnCooldownUtility5)) ) ) {
-						ES60 := ScreenShot_GetColor(vX_ES,vY_ES60)
-						if (ES60!=varES60) {
-							if (AutoQuit && RadioQuit60) {
-									Log("Exit with < 60`% Energy Shield", CurrentLocation)
-									LogoutCommand()
-								Exit
-							}
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES60!="00000")
-								TriggerFlask(TriggerES60)
-						}
-					}
-					If ( (TriggerES70!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="70")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="70")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="70")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="70")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="70")&&!(OnCooldownUtility5)) ) ) {
-						ES70 := ScreenShot_GetColor(vX_ES,vY_ES70)
-						if (ES70!=varES70) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES70!="00000")
-								TriggerFlask(TriggerES70)
-						}
-					}
-					If ( (TriggerES80!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="80")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="80")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="80")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="80")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="80")&&!(OnCooldownUtility5)) ) ) {
-						ES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
-						if (ES80!=varES80) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES80!="00000")
-								TriggerFlask(TriggerES80)
-				
-						}
-					}
-					If ( (TriggerES90!="00000")
-						|| ( ((YesUtility1)&&(YesUtility1ESPercent="90")&&!(OnCooldownUtility1)) 
-						|| ((YesUtility2)&&(YesUtility2ESPercent="90")&&!(OnCooldownUtility2)) 
-						|| ((YesUtility3)&&(YesUtility3ESPercent="90")&&!(OnCooldownUtility3)) 
-						|| ((YesUtility4)&&(YesUtility4ESPercent="90")&&!(OnCooldownUtility4)) 
-						|| ((YesUtility5)&&(YesUtility5ESPercent="90")&&!(OnCooldownUtility5)) ) ) {
-						ES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
-						if (ES90!=varES90) {
-							Loop, 5 {
-								If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
-									TriggerUtility(A_Index)
-							}
-							If (TriggerES90!="00000")
-								TriggerFlask(TriggerES90)
-				
 						}
 					}
 				}
 				
-				If (TriggerMana10!="00000") {
-					ManaPerc := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
-					if (ManaPerc!=varManaThreshold) {
-						TriggerMana(TriggerMana10)
+				If (TriggerMana10!="00000") { ; Mana
+					If (YesGlobeScan)
+					{
+						If (Player.Percent.Mana < ManaThreshold)
+							TriggerMana(TriggerMana10)
+					}
+					Else
+					{
+						ManaPerc := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
+						if (ManaPerc!=varManaThreshold) {
+							TriggerMana(TriggerMana10)
+						}
 					}
 				}
 
@@ -6526,10 +6024,16 @@ Return
 			{
 				If WinActive(GameStr)
 				{
-					If ((t1-LastAverageTimer) > 500)
+					If ((t1-LastAverageTimer) > 100)
 					{
-						Ding(3000,2,"Total Time: `t" . tallyMS . "MS")
-						Ding(3000,3,"CPU Load:   `t" . Round(tallyCPU,2) . "`%")
+						If (YesGlobeScan)
+							Ding(3000,2,"Globes:`t" . Player.Percent.Life . "`%L  " . Player.Percent.ES . "`%E  " . Player.Percent.Mana . "`%M")
+						Else
+							Ding(3000,2,"Total Time: `t" . tallyMS . "MS")
+						If (YesGlobeScan)
+							Ding(3000,3,"CPU `%:`t" . Round(tallyCPU,2) . "`%  " . tallyMS . "MS")
+						Else
+							Ding(3000,3,"CPU Load:   `t" . Round(tallyCPU,2) . "`%")
 						tallyMS := 0
 						tallyCPU := 0
 						LastAverageTimer := A_TickCount
@@ -7048,8 +6552,13 @@ Return
 					Send {Enter}
 				}
 			}
-			If YesOHB && OnMines
-				Log("Exit with " . HPerc . "`% Life", CurrentLocation)
+			If YesGlobeScan
+			{
+				If (!RadioCi)
+					Log("Exit with " . Player.Percent.Life . "`% Life", CurrentLocation)
+				Else
+					Log("Exit with " . Player.Percent.ES . "`% ES", CurrentLocation)
+			}
 			Thread, NoTimers, False		;End Critical
 		return
 		}
@@ -7111,9 +6620,8 @@ Return
 					Rescale()
 				If (!ToggleExist) 
 				{
-					Gui 2: Show, x%GuiX% y%GuiY%
+					Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
 					ToggleExist := True
-					WinActivate, ahk_group POEGameGroup
 					If (YesPersistantToggle)
 						AutoReset()
 				}
@@ -7263,17 +6771,11 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Coord(){
 		CoordCommand:
-			MouseGetPos x, y
-			PixelGetColor, xycolor , x, y, RGB
-			TT := "  Mouse X: " . x . "  Mouse Y: " . y . "  XYColor= " . xycolor
-			; PauseTooltips := 1
-			; Tooltip, %TT%
-			; SetTimer, RemoveToolTip, 10000
-			MsgBox, 3, Cursor info, % TT . "`n`nClick Yes to copy only Coords`nClick No to copy Color and Coords"
-			IfMsgBox Yes
-				Clipboard := x "," y
-			IfMsgBox No
-				Clipboard := xycolor " @ " x "," y
+		Rect := LetUserSelectRect(1)
+		If (Rect)
+			MsgBox % Rect.X1 "," Rect.Y1 " " Rect.X2 "," Rect.Y2
+		Else 
+			Ding(3000,-11,Clipboard "`nColor and Location copied to Clipboard")
 		Return
 	}
 
@@ -7320,7 +6822,7 @@ Return
 			IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
 			IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
 			IniRead, YesPopAllExtraKeys, settings.ini, General, YesPopAllExtraKeys, 0
-			IniRead, ManaThreshold, settings.ini, General, ManaThreshold, 0
+			IniRead, ManaThreshold, settings.ini, General, ManaThreshold, 10
 			IniRead, YesEldritchBattery, settings.ini, General, YesEldritchBattery, 0
 			IniRead, YesStashT1, settings.ini, General, YesStashT1, 1
 			IniRead, YesStashT2, settings.ini, General, YesStashT2, 1
@@ -7336,6 +6838,7 @@ Return
 			IniRead, AreaScale, settings.ini, General, AreaScale, 60
 			IniRead, LVdelay, settings.ini, General, LVdelay, 30
 			IniRead, YesLootChests, settings.ini, General, YesLootChests, 1
+			IniRead, YesGlobeScan, settings.ini, General, YesGlobeScan, 1
 
 			;Settings for Auto-Vendor
 			IniRead, YesSearchForStash, settings.ini, General, YesSearchForStash, 0
@@ -7699,11 +7202,7 @@ Return
 			IniRead, RadioCi, settings.ini, CharacterTypeCheck, Ci, 0
 			
 			;AutoQuit
-			IniRead, RadioQuit20, settings.ini, AutoQuit, Quit20, 1
-			IniRead, RadioQuit30, settings.ini, AutoQuit, Quit30, 0
-			IniRead, RadioQuit40, settings.ini, AutoQuit, Quit40, 0
-			IniRead, RadioQuit50, settings.ini, AutoQuit, Quit50, 0
-			IniRead, RadioQuit60, settings.ini, AutoQuit, Quit60, 0
+			IniRead, QuitBelow, settings.ini, AutoQuit, QuitBelow, 20
 			IniRead, RadioCritQuit, settings.ini, AutoQuit, CritQuit, 1
 			IniRead, RadioPortalQuit, settings.ini, AutoQuit, PortalQuit, 0
 			IniRead, RadioNormalQuit, settings.ini, AutoQuit, NormalQuit, 0
@@ -7905,6 +7404,8 @@ Return
 
 			RegisterHotkeys()
 			checkActiveType()
+			If FileExist(A_ScriptDir "\data\Globe.json")
+				WR_Menu("JSON","Load","Globe")
 			Thread, NoTimers, False		;End Critical
 		Return
 		}
@@ -8013,7 +7514,7 @@ Return
 				Gui 2: Show, x%GuiX% y%GuiY%
 				ToggleExist := True
 				WinActivate, ahk_group POEGameGroup
-				If (GuiStatus("OnChar")) {
+				If (GuiStatus("OnChar") && !YesGlobeScan) {
 					;Life Resample
 					varLife20 := ScreenShot_GetColor(vX_Life,vY_Life20)
 					varLife30 := ScreenShot_GetColor(vX_Life,vY_Life30)
@@ -8058,14 +7559,13 @@ Return
 					;Messagebox	
 					ToolTip, % "Script detects you are on Character`rGrabbed new Samples for Life, ES, and Mana colors"
 					SetTimer, RemoveTT1, -5000
-				} Else {
+				} Else If (!YesGlobeScan) {
 					MsgBox, 262144, No resample, % "Script Could not detect you on a character`rMake sure you calibrate OnChar if you have not`rCannot sample Life, ES, or Mana colors`nAll other settings will save."
 				}
-			} Else {
+			} Else If (!YesGlobeScan) {
 				MsgBox, 262144, No resample, % "Game is not Open`nWill not sample the Life, ES, or Mana colors!`nAll other settings will save."
 			}
 			Gui, Submit, NoHide
-			Gui, Inventory: Submit, NoHide
 			;Life Flasks
 			IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
 			IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
@@ -8133,6 +7633,8 @@ Return
 			IniWrite, %LVdelay%, settings.ini, General, LVdelay
 			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
 			IniWrite, %RelogOnQuit%, settings.ini, General, RelogOnQuit
+			IniWrite, %YesGlobeScan%, settings.ini, General, YesGlobeScan
+			IniWrite, %ManaThreshold%, settings.ini, General, ManaThreshold
 
 			; Overhead Health Bar
 			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
@@ -8300,11 +7802,7 @@ Return
 			IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci	
 			
 			;AutoQuit
-			IniWrite, %RadioQuit20%, settings.ini, AutoQuit, Quit20
-			IniWrite, %RadioQuit30%, settings.ini, AutoQuit, Quit30
-			IniWrite, %RadioQuit40%, settings.ini, AutoQuit, Quit40
-			IniWrite, %RadioQuit50%, settings.ini, AutoQuit, Quit50
-			IniWrite, %RadioQuit60%, settings.ini, AutoQuit, Quit60
+			IniWrite, %QuitBelow%, settings.ini, AutoQuit, QuitBelow
 			IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
 			IniWrite, %RadioPortalQuit%, settings.ini, AutoQuit, PortalQuit
 			IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
@@ -8492,11 +7990,7 @@ Return
 					GuiControl, Enable, RadioUncheck%A_Index%ES
 				}
 			}
-			GuiControl,, RadioQuit20, %RadioQuit20%
-			GuiControl,, RadioQuit30, %RadioQuit30%
-			GuiControl,, RadioQuit40, %RadioQuit40%
-			GuiControl,, RadioQuit50, %RadioQuit50%
-			GuiControl,, RadioQuit60, %RadioQuit60%
+			GuiControl,, QuitBelow, %QuitBelow%
 			GuiControl,, CooldownFlask1, %CooldownFlask1%
 			GuiControl,, CooldownFlask2, %CooldownFlask2%
 			GuiControl,, CooldownFlask3, %CooldownFlask3%
@@ -9210,11 +8704,7 @@ Return
 			IniWrite, %ManaThreshold%, profiles.ini, Profile%Profile%, ManaThreshold
 
 			;AutoQuit
-			IniWrite, %RadioQuit20%, profiles.ini, Profile%Profile%, Quit20
-			IniWrite, %RadioQuit30%, profiles.ini, Profile%Profile%, Quit30
-			IniWrite, %RadioQuit40%, profiles.ini, Profile%Profile%, Quit40
-			IniWrite, %RadioQuit50%, profiles.ini, Profile%Profile%, Quit50
-			IniWrite, %RadioQuit60%, profiles.ini, Profile%Profile%, Quit60
+			IniWrite, %QuitBelow%, profiles.ini, Profile%Profile%, QuitBelow
 			IniWrite, %RadioCritQuit%, profiles.ini, Profile%Profile%, CritQuit
 			IniWrite, %RadioPortalQuit%, profiles.ini, Profile%Profile%, PortalQuit
 			IniWrite, %RadioNormalQuit%, profiles.ini, Profile%Profile%, NormalQuit
@@ -9639,16 +9129,8 @@ Return
 			GuiControl, , ManaThreshold, %ManaThreshold%
 
 			;AutoQuit
-			IniRead, RadioQuit20, profiles.ini, Profile%Profile%, Quit20, 1
-			GuiControl, , RadioQuit20, %RadioQuit20%
-			IniRead, RadioQuit30, profiles.ini, Profile%Profile%, Quit30, 0
-			GuiControl, , RadioQuit30, %RadioQuit30%
-			IniRead, RadioQuit40, profiles.ini, Profile%Profile%, Quit40, 0
-			GuiControl, , RadioQuit40, %RadioQuit40%
-			IniRead, RadioQuit50, profiles.ini, Profile%Profile%, Quit50, 0
-			GuiControl, , RadioQuit50, %RadioQuit50%
-			IniRead, RadioQuit60, profiles.ini, Profile%Profile%, Quit60, 0
-			GuiControl, , RadioQuit60, %RadioQuit60%
+			IniRead, QuitBelow, profiles.ini, Profile%Profile%, QuitBelow, 20
+			GuiControl, , QuitBelow, %QuitBelow%
 			IniRead, RadioCritQuit, profiles.ini, Profile%Profile%, CritQuit, 1
 			GuiControl, , RadioCritQuit, %RadioCritQuit%
 			IniRead, RadioPortalQuit, profiles.ini, Profile%Profile%, PortalQuit, 0
@@ -10911,9 +10393,16 @@ Return
 
 		WR_Menu(Function:="",Var*)
 		{
-			Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn
-				, DefaultWhisper, DefaultCommands, DefaultButtons
-			Global InventoryGuiTabs, StringsGuiTabs
+			Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe
+				, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy
+				,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem
+				, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB
+				, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe
+			Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
+				, Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
+				, Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
+				, Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
+				, Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
 			If (Function = "Inventory")
 			{
 				Gui, 1: Submit
@@ -10922,7 +10411,6 @@ Return
 					Built_Inventory := 1
 					Gui, Inventory: New
 					Gui, Inventory: +AlwaysOnTop -MinimizeBox
-
 					;Save Setting
 					Gui, Inventory: Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 					; Gui, Inventory: Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
@@ -10930,6 +10418,86 @@ Return
 
 					Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys
 
+				Gui, Inventory: Tab, Options
+					Gui, Inventory: Font, Bold
+					Gui, Inventory: Add, Text, 		Section								xm 	ym+25, 				ID/Vend/Stash Options:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%   				, Identify Items?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%         				, Deposit at stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%       				, Sell at vendor?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%             				, Trade Divination?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst% 				, Group Items before stashing?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%     				, Leave Map Un-ID?
+					Gui, Inventory: Add, DropDownList, w40 gUpdateExtra	vYesSkipMaps  				, %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
+					Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 				Section			w370 h120			xm+180 	ym+25, 				Scroll and Gem Locations
+					Gui, Inventory: Font
+
+					Gui, Inventory: Add, Text, 										xs+93 	ys+15,				X-Pos
+					Gui, Inventory: Add, Text, 										x+12, 						Y-Pos
+
+					Gui, Inventory: Add, Text, 										xs+22	y+5, 				Portal Scroll:
+					Gui, Inventory: Add, Edit, 			vPortalScrollX 				x+8		y+-15 	w34	h17, 	%PortalScrollX%
+					Gui, Inventory: Add, Edit, 			vPortalScrollY 				x+8			 	w34	h17, 	%PortalScrollY%	
+					Gui, Inventory: Add, Text, 										xs+14	y+6, 				Wisdm. Scroll:
+					Gui, Inventory: Add, Edit, 			vWisdomScrollX 				x+8		y+-15 	w34	h17, 	%WisdomScrollX%
+					Gui, Inventory: Add, Edit, 			vWisdomScrollY 				x+8			 	w34	h17, 	%WisdomScrollY%	
+					Gui, Inventory: Add, Text, 										xs+19	y+6, 				Current Gem:
+					Gui, Inventory: Add, Edit, 			vCurrentGemX 				x+8		y+-15 	w34	h17, 	%CurrentGemX%
+					Gui, Inventory: Add, Edit, 			vCurrentGemY 				x+8			 	w34	h17, 	%CurrentGemY%
+
+					Gui, Inventory: Add, Text, 										xs+11	y+6, 				Alternate Gem:
+					Gui, Inventory: Add, Edit, 			vAlternateGemX 				x+8		y+-15 	w34	h17, 	%AlternateGemX%
+					Gui, Inventory: Add, Edit, 			vAlternateGemY 				x+8			 	w34	h17, 	%AlternateGemY%
+					Gui, Inventory: Add, Button, 	   gWR_Update vWR_Btn_Locate_PortalScroll			xs+173     		ys+31	h17		, Locate
+					Gui, Inventory: Add, Button, 	   gWR_Update vWR_Btn_Locate_WisdomScroll				     		y+4		h17		, Locate
+					Gui, Inventory: Add, Button, 	   gWR_Update vWR_Btn_Locate_CurrentGem					     		y+4		h17		, Locate
+					Gui, Inventory: Add, Button, 	   gWR_Update vWR_Btn_Locate_AlternateGem				     		y+4		h17		, Locate
+					Gui, Inventory: Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x+13     		ys+33			, Stock Portal?
+					Gui, Inventory: Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         		y+8				, Stock Wisdom?
+					Gui, Inventory: Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
+					Gui, Inventory: Add, Text, 									xs+84 	ys+15		h107 0x11
+					Gui, Inventory: Add, Text, 									x+33 		 		h107 0x11
+					Gui, Inventory: Add, Text, 									x+33 		 		h107 0x11
+
+					IfNotExist, %A_ScriptDir%\data\leagues.json
+					{
+						UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+					}
+					FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+					LeagueIndex := JSON.Load(JSONtext)
+					textList= 
+					For K, V in LeagueIndex
+						textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 			Section		w180 h120				xs 	y+10, 				Item Parse Settings
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
+					Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
+					Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
+					Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
+					Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
+					Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	ys, 				Crafting Tab:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     xs+5	ys+18			, T1?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xs+5	y+8		, Normal?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	y+20, 				Automation:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     xs+5	ys+18			, Search for stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8			, Move to vendor after stash?
+				Gui, Inventory: show , w600 h500, Inventory Settings
 				Gui, Inventory: Tab, Stash Tabs
 					Gui, Inventory: Font, Bold
 					Gui, Inventory: Add, Text, 										x12 	ym+25, 				Stash Management
@@ -11028,83 +10596,8 @@ Return
 					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
 					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
 
-				Gui, Inventory: Tab, Options
-					Gui, Inventory: Font, Bold
-					Gui, Inventory: Add, Text, 		Section								xm 	ym+25, 				ID/Vend/Stash Options:
-					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%   				, Identify Items?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%         				, Deposit at stash?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%       				, Sell at vendor?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%             				, Trade Divination?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst% 				, Group Items before stashing?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%     				, Leave Map Un-ID?
-					Gui, Inventory: Add, DropDownList, w40 gUpdateExtra	vYesSkipMaps  				, %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
-					Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
-
-					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 				Section			w370 h120			xm+180 	ym+25, 				Scroll and Gem Locations
-					Gui, Inventory: Font
-
-					Gui, Inventory: Add, Text, 										xs+93 	ys+15,				X-Pos
-					Gui, Inventory: Add, Text, 										x+12, 						Y-Pos
-
-					Gui, Inventory: Add, Text, 										xs+22	y+5, 				Portal Scroll:
-					Gui, Inventory: Add, Edit, 			vPortalScrollX 				x+7		y+-15 	w34	h17, 	%PortalScrollX%
-					Gui, Inventory: Add, Edit, 			vPortalScrollY 				x+7			 	w34	h17, 	%PortalScrollY%	
-					Gui, Inventory: Add, Text, 										xs+14	y+6, 				Wisdm. Scroll:
-					Gui, Inventory: Add, Edit, 			vWisdomScrollX 				x+7		y+-15 	w34	h17, 	%WisdomScrollX%
-					Gui, Inventory: Add, Edit, 			vWisdomScrollY 				x+7			 	w34	h17, 	%WisdomScrollY%	
-					Gui, Inventory: Add, Text, 										xs+19	y+6, 				Current Gem:
-					Gui, Inventory: Add, Edit, 			vCurrentGemX 				x+7		y+-15 	w34	h17, 	%CurrentGemX%
-					Gui, Inventory: Add, Edit, 			vCurrentGemY 				x+7			 	w34	h17, 	%CurrentGemY%
-
-					Gui, Inventory: Add, Text, 										xs+11	y+6, 				Alternate Gem:
-					Gui, Inventory: Add, Edit, 			vAlternateGemX 				x+7		y+-15 	w34	h17, 	%AlternateGemX%
-					Gui, Inventory: Add, Edit, 			vAlternateGemY 				x+7			 	w34	h17, 	%AlternateGemY%
-					Gui, Inventory: Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	xs+173     		ys+33				, Stock Portal?
-					Gui, Inventory: Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         		y+8				, Stock Wisdom?
-					Gui, Inventory: Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
-					Gui, Inventory: Add, Text, 									xs+84 	ys+15		h107 0x11
-					Gui, Inventory: Add, Text, 									x+33 		 		h107 0x11
-					Gui, Inventory: Add, Text, 									x+33 		 		h107 0x11
-
-					IfNotExist, %A_ScriptDir%\data\leagues.json
-					{
-						UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-					}
-					FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-					LeagueIndex := JSON.Load(JSONtext)
-					textList= 
-					For K, V in LeagueIndex
-						textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
-
-					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 			Section		w180 h120				xs 	y+10, 				Item Parse Settings
-					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
-					Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
-					Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
-					Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
-					Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
-					Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
-
-					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	ys, 				Crafting Tab:
-					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     xs+5	ys+18			, T1?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xs+5	y+8		, Normal?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
-
-					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	y+20, 				Automation:
-					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     xs+5	ys+18			, Search for stash?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8			, Move to vendor after stash?
 				}
-				Gui, Inventory: show , w600 h500, Inventory Settings
+				; Gui, Inventory: show , w600 h500, Inventory Settings
 			}
 			Else If (Function = "Strings")
 			{
@@ -11330,6 +10823,181 @@ Return
 				}
 				Gui, Controller: show , w620 h500, Controller Settings
 			}
+			Else if (Function = "Globe")
+			{
+				Gui, 1: Submit
+				Element := Var[1]
+				If (!Built_Globe || Element = "Reset")
+				{
+					If (Element = "Reset")
+					{
+						Gui, Globe: Destroy
+						Globe := Array_DeepClone(Base.Globe)
+					}
+					Built_Globe := 1
+					Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
+					Gui, Globe: Font, Bold s9 cBlack
+					Gui, Globe: Add, GroupBox, xm ym w205 h100 Section, Life Scan Area
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Button, xs ys w1 h1
+					Gui, Globe: Add, Text, vGlobe_Life_X1 xs+10 yp+20 , % "X1:" Globe.Life.X1
+					Gui, Globe: Add, Text, vGlobe_Life_Y1 x+5 yp , % "Y1:" Globe.Life.Y1
+					Gui, Globe: Add, Text, vGlobe_Life_X2 xs+10 y+8 , % "X2:" Globe.Life.X2
+					Gui, Globe: Add, Text, vGlobe_Life_Y2 x+5 yp , % "Y2:" Globe.Life.Y2
+					Gui, Globe: Add, Text, xs+10 y+8, Color:
+					Gui, Globe: Font
+					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Life x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Life.Color.Hex)
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Text, x+5 yp+2, Variance:
+					Gui, Globe: Add, Text, x+2 yp w35, % Globe.Life.Color.Variance
+					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Life x+1 yp hp, % Globe.Life.Color.Variance
+					TempC := Format("0x{1:06X}",Globe.Life.Color.Hex)
+					Gui, Globe: Add, Progress, vWR_Progress_Color_Life xs+10 y+6 hp w185 c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Life h18 xs+115 ys+15, Choose Area
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Life wp hp xp y+5, Show Area
+
+					Gui, Globe: Font, Bold s9 cBlack
+					Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Mana Scan Area
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Text, vGlobe_Mana_X1 xs+10 yp+20 , % "X1:" Globe.Mana.X1
+					Gui, Globe: Add, Text, vGlobe_Mana_Y1 x+5 yp , % "Y1:" Globe.Mana.Y1
+					Gui, Globe: Add, Text, vGlobe_Mana_X2 xs+10 y+8 , % "X2:" Globe.Mana.X2
+					Gui, Globe: Add, Text, vGlobe_Mana_Y2 x+5 yp , % "Y2:" Globe.Mana.Y2
+					Gui, Globe: Add, Text, xs+10 y+8, Color:
+					Gui, Globe: Font
+					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Mana.Color.Hex)
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Text, x+5 yp+2, Variance:
+					Gui, Globe: Add, Text, x+2 yp w35, % Globe.Mana.Color.Variance
+					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Mana x+1 yp hp, % Globe.Mana.Color.Variance
+					TempC := Format("0x{1:06X}",Globe.Mana.Color.Hex)
+					Gui, Globe: Add, Progress, vWR_Progress_Color_Mana xs+10 y+6 hp w185 c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Mana h18 xs+115 ys+15, Choose Area
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Mana wp hp xp y+5, Show Area
+
+					Gui, Globe: Font, Bold s9 cBlack
+					Gui, Globe: Add, GroupBox, xm y+60 w205 h100 Section, Energy Shield Scan Area
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Text, vGlobe_ES_X1 xs+10 yp+20 , % "X1:" Globe.ES.X1
+					Gui, Globe: Add, Text, vGlobe_ES_Y1 x+5 yp , % "Y1:" Globe.ES.Y1
+					Gui, Globe: Add, Text, vGlobe_ES_X2 xs+10 y+8 , % "X2:" Globe.ES.X2
+					Gui, Globe: Add, Text, vGlobe_ES_Y2 x+5 yp , % "Y2:" Globe.ES.Y2
+					Gui, Globe: Add, Text, xs+10 y+8, Color:
+					Gui, Globe: Font
+					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_ES x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.ES.Color.Hex)
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Text, x+5 yp+2, Variance:
+					Gui, Globe: Add, Text, x+2 yp w35, % Globe.ES.Color.Variance
+					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_ES x+1 yp hp, % Globe.ES.Color.Variance
+					TempC := Format("0x{1:06X}",Globe.ES.Color.Hex)
+					Gui, Globe: Add, Progress, vWR_Progress_Color_ES xs+10 y+6 hp w185 c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_ES h18 xs+115 ys+15, Choose Area
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_ES wp hp xp y+5, Show Area
+
+					Gui, Globe: Font, Bold s9 cBlack
+					Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Eldritch Battery Scan Area
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Text, vGlobe_EB_X1 xs+10 yp+20 , % "X1:" Globe.EB.X1
+					Gui, Globe: Add, Text, vGlobe_EB_Y1 x+5 yp , % "Y1:" Globe.EB.Y1
+					Gui, Globe: Add, Text, vGlobe_EB_X2 xs+10 y+8 , % "X2:" Globe.EB.X2
+					Gui, Globe: Add, Text, vGlobe_EB_Y2 x+5 yp , % "Y2:" Globe.EB.Y2
+					Gui, Globe: Add, Text, xs+10 y+8, Color:
+					Gui, Globe: Font
+					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_EB x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.EB.Color.Hex)
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Text, x+5 yp+2, Variance:
+					Gui, Globe: Add, Text, x+2 yp w35, % Globe.EB.Color.Variance
+					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_EB x+1 yp hp, % Globe.EB.Color.Variance
+					TempC := Format("0x{1:06X}",Globe.EB.Color.Hex)
+					Gui, Globe: Add, Progress, vWR_Progress_Color_EB xs+10 y+6 hp w185 c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_EB h18 xs+115 ys+15, Choose Area
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_EB wp hp xp y+5, Show Area
+
+					Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
+					Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Default Values
+				}
+				Gui, Globe: show , AutoSize, Globe Settings
+			}
+			Else If (Function = "Locate")
+			{
+				LocateType := Var[2]
+				Gui, Hide
+				Loop
+				{
+					MouseGetPos, x, y
+					If (x != oldx || y != oldy)
+						ToolTip, % "-- Locate " LocateType " --`n@ " x "," y "`nPress Ctrl to set"
+					oldx := x, oldy := y
+				} Until GetKeyState("Ctrl")
+				Tooltip
+				%LocateType%X := x, %LocateType%Y := y
+				GuiControl,Inventory: ,% LocateType "X", %x%
+				GuiControl,Inventory: ,% LocateType "Y", %y%
+				MsgBox % x "," y " was captured as the new location for " LocateType
+				Gui, Show
+			}
+			Else if (Function = "Area")
+			{
+				Gui, Submit
+				Grab := LetUserSelectRect()
+				AreaType := Var[2]
+				Globe[AreaType].X1 := Grab.X1, Globe[AreaType].Y1 := Grab.Y1, Globe[AreaType].X2 := Grab.X2, Globe[AreaType].Y2 := Grab.Y2
+				, Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
+				GuiControl, Globe:, Globe_%AreaType%_X1,% "X1:" Grab.X1
+				GuiControl, Globe:, Globe_%AreaType%_Y1,% "Y1:" Grab.Y1
+				GuiControl, Globe:, Globe_%AreaType%_X2,% "X2:" Grab.X2
+				GuiControl, Globe:, Globe_%AreaType%_Y2,% "Y2:" Grab.Y2
+				Gui, Show
+			}
+			Else if (Function = "Show")
+			{
+				Gui, Submit
+				AreaType := Var[2]
+				MouseTip(Globe[AreaType].X1,Globe[AreaType].Y1,Globe[AreaType].Width,Globe[AreaType].Height)
+				Gui, Show
+			}
+			Else if (Function = "Color")
+			{
+				Gui, Submit, NoHide
+				AreaType := Var[2]
+				Element := Var[1]
+				If (Element = "UpDown")
+				{
+					Globe[AreaType].Color.Variance := WR_UpDown_Color_%AreaType%
+					Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+				}
+				Else If (Element = "Edit")
+				{
+					Globe[AreaType].Color.Hex := Format("0x{1:06X}",WR_Edit_Color_%AreaType%)
+					Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+					GuiControl,Globe: +c%WR_Edit_Color_Life%, WR_Progress_Color_%AreaType%
+				}
+				Gui, Show
+			}
+			Else If (Function = "JSON")
+			{
+				Gui, Submit
+				ValueType := Var[2]
+				Element := Var[1]
+				If (Element = "Save")
+				{
+					JSONtext := JSON.Dump(%ValueType%,,2)
+					If FileExist(A_ScriptDir "\data\" ValueType ".json")
+						FileDelete, %A_ScriptDir%\data\%ValueType%.json
+					FileAppend, %JSONtext%, %A_ScriptDir%\data\%ValueType%.json
+				}
+				Else if (Element = "Load")
+				{
+					If FileExist(A_ScriptDir "\data\" ValueType ".json")
+					{
+						FileRead, JSONtext, %A_ScriptDir%\data\%ValueType%.json
+						%ValueType% := JSON.Load(JSONtext)
+					}
+					Else
+						MsgBox, Error loading %ValueType% file
+				}
+				Gui, 1: Show
+			}
 			Return
 
 			WR_Update:
@@ -11342,33 +11010,19 @@ Return
 			}	
 			Return
 
+			GlobeGuiClose:
+			GlobeGuiEscape:
 			InventoryGuiClose:
 			InventoryGuiEscape:
-				Gui, Inventory: Submit
-				Gui, 1: show
-			return
-
 			StringsGuiClose:
 			StringsGuiEscape:
-				Gui, Strings: Submit
-				Gui, 1: show
-			return
-
 			ChatGuiClose:
 			ChatGuiEscape:
-				Gui, Chat: Submit
-				Gui, 1: show
-			return
-
 			ControllerGuiClose:
 			ControllerGuiEscape:
-				Gui, Controller: Submit
-				Gui, 1: show
-			return
-
 			HotkeysGuiClose:
 			HotkeysGuiEscape:
-				Gui, Hotkeys: Submit
+				Gui, Submit
 				Gui, 1: show
 			return
 		}
@@ -11624,6 +11278,7 @@ Return
 			IniWrite, %AreaScale%, settings.ini, General, AreaScale
 			IniWrite, %LVdelay%, settings.ini, General, LVdelay
 			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
+			IniWrite, %YesGlobeScan%, settings.ini, General, YesGlobeScan
 			IniWrite, %YesSearchForStash%, settings.ini, General, YesSearchForStash
 			IniWrite, %YesVendorAfterStash%, settings.ini, General, YesVendorAfterStash
 			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
