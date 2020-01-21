@@ -1,6 +1,14 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.10 January/21/2020
+--------------------------------------------------------------------------------
+Bugfix for Globe scan
+    ES samples were being reversed based on Eldritch Batter option
+    Colors on edit menu were always displaying the Life color once Edited
+    Globe scan was not updating the percentage when the color is not Found
+        it now shows -1 as the percentage when there is no match
+
 Version .09.09 January/21/2020
 --------------------------------------------------------------------------------
 New method of determining the Percentage of Life, ES, and Mana

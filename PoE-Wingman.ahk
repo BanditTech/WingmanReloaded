@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.09
+    Global VersionNumber := .09.10
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
