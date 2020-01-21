@@ -421,7 +421,7 @@
         Global Globe, Player
         If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,0))
             Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
-        If YesEldritchBattery
+        If (!YesEldritchBattery)
         {
             If (ES := FindText(Globe.ES.X1, Globe.ES.Y1, Globe.ES.X2, Globe.ES.Y2, 0,0,Globe.ES.Color.Str,SS,0))
                 Player.Percent.ES := Round(((Globe.ES.Y2 - ES.1.2) / Globe.ES.Height) * 100)
