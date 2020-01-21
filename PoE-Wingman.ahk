@@ -10394,7 +10394,7 @@ Return
 		WR_Menu(Function:="",Var*)
 		{
 			Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe
-				, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy
+				, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC
 				,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem
 				, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB
 				, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe
@@ -10970,7 +10970,8 @@ Return
 				{
 					Globe[AreaType].Color.Hex := Format("0x{1:06X}",WR_Edit_Color_%AreaType%)
 					Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
-					GuiControl,Globe: +c%WR_Edit_Color_Life%, WR_Progress_Color_%AreaType%
+					TempC := WR_Edit_Color_%AreaType%
+					GuiControl,Globe: +c%TempC%, WR_Progress_Color_%AreaType%
 				}
 				Gui, Show
 			}
