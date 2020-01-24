@@ -4,7 +4,7 @@
     #HotkeyInterval 99000000
     #KeyHistory 0
     #SingleInstance force
-	;#Warn UseEnv 
+	#Warn UseEnv 
     #Persistent 
     #InstallMouseHook
     #InstallKeybdHook
@@ -24,7 +24,7 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.10
+    Global VersionNumber := .09.11
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -474,7 +474,7 @@
 		Global CurrentLocation := ""
 		Global CLogFO
 	; ASCII converted strings of images
-		Global 1080_HealthBarStr := "|<1080 Middle Bar>0x221415@0.96$104.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy"
+		Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x221415@0.99$106.Tzzzzzzzzzzzzzzzzu"
 			, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 			, 1080_SellItemsStr := "|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
 			, 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
@@ -915,9 +915,7 @@
 	readFromFile()
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Thread, Priority, 1		;Critical
 	Critical
-	Tooltip, Loading GUI 00`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	Gui Add, Checkbox, 	vDebugMessages Checked%DebugMessages%  gUpdateDebug   	x610 	y5 	    w13 h13
 	Gui Add, Text, 										x515	y5, 				Debug Messages:
 	Gui Add, Checkbox, 	vYesTimeMS Checked%YesTimeMS%  gUpdateDebug   	x490 	y5 	    w13 h13
@@ -1174,7 +1172,6 @@
 	Gui, Font
 	Gui, Add, Text, 									xs+161 	ys+41 		h135 0x11
 
-	Tooltip, Loading GUI 30`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 
 	;Gui,Font,s9 cBlack Bold Underline
 	;Gui,Add,GroupBox, xs+5 ys+10 w190 h35											,
@@ -1294,7 +1291,6 @@
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 	Gui, Add, Button,  		gft_Start 		x+5			 		h23, 	Grab Icon
 
-	Tooltip, Loading GUI 60`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;#######################################################################################################Configuration Tab
 	Gui, Tab, Configuration
 	Gui, Add, Text, 									x279 	y23		w1	h441 0x7
@@ -1431,7 +1427,6 @@
 	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
 	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
 
-	Tooltip, Loading GUI 80`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	Gui, +LastFound
 	Gui, +AlwaysOnTop
 	Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
@@ -1618,7 +1613,6 @@
 	Gui, ItemInfo: Add, Edit, vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
 	;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
 	;Gui, ItemInfo: Hide
-	Tooltip, Loading GUI 100`%, %GuiX%, %GuiY%, 1 
 	If (DebugMessages)
 	{
 		GuiControl, Show, YesTimeMS
@@ -1638,8 +1632,6 @@
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  Grab Ninja Database, Start Scaling resolution values, and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	; Rescale()
-	Tooltip, Loading Ninja Database,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
 	;Begin scaling resolution values
 	IfWinExist, ahk_group POEGameGroup
 		{
@@ -1729,14 +1721,19 @@
 	Else
 		LoadIgnoreArray()
 
-
 	;Update ninja Database
 	If YesNinjaDatabase
 	{
+		l := apiList.MaxIndex()
 		IfNotExist, %A_ScriptDir%\data\Ninja.json
 		{
+			Load_BarControl(0,"Initializing",1)
 			For k, apiKey in apiList
+			{
 				ScrapeNinjaData(apiKey)
+				Load_BarControl(k/l*100,"Downloading " k " of " l " (" apiKey ")")
+			}
+			Load_BarControl(100,"Database Updated",-1)
 			JSONtext := JSON.Dump(Ninja,,2)
 			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
 			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
@@ -1745,18 +1742,18 @@
 		{
 			If DaysSince()
 			{
+				Load_BarControl(0,"Initializing",1)
 				For k, apiKey in apiList
 				{
 					ScrapeNinjaData(apiKey)
-					Round((A_Index / apiList.MaxIndex()) * 100)
-					Tooltip,% "Updating Ninja Database " Round((A_Index / apiList.MaxIndex()) * 100)"`%",% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
+					Load_BarControl(k/l*100,"Downloaded " k " of " l " (" apiKey ")")
 				}
-					ScrapeNinjaData(apiKey)
 				JSONtext := JSON.Dump(Ninja,,2)
 				FileDelete, %A_ScriptDir%\data\Ninja.json
 				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
 				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
 				LastDatabaseParseDate := Date_now
+				Load_BarControl(100,"Database Updated",-1)
 			}
 			Else
 			{
@@ -1765,7 +1762,7 @@
 			}
 		}
 	}
-	Thread, Priority, 0		;End Critical
+
 	Critical, Off
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1790,7 +1787,6 @@
 	}
 	Else If (ShowOnStart)
 		Hotkeys()
-
 
 ; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1974,7 +1970,7 @@ Return
 				Grid := RandClick(GridX, GridY)
 				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
 				{   
-					Ding(500,1,"Hit Scroll")
+					Ding(500,11,"Hit Scroll")
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 				} 
 				PointColor := ScreenShot_GetColor(GridX,GridY)
@@ -2112,7 +2108,7 @@ Return
 				Grid := RandClick(GridX, GridY)
 				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
 				{   
-					Ding(500,1,"Hit Scroll")
+					Ding(500,11,"Hit Scroll")
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 				} 
 				PointColor := ScreenShot_GetColor(GridX,GridY)
@@ -2363,7 +2359,7 @@ Return
 				Grid := RandClick(GridX, GridY)
 				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
 				{   
-					Ding(500,1,"Hit Scroll")
+					Ding(500,11,"Hit Scroll")
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 				} 
 				PointColor := ScreenShot_GetColor(GridX,GridY)
@@ -2412,7 +2408,7 @@ Return
 				Grid := RandClick(GridX, GridY)
 				If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
 				{   
-					Ding(500,1,"Hit Scroll")
+					Ding(500,11,"Hit Scroll")
 					Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 				} 
 				PointColor := ScreenShot_GetColor(GridX,GridY)
@@ -2538,6 +2534,8 @@ Return
 			Prop.DoubleCorrupted := False
 			Prop.Variant := 0
 			Prop.CraftingBase := 0
+			Prop.CLF_MatchGroup := ""
+			Prop.CLF_SendTab := 0
 
 		Stats := OrderedArray()
 			Stats.MapTier := 0
@@ -6368,27 +6366,27 @@ Return
 			Keywait, Alt
 			BlockInput, MouseMove
 			MouseGetPos xx, yy
-			RandomSleep(90,120)
-			
-			Send {%hotkeyCloseAllUI%} 
-			RandomSleep(90,120)
-			
-			Send {%hotkeyInventory%} 
-			RandomSleep(90,120)
-			
+			RandomSleep(45,45)
+
+			If !GuiStatus("OnInventory")
+			{			
+				Send {%hotkeyInventory%} 
+				RandomSleep(45,45)
+			}
+
 			RightClick(CurrentGemX, CurrentGemY)
-			RandomSleep(90,120)
+			RandomSleep(45,45)
 			
-			if (WeaponSwap==1) 
+			if (AlternateGemOnSecondarySlot) 
 				Send {%hotkeyWeaponSwapKey%} 
-			RandomSleep(90,120)
+			RandomSleep(45,45)
 			
 			LeftClick(AlternateGemX, AlternateGemY)
 				RandomSleep(90,120)
 			
-			if (WeaponSwap==1) 
+			if (AlternateGemOnSecondarySlot) 
 				Send {%hotkeyWeaponSwapKey%} 
-			RandomSleep(90,120)
+			RandomSleep(45,45)
 			
 			LeftClick(CurrentGemX, CurrentGemY)
 				RandomSleep(90,120)
@@ -6773,7 +6771,13 @@ Return
 		CoordCommand:
 		Rect := LetUserSelectRect(1)
 		If (Rect)
-			MsgBox % Rect.X1 "," Rect.Y1 " " Rect.X2 "," Rect.Y2
+		{
+			T1 := A_TickCount
+			Ding(10000,-11,"Building an average of area colors`nThis may take some time")
+			AvgColor := AverageAreaColor(Rect)
+			Ding(100,-11,"")
+			MsgBox, 262144, Calculation Complete, % (Clipboard := ( "Average Color of Area:  " AvgColor "`n`n" "X1:" Rect.X1 ", Y1:" Rect.Y1 "`tX2:" Rect.X2 ", Y2:" Rect.Y2 )) "`n`nThis information has been placed in the clipboard`n`nCalculation Took " (T1 := A_TickCount - T1) " MS for " (T_Area := ((Rect.X2 - Rect.X1) * (Rect.Y2 - Rect.Y1))) " Pixels`n`n" Round(T1 / T_Area,3) " MS per pixel"
+		}
 		Else 
 			Ding(3000,-11,Clipboard "`nColor and Location copied to Clipboard")
 		Return
@@ -9575,8 +9579,6 @@ Return
 				Return
 			}
 
-			
-			
 			if WinActive(ahk_group POEGameGroup){
 				;Now we need to get the user input for every grid element if its empty or not
 
@@ -9593,7 +9595,6 @@ Return
 					return
 				}
 
-				varIdColor := []
 				varEmptyInvSlotColor := []
 				WinActivate, ahk_group POEGameGroup
 
@@ -10289,7 +10290,7 @@ Return
 
 		OHB_Editor()
 		{
-			Static OHB_Width := 104, OHB_Height := 2, OHB_Variance := 4, OHB_Split := ToRGB(0x221415), Initialized := 0, OHB_CReset, OHB_Test
+			Static OHB_Width := 104, OHB_Height := 1, OHB_Variance := 1, OHB_LR_border:=1, OHB_Split := ToRGB(0x221415), Initialized := 0, OHB_CReset, OHB_Test
 			global OHB_Preview,OHB_r,OHB_g,OHB_b, OHB_Color = 0x221415,OHB_StringEdit
 			If !Initialized
 			{
@@ -10299,7 +10300,7 @@ Return
 				Gui, OHB: add, Text, xm , Output String:
 				Gui, OHB: add, Button, x+120 yp hp wp vOHB_Test gOHBUpdate, Test String
 				Gui, OHB: Font,
-				Gui, OHB: add, edit, xm vOHB_StringEdit gOHBUpdate w480 h25, % """" Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height) """"
+				Gui, OHB: add, edit, xm vOHB_StringEdit gOHBUpdate w480 h25, % """" Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height,OHB_LR_border) """"
 				Gui, OHB: Font, cBlack s20
 				Gui, OHB: add, text, xm y+35, Width:
 				Gui, OHB: add, text, x+0 yp w65, %OHB_Width%
@@ -10342,11 +10343,11 @@ Return
 						MsgBox, 262144, Cannot find game, Make sure you have the game open
 						Return
 					}
-					If (Bar:=FindText(GameX + Round((GameW / 2)-(OHB_Width/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHB_Width/2)), Round(GameH / (1080 / 370)) , 0, 0, OHB_StringEdit))
+					If (Bar:=FindText(GameX + Round((GameW / 2)-(OHB_Width/2 + 1)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2 + 1)+(OHB_Width/2)), Round(GameH / (1080 / 370)) , 0, 0, OHB_StringEdit))
 					{
-						MouseTip(Bar.1.1, Bar.1.2, Bar.1.3, Bar.1.4)
-						OHB_Editor()
 						MsgBox, 262144, String Found, OHB string was found!`nMake sure the highlighted matched area is the entire width of the healthbar`nThe red and blue flashing boxes should go to the very inner edge`n`nIf you are done, copy the string into the String Tab 
+						MouseTip(Bar.1.1, Bar.1.2, (Bar.1.3<2?2:Bar.1.3), (Bar.1.4<2?2:Bar.1.4))
+						OHB_Editor()
 					}
 					Else
 					{
@@ -10381,7 +10382,7 @@ Return
 					GuiControl,OHB: , OHB_b, % OHB_Split.b
 					GuiControl,OHB: +c%OHB_Color%, OHB_Preview
 				}
-				GuiControl, , OHB_StringEdit, % """" Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height) """"
+				GuiControl, , OHB_StringEdit, % """" Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height,OHB_LR_border) """"
 			Return
 
 			OHBGuiClose:
@@ -10717,8 +10718,6 @@ Return
 					Gui, Chat: Add,GroupBox,Section  w60 h85											,Modifier
 					Gui, Chat: Font,
 
-					Tooltip, Loading GUI 80`%,% A_ScreenWidth - A_ScreenWidth,% A_ScreenHeight - 70, 1 
-
 					Gui, Chat: Font,s9,Arial
 					Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
 					Gui, Chat: Add, Edit, y+8        w50 h23 v2Prefix2, %2Prefix2%
@@ -10958,9 +10957,11 @@ Return
 			}
 			Else if (Function = "Color")
 			{
-				Gui, Submit, NoHide
 				AreaType := Var[2]
 				Element := Var[1]
+				Split := {}
+				Split.hex := Globe[AreaType].Color.Hex
+				Gui, Submit, NoHide
 				If (Element = "UpDown")
 				{
 					Globe[AreaType].Color.Variance := WR_UpDown_Color_%AreaType%
@@ -10968,12 +10969,27 @@ Return
 				}
 				Else If (Element = "Edit")
 				{
-					Globe[AreaType].Color.Hex := Format("0x{1:06X}",WR_Edit_Color_%AreaType%)
+					CurPos := 1
+					newhex := ""
+					Loop, 3
+					{
+						RegExMatch(WR_Edit_Color_%AreaType%, "O)(0x[0-9A-Fa-f]{6})", m,CurPos)
+						CurPos := m.Pos(0) + m.Len(0)
+						If (m.1 != Split.hex && m.1 != "")
+						{
+							Split.new := m.1
+							Break
+						}
+					}
+					If (Split.new != "")
+						m := Split.new
+					Else
+						m := Split.hex
+					Globe[AreaType].Color.Hex := WR_Edit_Color_%AreaType% := Format("0x{1:06X}",m)
+					GuiControl,Globe: , WR_Edit_Color_%AreaType%, % WR_Edit_Color_%AreaType%
 					Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
-					TempC := WR_Edit_Color_%AreaType%
-					GuiControl,Globe: +c%TempC%, WR_Progress_Color_%AreaType%
+					GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
 				}
-				Gui, Show
 			}
 			Else If (Function = "JSON")
 			{
@@ -10986,6 +11002,7 @@ Return
 					If FileExist(A_ScriptDir "\data\" ValueType ".json")
 						FileDelete, %A_ScriptDir%\data\%ValueType%.json
 					FileAppend, %JSONtext%, %A_ScriptDir%\data\%ValueType%.json
+					Gui, 1: Show
 				}
 				Else if (Element = "Load")
 				{
@@ -10997,7 +11014,6 @@ Return
 					Else
 						MsgBox, Error loading %ValueType% file
 				}
-				Gui, 1: Show
 			}
 			Return
 

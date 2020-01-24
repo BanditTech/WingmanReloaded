@@ -447,7 +447,7 @@
                }
           } Else {
                If (ToggleExist){
-                    Gui, 1: Show, Hide
+                    Gui, 1: Show, NA Hide
                     ToggleExist := False
                     RescaleRan := False
                }
@@ -1152,7 +1152,7 @@
                     {
                          JoystickNumber := A_Index
                          If YesController
-                              Ding(3000,1,"Detected Joystick on the " . A_Index . " port.")
+                              ; Ding(3000,1,"Detected Joystick on the " . A_Index . " port.")
                          JoystickActive:=True
                          break
                     }
@@ -1160,7 +1160,7 @@
                if JoystickNumber <= 0
                {
                     If YesController
-                         Ding(3000,1,"The system does not appear to have any joysticks.")
+                         ; Ding(3000,1,"The system does not appear to have any joysticks.")
                     JoystickActive:=False
                }
           }
@@ -1168,7 +1168,7 @@
           {
                If YesController
                {
-                    Ding(3000,1,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
+                    ; Ding(3000,1,"System already has a Joystick on Port " . JoystickNumber ,"Set Joystick Number to 0 for auto-detect.")
                     JoystickActive := True
                }
                Else

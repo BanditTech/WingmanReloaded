@@ -1,6 +1,44 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .09.11 January/24/2020
+--------------------------------------------------------------------------------
+Coord tool has been given a Zoom window which gives much more control for samples
+    Use the Mouse scroll wheel to zoom in or out
+    Use the arrow keys to move the mouse one pixel in any direction
+    Zoom window will move out of the way if you place the mouse within the area
+    Selecting an area provides the average color of unique color variations
+        Will display a loading bar to indicate the progress of calculation
+        Press Escape to cancel during calculation
+Test the new functionality by pressing the coord hotkey (Alt+O)
+
+Color editboxes on the Globe Scanner settings menu now only accept 6 digit hex
+    You can paste in the results of the coord tool to update to that color
+    If the resulting hex of the editbox is not valid it will revert to last value
+
+Adjustment to OHB, redesigned editor output
+    OHB string builder menu now designed to add non matching bit at the end
+        This is so that it will not match a full screen filled with that color
+        It should now only match with the healthbar and nothing else
+    Default Height reduced from 2 to 1
+    Default Variation reduced from 4 to 1
+Select the new default string from the dropdown options
+
+Large logfile error has been given a more noticable error popup
+
+PoE.Ninja Database has been given a loading bar when downloading
+
+Bugfix for Weapon Swap option of the Gem Swap function
+
+Bugfix for GUI element being shown while Show gui on startup was disabled
+
+Added to the library:
+    GDI+
+    Notify
+    DrawZoom
+    XInput
+    LoaderBar
+
 Version .09.10 January/21/2020
 --------------------------------------------------------------------------------
 Bugfix for Globe scan
