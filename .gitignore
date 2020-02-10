@@ -1,13 +1,5 @@
-settings.bak
-settings.ini
-profiles.ini
-error.txt
-Log.txt
 GitHub/
+save/
+temp/
 data/Ninja.json
 data/leagues.json
-data/LootFilter.json
-data/LootFilterTabs.json
-data/LootFilter.ini
-data/IgnoredSlot.json
-data/Globe.json

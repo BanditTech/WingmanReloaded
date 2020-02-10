@@ -351,20 +351,293 @@
         POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
         POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
         POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+        POnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
         If OnMines
         POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
         Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
         OnDetonate := (POnDetonate=varOnDetonate?True:False)
-		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))
+		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph))
 	}
+    ; PanelManager - This class manages every gamestate within one place
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Class PanelManager
+    {
+        __New(){
+            This.List := {}
+        }
+        AddPanel(Pixel){
+            This.List[Pixel.Name] := Pixel
+        }
+        AddFailsafe(Pixel){
+            This.Failsafe := Pixel
+        }
+        Status(ScreenShot := 1){
+            Active := ""
+            If ScreenShot
+                ScreenShot(GameX,GameY,GameX + GameW,GameY + GameH)
+            If IsObject(This.Failsafe)
+            {
+                If !This.Failsafe.On()
+                    Active .= This.Failsafe.Name
+            }
+            For k, Panel in This.List
+            {
+                If Panel.On()
+                    Active .= (Active != "" ? " " : "") Panel.Name
+            }
+            Return This.Active := (Active != "" ? Active : False)
+        }
+    }
+    ; PanelStatus - This class manages pixel sample and comparison
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Class PixelStatus
+    {
+        __New(Name,X,Y,Hex){
+            This.Name := Name
+            This.X := X
+            This.Y := Y
+            This.Hex := Hex
+            This.Status := False
+        }
+        On(){
+            pSample := Screenshot_GetColor(This.X,This.Y)
+            Return (This.Status := (pSample = This.Hex ? True : False))
+        }
+    }
+    ; ColorPicker - Create a color Picker into any GUI window or stand alone
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    class ColorPicker {
+        __New(pGroup_GUI_NAME:="ColorPicker", pGroup_ID:="ColorPicker" , pGroup_X:=10 , pGroup_Y:=30 , pGroup_W:=90 , pGroup_H:=280, pGroup_SideBar:=110, pGroup_Start_Color:="000000"){
+            This.GUI_NAME := pGroup_GUI_NAME
+            This.ID := pGroup_ID
+            This.X := pGroup_X
+            This.Y := pGroup_Y
+            This.W := pGroup_W
+            This.H := pGroup_H
+            This.SideBar := pGroup_SideBar
+            This.Spacing := This.W // 2.5
+            This.W_Bar := This.W // 4
+            This.Start_Color := pGroup_Start_Color
+            This.Start_Red := (0xff0000 & pGroup_Start_Color) >> 16
+            This.Start_Green := (0x00ff00 & pGroup_Start_Color) >> 8
+            This.Start_Blue := 0x0000ff & pGroup_Start_Color
+
+            ; Gui,% This.GUI_NAME ":Destroy"
+            Gui,% This.GUI_NAME ":+AlwaysOnTop -DPIScale +ToolWindow"
+            Gui,% This.GUI_NAME ":Color",000000
+            Gui,% This.GUI_NAME ":Font",s10 w600
+
+            Edit_Trigger := This.UpdateColor.BIND( THIS ) 
+
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 9 " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Red_Edit_Hex" ,% Format("{1:02X}",This.Start_Red)
+            This.Slider_Red := New Progress_Slider(This.GUI_NAME,This.ID "_Red",This.X ,This.Y,This.W_Bar,This.H,0,255,This.Start_Red,"550000","BB0000",2,This.ID "_Red_Edit",0,1)
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 10 " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Red_Edit hwndRedTriggerhwnd",% This.Start_Red
+            GUICONTROL +G , %RedTriggerhwnd% , % Edit_Trigger
+
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 9 + This.Spacing " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Green_Edit_Hex" ,% Format("{1:02X}",This.Start_Green)
+            This.Slider_Green := New Progress_Slider(This.GUI_NAME,This.ID "_Green",This.X + This.Spacing,This.Y,This.W_Bar,This.H,0,255,This.Start_Green,"005500","00BB00",2,This.ID "_Green_Edit",0,1)
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 10 + This.Spacing " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Green_Edit hwndGreenTriggerhwnd" ,% This.Start_Green
+            GUICONTROL +G , %GreenTriggerhwnd% , % Edit_Trigger
+
+
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 9 + This.Spacing * 2 " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Blue_Edit_Hex" ,% Format("{1:02X}",This.Start_Blue)
+            This.Slider_Blue := New Progress_Slider(This.GUI_NAME,This.ID "_Blue",This.X + This.Spacing*2,This.Y,This.W_Bar,This.H,0,255,This.Start_Blue,"000055","0000BB",2,This.ID "_Blue_Edit",0,1)
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 10 + This.Spacing * 2 " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Blue_Edit hwndBlueTriggerhwnd" ,% This.Start_Blue
+            GUICONTROL +G , %BlueTriggerhwnd% , % Edit_Trigger
+
+
+            Gui,% This.GUI_NAME ":Font",s15 w600
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X + This.Spacing * 3 " y" This.Y - 22 " w" This.SideBar "h17 -E0x200 Center Disabled v" This.ID "_Group_Color_Hex" ,% Format("0x{1:06X}",This.Start_Color)
+        
+            Copy_Trigger := This.CopyColor.BIND( THIS )
+
+            Gui,% This.GUI_NAME ":Add",Text,% "x" This.X + This.Spacing * 3 " y" This.Y " w" This.SideBar " h" This.H // 2 + 40 " hwndCopyTriggerhwnd center",
+            GUICONTROL +G , %CopyTriggerhwnd% , % Copy_Trigger
+            
+            Gui,% This.GUI_NAME ":Add",Progress,% "x" This.X + This.Spacing * 3 " y" This.Y " w" This.SideBar " h" This.H // 2 + 20 " Background000000 c" Format("{1:06X}",This.Start_Color) " v" This.ID "_Group_Color", 100
+
+            Gui,% This.GUI_NAME ":Font",s25 w600 c77BB77
+            Gui,% This.GUI_NAME ":Add",Text,% "x" This.X + This.Spacing * 3 " y" This.Y + This.H // 2 + 30 " w" This.SideBar " h" (This.H // 2 - 40) // 2 + 10 " hwndCopyTriggerhwnd center", Copy
+            GUICONTROL +G , %CopyTriggerhwnd% , % Copy_Trigger
+            Gui,% This.GUI_NAME ":Font",s25 w600 cBB7777
+            Gui,% This.GUI_NAME ":Add",Text,% "x" This.X + This.Spacing * 3 " y" This.Y + This.H // 2 + 40 + 10 + (This.H // 2 - 40) // 2 " w" This.SideBar " h" (This.H // 2 - 40) // 2 + 10 " gCoordCommand center", Coord
+
+
+            ; Gui,% This.GUI_NAME ":Show", AutoSize, Color Picker
+        }
+        UpdateColor(){
+            GuiControl, % This.GUI_NAME ": +c" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value), % This.ID "_Group_Color",
+            GuiControl, % This.GUI_NAME ":", % This.ID "_Group_Color_Hex", % "0x" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
+        }
+        SetColor(newColor){
+                This.Start_Color := Format("0x{1:06X}",newColor)
+                This.Start_Red := (0xff0000 & newColor) >> 16
+                This.Start_Green := (0x00ff00 & newColor) >> 8
+                This.Start_Blue := 0x0000ff & newColor
+                This.Slider_Red.SET_pSlider(This.Start_Red)
+                This.Slider_Green.SET_pSlider(This.Start_Green)
+                This.Slider_Blue.SET_pSlider(This.Start_Blue)
+        }
+        CopyColor(){
+            Clipboard := "0x" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
+            ; MsgBox, 262144, Color Copied, The Hex color code has been copied to the Clipboard `n`n %Clipboard%
+            Notify("Copied To Clipboard`n`n" Clipboard,"",3)
+        }
+    }
+    ; Progress_Slider - Class written by Hellbent on AHK forum, adjusted by Bandit
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    class Progress_Slider	{
+        __New(pSlider_GUI_NAME , pSlider_Control_ID , pSlider_X , pSlider_Y , pSlider_W , pSlider_H , pSlider_Range_Start , pSlider_Range_End , pSlider_Value:=0 , pSlider_Background_Color := "Black" , pSlider_Top_Color := "Red" , pSlider_Pair_With_Edit := 0 , pSlider_Paired_Edit_ID := "" , pSlider_Use_Tooltip := 0 ,  pSlider_Vertical := 0 , pSlider_Smooth := 1, SaveINISection := ""){
+            This.GUI_NAME:=pSlider_GUI_NAME
+            This.Control_ID:=pSlider_Control_ID
+            This.X := pSlider_X
+            This.Y := pSlider_Y
+            This.W := pSlider_W
+            This.H := pSlider_H
+            This.Start_Range := pSlider_Range_Start
+            This.End_Range := pSlider_Range_End
+            This.Slider_Value := pSlider_Value
+            This.Background_Color := pSlider_Background_Color
+            This.Top_Color := pSlider_Top_Color
+            This.Vertical := pSlider_Vertical
+            This.Smooth := pSlider_Smooth
+            This.Pair_With_Edit := pSlider_Pair_With_Edit
+                ; Options
+                ; 0 := Do not pair with edit
+                ; 1 := Pair with only Decimal Edit
+                ; 2 := Pair with both Decimal and Hex Edit
+                ; 3 := Pair with only Hex Edit
+            This.Paired_Edit_ID := pSlider_Paired_Edit_ID
+            This.Paired_Edit_ID_Hex := (pSlider_Paired_Edit_ID != "" ? pSlider_Paired_Edit_ID . "_Hex" : "")
+            This.Use_Tooltip := pSlider_Use_Tooltip
+            This.SaveINISection := SaveINISection
+            This.Add_pSlider()
+        }
+        Add_pSlider(){
+            Gui, % This.GUI_NAME ":Add" , Text , % "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd"
+            pSlider_Trigger := This.Adjust_pSlider.BIND( THIS ) 
+            GUICONTROL +G , %pSliderTriggerhwnd% , % pSlider_Trigger
+            if(This.Smooth=1&&This.Vertical=0)
+                Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID ,% This.Slider_Value
+            else if(This.Smooth=0&&This.Vertical=0)
+                Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID ,% This.Slider_Value
+            else if(This.Smooth=1&&This.Vertical=1)
+                Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID ,% This.Slider_Value
+            else if(This.Smooth=0&&This.Vertical=1)
+                Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID ,% This.Slider_Value
+        }
+        Adjust_pSlider(){
+            Static OldVal
+            CoordMode,Mouse,Client
+            while(GetKeyState("LButton")){
+                Static LastTT := 0
+                MouseGetPos,pSlider_Temp_X,pSlider_Temp_Y
+                if(This.Vertical=0)
+                    This.Slider_Value := Round((pSlider_Temp_X - This.X ) / ( This.W / (This.End_Range - This.Start_Range) )) + This.Start_Range
+                else
+                    This.Slider_Value := Round(((pSlider_Temp_Y - This.Y ) / ( This.H / (This.End_Range - This.Start_Range) )) + This.Start_Range )* -1 + This.End_Range
+                if(This.Slider_Value > This.End_Range )
+                    This.Slider_Value:=This.End_Range
+                else if(This.Slider_Value<This.Start_Range)
+                    This.Slider_Value:=This.Start_Range
+                GuiControl,% This.GUI_NAME ":" ,% This.Control_ID , % This.Slider_Value 
+                if(This.Pair_With_Edit>=1 && This.Slider_Value != OldVal)
+                {
+                    OldVal := This.Slider_Value
+                    if(This.Pair_With_Edit<=2)
+                    {
+                        GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value
+                        IniWrite, % This.Slider_Value, Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
+                    }
+                    if(This.Pair_With_Edit>=2)
+                    GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+                }
+                if(This.Add_Method!=0)
+                {
+                    
+                    GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+                }
+                if(This.Use_Tooltip=1 && A_TickCount - LastTT > 100 )
+                {
+                    LastTT := A_TickCount
+                    ToolTip , % This.Slider_Value 
+                }
+            }
+            if(This.Use_Tooltip=1)
+                ToolTip,
+        }
+        SET_pSlider(NEW_pSlider_Value){
+            This.Slider_Value := NEW_pSlider_Value
+            GuiControl,% This.GUI_NAME ":" ,% This.Control_ID , % This.Slider_Value
+            if(This.Pair_With_Edit>=1)
+            {
+                if(This.Pair_With_Edit<=2)
+                GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value 
+                if(This.Pair_With_Edit>=2)
+                GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+            }
+        }
+    }
+    ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    PredictPrice(Switch:="")
+    {
+        Static ItemList := []
+        FoundMatch := False
+        If (Prop.Rarity_Digit = 3 && (Prop.SpecialType = "" || Prop.SpecialType = "6Link" || Prop.SpecialType = "5Link") && YesPredictivePrice != "Off")
+        {
+            For k, obj in ItemList
+            {
+                If (obj.Clip_Contents = Clip_Contents)
+                {
+                    FoundMatch := True
+                    PriceObj := obj
+                    Break
+                }
+            }
+            If !FoundMatch
+            {
+                PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
+                PriceObj.Clip_Contents := Clip_Contents
+                If (YesPredictivePrice = "Low")
+                    Price := SelectedPrice := PriceObj.min
+                Else If (YesPredictivePrice = "Avg")
+                    Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
+                Else If (YesPredictivePrice = "High")
+                    Price := SelectedPrice := PriceObj.max
+
+                Price := Price * (YesPredictivePrice_Percent_Val / 100)
+                PriceObj.Avg := (PriceObj.min + PriceObj.max) / 2
+                PriceObj.Price := Price
+
+                tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " <<  " Format("{1:0.3g}", PriceObj.Avg ) "  >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
+                    . "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
+                For k, reason in PriceObj.pred_explanation
+                    tt .= "`n" Round(reason.2 * 100) "`% " reason.1
+                tt.= "`nEnd Of Predicive Price Information"
+                PriceObj.tt := tt
+                ItemList.Push(PriceObj)
+            }
+        }
+        Else
+            Return 0
+
+        If !(PriceObj.max > 0)
+            Return 0
+
+        If (Switch = "Obj")
+            Return PriceObj
+        Else
+            Return PriceObj.Price
+    }
     ; CheckOHB - Determine the position of the OHB
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CheckOHB()
     {
-        If WinActive(GameStr)
+        If WinExist(GameStr)
         {
             if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
-                Return ok.1.1 + ok.1.2
+                Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
             Else
             {
                 Ding(500,6,"OHB Not Found")
@@ -418,14 +691,15 @@
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ScanGlobe(SS:=0)
     {
-        Global Globe, Player
-        If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,0))
+        Global Globe, Player, GlobeActive
+        Static OldLife, OldES, OldMana
+        If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,1))
             Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
         Else
             Player.Percent.Life := -1
         If (YesEldritchBattery)
         {
-            If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,0))
+            If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,1))
                 Player.Percent.ES := Round(((Globe.EB.Y2 - EB.1.2) / Globe.EB.Height) * 100)
             Else
                 Player.Percent.ES := -1
@@ -437,10 +711,28 @@
             Else
                 Player.Percent.ES := -1
         }
-        If (Mana := FindText(Globe.Mana.X1, Globe.Mana.Y1, Globe.Mana.X2, Globe.Mana.Y2, 0,0,Globe.Mana.Color.Str,SS,0))
+        If (Mana := FindText(Globe.Mana.X1, Globe.Mana.Y1, Globe.Mana.X2, Globe.Mana.Y2, 0,0,Globe.Mana.Color.Str,SS,1))
             Player.Percent.Mana := Round(((Globe.Mana.Y2 - Mana.1.2) / Globe.Mana.Height) * 100)
         Else
             Player.Percent.Mana := -1
+        If GlobeActive
+        {
+            If (Player.Percent.Life != OldLife)
+            {
+                OldLife := Player.Percent.Life
+                GuiControl,Globe:, Globe_Percent_Life, % "Life " Player.Percent.Life "`%"
+            }
+            If (Player.Percent.ES != OldES)
+            {
+                OldES := Player.Percent.ES
+                GuiControl,Globe: , Globe_Percent_ES, % "ES " Player.Percent.ES "`%"
+            }
+            If (Player.Percent.Mana != OldMana)
+            {
+                OldMana := Player.Percent.Mana
+                GuiControl,Globe: , Globe_Percent_Mana, % "Mana " Player.Percent.Mana "`%"
+            }
+        }
     }
     ; GetPercent - Determine the percentage of health
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -510,6 +802,9 @@
                 ;Status Check OnDelveChart
                 global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
                 global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Status Check OnMetamporph
+                global vX_OnMetamorph:=GameX + Round(GameW / (1920 / 785))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (1920 / 95))
                 global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -593,6 +888,9 @@
                 ;Status Check OnDelveChart
                 global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
                 global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Status Check OnMetamorph
+                global vX_OnMetamorph:=GameX + Round(GameW / (1440 / 545))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (1440 / 95))
                 global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -676,6 +974,9 @@
                 ;Status Check OnDelveChart
                 global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
                 global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Status Check OnMetamorph
+                global vX_OnMetamorph:=GameX + Round(GameW / (2560 / 1105))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (2560 / 95))
                 global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -836,6 +1137,9 @@
                 ;Status Check OnDelveChart
                 global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
                 global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Status Check OnMetamorph
+                global vX_OnMetamorph:=GameX + Round(GameW / (3840 / 1745))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (3840 / 95))
                 global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -1951,6 +2255,7 @@
             }
             Catch, loaderror
             {
+                Ding(500,-10,"Critical Load Error`nSize: " . errchk . "MB")
                 CurrentLocation := "Client File Load Error"
                 Log("Error loading File, Submit information about your client.txt",loaderror)
             }
@@ -2076,136 +2381,115 @@
 	{
 		If InStr(apiString, "Fragment")
 		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
 			If ErrorLevel{
-				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid or an API change
 			}
 			Else If (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
 				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language") 
-					{
-						for index, indexArr in objlist
-						{ ; This will extract the information and standardize the chaos value to one variable.
-							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-							grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
-							grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
-							grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
-							grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
-							grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
-							grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
-							grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"pay":grabPayVal
-								,"receive":grabRecVal
-								,"paySparkLine":grabPaySparklineVal
-								,"receiveSparkLine":grabRecSparklineVal
-								,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-								,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
-							Ninja[apiString] := holder[obj]
-						}
-					}
-				}
-				FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+                for index, indexArr in holder.lines
+                { ; This will extract the information and standardize the chaos value to one variable.
+                    grabName := (indexArr["currencyTypeName"] ? indexArr["currencyTypeName"] : False)
+                    grabChaosVal := (indexArr["chaosEquivalent"] ? indexArr["chaosEquivalent"] : False)
+                    grabPayVal := (indexArr["pay"] ? indexArr["pay"] : False)
+                    grabRecVal := (indexArr["receive"] ? indexArr["receive"] : False)
+                    grabPaySparklineVal := (indexArr["paySparkLine"] ? indexArr["paySparkLine"] : False)
+                    grabRecSparklineVal := (indexArr["receiveSparkLine"] ? indexArr["receiveSparkLine"] : False)
+                    grabPayLowSparklineVal := (indexArr["lowConfidencePaySparkLine"] ? indexArr["lowConfidencePaySparkLine"] : False)
+                    grabRecLowSparklineVal := (indexArr["lowConfidenceReceiveSparkLine"] ? indexArr["lowConfidenceReceiveSparkLine"] : False)
+                    holder.lines[index] := {"name":grabName
+                        ,"chaosValue":grabChaosVal
+                        ,"pay":grabPayVal
+                        ,"receive":grabRecVal
+                        ,"paySparkLine":grabPaySparklineVal
+                        ,"receiveSparkLine":grabRecSparklineVal
+                        ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
+                        ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+                }
+                Ninja[apiString] := holder.lines
+				FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
 			}
 			Return
 		}
 		Else If InStr(apiString, "Currency")
 		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
 			if ErrorLevel{
 				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
 			}
 			Else if (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
 				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language") 
-					{
-						for index, indexArr in objlist
-						{
-							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-							grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
-							grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
-							grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
-							grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
-							grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
-							grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
-							grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"pay":grabPayVal
-								,"receive":grabRecVal
-								,"paySparkLine":grabPaySparklineVal
-								,"receiveSparkLine":grabRecSparklineVal
-								,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-								,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
-							Ninja[apiString] := holder[obj]
-						}
-					}
-					Else 
-					{
-						for index, indexArr in objlist
-						{
-							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
-							grabPoeTrdId := (holder[obj][index]["poeTradeId"] ? holder[obj][index]["poeTradeId"] : False)
-							grabId := (holder[obj][index]["id"] ? holder[obj][index]["id"] : False)
-
-							holder[obj][index] := {"currencyName":grabName
-								,"poeTradeId":grabPoeTrdId
-								,"id":grabId}
-
-							Ninja["currencyDetails"] := holder[obj]
-						}
-					}
-				}
-				FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+                for index, indexArr in holder.lines
+                {
+                    grabName := (indexArr["currencyTypeName"] ? indexArr["currencyTypeName"] : False)
+                    grabChaosVal := (indexArr["chaosEquivalent"] ? indexArr["chaosEquivalent"] : False)
+                    grabPayVal := (indexArr["pay"] ? indexArr["pay"] : False)
+                    grabRecVal := (indexArr["receive"] ? indexArr["receive"] : False)
+                    grabPaySparklineVal := (indexArr["paySparkLine"] ? indexArr["paySparkLine"] : False)
+                    grabRecSparklineVal := (indexArr["receiveSparkLine"] ? indexArr["receiveSparkLine"] : False)
+                    grabPayLowSparklineVal := (indexArr["lowConfidencePaySparkLine"] ? indexArr["lowConfidencePaySparkLine"] : False)
+                    grabRecLowSparklineVal := (indexArr["lowConfidenceReceiveSparkLine"] ? indexArr["lowConfidenceReceiveSparkLine"] : False)
+                    holder.lines[index] := {"name":grabName
+                        ,"chaosValue":grabChaosVal
+                        ,"pay":grabPayVal
+                        ,"receive":grabRecVal
+                        ,"paySparkLine":grabPaySparklineVal
+                        ,"receiveSparkLine":grabRecSparklineVal
+                        ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
+                        ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+                }
+                Ninja[apiString] := holder.lines
+                for index, indexArr in holder.currencyDetails
+                {
+                    grabName := (indexArr["name"] ? indexArr["name"] : False)
+                    grabPoeTrdId := (indexArr["poeTradeId"] ? indexArr["poeTradeId"] : False)
+                    grabId := (indexArr["id"] ? indexArr["id"] : False)
+                    grabTradeId := (indexArr["tradeId"] ? indexArr["tradeId"] : False)
+                    holder.currencyDetails[index] := {"currencyName":grabName
+                        ,"poeTradeId":grabPoeTrdId
+                        ,"id":grabId
+                        ,"tradeId":grabTradeId}
+                }
+                Ninja["currencyDetails"] := holder.currencyDetails
+				FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
 			}
 			Return
 		}
 		Else
 		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
 			if ErrorLevel{
 				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
 			}
 			Else if (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
 				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language")
-					{
-						for index, indexArr in objlist
-						{
-							grabSparklineVal := (holder[obj][index]["sparkline"] ? holder[obj][index]["sparkline"] : False)
-							grabLowSparklineVal := (holder[obj][index]["lowConfidenceSparkline"] ? holder[obj][index]["lowConfidenceSparkline"] : False)
-							grabExaltVal := (holder[obj][index]["exaltedValue"] ? holder[obj][index]["exaltedValue"] : False)
-							grabChaosVal := (holder[obj][index]["chaosValue"] ? holder[obj][index]["chaosValue"] : False)
-							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
-							grabLinks := (holder[obj][index]["links"] ? holder[obj][index]["links"] : False)
-							grabVariant := (holder[obj][index]["variant"] ? holder[obj][index]["variant"] : False)
-							grabMapTier := (holder[obj][index]["mapTier"] ? holder[obj][index]["mapTier"] : False)
-							
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"exaltedValue":grabExaltVal
-								,"sparkline":grabSparklineVal
-								,"lowConfidenceSparkline":grabLowSparklineVal
-								,"links":grabLinks
-								,"variant":grabVariant}
-                            If grabMapTier
-                                holder[obj][index]["mapTier"] := grabMapTier
-						}
-					}
-				}
-				Ninja[apiString] := holder[obj]
+                for index, indexArr in holder.lines
+                {
+                    grabSparklineVal := (indexArr["sparkline"] ? indexArr["sparkline"] : False)
+                    grabLowSparklineVal := (indexArr["lowConfidenceSparkline"] ? indexArr["lowConfidenceSparkline"] : False)
+                    grabExaltVal := (indexArr["exaltedValue"] ? indexArr["exaltedValue"] : False)
+                    grabChaosVal := (indexArr["chaosValue"] ? indexArr["chaosValue"] : False)
+                    grabName := (indexArr["name"] ? indexArr["name"] : False)
+                    grabLinks := (indexArr["links"] ? indexArr["links"] : False)
+                    grabVariant := (indexArr["variant"] ? indexArr["variant"] : False)
+                    grabMapTier := (indexArr["mapTier"] ? indexArr["mapTier"] : False)
+                    
+                    holder.lines[index] := {"name":grabName
+                        ,"chaosValue":grabChaosVal
+                        ,"exaltedValue":grabExaltVal
+                        ,"sparkline":grabSparklineVal
+                        ,"lowConfidenceSparkline":grabLowSparklineVal
+                        ,"links":grabLinks
+                        ,"variant":grabVariant}
+                    If grabMapTier
+                        holder.lines[index]["mapTier"] := grabMapTier
+                }
+				Ninja[apiString] := holder.lines
 			}
-			FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+			FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
 		}
 			;MsgBox % "Download worked for Ninja Database  -  There are " Ninja.Count() " Entries in the array
 		Return
@@ -2486,6 +2770,22 @@
         Split := {"r":Round(R_Count / ColorCount),"g":Round(G_Count / ColorCount),"b":Round(B_Count / ColorCount)}
         Load_BarControl(100,"Done.",-1)
         Return ToHex(Split)
+    }
+    ; Fill the metamorph panel when it first appears
+    Metamorph_FillOrgans()
+    {
+        Static X1:=329, Y1:=189, X2:=745, Y2:=746
+            , Width := X2 - X1, Height := Y2 - Y1
+            , Height_Cell := Height // 5, Width_Cell := Width // 6
+            , Offset_H_Cell := (Height_Cell // 3) * 2, Offset_W_Cell := Width_Cell // 2
+        yMarker := Y1 + Offset_H_Cell
+        xMarker := X1 + Offset_W_Cell
+        Loop, 5
+        {
+            yMarker += (A_Index!=1?Height_Cell:0)
+            CtrlClick(xMarker,yMarker)
+        }
+        Return
     }
     ; Cooldown Timers
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -9381,7 +9681,7 @@
         For k, v in var
             print .= "," . v
         print .= ", Script: " . A_ScriptFullPath . " , Script Version: " . VersionNumber . " , AHK version: " . A_AhkVersion . "`n"
-        FileAppend, %print%, Log.txt, UTF-16
+        FileAppend, %print%, %A_ScriptDir%\temp\Log.txt, UTF-16
         return
     }
 
@@ -9516,6 +9816,7 @@
 ; Rectangular selection function written by Lexikos
     LetUserSelectRect(PixelToo:=0)
     {
+        Global Picker
         Hotkey Ifwinactive
         static r := 1
         ; Create the "selection rectangle" GUIs (one for each edge).
@@ -9543,6 +9844,7 @@
             ; Get initial coordinates.
             MouseGetPos, xorigin, yorigin
             PixelGetColor, col, %xorigin%, %yorigin%, RGB
+            Picker.SetColor(col)
             ToolTip, % (PixelToo?"   " col " @ ":"   ") xorigin "," yorigin 
             DrawZoom("Repaint")
             DrawZoom("MoveAway")
@@ -9552,7 +9854,8 @@
                 Tooltip
                 Ding(1,-11,"")
                 PauseTooltips := 0
-                Clipboard := " " col " @ " xorigin "," yorigin " "
+                Clipboard := col " @ " xorigin "," yorigin
+                Notify(Clipboard,"Copied to the clipboard",5)
                 DrawZoom("Toggle")
                 Return False
             }
@@ -10271,6 +10574,7 @@
     Load_BarControl(Percent:=0,uText:="Loading...",ShowGui:=0)
     {
         Global
+        Static LoadBar_Initialized := 0
         If (!LoadBar_Initialized)
         {
             LoadBar_Initialized := 1
@@ -10278,7 +10582,6 @@
             Gui, load_BarGUI: New
             Gui, load_BarGUI:-Border -Caption +ToolWindow +AlwaysOnTop
             Gui, load_BarGUI:Color, 0x4D4D4D, 0xFFFFFF
-            load_Bar := Object()
             load_Bar := new LoaderBar("load_BarGUI",3,3,280,28,1,"EFEFEF")
             LB_wW:=load_Bar.Width + 2*load_Bar.X
             LB_wH:=load_Bar.Height + 2*load_Bar.Y
@@ -10296,6 +10599,436 @@
         Load_BarControl_Hide:
             Gui, load_BarGUI: Hide
         Return
+    }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
+/*** PoEPrices.info functions from PoE-TradeMacro v2.15.7
+*    Contains all the assorted functions needed to launch TradeFunc_DoPoePricesRequest
+*/
+    TradeFunc_DoPoePricesRequest(RawItemData, ByRef retCurl) {
+        RawItemData := RegExReplace(RawItemData, "<<.*?>>|<.*?>")
+        encodingError := ""
+        EncodedItemData := StringToBase64UriEncoded(RawItemData, true, encodingError)
+        
+        postData 	:= "l=" UriEncode("Metamorph") "&i=" EncodedItemData
+        ; postData 	:= "l=" UriEncode(TradeGlobals.Get("LeagueName")) "&i=" EncodedItemData
+        payLength	:= StrLen(postData)
+        url 		:= "https://www.poeprices.info/api"
+        
+        reqTimeout := 25
+        options	:= "RequestType: GET"
+        ;options	.= "`n" "ReturnHeaders: skip"
+        options	.= "`n" "ReturnHeaders: append"
+        options	.= "`n" "TimeOut: " reqTimeout
+        reqHeaders := []
+
+        reqHeaders.push("Connection: keep-alive")
+        reqHeaders.push("Cache-Control: max-age=0")
+        reqHeaders.push("Origin: https://poeprices.info")
+        reqHeaders.push("Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8")
+        
+        ; ShowToolTip("Getting price prediction... ")
+        retCurl := true
+        response := PoEScripts_Download(url, postData, reqHeaders, options, false, false, false, "", "", true, retCurl)
+        
+        ; debugout := RegExReplace("""" A_ScriptDir "\lib\" retCurl, "curl", "curl.exe""")
+        ; FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
+        ; FileAppend, %debugout%, %A_ScriptDir%\temp\poeprices_request.txt
+        
+        
+        ; If (TradeOpts.Debug) {
+            ; FileDelete, %A_ScriptDir%\temp\DebugSearchOutput.html
+            ; FileAppend, % response "<br />", %A_ScriptDir%\temp\DebugSearchOutput.html
+        ; }
+
+        responseObj := {}
+        responseHeader := ""
+        
+        RegExMatch(response, "is)(.*?({.*}))?.*?'(.*?)'.*", responseMatch)
+        response := responseMatch1
+        responseHeader := responseMatch3
+
+        Try {
+            responseObj := JSON.Load(response)
+        } Catch e {
+            responseObj.failed := "ERROR: Parsing response failed, invalid JSON! "
+        }
+        If (not isObject(responseObj)) {		
+            responseObj := {}
+        }
+
+        ; If (TradeOpts.Debug) {
+        ; 	arr := {}
+        ; 	arr.RawItemData := RawItemData
+        ; 	arr.EncodedItemata := EncodedItemData
+        ; 	arr.League := TradeGlobals.Get("LeagueName")
+        ; 	TradeFunc_LogPoePricesRequest(arr, request, "poe_prices_debug_log.txt")
+        ; }
+
+        ; responseObj.added := {}
+        ; responseObj.added.encodedData := EncodedItemData
+        ; responseObj.added.league := TradeGlobals.Get("LeagueName")
+        ; responseObj.added.requestUrl := url "?" postData
+        ; responseObj.added.browserUrl := url "?" postData "&w=1"
+        ; responseObj.added.encodingError := encodingError
+        ; responseObj.added.retHeader := responseHeader
+        ; responseObj.added.timeoutParam := reqTimeout
+        
+        Return responseObj
+    }
+
+    StringToBase64UriEncoded(stringIn, noUriEncode = false, ByRef errorMessage = "") {
+        FileDelete, %A_ScriptDir%\temp\itemText.txt
+        FileDelete, %A_ScriptDir%\temp\base64Itemtext.txt
+        FileDelete, %A_ScriptDir%\temp\encodeToBase64.txt
+        
+        encodeError1 := ""
+        encodeError2 := ""
+        stringBase64 := b64Encode(stringIn, encodeError1)
+        
+        If (not StrLen(stringBase64)) {
+            FileAppend, %stringIn%, %A_ScriptDir%\temp\itemText.txt, utf-8
+            command		:= "certutil -encode -f ""%cd%\temp\itemText.txt"" ""%cd%\temp\base64ItemText.txt"" & type ""%cd%\temp\base64ItemText.txt"""
+            stringBase64	:= ReadConsoleOutputFromFile(command, "encodeToBase64.txt", encodeError2)
+            stringBase64	:= Trim(RegExReplace(stringBase64, "i)-----BEGIN CERTIFICATE-----|-----END CERTIFICATE-----|77u/", ""))
+        }
+
+        If (not StrLen(stringBase64)) {
+            errorMessage := ""
+            If (StrLen(encodeError1)) {
+                errorMessage .= encodeError1 " "
+            }
+            If (StrLen(encodeError2)) {
+                errorMessage .= "Encoding via certutil returned: " encodeError2
+            }
+        }
+        
+        If (not noUriEncode) {
+            stringBase64	:= UriEncode(stringBase64)
+            stringBase64	:= RegExReplace(stringBase64, "i)^(%0D)?(%0A)?|((%0D)?(%0A)?)+$", "")
+        } Else {
+            stringBase64 := RegExReplace(stringBase64, "i)\r|\n", "")
+        }
+        
+        Return stringBase64
+    }
+
+    /*  Base64 Encode / Decode a string (binary-to-text encoding)
+        https://github.com/jNizM/AHK_Scripts/blob/master/src/encoding_decoding/base64.ahk
+        
+        Alternative: https://github.com/cocobelgica/AutoHotkey-Util/blob/master/Base64.ahk
+        */
+    b64Encode(string, ByRef error = "") {	
+        VarSetCapacity(bin, StrPut(string, "UTF-8")) && len := StrPut(string, &bin, "UTF-8") - 1 
+        If !(DllCall("crypt32\CryptBinaryToString", "ptr", &bin, "uint", len, "uint", 0x1, "ptr", 0, "uint*", size)) {
+            ;throw Exception("CryptBinaryToString failed", -1)
+            error := "Exception (1) while encoding string to base64."
+        }	
+        VarSetCapacity(buf, size << 1, 0)
+        If !(DllCall("crypt32\CryptBinaryToString", "ptr", &bin, "uint", len, "uint", 0x1, "ptr", &buf, "uint*", size)) {
+            ;throw Exception("CryptBinaryToString failed", -1)
+            error := "Exception (2) while encoding string to base64."
+        }
+        
+        If (not StrLen(Error)) {
+            Return StrGet(&buf)
+        } Else {
+            Return ""
+        }
+    }
+    b64Decode(string) {
+        If !(DllCall("crypt32\CryptStringToBinary", "ptr", &string, "uint", 0, "uint", 0x1, "ptr", 0, "uint*", size, "ptr", 0, "ptr", 0))
+            throw Exception("CryptStringToBinary failed", -1)
+        VarSetCapacity(buf, size, 0)
+        If !(DllCall("crypt32\CryptStringToBinary", "ptr", &string, "uint", 0, "uint", 0x1, "ptr", &buf, "uint*", size, "ptr", 0, "ptr", 0))
+            throw Exception("CryptStringToBinary failed", -1)
+        return StrGet(&buf, size, "UTF-8")
+    }
+
+    UriEncode(Uri, Enc = "UTF-8")	{
+        StrPutVar(Uri, Var, Enc)
+        f := A_FormatInteger
+        SetFormat, IntegerFast, H
+        Loop
+        {
+            Code := NumGet(Var, A_Index - 1, "UChar")
+            If (!Code)
+                Break
+            If (Code >= 0x30 && Code <= 0x39 ; 0-9
+                || Code >= 0x41 && Code <= 0x5A ; A-Z
+                || Code >= 0x61 && Code <= 0x7A) ; a-z
+                Res .= Chr(Code)
+            Else
+                Res .= "%" . SubStr(Code + 0x100, -1)
+        }
+        SetFormat, IntegerFast, %f%
+        Return, Res
+    }
+
+    StrPutVar(Str, ByRef Var, Enc = "") {
+        Len := StrPut(Str, Enc) * (Enc = "UTF-16" || Enc = "CP1200" ? 2 : 1)
+        VarSetCapacity(Var, Len, 0)
+        Return, StrPut(Str, &Var, Enc)
+    }
+
+    RandomStr(l = 24, i = 48, x = 122) { ; length, lowest and highest Asc value
+        Loop, %l% {
+            Random, r, i, x
+            s .= Chr(r)
+        }
+        s := RegExReplace(s, "\W", "i") ; only alphanum.
+        
+        Return, s
+    }
+
+    PoEScripts_Download(url, ioData, ByRef ioHdr, options, useFallback = true, critical = false, binaryDL = false, errorMsg = "", ByRef reqHeadersCurl = "", handleAccessForbidden = true, ByRef returnCurl = false) {
+        /*
+            url		= download url
+            ioData	= uri encoded postData 
+            ioHdr	= array of request headers
+            options	= multiple options separated by newline (currently only "SaveAs:",  "Redirect:true/false")
+            
+            useFallback = Use UrlDownloadToFile if curl fails, not possible for POST requests or when cookies are required 
+            critical	= exit macro if download fails
+            binaryDL	= file download (zip for example)
+            errorMsg	= optional error message, will be added to default message
+            reqHeadersCurl = returns the returned headers from the curl request 
+            handleAccessForbidden = "true" throws an error message if "403 Forbidden" is returned, "false" prevents it, returning "403 Forbidden" to enable custom error handling
+        */
+
+        ; https://curl.haxx.se/download.html -> https://bintray.com/vszakats/generic/curl/
+        /*
+            parse options, create the cURL request and execute it
+        */
+        reqLoops++
+        curl		:= """" A_ScriptDir "\data\curl.exe"" "	
+        headers	:= ""
+        cookies	:= ""
+        uAgent	:= ""
+
+        For key, val in ioHdr {		
+            val := Trim(RegExReplace(val, "i)(.*?)\s*:\s*(.*)", "$1:$2"))
+
+            If (RegExMatch(val, "i)^Cookie:(.*)", cookie)) {
+                cookies .= cookie1 " "		
+            }
+            If (RegExMatch(val, "i)^User-Agent:(.*)", ua)) {
+                uAgent := ua1 " "		
+            }
+        }
+        cookies := StrLen(cookies) ? "-b """ Trim(cookies) """ " : ""
+        uAgent := StrLen(uAgent) ? "-A """ Trim(uAgent) """ " : ""
+        
+        redirect := "L"
+        PreventErrorMsg := false
+        validateResponse := 1
+        If (StrLen(options)) {
+            Loop, Parse, options, `n 
+            {
+                If (RegExMatch(A_LoopField, "i)SaveAs:[ \t]*\K[^\r\n]+", SavePath)) {
+                    commandData	.= " " A_LoopField " "
+                    commandHdr	.= ""	
+                }
+                If (RegExMatch(A_LoopField, "i)Redirect:\sFalse")) {
+                    redirect := ""
+                }
+                If (RegExMatch(A_LoopField, "i)parseJSON:\sTrue")) {
+                    ignoreRetCodeForJSON := true
+                }
+                If (RegExMatch(A_LoopField, "i)PreventErrorMsg")) {
+                    PreventErrorMsg := true
+                }
+                If (RegExMatch(A_LoopField, "i)RequestType:(.*)", match)) {
+                    requestType := Trim(match1)
+                }
+                If (RegExMatch(A_LoopField, "i)ReturnHeaders:(.*skip.*)")) {
+                    skipRetHeaders := true
+                }
+                If (RegExMatch(A_LoopField, "i)ReturnHeaders:(.*append.*)")) {
+                    appendRetHeaders := true
+                }
+                If (RegExMatch(A_LoopField, "i)TimeOut:(.*)", match)) {
+                    timeout := Trim(match1)
+                }
+                If (RegExMatch(A_LoopField, "i)ValidateResponse:(.*)", match)) {
+                    If (Trim(match1) = "false") {
+                        validateResponse := 0
+                    }				
+                }	
+            }			
+        }
+        If (not timeout or timeout < 5) {
+            timeout := 25
+        }
+        
+        e := {}
+        Try {		
+            commandData	:= ""		; console curl command to return data/content 
+            commandHdr	:= ""		; console curl command to return headers
+            If (binaryDL) {
+                commandData .= " -" redirect "Jkv "		; save as file
+                If (SavePath) {
+                    commandData .= "-o """ SavePath """ "	; set target destination and name
+                }
+            } Else {
+                commandData .= " -" redirect "ks --compressed "
+                If (requestType = "GET") {				
+                    ;commandHdr  .= " -s" redirect " -D - -o /dev/null " ; unix
+                    commandHdr  .= " -s" redirect " -D - -o nul " ; windows
+                } Else {
+                    commandHdr  .= " -I" redirect "ks "
+                }
+                
+                If (appendRetHeaders) {
+                    commandData  .= " -w '%{http_code}' "
+                    commandHdr  .= " -w '%{http_code}' "
+                }
+            }			
+
+            If (not requestType = "GET") {
+                commandData .= headers
+                commandHdr  .= headers
+            }			
+            If (StrLen(cookies)) {
+                commandData .= cookies
+                commandHdr  .= cookies
+            }
+            If (StrLen(uAgent)) {
+                commandData .= uAgent
+                commandHdr  .= uAgent
+            }
+
+            If (StrLen(ioData) and not requestType = "GET") {
+                If (requestType = "POST") {
+                    commandData .= "-X POST "
+                }
+                commandData .= "--data """ ioData """ "
+            } Else If (StrLen(ioData)) {
+                url := url "?" ioData
+            }
+            
+            If (binaryDL) {
+                commandData	.= "--connect-timeout " timeout " "
+                commandData	.= "--connect-timeout " timeout " "
+            } Else {
+                commandData	.= "--connect-timeout " timeout " --max-time " timeout + 15 " "
+                commandHdr	.= "--connect-timeout " timeout " --max-time " timeout + 15 " "
+            }
+            ; get data
+            html	:= StdOutStream(curl """" url """" commandData)
+            
+            ;html := ReadConsoleOutputFromFile(curl """" url """" commandData, "commandData") ; alternative function
+            
+            If (returnCurl) {
+                returnCurl := "curl " """" url """" commandData
+            }
+
+            ; get return headers in seperate request
+            If (not binaryDL and not skipRetHeaders) {
+                If (StrLen(ioData) and not requestType = "GET") {
+                    commandHdr := curl """" url "?" ioData """" commandHdr		; add payload to url since you can't use the -I argument with POST requests					
+                } Else {
+                    commandHdr := curl """" url """" commandHdr
+                }
+                ioHdr := StdOutStream(commandHdr)
+                ;ioHrd := ReadConsoleOutputFromFile(commandHdr, "commandHdr") ; alternative function
+            } Else If (skipRetHeaders) {
+                commandHdr := curl """" url """" commandHdr
+                ioHdr := html
+            } Else {
+                ioHdr := html
+            }
+            ;msgbox % curl """" url """" commandData "`n`n" commandHdr
+            reqHeadersCurl := commandHdr
+        } Catch e {
+
+        }
+        
+        Return html
+    }
+
+    ReadConsoleOutputFromFile(command, fileName, ByRef error = "") {
+        file := "temp\" fileName
+        RunWait %comspec% /c "chcp 1251 /f >nul 2>&1 & %command% > %file%", , Hide
+        FileRead, io, %file%
+        
+        If (FileExist(file) and not StrLen(io)) {
+            error := "Output file is empty."
+        }
+        Else If (not FileExist(file)) {
+            error := "Output file does not exist."
+        }
+        
+        Return io
+    }
+
+    StdOutStream(sCmd, Callback = "") {
+        /*
+            Runs commands in a hidden cmdlet window and returns the output.
+        */
+                                ; Modified  :  Eruyome 18-June-2017
+        Static StrGet := "StrGet"	; Modified  :  SKAN 31-Aug-2013 http://goo.gl/j8XJXY
+                                ; Thanks to :  HotKeyIt         http://goo.gl/IsH1zs
+                                ; Original  :  Sean 20-Feb-2007 http://goo.gl/mxCdn
+        64Bit := A_PtrSize=8
+
+        DllCall( "CreatePipe", UIntP,hPipeRead, UIntP,hPipeWrite, UInt,0, UInt,0 )
+        DllCall( "SetHandleInformation", UInt,hPipeWrite, UInt,1, UInt,1 )
+
+        If 64Bit {
+            VarSetCapacity( STARTUPINFO, 104, 0 )		; STARTUPINFO          ;  http://goo.gl/fZf24
+            NumPut( 68,         STARTUPINFO,  0 )		; cbSize
+            NumPut( 0x100,      STARTUPINFO, 60 )		; dwFlags    =>  STARTF_USESTDHANDLES = 0x100
+            NumPut( hPipeWrite, STARTUPINFO, 88 )		; hStdOutput
+            NumPut( hPipeWrite, STARTUPINFO, 96 )		; hStdError
+
+            VarSetCapacity( PROCESS_INFORMATION, 32 )	; PROCESS_INFORMATION  ;  http://goo.gl/b9BaI
+        } Else {
+            VarSetCapacity( STARTUPINFO, 68,  0 )		; STARTUPINFO          ;  http://goo.gl/fZf24
+            NumPut( 68,         STARTUPINFO,  0 )		; cbSize
+            NumPut( 0x100,      STARTUPINFO, 44 )		; dwFlags    =>  STARTF_USESTDHANDLES = 0x100
+            NumPut( hPipeWrite, STARTUPINFO, 60 )		; hStdOutput
+            NumPut( hPipeWrite, STARTUPINFO, 64 )		; hStdError
+
+            VarSetCapacity( PROCESS_INFORMATION, 32 )	; PROCESS_INFORMATION  ;  http://goo.gl/b9BaI
+        }
+
+        If ! DllCall( "CreateProcess", UInt,0, UInt,&sCmd, UInt,0, UInt,0 ;  http://goo.gl/USC5a
+                    , UInt,1, UInt,0x08000000, UInt,0, UInt,0
+                    , UInt,&STARTUPINFO, UInt,&PROCESS_INFORMATION )
+        Return ""
+        , DllCall( "CloseHandle", UInt,hPipeWrite )
+        , DllCall( "CloseHandle", UInt,hPipeRead )
+        , DllCall( "SetLastError", Int,-1 )
+
+        hProcess := NumGet( PROCESS_INFORMATION, 0 )
+        If 64Bit {
+            hThread  := NumGet( PROCESS_INFORMATION, 8 )
+        } Else {
+            hThread  := NumGet( PROCESS_INFORMATION, 4 )
+        }
+
+        DllCall( "CloseHandle", UInt,hPipeWrite )
+
+        AIC := ( SubStr( A_AhkVersion, 1, 3 ) = "1.0" )                   ;  A_IsClassic
+        VarSetCapacity( Buffer, 4096, 0 ), nSz := 0
+
+        While DllCall( "ReadFile", UInt,hPipeRead, UInt,&Buffer, UInt,4094, UIntP,nSz, Int,0 ) {
+            tOutput := ( AIC && NumPut( 0, Buffer, nSz, "Char" ) && VarSetCapacity( Buffer,-1 ) )
+                    ? Buffer : %StrGet%( &Buffer, nSz, "CP850" )
+
+            Isfunc( Callback ) ? %Callback%( tOutput, A_Index ) : sOutput .= tOutput
+        }
+
+        DllCall( "GetExitCodeProcess", UInt,hProcess, UIntP,ExitCode )
+        DllCall( "CloseHandle",  UInt,hProcess  )
+        DllCall( "CloseHandle",  UInt,hThread   )
+        DllCall( "CloseHandle",  UInt,hPipeRead )
+        DllCall( "SetLastError", UInt,ExitCode  )
+
+        Return Isfunc( Callback ) ? %Callback%( "", 0 ) : sOutput
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -11818,7 +12551,7 @@ for i,v in ok
     {
       hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
       DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
-        , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020|0x40000000)
+        , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020) ; |0x40000000)
       DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
     }
 	    DllCall("SelectObject", Ptr,mDC, Ptr,oBM)

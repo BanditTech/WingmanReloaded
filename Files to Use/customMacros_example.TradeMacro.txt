@@ -1,0 +1,30 @@
+/*
+	Custom macro main file. Don't delete it. Using and including this file is important. If you don't want to edit the 
+	technical AdditionalMacro.txt file, you need this file and the already defined hotkey label. 
+	Epsecially if you want to execute any personal code outside of hotkey labels.
+	
+	**TLDR**:
+		You can add your own code below, use the existing Label.
+		View a formatted description/how to here -> https://github.com/PoE-TradeMacro/POE-TradeMacro/wiki/Custom-Macros .
+
+
+	*/
+CM_ExecuteCustomMacrosCode_Label:
+    OnMessage(0x5555, "WR_MsgMonitor")
+Return
+
+WR_MsgMonitor(wParam, lParam, msg)
+{
+    If (wParam=1)
+    {
+        If (lParam=1)
+            SuspendPOEItemScript := 1
+        Else
+            SuspendPOEItemScript := 0
+    }
+    Return
+}
+
+CM_PotionALL_Label:
+Return
+

@@ -44,6 +44,7 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Customizable mana threshold
   - Eldritch Battery support
   - Price information from PoE.Ninja database
+  - Price information from PoEPrices.info
   - Client.txt log parser that allows the script to know exactly where we are
     - Changes the logic of the script depending on location
     - Support for every single client language when file is encoded properly
@@ -54,6 +55,8 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Fully customizable search strings for adjusting to your own resolution
   - Calibration wizard to help guide through the setup process
   - Gamestate GUI to show what the script is detecting
+  - Globe scan method of always getting the health even while in delve
+  - Automatically fill Metamorph panel with best organs
 
 * One button Inventory managment:
   - Clipboard Parsing system - Knows what type of items under cursor!
@@ -88,6 +91,7 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Extract the contents of the Zip into a folder somewhere
   - Ensure you current version of AHK is up to date > (1.1.32)
   - Make sure your game is set to Windowed Fullscreen (Borderless)
+  - Make sure you have Local Chat enabled in-game
   - Open PoE-Wingman.ahk
   - If you get a message that your Client.txt file was not found
     - Open Configuration Tab and click Locate Logfile
@@ -96,8 +100,7 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - Assign bindings to any features you want to use in the Script's Keybinds section
     - Blank editbox will disable the keybinding for that feature of the script
   - Locate your Scrolls of Wisdom and Portal Scroll in your inventory
-    - Press the Coord/Pixel keybinding (alt+o) to grab the X and Y positions
-    - Note the location and input them into QOL Settings section
+    - Use the locate button to set coordinates, or edit x and y positions
   - Make sure the Current league is selected in Item Parse Settings for proper price data
   - Select your Aspect ratio from the dropdown list if you are not using standard 16:9
   - Select if you are using Steam and/or 64 bit
@@ -109,6 +112,9 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
   - If you will be using the inventory features
     - Go to Inventory Tab and either diable unwanted categories or assign stash tabs
     - Click assign Ignored Slots and choose which slots will not get touched
+  - Configure your globe sample positions, and make sure they are in the correct location
+    - use the Adjust Globes button to change the Area, color or variance to match your screen
   - All the basic stuff is set up, make sure your on your character then Save Configuration
-    - This will resample your Health, ES, and Mana for comparing against while the script runs
-    - If the script instantly triggers when you exit town or hideout, you need to resample
+    - If you are using globe scan, resampling colors is no longer needed when saving
+      - Otherwise it will resample your Health, ES, and Mana for comparing against while the script runs
+    - If the script instantly triggers when you exit town or hideout, you need to resample or adjust globe settings

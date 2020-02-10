@@ -4799,14 +4799,21 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
-    "name": "Abandoned Wealth"
+    "name": "A Dab of Ink"
   },
   {
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
-    "name": "A Dab of Ink"
+    "name": "A Mother's Parting Gift"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "Abandoned Wealth"
   },
   {
     "drop_level": 1,
@@ -4828,13 +4835,6 @@
     "inventory_width": 1,
     "item_class": "DivinationCard",
     "name": "Alone in the Darkness"
-  },
-  {
-    "drop_level": 1,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "DivinationCard",
-    "name": "A Mother's Parting Gift"
   },
   {
     "drop_level": 1,
@@ -5352,14 +5352,14 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
-    "name": "Nook's Crown"
+    "name": "No Traces"
   },
   {
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
-    "name": "No Traces"
+    "name": "Nook's Crown"
   },
   {
     "drop_level": 1,
@@ -5702,14 +5702,14 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
-    "name": "The Darkest Dream"
+    "name": "The Dark Mage"
   },
   {
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
-    "name": "The Dark Mage"
+    "name": "The Darkest Dream"
   },
   {
     "drop_level": 1,
@@ -7301,20 +7301,6 @@
     "name": "Berserk"
   },
   {
-    "drop_level": 28,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Bladefall"
-  },
-  {
-    "drop_level": 28,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Bladestorm"
-  },
-  {
     "drop_level": 4,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7327,6 +7313,20 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Blade Vortex"
+  },
+  {
+    "drop_level": 28,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Bladefall"
+  },
+  {
+    "drop_level": 28,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Bladestorm"
   },
   {
     "drop_level": 28,
@@ -7742,13 +7742,6 @@
     "name": "Explosive Arrow"
   },
   {
-    "drop_level": 5,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Fireball"
-  },
-  {
     "drop_level": 12,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7774,13 +7767,6 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
-    "name": "Firestorm"
-  },
-  {
-    "drop_level": 12,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
     "name": "Fire Trap"
   },
   {
@@ -7791,11 +7777,18 @@
     "name": "Fire Weapon"
   },
   {
-    "drop_level": 28,
+    "drop_level": 5,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
-    "name": "Flameblast"
+    "name": "Fireball"
+  },
+  {
+    "drop_level": 12,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Firestorm"
   },
   {
     "drop_level": 10,
@@ -7803,13 +7796,6 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Flame Dash"
-  },
-  {
-    "drop_level": 28,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Flamethrower Trap"
   },
   {
     "drop_level": 5,
@@ -7824,6 +7810,20 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Flame Surge"
+  },
+  {
+    "drop_level": 28,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Flameblast"
+  },
+  {
+    "drop_level": 28,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Flamethrower Trap"
   },
   {
     "drop_level": 24,
@@ -7875,25 +7875,11 @@
     "name": "Frenzy"
   },
   {
-    "drop_level": 24,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Frostbite"
-  },
-  {
     "drop_level": 5,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Frost Blades"
-  },
-  {
-    "drop_level": 5,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Frostblink"
   },
   {
     "drop_level": 5,
@@ -7922,6 +7908,20 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Frost Wall"
+  },
+  {
+    "drop_level": 24,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Frostbite"
+  },
+  {
+    "drop_level": 5,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Frostblink"
   },
   {
     "drop_level": 28,
@@ -8022,13 +8022,6 @@
     "name": "Ice Crash"
   },
   {
-    "drop_level": 14,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Icefire"
-  },
-  {
     "drop_level": 12,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -8062,6 +8055,13 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Ice Trap"
+  },
+  {
+    "drop_level": 14,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Icefire"
   },
   {
     "drop_level": 14,
@@ -8694,13 +8694,6 @@
     "name": "Steelskin"
   },
   {
-    "drop_level": 5,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Stormblast Mine"
-  },
-  {
     "drop_level": 12,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -8720,6 +8713,13 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Storm Call"
+  },
+  {
+    "drop_level": 5,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Stormblast Mine"
   },
   {
     "drop_level": 34,
@@ -8960,13 +8960,6 @@
     "name": "Vaal Earthquake"
   },
   {
-    "drop_level": 1,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Active Skill Gem",
-    "name": "Vaal Fireball"
-  },
-  {
     "drop_level": 24,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -8979,6 +8972,13 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Vaal FireTrap"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Vaal Fireball"
   },
   {
     "drop_level": 28,
@@ -9415,18 +9415,18 @@
     "name": "Block Chance Reduction Support"
   },
   {
-    "drop_level": 18,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Support Skill Gem",
-    "name": "Bloodlust Support"
-  },
-  {
     "drop_level": 31,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Support Skill Gem",
     "name": "Blood Magic Support"
+  },
+  {
+    "drop_level": 18,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Support Skill Gem",
+    "name": "Bloodlust Support"
   },
   {
     "drop_level": 38,
@@ -10112,6 +10112,20 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Support Skill Gem",
+    "name": "Multiple Totems Support"
+  },
+  {
+    "drop_level": 8,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Support Skill Gem",
+    "name": "Multiple Traps Support"
+  },
+  {
+    "drop_level": 38,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Support Skill Gem",
     "name": "Spell Echo Support"
   },
   {
@@ -10127,20 +10141,6 @@
     "inventory_width": 1,
     "item_class": "Support Skill Gem",
     "name": "Awakened Multistrike Support"
-  },
-  {
-    "drop_level": 38,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Support Skill Gem",
-    "name": "Multiple Totems Support"
-  },
-  {
-    "drop_level": 8,
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "item_class": "Support Skill Gem",
-    "name": "Multiple Traps Support"
   },
   {
     "drop_level": 18,
@@ -11823,13 +11823,6 @@
     "name": "Variscite Blade"
   },
   {
-    "drop_level": 2,
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "item_class": "One Hand Sword",
-    "name": "Charan's Sword"
-  },
-  {
     "drop_level": 34,
     "inventory_height": 3,
     "inventory_width": 2,
@@ -12969,5 +12962,12 @@
     "inventory_width": 2,
     "item_class": "Two Hand Sword",
     "name": "Exquisite Blade"
+  },
+  {
+    "drop_level": 2,
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "item_class": "One Hand Sword",
+    "name": "Charan's Sword"
   }
 ]

@@ -1,4 +1,5 @@
-#IfWinActive Path of Exile ;Contains all the pre-setup for the script
+; Contains all the pre-setup for the script
+	#IfWinActive Path of Exile 
     #NoEnv
     #MaxHotkeysPerInterval 99000000
     #HotkeyInterval 99000000
@@ -20,6 +21,7 @@
     SetControlDelay, -1
     CoordMode, Mouse, Screen
     CoordMode, Pixel, Screen
+	CoordMode, Tooltip, Screen
     FileEncoding , UTF-8
     SendMode Input
     StringCaseSense, On ; Match strings with case.
@@ -38,10 +40,10 @@
 			ExitApp
 	}
 	Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
-	IniRead, LastDatabaseParseDate, Settings.ini, Database, LastDatabaseParseDate, 20190913
-	IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Metamorph
-	IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
-	IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
+	IniRead, LastDatabaseParseDate, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate, 20190913
+	IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Metamorph
+	IniRead, UpdateDatabaseInterval, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval, 2
+	IniRead, YesNinjaDatabase, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase, 1
 	Global Ninja := {}
 	Global apiList := ["Currency"
 		, "Fragment"
@@ -95,6 +97,7 @@
 
     ; Create a container for the sub-script
     Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
+    Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
     ; Create Executable group for gameHotkey, IfWinActive
     global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
     for n, exe in POEGameArr
@@ -110,15 +113,13 @@
     SetTitleMatchMode 2
     SetWorkingDir %A_ScriptDir%  
     Thread, interrupt, 0
-    I_Icon = shield_charge_skill_icon.ico
+    I_Icon = %A_ScriptDir%\data\shield_charge_skill_icon.ico
     IfExist, %I_Icon%
-        Menu, Tray, Icon, %I_Icon%
-    
-
+	Menu, Tray, Icon, %I_Icon%
     checkUpdate()
-    
+
+	; Setup for LutBot logout method
     full_command_line := DllCall("GetCommandLine", "str")
-    
     GetTable := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Iphlpapi.dll", "Ptr"), Astr, "GetExtendedTcpTable", "Ptr")
     SetEntry := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Iphlpapi.dll", "Ptr"), Astr, "SetTcpEntry", "Ptr")
     EnumProcesses := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Psapi.dll", "Ptr"), Astr, "EnumProcesses", "Ptr")
@@ -128,6 +129,8 @@
     AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
     
     CleanUp()
+
+	; Rerun as admin if not already admin, required to disconnect client
     if not A_IsAdmin
         if A_IsCompiled
         Run *RunAs "%A_ScriptFullPath%" /restart
@@ -142,6 +145,10 @@
 	Global Bases
 	IfNotExist, %A_ScriptDir%\data
 		FileCreateDir, %A_ScriptDir%\data
+	IfNotExist, %A_ScriptDir%\save
+		FileCreateDir, %A_ScriptDir%\save
+	IfNotExist, %A_ScriptDir%\temp
+		FileCreateDir, %A_ScriptDir%\temp
 	
 	IfNotExist, %A_ScriptDir%\data\InventorySlots.png
 	{
@@ -296,11 +303,13 @@
 	}
 	If needReload
 		Reload
-
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
 		global PauseTooltips:=0
+		global Clip_Contents:=""
+		global CheckGamestates:=False
 		Process, Exist
 		Global ScriptPID := ErrorLevel
 		global Trigger:=00000
@@ -325,6 +334,10 @@
 		Global YesClickPortal := True
 		Global RelogOnQuit := True
 		Global MainAttackPressedActive,SecondaryAttackPressedActive
+		global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
+			, ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
+			, ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
+			, ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
 		ft_ToolTip_Text=
 			(LTrim
 			QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
@@ -344,6 +357,7 @@
 			UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
 			UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
 			UpdateOnDelveChartBtn = Calibrate the OnDelveChart Color`rThis color determines if the Delve Chart panel is open`rSample located at the left of the Delve Chart panel
+			UpdateOnMetamorphBtn = Calibrate the OnMetamorph Color`rThis color determines if the Metamorph panel is open`rSample located at the i Button of the Metamorph panel
 			UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
 			UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
 			UpdateOnStashBtn = Calibrate the OnStash/OnLeft Colors`rThese colors determine if the Stash/Left panel is open`rSample is located at the top of the Stash panel
@@ -407,12 +421,14 @@
 			YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
 			YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
 			YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
-			YesStashT1 = This option is for the Crafting stash tab`rEnable to stash T1 crafting bases
-			YesStashT2 = This option is for the Crafting stash tab`rEnable to stash T2 crafting bases
-			YesStashT3 = This option is for the Crafting stash tab`rEnable to stash T3 crafting bases
-			YesStashCraftingNormal = This option is for the Crafting stash tab`rEnable to stash Normal crafting bases
-			YesStashCraftingMagic = This option is for the Crafting stash tab`rEnable to stash Magic crafting bases
-			YesStashCraftingRare = This option is for the Crafting stash tab`rEnable to stash Rare crafting bases
+			YesStashT1 = Enable to stash T1 crafting bases
+			YesStashT2 = Enable to stash T2 crafting bases
+			YesStashT3 = Enable to stash T3 crafting bases
+			YesStashCraftingNormal = Enable to stash Normal crafting bases
+			YesStashCraftingMagic = Enable to stash Magic crafting bases
+			YesStashCraftingRare = Enable to stash Rare crafting bases
+			YesStashCraftingIlvl = Enable to only stash above selected ilvl
+			YesStashCraftingIlvlMin = Set minimum ilvl
 			YesSkipMaps = Select the column which you will begin skipping rolled maps`rThis includes magic, rare or unique maps >= the selected column
 			UpdateDatabaseInterval = How many days between database updates?
 			selectedLeague = Which league are you playing on?
@@ -437,6 +453,13 @@
 			StashTabYesProphecy = Enable to send Prophecy items to the assigned tab on the left
 			StashTabVeiled = Assign the Stash tab for Veiled items
 			StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
+			StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
+			StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
+			StashTabYesPredictive_Price = Set the minimum value to consider worth stashing
+			StashTabDump = Assign the Stash tab for Unsorted items left over during Stash routine
+			StashTabYesDump = Enable to send Unsorted items to the assigned Dump tab on the left
+			StashDumpInTrial = Enables dump tab for all unsorted items when in Aspirant's Trial
+			StashDumpSkipJC = Do not stash Jewler or Chromatic items when dumping
 			StashTabGemSupport = Assign the Stash tab for Support Gem items
 			StashTabYesGemSupport = Enable to send Support Gem items to the assigned tab on the left
 			StashTabOrgan = Assign the Stash tab for Organ Part items
@@ -489,7 +512,7 @@
 			, 1080_ClarissaStr := "|<1080 Clarissa>*100$73.zzzzzzzzzzzzz3zzzzzzzzzzy0TzzzzzzzzzyDCzxzzvwzDxyDiDwy0sw71wz7zbwD6SQnAwDbzny7X7CTby7nztyFlXb7lyFszwzAsnnkwDAwTyTUQ3twD3USDzDU61wz7lU73vbnn4STlwHnklnXtX7CtiHtw1s1wFlb1kNwTrzzzzzzvyzzzzzzzzzzzzzzy"
 			, 1080_PetarusStr := "|<1080 Petarus>*100$69.zzzzzzzzzzzw7zzzzzzzzzzUDzzzzzzzzzwtzzzzTzyzTDb61U3ns3XlkQsthXQD6QTAnb7DwTVslXtbwttzXt76ATATUT1wTAsnntkwDsTXs70yTD3bzDwS0M7ntwQztzXnn4STTlbzDwQyMllniQzs7Xbl770w7zzzzzzzzyTvzzzzzzzzzzzzU"
 			, 1080_LaniStr := "|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"
-			, 1080_ChestStr := "|<1080 Door>*100$47.zzzzzzzz0zzzzzzy0TzzzzzwwTnznzztsS1y1s3nstltllbblXnXnX7DXDXDX6CT6T6T6AwyAyAyA3twNwNwM7ntltltl7b7lXlXX70TkTkT77zzvzvzzzzzzzzzzs"
+		Global 1080_ChestStr := "|<1080 Door>*100$47.zzzzzzzz0zzzzzzy0TzzzzzwwTnznzztsS1y1s3nstltllbblXnXnX7DXDXDX6CT6T6T6AwyAyAyA3twNwNwM7ntltltl7b7lXlXX70TkTkT77zzvzvzzzzzzzzzzs"
 			, 1080_ChestStr .= "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
 			, 1080_ChestStr .= "|<1080 Trunk>*100$57.zzzzzzzzzw0DzzzzzzzU1zzzzzzzxlzzrvrxvvyD0QSAT6CDlsnXtlttnyD6ATC7DAzlslXtkNtDyD6STCFD3zls7ntn9sDyD0yTCMD9zlsXnvnVtbyD6CCSSDATlsss7nttlzzzznzzzzzzzzzzzzzzU"
 			, 1080_ChestStr .= "|<1080 Rack>*100$41.zzzzzzz1zzzzzy0zzzzzwtzTwyytlwzUMsnXkyANnb7VsxnDCSFnzYy1wnbz3w3s7Dy3tXU6DwbnbDATtbb4yQQn7D1wQ3b7zzzyTzzzzzzzzs"
@@ -497,6 +520,12 @@
 			, 1080_ChestStr .= "|<1080 Bundle>*100$64.zzzzzzzzzzy3zzzzzzzzzs7zzzzzzzzzbDTjTrzzjzyQswMyA1wT0tnXtlttVtyPUSDb3bb7bty0syQ6SSCTbtlntm9tsty3b7DbAbbXbsSSQyQkSSSTbttnvnVtttyTbD7DD7bDbNy1y1wyS1y1UTzyTzzzzzzzzzzzzzzzzzy"
 			, 1080_ChestStr .= "|<1080 Lever>*100$46.DzzzzzzwzzzzzzznzzjvzzzDkATA3UAzatwtiAnyTXnbslDtzCSTX4zUwtsCAny7ljVs7DtzYyTUQzby7ty8naTsTbsl0M7ly1XXzzzjzzzs"
 			, 1080_ChestStr .= "|<1080 Crank>*100$54.wDzzzzzzzk3zzzzzzzXnzzrvyxx7r0TblwMs7z6T3swwtDz6D3sQwnDz6CFsAwb7z6SNt4wD7z0y1tYw77z0w0tUwb3v4QwtkwnVX69wtswlk771wNwwsyzzzzzzzzU"
+			, 1080_ChestStr .= "|<1080 Hoard>*100$56.DlzzzzzzznwTzzzzzzwz7wzxzzzzDlw3yT0Q1nwSQT3lba4z77bkwMtl01nst76CS00QyCNlbbUz7DXUQ3tsDlnsk30ySHwQSQwl7bYz7X6TAMtnDlw7bl761zzzrzzzzzy"
+			, 1080_ChestStr .= "|<1080 Sulphite>*100$36.lzzzzziTzzzzDTzzzzDwywz17wywzAXwywzSlwywzSswywzSyQywz1yQywzDzQywzDSQwwzDUy1w3DU"
+		Global 1080_DelveStr := "|<Hidden>*100$65.7szzzzzzzzzDlzzzzzzzzyTXnyzyzzyzgz770D0D0My9yDDADADAswHwSSQSQSTktU0wwwQwQzUn01ttstssD0aTXnnlnlkSEAz7bbXbXbwkNyDDDDDDDtknwSSMyMyTnlbsww3w3w3bn"
+			, 1080_DelveStr .= "|<Cache>*100$52.s7zzzzzzz0DzzzzzzsszTwSTDz7rsz0Fws0Tz3slbnn3zwD7iTDDDzYQztwwwTyFnzU3kFzk7Dy0D17z0ATtwwwDgslzbnns8blXaTDDk6T60tww3lzzyDzzzs"
+			, 1080_DelveStr .= "|<Cache Yellow>*100$51.wDzzzzzzy0TzzzzzzXnzzzzzzwyzDs7DbUDzkySNwwlzybXzDbbDzowztwwtzwnbz07U7ziQztww8zs1bzDbbXzDATtwwwCPtlnDbbk6T70tww4"
+			, 1080_DelveStr .= "|<Fossil>*100$50.0Tzzzzzzs3zzzzzzyQyTtyTDDby1s61XXtz6CNaQwyTXlbtzDDUNwMyDnnsCT63UwwyTblsS7DDbswT7lnntyDDsyAwyTVXiPbDCbw1s61nkDzlz7lzzy"
 	; FindText strings from INI
 		Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr
 		, XButtonStr
@@ -544,10 +573,14 @@
 		Global OnDiv := False
 		Global OnLeft := False
 		Global OnDelveChart := False
+		Global OnMetamorph := False
 		Global RescaleRan := False
 		Global ToggleExist := False
 		Global YesOHB := True
 		Global YesGlobeScan := True
+		Global YesFillMetamorph := True
+		Global YesPredictivePrice := "Off"
+		Global YesPredictivePrice_Percent_Val := 100
 		Global HPerc := 100
 		Global GameX, GameY, GameW, GameH, mouseX, mouseY
 		Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
@@ -635,6 +668,8 @@
 		Global StashTabVeiled := 1
 		Global StashTabGemSupport := 1
 		Global StashTabOrgan := 1
+		Global StashTabDump := 1
+		Global StashTabPredictive := 1
 	; Checkbox to activate each tab
 		Global StashTabYesCurrency := 1
 		Global StashTabYesMap := 1
@@ -656,6 +691,11 @@
 		Global StashTabYesVeiled := 1
 		Global StashTabYesGemSupport := 1
 		Global StashTabYesOrgan := 1
+		Global StashTabYesDump := 1
+		Global StashDumpInTrial := 1
+		Global StashDumpSkipJC := 1
+		Global StashTabYesPredictive := 0
+		Global StashTabYesPredictive_Price := 5
 	; Crafting bases to stash
 		Global YesStashT1 := 1
 		Global YesStashT2 := 1
@@ -663,6 +703,8 @@
 		Global YesStashCraftingNormal := 1
 		Global YesStashCraftingMagic := 1
 		Global YesStashCraftingRare := 1
+		Global YesStashCraftingIlvl := 0
+		Global YesStashCraftingIlvlMin := 76
 	; Skip Maps after column #
 		Global YesSkipMaps := 0
 	; Controller
@@ -727,6 +769,7 @@
 		global varOnDiv:=0xF6E2C5
 		global varOnLeft:=0xB58C4D
 		global varOnDelveChart:=0xB58C4D
+		global varOnMetamorph:=0xE06718
 		Global varOnDetonate := 0x5D4661
 
 	; Life, ES, Mana Colors
@@ -1319,6 +1362,7 @@
 	Gui,SampleInd: Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		x+8	yp			w110, 	OnVendor
 	Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			xs y+3			w110, 	OnMenu
 	Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn	x+8	yp			w110, 	OnDelveChart
+	Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn	xs y+3			w110, 	OnMetamorph
 
 
 	Gui,SampleInd: Font, Bold
@@ -1356,7 +1400,7 @@
 	Gui, Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
 	Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
 	Gui, Font, Bold
-	Gui Add, Text, 					Section					xs 	y+20, 				Additional Settings:
+	Gui Add, Text, 					Section					xs 	y+15, 				Additional Settings:
 	Gui, add, button, gWR_Update vWR_Btn_Inventory 	xs y+10 w110, Inventory
 	Gui, add, button, gWR_Update vWR_Btn_Strings 	x+10 yp w110, Strings
 	Gui, add, button, gWR_Update vWR_Btn_Chat 		xs y+10 w110, Chat
@@ -1664,6 +1708,8 @@
 		global vY_OnLeft:=57
 		global vX_OnDelveChart:=466
 		global vY_OnDelveChart:=89
+		global vX_OnMetamorph:=785
+		global vY_OnMetamorph:=204
 		
 		global vX_Life:=95
 		global vY_Life20:=1034
@@ -1706,7 +1752,7 @@
 
 	;Ignore Slot setup
 					apiList.MaxIndex()
-	IfNotExist, %A_ScriptDir%\data\IgnoredSlot.json
+	IfNotExist, %A_ScriptDir%\save\IgnoredSlot.json
 	{
 		For C, GridX in InventoryGridX
 		{
@@ -1736,7 +1782,7 @@
 			Load_BarControl(100,"Database Updated",-1)
 			JSONtext := JSON.Dump(Ninja,,2)
 			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+			IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
 		}
 		Else
 		{
@@ -1751,7 +1797,7 @@
 				JSONtext := JSON.Dump(Ninja,,2)
 				FileDelete, %A_ScriptDir%\data\Ninja.json
 				FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-				IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+				IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
 				LastDatabaseParseDate := Date_now
 				Load_BarControl(100,"Database Updated",-1)
 			}
@@ -1804,6 +1850,8 @@
 ; Hotkeys to reload or exit script
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	#IfWinActive
+
+	Return
 	; Reload Script with Alt+Escape
 	!Escape::
 		Reload
@@ -1836,6 +1884,7 @@
 		}
 	Return
 	#MaxThreadsPerHotkey, 2
+; ------------------------------------------------End of AutoExecute Section-----------------------------------------------------------------------------------------------------------
 Return
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1850,6 +1899,7 @@ Return
 			RunningToggle := False  ; Signal that thread's loop to stop.
 			If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
 				SetTimer, TGameTick, On
+			SendMSG(1,0,scriptTradeMacro)
 			exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
 		}
 		MouseGetPos xx, yy
@@ -1900,6 +1950,7 @@ Return
 					Return
 				}
 			}
+			SendMSG(1,1,scriptTradeMacro)
 			If (OnDiv && YesDiv)
 				DivRoutine()
 			Else If (OnStash && YesStash)
@@ -1910,6 +1961,7 @@ Return
 				IdentifyRoutine()
 		}
 		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+		SendMSG(1,0,scriptTradeMacro)
 		Sleep, 90*Latency
 		MouseMove, xx, yy, 0
 		If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
@@ -2017,7 +2069,7 @@ Return
 						Continue
 					If ( Prop.Flask && ( Stats.Quality > 0 ))
 					{
-						If Stats.Quality >= 20
+						If (Stats.Quality >= 20 && !Prop.QualityAugmented)
 							Q := 40 
 						Else 
 							Q := Stats.Quality
@@ -2218,14 +2270,20 @@ Return
 						sendstash := StashTabOil
 					Else If (Prop.Veiled&&StashTabYesVeiled)
 						sendstash := StashTabVeiled
-					Else If StashTabYesCrafting 
+					Else If (StashTabYesCrafting 
 						&& ((YesStashT1 && Prop.CraftingBase = "T1") 
 							|| (YesStashT2 && Prop.CraftingBase = "T2") 
 							|| (YesStashT3 && Prop.CraftingBase = "T3"))
 						&& ((YesStashCraftingNormal && Prop.RarityNormal)
 							|| (YesStashCraftingMagic && Prop.RarityMagic)
 							|| (YesStashCraftingRare && Prop.RarityRare))
+						&& (!YesStashCraftingIlvl 
+							|| (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
 						sendstash := StashTabCrafting
+					Else If (StashTabYesPredictive && (PredictPrice() >= StashTabYesPredictive_Price) )
+						sendstash := StashTabPredictive
+					Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
+						sendstash := StashTabDump
 					Else
 						++Unstashed
 					If (sendstash > 0)
@@ -2458,6 +2516,7 @@ Return
 			Sleep, 45+(ClipLatency>0?ClipLatency*15:0)
 			Send ^c
 			ClipWait, 0
+			Clip_Contents := Clipboard
 			ParseClip()
 			BlockInput, MouseMoveOff
 		Return
@@ -2478,6 +2537,8 @@ Return
 			Prop.ItemClass := ""
 			Prop.Influence := ""
 			Prop.SpecialType := ""
+			Prop.CLF_MatchGroup := ""
+			Prop.CLF_SendTab := 0
 			Prop.Ring := False
 			Prop.Amulet := False
 			Prop.Belt := False
@@ -2489,6 +2550,7 @@ Return
 			Prop.Fossil := False
 			Prop.Resonator := False
 			Prop.IsOrgan := ""
+			Prop.IsBeast := False
 			Prop.Jeweler := False
 			Prop.TimelessSplinter := False
 			Prop.BreachSplinter := False
@@ -2506,6 +2568,8 @@ Return
 			Prop.Oil := False
 			Prop.ItemLevel := 0
 			Prop.DropLevel := 0
+			Prop.PredictPrice := 0
+			Prop.PredictPriceInfo := ""
 			Prop.ChaosValue := 0
 			Prop.ExaltValue := 0
 			Prop.Rarity := ""
@@ -2517,6 +2581,7 @@ Return
 			Prop.RarityRare := False
 			Prop.RarityUnique := False
 			Prop.Rarity_Digit := 0
+			Prop.QualityAugmented := False
 			Prop.Gem_Sockets := 0
 			Prop.Gem_RawSockets := ""
 			Prop.Gem_Links := 0
@@ -2534,8 +2599,6 @@ Return
 			Prop.DoubleCorrupted := False
 			Prop.Variant := 0
 			Prop.CraftingBase := 0
-			Prop.CLF_MatchGroup := ""
-			Prop.CLF_SendTab := 0
 
 		Stats := OrderedArray()
 			Stats.MapTier := 0
@@ -2709,29 +2772,35 @@ Return
 			Affix.ReducedAttributeRequirement := 0
 
 		
-		If InStr(Clipboard, "`nCorrupted", 1)
+		If InStr(Clip_Contents, "`nCorrupted", 1)
 			Prop.Corrupted := True
-		If InStr(Clipboard, "`nCrusader Item", 1)
+		If InStr(Clip_Contents, "`nCrusader Item", 1)
 			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Crusader" : "Crusader")
-		If InStr(Clipboard, "`nWarlord Item", 1)
+		If InStr(Clip_Contents, "`nWarlord Item", 1)
 			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Warlord" : "Warlord")
-		If InStr(Clipboard, "`nRedeemer Item", 1)
+		If InStr(Clip_Contents, "`nRedeemer Item", 1)
 			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Redeemer" : "Redeemer")
-		If InStr(Clipboard, "`nHunter Item", 1)
+		If InStr(Clip_Contents, "`nHunter Item", 1)
 			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Hunter" : "Hunter")
-		If InStr(Clipboard, "`nElder Item", 1)
+		If InStr(Clip_Contents, "`nElder Item", 1)
 			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Elder" : "Elder")
-		If InStr(Clipboard, "`nShaper Item", 1)
+		If InStr(Clip_Contents, "`nShaper Item", 1)
 			Prop.Influence := ( Prop.Influence ? Prop.Influence . " Shaper" : "Shaper")
-		If InStr(Clipboard, "`nTravel to this Map by using it in a personal Map Device. Maps can only be used once.")
+		If InStr(Clip_Contents, "`nTravel to this Map by using it in a personal Map Device. Maps can only be used once.")
 		{
 			Prop.IsMap := True
 			Prop.SpecialType := "Map"
 			Prop.ItemClass := "Maps"
 		}
-		Prop.zz_ItemText := "Trimmed Clipboard`n`n" RegExReplace(Clipboard, "i)([+`%.0-9]+)", "#") "`nRaw Clipboard`n`n" Clipboard
+		If InStr(Clip_Contents, "`nRight-click to add this to your bestiary.")
+		{
+			Prop.IsBeast := True
+			Prop.SpecialType := "Beast"
+			Prop.ItemClass := "Beasts"
+		}
+		Prop.zz_ItemText := "Trimmed Clipboard`n`n" RegExReplace(Clip_Contents, "i)([+`%.0-9]+)", "#") "`nRaw Clipboard`n`n" Clip_Contents
 		;Begin parsing information	
-		Loop, Parse, Clipboard, `n, `r
+		Loop, Parse, Clip_Contents, `n, `r
 		{
 			; Clipboard must have "Rarity:" in the first line
 			If A_Index = 1
@@ -2808,7 +2877,7 @@ Return
 				}
 				Else
 				{
-					Prop.ItemName := Prop.ItemName . A_LoopField . "`n" ; Add a line of name
+					Prop.ItemName := Prop.ItemName . StrReplace(A_LoopField, "Superior ", "") . "`n" ; Add a line of name
 					Prop.ItemName := StrReplace(Prop.ItemName, "<<set:MS>><<set:M>><<set:S>>", "")
 					StandardBase := StrReplace(StrReplace(A_LoopField, "Superior ", ""), "<<set:MS>><<set:M>><<set:S>>", "")
 					PossibleBase := StrSplit(StandardBase, " of ")
@@ -2827,7 +2896,7 @@ Return
 					}
 					For k, v in Bases
 					{
-						If (v["name"] = A_LoopField) || (v["name"] = StandardBase) || (v["name"] = PrefixMagicBase)
+						If ((v["name"] = A_LoopField) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )
 						{
 							Prop.Item_Width := v["inventory_width"]
 							Prop.Item_Height := v["inventory_height"]
@@ -2836,35 +2905,33 @@ Return
 							Prop.DropLevel := v["drop_level"]
 							If Prop.Corrupted
 							{
-								If InStr(Clipboard, "Vaal " . Prop.ItemBase, 1)
+								If InStr(Clip_Contents, "Vaal " . Prop.ItemBase, 1)
 								{
 									Prop.VaalGem := True
 									Prop.ItemBase := "Vaal " . Prop.ItemBase
 									Prop.ItemName := "Vaal " . Prop.ItemName
 								}
-								Else If InStr(Clipboard, "Vaal " . StrReplace(Prop.ItemBase,"Purity","Impurity"),1)
+								Else If InStr(Clip_Contents, "Vaal " . StrReplace(Prop.ItemBase,"Purity","Impurity"),1)
 								{
 									Prop.VaalGem := True
 									Prop.ItemBase := "Vaal " . StrReplace(Prop.ItemBase,"Purity","Impurity")
 									Prop.ItemName := "Vaal " . StrReplace(Prop.ItemName,"Purity","Impurity")
 								}
 							}
+							If InStr(Prop.ItemClass, "Ring")
+								Prop.Ring := True
+							If InStr(Prop.ItemClass, "Amulet")
+								Prop.Amulet := True
 							Break
 						}
 					}
-					IfInString, A_LoopField, Ring
+					If Prop.IsBeast
 					{
-						IfNotInString, A_LoopField, Ringmail
+						For k, v in Ninja.Beast
 						{
-							Prop.Ring := True
-							Prop.ItemClass := "Rings"
-							Continue
+							If (v["name"] = A_LoopField)
+								Prop.ItemBase := A_LoopField
 						}
-					}
-					IfInString, A_LoopField, Amulet
-					{
-						Prop.Amulet := True
-						Continue
 					}
 					IfInString, A_LoopField, Incubator
 					{
@@ -3071,7 +3138,7 @@ Return
 							Continue
 						}
 					}
-					If InStr(Clipboard, "Combine this with four other different samples in Tane's Laboratory.")
+					If InStr(Clip_Contents, "Combine this with four other different samples in Tane's Laboratory.")
 					{
 						IfInString, A_LoopField, 's Lung
 						{
@@ -3195,6 +3262,8 @@ Return
 			{
 				StringSplit, QualityArray, A_LoopField, %A_Space%, +`%
 				Stats.Quality := QualityArray2
+				If InStr(A_LoopField,"(augmented)")
+					Prop.QualityAugmented := True
 				Continue
 			}
 			; Get Socket Information
@@ -4431,9 +4500,16 @@ Return
 	ItemInfo(){
 		ItemInfoCommand:
 		MouseGetPos, Mx, My
+		SendMSG(1,1,scriptTradeMacro)
 		ClipItem(Mx, My)
+		SendMSG(1,0,scriptTradeMacro)
 		Prop.CLF_SendTab := MatchLootFilter()
 		Prop.CLF_MatchGroup := MatchLootFilter(1)
+		If (YesPredictivePrice && (PriceObj := PredictPrice("Obj")))
+		{
+			Prop.PredictPrice := PriceObj.price
+			Prop.PredictPriceInfo := PriceObj.tt
+		}
 		MatchNinjaPrice(True)
 		Return
 	}
@@ -4575,6 +4651,20 @@ Return
 							Return True
 						}
 					}
+					Else If (Prop.IsBeast)
+					{
+						If InStr(Prop.ItemBase, Ninja[TKey][index]["name"])
+						{
+							Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+							Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+							If graph
+							{
+								GraphNinjaPrices(TKey,index)
+								DisplayPSA()
+							}
+							Return True
+						}
+					}
 					Else If (Prop.ItemName = Ninja[TKey][index]["name"] && !Ninja[TKey][index].HasKey("links") )
 					{
 						Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
@@ -4612,11 +4702,16 @@ Return
 	GraphNinjaPrices(TKey:=False,index:=False)
 	{
 		If !(TKey = False || index = False)
+		{
+			Gosub, ShowGraph
 			Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
+		}
 		Else
 		{
+			GoSub, noDataGraph
+			GoSub, HideGraph
 			Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " has no Graph Data"
-			Goto, noDataGraph
+			Return
 		}
 			
 		If (Ninja[TKey][index]["paySparkLine"])
@@ -5081,6 +5176,189 @@ Return
 				GuiControl,ItemInfo: , SComment10,
 				GuiControl,ItemInfo: , SData10
 		Return
+
+		HideGraph:
+				GuiControl,ItemInfo: Hide, PercentText1G1
+				GuiControl,ItemInfo: Hide, PercentText1G2
+				GuiControl,ItemInfo: Hide, PercentText1G3
+				GuiControl,ItemInfo: Hide, PercentText1G4
+				GuiControl,ItemInfo: Hide, PercentText1G5
+				GuiControl,ItemInfo: Hide, PercentText1G6
+				GuiControl,ItemInfo: Hide, PercentText1G7
+				GuiControl,ItemInfo: Hide, PercentText1G8
+				GuiControl,ItemInfo: Hide, PercentText1G9
+				GuiControl,ItemInfo: Hide, PercentText1G10
+				GuiControl,ItemInfo: Hide, PercentText1G11
+				GuiControl,ItemInfo: Hide, PercentText1G12
+				GuiControl,ItemInfo: Hide, PercentText1G13
+				GuiControl,ItemInfo: Hide, PercentText1G14
+				GuiControl,ItemInfo: Hide, PercentText1G15
+				GuiControl,ItemInfo: Hide, PercentText1G16
+				GuiControl,ItemInfo: Hide, PercentText1G17
+				GuiControl,ItemInfo: Hide, PercentText1G18
+				GuiControl,ItemInfo: Hide, PercentText1G19
+				GuiControl,ItemInfo: Hide, PercentText1G20
+				GuiControl,ItemInfo: Hide, PercentText1G21
+				GuiControl,ItemInfo: Hide, PercentText2G1
+				GuiControl,ItemInfo: Hide, PercentText2G2
+				GuiControl,ItemInfo: Hide, PercentText2G3
+				GuiControl,ItemInfo: Hide, PercentText2G4
+				GuiControl,ItemInfo: Hide, PercentText2G5
+				GuiControl,ItemInfo: Hide, PercentText2G6
+				GuiControl,ItemInfo: Hide, PercentText2G7
+				GuiControl,ItemInfo: Hide, PercentText2G8
+				GuiControl,ItemInfo: Hide, PercentText2G9
+				GuiControl,ItemInfo: Hide, PercentText2G10
+				GuiControl,ItemInfo: Hide, PercentText2G11
+				GuiControl,ItemInfo: Hide, PercentText2G12
+				GuiControl,ItemInfo: Hide, PercentText2G13
+				GuiControl,ItemInfo: Hide, PercentText2G14
+				GuiControl,ItemInfo: Hide, PercentText2G15
+				GuiControl,ItemInfo: Hide, PercentText2G16
+				GuiControl,ItemInfo: Hide, PercentText2G17
+				GuiControl,ItemInfo: Hide, PercentText2G18
+				GuiControl,ItemInfo: Hide, PercentText2G19
+				GuiControl,ItemInfo: Hide, PercentText2G20
+				GuiControl,ItemInfo: Hide, PercentText2G21
+
+				GuiControl,ItemInfo: Hide, pGraph1
+				GuiControl,ItemInfo: Hide, pGraph2
+
+				GuiControl,ItemInfo: Hide, GroupBox1
+				GuiControl,ItemInfo: Hide, PComment1
+				GuiControl,ItemInfo: Hide, PData1
+				GuiControl,ItemInfo: Hide, PComment2
+				GuiControl,ItemInfo: Hide, PData2
+				GuiControl,ItemInfo: Hide, PComment3
+				GuiControl,ItemInfo: Hide, PData3
+				GuiControl,ItemInfo: Hide, PComment4
+				GuiControl,ItemInfo: Hide, PData4
+				GuiControl,ItemInfo: Hide, PComment5
+				GuiControl,ItemInfo: Hide, PData5
+				GuiControl,ItemInfo: Hide, PComment6
+				GuiControl,ItemInfo: Hide, PData6
+				GuiControl,ItemInfo: Hide, PComment7
+				GuiControl,ItemInfo: Hide, PData7
+				GuiControl,ItemInfo: Hide, PComment8
+				GuiControl,ItemInfo: Hide, PData8
+				GuiControl,ItemInfo: Hide, PComment9
+				GuiControl,ItemInfo: Hide, PData9
+				GuiControl,ItemInfo: Hide, PComment10
+				GuiControl,ItemInfo: Hide, PData10
+
+				GuiControl,ItemInfo: Hide, GroupBox2
+				GuiControl,ItemInfo: Hide, SComment1
+				GuiControl,ItemInfo: Hide, SData1
+				GuiControl,ItemInfo: Hide, SComment2
+				GuiControl,ItemInfo: Hide, SData2
+				GuiControl,ItemInfo: Hide, SComment3
+				GuiControl,ItemInfo: Hide, SData3
+				GuiControl,ItemInfo: Hide, SComment4
+				GuiControl,ItemInfo: Hide, SData4
+				GuiControl,ItemInfo: Hide, SComment5
+				GuiControl,ItemInfo: Hide, SData5
+				GuiControl,ItemInfo: Hide, SComment6
+				GuiControl,ItemInfo: Hide, SData6
+				GuiControl,ItemInfo: Hide, SComment7
+				GuiControl,ItemInfo: Hide, SData7
+				GuiControl,ItemInfo: Hide, SComment8
+				GuiControl,ItemInfo: Hide, SData8
+				GuiControl,ItemInfo: Hide, SComment9
+				GuiControl,ItemInfo: Hide, SData9
+				GuiControl,ItemInfo: Hide, SComment10
+				GuiControl,ItemInfo: Hide, SData10
+		Return
+		ShowGraph:
+				GuiControl,ItemInfo: Show, PercentText1G1
+				GuiControl,ItemInfo: Show, PercentText1G2
+				GuiControl,ItemInfo: Show, PercentText1G3
+				GuiControl,ItemInfo: Show, PercentText1G4
+				GuiControl,ItemInfo: Show, PercentText1G5
+				GuiControl,ItemInfo: Show, PercentText1G6
+				GuiControl,ItemInfo: Show, PercentText1G7
+				GuiControl,ItemInfo: Show, PercentText1G8
+				GuiControl,ItemInfo: Show, PercentText1G9
+				GuiControl,ItemInfo: Show, PercentText1G10
+				GuiControl,ItemInfo: Show, PercentText1G11
+				GuiControl,ItemInfo: Show, PercentText1G12
+				GuiControl,ItemInfo: Show, PercentText1G13
+				GuiControl,ItemInfo: Show, PercentText1G14
+				GuiControl,ItemInfo: Show, PercentText1G15
+				GuiControl,ItemInfo: Show, PercentText1G16
+				GuiControl,ItemInfo: Show, PercentText1G17
+				GuiControl,ItemInfo: Show, PercentText1G18
+				GuiControl,ItemInfo: Show, PercentText1G19
+				GuiControl,ItemInfo: Show, PercentText1G20
+				GuiControl,ItemInfo: Show, PercentText1G21
+				GuiControl,ItemInfo: Show, PercentText2G1
+				GuiControl,ItemInfo: Show, PercentText2G2
+				GuiControl,ItemInfo: Show, PercentText2G3
+				GuiControl,ItemInfo: Show, PercentText2G4
+				GuiControl,ItemInfo: Show, PercentText2G5
+				GuiControl,ItemInfo: Show, PercentText2G6
+				GuiControl,ItemInfo: Show, PercentText2G7
+				GuiControl,ItemInfo: Show, PercentText2G8
+				GuiControl,ItemInfo: Show, PercentText2G9
+				GuiControl,ItemInfo: Show, PercentText2G10
+				GuiControl,ItemInfo: Show, PercentText2G11
+				GuiControl,ItemInfo: Show, PercentText2G12
+				GuiControl,ItemInfo: Show, PercentText2G13
+				GuiControl,ItemInfo: Show, PercentText2G14
+				GuiControl,ItemInfo: Show, PercentText2G15
+				GuiControl,ItemInfo: Show, PercentText2G16
+				GuiControl,ItemInfo: Show, PercentText2G17
+				GuiControl,ItemInfo: Show, PercentText2G18
+				GuiControl,ItemInfo: Show, PercentText2G19
+				GuiControl,ItemInfo: Show, PercentText2G20
+				GuiControl,ItemInfo: Show, PercentText2G21
+
+				GuiControl,ItemInfo: Show, pGraph1
+				GuiControl,ItemInfo: Show, pGraph2
+
+				GuiControl,ItemInfo: Show, GroupBox1
+				GuiControl,ItemInfo: Show, PComment1
+				GuiControl,ItemInfo: Show, PData1
+				GuiControl,ItemInfo: Show, PComment2
+				GuiControl,ItemInfo: Show, PData2
+				GuiControl,ItemInfo: Show, PComment3
+				GuiControl,ItemInfo: Show, PData3
+				GuiControl,ItemInfo: Show, PComment4
+				GuiControl,ItemInfo: Show, PData4
+				GuiControl,ItemInfo: Show, PComment5
+				GuiControl,ItemInfo: Show, PData5
+				GuiControl,ItemInfo: Show, PComment6
+				GuiControl,ItemInfo: Show, PData6
+				GuiControl,ItemInfo: Show, PComment7
+				GuiControl,ItemInfo: Show, PData7
+				GuiControl,ItemInfo: Show, PComment8
+				GuiControl,ItemInfo: Show, PData8
+				GuiControl,ItemInfo: Show, PComment9
+				GuiControl,ItemInfo: Show, PData9
+				GuiControl,ItemInfo: Show, PComment10
+				GuiControl,ItemInfo: Show, PData10
+
+				GuiControl,ItemInfo: Show, GroupBox2
+				GuiControl,ItemInfo: Show, SComment1
+				GuiControl,ItemInfo: Show, SData1
+				GuiControl,ItemInfo: Show, SComment2
+				GuiControl,ItemInfo: Show, SData2
+				GuiControl,ItemInfo: Show, SComment3
+				GuiControl,ItemInfo: Show, SData3
+				GuiControl,ItemInfo: Show, SComment4
+				GuiControl,ItemInfo: Show, SData4
+				GuiControl,ItemInfo: Show, SComment5
+				GuiControl,ItemInfo: Show, SData5
+				GuiControl,ItemInfo: Show, SComment6
+				GuiControl,ItemInfo: Show, SData6
+				GuiControl,ItemInfo: Show, SComment7
+				GuiControl,ItemInfo: Show, SData7
+				GuiControl,ItemInfo: Show, SComment8
+				GuiControl,ItemInfo: Show, SData8
+				GuiControl,ItemInfo: Show, SComment9
+				GuiControl,ItemInfo: Show, SData9
+				GuiControl,ItemInfo: Show, SComment10
+				GuiControl,ItemInfo: Show, SData10
+		Return
 	}
 	; DisplayPSA - Send Item info arrays Prop, Stats, and Affix to ItemInfo gui
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5296,15 +5574,20 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TGameTick(GuiCheck:=True)
 	{
-		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0
-		If WinActive(GameStr)
+		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False
+		If WinExist(GameStr)
 		{
 			If (DebugMessages && YesTimeMS)
 				t1 := A_TickCount
 			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
 			{
-				If WinActive(GameStr)
+				If WinExist(GameStr)
 				{
+					If CheckGamestates
+					{
+						GuiStatus()
+						DebugGamestates("CheckGamestates")
+					}
 					If (DebugMessages && YesTimeMS)
 					{
 						If ((t1-LastPauseMessage) > 100)
@@ -5321,18 +5604,36 @@ Return
 			{
 				If !GuiStatus()
 				{
-					If WinActive(GameStr)
+					If YesFillMetamorph 
+					{
+						If (OnMetamorph && !Metamorph_Filled)
+						{
+							Metamorph_Filled := True
+							Metamorph_FillOrgans()
+						}
+						Else If (!OnMetamorph && Metamorph_Filled)
+							Metamorph_Filled := False
+					}
+					If CheckGamestates
+					{
+						DebugGamestates("CheckGamestates")
+					}
+					If WinExist(GameStr)
 						If (DebugMessages && YesTimeMS)
 							If ((t1-LastPauseMessage) > 100)
 							{
-								Ding(600,2,"Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":"Error"))))))))))
+								Ding(600,2,"Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(OnMetamorph?"Metamorph is Open":"Error")))))))))))
 								LastPauseMessage := A_TickCount
 							}
 					Exit
 				}
+				If (!OnMetamorph && Metamorph_Filled)
+					Metamorph_Filled := False
+				If CheckGamestates
+					DebugGamestates("CheckGamestates")
 				If (YesOHB && !CheckOHB())
 				{
-					If WinActive(GameStr)
+					If WinExist(GameStr)
 						If (DebugMessages && YesTimeMS)
 							If ((t1-LastPauseMessage) > 100)
 							{
@@ -6020,7 +6321,7 @@ Return
 			AutoSkillUp()
 			If (DebugMessages && YesTimeMS)
 			{
-				If WinActive(GameStr)
+				If WinExist(GameStr)
 				{
 					If ((t1-LastAverageTimer) > 100)
 					{
@@ -6085,7 +6386,7 @@ Return
 	AutoQuit(){
 		AutoQuitCommand:
 			AutoQuit := !AutoQuit
-			IniWrite, %AutoQuit%, settings.ini, Previous Toggles, AutoQuit
+			IniWrite, %AutoQuit%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit
 			; if ((!AutoFlask) && (!AutoQuit)) {
 			; 	SetTimer TGameTick, Off
 			; } else if ((AutoFlask) || (AutoQuit)){
@@ -6100,7 +6401,7 @@ Return
 	AutoFlask(){
 		AutoFlaskCommand:	
 			AutoFlask := !AutoFlask
-			IniWrite, %AutoFlask%, settings.ini, Previous Toggles, AutoFlask
+			IniWrite, %AutoFlask%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoFlask
 			; if ((!AutoFlask) and (!AutoQuit)) {
 			; 	SetTimer TGameTick, Off
 			; } else if ((AutoFlask) || (AutoQuit)) {
@@ -6113,8 +6414,8 @@ Return
 	; AutoReset - Load Previous Toggle States
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	AutoReset(){
-		IniRead, AutoQuit, settings.ini, Previous Toggles, AutoQuit, 0
-		IniRead, AutoFlask, settings.ini, Previous Toggles, AutoFlask, 0
+		IniRead, AutoQuit, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit, 0
+		IniRead, AutoFlask, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoFlask, 0
 		; if ((!AutoFlask) and (!AutoQuit)) {
 		; 	SetTimer TGameTick, Off
 		; } else if ((AutoFlask) || (AutoQuit)) {
@@ -6175,13 +6476,14 @@ Return
 	; TriggerFlask - Flask Trigger check
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TriggerFlask(Trigger){
+		Global GamePID
 		FL:=1
 		loop 5 {
 			FLVal:=SubStr(Trigger,FL,1)+0
 			if (FLVal > 0) {
 				if (OnCooldown[FL]=0) {
 					key := keyFlask%FL%
-					send %key%
+					controlsend, , %key%, %GameStr%
 					SendMSG(3, FL)
 					OnCooldown[FL]:=1 
 					Cooldown:=CooldownFlask%FL%
@@ -6196,6 +6498,7 @@ Return
 	; TriggerMana - Trigger Mana Flasks Sequentially
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TriggerMana(Trigger){
+		Global GamePID
 		If ((!FlaskList.Count())&& !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) ) {
 			FL=1
 			loop, 5 {
@@ -6210,7 +6513,7 @@ Return
 		Else If !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) {
 			FL:=FlaskList.RemoveAt(1)
 			key := keyFlask%FL%
-			send %key%
+			controlsend, , %key%, %GameStr%
 			OnCooldown[FL] := 1 
 			Cooldown:=CooldownFlask%FL%
 			settimer, TimerFlask%FL%, %Cooldown%
@@ -6227,7 +6530,7 @@ Return
 			Return
 		If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
 			key:=KeyUtility%Utility%
-			Send %key%
+			controlsend, , %key%, %GameStr%
 			SendMSG(4, Utility)
 			OnCooldownUtility%Utility%:=1
 			Cooldown:=CooldownUtility%Utility%
@@ -6238,37 +6541,51 @@ Return
 
 ; DebugGamestates - Show a GUI which will update based on the state of the game
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	DebugGamestates(){
+	DebugGamestates(Switch:=""){
 		Global
+		Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1
+		Local NewOHB
+		If (Switch := "CheckGamestates")
+		{
+			GoSub CheckGamestates
+			Return
+		}
 		ShowDebugGamestates:
-			SetTimer, CheckGamestates, 50
+			; SetTimer, CheckGamestates, 50
+			CheckGamestates := True
+			OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1
 			Gui, Submit
 			; ----------------------------------------------------------------------------------------------------------------------
 			Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
 			Gui, States: Margin, 10, 10
 			; ----------------------------------------------------------------------------------------------------------------------
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnChar hwndCTIDOnChar, % "          OnChar "
+			Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChar hwndCTIDOnChar, % "OnChar"
 			CtlColors.Attach(CTIDOnChar, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnInventory hwndCTIDOnInventory, % "      OnInventory "
-			CtlColors.Attach(CTIDOnInventory, "", "Red")
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnChat hwndCTIDOnChat, % "          OnChat "
-			CtlColors.Attach(CTIDOnChat, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnStash hwndCTIDOnStash, % "         OnStash "
-			CtlColors.Attach(CTIDOnStash, "", "Red")
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDiv hwndCTIDOnDiv, % "          OnDiv "
-			CtlColors.Attach(CTIDOnDiv, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnVendor hwndCTIDOnVendor, % "         OnVendor "
-			CtlColors.Attach(CTIDOnVendor, "", "Red")
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnMenu hwndCTIDOnMenu, % "         OnMenu "
-			CtlColors.Attach(CTIDOnMenu, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnLeft hwndCTIDOnLeft, % "         OnLeft "
-			CtlColors.Attach(CTIDOnLeft, "", "Red")
-			Gui, States: Add, Text, xm+5 y+10 w90 h20 0x200 vCTOnDelveChart hwndCTIDOnDelveChart, % "       OnDelveChart "
-			CtlColors.Attach(CTIDOnDelveChart, "", "Red")
-			Gui, States: Add, Text, x+5 yp w90 h20 0x200 vCTOnDetonate hwndCTIDOnDetonate, % "       OnDetonate "
-			CtlColors.Attach(CTIDOnDetonate, "", "Red")
+			Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnOHB hwndCTIDOnOHB, % "O H B"
+			CtlColors.Attach(CTIDOnOHB, "", "Red")
+			Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChat hwndCTIDOnChat, % "OnChat"
+			CtlColors.Attach(CTIDOnChat, "", "Green")
+			Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnInventory hwndCTIDOnInventory, % "OnInventory"
+			CtlColors.Attach(CTIDOnInventory, "", "Green")
+			Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnDiv hwndCTIDOnDiv, % "OnDiv"
+			CtlColors.Attach(CTIDOnDiv, "", "Green")
+			Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnStash hwndCTIDOnStash, % "OnStash"
+			CtlColors.Attach(CTIDOnStash, "", "Green")
+			Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnMenu hwndCTIDOnMenu, % "OnMenu"
+			CtlColors.Attach(CTIDOnMenu, "", "Green")
+			Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnVendor hwndCTIDOnVendor, % "OnVendor"
+			CtlColors.Attach(CTIDOnVendor, "", "Green")
+			Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnDelveChart hwndCTIDOnDelveChart, % "OnDelveChart"
+			CtlColors.Attach(CTIDOnDelveChart, "", "Green")
+			Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnLeft hwndCTIDOnLeft, % "OnLeft"
+			CtlColors.Attach(CTIDOnLeft, "", "Green")
+			Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnMetamorph hwndCTIDOnMetamorph, % "OnMetamorph"
+			CtlColors.Attach(CTIDOnMetamorph, "", "Green")
+			Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnDetonate hwndCTIDOnDetonate, % "OnDetonate"
+			CtlColors.Attach(CTIDOnDetonate, "", "Green")
 			Gui, States: Add, Button, gCheckPixelGrid xm+5 y+15 w190 , Check Inventory Grid
 			; ----------------------------------------------------------------------------------------------------------------------
+			GoSub CheckGamestates
 			Gui, States: Show ,  , Check Gamestates
 		Return
 		; ----------------------------------------------------------------------------------------------------------------------
@@ -6278,6 +6595,7 @@ Return
 			SetTimer, CheckGamestates, Delete
 			CtlColors.Free()
 			Gui, 1: Show
+			CheckGamestates := False
 		Return
 		; ----------------------------------------------------------------------------------------------------------------------
 		StatesSize:
@@ -6288,47 +6606,103 @@ Return
 		Return
 		; ----------------------------------------------------------------------------------------------------------------------
 		CheckGamestates:
-			GuiStatus()
-			If (OnChar)
-				CtlColors.Change(CTIDOnChar, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnChar, "", "Red")
-			If (OnInventory)
-				CtlColors.Change(CTIDOnInventory, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnInventory, "", "Red")
-			If (OnChat)
-				CtlColors.Change(CTIDOnChat, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnChat, "", "Red")
-			If (OnStash)
-				CtlColors.Change(CTIDOnStash, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnStash, "", "Red")
-			If (OnDiv)
-				CtlColors.Change(CTIDOnDiv, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnDiv, "", "Red")
-			If (OnLeft)
-				CtlColors.Change(CTIDOnLeft, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnLeft, "", "Red")
-			If (OnDelveChart)
-				CtlColors.Change(CTIDOnDelveChart, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnDelveChart, "", "Red")
-			If (OnVendor)
-				CtlColors.Change(CTIDOnVendor, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnVendor, "", "Red")
-			If (OnDetonate)
-				CtlColors.Change(CTIDOnDetonate, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnDetonate, "", "Red")
-			If (OnMenu)
-				CtlColors.Change(CTIDOnMenu, "Lime", "")
-			Else
-				CtlColors.Change(CTIDOnMenu, "", "Red")
+			; GuiStatus()
+			If (OnChar != OldOnChar)
+			{
+				OldOnChar := OnChar
+				If OnChar
+					CtlColors.Change(CTIDOnChar, "Lime", "")
+				Else
+					CtlColors.Change(CTIDOnChar, "Red", "")
+			}
+			If ((NewOHB := CheckOHB()) != OldOHB)
+			{
+				OldOHB := NewOHB
+				If NewOHB
+					CtlColors.Change(CTIDOnOHB, "Lime", "")
+				Else
+					CtlColors.Change(CTIDOnOHB, "Red", "")
+			}
+			If (OnInventory != OldOnInventory)
+			{
+				OldOnInventory := OnInventory
+				If (OnInventory)
+					CtlColors.Change(CTIDOnInventory, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnInventory, "", "Green")
+			}
+			If (OnChat != OldOnChat)
+			{
+				OldOnChat := OnChat
+				If OnChat
+					CtlColors.Change(CTIDOnChat, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnChat, "", "Green")
+			}
+			If (OnStash != OldOnStash)
+			{
+				OldOnStash := OnStash
+				If (OnStash)
+					CtlColors.Change(CTIDOnStash, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnStash, "", "Green")
+			}
+			If (OnDiv != OldOnDiv)
+			{
+				OldOnDiv := OnDiv
+				If (OnDiv)
+					CtlColors.Change(CTIDOnDiv, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnDiv, "", "Green")
+			}
+			If (OnLeft != OldOnLeft)
+			{
+				OldOnLeft := OnLeft
+				If (OnLeft)
+					CtlColors.Change(CTIDOnLeft, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnLeft, "", "Green")
+			}
+			If (OnDelveChart != OldOnDelveChart)
+			{
+				OldOnDelveChart := OnDelveChart
+				If (OnDelveChart)
+					CtlColors.Change(CTIDOnDelveChart, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnDelveChart, "", "Green")
+			}
+			If (OnVendor != OldOnVendor)
+			{
+				OldOnVendor := OnVendor
+				If (OnVendor)
+					CtlColors.Change(CTIDOnVendor, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnVendor, "", "Green")
+			}
+			If (OnDetonate != OldOnDetonate)
+			{
+				OldOnDetonate := OnDetonate
+				If (OnDetonate)
+					CtlColors.Change(CTIDOnDetonate, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnDetonate, "", "Green")
+			}
+			If (OnMenu != OldOnMenu)
+			{
+				OldOnMenu := OnMenu
+				If (OnMenu)
+					CtlColors.Change(CTIDOnMenu, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnMenu, "", "Green")
+			}
+			If (OnMetamorph != OldOnMetamorph)
+			{
+				OldOnMetamorph := OnMetamorph
+				If (OnMetamorph)
+					CtlColors.Change(CTIDOnMetamorph, "Red", "")
+				Else
+					CtlColors.Change(CTIDOnMetamorph, "", "Green")
+			}
 		Return
 		; ----------------------------------------------------------------------------------------------------------------------
 		CheckPixelGrid:
@@ -6528,26 +6902,28 @@ Return
 				If RelogOnQuit
 				{
 					RandomSleep(350,350)
-					Send {Enter}
+					ControlSend,, {Enter}, %GameStr%
 					RandomSleep(750,750)
-					Send {Enter}
+					ControlSend,, {Enter}, %GameStr%
 				}
 			} 
 			Else If RadioPortalQuit
 			{
 				If ((A_TickCount - LastLogout) > 10000)
 				{
+					If !WinActive(GameStr)
+						WinActivate, %GameStr%
 					QuickPortal(True)
 					LastLogout := A_TickCount
 				}
 			}
 			Else If RadioNormalQuit
 			{
-				Send {Enter} /exit {Enter}
+				ControlSend,, {Enter}/exit{Enter}, %GameStr%
 				If RelogOnQuit
 				{
 					RandomSleep(300,400)
-					Send {Enter}
+					ControlSend,, {Enter}, %GameStr%
 				}
 			}
 			If YesGlobeScan
@@ -6611,6 +6987,21 @@ Return
 ; PoEWindowCheck - Check for the game window. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	PoEWindowCheck(){
+		Global GamePID
+			If (GamePID := WinExist(GameStr))
+			{
+				If !GameBound
+				{
+					GameBound := True
+					BindWindow(GamePID)
+				}
+			}
+			Else
+			{
+				GameBound := False
+				BindWindow()
+			}
+
 			IfWinActive, ahk_group POEGameGroup 
 			{
 				global GuiX, GuiY, RescaleRan, ToggleExist
@@ -6651,7 +7042,7 @@ Return
 			JSONtext := JSON.Dump(Ninja,,2)
 			FileDelete, %A_ScriptDir%\data\Ninja.json
 			FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-			IniWrite, %Date_now%, Settings.ini, Database, LastDatabaseParseDate
+			IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
 			LastDatabaseParseDate := Date_now
 		}
 		Return
@@ -6768,6 +7159,7 @@ Return
 ; Coord - : Pixel information on Mouse Cursor, provides pixel location and GRB color hex
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Coord(){
+		Global Picker
 		CoordCommand:
 		Rect := LetUserSelectRect(1)
 		If (Rect)
@@ -6776,14 +7168,16 @@ Return
 			Ding(10000,-11,"Building an average of area colors`nThis may take some time")
 			AvgColor := AverageAreaColor(Rect)
 			Ding(100,-11,"")
-			MsgBox, 262144, Calculation Complete, % (Clipboard := ( "Average Color of Area:  " AvgColor "`n`n" "X1:" Rect.X1 ", Y1:" Rect.Y1 "`tX2:" Rect.X2 ", Y2:" Rect.Y2 )) "`n`nThis information has been placed in the clipboard`n`nCalculation Took " (T1 := A_TickCount - T1) " MS for " (T_Area := ((Rect.X2 - Rect.X1) * (Rect.Y2 - Rect.Y1))) " Pixels`n`n" Round(T1 / T_Area,3) " MS per pixel"
+			Clipboard := "Average Color of Area:  " AvgColor "`n`n" "X1:" Rect.X1 "`tY1:" Rect.Y1 "`tX2:" Rect.X2 "`tY2:" Rect.Y2
+			Notify(Clipboard, "`nThis information has been placed in the clipboard`nCalculation Took " (T1 := A_TickCount - T1) " MS for " (T_Area := ((Rect.X2 - Rect.X1) * (Rect.Y2 - Rect.Y1))) " Pixels`n" Round(T1 / T_Area,3) " MS per pixel",5)
+			Picker.SetColor(AvgColor)
 		}
 		Else 
 			Ding(3000,-11,Clipboard "`nColor and Location copied to Clipboard")
 		Return
 	}
 
-; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages
+; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages (MISC BACKEND)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	{ ; Read, Save, Load - Includes basic hotkey setup
 		readFromFile(){
@@ -6792,106 +7186,117 @@ Return
 
 			LoadArray()
 			;General settings
-			IniRead, Speed, settings.ini, General, Speed, 1
-			IniRead, Tick, settings.ini, General, Tick, 50
-			IniRead, QTick, settings.ini, General, QTick, 250
-			IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
-			IniRead, YesTimeMS, settings.ini, General, YesTimeMS, 0
-			IniRead, YesLocation, settings.ini, General, YesLocation, 0
-			IniRead, ShowPixelGrid, settings.ini, General, ShowPixelGrid, 0
-			IniRead, ShowItemInfo, settings.ini, General, ShowItemInfo, 0
-			IniRead, DetonateMines, settings.ini, General, DetonateMines, 0
-			IniRead, DetonateMinesDelay, settings.ini, General, DetonateMinesDelay, 500
-			IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
-			IniRead, YesVendor, settings.ini, General, YesVendor, 1
-			IniRead, YesStash, settings.ini, General, YesStash, 1
-			IniRead, YesIdentify, settings.ini, General, YesIdentify, 1
-			IniRead, YesDiv, settings.ini, General, YesDiv, 1
-			IniRead, YesMapUnid, settings.ini, General, YesMapUnid, 1
-			IniRead, YesSortFirst, settings.ini, General, YesSortFirst, 1
-			IniRead, Latency, settings.ini, General, Latency, 1
-			IniRead, ClickLatency, settings.ini, General, ClickLatency, 0
-			IniRead, ClipLatency, settings.ini, General, ClipLatency, 0
-			IniRead, ShowOnStart, settings.ini, General, ShowOnStart, 1
-			IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
-			IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
-			IniRead, Steam, settings.ini, General, Steam, 1
-			IniRead, HighBits, settings.ini, General, HighBits, 1
-			IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
-			IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
-			IniRead, CharName, settings.ini, General, CharName, ReplaceWithCharName
-			IniRead, EnableChatHotkeys, settings.ini, General, EnableChatHotkeys, 1
-			IniRead, YesStashKeys, settings.ini, General, YesStashKeys, 1
-			IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
-			IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
-			IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
-			IniRead, YesPopAllExtraKeys, settings.ini, General, YesPopAllExtraKeys, 0
-			IniRead, ManaThreshold, settings.ini, General, ManaThreshold, 10
-			IniRead, YesEldritchBattery, settings.ini, General, YesEldritchBattery, 0
-			IniRead, YesStashT1, settings.ini, General, YesStashT1, 1
-			IniRead, YesStashT2, settings.ini, General, YesStashT2, 1
-			IniRead, YesStashT3, settings.ini, General, YesStashT3, 1
-			IniRead, YesStashCraftingNormal, settings.ini, General, YesStashCraftingNormal, 1
-			IniRead, YesStashCraftingMagic, settings.ini, General, YesStashCraftingMagic, 1
-			IniRead, YesStashCraftingRare, settings.ini, General, YesStashCraftingRare, 1
-			IniRead, YesSkipMaps, settings.ini, General, YesSkipMaps, 11
-			IniRead, YesAutoSkillUp, settings.ini, General, YesAutoSkillUp, 0
-			IniRead, YesWaitAutoSkillUp, settings.ini, General, YesWaitAutoSkillUp, 0
-			IniRead, YesClickPortal, settings.ini, General, YesClickPortal, 0
-			IniRead, RelogOnQuit, settings.ini, General, RelogOnQuit, 0
-			IniRead, AreaScale, settings.ini, General, AreaScale, 60
-			IniRead, LVdelay, settings.ini, General, LVdelay, 30
-			IniRead, YesLootChests, settings.ini, General, YesLootChests, 1
-			IniRead, YesGlobeScan, settings.ini, General, YesGlobeScan, 1
+			IniRead, Speed, %A_ScriptDir%\save\Settings.ini, General, Speed, 1
+			IniRead, Tick, %A_ScriptDir%\save\Settings.ini, General, Tick, 50
+			IniRead, QTick, %A_ScriptDir%\save\Settings.ini, General, QTick, 250
+			IniRead, DebugMessages, %A_ScriptDir%\save\Settings.ini, General, DebugMessages, 0
+			IniRead, YesTimeMS, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS, 0
+			IniRead, YesLocation, %A_ScriptDir%\save\Settings.ini, General, YesLocation, 0
+			IniRead, ShowPixelGrid, %A_ScriptDir%\save\Settings.ini, General, ShowPixelGrid, 0
+			IniRead, ShowItemInfo, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo, 0
+			IniRead, DetonateMines, %A_ScriptDir%\save\Settings.ini, General, DetonateMines, 0
+			IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay, 500
+			IniRead, LootVacuum, %A_ScriptDir%\save\Settings.ini, General, LootVacuum, 0
+			IniRead, YesVendor, %A_ScriptDir%\save\Settings.ini, General, YesVendor, 1
+			IniRead, YesStash, %A_ScriptDir%\save\Settings.ini, General, YesStash, 1
+			IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
+			IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
+			IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
+			IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
+			IniRead, Latency, %A_ScriptDir%\save\Settings.ini, General, Latency, 1
+			IniRead, ClickLatency, %A_ScriptDir%\save\Settings.ini, General, ClickLatency, 0
+			IniRead, ClipLatency, %A_ScriptDir%\save\Settings.ini, General, ClipLatency, 0
+			IniRead, ShowOnStart, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart, 1
+			IniRead, PopFlaskRespectCD, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD, 0
+			IniRead, ResolutionScale, %A_ScriptDir%\save\Settings.ini, General, ResolutionScale, Standard
+			IniRead, Steam, %A_ScriptDir%\save\Settings.ini, General, Steam, 1
+			IniRead, HighBits, %A_ScriptDir%\save\Settings.ini, General, HighBits, 1
+			IniRead, AutoUpdateOff, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff, 0
+			IniRead, EnableChatHotkeys, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys, 1
+			IniRead, CharName, %A_ScriptDir%\save\Settings.ini, General, CharName, ReplaceWithCharName
+			IniRead, EnableChatHotkeys, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys, 1
+			IniRead, YesStashKeys, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys, 1
+			IniRead, QSonMainAttack, %A_ScriptDir%\save\Settings.ini, General, QSonMainAttack, 0
+			IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack, 0
+			IniRead, YesPersistantToggle, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle, 0
+			IniRead, YesPopAllExtraKeys, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys, 0
+			IniRead, ManaThreshold, %A_ScriptDir%\save\Settings.ini, General, ManaThreshold, 10
+			IniRead, YesEldritchBattery, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery, 0
+			IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
+			IniRead, YesStashT2, %A_ScriptDir%\save\Settings.ini, General, YesStashT2, 1
+			IniRead, YesStashT3, %A_ScriptDir%\save\Settings.ini, General, YesStashT3, 1
+			IniRead, YesStashCraftingNormal, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal, 1
+			IniRead, YesStashCraftingMagic, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic, 1
+			IniRead, YesStashCraftingRare, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare, 1
+			IniRead, YesStashCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl, 0
+			IniRead, YesStashCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin, 76
+			IniRead, YesSkipMaps, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps, 11
+			IniRead, YesAutoSkillUp, %A_ScriptDir%\save\Settings.ini, General, YesAutoSkillUp, 0
+			IniRead, YesWaitAutoSkillUp, %A_ScriptDir%\save\Settings.ini, General, YesWaitAutoSkillUp, 0
+			IniRead, YesClickPortal, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal, 0
+			IniRead, RelogOnQuit, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit, 0
+			IniRead, AreaScale, %A_ScriptDir%\save\Settings.ini, General, AreaScale, 60
+			IniRead, LVdelay, %A_ScriptDir%\save\Settings.ini, General, LVdelay, 30
+			IniRead, YesLootChests, %A_ScriptDir%\save\Settings.ini, General, YesLootChests, 1
+			IniRead, YesGlobeScan, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan, 1
+			IniRead, YesFillMetamorph, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph, 0
+			IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
+			IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
 
 			;Settings for Auto-Vendor
-			IniRead, YesSearchForStash, settings.ini, General, YesSearchForStash, 0
-			IniRead, YesVendorAfterStash, settings.ini, General, YesVendorAfterStash, 0
+			IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
+			IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
 			
 			;Stash Tab Management
-			IniRead, StashTabCurrency, settings.ini, Stash Tab, StashTabCurrency, 1
-			IniRead, StashTabMap, settings.ini, Stash Tab, StashTabMap, 1
-			IniRead, StashTabDivination, settings.ini, Stash Tab, StashTabDivination, 1
-			IniRead, StashTabGem, settings.ini, Stash Tab, StashTabGem, 1
-			IniRead, StashTabGemQuality, settings.ini, Stash Tab, StashTabGemQuality, 1
-			IniRead, StashTabFlaskQuality, settings.ini, Stash Tab, StashTabFlaskQuality, 1
-			IniRead, StashTabLinked, settings.ini, Stash Tab, StashTabLinked, 1
-			IniRead, StashTabCollection, settings.ini, Stash Tab, StashTabCollection, 1
-			IniRead, StashTabUniqueRing, settings.ini, Stash Tab, StashTabUniqueRing, 1
-			IniRead, StashTabUniqueDump, settings.ini, Stash Tab, StashTabUniqueDump, 1
-			IniRead, StashTabFragment, settings.ini, Stash Tab, StashTabFragment, 1
-			IniRead, StashTabEssence, settings.ini, Stash Tab, StashTabEssence, 1
-			IniRead, StashTabOil, settings.ini, Stash Tab, StashTabOil, 1
-			IniRead, StashTabFossil, settings.ini, Stash Tab, StashTabFossil, 1
-			IniRead, StashTabResonator, settings.ini, Stash Tab, StashTabResonator, 1
-			IniRead, StashTabCrafting, settings.ini, Stash Tab, StashTabCrafting, 1
-			IniRead, StashTabProphecy, settings.ini, Stash Tab, StashTabProphecy, 1
-			IniRead, StashTabVeiled, settings.ini, Stash Tab, StashTabVeiled, 1
-			IniRead, StashTabOrgan, settings.ini, Stash Tab, StashTabOrgan, 1
-			IniRead, StashTabYesOrgan, settings.ini, Stash Tab, StashTabYesOrgan, 1
-			IniRead, StashTabGemSupport, settings.ini, Stash Tab, StashTabGemSupport, 1
-			IniRead, StashTabYesCurrency, settings.ini, Stash Tab, StashTabYesCurrency, 1
-			IniRead, StashTabYesMap, settings.ini, Stash Tab, StashTabYesMap, 1
-			IniRead, StashTabYesDivination, settings.ini, Stash Tab, StashTabYesDivination, 1
-			IniRead, StashTabYesGem, settings.ini, Stash Tab, StashTabYesGem, 1
-			IniRead, StashTabYesGemQuality, settings.ini, Stash Tab, StashTabYesGemQuality, 1
-			IniRead, StashTabYesGemSupport, settings.ini, Stash Tab, StashTabYesGemSupport, 1
-			IniRead, StashTabYesFlaskQuality, settings.ini, Stash Tab, StashTabYesFlaskQuality, 1
-			IniRead, StashTabYesLinked, settings.ini, Stash Tab, StashTabYesLinked, 1
-			IniRead, StashTabYesCollection, settings.ini, Stash Tab, StashTabYesCollection, 1
-			IniRead, StashTabYesUniqueRing, settings.ini, Stash Tab, StashTabYesUniqueRing, 1
-			IniRead, StashTabYesUniqueDump, settings.ini, Stash Tab, StashTabYesUniqueDump, 1
-			IniRead, StashTabYesFragment, settings.ini, Stash Tab, StashTabYesFragment, 1
-			IniRead, StashTabYesEssence, settings.ini, Stash Tab, StashTabYesEssence, 1
-			IniRead, StashTabYesOil, settings.ini, Stash Tab, StashTabYesOil, 1
-			IniRead, StashTabYesFossil, settings.ini, Stash Tab, StashTabYesFossil, 1
-			IniRead, StashTabYesResonator, settings.ini, Stash Tab, StashTabYesResonator, 1
-			IniRead, StashTabYesCrafting, settings.ini, Stash Tab, StashTabYesCrafting, 1
-			IniRead, StashTabYesProphecy, settings.ini, Stash Tab, StashTabYesProphecy, 1
-			IniRead, StashTabYesVeiled, settings.ini, Stash Tab, StashTabYesVeiled, 1
+			IniRead, StashTabCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency, 1
+			IniRead, StashTabMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap, 1
+			IniRead, StashTabDivination, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDivination, 1
+			IniRead, StashTabGem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem, 1
+			IniRead, StashTabGemQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemQuality, 1
+			IniRead, StashTabFlaskQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlaskQuality, 1
+			IniRead, StashTabLinked, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked, 1
+			IniRead, StashTabCollection, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCollection, 1
+			IniRead, StashTabUniqueRing, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing, 1
+			IniRead, StashTabUniqueDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump, 1
+			IniRead, StashTabFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment, 1
+			IniRead, StashTabEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence, 1
+			IniRead, StashTabOil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil, 1
+			IniRead, StashTabFossil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil, 1
+			IniRead, StashTabResonator, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator, 1
+			IniRead, StashTabCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting, 1
+			IniRead, StashTabProphecy, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy, 1
+			IniRead, StashTabVeiled, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled, 1
+			IniRead, StashTabOrgan, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOrgan, 1
+			IniRead, StashTabYesOrgan, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOrgan, 1
+			IniRead, StashTabGemSupport, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemSupport, 1
+			IniRead, StashTabDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump, 1
+			IniRead, StashTabYesCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency, 1
+			IniRead, StashTabYesMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap, 1
+			IniRead, StashTabYesDivination, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination, 1
+			IniRead, StashTabYesGem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem, 1
+			IniRead, StashTabYesGemQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemQuality, 1
+			IniRead, StashTabYesGemSupport, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemSupport, 1
+			IniRead, StashTabYesFlaskQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlaskQuality, 1
+			IniRead, StashTabYesLinked, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked, 1
+			IniRead, StashTabYesCollection, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCollection, 1
+			IniRead, StashTabYesUniqueRing, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing, 1
+			IniRead, StashTabYesUniqueDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump, 1
+			IniRead, StashTabYesFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment, 1
+			IniRead, StashTabYesEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence, 1
+			IniRead, StashTabYesOil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil, 1
+			IniRead, StashTabYesFossil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFossil, 1
+			IniRead, StashTabYesResonator, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesResonator, 1
+			IniRead, StashTabYesCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting, 1
+			IniRead, StashTabYesProphecy, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy, 1
+			IniRead, StashTabYesVeiled, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled, 1
+			IniRead, StashTabYesDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDump, 0
+			IniRead, StashDumpInTrial, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial, 0
+			IniRead, StashTabPredictive, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive, 1
+			IniRead, StashTabYesPredictive, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive, 0
+			IniRead, StashTabYesPredictive_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price, 5
 			
 			;Settings for the Client Log file location
-			IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
+			IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
 
 			If FileExist(ClientLog)
 				Monitor_GameLogs(1)
@@ -6902,120 +7307,121 @@ Return
 			}
 			
 			;Settings for the Overhead Health Bar
-			IniRead, YesOHB, settings.ini, OHB, YesOHB, 1
+			IniRead, YesOHB, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB, 1
 			
 			;OHB Colors
-			IniRead, OHBLHealthHex, settings.ini, OHB, OHBLHealthHex, 0x19A631
+			IniRead, OHBLHealthHex, %A_ScriptDir%\save\Settings.ini, OHB, OHBLHealthHex, 0x19A631
 
 			;Ascii strings
-			IniRead, HealthBarStr, settings.ini, FindText Strings, HealthBarStr, %1080_HealthBarStr%
+			IniRead, HealthBarStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, HealthBarStr, %1080_HealthBarStr%
 			If HealthBarStr
 			{
 				HealthBarStr := """" . HealthBarStr . """"
 				OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
 			}
-			IniRead, ChestStr, settings.ini, FindText Strings, ChestStr, %1080_ChestStr%
+			IniRead, ChestStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, ChestStr, %1080_ChestStr%
 			If ChestStr
 				ChestStr := """" . ChestStr . """"
-			IniRead, VendorStr, settings.ini, FindText Strings, VendorStr, %1080_MasterStr%
+			IniRead, VendorStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr, %1080_MasterStr%
 			If VendorStr
 				VendorStr := """" . VendorStr . """"
-			IniRead, SellItemsStr, settings.ini, FindText Strings, SellItemsStr, %1080_SellItemsStr%
+			IniRead, SellItemsStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, SellItemsStr, %1080_SellItemsStr%
 			If SellItemsStr
 				SellItemsStr := """" . SellItemsStr . """"
-			IniRead, StashStr, settings.ini, FindText Strings, StashStr, %1080_StashStr%
+			IniRead, StashStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr, %1080_StashStr%
 			If StashStr
 				StashStr := """" . StashStr . """"
-			IniRead, SkillUpStr, settings.ini, FindText Strings, SkillUpStr, %1080_SkillUpStr%
+			IniRead, SkillUpStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr, %1080_SkillUpStr%
 			If SkillUpStr
 				SkillUpStr := """" . SkillUpStr . """"
-			IniRead, XButtonStr, settings.ini, FindText Strings, XButtonStr, %1080_XButtonStr%
+			IniRead, XButtonStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, XButtonStr, %1080_XButtonStr%
 			If XButtonStr
 				XButtonStr := """" . XButtonStr . """"
-			IniRead, VendorLioneyeStr, settings.ini, FindText Strings, VendorLioneyeStr, %1080_BestelStr%
+			IniRead, VendorLioneyeStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorLioneyeStr, %1080_BestelStr%
 			If VendorLioneyeStr
 				VendorLioneyeStr := """" . VendorLioneyeStr . """"
-			IniRead, VendorForestStr, settings.ini, FindText Strings, VendorForestStr, %1080_GreustStr%
+			IniRead, VendorForestStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorForestStr, %1080_GreustStr%
 			If VendorForestStr
 				VendorForestStr := """" . VendorForestStr . """"
-			IniRead, VendorSarnStr, settings.ini, FindText Strings, VendorSarnStr, %1080_ClarissaStr%
+			IniRead, VendorSarnStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorSarnStr, %1080_ClarissaStr%
 			If VendorSarnStr
 				VendorSarnStr := """" . VendorSarnStr . """"
-			IniRead, VendorHighgateStr, settings.ini, FindText Strings, VendorHighgateStr, %1080_PetarusStr%
+			IniRead, VendorHighgateStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorHighgateStr, %1080_PetarusStr%
 			If VendorHighgateStr
 				VendorHighgateStr := """" . VendorHighgateStr . """"
-			IniRead, VendorOverseerStr, settings.ini, FindText Strings, VendorOverseerStr, %1080_LaniStr%
+			IniRead, VendorOverseerStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorOverseerStr, %1080_LaniStr%
 			If VendorOverseerStr
 				VendorOverseerStr := """" . VendorOverseerStr . """"
-			IniRead, VendorBridgeStr, settings.ini, FindText Strings, VendorBridgeStr, %1080_HelenaStr%
+			IniRead, VendorBridgeStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorBridgeStr, %1080_HelenaStr%
 			If VendorBridgeStr
 				VendorBridgeStr := """" . VendorBridgeStr . """"
-			IniRead, VendorDocksStr, settings.ini, FindText Strings, VendorDocksStr, %1080_LaniStr%
+			IniRead, VendorDocksStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorDocksStr, %1080_LaniStr%
 			If VendorDocksStr
 				VendorDocksStr := """" . VendorDocksStr . """"
-			IniRead, VendorOriathStr, settings.ini, FindText Strings, VendorOriathStr, %1080_LaniStr%
+			IniRead, VendorOriathStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorOriathStr, %1080_LaniStr%
 			If VendorOriathStr
 				VendorOriathStr := """" . VendorOriathStr . """"
-			IniRead, VendorMineStr, settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
+			IniRead, VendorMineStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
 			If VendorMineStr
 				VendorMineStr := """" . VendorMineStr . """"
 
 			;Inventory Colors
-			IniRead, varEmptyInvSlotColor, settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
+			IniRead, varEmptyInvSlotColor, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
 			;Create an array out of the read string
 			varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
 
 			;Loot Vacuum Colors
-			IniRead, LootColors, settings.ini, Loot Colors, LootColors, 0xF6FEC4,0xCCFE99,0xFEFE9E,0xFADF72,0xA36565,0x773838
+			IniRead, LootColors, %A_ScriptDir%\save\Settings.ini, Loot Colors, LootColors, 0xF6FEC4,0xCCFE99,0xFEFE9E,0xFADF72,0xA36565,0x773838
 			;Create an array out of the read string
 			LootColors := StrSplit(LootColors, ",")
 
 			;Failsafe Colors
-			IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0xD6B97B
-			IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x6B5543
-			IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x88623B
-			IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0xDCC289
-			IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0xECDBA6
-			IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0xCEB178
-			IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xF6E2C5
-			IniRead, varOnLeft, settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
-			IniRead, varOnDelveChart, settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
-			IniRead, varOnDetonate, settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
+			IniRead, varOnMenu, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMenu, 0xD6B97B
+			IniRead, varOnChar, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChar, 0x6B5543
+			IniRead, varOnChat, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChat, 0x88623B
+			IniRead, varOnInventory, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnInventory, 0xDCC289
+			IniRead, varOnStash, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStash, 0xECDBA6
+			IniRead, varOnVendor, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnVendor, 0xCEB178
+			IniRead, varOnDiv, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDiv, 0xF6E2C5
+			IniRead, varOnLeft, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
+			IniRead, varOnDelveChart, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
+			IniRead, varOnMetamorph, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph, 0xE06718
+			IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
 
 			;Life Colors
-			IniRead, varLife20, settings.ini, Life Colors, Life20, 0x4D0D11
-			IniRead, varLife30, settings.ini, Life Colors, Life30, 0x640E13
-			IniRead, varLife40, settings.ini, Life Colors, Life40, 0x7D0E14
-			IniRead, varLife50, settings.ini, Life Colors, Life50, 0xA0161E
-			IniRead, varLife60, settings.ini, Life Colors, Life60, 0xB51521
-			IniRead, varLife70, settings.ini, Life Colors, Life70, 0xB31326
-			IniRead, varLife80, settings.ini, Life Colors, Life80, 0x841F26
-			IniRead, varLife90, settings.ini, Life Colors, Life90, 0x662027
+			IniRead, varLife20, %A_ScriptDir%\save\Settings.ini, Life Colors, Life20, 0x4D0D11
+			IniRead, varLife30, %A_ScriptDir%\save\Settings.ini, Life Colors, Life30, 0x640E13
+			IniRead, varLife40, %A_ScriptDir%\save\Settings.ini, Life Colors, Life40, 0x7D0E14
+			IniRead, varLife50, %A_ScriptDir%\save\Settings.ini, Life Colors, Life50, 0xA0161E
+			IniRead, varLife60, %A_ScriptDir%\save\Settings.ini, Life Colors, Life60, 0xB51521
+			IniRead, varLife70, %A_ScriptDir%\save\Settings.ini, Life Colors, Life70, 0xB31326
+			IniRead, varLife80, %A_ScriptDir%\save\Settings.ini, Life Colors, Life80, 0x841F26
+			IniRead, varLife90, %A_ScriptDir%\save\Settings.ini, Life Colors, Life90, 0x662027
 				
 			;ES Colors
-			IniRead, varES20, settings.ini, ES Colors, ES20, 0x46C6FF
-			IniRead, varES30, settings.ini, ES Colors, ES30, 0x68D3FF
-			IniRead, varES40, settings.ini, ES Colors, ES40, 0x83FFFF
-			IniRead, varES50, settings.ini, ES Colors, ES50, 0x81FFFF
-			IniRead, varES60, settings.ini, ES Colors, ES60, 0x97FFFF
-			IniRead, varES70, settings.ini, ES Colors, ES70, 0x7DCFFF
-			IniRead, varES80, settings.ini, ES Colors, ES80, 0x5C9DDC
-			IniRead, varES90, settings.ini, ES Colors, ES90, 0x3C93D9
+			IniRead, varES20, %A_ScriptDir%\save\Settings.ini, ES Colors, ES20, 0x46C6FF
+			IniRead, varES30, %A_ScriptDir%\save\Settings.ini, ES Colors, ES30, 0x68D3FF
+			IniRead, varES40, %A_ScriptDir%\save\Settings.ini, ES Colors, ES40, 0x83FFFF
+			IniRead, varES50, %A_ScriptDir%\save\Settings.ini, ES Colors, ES50, 0x81FFFF
+			IniRead, varES60, %A_ScriptDir%\save\Settings.ini, ES Colors, ES60, 0x97FFFF
+			IniRead, varES70, %A_ScriptDir%\save\Settings.ini, ES Colors, ES70, 0x7DCFFF
+			IniRead, varES80, %A_ScriptDir%\save\Settings.ini, ES Colors, ES80, 0x5C9DDC
+			IniRead, varES90, %A_ScriptDir%\save\Settings.ini, ES Colors, ES90, 0x3C93D9
 			
 			;Mana Colors
-			IniRead, varMana10, settings.ini, Mana Colors, Mana10, 0x1B203D
-			IniRead, varManaThreshold, settings.ini, Mana Colors, ManaThreshold, 0x1B203D
+			IniRead, varMana10, %A_ScriptDir%\save\Settings.ini, Mana Colors, Mana10, 0x1B203D
+			IniRead, varManaThreshold, %A_ScriptDir%\save\Settings.ini, Mana Colors, ManaThreshold, 0x1B203D
 			
 			;Life Triggers
-			IniRead, TriggerLife20, settings.ini, Life Triggers, TriggerLife20, 00000
-			IniRead, TriggerLife30, settings.ini, Life Triggers, TriggerLife30, 00000
-			IniRead, TriggerLife40, settings.ini, Life Triggers, TriggerLife40, 00000
-			IniRead, TriggerLife50, settings.ini, Life Triggers, TriggerLife50, 00000
-			IniRead, TriggerLife60, settings.ini, Life Triggers, TriggerLife60, 00000
-			IniRead, TriggerLife70, settings.ini, Life Triggers, TriggerLife70, 00000
-			IniRead, TriggerLife80, settings.ini, Life Triggers, TriggerLife80, 00000
-			IniRead, TriggerLife90, settings.ini, Life Triggers, TriggerLife90, 00000
-			IniRead, DisableLife, settings.ini, Life Triggers, DisableLife, 11111
+			IniRead, TriggerLife20, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife20, 00000
+			IniRead, TriggerLife30, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife30, 00000
+			IniRead, TriggerLife40, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife40, 00000
+			IniRead, TriggerLife50, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife50, 00000
+			IniRead, TriggerLife60, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife60, 00000
+			IniRead, TriggerLife70, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife70, 00000
+			IniRead, TriggerLife80, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife80, 00000
+			IniRead, TriggerLife90, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife90, 00000
+			IniRead, DisableLife, %A_ScriptDir%\save\Settings.ini, Life Triggers, DisableLife, 11111
 			Loop, 5 {
 				valueLife20 := substr(TriggerLife20, (A_Index), 1)
 				GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
@@ -7038,15 +7444,15 @@ Return
 				}
 			
 			;ES Triggers
-			IniRead, TriggerES20, settings.ini, ES Triggers, TriggerES20, 00000
-			IniRead, TriggerES30, settings.ini, ES Triggers, TriggerES30, 00000
-			IniRead, TriggerES40, settings.ini, ES Triggers, TriggerES40, 00000
-			IniRead, TriggerES50, settings.ini, ES Triggers, TriggerES50, 00000
-			IniRead, TriggerES60, settings.ini, ES Triggers, TriggerES60, 00000
-			IniRead, TriggerES70, settings.ini, ES Triggers, TriggerES70, 00000
-			IniRead, TriggerES80, settings.ini, ES Triggers, TriggerES80, 00000
-			IniRead, TriggerES90, settings.ini, ES Triggers, TriggerES90, 00000
-			IniRead, DisableES, settings.ini, ES Triggers, DisableES, 11111
+			IniRead, TriggerES20, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES20, 00000
+			IniRead, TriggerES30, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES30, 00000
+			IniRead, TriggerES40, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES40, 00000
+			IniRead, TriggerES50, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES50, 00000
+			IniRead, TriggerES60, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES60, 00000
+			IniRead, TriggerES70, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES70, 00000
+			IniRead, TriggerES80, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES80, 00000
+			IniRead, TriggerES90, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES90, 00000
+			IniRead, DisableES, %A_ScriptDir%\save\Settings.ini, ES Triggers, DisableES, 11111
 			Loop, 5 {
 				valueES20 := substr(TriggerES20, (A_Index), 1)
 				GuiControl, , Radiobox%A_Index%ES20, %valueES20%
@@ -7069,86 +7475,86 @@ Return
 			}	
 			
 			;Mana Triggers
-			IniRead, TriggerMana10, settings.ini, Mana Triggers, TriggerMana10, 00000
+			IniRead, TriggerMana10, %A_ScriptDir%\save\Settings.ini, Mana Triggers, TriggerMana10, 00000
 			Loop, 5 {	
 				valueMana10 := substr(TriggerMana10, (A_Index), 1)
 				GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
 			}
 			
 			;Utility Buttons
-			IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
-			IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
-			IniRead, YesUtility3, settings.ini, Utility Buttons, YesUtility3, 0
-			IniRead, YesUtility4, settings.ini, Utility Buttons, YesUtility4, 0
-			IniRead, YesUtility5, settings.ini, Utility Buttons, YesUtility5, 0
-			IniRead, YesUtility1Quicksilver, settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
-			IniRead, YesUtility2Quicksilver, settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
-			IniRead, YesUtility3Quicksilver, settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
-			IniRead, YesUtility4Quicksilver, settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
-			IniRead, YesUtility5Quicksilver, settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
+			IniRead, YesUtility1, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1, 0
+			IniRead, YesUtility2, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2, 0
+			IniRead, YesUtility3, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3, 0
+			IniRead, YesUtility4, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4, 0
+			IniRead, YesUtility5, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5, 0
+			IniRead, YesUtility1Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
+			IniRead, YesUtility2Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
+			IniRead, YesUtility3Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
+			IniRead, YesUtility4Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
+			IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
 			
 			;Utility Percents	
-			IniRead, YesUtility1LifePercent, settings.ini, Utility Buttons, YesUtility1LifePercent, Off
-			IniRead, YesUtility2LifePercent, settings.ini, Utility Buttons, YesUtility2LifePercent, Off
-			IniRead, YesUtility3LifePercent, settings.ini, Utility Buttons, YesUtility3LifePercent, Off
-			IniRead, YesUtility4LifePercent, settings.ini, Utility Buttons, YesUtility4LifePercent, Off
-			IniRead, YesUtility5LifePercent, settings.ini, Utility Buttons, YesUtility5LifePercent, Off
-			IniRead, YesUtility1EsPercent, settings.ini, 	Utility Buttons, YesUtility1EsPercent, Off
-			IniRead, YesUtility2EsPercent, settings.ini, 	Utility Buttons, YesUtility2EsPercent, Off
-			IniRead, YesUtility3EsPercent, settings.ini, 	Utility Buttons, YesUtility3EsPercent, Off
-			IniRead, YesUtility4EsPercent, settings.ini, 	Utility Buttons, YesUtility4EsPercent, Off
-			IniRead, YesUtility5EsPercent, settings.ini, 	Utility Buttons, YesUtility5EsPercent, Off
+			IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent, Off
+			IniRead, YesUtility2LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2LifePercent, Off
+			IniRead, YesUtility3LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent, Off
+			IniRead, YesUtility4LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent, Off
+			IniRead, YesUtility5LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent, Off
+			IniRead, YesUtility1EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility1EsPercent, Off
+			IniRead, YesUtility2EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility2EsPercent, Off
+			IniRead, YesUtility3EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility3EsPercent, Off
+			IniRead, YesUtility4EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility4EsPercent, Off
+			IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility5EsPercent, Off
 			
 			;Utility Cooldowns
-			IniRead, CooldownUtility1, settings.ini, Utility Cooldowns, CooldownUtility1, 5000
-			IniRead, CooldownUtility2, settings.ini, Utility Cooldowns, CooldownUtility2, 5000
-			IniRead, CooldownUtility3, settings.ini, Utility Cooldowns, CooldownUtility3, 5000
-			IniRead, CooldownUtility4, settings.ini, Utility Cooldowns, CooldownUtility4, 5000
-			IniRead, CooldownUtility5, settings.ini, Utility Cooldowns, CooldownUtility5, 5000
+			IniRead, CooldownUtility1, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1, 5000
+			IniRead, CooldownUtility2, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility2, 5000
+			IniRead, CooldownUtility3, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3, 5000
+			IniRead, CooldownUtility4, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4, 5000
+			IniRead, CooldownUtility5, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5, 5000
 			
 			;Utility Keys
-			IniRead, KeyUtility1, settings.ini, Utility Keys, KeyUtility1, q
-			IniRead, KeyUtility2, settings.ini, Utility Keys, KeyUtility2, w
-			IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
-			IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
-			IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
+			IniRead, KeyUtility1, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1, q
+			IniRead, KeyUtility2, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility2, w
+			IniRead, KeyUtility3, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3, e
+			IniRead, KeyUtility4, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4, r
+			IniRead, KeyUtility5, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5, t
 
 			;Utility Icon Strings
-			IniRead, IconStringUtility1, settings.ini, Utility Icons, IconStringUtility1, %A_Space%
+			IniRead, IconStringUtility1, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1, %A_Space%
 			If IconStringUtility1
 				IconStringUtility1 := """" . IconStringUtility1 . """"
-			IniRead, IconStringUtility2, settings.ini, Utility Icons, IconStringUtility2, %A_Space%
+			IniRead, IconStringUtility2, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility2, %A_Space%
 			If IconStringUtility2
 				IconStringUtility2 := """" . IconStringUtility2 . """"
-			IniRead, IconStringUtility3, settings.ini, Utility Icons, IconStringUtility3, %A_Space%
+			IniRead, IconStringUtility3, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3, %A_Space%
 			If IconStringUtility3
 				IconStringUtility3 := """" . IconStringUtility3 . """"
-			IniRead, IconStringUtility4, settings.ini, Utility Icons, IconStringUtility4, %A_Space%
+			IniRead, IconStringUtility4, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4, %A_Space%
 			If IconStringUtility4
 				IconStringUtility4 := """" . IconStringUtility4 . """"
-			IniRead, IconStringUtility5, settings.ini, Utility Icons, IconStringUtility5, %A_Space%
+			IniRead, IconStringUtility5, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5, %A_Space%
 			If IconStringUtility5
 				IconStringUtility5 := """" . IconStringUtility5 . """"
 
 			;Utility Keys
-			IniRead, hotkeyUp, 		settings.ini, Controller Keys, hotkeyUp, 	w
-			IniRead, hotkeyDown, 	settings.ini, Controller Keys, hotkeyDown,  s
-			IniRead, hotkeyLeft, 	settings.ini, Controller Keys, hotkeyLeft,  a
-			IniRead, hotkeyRight, 	settings.ini, Controller Keys, hotkeyRight, d
+			IniRead, hotkeyUp, 		%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp, 	w
+			IniRead, hotkeyDown, 	%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyDown,  s
+			IniRead, hotkeyLeft, 	%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyLeft,  a
+			IniRead, hotkeyRight, 	%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight, d
 			
 			;Flask Cooldowns
-			IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
-			IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2, 4800
-			IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
-			IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
-			IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
+			IniRead, CooldownFlask1, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask1, 4800
+			IniRead, CooldownFlask2, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask2, 4800
+			IniRead, CooldownFlask3, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask3, 4800
+			IniRead, CooldownFlask4, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask4, 4800
+			IniRead, CooldownFlask5, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask5, 4800
 
 			;Flask Keys
-			IniRead, keyFlask1, settings.ini, Flask Keys, keyFlask1, 1
-			IniRead, keyFlask2, settings.ini, Flask Keys, keyFlask2, 2
-			IniRead, keyFlask3, settings.ini, Flask Keys, keyFlask3, 3
-			IniRead, keyFlask4, settings.ini, Flask Keys, keyFlask4, 4
-			IniRead, keyFlask5, settings.ini, Flask Keys, keyFlask5, 5
+			IniRead, keyFlask1, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask1, 1
+			IniRead, keyFlask2, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask2, 2
+			IniRead, keyFlask3, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask3, 3
+			IniRead, keyFlask4, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask4, 4
+			IniRead, keyFlask5, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask5, 5
 			
 			Loop 5
 			{
@@ -7158,26 +7564,26 @@ Return
 			}
 			
 			;Gem Swap
-			IniRead, CurrentGemX, settings.ini, Gem Swap, CurrentGemX, 1353
-			IniRead, CurrentGemY, settings.ini, Gem Swap, CurrentGemY, 224
-			IniRead, AlternateGemX, settings.ini, Gem Swap, AlternateGemX, 1407
-			IniRead, AlternateGemY, settings.ini, Gem Swap, AlternateGemY, 201
-			IniRead, AlternateGemOnSecondarySlot, settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
+			IniRead, CurrentGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX, 1353
+			IniRead, CurrentGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY, 224
+			IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
+			IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
+			IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
 			
 			;Coordinates
-			IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
-			IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
-			IniRead, PortalScrollX, settings.ini, Coordinates, PortalScrollX, 1825
-			IniRead, PortalScrollY, settings.ini, Coordinates, PortalScrollY, 825
-			IniRead, WisdomScrollX, settings.ini, Coordinates, WisdomScrollX, 1875
-			IniRead, WisdomScrollY, settings.ini, Coordinates, WisdomScrollY, 825
-			IniRead, StockPortal, settings.ini, Coordinates, StockPortal, 0
-			IniRead, StockWisdom, settings.ini, Coordinates, StockWisdom, 0
+			IniRead, GuiX, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiX, -10
+			IniRead, GuiY, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiY, 1027
+			IniRead, PortalScrollX, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX, 1825
+			IniRead, PortalScrollY, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollY, 825
+			IniRead, WisdomScrollX, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollX, 1875
+			IniRead, WisdomScrollY, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollY, 825
+			IniRead, StockPortal, %A_ScriptDir%\save\Settings.ini, Coordinates, StockPortal, 0
+			IniRead, StockWisdom, %A_ScriptDir%\save\Settings.ini, Coordinates, StockWisdom, 0
 			
 			
 			;Attack Flasks
-			IniRead, TriggerMainAttack, settings.ini, Attack Triggers, TriggerMainAttack, 00000
-			IniRead, TriggerSecondaryAttack, settings.ini, Attack Triggers, TriggerSecondaryAttack, 00000
+			IniRead, TriggerMainAttack, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerMainAttack, 00000
+			IniRead, TriggerSecondaryAttack, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerSecondaryAttack, 00000
 			Loop, 5{	
 				valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
 				GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
@@ -7186,42 +7592,42 @@ Return
 			}
 			
 			;Quicksilver
-			IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
-			IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
+			IniRead, TriggerQuicksilverDelay, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
+			IniRead, TriggerQuicksilver, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilver, 00000
 			Loop, 5 {	
 				valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
 				GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
 			}
 			
 			;Pop Flasks
-			IniRead, TriggerPopFlasks, settings.ini, PopFlasks, TriggerPopFlasks, 11111
+			IniRead, TriggerPopFlasks, %A_ScriptDir%\save\Settings.ini, PopFlasks, TriggerPopFlasks, 11111
 			Loop, 5 {	
 				valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
 				GuiControl, , PopFlasks%A_Index%, %valuePopFlasks%
 			}
 			
 			;CharacterTypeCheck
-			IniRead, RadioLife, settings.ini, CharacterTypeCheck, Life, 1
-			IniRead, RadioHybrid, settings.ini, CharacterTypeCheck, Hybrid, 0
-			IniRead, RadioCi, settings.ini, CharacterTypeCheck, Ci, 0
+			IniRead, RadioLife, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Life, 1
+			IniRead, RadioHybrid, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Hybrid, 0
+			IniRead, RadioCi, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Ci, 0
 			
 			;AutoQuit
-			IniRead, QuitBelow, settings.ini, AutoQuit, QuitBelow, 20
-			IniRead, RadioCritQuit, settings.ini, AutoQuit, CritQuit, 1
-			IniRead, RadioPortalQuit, settings.ini, AutoQuit, PortalQuit, 0
-			IniRead, RadioNormalQuit, settings.ini, AutoQuit, NormalQuit, 0
+			IniRead, QuitBelow, %A_ScriptDir%\save\Settings.ini, AutoQuit, QuitBelow, 20
+			IniRead, RadioCritQuit, %A_ScriptDir%\save\Settings.ini, AutoQuit, CritQuit, 1
+			IniRead, RadioPortalQuit, %A_ScriptDir%\save\Settings.ini, AutoQuit, PortalQuit, 0
+			IniRead, RadioNormalQuit, %A_ScriptDir%\save\Settings.ini, AutoQuit, NormalQuit, 0
 			
 			;Profile Editbox
-			Iniread, ProfileText1, profiles.ini, Profiles, ProfileText1, Profile 1
-			Iniread, ProfileText2, profiles.ini, Profiles, ProfileText2, Profile 2
-			Iniread, ProfileText3, profiles.ini, Profiles, ProfileText3, Profile 3
-			Iniread, ProfileText4, profiles.ini, Profiles, ProfileText4, Profile 4
-			Iniread, ProfileText5, profiles.ini, Profiles, ProfileText5, Profile 5
-			Iniread, ProfileText6, profiles.ini, Profiles, ProfileText6, Profile 6
-			Iniread, ProfileText7, profiles.ini, Profiles, ProfileText7, Profile 7
-			Iniread, ProfileText8, profiles.ini, Profiles, ProfileText8, Profile 8
-			Iniread, ProfileText9, profiles.ini, Profiles, ProfileText9, Profile 9
-			Iniread, ProfileText10, profiles.ini, Profiles, ProfileText10, Profile 10
+			Iniread, ProfileText1, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText1, Profile 1
+			Iniread, ProfileText2, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText2, Profile 2
+			Iniread, ProfileText3, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText3, Profile 3
+			Iniread, ProfileText4, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText4, Profile 4
+			Iniread, ProfileText5, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText5, Profile 5
+			Iniread, ProfileText6, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText6, Profile 6
+			Iniread, ProfileText7, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText7, Profile 7
+			Iniread, ProfileText8, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText8, Profile 8
+			Iniread, ProfileText9, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText9, Profile 9
+			Iniread, ProfileText10, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText10, Profile 10
 
 			;~ hotkeys reset
 			hotkey, IfWinActive, ahk_group POEGameGroup
@@ -7256,23 +7662,23 @@ Return
 			hotkey, IfWinActive, ahk_group POEGameGroup
 				
 			;~ hotkeys iniread
-			IniRead, hotkeyOptions, settings.ini, hotkeys, Options, !F10
-			IniRead, hotkeyAutoQuit, settings.ini, hotkeys, AutoQuit, !F12
-			IniRead, hotkeyAutoFlask, settings.ini, hotkeys, AutoFlask, !F11
-			IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
-			IniRead, hotkeyQuickPortal, settings.ini, hotkeys, QuickPortal, !q
-			IniRead, hotkeyGemSwap, settings.ini, hotkeys, GemSwap, !e
-			IniRead, hotkeyGetMouseCoords, settings.ini, hotkeys, GetMouseCoords, !o
-			IniRead, hotkeyPopFlasks, settings.ini, hotkeys, PopFlasks, CapsLock
-			IniRead, hotkeyLogout, settings.ini, hotkeys, Logout, F12
-			IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
-			IniRead, hotkeyInventory, settings.ini, hotkeys, Inventory, i
-			IniRead, hotkeyWeaponSwapKey, settings.ini, hotkeys, WeaponSwapKey, x
-			IniRead, hotkeyItemSort, settings.ini, hotkeys, ItemSort, F6
-			IniRead, hotkeyItemInfo, settings.ini, hotkeys, ItemInfo, F5
-			IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
-			IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
-			IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
+			IniRead, hotkeyOptions, %A_ScriptDir%\save\Settings.ini, hotkeys, Options, !F10
+			IniRead, hotkeyAutoQuit, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit, !F12
+			IniRead, hotkeyAutoFlask, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask, !F11
+			IniRead, hotkeyAutoQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver, !MButton
+			IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
+			IniRead, hotkeyGemSwap, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap, !e
+			IniRead, hotkeyGetMouseCoords, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords, !o
+			IniRead, hotkeyPopFlasks, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks, CapsLock
+			IniRead, hotkeyLogout, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout, F12
+			IniRead, hotkeyCloseAllUI, %A_ScriptDir%\save\Settings.ini, hotkeys, CloseAllUI, Space
+			IniRead, hotkeyInventory, %A_ScriptDir%\save\Settings.ini, hotkeys, Inventory, i
+			IniRead, hotkeyWeaponSwapKey, %A_ScriptDir%\save\Settings.ini, hotkeys, WeaponSwapKey, x
+			IniRead, hotkeyItemSort, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemSort, F6
+			IniRead, hotkeyItemInfo, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemInfo, F5
+			IniRead, hotkeyLootScan, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan, f
+			IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
+			IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
 			
 			hotkey, IfWinActive, ahk_group POEGameGroup
 			If hotkeyAutoQuit
@@ -7308,107 +7714,107 @@ Return
 				msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
 				}
 			
-			IniRead, 1Prefix1, settings.ini, Chat Hotkeys, 1Prefix1, a
-			IniRead, 1Prefix2, settings.ini, Chat Hotkeys, 1Prefix2, %A_Space%
-			IniRead, 1Suffix1, settings.ini, Chat Hotkeys, 1Suffix1, 1
-			IniRead, 1Suffix2, settings.ini, Chat Hotkeys, 1Suffix2, 2
-			IniRead, 1Suffix3, settings.ini, Chat Hotkeys, 1Suffix3, 3
-			IniRead, 1Suffix4, settings.ini, Chat Hotkeys, 1Suffix4, 4
-			IniRead, 1Suffix5, settings.ini, Chat Hotkeys, 1Suffix5, 5
-			IniRead, 1Suffix6, settings.ini, Chat Hotkeys, 1Suffix6, 6
-			IniRead, 1Suffix7, settings.ini, Chat Hotkeys, 1Suffix7, 7
-			IniRead, 1Suffix8, settings.ini, Chat Hotkeys, 1Suffix8, 8
-			IniRead, 1Suffix9, settings.ini, Chat Hotkeys, 1Suffix9, 9
+			IniRead, 1Prefix1, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix1, a
+			IniRead, 1Prefix2, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix2, %A_Space%
+			IniRead, 1Suffix1, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1, 1
+			IniRead, 1Suffix2, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix2, 2
+			IniRead, 1Suffix3, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix3, 3
+			IniRead, 1Suffix4, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix4, 4
+			IniRead, 1Suffix5, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix5, 5
+			IniRead, 1Suffix6, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix6, 6
+			IniRead, 1Suffix7, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix7, 7
+			IniRead, 1Suffix8, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix8, 8
+			IniRead, 1Suffix9, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix9, 9
 
-			IniRead, 1Suffix1Text, settings.ini, Chat Hotkeys, 1Suffix1Text, /Hideout
-			IniRead, 1Suffix2Text, settings.ini, Chat Hotkeys, 1Suffix2Text, /Delve
-			IniRead, 1Suffix3Text, settings.ini, Chat Hotkeys, 1Suffix3Text, /cls
-			IniRead, 1Suffix4Text, settings.ini, Chat Hotkeys, 1Suffix4Text, /ladder
-			IniRead, 1Suffix5Text, settings.ini, Chat Hotkeys, 1Suffix5Text, /reset_xp
-			IniRead, 1Suffix6Text, settings.ini, Chat Hotkeys, 1Suffix6Text, /invite RecipientName
-			IniRead, 1Suffix7Text, settings.ini, Chat Hotkeys, 1Suffix7Text, /kick RecipientName
-			IniRead, 1Suffix8Text, settings.ini, Chat Hotkeys, 1Suffix8Text, /kick CharacterName
-			IniRead, 1Suffix9Text, settings.ini, Chat Hotkeys, 1Suffix9Text, @RecipientName Still Interested?
+			IniRead, 1Suffix1Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1Text, /Hideout
+			IniRead, 1Suffix2Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix2Text, /Delve
+			IniRead, 1Suffix3Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix3Text, /cls
+			IniRead, 1Suffix4Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix4Text, /ladder
+			IniRead, 1Suffix5Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix5Text, /reset_xp
+			IniRead, 1Suffix6Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix6Text, /invite RecipientName
+			IniRead, 1Suffix7Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix7Text, /kick RecipientName
+			IniRead, 1Suffix8Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix8Text, /kick CharacterName
+			IniRead, 1Suffix9Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix9Text, @RecipientName Still Interested?
 
-			IniRead, 2Prefix1, settings.ini, Chat Hotkeys, 2Prefix1, d
-			IniRead, 2Prefix2, settings.ini, Chat Hotkeys, 2Prefix2, %A_Space%
-			IniRead, 2Suffix1, settings.ini, Chat Hotkeys, 2Suffix1, 1
-			IniRead, 2Suffix2, settings.ini, Chat Hotkeys, 2Suffix2, 2
-			IniRead, 2Suffix3, settings.ini, Chat Hotkeys, 2Suffix3, 3
-			IniRead, 2Suffix4, settings.ini, Chat Hotkeys, 2Suffix4, 4
-			IniRead, 2Suffix5, settings.ini, Chat Hotkeys, 2Suffix5, 5
-			IniRead, 2Suffix6, settings.ini, Chat Hotkeys, 2Suffix6, 6
-			IniRead, 2Suffix7, settings.ini, Chat Hotkeys, 2Suffix7, 7
-			IniRead, 2Suffix8, settings.ini, Chat Hotkeys, 2Suffix8, 8
-			IniRead, 2Suffix9, settings.ini, Chat Hotkeys, 2Suffix9, 9
+			IniRead, 2Prefix1, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Prefix1, d
+			IniRead, 2Prefix2, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Prefix2, %A_Space%
+			IniRead, 2Suffix1, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1, 1
+			IniRead, 2Suffix2, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2, 2
+			IniRead, 2Suffix3, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3, 3
+			IniRead, 2Suffix4, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4, 4
+			IniRead, 2Suffix5, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5, 5
+			IniRead, 2Suffix6, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6, 6
+			IniRead, 2Suffix7, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7, 7
+			IniRead, 2Suffix8, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8, 8
+			IniRead, 2Suffix9, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9, 9
 			
-			IniRead, 2Suffix1Text, settings.ini, Chat Hotkeys, 2Suffix1Text, Sure, will invite in a sec.
-			IniRead, 2Suffix2Text, settings.ini, Chat Hotkeys, 2Suffix2Text, In a map, will get to you in a minute.
-			IniRead, 2Suffix3Text, settings.ini, Chat Hotkeys, 2Suffix3Text, Still Interested?
-			IniRead, 2Suffix4Text, settings.ini, Chat Hotkeys, 2Suffix4Text, Sorry, going to be a while.
-			IniRead, 2Suffix5Text, settings.ini, Chat Hotkeys, 2Suffix5Text, No thank you.
-			IniRead, 2Suffix6Text, settings.ini, Chat Hotkeys, 2Suffix6Text, No thank you.
-			IniRead, 2Suffix7Text, settings.ini, Chat Hotkeys, 2Suffix7Text, No thank you.
-			IniRead, 2Suffix8Text, settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
-			IniRead, 2Suffix9Text, settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
+			IniRead, 2Suffix1Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1Text, Sure, will invite in a sec.
+			IniRead, 2Suffix2Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2Text, In a map, will get to you in a minute.
+			IniRead, 2Suffix3Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3Text, Still Interested?
+			IniRead, 2Suffix4Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4Text, Sorry, going to be a while.
+			IniRead, 2Suffix5Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5Text, No thank you.
+			IniRead, 2Suffix6Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6Text, No thank you.
+			IniRead, 2Suffix7Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7Text, No thank you.
+			IniRead, 2Suffix8Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
+			IniRead, 2Suffix9Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
 
-			IniRead, stashReset, settings.ini, Stash Hotkeys, stashReset, NumpadDot
-			IniRead, stashPrefix1, settings.ini, Stash Hotkeys, stashPrefix1, Numpad0
-			IniRead, stashPrefix2, settings.ini, Stash Hotkeys, stashPrefix2, %A_Space%
-			IniRead, stashSuffix1, settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
-			IniRead, stashSuffix2, settings.ini, Stash Hotkeys, stashSuffix2, Numpad2
-			IniRead, stashSuffix3, settings.ini, Stash Hotkeys, stashSuffix3, Numpad3
-			IniRead, stashSuffix4, settings.ini, Stash Hotkeys, stashSuffix4, Numpad4
-			IniRead, stashSuffix5, settings.ini, Stash Hotkeys, stashSuffix5, Numpad5
-			IniRead, stashSuffix6, settings.ini, Stash Hotkeys, stashSuffix6, Numpad6
-			IniRead, stashSuffix7, settings.ini, Stash Hotkeys, stashSuffix7, Numpad7
-			IniRead, stashSuffix8, settings.ini, Stash Hotkeys, stashSuffix8, Numpad8
-			IniRead, stashSuffix9, settings.ini, Stash Hotkeys, stashSuffix9, Numpad9
+			IniRead, stashReset, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashReset, NumpadDot
+			IniRead, stashPrefix1, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix1, Numpad0
+			IniRead, stashPrefix2, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix2, %A_Space%
+			IniRead, stashSuffix1, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
+			IniRead, stashSuffix2, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix2, Numpad2
+			IniRead, stashSuffix3, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix3, Numpad3
+			IniRead, stashSuffix4, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix4, Numpad4
+			IniRead, stashSuffix5, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix5, Numpad5
+			IniRead, stashSuffix6, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix6, Numpad6
+			IniRead, stashSuffix7, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix7, Numpad7
+			IniRead, stashSuffix8, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix8, Numpad8
+			IniRead, stashSuffix9, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix9, Numpad9
 			
-			IniRead, stashSuffixTab1, settings.ini, Stash Hotkeys, stashSuffixTab1, 1
-			IniRead, stashSuffixTab2, settings.ini, Stash Hotkeys, stashSuffixTab2, 2
-			IniRead, stashSuffixTab3, settings.ini, Stash Hotkeys, stashSuffixTab3, 3
-			IniRead, stashSuffixTab4, settings.ini, Stash Hotkeys, stashSuffixTab4, 4
-			IniRead, stashSuffixTab5, settings.ini, Stash Hotkeys, stashSuffixTab5, 5
-			IniRead, stashSuffixTab6, settings.ini, Stash Hotkeys, stashSuffixTab6, 6
-			IniRead, stashSuffixTab7, settings.ini, Stash Hotkeys, stashSuffixTab7, 7
-			IniRead, stashSuffixTab8, settings.ini, Stash Hotkeys, stashSuffixTab8, 8
-			IniRead, stashSuffixTab9, settings.ini, Stash Hotkeys, stashSuffixTab9, 9
+			IniRead, stashSuffixTab1, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab1, 1
+			IniRead, stashSuffixTab2, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab2, 2
+			IniRead, stashSuffixTab3, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab3, 3
+			IniRead, stashSuffixTab4, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab4, 4
+			IniRead, stashSuffixTab5, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab5, 5
+			IniRead, stashSuffixTab6, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab6, 6
+			IniRead, stashSuffixTab7, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab7, 7
+			IniRead, stashSuffixTab8, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab8, 8
+			IniRead, stashSuffixTab9, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab9, 9
 
 
 			;Controller setup
-			IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, ^LButton
-			IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
-			IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, r
-			IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
-			IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
-			IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
-			IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
-			IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Tab
-			IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Logout
-			IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
+			IniRead, hotkeyControllerButton1, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton1, ^LButton
+			IniRead, hotkeyControllerButton2, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
+			IniRead, hotkeyControllerButton3, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton3, r
+			IniRead, hotkeyControllerButton4, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
+			IniRead, hotkeyControllerButton5, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton5, e
+			IniRead, hotkeyControllerButton6, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton6, RButton
+			IniRead, hotkeyControllerButton7, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton7, ItemSort
+			IniRead, hotkeyControllerButton8, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton8, Tab
+			IniRead, hotkeyControllerButton9, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton9, Logout
+			IniRead, hotkeyControllerButton10, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton10, QuickPortal
 			
-			IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
+			IniRead, hotkeyControllerJoystick2, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
-			IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
-			IniRead, YesTriggerUtilityJoystickKey, settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
-			IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
-			IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
-			IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
-			IniRead, YesController, settings.ini, Controller, YesController, 0
-			IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+			IniRead, YesTriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey, 1
+			IniRead, YesTriggerUtilityJoystickKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
+			IniRead, YesTriggerJoystick2Key, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystick2Key, 1
+			IniRead, TriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, Controller, TriggerUtilityKey, 1
+			IniRead, YesMovementKeys, %A_ScriptDir%\save\Settings.ini, Controller, YesMovementKeys, 0
+			IniRead, YesController, %A_ScriptDir%\save\Settings.ini, Controller, YesController, 0
+			IniRead, JoystickNumber, %A_ScriptDir%\save\Settings.ini, Controller, JoystickNumber, 0
 
 			;settings for the Ninja Database
-			IniRead, LastDatabaseParseDate, Settings.ini, Database, LastDatabaseParseDate, 20190913
-			IniRead, selectedLeague, Settings.ini, Database, selectedLeague, Blight
-			IniRead, UpdateDatabaseInterval, Settings.ini, Database, UpdateDatabaseInterval, 2
-			IniRead, YesNinjaDatabase, Settings.ini, Database, YesNinjaDatabase, 1
-			IniRead, ForceMatch6Link, Settings.ini, Database, ForceMatch6Link, 0
-			IniRead, ForceMatchGem20, Settings.ini, Database, ForceMatchGem20, 0
+			IniRead, LastDatabaseParseDate, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate, 20190913
+			IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Blight
+			IniRead, UpdateDatabaseInterval, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval, 2
+			IniRead, YesNinjaDatabase, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase, 1
+			IniRead, ForceMatch6Link, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link, 0
+			IniRead, ForceMatchGem20, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20, 0
 
 			RegisterHotkeys()
 			checkActiveType()
-			If FileExist(A_ScriptDir "\data\Globe.json")
+			If FileExist(A_ScriptDir "\save\Globe.json")
 				WR_Menu("JSON","Load","Globe")
 			Thread, NoTimers, False		;End Critical
 		Return
@@ -7529,14 +7935,14 @@ Return
 					varLife80 := ScreenShot_GetColor(vX_Life,vY_Life80)
 					varLife90 := ScreenShot_GetColor(vX_Life,vY_Life90)
 						
-					IniWrite, %varLife20%, settings.ini, Life Colors, Life20
-					IniWrite, %varLife30%, settings.ini, Life Colors, Life30
-					IniWrite, %varLife40%, settings.ini, Life Colors, Life40
-					IniWrite, %varLife50%, settings.ini, Life Colors, Life50
-					IniWrite, %varLife60%, settings.ini, Life Colors, Life60
-					IniWrite, %varLife70%, settings.ini, Life Colors, Life70
-					IniWrite, %varLife80%, settings.ini, Life Colors, Life80
-					IniWrite, %varLife90%, settings.ini, Life Colors, Life90
+					IniWrite, %varLife20%, %A_ScriptDir%\save\Settings.ini, Life Colors, Life20
+					IniWrite, %varLife30%, %A_ScriptDir%\save\Settings.ini, Life Colors, Life30
+					IniWrite, %varLife40%, %A_ScriptDir%\save\Settings.ini, Life Colors, Life40
+					IniWrite, %varLife50%, %A_ScriptDir%\save\Settings.ini, Life Colors, Life50
+					IniWrite, %varLife60%, %A_ScriptDir%\save\Settings.ini, Life Colors, Life60
+					IniWrite, %varLife70%, %A_ScriptDir%\save\Settings.ini, Life Colors, Life70
+					IniWrite, %varLife80%, %A_ScriptDir%\save\Settings.ini, Life Colors, Life80
+					IniWrite, %varLife90%, %A_ScriptDir%\save\Settings.ini, Life Colors, Life90
 					;ES Resample
 					varES20 := ScreenShot_GetColor(vX_ES,vY_ES20)
 					varES30 := ScreenShot_GetColor(vX_ES,vY_ES30)
@@ -7547,19 +7953,19 @@ Return
 					varES80 := ScreenShot_GetColor(vX_ES,vY_ES80)
 					varES90 := ScreenShot_GetColor(vX_ES,vY_ES90)
 					
-					IniWrite, %varES20%, settings.ini, ES Colors, ES20
-					IniWrite, %varES30%, settings.ini, ES Colors, ES30
-					IniWrite, %varES40%, settings.ini, ES Colors, ES40
-					IniWrite, %varES50%, settings.ini, ES Colors, ES50
-					IniWrite, %varES60%, settings.ini, ES Colors, ES60
-					IniWrite, %varES70%, settings.ini, ES Colors, ES70
-					IniWrite, %varES80%, settings.ini, ES Colors, ES80
-					IniWrite, %varES90%, settings.ini, ES Colors, ES90
+					IniWrite, %varES20%, %A_ScriptDir%\save\Settings.ini, ES Colors, ES20
+					IniWrite, %varES30%, %A_ScriptDir%\save\Settings.ini, ES Colors, ES30
+					IniWrite, %varES40%, %A_ScriptDir%\save\Settings.ini, ES Colors, ES40
+					IniWrite, %varES50%, %A_ScriptDir%\save\Settings.ini, ES Colors, ES50
+					IniWrite, %varES60%, %A_ScriptDir%\save\Settings.ini, ES Colors, ES60
+					IniWrite, %varES70%, %A_ScriptDir%\save\Settings.ini, ES Colors, ES70
+					IniWrite, %varES80%, %A_ScriptDir%\save\Settings.ini, ES Colors, ES80
+					IniWrite, %varES90%, %A_ScriptDir%\save\Settings.ini, ES Colors, ES90
 					;Mana Resample
 					varMana10 := ScreenShot_GetColor(vX_Mana,vY_Mana10)
 					varManaThreshold := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
-					IniWrite, %varMana10%, settings.ini, Mana Colors, Mana10
-					IniWrite, %varManaThreshold%, settings.ini, Mana Colors, ManaThreshold
+					IniWrite, %varMana10%, %A_ScriptDir%\save\Settings.ini, Mana Colors, Mana10
+					IniWrite, %varManaThreshold%, %A_ScriptDir%\save\Settings.ini, Mana Colors, ManaThreshold
 					;Messagebox	
 					ToolTip, % "Script detects you are on Character`rGrabbed new Samples for Life, ES, and Mana colors"
 					SetTimer, RemoveTT1, -5000
@@ -7571,343 +7977,351 @@ Return
 			}
 			Gui, Submit, NoHide
 			;Life Flasks
-			IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, settings.ini, Life Triggers, TriggerLife20
-			IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, settings.ini, Life Triggers, TriggerLife30
-			IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, settings.ini, Life Triggers, TriggerLife40
-			IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, settings.ini, Life Triggers, TriggerLife50
-			IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, settings.ini, Life Triggers, TriggerLife60
-			IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, settings.ini, Life Triggers, TriggerLife70
-			IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, settings.ini, Life Triggers, TriggerLife80
-			IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, settings.ini, Life Triggers, TriggerLife90
-			IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, settings.ini, Life Triggers, DisableLife
+			IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife20
+			IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife30
+			IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife40
+			IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife50
+			IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife60
+			IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife70
+			IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife80
+			IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife90
+			IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, %A_ScriptDir%\save\Settings.ini, Life Triggers, DisableLife
 				
 			
 			;ES Flasks
-			IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, settings.ini, ES Triggers, TriggerES20
-			IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, settings.ini, ES Triggers, TriggerES30
-			IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, settings.ini, ES Triggers, TriggerES40
-			IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, settings.ini, ES Triggers, TriggerES50
-			IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, settings.ini, ES Triggers, TriggerES60
-			IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, settings.ini, ES Triggers, TriggerES70
-			IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, settings.ini, ES Triggers, TriggerES80
-			IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, settings.ini, ES Triggers, TriggerES90
-			IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, settings.ini, ES Triggers, DisableES
+			IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES20
+			IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES30
+			IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES40
+			IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES50
+			IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES60
+			IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES70
+			IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES80
+			IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES90
+			IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, %A_ScriptDir%\save\Settings.ini, ES Triggers, DisableES
 			;Mana Flasks
-			IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, settings.ini, Mana Triggers, TriggerMana10
+			IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, %A_ScriptDir%\save\Settings.ini, Mana Triggers, TriggerMana10
 			
 			;Bandit Extra options
-			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
-			IniWrite, %YesTimeMS%, settings.ini, General, YesTimeMS
-			IniWrite, %YesLocation%, settings.ini, General, YesLocation
-			IniWrite, %ShowPixelGrid%, settings.ini, General, ShowPixelGrid
-			IniWrite, %ShowItemInfo%, settings.ini, General, ShowItemInfo
-			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
-			IniWrite, %DetonateMinesDelay%, settings.ini, General, DetonateMinesDelay
-			IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
-			IniWrite, %YesVendor%, settings.ini, General, YesVendor
-			IniWrite, %YesStash%, settings.ini, General, YesStash
-			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
-			IniWrite, %YesDiv%, settings.ini, General, YesDiv
-			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
-			IniWrite, %YesSortFirst%, settings.ini, General, YesSortFirst
-			IniWrite, %Latency%, settings.ini, General, Latency
-			IniWrite, %ClickLatency%, settings.ini, General, ClickLatency
-			IniWrite, %ClipLatency%, settings.ini, General, ClipLatency
-			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
-			IniWrite, %Steam%, settings.ini, General, Steam
-			IniWrite, %HighBits%, settings.ini, General, HighBits
-			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
-			IniWrite, %CharName%, settings.ini, General, CharName
-			IniWrite, %EnableChatHotkeys%, settings.ini, General, EnableChatHotkeys
-			IniWrite, %YesStashKeys%, settings.ini, General, YesStashKeys
-			IniWrite, %YesPopAllExtraKeys%, settings.ini, General, YesPopAllExtraKeys
-			IniWrite, %QSonMainAttack%, settings.ini, General, QSonMainAttack
-			IniWrite, %QSonSecondaryAttack%, settings.ini, General, QSonSecondaryAttack
-			IniWrite, %YesEldritchBattery%, settings.ini, General, YesEldritchBattery
-			IniWrite, %YesStashT1%, settings.ini, General, YesStashT1
-			IniWrite, %YesStashT2%, settings.ini, General, YesStashT2
-			IniWrite, %YesStashT3%, settings.ini, General, YesStashT3
-			IniWrite, %YesStashCraftingNormal%, settings.ini, General, YesStashCraftingNormal
-			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
-			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
-			IniWrite, %YesSkipMaps%, settings.ini, General, YesSkipMaps
-			IniWrite, %YesAutoSkillUp%, settings.ini, General, YesAutoSkillUp
-			IniWrite, %YesWaitAutoSkillUp%, settings.ini, General, YesWaitAutoSkillUp
-			IniWrite, %AreaScale%, settings.ini, General, AreaScale
-			IniWrite, %LVdelay%, settings.ini, General, LVdelay
-			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
-			IniWrite, %RelogOnQuit%, settings.ini, General, RelogOnQuit
-			IniWrite, %YesGlobeScan%, settings.ini, General, YesGlobeScan
-			IniWrite, %ManaThreshold%, settings.ini, General, ManaThreshold
+			IniWrite, %DebugMessages%, %A_ScriptDir%\save\Settings.ini, General, DebugMessages
+			IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
+			IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
+			IniWrite, %ShowPixelGrid%, %A_ScriptDir%\save\Settings.ini, General, ShowPixelGrid
+			IniWrite, %ShowItemInfo%, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo
+			IniWrite, %DetonateMines%, %A_ScriptDir%\save\Settings.ini, General, DetonateMines
+			IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay
+			IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
+			IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
+			IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
+			IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
+			IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
+			IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
+			IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
+			IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
+			IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
+			IniWrite, %ClipLatency%, %A_ScriptDir%\save\Settings.ini, General, ClipLatency
+			IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
+			IniWrite, %Steam%, %A_ScriptDir%\save\Settings.ini, General, Steam
+			IniWrite, %HighBits%, %A_ScriptDir%\save\Settings.ini, General, HighBits
+			IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
+			IniWrite, %CharName%, %A_ScriptDir%\save\Settings.ini, General, CharName
+			IniWrite, %EnableChatHotkeys%, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys
+			IniWrite, %YesStashKeys%, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys
+			IniWrite, %YesPopAllExtraKeys%, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys
+			IniWrite, %QSonMainAttack%, %A_ScriptDir%\save\Settings.ini, General, QSonMainAttack
+			IniWrite, %QSonSecondaryAttack%, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack
+			IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery
+			IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
+			IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
+			IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
+			IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
+			IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
+			IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
+			IniWrite, %YesStashCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl
+			IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
+			IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
+			IniWrite, %YesAutoSkillUp%, %A_ScriptDir%\save\Settings.ini, General, YesAutoSkillUp
+			IniWrite, %YesWaitAutoSkillUp%, %A_ScriptDir%\save\Settings.ini, General, YesWaitAutoSkillUp
+			IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
+			IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
+			IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
+			IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
+			IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
+			IniWrite, %ManaThreshold%, %A_ScriptDir%\save\Settings.ini, General, ManaThreshold
 
 			; Overhead Health Bar
-			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
+			IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
 
 			; ASCII Search Strings
-			IniWrite, %HealthBarStr%, Settings.ini, FindText Strings, HealthBarStr
-			IniWrite, %VendorStr%, Settings.ini, FindText Strings, VendorStr
-			IniWrite, %SellItemsStr%, Settings.ini, FindText Strings, SellItemsStr
-			IniWrite, %StashStr%, Settings.ini, FindText Strings, StashStr
-			IniWrite, %SkillUpStr%, Settings.ini, FindText Strings, SkillUpStr
+			IniWrite, %HealthBarStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, HealthBarStr
+			IniWrite, %VendorStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr
+			IniWrite, %SellItemsStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SellItemsStr
+			IniWrite, %StashStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr
+			IniWrite, %SkillUpStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr
 
 			;~ Hotkeys 
-			IniWrite, %hotkeyOptions%, settings.ini, hotkeys, Options
-			IniWrite, %hotkeyAutoQuit%, settings.ini, hotkeys, AutoQuit
-			IniWrite, %hotkeyAutoFlask%, settings.ini, hotkeys, AutoFlask
-			IniWrite, %hotkeyAutoQuicksilver%, settings.ini, hotkeys, AutoQuicksilver
-			IniWrite, %hotkeyQuickPortal%, settings.ini, hotkeys, QuickPortal
-			IniWrite, %hotkeyGemSwap%, settings.ini, hotkeys, GemSwap
-			IniWrite, %hotkeyGetMouseCoords%, settings.ini, hotkeys, GetMouseCoords
-			IniWrite, %hotkeyPopFlasks%, settings.ini, hotkeys, PopFlasks
-			IniWrite, %hotkeyLogout%, settings.ini, hotkeys, Logout
-			IniWrite, %hotkeyCloseAllUI%, settings.ini, hotkeys, CloseAllUI
-			IniWrite, %hotkeyInventory%, settings.ini, hotkeys, Inventory
-			IniWrite, %hotkeyWeaponSwapKey%, settings.ini, hotkeys, WeaponSwapKey
-			IniWrite, %hotkeyItemSort%, settings.ini, hotkeys, ItemSort
-			IniWrite, %hotkeyItemInfo%, settings.ini, hotkeys, ItemInfo
-			IniWrite, %hotkeyLootScan%, settings.ini, hotkeys, LootScan
-			IniWrite, %hotkeyMainAttack%, settings.ini, hotkeys, MainAttack
-			IniWrite, %hotkeySecondaryAttack%, settings.ini, hotkeys, SecondaryAttack
+			IniWrite, %hotkeyOptions%, %A_ScriptDir%\save\Settings.ini, hotkeys, Options
+			IniWrite, %hotkeyAutoQuit%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit
+			IniWrite, %hotkeyAutoFlask%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask
+			IniWrite, %hotkeyAutoQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver
+			IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
+			IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
+			IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
+			IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
+			IniWrite, %hotkeyLogout%, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout
+			IniWrite, %hotkeyCloseAllUI%, %A_ScriptDir%\save\Settings.ini, hotkeys, CloseAllUI
+			IniWrite, %hotkeyInventory%, %A_ScriptDir%\save\Settings.ini, hotkeys, Inventory
+			IniWrite, %hotkeyWeaponSwapKey%, %A_ScriptDir%\save\Settings.ini, hotkeys, WeaponSwapKey
+			IniWrite, %hotkeyItemSort%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemSort
+			IniWrite, %hotkeyItemInfo%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemInfo
+			IniWrite, %hotkeyLootScan%, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan
+			IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
+			IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
 			
 			;Utility Keys
-			IniWrite, %hotkeyUp%, 		settings.ini, Controller Keys, hotkeyUp
-			IniWrite, %hotkeyDown%, 	settings.ini, Controller Keys, hotkeyDown
-			IniWrite, %hotkeyLeft%, 	settings.ini, Controller Keys, hotkeyLeft
-			IniWrite, %hotkeyRight%, 	settings.ini, Controller Keys, hotkeyRight
+			IniWrite, %hotkeyUp%, 		%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp
+			IniWrite, %hotkeyDown%, 	%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyDown
+			IniWrite, %hotkeyLeft%, 	%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyLeft
+			IniWrite, %hotkeyRight%, 	%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight
 			
 			;Utility Buttons
-			IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
-			IniWrite, %YesUtility2%, settings.ini, Utility Buttons, YesUtility2
-			IniWrite, %YesUtility3%, settings.ini, Utility Buttons, YesUtility3
-			IniWrite, %YesUtility4%, settings.ini, Utility Buttons, YesUtility4
-			IniWrite, %YesUtility5%, settings.ini, Utility Buttons, YesUtility5
-			IniWrite, %YesUtility1Quicksilver%, settings.ini, Utility Buttons, YesUtility1Quicksilver
-			IniWrite, %YesUtility2Quicksilver%, settings.ini, Utility Buttons, YesUtility2Quicksilver
-			IniWrite, %YesUtility3Quicksilver%, settings.ini, Utility Buttons, YesUtility3Quicksilver
-			IniWrite, %YesUtility4Quicksilver%, settings.ini, Utility Buttons, YesUtility4Quicksilver
-			IniWrite, %YesUtility5Quicksilver%, settings.ini, Utility Buttons, YesUtility5Quicksilver
+			IniWrite, %YesUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1
+			IniWrite, %YesUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2
+			IniWrite, %YesUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3
+			IniWrite, %YesUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4
+			IniWrite, %YesUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver
 			
 			;Utility Percents	
-			IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
-			IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
-			IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
-			IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
-			IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
-			IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
-			IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
-			IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
-			IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
-			IniWrite, %YesUtility5EsPercent%, settings.ini, Utility Buttons, YesUtility5EsPercent
+			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent
+			IniWrite, %YesUtility2LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2LifePercent
+			IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent
+			IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent
+			IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent
+			IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent
 			
 			;Utility Cooldowns
-			IniWrite, %CooldownUtility1%, settings.ini, Utility Cooldowns, CooldownUtility1
-			IniWrite, %CooldownUtility2%, settings.ini, Utility Cooldowns, CooldownUtility2
-			IniWrite, %CooldownUtility3%, settings.ini, Utility Cooldowns, CooldownUtility3
-			IniWrite, %CooldownUtility4%, settings.ini, Utility Cooldowns, CooldownUtility4
-			IniWrite, %CooldownUtility5%, settings.ini, Utility Cooldowns, CooldownUtility5
+			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1
+			IniWrite, %CooldownUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility2
+			IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3
+			IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4
+			IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5
 			
 			;Utility Keys
-			IniWrite, %KeyUtility1%, settings.ini, Utility Keys, KeyUtility1
-			IniWrite, %KeyUtility2%, settings.ini, Utility Keys, KeyUtility2
-			IniWrite, %KeyUtility3%, settings.ini, Utility Keys, KeyUtility3
-			IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
-			IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
+			IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1
+			IniWrite, %KeyUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility2
+			IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3
+			IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4
+			IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5
 			
 			;Utility Icon Strings
-			IniWrite, %IconStringUtility1%, settings.ini, Utility Icons, IconStringUtility1
-			IniWrite, %IconStringUtility2%, settings.ini, Utility Icons, IconStringUtility2
-			IniWrite, %IconStringUtility3%, settings.ini, Utility Icons, IconStringUtility3
-			IniWrite, %IconStringUtility4%, settings.ini, Utility Icons, IconStringUtility4
-			IniWrite, %IconStringUtility5%, settings.ini, Utility Icons, IconStringUtility5
+			IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1
+			IniWrite, %IconStringUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility2
+			IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3
+			IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4
+			IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5
 			
 			;Flask Cooldowns
-			IniWrite, %CooldownFlask1%, settings.ini, Flask Cooldowns, CooldownFlask1
-			IniWrite, %CooldownFlask2%, settings.ini, Flask Cooldowns, CooldownFlask2
-			IniWrite, %CooldownFlask3%, settings.ini, Flask Cooldowns, CooldownFlask3
-			IniWrite, %CooldownFlask4%, settings.ini, Flask Cooldowns, CooldownFlask4
-			IniWrite, %CooldownFlask5%, settings.ini, Flask Cooldowns, CooldownFlask5	
+			IniWrite, %CooldownFlask1%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask1
+			IniWrite, %CooldownFlask2%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask2
+			IniWrite, %CooldownFlask3%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask3
+			IniWrite, %CooldownFlask4%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask4
+			IniWrite, %CooldownFlask5%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask5	
 
 			;Flask Keys
-			IniWrite, %keyFlask1%, settings.ini, Flask Keys, keyFlask1
-			IniWrite, %keyFlask2%, settings.ini, Flask Keys, keyFlask2
-			IniWrite, %keyFlask3%, settings.ini, Flask Keys, keyFlask3
-			IniWrite, %keyFlask4%, settings.ini, Flask Keys, keyFlask4
-			IniWrite, %keyFlask5%, settings.ini, Flask Keys, keyFlask5	
+			IniWrite, %keyFlask1%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask1
+			IniWrite, %keyFlask2%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask2
+			IniWrite, %keyFlask3%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask3
+			IniWrite, %keyFlask4%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask4
+			IniWrite, %keyFlask5%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask5	
 			
 			;Gem Swap
-			IniWrite, %CurrentGemX%, settings.ini, Gem Swap, CurrentGemX
-			IniWrite, %CurrentGemY%, settings.ini, Gem Swap, CurrentGemY
-			IniWrite, %AlternateGemX%, settings.ini, Gem Swap, AlternateGemX
-			IniWrite, %AlternateGemY%, settings.ini, Gem Swap, AlternateGemY
-			IniWrite, %AlternateGemOnSecondarySlot%, settings.ini, Gem Swap, AlternateGemOnSecondarySlot
+			IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
+			IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY
+			IniWrite, %AlternateGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX
+			IniWrite, %AlternateGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY
+			IniWrite, %AlternateGemOnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot
 			
 			;~ Scroll locations
-			IniWrite, %PortalScrollX%, settings.ini, Coordinates, PortalScrollX
-			IniWrite, %PortalScrollY%, settings.ini, Coordinates, PortalScrollY
-			IniWrite, %WisdomScrollX%, settings.ini, Coordinates, WisdomScrollX
-			IniWrite, %WisdomScrollY%, settings.ini, Coordinates, WisdomScrollY
-			IniWrite, %StockPortal%, settings.ini, Coordinates, StockPortal
-			IniWrite, %StockWisdom%, settings.ini, Coordinates, StockWisdom
+			IniWrite, %PortalScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX
+			IniWrite, %PortalScrollY%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollY
+			IniWrite, %WisdomScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollX
+			IniWrite, %WisdomScrollY%, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollY
+			IniWrite, %StockPortal%, %A_ScriptDir%\save\Settings.ini, Coordinates, StockPortal
+			IniWrite, %StockWisdom%, %A_ScriptDir%\save\Settings.ini, Coordinates, StockWisdom
 			
 			;Stash Tab Management
-			IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
-			IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
-			IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
-			IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
-			IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
-			IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
-			IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
-			IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
-			IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
-			IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
-			IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
-			IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-			IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
-			IniWrite, %StashTabYesOrgan%, settings.ini, Stash Tab, StashTabYesOrgan
-			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
-			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
-			IniWrite, %StashTabCrafting%, settings.ini, Stash Tab, StashTabCrafting
-			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
-			IniWrite, %StashTabVeiled%, settings.ini, Stash Tab, StashTabVeiled
-			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
-			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
-			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
-			IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
-			IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
-			IniWrite, %StashTabYesGemSupport%, settings.ini, Stash Tab, StashTabYesGemSupport
-			IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
-			IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
-			IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
-			IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
-			IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
-			IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
-			IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-			IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
-			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
-			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
-			IniWrite, %StashTabYesCrafting%, settings.ini, Stash Tab, StashTabYesCrafting
-			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
-			IniWrite, %StashTabYesVeiled%, settings.ini, Stash Tab, StashTabYesVeiled
+			IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
+			IniWrite, %StashTabMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap
+			IniWrite, %StashTabDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDivination
+			IniWrite, %StashTabGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem
+			IniWrite, %StashTabGemQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemQuality
+			IniWrite, %StashTabFlaskQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlaskQuality
+			IniWrite, %StashTabLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked
+			IniWrite, %StashTabCollection%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCollection
+			IniWrite, %StashTabUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing
+			IniWrite, %StashTabUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump
+			IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
+			IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
+			IniWrite, %StashTabOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil
+			IniWrite, %StashTabYesOrgan%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOrgan
+			IniWrite, %StashTabFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil
+			IniWrite, %StashTabResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator
+			IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
+			IniWrite, %StashTabProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy
+			IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
+			IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
+			IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
+			IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
+			IniWrite, %StashTabYesDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination
+			IniWrite, %StashTabYesGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem
+			IniWrite, %StashTabYesGemQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemQuality
+			IniWrite, %StashTabYesGemSupport%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemSupport
+			IniWrite, %StashTabYesFlaskQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlaskQuality
+			IniWrite, %StashTabYesLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked
+			IniWrite, %StashTabYesCollection%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCollection
+			IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
+			IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
+			IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
+			IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
+			IniWrite, %StashTabYesOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil
+			IniWrite, %StashTabYesFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFossil
+			IniWrite, %StashTabYesResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesResonator
+			IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
+			IniWrite, %StashTabYesProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy
+			IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
+			IniWrite, %StashTabYesDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDump
+			IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial
+			IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
+			IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
+			IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
 			
 			;Attack Flasks
-			IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, settings.ini, Attack Triggers, TriggerMainAttack
-			IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, settings.ini, Attack Triggers, TriggerSecondaryAttack
+			IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerMainAttack
+			IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerSecondaryAttack
 			
 			;Quicksilver Flasks
-			IniWrite, %TriggerQuicksilverDelay%, settings.ini, Quicksilver, TriggerQuicksilverDelay
-			IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, settings.ini, Quicksilver, TriggerQuicksilver
+			IniWrite, %TriggerQuicksilverDelay%, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilverDelay
+			IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilver
 			
 			;Pop Flasks
-			IniWrite, %PopFlasks1%%PopFlasks2%%PopFlasks3%%PopFlasks4%%PopFlasks5%, settings.ini, PopFlasks, TriggerPopFlasks
+			IniWrite, %PopFlasks1%%PopFlasks2%%PopFlasks3%%PopFlasks4%%PopFlasks5%, %A_ScriptDir%\save\Settings.ini, PopFlasks, TriggerPopFlasks
 			
 			;CharacterTypeCheck
-			IniWrite, %RadioLife%, settings.ini, CharacterTypeCheck, Life
-			IniWrite, %RadioHybrid%, settings.ini, CharacterTypeCheck, Hybrid	
-			IniWrite, %RadioCi%, settings.ini, CharacterTypeCheck, Ci	
+			IniWrite, %RadioLife%, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Life
+			IniWrite, %RadioHybrid%, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Hybrid	
+			IniWrite, %RadioCi%, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Ci	
 			
 			;AutoQuit
-			IniWrite, %QuitBelow%, settings.ini, AutoQuit, QuitBelow
-			IniWrite, %RadioCritQuit%, settings.ini, AutoQuit, CritQuit
-			IniWrite, %RadioPortalQuit%, settings.ini, AutoQuit, PortalQuit
-			IniWrite, %RadioNormalQuit%, settings.ini, AutoQuit, NormalQuit
+			IniWrite, %QuitBelow%, %A_ScriptDir%\save\Settings.ini, AutoQuit, QuitBelow
+			IniWrite, %RadioCritQuit%, %A_ScriptDir%\save\Settings.ini, AutoQuit, CritQuit
+			IniWrite, %RadioPortalQuit%, %A_ScriptDir%\save\Settings.ini, AutoQuit, PortalQuit
+			IniWrite, %RadioNormalQuit%, %A_ScriptDir%\save\Settings.ini, AutoQuit, NormalQuit
 
 			;Chat Hotkeys
-			IniWrite, %1Prefix1%, settings.ini, Chat Hotkeys, 1Prefix1
-			IniWrite, %1Prefix2%, settings.ini, Chat Hotkeys, 1Prefix2
-			IniWrite, %1Suffix1%, settings.ini, Chat Hotkeys, 1Suffix1
-			IniWrite, %1Suffix2%, settings.ini, Chat Hotkeys, 1Suffix2
-			IniWrite, %1Suffix3%, settings.ini, Chat Hotkeys, 1Suffix3
-			IniWrite, %1Suffix4%, settings.ini, Chat Hotkeys, 1Suffix4
-			IniWrite, %1Suffix5%, settings.ini, Chat Hotkeys, 1Suffix5
-			IniWrite, %1Suffix6%, settings.ini, Chat Hotkeys, 1Suffix6
-			IniWrite, %1Suffix7%, settings.ini, Chat Hotkeys, 1Suffix7
-			IniWrite, %1Suffix8%, settings.ini, Chat Hotkeys, 1Suffix8
-			IniWrite, %1Suffix9%, settings.ini, Chat Hotkeys, 1Suffix9
+			IniWrite, %1Prefix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix1
+			IniWrite, %1Prefix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix2
+			IniWrite, %1Suffix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1
+			IniWrite, %1Suffix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix2
+			IniWrite, %1Suffix3%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix3
+			IniWrite, %1Suffix4%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix4
+			IniWrite, %1Suffix5%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix5
+			IniWrite, %1Suffix6%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix6
+			IniWrite, %1Suffix7%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix7
+			IniWrite, %1Suffix8%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix8
+			IniWrite, %1Suffix9%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix9
 
-			IniWrite, %1Suffix1Text%, settings.ini, Chat Hotkeys, 1Suffix1Text
-			IniWrite, %1Suffix2Text%, settings.ini, Chat Hotkeys, 1Suffix2Text
-			IniWrite, %1Suffix3Text%, settings.ini, Chat Hotkeys, 1Suffix3Text
-			IniWrite, %1Suffix4Text%, settings.ini, Chat Hotkeys, 1Suffix4Text
-			IniWrite, %1Suffix5Text%, settings.ini, Chat Hotkeys, 1Suffix5Text
-			IniWrite, %1Suffix6Text%, settings.ini, Chat Hotkeys, 1Suffix6Text
-			IniWrite, %1Suffix7Text%, settings.ini, Chat Hotkeys, 1Suffix7Text
-			IniWrite, %1Suffix8Text%, settings.ini, Chat Hotkeys, 1Suffix8Text
-			IniWrite, %1Suffix9Text%, settings.ini, Chat Hotkeys, 1Suffix9Text
+			IniWrite, %1Suffix1Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1Text
+			IniWrite, %1Suffix2Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix2Text
+			IniWrite, %1Suffix3Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix3Text
+			IniWrite, %1Suffix4Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix4Text
+			IniWrite, %1Suffix5Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix5Text
+			IniWrite, %1Suffix6Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix6Text
+			IniWrite, %1Suffix7Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix7Text
+			IniWrite, %1Suffix8Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix8Text
+			IniWrite, %1Suffix9Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix9Text
 
-			IniWrite, %2Prefix1%, settings.ini, Chat Hotkeys, 2Prefix1
-			IniWrite, %2Prefix2%, settings.ini, Chat Hotkeys, 2Prefix2
-			IniWrite, %2Suffix1%, settings.ini, Chat Hotkeys, 2Suffix1
-			IniWrite, %2Suffix2%, settings.ini, Chat Hotkeys, 2Suffix2
-			IniWrite, %2Suffix3%, settings.ini, Chat Hotkeys, 2Suffix3
-			IniWrite, %2Suffix4%, settings.ini, Chat Hotkeys, 2Suffix4
-			IniWrite, %2Suffix5%, settings.ini, Chat Hotkeys, 2Suffix5
-			IniWrite, %2Suffix6%, settings.ini, Chat Hotkeys, 2Suffix6
-			IniWrite, %2Suffix7%, settings.ini, Chat Hotkeys, 2Suffix7
-			IniWrite, %2Suffix8%, settings.ini, Chat Hotkeys, 2Suffix8
-			IniWrite, %2Suffix9%, settings.ini, Chat Hotkeys, 2Suffix9
+			IniWrite, %2Prefix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Prefix1
+			IniWrite, %2Prefix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Prefix2
+			IniWrite, %2Suffix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1
+			IniWrite, %2Suffix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2
+			IniWrite, %2Suffix3%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3
+			IniWrite, %2Suffix4%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4
+			IniWrite, %2Suffix5%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5
+			IniWrite, %2Suffix6%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6
+			IniWrite, %2Suffix7%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7
+			IniWrite, %2Suffix8%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8
+			IniWrite, %2Suffix9%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9
 			
-			IniWrite, %2Suffix1Text%, settings.ini, Chat Hotkeys, 2Suffix1Text
-			IniWrite, %2Suffix2Text%, settings.ini, Chat Hotkeys, 2Suffix2Text
-			IniWrite, %2Suffix3Text%, settings.ini, Chat Hotkeys, 2Suffix3Text
-			IniWrite, %2Suffix4Text%, settings.ini, Chat Hotkeys, 2Suffix4Text
-			IniWrite, %2Suffix5Text%, settings.ini, Chat Hotkeys, 2Suffix5Text
-			IniWrite, %2Suffix6Text%, settings.ini, Chat Hotkeys, 2Suffix6Text
-			IniWrite, %2Suffix7Text%, settings.ini, Chat Hotkeys, 2Suffix7Text
-			IniWrite, %2Suffix8Text%, settings.ini, Chat Hotkeys, 2Suffix8Text
-			IniWrite, %2Suffix9Text%, settings.ini, Chat Hotkeys, 2Suffix9Text
+			IniWrite, %2Suffix1Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1Text
+			IniWrite, %2Suffix2Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2Text
+			IniWrite, %2Suffix3Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3Text
+			IniWrite, %2Suffix4Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4Text
+			IniWrite, %2Suffix5Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5Text
+			IniWrite, %2Suffix6Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6Text
+			IniWrite, %2Suffix7Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7Text
+			IniWrite, %2Suffix8Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8Text
+			IniWrite, %2Suffix9Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9Text
 
-			IniWrite, %stashReset%, settings.ini, Stash Hotkeys, stashReset
-			IniWrite, %stashPrefix1%, settings.ini, Stash Hotkeys, stashPrefix1
-			IniWrite, %stashPrefix2%, settings.ini, Stash Hotkeys, stashPrefix2
-			IniWrite, %stashSuffix1%, settings.ini, Stash Hotkeys, stashSuffix1
-			IniWrite, %stashSuffix2%, settings.ini, Stash Hotkeys, stashSuffix2
-			IniWrite, %stashSuffix3%, settings.ini, Stash Hotkeys, stashSuffix3
-			IniWrite, %stashSuffix4%, settings.ini, Stash Hotkeys, stashSuffix4
-			IniWrite, %stashSuffix5%, settings.ini, Stash Hotkeys, stashSuffix5
-			IniWrite, %stashSuffix6%, settings.ini, Stash Hotkeys, stashSuffix6
-			IniWrite, %stashSuffix7%, settings.ini, Stash Hotkeys, stashSuffix7
-			IniWrite, %stashSuffix8%, settings.ini, Stash Hotkeys, stashSuffix8
-			IniWrite, %stashSuffix9%, settings.ini, Stash Hotkeys, stashSuffix9
+			IniWrite, %stashReset%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashReset
+			IniWrite, %stashPrefix1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix1
+			IniWrite, %stashPrefix2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix2
+			IniWrite, %stashSuffix1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix1
+			IniWrite, %stashSuffix2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix2
+			IniWrite, %stashSuffix3%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix3
+			IniWrite, %stashSuffix4%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix4
+			IniWrite, %stashSuffix5%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix5
+			IniWrite, %stashSuffix6%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix6
+			IniWrite, %stashSuffix7%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix7
+			IniWrite, %stashSuffix8%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix8
+			IniWrite, %stashSuffix9%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix9
 			
-			IniWrite, %stashSuffixTab1%, settings.ini, Stash Hotkeys, stashSuffixTab1
-			IniWrite, %stashSuffixTab2%, settings.ini, Stash Hotkeys, stashSuffixTab2
-			IniWrite, %stashSuffixTab3%, settings.ini, Stash Hotkeys, stashSuffixTab3
-			IniWrite, %stashSuffixTab4%, settings.ini, Stash Hotkeys, stashSuffixTab4
-			IniWrite, %stashSuffixTab5%, settings.ini, Stash Hotkeys, stashSuffixTab5
-			IniWrite, %stashSuffixTab6%, settings.ini, Stash Hotkeys, stashSuffixTab6
-			IniWrite, %stashSuffixTab7%, settings.ini, Stash Hotkeys, stashSuffixTab7
-			IniWrite, %stashSuffixTab8%, settings.ini, Stash Hotkeys, stashSuffixTab8
-			IniWrite, %stashSuffixTab9%, settings.ini, Stash Hotkeys, stashSuffixTab9
+			IniWrite, %stashSuffixTab1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab1
+			IniWrite, %stashSuffixTab2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab2
+			IniWrite, %stashSuffixTab3%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab3
+			IniWrite, %stashSuffixTab4%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab4
+			IniWrite, %stashSuffixTab5%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab5
+			IniWrite, %stashSuffixTab6%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab6
+			IniWrite, %stashSuffixTab7%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab7
+			IniWrite, %stashSuffixTab8%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab8
+			IniWrite, %stashSuffixTab9%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab9
 
 			;Controller setup
-			IniWrite, %hotkeyControllerButton1%, settings.ini, Controller Keys, ControllerButton1
-			IniWrite, %hotkeyControllerButton2%, settings.ini, Controller Keys, ControllerButton2
-			IniWrite, %hotkeyControllerButton3%, settings.ini, Controller Keys, ControllerButton3
-			IniWrite, %hotkeyControllerButton4%, settings.ini, Controller Keys, ControllerButton4
-			IniWrite, %hotkeyControllerButton5%, settings.ini, Controller Keys, ControllerButton5
-			IniWrite, %hotkeyControllerButton6%, settings.ini, Controller Keys, ControllerButton6
-			IniWrite, %hotkeyControllerButton7%, settings.ini, Controller Keys, ControllerButton7
-			IniWrite, %hotkeyControllerButton8%, settings.ini, Controller Keys, ControllerButton8
-			IniWrite, %hotkeyControllerButton9%, settings.ini, Controller Keys, ControllerButton9
-			IniWrite, %hotkeyControllerButton10%, settings.ini, Controller Keys, ControllerButton10
+			IniWrite, %hotkeyControllerButton1%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton1
+			IniWrite, %hotkeyControllerButton2%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton2
+			IniWrite, %hotkeyControllerButton3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton3
+			IniWrite, %hotkeyControllerButton4%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton4
+			IniWrite, %hotkeyControllerButton5%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton5
+			IniWrite, %hotkeyControllerButton6%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton6
+			IniWrite, %hotkeyControllerButton7%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton7
+			IniWrite, %hotkeyControllerButton8%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton8
+			IniWrite, %hotkeyControllerButton9%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton9
+			IniWrite, %hotkeyControllerButton10%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton10
 			
-			IniWrite, %hotkeyControllerJoystick2%, settings.ini, Controller Keys, hotkeyControllerJoystick2
+			IniWrite, %hotkeyControllerJoystick2%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyControllerJoystick2
 
-			IniWrite, %YesTriggerUtilityKey%, settings.ini, Controller, YesTriggerUtilityKey
-			IniWrite, %YesTriggerUtilityJoystickKey%, settings.ini, Controller, YesTriggerUtilityJoystickKey
-			IniWrite, %YesTriggerJoystick2Key%, settings.ini, Controller, YesTriggerJoystick2Key
-			IniWrite, %TriggerUtilityKey%, settings.ini, Controller, TriggerUtilityKey
-			IniWrite, %YesMovementKeys%, settings.ini, Controller, YesMovementKeys
-			IniWrite, %YesController%, settings.ini, Controller, YesController
-			IniWrite, %JoystickNumber%, settings.ini, Controller, JoystickNumber
+			IniWrite, %YesTriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey
+			IniWrite, %YesTriggerUtilityJoystickKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey
+			IniWrite, %YesTriggerJoystick2Key%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystick2Key
+			IniWrite, %TriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, TriggerUtilityKey
+			IniWrite, %YesMovementKeys%, %A_ScriptDir%\save\Settings.ini, Controller, YesMovementKeys
+			IniWrite, %YesController%, %A_ScriptDir%\save\Settings.ini, Controller, YesController
+			IniWrite, %JoystickNumber%, %A_ScriptDir%\save\Settings.ini, Controller, JoystickNumber
 
 			;Settings for Ninja parse
-			IniWrite, %LastDatabaseParseDate%, Settings.ini, Database, LastDatabaseParseDate
-			IniWrite, %selectedLeague%, Settings.ini, Database, selectedLeague
-			IniWrite, %UpdateDatabaseInterval%, Settings.ini, Database, UpdateDatabaseInterval
-			IniWrite, %YesNinjaDatabase%, Settings.ini, Database, YesNinjaDatabase
-			IniWrite, %ForceMatch6Link%, Settings.ini, Database, ForceMatch6Link
-			IniWrite, %ForceMatchGem20%, Settings.ini, Database, ForceMatchGem20
+			IniWrite, %LastDatabaseParseDate%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
+			IniWrite, %selectedLeague%, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague
+			IniWrite, %UpdateDatabaseInterval%, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval
+			IniWrite, %YesNinjaDatabase%, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase
+			IniWrite, %ForceMatch6Link%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link
+			IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
 
 			readFromFile()
 			If (YesPersistantToggle)
@@ -8528,245 +8942,245 @@ Return
 			
 			;Life Flasks
 			
-			IniWrite, %Radiobox1Life20%, profiles.ini, Profile%Profile%, Radiobox1Life20
-			IniWrite, %Radiobox2Life20%, profiles.ini, Profile%Profile%, Radiobox2Life20
-			IniWrite, %Radiobox3Life20%, profiles.ini, Profile%Profile%, Radiobox3Life20
-			IniWrite, %Radiobox4Life20%, profiles.ini, Profile%Profile%, Radiobox4Life20
-			IniWrite, %Radiobox5Life20%, profiles.ini, Profile%Profile%, Radiobox5Life20
+			IniWrite, %Radiobox1Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life20
+			IniWrite, %Radiobox2Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life20
+			IniWrite, %Radiobox3Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life20
+			IniWrite, %Radiobox4Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life20
+			IniWrite, %Radiobox5Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life20
 
-			IniWrite, %Radiobox1Life30%, profiles.ini, Profile%Profile%, Radiobox1Life30
-			IniWrite, %Radiobox2Life30%, profiles.ini, Profile%Profile%, Radiobox2Life30
-			IniWrite, %Radiobox3Life30%, profiles.ini, Profile%Profile%, Radiobox3Life30
-			IniWrite, %Radiobox4Life30%, profiles.ini, Profile%Profile%, Radiobox4Life30
-			IniWrite, %Radiobox5Life30%, profiles.ini, Profile%Profile%, Radiobox5Life30
+			IniWrite, %Radiobox1Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life30
+			IniWrite, %Radiobox2Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life30
+			IniWrite, %Radiobox3Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life30
+			IniWrite, %Radiobox4Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life30
+			IniWrite, %Radiobox5Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life30
 
-			IniWrite, %Radiobox1Life40%, profiles.ini, Profile%Profile%, Radiobox1Life40
-			IniWrite, %Radiobox2Life40%, profiles.ini, Profile%Profile%, Radiobox2Life40
-			IniWrite, %Radiobox3Life40%, profiles.ini, Profile%Profile%, Radiobox3Life40
-			IniWrite, %Radiobox4Life40%, profiles.ini, Profile%Profile%, Radiobox4Life40
-			IniWrite, %Radiobox5Life40%, profiles.ini, Profile%Profile%, Radiobox5Life40
+			IniWrite, %Radiobox1Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life40
+			IniWrite, %Radiobox2Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life40
+			IniWrite, %Radiobox3Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life40
+			IniWrite, %Radiobox4Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life40
+			IniWrite, %Radiobox5Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life40
 
-			IniWrite, %Radiobox1Life50%, profiles.ini, Profile%Profile%, Radiobox1Life50
-			IniWrite, %Radiobox2Life50%, profiles.ini, Profile%Profile%, Radiobox2Life50
-			IniWrite, %Radiobox3Life50%, profiles.ini, Profile%Profile%, Radiobox3Life50
-			IniWrite, %Radiobox4Life50%, profiles.ini, Profile%Profile%, Radiobox4Life50
-			IniWrite, %Radiobox5Life50%, profiles.ini, Profile%Profile%, Radiobox5Life50
+			IniWrite, %Radiobox1Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life50
+			IniWrite, %Radiobox2Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life50
+			IniWrite, %Radiobox3Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life50
+			IniWrite, %Radiobox4Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life50
+			IniWrite, %Radiobox5Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life50
 
-			IniWrite, %Radiobox1Life50%, profiles.ini, Profile%Profile%, Radiobox1Life50
-			IniWrite, %Radiobox2Life50%, profiles.ini, Profile%Profile%, Radiobox2Life50
-			IniWrite, %Radiobox3Life50%, profiles.ini, Profile%Profile%, Radiobox3Life50
-			IniWrite, %Radiobox4Life50%, profiles.ini, Profile%Profile%, Radiobox4Life50
-			IniWrite, %Radiobox5Life50%, profiles.ini, Profile%Profile%, Radiobox5Life50
+			IniWrite, %Radiobox1Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life50
+			IniWrite, %Radiobox2Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life50
+			IniWrite, %Radiobox3Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life50
+			IniWrite, %Radiobox4Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life50
+			IniWrite, %Radiobox5Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life50
 
-			IniWrite, %Radiobox1Life60%, profiles.ini, Profile%Profile%, Radiobox1Life60
-			IniWrite, %Radiobox2Life60%, profiles.ini, Profile%Profile%, Radiobox2Life60
-			IniWrite, %Radiobox3Life60%, profiles.ini, Profile%Profile%, Radiobox3Life60
-			IniWrite, %Radiobox4Life60%, profiles.ini, Profile%Profile%, Radiobox4Life60
-			IniWrite, %Radiobox5Life60%, profiles.ini, Profile%Profile%, Radiobox5Life60
+			IniWrite, %Radiobox1Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life60
+			IniWrite, %Radiobox2Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life60
+			IniWrite, %Radiobox3Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life60
+			IniWrite, %Radiobox4Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life60
+			IniWrite, %Radiobox5Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life60
 
-			IniWrite, %Radiobox1Life70%, profiles.ini, Profile%Profile%, Radiobox1Life70
-			IniWrite, %Radiobox2Life70%, profiles.ini, Profile%Profile%, Radiobox2Life70
-			IniWrite, %Radiobox3Life70%, profiles.ini, Profile%Profile%, Radiobox3Life70
-			IniWrite, %Radiobox4Life70%, profiles.ini, Profile%Profile%, Radiobox4Life70
-			IniWrite, %Radiobox5Life70%, profiles.ini, Profile%Profile%, Radiobox5Life70
+			IniWrite, %Radiobox1Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life70
+			IniWrite, %Radiobox2Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life70
+			IniWrite, %Radiobox3Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life70
+			IniWrite, %Radiobox4Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life70
+			IniWrite, %Radiobox5Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life70
 
-			IniWrite, %Radiobox1Life80%, profiles.ini, Profile%Profile%, Radiobox1Life80
-			IniWrite, %Radiobox2Life80%, profiles.ini, Profile%Profile%, Radiobox2Life80
-			IniWrite, %Radiobox3Life80%, profiles.ini, Profile%Profile%, Radiobox3Life80
-			IniWrite, %Radiobox4Life80%, profiles.ini, Profile%Profile%, Radiobox4Life80
-			IniWrite, %Radiobox5Life80%, profiles.ini, Profile%Profile%, Radiobox5Life80
+			IniWrite, %Radiobox1Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life80
+			IniWrite, %Radiobox2Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life80
+			IniWrite, %Radiobox3Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life80
+			IniWrite, %Radiobox4Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life80
+			IniWrite, %Radiobox5Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life80
 
-			IniWrite, %Radiobox1Life90%, profiles.ini, Profile%Profile%, Radiobox1Life90
-			IniWrite, %Radiobox2Life90%, profiles.ini, Profile%Profile%, Radiobox2Life90
-			IniWrite, %Radiobox3Life90%, profiles.ini, Profile%Profile%, Radiobox3Life90
-			IniWrite, %Radiobox4Life90%, profiles.ini, Profile%Profile%, Radiobox4Life90
-			IniWrite, %Radiobox5Life90%, profiles.ini, Profile%Profile%, Radiobox5Life90
+			IniWrite, %Radiobox1Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life90
+			IniWrite, %Radiobox2Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life90
+			IniWrite, %Radiobox3Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life90
+			IniWrite, %Radiobox4Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life90
+			IniWrite, %Radiobox5Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life90
 
-			IniWrite, %RadioUncheck1Life%, profiles.ini, Profile%Profile%, RadioUncheck1Life
-			IniWrite, %RadioUncheck2Life%, profiles.ini, Profile%Profile%, RadioUncheck2Life
-			IniWrite, %RadioUncheck3Life%, profiles.ini, Profile%Profile%, RadioUncheck3Life
-			IniWrite, %RadioUncheck4Life%, profiles.ini, Profile%Profile%, RadioUncheck4Life
-			IniWrite, %RadioUncheck5Life%, profiles.ini, Profile%Profile%, RadioUncheck5Life
+			IniWrite, %RadioUncheck1Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck1Life
+			IniWrite, %RadioUncheck2Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck2Life
+			IniWrite, %RadioUncheck3Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck3Life
+			IniWrite, %RadioUncheck4Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck4Life
+			IniWrite, %RadioUncheck5Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck5Life
 			
 			;ES Flasks
-			IniWrite, %Radiobox1ES20%, profiles.ini, Profile%Profile%, Radiobox1ES20
-			IniWrite, %Radiobox2ES20%, profiles.ini, Profile%Profile%, Radiobox2ES20
-			IniWrite, %Radiobox3ES20%, profiles.ini, Profile%Profile%, Radiobox3ES20
-			IniWrite, %Radiobox4ES20%, profiles.ini, Profile%Profile%, Radiobox4ES20
-			IniWrite, %Radiobox5ES20%, profiles.ini, Profile%Profile%, Radiobox5ES20
+			IniWrite, %Radiobox1ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES20
+			IniWrite, %Radiobox2ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES20
+			IniWrite, %Radiobox3ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES20
+			IniWrite, %Radiobox4ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES20
+			IniWrite, %Radiobox5ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES20
 			
-			IniWrite, %Radiobox1ES30%, profiles.ini, Profile%Profile%, Radiobox1ES30
-			IniWrite, %Radiobox2ES30%, profiles.ini, Profile%Profile%, Radiobox2ES30
-			IniWrite, %Radiobox3ES30%, profiles.ini, Profile%Profile%, Radiobox3ES30
-			IniWrite, %Radiobox4ES30%, profiles.ini, Profile%Profile%, Radiobox4ES30
-			IniWrite, %Radiobox5ES30%, profiles.ini, Profile%Profile%, Radiobox5ES30
+			IniWrite, %Radiobox1ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES30
+			IniWrite, %Radiobox2ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES30
+			IniWrite, %Radiobox3ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES30
+			IniWrite, %Radiobox4ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES30
+			IniWrite, %Radiobox5ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES30
 			
-			IniWrite, %Radiobox1ES40%, profiles.ini, Profile%Profile%, Radiobox1ES40
-			IniWrite, %Radiobox2ES40%, profiles.ini, Profile%Profile%, Radiobox2ES40
-			IniWrite, %Radiobox3ES40%, profiles.ini, Profile%Profile%, Radiobox3ES40
-			IniWrite, %Radiobox4ES40%, profiles.ini, Profile%Profile%, Radiobox4ES40
-			IniWrite, %Radiobox5ES40%, profiles.ini, Profile%Profile%, Radiobox5ES40
+			IniWrite, %Radiobox1ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES40
+			IniWrite, %Radiobox2ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES40
+			IniWrite, %Radiobox3ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES40
+			IniWrite, %Radiobox4ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES40
+			IniWrite, %Radiobox5ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES40
 			
-			IniWrite, %Radiobox1ES50%, profiles.ini, Profile%Profile%, Radiobox1ES50
-			IniWrite, %Radiobox2ES50%, profiles.ini, Profile%Profile%, Radiobox2ES50
-			IniWrite, %Radiobox3ES50%, profiles.ini, Profile%Profile%, Radiobox3ES50
-			IniWrite, %Radiobox4ES50%, profiles.ini, Profile%Profile%, Radiobox4ES50
-			IniWrite, %Radiobox5ES50%, profiles.ini, Profile%Profile%, Radiobox5ES50
+			IniWrite, %Radiobox1ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES50
+			IniWrite, %Radiobox2ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES50
+			IniWrite, %Radiobox3ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES50
+			IniWrite, %Radiobox4ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES50
+			IniWrite, %Radiobox5ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES50
 			
-			IniWrite, %Radiobox1ES50%, profiles.ini, Profile%Profile%, Radiobox1ES50
-			IniWrite, %Radiobox2ES50%, profiles.ini, Profile%Profile%, Radiobox2ES50
-			IniWrite, %Radiobox3ES50%, profiles.ini, Profile%Profile%, Radiobox3ES50
-			IniWrite, %Radiobox4ES50%, profiles.ini, Profile%Profile%, Radiobox4ES50
-			IniWrite, %Radiobox5ES50%, profiles.ini, Profile%Profile%, Radiobox5ES50
+			IniWrite, %Radiobox1ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES50
+			IniWrite, %Radiobox2ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES50
+			IniWrite, %Radiobox3ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES50
+			IniWrite, %Radiobox4ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES50
+			IniWrite, %Radiobox5ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES50
 			
-			IniWrite, %Radiobox1ES60%, profiles.ini, Profile%Profile%, Radiobox1ES60
-			IniWrite, %Radiobox2ES60%, profiles.ini, Profile%Profile%, Radiobox2ES60
-			IniWrite, %Radiobox3ES60%, profiles.ini, Profile%Profile%, Radiobox3ES60
-			IniWrite, %Radiobox4ES60%, profiles.ini, Profile%Profile%, Radiobox4ES60
-			IniWrite, %Radiobox5ES60%, profiles.ini, Profile%Profile%, Radiobox5ES60
+			IniWrite, %Radiobox1ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES60
+			IniWrite, %Radiobox2ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES60
+			IniWrite, %Radiobox3ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES60
+			IniWrite, %Radiobox4ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES60
+			IniWrite, %Radiobox5ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES60
 			
-			IniWrite, %Radiobox1ES70%, profiles.ini, Profile%Profile%, Radiobox1ES70
-			IniWrite, %Radiobox2ES70%, profiles.ini, Profile%Profile%, Radiobox2ES70
-			IniWrite, %Radiobox3ES70%, profiles.ini, Profile%Profile%, Radiobox3ES70
-			IniWrite, %Radiobox4ES70%, profiles.ini, Profile%Profile%, Radiobox4ES70
-			IniWrite, %Radiobox5ES70%, profiles.ini, Profile%Profile%, Radiobox5ES70
+			IniWrite, %Radiobox1ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES70
+			IniWrite, %Radiobox2ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES70
+			IniWrite, %Radiobox3ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES70
+			IniWrite, %Radiobox4ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES70
+			IniWrite, %Radiobox5ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES70
 			
-			IniWrite, %Radiobox1ES80%, profiles.ini, Profile%Profile%, Radiobox1ES80
-			IniWrite, %Radiobox2ES80%, profiles.ini, Profile%Profile%, Radiobox2ES80
-			IniWrite, %Radiobox3ES80%, profiles.ini, Profile%Profile%, Radiobox3ES80
-			IniWrite, %Radiobox4ES80%, profiles.ini, Profile%Profile%, Radiobox4ES80
-			IniWrite, %Radiobox5ES80%, profiles.ini, Profile%Profile%, Radiobox5ES80
+			IniWrite, %Radiobox1ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES80
+			IniWrite, %Radiobox2ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES80
+			IniWrite, %Radiobox3ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES80
+			IniWrite, %Radiobox4ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES80
+			IniWrite, %Radiobox5ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES80
 			
-			IniWrite, %Radiobox1ES90%, profiles.ini, Profile%Profile%, Radiobox1ES90
-			IniWrite, %Radiobox2ES90%, profiles.ini, Profile%Profile%, Radiobox2ES90
-			IniWrite, %Radiobox3ES90%, profiles.ini, Profile%Profile%, Radiobox3ES90
-			IniWrite, %Radiobox4ES90%, profiles.ini, Profile%Profile%, Radiobox4ES90
-			IniWrite, %Radiobox5ES90%, profiles.ini, Profile%Profile%, Radiobox5ES90
+			IniWrite, %Radiobox1ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES90
+			IniWrite, %Radiobox2ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES90
+			IniWrite, %Radiobox3ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES90
+			IniWrite, %Radiobox4ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES90
+			IniWrite, %Radiobox5ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES90
 			
-			IniWrite, %RadioUncheck1ES%, profiles.ini, Profile%Profile%, RadioUncheck1ES
-			IniWrite, %RadioUncheck2ES%, profiles.ini, Profile%Profile%, RadioUncheck2ES
-			IniWrite, %RadioUncheck3ES%, profiles.ini, Profile%Profile%, RadioUncheck3ES
-			IniWrite, %RadioUncheck4ES%, profiles.ini, Profile%Profile%, RadioUncheck4ES
-			IniWrite, %RadioUncheck5ES%, profiles.ini, Profile%Profile%, RadioUncheck5ES
+			IniWrite, %RadioUncheck1ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck1ES
+			IniWrite, %RadioUncheck2ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck2ES
+			IniWrite, %RadioUncheck3ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck3ES
+			IniWrite, %RadioUncheck4ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck4ES
+			IniWrite, %RadioUncheck5ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck5ES
 			
 			;Mana Flasks
-			IniWrite, %Radiobox1Mana10%, profiles.ini, Profile%Profile%, Radiobox1Mana10
-			IniWrite, %Radiobox2Mana10%, profiles.ini, Profile%Profile%, Radiobox2Mana10
-			IniWrite, %Radiobox3Mana10%, profiles.ini, Profile%Profile%, Radiobox3Mana10
-			IniWrite, %Radiobox4Mana10%, profiles.ini, Profile%Profile%, Radiobox4Mana10
-			IniWrite, %Radiobox5Mana10%, profiles.ini, Profile%Profile%, Radiobox5Mana10
+			IniWrite, %Radiobox1Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Mana10
+			IniWrite, %Radiobox2Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Mana10
+			IniWrite, %Radiobox3Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Mana10
+			IniWrite, %Radiobox4Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Mana10
+			IniWrite, %Radiobox5Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Mana10
 			
 			;Flask Cooldowns
-			IniWrite, %CooldownFlask1%, profiles.ini, Profile%Profile%, CooldownFlask1
-			IniWrite, %CooldownFlask2%, profiles.ini, Profile%Profile%, CooldownFlask2
-			IniWrite, %CooldownFlask3%, profiles.ini, Profile%Profile%, CooldownFlask3
-			IniWrite, %CooldownFlask4%, profiles.ini, Profile%Profile%, CooldownFlask4
-			IniWrite, %CooldownFlask5%, profiles.ini, Profile%Profile%, CooldownFlask5	
+			IniWrite, %CooldownFlask1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask1
+			IniWrite, %CooldownFlask2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask2
+			IniWrite, %CooldownFlask3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask3
+			IniWrite, %CooldownFlask4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask4
+			IniWrite, %CooldownFlask5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask5	
 			
 			;Attack Flasks
-			IniWrite, %MainAttackbox1%, profiles.ini, Profile%Profile%, MainAttackbox1
-			IniWrite, %MainAttackbox2%, profiles.ini, Profile%Profile%, MainAttackbox2
-			IniWrite, %MainAttackbox3%, profiles.ini, Profile%Profile%, MainAttackbox3
-			IniWrite, %MainAttackbox4%, profiles.ini, Profile%Profile%, MainAttackbox4
-			IniWrite, %MainAttackbox5%, profiles.ini, Profile%Profile%, MainAttackbox5
+			IniWrite, %MainAttackbox1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox1
+			IniWrite, %MainAttackbox2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox2
+			IniWrite, %MainAttackbox3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox3
+			IniWrite, %MainAttackbox4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox4
+			IniWrite, %MainAttackbox5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox5
 			
-			IniWrite, %SecondaryAttackbox1%, profiles.ini, Profile%Profile%, SecondaryAttackbox1
-			IniWrite, %SecondaryAttackbox2%, profiles.ini, Profile%Profile%, SecondaryAttackbox2
-			IniWrite, %SecondaryAttackbox3%, profiles.ini, Profile%Profile%, SecondaryAttackbox3
-			IniWrite, %SecondaryAttackbox4%, profiles.ini, Profile%Profile%, SecondaryAttackbox4
-			IniWrite, %SecondaryAttackbox5%, profiles.ini, Profile%Profile%, SecondaryAttackbox5
+			IniWrite, %SecondaryAttackbox1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox1
+			IniWrite, %SecondaryAttackbox2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox2
+			IniWrite, %SecondaryAttackbox3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox3
+			IniWrite, %SecondaryAttackbox4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox4
+			IniWrite, %SecondaryAttackbox5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox5
 			
 			;Attack Keys
-			IniWrite, %hotkeyMainAttack%, profiles.ini, Profile%Profile%, MainAttack
-			IniWrite, %hotkeySecondaryAttack%, profiles.ini, Profile%Profile%, SecondaryAttack
+			IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttack
+			IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttack
 			
 			;QS on Attack Keys
-			IniWrite, %QSonMainAttack%, profiles.ini, Profile%Profile%, QSonMainAttack
-			IniWrite, %QSonSecondaryAttack%, profiles.ini, Profile%Profile%, QSonSecondaryAttack
+			IniWrite, %QSonMainAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonMainAttack
+			IniWrite, %QSonSecondaryAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonSecondaryAttack
 			
 			;Quicksilver Flasks
-			IniWrite, %TriggerQuicksilverDelay%, profiles.ini, Profile%Profile%, TriggerQuicksilverDelay
-			IniWrite, %Radiobox1QS%, profiles.ini, Profile%Profile%, QuicksilverSlot1
-			IniWrite, %Radiobox2QS%, profiles.ini, Profile%Profile%, QuicksilverSlot2
-			IniWrite, %Radiobox3QS%, profiles.ini, Profile%Profile%, QuicksilverSlot3
-			IniWrite, %Radiobox4QS%, profiles.ini, Profile%Profile%, QuicksilverSlot4
-			IniWrite, %Radiobox5QS%, profiles.ini, Profile%Profile%, QuicksilverSlot5
+			IniWrite, %TriggerQuicksilverDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, TriggerQuicksilverDelay
+			IniWrite, %Radiobox1QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot1
+			IniWrite, %Radiobox2QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot2
+			IniWrite, %Radiobox3QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot3
+			IniWrite, %Radiobox4QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot4
+			IniWrite, %Radiobox5QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot5
 			
 			;CharacterTypeCheck
-			IniWrite, %RadioLife%, profiles.ini, Profile%Profile%, Life
-			IniWrite, %RadioHybrid%, profiles.ini, Profile%Profile%, Hybrid	
-			IniWrite, %RadioCi%, profiles.ini, Profile%Profile%, Ci	
+			IniWrite, %RadioLife%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Life
+			IniWrite, %RadioHybrid%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Hybrid	
+			IniWrite, %RadioCi%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Ci	
 			
 			;AutoMines
-			IniWrite, %DetonateMines%, profiles.ini, Profile%Profile%, DetonateMines
-			IniWrite, %DetonateMinesDelay%, profiles.ini, Profile%Profile%, DetonateMinesDelay
+			IniWrite, %DetonateMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines
+			IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay
 
 			;EldritchBattery
-			IniWrite, %YesEldritchBattery%, profiles.ini, Profile%Profile%, YesEldritchBattery
+			IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesEldritchBattery
 
 			;ManaThreshold
-			IniWrite, %ManaThreshold%, profiles.ini, Profile%Profile%, ManaThreshold
+			IniWrite, %ManaThreshold%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, ManaThreshold
 
 			;AutoQuit
-			IniWrite, %QuitBelow%, profiles.ini, Profile%Profile%, QuitBelow
-			IniWrite, %RadioCritQuit%, profiles.ini, Profile%Profile%, CritQuit
-			IniWrite, %RadioPortalQuit%, profiles.ini, Profile%Profile%, PortalQuit
-			IniWrite, %RadioNormalQuit%, profiles.ini, Profile%Profile%, NormalQuit
+			IniWrite, %QuitBelow%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuitBelow
+			IniWrite, %RadioCritQuit%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CritQuit
+			IniWrite, %RadioPortalQuit%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PortalQuit
+			IniWrite, %RadioNormalQuit%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, NormalQuit
 			
 			;Utility Buttons
-			IniWrite, %YesUtility1%, profiles.ini, Profile%Profile%, YesUtility1
-			IniWrite, %YesUtility2%, profiles.ini, Profile%Profile%, YesUtility2
-			IniWrite, %YesUtility3%, profiles.ini, Profile%Profile%, YesUtility3
-			IniWrite, %YesUtility4%, profiles.ini, Profile%Profile%, YesUtility4
-			IniWrite, %YesUtility5%, profiles.ini, Profile%Profile%, YesUtility5
-			IniWrite, %YesUtility1Quicksilver%, profiles.ini, Profile%Profile%, YesUtility1Quicksilver
-			IniWrite, %YesUtility2Quicksilver%, profiles.ini, Profile%Profile%, YesUtility2Quicksilver
-			IniWrite, %YesUtility3Quicksilver%, profiles.ini, Profile%Profile%, YesUtility3Quicksilver
-			IniWrite, %YesUtility4Quicksilver%, profiles.ini, Profile%Profile%, YesUtility4Quicksilver
-			IniWrite, %YesUtility5Quicksilver%, profiles.ini, Profile%Profile%, YesUtility5Quicksilver
+			IniWrite, %YesUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1
+			IniWrite, %YesUtility2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2
+			IniWrite, %YesUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3
+			IniWrite, %YesUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4
+			IniWrite, %YesUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5Quicksilver
 			
 			;Utility Percents	
-			IniWrite, %YesUtility1LifePercent%, profiles.ini, Profile%Profile%, YesUtility1LifePercent
-			IniWrite, %YesUtility2LifePercent%, profiles.ini, Profile%Profile%, YesUtility2LifePercent
-			IniWrite, %YesUtility3LifePercent%, profiles.ini, Profile%Profile%, YesUtility3LifePercent
-			IniWrite, %YesUtility4LifePercent%, profiles.ini, Profile%Profile%, YesUtility4LifePercent
-			IniWrite, %YesUtility5LifePercent%, profiles.ini, Profile%Profile%, YesUtility5LifePercent
-			IniWrite, %YesUtility1EsPercent%, profiles.ini, Profile%Profile%, YesUtility1EsPercent
-			IniWrite, %YesUtility2EsPercent%, profiles.ini, Profile%Profile%, YesUtility2EsPercent
-			IniWrite, %YesUtility3EsPercent%, profiles.ini, Profile%Profile%, YesUtility3EsPercent
-			IniWrite, %YesUtility4EsPercent%, profiles.ini, Profile%Profile%, YesUtility4EsPercent
-			IniWrite, %YesUtility5EsPercent%, profiles.ini, Profile%Profile%, YesUtility5EsPercent
+			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1LifePercent
+			IniWrite, %YesUtility2LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2LifePercent
+			IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3LifePercent
+			IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4LifePercent
+			IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5LifePercent
+			IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5EsPercent
 			
 			;Utility Cooldowns
-			IniWrite, %CooldownUtility1%, profiles.ini, Profile%Profile%, CooldownUtility1
-			IniWrite, %CooldownUtility2%, profiles.ini, Profile%Profile%, CooldownUtility2
-			IniWrite, %CooldownUtility3%, profiles.ini, Profile%Profile%, CooldownUtility3
-			IniWrite, %CooldownUtility4%, profiles.ini, Profile%Profile%, CooldownUtility4
-			IniWrite, %CooldownUtility5%, profiles.ini, Profile%Profile%, CooldownUtility5
+			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility1
+			IniWrite, %CooldownUtility2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility2
+			IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility3
+			IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility4
+			IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility5
 			
 			;Character Name
-			IniWrite, %CharName%, profiles.ini, Profile%Profile%, CharName
+			IniWrite, %CharName%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CharName
 
 			;Utility Keys
-			IniWrite, %KeyUtility1%, profiles.ini, Profile%Profile%, KeyUtility1
-			IniWrite, %KeyUtility2%, profiles.ini, Profile%Profile%, KeyUtility2
-			IniWrite, %KeyUtility3%, profiles.ini, Profile%Profile%, KeyUtility3
-			IniWrite, %KeyUtility4%, profiles.ini, Profile%Profile%, KeyUtility4
-			IniWrite, %KeyUtility5%, profiles.ini, Profile%Profile%, KeyUtility5
+			IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility1
+			IniWrite, %KeyUtility2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility2
+			IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility3
+			IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility4
+			IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility5
 
 			;Utility Icon Strings
-			IniWrite, %IconStringUtility1%, profiles.ini, Profile%Profile%, IconStringUtility1
-			IniWrite, %IconStringUtility2%, profiles.ini, Profile%Profile%, IconStringUtility2
-			IniWrite, %IconStringUtility3%, profiles.ini, Profile%Profile%, IconStringUtility3
-			IniWrite, %IconStringUtility4%, profiles.ini, Profile%Profile%, IconStringUtility4
-			IniWrite, %IconStringUtility5%, profiles.ini, Profile%Profile%, IconStringUtility5
+			IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility1
+			IniWrite, %IconStringUtility2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility2
+			IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility3
+			IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility4
+			IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility5
 
 			;Pop Flasks Keys
-			IniWrite, %PopFlasks1%, profiles.ini, Profile%Profile%, PopFlasks1
-			IniWrite, %PopFlasks2%, profiles.ini, Profile%Profile%, PopFlasks2
-			IniWrite, %PopFlasks3%, profiles.ini, Profile%Profile%, PopFlasks3
-			IniWrite, %PopFlasks4%, profiles.ini, Profile%Profile%, PopFlasks4
-			IniWrite, %PopFlasks5%, profiles.ini, Profile%Profile%, PopFlasks5
+			IniWrite, %PopFlasks1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks1
+			IniWrite, %PopFlasks2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks2
+			IniWrite, %PopFlasks3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks3
+			IniWrite, %PopFlasks4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks4
+			IniWrite, %PopFlasks5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks5
 			
 		return
 		}
@@ -8816,437 +9230,437 @@ Return
 		readProfile(Profile){  
 			global
 			;Life Flasks
-			IniRead, Radiobox1Life20, profiles.ini, Profile%Profile%, Radiobox1Life20, 0
+			IniRead, Radiobox1Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life20, 0
 			GuiControl, , Radiobox1Life20, %Radiobox1Life20%
-			IniRead, Radiobox2Life20, profiles.ini, Profile%Profile%, Radiobox2Life20, 0
+			IniRead, Radiobox2Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life20, 0
 			GuiControl, , Radiobox2Life20, %Radiobox2Life20%
-			IniRead, Radiobox3Life20, profiles.ini, Profile%Profile%, Radiobox3Life20, 0
+			IniRead, Radiobox3Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life20, 0
 			GuiControl, , Radiobox3Life20, %Radiobox3Life20%
-			IniRead, Radiobox4Life20, profiles.ini, Profile%Profile%, Radiobox4Life20, 0
+			IniRead, Radiobox4Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life20, 0
 			GuiControl, , Radiobox4Life20, %Radiobox4Life20%
-			IniRead, Radiobox5Life20, profiles.ini, Profile%Profile%, Radiobox5Life20, 0
+			IniRead, Radiobox5Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life20, 0
 			GuiControl, , Radiobox5Life20, %Radiobox5Life20%
 
-			IniRead, Radiobox1Life30, profiles.ini, Profile%Profile%, Radiobox1Life30, 0
+			IniRead, Radiobox1Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life30, 0
 			GuiControl, , Radiobox1Life30, %Radiobox1Life30%
-			IniRead, Radiobox2Life30, profiles.ini, Profile%Profile%, Radiobox2Life30, 0
+			IniRead, Radiobox2Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life30, 0
 			GuiControl, , Radiobox2Life30, %Radiobox2Life30%
-			IniRead, Radiobox3Life30, profiles.ini, Profile%Profile%, Radiobox3Life30, 0
+			IniRead, Radiobox3Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life30, 0
 			GuiControl, , Radiobox3Life30, %Radiobox3Life30%
-			IniRead, Radiobox4Life30, profiles.ini, Profile%Profile%, Radiobox4Life30, 0
+			IniRead, Radiobox4Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life30, 0
 			GuiControl, , Radiobox4Life30, %Radiobox4Life30%
-			IniRead, Radiobox5Life30, profiles.ini, Profile%Profile%, Radiobox5Life30, 0
+			IniRead, Radiobox5Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life30, 0
 			GuiControl, , Radiobox5Life30, %Radiobox5Life30%
 
-			IniRead, Radiobox1Life40, profiles.ini, Profile%Profile%, Radiobox1Life40, 0
+			IniRead, Radiobox1Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life40, 0
 			GuiControl, , Radiobox1Life40, %Radiobox1Life40%
-			IniRead, Radiobox2Life40, profiles.ini, Profile%Profile%, Radiobox2Life40, 0
+			IniRead, Radiobox2Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life40, 0
 			GuiControl, , Radiobox2Life40, %Radiobox2Life40%
-			IniRead, Radiobox3Life40, profiles.ini, Profile%Profile%, Radiobox3Life40, 0
+			IniRead, Radiobox3Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life40, 0
 			GuiControl, , Radiobox3Life40, %Radiobox3Life40%
-			IniRead, Radiobox4Life40, profiles.ini, Profile%Profile%, Radiobox4Life40, 0
+			IniRead, Radiobox4Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life40, 0
 			GuiControl, , Radiobox4Life40, %Radiobox4Life40%
-			IniRead, Radiobox5Life40, profiles.ini, Profile%Profile%, Radiobox5Life40, 0
+			IniRead, Radiobox5Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life40, 0
 			GuiControl, , Radiobox5Life40, %Radiobox5Life40%
 
-			IniRead, Radiobox1Life50, profiles.ini, Profile%Profile%, Radiobox1Life50, 0
+			IniRead, Radiobox1Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life50, 0
 			GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-			IniRead, Radiobox2Life50, profiles.ini, Profile%Profile%, Radiobox2Life50, 0
+			IniRead, Radiobox2Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life50, 0
 			GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-			IniRead, Radiobox3Life50, profiles.ini, Profile%Profile%, Radiobox3Life50, 0
+			IniRead, Radiobox3Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life50, 0
 			GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-			IniRead, Radiobox4Life50, profiles.ini, Profile%Profile%, Radiobox4Life50, 0
+			IniRead, Radiobox4Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life50, 0
 			GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-			IniRead, Radiobox5Life50, profiles.ini, Profile%Profile%, Radiobox5Life50, 0
+			IniRead, Radiobox5Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life50, 0
 			GuiControl, , Radiobox5Life50, %Radiobox5Life50%
 
-			IniRead, Radiobox1Life50, profiles.ini, Profile%Profile%, Radiobox1Life50, 0
+			IniRead, Radiobox1Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life50, 0
 			GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-			IniRead, Radiobox2Life50, profiles.ini, Profile%Profile%, Radiobox2Life50, 0
+			IniRead, Radiobox2Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life50, 0
 			GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-			IniRead, Radiobox3Life50, profiles.ini, Profile%Profile%, Radiobox3Life50, 0
+			IniRead, Radiobox3Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life50, 0
 			GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-			IniRead, Radiobox4Life50, profiles.ini, Profile%Profile%, Radiobox4Life50, 0
+			IniRead, Radiobox4Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life50, 0
 			GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-			IniRead, Radiobox5Life50, profiles.ini, Profile%Profile%, Radiobox5Life50, 0
+			IniRead, Radiobox5Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life50, 0
 			GuiControl, , Radiobox5Life50, %Radiobox5Life50%
 
-			IniRead, Radiobox1Life60, profiles.ini, Profile%Profile%, Radiobox1Life60, 0
+			IniRead, Radiobox1Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life60, 0
 			GuiControl, , Radiobox1Life60, %Radiobox1Life60%
-			IniRead, Radiobox2Life60, profiles.ini, Profile%Profile%, Radiobox2Life60, 0
+			IniRead, Radiobox2Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life60, 0
 			GuiControl, , Radiobox2Life60, %Radiobox2Life60%
-			IniRead, Radiobox3Life60, profiles.ini, Profile%Profile%, Radiobox3Life60, 0
+			IniRead, Radiobox3Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life60, 0
 			GuiControl, , Radiobox3Life60, %Radiobox3Life60%
-			IniRead, Radiobox4Life60, profiles.ini, Profile%Profile%, Radiobox4Life60, 0
+			IniRead, Radiobox4Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life60, 0
 			GuiControl, , Radiobox4Life60, %Radiobox4Life60%
-			IniRead, Radiobox5Life60, profiles.ini, Profile%Profile%, Radiobox5Life60, 0
+			IniRead, Radiobox5Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life60, 0
 			GuiControl, , Radiobox5Life60, %Radiobox5Life60%
 
-			IniRead, Radiobox1Life70, profiles.ini, Profile%Profile%, Radiobox1Life70, 0
+			IniRead, Radiobox1Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life70, 0
 			GuiControl, , Radiobox1Life70, %Radiobox1Life70%
-			IniRead, Radiobox2Life70, profiles.ini, Profile%Profile%, Radiobox2Life70, 0
+			IniRead, Radiobox2Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life70, 0
 			GuiControl, , Radiobox2Life70, %Radiobox2Life70%
-			IniRead, Radiobox3Life70, profiles.ini, Profile%Profile%, Radiobox3Life70, 0
+			IniRead, Radiobox3Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life70, 0
 			GuiControl, , Radiobox3Life70, %Radiobox3Life70%
-			IniRead, Radiobox4Life70, profiles.ini, Profile%Profile%, Radiobox4Life70, 0
+			IniRead, Radiobox4Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life70, 0
 			GuiControl, , Radiobox4Life70, %Radiobox4Life70%
-			IniRead, Radiobox5Life70, profiles.ini, Profile%Profile%, Radiobox5Life70, 0
+			IniRead, Radiobox5Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life70, 0
 			GuiControl, , Radiobox5Life70, %Radiobox5Life70%
 
-			IniRead, Radiobox1Life80, profiles.ini, Profile%Profile%, Radiobox1Life80, 0
+			IniRead, Radiobox1Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life80, 0
 			GuiControl, , Radiobox1Life80, %Radiobox1Life80%
-			IniRead, Radiobox2Life80, profiles.ini, Profile%Profile%, Radiobox2Life80, 0
+			IniRead, Radiobox2Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life80, 0
 			GuiControl, , Radiobox2Life80, %Radiobox2Life80%
-			IniRead, Radiobox3Life80, profiles.ini, Profile%Profile%, Radiobox3Life80, 0
+			IniRead, Radiobox3Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life80, 0
 			GuiControl, , Radiobox3Life80, %Radiobox3Life80%
-			IniRead, Radiobox4Life80, profiles.ini, Profile%Profile%, Radiobox4Life80, 0
+			IniRead, Radiobox4Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life80, 0
 			GuiControl, , Radiobox4Life80, %Radiobox4Life80%
-			IniRead, Radiobox5Life80, profiles.ini, Profile%Profile%, Radiobox5Life80, 0
+			IniRead, Radiobox5Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life80, 0
 			GuiControl, , Radiobox5Life80, %Radiobox5Life80%
 
-			IniRead, Radiobox1Life90, profiles.ini, Profile%Profile%, Radiobox1Life90, 0
+			IniRead, Radiobox1Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life90, 0
 			GuiControl, , Radiobox1Life90, %Radiobox1Life90%
-			IniRead, Radiobox2Life90, profiles.ini, Profile%Profile%, Radiobox2Life90, 0
+			IniRead, Radiobox2Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life90, 0
 			GuiControl, , Radiobox2Life90, %Radiobox2Life90%
-			IniRead, Radiobox3Life90, profiles.ini, Profile%Profile%, Radiobox3Life90, 0
+			IniRead, Radiobox3Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life90, 0
 			GuiControl, , Radiobox3Life90, %Radiobox3Life90%
-			IniRead, Radiobox4Life90, profiles.ini, Profile%Profile%, Radiobox4Life90, 0
+			IniRead, Radiobox4Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life90, 0
 			GuiControl, , Radiobox4Life90, %Radiobox4Life90%
-			IniRead, Radiobox5Life90, profiles.ini, Profile%Profile%, Radiobox5Life90, 0
+			IniRead, Radiobox5Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life90, 0
 			GuiControl, , Radiobox5Life90, %Radiobox5Life90%
 
-			IniRead, RadioUncheck1Life, profiles.ini, Profile%Profile%, RadioUncheck1Life, 1
+			IniRead, RadioUncheck1Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck1Life, 1
 			GuiControl, , RadioUncheck1Life, %RadioUncheck1Life%
-			IniRead, RadioUncheck2Life, profiles.ini, Profile%Profile%, RadioUncheck2Life, 1
+			IniRead, RadioUncheck2Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck2Life, 1
 			GuiControl, , RadioUncheck2Life, %RadioUncheck2Life%
-			IniRead, RadioUncheck3Life, profiles.ini, Profile%Profile%, RadioUncheck3Life, 1
+			IniRead, RadioUncheck3Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck3Life, 1
 			GuiControl, , RadioUncheck3Life, %RadioUncheck3Life%
-			IniRead, RadioUncheck4Life, profiles.ini, Profile%Profile%, RadioUncheck4Life, 1
+			IniRead, RadioUncheck4Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck4Life, 1
 			GuiControl, , RadioUncheck4Life, %RadioUncheck4Life%
-			IniRead, RadioUncheck5Life, profiles.ini, Profile%Profile%, RadioUncheck5Life, 1
+			IniRead, RadioUncheck5Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck5Life, 1
 			GuiControl, , RadioUncheck5Life, %RadioUncheck5Life%
 			
 			;ES Flasks
-			IniRead, Radiobox1ES20, profiles.ini, Profile%Profile%, Radiobox1ES20, 0
+			IniRead, Radiobox1ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES20, 0
 			GuiControl, , Radiobox1ES20, %Radiobox1ES20%
-			IniRead, Radiobox2ES20, profiles.ini, Profile%Profile%, Radiobox2ES20, 0
+			IniRead, Radiobox2ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES20, 0
 			GuiControl, , Radiobox2ES20, %Radiobox2ES20%
-			IniRead, Radiobox3ES20, profiles.ini, Profile%Profile%, Radiobox3ES20, 0
+			IniRead, Radiobox3ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES20, 0
 			GuiControl, , Radiobox3ES20, %Radiobox3ES20%
-			IniRead, Radiobox4ES20, profiles.ini, Profile%Profile%, Radiobox4ES20, 0
+			IniRead, Radiobox4ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES20, 0
 			GuiControl, , Radiobox4ES20, %Radiobox4ES20%
-			IniRead, Radiobox5ES20, profiles.ini, Profile%Profile%, Radiobox5ES20, 0
+			IniRead, Radiobox5ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES20, 0
 			GuiControl, , Radiobox5ES20, %Radiobox5ES20%
 			
-			IniRead, Radiobox1ES30, profiles.ini, Profile%Profile%, Radiobox1ES30, 0
+			IniRead, Radiobox1ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES30, 0
 			GuiControl, , Radiobox1ES30, %Radiobox1ES30%
-			IniRead, Radiobox2ES30, profiles.ini, Profile%Profile%, Radiobox2ES30, 0
+			IniRead, Radiobox2ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES30, 0
 			GuiControl, , Radiobox2ES30, %Radiobox2ES30%
-			IniRead, Radiobox3ES30, profiles.ini, Profile%Profile%, Radiobox3ES30, 0
+			IniRead, Radiobox3ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES30, 0
 			GuiControl, , Radiobox3ES30, %Radiobox3ES30%
-			IniRead, Radiobox4ES30, profiles.ini, Profile%Profile%, Radiobox4ES30, 0
+			IniRead, Radiobox4ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES30, 0
 			GuiControl, , Radiobox4ES30, %Radiobox4ES30%
-			IniRead, Radiobox5ES30, profiles.ini, Profile%Profile%, Radiobox5ES30, 0
+			IniRead, Radiobox5ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES30, 0
 			GuiControl, , Radiobox5ES30, %Radiobox5ES30%
 			
-			IniRead, Radiobox1ES40, profiles.ini, Profile%Profile%, Radiobox1ES40, 0
+			IniRead, Radiobox1ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES40, 0
 			GuiControl, , Radiobox1ES40, %Radiobox1ES40%
-			IniRead, Radiobox2ES40, profiles.ini, Profile%Profile%, Radiobox2ES40, 0
+			IniRead, Radiobox2ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES40, 0
 			GuiControl, , Radiobox2ES40, %Radiobox2ES40%
-			IniRead, Radiobox3ES40, profiles.ini, Profile%Profile%, Radiobox3ES40, 0
+			IniRead, Radiobox3ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES40, 0
 			GuiControl, , Radiobox3ES40, %Radiobox3ES40%
-			IniRead, Radiobox4ES40, profiles.ini, Profile%Profile%, Radiobox4ES40, 0
+			IniRead, Radiobox4ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES40, 0
 			GuiControl, , Radiobox4ES40, %Radiobox4ES40%
-			IniRead, Radiobox5ES40, profiles.ini, Profile%Profile%, Radiobox5ES40, 0
+			IniRead, Radiobox5ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES40, 0
 			GuiControl, , Radiobox5ES40, %Radiobox5ES40%
 			
-			IniRead, Radiobox1ES50, profiles.ini, Profile%Profile%, Radiobox1ES50, 0
+			IniRead, Radiobox1ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES50, 0
 			GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-			IniRead, Radiobox2ES50, profiles.ini, Profile%Profile%, Radiobox2ES50, 0
+			IniRead, Radiobox2ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES50, 0
 			GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-			IniRead, Radiobox3ES50, profiles.ini, Profile%Profile%, Radiobox3ES50, 0
+			IniRead, Radiobox3ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES50, 0
 			GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-			IniRead, Radiobox4ES50, profiles.ini, Profile%Profile%, Radiobox4ES50, 0
+			IniRead, Radiobox4ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES50, 0
 			GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-			IniRead, Radiobox5ES50, profiles.ini, Profile%Profile%, Radiobox5ES50, 0
+			IniRead, Radiobox5ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES50, 0
 			GuiControl, , Radiobox5ES50, %Radiobox5ES50%
 			
-			IniRead, Radiobox1ES50, profiles.ini, Profile%Profile%, Radiobox1ES50, 0
+			IniRead, Radiobox1ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES50, 0
 			GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-			IniRead, Radiobox2ES50, profiles.ini, Profile%Profile%, Radiobox2ES50, 0
+			IniRead, Radiobox2ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES50, 0
 			GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-			IniRead, Radiobox3ES50, profiles.ini, Profile%Profile%, Radiobox3ES50, 0
+			IniRead, Radiobox3ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES50, 0
 			GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-			IniRead, Radiobox4ES50, profiles.ini, Profile%Profile%, Radiobox4ES50, 0
+			IniRead, Radiobox4ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES50, 0
 			GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-			IniRead, Radiobox5ES50, profiles.ini, Profile%Profile%, Radiobox5ES50, 0
+			IniRead, Radiobox5ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES50, 0
 			GuiControl, , Radiobox5ES50, %Radiobox5ES50%
 			
-			IniRead, Radiobox1ES60, profiles.ini, Profile%Profile%, Radiobox1ES60, 0
+			IniRead, Radiobox1ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES60, 0
 			GuiControl, , Radiobox1ES60, %Radiobox1ES60%
-			IniRead, Radiobox2ES60, profiles.ini, Profile%Profile%, Radiobox2ES60, 0
+			IniRead, Radiobox2ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES60, 0
 			GuiControl, , Radiobox2ES60, %Radiobox2ES60%
-			IniRead, Radiobox3ES60, profiles.ini, Profile%Profile%, Radiobox3ES60, 0
+			IniRead, Radiobox3ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES60, 0
 			GuiControl, , Radiobox3ES60, %Radiobox3ES60%
-			IniRead, Radiobox4ES60, profiles.ini, Profile%Profile%, Radiobox4ES60, 0
+			IniRead, Radiobox4ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES60, 0
 			GuiControl, , Radiobox4ES60, %Radiobox4ES60%
-			IniRead, Radiobox5ES60, profiles.ini, Profile%Profile%, Radiobox5ES60, 0
+			IniRead, Radiobox5ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES60, 0
 			GuiControl, , Radiobox5ES60, %Radiobox5ES60%
 			
-			IniRead, Radiobox1ES70, profiles.ini, Profile%Profile%, Radiobox1ES70, 0
+			IniRead, Radiobox1ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES70, 0
 			GuiControl, , Radiobox1ES70, %Radiobox1ES70%
-			IniRead, Radiobox2ES70, profiles.ini, Profile%Profile%, Radiobox2ES70, 0
+			IniRead, Radiobox2ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES70, 0
 			GuiControl, , Radiobox2ES70, %Radiobox2ES70%
-			IniRead, Radiobox3ES70, profiles.ini, Profile%Profile%, Radiobox3ES70, 0
+			IniRead, Radiobox3ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES70, 0
 			GuiControl, , Radiobox3ES70, %Radiobox3ES70%
-			IniRead, Radiobox4ES70, profiles.ini, Profile%Profile%, Radiobox4ES70, 0
+			IniRead, Radiobox4ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES70, 0
 			GuiControl, , Radiobox4ES70, %Radiobox4ES70%
-			IniRead, Radiobox5ES70, profiles.ini, Profile%Profile%, Radiobox5ES70, 0
+			IniRead, Radiobox5ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES70, 0
 			GuiControl, , Radiobox5ES70, %Radiobox5ES70%
 			
-			IniRead, Radiobox1ES80, profiles.ini, Profile%Profile%, Radiobox1ES80, 0
+			IniRead, Radiobox1ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES80, 0
 			GuiControl, , Radiobox1ES80, %Radiobox1ES80%
-			IniRead, Radiobox2ES80, profiles.ini, Profile%Profile%, Radiobox2ES80, 0
+			IniRead, Radiobox2ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES80, 0
 			GuiControl, , Radiobox2ES80, %Radiobox2ES80%
-			IniRead, Radiobox3ES80, profiles.ini, Profile%Profile%, Radiobox3ES80, 0
+			IniRead, Radiobox3ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES80, 0
 			GuiControl, , Radiobox3ES80, %Radiobox3ES80%
-			IniRead, Radiobox4ES80, profiles.ini, Profile%Profile%, Radiobox4ES80, 0
+			IniRead, Radiobox4ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES80, 0
 			GuiControl, , Radiobox4ES80, %Radiobox4ES80%
-			IniRead, Radiobox5ES80, profiles.ini, Profile%Profile%, Radiobox5ES80, 0
+			IniRead, Radiobox5ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES80, 0
 			GuiControl, , Radiobox5ES80, %Radiobox5ES80%
 			
-			IniRead, Radiobox1ES90, profiles.ini, Profile%Profile%, Radiobox1ES90, 0
+			IniRead, Radiobox1ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES90, 0
 			GuiControl, , Radiobox1ES90, %Radiobox1ES90%
-			IniRead, Radiobox2ES90, profiles.ini, Profile%Profile%, Radiobox2ES90, 0
+			IniRead, Radiobox2ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES90, 0
 			GuiControl, , Radiobox2ES90, %Radiobox2ES90%
-			IniRead, Radiobox3ES90, profiles.ini, Profile%Profile%, Radiobox3ES90, 0
+			IniRead, Radiobox3ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES90, 0
 			GuiControl, , Radiobox3ES90, %Radiobox3ES90%
-			IniRead, Radiobox4ES90, profiles.ini, Profile%Profile%, Radiobox4ES90, 0
+			IniRead, Radiobox4ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES90, 0
 			GuiControl, , Radiobox4ES90, %Radiobox4ES90%
-			IniRead, Radiobox5ES90, profiles.ini, Profile%Profile%, Radiobox5ES90, 0
+			IniRead, Radiobox5ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES90, 0
 			GuiControl, , Radiobox5ES90, %Radiobox5ES90%
 			
-			IniRead, RadioUncheck1ES, profiles.ini, Profile%Profile%, RadioUncheck1ES, 1
+			IniRead, RadioUncheck1ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck1ES, 1
 			GuiControl, , RadioUncheck1ES, %RadioUncheck1ES%
-			IniRead, RadioUncheck2ES, profiles.ini, Profile%Profile%, RadioUncheck2ES, 1
+			IniRead, RadioUncheck2ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck2ES, 1
 			GuiControl, , RadioUncheck2ES, %RadioUncheck2ES%
-			IniRead, RadioUncheck3ES, profiles.ini, Profile%Profile%, RadioUncheck3ES, 1
+			IniRead, RadioUncheck3ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck3ES, 1
 			GuiControl, , RadioUncheck3ES, %RadioUncheck3ES%
-			IniRead, RadioUncheck4ES, profiles.ini, Profile%Profile%, RadioUncheck4ES, 1
+			IniRead, RadioUncheck4ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck4ES, 1
 			GuiControl, , RadioUncheck4ES, %RadioUncheck4ES%
-			IniRead, RadioUncheck5ES, profiles.ini, Profile%Profile%, RadioUncheck5ES, 1
+			IniRead, RadioUncheck5ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck5ES, 1
 			GuiControl, , RadioUncheck5ES, %RadioUncheck5ES%
 			
 			;Mana Flasks
-			IniRead, Radiobox1Mana10, profiles.ini, Profile%Profile%, Radiobox1Mana10, 0
+			IniRead, Radiobox1Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Mana10, 0
 			GuiControl, , Radiobox1Mana10, %Radiobox1Mana10%
-			IniRead, Radiobox2Mana10, profiles.ini, Profile%Profile%, Radiobox2Mana10, 0
+			IniRead, Radiobox2Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Mana10, 0
 			GuiControl, , Radiobox2Mana10, %Radiobox2Mana10%
-			IniRead, Radiobox3Mana10, profiles.ini, Profile%Profile%, Radiobox3Mana10, 0
+			IniRead, Radiobox3Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Mana10, 0
 			GuiControl, , Radiobox3Mana10, %Radiobox3Mana10%
-			IniRead, Radiobox4Mana10, profiles.ini, Profile%Profile%, Radiobox4Mana10, 0
+			IniRead, Radiobox4Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Mana10, 0
 			GuiControl, , Radiobox4Mana10, %Radiobox4Mana10%
-			IniRead, Radiobox5Mana10, profiles.ini, Profile%Profile%, Radiobox5Mana10, 0
+			IniRead, Radiobox5Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Mana10, 0
 			GuiControl, , Radiobox5Mana10, %Radiobox5Mana10%
 			
 			;Flask Cooldowns
-			IniRead, CooldownFlask1, profiles.ini, Profile%Profile%, CooldownFlask1, 4800
+			IniRead, CooldownFlask1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask1, 4800
 			GuiControl, , CooldownFlask1, %CooldownFlask1%
-			IniRead, CooldownFlask2, profiles.ini, Profile%Profile%, CooldownFlask2, 4800
+			IniRead, CooldownFlask2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask2, 4800
 			GuiControl, , CooldownFlask2, %CooldownFlask2%
-			IniRead, CooldownFlask3, profiles.ini, Profile%Profile%, CooldownFlask3, 4800
+			IniRead, CooldownFlask3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask3, 4800
 			GuiControl, , CooldownFlask3, %CooldownFlask3%
-			IniRead, CooldownFlask4, profiles.ini, Profile%Profile%, CooldownFlask4, 4800
+			IniRead, CooldownFlask4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask4, 4800
 			GuiControl, , CooldownFlask4, %CooldownFlask4%
-			IniRead, CooldownFlask5, profiles.ini, Profile%Profile%, CooldownFlask5	, 4800
+			IniRead, CooldownFlask5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask5	, 4800
 			GuiControl, , CooldownFlask5, %CooldownFlask5%
 			
 			;Attack Flasks
-			IniRead, MainAttackbox1, profiles.ini, Profile%Profile%, MainAttackbox1, 0
+			IniRead, MainAttackbox1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox1, 0
 			GuiControl, , MainAttackbox1, %MainAttackbox1%
-			IniRead, MainAttackbox2, profiles.ini, Profile%Profile%, MainAttackbox2, 0
+			IniRead, MainAttackbox2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox2, 0
 			GuiControl, , MainAttackbox2, %MainAttackbox2%
-			IniRead, MainAttackbox3, profiles.ini, Profile%Profile%, MainAttackbox3, 0
+			IniRead, MainAttackbox3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox3, 0
 			GuiControl, , MainAttackbox3, %MainAttackbox3%
-			IniRead, MainAttackbox4, profiles.ini, Profile%Profile%, MainAttackbox4, 0
+			IniRead, MainAttackbox4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox4, 0
 			GuiControl, , MainAttackbox4, %MainAttackbox4%
-			IniRead, MainAttackbox5, profiles.ini, Profile%Profile%, MainAttackbox5, 0
+			IniRead, MainAttackbox5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox5, 0
 			GuiControl, , MainAttackbox5, %MainAttackbox5%
 			
-			IniRead, SecondaryAttackbox1, profiles.ini, Profile%Profile%, SecondaryAttackbox1, 0
+			IniRead, SecondaryAttackbox1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox1, 0
 			GuiControl, , SecondaryAttackbox1, %SecondaryAttackbox1%
-			IniRead, SecondaryAttackbox2, profiles.ini, Profile%Profile%, SecondaryAttackbox2, 0
+			IniRead, SecondaryAttackbox2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox2, 0
 			GuiControl, , SecondaryAttackbox2, %SecondaryAttackbox2%
-			IniRead, SecondaryAttackbox3, profiles.ini, Profile%Profile%, SecondaryAttackbox3, 0
+			IniRead, SecondaryAttackbox3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox3, 0
 			GuiControl, , SecondaryAttackbox3, %SecondaryAttackbox3%
-			IniRead, SecondaryAttackbox4, profiles.ini, Profile%Profile%, SecondaryAttackbox4, 0
+			IniRead, SecondaryAttackbox4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox4, 0
 			GuiControl, , SecondaryAttackbox4, %SecondaryAttackbox4%
-			IniRead, SecondaryAttackbox5, profiles.ini, Profile%Profile%, SecondaryAttackbox5, 0
+			IniRead, SecondaryAttackbox5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox5, 0
 			GuiControl, , SecondaryAttackbox5, %SecondaryAttackbox5%
 			
 			;Attack Keys
-			IniRead, hotkeyMainAttack, profiles.ini, Profile%Profile%, MainAttack, RButton
+			IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttack, RButton
 			GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
-			IniRead, hotkeySecondaryAttack, profiles.ini, Profile%Profile%, SecondaryAttack, w
+			IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttack, w
 			GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
 			
 			;QS on Attack Keys
-			IniRead, QSonMainAttack, profiles.ini, Profile%Profile%, QSonMainAttack, 0
+			IniRead, QSonMainAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonMainAttack, 0
 			GuiControl, , QSonMainAttack, %QSonMainAttack%
-			IniRead, QSonSecondaryAttack, profiles.ini, Profile%Profile%, QSonSecondaryAttack, 0
+			IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonSecondaryAttack, 0
 			GuiControl, , QSonSecondaryAttack, %QSonSecondaryAttack%
 			
 			;Quicksilver Flasks
-			IniRead, TriggerQuicksilverDelay, profiles.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
+			IniRead, TriggerQuicksilverDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
 			GuiControl, , TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
-			IniRead, Radiobox1QS, profiles.ini, Profile%Profile%, QuicksilverSlot1, 0
+			IniRead, Radiobox1QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot1, 0
 			GuiControl, , Radiobox1QS, %Radiobox1QS%
-			IniRead, Radiobox2QS, profiles.ini, Profile%Profile%, QuicksilverSlot2, 0
+			IniRead, Radiobox2QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot2, 0
 			GuiControl, , Radiobox2QS, %Radiobox2QS%
-			IniRead, Radiobox3QS, profiles.ini, Profile%Profile%, QuicksilverSlot3, 0
+			IniRead, Radiobox3QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot3, 0
 			GuiControl, , Radiobox3QS, %Radiobox3QS%
-			IniRead, Radiobox4QS, profiles.ini, Profile%Profile%, QuicksilverSlot4, 0
+			IniRead, Radiobox4QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot4, 0
 			GuiControl, , Radiobox4QS, %Radiobox4QS%
-			IniRead, Radiobox5QS, profiles.ini, Profile%Profile%, QuicksilverSlot5, 0
+			IniRead, Radiobox5QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot5, 0
 			GuiControl, , Radiobox5QS, %Radiobox5QS%
 			
 			;CharacterTypeCheck
-			IniRead, RadioLife, profiles.ini, Profile%Profile%, Life, 1
+			IniRead, RadioLife, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Life, 1
 			GuiControl, , RadioLife, %RadioLife%
-			IniRead, RadioHybrid, profiles.ini, Profile%Profile%, Hybrid, 0
+			IniRead, RadioHybrid, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Hybrid, 0
 			GuiControl, , RadioHybrid, %RadioHybrid%
-			IniRead, RadioCi, profiles.ini, Profile%Profile%, Ci, 0
+			IniRead, RadioCi, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Ci, 0
 			GuiControl, , RadioCi, %RadioCi%
 			
 			;AutoMines
-			IniRead, DetonateMines, profiles.ini, Profile%Profile%, DetonateMines, 0
-			IniRead, DetonateMinesDelay, profiles.ini, Profile%Profile%, DetonateMinesDelay, 500
+			IniRead, DetonateMines, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines, 0
+			IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay, 500
 			GuiControl, , DetonateMines, %DetonateMines%
 			GuiControl, , DetonateMinesDelay, %DetonateMinesDelay%
 
 			;EldritchBattery
-			IniRead, YesEldritchBattery, profiles.ini, Profile%Profile%, YesEldritchBattery, 0
+			IniRead, YesEldritchBattery, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesEldritchBattery, 0
 			GuiControl, , YesEldritchBattery, %YesEldritchBattery%
 
 			;ManaThreshold
-			IniRead, ManaThreshold, profiles.ini, Profile%Profile%, ManaThreshold, 0
+			IniRead, ManaThreshold, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, ManaThreshold, 0
 			GuiControl, , ManaThreshold, %ManaThreshold%
 
 			;AutoQuit
-			IniRead, QuitBelow, profiles.ini, Profile%Profile%, QuitBelow, 20
+			IniRead, QuitBelow, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuitBelow, 20
 			GuiControl, , QuitBelow, %QuitBelow%
-			IniRead, RadioCritQuit, profiles.ini, Profile%Profile%, CritQuit, 1
+			IniRead, RadioCritQuit, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CritQuit, 1
 			GuiControl, , RadioCritQuit, %RadioCritQuit%
-			IniRead, RadioPortalQuit, profiles.ini, Profile%Profile%, PortalQuit, 0
+			IniRead, RadioPortalQuit, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PortalQuit, 0
 			GuiControl, , RadioPortalQuit, %RadioPortalQuit%
-			IniRead, RadioNormalQuit, profiles.ini, Profile%Profile%, NormalQuit, 0
+			IniRead, RadioNormalQuit, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, NormalQuit, 0
 			GuiControl, , RadioNormalQuit, %RadioNormalQuit%
 
 
 			;Utility Buttons
-			IniRead, YesUtility1, profiles.ini, Profile%Profile%, YesUtility1, 0
+			IniRead, YesUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1, 0
 			GuiControl, , YesUtility1, %YesUtility1%
-			IniRead, YesUtility2, profiles.ini, Profile%Profile%, YesUtility2, 0
+			IniRead, YesUtility2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2, 0
 			GuiControl, , YesUtility2, %YesUtility2%
-			IniRead, YesUtility3, profiles.ini, Profile%Profile%, YesUtility3, 0
+			IniRead, YesUtility3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3, 0
 			GuiControl, , YesUtility3, %YesUtility3%
-			IniRead, YesUtility4, profiles.ini, Profile%Profile%, YesUtility4, 0
+			IniRead, YesUtility4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4, 0
 			GuiControl, , YesUtility4, %YesUtility4%
-			IniRead, YesUtility5, profiles.ini, Profile%Profile%, YesUtility5, 0
+			IniRead, YesUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5, 0
 			GuiControl, , YesUtility5, %YesUtility5%
-			IniRead, YesUtility1Quicksilver, profiles.ini, Profile%Profile%, YesUtility1Quicksilver, 0
+			IniRead, YesUtility1Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1Quicksilver, 0
 			GuiControl, , YesUtility1Quicksilver, %YesUtility1Quicksilver%
-			IniRead, YesUtility2Quicksilver, profiles.ini, Profile%Profile%, YesUtility2Quicksilver, 0
+			IniRead, YesUtility2Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2Quicksilver, 0
 			GuiControl, , YesUtility2Quicksilver, %YesUtility2Quicksilver%
-			IniRead, YesUtility3Quicksilver, profiles.ini, Profile%Profile%, YesUtility3Quicksilver, 0
+			IniRead, YesUtility3Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3Quicksilver, 0
 			GuiControl, , YesUtility3Quicksilver, %YesUtility3Quicksilver%
-			IniRead, YesUtility4Quicksilver, profiles.ini, Profile%Profile%, YesUtility4Quicksilver, 0
+			IniRead, YesUtility4Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4Quicksilver, 0
 			GuiControl, , YesUtility4Quicksilver, %YesUtility4Quicksilver%
-			IniRead, YesUtility5Quicksilver, profiles.ini, Profile%Profile%, YesUtility5Quicksilver, 0
+			IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5Quicksilver, 0
 			GuiControl, , YesUtility5Quicksilver, %YesUtility5Quicksilver%
 			
 			;Utility Percents	
-			IniRead, YesUtility1LifePercent, profiles.ini, Profile%Profile%, YesUtility1LifePercent, Off
+			IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1LifePercent, Off
 			GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
-			IniRead, YesUtility2LifePercent, profiles.ini, Profile%Profile%, YesUtility2LifePercent, Off
+			IniRead, YesUtility2LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2LifePercent, Off
 			GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
-			IniRead, YesUtility3LifePercent, profiles.ini, Profile%Profile%, YesUtility3LifePercent, Off
+			IniRead, YesUtility3LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3LifePercent, Off
 			GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
-			IniRead, YesUtility4LifePercent, profiles.ini, Profile%Profile%, YesUtility4LifePercent, Off
+			IniRead, YesUtility4LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4LifePercent, Off
 			GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
-			IniRead, YesUtility5LifePercent, profiles.ini, Profile%Profile%, YesUtility5LifePercent, Off
+			IniRead, YesUtility5LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5LifePercent, Off
 			GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
-			IniRead, YesUtility1EsPercent, profiles.ini, Profile%Profile%, YesUtility1EsPercent, Off
+			IniRead, YesUtility1EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1EsPercent, Off
 			GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-			IniRead, YesUtility2EsPercent, profiles.ini, Profile%Profile%, YesUtility2EsPercent, Off
+			IniRead, YesUtility2EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2EsPercent, Off
 			GuiControl, ChooseString, YesUtility2EsPercent, %YesUtility2EsPercent%
-			IniRead, YesUtility3EsPercent, profiles.ini, Profile%Profile%, YesUtility3EsPercent, Off
+			IniRead, YesUtility3EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3EsPercent, Off
 			GuiControl, ChooseString, YesUtility3EsPercent, %YesUtility3EsPercent%
-			IniRead, YesUtility4EsPercent, profiles.ini, Profile%Profile%, YesUtility4EsPercent, Off
+			IniRead, YesUtility4EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4EsPercent, Off
 			GuiControl, ChooseString, YesUtility4EsPercent, %YesUtility4EsPercent%
-			IniRead, YesUtility5EsPercent, profiles.ini, Profile%Profile%, YesUtility5EsPercent, Off
+			IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5EsPercent, Off
 			GuiControl, ChooseString, YesUtility5EsPercent, %YesUtility5EsPercent%
 			
 			;Utility Cooldowns
-			IniRead, CooldownUtility1, profiles.ini, Profile%Profile%, CooldownUtility1, 5000
+			IniRead, CooldownUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility1, 5000
 			GuiControl, , CooldownUtility1, %CooldownUtility1%
-			IniRead, CooldownUtility2, profiles.ini, Profile%Profile%, CooldownUtility2, 5000
+			IniRead, CooldownUtility2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility2, 5000
 			GuiControl, , CooldownUtility2, %CooldownUtility2%
-			IniRead, CooldownUtility3, profiles.ini, Profile%Profile%, CooldownUtility3, 5000
+			IniRead, CooldownUtility3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility3, 5000
 			GuiControl, , CooldownUtility3, %CooldownUtility3%
-			IniRead, CooldownUtility4, profiles.ini, Profile%Profile%, CooldownUtility4, 5000
+			IniRead, CooldownUtility4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility4, 5000
 			GuiControl, , CooldownUtility4, %CooldownUtility4%
-			IniRead, CooldownUtility5, profiles.ini, Profile%Profile%, CooldownUtility5, 5000
+			IniRead, CooldownUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility5, 5000
 			GuiControl, , CooldownUtility5, %CooldownUtility5%
 			
 			;Character Name
-			IniRead, CharName, profiles.ini, Profile%Profile%, CharName, ReplaceWithCharName
+			IniRead, CharName, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CharName, ReplaceWithCharName
 			GuiControl, , CharName, %CharName%
 
 			;Utility Keys
-			IniRead, KeyUtility1, profiles.ini, Profile%Profile%, KeyUtility1, q
+			IniRead, KeyUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility1, q
 			GuiControl, , KeyUtility1, %KeyUtility1%
-			IniRead, KeyUtility2, profiles.ini, Profile%Profile%, KeyUtility2, w
+			IniRead, KeyUtility2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility2, w
 			GuiControl, , KeyUtility2, %KeyUtility2%
-			IniRead, KeyUtility3, profiles.ini, Profile%Profile%, KeyUtility3, e
+			IniRead, KeyUtility3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility3, e
 			GuiControl, , KeyUtility3, %KeyUtility3%
-			IniRead, KeyUtility4, profiles.ini, Profile%Profile%, KeyUtility4, r
+			IniRead, KeyUtility4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility4, r
 			GuiControl, , KeyUtility4, %KeyUtility4%
-			IniRead, KeyUtility5, profiles.ini, Profile%Profile%, KeyUtility5, t
+			IniRead, KeyUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility5, t
 			GuiControl, , KeyUtility5, %KeyUtility5%
 
 			;Utility Icon Strings
-			IniRead, IconStringUtility1, profiles.ini, Profile%Profile%, IconStringUtility1, %A_Space%
+			IniRead, IconStringUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility1, %A_Space%
 			If IconStringUtility1
 				IconStringUtility1 := """" . IconStringUtility1 . """"
 			GuiControl, , IconStringUtility1, %IconStringUtility1%
-			IniRead, IconStringUtility2, profiles.ini, Profile%Profile%, IconStringUtility2, %A_Space%
+			IniRead, IconStringUtility2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility2, %A_Space%
 			If IconStringUtility2
 				IconStringUtility2 := """" . IconStringUtility2 . """"
 			GuiControl, , IconStringUtility2, %IconStringUtility2%
-			IniRead, IconStringUtility3, profiles.ini, Profile%Profile%, IconStringUtility3, %A_Space%
+			IniRead, IconStringUtility3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility3, %A_Space%
 			If IconStringUtility3
 				IconStringUtility3 := """" . IconStringUtility3 . """"
 			GuiControl, , IconStringUtility3, %IconStringUtility3%
-			IniRead, IconStringUtility4, profiles.ini, Profile%Profile%, IconStringUtility4, %A_Space%
+			IniRead, IconStringUtility4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility4, %A_Space%
 			If IconStringUtility4
 				IconStringUtility4 := """" . IconStringUtility4 . """"
 			GuiControl, , IconStringUtility4, %IconStringUtility4%
-			IniRead, IconStringUtility5, profiles.ini, Profile%Profile%, IconStringUtility5, %A_Space%
+			IniRead, IconStringUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility5, %A_Space%
 			If IconStringUtility5
 				IconStringUtility5 := """" . IconStringUtility5 . """"
 			GuiControl, , IconStringUtility5, %IconStringUtility5%
 
 			;Pop Flasks Keys
-			IniRead, PopFlasks1, profiles.ini, Profile%Profile%, PopFlasks1, 1
+			IniRead, PopFlasks1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks1, 1
 			GuiControl, , PopFlasks1, %PopFlasks1%
-			IniRead, PopFlasks2, profiles.ini, Profile%Profile%, PopFlasks2, 1
+			IniRead, PopFlasks2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks2, 1
 			GuiControl, , PopFlasks2, %PopFlasks2%
-			IniRead, PopFlasks3, profiles.ini, Profile%Profile%, PopFlasks3, 1
+			IniRead, PopFlasks3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks3, 1
 			GuiControl, , PopFlasks3, %PopFlasks3%
-			IniRead, PopFlasks4, profiles.ini, Profile%Profile%, PopFlasks4, 1
+			IniRead, PopFlasks4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks4, 1
 			GuiControl, , PopFlasks4, %PopFlasks4%
-			IniRead, PopFlasks5, profiles.ini, Profile%Profile%, PopFlasks5, 1
+			IniRead, PopFlasks5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks5, 1
 			GuiControl, , PopFlasks5, %PopFlasks5%
 
 			;Update UI
@@ -9365,16 +9779,16 @@ Return
 
 	{ ; Script Update Functions - checkUpdate, runUpdate, dontUpdate
 		checkUpdate(){
-			IniRead, AutoUpdateOff, settings.ini, General, AutoUpdateOff, 0
+			IniRead, AutoUpdateOff, %A_ScriptDir%\save\settings.ini, General, AutoUpdateOff, 0
 			If (!AutoUpdateOff) {
-				UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/version.html, version.html
-				FileRead, newestVersion, version.html
+				UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/version.html, %A_ScriptDir%\temp\version.html
+				FileRead, newestVersion, %A_ScriptDir%\temp\version.html
 				
 				if ( VersionNumber < newestVersion ) {
-					UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/changelog.txt, changelog.txt
+					UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
 					if ErrorLevel
 						GuiControl,1:, guiErr, ED08
-					FileRead, changelog, changelog.txt
+					FileRead, changelog, %A_ScriptDir%\temp\changelog.txt
 					Gui, 4:Add, Button, x0 y0 h1 w1, a
 					Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
 					Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
@@ -9424,7 +9838,7 @@ Return
 		Return
 
 		dontUpdate:
-			IniWrite, 1, Settings.ini, General, AutoUpdateOff
+			IniWrite, 1, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
 			MsgBox, Auto-Updates have been disabled.`nCheck back on the forum for more information!`nTo resume updates, uncheck the box in config page.
 			Gui, 4:Destroy
 		return	
@@ -9447,7 +9861,7 @@ Return
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
 				varOnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar)
-				IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar
+				IniWrite, %varOnChar%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChar
 				readFromFile()
 				MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . vX_OnChar . " and y: " . vY_OnChar
 			} else
@@ -9474,7 +9888,7 @@ Return
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
 				varOnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory)
-				IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
+				IniWrite, %varOnInventory%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnInventory
 				readFromFile()
 				MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . vX_OnInventory . " and y: " . vY_OnInventory
 			}else
@@ -9501,7 +9915,7 @@ Return
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
 				varOnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu)
-				IniWrite, %varOnMenu%, settings.ini, Failsafe Colors, OnMenu
+				IniWrite, %varOnMenu%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMenu
 				readFromFile()
 				MsgBox % "OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . vX_OnMenu . " and y: " . vY_OnMenu
 			}else
@@ -9528,11 +9942,38 @@ Return
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
 				varOnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart)
-				IniWrite, %varOnDelveChart%, settings.ini, Failsafe Colors, OnDelveChart
+				IniWrite, %varOnDelveChart%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart
 				readFromFile()
 				MsgBox % "OnDelveChart recalibrated!`nTook color hex: " . varOnDelveChart . " `nAt coords x: " . vX_OnDelveChart . " and y: " . vY_OnDelveChart
 			}else
 			MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
+			
+			hotkeys()
+			
+		return
+
+		updateOnMetamorph:
+			Thread, NoTimers, True
+			Gui, Submit ; , NoHide
+			
+			IfWinExist, ahk_group POEGameGroup
+			{
+				Rescale()
+				WinActivate, ahk_group POEGameGroup
+			} else {
+				MsgBox % "PoE Window does not exist. `nRecalibrate of OnMetamorph didn't work"
+				Return
+			}
+			
+			
+			if WinActive(ahk_group POEGameGroup){
+				ScreenShot()
+				varOnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph)
+				IniWrite, %varOnMetamorph%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph
+				readFromFile()
+				MsgBox % "OnMetamorph recalibrated!`nTook color hex: " . varOnMetamorph . " `nAt coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph
+			}else
+			MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
 			
 			hotkeys()
 			
@@ -9553,9 +9994,9 @@ Return
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
 				varOnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft)
-				IniWrite, %varOnLeft%, settings.ini, Failsafe Colors, OnLeft
+				IniWrite, %varOnLeft%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLeft
 				varOnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash)
-				IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
+				IniWrite, %varOnStash%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStash
 				readFromFile()
 				MsgBox % "OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . vX_OnStash . " and y: " . vY_OnStash
 					. "`n`nOnLeft recalibrated!`nTook color hex: " . varOnLeft . " `nAt coords x: " . vX_OnLeft . " and y: " . vY_OnLeft
@@ -9614,7 +10055,7 @@ Return
 
 				strToSave := hexArrToStr(varEmptyInvSlotColor)
 
-				IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
+				IniWrite, %strToSave%, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor
 				readFromFile()
 
 
@@ -9648,7 +10089,7 @@ Return
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
 				varOnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat)
-				IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
+				IniWrite, %varOnChat%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChat
 				readFromFile()
 				MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . vX_OnChat . " and y: " . vY_OnChat
 			}else
@@ -9674,7 +10115,7 @@ Return
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
 				varOnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor)
-				IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
+				IniWrite, %varOnVendor%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnVendor
 				readFromFile()
 				MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . vX_OnVendor . " and y: " . vY_OnVendor
 			}else
@@ -9700,7 +10141,7 @@ Return
 			if WinActive(ahk_group POEGameGroup){
 				ScreenShot()
 				varOnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv)
-				IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
+				IniWrite, %varOnDiv%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDiv
 				readFromFile()
 				MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . vX_OnDiv . " and y: " . vY_OnDiv
 			}else
@@ -9728,7 +10169,7 @@ Return
 					varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
 				Else
 					varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-				IniWrite, %varOnDetonate%, settings.ini, Failsafe Colors, OnDetonate
+				IniWrite, %varOnDetonate%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate
 				readFromFile()
 				MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY
 			}else
@@ -9755,16 +10196,16 @@ Return
 				If CheckOHB()
 				{
 					PixelGetColor, OHBLHealthHex, % OHB.X + 1, % OHB.hpY, RGB
-					IniWrite, %OHBLHealthHex%, settings.ini, OHB, OHBLHealthHex
+					IniWrite, %OHBLHealthHex%, %A_ScriptDir%\save\Settings.ini, OHB, OHBLHealthHex
 					; If ((RadioHybrid || RadioCi) && !YesEldritchBattery)
 					; {
 					;     PixelGetColor, OHBLESHex, % OHB.X + 1, % OHB.esY, RGB
-					; 	IniWrite, %OHBLESHex%, settings.ini, OHB, OHBLESHex
+					; 	IniWrite, %OHBLESHex%, %A_ScriptDir%\save\Settings.ini, OHB, OHBLESHex
 					; }
 					; Else If ((RadioHybrid || RadioCi) && YesEldritchBattery)
 					; {
 					;     PixelGetColor, OHBLEBHex, % OHB.X + 1, % OHB.ebY, RGB
-					; 	IniWrite, %OHBLEBHex%, settings.ini, OHB, OHBLEBHex
+					; 	IniWrite, %OHBLEBHex%, %A_ScriptDir%\save\Settings.ini, OHB, OHBLEBHex
 					; }
 					readFromFile()
 					MsgBox % "OHB recalibrated!`nTook color hex: " . OHBLHealthHex . " `nAt coords x: " . OHB.X + 1 . " and y: " . OHB.hpY
@@ -9816,7 +10257,8 @@ Return
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnChat              xp   y+10            w100 h20 , OnChat
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnInventory         xp   y+10            w100 h20 , OnInventory
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnVendor            xp   y+10            w100 h20 , OnVendor
-				Gui, Wizard: Add, CheckBox, vCalibrationOnDiv               xp   y+10            w100 h20 , OnDiv
+				Gui, Wizard: Add, CheckBox, vCalibrationOnDiv               		xp   y+10            w100 h20 , OnDiv
+				Gui, Wizard: Add, CheckBox, vCalibrationOnMetamorph           		xp   y+10            w100 h20 , OnMetamorph
 
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu              x342 y39             w100 h20 , OnMenu
 				Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty               xp   y+10            w100 h20 , Empty Inventory
@@ -10106,6 +10548,29 @@ Return
 					} else
 					MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
 				}
+				If CalibrationOnMetamorph
+				{
+					ToolTip,% "This will sample the OnMetamorph Color"
+						. "`nMake sure you have the Subterranean Chart open"
+						. "`nPress ""A"" to sample"
+						. "`nHold Escape and press ""A"" to cancel"
+						, % ScrCenter.X - 150 , % ScrCenter.Y -30
+					KeyWait, a, D
+					ToolTip
+					KeyWait, a
+					If GetKeyState("Escape", "P")
+					{
+						MsgBox % "Escape key was held`n"
+						. "Canceling the Wizard!"
+						Gui, Wizard: Show
+						Exit
+					}
+					if WinActive(ahk_group POEGameGroup){
+						ScreenShot(), varOnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph)
+						SampleTT .= "OnMetamorph             took BGR color hex: " . varOnMetamorph . "    At coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph . "`n"
+					} else
+					MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
+				}
 				PauseTooltips:=0
 				If SampleTT =
 				{
@@ -10128,28 +10593,30 @@ Return
 
 			SaveWizardResults:
 				If CalibrationOnChar
-					IniWrite, %varOnChar%, settings.ini, Failsafe Colors, OnChar        
+					IniWrite, %varOnChar%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChar        
 				If CalibrationOnChat
-					IniWrite, %varOnChat%, settings.ini, Failsafe Colors, OnChat
+					IniWrite, %varOnChat%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChat
 				If CalibrationOnMenu
-					IniWrite, %varOnMenu%, settings.ini, Failsafe Colors, OnMenu
+					IniWrite, %varOnMenu%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMenu
 				If CalibrationOnInventory
-					IniWrite, %varOnInventory%, settings.ini, Failsafe Colors, OnInventory
+					IniWrite, %varOnInventory%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnInventory
 				If CalibrationEmpty
-					IniWrite, %strToSave%, settings.ini, Inventory Colors, EmptyInvSlotColor
+					IniWrite, %strToSave%, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor
 				If CalibrationOnVendor
-					IniWrite, %varOnVendor%, settings.ini, Failsafe Colors, OnVendor
+					IniWrite, %varOnVendor%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnVendor
 				If CalibrationOnStash
 				{
-					IniWrite, %varOnStash%, settings.ini, Failsafe Colors, OnStash
-					IniWrite, %varOnLeft%, settings.ini, Failsafe Colors, OnLeft
+					IniWrite, %varOnStash%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStash
+					IniWrite, %varOnLeft%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLeft
 				}
 				If CalibrationOnDiv
-					IniWrite, %varOnDiv%, settings.ini, Failsafe Colors, OnDiv
+					IniWrite, %varOnDiv%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDiv
 				If CalibrationOnDelveChart
-					IniWrite, %varOnDelveChart%, settings.ini, Failsafe Colors, OnDelveChart
+					IniWrite, %varOnDelveChart%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart
+				If CalibrationOnMetamorph
+					IniWrite, %varOnMetamorph%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph
 				If CalibrationDetonate
-					IniWrite, %varOnDetonate%, settings.ini, Failsafe Colors, OnDetonate
+					IniWrite, %varOnDetonate%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate
 				Gui, Wizard: Submit
 				Gui, 1: show
 			Return
@@ -10275,7 +10742,7 @@ Return
 
 			SaveLootColorArray:
 				LCstr := hexArrToStr(LootColors)
-				IniWrite, %LCstr%, settings.ini, Loot Colors, LootColors
+				IniWrite, %LCstr%, %A_ScriptDir%\save\Settings.ini, Loot Colors, LootColors
 				LootScan(1)
 				MsgBox % "LootColors saved with the following hex values:"
 					. "`n" . LCstr
@@ -10396,14 +10863,16 @@ Return
 		{
 			Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe
 				, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC
-				,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem
+				,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_FillMetamorph
 				, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB
 				, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe
+
 			Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
 				, Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
 				, Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
 				, Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
 				, Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
+				, Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
 			If (Function = "Inventory")
 			{
 				Gui, 1: Submit
@@ -10474,7 +10943,7 @@ Return
 						textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
 					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 			Section		w180 h120				xs 	y+10, 				Item Parse Settings
+					Gui, Inventory: Add, GroupBox, 			Section		w180 h160				xs 	y+10, 				Item Parse Settings
 					Gui, Inventory: Font,
 					Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
 					Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
@@ -10482,26 +10951,27 @@ Return
 					Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
 					Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
 					Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
+					Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
+					Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, %YesPredictivePrice%||Off|Low|Avg|High
+					
+					Gui, Inventory: Font, s18
+					Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
+					Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
+					Gui, Inventory: Font,
+					ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
+					Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
 
 					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	ys, 				Crafting Tab:
+					Gui, Inventory: Add, GroupBox, 						w180 h80		section		xm+370 	ys, 				Automation:
 					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     xs+5	ys+18			, T1?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xs+5	y+8		, Normal?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
-
-					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	y+20, 				Automation:
-					Gui, Inventory: Font,
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     xs+5	ys+18			, Search for stash?
-					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8			, Move to vendor after stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     		xs+5 ys+18	, Search for stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     	y+8			, Move to vendor after stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesFillMetamorph Checked%YesFillMetamorph%     		y+8			, Auto fill metamorph?
+					Gui, Inventory: Add, Checkbox, gWR_Update	vWR_Btn_FillMetamorph y+8	w170 center		, Adjust Meta Panel
 				Gui, Inventory: show , w600 h500, Inventory Settings
 				Gui, Inventory: Tab, Stash Tabs
 					Gui, Inventory: Font, Bold
-					Gui, Inventory: Add, Text, 										x12 	ym+25, 				Stash Management
+					Gui, Inventory: Add, Text, 			Section							x12 	ym+25, 				Stash Management
 					Gui, Inventory: Font,
 
 					tablistArr := [ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
@@ -10519,6 +10989,7 @@ Return
 					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  %textList%
 					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  %textList%
 					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabVeiled Choose%StashTabVeiled% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabDump Choose%StashTabDump% w40 ,  %textList%
 
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan% y+14, Organ Tab
@@ -10530,6 +11001,7 @@ Return
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% y+14, Veiled Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% y+14, Dump Tab
 
 					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% x150 y50 w40 ,  %textList%
 					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabGemSupport Choose%StashTabGemSupport% w40 ,  %textList%
@@ -10541,6 +11013,7 @@ Return
 					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  %textList%
 					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  %textList%
 					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabCrafting Choose%StashTabCrafting% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabPredictive Choose%StashTabPredictive% w40 ,  %textList%
 
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x195 y55, Quality Gem Tab
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% y+14, Support Gem Tab
@@ -10552,8 +11025,36 @@ Return
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% y+14, Fossil Tab
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% y+14, Resonator Tab
 					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% y+14, Crafting Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% y+14, Priced Rares Tab
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h80		section		xm+370 	ys, 				Crafting Tab:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     xs+5	ys+18			, T1?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xs+5	y+8		, Normal?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     	xs+5	y+8		, Above Ilvl:
+					Gui, Inventory: Font, s10
+					Gui, Inventory: Add, Edit, gUpdateExtra	vYesStashCraftingIlvlMin      	x+5	yp-3	w40 center	hp+5, %YesStashCraftingIlvlMin%
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	y+20, 				Dump Tab:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h40		section		xm+370 	y+20, 				Priced Rares Tab:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+					Gui, Inventory: Font, s10
+					Gui, Inventory: Add, Edit, gUpdateStash  vStashTabYesPredictive_Price x+13 yp-6 w40 hp+8 center, % StashTabYesPredictive_Price
 
 				Gui, Inventory: Tab, Stash Hotkeys
+
 					Gui, Inventory: Add, Checkbox, xm+5 ym+25	vYesStashKeys Checked%YesStashKeys%                         	         , Enable stash hotkeys?
 
 					Gui, Inventory: Font,s9 cBlack Bold Underline
@@ -10598,7 +11099,7 @@ Return
 					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
 
 				}
-				; Gui, Inventory: show , w600 h500, Inventory Settings
+				Gui, Inventory: show , w600 h500, Inventory Settings
 			}
 			Else If (Function = "Strings")
 			{
@@ -10834,11 +11335,12 @@ Return
 						Globe := Array_DeepClone(Base.Globe)
 					}
 					Built_Globe := 1
+					Global Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
 					Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
-					Gui, Globe: Font, Bold s9 cBlack
+					Gui, Globe: Add, Button, xm ym+8 w1 h1
+					Gui, Globe: Font, Bold s9 c777777
 					Gui, Globe: Add, GroupBox, xm ym w205 h100 Section, Life Scan Area
-					Gui, Globe: Font, Bold
-					Gui, Globe: Add, Button, xs ys w1 h1
+					Gui, Globe: Font, Bold c777777
 					Gui, Globe: Add, Text, vGlobe_Life_X1 xs+10 yp+20 , % "X1:" Globe.Life.X1
 					Gui, Globe: Add, Text, vGlobe_Life_Y1 x+5 yp , % "Y1:" Globe.Life.Y1
 					Gui, Globe: Add, Text, vGlobe_Life_X2 xs+10 y+8 , % "X2:" Globe.Life.X2
@@ -10846,18 +11348,19 @@ Return
 					Gui, Globe: Add, Text, xs+10 y+8, Color:
 					Gui, Globe: Font
 					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Life x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Life.Color.Hex)
-					Gui, Globe: Font, Bold
+					Gui, Globe: Font, Bold c777777
 					Gui, Globe: Add, Text, x+5 yp+2, Variance:
 					Gui, Globe: Add, Text, x+2 yp w35, % Globe.Life.Color.Variance
 					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Life x+1 yp hp, % Globe.Life.Color.Variance
 					TempC := Format("0x{1:06X}",Globe.Life.Color.Hex)
-					Gui, Globe: Add, Progress, vWR_Progress_Color_Life xs+10 y+6 hp w185 c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Text, gColorLabel_Life xs+10 y+6 hp w185,
+					Gui, Globe: Add, Progress, vWR_Progress_Color_Life xs+10 yp hp wp c%TempC% BackgroundBlack, 100
 					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Life h18 xs+115 ys+15, Choose Area
 					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Life wp hp xp y+5, Show Area
 
-					Gui, Globe: Font, Bold s9 cBlack
+					Gui, Globe: Font, Bold s9 c777777
 					Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Mana Scan Area
-					Gui, Globe: Font, Bold
+					Gui, Globe: Font, Bold c777777
 					Gui, Globe: Add, Text, vGlobe_Mana_X1 xs+10 yp+20 , % "X1:" Globe.Mana.X1
 					Gui, Globe: Add, Text, vGlobe_Mana_Y1 x+5 yp , % "Y1:" Globe.Mana.Y1
 					Gui, Globe: Add, Text, vGlobe_Mana_X2 xs+10 y+8 , % "X2:" Globe.Mana.X2
@@ -10865,18 +11368,19 @@ Return
 					Gui, Globe: Add, Text, xs+10 y+8, Color:
 					Gui, Globe: Font
 					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Mana.Color.Hex)
-					Gui, Globe: Font, Bold
+					Gui, Globe: Font, Bold c777777
 					Gui, Globe: Add, Text, x+5 yp+2, Variance:
 					Gui, Globe: Add, Text, x+2 yp w35, % Globe.Mana.Color.Variance
 					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Mana x+1 yp hp, % Globe.Mana.Color.Variance
 					TempC := Format("0x{1:06X}",Globe.Mana.Color.Hex)
-					Gui, Globe: Add, Progress, vWR_Progress_Color_Mana xs+10 y+6 hp w185 c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Text, gColorLabel_Mana xs+10 y+6 hp w185,
+					Gui, Globe: Add, Progress, vWR_Progress_Color_Mana xs+10 yp hp wp c%TempC% BackgroundBlack, 100
 					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Mana h18 xs+115 ys+15, Choose Area
 					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Mana wp hp xp y+5, Show Area
 
-					Gui, Globe: Font, Bold s9 cBlack
+					Gui, Globe: Font, Bold s9 c777777
 					Gui, Globe: Add, GroupBox, xm y+60 w205 h100 Section, Energy Shield Scan Area
-					Gui, Globe: Font, Bold
+					Gui, Globe: Font, Bold c777777
 					Gui, Globe: Add, Text, vGlobe_ES_X1 xs+10 yp+20 , % "X1:" Globe.ES.X1
 					Gui, Globe: Add, Text, vGlobe_ES_Y1 x+5 yp , % "Y1:" Globe.ES.Y1
 					Gui, Globe: Add, Text, vGlobe_ES_X2 xs+10 y+8 , % "X2:" Globe.ES.X2
@@ -10884,16 +11388,17 @@ Return
 					Gui, Globe: Add, Text, xs+10 y+8, Color:
 					Gui, Globe: Font
 					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_ES x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.ES.Color.Hex)
-					Gui, Globe: Font, Bold
+					Gui, Globe: Font, Bold c777777
 					Gui, Globe: Add, Text, x+5 yp+2, Variance:
 					Gui, Globe: Add, Text, x+2 yp w35, % Globe.ES.Color.Variance
 					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_ES x+1 yp hp, % Globe.ES.Color.Variance
 					TempC := Format("0x{1:06X}",Globe.ES.Color.Hex)
-					Gui, Globe: Add, Progress, vWR_Progress_Color_ES xs+10 y+6 hp w185 c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Text, gColorLabel_ES xs+10 y+6 hp w185,
+					Gui, Globe: Add, Progress, vWR_Progress_Color_ES xs+10 yp hp wp c%TempC% BackgroundBlack, 100
 					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_ES h18 xs+115 ys+15, Choose Area
 					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_ES wp hp xp y+5, Show Area
 
-					Gui, Globe: Font, Bold s9 cBlack
+					Gui, Globe: Font, Bold s9 c777777
 					Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Eldritch Battery Scan Area
 					Gui, Globe: Font, Bold
 					Gui, Globe: Add, Text, vGlobe_EB_X1 xs+10 yp+20 , % "X1:" Globe.EB.X1
@@ -10903,19 +11408,26 @@ Return
 					Gui, Globe: Add, Text, xs+10 y+8, Color:
 					Gui, Globe: Font
 					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_EB x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.EB.Color.Hex)
-					Gui, Globe: Font, Bold
+					Gui, Globe: Font, Bold c777777
 					Gui, Globe: Add, Text, x+5 yp+2, Variance:
 					Gui, Globe: Add, Text, x+2 yp w35, % Globe.EB.Color.Variance
 					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_EB x+1 yp hp, % Globe.EB.Color.Variance
 					TempC := Format("0x{1:06X}",Globe.EB.Color.Hex)
-					Gui, Globe: Add, Progress, vWR_Progress_Color_EB xs+10 y+6 hp w185 c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Text, gColorLabel_EB xs+10 y+6 hp w185,
+					Gui, Globe: Add, Progress, vWR_Progress_Color_EB xs+10 yp hp wp c%TempC% BackgroundBlack, 100
 					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_EB h18 xs+115 ys+15, Choose Area
 					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_EB wp hp xp y+5, Show Area
 
+
 					Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
 					Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Default Values
+					Gui, Globe: Font, s25 Bold c777777
+					Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
+					Gui, Globe: Add, Text, w220 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
+					Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Mana x+0 yp c1460A6, % "Mana " Player.Percent.Mana "`%"
 				}
-				Gui, Globe: show , AutoSize, Globe Settings
+				GlobeActive := True
+				Gui, Globe: show , Center AutoSize, Globe Settings
 			}
 			Else If (Function = "Locate")
 			{
@@ -10973,22 +11485,32 @@ Return
 					newhex := ""
 					Loop, 3
 					{
-						RegExMatch(WR_Edit_Color_%AreaType%, "O)(0x[0-9A-Fa-f]{6})", m,CurPos)
-						CurPos := m.Pos(0) + m.Len(0)
+						RegExMatch(WR_Edit_Color_%AreaType%, "O)(x[0-9A-Fa-f]{6})", m,CurPos)
+						CurPos := m.Pos(0) + m.Len(0) - 1
 						If (m.1 != Split.hex && m.1 != "")
 						{
 							Split.new := m.1
-							Break
+							; Break
 						}
 					}
 					If (Split.new != "")
-						m := Split.new
+						m := "0" Split.new
 					Else
-						m := Split.hex
+						m := "0" Split.hex
 					Globe[AreaType].Color.Hex := WR_Edit_Color_%AreaType% := Format("0x{1:06X}",m)
 					GuiControl,Globe: , WR_Edit_Color_%AreaType%, % WR_Edit_Color_%AreaType%
 					Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
 					GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
+				}
+			}
+			Else If (Function = "FillMetamorph")
+			{
+				Gui, Submit
+				ValueType := Var[2]
+				Element := Var[1]
+				If (Element = "Btn")
+				{
+					
 				}
 			}
 			Else If (Function = "JSON")
@@ -10999,16 +11521,16 @@ Return
 				If (Element = "Save")
 				{
 					JSONtext := JSON.Dump(%ValueType%,,2)
-					If FileExist(A_ScriptDir "\data\" ValueType ".json")
-						FileDelete, %A_ScriptDir%\data\%ValueType%.json
-					FileAppend, %JSONtext%, %A_ScriptDir%\data\%ValueType%.json
+					If FileExist(A_ScriptDir "\save\" ValueType ".json")
+						FileDelete, %A_ScriptDir%\save\%ValueType%.json
+					FileAppend, %JSONtext%, %A_ScriptDir%\save\%ValueType%.json
 					Gui, 1: Show
 				}
 				Else if (Element = "Load")
 				{
-					If FileExist(A_ScriptDir "\data\" ValueType ".json")
+					If FileExist(A_ScriptDir "\save\" ValueType ".json")
 					{
-						FileRead, JSONtext, %A_ScriptDir%\data\%ValueType%.json
+						FileRead, JSONtext, %A_ScriptDir%\save\%ValueType%.json
 						%ValueType% := JSON.Load(JSONtext)
 					}
 					Else
@@ -11027,8 +11549,20 @@ Return
 			}	
 			Return
 
-			GlobeGuiClose:
-			GlobeGuiEscape:
+
+			ColorLabel_Life:
+			Picker.SetColor(Globe.Life.Color.hex)
+			Return
+			ColorLabel_Mana:
+			Picker.SetColor(Globe.Mana.Color.hex)
+			Return
+			ColorLabel_ES:
+			Picker.SetColor(Globe.ES.Color.hex)
+			Return
+			ColorLabel_EB:
+			Picker.SetColor(Globe.EB.Color.hex)
+			Return
+
 			InventoryGuiClose:
 			InventoryGuiEscape:
 			StringsGuiClose:
@@ -11039,6 +11573,13 @@ Return
 			ControllerGuiEscape:
 			HotkeysGuiClose:
 			HotkeysGuiEscape:
+				Gui, Submit
+				Gui, 1: show
+			return
+			
+			GlobeGuiClose:
+			GlobeGuiEscape:
+				GlobeActive:=False
 				Gui, Submit
 				Gui, 1: show
 			return
@@ -11103,7 +11644,7 @@ Return
 
 		LoadIgnoreArray()
 		{
-			FileRead, JSONtext, %A_ScriptDir%\data\IgnoredSlot.json
+			FileRead, JSONtext, %A_ScriptDir%\save\IgnoredSlot.json
 			IgnoredSlot := JSON.Load(JSONtext)
 			Return
 		}
@@ -11113,8 +11654,8 @@ Return
 			SaveIgnoreArray:
 			Gui, Ignore: Submit, NoHide
 			JSONtext := JSON.Dump(IgnoredSlot,,2)
-			FileDelete, %A_ScriptDir%\data\IgnoredSlot.json
-			FileAppend, %JSONtext%, %A_ScriptDir%\data\IgnoredSlot.json
+			FileDelete, %A_ScriptDir%\save\IgnoredSlot.json
+			FileAppend, %JSONtext%, %A_ScriptDir%\save\IgnoredSlot.json
 			LoadIgnoreArray()
 			Return
 		}
@@ -11131,11 +11672,11 @@ Return
 
 		LoadArray()
 		{
-			FileRead, JSONtext, %A_ScriptDir%\data\LootFilter.json
+			FileRead, JSONtext, %A_ScriptDir%\save\LootFilter.json
 			LootFilter := JSON.Load(JSONtext)
 			If !LootFilter
 				LootFilter:={}
-			FileRead, JSONtexttabs, %A_ScriptDir%\data\LootFilterTabs.json
+			FileRead, JSONtexttabs, %A_ScriptDir%\save\LootFilterTabs.json
 			LootFilterTabs := JSON.Load(JSONtexttabs)
 			If !LootFilterTabs
 				LootFilterTabs:={}
@@ -11221,86 +11762,97 @@ Return
 			; Gui, Submit, NoHide
 			Gui, Inventory: Submit, NoHide
 			;Stash Tab Management
-			IniWrite, %StashTabCurrency%, settings.ini, Stash Tab, StashTabCurrency
-			IniWrite, %StashTabMap%, settings.ini, Stash Tab, StashTabMap
-			IniWrite, %StashTabDivination%, settings.ini, Stash Tab, StashTabDivination
-			IniWrite, %StashTabGem%, settings.ini, Stash Tab, StashTabGem
-			IniWrite, %StashTabGemSupport%, settings.ini, Stash Tab, StashTabGemSupport
-			IniWrite, %StashTabGemQuality%, settings.ini, Stash Tab, StashTabGemQuality
-			IniWrite, %StashTabFlaskQuality%, settings.ini, Stash Tab, StashTabFlaskQuality
-			IniWrite, %StashTabLinked%, settings.ini, Stash Tab, StashTabLinked
-			IniWrite, %StashTabCollection%, settings.ini, Stash Tab, StashTabCollection
-			IniWrite, %StashTabUniqueRing%, settings.ini, Stash Tab, StashTabUniqueRing
-			IniWrite, %StashTabUniqueDump%, settings.ini, Stash Tab, StashTabUniqueDump
-			IniWrite, %StashTabFragment%, settings.ini, Stash Tab, StashTabFragment
-			IniWrite, %StashTabEssence%, settings.ini, Stash Tab, StashTabEssence
-			IniWrite, %StashTabOil%, settings.ini, Stash Tab, StashTabOil
-			IniWrite, %StashTabOrgan%, settings.ini, Stash Tab, StashTabOrgan
-			IniWrite, %StashTabFossil%, settings.ini, Stash Tab, StashTabFossil
-			IniWrite, %StashTabResonator%, settings.ini, Stash Tab, StashTabResonator
-			IniWrite, %StashTabCrafting%, settings.ini, Stash Tab, StashTabCrafting
-			IniWrite, %StashTabProphecy%, settings.ini, Stash Tab, StashTabProphecy
-			IniWrite, %StashTabVeiled%, settings.ini, Stash Tab, StashTabVeiled
-			IniWrite, %StashTabYesCurrency%, settings.ini, Stash Tab, StashTabYesCurrency
-			IniWrite, %StashTabYesMap%, settings.ini, Stash Tab, StashTabYesMap
-			IniWrite, %StashTabYesDivination%, settings.ini, Stash Tab, StashTabYesDivination
-			IniWrite, %StashTabYesGem%, settings.ini, Stash Tab, StashTabYesGem
-			IniWrite, %StashTabYesGemSupport%, settings.ini, Stash Tab, StashTabYesGemSupport
-			IniWrite, %StashTabYesGemQuality%, settings.ini, Stash Tab, StashTabYesGemQuality
-			IniWrite, %StashTabYesFlaskQuality%, settings.ini, Stash Tab, StashTabYesFlaskQuality
-			IniWrite, %StashTabYesLinked%, settings.ini, Stash Tab, StashTabYesLinked
-			IniWrite, %StashTabYesCollection%, settings.ini, Stash Tab, StashTabYesCollection
-			IniWrite, %StashTabYesUniqueRing%, settings.ini, Stash Tab, StashTabYesUniqueRing
-			IniWrite, %StashTabYesUniqueDump%, settings.ini, Stash Tab, StashTabYesUniqueDump
-			IniWrite, %StashTabYesFragment%, settings.ini, Stash Tab, StashTabYesFragment
-			IniWrite, %StashTabYesEssence%, settings.ini, Stash Tab, StashTabYesEssence
-			IniWrite, %StashTabYesOil%, settings.ini, Stash Tab, StashTabYesOil
-			IniWrite, %StashTabYesOrgan%, settings.ini, Stash Tab, StashTabYesOrgan
-			IniWrite, %StashTabYesFossil%, settings.ini, Stash Tab, StashTabYesFossil
-			IniWrite, %StashTabYesResonator%, settings.ini, Stash Tab, StashTabYesResonator
-			IniWrite, %StashTabYesCrafting%, settings.ini, Stash Tab, StashTabYesCrafting
-			IniWrite, %StashTabYesProphecy%, settings.ini, Stash Tab, StashTabYesProphecy
-			IniWrite, %StashTabYesVeiled%, settings.ini, Stash Tab, StashTabYesVeiled
+			IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
+			IniWrite, %StashTabMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap
+			IniWrite, %StashTabDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDivination
+			IniWrite, %StashTabGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem
+			IniWrite, %StashTabGemSupport%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemSupport
+			IniWrite, %StashTabGemQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemQuality
+			IniWrite, %StashTabFlaskQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlaskQuality
+			IniWrite, %StashTabLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked
+			IniWrite, %StashTabCollection%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCollection
+			IniWrite, %StashTabUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing
+			IniWrite, %StashTabUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump
+			IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
+			IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
+			IniWrite, %StashTabOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil
+			IniWrite, %StashTabOrgan%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOrgan
+			IniWrite, %StashTabFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil
+			IniWrite, %StashTabResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator
+			IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
+			IniWrite, %StashTabProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy
+			IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
+			IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
+			IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
+			IniWrite, %StashTabYesDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination
+			IniWrite, %StashTabYesGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem
+			IniWrite, %StashTabYesGemSupport%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemSupport
+			IniWrite, %StashTabYesGemQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemQuality
+			IniWrite, %StashTabYesFlaskQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlaskQuality
+			IniWrite, %StashTabYesLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked
+			IniWrite, %StashTabYesCollection%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCollection
+			IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
+			IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
+			IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
+			IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
+			IniWrite, %StashTabYesOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil
+			IniWrite, %StashTabYesOrgan%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOrgan
+			IniWrite, %StashTabYesFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFossil
+			IniWrite, %StashTabYesResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesResonator
+			IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
+			IniWrite, %StashTabYesProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy
+			IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
+			IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
+			IniWrite, %StashTabYesDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDump
+			IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial
+			IniWrite, %StashDumpSkipJC%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpSkipJC
+			IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
+			IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
+			IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
 		Return
 
 		UpdateExtra:
 			Gui, Submit, NoHide
-			Gui, Inventory: Submit, NoHide
-			IniWrite, %DetonateMines%, settings.ini, General, DetonateMines
-			IniWrite, %DetonateMinesDelay%, settings.ini, General, DetonateMinesDelay
-			IniWrite, %LootVacuum%, settings.ini, General, LootVacuum
-			IniWrite, %YesVendor%, settings.ini, General, YesVendor
-			IniWrite, %YesStash%, settings.ini, General, YesStash
-			IniWrite, %YesStashT1%, settings.ini, General, YesStashT1
-			IniWrite, %YesStashT2%, settings.ini, General, YesStashT2
-			IniWrite, %YesStashT3%, settings.ini, General, YesStashT3
-			IniWrite, %YesStashCraftingNormal%, settings.ini, General, YesStashCraftingNormal
-			IniWrite, %YesStashCraftingMagic%, settings.ini, General, YesStashCraftingMagic
-			IniWrite, %YesStashCraftingRare%, settings.ini, General, YesStashCraftingRare
-			IniWrite, %YesSkipMaps%, settings.ini, General, YesSkipMaps
-			IniWrite, %YesIdentify%, settings.ini, General, YesIdentify
-			IniWrite, %YesDiv%, settings.ini, General, YesDiv
-			IniWrite, %YesMapUnid%, settings.ini, General, YesMapUnid
-			IniWrite, %YesSortFirst%, settings.ini, General, YesSortFirst
-			IniWrite, %Latency%, settings.ini, General, Latency
-			IniWrite, %ClickLatency%, settings.ini, General, ClickLatency
-			IniWrite, %ClipLatency%, settings.ini, General, ClipLatency
-			IniWrite, %PopFlaskRespectCD%, settings.ini, General, PopFlaskRespectCD
-			IniWrite, %ShowOnStart%, settings.ini, General, ShowOnStart
-			IniWrite, %Steam%, settings.ini, General, Steam
-			IniWrite, %HighBits%, settings.ini, General, HighBits
-			IniWrite, %AutoUpdateOff%, settings.ini, General, AutoUpdateOff
-			IniWrite, %YesPersistantToggle%, settings.ini, General, YesPersistantToggle
-			IniWrite, %YesPopAllExtraKeys%, settings.ini, General, YesPopAllExtraKeys
-			IniWrite, %AreaScale%, settings.ini, General, AreaScale
-			IniWrite, %LVdelay%, settings.ini, General, LVdelay
-			IniWrite, %YesOHB%, settings.ini, OHB, YesOHB
-			IniWrite, %YesGlobeScan%, settings.ini, General, YesGlobeScan
-			IniWrite, %YesSearchForStash%, settings.ini, General, YesSearchForStash
-			IniWrite, %YesVendorAfterStash%, settings.ini, General, YesVendorAfterStash
-			IniWrite, %YesClickPortal%, settings.ini, General, YesClickPortal
-			IniWrite, %RelogOnQuit%, settings.ini, General, RelogOnQuit
-			IniWrite, %YesLootChests%, settings.ini, General, YesLootChests
+			; Gui, Inventory: Submit, NoHide
+			IniWrite, %DetonateMines%, %A_ScriptDir%\save\Settings.ini, General, DetonateMines
+			IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay
+			IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
+			IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
+			IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
+			IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
+			IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
+			IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
+			IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
+			IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
+			IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
+			IniWrite, %YesStashCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl
+			IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
+			IniWrite, %YesPredictivePrice%, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice
+			IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
+			IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
+			IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
+			IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
+			IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
+			IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
+			IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
+			IniWrite, %ClipLatency%, %A_ScriptDir%\save\Settings.ini, General, ClipLatency
+			IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
+			IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
+			IniWrite, %Steam%, %A_ScriptDir%\save\Settings.ini, General, Steam
+			IniWrite, %HighBits%, %A_ScriptDir%\save\Settings.ini, General, HighBits
+			IniWrite, %AutoUpdateOff%, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
+			IniWrite, %YesPersistantToggle%, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle
+			IniWrite, %YesPopAllExtraKeys%, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys
+			IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
+			IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
+			IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
+			IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
+			IniWrite, %YesSearchForStash%, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash
+			IniWrite, %YesVendorAfterStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash
+			IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
+			IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
+			IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
+			IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
 			If (YesPersistantToggle)
 				AutoReset()
 			if ( Steam ) {
@@ -11321,20 +11873,20 @@ Return
 
 		UpdateEldritchBattery:
 			Gui, Submit, NoHide
-			IniWrite, %YesEldritchBattery%, settings.ini, General, YesEldritchBattery
+			IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery
 			Rescale()
 		Return
 
 		UpdateStringEdit:
 			Gui, Submit, NoHide
-			IniWrite,% %A_GuiControl%, Settings.ini, FindText Strings,% A_GuiControl
+			IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini, FindText Strings,% A_GuiControl
 			If A_GuiControl = HealthBarStr
 				OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
 		Return
 
 		UpdateResolutionScale:
 			Gui, Submit, NoHide
-			IniWrite, %ResolutionScale%, settings.ini, General, ResolutionScale
+			IniWrite, %ResolutionScale%, %A_ScriptDir%\save\Settings.ini, General, ResolutionScale
 			Rescale()
 		Return
 
@@ -11354,57 +11906,57 @@ Return
 				GuiControl, Hide, YesLocation
 				GuiControl, Hide, YesLocation_t
 			}
-			IniWrite, %DebugMessages%, settings.ini, General, DebugMessages
-			IniWrite, %YesTimeMS%, settings.ini, General, YesTimeMS
-			IniWrite, %YesLocation%, settings.ini, General, YesLocation
+			IniWrite, %DebugMessages%, %A_ScriptDir%\save\Settings.ini, General, DebugMessages
+			IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
+			IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
 		Return
 
 		UpdateUtility:
 			Gui, Submit, NoHide
 			;Utility Buttons
-			IniWrite, %YesUtility1%, settings.ini, Utility Buttons, YesUtility1
-			IniWrite, %YesUtility2%, settings.ini, Utility Buttons, YesUtility2
-			IniWrite, %YesUtility3%, settings.ini, Utility Buttons, YesUtility3
-			IniWrite, %YesUtility4%, settings.ini, Utility Buttons, YesUtility4
-			IniWrite, %YesUtility5%, settings.ini, Utility Buttons, YesUtility5
-			IniWrite, %YesUtility1Quicksilver%, settings.ini, Utility Buttons, YesUtility1Quicksilver
-			IniWrite, %YesUtility2Quicksilver%, settings.ini, Utility Buttons, YesUtility2Quicksilver
-			IniWrite, %YesUtility3Quicksilver%, settings.ini, Utility Buttons, YesUtility3Quicksilver
-			IniWrite, %YesUtility4Quicksilver%, settings.ini, Utility Buttons, YesUtility4Quicksilver
-			IniWrite, %YesUtility5Quicksilver%, settings.ini, Utility Buttons, YesUtility5Quicksilver
+			IniWrite, %YesUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1
+			IniWrite, %YesUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2
+			IniWrite, %YesUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3
+			IniWrite, %YesUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4
+			IniWrite, %YesUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5
+			IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver
+			IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver
+			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver
+			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver
+			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver
 			
 			;Utility Percents	
-			IniWrite, %YesUtility1LifePercent%, settings.ini, Utility Buttons, YesUtility1LifePercent
-			IniWrite, %YesUtility2LifePercent%, settings.ini, Utility Buttons, YesUtility2LifePercent
-			IniWrite, %YesUtility3LifePercent%, settings.ini, Utility Buttons, YesUtility3LifePercent
-			IniWrite, %YesUtility4LifePercent%, settings.ini, Utility Buttons, YesUtility4LifePercent
-			IniWrite, %YesUtility5LifePercent%, settings.ini, Utility Buttons, YesUtility5LifePercent
-			IniWrite, %YesUtility1EsPercent%, settings.ini, Utility Buttons, YesUtility1EsPercent
-			IniWrite, %YesUtility2EsPercent%, settings.ini, Utility Buttons, YesUtility2EsPercent
-			IniWrite, %YesUtility3EsPercent%, settings.ini, Utility Buttons, YesUtility3EsPercent
-			IniWrite, %YesUtility4EsPercent%, settings.ini, Utility Buttons, YesUtility4EsPercent
-			IniWrite, %YesUtility5EsPercent%, settings.ini, Utility Buttons, YesUtility5EsPercent
+			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent
+			IniWrite, %YesUtility2LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2LifePercent
+			IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent
+			IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent
+			IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent
+			IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1EsPercent
+			IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2EsPercent
+			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent
+			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent
+			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent
 			
 			;Utility Cooldowns
-			IniWrite, %CooldownUtility1%, settings.ini, Utility Cooldowns, CooldownUtility1
-			IniWrite, %CooldownUtility2%, settings.ini, Utility Cooldowns, CooldownUtility2
-			IniWrite, %CooldownUtility3%, settings.ini, Utility Cooldowns, CooldownUtility3
-			IniWrite, %CooldownUtility4%, settings.ini, Utility Cooldowns, CooldownUtility4
-			IniWrite, %CooldownUtility5%, settings.ini, Utility Cooldowns, CooldownUtility5
+			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1
+			IniWrite, %CooldownUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility2
+			IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3
+			IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4
+			IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5
 			
 			;Utility Keys
-			IniWrite, %KeyUtility1%, settings.ini, Utility Keys, KeyUtility1
-			IniWrite, %KeyUtility2%, settings.ini, Utility Keys, KeyUtility2
-			IniWrite, %KeyUtility3%, settings.ini, Utility Keys, KeyUtility3
-			IniWrite, %KeyUtility4%, settings.ini, Utility Keys, KeyUtility4
-			IniWrite, %KeyUtility5%, settings.ini, Utility Keys, KeyUtility5
+			IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1
+			IniWrite, %KeyUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility2
+			IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3
+			IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4
+			IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5
 			
 			;Utility Keys
-			IniWrite, %IconStringUtility1%, settings.ini, Utility Icons, IconStringUtility1
-			IniWrite, %IconStringUtility2%, settings.ini, Utility Icons, IconStringUtility2
-			IniWrite, %IconStringUtility3%, settings.ini, Utility Icons, IconStringUtility3
-			IniWrite, %IconStringUtility4%, settings.ini, Utility Icons, IconStringUtility4
-			IniWrite, %IconStringUtility5%, settings.ini, Utility Icons, IconStringUtility5
+			IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1
+			IniWrite, %IconStringUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility2
+			IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3
+			IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4
+			IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5
 			
 			SendMSG(1, 0)
 		Return
@@ -11518,61 +12070,61 @@ Return
 		UpdateProfileText1:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText1, , ProfileText1
-			IniWrite, %ProfileText1%, profiles.ini, Profiles, ProfileText1
+			IniWrite, %ProfileText1%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText1
 		Return
 
 		UpdateProfileText2:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText2, , ProfileText2
-			IniWrite, %ProfileText2%, profiles.ini, Profiles, ProfileText2
+			IniWrite, %ProfileText2%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText2
 		Return
 
 		UpdateProfileText3:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText3, , ProfileText3
-			IniWrite, %ProfileText3%, profiles.ini, Profiles, ProfileText3
+			IniWrite, %ProfileText3%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText3
 		Return
 
 		UpdateProfileText4:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText4, , ProfileText4
-			IniWrite, %ProfileText4%, profiles.ini, Profiles, ProfileText4
+			IniWrite, %ProfileText4%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText4
 		Return
 
 		UpdateProfileText5:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText5, , ProfileText5
-			IniWrite, %ProfileText5%, profiles.ini, Profiles, ProfileText5
+			IniWrite, %ProfileText5%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText5
 		Return
 
 		UpdateProfileText6:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText6, , ProfileText6, 
-			IniWrite, %ProfileText6%, profiles.ini, Profiles, ProfileText6
+			IniWrite, %ProfileText6%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText6
 		Return
 
 		UpdateProfileText7:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText7, , ProfileText7
-			IniWrite, %ProfileText7%, profiles.ini, Profiles, ProfileText7
+			IniWrite, %ProfileText7%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText7
 		Return
 
 		UpdateProfileText8:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText8, , ProfileText8
-			IniWrite, %ProfileText8%, profiles.ini, Profiles, ProfileText8
+			IniWrite, %ProfileText8%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText8
 		Return
 
 		UpdateProfileText9:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText9, , ProfileText9
-			IniWrite, %ProfileText9%, profiles.ini, Profiles, ProfileText9
+			IniWrite, %ProfileText9%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText9
 		Return
 
 		UpdateProfileText10:
 			;Gui, Submit, NoHide
 			GuiControlGet, ProfileText10, , ProfileText10
-			IniWrite, %ProfileText10%, profiles.ini, Profiles, ProfileText10
+			IniWrite, %ProfileText10%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText10
 		Return
 
 		helpCalibration:
@@ -11587,7 +12139,7 @@ Return
 				Gui, submit, NoHide
 				If FileExist(ClientLog)
 				{
-					IniWrite, %ClientLog%, Settings.ini, Log, ClientLog
+					IniWrite, %ClientLog%, %A_ScriptDir%\save\Settings.ini, Log, ClientLog
 					Monitor_GameLogs(1)
 				}
 			}
@@ -11599,7 +12151,7 @@ Return
 				{
 					ClientLog := SelectClientLog
 					GuiControl,, ClientLog, %SelectClientLog%
-					IniWrite, %SelectClientLog%, Settings.ini, Log, ClientLog
+					IniWrite, %SelectClientLog%, %A_ScriptDir%\save\Settings.ini, Log, ClientLog
 					Monitor_GameLogs(1)
 				}
 				Hotkeys()

@@ -1,6 +1,79 @@
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
+Version .10.00 January/xx/2020
+--------------------------------------------------------------------------------
+Save Files for the script are now all located in "save" folder
+    If you want to migrate an old versions settings, you will need to move them
+    This allows for users to easily understand which files are their settings
+    I also cleared the main script folder of extrenuous files, just the main script
+        Files required for the script are now located in data folder
+
+Files you will need to move into the save folder:
+    Settings.ini                  -->           /save/Settings.ini
+    Profiles.ini                  -->           /save/Profiles.ini
+    /data/Globe.json              -->           /save/Globe.json
+    /data/LootFilter.json         -->           /save/LootFilter.json
+    /data/LootFilterTabs.json     -->           /save/LootFilterTabs.json
+    /data/Lootfilter.ini          -->           /save/Lootfilter.ini
+    /data/IgnoredSlot.json        -->           /save/IgnoredSlot.json
+
+Game window is now bound when detected for further captures
+    Logout and logic actions will happen while the game is in the background
+
+A method of Pausing PoE-TradeMacro from parsing clipboard has been implimented
+    Right click TradeMacro tray icon, > Edit Files > Custom Macros Example
+    Copy the changes from the included txt file into your open editor, then save
+    Essentially it adds a way for Wingman to send a message for it to pause
+
+The script can now use predictive pricing from the PoEPrices.info API
+    To enable this feature, select a pricepoint then the percentage of that price
+    It defaults to 100 percent (the estimated values themselves)
+    To enable using Predictive price while stashing, select the tab and tick the box
+    The Item Info hotkey will now display the price and affixes influencing price
+        they will appear inside the Prop list under PredictPrice and PredictPriceInfo
+    It will save a copy of the results to an array
+        Multiple queries to the same item will used Cached result
+        Array is started fresh every script start
+
+Gamestates has been improved to allow for the game to be in the background
+    it no longer flickers because it will only update when there are changes
+    OHB detection is now shown in the gamestates
+    Colors of the display have been changed
+        When everything shows green its all clear
+        when anything is lit up red it will pause the script
+
+Crafting tab has new option for filtering by item level
+    Check the box to filter by ilvl, then set the minimum ilvl to stash
+
+Bugfix for bulk vendor of flasks
+    If the flask has been augmented it will use its actual quality value
+    This is because quality 20 flasks only vendor on their own if not augmented
+    This function still needs some more attention, not sure why random miscounts
+
+Improvements to the Globe Settings GUI
+    Color picker has been added, click any of the sample colors to show R G B
+    Coord tool button added to the GUI
+        While active it will update the color picker to the mouse cursor
+    The edit boxes for colors will now ALWAYS update to the new pasted color
+        it was not working when pasting in between the 5th and 6th digit
+    MsgBox popups have been replaced with Notify panels
+        The information is still copied to the clipboard for use
+
+Built new classes for use with the script
+    PixelStatus is a simple class for managing pixel locations on the screen
+    PanelManager is a wrapper class for groups of PixelStatus
+        This class is a rewrite of the GuiStatus function
+    ColorPicker is a class for inserting a new Color Picker GUI into windows
+        This manages a group of Progress_Slider and associated text fields / buttons
+    Progress_Slider was written by HellBent on the AHK forums, modified for my use
+
+CLF menu adjusted to space the groups better
+
+Hoard added to openable containers
+
+Bugfix for PoE.Ninja json data being parsed incorrectly
+
 Version .09.11 January/24/2020
 --------------------------------------------------------------------------------
 Coord tool has been given a Zoom window which gives much more control for samples

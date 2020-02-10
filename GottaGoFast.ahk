@@ -314,7 +314,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      AutoQuicksilverCommand:
           AutoQuick := !AutoQuick	
-          IniWrite, %AutoQuick%, settings.ini, Previous Toggles, AutoQuick
+          IniWrite, %AutoQuick%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick
           if (!AutoQuick) {
                SetTimer TQuickTick, Off
           } else {
@@ -325,7 +325,7 @@
 ; AutoReset - Load Previous Toggle States
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      AutoReset(){
-          IniRead, AutoQuick, settings.ini, Previous Toggles, AutoQuick, 0
+          IniRead, AutoQuick, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick, 0
           if (!AutoQuick) {
                SetTimer TQuickTick, Off
           } else {
@@ -461,151 +461,151 @@
      ReadFromFile(){
           Global
           ;General
-          IniRead, Speed, settings.ini, General, Speed, 1
-          IniRead, QTick, settings.ini, General, QTick, 50
-          IniRead, PopFlaskRespectCD, settings.ini, General, PopFlaskRespectCD, 0
-          IniRead, ResolutionScale, settings.ini, General, ResolutionScale, Standard
-          IniRead, QSonMainAttack, settings.ini, General, QSonMainAttack, 0
-          IniRead, QSonSecondaryAttack, settings.ini, General, QSonSecondaryAttack, 0
-          IniRead, TriggerUtilityKey, settings.ini, General, TriggerUtilityKey, 1
-          IniRead, YesMovementKeys, settings.ini, General, YesMovementKeys, 0
-          IniRead, LootVacuum, settings.ini, General, LootVacuum, 0
-          IniRead, AreaScale, settings.ini, General, AreaScale, 0
-          IniRead, DebugMessages, settings.ini, General, DebugMessages, 0
+          IniRead, Speed, %A_ScriptDir%\save\Settings.ini, General, Speed, 1
+          IniRead, QTick, %A_ScriptDir%\save\Settings.ini, General, QTick, 50
+          IniRead, PopFlaskRespectCD, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD, 0
+          IniRead, ResolutionScale, %A_ScriptDir%\save\Settings.ini, General, ResolutionScale, Standard
+          IniRead, QSonMainAttack, %A_ScriptDir%\save\Settings.ini, General, QSonMainAttack, 0
+          IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack, 0
+          IniRead, TriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, General, TriggerUtilityKey, 1
+          IniRead, YesMovementKeys, %A_ScriptDir%\save\Settings.ini, General, YesMovementKeys, 0
+          IniRead, LootVacuum, %A_ScriptDir%\save\Settings.ini, General, LootVacuum, 0
+          IniRead, AreaScale, %A_ScriptDir%\save\Settings.ini, General, AreaScale, 0
+          IniRead, DebugMessages, %A_ScriptDir%\save\Settings.ini, General, DebugMessages, 0
           ;Settings for the Client Log file location
-          IniRead, ClientLog, Settings.ini, Log, ClientLog, %ClientLog%
+          IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
           If FileExist(ClientLog)
                Monitor_GameLogs(1)
           ;Coordinates
-          IniRead, GuiX, settings.ini, Coordinates, GuiX, -10
-          IniRead, GuiY, settings.ini, Coordinates, GuiY, 1027
+          IniRead, GuiX, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiX, -10
+          IniRead, GuiY, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiY, 1027
           ;Failsafe Colors
-          IniRead, varOnMenu, settings.ini, Failsafe Colors, OnMenu, 0xD6B97B
-          IniRead, varOnChar, settings.ini, Failsafe Colors, OnChar, 0x6B5543
-          IniRead, varOnChat, settings.ini, Failsafe Colors, OnChat, 0x88623B
-          IniRead, varOnInventory, settings.ini, Failsafe Colors, OnInventory, 0xDCC289
-          IniRead, varOnStash, settings.ini, Failsafe Colors, OnStash, 0xECDBA6
-          IniRead, varOnVendor, settings.ini, Failsafe Colors, OnVendor, 0xCEB178
-          IniRead, varOnDiv, settings.ini, Failsafe Colors, OnDiv, 0xF6E2C5
-          IniRead, varOnLeft, settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
-          IniRead, varOnDelveChart, settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
-          IniRead, varOnDetonate, settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
+          IniRead, varOnMenu, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMenu, 0xD6B97B
+          IniRead, varOnChar, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChar, 0x6B5543
+          IniRead, varOnChat, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChat, 0x88623B
+          IniRead, varOnInventory, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnInventory, 0xDCC289
+          IniRead, varOnStash, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStash, 0xECDBA6
+          IniRead, varOnVendor, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnVendor, 0xCEB178
+          IniRead, varOnDiv, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDiv, 0xF6E2C5
+          IniRead, varOnLeft, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
+          IniRead, varOnDelveChart, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
+          IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
           ;Utility Buttons
-          IniRead, YesUtility1, settings.ini, Utility Buttons, YesUtility1, 0
-          IniRead, YesUtility2, settings.ini, Utility Buttons, YesUtility2, 0
-          IniRead, YesUtility3, settings.ini, Utility Buttons, YesUtility3, 0
-          IniRead, YesUtility4, settings.ini, Utility Buttons, YesUtility4, 0
-          IniRead, YesUtility5, settings.ini, Utility Buttons, YesUtility5, 0
-          IniRead, YesUtility1Quicksilver, settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
-          IniRead, YesUtility2Quicksilver, settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
-          IniRead, YesUtility3Quicksilver, settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
-          IniRead, YesUtility4Quicksilver, settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
-          IniRead, YesUtility5Quicksilver, settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
+          IniRead, YesUtility1, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1, 0
+          IniRead, YesUtility2, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2, 0
+          IniRead, YesUtility3, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3, 0
+          IniRead, YesUtility4, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4, 0
+          IniRead, YesUtility5, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5, 0
+          IniRead, YesUtility1Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
+          IniRead, YesUtility2Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
+          IniRead, YesUtility3Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
+          IniRead, YesUtility4Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
+          IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
 
           ;Utility Percents	
-          IniRead, YesUtility1LifePercent, settings.ini, Utility Buttons, YesUtility1LifePercent, Off
-          IniRead, YesUtility2LifePercent, settings.ini, Utility Buttons, YesUtility2LifePercent, Off
-          IniRead, YesUtility3LifePercent, settings.ini, Utility Buttons, YesUtility3LifePercent, Off
-          IniRead, YesUtility4LifePercent, settings.ini, Utility Buttons, YesUtility4LifePercent, Off
-          IniRead, YesUtility5LifePercent, settings.ini, Utility Buttons, YesUtility5LifePercent, Off
-          IniRead, YesUtility1EsPercent, settings.ini, Utility Buttons, YesUtility1EsPercent, Off
-          IniRead, YesUtility2EsPercent, settings.ini, Utility Buttons, YesUtility2EsPercent, Off
-          IniRead, YesUtility3EsPercent, settings.ini, Utility Buttons, YesUtility3EsPercent, Off
-          IniRead, YesUtility4EsPercent, settings.ini, Utility Buttons, YesUtility4EsPercent, Off
-          IniRead, YesUtility5EsPercent, settings.ini, Utility Buttons, YesUtility5EsPercent, Off
+          IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent, Off
+          IniRead, YesUtility2LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2LifePercent, Off
+          IniRead, YesUtility3LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent, Off
+          IniRead, YesUtility4LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent, Off
+          IniRead, YesUtility5LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent, Off
+          IniRead, YesUtility1EsPercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1EsPercent, Off
+          IniRead, YesUtility2EsPercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2EsPercent, Off
+          IniRead, YesUtility3EsPercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent, Off
+          IniRead, YesUtility4EsPercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent, Off
+          IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent, Off
 
           ;Utility Cooldowns
-          IniRead, CooldownUtility1, settings.ini, Utility Cooldowns, CooldownUtility1, 5000
-          IniRead, CooldownUtility2, settings.ini, Utility Cooldowns, CooldownUtility2, 5000
-          IniRead, CooldownUtility3, settings.ini, Utility Cooldowns, CooldownUtility3, 5000
-          IniRead, CooldownUtility4, settings.ini, Utility Cooldowns, CooldownUtility4, 5000
-          IniRead, CooldownUtility5, settings.ini, Utility Cooldowns, CooldownUtility5, 5000
+          IniRead, CooldownUtility1, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1, 5000
+          IniRead, CooldownUtility2, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility2, 5000
+          IniRead, CooldownUtility3, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3, 5000
+          IniRead, CooldownUtility4, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4, 5000
+          IniRead, CooldownUtility5, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5, 5000
 
           ;Utility Keys
-          IniRead, KeyUtility1, settings.ini, Utility Keys, KeyUtility1, q
-          IniRead, KeyUtility2, settings.ini, Utility Keys, KeyUtility2, w
-          IniRead, KeyUtility3, settings.ini, Utility Keys, KeyUtility3, e
-          IniRead, KeyUtility4, settings.ini, Utility Keys, KeyUtility4, r
-          IniRead, KeyUtility5, settings.ini, Utility Keys, KeyUtility5, t
+          IniRead, KeyUtility1, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1, q
+          IniRead, KeyUtility2, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility2, w
+          IniRead, KeyUtility3, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3, e
+          IniRead, KeyUtility4, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4, r
+          IniRead, KeyUtility5, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5, t
 
           ;Utility Icon Strings
-          IniRead, IconStringUtility1, settings.ini, Utility Icons, IconStringUtility1, %A_Space%
+          IniRead, IconStringUtility1, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1, %A_Space%
           If IconStringUtility1
                IconStringUtility1 := """" . IconStringUtility1 . """"
-          IniRead, IconStringUtility2, settings.ini, Utility Icons, IconStringUtility2, %A_Space%
+          IniRead, IconStringUtility2, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility2, %A_Space%
           If IconStringUtility2
                IconStringUtility2 := """" . IconStringUtility2 . """"
-          IniRead, IconStringUtility3, settings.ini, Utility Icons, IconStringUtility3, %A_Space%
+          IniRead, IconStringUtility3, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3, %A_Space%
           If IconStringUtility3
                IconStringUtility3 := """" . IconStringUtility3 . """"
-          IniRead, IconStringUtility4, settings.ini, Utility Icons, IconStringUtility4, %A_Space%
+          IniRead, IconStringUtility4, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4, %A_Space%
           If IconStringUtility4
                IconStringUtility4 := """" . IconStringUtility4 . """"
-          IniRead, IconStringUtility5, settings.ini, Utility Icons, IconStringUtility5, %A_Space%
+          IniRead, IconStringUtility5, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5, %A_Space%
           If IconStringUtility5
                IconStringUtility5 := """" . IconStringUtility5 . """"
 
           ;Flask Keys
-          IniRead, keyFlask1, settings.ini, Flask Keys, keyFlask1, 1
-          IniRead, keyFlask2, settings.ini, Flask Keys, keyFlask2, 2
-          IniRead, keyFlask3, settings.ini, Flask Keys, keyFlask3, 3
-          IniRead, keyFlask4, settings.ini, Flask Keys, keyFlask4, 4
-          IniRead, keyFlask5, settings.ini, Flask Keys, keyFlask5, 5
+          IniRead, keyFlask1, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask1, 1
+          IniRead, keyFlask2, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask2, 2
+          IniRead, keyFlask3, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask3, 3
+          IniRead, keyFlask4, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask4, 4
+          IniRead, keyFlask5, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask5, 5
 
           ;Flask Cooldowns
-          IniRead, CooldownFlask1, settings.ini, Flask Cooldowns, CooldownFlask1, 4800
-          IniRead, CooldownFlask2, settings.ini, Flask Cooldowns, CooldownFlask2, 4800
-          IniRead, CooldownFlask3, settings.ini, Flask Cooldowns, CooldownFlask3, 4800
-          IniRead, CooldownFlask4, settings.ini, Flask Cooldowns, CooldownFlask4, 4800
-          IniRead, CooldownFlask5, settings.ini, Flask Cooldowns, CooldownFlask5, 4800
-          IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
-          IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
+          IniRead, CooldownFlask1, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask1, 4800
+          IniRead, CooldownFlask2, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask2, 4800
+          IniRead, CooldownFlask3, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask3, 4800
+          IniRead, CooldownFlask4, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask4, 4800
+          IniRead, CooldownFlask5, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask5, 4800
+          IniRead, hotkeyLootScan, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan, f
+          IniRead, hotkeyCloseAllUI, %A_ScriptDir%\save\Settings.ini, hotkeys, CloseAllUI, Space
 
           ;Quicksilver
-          IniRead, TriggerQuicksilverDelay, settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
-          IniRead, TriggerQuicksilver, settings.ini, Quicksilver, TriggerQuicksilver, 00000
+          IniRead, TriggerQuicksilverDelay, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilverDelay, 0.5
+          IniRead, TriggerQuicksilver, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilver, 00000
           Loop, 5 {	
                valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
                QuicksilverSlot%A_Index% := valueQuicksilver
           }
 
           ;Controller setup
-          IniRead, hotkeyControllerButton1, settings.ini, Controller Keys, ControllerButton1, LButton
-          IniRead, hotkeyControllerButton2, settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
-          IniRead, hotkeyControllerButton3, settings.ini, Controller Keys, ControllerButton3, q
-          IniRead, hotkeyControllerButton4, settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
-          IniRead, hotkeyControllerButton5, settings.ini, Controller Keys, ControllerButton5, e
-          IniRead, hotkeyControllerButton6, settings.ini, Controller Keys, ControllerButton6, RButton
-          IniRead, hotkeyControllerButton7, settings.ini, Controller Keys, ControllerButton7, ItemSort
-          IniRead, hotkeyControllerButton8, settings.ini, Controller Keys, ControllerButton8, Logout
-          IniRead, hotkeyControllerButton9, settings.ini, Controller Keys, ControllerButton9, Tab
-          IniRead, hotkeyControllerButton10, settings.ini, Controller Keys, ControllerButton10, QuickPortal
-          IniRead, hotkeyControllerJoystick2, settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
+          IniRead, hotkeyControllerButton1, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton1, LButton
+          IniRead, hotkeyControllerButton2, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
+          IniRead, hotkeyControllerButton3, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton3, q
+          IniRead, hotkeyControllerButton4, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
+          IniRead, hotkeyControllerButton5, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton5, e
+          IniRead, hotkeyControllerButton6, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton6, RButton
+          IniRead, hotkeyControllerButton7, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton7, ItemSort
+          IniRead, hotkeyControllerButton8, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton8, Logout
+          IniRead, hotkeyControllerButton9, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton9, Tab
+          IniRead, hotkeyControllerButton10, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton10, QuickPortal
+          IniRead, hotkeyControllerJoystick2, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
 
-          IniRead, YesTriggerUtilityKey, settings.ini, Controller, YesTriggerUtilityKey, 1
-          IniRead, YesTriggerUtilityJoystickKey, settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
-          IniRead, YesTriggerJoystick2Key, settings.ini, Controller, YesTriggerJoystick2Key, 1
-          IniRead, TriggerUtilityKey, settings.ini, Controller, TriggerUtilityKey, 1
-          IniRead, YesMovementKeys, settings.ini, Controller, YesMovementKeys, 0
-          IniRead, YesController, settings.ini, Controller, YesController, 0
-          IniRead, JoystickNumber, settings.ini, Controller, JoystickNumber, 0
+          IniRead, YesTriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey, 1
+          IniRead, YesTriggerUtilityJoystickKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
+          IniRead, YesTriggerJoystick2Key, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystick2Key, 1
+          IniRead, TriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, Controller, TriggerUtilityKey, 1
+          IniRead, YesMovementKeys, %A_ScriptDir%\save\Settings.ini, Controller, YesMovementKeys, 0
+          IniRead, YesController, %A_ScriptDir%\save\Settings.ini, Controller, YesController, 0
+          IniRead, JoystickNumber, %A_ScriptDir%\save\Settings.ini, Controller, JoystickNumber, 0
 
-          IniRead, Latency, settings.ini, General, Latency, 1
+          IniRead, Latency, %A_ScriptDir%\save\Settings.ini, General, Latency, 1
 
           DetectJoystick()
-          IniRead, YesPersistantToggle, settings.ini, General, YesPersistantToggle, 0
+          IniRead, YesPersistantToggle, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle, 0
           If (YesPersistantToggle)
                AutoReset()
           
           ;hotkeys
-          IniRead, hotkeyMainAttack, settings.ini, hotkeys, MainAttack, RButton
-          IniRead, hotkeySecondaryAttack, settings.ini, hotkeys, SecondaryAttack, w
-          IniRead, hotkeyLootScan, settings.ini, hotkeys, LootScan, f
-          IniRead, hotkeyCloseAllUI, settings.ini, hotkeys, CloseAllUI, Space
+          IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
+          IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
+          IniRead, hotkeyLootScan, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan, f
+          IniRead, hotkeyCloseAllUI, %A_ScriptDir%\save\Settings.ini, hotkeys, CloseAllUI, Space
 
           If hotkeyAutoQuicksilver
                hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, Off
-          IniRead, hotkeyAutoQuicksilver, settings.ini, hotkeys, AutoQuicksilver, !MButton
+          IniRead, hotkeyAutoQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver, !MButton
           If hotkeyAutoQuicksilver
                hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
           IfWinExist, ahk_group POEGameGroup
