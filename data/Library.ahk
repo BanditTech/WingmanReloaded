@@ -759,7 +759,7 @@
     ; Rescale - Rescales values of the script to the user's resolution
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Rescale(){
-        Global GameX, GameY, GameW, GameH
+        Global GameX, GameY, GameW, GameH, FillMetamorph
         IfWinExist, ahk_group POEGameGroup 
         {
             WinGetPos, GameX, GameY, GameW, GameH
@@ -767,10 +767,21 @@
                 ; Item Inventory Grid
                 Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
                 Global InventoryGridY := [ GameY + Round(GameH/(1080/638)), GameY + Round(GameH/(1080/690)), GameY + Round(GameH/(1080/743)), GameY + Round(GameH/(1080/796)), GameY + Round(GameH/(1080/848)) ]  
+                ; Fill Metamorph
+                IfExist, %A_ScriptDir%\save\FillMetamorph.json
+                {
+                    FileRead, JSONtext, %A_ScriptDir%\save\FillMetamorph.json
+                    Global FillMetamorph := JSON.Load(JSONtext)
+                }
+                Else
+                {
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(1920/329))
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(1920/745))
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
-                Global DetonateX:=GameX + Round(GameW/(1920/1658))
-                Global DetonateY:=GameY + Round(GameH/(1080/901))
                 ;Scrolls in currency tab
                 Global WisdomStockX:=GameX + Round(GameW/(1920/125))
                 Global PortalStockX:=GameX + Round(GameW/(1920/175))
@@ -2774,17 +2785,17 @@
     ; Fill the metamorph panel when it first appears
     Metamorph_FillOrgans()
     {
-        Static X1:=329, Y1:=189, X2:=745, Y2:=746
-            , Width := X2 - X1, Height := Y2 - Y1
-            , Height_Cell := Height // 5, Width_Cell := Width // 6
-            , Offset_H_Cell := (Height_Cell // 3) * 2, Offset_W_Cell := Width_Cell // 2
-        yMarker := Y1 + Offset_H_Cell
-        xMarker := X1 + Offset_W_Cell
+        Global FillMetamorph
+        H_Cell := (FillMetamorph.Y2 - FillMetamorph.Y1) // 5
+        W_Cell := (FillMetamorph.X2 - FillMetamorph.X1) // 6
+        yMarker := FillMetamorph.Y1 + ((H_Cell // 3) * 2)
+        xMarker := FillMetamorph.X1 + (W_Cell // 2)
         Loop, 5
         {
-            yMarker += (A_Index!=1?Height_Cell:0)
+            yMarker += (A_Index!=1?H_Cell:0)
             CtrlClick(xMarker,yMarker)
         }
+        MouseMove % GameW//2,% yMarker + H_Cell // 4
         Return
     }
     ; Cooldown Timers

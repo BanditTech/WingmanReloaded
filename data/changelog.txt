@@ -35,9 +35,14 @@ The script can now use predictive pricing from the PoEPrices.info API
     It will save a copy of the results to an array
         Multiple queries to the same item will used Cached result
         Array is started fresh every script start
+    
+Utilities have been improved - new settings
+    Can now support inversed Buff detection, will fire when buff is Found
+    Can now use Mana as a triggered threshold
+    Can now trigger utilities when pressing Primary or Secondary attack
 
 Gamestates has been improved to allow for the game to be in the background
-    it no longer flickers because it will only update when there are changes
+    tooltip no longer flickers because it will only update when there are changes
     OHB detection is now shown in the gamestates
     Colors of the display have been changed
         When everything shows green its all clear

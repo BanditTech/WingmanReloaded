@@ -338,6 +338,7 @@
 			, ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
 			, ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
 			, ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
+		Global FillMetamorph := {}
 		ft_ToolTip_Text=
 			(LTrim
 			QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
@@ -483,6 +484,11 @@
 			StashTabCrafting = Assign the Stash tab for Crafting items
 			StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
 			YesNinjaDatabase = Enable to Update Ninja Database and load at start
+			YesUtility1InverseBuff = Fire instead only when buff icon is present
+			YesUtility2InverseBuff = Fire instead only when buff icon is present
+			YesUtility3InverseBuff = Fire instead only when buff icon is present
+			YesUtility4InverseBuff = Fire instead only when buff icon is present
+			YesUtility5InverseBuff = Fire instead only when buff icon is present
 			WR_Btn_Inventory = Open the settings related to the inventory
 			WR_Btn_Strings = Open the settings related to the FindText Strings
 			WR_Btn_Chat = Open the settings related to the Chat Hotkeys
@@ -847,9 +853,12 @@
 	; Utility Buttons
 		global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
 		global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
+		global YesUtility1InverseBuff, YesUtility2InverseBuff, YesUtility3InverseBuff, YesUtility4InverseBuff, YesUtility5InverseBuff
 		global YesUtility1LifePercent, YesUtility2LifePercent, YesUtility3LifePercent, YesUtility4LifePercent, YesUtility5LifePercent
 		global YesUtility1ESPercent, YesUtility2ESPercent, YesUtility3ESPercent, YesUtility4ESPercent, YesUtility5ESPercent
-
+		global YesUtility1ManaPercent, YesUtility2ManaPercent, YesUtility3ManaPercent, YesUtility4ManaPercent, YesUtility5ManaPercent
+		global YesUtility1MainAttack, YesUtility2MainAttack, YesUtility3MainAttack, YesUtility4MainAttack, YesUtility5MainAttack
+		global YesUtility1SecondaryAttack, YesUtility2SecondaryAttack, YesUtility3SecondaryAttack, YesUtility4SecondaryAttack, YesUtility5SecondaryAttack
 	; Utility Cooldowns
 		global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
 		global OnCooldownUtility1 := 0
@@ -857,12 +866,10 @@
 		global OnCooldownUtility3 := 0
 		global OnCooldownUtility4 := 0
 		global OnCooldownUtility5 := 0
-
 	; Utility Keys
 		global KeyUtility1, KeyUtility2, KeyUtility3, KeyUtility4, KeyUtility5
 	; Utility Icons
 		global IconStringUtility1, IconStringUtility2, IconStringUtility3, IconStringUtility4, IconStringUtility5
-
 	; Flask Cooldowns
 		global CooldownFlask1:=5000
 		global CooldownFlask2:=5000
@@ -966,711 +973,756 @@
 	Gui Add, Checkbox, 	vYesLocation Checked%YesLocation%  gUpdateDebug   	x435 	y5 	    w13 h13
 	Gui Add, Text, 				vYesLocation_t						x385	y5, 				Location:
 
-	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap , Flasks and Utility|Configuration
+	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap , Flasks|Utility|Configuration
 	;#######################################################################################################Flasks and Utility Tab
-	Gui, Tab, Flasks and Utility
-	Gui, Font,
-	Gui, Font, Bold
-	Gui Add, Text, 										x12 	y30, 				Flask Settings
-	Gui, Font,
+	Gui, Tab, Flasks
+		Gui, Font,
+		Gui, Font, Bold
+		Gui Add, Text, 										x12 	y30, 				Flask Settings
+		Gui, Font,
 
-	Gui Add, GroupBox, 				Section		w160 h35				x+12 	yp-7, 				Character Type:
-	Gui, Font, cRed
-	Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					xs+8 ys+14 gUpdateCharacterType, 	Life
-	Gui, Font, cPurple
-	Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
-	Gui, Font, cBlue
-	Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	ES
-	Gui, Font
+		Gui Add, GroupBox, 				Section		w160 h35				x+12 	yp-7, 				Character Type:
+		Gui, Font, cRed
+		Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					xs+8 ys+14 gUpdateCharacterType, 	Life
+		Gui, Font, cPurple
+		Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
+		Gui, Font, cBlue
+		Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	ES
+		Gui, Font
 
-	Gui Add, Text, 										x63 	y+10, 				Flask 1
-	Gui Add, Text, 										x+8, 						Flask 2
-	Gui Add, Text, 										x+7, 						Flask 3
-	Gui Add, Text, 										x+8, 						Flask 4
-	Gui Add, Text, 										x+7, 						Flask 5
+		Gui Add, Text, 										x63 	y+10, 				Flask 1
+		Gui Add, Text, 										x+8, 						Flask 2
+		Gui Add, Text, 										x+7, 						Flask 3
+		Gui Add, Text, 										x+8, 						Flask 4
+		Gui Add, Text, 										x+7, 						Flask 5
 
-	Gui Add, Text, 			Section						x12 	y+5, 				Duration:
-	Gui Add, Edit, 			vCooldownFlask1 			x63 	ys-2 	w34	h17, 	%CooldownFlask1%
-	Gui Add, Edit, 			vCooldownFlask2 			x+8 			w34	h17, 	%CooldownFlask2%
-	Gui Add, Edit, 			vCooldownFlask3 			x+7 			w34	h17, 	%CooldownFlask3%
-	Gui Add, Edit, 			vCooldownFlask4 			x+8 			w34	h17, 	%CooldownFlask4%
-	Gui Add, Edit, 			vCooldownFlask5 			x+7 			w34	h17, 	%CooldownFlask5%
+		Gui Add, Text, 			Section						x12 	y+5, 				Duration:
+		Gui Add, Edit, 			vCooldownFlask1 			x63 	ys-2 	w34	h17, 	%CooldownFlask1%
+		Gui Add, Edit, 			vCooldownFlask2 			x+8 			w34	h17, 	%CooldownFlask2%
+		Gui Add, Edit, 			vCooldownFlask3 			x+7 			w34	h17, 	%CooldownFlask3%
+		Gui Add, Edit, 			vCooldownFlask4 			x+8 			w34	h17, 	%CooldownFlask4%
+		Gui Add, Edit, 			vCooldownFlask5 			x+7 			w34	h17, 	%CooldownFlask5%
 
-	Gui Add, Text, 			Section				x13 	y+5, % 			   "  IG Key:"
-	Gui Add, Edit, 			vkeyFlask1 			x63 	ys-2 	w34	h17, 	%keyFlask1%
-	Gui Add, Edit, 			vkeyFlask2 			x+8 			w34	h17, 	%keyFlask2%
-	Gui Add, Edit, 			vkeyFlask3 			x+7 			w34	h17, 	%keyFlask3%
-	Gui Add, Edit, 			vkeyFlask4 			x+8 			w34	h17, 	%keyFlask4%
-	Gui Add, Edit, 			vkeyFlask5 			x+7 			w34	h17, 	%keyFlask5%
+		Gui Add, Text, 			Section				x13 	y+5, % 			   "  IG Key:"
+		Gui Add, Edit, 			vkeyFlask1 			x63 	ys-2 	w34	h17, 	%keyFlask1%
+		Gui Add, Edit, 			vkeyFlask2 			x+8 			w34	h17, 	%keyFlask2%
+		Gui Add, Edit, 			vkeyFlask3 			x+7 			w34	h17, 	%keyFlask3%
+		Gui Add, Edit, 			vkeyFlask4 			x+8 			w34	h17, 	%keyFlask4%
+		Gui Add, Edit, 			vkeyFlask5 			x+7 			w34	h17, 	%keyFlask5%
 
-	Gui, Font, cRed
-	Gui Add, Text,			Section							x62	 	y+5, 				Life
-	Gui Add, Text,										x+25, 						Life
-	Gui Add, Text,										x+24, 						Life
-	Gui Add, Text,										x+24, 						Life
-	Gui Add, Text,										x+24, 						Life
-	Gui, Font
-	Gui Add, Text,										x80	 	ys,				|
-	Gui Add, Text,										x+40, 						|
-	Gui Add, Text,										x+39, 						|
-	Gui Add, Text,										x+39, 						|
-	Gui Add, Text,										x+39, 						|
-	Gui, Font, cBlue
-	Gui Add, Text,										x83	 	ys,				ES
-	Gui Add, Text,										x+28, 						ES
-	Gui Add, Text,										x+27, 						ES
-	Gui Add, Text,										x+27, 						ES
-	Gui Add, Text,										x+27, 						ES
-	Gui, Font
+		Gui, Font, cRed
+		Gui Add, Text,			Section							x62	 	y+5, 				Life
+		Gui Add, Text,										x+25, 						Life
+		Gui Add, Text,										x+24, 						Life
+		Gui Add, Text,										x+24, 						Life
+		Gui Add, Text,										x+24, 						Life
+		Gui, Font
+		Gui Add, Text,										x80	 	ys,				|
+		Gui Add, Text,										x+40, 						|
+		Gui Add, Text,										x+39, 						|
+		Gui Add, Text,										x+39, 						|
+		Gui Add, Text,										x+39, 						|
+		Gui, Font, cBlue
+		Gui Add, Text,										x83	 	ys,				ES
+		Gui Add, Text,										x+28, 						ES
+		Gui Add, Text,										x+27, 						ES
+		Gui Add, Text,										x+27, 						ES
+		Gui Add, Text,										x+27, 						ES
+		Gui, Font
 
-	Gui Add, Text, 			Section							x23 	y+5, 				< 90`%:
-	Gui Add, Text, 												y+5, 				< 80`%:
-	Gui Add, Text, 												y+5, 				< 70`%:
-	Gui Add, Text, 												y+5, 				< 60`%:
-	Gui Add, Text, 												y+5, 				< 50`%:
-	Gui Add, Text, 												y+5, 				< 40`%:
-	Gui Add, Text, 												y+5, 				< 30`%:
-	Gui Add, Text, 												y+5, 				< 20`%:
-	Gui Add, Text, 										x17		y+5, 				Disable:
+		Gui Add, Text, 			Section							x23 	y+5, 				< 90`%:
+		Gui Add, Text, 												y+5, 				< 80`%:
+		Gui Add, Text, 												y+5, 				< 70`%:
+		Gui Add, Text, 												y+5, 				< 60`%:
+		Gui Add, Text, 												y+5, 				< 50`%:
+		Gui Add, Text, 												y+5, 				< 40`%:
+		Gui Add, Text, 												y+5, 				< 30`%:
+		Gui Add, Text, 												y+5, 				< 20`%:
+		Gui Add, Text, 										x17		y+5, 				Disable:
 
-	loop 5 
-		{
-		Gui Add, Radio, Group 	vRadiobox%A_Index%Life90 gFlaskCheck		x+12	ys  	w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%Life80 gFlaskCheck				y+5 	w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%Life70 gFlaskCheck				y+5 	w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%Life60 gFlaskCheck				y+5 	w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%Life50 gFlaskCheck				y+5 	w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%Life40 gFlaskCheck				y+5 	w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%Life30 gFlaskCheck				y+5 	w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%Life20 gFlaskCheck				y+5 	w13 h13
-		Gui Add, Radio, 		vRadioUncheck%A_Index%Life 					y+5 	w13 h13
-		
-		Gui Add, Radio, Group 	vRadiobox%A_Index%ES90 gFlaskCheck			x+3 	ys  	w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%ES80 gFlaskCheck					y+5		w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%ES70 gFlaskCheck					y+5		w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%ES60 gFlaskCheck					y+5		w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%ES50 gFlaskCheck					y+5		w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%ES40 gFlaskCheck					y+5		w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%ES30 gFlaskCheck					y+5		w13 h13
-		Gui Add, Radio, 		vRadiobox%A_Index%ES20 gFlaskCheck					y+5		w13 h13
-		Gui Add, Radio, 		vRadioUncheck%A_Index%ES 					y+5 	w13 h13
-		}
-	Loop, 5 {
-		valueLife20 := substr(TriggerLife20, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
-		valueLife30 := substr(TriggerLife30, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
-		valueLife40 := substr(TriggerLife40, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
-		valueLife50 := substr(TriggerLife50, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
-		valueLife60 := substr(TriggerLife60, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
-		valueLife70 := substr(TriggerLife70, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
-		valueLife80 := substr(TriggerLife80, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
-		valueLife90 := substr(TriggerLife90, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
-		valueDisableLife := substr(DisableLife, (A_Index), 1)
-		GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
-		valueES20 := substr(TriggerES20, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%ES20, %valueES20%
-		valueES30 := substr(TriggerES30, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%ES30, %valueES30%
-		valueES40 := substr(TriggerES40, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%ES40, %valueES40%
-		valueES50 := substr(TriggerES50, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%ES50, %valueES50%
-		valueES60 := substr(TriggerES60, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%ES60, %valueES60%
-		valueES70 := substr(TriggerES70, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%ES70, %valueES70%
-		valueES80 := substr(TriggerES80, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%ES80, %valueES80%
-		valueES90 := substr(TriggerES90, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%ES90, %valueES90%
-		valueDisableES := substr(DisableES, (A_Index), 1)
-		GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
-		}	
+		loop 5 
+			{
+			Gui Add, Radio, Group 	vRadiobox%A_Index%Life90 gFlaskCheck		x+12	ys  	w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%Life80 gFlaskCheck				y+5 	w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%Life70 gFlaskCheck				y+5 	w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%Life60 gFlaskCheck				y+5 	w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%Life50 gFlaskCheck				y+5 	w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%Life40 gFlaskCheck				y+5 	w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%Life30 gFlaskCheck				y+5 	w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%Life20 gFlaskCheck				y+5 	w13 h13
+			Gui Add, Radio, 		vRadioUncheck%A_Index%Life 					y+5 	w13 h13
+			
+			Gui Add, Radio, Group 	vRadiobox%A_Index%ES90 gFlaskCheck			x+3 	ys  	w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%ES80 gFlaskCheck					y+5		w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%ES70 gFlaskCheck					y+5		w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%ES60 gFlaskCheck					y+5		w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%ES50 gFlaskCheck					y+5		w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%ES40 gFlaskCheck					y+5		w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%ES30 gFlaskCheck					y+5		w13 h13
+			Gui Add, Radio, 		vRadiobox%A_Index%ES20 gFlaskCheck					y+5		w13 h13
+			Gui Add, Radio, 		vRadioUncheck%A_Index%ES 					y+5 	w13 h13
+			}
+		Loop, 5 {
+			valueLife20 := substr(TriggerLife20, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
+			valueLife30 := substr(TriggerLife30, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
+			valueLife40 := substr(TriggerLife40, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
+			valueLife50 := substr(TriggerLife50, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
+			valueLife60 := substr(TriggerLife60, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
+			valueLife70 := substr(TriggerLife70, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
+			valueLife80 := substr(TriggerLife80, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
+			valueLife90 := substr(TriggerLife90, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
+			valueDisableLife := substr(DisableLife, (A_Index), 1)
+			GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
+			valueES20 := substr(TriggerES20, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%ES20, %valueES20%
+			valueES30 := substr(TriggerES30, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%ES30, %valueES30%
+			valueES40 := substr(TriggerES40, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%ES40, %valueES40%
+			valueES50 := substr(TriggerES50, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%ES50, %valueES50%
+			valueES60 := substr(TriggerES60, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%ES60, %valueES60%
+			valueES70 := substr(TriggerES70, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%ES70, %valueES70%
+			valueES80 := substr(TriggerES80, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%ES80, %valueES80%
+			valueES90 := substr(TriggerES90, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%ES90, %valueES90%
+			valueDisableES := substr(DisableES, (A_Index), 1)
+			GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
+			}	
 
-	Gui Add, Text, 					Section								x16 	y+8, 				Quicks.:
-	;Gui,Font,cBlack
-	Gui,Font,cBlack
-	Gui Add, GroupBox, 		w257 h26								xp-5 	yp-9, 
-	Gui,Font
-	Gui Add, CheckBox, Group 	vRadiobox1QS 		gUtilityCheck		xs+60 	ys 	w13 h13
-	vFlask=2
-	loop 4 {
-		Gui Add, CheckBox, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	ys 	w13 h13
-		vFlask:=vFlask+1
-		}
+		Gui Add, Text, 					Section								x16 	y+8, 				Quicks.:
+		;Gui,Font,cBlack
+		Gui,Font,cBlack
+		Gui Add, GroupBox, 		w257 h26								xp-5 	yp-9, 
+		Gui,Font
+		Gui Add, CheckBox, Group 	vRadiobox1QS 		gUtilityCheck		xs+60 	ys 	w13 h13
+		vFlask=2
+		loop 4 {
+			Gui Add, CheckBox, Group 	vRadiobox%vFlask%QS		gUtilityCheck	x+28 	ys 	w13 h13
+			vFlask:=vFlask+1
+			}
 
-	Gui,Font,cBlack
-	Gui Add, GroupBox, 	Section	w257 h30								x11 	y+3, Mana `%
-	Gui,Font
-	Gui, Add, text, section x20 ys+13 w35, %ManaThreshold%
-	Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
-	Gui Add, CheckBox, 		vRadiobox1Mana10 	gUtilityCheck		x+20		ys-2 	w13 h13
-	vFlask=2
-	loop 4 {
-		Gui Add, CheckBox, 		vRadiobox%vFlask%Mana10 gUtilityCheck		x+28	ys-2 	w13 h13
-		vFlask:=vFlask+1
-		}
-	Loop, 5 {	
-		valueMana10 := substr(TriggerMana10, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
-		valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
-		GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
-		}
-	Gui,Font,cBlack
-	Gui Add, GroupBox, 	Section	w257 h30								x11 	y+2
-	Gui,Font
-	Gui Add, Text, 					Section								x13 	yp+12, 				Pop Flsk:
-	Gui Add, Checkbox, 		vPopFlasks1 			x75 	ys 	w13 h13
-	Gui Add, Checkbox, 		vPopFlasks2 		x+28 			w13 h13
-	Gui Add, Checkbox, 		vPopFlasks3 		x+28 			w13 h13
-	Gui Add, Checkbox, 		vPopFlasks4 		x+28 			w13 h13
-	Gui Add, Checkbox, 		vPopFlasks5 		x+28 			w13 h13
+		Gui,Font,cBlack
+		Gui Add, GroupBox, 	Section	w257 h30								x11 	y+3, Mana `%
+		Gui,Font
+		Gui, Add, text, section x20 ys+13 w35, %ManaThreshold%
+		Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
+		Gui Add, CheckBox, 		vRadiobox1Mana10 	gUtilityCheck		x+20		ys-2 	w13 h13
+		vFlask=2
+		loop 4 {
+			Gui Add, CheckBox, 		vRadiobox%vFlask%Mana10 gUtilityCheck		x+28	ys-2 	w13 h13
+			vFlask:=vFlask+1
+			}
+		Loop, 5 {	
+			valueMana10 := substr(TriggerMana10, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
+			valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
+			GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
+			}
+		Gui,Font,cBlack
+		Gui Add, GroupBox, 	Section	w257 h30								x11 	y+2
+		Gui,Font
+		Gui Add, Text, 					Section								x13 	yp+12, 				Pop Flsk:
+		Gui Add, Checkbox, 		vPopFlasks1 			x75 	ys 	w13 h13
+		Gui Add, Checkbox, 		vPopFlasks2 		x+28 			w13 h13
+		Gui Add, Checkbox, 		vPopFlasks3 		x+28 			w13 h13
+		Gui Add, Checkbox, 		vPopFlasks4 		x+28 			w13 h13
+		Gui Add, Checkbox, 		vPopFlasks5 		x+28 			w13 h13
 
-	Loop, 5 {	
-		valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
-		GuiControl, , PopFlasks%A_Index%, %valuePopFlasks%
-		}
-
-
-	Gui,Font,cBlack
-	Gui Add, GroupBox, 			Section						x11 	y+13 	w257 h58,  	Attack:
-	Gui Add, text, vFlaskColumn1									xp+53 	ys-8 	, Flask 1
-	Gui Add, text, vFlaskColumn2									xp+42 	ys-8 	, Flask 2
-	Gui Add, text, vFlaskColumn3									xp+41 	ys-8 	, Flask 3
-	Gui Add, text, vFlaskColumn4									xp+41 	ys-8 	, Flask 4
-	Gui Add, text, vFlaskColumn5									xp+41 	ys-8 	, Flask 5
-	Gui,Font
-	Gui Add, Edit, 			vhotkeyMainAttack 				xs+1 	ys+14 	w48 h17, 	%hotkeyMainAttack%
-	Gui Add, Checkbox, 		vMainAttackbox1 			x75 	y+-15 	w13 h13
-	vFlask=2
-	loop 4 {
-		Gui Add, Checkbox, 		vMainAttackbox%vFlask% 		x+28 			w13 h13
-		vFlask:=vFlask+1
-		} 
-
-	Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+8 	w48 h17, 	%hotkeySecondaryAttack%
-	Gui Add, Checkbox, 		vSecondaryAttackbox1 		x75 	y+-15 	w13 h13
-	vFlask=2
-	loop 4 {
-		Gui Add, Checkbox, 		vSecondaryAttackbox%vFlask% x+28 			w13 h13
-		vFlask:=vFlask+1
-		}
-	Loop, 5 {	
-		valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
-		GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
-		valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
-		GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
-		}
+		Loop, 5 {	
+			valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
+			GuiControl, , PopFlasks%A_Index%, %valuePopFlasks%
+			}
 
 
-	Gui,Font,s9 cBlack 
-	Gui Add, GroupBox, 		Section	w257 h66				x12 	y+5 , 				Quicksilver settings
-	Gui,Font,
-	Gui Add, Text, 										xs+10 	ys+16, 				Quicksilver Flask Delay (in s):
-	Gui Add, Edit, 			vTriggerQuicksilverDelay	x+10 	yp 	w22 h17, 	%TriggerQuicksilverDelay%
-	Gui,Add,GroupBox,Section xs+10 yp+16 w208 h26											,Quicksilver on attack:
-	Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xs+5 ys+15 , Primary Attack
-	Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
+		Gui,Font,cBlack
+		Gui Add, GroupBox, 			Section						x11 	y+13 	w257 h58,  	Attack:
+		Gui Add, text, vFlaskColumn1									xp+53 	ys-8 	, Flask 1
+		Gui Add, text, vFlaskColumn2									xp+42 	ys-8 	, Flask 2
+		Gui Add, text, vFlaskColumn3									xp+41 	ys-8 	, Flask 3
+		Gui Add, text, vFlaskColumn4									xp+41 	ys-8 	, Flask 4
+		Gui Add, text, vFlaskColumn5									xp+41 	ys-8 	, Flask 5
+		Gui,Font
+		Gui Add, Edit, 			vhotkeyMainAttack 				xs+1 	ys+14 	w48 h17, 	%hotkeyMainAttack%
+		Gui Add, Checkbox, 		vMainAttackbox1 			x75 	y+-15 	w13 h13
+		vFlask=2
+		loop 4 {
+			Gui Add, Checkbox, 		vMainAttackbox%vFlask% 		x+28 			w13 h13
+			vFlask:=vFlask+1
+			} 
 
-	;Vertical Grey Lines
-	Gui, Add, Text, 									x59 	y62 		h381 0x11
-	Gui, Add, Text, 									x+33 				h381 0x11
-	Gui, Add, Text, 									x+34 				h381 0x11
-	Gui, Add, Text, 									x+33 				h381 0x11
-	Gui, Add, Text, 									x+34 				h381 0x11
-	Gui, Add, Text, 									x+33 				h381 0x11
-	Gui, Add, Text, 									x+5 	y23		w1	h483 0x7
-	Gui, Add, Text, 									x+1 	y23		w1	h483 0x7
-
-
-	Gui,Font,s9 cBlack 
-	Gui Add, GroupBox, 		Section	w227 h66				x292 	y30 , 				Auto-Quit settings
-	Gui,Font,
-	;Gui Add, Text, 											x292 	y30, 				Auto-Quit:
-	Gui Add, DropDownList, vQuitBelow  				h19 w37 r10 xs+5 ys+20, 						%QuitBelow%||20|30|40|50|60|70|80|90
-	Gui Add, Text, 										x+5 	yp+3, 				Quit via:
-	Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+1		y+-13,			D/C
-	Gui, Add, Radio, 		vRadioPortalQuit Checked%RadioPortalQuit%			x+1	,				Portal
-	Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+1	,				/exit
-	Gui Add, Checkbox, gUpdateExtra	vRelogOnQuit Checked%RelogOnQuit%           	xs+5	y+8				, Log back in afterwards?
-
-	Gui,Font,s9 cBlack 
-	Gui Add, GroupBox, 		Section	w90 h32				xs+230 	ys , 				Auto-Mine
-	Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+5	ys+15				, Enable
-	Gui Add, Edit, 	  gUpdateExtra   vDetonateMinesDelay    h18	x+-2	yp-5  Number Limit w30				, %DetonateMinesDelay% 
-
-	Gui Add, GroupBox, 		Section	w90 h32	vEldritchBatteryGroupbox			xs 	y+6 , 				Eldritch Battery
-	Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery%           	xs+15	ys+15				, Enable
-	Gui,Font,
-
-	Gui, Font, Bold s9 cBlack
-	Gui, Add, GroupBox, 					Section		w324 h176			x292 	y+7, 				Profile Management:
-	Gui, Font
-	Gui, Add, Text, 									xs+161 	ys+41 		h135 0x11
+		Gui Add, Edit, 			vhotkeySecondaryAttack 		x12 	y+8 	w48 h17, 	%hotkeySecondaryAttack%
+		Gui Add, Checkbox, 		vSecondaryAttackbox1 		x75 	y+-15 	w13 h13
+		vFlask=2
+		loop 4 {
+			Gui Add, Checkbox, 		vSecondaryAttackbox%vFlask% x+28 			w13 h13
+			vFlask:=vFlask+1
+			}
+		Loop, 5 {	
+			valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
+			GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
+			valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
+			GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
+			}
 
 
-	;Gui,Font,s9 cBlack Bold Underline
-	;Gui,Add,GroupBox, xs+5 ys+10 w190 h35											,
-	Gui,Add,text, xs+10 ys+18 											,Character Name:
-	;Gui,Font,
-	Gui, Add, Edit, vCharName x+5 yp-2 w150 h19, %CharName%
+		Gui,Font,s9 cBlack 
+		Gui Add, GroupBox, 		Section	w257 h66				x12 	y+5 , 				Quicksilver settings
+		Gui,Font,
+		Gui Add, Text, 										xs+10 	ys+16, 				Quicksilver Flask Delay (in s):
+		Gui Add, Edit, 			vTriggerQuicksilverDelay	x+10 	yp 	w22 h17, 	%TriggerQuicksilverDelay%
+		Gui,Add,GroupBox,Section xs+10 yp+16 w208 h26											,Quicksilver on attack:
+		Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xs+5 ys+15 , Primary Attack
+		Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
-	Gui, Add, Button, gsubmitProfile1 xs+4 ys+42 w50 h21, Save 1
-	Gui, Add, Button, gsubmitProfile2 w50 h21, Save 2
-	Gui, Add, Button, gsubmitProfile3 w50 h21, Save 3
-	Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
-	Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
+		;Vertical Grey Lines
+		Gui, Add, Text, 									x59 	y62 		h381 0x11
+		Gui, Add, Text, 									x+33 				h381 0x11
+		Gui, Add, Text, 									x+34 				h381 0x11
+		Gui, Add, Text, 									x+33 				h381 0x11
+		Gui, Add, Text, 									x+34 				h381 0x11
+		Gui, Add, Text, 									x+33 				h381 0x11
+		Gui, Add, Text, 									x+5 	y23		w1	h483 0x7
+		Gui, Add, Text, 									x+1 	y23		w1	h483 0x7
 
-	Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x+1 ys+43 w50 h19, %ProfileText1%
-	Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
-	Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
-	Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
-	Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
 
-	Gui, Add, Button, greadProfile1 x+1 ys+42 w50 h21, Load 1
-	Gui, Add, Button, greadProfile2 w50 h21, Load 2
-	Gui, Add, Button, greadProfile3 w50 h21, Load 3
-	Gui, Add, Button, greadProfile4 w50 h21, Load 4
-	Gui, Add, Button, greadProfile5 w50 h21, Load 5
+		Gui,Font,s9 cBlack 
+		Gui Add, GroupBox, 		Section	w227 h66				x292 	y30 , 				Auto-Quit settings
+		Gui,Font,
+		;Gui Add, Text, 											x292 	y30, 				Auto-Quit:
+		Gui Add, DropDownList, vQuitBelow  				h19 w37 r10 xs+5 ys+20, 						%QuitBelow%||10|20|30|40|50|60|70|80|90
+		Gui Add, Text, 										x+5 	yp+3, 				Quit via:
+		Gui, Add, Radio, Group	vRadioCritQuit  Checked%RadioCritQuit%					x+1		y+-13,			D/C
+		Gui, Add, Radio, 		vRadioPortalQuit Checked%RadioPortalQuit%			x+1	,				Portal
+		Gui, Add, Radio, 		vRadioNormalQuit Checked%RadioNormalQuit%			x+1	,				/exit
+		Gui Add, Checkbox, gUpdateExtra	vRelogOnQuit Checked%RelogOnQuit%           	xs+5	y+8				, Log back in afterwards?
 
-	Gui, Add, Button, gsubmitProfile6 x+10 ys+42 w50 h21, Save 6
-	Gui, Add, Button, gsubmitProfile7 w50 h21, Save 7
-	Gui, Add, Button, gsubmitProfile8 w50 h21, Save 8
-	Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
-	Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
+		Gui,Font,s9 cBlack 
+		Gui Add, GroupBox, 		Section	w90 h32				xs+230 	ys , 				Auto-Mine
+		Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+5	ys+15				, Enable
+		Gui Add, Edit, 	  gUpdateExtra   vDetonateMinesDelay    h18	x+-2	yp-5  Number Limit w30				, %DetonateMinesDelay% 
 
-	Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x+1 ys+43 w50 h19, %ProfileText6%
-	Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
-	Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
-	Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
-	Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
+		Gui Add, GroupBox, 		Section	w90 h32	vEldritchBatteryGroupbox			xs 	y+6 , 				Eldritch Battery
+		Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery%           	xs+15	ys+15				, Enable
+		Gui,Font,
 
-	Gui, Add, Button, greadProfile6 x+1 ys+42 w50 h21, Load 6
-	Gui, Add, Button, greadProfile7 w50 h21, Load 7
-	Gui, Add, Button, greadProfile8 w50 h21, Load 8
-	Gui, Add, Button, greadProfile9 w50 h21, Load 9
-	Gui, Add, Button, greadProfile10 w50 h21, Load 10
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, GroupBox, 					Section		w324 h176			x292 	y+7, 				Profile Management:
+		Gui, Font
+		Gui, Add, Text, 									xs+161 	ys+41 		h135 0x11
 
-	Gui, Font, Bold s9 cBlack
-	Gui Add, GroupBox, 						w324 h176		section		x292 	y+15, 				Utility Management:
-	Gui, Font,
 
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility1 +BackgroundTrans Checked%YesUtility1%	Right	ys+45 xs+2	, 1
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility2 +BackgroundTrans Checked%YesUtility2%	Right	y+12		, 2
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility3 +BackgroundTrans Checked%YesUtility3%	Right	y+12		, 3
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility4 +BackgroundTrans Checked%YesUtility4%	Right	y+12		, 4
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility5 +BackgroundTrans Checked%YesUtility5%	Right	y+12		, 5
+		;Gui,Font,s9 cBlack Bold Underline
+		;Gui,Add,GroupBox, xs+5 ys+10 w190 h35											,
+		Gui,Add,text, xs+10 ys+18 											,Character Name:
+		;Gui,Font,
+		Gui, Add, Edit, vCharName x+5 yp-2 w150 h19, %CharName%
 
-	Gui,Add,Edit,			gUpdateUtility  x+10 ys+42   w40 h19 	vCooldownUtility1				,%CooldownUtility1%
-	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility2				,%CooldownUtility2%
-	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility3				,%CooldownUtility3%
-	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility4				,%CooldownUtility4%
-	Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility5				,%CooldownUtility5%
+		Gui, Add, Button, gsubmitProfile1 xs+4 ys+42 w50 h21, Save 1
+		Gui, Add, Button, gsubmitProfile2 w50 h21, Save 2
+		Gui, Add, Button, gsubmitProfile3 w50 h21, Save 3
+		Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
+		Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
 
-	Gui,Add,Edit,	  	x+12	ys+42   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility2				,%KeyUtility2%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility3				,%KeyUtility3%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility4				,%KeyUtility4%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility5				,%KeyUtility5%
+		Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x+1 ys+43 w50 h19, %ProfileText1%
+		Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
+		Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
+		Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
+		Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
 
-	Gui,Add,Edit,	  	x+11	ys+42   w40 h19 gUpdateUtility	vIconStringUtility1				,%IconStringUtility1%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility2				,%IconStringUtility2%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility3				,%IconStringUtility3%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility4				,%IconStringUtility4%
-	Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility5				,%IconStringUtility5%
+		Gui, Add, Button, greadProfile1 x+1 ys+42 w50 h21, Load 1
+		Gui, Add, Button, greadProfile2 w50 h21, Load 2
+		Gui, Add, Button, greadProfile3 w50 h21, Load 3
+		Gui, Add, Button, greadProfile4 w50 h21, Load 4
+		Gui, Add, Button, greadProfile5 w50 h21, Load 5
 
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%	x+12 ys+45, %A_Space%
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver +BackgroundTrans Checked%YesUtility2Quicksilver%		y+12, %A_Space%
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver +BackgroundTrans Checked%YesUtility3Quicksilver%		y+12, %A_Space%
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver +BackgroundTrans Checked%YesUtility4Quicksilver%		y+12, %A_Space%
-	Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver +BackgroundTrans Checked%YesUtility5Quicksilver%		y+12, %A_Space%
+		Gui, Add, Button, gsubmitProfile6 x+10 ys+42 w50 h21, Save 6
+		Gui, Add, Button, gsubmitProfile7 w50 h21, Save 7
+		Gui, Add, Button, gsubmitProfile8 w50 h21, Save 8
+		Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
+		Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
 
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+7 	ys+42,  Off|20|30|40|50|60|70|80|90
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5LifePercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-	GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
-	GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
-	GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
-	GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
-	GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
-		
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+12 	ys+42,  Off|20|30|40|50|60|70|80|90
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-	Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5ESPercent h16 w40  		y+4,  Off|20|30|40|50|60|70|80|90
-	GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-	GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
-	GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
-	GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
-	GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
+		Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x+1 ys+43 w50 h19, %ProfileText6%
+		Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
+		Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
+		Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
+		Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
 
-	Gui Add, Text, 										xs+6 	ys+25, 	ON:
-	Gui, Add, Text, 									x+9 	ys+25 		h145 0x11
-	Gui Add, Text, 										x+12 	, 	CD:
-	Gui, Add, Text, 									x+13 	 		h145 0x11
-	Gui Add, Text, 										x+10 	, 	Key:
-	Gui, Add, Text, 									x+14 	 		h145 0x11
-	Gui Add, Text, 										x+6 	, 	Icon:
-	Gui, Add, Text, 									x+12 	 		h145 0x11
-	Gui Add, Text, 										x+-1 	, 	QS:
-	Gui, Add, Text, 									x+7 	 		h145 0x11
-	Gui Add, Text, 										x+8 	, 	Life:
-	Gui, Add, Text, 									x+17 	 		h145 0x11
-	Gui Add, Text, 										x+9 	, 	ES:
+		Gui, Add, Button, greadProfile6 x+1 ys+42 w50 h21, Load 6
+		Gui, Add, Button, greadProfile7 w50 h21, Load 7
+		Gui, Add, Button, greadProfile8 w50 h21, Load 8
+		Gui, Add, Button, greadProfile9 w50 h21, Load 9
+		Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
-	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
-	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
-	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
-	Gui, Add, Button,  		gft_Start 		x+5			 		h23, 	Grab Icon
+		;Save Setting
+		Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
+		Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+		Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+		Gui, Add, Button,  		gft_Start 		x+5			 		h23, 	Grab Icon
 
-	;#######################################################################################################Configuration Tab
+	Gui, Tab, Utility
+		Gui, Font, Bold s9 cBlack
+		Gui Add, GroupBox, 						w605 h176		section		xm+5 	y+15, 				Utility Management:
+		Gui, Font,
+
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1 +BackgroundTrans Checked%YesUtility1%	Right	ys+45 xs+2	, 1
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility2 +BackgroundTrans Checked%YesUtility2%	Right	y+12		, 2
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility3 +BackgroundTrans Checked%YesUtility3%	Right	y+12		, 3
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility4 +BackgroundTrans Checked%YesUtility4%	Right	y+12		, 4
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility5 +BackgroundTrans Checked%YesUtility5%	Right	y+12		, 5
+
+		Gui,Add,Edit,			gUpdateUtility  x+10 ys+42   w40 h19 	vCooldownUtility1				,%CooldownUtility1%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility2				,%CooldownUtility2%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility3				,%CooldownUtility3%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility4				,%CooldownUtility4%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility5				,%CooldownUtility5%
+
+		Gui,Add,Edit,	  	x+12	ys+42   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility2				,%KeyUtility2%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility3				,%KeyUtility3%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility4				,%KeyUtility4%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility5				,%KeyUtility5%
+
+		Gui,Add,Edit,	  	x+11	ys+42   w40 h19 gUpdateUtility	vIconStringUtility1				,%IconStringUtility1%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility2				,%IconStringUtility2%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility3				,%IconStringUtility3%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility4				,%IconStringUtility4%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility5				,%IconStringUtility5%
+
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1InverseBuff +BackgroundTrans Checked%YesUtility1InverseBuff%	x+12 ys+45, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility2InverseBuff +BackgroundTrans Checked%YesUtility2InverseBuff%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility3InverseBuff +BackgroundTrans Checked%YesUtility3InverseBuff%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility4InverseBuff +BackgroundTrans Checked%YesUtility4InverseBuff%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility5InverseBuff +BackgroundTrans Checked%YesUtility5InverseBuff%		y+12, %A_Space%
+
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%	x+12 ys+45, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver +BackgroundTrans Checked%YesUtility2Quicksilver%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver +BackgroundTrans Checked%YesUtility3Quicksilver%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver +BackgroundTrans Checked%YesUtility4Quicksilver%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver +BackgroundTrans Checked%YesUtility5Quicksilver%		y+12, %A_Space%
+
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1MainAttack +BackgroundTrans Checked%YesUtility1MainAttack%	x+12 ys+45, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility2MainAttack +BackgroundTrans Checked%YesUtility2MainAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility3MainAttack +BackgroundTrans Checked%YesUtility3MainAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility4MainAttack +BackgroundTrans Checked%YesUtility4MainAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility5MainAttack +BackgroundTrans Checked%YesUtility5MainAttack%		y+12, %A_Space%
+
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1SecondaryAttack +BackgroundTrans Checked%YesUtility1SecondaryAttack%	x+12 ys+45, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility2SecondaryAttack +BackgroundTrans Checked%YesUtility2SecondaryAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility3SecondaryAttack +BackgroundTrans Checked%YesUtility3SecondaryAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility4SecondaryAttack +BackgroundTrans Checked%YesUtility4SecondaryAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility5SecondaryAttack +BackgroundTrans Checked%YesUtility5SecondaryAttack%		y+12, %A_Space%
+
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+10 	ys+42,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
+		GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
+		GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
+		GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
+		GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
+			
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+12 	ys+42,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
+		GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
+		GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
+		GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
+		GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
+			
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ManaPercent h16 w40 x+12 	ys+42,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		GuiControl, ChooseString, YesUtility1ManaPercent, %YesUtility1ManaPercent%
+		GuiControl, ChooseString, YesUtility2ManaPercent, %YesUtility2ManaPercent%
+		GuiControl, ChooseString, YesUtility3ManaPercent, %YesUtility3ManaPercent%
+		GuiControl, ChooseString, YesUtility4ManaPercent, %YesUtility4ManaPercent%
+		GuiControl, ChooseString, YesUtility5ManaPercent, %YesUtility5ManaPercent%
+
+		Gui Add, Text, 										xs+6 	ys+25, 	ON:
+		Gui, Add, Text, 									x+9 	ys+25 		h145 0x11
+		Gui Add, Text, 										x+12 	, 	CD:
+		Gui, Add, Text, 									x+13 	 		h145 0x11
+		Gui Add, Text, 										x+10 	, 	Key:
+		Gui, Add, Text, 									x+14 	 		h145 0x11
+		Gui Add, Text, 										x+6 	, 	Icon:
+		Gui, Add, Text, 									x+12 	 		h145 0x11
+		Gui Add, Text, 										x+-1 	, 	Inv:
+		Gui, Add, Text, 									x+7 	 		h145 0x11
+		Gui Add, Text, 										x+3 	, 	QS:
+		Gui, Add, Text, 									x+8 	 		h145 0x11
+		Gui Add, Text, 										x+4 	, 	Pri:
+		Gui, Add, Text, 									x+11 	 		h145 0x11
+		Gui Add, Text, 										x+1 	, 	Sec:
+		Gui, Add, Text, 									x+8 	 		h145 0x11
+		Gui Add, Text, 										x+8 	, 	Life:
+		Gui, Add, Text, 									x+17 	 		h145 0x11
+		Gui Add, Text, 										x+9 	, 	ES:
+		Gui, Add, Text, 									x+17 	 		h145 0x11
+		Gui Add, Text, 										x+4 	, 	Mana:
+		Gui, Add, Text, 									x+13 	 		h145 0x11
+
+		;Save Setting
+		Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
+		Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+		Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+		Gui, Add, Button,  		gft_Start 		x+5			 		h23, 	Grab Icon
+
+		;#######################################################################################################Configuration Tab
 	Gui, Tab, Configuration
-	Gui, Add, Text, 									x279 	y23		w1	h441 0x7
-	Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
+		Gui, Add, Text, 									x279 	y23		w1	h441 0x7
+		Gui, Add, Text, 									x+1 	y23		w1	h441 0x7
 
-	Gui, Font, Bold
-	Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
-	Gui, Add, Button, ghelpCalibration 	x+10 ys-4		w20 h20, 	?
-	Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn	xs	ys+20 Section	w110 h25, 	Run Wizard
-	Gui, Add, Button, gShowDebugGamestates vShowDebugGamestatesBtn	x+8	yp				w110 h25, 	Show Gamestates
-	;Update calibration for pixel check
-	Gui, Add, Button, gShowSampleInd vShowSampleIndBtn		xs	ys+35			w110, 	Individual Sample
-	Gui, Add, Button, gWR_Update vWR_Btn_Globe		 		x+8 ys+35		 	w110, 	Adjust Globes
-	Gui, Font
-
-
-	Gui,SampleInd: Font, Bold
-	Gui,SampleInd: Add, Text, 				section						xm 	ym+5, 				Gamestate Calibration:
-	Gui,SampleInd: Font
-
-	Gui,SampleInd: Add, Button, gupdateOnChar vUpdateOnCharBtn	 			xs y+3			w110, 	OnChar
-	Gui,SampleInd: Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	x+8	yp			w110, 	OnInventory
-	Gui,SampleInd: Add, Button, gupdateOnChat vUpdateOnChatBtn	 			xs y+3			w110, 	OnChat
-	Gui,SampleInd: Add, Button, gupdateOnStash vUpdateOnStashBtn	 		x+8	yp			w110, 	OnStash/OnLeft
-	Gui,SampleInd: Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			xs y+3			w110, 	OnDiv
-	Gui,SampleInd: Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		x+8	yp			w110, 	OnVendor
-	Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			xs y+3			w110, 	OnMenu
-	Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn	x+8	yp			w110, 	OnDelveChart
-	Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn	xs y+3			w110, 	OnMetamorph
+		Gui, Font, Bold
+		Gui, Add, Text, 						section				x22 	y30, 				Gamestate Calibration:
+		Gui, Add, Button, ghelpCalibration 	x+10 ys-4		w20 h20, 	?
+		Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn	xs	ys+20 Section	w110 h25, 	Run Wizard
+		Gui, Add, Button, gShowDebugGamestates vShowDebugGamestatesBtn	x+8	yp				w110 h25, 	Show Gamestates
+		;Update calibration for pixel check
+		Gui, Add, Button, gShowSampleInd vShowSampleIndBtn		xs	ys+35			w110, 	Individual Sample
+		Gui, Add, Button, gWR_Update vWR_Btn_Globe		 		x+8 ys+35		 	w110, 	Adjust Globes
+		Gui, Font
 
 
-	Gui,SampleInd: Font, Bold
-	Gui,SampleInd: Add, Text, 				section						xm 	y+10, 				Inventory Calibration:
-	Gui,SampleInd: Font
-	Gui,SampleInd: Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20			 	w110, 	Empty Inventory
+		Gui,SampleInd: Font, Bold
+		Gui,SampleInd: Add, Text, 				section						xm 	ym+5, 				Gamestate Calibration:
+		Gui,SampleInd: Font
 
-	Gui,SampleInd: Font, Bold
-	Gui,SampleInd: Add, Text, 				section						xm 	y+10, 				AutoDetonate Calibration:
-	Gui,SampleInd: Font
-	Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn 		xs ys+20					w110, 	OnDetonate
+		Gui,SampleInd: Add, Button, gupdateOnChar vUpdateOnCharBtn	 			xs y+3			w110, 	OnChar
+		Gui,SampleInd: Add, Button, gupdateOnInventory vUpdateOnInventoryBtn	x+8	yp			w110, 	OnInventory
+		Gui,SampleInd: Add, Button, gupdateOnChat vUpdateOnChatBtn	 			xs y+3			w110, 	OnChat
+		Gui,SampleInd: Add, Button, gupdateOnStash vUpdateOnStashBtn	 		x+8	yp			w110, 	OnStash/OnLeft
+		Gui,SampleInd: Add, Button, gupdateOnDiv vUpdateOnDivBtn	 			xs y+3			w110, 	OnDiv
+		Gui,SampleInd: Add, Button, gupdateOnVendor vUpdateOnVendorBtn	 		x+8	yp			w110, 	OnVendor
+		Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn	 			xs y+3			w110, 	OnMenu
+		Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn	x+8	yp			w110, 	OnDelveChart
+		Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn	xs y+3			w110, 	OnMetamorph
 
-	Gui,SampleInd: +AlwaysOnTop
 
-	Gui, Font, Bold
-	Gui Add, Text, 					Section					xs 	y+10, 				Interface Options:
-	Gui, Font, 
+		Gui,SampleInd: Font, Bold
+		Gui,SampleInd: Add, Text, 				section						xm 	y+10, 				Inventory Calibration:
+		Gui,SampleInd: Font
+		Gui,SampleInd: Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20			 	w110, 	Empty Inventory
 
-	Gui Add, Checkbox, gUpdateExtra	vYesOHB Checked%YesOHB%                         	          			, Pause script when OHB missing?
-	Gui Add, Checkbox, gUpdateExtra	vYesGlobeScan Checked%YesGlobeScan%                        				, Use Globe Scanner?
-	Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
-	Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
-	Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
-	Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
-	Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
-	Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w90               	    		, Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
-	GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
-	Gui, Add, Text, 			x+8 y+-18							 							, Aspect Ratio
-	Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  %Latency%||1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
-	Gui, Add, Text, 										x+5 yp+3 hp-3							, Latency
-	Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  %ClickLatency%||-2|-1|0|1|2|3|4
-	Gui, Add, Text, 										x+5 yp+3	hp-3						, Clicks
-	Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  %ClipLatency%||-2|-1|0|1|2|3|4
-	Gui, Add, Text, 										x+5 yp+3	hp-3						, Clip
-	Gui, Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
-	Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
-	Gui, Font, Bold
-	Gui Add, Text, 					Section					xs 	y+15, 				Additional Settings:
-	Gui, add, button, gWR_Update vWR_Btn_Inventory 	xs y+10 w110, Inventory
-	Gui, add, button, gWR_Update vWR_Btn_Strings 	x+10 yp w110, Strings
-	Gui, add, button, gWR_Update vWR_Btn_Chat 		xs y+10 w110, Chat
-	Gui, add, button, gWR_Update vWR_Btn_Controller x+10 yp w110, Controller
-	Gui, add, button, gLaunchLootFilter vWR_Btn_CLF	xs y+10 w110, C.L.F.
-	Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
+		Gui,SampleInd: Font, Bold
+		Gui,SampleInd: Add, Text, 				section						xm 	y+10, 				AutoDetonate Calibration:
+		Gui,SampleInd: Font
+		Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn 		xs ys+20					w110, 	OnDetonate
 
-	Gui, Font, Bold
-	Gui Add, Text, 	Section									x295 	ym+25, 				Keybinds:
-	Gui, Font
-	Gui Add, Text, 										xs+65 	y+10, 				Open this GUI
-	Gui Add, Text, 										xs+65 	y+10, 				Auto-Flask
-	Gui Add, Text, 										xs+65 	y+10, 				Auto-Quit
-	Gui Add, Text, 										xs+65 	y+10, 				Logout
-	Gui Add, Text, 										xs+65 	y+10, 				Auto-QSilver
-	Gui Add, Text, 					  					xs+65 	y+10,               Coord/Pixel 				
-	Gui Add, Text, 										xs+65 	y+10, 				Quick-Portal
-	Gui Add, Text, 										xs+65 	y+10, 				Gem-Swap
-	Gui Add, Text, 										xs+65 	y+10, 				Pop Flasks
-	Gui Add, Text, 										xs+65 	y+10, 				ID/Vend/Stash
-	Gui Add, Text, 										xs+65 	y+10, 				Item Info
+		Gui,SampleInd: +AlwaysOnTop
 
-	Gui,Add,Edit,			 xs ys+20 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoFlask			,%hotkeyAutoFlask%
-	Gui,Add,Edit,			 		y+4  w60 h19 	vhotkeyAutoQuit			,%hotkeyAutoQuit%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyLogout	        ,%hotkeyLogout%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoQuicksilver	,%hotkeyAutoQuicksilver%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGetMouseCoords	,%hotkeyGetMouseCoords%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyQuickPortal		,%hotkeyQuickPortal%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGemSwap			,%hotkeyGemSwap%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyPopFlasks	        ,%hotkeyPopFlasks%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
-	Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemInfo     ,%hotkeyItemInfo%
+		Gui, Font, Bold
+		Gui Add, Text, 					Section					xs 	y+10, 				Interface Options:
+		Gui, Font, 
 
-	Gui, Font, Bold
-	Gui Add, Text, 										xs+145 	ys, 				Ingame:
-	Gui, Font
-	Gui Add, Text, 										xs+205 	y+10, 				Close UI
-	Gui Add, Text, 											 	y+10, 				Inventory
-	Gui Add, Text, 											 	y+10, 				W-Swap
-	Gui Add, Text, 											 	y+10, 				Item Pickup
-	Gui,Add,Edit,			  	xs+140 ys+20  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
-	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyInventory			,%hotkeyInventory%
-	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyWeaponSwapKey		,%hotkeyWeaponSwapKey%
-	Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
-	Gui Add, Checkbox, section gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 ; Loot Vacuum?
-	Gui, Font, Bold
-	Gui Add, Button, gLootColorsMenu    vLootVacuumSettings                      	      h19  x+0 yp-3, Loot Vacuum Settings
-	Gui, Font
-	Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	    xs y+6 , Pop Flasks Respect CD?
-	Gui Add, Checkbox, gUpdateExtra	vYesPopAllExtraKeys Checked%YesPopAllExtraKeys%                         	     y+8 , Pop Flasks Uses any extra keys?
-	Gui Add, Checkbox, gUpdateExtra	vYesClickPortal Checked%YesClickPortal%                         	     y+8 , Click portal after opening?
-	Gui Add, Checkbox, 	vYesAutoSkillUp Checked%YesAutoSkillUp%  	y+8				, Auto Skill Up?
-	Gui Add, Checkbox, 	vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%  	x+5 yp			, Wait?
+		Gui Add, Checkbox, gUpdateExtra	vYesOHB Checked%YesOHB%                         	          			, Pause script when OHB missing?
+		Gui Add, Checkbox, gUpdateExtra	vYesGlobeScan Checked%YesGlobeScan%                        				, Use Globe Scanner?
+		Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
+		Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
+		Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
+		Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
+		Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
+		Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w90               	    		, Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
+		GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
+		Gui, Add, Text, 			x+8 y+-18							 							, Aspect Ratio
+		Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  %Latency%||1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+		Gui, Add, Text, 										x+5 yp+3 hp-3							, Latency
+		Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  %ClickLatency%||-2|-1|0|1|2|3|4
+		Gui, Add, Text, 										x+5 yp+3	hp-3						, Clicks
+		Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  %ClipLatency%||-2|-1|0|1|2|3|4
+		Gui, Add, Text, 										x+5 yp+3	hp-3						, Clip
+		Gui, Add, Edit, 			vClientLog 				xs y+10	w144	h21, 	%ClientLog%
+		Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
+		Gui, Font, Bold
+		Gui Add, Text, 					Section					xs 	y+15, 				Additional Settings:
+		Gui, add, button, gWR_Update vWR_Btn_Inventory 	xs y+10 w110, Inventory
+		Gui, add, button, gWR_Update vWR_Btn_Strings 	x+10 yp w110, Strings
+		Gui, add, button, gWR_Update vWR_Btn_Chat 		xs y+10 w110, Chat
+		Gui, add, button, gWR_Update vWR_Btn_Controller x+10 yp w110, Controller
+		Gui, add, button, gLaunchLootFilter vWR_Btn_CLF	xs y+10 w110, C.L.F.
+		Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
 
-	;~ =========================================================================================== Subgroup: Hints
-	Gui,Font,Bold
-	Gui,Add,GroupBox,Section xs	x450 y+10  w120 h80							,Hotkey Modifiers
-	Gui, Add, Button,  		gLaunchHelp vLaunchHelp		xs+108 ys w18 h18 , 	?
-	Gui,Font,Norm
-	Gui,Font,s8,Arial
-	Gui,Add,Text,	 		 	xs+15 ys+17					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
-	Gui,Add,Text,	 		   		y+5					,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
-	Gui,Add,Text,	 		   		y+5					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
+		Gui, Font, Bold
+		Gui Add, Text, 	Section									x295 	ym+25, 				Keybinds:
+		Gui, Font
+		Gui Add, Text, 										xs+65 	y+10, 				Open this GUI
+		Gui Add, Text, 										xs+65 	y+10, 				Auto-Flask
+		Gui Add, Text, 										xs+65 	y+10, 				Auto-Quit
+		Gui Add, Text, 										xs+65 	y+10, 				Logout
+		Gui Add, Text, 										xs+65 	y+10, 				Auto-QSilver
+		Gui Add, Text, 					  					xs+65 	y+10,               Coord/Pixel 				
+		Gui Add, Text, 										xs+65 	y+10, 				Quick-Portal
+		Gui Add, Text, 										xs+65 	y+10, 				Gem-Swap
+		Gui Add, Text, 										xs+65 	y+10, 				Pop Flasks
+		Gui Add, Text, 										xs+65 	y+10, 				ID/Vend/Stash
+		Gui Add, Text, 										xs+65 	y+10, 				Item Info
 
-	;Save Setting
-	Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
-	Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
-	Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+		Gui,Add,Edit,			 xs ys+20 w60 h19 	    vhotkeyOptions			,%hotkeyOptions%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoFlask			,%hotkeyAutoFlask%
+		Gui,Add,Edit,			 		y+4  w60 h19 	vhotkeyAutoQuit			,%hotkeyAutoQuit%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyLogout	        ,%hotkeyLogout%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyAutoQuicksilver	,%hotkeyAutoQuicksilver%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGetMouseCoords	,%hotkeyGetMouseCoords%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyQuickPortal		,%hotkeyQuickPortal%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyGemSwap			,%hotkeyGemSwap%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyPopFlasks	        ,%hotkeyPopFlasks%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemSort     ,%hotkeyItemSort%
+		Gui,Add,Edit,			 		y+4   w60 h19 	vhotkeyItemInfo     ,%hotkeyItemInfo%
 
-	Gui, +LastFound
-	Gui, +AlwaysOnTop
-	Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
-	Menu, Tray, NoStandard
-	Menu, Tray, Add, 				WingmanReloaded, optionsCommand
-	Menu, Tray, Default, 			WingmanReloaded
-	Menu, Tray, Add
-	Menu, Tray, Add, 				Project Wiki, LaunchWiki
-	Menu, Tray, Add
-	Menu, Tray, Add, 				Make a Donation, LaunchDonate
-	Menu, Tray, Add
-	Menu, Tray, Add, 				Run Calibration Wizard, StartCalibrationWizard
-	Menu, Tray, Add
-	Menu, Tray, Add, 				Show Gamestates, ShowDebugGamestates
-	Menu, Tray, Add
-	Menu, Tray, Add, 				Open FindText interface, ft_Start
-	Menu, Tray, Add
-	Menu, Tray, add, 				Window Spy, WINSPY
-	Menu, Tray, Add
-	Menu, Tray, add, 				Reload This Script, RELOAD	
-	Menu, Tray, add
-	Menu, Tray, add, 				Exit, QuitNow ; added exit script option
-	; Menu, Tray, NoStandard
-	; Menu, Tray, Standard
-	;Gui, Hide
-	if ( Steam ) {
-		if ( HighBits ) {
-			executable := "PathOfExile_x64Steam.exe"
+		Gui, Font, Bold
+		Gui Add, Text, 										xs+145 	ys, 				Ingame:
+		Gui, Font
+		Gui Add, Text, 										xs+205 	y+10, 				Close UI
+		Gui Add, Text, 											 	y+10, 				Inventory
+		Gui Add, Text, 											 	y+10, 				W-Swap
+		Gui Add, Text, 											 	y+10, 				Item Pickup
+		Gui,Add,Edit,			  	xs+140 ys+20  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
+		Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyInventory			,%hotkeyInventory%
+		Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyWeaponSwapKey		,%hotkeyWeaponSwapKey%
+		Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
+		Gui Add, Checkbox, section gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 ; Loot Vacuum?
+		Gui, Font, Bold
+		Gui Add, Button, gLootColorsMenu    vLootVacuumSettings                      	      h19  x+0 yp-3, Loot Vacuum Settings
+		Gui, Font
+		Gui Add, Checkbox, gUpdateExtra	vPopFlaskRespectCD Checked%PopFlaskRespectCD%                         	    xs y+6 , Pop Flasks Respect CD?
+		Gui Add, Checkbox, gUpdateExtra	vYesPopAllExtraKeys Checked%YesPopAllExtraKeys%                         	     y+8 , Pop Flasks Uses any extra keys?
+		Gui Add, Checkbox, gUpdateExtra	vYesClickPortal Checked%YesClickPortal%                         	     y+8 , Click portal after opening?
+		Gui Add, Checkbox, 	vYesAutoSkillUp Checked%YesAutoSkillUp%  	y+8				, Auto Skill Up?
+		Gui Add, Checkbox, 	vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%  	x+5 yp			, Wait?
+
+		;~ =========================================================================================== Subgroup: Hints
+		Gui,Font,Bold
+		Gui,Add,GroupBox,Section xs	x450 y+10  w120 h80							,Hotkey Modifiers
+		Gui, Add, Button,  		gLaunchHelp vLaunchHelp		xs+108 ys w18 h18 , 	?
+		Gui,Font,Norm
+		Gui,Font,s8,Arial
+		Gui,Add,Text,	 		 	xs+15 ys+17					,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
+		Gui,Add,Text,	 		   		y+5					,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
+		Gui,Add,Text,	 		   		y+5					,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
+
+		;Save Setting
+		Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
+		Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+		Gui, Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
+		Gui, +LastFound
+		Gui, +AlwaysOnTop
+		Menu, Tray, Tip, 				WingmanReloaded Dev Ver%VersionNumber%
+		Menu, Tray, NoStandard
+		Menu, Tray, Add, 				WingmanReloaded, optionsCommand
+		Menu, Tray, Default, 			WingmanReloaded
+		Menu, Tray, Add
+		Menu, Tray, Add, 				Project Wiki, LaunchWiki
+		Menu, Tray, Add
+		Menu, Tray, Add, 				Make a Donation, LaunchDonate
+		Menu, Tray, Add
+		Menu, Tray, Add, 				Run Calibration Wizard, StartCalibrationWizard
+		Menu, Tray, Add
+		Menu, Tray, Add, 				Show Gamestates, ShowDebugGamestates
+		Menu, Tray, Add
+		Menu, Tray, Add, 				Open FindText interface, ft_Start
+		Menu, Tray, Add
+		Menu, Tray, add, 				Window Spy, WINSPY
+		Menu, Tray, Add
+		Menu, Tray, add, 				Reload This Script, RELOAD	
+		Menu, Tray, add
+		Menu, Tray, add, 				Exit, QuitNow ; added exit script option
+		; Menu, Tray, NoStandard
+		; Menu, Tray, Standard
+		;Gui, Hide
+		if ( Steam ) {
+			if ( HighBits ) {
+				executable := "PathOfExile_x64Steam.exe"
+				} else {
+				executable := "PathOfExileSteam.exe"
+				}
 			} else {
-			executable := "PathOfExileSteam.exe"
+			if ( HighBits ) {
+				executable := "PathOfExile_x64.exe"
+				} else {
+				executable := "PathOfExile.exe"
+				}
 			}
-		} else {
-		if ( HighBits ) {
-			executable := "PathOfExile_x64.exe"
-			} else {
-			executable := "PathOfExile.exe"
+
+		if(RadioLife==1) {
+			loop 5 {
+				GuiControl, Enable, Radiobox%A_Index%Life90
+					GuiControl, Enable, Radiobox%A_Index%Life80
+					GuiControl, Enable, Radiobox%A_Index%Life70
+					GuiControl, Enable, Radiobox%A_Index%Life60
+					GuiControl, Enable, Radiobox%A_Index%Life50
+					GuiControl, Enable, Radiobox%A_Index%Life40
+					GuiControl, Enable, Radiobox%A_Index%Life30
+					GuiControl, Enable, Radiobox%A_Index%Life20
+					GuiControl, Enable, RadioUncheck%A_Index%Life
+					
+				GuiControl, Disable, Radiobox%A_Index%ES90
+				GuiControl, Disable, Radiobox%A_Index%ES80
+				GuiControl, Disable, Radiobox%A_Index%ES70
+				GuiControl, Disable, Radiobox%A_Index%ES60
+				GuiControl, Disable, Radiobox%A_Index%ES50
+				GuiControl, Disable, Radiobox%A_Index%ES40
+				GuiControl, Disable, Radiobox%A_Index%ES30
+				GuiControl, Disable, Radiobox%A_Index%ES20
+				GuiControl, Disable, RadioUncheck%A_Index%ES
+				}
 			}
+		else if(RadioHybrid==1) {
+			loop 5 {
+				GuiControl, Enable, Radiobox%A_Index%Life90
+					GuiControl, Enable, Radiobox%A_Index%Life80
+					GuiControl, Enable, Radiobox%A_Index%Life70
+					GuiControl, Enable, Radiobox%A_Index%Life60
+					GuiControl, Enable, Radiobox%A_Index%Life50
+					GuiControl, Enable, Radiobox%A_Index%Life40
+					GuiControl, Enable, Radiobox%A_Index%Life30
+					GuiControl, Enable, Radiobox%A_Index%Life20
+					GuiControl, Enable, RadioUncheck%A_Index%Life
+					
+				GuiControl, Enable, Radiobox%A_Index%ES90
+				GuiControl, Enable, Radiobox%A_Index%ES80
+				GuiControl, Enable, Radiobox%A_Index%ES70
+				GuiControl, Enable, Radiobox%A_Index%ES60
+				GuiControl, Enable, Radiobox%A_Index%ES50
+				GuiControl, Enable, Radiobox%A_Index%ES40
+				GuiControl, Enable, Radiobox%A_Index%ES30
+				GuiControl, Enable, Radiobox%A_Index%ES20
+				GuiControl, Enable, RadioUncheck%A_Index%ES
+				}
+			}
+		else if(RadioCi==1) {
+			loop 5 {
+				GuiControl, Disable, Radiobox%A_Index%Life90
+					GuiControl, Disable, Radiobox%A_Index%Life80
+					GuiControl, Disable, Radiobox%A_Index%Life70
+					GuiControl, Disable, Radiobox%A_Index%Life60
+					GuiControl, Disable, Radiobox%A_Index%Life50
+					GuiControl, Disable, Radiobox%A_Index%Life40
+					GuiControl, Disable, Radiobox%A_Index%Life30
+					GuiControl, Disable, Radiobox%A_Index%Life20
+					GuiControl, Disable, RadioUncheck%A_Index%Life
+					
+				GuiControl, Enable, Radiobox%A_Index%ES90
+				GuiControl, Enable, Radiobox%A_Index%ES80
+				GuiControl, Enable, Radiobox%A_Index%ES70
+				GuiControl, Enable, Radiobox%A_Index%ES60
+				GuiControl, Enable, Radiobox%A_Index%ES50
+				GuiControl, Enable, Radiobox%A_Index%ES40
+				GuiControl, Enable, Radiobox%A_Index%ES30
+				GuiControl, Enable, Radiobox%A_Index%ES20
+				GuiControl, Enable, RadioUncheck%A_Index%ES
+				}
+			}
+
+		Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
+		Gui, ItemInfo: Margin, 10, 10
+		Gui, ItemInfo: Font, Bold s8 c4D7186, Verdana
+		Gui, ItemInfo: Add, GroupBox, vGroupBox1 xm+1 y+1  h251 w554 , %GroupBox1%
+		Gui, ItemInfo: Add, Text, xp+3 yp+20 Section h1 w1 , ""
+		Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
+		{
+			addY := y + 10 
+			Gui, ItemInfo: Add, Text, vPercentText1G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
 		}
 
-	if(RadioLife==1) {
-		loop 5 {
-			GuiControl, Enable, Radiobox%A_Index%Life90
-				GuiControl, Enable, Radiobox%A_Index%Life80
-				GuiControl, Enable, Radiobox%A_Index%Life70
-				GuiControl, Enable, Radiobox%A_Index%Life60
-				GuiControl, Enable, Radiobox%A_Index%Life50
-				GuiControl, Enable, Radiobox%A_Index%Life40
-				GuiControl, Enable, Radiobox%A_Index%Life30
-				GuiControl, Enable, Radiobox%A_Index%Life20
-				GuiControl, Enable, RadioUncheck%A_Index%Life
-				
-			GuiControl, Disable, Radiobox%A_Index%ES90
-			GuiControl, Disable, Radiobox%A_Index%ES80
-			GuiControl, Disable, Radiobox%A_Index%ES70
-			GuiControl, Disable, Radiobox%A_Index%ES60
-			GuiControl, Disable, Radiobox%A_Index%ES50
-			GuiControl, Disable, Radiobox%A_Index%ES40
-			GuiControl, Disable, Radiobox%A_Index%ES30
-			GuiControl, Disable, Radiobox%A_Index%ES20
-			GuiControl, Disable, RadioUncheck%A_Index%ES
-			}
+		Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
+		Gui, ItemInfo: Add, Text, % "xp+1 yp+1 w" graphWidth " h" graphHeight " hwndhGraph1", pGraph1
+		Gui, ItemInfo: Add, Text, Section x+8 vPComment1, %PComment1%
+		Gui, ItemInfo: Add, Text, x+8 vPData1, %PData1%
+		Gui, ItemInfo: Add, Text, xs vPComment2, %PComment2%
+		Gui, ItemInfo: Add, Text, x+8 vPData2, %PData2%
+		Gui, ItemInfo: Add, Text, xs vPComment3, %PComment3%
+		Gui, ItemInfo: Add, Text, x+8 vPData3, %PData3%
+		Gui, ItemInfo: Add, Text, xs vPComment4, %PComment4%
+		Gui, ItemInfo: Add, Text, x+8 vPData4, %PData4%
+		Gui, ItemInfo: Add, Text, xs vPComment5, %PComment5%
+		Gui, ItemInfo: Add, Text, x+8 vPData5, %PData5%
+		Gui, ItemInfo: Add, Text, xs vPComment6, %PComment6%
+		Gui, ItemInfo: Add, Text, x+8 vPData6, %PData6%
+		Gui, ItemInfo: Add, Text, xs vPComment7, %PComment7%
+		Gui, ItemInfo: Add, Text, x+8 vPData7, %PData7%
+		Gui, ItemInfo: Add, Text, xs vPComment8, %PComment8%
+		Gui, ItemInfo: Add, Text, x+8 vPData8, %PData8%
+		Gui, ItemInfo: Add, Text, xs vPComment9, %PComment9%
+		Gui, ItemInfo: Add, Text, x+8 vPData9, %PData9%
+		Gui, ItemInfo: Add, Text, xs vPComment10, %PComment10%
+		Gui, ItemInfo: Add, Text, x+8 vPData10, %PData10%
+
+		Gui, ItemInfo: Add, GroupBox, vGroupBox2 x+15 ys-21  h251 w554 , %GroupBox2%
+		Gui, ItemInfo: Add, Text, xp+3 ys Section h1 w1 , ""
+		Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
+		{
+			addY := y + 10 
+			Gui, ItemInfo: Add, Text, vPercentText2G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
 		}
-	else if(RadioHybrid==1) {
-		loop 5 {
-			GuiControl, Enable, Radiobox%A_Index%Life90
-				GuiControl, Enable, Radiobox%A_Index%Life80
-				GuiControl, Enable, Radiobox%A_Index%Life70
-				GuiControl, Enable, Radiobox%A_Index%Life60
-				GuiControl, Enable, Radiobox%A_Index%Life50
-				GuiControl, Enable, Radiobox%A_Index%Life40
-				GuiControl, Enable, Radiobox%A_Index%Life30
-				GuiControl, Enable, Radiobox%A_Index%Life20
-				GuiControl, Enable, RadioUncheck%A_Index%Life
-				
-			GuiControl, Enable, Radiobox%A_Index%ES90
-			GuiControl, Enable, Radiobox%A_Index%ES80
-			GuiControl, Enable, Radiobox%A_Index%ES70
-			GuiControl, Enable, Radiobox%A_Index%ES60
-			GuiControl, Enable, Radiobox%A_Index%ES50
-			GuiControl, Enable, Radiobox%A_Index%ES40
-			GuiControl, Enable, Radiobox%A_Index%ES30
-			GuiControl, Enable, Radiobox%A_Index%ES20
-			GuiControl, Enable, RadioUncheck%A_Index%ES
-			}
+		Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
+		Gui, ItemInfo: Add, Text, % "xp+1 yp+1 w" graphWidth " h" graphHeight " hwndhGraph2", pGraph2
+		Gui, ItemInfo: Add, Text, Section x+8 vSComment1, %SComment1%
+		Gui, ItemInfo: Add, Text, x+8 vSData1, %SData1%
+		Gui, ItemInfo: Add, Text, xs vSComment2, %SComment2%
+		Gui, ItemInfo: Add, Text, x+8 vSData2, %SData2%
+		Gui, ItemInfo: Add, Text, xs vSComment3, %SComment3%
+		Gui, ItemInfo: Add, Text, x+8 vSData3, %SData3%
+		Gui, ItemInfo: Add, Text, xs vSComment4, %SComment4%
+		Gui, ItemInfo: Add, Text, x+8 vSData4, %SData4%
+		Gui, ItemInfo: Add, Text, xs vSComment5, %SComment5%
+		Gui, ItemInfo: Add, Text, x+8 vSData5, %SData5%
+		Gui, ItemInfo: Add, Text, xs vSComment6, %SComment6%
+		Gui, ItemInfo: Add, Text, x+8 vSData6, %SData6%
+		Gui, ItemInfo: Add, Text, xs vSComment7, %SComment7%
+		Gui, ItemInfo: Add, Text, x+8 vSData7, %SData7%
+		Gui, ItemInfo: Add, Text, xs vSComment8, %SComment8%
+		Gui, ItemInfo: Add, Text, x+8 vSData8, %SData8%
+		Gui, ItemInfo: Add, Text, xs vSComment9, %SComment9%
+		Gui, ItemInfo: Add, Text, x+8 vSData9, %SData9%
+		Gui, ItemInfo: Add, Text, xs vSComment10, %SComment10%
+		Gui, ItemInfo: Add, Text, x+8 vSData10, %SData10%
+
+		global hBM := CreateDIB( "E9F5F8|E9F5F8|AFAFAF|AFAFAF|E9F5F8|E9F5F8", 2, 3, graphWidth, graphHeight, 0)
+		global pGraph1 := XGraph( hGraph1, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
+		global pGraph2 := XGraph( hGraph2, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
+
+
+		Gui, ItemInfo: Add, GroupBox, Section xm+1 y+30  h251 w364 , Item Properties
+		Gui, ItemInfo: Add, Edit, vItemInfoPropText xp+2 ys+17 w358, %ItemInfoPropText%
+		Gui, ItemInfo: Add, GroupBox, x+10 ys   h251 w364 , Item Statistics
+		Gui, ItemInfo: Add, Edit, vItemInfoStatText xp+2 ys+17 w358, %ItemInfoStatText%
+		Gui, ItemInfo: Add, GroupBox, x+9 ys  h251 w364 , Item Affixes
+		Gui, ItemInfo: Add, Edit, vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
+		;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
+		;Gui, ItemInfo: Hide
+		If (DebugMessages)
+		{
+			GuiControl, Show, YesTimeMS
+			GuiControl, Show, YesTimeMS_t
+			GuiControl, Show, YesLocation
+			GuiControl, Show, YesLocation_t
 		}
-	else if(RadioCi==1) {
-		loop 5 {
-			GuiControl, Disable, Radiobox%A_Index%Life90
-				GuiControl, Disable, Radiobox%A_Index%Life80
-				GuiControl, Disable, Radiobox%A_Index%Life70
-				GuiControl, Disable, Radiobox%A_Index%Life60
-				GuiControl, Disable, Radiobox%A_Index%Life50
-				GuiControl, Disable, Radiobox%A_Index%Life40
-				GuiControl, Disable, Radiobox%A_Index%Life30
-				GuiControl, Disable, Radiobox%A_Index%Life20
-				GuiControl, Disable, RadioUncheck%A_Index%Life
-				
-			GuiControl, Enable, Radiobox%A_Index%ES90
-			GuiControl, Enable, Radiobox%A_Index%ES80
-			GuiControl, Enable, Radiobox%A_Index%ES70
-			GuiControl, Enable, Radiobox%A_Index%ES60
-			GuiControl, Enable, Radiobox%A_Index%ES50
-			GuiControl, Enable, Radiobox%A_Index%ES40
-			GuiControl, Enable, Radiobox%A_Index%ES30
-			GuiControl, Enable, Radiobox%A_Index%ES20
-			GuiControl, Enable, RadioUncheck%A_Index%ES
-			}
+		Else
+		{
+			GuiControl, Hide, YesTimeMS
+			GuiControl, Hide, YesTimeMS_t
+			GuiControl, Hide, YesLocation
+			GuiControl, Hide, YesLocation_t
 		}
-
-	Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
-	Gui, ItemInfo: Margin, 10, 10
-	Gui, ItemInfo: Font, Bold s8 c4D7186, Verdana
-	Gui, ItemInfo: Add, GroupBox, vGroupBox1 xm+1 y+1  h251 w554 , %GroupBox1%
-	Gui, ItemInfo: Add, Text, xp+3 yp+20 Section h1 w1 , ""
-	Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
-	{
-		addY := y + 10 
-		Gui, ItemInfo: Add, Text, vPercentText1G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
-	}
-
-	Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
-	Gui, ItemInfo: Add, Text, % "xp+1 yp+1 w" graphWidth " h" graphHeight " hwndhGraph1", pGraph1
-	Gui, ItemInfo: Add, Text, Section x+8 vPComment1, %PComment1%
-	Gui, ItemInfo: Add, Text, x+8 vPData1, %PData1%
-	Gui, ItemInfo: Add, Text, xs vPComment2, %PComment2%
-	Gui, ItemInfo: Add, Text, x+8 vPData2, %PData2%
-	Gui, ItemInfo: Add, Text, xs vPComment3, %PComment3%
-	Gui, ItemInfo: Add, Text, x+8 vPData3, %PData3%
-	Gui, ItemInfo: Add, Text, xs vPComment4, %PComment4%
-	Gui, ItemInfo: Add, Text, x+8 vPData4, %PData4%
-	Gui, ItemInfo: Add, Text, xs vPComment5, %PComment5%
-	Gui, ItemInfo: Add, Text, x+8 vPData5, %PData5%
-	Gui, ItemInfo: Add, Text, xs vPComment6, %PComment6%
-	Gui, ItemInfo: Add, Text, x+8 vPData6, %PData6%
-	Gui, ItemInfo: Add, Text, xs vPComment7, %PComment7%
-	Gui, ItemInfo: Add, Text, x+8 vPData7, %PData7%
-	Gui, ItemInfo: Add, Text, xs vPComment8, %PComment8%
-	Gui, ItemInfo: Add, Text, x+8 vPData8, %PData8%
-	Gui, ItemInfo: Add, Text, xs vPComment9, %PComment9%
-	Gui, ItemInfo: Add, Text, x+8 vPData9, %PData9%
-	Gui, ItemInfo: Add, Text, xs vPComment10, %PComment10%
-	Gui, ItemInfo: Add, Text, x+8 vPData10, %PData10%
-
-	Gui, ItemInfo: Add, GroupBox, vGroupBox2 x+15 ys-21  h251 w554 , %GroupBox2%
-	Gui, ItemInfo: Add, Text, xp+3 ys Section h1 w1 , ""
-	Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
-	{
-		addY := y + 10 
-		Gui, ItemInfo: Add, Text, vPercentText2G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
-	}
-	Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
-	Gui, ItemInfo: Add, Text, % "xp+1 yp+1 w" graphWidth " h" graphHeight " hwndhGraph2", pGraph2
-	Gui, ItemInfo: Add, Text, Section x+8 vSComment1, %SComment1%
-	Gui, ItemInfo: Add, Text, x+8 vSData1, %SData1%
-	Gui, ItemInfo: Add, Text, xs vSComment2, %SComment2%
-	Gui, ItemInfo: Add, Text, x+8 vSData2, %SData2%
-	Gui, ItemInfo: Add, Text, xs vSComment3, %SComment3%
-	Gui, ItemInfo: Add, Text, x+8 vSData3, %SData3%
-	Gui, ItemInfo: Add, Text, xs vSComment4, %SComment4%
-	Gui, ItemInfo: Add, Text, x+8 vSData4, %SData4%
-	Gui, ItemInfo: Add, Text, xs vSComment5, %SComment5%
-	Gui, ItemInfo: Add, Text, x+8 vSData5, %SData5%
-	Gui, ItemInfo: Add, Text, xs vSComment6, %SComment6%
-	Gui, ItemInfo: Add, Text, x+8 vSData6, %SData6%
-	Gui, ItemInfo: Add, Text, xs vSComment7, %SComment7%
-	Gui, ItemInfo: Add, Text, x+8 vSData7, %SData7%
-	Gui, ItemInfo: Add, Text, xs vSComment8, %SComment8%
-	Gui, ItemInfo: Add, Text, x+8 vSData8, %SData8%
-	Gui, ItemInfo: Add, Text, xs vSComment9, %SComment9%
-	Gui, ItemInfo: Add, Text, x+8 vSData9, %SData9%
-	Gui, ItemInfo: Add, Text, xs vSComment10, %SComment10%
-	Gui, ItemInfo: Add, Text, x+8 vSData10, %SData10%
-
-	global hBM := CreateDIB( "E9F5F8|E9F5F8|AFAFAF|AFAFAF|E9F5F8|E9F5F8", 2, 3, graphWidth, graphHeight, 0)
-	global pGraph1 := XGraph( hGraph1, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
-	global pGraph2 := XGraph( hGraph2, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
-
-
-	Gui, ItemInfo: Add, GroupBox, Section xm+1 y+30  h251 w364 , Item Properties
-	Gui, ItemInfo: Add, Edit, vItemInfoPropText xp+2 ys+17 w358, %ItemInfoPropText%
-	Gui, ItemInfo: Add, GroupBox, x+10 ys   h251 w364 , Item Statistics
-	Gui, ItemInfo: Add, Edit, vItemInfoStatText xp+2 ys+17 w358, %ItemInfoStatText%
-	Gui, ItemInfo: Add, GroupBox, x+9 ys  h251 w364 , Item Affixes
-	Gui, ItemInfo: Add, Edit, vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
-	;Gui, ItemInfo: Show, AutoSize, % Prop.ItemName " Sparkline"
-	;Gui, ItemInfo: Hide
-	If (DebugMessages)
-	{
-		GuiControl, Show, YesTimeMS
-		GuiControl, Show, YesTimeMS_t
-		GuiControl, Show, YesLocation
-		GuiControl, Show, YesLocation_t
-	}
-	Else
-	{
-		GuiControl, Hide, YesTimeMS
-		GuiControl, Hide, YesTimeMS_t
-		GuiControl, Hide, YesLocation
-		GuiControl, Hide, YesLocation_t
-	}
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5574,7 +5626,7 @@ Return
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TGameTick(GuiCheck:=True)
 	{
-		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False
+		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False, OnScreenMM := 0
 		If WinExist(GameStr)
 		{
 			If (DebugMessages && YesTimeMS)
@@ -5604,15 +5656,16 @@ Return
 			{
 				If !GuiStatus()
 				{
-					If YesFillMetamorph 
+					If (YesFillMetamorph) 
 					{
-						If (OnMetamorph && !Metamorph_Filled)
+						If (OnMetamorph && Metamorph_Filled)
+							OnScreenMM := A_TickCount
+						Else If (OnMetamorph && !Metamorph_Filled)
 						{
 							Metamorph_Filled := True
 							Metamorph_FillOrgans()
+							OnScreenMM := A_TickCount
 						}
-						Else If (!OnMetamorph && Metamorph_Filled)
-							Metamorph_Filled := False
 					}
 					If CheckGamestates
 					{
@@ -5627,7 +5680,7 @@ Return
 							}
 					Exit
 				}
-				If (!OnMetamorph && Metamorph_Filled)
+				If (!OnMetamorph && Metamorph_Filled && ((A_TickCount - OnScreenMM) >= 5000))
 					Metamorph_Filled := False
 				If CheckGamestates
 					DebugGamestates("CheckGamestates")
@@ -5661,7 +5714,12 @@ Return
 					{
 						If (AutoQuit)
 						{
-							if (QuitBelow = 20 && Player.Percent.Life < 20)
+							if (QuitBelow = 10 && Player.Percent.Life < 10)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 20 && Player.Percent.Life < 20)
 							{
 								LogoutCommand()
 								Exit
@@ -5723,71 +5781,28 @@ Return
 								TriggerFlask(TriggerLife90)
 						}
 
-						If ( (YesUtility1 && !OnCooldownUtility1) 
-							|| (YesUtility2 && !OnCooldownUtility2) 
-							|| (YesUtility3 && !OnCooldownUtility3) 
-							|| (YesUtility4 && !OnCooldownUtility4) 
-							|| (YesUtility5 && !OnCooldownUtility5) ) { 
-
-							If (Player.Percent.Life < 20)
-							{
-								Loop, 5
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20"&& !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.Life < 30)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="30" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.Life < 40)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="40" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.Life < 50)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="50" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.Life < 60)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="60" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.Life < 70)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="70" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.Life < 80)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="80" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.Life < 90)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%LifePercent="90" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
+						If ( (YesUtility1 && YesUtility1LifePercent != "Off" && !OnCooldownUtility1) 
+							|| (YesUtility2 && YesUtility2LifePercent != "Off" && !OnCooldownUtility2) 
+							|| (YesUtility3 && YesUtility3LifePercent != "Off" && !OnCooldownUtility3) 
+							|| (YesUtility4 && YesUtility4LifePercent != "Off" && !OnCooldownUtility4) 
+							|| (YesUtility5 && YesUtility5LifePercent != "Off" && !OnCooldownUtility5) ) { 
+							Loop, 5
+								If (YesUtility%A_Index%
+								&& YesUtility%A_Index%LifePercent != "Off" 
+								&& !OnCooldownUtility%A_Index%
+								&& YesUtility%A_Index%LifePercent +0 > Player.Percent.Life )
+									TriggerUtility(A_Index)
 						}
 					}
 					Else
 					{
 						If ( (TriggerLife20!="00000") 
 							|| (AutoQuit&&QuitBelow = 20)
-							|| ( ((YesUtility1)&&(YesUtility1LifePercent="20")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2LifePercent="20")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3LifePercent="20")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4LifePercent="20")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5LifePercent="20")&&!(OnCooldownUtility5)) ) ) {
+							|| ( ((YesUtility1)&&(YesUtility1LifePercent="20" || YesUtility1LifePercent="10")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2LifePercent="20" || YesUtility2LifePercent="10")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3LifePercent="20" || YesUtility3LifePercent="10")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4LifePercent="20" || YesUtility4LifePercent="10")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5LifePercent="20" || YesUtility5LifePercent="10")&&!(OnCooldownUtility5)) ) ) {
 							Life20 := ScreenShot_GetColor(vX_Life,vY_Life20) 
 							if (Life20!=varLife20) {
 								if (AutoQuit && QuitBelow >= 20) {
@@ -5965,7 +5980,12 @@ Return
 					{
 						If (AutoQuit && RadioCi)
 						{
-							if (QuitBelow = 20 && Player.Percent.ES < 20)
+							if (QuitBelow = 10 && Player.Percent.ES < 10)
+							{
+								LogoutCommand()
+								Exit
+							}
+							Else if (QuitBelow = 20 && Player.Percent.ES < 20)
 							{
 								LogoutCommand()
 								Exit
@@ -6027,71 +6047,29 @@ Return
 								TriggerFlask(TriggerES90)
 						}
 
-						If ( (YesUtility1 && !OnCooldownUtility1) 
-							|| (YesUtility2 && !OnCooldownUtility2) 
-							|| (YesUtility3 && !OnCooldownUtility3) 
-							|| (YesUtility4 && !OnCooldownUtility4) 
-							|| (YesUtility5 && !OnCooldownUtility5) ) { 
+						If ( (YesUtility1 && YesUtility1ESPercent != "Off" && !OnCooldownUtility1) 
+							|| (YesUtility2 && YesUtility2ESPercent != "Off" && !OnCooldownUtility2) 
+							|| (YesUtility3 && YesUtility3ESPercent != "Off" && !OnCooldownUtility3) 
+							|| (YesUtility4 && YesUtility4ESPercent != "Off" && !OnCooldownUtility4) 
+							|| (YesUtility5 && YesUtility5ESPercent != "Off" && !OnCooldownUtility5) ) { 
 
-							If (Player.Percent.ES < 20)
-							{
-								Loop, 5
-									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20"&& !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.ES < 30)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="30" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.ES < 40)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="40" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.ES < 50)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="50" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.ES < 60)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="60" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.ES < 70)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="70" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.ES < 80)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="80" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
-							If (Player.Percent.ES < 90)
-							{
-								Loop, 5 
-									If (YesUtility%A_Index% && YesUtility%A_Index%ESPercent="90" && !OnCooldownUtility%A_Index%)
-										TriggerUtility(A_Index)
-							}
+							Loop, 5
+								If (YesUtility%A_Index%
+								&& YesUtility%A_Index%ESPercent != "Off" 
+								&& !OnCooldownUtility%A_Index%
+								&& YesUtility%A_Index%ESPercent +0 > Player.Percent.ES )
+									TriggerUtility(A_Index)
 						}
 					}
 					Else
 					{
 						If ( (TriggerES20!="00000") 
 							|| (AutoQuit&&RadioCi&&QuitBelow = 20)
-							|| ( ((YesUtility1)&&(YesUtility1ESPercent="20")&&!(OnCooldownUtility1)) 
-							|| ((YesUtility2)&&(YesUtility2ESPercent="20")&&!(OnCooldownUtility2)) 
-							|| ((YesUtility3)&&(YesUtility3ESPercent="20")&&!(OnCooldownUtility3)) 
-							|| ((YesUtility4)&&(YesUtility4ESPercent="20")&&!(OnCooldownUtility4)) 
-							|| ((YesUtility5)&&(YesUtility5ESPercent="20")&&!(OnCooldownUtility5)) ) ) {
+							|| ( ((YesUtility1)&&(YesUtility1ESPercent="20" || YesUtility1ESPercent="10")&&!(OnCooldownUtility1)) 
+							|| ((YesUtility2)&&(YesUtility2ESPercent="20" || YesUtility2ESPercent="10")&&!(OnCooldownUtility2)) 
+							|| ((YesUtility3)&&(YesUtility3ESPercent="20" || YesUtility3ESPercent="10")&&!(OnCooldownUtility3)) 
+							|| ((YesUtility4)&&(YesUtility4ESPercent="20" || YesUtility4ESPercent="10")&&!(OnCooldownUtility4)) 
+							|| ((YesUtility5)&&(YesUtility5ESPercent="20" || YesUtility5ESPercent="10")&&!(OnCooldownUtility5)) ) ) {
 							ES20 := ScreenShot_GetColor(vX_ES,vY_ES20) 
 							if (ES20!=varES20) {
 								if (AutoQuit && RadioCi && QuitBelow >= 20) {
@@ -6271,12 +6249,30 @@ Return
 					{
 						If (Player.Percent.Mana < ManaThreshold)
 							TriggerMana(TriggerMana10)
+						If ( (YesUtility1 && YesUtility1ManaPercent != "Off" && !OnCooldownUtility1) 
+							|| (YesUtility2 && YesUtility2ManaPercent != "Off" && !OnCooldownUtility2) 
+							|| (YesUtility3 && YesUtility3ManaPercent != "Off" && !OnCooldownUtility3) 
+							|| (YesUtility4 && YesUtility4ManaPercent != "Off" && !OnCooldownUtility4) 
+							|| (YesUtility5 && YesUtility5ManaPercent != "Off" && !OnCooldownUtility5) ) { 
+
+							Loop, 5
+								If (YesUtility%A_Index%
+								&& YesUtility%A_Index%ManaPercent != "Off" 
+								&& !OnCooldownUtility%A_Index%
+								&& YesUtility%A_Index%ManaPercent +0 > Player.Percent.Mana )
+									TriggerUtility(A_Index)
+						}
 					}
 					Else
 					{
 						ManaPerc := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
 						if (ManaPerc!=varManaThreshold) {
 							TriggerMana(TriggerMana10)
+						Loop, 5
+							If (YesUtility%A_Index%
+							&& YesUtility%A_Index%ManaPercent != "Off" 
+							&& !OnCooldownUtility%A_Index%)
+								TriggerUtility(A_Index)
 						}
 					}
 				}
@@ -6284,14 +6280,44 @@ Return
 				If (MainAttackPressedActive && TriggerMainAttack > 0 && AutoFlask)
 				{
 					If GetKeyState(hotkeyMainAttack)
+					{
 						TriggerFlask(TriggerMainAttack)
+						Loop, 5
+						{
+							If (YesUtility%A_Index%) 
+								&& !(OnCooldownUtility%A_Index%) 
+								&& (YesUtility%A_Index%MainAttack) 
+								&& !(YesUtility%A_Index%Quicksilver) 
+								&& (YesUtility%A_Index%LifePercent="Off") 
+								&& (YesUtility%A_Index%ESPercent="Off") 
+								&& (YesUtility%A_Index%ManaPercent="Off") 
+							{
+								TriggerUtility(A_Index)
+							}
+						}
+					}
 					Else
 						MainAttackPressedActive := False
 				}
 				If (SecondaryAttackPressedActive && TriggerSecondaryAttack > 0 && AutoFlask)
 				{
 					If GetKeyState(hotkeySecondaryAttack)
+					{
 						TriggerFlask(TriggerSecondaryAttack)
+						Loop, 5
+						{
+							If (YesUtility%A_Index%) 
+								&& !(OnCooldownUtility%A_Index%) 
+								&& (YesUtility%A_Index%SecondaryAttack) 
+								&& !(YesUtility%A_Index%Quicksilver) 
+								&& (YesUtility%A_Index%LifePercent="Off") 
+								&& (YesUtility%A_Index%ESPercent="Off") 
+								&& (YesUtility%A_Index%ManaPercent="Off") 
+							{
+								TriggerUtility(A_Index)
+							}
+						}
+					}
 					Else
 						SecondaryAttackPressedActive := False
 				}
@@ -6299,18 +6325,26 @@ Return
 				If AutoFlask
 				Loop, 5
 				{
-					If !(OnCooldownUtility%A_Index%)
+					If (YesUtility%A_Index%) 
+						&& !(OnCooldownUtility%A_Index%) 
+						&& !(YesUtility%A_Index%Quicksilver) 
+						&& !(YesUtility%A_Index%MainAttack) 
+						&& !(YesUtility%A_Index%SecondaryAttack) 
+						&& (YesUtility%A_Index%LifePercent="Off") 
+						&& (YesUtility%A_Index%ESPercent="Off") 
+						&& (YesUtility%A_Index%ManaPercent="Off") 
 					{
-						If (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") && !(IconStringUtility%A_Index%)
-								TriggerUtility(A_Index)
-						Else If (YesUtility%A_Index%) && !(YesUtility%A_Index%Quicksilver) && (YesUtility%A_Index%LifePercent="Off") && (YesUtility%A_Index%ESPercent="Off") && (IconStringUtility%A_Index%)
+						If !(IconStringUtility%A_Index%)
+							TriggerUtility(A_Index)
+						Else If (IconStringUtility%A_Index%)
 						{
-							If FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
+							BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
+							If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
 							{
 								OnCooldownUtility%A_Index%:=1
 								SetTimer, TimerUtility%A_Index%, % CooldownUtility%A_Index%
 							}
-							Else
+							Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
 								TriggerUtility(A_Index)
 						}
 					}
@@ -6455,6 +6489,19 @@ Return
 				Exit
 			TriggerFlask(TriggerMainAttack)
 			MainAttackPressedActive := True
+			Loop, 5
+			{
+				If (YesUtility%A_Index%) 
+					&& !(OnCooldownUtility%A_Index%) 
+					&& (YesUtility%A_Index%MainAttack) 
+					&& !(YesUtility%A_Index%Quicksilver) 
+					&& (YesUtility%A_Index%LifePercent="Off") 
+					&& (YesUtility%A_Index%ESPercent="Off") 
+					&& (YesUtility%A_Index%ManaPercent="Off") 
+				{
+					TriggerUtility(A_Index)
+				}
+			}
 		}
 		Return	
 		}
@@ -6469,6 +6516,20 @@ Return
 			If !GuiStatus(,0)
 				Exit
 			TriggerFlask(TriggerSecondaryAttack)
+			SecondaryAttackPressedActive := True
+			Loop, 5
+			{
+				If (YesUtility%A_Index%) 
+					&& !(OnCooldownUtility%A_Index%) 
+					&& (YesUtility%A_Index%SecondaryAttack) 
+					&& !(YesUtility%A_Index%Quicksilver) 
+					&& (YesUtility%A_Index%LifePercent="Off") 
+					&& (YesUtility%A_Index%ESPercent="Off") 
+					&& (YesUtility%A_Index%ManaPercent="Off") 
+				{
+					TriggerUtility(A_Index)
+				}
+			}
 		}
 		Return	
 		}
@@ -7492,6 +7553,21 @@ Return
 			IniRead, YesUtility3Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
 			IniRead, YesUtility4Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
 			IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
+			IniRead, YesUtility1InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff, 0
+			IniRead, YesUtility2InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff, 0
+			IniRead, YesUtility3InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff, 0
+			IniRead, YesUtility4InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff, 0
+			IniRead, YesUtility5InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff, 0
+			IniRead, YesUtility1MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack, 0
+			IniRead, YesUtility2MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack, 0
+			IniRead, YesUtility3MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack, 0
+			IniRead, YesUtility4MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack, 0
+			IniRead, YesUtility5MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack, 0
+			IniRead, YesUtility1SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack, 0
+			IniRead, YesUtility2SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack, 0
+			IniRead, YesUtility3SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack, 0
+			IniRead, YesUtility4SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack, 0
+			IniRead, YesUtility5SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack, 0
 			
 			;Utility Percents	
 			IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent, Off
@@ -7504,6 +7580,11 @@ Return
 			IniRead, YesUtility3EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility3EsPercent, Off
 			IniRead, YesUtility4EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility4EsPercent, Off
 			IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility5EsPercent, Off
+			IniRead, YesUtility1ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility1ManaPercent, Off
+			IniRead, YesUtility2ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility2ManaPercent, Off
+			IniRead, YesUtility3ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility3ManaPercent, Off
+			IniRead, YesUtility4ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility4ManaPercent, Off
+			IniRead, YesUtility5ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility5ManaPercent, Off
 			
 			;Utility Cooldowns
 			IniRead, CooldownUtility1, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1, 5000
@@ -8094,6 +8175,21 @@ Return
 			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver
 			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver
 			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver
+			IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff
+			IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff
+			IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff
+			IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff
+			IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff
+			IniWrite, %YesUtility1MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack
+			IniWrite, %YesUtility2MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack
+			IniWrite, %YesUtility3MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack
+			IniWrite, %YesUtility4MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack
+			IniWrite, %YesUtility5MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack
+			IniWrite, %YesUtility1SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack
+			IniWrite, %YesUtility2SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack
+			IniWrite, %YesUtility3SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack
+			IniWrite, %YesUtility4SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack
+			IniWrite, %YesUtility5SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack
 			
 			;Utility Percents	
 			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent
@@ -8106,6 +8202,11 @@ Return
 			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent
 			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent
 			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent
+			IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1ManaPercent
+			IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2ManaPercent
+			IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3ManaPercent
+			IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4ManaPercent
+			IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5ManaPercent
 			
 			;Utility Cooldowns
 			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1
@@ -9138,6 +9239,11 @@ Return
 			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3Quicksilver
 			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4Quicksilver
 			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5Quicksilver
+			IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1InverseBuff
+			IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2InverseBuff
+			IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3InverseBuff
+			IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4InverseBuff
+			IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5InverseBuff
 			
 			;Utility Percents	
 			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1LifePercent
@@ -9150,6 +9256,11 @@ Return
 			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3EsPercent
 			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4EsPercent
 			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5EsPercent
+			IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1ManaPercent
+			IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2ManaPercent
+			IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3ManaPercent
+			IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4ManaPercent
+			IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5ManaPercent
 			
 			;Utility Cooldowns
 			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility1
@@ -9578,6 +9689,16 @@ Return
 			GuiControl, , YesUtility4Quicksilver, %YesUtility4Quicksilver%
 			IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5Quicksilver, 0
 			GuiControl, , YesUtility5Quicksilver, %YesUtility5Quicksilver%
+			IniRead, YesUtility1InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1InverseBuff, 0
+			GuiControl, , YesUtility1InverseBuff, %YesUtility1InverseBuff%
+			IniRead, YesUtility2InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2InverseBuff, 0
+			GuiControl, , YesUtility2InverseBuff, %YesUtility2InverseBuff%
+			IniRead, YesUtility3InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3InverseBuff, 0
+			GuiControl, , YesUtility3InverseBuff, %YesUtility3InverseBuff%
+			IniRead, YesUtility4InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4InverseBuff, 0
+			GuiControl, , YesUtility4InverseBuff, %YesUtility4InverseBuff%
+			IniRead, YesUtility5InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5InverseBuff, 0
+			GuiControl, , YesUtility5InverseBuff, %YesUtility5InverseBuff%
 			
 			;Utility Percents	
 			IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1LifePercent, Off
@@ -9600,6 +9721,16 @@ Return
 			GuiControl, ChooseString, YesUtility4EsPercent, %YesUtility4EsPercent%
 			IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5EsPercent, Off
 			GuiControl, ChooseString, YesUtility5EsPercent, %YesUtility5EsPercent%
+			IniRead, YesUtility1ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1ManaPercent, Off
+			GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
+			IniRead, YesUtility2ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2ManaPercent, Off
+			GuiControl, ChooseString, YesUtility2ManaPercent, %YesUtility2ManaPercent%
+			IniRead, YesUtility3ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3ManaPercent, Off
+			GuiControl, ChooseString, YesUtility3ManaPercent, %YesUtility3ManaPercent%
+			IniRead, YesUtility4ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4ManaPercent, Off
+			GuiControl, ChooseString, YesUtility4ManaPercent, %YesUtility4ManaPercent%
+			IniRead, YesUtility5ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5ManaPercent, Off
+			GuiControl, ChooseString, YesUtility5ManaPercent, %YesUtility5ManaPercent%
 			
 			;Utility Cooldowns
 			IniRead, CooldownUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility1, 5000
@@ -10863,15 +10994,17 @@ Return
 		{
 			Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe
 				, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC
-				,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_FillMetamorph
+				,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu
 				, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB
 				, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe
+				, Obj, WR_Save_JSON_FillMetamorph
 
 			Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
 				, Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
 				, Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
 				, Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
 				, Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
+				, WR_Btn_FillMetamorph_Area
 				, Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
 			If (Function = "Inventory")
 			{
@@ -10962,12 +11095,12 @@ Return
 					Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
 
 					Gui, Inventory: Font, Bold s9 cBlack
-					Gui, Inventory: Add, GroupBox, 						w180 h80		section		xm+370 	ys, 				Automation:
+					Gui, Inventory: Add, GroupBox, 						w180 h110		section		xm+370 	ys, 				Automation:
 					Gui, Inventory: Font,
 					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     		xs+5 ys+18	, Search for stash?
 					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     	y+8			, Move to vendor after stash?
 					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesFillMetamorph Checked%YesFillMetamorph%     		y+8			, Auto fill metamorph?
-					Gui, Inventory: Add, Checkbox, gWR_Update	vWR_Btn_FillMetamorph y+8	w170 center		, Adjust Meta Panel
+					Gui, Inventory: Add, Button, gWR_Update	vWR_Btn_FillMetamorph_Menu y+8	w170 center		, Adjust Metamorph Panel
 				Gui, Inventory: show , w600 h500, Inventory Settings
 				Gui, Inventory: Tab, Stash Tabs
 					Gui, Inventory: Font, Bold
@@ -11510,7 +11643,33 @@ Return
 				Element := Var[1]
 				If (Element = "Btn")
 				{
-					
+					If (ValueType = "Menu")
+					{
+						If (!FillMetamorphInitialized)
+						{
+							FillMetamorphInitialized := True
+							Gui, FillMetamorph: New, -MinimizeBox -Resize
+							Gui, FillMetamorph: Font, s12 c777777 bold
+							Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "    Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "    Y2: " FillMetamorph.Y2
+							Gui, FillMetamorph: Font,
+							Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Btn_FillMetamorph_Select w85, Select area
+							Gui, FillMetamorph: Add, Button, x+5 yp gWR_Update vWR_Btn_FillMetamorph_Show wp, Show area
+							Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Save_JSON_FillMetamorph w170, Save to JSON
+						}
+					}
+					Else If (ValueType = "Select" && Obj := LetUserSelectRect())
+					{
+						FillMetamorph := {"X1":Obj.X1
+							,"Y1":Obj.Y1
+							,"X2":Obj.X2
+							,"Y2":Obj.Y2}
+						GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 "    Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "    Y2: " FillMetamorph.Y2
+					}
+					Else If (ValueType = "Show")
+					{
+						MouseTip(FillMetamorph.X1,FillMetamorph.Y1,FillMetamorph.X2 - FillMetamorph.X1,FillMetamorph.Y2 - FillMetamorph.Y1)
+					}
+					Gui, FillMetamorph: Show
 				}
 			}
 			Else If (Function = "JSON")
@@ -11524,7 +11683,7 @@ Return
 					If FileExist(A_ScriptDir "\save\" ValueType ".json")
 						FileDelete, %A_ScriptDir%\save\%ValueType%.json
 					FileAppend, %JSONtext%, %A_ScriptDir%\save\%ValueType%.json
-					Gui, 1: Show
+					Gui, Show
 				}
 				Else if (Element = "Load")
 				{
@@ -11534,7 +11693,8 @@ Return
 						%ValueType% := JSON.Load(JSONtext)
 					}
 					Else
-						MsgBox, Error loading %ValueType% file
+						Notify("Error loading " ValueType " file","",3)
+						Log("Error loading " ValueType " file")
 				}
 			}
 			Return
@@ -11561,6 +11721,12 @@ Return
 			Return
 			ColorLabel_EB:
 			Picker.SetColor(Globe.EB.Color.hex)
+			Return
+
+			FillMetamorphGuiClose:
+			FillMetamorphGuiEscape:
+				Gui, Submit
+				Gui, Inventory: Show
 			Return
 
 			InventoryGuiClose:
@@ -11924,6 +12090,21 @@ Return
 			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver
 			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver
 			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver
+			IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff
+			IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff
+			IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff
+			IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff
+			IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff
+			IniWrite, %YesUtility1MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack
+			IniWrite, %YesUtility2MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack
+			IniWrite, %YesUtility3MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack
+			IniWrite, %YesUtility4MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack
+			IniWrite, %YesUtility5MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack
+			IniWrite, %YesUtility1SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack
+			IniWrite, %YesUtility2SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack
+			IniWrite, %YesUtility3SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack
+			IniWrite, %YesUtility4SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack
+			IniWrite, %YesUtility5SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack
 			
 			;Utility Percents	
 			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent
@@ -11936,6 +12117,11 @@ Return
 			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent
 			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent
 			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent
+			IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1ManaPercent
+			IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2ManaPercent
+			IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3ManaPercent
+			IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4ManaPercent
+			IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5ManaPercent
 			
 			;Utility Cooldowns
 			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1
