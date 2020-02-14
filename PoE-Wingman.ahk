@@ -528,12 +528,16 @@
 			, 1080_ChestStr .= "|<1080 Crank>*100$54.wDzzzzzzzk3zzzzzzzXnzzrvyxx7r0TblwMs7z6T3swwtDz6D3sQwnDz6CFsAwb7z6SNt4wD7z0y1tYw77z0w0tUwb3v4QwtkwnVX69wtswlk771wNwwsyzzzzzzzzU"
 			, 1080_ChestStr .= "|<1080 Hoard>*100$56.DlzzzzzzznwTzzzzzzwz7wzxzzzzDlw3yT0Q1nwSQT3lba4z77bkwMtl01nst76CS00QyCNlbbUz7DXUQ3tsDlnsk30ySHwQSQwl7bYz7X6TAMtnDlw7bl761zzzrzzzzzy"
 			, 1080_ChestStr .= "|<1080 Sulphite>*100$36.lzzzzziTzzzzDTzzzzDwywz17wywzAXwywzSlwywzSswywzSyQywz1yQywzDzQywzDSQwwzDUy1w3DU"
-		Global 1080_DelveStr := "|<Hidden>*100$65.7szzzzzzzzzDlzzzzzzzzyTXnyzyzzyzgz770D0D0My9yDDADADAswHwSSQSQSTktU0wwwQwQzUn01ttstssD0aTXnnlnlkSEAz7bbXbXbwkNyDDDDDDDtknwSSMyMyTnlbsww3w3w3bn"
-			, 1080_DelveStr .= "|<Cache>*100$52.s7zzzzzzz0DzzzzzzsszTwSTDz7rsz0Fws0Tz3slbnn3zwD7iTDDDzYQztwwwTyFnzU3kFzk7Dy0D17z0ATtwwwDgslzbnns8blXaTDDk6T60tww3lzzyDzzzs"
-			, 1080_DelveStr .= "|<Cache Yellow>*100$51.wDzzzzzzy0TzzzzzzXnzzzzzzwyzDs7DbUDzkySNwwlzybXzDbbDzowztwwtzwnbz07U7ziQztww8zs1bzDbbXzDATtwwwCPtlnDbbk6T70tww4"
-			, 1080_DelveStr .= "|<Fossil>*100$50.0Tzzzzzzs3zzzzzzyQyTtyTDDby1s61XXtz6CNaQwyTXlbtzDDUNwMyDnnsCT63UwwyTblsS7DDbswT7lnntyDDsyAwyTVXiPbDCbw1s61nkDzlz7lzzy"
+		Global 1080_DelveStr := "|<1080 Hidden>*100$65.7szzzzzzzzzDlzzzzzzzzyTXnyzyzzyzgz770D0D0My9yDDADADAswHwSSQSQSTktU0wwwQwQzUn01ttstssD0aTXnnlnlkSEAz7bbXbXbwkNyDDDDDDDtknwSSMyMyTnlbsww3w3w3bn"
+			, 1080_DelveStr .= "|<1080 Lost>*100$37.7zzzzznzzzzztztzbTozkD0U2TlXaKBDlsnz7btwMzXnwyA7ltyT7Vswz7XswSTXnyCDCElrD7UA1s7XzzXyDzs"
+			, 1080_DelveStr .= "|<1080 Forgot>*100$61.0zzzzzzzzzUDzzzzzzzznbnzzz7yTTlzUS0y0w3U0zX76CAQMqATXlX6DQSD70nslXDyT7XUtwMnbzDXlnwyA1ntblstyD61sslswQz7b4QSMwyCTVXX77AAT7Ds3llk70TXzz7zzwTszzs"
+			, 1080_DelveStr .= "|<1080 Cache>*100$52.s7zzzzzzz0DzzzzzzsszTwSTDz7rsz0Fws0Tz3slbnn3zwD7iTDDDzYQztwwwTyFnzU3kFzk7Dy0D17z0ATtwwwDgslzbnns8blXaTDDk6T60tww3lzzyDzzzs"
+			, 1080_DelveStr .= "|<1080 Cache Yellow>*100$51.wDzzzzzzy0TzzzzzzXnzzzzzzwyzDs7DbUDzkySNwwlzybXzDbbDzowztwwtzwnbz07U7ziQztww8zs1bzDbbXzDATtwwwCPtlnDbbk6T70tww4"
+			, 1080_DelveStr .= "|<1080 Vein>*100$39.7szzzzsz7zzzzXszySzgTA1XXsntnCSDCCSTnktlnnyS3DAy3nk9sbkSSED4yTnn1wDnySQDVyTnnlyTkCSTDvzzzzzU"
+			, 1080_DelveStr .= "|<1080 Fossil>*100$50.0Tzzzzzzs3zzzzzzyQyTtyTDDby1s61XXtz6CNaQwyTXlbtzDDUNwMyDnnsCT63UwwyTblsS7DDbswT7lnntyDDsyAwyTVXiPbDCbw1s61nkDzlz7lzzy"
+			, 1080_DelveStr .= "|<1080 Resona>*100$62.0Tzzzzzzzzk3zzzzzzzzyQTznzDvyzjb60kD0wT7ltlnAnX7XlsSQQzDlssQy7bDDlwyC3D8s7kQ7DXUHmC1w7knst0s3aDDyASCMC0NVnzl7bb3b6QQzQkltsnsXX0kC0yTAyDzzyDszzzzy"
 	; FindText strings from INI
-		Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr
+		Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
 		, XButtonStr
 		, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
 		, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
@@ -597,6 +601,7 @@
 			, 3 : 0xA36565
 			, 4 : 0x773838}
 		Global YesLootChests := 1
+		Global YesLootDelve := 1
 		;Item Parse blank Arrays
 		Global Prop := {}
 		Global Stats := {}
@@ -852,24 +857,32 @@
 		
 	; Utility Buttons
 		global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
+			, YesUtility6, YesUtility7, YesUtility8, YesUtility9, YesUtility10
 		global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
+			, YesUtility6Quicksilver, YesUtility7Quicksilver, YesUtility8Quicksilver, YesUtility9Quicksilver, YesUtility10Quicksilver
 		global YesUtility1InverseBuff, YesUtility2InverseBuff, YesUtility3InverseBuff, YesUtility4InverseBuff, YesUtility5InverseBuff
+			, YesUtility6InverseBuff, YesUtility7InverseBuff, YesUtility8InverseBuff, YesUtility9InverseBuff, YesUtility10InverseBuff
 		global YesUtility1LifePercent, YesUtility2LifePercent, YesUtility3LifePercent, YesUtility4LifePercent, YesUtility5LifePercent
+			, YesUtility6LifePercent, YesUtility7LifePercent, YesUtility8LifePercent, YesUtility9LifePercent, YesUtility10LifePercent
 		global YesUtility1ESPercent, YesUtility2ESPercent, YesUtility3ESPercent, YesUtility4ESPercent, YesUtility5ESPercent
+			, YesUtility6ESPercent, YesUtility7ESPercent, YesUtility8ESPercent, YesUtility9ESPercent, YesUtility10ESPercent
 		global YesUtility1ManaPercent, YesUtility2ManaPercent, YesUtility3ManaPercent, YesUtility4ManaPercent, YesUtility5ManaPercent
+			, YesUtility6ManaPercent, YesUtility7ManaPercent, YesUtility8ManaPercent, YesUtility9ManaPercent, YesUtility10ManaPercent
 		global YesUtility1MainAttack, YesUtility2MainAttack, YesUtility3MainAttack, YesUtility4MainAttack, YesUtility5MainAttack
+			, YesUtility6MainAttack, YesUtility7MainAttack, YesUtility8MainAttack, YesUtility9MainAttack, YesUtility10MainAttack
 		global YesUtility1SecondaryAttack, YesUtility2SecondaryAttack, YesUtility3SecondaryAttack, YesUtility4SecondaryAttack, YesUtility5SecondaryAttack
+			, YesUtility6SecondaryAttack, YesUtility7SecondaryAttack, YesUtility8SecondaryAttack, YesUtility9SecondaryAttack, YesUtility10SecondaryAttack
 	; Utility Cooldowns
 		global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
-		global OnCooldownUtility1 := 0
-		global OnCooldownUtility2 := 0
-		global OnCooldownUtility3 := 0
-		global OnCooldownUtility4 := 0
-		global OnCooldownUtility5 := 0
+			, CooldownUtility6, CooldownUtility7, CooldownUtility8, CooldownUtility9, CooldownUtility10
+		global OnCooldownUtility1 := 0, OnCooldownUtility2 := 0, OnCooldownUtility3 := 0, OnCooldownUtility4 := 0, OnCooldownUtility5 := 0
+			, OnCooldownUtility6 := 0, OnCooldownUtility7 := 0, OnCooldownUtility8 := 0, OnCooldownUtility9 := 0, OnCooldownUtility10 := 0
 	; Utility Keys
 		global KeyUtility1, KeyUtility2, KeyUtility3, KeyUtility4, KeyUtility5
+			, KeyUtility6, KeyUtility7, KeyUtility8, KeyUtility9, KeyUtility10
 	; Utility Icons
 		global IconStringUtility1, IconStringUtility2, IconStringUtility3, IconStringUtility4, IconStringUtility5
+			, IconStringUtility6, IconStringUtility7, IconStringUtility8, IconStringUtility9, IconStringUtility10
 	; Flask Cooldowns
 		global CooldownFlask1:=5000
 		global CooldownFlask2:=5000
@@ -1273,112 +1286,182 @@
 
 	Gui, Tab, Utility
 		Gui, Font, Bold s9 cBlack
-		Gui Add, GroupBox, 						w605 h176		section		xm+5 	y+15, 				Utility Management:
+		Gui Add, GroupBox, 						w605 h311		section		xm+5 	y+15, 				Utility Management:
 		Gui, Font,
 
-		Gui Add, Checkbox, gUpdateUtility	vYesUtility1 +BackgroundTrans Checked%YesUtility1%	Right	ys+45 xs+2	, 1
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1 +BackgroundTrans Checked%YesUtility1%	Right	ys+45 xs+7	, 1
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility2 +BackgroundTrans Checked%YesUtility2%	Right	y+12		, 2
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility3 +BackgroundTrans Checked%YesUtility3%	Right	y+12		, 3
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility4 +BackgroundTrans Checked%YesUtility4%	Right	y+12		, 4
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility5 +BackgroundTrans Checked%YesUtility5%	Right	y+12		, 5
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility6 +BackgroundTrans Checked%YesUtility6%	Right	y+12		, 6
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility7 +BackgroundTrans Checked%YesUtility7%	Right	y+12		, 7
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility8 +BackgroundTrans Checked%YesUtility8%	Right	y+12		, 8
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility9 +BackgroundTrans Checked%YesUtility9%	Right	y+12		, 9
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility10 +BackgroundTrans Checked%YesUtility10% Right	y+12 xp-6		, 10
 
 		Gui,Add,Edit,			gUpdateUtility  x+10 ys+42   w40 h19 	vCooldownUtility1				,%CooldownUtility1%
 		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility2				,%CooldownUtility2%
 		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility3				,%CooldownUtility3%
 		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility4				,%CooldownUtility4%
 		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility5				,%CooldownUtility5%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility6				,%CooldownUtility6%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility7				,%CooldownUtility7%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility8				,%CooldownUtility8%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility9				,%CooldownUtility9%
+		Gui,Add,Edit,			gUpdateUtility  		   w40 h19 	vCooldownUtility10				,%CooldownUtility10%
 
 		Gui,Add,Edit,	  	x+12	ys+42   w40 h19 gUpdateUtility	vKeyUtility1				,%KeyUtility1%
 		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility2				,%KeyUtility2%
 		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility3				,%KeyUtility3%
 		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility4				,%KeyUtility4%
 		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility5				,%KeyUtility5%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility6				,%KeyUtility6%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility7				,%KeyUtility7%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility8				,%KeyUtility8%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility9				,%KeyUtility9%
+		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vKeyUtility10				,%KeyUtility10%
 
-		Gui,Add,Edit,	  	x+11	ys+42   w40 h19 gUpdateUtility	vIconStringUtility1				,%IconStringUtility1%
-		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility2				,%IconStringUtility2%
-		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility3				,%IconStringUtility3%
-		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility4				,%IconStringUtility4%
-		Gui,Add,Edit,			  		   w40 h19 gUpdateUtility	vIconStringUtility5				,%IconStringUtility5%
+		Gui,Add,Edit,	  	x+11	ys+42   w60 h19 gUpdateUtility	vIconStringUtility1				,%IconStringUtility1%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility2				,%IconStringUtility2%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility3				,%IconStringUtility3%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility4				,%IconStringUtility4%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility5				,%IconStringUtility5%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility6				,%IconStringUtility6%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility7				,%IconStringUtility7%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility8				,%IconStringUtility8%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility9				,%IconStringUtility9%
+		Gui,Add,Edit,			  		   w60 h19 gUpdateUtility	vIconStringUtility10			,%IconStringUtility10%
 
-		Gui Add, Checkbox, gUpdateUtility	vYesUtility1InverseBuff +BackgroundTrans Checked%YesUtility1InverseBuff%	x+12 ys+45, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1InverseBuff +BackgroundTrans Checked%YesUtility1InverseBuff%	x+7 ys+45, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility2InverseBuff +BackgroundTrans Checked%YesUtility2InverseBuff%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility3InverseBuff +BackgroundTrans Checked%YesUtility3InverseBuff%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility4InverseBuff +BackgroundTrans Checked%YesUtility4InverseBuff%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility5InverseBuff +BackgroundTrans Checked%YesUtility5InverseBuff%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility6InverseBuff +BackgroundTrans Checked%YesUtility6InverseBuff%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility7InverseBuff +BackgroundTrans Checked%YesUtility7InverseBuff%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility8InverseBuff +BackgroundTrans Checked%YesUtility8InverseBuff%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility9InverseBuff +BackgroundTrans Checked%YesUtility9InverseBuff%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility10InverseBuff +BackgroundTrans Checked%YesUtility10InverseBuff%		y+12, %A_Space%
 
-		Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%	x+12 ys+45, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%	x+17 ys+45, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility2Quicksilver +BackgroundTrans Checked%YesUtility2Quicksilver%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility3Quicksilver +BackgroundTrans Checked%YesUtility3Quicksilver%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility4Quicksilver +BackgroundTrans Checked%YesUtility4Quicksilver%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility5Quicksilver +BackgroundTrans Checked%YesUtility5Quicksilver%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility6Quicksilver +BackgroundTrans Checked%YesUtility6Quicksilver%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility7Quicksilver +BackgroundTrans Checked%YesUtility7Quicksilver%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility8Quicksilver +BackgroundTrans Checked%YesUtility8Quicksilver%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility9Quicksilver +BackgroundTrans Checked%YesUtility9Quicksilver%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility10Quicksilver +BackgroundTrans Checked%YesUtility10Quicksilver%		y+12, %A_Space%
 
-		Gui Add, Checkbox, gUpdateUtility	vYesUtility1MainAttack +BackgroundTrans Checked%YesUtility1MainAttack%	x+12 ys+45, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility1MainAttack +BackgroundTrans Checked%YesUtility1MainAttack%	x+17 ys+45, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility2MainAttack +BackgroundTrans Checked%YesUtility2MainAttack%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility3MainAttack +BackgroundTrans Checked%YesUtility3MainAttack%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility4MainAttack +BackgroundTrans Checked%YesUtility4MainAttack%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility5MainAttack +BackgroundTrans Checked%YesUtility5MainAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility6MainAttack +BackgroundTrans Checked%YesUtility6MainAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility7MainAttack +BackgroundTrans Checked%YesUtility7MainAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility8MainAttack +BackgroundTrans Checked%YesUtility8MainAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility9MainAttack +BackgroundTrans Checked%YesUtility9MainAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility10MainAttack +BackgroundTrans Checked%YesUtility10MainAttack%		y+12, %A_Space%
 
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility1SecondaryAttack +BackgroundTrans Checked%YesUtility1SecondaryAttack%	x+12 ys+45, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility2SecondaryAttack +BackgroundTrans Checked%YesUtility2SecondaryAttack%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility3SecondaryAttack +BackgroundTrans Checked%YesUtility3SecondaryAttack%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility4SecondaryAttack +BackgroundTrans Checked%YesUtility4SecondaryAttack%		y+12, %A_Space%
 		Gui Add, Checkbox, gUpdateUtility	vYesUtility5SecondaryAttack +BackgroundTrans Checked%YesUtility5SecondaryAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility6SecondaryAttack +BackgroundTrans Checked%YesUtility6SecondaryAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility7SecondaryAttack +BackgroundTrans Checked%YesUtility7SecondaryAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility8SecondaryAttack +BackgroundTrans Checked%YesUtility8SecondaryAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility9SecondaryAttack +BackgroundTrans Checked%YesUtility9SecondaryAttack%		y+12, %A_Space%
+		Gui Add, Checkbox, gUpdateUtility	vYesUtility10SecondaryAttack +BackgroundTrans Checked%YesUtility10SecondaryAttack%		y+12, %A_Space%
 
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1LifePercent h16 w40 x+10 	ys+42,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1LifePercent h16 w40 x+17 	ys+42,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10LifePercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
 		GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
 		GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
 		GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
 		GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
 		GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
+		GuiControl, ChooseString, YesUtility6LifePercent, %YesUtility6LifePercent%
+		GuiControl, ChooseString, YesUtility7LifePercent, %YesUtility7LifePercent%
+		GuiControl, ChooseString, YesUtility8LifePercent, %YesUtility8LifePercent%
+		GuiControl, ChooseString, YesUtility9LifePercent, %YesUtility9LifePercent%
+		GuiControl, ChooseString, YesUtility10LifePercent, %YesUtility10LifePercent%
 			
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ESPercent h16 w40 x+12 	ys+42,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1ESPercent h16 w40 x+17 	ys+42,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10ESPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
 		GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
 		GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
 		GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
 		GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
 		GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
+		GuiControl, ChooseString, YesUtility6ESPercent, %YesUtility6ESPercent%
+		GuiControl, ChooseString, YesUtility7ESPercent, %YesUtility7ESPercent%
+		GuiControl, ChooseString, YesUtility8ESPercent, %YesUtility8ESPercent%
+		GuiControl, ChooseString, YesUtility9ESPercent, %YesUtility9ESPercent%
+		GuiControl, ChooseString, YesUtility10ESPercent, %YesUtility10ESPercent%
 			
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility1ManaPercent h16 w40 x+12 	ys+42,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility2ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility3ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility4ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
-		Gui, Add, DropDownList, R5 gUpdateUtility vYesUtility5ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1ManaPercent h16 w40 x+17 	ys+42,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
+		Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10ManaPercent h16 w40  		y+4,  Off|10|20|30|40|50|60|70|80|90
 		GuiControl, ChooseString, YesUtility1ManaPercent, %YesUtility1ManaPercent%
 		GuiControl, ChooseString, YesUtility2ManaPercent, %YesUtility2ManaPercent%
 		GuiControl, ChooseString, YesUtility3ManaPercent, %YesUtility3ManaPercent%
 		GuiControl, ChooseString, YesUtility4ManaPercent, %YesUtility4ManaPercent%
 		GuiControl, ChooseString, YesUtility5ManaPercent, %YesUtility5ManaPercent%
+		GuiControl, ChooseString, YesUtility6ManaPercent, %YesUtility6ManaPercent%
+		GuiControl, ChooseString, YesUtility7ManaPercent, %YesUtility7ManaPercent%
+		GuiControl, ChooseString, YesUtility8ManaPercent, %YesUtility8ManaPercent%
+		GuiControl, ChooseString, YesUtility9ManaPercent, %YesUtility9ManaPercent%
+		GuiControl, ChooseString, YesUtility10ManaPercent, %YesUtility10ManaPercent%
 
-		Gui Add, Text, 										xs+6 	ys+25, 	ON:
-		Gui, Add, Text, 									x+9 	ys+25 		h145 0x11
+		Gui Add, Text, 										xs+11 	ys+25, 	ON:
+		Gui, Add, Text, 									x+9 	ys+25 		h270 0x11
 		Gui Add, Text, 										x+12 	, 	CD:
-		Gui, Add, Text, 									x+13 	 		h145 0x11
+		Gui, Add, Text, 									x+13 	 		h270 0x11
 		Gui Add, Text, 										x+10 	, 	Key:
-		Gui, Add, Text, 									x+14 	 		h145 0x11
-		Gui Add, Text, 										x+6 	, 	Icon:
-		Gui, Add, Text, 									x+12 	 		h145 0x11
-		Gui Add, Text, 										x+-1 	, 	Inv:
-		Gui, Add, Text, 									x+7 	 		h145 0x11
-		Gui Add, Text, 										x+3 	, 	QS:
-		Gui, Add, Text, 									x+8 	 		h145 0x11
-		Gui Add, Text, 										x+4 	, 	Pri:
-		Gui, Add, Text, 									x+11 	 		h145 0x11
-		Gui Add, Text, 										x+1 	, 	Sec:
-		Gui, Add, Text, 									x+8 	 		h145 0x11
-		Gui Add, Text, 										x+8 	, 	Life:
-		Gui, Add, Text, 									x+17 	 		h145 0x11
-		Gui Add, Text, 										x+9 	, 	ES:
-		Gui, Add, Text, 									x+17 	 		h145 0x11
-		Gui Add, Text, 										x+4 	, 	Mana:
-		Gui, Add, Text, 									x+13 	 		h145 0x11
+		Gui, Add, Text, 									x+14 	 		h270 0x11
+		Gui Add, Text, 										x+14 	, 	Icon:
+		; Gui, Add, Text, 									x+25 	 		h270 0x11
+		Gui Add, Text, 										x+15 	, 	Show:
+		Gui, Add, Text, 									x+7 	 		h270 0x11
+		Gui Add, Text, 										x+8 	, 	QS:
+		Gui, Add, Text, 									x+8 	 		h270 0x11
+		Gui Add, Text, 										x+9 	, 	Pri:
+		; Gui, Add, Text, 									x+11 	 		h270 0x11
+		Gui Add, Text, 										x+17 	, 	Sec:
+		Gui, Add, Text, 									x+12 	 		h270 0x11
+		Gui Add, Text, 										x+13 	, 	Life:
+		Gui, Add, Text, 									x+21 	 		h270 0x11
+		Gui Add, Text, 										x+14 	, 	ES:
+		Gui, Add, Text, 									x+17 	 		h270 0x11
+		Gui Add, Text, 										x+9 	, 	Mana:
+		Gui, Add, Text, 									x+18 	 		h270 0x11
 
 		;Save Setting
 		Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
@@ -5536,7 +5619,7 @@ Return
 	; LootScan - Finds matching colors under the cursor while key pressed
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	LootScan(Reset:=0){
-			Static GreenHex := 0x32DE24, QuestHex := 0x47E635
+			Static GreenHex := 0x32DE24, QuestHex := 0x47E635, LV_LastClick := 0
 			If (!ComboHex || Reset)
 			{
 				ComboHex := Hex2FindText(LootColors)
@@ -5546,6 +5629,8 @@ Return
 				If Reset
 					Return
 			}
+			If (A_TickCount - LV_LastClick <= LVdelay)
+				Return
 			Pressed := GetKeyState(hotkeyLootScan,"P")
 			If (Pressed&&LootVacuum)
 			{
@@ -5561,8 +5646,24 @@ Return
 					 	, ScanPx += 10, ScanPy += 10
 						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 							GoSub LootScan_Click
-						Sleep, %LVdelay%
+						LV_LastClick := A_TickCount
 						Return
+					}
+					If OnMines
+					{
+						MouseGetPos mX, mY
+						ClampGameScreen(x := mX - AreaScale * 2.5, y := mY - AreaScale * 2.5)
+						ClampGameScreen(xx := mX + AreaScale * 2.5, yy := mY + AreaScale * 2.5)
+						If (loot := FindText(x,y,xx,yy,0,0,DelveStr,0,0))
+						{
+							ScanPx := loot.1.1, ScanPy := loot.1.y
+							, ScanPy += 30
+							If !(loot.Id ~= "cache" || loot.Id ~= "vein")
+								ScanPx += loot.3
+							GoSub LootScan_Click
+							LV_LastClick := A_TickCount
+							Return
+						}
 					}
 					MouseGetPos mX, mY
 					ClampGameScreen(x := mX - AreaScale * 2.5, y := mY - AreaScale * 2.5)
@@ -5572,7 +5673,7 @@ Return
 						ScanPx := loot.1.1, ScanPy := loot.1.y
 						, ScanPy += 30
 						GoSub LootScan_Click
-						Sleep, %LVdelay%
+						LV_LastClick := A_TickCount
 						Return
 					}
 				}
@@ -5584,7 +5685,7 @@ Return
 						If (Pressed := GetKeyState(hotkeyLootScan,"P"))
 						{
 							click %mX%, %mY%
-							Sleep, %LVdelay%
+							LV_LastClick := A_TickCount
 						}
 				}
 				; Pressed := GetKeyState(hotkeyLootScan,"P")
@@ -5780,19 +5881,12 @@ Return
 							If ( TriggerLife90 != "00000" && Player.Percent.Life < 90) 
 								TriggerFlask(TriggerLife90)
 						}
-
-						If ( (YesUtility1 && YesUtility1LifePercent != "Off" && !OnCooldownUtility1) 
-							|| (YesUtility2 && YesUtility2LifePercent != "Off" && !OnCooldownUtility2) 
-							|| (YesUtility3 && YesUtility3LifePercent != "Off" && !OnCooldownUtility3) 
-							|| (YesUtility4 && YesUtility4LifePercent != "Off" && !OnCooldownUtility4) 
-							|| (YesUtility5 && YesUtility5LifePercent != "Off" && !OnCooldownUtility5) ) { 
-							Loop, 5
-								If (YesUtility%A_Index%
-								&& YesUtility%A_Index%LifePercent != "Off" 
-								&& !OnCooldownUtility%A_Index%
-								&& YesUtility%A_Index%LifePercent +0 > Player.Percent.Life )
-									TriggerUtility(A_Index)
-						}
+						Loop, 10
+							If (YesUtility%A_Index%
+							&& YesUtility%A_Index%LifePercent != "Off" 
+							&& !OnCooldownUtility%A_Index%
+							&& YesUtility%A_Index%LifePercent +0 > Player.Percent.Life )
+								TriggerUtility(A_Index)
 					}
 					Else
 					{
@@ -5810,7 +5904,7 @@ Return
 									LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="20")
 										TriggerUtility(A_Index)
 								}
@@ -5832,7 +5926,7 @@ Return
 									LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="30")
 										TriggerUtility(A_Index)
 								}
@@ -5854,7 +5948,7 @@ Return
 									LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="40")
 										TriggerUtility(A_Index)
 								}
@@ -5876,7 +5970,7 @@ Return
 									LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="50")
 										TriggerUtility(A_Index)
 								}
@@ -5898,7 +5992,7 @@ Return
 									LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="60")
 										TriggerUtility(A_Index)
 								}
@@ -5920,7 +6014,7 @@ Return
 									LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="70")
 										TriggerUtility(A_Index)
 								}
@@ -5942,7 +6036,7 @@ Return
 									LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="80")
 										TriggerUtility(A_Index)
 								}
@@ -5964,7 +6058,7 @@ Return
 									LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%LifePercent="90")
 										TriggerUtility(A_Index)
 								}
@@ -6046,20 +6140,12 @@ Return
 							If ( TriggerES90 != "00000" && Player.Percent.ES < 90) 
 								TriggerFlask(TriggerES90)
 						}
-
-						If ( (YesUtility1 && YesUtility1ESPercent != "Off" && !OnCooldownUtility1) 
-							|| (YesUtility2 && YesUtility2ESPercent != "Off" && !OnCooldownUtility2) 
-							|| (YesUtility3 && YesUtility3ESPercent != "Off" && !OnCooldownUtility3) 
-							|| (YesUtility4 && YesUtility4ESPercent != "Off" && !OnCooldownUtility4) 
-							|| (YesUtility5 && YesUtility5ESPercent != "Off" && !OnCooldownUtility5) ) { 
-
-							Loop, 5
-								If (YesUtility%A_Index%
-								&& YesUtility%A_Index%ESPercent != "Off" 
-								&& !OnCooldownUtility%A_Index%
-								&& YesUtility%A_Index%ESPercent +0 > Player.Percent.ES )
-									TriggerUtility(A_Index)
-						}
+						Loop, 10
+							If (YesUtility%A_Index%
+							&& YesUtility%A_Index%ESPercent != "Off" 
+							&& !OnCooldownUtility%A_Index%
+							&& YesUtility%A_Index%ESPercent +0 > Player.Percent.ES )
+								TriggerUtility(A_Index)
 					}
 					Else
 					{
@@ -6077,7 +6163,7 @@ Return
 										LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="20")
 										TriggerUtility(A_Index)
 								}
@@ -6099,7 +6185,7 @@ Return
 										LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="30")
 										TriggerUtility(A_Index)
 								}
@@ -6121,7 +6207,7 @@ Return
 										LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="40")
 										TriggerUtility(A_Index)
 								}
@@ -6143,7 +6229,7 @@ Return
 										LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="50")
 										TriggerUtility(A_Index)
 								}
@@ -6165,7 +6251,7 @@ Return
 										LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="60")
 										TriggerUtility(A_Index)
 								}
@@ -6187,7 +6273,7 @@ Return
 										LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="70")
 										TriggerUtility(A_Index)
 								}
@@ -6209,7 +6295,7 @@ Return
 										LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="80")
 										TriggerUtility(A_Index)
 								}
@@ -6232,7 +6318,7 @@ Return
 										LogoutCommand()
 									Exit
 								}
-								Loop, 5 {
+								Loop, 10 {
 									If (YesUtility%A_Index%) && (YesUtility%A_Index%ESPercent="90")
 										TriggerUtility(A_Index)
 								}
@@ -6249,26 +6335,19 @@ Return
 					{
 						If (Player.Percent.Mana < ManaThreshold)
 							TriggerMana(TriggerMana10)
-						If ( (YesUtility1 && YesUtility1ManaPercent != "Off" && !OnCooldownUtility1) 
-							|| (YesUtility2 && YesUtility2ManaPercent != "Off" && !OnCooldownUtility2) 
-							|| (YesUtility3 && YesUtility3ManaPercent != "Off" && !OnCooldownUtility3) 
-							|| (YesUtility4 && YesUtility4ManaPercent != "Off" && !OnCooldownUtility4) 
-							|| (YesUtility5 && YesUtility5ManaPercent != "Off" && !OnCooldownUtility5) ) { 
-
-							Loop, 5
-								If (YesUtility%A_Index%
-								&& YesUtility%A_Index%ManaPercent != "Off" 
-								&& !OnCooldownUtility%A_Index%
-								&& YesUtility%A_Index%ManaPercent +0 > Player.Percent.Mana )
-									TriggerUtility(A_Index)
-						}
+						Loop, 10
+							If (YesUtility%A_Index%
+							&& YesUtility%A_Index%ManaPercent != "Off" 
+							&& !OnCooldownUtility%A_Index%
+							&& YesUtility%A_Index%ManaPercent +0 > Player.Percent.Mana )
+								TriggerUtility(A_Index)
 					}
 					Else
 					{
 						ManaPerc := ScreenShot_GetColor(vX_Mana,vY_ManaThreshold)
 						if (ManaPerc!=varManaThreshold) {
 							TriggerMana(TriggerMana10)
-						Loop, 5
+						Loop, 10
 							If (YesUtility%A_Index%
 							&& YesUtility%A_Index%ManaPercent != "Off" 
 							&& !OnCooldownUtility%A_Index%)
@@ -6282,7 +6361,7 @@ Return
 					If GetKeyState(hotkeyMainAttack)
 					{
 						TriggerFlask(TriggerMainAttack)
-						Loop, 5
+						Loop, 10
 						{
 							If (YesUtility%A_Index%) 
 								&& !(OnCooldownUtility%A_Index%) 
@@ -6304,7 +6383,7 @@ Return
 					If GetKeyState(hotkeySecondaryAttack)
 					{
 						TriggerFlask(TriggerSecondaryAttack)
-						Loop, 5
+						Loop, 10
 						{
 							If (YesUtility%A_Index%) 
 								&& !(OnCooldownUtility%A_Index%) 
@@ -6323,7 +6402,7 @@ Return
 				}
 
 				If AutoFlask
-				Loop, 5
+				Loop, 10
 				{
 					If (YesUtility%A_Index%) 
 						&& !(OnCooldownUtility%A_Index%) 
@@ -6342,7 +6421,7 @@ Return
 							If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
 							{
 								OnCooldownUtility%A_Index%:=1
-								SetTimer, TimerUtility%A_Index%, % CooldownUtility%A_Index%
+								SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
 							}
 							Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
 								TriggerUtility(A_Index)
@@ -6489,7 +6568,7 @@ Return
 				Exit
 			TriggerFlask(TriggerMainAttack)
 			MainAttackPressedActive := True
-			Loop, 5
+			Loop, 10
 			{
 				If (YesUtility%A_Index%) 
 					&& !(OnCooldownUtility%A_Index%) 
@@ -6517,7 +6596,7 @@ Return
 				Exit
 			TriggerFlask(TriggerSecondaryAttack)
 			SecondaryAttackPressedActive := True
-			Loop, 5
+			Loop, 10
 			{
 				If (YesUtility%A_Index%) 
 					&& !(OnCooldownUtility%A_Index%) 
@@ -7299,6 +7378,7 @@ Return
 			IniRead, AreaScale, %A_ScriptDir%\save\Settings.ini, General, AreaScale, 60
 			IniRead, LVdelay, %A_ScriptDir%\save\Settings.ini, General, LVdelay, 30
 			IniRead, YesLootChests, %A_ScriptDir%\save\Settings.ini, General, YesLootChests, 1
+			IniRead, YesLootDelve, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve, 1
 			IniRead, YesGlobeScan, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan, 1
 			IniRead, YesFillMetamorph, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph, 0
 			IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
@@ -7383,6 +7463,9 @@ Return
 			IniRead, ChestStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, ChestStr, %1080_ChestStr%
 			If ChestStr
 				ChestStr := """" . ChestStr . """"
+			IniRead, DelveStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, DelveStr, %1080_DelveStr%
+			If DelveStr
+				DelveStr := """" . DelveStr . """"
 			IniRead, VendorStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr, %1080_MasterStr%
 			If VendorStr
 				VendorStr := """" . VendorStr . """"
@@ -7548,26 +7631,51 @@ Return
 			IniRead, YesUtility3, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3, 0
 			IniRead, YesUtility4, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4, 0
 			IniRead, YesUtility5, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5, 0
+			IniRead, YesUtility6, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6, 0
+			IniRead, YesUtility7, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7, 0
+			IniRead, YesUtility8, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8, 0
+			IniRead, YesUtility9, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9, 0
+			IniRead, YesUtility10, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10, 0
 			IniRead, YesUtility1Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
 			IniRead, YesUtility2Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
 			IniRead, YesUtility3Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
 			IniRead, YesUtility4Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
 			IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
+			IniRead, YesUtility6Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6Quicksilver, 0
+			IniRead, YesUtility7Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7Quicksilver, 0
+			IniRead, YesUtility8Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8Quicksilver, 0
+			IniRead, YesUtility9Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9Quicksilver, 0
+			IniRead, YesUtility10Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10Quicksilver, 0
 			IniRead, YesUtility1InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff, 0
 			IniRead, YesUtility2InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff, 0
 			IniRead, YesUtility3InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff, 0
 			IniRead, YesUtility4InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff, 0
 			IniRead, YesUtility5InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff, 0
+			IniRead, YesUtility6InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6InverseBuff, 0
+			IniRead, YesUtility7InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7InverseBuff, 0
+			IniRead, YesUtility8InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8InverseBuff, 0
+			IniRead, YesUtility9InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9InverseBuff, 0
+			IniRead, YesUtility10InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10InverseBuff, 0
 			IniRead, YesUtility1MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack, 0
 			IniRead, YesUtility2MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack, 0
 			IniRead, YesUtility3MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack, 0
 			IniRead, YesUtility4MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack, 0
 			IniRead, YesUtility5MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack, 0
+			IniRead, YesUtility6MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6MainAttack, 0
+			IniRead, YesUtility7MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7MainAttack, 0
+			IniRead, YesUtility8MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8MainAttack, 0
+			IniRead, YesUtility9MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9MainAttack, 0
+			IniRead, YesUtility10MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10MainAttack, 0
 			IniRead, YesUtility1SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack, 0
 			IniRead, YesUtility2SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack, 0
 			IniRead, YesUtility3SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack, 0
 			IniRead, YesUtility4SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack, 0
 			IniRead, YesUtility5SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack, 0
+			IniRead, YesUtility6SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6SecondaryAttack, 0
+			IniRead, YesUtility7SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7SecondaryAttack, 0
+			IniRead, YesUtility8SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8SecondaryAttack, 0
+			IniRead, YesUtility9SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9SecondaryAttack, 0
+			IniRead, YesUtility10SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10SecondaryAttack, 0
 			
 			;Utility Percents	
 			IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent, Off
@@ -7575,16 +7683,31 @@ Return
 			IniRead, YesUtility3LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent, Off
 			IniRead, YesUtility4LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent, Off
 			IniRead, YesUtility5LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent, Off
+			IniRead, YesUtility6LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6LifePercent, Off
+			IniRead, YesUtility7LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7LifePercent, Off
+			IniRead, YesUtility8LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8LifePercent, Off
+			IniRead, YesUtility9LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9LifePercent, Off
+			IniRead, YesUtility10LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10LifePercent, Off
 			IniRead, YesUtility1EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility1EsPercent, Off
 			IniRead, YesUtility2EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility2EsPercent, Off
 			IniRead, YesUtility3EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility3EsPercent, Off
 			IniRead, YesUtility4EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility4EsPercent, Off
 			IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility5EsPercent, Off
+			IniRead, YesUtility6EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility6EsPercent, Off
+			IniRead, YesUtility7EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility7EsPercent, Off
+			IniRead, YesUtility8EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility8EsPercent, Off
+			IniRead, YesUtility9EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility9EsPercent, Off
+			IniRead, YesUtility10EsPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility10EsPercent, Off
 			IniRead, YesUtility1ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility1ManaPercent, Off
 			IniRead, YesUtility2ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility2ManaPercent, Off
 			IniRead, YesUtility3ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility3ManaPercent, Off
 			IniRead, YesUtility4ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility4ManaPercent, Off
 			IniRead, YesUtility5ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility5ManaPercent, Off
+			IniRead, YesUtility6ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility6ManaPercent, Off
+			IniRead, YesUtility7ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility7ManaPercent, Off
+			IniRead, YesUtility8ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility8ManaPercent, Off
+			IniRead, YesUtility9ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility9ManaPercent, Off
+			IniRead, YesUtility10ManaPercent, %A_ScriptDir%\save\Settings.ini, 	Utility Buttons, YesUtility10ManaPercent, Off
 			
 			;Utility Cooldowns
 			IniRead, CooldownUtility1, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1, 5000
@@ -7592,6 +7715,11 @@ Return
 			IniRead, CooldownUtility3, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3, 5000
 			IniRead, CooldownUtility4, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4, 5000
 			IniRead, CooldownUtility5, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5, 5000
+			IniRead, CooldownUtility6, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility6, 5000
+			IniRead, CooldownUtility7, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility7, 5000
+			IniRead, CooldownUtility8, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility8, 5000
+			IniRead, CooldownUtility9, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility9, 5000
+			IniRead, CooldownUtility10, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility10, 5000
 			
 			;Utility Keys
 			IniRead, KeyUtility1, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1, q
@@ -7599,6 +7727,11 @@ Return
 			IniRead, KeyUtility3, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3, e
 			IniRead, KeyUtility4, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4, r
 			IniRead, KeyUtility5, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5, t
+			IniRead, KeyUtility6, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility6, t
+			IniRead, KeyUtility7, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility7, t
+			IniRead, KeyUtility8, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility8, t
+			IniRead, KeyUtility9, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility9, t
+			IniRead, KeyUtility10, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility10, t
 
 			;Utility Icon Strings
 			IniRead, IconStringUtility1, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1, %A_Space%
@@ -7616,6 +7749,21 @@ Return
 			IniRead, IconStringUtility5, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5, %A_Space%
 			If IconStringUtility5
 				IconStringUtility5 := """" . IconStringUtility5 . """"
+			IniRead, IconStringUtility6, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility6, %A_Space%
+			If IconStringUtility6
+				IconStringUtility6 := """" . IconStringUtility6 . """"
+			IniRead, IconStringUtility7, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility7, %A_Space%
+			If IconStringUtility7
+				IconStringUtility7 := """" . IconStringUtility7 . """"
+			IniRead, IconStringUtility8, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility8, %A_Space%
+			If IconStringUtility8
+				IconStringUtility8 := """" . IconStringUtility8 . """"
+			IniRead, IconStringUtility9, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility9, %A_Space%
+			If IconStringUtility9
+				IconStringUtility9 := """" . IconStringUtility9 . """"
+			IniRead, IconStringUtility10, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10, %A_Space%
+			If IconStringUtility10
+				IconStringUtility10 := """" . IconStringUtility10 . """"
 
 			;Utility Keys
 			IniRead, hotkeyUp, 		%A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp, 	w
@@ -8170,26 +8318,51 @@ Return
 			IniWrite, %YesUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3
 			IniWrite, %YesUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4
 			IniWrite, %YesUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5
+			IniWrite, %YesUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6
+			IniWrite, %YesUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7
+			IniWrite, %YesUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8
+			IniWrite, %YesUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9
+			IniWrite, %YesUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10
 			IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver
 			IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver
 			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver
 			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver
 			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver
+			IniWrite, %YesUtility6Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6Quicksilver
+			IniWrite, %YesUtility7Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7Quicksilver
+			IniWrite, %YesUtility8Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8Quicksilver
+			IniWrite, %YesUtility9Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9Quicksilver
+			IniWrite, %YesUtility10Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10Quicksilver
 			IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff
 			IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff
 			IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff
 			IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff
 			IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff
+			IniWrite, %YesUtility6InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6InverseBuff
+			IniWrite, %YesUtility7InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7InverseBuff
+			IniWrite, %YesUtility8InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8InverseBuff
+			IniWrite, %YesUtility9InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9InverseBuff
+			IniWrite, %YesUtility10InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10InverseBuff
 			IniWrite, %YesUtility1MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack
 			IniWrite, %YesUtility2MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack
 			IniWrite, %YesUtility3MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack
 			IniWrite, %YesUtility4MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack
 			IniWrite, %YesUtility5MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack
+			IniWrite, %YesUtility6MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6MainAttack
+			IniWrite, %YesUtility7MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7MainAttack
+			IniWrite, %YesUtility8MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8MainAttack
+			IniWrite, %YesUtility9MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9MainAttack
+			IniWrite, %YesUtility10MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10MainAttack
 			IniWrite, %YesUtility1SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack
 			IniWrite, %YesUtility2SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack
 			IniWrite, %YesUtility3SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack
 			IniWrite, %YesUtility4SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack
 			IniWrite, %YesUtility5SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack
+			IniWrite, %YesUtility6SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6SecondaryAttack
+			IniWrite, %YesUtility7SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7SecondaryAttack
+			IniWrite, %YesUtility8SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8SecondaryAttack
+			IniWrite, %YesUtility9SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9SecondaryAttack
+			IniWrite, %YesUtility10SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10SecondaryAttack
 			
 			;Utility Percents	
 			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent
@@ -8197,16 +8370,31 @@ Return
 			IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent
 			IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent
 			IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent
+			IniWrite, %YesUtility6LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6LifePercent
+			IniWrite, %YesUtility7LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7LifePercent
+			IniWrite, %YesUtility8LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8LifePercent
+			IniWrite, %YesUtility9LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9LifePercent
+			IniWrite, %YesUtility10LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10LifePercent
 			IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1EsPercent
 			IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2EsPercent
 			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent
 			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent
 			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent
+			IniWrite, %YesUtility6EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6EsPercent
+			IniWrite, %YesUtility7EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7EsPercent
+			IniWrite, %YesUtility8EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8EsPercent
+			IniWrite, %YesUtility9EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9EsPercent
+			IniWrite, %YesUtility10EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10EsPercent
 			IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1ManaPercent
 			IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2ManaPercent
 			IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3ManaPercent
 			IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4ManaPercent
 			IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5ManaPercent
+			IniWrite, %YesUtility6ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6ManaPercent
+			IniWrite, %YesUtility7ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7ManaPercent
+			IniWrite, %YesUtility8ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8ManaPercent
+			IniWrite, %YesUtility9ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9ManaPercent
+			IniWrite, %YesUtility10ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10ManaPercent
 			
 			;Utility Cooldowns
 			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1
@@ -8214,6 +8402,11 @@ Return
 			IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3
 			IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4
 			IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5
+			IniWrite, %CooldownUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility6
+			IniWrite, %CooldownUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility7
+			IniWrite, %CooldownUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility8
+			IniWrite, %CooldownUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility9
+			IniWrite, %CooldownUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility10
 			
 			;Utility Keys
 			IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1
@@ -8221,6 +8414,11 @@ Return
 			IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3
 			IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4
 			IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5
+			IniWrite, %KeyUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility6
+			IniWrite, %KeyUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility7
+			IniWrite, %KeyUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility8
+			IniWrite, %KeyUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility9
+			IniWrite, %KeyUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility10
 			
 			;Utility Icon Strings
 			IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1
@@ -8228,6 +8426,11 @@ Return
 			IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3
 			IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4
 			IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5
+			IniWrite, %IconStringUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility6
+			IniWrite, %IconStringUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility7
+			IniWrite, %IconStringUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility8
+			IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility9
+			IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10
 			
 			;Flask Cooldowns
 			IniWrite, %CooldownFlask1%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask1
@@ -9234,16 +9437,33 @@ Return
 			IniWrite, %YesUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3
 			IniWrite, %YesUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4
 			IniWrite, %YesUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5
+			IniWrite, %YesUtility6%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6
+			IniWrite, %YesUtility7%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7
+			IniWrite, %YesUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8
+			IniWrite, %YesUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9
+			IniWrite, %YesUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10
+
 			IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1Quicksilver
 			IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2Quicksilver
 			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3Quicksilver
 			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4Quicksilver
 			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5Quicksilver
+			IniWrite, %YesUtility6Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6Quicksilver
+			IniWrite, %YesUtility7Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7Quicksilver
+			IniWrite, %YesUtility8Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8Quicksilver
+			IniWrite, %YesUtility9Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9Quicksilver
+			IniWrite, %YesUtility10Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10Quicksilver
+
 			IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1InverseBuff
 			IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2InverseBuff
 			IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3InverseBuff
 			IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4InverseBuff
 			IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5InverseBuff
+			IniWrite, %YesUtility6InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6InverseBuff
+			IniWrite, %YesUtility7InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7InverseBuff
+			IniWrite, %YesUtility8InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8InverseBuff
+			IniWrite, %YesUtility9InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9InverseBuff
+			IniWrite, %YesUtility10InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10InverseBuff
 			
 			;Utility Percents	
 			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1LifePercent
@@ -9251,16 +9471,33 @@ Return
 			IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3LifePercent
 			IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4LifePercent
 			IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5LifePercent
+			IniWrite, %YesUtility6LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6LifePercent
+			IniWrite, %YesUtility7LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7LifePercent
+			IniWrite, %YesUtility8LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8LifePercent
+			IniWrite, %YesUtility9LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9LifePercent
+			IniWrite, %YesUtility10LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10LifePercent
+
 			IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1EsPercent
 			IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2EsPercent
 			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3EsPercent
 			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4EsPercent
 			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5EsPercent
+			IniWrite, %YesUtility6EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6EsPercent
+			IniWrite, %YesUtility7EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7EsPercent
+			IniWrite, %YesUtility8EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8EsPercent
+			IniWrite, %YesUtility9EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9EsPercent
+			IniWrite, %YesUtility10EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10EsPercent
+
 			IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1ManaPercent
 			IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2ManaPercent
 			IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3ManaPercent
 			IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4ManaPercent
 			IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5ManaPercent
+			IniWrite, %YesUtility6ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6ManaPercent
+			IniWrite, %YesUtility7ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7ManaPercent
+			IniWrite, %YesUtility8ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8ManaPercent
+			IniWrite, %YesUtility9ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9ManaPercent
+			IniWrite, %YesUtility10ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10ManaPercent
 			
 			;Utility Cooldowns
 			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility1
@@ -9268,6 +9505,11 @@ Return
 			IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility3
 			IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility4
 			IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility5
+			IniWrite, %CooldownUtility6%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility6
+			IniWrite, %CooldownUtility7%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility7
+			IniWrite, %CooldownUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility8
+			IniWrite, %CooldownUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility9
+			IniWrite, %CooldownUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility10
 			
 			;Character Name
 			IniWrite, %CharName%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CharName
@@ -9278,6 +9520,11 @@ Return
 			IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility3
 			IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility4
 			IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility5
+			IniWrite, %KeyUtility6%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility6
+			IniWrite, %KeyUtility7%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility7
+			IniWrite, %KeyUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility8
+			IniWrite, %KeyUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility9
+			IniWrite, %KeyUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility10
 
 			;Utility Icon Strings
 			IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility1
@@ -9285,6 +9532,11 @@ Return
 			IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility3
 			IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility4
 			IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility5
+			IniWrite, %IconStringUtility6%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility6
+			IniWrite, %IconStringUtility7%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility7
+			IniWrite, %IconStringUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility8
+			IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility9
+			IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility10
 
 			;Pop Flasks Keys
 			IniWrite, %PopFlasks1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks1
@@ -9679,6 +9931,16 @@ Return
 			GuiControl, , YesUtility4, %YesUtility4%
 			IniRead, YesUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5, 0
 			GuiControl, , YesUtility5, %YesUtility5%
+			IniRead, YesUtility6, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6, 0
+			GuiControl, , YesUtility6, %YesUtility6%
+			IniRead, YesUtility7, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7, 0
+			GuiControl, , YesUtility7, %YesUtility7%
+			IniRead, YesUtility8, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8, 0
+			GuiControl, , YesUtility8, %YesUtility8%
+			IniRead, YesUtility9, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9, 0
+			GuiControl, , YesUtility9, %YesUtility9%
+			IniRead, YesUtility10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10, 0
+			GuiControl, , YesUtility10, %YesUtility10%
 			IniRead, YesUtility1Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1Quicksilver, 0
 			GuiControl, , YesUtility1Quicksilver, %YesUtility1Quicksilver%
 			IniRead, YesUtility2Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2Quicksilver, 0
@@ -9689,6 +9951,16 @@ Return
 			GuiControl, , YesUtility4Quicksilver, %YesUtility4Quicksilver%
 			IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5Quicksilver, 0
 			GuiControl, , YesUtility5Quicksilver, %YesUtility5Quicksilver%
+			IniRead, YesUtility6Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6Quicksilver, 0
+			GuiControl, , YesUtility6Quicksilver, %YesUtility6Quicksilver%
+			IniRead, YesUtility7Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7Quicksilver, 0
+			GuiControl, , YesUtility7Quicksilver, %YesUtility7Quicksilver%
+			IniRead, YesUtility8Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8Quicksilver, 0
+			GuiControl, , YesUtility8Quicksilver, %YesUtility8Quicksilver%
+			IniRead, YesUtility9Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9Quicksilver, 0
+			GuiControl, , YesUtility9Quicksilver, %YesUtility9Quicksilver%
+			IniRead, YesUtility10Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10Quicksilver, 0
+			GuiControl, , YesUtility10Quicksilver, %YesUtility10Quicksilver%
 			IniRead, YesUtility1InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1InverseBuff, 0
 			GuiControl, , YesUtility1InverseBuff, %YesUtility1InverseBuff%
 			IniRead, YesUtility2InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2InverseBuff, 0
@@ -9699,6 +9971,16 @@ Return
 			GuiControl, , YesUtility4InverseBuff, %YesUtility4InverseBuff%
 			IniRead, YesUtility5InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5InverseBuff, 0
 			GuiControl, , YesUtility5InverseBuff, %YesUtility5InverseBuff%
+			IniRead, YesUtility6InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6InverseBuff, 0
+			GuiControl, , YesUtility6InverseBuff, %YesUtility6InverseBuff%
+			IniRead, YesUtility7InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7InverseBuff, 0
+			GuiControl, , YesUtility7InverseBuff, %YesUtility7InverseBuff%
+			IniRead, YesUtility8InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8InverseBuff, 0
+			GuiControl, , YesUtility8InverseBuff, %YesUtility8InverseBuff%
+			IniRead, YesUtility9InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9InverseBuff, 0
+			GuiControl, , YesUtility9InverseBuff, %YesUtility9InverseBuff%
+			IniRead, YesUtility10InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10InverseBuff, 0
+			GuiControl, , YesUtility10InverseBuff, %YesUtility10InverseBuff%
 			
 			;Utility Percents	
 			IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1LifePercent, Off
@@ -9711,6 +9993,16 @@ Return
 			GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
 			IniRead, YesUtility5LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5LifePercent, Off
 			GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
+			IniRead, YesUtility6LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6LifePercent, Off
+			GuiControl, ChooseString, YesUtility6LifePercent, %YesUtility6LifePercent%
+			IniRead, YesUtility7LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7LifePercent, Off
+			GuiControl, ChooseString, YesUtility7LifePercent, %YesUtility7LifePercent%
+			IniRead, YesUtility8LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8LifePercent, Off
+			GuiControl, ChooseString, YesUtility8LifePercent, %YesUtility8LifePercent%
+			IniRead, YesUtility9LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9LifePercent, Off
+			GuiControl, ChooseString, YesUtility9LifePercent, %YesUtility9LifePercent%
+			IniRead, YesUtility10LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10LifePercent, Off
+			GuiControl, ChooseString, YesUtility10LifePercent, %YesUtility10LifePercent%
 			IniRead, YesUtility1EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1EsPercent, Off
 			GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
 			IniRead, YesUtility2EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2EsPercent, Off
@@ -9721,6 +10013,16 @@ Return
 			GuiControl, ChooseString, YesUtility4EsPercent, %YesUtility4EsPercent%
 			IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5EsPercent, Off
 			GuiControl, ChooseString, YesUtility5EsPercent, %YesUtility5EsPercent%
+			IniRead, YesUtility6EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6EsPercent, Off
+			GuiControl, ChooseString, YesUtility6EsPercent, %YesUtility6EsPercent%
+			IniRead, YesUtility7EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7EsPercent, Off
+			GuiControl, ChooseString, YesUtility7EsPercent, %YesUtility7EsPercent%
+			IniRead, YesUtility8EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8EsPercent, Off
+			GuiControl, ChooseString, YesUtility8EsPercent, %YesUtility8EsPercent%
+			IniRead, YesUtility9EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9EsPercent, Off
+			GuiControl, ChooseString, YesUtility9EsPercent, %YesUtility9EsPercent%
+			IniRead, YesUtility10EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10EsPercent, Off
+			GuiControl, ChooseString, YesUtility10EsPercent, %YesUtility10EsPercent%
 			IniRead, YesUtility1ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1ManaPercent, Off
 			GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
 			IniRead, YesUtility2ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2ManaPercent, Off
@@ -9731,6 +10033,16 @@ Return
 			GuiControl, ChooseString, YesUtility4ManaPercent, %YesUtility4ManaPercent%
 			IniRead, YesUtility5ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5ManaPercent, Off
 			GuiControl, ChooseString, YesUtility5ManaPercent, %YesUtility5ManaPercent%
+			IniRead, YesUtility6ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6ManaPercent, Off
+			GuiControl, ChooseString, YesUtility6ManaPercent, %YesUtility6ManaPercent%
+			IniRead, YesUtility7ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7ManaPercent, Off
+			GuiControl, ChooseString, YesUtility7ManaPercent, %YesUtility7ManaPercent%
+			IniRead, YesUtility8ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8ManaPercent, Off
+			GuiControl, ChooseString, YesUtility8ManaPercent, %YesUtility8ManaPercent%
+			IniRead, YesUtility9ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9ManaPercent, Off
+			GuiControl, ChooseString, YesUtility9ManaPercent, %YesUtility9ManaPercent%
+			IniRead, YesUtility10ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10ManaPercent, Off
+			GuiControl, ChooseString, YesUtility10ManaPercent, %YesUtility10ManaPercent%
 			
 			;Utility Cooldowns
 			IniRead, CooldownUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility1, 5000
@@ -9743,6 +10055,16 @@ Return
 			GuiControl, , CooldownUtility4, %CooldownUtility4%
 			IniRead, CooldownUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility5, 5000
 			GuiControl, , CooldownUtility5, %CooldownUtility5%
+			IniRead, CooldownUtility6, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility6, 5000
+			GuiControl, , CooldownUtility6, %CooldownUtility6%
+			IniRead, CooldownUtility7, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility7, 5000
+			GuiControl, , CooldownUtility7, %CooldownUtility7%
+			IniRead, CooldownUtility8, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility8, 5000
+			GuiControl, , CooldownUtility8, %CooldownUtility8%
+			IniRead, CooldownUtility9, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility9, 5000
+			GuiControl, , CooldownUtility9, %CooldownUtility9%
+			IniRead, CooldownUtility10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility10, 5000
+			GuiControl, , CooldownUtility10, %CooldownUtility10%
 			
 			;Character Name
 			IniRead, CharName, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CharName, ReplaceWithCharName
@@ -9759,6 +10081,16 @@ Return
 			GuiControl, , KeyUtility4, %KeyUtility4%
 			IniRead, KeyUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility5, t
 			GuiControl, , KeyUtility5, %KeyUtility5%
+			IniRead, KeyUtility6, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility6, t
+			GuiControl, , KeyUtility6, %KeyUtility6%
+			IniRead, KeyUtility7, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility7, t
+			GuiControl, , KeyUtility7, %KeyUtility7%
+			IniRead, KeyUtility8, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility8, t
+			GuiControl, , KeyUtility8, %KeyUtility8%
+			IniRead, KeyUtility9, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility9, t
+			GuiControl, , KeyUtility9, %KeyUtility9%
+			IniRead, KeyUtility10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility10, t
+			GuiControl, , KeyUtility10, %KeyUtility10%
 
 			;Utility Icon Strings
 			IniRead, IconStringUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility1, %A_Space%
@@ -9781,6 +10113,26 @@ Return
 			If IconStringUtility5
 				IconStringUtility5 := """" . IconStringUtility5 . """"
 			GuiControl, , IconStringUtility5, %IconStringUtility5%
+			IniRead, IconStringUtility6, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility6, %A_Space%
+			If IconStringUtility6
+				IconStringUtility6 := """" . IconStringUtility6 . """"
+			GuiControl, , IconStringUtility6, %IconStringUtility6%
+			IniRead, IconStringUtility7, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility7, %A_Space%
+			If IconStringUtility7
+				IconStringUtility7 := """" . IconStringUtility7 . """"
+			GuiControl, , IconStringUtility7, %IconStringUtility7%
+			IniRead, IconStringUtility8, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility8, %A_Space%
+			If IconStringUtility8
+				IconStringUtility8 := """" . IconStringUtility8 . """"
+			GuiControl, , IconStringUtility8, %IconStringUtility8%
+			IniRead, IconStringUtility9, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility9, %A_Space%
+			If IconStringUtility9
+				IconStringUtility9 := """" . IconStringUtility9 . """"
+			GuiControl, , IconStringUtility9, %IconStringUtility9%
+			IniRead, IconStringUtility10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility10, %A_Space%
+			If IconStringUtility10
+				IconStringUtility10 := """" . IconStringUtility10 . """"
+			GuiControl, , IconStringUtility10, %IconStringUtility10%
 
 			;Pop Flasks Keys
 			IniRead, PopFlasks1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks1, 1
@@ -10776,6 +11128,10 @@ Return
 				gui,LootColors: add, CheckBox, gUpdateExtra vYesLootChests Checked%YesLootChests% Right xm h22, Open Containers?
 				Gui,LootColors:  +Delimiter?
 				Gui,LootColors: Add, ComboBox, x+5 w210 vChestStr gUpdateStringEdit , %ChestStr%??"%1080_ChestStr%"
+				Gui,LootColors:  +Delimiter|
+				gui,LootColors: add, CheckBox, gUpdateExtra vYesLootDelve Checked%YesLootDelve% Right xm h22, Delve Containers?
+				Gui,LootColors:  +Delimiter?
+				Gui,LootColors: Add, ComboBox, x+5 w210 vDelveStr gUpdateStringEdit , %DelveStr%??"%1080_DelveStr%"
 				Gui,LootColors:  +Delimiter|
 				gui,LootColors: add, groupbox,% "section xm y+10 w330 h" 24 * (LootColors.Count() / 2) + 30 , Loot Colors:
 				gui,LootColors: add, Button, gSaveLootColorArray yp-5 xp+70 h22 w80, Save to INI
@@ -12019,6 +12375,7 @@ Return
 			IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
 			IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
 			IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
+			IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
 			If (YesPersistantToggle)
 				AutoReset()
 			if ( Steam ) {
@@ -12085,26 +12442,55 @@ Return
 			IniWrite, %YesUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3
 			IniWrite, %YesUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4
 			IniWrite, %YesUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5
+			IniWrite, %YesUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6
+			IniWrite, %YesUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7
+			IniWrite, %YesUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8
+			IniWrite, %YesUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9
+			IniWrite, %YesUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10
+
 			IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver
 			IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver
 			IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver
 			IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver
 			IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver
+			IniWrite, %YesUtility6Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6Quicksilver
+			IniWrite, %YesUtility7Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7Quicksilver
+			IniWrite, %YesUtility8Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8Quicksilver
+			IniWrite, %YesUtility9Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9Quicksilver
+			IniWrite, %YesUtility10Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10Quicksilver
+
 			IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff
 			IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff
 			IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff
 			IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff
 			IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff
+			IniWrite, %YesUtility6InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6InverseBuff
+			IniWrite, %YesUtility7InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7InverseBuff
+			IniWrite, %YesUtility8InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8InverseBuff
+			IniWrite, %YesUtility9InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9InverseBuff
+			IniWrite, %YesUtility10InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10InverseBuff
+
 			IniWrite, %YesUtility1MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack
 			IniWrite, %YesUtility2MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack
 			IniWrite, %YesUtility3MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack
 			IniWrite, %YesUtility4MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack
 			IniWrite, %YesUtility5MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack
+			IniWrite, %YesUtility6MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6MainAttack
+			IniWrite, %YesUtility7MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7MainAttack
+			IniWrite, %YesUtility8MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8MainAttack
+			IniWrite, %YesUtility9MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9MainAttack
+			IniWrite, %YesUtility10MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10MainAttack
+			
 			IniWrite, %YesUtility1SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack
 			IniWrite, %YesUtility2SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack
 			IniWrite, %YesUtility3SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack
 			IniWrite, %YesUtility4SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack
 			IniWrite, %YesUtility5SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack
+			IniWrite, %YesUtility6SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6SecondaryAttack
+			IniWrite, %YesUtility7SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7SecondaryAttack
+			IniWrite, %YesUtility8SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8SecondaryAttack
+			IniWrite, %YesUtility9SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9SecondaryAttack
+			IniWrite, %YesUtility10SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10SecondaryAttack
 			
 			;Utility Percents	
 			IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent
@@ -12112,16 +12498,33 @@ Return
 			IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent
 			IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent
 			IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent
+			IniWrite, %YesUtility6LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6LifePercent
+			IniWrite, %YesUtility7LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7LifePercent
+			IniWrite, %YesUtility8LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8LifePercent
+			IniWrite, %YesUtility9LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9LifePercent
+			IniWrite, %YesUtility10LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10LifePercent
+
 			IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1EsPercent
 			IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2EsPercent
 			IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent
 			IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent
 			IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent
+			IniWrite, %YesUtility6EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6EsPercent
+			IniWrite, %YesUtility7EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7EsPercent
+			IniWrite, %YesUtility8EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8EsPercent
+			IniWrite, %YesUtility9EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9EsPercent
+			IniWrite, %YesUtility10EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10EsPercent
+
 			IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1ManaPercent
 			IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2ManaPercent
 			IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3ManaPercent
 			IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4ManaPercent
 			IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5ManaPercent
+			IniWrite, %YesUtility6ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6ManaPercent
+			IniWrite, %YesUtility7ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7ManaPercent
+			IniWrite, %YesUtility8ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8ManaPercent
+			IniWrite, %YesUtility9ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9ManaPercent
+			IniWrite, %YesUtility10ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10ManaPercent
 			
 			;Utility Cooldowns
 			IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1
@@ -12129,6 +12532,11 @@ Return
 			IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3
 			IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4
 			IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5
+			IniWrite, %CooldownUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility6
+			IniWrite, %CooldownUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility7
+			IniWrite, %CooldownUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility8
+			IniWrite, %CooldownUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility9
+			IniWrite, %CooldownUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility10
 			
 			;Utility Keys
 			IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1
@@ -12136,6 +12544,11 @@ Return
 			IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3
 			IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4
 			IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5
+			IniWrite, %KeyUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility6
+			IniWrite, %KeyUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility7
+			IniWrite, %KeyUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility8
+			IniWrite, %KeyUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility9
+			IniWrite, %KeyUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility10
 			
 			;Utility Keys
 			IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1
@@ -12143,6 +12556,11 @@ Return
 			IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3
 			IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4
 			IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5
+			IniWrite, %IconStringUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility6
+			IniWrite, %IconStringUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility7
+			IniWrite, %IconStringUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility8
+			IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility9
+			IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10
 			
 			SendMSG(1, 0)
 		Return
