@@ -1,5 +1,4 @@
 ; Contains all the pre-setup for the script
-		Global BranchName := "Alpha"
 	#IfWinActive Path of Exile 
     #NoEnv
     #MaxHotkeysPerInterval 99000000
@@ -27,7 +26,6 @@
     SendMode Input
     StringCaseSense, On ; Match strings with case.
 	FormatTime, Date_now, A_Now, yyyyMMdd
-    Global VersionNumber := .09.11
 	If A_AhkVersion < 1.1.28
 	{
 		Log("Load Error","Too Low version")
@@ -40,77 +38,12 @@
 		Else 
 			ExitApp
 	}
-	Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
-	IniRead, LastDatabaseParseDate, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate, 20190913
-	IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Metamorph
-	IniRead, UpdateDatabaseInterval, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval, 2
-	IniRead, YesNinjaDatabase, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase, 1
-	Global Ninja := {}
-	Global apiList := ["Currency"
-		, "Fragment"
-		, "Prophecy"
-		, "DivinationCard"
-		, "Map"
-		, "Essence"
-		, "UniqueArmour"
-		, "UniqueFlask"
-		, "UniqueWeapon"
-		, "UniqueAccessory"
-		, "UniqueJewel"
-		, "UniqueMap"
-		, "SkillGem"
-		, "Scarab"
-		, "Oil"
-		, "Incubator"
-		, "Resonator"
-		, "Fossil"
-		, "Beast"]
 
-	Global craftingBasesT1 := ["Opal Ring"
-		, "Steel Ring"
-		, "Vermillion Ring"]
-
-	Global craftingBasesT2 := ["Blue Pearl Amulet"
-		, "Bone Helmet"
-		, "Cerulean Ring"
-		, "Convoking Wand"
-		, "Crystal Belt"
-		, "Fingerless Silk Gloves"
-		, "Gripped Gloves"
-		, "Marble Amulet"
-		, "Sacrificial Garb"
-		, "Spiked Gloves"
-		, "Stygian Vise"
-		, "Two-Toned Boots"
-		, "Vanguard Belt"]
-
-	Global craftingBasesT3 := ["Colossal Tower Shield"
-		, "Eternal Burgonet"
-		, "Hubris Circlet"
-		, "Lion Pelt"
-		, "Sorcerer Boots"
-		, "Sorcerer Gloves"
-		, "Titanium Spirit Shield"
-		, "Vaal Regalia"
-		, "Diamond Ring"
-		, "Onyx Amulet"
-		, "Two-Stone Ring"]
-
-    ; Create a container for the sub-script
-    Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
-    Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
-    ; Create Executable group for gameHotkey, IfWinActive
-    global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
-    for n, exe in POEGameArr
-        GroupAdd, POEGameGroup, ahk_exe %exe%
-	Global GameStr := "ahk_group POEGameGroup"
-    Hotkey, IfWinActive, ahk_group POEGameGroup
-        
     OnMessage(0x5555, "MsgMonitor")
     OnMessage(0x5556, "MsgMonitor")
 	OnMessage( 0xF, "WM_PAINT")
 	OnMessage(0x200, Func("ShowToolTip"))  ; WM_MOUSEMOVE
-    
+
     SetTitleMatchMode 2
     SetWorkingDir %A_ScriptDir%  
     Thread, interrupt, 0
@@ -140,9 +73,6 @@
     Run "%A_ScriptDir%\GottaGoFast.ahk"
     OnExit("CleanUp")
     
-	Global Enchantment  := []
-	Global Corruption := []
-	Global Bases
 	IfNotExist, %A_ScriptDir%\data
 		FileCreateDir, %A_ScriptDir%\data
 	IfNotExist, %A_ScriptDir%\save
@@ -150,163 +80,78 @@
 	IfNotExist, %A_ScriptDir%\temp
 		FileCreateDir, %A_ScriptDir%\temp
 	
-	IfNotExist, %A_ScriptDir%\data\InventorySlots.png
-	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/InventorySlots.png, %A_ScriptDir%\data\InventorySlots.png
-		if ErrorLevel{
- 			Log("data","uhoh", "InventorySlots.png")
-			MsgBox, Error ED02 : There was a problem downloading InventorySlots.png
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "InventorySlots.png")
-		}
-	}
-	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
-	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
-		if ErrorLevel{
- 			Log("data","uhoh", "boot_enchantment_mods")
-			MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "boot_enchantment_mods")
-		}
-	}
-	Loop, Read, %A_ScriptDir%\data\boot_enchantment_mods.txt
-	{
-		If (StrLen(Trim(A_LoopReadLine)) > 0) {
-			Enchantment.push(A_LoopReadLine)
-		}
-	}
-	IfNotExist, %A_ScriptDir%\data\helmet_enchantment_mods.txt
-	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
-		if ErrorLevel {
- 			Log("data","uhoh", "helmet_enchantment_mods")
-			MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "helmet_enchantment_mods")
-		}
-	}
-	Loop, Read, %A_ScriptDir%\data\helmet_enchantment_mods.txt
-	{
-		If (StrLen(Trim(A_LoopReadLine)) > 0) {
-			Enchantment.push(A_LoopReadLine)
-		}
-	}
-	IfNotExist, %A_ScriptDir%\data\glove_enchantment_mods.txt
-	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
-		if ErrorLevel {
- 			Log("data","uhoh", "glove_enchantment_mods")
-			MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "glove_enchantment_mods")
-		}
-	}
-	Loop, Read, %A_ScriptDir%\data\glove_enchantment_mods.txt
-	{
-		If (StrLen(Trim(A_LoopReadLine)) > 0) {
-			Enchantment.push(A_LoopReadLine)
-		}
-	}
-	IfNotExist, %A_ScriptDir%\data\item_corrupted_mods.txt
-	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
-		if ErrorLevel {
- 			Log("data","uhoh", "item_corrupted_mods")
-			MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "item_corrupted_mods")
-		}
-	}
-	Loop, read, %A_ScriptDir%\data\item_corrupted_mods.txt
-	{
-		If (StrLen(Trim(A_LoopReadLine)) > 0) {
-			Corruption.push(A_LoopReadLine)
-		}
-	}
-	IfNotExist, %A_ScriptDir%\data\Controller.png
-	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Controller.png, %A_ScriptDir%\data\Controller.png
-		if ErrorLevel {
- 			Log("data","uhoh", "Controller.png")
-			MsgBox, Error ED02 : There was a problem downloading Controller.png
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "Controller.png")
-		}
-	}
-	IfNotExist, %A_ScriptDir%\data\LootFilter.ahk
-	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
-		if ErrorLevel {
- 			Log("data","uhoh", "LootFilter.ahk")
-			MsgBox, Error ED02 : There was a problem downloading LootFilter.ahk
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "LootFilter.ahk")
-		}
-	}
-	IfNotExist, %A_ScriptDir%\data\Bases.json
-	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
-		if ErrorLevel {
- 			Log("data","uhoh", "Bases.json")
-			MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "Bases.json")
-			FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
-			Holder := []
-			Bases := JSON.Load(JSONtext)
-			For k, v in Bases
-			{
-				temp := {"name":v["name"]
-					,"item_class":v["item_class"]
-					,"inventory_width":v["inventory_width"]
-					,"inventory_height":v["inventory_height"]
-					,"drop_level":v["drop_level"]}
-				Holder.Push(temp)
-			}
-			Bases := Holder
-			JSONtext := JSON.Dump(Bases,,2)
-			FileDelete, %A_ScriptDir%\data\Bases.json
-			FileAppend, %JSONtext%, %A_ScriptDir%\data\Bases.json
-		}
-	}
-	Else
-	{
-		FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
-		Bases := JSON.Load(JSONtext)
-	}
-	IfNotExist, %A_ScriptDir%\data\Quest.json
-	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
-		if ErrorLevel {
- 			Log("data","uhoh", "Quest.json")
-			MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
-		}
-		Else if (ErrorLevel=0){
- 			Log("data","pass", "Quest.json")
-			FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
-			QuestItems := JSON.Load(JSONtext)
-		}
-	}
-	Else
-	{
-		FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
-		QuestItems := JSON.Load(JSONtext)
-	}
-	If needReload
-		Reload
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
+		Global VersionNumber := .09.10
+		Global BranchName := "Alpha"
+		Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
+		Global Ninja := {}
+		Global Enchantment  := []
+		Global Corruption := []
+		Global Bases
+		Global Date_now
+		; List available database endpoints
+		Global apiList := ["Currency"
+			, "Fragment"
+			, "Prophecy"
+			, "DivinationCard"
+			, "Map"
+			, "Essence"
+			, "UniqueArmour"
+			, "UniqueFlask"
+			, "UniqueWeapon"
+			, "UniqueAccessory"
+			, "UniqueJewel"
+			, "UniqueMap"
+			, "SkillGem"
+			, "Scarab"
+			, "Oil"
+			, "Incubator"
+			, "Resonator"
+			, "Fossil"
+			, "Beast"]
+		; List crafting T1
+		Global craftingBasesT1 := ["Opal Ring"
+			, "Steel Ring"
+			, "Vermillion Ring"]
+		; List crafting T2
+		Global craftingBasesT2 := ["Blue Pearl Amulet"
+			, "Bone Helmet"
+			, "Cerulean Ring"
+			, "Convoking Wand"
+			, "Crystal Belt"
+			, "Fingerless Silk Gloves"
+			, "Gripped Gloves"
+			, "Marble Amulet"
+			, "Sacrificial Garb"
+			, "Spiked Gloves"
+			, "Stygian Vise"
+			, "Two-Toned Boots"
+			, "Vanguard Belt"]
+		; List crafting T3
+		Global craftingBasesT3 := ["Colossal Tower Shield"
+			, "Eternal Burgonet"
+			, "Hubris Circlet"
+			, "Lion Pelt"
+			, "Sorcerer Boots"
+			, "Sorcerer Gloves"
+			, "Titanium Spirit Shield"
+			, "Vaal Regalia"
+			, "Diamond Ring"
+			, "Onyx Amulet"
+			, "Two-Stone Ring"]
+		; Create a container for the sub-script
+		Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
+		Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
+		; Create Executable group for gameHotkey, IfWinActive
+		global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
+		for n, exe in POEGameArr
+			GroupAdd, POEGameGroup, ahk_exe %exe%
+		Global GameStr := "ahk_group POEGameGroup"
+		Hotkey, IfWinActive, ahk_group POEGameGroup
+
 		global PauseTooltips:=0
 		global Clip_Contents:=""
 		global CheckGamestates:=False
@@ -976,6 +821,164 @@
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	readFromFile()
+; Check for Update on Start
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    checkUpdate()
+; Ensure files are present
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	IfNotExist, %A_ScriptDir%\data\InventorySlots.png
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/InventorySlots.png, %A_ScriptDir%\data\InventorySlots.png
+		if ErrorLevel{
+ 			Log("data","uhoh", "InventorySlots.png")
+			MsgBox, Error ED02 : There was a problem downloading InventorySlots.png
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "InventorySlots.png")
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
+		if ErrorLevel{
+ 			Log("data","uhoh", "boot_enchantment_mods")
+			MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "boot_enchantment_mods")
+		}
+	}
+	Loop, Read, %A_ScriptDir%\data\boot_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+		if ErrorLevel {
+ 			Log("data","uhoh", "helmet_enchantment_mods")
+			MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "helmet_enchantment_mods")
+		}
+	}
+	Loop, Read, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\glove_enchantment_mods.txt
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
+		if ErrorLevel {
+ 			Log("data","uhoh", "glove_enchantment_mods")
+			MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "glove_enchantment_mods")
+		}
+	}
+	Loop, Read, %A_ScriptDir%\data\glove_enchantment_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Enchantment.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\item_corrupted_mods.txt
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
+		if ErrorLevel {
+ 			Log("data","uhoh", "item_corrupted_mods")
+			MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "item_corrupted_mods")
+		}
+	}
+	Loop, read, %A_ScriptDir%\data\item_corrupted_mods.txt
+	{
+		If (StrLen(Trim(A_LoopReadLine)) > 0) {
+			Corruption.push(A_LoopReadLine)
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\Controller.png
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Controller.png, %A_ScriptDir%\data\Controller.png
+		if ErrorLevel {
+ 			Log("data","uhoh", "Controller.png")
+			MsgBox, Error ED02 : There was a problem downloading Controller.png
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "Controller.png")
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\LootFilter.ahk
+	{
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
+		if ErrorLevel {
+ 			Log("data","uhoh", "LootFilter.ahk")
+			MsgBox, Error ED02 : There was a problem downloading LootFilter.ahk
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "LootFilter.ahk")
+		}
+	}
+	IfNotExist, %A_ScriptDir%\data\Bases.json
+	{
+    	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
+		if ErrorLevel {
+ 			Log("data","uhoh", "Bases.json")
+			MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "Bases.json")
+			FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
+			Holder := []
+			Bases := JSON.Load(JSONtext)
+			For k, v in Bases
+			{
+				temp := {"name":v["name"]
+					,"item_class":v["item_class"]
+					,"inventory_width":v["inventory_width"]
+					,"inventory_height":v["inventory_height"]
+					,"drop_level":v["drop_level"]}
+				Holder.Push(temp)
+			}
+			Bases := Holder
+			JSONtext := JSON.Dump(Bases,,2)
+			FileDelete, %A_ScriptDir%\data\Bases.json
+			FileAppend, %JSONtext%, %A_ScriptDir%\data\Bases.json
+		}
+	}
+	Else
+	{
+		FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
+		Bases := JSON.Load(JSONtext)
+	}
+	IfNotExist, %A_ScriptDir%\data\Quest.json
+	{
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
+		if ErrorLevel {
+ 			Log("data","uhoh", "Quest.json")
+			MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "Quest.json")
+			FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
+			QuestItems := JSON.Load(JSONtext)
+		}
+	}
+	Else
+	{
+		FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
+		QuestItems := JSON.Load(JSONtext)
+	}
+	If needReload
+		Reload
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Critical
@@ -1943,8 +1946,6 @@
 			}
 		}
 	}
-    checkUpdate()
-
 	Critical, Off
 ; Ingame Overlay (default bottom left)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7028,15 +7029,21 @@ Return
 			Thread, NoTimers, true		;Critical
 			Static LastLogout := 0
 			if (RadioCritQuit || (RadioPortalQuit && (OnMines || OnTown || OnHideout))) {
-				global executable, backupExe
-				succ := logout(executable)
-				if (succ == 0) && backupExe != "" {
-					newSucc := logout(backupExe)
-					Log("ED12",executable,backupExe)
-					if (newSucc == 0) {
-						Log("ED13")
+				global POEGameArr
+				tt=
+				dc := False
+				For k, executable in POEGameArr
+				{
+					tt.= (tt?",":"") executable
+					succ := logout(executable)
+					if !(succ == 0)
+					{
+						dc := True
+						Break
 					}
 				}
+				If !dc
+					Log("Logout Failed","Could not find game EXE",tt)
 				If RelogOnQuit
 				{
 					RandomSleep(350,350)
@@ -10258,21 +10265,19 @@ Return
 		Return
 	}
 
-	; Script Update Functions - checkUpdate, runUpdate, dontUpdate
+	{ ; Script Update Functions - checkUpdate, runUpdate, dontUpdate
 		checkUpdate(){
 			Global BranchName
-			If BranchName != "Alpha"
-			Msgbox %BranchName%
-			IniRead, AutoUpdateOff, %A_ScriptDir%\save\settings.ini, General, AutoUpdateOff, 0
-			If (!AutoUpdateOff) {
-				Clipboard := "https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/version.html"
-				UrlDownloadToFile,%  "https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/version.html", %A_ScriptDir%\temp\version.html
+			If (!AutoUpdateOff) 
+			{
+				UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/version.html, %A_ScriptDir%\temp\version.html
 				FileRead, newestVersion, %A_ScriptDir%\temp\version.html
 				
-				if ( VersionNumber < newestVersion ) {
+				if ( VersionNumber < newestVersion ) 
+				{
 					UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
-					if ErrorLevel
-						GuiControl,1:, guiErr, ED08
+					; if ErrorLevel
+					; 	GuiControl,1:, guiErr, ED08
 					FileRead, changelog, %A_ScriptDir%\temp\changelog.txt
 					Gui, 4:Add, Button, x0 y0 h1 w1, a
 					Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
@@ -10282,12 +10287,11 @@ Return
 					Gui, 4:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
 					Gui, 4:Show,, WingmanReloaded Update
 					IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
-						{
+					{
 						WinWaitClose
-						}
 					}
-				WinGetPos, , , WinWidth, WinHeight
 				}
+			}
 		Return
 		}
 
@@ -10311,15 +10315,14 @@ Return
 				Fail:=true
 			}
 			if Fail {
-				Log("update","fail",A_ScriptFullPath, VersionNumber, A_AhkVersion)
-				Log("ED07")
+				Log("update","fail")
 			}
 			else {
-				Log("update","pass",A_ScriptFullPath, VersionNumber, A_AhkVersion)
+				Log("update","pass")
 				Run "%A_ScriptFullPath%"
 			}
 			Sleep 5000 ;This shouldn't ever hit.
-			Log("update","uhoh", A_ScriptFullPath, VersionNumber, A_AhkVersion)
+			Log("update","uhoh")
 		Return
 
 		dontUpdate:
@@ -10327,6 +10330,7 @@ Return
 			MsgBox, Auto-Updates have been disabled.`nCheck back on the forum for more information!`nTo resume updates, uncheck the box in config page.
 			Gui, 4:Destroy
 		return	
+	}
 
 	{ ; Calibration color sample functions - updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
 	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate
@@ -12050,8 +12054,10 @@ Return
 						%ValueType% := JSON.Load(JSONtext)
 					}
 					Else
+					{
 						Notify("Error loading " ValueType " file","",3)
 						Log("Error loading " ValueType " file")
+					}
 				}
 			}
 			Return
