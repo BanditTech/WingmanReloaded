@@ -152,7 +152,7 @@
 	
 	IfNotExist, %A_ScriptDir%\data\InventorySlots.png
 	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/InventorySlots.png, %A_ScriptDir%\data\InventorySlots.png
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/InventorySlots.png, %A_ScriptDir%\data\InventorySlots.png
 		if ErrorLevel{
  			Log("data","uhoh", "InventorySlots.png")
 			MsgBox, Error ED02 : There was a problem downloading InventorySlots.png
@@ -163,7 +163,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
 	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
 		if ErrorLevel{
  			Log("data","uhoh", "boot_enchantment_mods")
 			MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
@@ -180,7 +180,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\helmet_enchantment_mods.txt
 	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
 		if ErrorLevel {
  			Log("data","uhoh", "helmet_enchantment_mods")
 			MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
@@ -197,7 +197,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\glove_enchantment_mods.txt
 	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
 		if ErrorLevel {
  			Log("data","uhoh", "glove_enchantment_mods")
 			MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
@@ -214,7 +214,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\item_corrupted_mods.txt
 	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
 		if ErrorLevel {
  			Log("data","uhoh", "item_corrupted_mods")
 			MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
@@ -231,7 +231,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\Controller.png
 	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Controller.png, %A_ScriptDir%\data\Controller.png
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Controller.png, %A_ScriptDir%\data\Controller.png
 		if ErrorLevel {
  			Log("data","uhoh", "Controller.png")
 			MsgBox, Error ED02 : There was a problem downloading Controller.png
@@ -242,7 +242,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\LootFilter.ahk
 	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
 		if ErrorLevel {
  			Log("data","uhoh", "LootFilter.ahk")
 			MsgBox, Error ED02 : There was a problem downloading LootFilter.ahk
@@ -285,7 +285,7 @@
 	}
 	IfNotExist, %A_ScriptDir%\data\Quest.json
 	{
-    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Quest.json, %A_ScriptDir%\data\Quest.json
+    	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
 		if ErrorLevel {
  			Log("data","uhoh", "Quest.json")
 			MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
@@ -307,6 +307,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
+		global BranchName := "Alpha"
 		global PauseTooltips:=0
 		global Clip_Contents:=""
 		global CheckGamestates:=False
@@ -10259,13 +10260,15 @@ Return
 
 	{ ; Script Update Functions - checkUpdate, runUpdate, dontUpdate
 		checkUpdate(){
+			Global BranchName
 			IniRead, AutoUpdateOff, %A_ScriptDir%\save\settings.ini, General, AutoUpdateOff, 0
 			If (!AutoUpdateOff) {
-				UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/version.html, %A_ScriptDir%\temp\version.html
+				Clipboard := "https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/version.html"
+				UrlDownloadToFile,%  "https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/version.html", %A_ScriptDir%\temp\version.html
 				FileRead, newestVersion, %A_ScriptDir%\temp\version.html
 				
 				if ( VersionNumber < newestVersion ) {
-					UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
+					UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
 					if ErrorLevel
 						GuiControl,1:, guiErr, ED08
 					FileRead, changelog, %A_ScriptDir%\temp\changelog.txt
@@ -10289,19 +10292,19 @@ Return
 		runUpdate:
 
 			Fail:=False
-			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/GottaGoFast.ahk, GottaGoFast.ahk
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/GottaGoFast.ahk, GottaGoFast.ahk
 			if ErrorLevel {
 				Fail:=true
 			}
-			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/PoE-Wingman.ahk, PoE-Wingman.ahk
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/PoE-Wingman.ahk, PoE-Wingman.ahk
 			if ErrorLevel {
 				Fail:=true
 			}
-			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
 			if ErrorLevel {
 				Fail:=true
 			}
-			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/master/data/Library.ahk, %A_ScriptDir%\data\Library.ahk
+			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Library.ahk, %A_ScriptDir%\data\Library.ahk
 			if ErrorLevel {
 				Fail:=true
 			}
