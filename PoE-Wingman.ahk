@@ -2332,10 +2332,12 @@ Return
 				}
 				If (OnStash && YesStash) 
 				{
-					If (Prop.SpecialType = "Quest Item" || Prop.Incubator)
+					If (Prop.SpecialType = "Quest Item")
 						Continue
 					Else If (sendstash:=MatchLootFilter())
 						Sleep, -1
+					Else If (Prop.Incubator)
+						Continue
 					Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
 						Continue
 					Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
@@ -3198,12 +3200,6 @@ Return
 					{
 						Prop.Essence := True
 						Prop.SpecialType := "Essence"
-						Continue
-					}
-					IfInString, A_LoopField, Incubator
-					{
-						Prop.Incubator := True
-						Prop.SpecialType := "Incubator"
 						Continue
 					}
 					IfInString, A_LoopField, Fossil
@@ -5728,26 +5724,27 @@ Return
 	TGameTick(GuiCheck:=True)
 	{
 		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False, OnScreenMM := 0
+		Global GlobeActive
 		If WinExist(GameStr)
 		{
 			If (DebugMessages && YesTimeMS)
 				t1 := A_TickCount
 			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
 			{
-				If WinExist(GameStr)
+				If (CheckGamestates || GlobeActive)
 				{
+					GuiStatus()
 					If CheckGamestates
+					DebugGamestates("CheckGamestates")
+					If (GlobeActive)
+						ScanGlobe()
+				}
+				If (DebugMessages && YesTimeMS)
+				{
+					If ((t1-LastPauseMessage) > 100)
 					{
-						GuiStatus()
-						DebugGamestates("CheckGamestates")
-					}
-					If (DebugMessages && YesTimeMS)
-					{
-						If ((t1-LastPauseMessage) > 100)
-						{
-							Ding(600,2,(OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum)?"All options disabled, pausing":"Error"))))
-							LastPauseMessage := A_TickCount
-						}
+						Ding(600,2,(OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum)?"All options disabled, pausing":"Error"))))
+						LastPauseMessage := A_TickCount
 					}
 				}
 				Exit
@@ -11909,7 +11906,7 @@ Return
 
 
 					Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
-					Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Default Values
+					Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Initial Values
 					Gui, Globe: Font, s25 Bold c777777
 					Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
 					Gui, Globe: Add, Text, w220 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
@@ -12101,7 +12098,7 @@ Return
 			
 			GlobeGuiClose:
 			GlobeGuiEscape:
-				GlobeActive:=False
+				GlobeActive := False
 				Gui, Submit
 				Gui, 1: show
 			return

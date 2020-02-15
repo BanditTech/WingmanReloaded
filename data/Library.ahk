@@ -692,7 +692,7 @@
     ScanGlobe(SS:=0)
     {
         Global Globe, Player, GlobeActive
-        Static OldLife, OldES, OldMana
+        Static OldLife := 111, OldES := 111, OldMana := 111
         If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,1))
             Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
         Else
@@ -759,26 +759,79 @@
     ; Rescale - Rescales values of the script to the user's resolution
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Rescale(){
-        Global GameX, GameY, GameW, GameH, FillMetamorph
+        Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe
         IfWinExist, ahk_group POEGameGroup 
         {
+			If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
+            {
+				WR_Menu("JSON","Load","FillMetamorph")
+                FillMetamorphImported := True
+            }
+            Else If (VersionNumber = "")
+                FillMetamorphImported := True
+            Else
+                FillMetamorphImported := False
+            
+			If (FileExist(A_ScriptDir "\save\Globe.json") && VersionNumber != "")
+            {
+				WR_Menu("JSON","Load","Globe")
+                GlobeImported := True
+                Base.Globe := Array_DeepClone(Globe)
+            }
+            Else If (VersionNumber = "")
+            {
+                GlobeImported := True
+            }
+            Else
+            {
+                GlobeImported := False
+            }
             WinGetPos, GameX, GameY, GameW, GameH
             If (ResolutionScale="Standard") {
                 ; Item Inventory Grid
                 Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
                 Global InventoryGridY := [ GameY + Round(GameH/(1080/638)), GameY + Round(GameH/(1080/690)), GameY + Round(GameH/(1080/743)), GameY + Round(GameH/(1080/796)), GameY + Round(GameH/(1080/848)) ]  
                 ; Fill Metamorph
-                IfExist, %A_ScriptDir%\save\FillMetamorph.json
+                If (!FillMetamorphImported) 
                 {
-                    FileRead, JSONtext, %A_ScriptDir%\save\FillMetamorph.json
-                    Global FillMetamorph := JSON.Load(JSONtext)
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(1920/329)) ; (1920/2)-631
+                                            , "Y1": GameY + Round(GameH/(1080/189))
+                                            , "X2": GameX + Round(GameW/(1920/745)) ; (1920/2)-215
+                                            , "Y2": GameY + Round(GameH/(1080/746))}
                 }
-                Else
+                ; Globe areas
+                If (!GlobeImported)
                 {
-                    Global FillMetamorph := {"X1": GameX + Round(GameW/(1920/329))
-                                    , "Y1": GameY + Round(GameH/(1080/189))
-                                    , "X2": GameX + Round(GameW/(1920/745))
-                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(1920/106)) 
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(1920/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(1920/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(1920/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(1920/1720)) 
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(1920/1800)) 
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(1920/1760)) 
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(1920/1830)) 
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
                 }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
@@ -864,6 +917,46 @@
                 ; Item Inventory Grid
                 Global InventoryGridX := [ Round(GameW/(1440/794)) , Round(GameW/(1440/846)) , Round(GameW/(1440/899)) , Round(GameW/(1440/952)) , Round(GameW/(1440/1004)) , Round(GameW/(1440/1057)) , Round(GameW/(1440/1110)) , Round(GameW/(1440/1162)) , Round(GameW/(1440/1215)) , Round(GameW/(1440/1268)) , Round(GameW/(1440/1320)) , Round(GameW/(1440/1373)) ]
                 Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
+                ; Fill Metamorph
+                If !FillMetamorphImported
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(1440/89)) ; (1440/2)-631
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(1440/505)) ; (1440/2)-215
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                ; Globe areas
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(1440/106)) ; left side does not require repositioning
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(1440/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(1440/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(1440/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(1440/1240)) ; Width - 200
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(1440/1320)) ; Width - 120
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(1440/1280)) ; Width - 160
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(1440/1350)) ; Width - 90
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
                 Global DetonateX:=GameX + Round(GameW/(1440/1178))
@@ -950,6 +1043,46 @@
                 ; Item Inventory Grid
                 Global InventoryGridX := [ Round(GameW/(2560/1914)), Round(GameW/(2560/1967)), Round(GameW/(2560/2018)), Round(GameW/(2560/2072)), Round(GameW/(2560/2125)), Round(GameW/(2560/2178)), Round(GameW/(2560/2230)), Round(GameW/(2560/2281)), Round(GameW/(2560/2336)), Round(GameW/(2560/2388)), Round(GameW/(2560/2440)), Round(GameW/(2560/2493)) ]
                 Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]
+                ; Fill Metamorph
+                If !FillMetamorphImported
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(2560/649)) ; (2560/2)-631
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(2560/1065)) ; (2560/2)-215
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                ; Globe areas
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(2560/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(2560/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(2560/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(2560/2360)) ; Width - 200
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(2560/2440)) ; Width - 120
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(2560/2400)) ; Width - 160
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(2560/2470)) ; Width - 90
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
                 Global DetonateX:=GameX + Round(GameW/(2560/2298))
@@ -1036,6 +1169,45 @@
                 ;Item Inventory Grid
                 Global InventoryGridX := [ Round(GameW/(3440/2579)), Round(GameW/(3440/2649)), Round(GameW/(3440/2719)), Round(GameW/(3440/2789)), Round(GameW/(3440/2860)), Round(GameW/(3440/2930)), Round(GameW/(3440/3000)), Round(GameW/(3440/3070)), Round(GameW/(3440/3140)), Round(GameW/(3440/3211)), Round(GameW/(3440/3281)), Round(GameW/(3440/3351)) ]
                 Global InventoryGridY := [ Round(GameH/(1440/851)), Round(GameH/(1440/921)), Round(GameH/(1440/992)), Round(GameH/(1440/1062)), Round(GameH/(1440/1132)) ]
+                ; Fill Metamorph
+                If !FillMetamorphImported
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(2560/649)) ; (2560/2)-631
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(2560/1065)) ; (2560/2)-215
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(2560/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(2560/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(2560/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(2560/2360)) ; Width - 200
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(2560/2440)) ; Width - 120
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(2560/2400)) ; Width - 160
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(2560/2470)) ; Width - 90
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
                 Global DetonateX:=GameX + Round(GameW/(3440/3090))
@@ -1113,6 +1285,45 @@
                 ; Item Inventory Grid
                 Global InventoryGridX := [ Round(GameW/(3840/3193)), Round(GameW/(3840/3246)), Round(GameW/(3840/3299)), Round(GameW/(3840/3352)), Round(GameW/(3840/3404)), Round(GameW/(3840/3457)), Round(GameW/(3840/3510)), Round(GameW/(3840/3562)), Round(GameW/(3840/3615)), Round(GameW/(3840/3668)), Round(GameW/(3840/3720)), Round(GameW/(3840/3773)) ]
                 Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
+                ; Fill Metamorph
+                If !FillMetamorphImported
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(3840/1289)) ; (3840/2)-631
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(3840/1705)) ; (3840/2)-215
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(3840/106)) ; left side does not require repositioning
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(3840/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(3840/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(3840/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(3840/3640)) ; Width - 200
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(3840/3720)) ; Width - 120
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(3840/3680)) ; Width - 160
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(3840/3750)) ; Width - 90
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
                 Global DetonateX:=GameX + Round(GameW/(3840/3578))

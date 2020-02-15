@@ -51,6 +51,9 @@ Gamestates has been improved to allow for the game to be in the background
 Crafting tab has new option for filtering by item level
     Check the box to filter by ilvl, then set the minimum ilvl to stash
 
+Globe scan areas are now scaled based on resolution
+    it is still recommended to adjust these to ensure they work as expected
+
 Bugfix for bulk vendor of flasks
     If the flask has been augmented it will use its actual quality value
     This is because quality 20 flasks only vendor on their own if not augmented
@@ -78,6 +81,8 @@ CLF menu adjusted to space the groups better
 Hoard added to openable containers
 
 Bugfix for PoE.Ninja json data being parsed incorrectly
+
+Bugfix for Incubator items not being able to be sorted by the CLF
 
 Version .09.11 January/24/2020
 --------------------------------------------------------------------------------
