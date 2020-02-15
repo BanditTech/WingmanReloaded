@@ -84,7 +84,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
-		Global VersionNumber := .09.10
+		Global VersionNumber := .10.00
 		Global Ninja := {}
 		Global Enchantment  := []
 		Global Corruption := []
