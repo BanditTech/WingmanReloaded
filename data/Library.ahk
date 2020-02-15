@@ -787,6 +787,7 @@
                 GlobeImported := False
             }
             WinGetPos, GameX, GameY, GameW, GameH
+            checkActiveType()
             If (ResolutionScale="Standard") {
                 ; Item Inventory Grid
                 Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
@@ -9910,8 +9911,8 @@
     ; checkActiveType - Check for backup executable
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	checkActiveType() {
-			global executable, backupExe
-			Process, Exist, %executable%
+			global Active_executable
+			Process, Exist, %Active_executable%
 			if !ErrorLevel
 			{
 				WinGet, id, list,ahk_group POEGameGroup,, Program Manager
@@ -9919,9 +9920,10 @@
 				{
 					this_id := id%A_Index%
 					WinGet, this_name, ProcessName, ahk_id %this_id%
-					backupExe := this_name
+					Active_executable := this_name
 					found .= ", " . this_name
 				}
+                Notify(Active_executable,"",0)
 			}
 		return
 		}

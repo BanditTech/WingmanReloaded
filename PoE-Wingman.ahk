@@ -92,6 +92,7 @@
 		Global Corruption := []
 		Global Bases
 		Global Date_now
+		Global Active_executable := "Blank"
 		; List available database endpoints
 		Global apiList := ["Currency"
 			, "Fragment"
@@ -217,8 +218,6 @@
 			YesOHB = Pauses the script when it cannot find the healthbar
 			YesGlobeScan = Use the new Globe scanning method to determine Life, ES and Mana
 			ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
-			Steam = These settings are for the LutBot Quit method`rEnable this to set the EXE as Steam version
-			HighBits = These settings are for the LutBot Quit method`rEnable this to set the EXE as 64bit version
 			AutoUpdateOff = Enable this to not check for new updates when launching the script
 			YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
 			ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rCinematic(43:18) is 43:18`rUltraWide is 32:9
@@ -461,8 +460,6 @@
 		global ShowItemInfo := 0
 		global Latency := 1
 		global RunningToggle := False
-		Global Steam := 1
-		Global HighBits := 1
 		Global AutoUpdateOff := 0
 		Global EnableChatHotkeys := 0
 		; Dont change the speed & the tick unless you know what you are doing
@@ -1522,8 +1519,6 @@
 		Gui Add, Checkbox, gUpdateExtra	vYesOHB Checked%YesOHB%                         	          			, Pause script when OHB missing?
 		Gui Add, Checkbox, gUpdateExtra	vYesGlobeScan Checked%YesGlobeScan%                        				, Use Globe Scanner?
 		Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
-		Gui Add, Checkbox, gUpdateExtra	vSteam Checked%Steam%                         	          				, Are you using Steam?
-		Gui Add, Checkbox, gUpdateExtra	vHighBits Checked%HighBits%                         	          		, Are you running 64 bit?
 		Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
 		Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
 		Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w90               	    		, Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
@@ -1631,22 +1626,6 @@
 		Menu, Tray, add, 				Reload This Script, RELOAD	
 		Menu, Tray, add
 		Menu, Tray, add, 				Exit, QuitNow ; added exit script option
-		; Menu, Tray, NoStandard
-		; Menu, Tray, Standard
-		;Gui, Hide
-		if ( Steam ) {
-			if ( HighBits ) {
-				executable := "PathOfExile_x64Steam.exe"
-				} else {
-				executable := "PathOfExileSteam.exe"
-				}
-			} else {
-			if ( HighBits ) {
-				executable := "PathOfExile_x64.exe"
-				} else {
-				executable := "PathOfExile.exe"
-				}
-			}
 
 		if(RadioLife==1) {
 			loop 5 {
@@ -7030,16 +7009,24 @@ Return
 			Static LastLogout := 0
 			if (RadioCritQuit || (RadioPortalQuit && (OnMines || OnTown || OnHideout))) {
 				global POEGameArr
-				tt=
 				dc := False
-				For k, executable in POEGameArr
+				succ := logout(Active_executable)
+				if !(succ == 0)
 				{
-					tt.= (tt?",":"") executable
-					succ := logout(executable)
-					if !(succ == 0)
+					dc := True
+				}
+				Else
+				{
+					tt=
+					For k, executable in POEGameArr
 					{
-						dc := True
-						Break
+						tt.= (tt?",":"") executable
+						succ := logout(executable)
+						if !(succ == 0)
+						{
+							dc := True
+							Break
+						}
 					}
 				}
 				If !dc
@@ -7354,8 +7341,6 @@ Return
 			IniRead, ShowOnStart, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart, 1
 			IniRead, PopFlaskRespectCD, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD, 0
 			IniRead, ResolutionScale, %A_ScriptDir%\save\Settings.ini, General, ResolutionScale, Standard
-			IniRead, Steam, %A_ScriptDir%\save\Settings.ini, General, Steam, 1
-			IniRead, HighBits, %A_ScriptDir%\save\Settings.ini, General, HighBits, 1
 			IniRead, AutoUpdateOff, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff, 0
 			IniRead, EnableChatHotkeys, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys, 1
 			IniRead, CharName, %A_ScriptDir%\save\Settings.ini, General, CharName, ReplaceWithCharName
@@ -8048,8 +8033,6 @@ Return
 
 			RegisterHotkeys()
 			checkActiveType()
-			If FileExist(A_ScriptDir "\save\Globe.json")
-				WR_Menu("JSON","Load","Globe")
 			Thread, NoTimers, False		;End Critical
 		Return
 		}
@@ -8254,8 +8237,6 @@ Return
 			IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
 			IniWrite, %ClipLatency%, %A_ScriptDir%\save\Settings.ini, General, ClipLatency
 			IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
-			IniWrite, %Steam%, %A_ScriptDir%\save\Settings.ini, General, Steam
-			IniWrite, %HighBits%, %A_ScriptDir%\save\Settings.ini, General, HighBits
 			IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
 			IniWrite, %CharName%, %A_ScriptDir%\save\Settings.ini, General, CharName
 			IniWrite, %EnableChatHotkeys%, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys
@@ -12367,8 +12348,6 @@ Return
 			IniWrite, %ClipLatency%, %A_ScriptDir%\save\Settings.ini, General, ClipLatency
 			IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
 			IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
-			IniWrite, %Steam%, %A_ScriptDir%\save\Settings.ini, General, Steam
-			IniWrite, %HighBits%, %A_ScriptDir%\save\Settings.ini, General, HighBits
 			IniWrite, %AutoUpdateOff%, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
 			IniWrite, %YesPersistantToggle%, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle
 			IniWrite, %YesPopAllExtraKeys%, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys
@@ -12385,20 +12364,6 @@ Return
 			IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
 			If (YesPersistantToggle)
 				AutoReset()
-			if ( Steam ) {
-				if ( HighBits ) {
-					executable := "PathOfExile_x64Steam.exe"
-				} else {
-					executable := "PathOfExileSteam.exe"
-				}
-			} else {
-				if ( HighBits ) {
-					executable := "PathOfExile_x64.exe"
-				} else {
-					executable := "PathOfExile.exe"
-				}
-			}
-			
 		Return
 
 		UpdateEldritchBattery:
