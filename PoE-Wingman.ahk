@@ -85,8 +85,6 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
 		Global VersionNumber := .09.10
-		Global BranchName := "Alpha"
-		Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
 		Global Ninja := {}
 		Global Enchantment  := []
 		Global Corruption := []
@@ -388,6 +386,8 @@
 	; Click Vendor after stash, search for stash
 		Global YesVendorAfterStash, YesSearchForStash
     ; General
+		Global BranchName := "Master"
+		Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
 		Global Latency := 1
 		Global ClickLatency := 0
 		Global ClipLatency := 0
@@ -1521,9 +1521,11 @@
 		Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
 		Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
 		Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
-		Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w90               	    		, Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
+		Gui Add, DropDownList, gUpdateExtra	vBranchName       w90               	    						, %BranchName%||Master|Alpha
+		Gui, Add, Text, 			x+8 yp+3							 										, Update Branch
+		Gui Add, DropDownList, gUpdateResolutionScale	vResolutionScale       w90   xs            	    		, Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
 		GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
-		Gui, Add, Text, 			x+8 y+-18							 							, Aspect Ratio
+		Gui, Add, Text, 			x+8 y+-18							 										, Aspect Ratio
 		Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  %Latency%||1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
 		Gui, Add, Text, 										x+5 yp+3 hp-3							, Latency
 		Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  %ClickLatency%||-2|-1|0|1|2|3|4
@@ -7318,6 +7320,7 @@ Return
 
 			LoadArray()
 			;General settings
+			IniRead, BranchName, %A_ScriptDir%\save\Settings.ini, General, BranchName, Master
 			IniRead, Speed, %A_ScriptDir%\save\Settings.ini, General, Speed, 1
 			IniRead, Tick, %A_ScriptDir%\save\Settings.ini, General, Tick, 50
 			IniRead, QTick, %A_ScriptDir%\save\Settings.ini, General, QTick, 250
@@ -8219,6 +8222,7 @@ Return
 			IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, %A_ScriptDir%\save\Settings.ini, Mana Triggers, TriggerMana10
 			
 			;Bandit Extra options
+			IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
 			IniWrite, %DebugMessages%, %A_ScriptDir%\save\Settings.ini, General, DebugMessages
 			IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
 			IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
@@ -10260,20 +10264,25 @@ Return
 					; if ErrorLevel
 					; 	GuiControl,1:, guiErr, ED08
 					FileRead, changelog, %A_ScriptDir%\temp\changelog.txt
-					Gui, 4:Add, Button, x0 y0 h1 w1, a
-					Gui, 4:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
-					Gui, 4:Add, Edit, w600 h200 +ReadOnly, %changelog% 
-					Gui, 4:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
-					Gui, 4:Add, Button, x+35 ys gLaunchDonate, Support the Project
-					Gui, 4:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
-					Gui, 4:Show,, WingmanReloaded Update
+					Gui, Update:Add, Button, x0 y0 h1 w1, a
+					Gui, Update:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
+					Gui, Update:Add, Edit, w600 h200 +ReadOnly, %changelog% 
+					Gui, Update:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
+					Gui, Update:Add, Button, x+35 ys gLaunchDonate, Support the Project
+					Gui, Update:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
+					Gui, Update:Show,, WingmanReloaded Update
 					IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
 					{
 						WinWaitClose
 					}
 				}
 			}
-		Return
+			Return
+
+			UpdateGuiClose:
+			UpdateGuiEscape:
+				Gui, Update: Destroy
+			Return
 		}
 
 		runUpdate:
@@ -12324,6 +12333,7 @@ Return
 		UpdateExtra:
 			Gui, Submit, NoHide
 			; Gui, Inventory: Submit, NoHide
+			IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
 			IniWrite, %DetonateMines%, %A_ScriptDir%\save\Settings.ini, General, DetonateMines
 			IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay
 			IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum

@@ -9908,7 +9908,7 @@
         return
     }
 
-    ; checkActiveType - Check for backup executable
+    ; checkActiveType - Check for active executable
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	checkActiveType() {
 			global Active_executable
