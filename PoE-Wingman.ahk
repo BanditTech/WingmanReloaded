@@ -1,4 +1,5 @@
 ; Contains all the pre-setup for the script
+		Global BranchName := "Alpha"
 	#IfWinActive Path of Exile 
     #NoEnv
     #MaxHotkeysPerInterval 99000000
@@ -116,7 +117,6 @@
     I_Icon = %A_ScriptDir%\data\shield_charge_skill_icon.ico
     IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
-    checkUpdate()
 
 	; Setup for LutBot logout method
     full_command_line := DllCall("GetCommandLine", "str")
@@ -307,7 +307,6 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
-		global BranchName := "Alpha"
 		global PauseTooltips:=0
 		global Clip_Contents:=""
 		global CheckGamestates:=False
@@ -1944,6 +1943,7 @@
 			}
 		}
 	}
+    checkUpdate()
 
 	Critical, Off
 ; Ingame Overlay (default bottom left)
@@ -10258,9 +10258,11 @@ Return
 		Return
 	}
 
-	{ ; Script Update Functions - checkUpdate, runUpdate, dontUpdate
+	; Script Update Functions - checkUpdate, runUpdate, dontUpdate
 		checkUpdate(){
 			Global BranchName
+			If BranchName != "Alpha"
+			Msgbox %BranchName%
 			IniRead, AutoUpdateOff, %A_ScriptDir%\save\settings.ini, General, AutoUpdateOff, 0
 			If (!AutoUpdateOff) {
 				Clipboard := "https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/version.html"
@@ -10325,7 +10327,6 @@ Return
 			MsgBox, Auto-Updates have been disabled.`nCheck back on the forum for more information!`nTo resume updates, uncheck the box in config page.
 			Gui, 4:Destroy
 		return	
-	}
 
 	{ ; Calibration color sample functions - updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
 	;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate
