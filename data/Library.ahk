@@ -9923,7 +9923,6 @@
 					Active_executable := this_name
 					found .= ", " . this_name
 				}
-                Notify(Active_executable,"",0)
 			}
 		return
 		}
