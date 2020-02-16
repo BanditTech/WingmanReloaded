@@ -991,10 +991,10 @@
 	Gui Add, Text, 				vYesLocation_t						x385	y5, 				Location:
 
 	Gui, Add, StatusBar, vWR_Statusbar hwndWR_hStatusbar, %WR_Statusbar%
-	SB_SetParts(280,280)
+	SB_SetParts(220,220)
 	SB_SetText("Changed Status", 1)
 	SB_SetText("Changed Status2", 2)
-	SB_SetText("#3", 3)
+	SB_SetText("Percentage not updated", 3)
 
 	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap , Flasks|Utility|Configuration
 	;#######################################################################################################Flasks and Utility Tab
@@ -5738,7 +5738,8 @@ Return
 			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
 			{
 				Msg := (OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum)?"All options disabled, pausing":"Error")))
-				SB_SetText(Msg, 1)
+				If CheckTime("seconds",1,"StatusBar1")
+					SB_SetText(Msg, 1)
 				If (CheckGamestates || GlobeActive)
 				{
 					GuiStatus()
@@ -5764,7 +5765,8 @@ Return
 				If !GuiStatus()
 				{
 					Msg := "Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(OnMetamorph?"Metamorph is Open":"Error"))))))))))
-					SB_SetText(Msg, 1)
+					If CheckTime("seconds",1,"StatusBar1")
+						SB_SetText(Msg, 1)
 					If (YesFillMetamorph) 
 					{
 						If (OnMetamorph && Metamorph_Filled)
@@ -5789,7 +5791,7 @@ Return
 							}
 					Exit
 				}
-				Else
+				Else If CheckTime("seconds",1,"StatusBar1")
 					SB_SetText("WingmanReloaded Active", 1)
 				If (!OnMetamorph && Metamorph_Filled && ((A_TickCount - OnScreenMM) >= 5000))
 					Metamorph_Filled := False

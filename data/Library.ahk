@@ -1455,7 +1455,7 @@
     ScanGlobe(SS:=0)
     {
         Global Globe, Player, GlobeActive
-        Static OldLife := 111, OldES := 111, OldMana := 111
+        Static OldLife := 111, OldES := 111, OldMana := 111, FirstRun := False
         If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,1))
             Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
         Else
@@ -1478,24 +1478,33 @@
             Player.Percent.Mana := Round(((Globe.Mana.Y2 - Mana.1.2) / Globe.Mana.Height) * 100)
         Else
             Player.Percent.Mana := -1
-        If GlobeActive
+        If (Player.Percent.Life != OldLife) ||  (Player.Percent.ES != OldES) || (Player.Percent.Mana != OldMana)
         {
             If (Player.Percent.Life != OldLife)
             {
                 OldLife := Player.Percent.Life
+                If GlobeActive
                 GuiControl,Globe:, Globe_Percent_Life, % "Life " Player.Percent.Life "`%"
             }
             If (Player.Percent.ES != OldES)
             {
                 OldES := Player.Percent.ES
+                If GlobeActive
                 GuiControl,Globe: , Globe_Percent_ES, % "ES " Player.Percent.ES "`%"
             }
             If (Player.Percent.Mana != OldMana)
             {
                 OldMana := Player.Percent.Mana
+                If GlobeActive
                 GuiControl,Globe: , Globe_Percent_Mana, % "Mana " Player.Percent.Mana "`%"
             }
+            If (CheckTime("seconds",1,"StatusBar3") || !FirstRun)
+            {
+                FirstRun := True
+                SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%",3)
+            }
         }
+        Return
     }
     ; GetPercent - Determine the percentage of health
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
