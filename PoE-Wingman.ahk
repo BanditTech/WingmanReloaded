@@ -7120,46 +7120,48 @@ Return
 	}
 ; PoEWindowCheck - Check for the game window. 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	PoEWindowCheck(){
+	PoEWindowCheck()
+	{
 		Global GamePID
-			If (GamePID := WinExist(GameStr))
+		If (GamePID := WinExist(GameStr))
+		{
+			global GuiX, GuiY, RescaleRan, ToggleExist
+			If !GameBound
 			{
-				If !GameBound
-				{
-					GameBound := True
-					BindWindow(GamePID)
-				}
+				GameBound := True
+				BindWindow(GamePID)
 			}
-			Else
+			If (!RescaleRan)
+				Rescale()
+			If (!ToggleExist && WinActive(GameStr)) 
+			{
+				Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
+				ToggleExist := True
+				If (YesPersistantToggle)
+					AutoReset()
+			}
+			Else If (ToggleExist && !WinActive(GameStr))
+			{
+				ToggleExist := False
+				Gui 2: Show, Hide
+			}
+		} 
+		Else 
+		{
+			If GameBound
 			{
 				GameBound := False
 				BindWindow()
 			}
-
-			IfWinActive, ahk_group POEGameGroup 
+			If (ToggleExist)
 			{
-				global GuiX, GuiY, RescaleRan, ToggleExist
-				If (!RescaleRan)
-					Rescale()
-				If (!ToggleExist) 
-				{
-					Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
-					ToggleExist := True
-					If (YesPersistantToggle)
-						AutoReset()
-				}
-			} 
-			Else 
-			{
-				If (ToggleExist)
-				{
-					Gui 2: Show, Hide
-					ToggleExist := False
-					RescaleRan := False
-				}
+				Gui 2: Show, Hide
+				ToggleExist := False
+				RescaleRan := False
 			}
-			Return
 		}
+		Return
+	}
 ; DBUpdateCheck - Check if the database should be updated 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	DBUpdateCheck()

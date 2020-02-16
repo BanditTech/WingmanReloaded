@@ -35,6 +35,7 @@
      Hotkey, IfWinActive, ahk_group POEGameGroup
 
 ; Extra vars - Not in INI
+     Global GameStr := "ahk_group POEGameGroup"
      global TriggerQ:=00000
      global AutoQuit:=0 
      global AutoFlask:=0
@@ -430,31 +431,52 @@
      }
 ; PoEWindowCheck - Check if game is active
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     PoEWindowCheck(){
+	PoEWindowCheck()
+	{
           DetectHiddenWindows On
-          IfWinActive, ahk_group POEGameGroup 
-          {
-               global GuiX, GuiY, RescaleRan, ToggleExist
-               If (!RescaleRan)
-               Rescale()
-               If (!ToggleExist) {
+		Global GamePID
+		If (GamePID := WinExist(GameStr))
+		{
+			global GuiX, GuiY, RescaleRan, ToggleExist
+			If !GameBound
+			{
+				GameBound := True
+				BindWindow(GamePID)
+			}
+			If (!RescaleRan)
+				Rescale()
+			If (!ToggleExist && WinActive(GameStr)) 
+			{
                     Gui, 1: Show, x%GuiX% y%GuiY% NA, StatusOverlay
                     ToggleExist := True
                     If YesController
                          DetectJoystick()
                     If (YesPersistantToggle)
                          AutoReset()
-               }
-          } Else {
-               If (ToggleExist){
+			}
+			Else If (ToggleExist && !WinActive(GameStr))
+			{
+				ToggleExist := False
+				Gui 1: Show, Hide
+			}
+		} 
+		Else 
+		{
+			If GameBound
+			{
+				GameBound := False
+				BindWindow()
+			}
+			If (ToggleExist)
+			{
                     Gui, 1: Show, NA Hide
-                    ToggleExist := False
-                    RescaleRan := False
-               }
-          }
+				ToggleExist := False
+				RescaleRan := False
+			}
+		}
           DetectHiddenWindows Off
-          Return
-     }
+		Return
+	}
 
 ; ReadFromFile - Read Settings from file
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
