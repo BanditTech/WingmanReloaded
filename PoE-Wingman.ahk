@@ -7131,15 +7131,17 @@ Return
 		Static ScriptUpdateTimeType := "minutes", ScriptUpdateTimeInterval := 15
 		If (GamePID := WinExist(GameStr))
 		{
+            WinGetPos, , , nGameW, nGameH
+			newDim := (nGameW != GameW || nGameH != GameH)
 			global GuiX, GuiY, RescaleRan, ToggleExist
-			If !GameBound
+			If (!GameBound || newDim )
 			{
 				GameBound := True
 				BindWindow(GamePID)
 			}
-			If (!RescaleRan)
+			If (!RescaleRan || newDim)
 				Rescale()
-			If (!ToggleExist && WinActive(GameStr)) 
+			If ((!ToggleExist || newDim) && WinActive(GameStr)) 
 			{
 				Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
 				ToggleExist := True
