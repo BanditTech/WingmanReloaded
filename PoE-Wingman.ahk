@@ -5782,13 +5782,24 @@ Return
 					{
 						DebugGamestates("CheckGamestates")
 					}
-					If WinExist(GameStr)
-						If (DebugMessages && YesTimeMS)
-							If ((t1-LastPauseMessage) > 100)
-							{
-								Ding(600,2, Msg )
-								LastPauseMessage := A_TickCount
-							}
+					If (DebugMessages && YesTimeMS)
+						If ((t1-LastPauseMessage) > 100)
+						{
+							Ding(600,2, Msg )
+							LastPauseMessage := A_TickCount
+						}
+					Exit
+				}
+				Else If (YesOHB && !CheckOHB())
+				{
+					If CheckTime("seconds",1,"StatusBar1")
+						SB_SetText("Script paused while no OHB", 1)
+					If (DebugMessages && YesTimeMS)
+						If ((t1-LastPauseMessage) > 100)
+						{
+							Ding(600,2,"Script paused while no OHB")
+							LastPauseMessage := A_TickCount
+						}
 					Exit
 				}
 				Else If CheckTime("seconds",1,"StatusBar1")
@@ -5797,17 +5808,6 @@ Return
 					Metamorph_Filled := False
 				If CheckGamestates
 					DebugGamestates("CheckGamestates")
-				If (YesOHB && !CheckOHB())
-				{
-					If WinExist(GameStr)
-						If (DebugMessages && YesTimeMS)
-							If ((t1-LastPauseMessage) > 100)
-							{
-								Ding(600,2,"Script paused while no OHB")
-								LastPauseMessage := A_TickCount
-							}
-					Exit
-				}
 			}
 			If (DetonateMines&&!Detonated)
 			{

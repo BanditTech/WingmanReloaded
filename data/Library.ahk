@@ -1455,7 +1455,7 @@
     ScanGlobe(SS:=0)
     {
         Global Globe, Player, GlobeActive
-        Static OldLife := 111, OldES := 111, OldMana := 111, FirstRun := False
+        Static OldLife := 111, OldES := 111, OldMana := 111
         If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,1))
             Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
         Else
@@ -1498,11 +1498,7 @@
                 If GlobeActive
                 GuiControl,Globe: , Globe_Percent_Mana, % "Mana " Player.Percent.Mana "`%"
             }
-            If (CheckTime("seconds",1,"StatusBar3") || !FirstRun)
-            {
-                FirstRun := True
-                SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%",3)
-            }
+            SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%",3)
         }
         Return
     }
