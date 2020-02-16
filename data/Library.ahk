@@ -809,11 +809,11 @@
 			}
 			Else If (Function = "JSON")
 			{
-				Gui, Submit
 				ValueType := Var[2]
 				Element := Var[1]
 				If (Element = "Save")
 				{
+                    Gui, Submit
 					JSONtext := JSON.Dump(%ValueType%,,2)
 					If FileExist(A_ScriptDir "\save\" ValueType ".json")
 						FileDelete, %A_ScriptDir%\save\%ValueType%.json

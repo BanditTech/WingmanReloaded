@@ -992,8 +992,8 @@
 
 	Gui, Add, StatusBar, vWR_Statusbar hwndWR_hStatusbar, %WR_Statusbar%
 	SB_SetParts(220,220)
-	SB_SetText("Changed Status", 1)
-	SB_SetText("Changed Status2", 2)
+	SB_SetText("Logic Status", 1)
+	SB_SetText("Location Status", 2)
 	SB_SetText("Percentage not updated", 3)
 
 	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap , Flasks|Utility|Configuration
@@ -6446,32 +6446,36 @@ Return
 			AutoSkillUp()
 			If (DebugMessages && YesTimeMS)
 			{
-				If WinExist(GameStr)
+				If ((t1-LastAverageTimer) > 100)
 				{
-					If ((t1-LastAverageTimer) > 100)
-					{
-						If (YesGlobeScan)
-							Ding(3000,2,"Globes:`t" . Player.Percent.Life . "`%L  " . Player.Percent.ES . "`%E  " . Player.Percent.Mana . "`%M")
-						Else
-							Ding(3000,2,"Total Time: `t" . tallyMS . "MS")
-						If (YesGlobeScan)
-							Ding(3000,3,"CPU `%:`t" . Round(tallyCPU,2) . "`%  " . tallyMS . "MS")
-						Else
-							Ding(3000,3,"CPU Load:   `t" . Round(tallyCPU,2) . "`%")
-						tallyMS := 0
-						tallyCPU := 0
-						LastAverageTimer := A_TickCount
-					}
+					If (YesGlobeScan)
+						Ding(3000,2,"Globes:`t" . Player.Percent.Life . "`%L  " . Player.Percent.ES . "`%E  " . Player.Percent.Mana . "`%M")
 					Else
-					{
-						t1 := A_TickCount - t1
-						tallyMS := (t1>tallyMS?t1:tallyMS)
-						load := GetProcessTimes(ScriptPID)
-						tallyCPU :=(load>tallyCPU?load:tallyCPU)
-					}
+						Ding(3000,2,"Total Time: `t" . tallyMS . "MS")
+					If (YesGlobeScan)
+						Ding(3000,3,"CPU `%:`t" . Round(tallyCPU,2) . "`%  " . tallyMS . "MS")
+					Else
+						Ding(3000,3,"CPU Load:   `t" . Round(tallyCPU,2) . "`%")
+					tallyMS := 0
+					tallyCPU := 0
+					LastAverageTimer := A_TickCount
+				}
+				Else
+				{
+					t1 := A_TickCount - t1
+					tallyMS := (t1>tallyMS?t1:tallyMS)
+					load := GetProcessTimes(ScriptPID)
+					tallyCPU :=(load>tallyCPU?load:tallyCPU)
 				}
 			}
 		}
+		Else
+		{
+			If CheckTime("seconds",5,"StatusBar1")
+				SB_SetText("No game found", 1)
+			If CheckTime("seconds",5,"StatusBar3")
+				SB_SetText("No game found", 3)
+		} 
 		Return
 	}
 	
