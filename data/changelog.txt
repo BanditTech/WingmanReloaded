@@ -61,6 +61,10 @@ Improvements to the way the script loads, as well as how it will update
         Use this with caution (This should be considered very unstable branch)
     Default branch is Master
 
+New options to choose if and how often it will check for script updates
+    The script will check for updates while the game is not found open
+    Choose a timescale and interval to enable this option
+
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
@@ -80,6 +84,13 @@ Files you will need to move into the save folder:
     /data/LootFilterTabs.json     -->           /save/LootFilterTabs.json
     /data/Lootfilter.ini          -->           /save/Lootfilter.ini
     /data/IgnoredSlot.json        -->           /save/IgnoredSlot.json
+
+New option to check for updates while the game is closed
+    Configure the time scale, then the interval to automatically check for script updates
+    Choose between Off, Days, Hours, or Minutes
+        Choosing Off will disable automatically checking for updates
+    Set the interval that you would like it to wait before checking
+        Setting the interval to 0 will turn off checking for updates
 
 Adjust Globes GUI now displays Current Life, ES, and Mana %
     MsgBox popups have been replaced with Notify panels
