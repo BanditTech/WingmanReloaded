@@ -388,7 +388,7 @@
 	; Click Vendor after stash, search for stash
 		Global YesVendorAfterStash, YesSearchForStash
     ; General
-		Global BranchName := "Master"
+		Global BranchName := "master"
 		Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
 			, ScriptUpdateTimeInterval, ScriptUpdateTimeType
 		Global Latency := 1
@@ -1531,7 +1531,7 @@
 		Gui Add, Checkbox, gUpdateExtra	vShowOnStart Checked%ShowOnStart%                         	          	, Show GUI on startup?
 		Gui Add, Checkbox, gUpdateExtra	vYesPersistantToggle Checked%YesPersistantToggle%                       , Persistant Auto-Toggles?
 		Gui Add, Checkbox, gUpdateExtra	vAutoUpdateOff Checked%AutoUpdateOff%                         	        , Turn off Auto-Update?
-		Gui Add, DropDownList, gUpdateExtra	vBranchName       w90               	    						, %BranchName%||Master|Alpha
+		Gui Add, DropDownList, gUpdateExtra	vBranchName       w90               	    						, %BranchName%||master|Alpha
 		Gui, Add, Text, 			x+8 yp+3							 										, Update Branch
 		Gui Add, DropDownList, gUpdateExtra	vScriptUpdateTimeType   xs    w90            						, %ScriptUpdateTimeType%||Off|days|hours|minutes
 		Gui Add, Edit, gUpdateExtra	vScriptUpdateTimeInterval    x+5   w40           	    					, %ScriptUpdateTimeInterval%
@@ -7365,7 +7365,7 @@ Return
 
 			LoadArray()
 			;General settings
-			IniRead, BranchName, %A_ScriptDir%\save\Settings.ini, General, BranchName, Master
+			IniRead, BranchName, %A_ScriptDir%\save\Settings.ini, General, BranchName, master
 			IniRead, ScriptUpdateTimeInterval, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval, 1
 			IniRead, ScriptUpdateTimeType, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType, Off
 			IniRead, Speed, %A_ScriptDir%\save\Settings.ini, General, Speed, 1
