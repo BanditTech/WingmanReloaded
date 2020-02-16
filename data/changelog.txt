@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 Release Notes
 --------------------------------------------------------------------------------
-Version .10.00 February/15/2020
+Version .10.00 February/16/2020
 
 --------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ New options to choose if and how often it will check for script updates
 --------------------------------------------------------------------------------
 Patch Notes
 --------------------------------------------------------------------------------
-Version .10.00 February/15/2020
+Version .10.00 February/16/2020
 --------------------------------------------------------------------------------
 Save Files for the script are now all located in "save" folder
     If you want to migrate an old versions settings, you will need to move them
