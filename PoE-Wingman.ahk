@@ -85,6 +85,8 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
 		Global VersionNumber := .10.00
+		Global WR_Statusbar := "WingmanReloaded Status"
+		Global WR_hStatusbar
 		Global Ninja := {}
 		Global Enchantment  := []
 		Global Corruption := []
@@ -987,6 +989,12 @@
 	Gui Add, Text, 				vYesTimeMS_t						x455	y5, 				Logic:
 	Gui Add, Checkbox, 	vYesLocation Checked%YesLocation%  gUpdateDebug   	x435 	y5 	    w13 h13
 	Gui Add, Text, 				vYesLocation_t						x385	y5, 				Location:
+
+	Gui, Add, StatusBar, vWR_Statusbar hwndWR_hStatusbar, %WR_Statusbar%
+	SB_SetParts(280,280)
+	SB_SetText("Changed Status", 1)
+	SB_SetText("Changed Status2", 2)
+	SB_SetText("#3", 3)
 
 	Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap , Flasks|Utility|Configuration
 	;#######################################################################################################Flasks and Utility Tab
@@ -1968,7 +1976,17 @@
 	; Main Game Timer
 	SetTimer, TGameTick, %Tick%
 	; Log file parser
-	SetTimer, Monitor_GameLogs, 500
+	If FileExist(ClientLog)
+	{
+		Monitor_GameLogs(1)
+		SetTimer, Monitor_GameLogs, 500
+	}
+	Else
+	{
+		MsgBox, 262144, Client Log Error, Client.txt Log File not found!`nAssign the location in Configuration Tab`nClick ""Locate Logfile"" to find yours
+		Log("Client Log not Found",ClientLog)
+		SB_SetText("Client.txt file not found", 2)
+	}
 
 ; Hotkeys to reload or exit script
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5712,13 +5730,15 @@ Return
 	TGameTick(GuiCheck:=True)
 	{
 		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False, OnScreenMM := 0
-		Global GlobeActive
+		Global GlobeActive, CurrentMessage
 		If WinExist(GameStr)
 		{
 			If (DebugMessages && YesTimeMS)
 				t1 := A_TickCount
 			If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
 			{
+				Msg := (OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum)?"All options disabled, pausing":"Error")))
+				SB_SetText(Msg, 1)
 				If (CheckGamestates || GlobeActive)
 				{
 					GuiStatus()
@@ -5731,17 +5751,20 @@ Return
 				{
 					If ((t1-LastPauseMessage) > 100)
 					{
-						Ding(600,2,(OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum)?"All options disabled, pausing":"Error"))))
+						Ding(600,2,Msg)
 						LastPauseMessage := A_TickCount
 					}
 				}
 				Exit
 			}
+
 			; Check what status is your character in the game
 			if (GuiCheck)
 			{
 				If !GuiStatus()
 				{
+					Msg := "Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(OnMetamorph?"Metamorph is Open":"Error"))))))))))
+					SB_SetText(Msg, 1)
 					If (YesFillMetamorph) 
 					{
 						If (OnMetamorph && Metamorph_Filled)
@@ -5761,11 +5784,13 @@ Return
 						If (DebugMessages && YesTimeMS)
 							If ((t1-LastPauseMessage) > 100)
 							{
-								Ding(600,2,"Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(OnMetamorph?"Metamorph is Open":"Error")))))))))))
+								Ding(600,2, Msg )
 								LastPauseMessage := A_TickCount
 							}
 					Exit
 				}
+				Else
+					SB_SetText("WingmanReloaded Active", 1)
 				If (!OnMetamorph && Metamorph_Filled && ((A_TickCount - OnScreenMM) >= 5000))
 					Metamorph_Filled := False
 				If CheckGamestates
@@ -7447,14 +7472,6 @@ Return
 			
 			;Settings for the Client Log file location
 			IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
-
-			If FileExist(ClientLog)
-				Monitor_GameLogs(1)
-			Else
-			{
-                MsgBox, 262144, Client Log Error, Client.txt Log File not found!`nAssign the location in Configuration Tab`nClick ""Locate Logfile"" to find yours
-				Log("Client Log not Found",ClientLog)
-			}
 			
 			;Settings for the Overhead Health Bar
 			IniRead, YesOHB, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB, 1

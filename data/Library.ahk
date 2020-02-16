@@ -3228,6 +3228,8 @@
                     CurrentLocation := "Nothing Found"
                 If (VersionNumber != "")
                     Ding(500,-10,"Parsed Client.txt logs in " . A_TickCount - T1 . "MS`nSize: " . errchk . "MB")
+                StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
+                SB_SetText("Status:" StatusText " `(" CurrentLocation "`)",2)
                 If (DebugMessages && YesLocation && WinActive(GameStr))
                 {
                     Ding(6000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
@@ -3259,8 +3261,13 @@
                 Ding(2000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
                 Ding(2000,5,CurrentLocation)
             }
-            If YesLocation && (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
-                Log("Zone Change Detected", (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))) , "Located:" CurrentLocation)
+            If (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
+            {
+                StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
+                If YesLocation
+                    Log("Zone Change Detected", StatusText , "Located:" CurrentLocation)
+                SB_SetText("Status:" StatusText " (" CurrentLocation ")",2)
+            }
             Return
         }
     }
