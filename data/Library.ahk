@@ -123,7 +123,770 @@
             BlockInput, MouseMoveOff
             return
         }
-    ;
+    ; WR_Menu - New menu handling method
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		WR_Menu(Function:="",Var*)
+		{
+			Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe
+				, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC
+				,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu
+				, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB
+				, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe
+				, Obj, WR_Save_JSON_FillMetamorph
+
+			Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
+				, Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
+				, Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
+				, Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
+				, Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
+				, WR_Btn_FillMetamorph_Area
+				, Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
+			If (Function = "Inventory")
+			{
+				Gui, 1: Submit
+				If !Built_Inventory
+				{
+					Built_Inventory := 1
+					Gui, Inventory: New
+					Gui, Inventory: +AlwaysOnTop -MinimizeBox
+					;Save Setting
+					Gui, Inventory: Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
+					; Gui, Inventory: Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+					Gui, Inventory: Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
+					Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys
+
+				Gui, Inventory: Tab, Options
+					Gui, Inventory: Font, Bold
+					Gui, Inventory: Add, Text, 		Section								xm 	ym+25, 				ID/Vend/Stash Options:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesIdentify Checked%YesIdentify%   				, Identify Items?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStash Checked%YesStash%         				, Deposit at stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendor Checked%YesVendor%       				, Sell at vendor?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesDiv Checked%YesDiv%             				, Trade Divination?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSortFirst Checked%YesSortFirst% 				, Group Items before stashing?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesMapUnid Checked%YesMapUnid%     				, Leave Map Un-ID?
+					Gui, Inventory: Add, DropDownList, w40 gUpdateExtra	vYesSkipMaps  				, %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
+					Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 				Section			w370 h120			xm+180 	ym+25, 				Scroll and Gem Locations
+					Gui, Inventory: Font
+
+					Gui, Inventory: Add, Text, 										xs+93 	ys+15,				X-Pos
+					Gui, Inventory: Add, Text, 										x+12, 						Y-Pos
+
+					Gui, Inventory: Add, Text, 										xs+22	y+5, 				Portal Scroll:
+					Gui, Inventory: Add, Edit, 			vPortalScrollX 				x+8		y+-15 	w34	h17, 	%PortalScrollX%
+					Gui, Inventory: Add, Edit, 			vPortalScrollY 				x+8			 	w34	h17, 	%PortalScrollY%	
+					Gui, Inventory: Add, Text, 										xs+14	y+6, 				Wisdm. Scroll:
+					Gui, Inventory: Add, Edit, 			vWisdomScrollX 				x+8		y+-15 	w34	h17, 	%WisdomScrollX%
+					Gui, Inventory: Add, Edit, 			vWisdomScrollY 				x+8			 	w34	h17, 	%WisdomScrollY%	
+					Gui, Inventory: Add, Text, 										xs+19	y+6, 				Current Gem:
+					Gui, Inventory: Add, Edit, 			vCurrentGemX 				x+8		y+-15 	w34	h17, 	%CurrentGemX%
+					Gui, Inventory: Add, Edit, 			vCurrentGemY 				x+8			 	w34	h17, 	%CurrentGemY%
+
+					Gui, Inventory: Add, Text, 										xs+11	y+6, 				Alternate Gem:
+					Gui, Inventory: Add, Edit, 			vAlternateGemX 				x+8		y+-15 	w34	h17, 	%AlternateGemX%
+					Gui, Inventory: Add, Edit, 			vAlternateGemY 				x+8			 	w34	h17, 	%AlternateGemY%
+					Gui, Inventory: Add, Button, 	   gWR_Update vWR_Btn_Locate_PortalScroll			xs+173     		ys+31	h17		, Locate
+					Gui, Inventory: Add, Button, 	   gWR_Update vWR_Btn_Locate_WisdomScroll				     		y+4		h17		, Locate
+					Gui, Inventory: Add, Button, 	   gWR_Update vWR_Btn_Locate_CurrentGem					     		y+4		h17		, Locate
+					Gui, Inventory: Add, Button, 	   gWR_Update vWR_Btn_Locate_AlternateGem				     		y+4		h17		, Locate
+					Gui, Inventory: Add, Checkbox, 	    vStockPortal Checked%StockPortal%              	x+13     		ys+33			, Stock Portal?
+					Gui, Inventory: Add, Checkbox, 	    vStockWisdom Checked%StockWisdom%              	         		y+8				, Stock Wisdom?
+					Gui, Inventory: Add, Checkbox, 	vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%  	y+8				, Weapon Swap?
+					Gui, Inventory: Add, Text, 									xs+84 	ys+15		h107 0x11
+					Gui, Inventory: Add, Text, 									x+33 		 		h107 0x11
+					Gui, Inventory: Add, Text, 									x+33 		 		h107 0x11
+
+					IfNotExist, %A_ScriptDir%\data\leagues.json
+					{
+						UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+					}
+					FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+					LeagueIndex := JSON.Load(JSONtext)
+					textList= 
+					For K, V in LeagueIndex
+						textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 			Section		w180 h160				xs 	y+10, 				Item Parse Settings
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
+					Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
+					Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
+					Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
+					Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
+					Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
+					Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
+					Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, %YesPredictivePrice%||Off|Low|Avg|High
+					
+					Gui, Inventory: Font, s18
+					Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
+					Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
+					Gui, Inventory: Font,
+					ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
+					Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h110		section		xm+370 	ys, 				Automation:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesSearchForStash Checked%YesSearchForStash%     		xs+5 ys+18	, Search for stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesVendorAfterStash Checked%YesVendorAfterStash%     	y+8			, Move to vendor after stash?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesFillMetamorph Checked%YesFillMetamorph%     		y+8			, Auto fill metamorph?
+					Gui, Inventory: Add, Button, gWR_Update	vWR_Btn_FillMetamorph_Menu y+8	w170 center		, Adjust Metamorph Panel
+				Gui, Inventory: show , w600 h500, Inventory Settings
+				Gui, Inventory: Tab, Stash Tabs
+					Gui, Inventory: Font, Bold
+					Gui, Inventory: Add, Text, 			Section							x12 	ym+25, 				Stash Management
+					Gui, Inventory: Font,
+
+					tablistArr := [ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+					textList=
+					For k, v in tablistArr
+						textList .= (!textList ? "" : "|") v
+
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabCurrency Choose%StashTabCurrency% x10 y50 w40  , %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabOrgan Choose%StashTabOrgan% w40  , %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabOil Choose%StashTabOil% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabMap Choose%StashTabMap% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabFragment Choose%StashTabFragment% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabDivination Choose%StashTabDivination% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabCollection Choose%StashTabCollection% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabVeiled Choose%StashTabVeiled% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabDump Choose%StashTabDump% w40 ,  %textList%
+
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan% y+14, Organ Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% y+14, Oil Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% y+14, Map Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% y+14, Fragment Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% y+14, Divination Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% y+14, Collection Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% y+14, Veiled Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% y+14, Dump Tab
+
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% x150 y50 w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabGemSupport Choose%StashTabGemSupport% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabGem Choose%StashTabGem% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabFlaskQuality Choose%StashTabFlaskQuality% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabLinked Choose%StashTabLinked% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabUniqueDump Choose%StashTabUniqueDump% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabUniqueRing Choose%StashTabUniqueRing% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabFossil Choose%StashTabFossil% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabResonator Choose%StashTabResonator% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabCrafting Choose%StashTabCrafting% w40 ,  %textList%
+					Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabPredictive Choose%StashTabPredictive% w40 ,  %textList%
+
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x195 y55, Quality Gem Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% y+14, Support Gem Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% y+14, Gem Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% y+14, Quality Flask Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% y+14, Linked Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% y+14, Unique Dump Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% y+14, Unique Ring Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% y+14, Fossil Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% y+14, Resonator Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% y+14, Crafting Tab
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% y+14, Priced Rares Tab
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h80		section		xm+370 	ys, 				Crafting Tab:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT1 Checked%YesStashT1%     xs+5	ys+18			, T1?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT2 Checked%YesStashT2%     x+21				, T2?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashT3 Checked%YesStashT3%     x+16				, T3?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingNormal Checked%YesStashCraftingNormal%     	xs+5	y+8		, Normal?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingMagic Checked%YesStashCraftingMagic%     x+0				, Magic?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingRare Checked%YesStashCraftingRare%     x+0				, Rare?
+					Gui, Inventory: Add, Checkbox, gUpdateExtra	vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     	xs+5	y+8		, Above Ilvl:
+					Gui, Inventory: Font, s10
+					Gui, Inventory: Add, Edit, gUpdateExtra	vYesStashCraftingIlvlMin      	x+5	yp-3	w40 center	hp+5, %YesStashCraftingIlvlMin%
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h60		section		xm+370 	y+20, 				Dump Tab:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
+					Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
+
+					Gui, Inventory: Font, Bold s9 cBlack
+					Gui, Inventory: Add, GroupBox, 						w180 h40		section		xm+370 	y+20, 				Priced Rares Tab:
+					Gui, Inventory: Font,
+					Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+					Gui, Inventory: Font, s10
+					Gui, Inventory: Add, Edit, gUpdateStash  vStashTabYesPredictive_Price x+13 yp-6 w40 hp+8 center, % StashTabYesPredictive_Price
+
+				Gui, Inventory: Tab, Stash Hotkeys
+
+					Gui, Inventory: Add, Checkbox, xm+5 ym+25	vYesStashKeys Checked%YesStashKeys%                         	         , Enable stash hotkeys?
+
+					Gui, Inventory: Font,s9 cBlack Bold Underline
+					Gui, Inventory: Add,GroupBox,Section xp-5 yp+20 w100 h85											,Modifier
+					Gui, Inventory: Font,
+					Gui, Inventory: Font,s9,Arial
+					Gui, Inventory: Add, Edit, xs+4 ys+20 w90 h23 vstashPrefix1, %stashPrefix1%
+					Gui, Inventory: Add, Edit, y+8        w90 h23 vstashPrefix2, %stashPrefix2%
+
+					Gui, Inventory: Font,s9 cBlack Bold Underline
+					Gui, Inventory: Add,GroupBox, xp-5 y+20 w100 h55											,Reset Tab
+					Gui, Inventory: Font,
+					Gui, Inventory: Font,s9,Arial
+					Gui, Inventory: Add, Edit, xp+4 yp+20 w90 h23 vstashReset, %stashReset%
+
+					Gui, Inventory: Font,s9 cBlack Bold Underline
+					Gui, Inventory: Add,GroupBox,Section x+10 ys w100 h275											,Keys
+					Gui, Inventory: Font,
+					Gui, Inventory: Font,s9,Arial
+					Gui, Inventory: Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
+					Gui, Inventory: Add, Edit, y+5        w90 h23 vstashSuffix2, %stashSuffix2%
+					Gui, Inventory: Add, Edit, y+5        w90 h23 vstashSuffix3, %stashSuffix3%
+					Gui, Inventory: Add, Edit, y+5        w90 h23 vstashSuffix4, %stashSuffix4%
+					Gui, Inventory: Add, Edit, y+5        w90 h23 vstashSuffix5, %stashSuffix5%
+					Gui, Inventory: Add, Edit, y+5        w90 h23 vstashSuffix6, %stashSuffix6%
+					Gui, Inventory: Add, Edit, y+5        w90 h23 vstashSuffix7, %stashSuffix7%
+					Gui, Inventory: Add, Edit, y+5        w90 h23 vstashSuffix8, %stashSuffix8%
+					Gui, Inventory: Add, Edit, y+5        w90 h23 vstashSuffix9, %stashSuffix9%
+
+					Gui, Inventory: Font,s9 cBlack Bold Underline
+					Gui, Inventory: Add,GroupBox,Section x+10 ys w50 h275											,Tab
+					Gui, Inventory: Font,
+					Gui, Inventory: Font,s9,Arial
+					Gui, Inventory: Add, DropDownList, xs+4 ys+20 w40 vstashSuffixTab1 Choose%stashSuffixTab1%, %textList%
+					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab2 Choose%stashSuffixTab2%, %textList%
+					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab3 Choose%stashSuffixTab3%, %textList%
+					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab4 Choose%stashSuffixTab4%, %textList%
+					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab5 Choose%stashSuffixTab5%, %textList%
+					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab6 Choose%stashSuffixTab6%, %textList%
+					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab7 Choose%stashSuffixTab7%, %textList%
+					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
+					Gui, Inventory: Add, DropDownList,  y+5       w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
+
+				}
+				Gui, Inventory: show , w600 h500, Inventory Settings
+			}
+			Else If (Function = "Strings")
+			{
+				Gui, 1: Submit
+				If !Built_Strings
+				{
+					Built_Strings := 1
+					Gui, Inventory: New
+					Gui, Inventory: +AlwaysOnTop -MinimizeBox
+					;Save Setting
+					; Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
+					; Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+					
+					Gui, Strings: Add, Button,  		gLaunchWiki 		x295 y470			 		h23, 	Wiki
+					Gui, Strings: Add, Button,  		gft_Start 		x+5			 		h23, 	FindText Gui (capture)
+					Gui, Strings: Font, Bold cBlack
+					Gui, Strings: Add, GroupBox, 		Section		w625 h10						x3 	y3, 				String Samples from the FindText library - Use the dropdown to select from 1080 defaults
+					Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor
+					Gui, Strings: Font,
+
+				Gui, Strings: Tab, General
+					Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
+					Gui, Strings: +Delimiter?
+					Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
+					Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"
+					Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
+					Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
+					Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"
+					Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
+					Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"
+					Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
+					Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
+					Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
+					Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"
+					Gui, Strings: +Delimiter|
+
+				Gui, Strings: Tab, Vendor
+					Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+					Gui, Strings: +Delimiter?
+					Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"
+					Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"
+					Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorLioneyeStr gUpdateStringEdit , %VendorLioneyeStr%??"%1080_BestelStr%"
+					Gui, Strings: Add, Text, x+10 ys , Capture of the Forest vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorForestStr gUpdateStringEdit , %VendorForestStr%??"%1080_GreustStr%"
+					Gui, Strings: Add, Text, xs y+15 section, Capture of the Sarn vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorSarnStr gUpdateStringEdit , %VendorSarnStr%??"%1080_ClarissaStr%"
+					Gui, Strings: Add, Text, x+10 ys , Capture of the Highgate vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorHighgateStr gUpdateStringEdit , %VendorHighgateStr%??"%1080_PetarusStr%"
+					Gui, Strings: Add, Text, xs y+15 section, Capture of the Overseer vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorOverseerStr gUpdateStringEdit , %VendorOverseerStr%??"%1080_LaniStr%"
+					Gui, Strings: Add, Text, x+10 ys , Capture of the Bridge vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorBridgeStr gUpdateStringEdit , %VendorBridgeStr%??"%1080_HelenaStr%"
+					Gui, Strings: Add, Text, xs y+15 section, Capture of the Docks vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"
+					Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
+					Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"
+					Gui, Strings: +Delimiter|
+				}
+				Gui, Strings: show , w640 h525, FindText Strings
+			}
+			Else If (Function = "Chat")
+			{
+				Gui, 1: Submit
+				If !Built_Chat
+				{
+					Built_Chat := 1
+					Gui, Chat: Add, Checkbox, gUpdateExtra	vEnableChatHotkeys Checked%EnableChatHotkeys%     xm+400 ym                    	          	, Enable chat Hotkeys?
+
+					;Save Setting
+					Gui, Chat: Add, Button, default gupdateEverything 	 x295 y320	w180 h23, 	Save Configuration
+					; Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+					Gui, Chat: Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+
+					Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
+				Gui, Chat: Tab, Commands
+					Gui, Chat: Font,s9 cBlack Bold Underline
+					Gui, Chat: Add,GroupBox,Section w60 h85											,Modifier
+					Gui, Chat: Font,
+					Gui, Chat: Font,s9,Arial
+					Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v1Prefix1, %1Prefix1%
+					Gui, Chat: Add, Edit, y+8        w50 h23 v1Prefix2, %1Prefix2%
+					Gui, Chat: Font,s9 cBlack Bold Underline
+					Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275											,Keys
+					Gui, Chat: Font,
+					Gui, Chat: Font,s9,Arial
+					Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v1Suffix1, %1Suffix1%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v1Suffix2, %1Suffix2%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v1Suffix3, %1Suffix3%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v1Suffix4, %1Suffix4%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v1Suffix5, %1Suffix5%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v1Suffix6, %1Suffix6%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v1Suffix7, %1Suffix7%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v1Suffix8, %1Suffix8%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v1Suffix9, %1Suffix9%
+					Gui, Chat: Font,s9 cBlack Bold Underline
+					Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275											,Commands
+					Gui, Chat: Font,
+					Gui, Chat: Font,s9,Arial
+					DefaultCommands := [ "/Hideout","/Menagerie","/Delve","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
+					textList=
+					For k, v in DefaultCommands
+						textList .= (!textList ? "" : "|") v
+					Gui, Chat: Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %1Suffix1Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5       w290 v1Suffix2Text, %1Suffix2Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5       w290 v1Suffix3Text, %1Suffix3Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5       w290 v1Suffix4Text, %1Suffix4Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5       w290 v1Suffix5Text, %1Suffix5Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5       w290 v1Suffix6Text, %1Suffix6Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5       w290 v1Suffix7Text, %1Suffix7Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5       w290 v1Suffix8Text, %1Suffix8Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5       w290 v1Suffix9Text, %1Suffix9Text%||%textList%
+				Gui, Chat: Tab, Reply Whisper
+					Gui, Chat: Font,s9 cBlack Bold Underline
+					Gui, Chat: Add,GroupBox,Section  w60 h85											,Modifier
+					Gui, Chat: Font,
+
+					Gui, Chat: Font,s9,Arial
+					Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
+					Gui, Chat: Add, Edit, y+8        w50 h23 v2Prefix2, %2Prefix2%
+					Gui, Chat: Font,s9 cBlack Bold Underline
+					Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275											,Keys
+					Gui, Chat: Font,
+					Gui, Chat: Font,s9,Arial
+					Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v2Suffix1, %2Suffix1%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v2Suffix2, %2Suffix2%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v2Suffix3, %2Suffix3%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v2Suffix4, %2Suffix4%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v2Suffix5, %2Suffix5%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v2Suffix6, %2Suffix6%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v2Suffix7, %2Suffix7%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v2Suffix8, %2Suffix8%
+					Gui, Chat: Add, Edit, y+5        w50 h23 v2Suffix9, %2Suffix9%
+					Gui, Chat: Font,s9 cBlack Bold Underline
+					Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275											,Whisper Reply
+					Gui, Chat: Font,
+					Gui, Chat: Font,s9,Arial
+					DefaultWhisper := [ "/invite RecipientName","Sure, will invite in a sec.","In a map, will get to you in a minute.","Sorry, going to be a while.","No thank you.","Sold","/afk Sold to RecipientName"]
+					textList=
+					For k, v in DefaultWhisper
+						textList .= (!textList ? "" : "|") v
+					Gui, Chat: Add, ComboBox, 	xs+4 ys+20 	w290 v2Suffix1Text, %2Suffix1Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5			w290 v2Suffix2Text, %2Suffix2Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5			w290 v2Suffix3Text, %2Suffix3Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5			w290 v2Suffix4Text, %2Suffix4Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5			w290 v2Suffix5Text, %2Suffix5Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5			w290 v2Suffix6Text, %2Suffix6Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5			w290 v2Suffix7Text, %2Suffix7Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5			w290 v2Suffix8Text, %2Suffix8Text%||%textList%
+					Gui, Chat: Add, ComboBox,  y+5			w290 v2Suffix9Text, %2Suffix9Text%||%textList%
+				}
+				Gui, Chat: show , w620 h370, Chat Hotkeys
+			}
+			Else If (Function = "Controller")
+			{
+				Gui, 1: Submit
+				If !Built_Controller
+				{
+					Built_Controller := 1
+					DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
+					textList= 
+					For k, v in DefaultButtons
+						textList .= (!textList ? "" : "|") v
+					
+					Gui, Controller: Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
+
+					Gui, Controller: Add, Checkbox,  section	xp y+-10					vYesMovementKeys Checked%YesMovementKeys%                         	          , Use Move Keys?
+					Gui, Controller: Add, Checkbox, 						vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                         	          , Use utility on Move?
+					Gui, Controller: Add, DropDownList,   x+5 yp-5     w40 	vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
+
+					Gui, Controller: Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
+					
+					Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40												,5
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton5, %hotkeyControllerButton5%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+					Gui, Controller: Add,GroupBox,  xs+360 ys w80 h40												,6
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton6, %hotkeyControllerButton6%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+					Gui, Controller: Add,GroupBox, section  xm+65 ym+100 w90 h80												,D-Pad
+					Gui, Controller: add,text, xs+15 ys+30, Mouse`nMovement
+
+					Gui, Controller: Add,GroupBox, section xm+165 ym+180 w80 h80												,Joystick1
+					Gui, Controller: Add,Checkbox, xs+5 ys+30 		Checked%YesTriggerUtilityJoystickKey%			vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
+					Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40												,9 / L3
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton9, %hotkeyControllerButton9%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+					Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80												,Joystick2
+					Gui, Controller: Add,Checkbox, xp+5 y+-53 		Checked%YesTriggerJoystick2Key%			vYesTriggerJoystick2Key, Use key?
+					Gui, Controller: Add, ComboBox,  			xp y+8      w70 	vhotkeyControllerJoystick2, %hotkeyControllerJoystick2%||LButton|RButton|q|w|e|r|t
+					Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40												,10 / R3
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton10, %hotkeyControllerButton10%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+					Gui, Controller: Add,GroupBox, section xm+140 ym+60 w80 h40												,7 / Select
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton7, %hotkeyControllerButton7%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+					Gui, Controller: Add,GroupBox, xs+245 ys w80 h40												,8 / Start
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w70 											vhotkeyControllerButton8, %hotkeyControllerButton8%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+					Gui, Controller: Add,GroupBox, section xm+65 ym+280 w40 h40									,Up
+					Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19											vhotkeyUp, %hotkeyUp%
+					Gui, Controller: Add,GroupBox, xs ys+80 w40 h40												,Down
+					Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19											vhotkeyDown, %hotkeyDown%
+					Gui, Controller: Add,GroupBox, xs-40 ys+40 w40 h40											,Left
+					Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19											vhotkeyLeft, %hotkeyLeft%
+					Gui, Controller: Add,GroupBox, xs+40 ys+40 w40 h40											,Right
+					Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19											vhotkeyRight, %hotkeyRight%
+
+					Gui, Controller: Add,GroupBox,section xm+465 ym+80 w70 h40											,4
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton4, %hotkeyControllerButton4%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+					Gui, Controller: Add,GroupBox, xs ys+80 w70 h40											,1
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton1, %hotkeyControllerButton1%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+					Gui, Controller: Add,GroupBox, xs-40 ys+40 w70 h40											,3
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton3, %hotkeyControllerButton3%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+					Gui, Controller: Add,GroupBox, xs+40 ys+40 w70 h40											,2
+					Gui, Controller: Add,ComboBox, xp+5 y+-23 w60 											vhotkeyControllerButton2, %hotkeyControllerButton2%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+
+					;Save Setting
+					Gui, Controller: Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
+					; Gui, Controller: Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
+					Gui, Controller: Add, Button,  		gLaunchWiki 		x+5			 		h23, 	Wiki
+				}
+				Gui, Controller: show , w620 h500, Controller Settings
+			}
+			Else if (Function = "Globe")
+			{
+				Gui, 1: Submit
+				Element := Var[1]
+				If (!Built_Globe || Element = "Reset")
+				{
+					If (Element = "Reset")
+					{
+						Gui, Globe: Destroy
+						Globe := Array_DeepClone(Base.Globe)
+					}
+					Built_Globe := 1
+					Global Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
+					Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
+					Gui, Globe: Add, Button, xm ym+8 w1 h1
+					Gui, Globe: Font, Bold s9 c777777
+					Gui, Globe: Add, GroupBox, xm ym w205 h100 Section, Life Scan Area
+					Gui, Globe: Font, Bold c777777
+					Gui, Globe: Add, Text, vGlobe_Life_X1 xs+10 yp+20 , % "X1:" Globe.Life.X1
+					Gui, Globe: Add, Text, vGlobe_Life_Y1 x+5 yp , % "Y1:" Globe.Life.Y1
+					Gui, Globe: Add, Text, vGlobe_Life_X2 xs+10 y+8 , % "X2:" Globe.Life.X2
+					Gui, Globe: Add, Text, vGlobe_Life_Y2 x+5 yp , % "Y2:" Globe.Life.Y2
+					Gui, Globe: Add, Text, xs+10 y+8, Color:
+					Gui, Globe: Font
+					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Life x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Life.Color.Hex)
+					Gui, Globe: Font, Bold c777777
+					Gui, Globe: Add, Text, x+5 yp+2, Variance:
+					Gui, Globe: Add, Text, x+2 yp w35, % Globe.Life.Color.Variance
+					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Life x+1 yp hp, % Globe.Life.Color.Variance
+					TempC := Format("0x{1:06X}",Globe.Life.Color.Hex)
+					Gui, Globe: Add, Text, gColorLabel_Life xs+10 y+6 hp w185,
+					Gui, Globe: Add, Progress, vWR_Progress_Color_Life xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Life h18 xs+115 ys+15, Choose Area
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Life wp hp xp y+5, Show Area
+
+					Gui, Globe: Font, Bold s9 c777777
+					Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Mana Scan Area
+					Gui, Globe: Font, Bold c777777
+					Gui, Globe: Add, Text, vGlobe_Mana_X1 xs+10 yp+20 , % "X1:" Globe.Mana.X1
+					Gui, Globe: Add, Text, vGlobe_Mana_Y1 x+5 yp , % "Y1:" Globe.Mana.Y1
+					Gui, Globe: Add, Text, vGlobe_Mana_X2 xs+10 y+8 , % "X2:" Globe.Mana.X2
+					Gui, Globe: Add, Text, vGlobe_Mana_Y2 x+5 yp , % "Y2:" Globe.Mana.Y2
+					Gui, Globe: Add, Text, xs+10 y+8, Color:
+					Gui, Globe: Font
+					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Mana.Color.Hex)
+					Gui, Globe: Font, Bold c777777
+					Gui, Globe: Add, Text, x+5 yp+2, Variance:
+					Gui, Globe: Add, Text, x+2 yp w35, % Globe.Mana.Color.Variance
+					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Mana x+1 yp hp, % Globe.Mana.Color.Variance
+					TempC := Format("0x{1:06X}",Globe.Mana.Color.Hex)
+					Gui, Globe: Add, Text, gColorLabel_Mana xs+10 y+6 hp w185,
+					Gui, Globe: Add, Progress, vWR_Progress_Color_Mana xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Mana h18 xs+115 ys+15, Choose Area
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Mana wp hp xp y+5, Show Area
+
+					Gui, Globe: Font, Bold s9 c777777
+					Gui, Globe: Add, GroupBox, xm y+60 w205 h100 Section, Energy Shield Scan Area
+					Gui, Globe: Font, Bold c777777
+					Gui, Globe: Add, Text, vGlobe_ES_X1 xs+10 yp+20 , % "X1:" Globe.ES.X1
+					Gui, Globe: Add, Text, vGlobe_ES_Y1 x+5 yp , % "Y1:" Globe.ES.Y1
+					Gui, Globe: Add, Text, vGlobe_ES_X2 xs+10 y+8 , % "X2:" Globe.ES.X2
+					Gui, Globe: Add, Text, vGlobe_ES_Y2 x+5 yp , % "Y2:" Globe.ES.Y2
+					Gui, Globe: Add, Text, xs+10 y+8, Color:
+					Gui, Globe: Font
+					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_ES x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.ES.Color.Hex)
+					Gui, Globe: Font, Bold c777777
+					Gui, Globe: Add, Text, x+5 yp+2, Variance:
+					Gui, Globe: Add, Text, x+2 yp w35, % Globe.ES.Color.Variance
+					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_ES x+1 yp hp, % Globe.ES.Color.Variance
+					TempC := Format("0x{1:06X}",Globe.ES.Color.Hex)
+					Gui, Globe: Add, Text, gColorLabel_ES xs+10 y+6 hp w185,
+					Gui, Globe: Add, Progress, vWR_Progress_Color_ES xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_ES h18 xs+115 ys+15, Choose Area
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_ES wp hp xp y+5, Show Area
+
+					Gui, Globe: Font, Bold s9 c777777
+					Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Eldritch Battery Scan Area
+					Gui, Globe: Font, Bold
+					Gui, Globe: Add, Text, vGlobe_EB_X1 xs+10 yp+20 , % "X1:" Globe.EB.X1
+					Gui, Globe: Add, Text, vGlobe_EB_Y1 x+5 yp , % "Y1:" Globe.EB.Y1
+					Gui, Globe: Add, Text, vGlobe_EB_X2 xs+10 y+8 , % "X2:" Globe.EB.X2
+					Gui, Globe: Add, Text, vGlobe_EB_Y2 x+5 yp , % "Y2:" Globe.EB.Y2
+					Gui, Globe: Add, Text, xs+10 y+8, Color:
+					Gui, Globe: Font
+					Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_EB x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.EB.Color.Hex)
+					Gui, Globe: Font, Bold c777777
+					Gui, Globe: Add, Text, x+5 yp+2, Variance:
+					Gui, Globe: Add, Text, x+2 yp w35, % Globe.EB.Color.Variance
+					Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_EB x+1 yp hp, % Globe.EB.Color.Variance
+					TempC := Format("0x{1:06X}",Globe.EB.Color.Hex)
+					Gui, Globe: Add, Text, gColorLabel_EB xs+10 y+6 hp w185,
+					Gui, Globe: Add, Progress, vWR_Progress_Color_EB xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_EB h18 xs+115 ys+15, Choose Area
+					Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_EB wp hp xp y+5, Show Area
+
+
+					Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
+					Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Initial Values
+					Gui, Globe: Font, s25 Bold c777777
+					Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
+					Gui, Globe: Add, Text, w220 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
+					Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Mana x+0 yp c1460A6, % "Mana " Player.Percent.Mana "`%"
+				}
+				GlobeActive := True
+				Gui, Globe: show , Center AutoSize, Globe Settings
+			}
+			Else If (Function = "Locate")
+			{
+				LocateType := Var[2]
+				Gui, Hide
+				Loop
+				{
+					MouseGetPos, x, y
+					If (x != oldx || y != oldy)
+						ToolTip, % "-- Locate " LocateType " --`n@ " x "," y "`nPress Ctrl to set"
+					oldx := x, oldy := y
+				} Until GetKeyState("Ctrl")
+				Tooltip
+				%LocateType%X := x, %LocateType%Y := y
+				GuiControl,Inventory: ,% LocateType "X", %x%
+				GuiControl,Inventory: ,% LocateType "Y", %y%
+				MsgBox % x "," y " was captured as the new location for " LocateType
+				Gui, Show
+			}
+			Else if (Function = "Area")
+			{
+				Gui, Submit
+				Grab := LetUserSelectRect()
+				AreaType := Var[2]
+				Globe[AreaType].X1 := Grab.X1, Globe[AreaType].Y1 := Grab.Y1, Globe[AreaType].X2 := Grab.X2, Globe[AreaType].Y2 := Grab.Y2
+				, Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
+				GuiControl, Globe:, Globe_%AreaType%_X1,% "X1:" Grab.X1
+				GuiControl, Globe:, Globe_%AreaType%_Y1,% "Y1:" Grab.Y1
+				GuiControl, Globe:, Globe_%AreaType%_X2,% "X2:" Grab.X2
+				GuiControl, Globe:, Globe_%AreaType%_Y2,% "Y2:" Grab.Y2
+				Gui, Show
+			}
+			Else if (Function = "Show")
+			{
+				Gui, Submit
+				AreaType := Var[2]
+				MouseTip(Globe[AreaType].X1,Globe[AreaType].Y1,Globe[AreaType].Width,Globe[AreaType].Height)
+				Gui, Show
+			}
+			Else if (Function = "Color")
+			{
+				AreaType := Var[2]
+				Element := Var[1]
+				Split := {}
+				Split.hex := Globe[AreaType].Color.Hex
+				Gui, Submit, NoHide
+				If (Element = "UpDown")
+				{
+					Globe[AreaType].Color.Variance := WR_UpDown_Color_%AreaType%
+					Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+				}
+				Else If (Element = "Edit")
+				{
+					CurPos := 1
+					newhex := ""
+					Loop, 3
+					{
+						RegExMatch(WR_Edit_Color_%AreaType%, "O)(x[0-9A-Fa-f]{6})", m,CurPos)
+						CurPos := m.Pos(0) + m.Len(0) - 1
+						If (m.1 != Split.hex && m.1 != "")
+						{
+							Split.new := m.1
+							; Break
+						}
+					}
+					If (Split.new != "")
+						m := "0" Split.new
+					Else
+						m := "0" Split.hex
+					Globe[AreaType].Color.Hex := WR_Edit_Color_%AreaType% := Format("0x{1:06X}",m)
+					GuiControl,Globe: , WR_Edit_Color_%AreaType%, % WR_Edit_Color_%AreaType%
+					Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+					GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
+				}
+			}
+			Else If (Function = "FillMetamorph")
+			{
+				Gui, Submit
+				ValueType := Var[2]
+				Element := Var[1]
+				If (Element = "Btn")
+				{
+					If (ValueType = "Menu")
+					{
+						If (!FillMetamorphInitialized)
+						{
+							FillMetamorphInitialized := True
+							Gui, FillMetamorph: New, -MinimizeBox -Resize
+							Gui, FillMetamorph: Font, s12 c777777 bold
+							Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "    Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "    Y2: " FillMetamorph.Y2
+							Gui, FillMetamorph: Font,
+							Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Btn_FillMetamorph_Select w85, Select area
+							Gui, FillMetamorph: Add, Button, x+5 yp gWR_Update vWR_Btn_FillMetamorph_Show wp, Show area
+							Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Save_JSON_FillMetamorph w170, Save to JSON
+						}
+					}
+					Else If (ValueType = "Select" && Obj := LetUserSelectRect())
+					{
+						FillMetamorph := {"X1":Obj.X1
+							,"Y1":Obj.Y1
+							,"X2":Obj.X2
+							,"Y2":Obj.Y2}
+						GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 "    Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "    Y2: " FillMetamorph.Y2
+					}
+					Else If (ValueType = "Show")
+					{
+						MouseTip(FillMetamorph.X1,FillMetamorph.Y1,FillMetamorph.X2 - FillMetamorph.X1,FillMetamorph.Y2 - FillMetamorph.Y1)
+					}
+					Gui, FillMetamorph: Show
+				}
+			}
+			Else If (Function = "JSON")
+			{
+				ValueType := Var[2]
+				Element := Var[1]
+				If (Element = "Save")
+				{
+                    Gui, Submit
+					JSONtext := JSON.Dump(%ValueType%,,2)
+					If FileExist(A_ScriptDir "\save\" ValueType ".json")
+						FileDelete, %A_ScriptDir%\save\%ValueType%.json
+					FileAppend, %JSONtext%, %A_ScriptDir%\save\%ValueType%.json
+					Gui, Show
+				}
+				Else if (Element = "Load")
+				{
+					If FileExist(A_ScriptDir "\save\" ValueType ".json")
+					{
+						FileRead, JSONtext, %A_ScriptDir%\save\%ValueType%.json
+						%ValueType% := JSON.Load(JSONtext)
+					}
+					Else
+					{
+						Notify("Error loading " ValueType " file","",3)
+						Log("Error loading " ValueType " file")
+					}
+				}
+			}
+			Return
+
+			WR_Update:
+			If (A_GuiControl ~= "WR_\w{1,}_")
+			{
+				BtnStr := StrSplit(StrSplit(A_GuiControl, "WR_", " ")[2], "_", " ",3)
+				; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
+				; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
+				WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
+			}	
+			Return
+
+
+			ColorLabel_Life:
+			Picker.SetColor(Globe.Life.Color.hex)
+			Return
+			ColorLabel_Mana:
+			Picker.SetColor(Globe.Mana.Color.hex)
+			Return
+			ColorLabel_ES:
+			Picker.SetColor(Globe.ES.Color.hex)
+			Return
+			ColorLabel_EB:
+			Picker.SetColor(Globe.EB.Color.hex)
+			Return
+
+			FillMetamorphGuiClose:
+			FillMetamorphGuiEscape:
+				Gui, Submit
+				Gui, Inventory: Show
+			Return
+
+			InventoryGuiClose:
+			InventoryGuiEscape:
+			StringsGuiClose:
+			StringsGuiEscape:
+			ChatGuiClose:
+			ChatGuiEscape:
+			ControllerGuiClose:
+			ControllerGuiEscape:
+			HotkeysGuiClose:
+			HotkeysGuiEscape:
+				Gui, Submit
+				Gui, 1: show
+			return
+			
+			GlobeGuiClose:
+			GlobeGuiEscape:
+				GlobeActive := False
+				Gui, Submit
+				Gui, 1: show
+			return
+		}
     ; Debug messages within script
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     Ding(Timeout:=500, MultiTooltip:=0 , Message*)
@@ -351,20 +1114,293 @@
         POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
         POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
         POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+        POnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
         If OnMines
         POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
         Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
         OnDetonate := (POnDetonate=varOnDetonate?True:False)
-		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))
+		Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph))
 	}
+    ; PanelManager - This class manages every gamestate within one place
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Class PanelManager
+    {
+        __New(){
+            This.List := {}
+        }
+        AddPanel(Pixel){
+            This.List[Pixel.Name] := Pixel
+        }
+        AddFailsafe(Pixel){
+            This.Failsafe := Pixel
+        }
+        Status(ScreenShot := 1){
+            Active := ""
+            If ScreenShot
+                ScreenShot(GameX,GameY,GameX + GameW,GameY + GameH)
+            If IsObject(This.Failsafe)
+            {
+                If !This.Failsafe.On()
+                    Active .= This.Failsafe.Name
+            }
+            For k, Panel in This.List
+            {
+                If Panel.On()
+                    Active .= (Active != "" ? " " : "") Panel.Name
+            }
+            Return This.Active := (Active != "" ? Active : False)
+        }
+    }
+    ; PanelStatus - This class manages pixel sample and comparison
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Class PixelStatus
+    {
+        __New(Name,X,Y,Hex){
+            This.Name := Name
+            This.X := X
+            This.Y := Y
+            This.Hex := Hex
+            This.Status := False
+        }
+        On(){
+            pSample := Screenshot_GetColor(This.X,This.Y)
+            Return (This.Status := (pSample = This.Hex ? True : False))
+        }
+    }
+    ; ColorPicker - Create a color Picker into any GUI window or stand alone
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    class ColorPicker {
+        __New(pGroup_GUI_NAME:="ColorPicker", pGroup_ID:="ColorPicker" , pGroup_X:=10 , pGroup_Y:=30 , pGroup_W:=90 , pGroup_H:=280, pGroup_SideBar:=110, pGroup_Start_Color:="000000"){
+            This.GUI_NAME := pGroup_GUI_NAME
+            This.ID := pGroup_ID
+            This.X := pGroup_X
+            This.Y := pGroup_Y
+            This.W := pGroup_W
+            This.H := pGroup_H
+            This.SideBar := pGroup_SideBar
+            This.Spacing := This.W // 2.5
+            This.W_Bar := This.W // 4
+            This.Start_Color := pGroup_Start_Color
+            This.Start_Red := (0xff0000 & pGroup_Start_Color) >> 16
+            This.Start_Green := (0x00ff00 & pGroup_Start_Color) >> 8
+            This.Start_Blue := 0x0000ff & pGroup_Start_Color
+
+            ; Gui,% This.GUI_NAME ":Destroy"
+            Gui,% This.GUI_NAME ":+AlwaysOnTop -DPIScale +ToolWindow"
+            Gui,% This.GUI_NAME ":Color",000000
+            Gui,% This.GUI_NAME ":Font",s10 w600
+
+            Edit_Trigger := This.UpdateColor.BIND( THIS ) 
+
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 9 " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Red_Edit_Hex" ,% Format("{1:02X}",This.Start_Red)
+            This.Slider_Red := New Progress_Slider(This.GUI_NAME,This.ID "_Red",This.X ,This.Y,This.W_Bar,This.H,0,255,This.Start_Red,"550000","BB0000",2,This.ID "_Red_Edit",0,1)
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 10 " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Red_Edit hwndRedTriggerhwnd",% This.Start_Red
+            GUICONTROL +G , %RedTriggerhwnd% , % Edit_Trigger
+
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 9 + This.Spacing " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Green_Edit_Hex" ,% Format("{1:02X}",This.Start_Green)
+            This.Slider_Green := New Progress_Slider(This.GUI_NAME,This.ID "_Green",This.X + This.Spacing,This.Y,This.W_Bar,This.H,0,255,This.Start_Green,"005500","00BB00",2,This.ID "_Green_Edit",0,1)
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 10 + This.Spacing " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Green_Edit hwndGreenTriggerhwnd" ,% This.Start_Green
+            GUICONTROL +G , %GreenTriggerhwnd% , % Edit_Trigger
+
+
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 9 + This.Spacing * 2 " y" This.Y - 18 " w40 h17 -E0x200 Center Disabled v" This.ID "_Blue_Edit_Hex" ,% Format("{1:02X}",This.Start_Blue)
+            This.Slider_Blue := New Progress_Slider(This.GUI_NAME,This.ID "_Blue",This.X + This.Spacing*2,This.Y,This.W_Bar,This.H,0,255,This.Start_Blue,"000055","0000BB",2,This.ID "_Blue_Edit",0,1)
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X - 10 + This.Spacing * 2 " y" This.Y + This.H + 2 " w40 h17 -E0x200 Center Disabled v" This.ID "_Blue_Edit hwndBlueTriggerhwnd" ,% This.Start_Blue
+            GUICONTROL +G , %BlueTriggerhwnd% , % Edit_Trigger
+
+
+            Gui,% This.GUI_NAME ":Font",s15 w600
+            Gui,% This.GUI_NAME ":Add",Edit,% "x" This.X + This.Spacing * 3 " y" This.Y - 22 " w" This.SideBar "h17 -E0x200 Center Disabled v" This.ID "_Group_Color_Hex" ,% Format("0x{1:06X}",This.Start_Color)
+        
+            Copy_Trigger := This.CopyColor.BIND( THIS )
+
+            Gui,% This.GUI_NAME ":Add",Text,% "x" This.X + This.Spacing * 3 " y" This.Y " w" This.SideBar " h" This.H // 2 + 40 " hwndCopyTriggerhwnd center",
+            GUICONTROL +G , %CopyTriggerhwnd% , % Copy_Trigger
+            
+            Gui,% This.GUI_NAME ":Add",Progress,% "x" This.X + This.Spacing * 3 " y" This.Y " w" This.SideBar " h" This.H // 2 + 20 " Background000000 c" Format("{1:06X}",This.Start_Color) " v" This.ID "_Group_Color", 100
+
+            Gui,% This.GUI_NAME ":Font",s25 w600 c77BB77
+            Gui,% This.GUI_NAME ":Add",Text,% "x" This.X + This.Spacing * 3 " y" This.Y + This.H // 2 + 30 " w" This.SideBar " h" (This.H // 2 - 40) // 2 + 10 " hwndCopyTriggerhwnd center", Copy
+            GUICONTROL +G , %CopyTriggerhwnd% , % Copy_Trigger
+            Gui,% This.GUI_NAME ":Font",s25 w600 cBB7777
+            Gui,% This.GUI_NAME ":Add",Text,% "x" This.X + This.Spacing * 3 " y" This.Y + This.H // 2 + 40 + 10 + (This.H // 2 - 40) // 2 " w" This.SideBar " h" (This.H // 2 - 40) // 2 + 10 " gCoordCommand center", Coord
+
+
+            ; Gui,% This.GUI_NAME ":Show", AutoSize, Color Picker
+        }
+        UpdateColor(){
+            GuiControl, % This.GUI_NAME ": +c" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value), % This.ID "_Group_Color",
+            GuiControl, % This.GUI_NAME ":", % This.ID "_Group_Color_Hex", % "0x" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
+        }
+        SetColor(newColor){
+                This.Start_Color := Format("0x{1:06X}",newColor)
+                This.Start_Red := (0xff0000 & newColor) >> 16
+                This.Start_Green := (0x00ff00 & newColor) >> 8
+                This.Start_Blue := 0x0000ff & newColor
+                This.Slider_Red.SET_pSlider(This.Start_Red)
+                This.Slider_Green.SET_pSlider(This.Start_Green)
+                This.Slider_Blue.SET_pSlider(This.Start_Blue)
+        }
+        CopyColor(){
+            Clipboard := "0x" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
+            ; MsgBox, 262144, Color Copied, The Hex color code has been copied to the Clipboard `n`n %Clipboard%
+            Notify("Copied To Clipboard`n`n" Clipboard,"",3)
+        }
+    }
+    ; Progress_Slider - Class written by Hellbent on AHK forum, adjusted by Bandit
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    class Progress_Slider	{
+        __New(pSlider_GUI_NAME , pSlider_Control_ID , pSlider_X , pSlider_Y , pSlider_W , pSlider_H , pSlider_Range_Start , pSlider_Range_End , pSlider_Value:=0 , pSlider_Background_Color := "Black" , pSlider_Top_Color := "Red" , pSlider_Pair_With_Edit := 0 , pSlider_Paired_Edit_ID := "" , pSlider_Use_Tooltip := 0 ,  pSlider_Vertical := 0 , pSlider_Smooth := 1, SaveINISection := ""){
+            This.GUI_NAME:=pSlider_GUI_NAME
+            This.Control_ID:=pSlider_Control_ID
+            This.X := pSlider_X
+            This.Y := pSlider_Y
+            This.W := pSlider_W
+            This.H := pSlider_H
+            This.Start_Range := pSlider_Range_Start
+            This.End_Range := pSlider_Range_End
+            This.Slider_Value := pSlider_Value
+            This.Background_Color := pSlider_Background_Color
+            This.Top_Color := pSlider_Top_Color
+            This.Vertical := pSlider_Vertical
+            This.Smooth := pSlider_Smooth
+            This.Pair_With_Edit := pSlider_Pair_With_Edit
+                ; Options
+                ; 0 := Do not pair with edit
+                ; 1 := Pair with only Decimal Edit
+                ; 2 := Pair with both Decimal and Hex Edit
+                ; 3 := Pair with only Hex Edit
+            This.Paired_Edit_ID := pSlider_Paired_Edit_ID
+            This.Paired_Edit_ID_Hex := (pSlider_Paired_Edit_ID != "" ? pSlider_Paired_Edit_ID . "_Hex" : "")
+            This.Use_Tooltip := pSlider_Use_Tooltip
+            This.SaveINISection := SaveINISection
+            This.Add_pSlider()
+        }
+        Add_pSlider(){
+            Gui, % This.GUI_NAME ":Add" , Text , % "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd"
+            pSlider_Trigger := This.Adjust_pSlider.BIND( THIS ) 
+            GUICONTROL +G , %pSliderTriggerhwnd% , % pSlider_Trigger
+            if(This.Smooth=1&&This.Vertical=0)
+                Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID ,% This.Slider_Value
+            else if(This.Smooth=0&&This.Vertical=0)
+                Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID ,% This.Slider_Value
+            else if(This.Smooth=1&&This.Vertical=1)
+                Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID ,% This.Slider_Value
+            else if(This.Smooth=0&&This.Vertical=1)
+                Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID ,% This.Slider_Value
+        }
+        Adjust_pSlider(){
+            Static OldVal
+            CoordMode,Mouse,Client
+            while(GetKeyState("LButton")){
+                Static LastTT := 0
+                MouseGetPos,pSlider_Temp_X,pSlider_Temp_Y
+                if(This.Vertical=0)
+                    This.Slider_Value := Round((pSlider_Temp_X - This.X ) / ( This.W / (This.End_Range - This.Start_Range) )) + This.Start_Range
+                else
+                    This.Slider_Value := Round(((pSlider_Temp_Y - This.Y ) / ( This.H / (This.End_Range - This.Start_Range) )) + This.Start_Range )* -1 + This.End_Range
+                if(This.Slider_Value > This.End_Range )
+                    This.Slider_Value:=This.End_Range
+                else if(This.Slider_Value<This.Start_Range)
+                    This.Slider_Value:=This.Start_Range
+                GuiControl,% This.GUI_NAME ":" ,% This.Control_ID , % This.Slider_Value 
+                if(This.Pair_With_Edit>=1 && This.Slider_Value != OldVal)
+                {
+                    OldVal := This.Slider_Value
+                    if(This.Pair_With_Edit<=2)
+                    {
+                        GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value
+                        IniWrite, % This.Slider_Value, Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
+                    }
+                    if(This.Pair_With_Edit>=2)
+                    GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+                }
+                if(This.Add_Method!=0)
+                {
+                    
+                    GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+                }
+                if(This.Use_Tooltip=1 && A_TickCount - LastTT > 100 )
+                {
+                    LastTT := A_TickCount
+                    ToolTip , % This.Slider_Value 
+                }
+            }
+            if(This.Use_Tooltip=1)
+                ToolTip,
+        }
+        SET_pSlider(NEW_pSlider_Value){
+            This.Slider_Value := NEW_pSlider_Value
+            GuiControl,% This.GUI_NAME ":" ,% This.Control_ID , % This.Slider_Value
+            if(This.Pair_With_Edit>=1)
+            {
+                if(This.Pair_With_Edit<=2)
+                GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value 
+                if(This.Pair_With_Edit>=2)
+                GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+            }
+        }
+    }
+    ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    PredictPrice(Switch:="")
+    {
+        Static ItemList := []
+        FoundMatch := False
+        If (Prop.Rarity_Digit = 3 && (Prop.SpecialType = "" || Prop.SpecialType = "6Link" || Prop.SpecialType = "5Link") && YesPredictivePrice != "Off")
+        {
+            For k, obj in ItemList
+            {
+                If (obj.Clip_Contents = Clip_Contents)
+                {
+                    FoundMatch := True
+                    PriceObj := obj
+                    Break
+                }
+            }
+            If !FoundMatch
+            {
+                PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
+                PriceObj.Clip_Contents := Clip_Contents
+                If (YesPredictivePrice = "Low")
+                    Price := SelectedPrice := PriceObj.min
+                Else If (YesPredictivePrice = "Avg")
+                    Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
+                Else If (YesPredictivePrice = "High")
+                    Price := SelectedPrice := PriceObj.max
+
+                Price := Price * (YesPredictivePrice_Percent_Val / 100)
+                PriceObj.Avg := (PriceObj.min + PriceObj.max) / 2
+                PriceObj.Price := Price
+
+                tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " <<  " Format("{1:0.3g}", PriceObj.Avg ) "  >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
+                    . "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
+                For k, reason in PriceObj.pred_explanation
+                    tt .= "`n" Round(reason.2 * 100) "`% " reason.1
+                tt.= "`nEnd Of Predicive Price Information"
+                PriceObj.tt := tt
+                ItemList.Push(PriceObj)
+            }
+        }
+        Else
+            Return 0
+
+        If !(PriceObj.max > 0)
+            Return 0
+
+        If (Switch = "Obj")
+            Return PriceObj
+        Else
+            Return PriceObj.Price
+    }
     ; CheckOHB - Determine the position of the OHB
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CheckOHB()
     {
-        If WinActive(GameStr)
+        If WinExist(GameStr)
         {
             if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
-                Return ok.1.1 + ok.1.2
+                Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
             Else
             {
                 Ding(500,6,"OHB Not Found")
@@ -418,14 +1454,15 @@
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ScanGlobe(SS:=0)
     {
-        Global Globe, Player
-        If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,0))
+        Global Globe, Player, GlobeActive
+        Static OldLife := 111, OldES := 111, OldMana := 111
+        If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,1))
             Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
         Else
             Player.Percent.Life := -1
         If (YesEldritchBattery)
         {
-            If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,0))
+            If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,1))
                 Player.Percent.ES := Round(((Globe.EB.Y2 - EB.1.2) / Globe.EB.Height) * 100)
             Else
                 Player.Percent.ES := -1
@@ -437,10 +1474,33 @@
             Else
                 Player.Percent.ES := -1
         }
-        If (Mana := FindText(Globe.Mana.X1, Globe.Mana.Y1, Globe.Mana.X2, Globe.Mana.Y2, 0,0,Globe.Mana.Color.Str,SS,0))
+        If (Mana := FindText(Globe.Mana.X1, Globe.Mana.Y1, Globe.Mana.X2, Globe.Mana.Y2, 0,0,Globe.Mana.Color.Str,SS,1))
             Player.Percent.Mana := Round(((Globe.Mana.Y2 - Mana.1.2) / Globe.Mana.Height) * 100)
         Else
             Player.Percent.Mana := -1
+        If (Player.Percent.Life != OldLife) ||  (Player.Percent.ES != OldES) || (Player.Percent.Mana != OldMana)
+        {
+            If (Player.Percent.Life != OldLife)
+            {
+                OldLife := Player.Percent.Life
+                If GlobeActive
+                GuiControl,Globe:, Globe_Percent_Life, % "Life " Player.Percent.Life "`%"
+            }
+            If (Player.Percent.ES != OldES)
+            {
+                OldES := Player.Percent.ES
+                If GlobeActive
+                GuiControl,Globe: , Globe_Percent_ES, % "ES " Player.Percent.ES "`%"
+            }
+            If (Player.Percent.Mana != OldMana)
+            {
+                OldMana := Player.Percent.Mana
+                If GlobeActive
+                GuiControl,Globe: , Globe_Percent_Mana, % "Mana " Player.Percent.Mana "`%"
+            }
+            SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%",3)
+        }
+        Return
     }
     ; GetPercent - Determine the percentage of health
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -467,18 +1527,80 @@
     ; Rescale - Rescales values of the script to the user's resolution
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Rescale(){
-        Global GameX, GameY, GameW, GameH
+        Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe
         IfWinExist, ahk_group POEGameGroup 
         {
+			If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
+            {
+				WR_Menu("JSON","Load","FillMetamorph")
+                FillMetamorphImported := True
+            }
+            Else If (VersionNumber = "")
+                FillMetamorphImported := True
+            Else
+                FillMetamorphImported := False
+            
+			If (FileExist(A_ScriptDir "\save\Globe.json") && VersionNumber != "")
+            {
+				WR_Menu("JSON","Load","Globe")
+                GlobeImported := True
+                Base.Globe := Array_DeepClone(Globe)
+            }
+            Else If (VersionNumber = "")
+                GlobeImported := True
+            Else
+                GlobeImported := False
+
             WinGetPos, GameX, GameY, GameW, GameH
+            checkActiveType()
             If (ResolutionScale="Standard") {
                 ; Item Inventory Grid
                 Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
                 Global InventoryGridY := [ GameY + Round(GameH/(1080/638)), GameY + Round(GameH/(1080/690)), GameY + Round(GameH/(1080/743)), GameY + Round(GameH/(1080/796)), GameY + Round(GameH/(1080/848)) ]  
+                ; Fill Metamorph
+                If (!FillMetamorphImported) 
+                {
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(1920/329)) ; (1920/2)-631
+                                            , "Y1": GameY + Round(GameH/(1080/189))
+                                            , "X2": GameX + Round(GameW/(1920/745)) ; (1920/2)-215
+                                            , "Y2": GameY + Round(GameH/(1080/746))}
+                }
+                ; Globe areas
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(1920/106)) 
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(1920/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(1920/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(1920/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(1920/1720)) 
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(1920/1800)) 
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(1920/1760)) 
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(1920/1830)) 
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
-                Global DetonateX:=GameX + Round(GameW/(1920/1658))
-                Global DetonateY:=GameY + Round(GameH/(1080/901))
                 ;Scrolls in currency tab
                 Global WisdomStockX:=GameX + Round(GameW/(1920/125))
                 Global PortalStockX:=GameX + Round(GameW/(1920/175))
@@ -510,6 +1632,9 @@
                 ;Status Check OnDelveChart
                 global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
                 global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Status Check OnMetamporph
+                global vX_OnMetamorph:=GameX + Round(GameW / (1920 / 785))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (1920 / 95))
                 global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -558,6 +1683,46 @@
                 ; Item Inventory Grid
                 Global InventoryGridX := [ Round(GameW/(1440/794)) , Round(GameW/(1440/846)) , Round(GameW/(1440/899)) , Round(GameW/(1440/952)) , Round(GameW/(1440/1004)) , Round(GameW/(1440/1057)) , Round(GameW/(1440/1110)) , Round(GameW/(1440/1162)) , Round(GameW/(1440/1215)) , Round(GameW/(1440/1268)) , Round(GameW/(1440/1320)) , Round(GameW/(1440/1373)) ]
                 Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
+                ; Fill Metamorph
+                If !FillMetamorphImported
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(1440/89)) ; (1440/2)-631
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(1440/505)) ; (1440/2)-215
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                ; Globe areas
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(1440/106)) ; left side does not require repositioning
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(1440/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(1440/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(1440/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(1440/1240)) ; Width - 200
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(1440/1320)) ; Width - 120
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(1440/1280)) ; Width - 160
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(1440/1350)) ; Width - 90
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
                 Global DetonateX:=GameX + Round(GameW/(1440/1178))
@@ -593,6 +1758,9 @@
                 ;Status Check OnDelveChart
                 global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
                 global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Status Check OnMetamorph
+                global vX_OnMetamorph:=GameX + Round(GameW / (1440 / 545))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (1440 / 95))
                 global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -641,6 +1809,46 @@
                 ; Item Inventory Grid
                 Global InventoryGridX := [ Round(GameW/(2560/1914)), Round(GameW/(2560/1967)), Round(GameW/(2560/2018)), Round(GameW/(2560/2072)), Round(GameW/(2560/2125)), Round(GameW/(2560/2178)), Round(GameW/(2560/2230)), Round(GameW/(2560/2281)), Round(GameW/(2560/2336)), Round(GameW/(2560/2388)), Round(GameW/(2560/2440)), Round(GameW/(2560/2493)) ]
                 Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]
+                ; Fill Metamorph
+                If !FillMetamorphImported
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(2560/649)) ; (2560/2)-631
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(2560/1065)) ; (2560/2)-215
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                ; Globe areas
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(2560/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(2560/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(2560/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(2560/2360)) ; Width - 200
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(2560/2440)) ; Width - 120
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(2560/2400)) ; Width - 160
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(2560/2470)) ; Width - 90
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
                 Global DetonateX:=GameX + Round(GameW/(2560/2298))
@@ -676,6 +1884,9 @@
                 ;Status Check OnDelveChart
                 global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
                 global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Status Check OnMetamorph
+                global vX_OnMetamorph:=GameX + Round(GameW / (2560 / 1105))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (2560 / 95))
                 global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -724,6 +1935,45 @@
                 ;Item Inventory Grid
                 Global InventoryGridX := [ Round(GameW/(3440/2579)), Round(GameW/(3440/2649)), Round(GameW/(3440/2719)), Round(GameW/(3440/2789)), Round(GameW/(3440/2860)), Round(GameW/(3440/2930)), Round(GameW/(3440/3000)), Round(GameW/(3440/3070)), Round(GameW/(3440/3140)), Round(GameW/(3440/3211)), Round(GameW/(3440/3281)), Round(GameW/(3440/3351)) ]
                 Global InventoryGridY := [ Round(GameH/(1440/851)), Round(GameH/(1440/921)), Round(GameH/(1440/992)), Round(GameH/(1440/1062)), Round(GameH/(1440/1132)) ]
+                ; Fill Metamorph
+                If !FillMetamorphImported
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(2560/649)) ; (2560/2)-631
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(2560/1065)) ; (2560/2)-215
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(2560/106)) ; left side does not require repositioning
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(2560/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(2560/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(2560/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(2560/2360)) ; Width - 200
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(2560/2440)) ; Width - 120
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(2560/2400)) ; Width - 160
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(2560/2470)) ; Width - 90
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
                 Global DetonateX:=GameX + Round(GameW/(3440/3090))
@@ -801,6 +2051,45 @@
                 ; Item Inventory Grid
                 Global InventoryGridX := [ Round(GameW/(3840/3193)), Round(GameW/(3840/3246)), Round(GameW/(3840/3299)), Round(GameW/(3840/3352)), Round(GameW/(3840/3404)), Round(GameW/(3840/3457)), Round(GameW/(3840/3510)), Round(GameW/(3840/3562)), Round(GameW/(3840/3615)), Round(GameW/(3840/3668)), Round(GameW/(3840/3720)), Round(GameW/(3840/3773)) ]
                 Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
+                ; Fill Metamorph
+                If !FillMetamorphImported
+                    Global FillMetamorph := {"X1": GameX + Round(GameW/(3840/1289)) ; (3840/2)-631
+                                    , "Y1": GameY + Round(GameH/(1080/189))
+                                    , "X2": GameX + Round(GameW/(3840/1705)) ; (3840/2)-215
+                                    , "Y2": GameY + Round(GameH/(1080/746))}
+                If (!GlobeImported)
+                {
+                    ; Life scan area
+                    Globe.Life.X1 := GameX + Round(GameW/(3840/106)) ; left side does not require repositioning
+                    Globe.Life.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.Life.X2 := GameX + Round(GameW/(3840/146)) 
+                    Globe.Life.Y2 := GameY + Round(GameH/(1080/1049))
+                    Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+                    Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+                    ; ES scan area
+                    Globe.ES.X1 := GameX + Round(GameW/(3840/165)) 
+                    Globe.ES.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.ES.X2 := GameX + Round(GameW/(3840/210)) 
+                    Globe.ES.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+                    Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+                    ; ES for Eldridtch Batterry scan area
+                    Globe.EB.X1 := GameX + Round(GameW/(3840/3640)) ; Width - 200
+                    Globe.EB.Y1 := GameY + Round(GameH/(1080/886))
+                    Globe.EB.X2 := GameX + Round(GameW/(3840/3720)) ; Width - 120
+                    Globe.EB.Y2 := GameY + Round(GameH/(1080/1064))
+                    Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+                    Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+                    ; Mana scan area
+                    Globe.Mana.X1 := GameX + Round(GameW/(3840/3680)) ; Width - 160
+                    Globe.Mana.Y1 := GameY + Round(GameH/(1080/878))
+                    Globe.Mana.X2 := GameX + Round(GameW/(3840/3750)) ; Width - 90
+                    Globe.Mana.Y2 := GameY + Round(GameH/(1080/1060))
+                    Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+                    Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+                    ; Set the base values for restoring default
+                    Base.Globe := Array_DeepClone(Globe)
+                }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
                 Global DetonateX:=GameX + Round(GameW/(3840/3578))
@@ -836,6 +2125,9 @@
                 ;Status Check OnDelveChart
                 global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
                 global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+                ;Status Check OnMetamorph
+                global vX_OnMetamorph:=GameX + Round(GameW / (3840 / 1745))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (3840 / 95))
                 global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -1941,6 +3233,8 @@
                     CurrentLocation := "Nothing Found"
                 If (VersionNumber != "")
                     Ding(500,-10,"Parsed Client.txt logs in " . A_TickCount - T1 . "MS`nSize: " . errchk . "MB")
+                StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
+                SB_SetText("Status:" StatusText " `(" CurrentLocation "`)",2)
                 If (DebugMessages && YesLocation && WinActive(GameStr))
                 {
                     Ding(6000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
@@ -1951,6 +3245,7 @@
             }
             Catch, loaderror
             {
+                Ding(500,-10,"Critical Load Error`nSize: " . errchk . "MB")
                 CurrentLocation := "Client File Load Error"
                 Log("Error loading File, Submit information about your client.txt",loaderror)
             }
@@ -1971,8 +3266,13 @@
                 Ding(2000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
                 Ding(2000,5,CurrentLocation)
             }
-            If YesLocation && (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
-                Log("Zone Change Detected", (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))) , "Located:" CurrentLocation)
+            If (CurrentLocation != OldLocation || OldTown != OnTown || OldMines != OnMines || OldHideout != OnHideout)
+            {
+                StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
+                If YesLocation
+                    Log("Zone Change Detected", StatusText , "Located:" CurrentLocation)
+                SB_SetText("Status:" StatusText " (" CurrentLocation ")",2)
+            }
             Return
         }
     }
@@ -2076,136 +3376,115 @@
 	{
 		If InStr(apiString, "Fragment")
 		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
 			If ErrorLevel{
-				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid or an API change
 			}
 			Else If (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
 				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language") 
-					{
-						for index, indexArr in objlist
-						{ ; This will extract the information and standardize the chaos value to one variable.
-							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-							grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
-							grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
-							grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
-							grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
-							grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
-							grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
-							grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"pay":grabPayVal
-								,"receive":grabRecVal
-								,"paySparkLine":grabPaySparklineVal
-								,"receiveSparkLine":grabRecSparklineVal
-								,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-								,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
-							Ninja[apiString] := holder[obj]
-						}
-					}
-				}
-				FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+                for index, indexArr in holder.lines
+                { ; This will extract the information and standardize the chaos value to one variable.
+                    grabName := (indexArr["currencyTypeName"] ? indexArr["currencyTypeName"] : False)
+                    grabChaosVal := (indexArr["chaosEquivalent"] ? indexArr["chaosEquivalent"] : False)
+                    grabPayVal := (indexArr["pay"] ? indexArr["pay"] : False)
+                    grabRecVal := (indexArr["receive"] ? indexArr["receive"] : False)
+                    grabPaySparklineVal := (indexArr["paySparkLine"] ? indexArr["paySparkLine"] : False)
+                    grabRecSparklineVal := (indexArr["receiveSparkLine"] ? indexArr["receiveSparkLine"] : False)
+                    grabPayLowSparklineVal := (indexArr["lowConfidencePaySparkLine"] ? indexArr["lowConfidencePaySparkLine"] : False)
+                    grabRecLowSparklineVal := (indexArr["lowConfidenceReceiveSparkLine"] ? indexArr["lowConfidenceReceiveSparkLine"] : False)
+                    holder.lines[index] := {"name":grabName
+                        ,"chaosValue":grabChaosVal
+                        ,"pay":grabPayVal
+                        ,"receive":grabRecVal
+                        ,"paySparkLine":grabPaySparklineVal
+                        ,"receiveSparkLine":grabRecSparklineVal
+                        ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
+                        ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+                }
+                Ninja[apiString] := holder.lines
+				FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
 			}
 			Return
 		}
 		Else If InStr(apiString, "Currency")
 		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
 			if ErrorLevel{
 				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
 			}
 			Else if (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
 				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language") 
-					{
-						for index, indexArr in objlist
-						{
-							grabName := (holder[obj][index]["currencyTypeName"] ? holder[obj][index]["currencyTypeName"] : False)
-							grabChaosVal := (holder[obj][index]["chaosEquivalent"] ? holder[obj][index]["chaosEquivalent"] : False)
-							grabPayVal := (holder[obj][index]["pay"] ? holder[obj][index]["pay"] : False)
-							grabRecVal := (holder[obj][index]["receive"] ? holder[obj][index]["receive"] : False)
-							grabPaySparklineVal := (holder[obj][index]["paySparkLine"] ? holder[obj][index]["paySparkLine"] : False)
-							grabRecSparklineVal := (holder[obj][index]["receiveSparkLine"] ? holder[obj][index]["receiveSparkLine"] : False)
-							grabPayLowSparklineVal := (holder[obj][index]["lowConfidencePaySparkLine"] ? holder[obj][index]["lowConfidencePaySparkLine"] : False)
-							grabRecLowSparklineVal := (holder[obj][index]["lowConfidenceReceiveSparkLine"] ? holder[obj][index]["lowConfidenceReceiveSparkLine"] : False)
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"pay":grabPayVal
-								,"receive":grabRecVal
-								,"paySparkLine":grabPaySparklineVal
-								,"receiveSparkLine":grabRecSparklineVal
-								,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-								,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
-							Ninja[apiString] := holder[obj]
-						}
-					}
-					Else 
-					{
-						for index, indexArr in objlist
-						{
-							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
-							grabPoeTrdId := (holder[obj][index]["poeTradeId"] ? holder[obj][index]["poeTradeId"] : False)
-							grabId := (holder[obj][index]["id"] ? holder[obj][index]["id"] : False)
-
-							holder[obj][index] := {"currencyName":grabName
-								,"poeTradeId":grabPoeTrdId
-								,"id":grabId}
-
-							Ninja["currencyDetails"] := holder[obj]
-						}
-					}
-				}
-				FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+                for index, indexArr in holder.lines
+                {
+                    grabName := (indexArr["currencyTypeName"] ? indexArr["currencyTypeName"] : False)
+                    grabChaosVal := (indexArr["chaosEquivalent"] ? indexArr["chaosEquivalent"] : False)
+                    grabPayVal := (indexArr["pay"] ? indexArr["pay"] : False)
+                    grabRecVal := (indexArr["receive"] ? indexArr["receive"] : False)
+                    grabPaySparklineVal := (indexArr["paySparkLine"] ? indexArr["paySparkLine"] : False)
+                    grabRecSparklineVal := (indexArr["receiveSparkLine"] ? indexArr["receiveSparkLine"] : False)
+                    grabPayLowSparklineVal := (indexArr["lowConfidencePaySparkLine"] ? indexArr["lowConfidencePaySparkLine"] : False)
+                    grabRecLowSparklineVal := (indexArr["lowConfidenceReceiveSparkLine"] ? indexArr["lowConfidenceReceiveSparkLine"] : False)
+                    holder.lines[index] := {"name":grabName
+                        ,"chaosValue":grabChaosVal
+                        ,"pay":grabPayVal
+                        ,"receive":grabRecVal
+                        ,"paySparkLine":grabPaySparklineVal
+                        ,"receiveSparkLine":grabRecSparklineVal
+                        ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
+                        ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+                }
+                Ninja[apiString] := holder.lines
+                for index, indexArr in holder.currencyDetails
+                {
+                    grabName := (indexArr["name"] ? indexArr["name"] : False)
+                    grabPoeTrdId := (indexArr["poeTradeId"] ? indexArr["poeTradeId"] : False)
+                    grabId := (indexArr["id"] ? indexArr["id"] : False)
+                    grabTradeId := (indexArr["tradeId"] ? indexArr["tradeId"] : False)
+                    holder.currencyDetails[index] := {"currencyName":grabName
+                        ,"poeTradeId":grabPoeTrdId
+                        ,"id":grabId
+                        ,"tradeId":grabTradeId}
+                }
+                Ninja["currencyDetails"] := holder.currencyDetails
+				FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
 			}
 			Return
 		}
 		Else
 		{
-			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\data\data_%apiString%.txt
+			UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
 			if ErrorLevel{
 				MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
 			}
 			Else if (ErrorLevel=0){
-				FileRead, JSONtext, %A_ScriptDir%\data\data_%apiString%.txt
+				FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
 				holder := JSON.Load(JSONtext)
-				For obj, objlist in holder
-				{
-					If (obj != "currencyDetails" || obj != "language")
-					{
-						for index, indexArr in objlist
-						{
-							grabSparklineVal := (holder[obj][index]["sparkline"] ? holder[obj][index]["sparkline"] : False)
-							grabLowSparklineVal := (holder[obj][index]["lowConfidenceSparkline"] ? holder[obj][index]["lowConfidenceSparkline"] : False)
-							grabExaltVal := (holder[obj][index]["exaltedValue"] ? holder[obj][index]["exaltedValue"] : False)
-							grabChaosVal := (holder[obj][index]["chaosValue"] ? holder[obj][index]["chaosValue"] : False)
-							grabName := (holder[obj][index]["name"] ? holder[obj][index]["name"] : False)
-							grabLinks := (holder[obj][index]["links"] ? holder[obj][index]["links"] : False)
-							grabVariant := (holder[obj][index]["variant"] ? holder[obj][index]["variant"] : False)
-							grabMapTier := (holder[obj][index]["mapTier"] ? holder[obj][index]["mapTier"] : False)
-							
-							holder[obj][index] := {"name":grabName
-								,"chaosValue":grabChaosVal
-								,"exaltedValue":grabExaltVal
-								,"sparkline":grabSparklineVal
-								,"lowConfidenceSparkline":grabLowSparklineVal
-								,"links":grabLinks
-								,"variant":grabVariant}
-                            If grabMapTier
-                                holder[obj][index]["mapTier"] := grabMapTier
-						}
-					}
-				}
-				Ninja[apiString] := holder[obj]
+                for index, indexArr in holder.lines
+                {
+                    grabSparklineVal := (indexArr["sparkline"] ? indexArr["sparkline"] : False)
+                    grabLowSparklineVal := (indexArr["lowConfidenceSparkline"] ? indexArr["lowConfidenceSparkline"] : False)
+                    grabExaltVal := (indexArr["exaltedValue"] ? indexArr["exaltedValue"] : False)
+                    grabChaosVal := (indexArr["chaosValue"] ? indexArr["chaosValue"] : False)
+                    grabName := (indexArr["name"] ? indexArr["name"] : False)
+                    grabLinks := (indexArr["links"] ? indexArr["links"] : False)
+                    grabVariant := (indexArr["variant"] ? indexArr["variant"] : False)
+                    grabMapTier := (indexArr["mapTier"] ? indexArr["mapTier"] : False)
+                    
+                    holder.lines[index] := {"name":grabName
+                        ,"chaosValue":grabChaosVal
+                        ,"exaltedValue":grabExaltVal
+                        ,"sparkline":grabSparklineVal
+                        ,"lowConfidenceSparkline":grabLowSparklineVal
+                        ,"links":grabLinks
+                        ,"variant":grabVariant}
+                    If grabMapTier
+                        holder.lines[index]["mapTier"] := grabMapTier
+                }
+				Ninja[apiString] := holder.lines
 			}
-			FileDelete, %A_ScriptDir%\data\data_%apiString%.txt
+			FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
 		}
 			;MsgBox % "Download worked for Ninja Database  -  There are " Ninja.Count() " Entries in the array
 		Return
@@ -2486,6 +3765,47 @@
         Split := {"r":Round(R_Count / ColorCount),"g":Round(G_Count / ColorCount),"b":Round(B_Count / ColorCount)}
         Load_BarControl(100,"Done.",-1)
         Return ToHex(Split)
+    }
+    ; Fill the metamorph panel when it first appears
+    Metamorph_FillOrgans()
+    {
+        Global FillMetamorph
+        H_Cell := (FillMetamorph.Y2 - FillMetamorph.Y1) // 5
+        W_Cell := (FillMetamorph.X2 - FillMetamorph.X1) // 6
+        yMarker := FillMetamorph.Y1 + ((H_Cell // 3) * 2)
+        xMarker := FillMetamorph.X1 + (W_Cell // 2)
+        Loop, 5
+        {
+            yMarker += (A_Index!=1?H_Cell:0)
+            CtrlClick(xMarker,yMarker)
+        }
+        MouseMove % GameW//2,% yMarker + H_Cell // 4
+        Return
+    }
+    ; check time
+    CheckTime(Type:="hours",Interval:=2,key:="temp",Time:="")
+    {
+        Static Keys := {}
+        ; Available time types are: years, months, days, hours, minutes, seconds
+        If (!Keys[key] || Time != "")
+        {
+            Keys[key] := (Time = "" ? A_Now : Time)
+        }
+        TimeVal := Keys[key]
+        EnvSub, TimeVal, %A_now%, %Type%
+        If (TimeVal <= 0)
+        {
+            TimeVal := Abs(TimeVal)
+            If (TimeVal >= Interval)
+            {
+                Keys[key] := A_Now
+                Return TimeVal
+            }
+            Else
+                Return False
+        }
+        Else
+            Return False
     }
     ; Cooldown Timers
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -9381,15 +10701,15 @@
         For k, v in var
             print .= "," . v
         print .= ", Script: " . A_ScriptFullPath . " , Script Version: " . VersionNumber . " , AHK version: " . A_AhkVersion . "`n"
-        FileAppend, %print%, Log.txt, UTF-16
+        FileAppend, %print%, %A_ScriptDir%\temp\Log.txt, UTF-16
         return
     }
 
-    ; checkActiveType - Check for backup executable
+    ; checkActiveType - Check for active executable
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	checkActiveType() {
-			global executable, backupExe
-			Process, Exist, %executable%
+			global Active_executable
+			Process, Exist, %Active_executable%
 			if !ErrorLevel
 			{
 				WinGet, id, list,ahk_group POEGameGroup,, Program Manager
@@ -9397,7 +10717,7 @@
 				{
 					this_id := id%A_Index%
 					WinGet, this_name, ProcessName, ahk_id %this_id%
-					backupExe := this_name
+					Active_executable := this_name
 					found .= ", " . this_name
 				}
 			}
@@ -9516,6 +10836,7 @@
 ; Rectangular selection function written by Lexikos
     LetUserSelectRect(PixelToo:=0)
     {
+        Global Picker
         Hotkey Ifwinactive
         static r := 1
         ; Create the "selection rectangle" GUIs (one for each edge).
@@ -9543,6 +10864,7 @@
             ; Get initial coordinates.
             MouseGetPos, xorigin, yorigin
             PixelGetColor, col, %xorigin%, %yorigin%, RGB
+            Picker.SetColor(col)
             ToolTip, % (PixelToo?"   " col " @ ":"   ") xorigin "," yorigin 
             DrawZoom("Repaint")
             DrawZoom("MoveAway")
@@ -9552,7 +10874,8 @@
                 Tooltip
                 Ding(1,-11,"")
                 PauseTooltips := 0
-                Clipboard := " " col " @ " xorigin "," yorigin " "
+                Clipboard := col " @ " xorigin "," yorigin
+                Notify(Clipboard,"Copied to the clipboard",5)
                 DrawZoom("Toggle")
                 Return False
             }
@@ -10271,6 +11594,7 @@
     Load_BarControl(Percent:=0,uText:="Loading...",ShowGui:=0)
     {
         Global
+        Static LoadBar_Initialized := 0
         If (!LoadBar_Initialized)
         {
             LoadBar_Initialized := 1
@@ -10278,7 +11602,6 @@
             Gui, load_BarGUI: New
             Gui, load_BarGUI:-Border -Caption +ToolWindow +AlwaysOnTop
             Gui, load_BarGUI:Color, 0x4D4D4D, 0xFFFFFF
-            load_Bar := Object()
             load_Bar := new LoaderBar("load_BarGUI",3,3,280,28,1,"EFEFEF")
             LB_wW:=load_Bar.Width + 2*load_Bar.X
             LB_wH:=load_Bar.Height + 2*load_Bar.Y
@@ -10296,6 +11619,436 @@
         Load_BarControl_Hide:
             Gui, load_BarGUI: Hide
         Return
+    }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
+/*** PoEPrices.info functions from PoE-TradeMacro v2.15.7
+*    Contains all the assorted functions needed to launch TradeFunc_DoPoePricesRequest
+*/
+    TradeFunc_DoPoePricesRequest(RawItemData, ByRef retCurl) {
+        RawItemData := RegExReplace(RawItemData, "<<.*?>>|<.*?>")
+        encodingError := ""
+        EncodedItemData := StringToBase64UriEncoded(RawItemData, true, encodingError)
+        
+        postData 	:= "l=" UriEncode("Metamorph") "&i=" EncodedItemData
+        ; postData 	:= "l=" UriEncode(TradeGlobals.Get("LeagueName")) "&i=" EncodedItemData
+        payLength	:= StrLen(postData)
+        url 		:= "https://www.poeprices.info/api"
+        
+        reqTimeout := 25
+        options	:= "RequestType: GET"
+        ;options	.= "`n" "ReturnHeaders: skip"
+        options	.= "`n" "ReturnHeaders: append"
+        options	.= "`n" "TimeOut: " reqTimeout
+        reqHeaders := []
+
+        reqHeaders.push("Connection: keep-alive")
+        reqHeaders.push("Cache-Control: max-age=0")
+        reqHeaders.push("Origin: https://poeprices.info")
+        reqHeaders.push("Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8")
+        
+        ; ShowToolTip("Getting price prediction... ")
+        retCurl := true
+        response := PoEScripts_Download(url, postData, reqHeaders, options, false, false, false, "", "", true, retCurl)
+        
+        ; debugout := RegExReplace("""" A_ScriptDir "\lib\" retCurl, "curl", "curl.exe""")
+        ; FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
+        ; FileAppend, %debugout%, %A_ScriptDir%\temp\poeprices_request.txt
+        
+        
+        ; If (TradeOpts.Debug) {
+            ; FileDelete, %A_ScriptDir%\temp\DebugSearchOutput.html
+            ; FileAppend, % response "<br />", %A_ScriptDir%\temp\DebugSearchOutput.html
+        ; }
+
+        responseObj := {}
+        responseHeader := ""
+        
+        RegExMatch(response, "is)(.*?({.*}))?.*?'(.*?)'.*", responseMatch)
+        response := responseMatch1
+        responseHeader := responseMatch3
+
+        Try {
+            responseObj := JSON.Load(response)
+        } Catch e {
+            responseObj.failed := "ERROR: Parsing response failed, invalid JSON! "
+        }
+        If (not isObject(responseObj)) {		
+            responseObj := {}
+        }
+
+        ; If (TradeOpts.Debug) {
+        ; 	arr := {}
+        ; 	arr.RawItemData := RawItemData
+        ; 	arr.EncodedItemata := EncodedItemData
+        ; 	arr.League := TradeGlobals.Get("LeagueName")
+        ; 	TradeFunc_LogPoePricesRequest(arr, request, "poe_prices_debug_log.txt")
+        ; }
+
+        ; responseObj.added := {}
+        ; responseObj.added.encodedData := EncodedItemData
+        ; responseObj.added.league := TradeGlobals.Get("LeagueName")
+        ; responseObj.added.requestUrl := url "?" postData
+        ; responseObj.added.browserUrl := url "?" postData "&w=1"
+        ; responseObj.added.encodingError := encodingError
+        ; responseObj.added.retHeader := responseHeader
+        ; responseObj.added.timeoutParam := reqTimeout
+        
+        Return responseObj
+    }
+
+    StringToBase64UriEncoded(stringIn, noUriEncode = false, ByRef errorMessage = "") {
+        FileDelete, %A_ScriptDir%\temp\itemText.txt
+        FileDelete, %A_ScriptDir%\temp\base64Itemtext.txt
+        FileDelete, %A_ScriptDir%\temp\encodeToBase64.txt
+        
+        encodeError1 := ""
+        encodeError2 := ""
+        stringBase64 := b64Encode(stringIn, encodeError1)
+        
+        If (not StrLen(stringBase64)) {
+            FileAppend, %stringIn%, %A_ScriptDir%\temp\itemText.txt, utf-8
+            command		:= "certutil -encode -f ""%cd%\temp\itemText.txt"" ""%cd%\temp\base64ItemText.txt"" & type ""%cd%\temp\base64ItemText.txt"""
+            stringBase64	:= ReadConsoleOutputFromFile(command, "encodeToBase64.txt", encodeError2)
+            stringBase64	:= Trim(RegExReplace(stringBase64, "i)-----BEGIN CERTIFICATE-----|-----END CERTIFICATE-----|77u/", ""))
+        }
+
+        If (not StrLen(stringBase64)) {
+            errorMessage := ""
+            If (StrLen(encodeError1)) {
+                errorMessage .= encodeError1 " "
+            }
+            If (StrLen(encodeError2)) {
+                errorMessage .= "Encoding via certutil returned: " encodeError2
+            }
+        }
+        
+        If (not noUriEncode) {
+            stringBase64	:= UriEncode(stringBase64)
+            stringBase64	:= RegExReplace(stringBase64, "i)^(%0D)?(%0A)?|((%0D)?(%0A)?)+$", "")
+        } Else {
+            stringBase64 := RegExReplace(stringBase64, "i)\r|\n", "")
+        }
+        
+        Return stringBase64
+    }
+
+    /*  Base64 Encode / Decode a string (binary-to-text encoding)
+        https://github.com/jNizM/AHK_Scripts/blob/master/src/encoding_decoding/base64.ahk
+        
+        Alternative: https://github.com/cocobelgica/AutoHotkey-Util/blob/master/Base64.ahk
+        */
+    b64Encode(string, ByRef error = "") {	
+        VarSetCapacity(bin, StrPut(string, "UTF-8")) && len := StrPut(string, &bin, "UTF-8") - 1 
+        If !(DllCall("crypt32\CryptBinaryToString", "ptr", &bin, "uint", len, "uint", 0x1, "ptr", 0, "uint*", size)) {
+            ;throw Exception("CryptBinaryToString failed", -1)
+            error := "Exception (1) while encoding string to base64."
+        }	
+        VarSetCapacity(buf, size << 1, 0)
+        If !(DllCall("crypt32\CryptBinaryToString", "ptr", &bin, "uint", len, "uint", 0x1, "ptr", &buf, "uint*", size)) {
+            ;throw Exception("CryptBinaryToString failed", -1)
+            error := "Exception (2) while encoding string to base64."
+        }
+        
+        If (not StrLen(Error)) {
+            Return StrGet(&buf)
+        } Else {
+            Return ""
+        }
+    }
+    b64Decode(string) {
+        If !(DllCall("crypt32\CryptStringToBinary", "ptr", &string, "uint", 0, "uint", 0x1, "ptr", 0, "uint*", size, "ptr", 0, "ptr", 0))
+            throw Exception("CryptStringToBinary failed", -1)
+        VarSetCapacity(buf, size, 0)
+        If !(DllCall("crypt32\CryptStringToBinary", "ptr", &string, "uint", 0, "uint", 0x1, "ptr", &buf, "uint*", size, "ptr", 0, "ptr", 0))
+            throw Exception("CryptStringToBinary failed", -1)
+        return StrGet(&buf, size, "UTF-8")
+    }
+
+    UriEncode(Uri, Enc = "UTF-8")	{
+        StrPutVar(Uri, Var, Enc)
+        f := A_FormatInteger
+        SetFormat, IntegerFast, H
+        Loop
+        {
+            Code := NumGet(Var, A_Index - 1, "UChar")
+            If (!Code)
+                Break
+            If (Code >= 0x30 && Code <= 0x39 ; 0-9
+                || Code >= 0x41 && Code <= 0x5A ; A-Z
+                || Code >= 0x61 && Code <= 0x7A) ; a-z
+                Res .= Chr(Code)
+            Else
+                Res .= "%" . SubStr(Code + 0x100, -1)
+        }
+        SetFormat, IntegerFast, %f%
+        Return, Res
+    }
+
+    StrPutVar(Str, ByRef Var, Enc = "") {
+        Len := StrPut(Str, Enc) * (Enc = "UTF-16" || Enc = "CP1200" ? 2 : 1)
+        VarSetCapacity(Var, Len, 0)
+        Return, StrPut(Str, &Var, Enc)
+    }
+
+    RandomStr(l = 24, i = 48, x = 122) { ; length, lowest and highest Asc value
+        Loop, %l% {
+            Random, r, i, x
+            s .= Chr(r)
+        }
+        s := RegExReplace(s, "\W", "i") ; only alphanum.
+        
+        Return, s
+    }
+
+    PoEScripts_Download(url, ioData, ByRef ioHdr, options, useFallback = true, critical = false, binaryDL = false, errorMsg = "", ByRef reqHeadersCurl = "", handleAccessForbidden = true, ByRef returnCurl = false) {
+        /*
+            url		= download url
+            ioData	= uri encoded postData 
+            ioHdr	= array of request headers
+            options	= multiple options separated by newline (currently only "SaveAs:",  "Redirect:true/false")
+            
+            useFallback = Use UrlDownloadToFile if curl fails, not possible for POST requests or when cookies are required 
+            critical	= exit macro if download fails
+            binaryDL	= file download (zip for example)
+            errorMsg	= optional error message, will be added to default message
+            reqHeadersCurl = returns the returned headers from the curl request 
+            handleAccessForbidden = "true" throws an error message if "403 Forbidden" is returned, "false" prevents it, returning "403 Forbidden" to enable custom error handling
+        */
+
+        ; https://curl.haxx.se/download.html -> https://bintray.com/vszakats/generic/curl/
+        /*
+            parse options, create the cURL request and execute it
+        */
+        reqLoops++
+        curl		:= """" A_ScriptDir "\data\curl.exe"" "	
+        headers	:= ""
+        cookies	:= ""
+        uAgent	:= ""
+
+        For key, val in ioHdr {		
+            val := Trim(RegExReplace(val, "i)(.*?)\s*:\s*(.*)", "$1:$2"))
+
+            If (RegExMatch(val, "i)^Cookie:(.*)", cookie)) {
+                cookies .= cookie1 " "		
+            }
+            If (RegExMatch(val, "i)^User-Agent:(.*)", ua)) {
+                uAgent := ua1 " "		
+            }
+        }
+        cookies := StrLen(cookies) ? "-b """ Trim(cookies) """ " : ""
+        uAgent := StrLen(uAgent) ? "-A """ Trim(uAgent) """ " : ""
+        
+        redirect := "L"
+        PreventErrorMsg := false
+        validateResponse := 1
+        If (StrLen(options)) {
+            Loop, Parse, options, `n 
+            {
+                If (RegExMatch(A_LoopField, "i)SaveAs:[ \t]*\K[^\r\n]+", SavePath)) {
+                    commandData	.= " " A_LoopField " "
+                    commandHdr	.= ""	
+                }
+                If (RegExMatch(A_LoopField, "i)Redirect:\sFalse")) {
+                    redirect := ""
+                }
+                If (RegExMatch(A_LoopField, "i)parseJSON:\sTrue")) {
+                    ignoreRetCodeForJSON := true
+                }
+                If (RegExMatch(A_LoopField, "i)PreventErrorMsg")) {
+                    PreventErrorMsg := true
+                }
+                If (RegExMatch(A_LoopField, "i)RequestType:(.*)", match)) {
+                    requestType := Trim(match1)
+                }
+                If (RegExMatch(A_LoopField, "i)ReturnHeaders:(.*skip.*)")) {
+                    skipRetHeaders := true
+                }
+                If (RegExMatch(A_LoopField, "i)ReturnHeaders:(.*append.*)")) {
+                    appendRetHeaders := true
+                }
+                If (RegExMatch(A_LoopField, "i)TimeOut:(.*)", match)) {
+                    timeout := Trim(match1)
+                }
+                If (RegExMatch(A_LoopField, "i)ValidateResponse:(.*)", match)) {
+                    If (Trim(match1) = "false") {
+                        validateResponse := 0
+                    }				
+                }	
+            }			
+        }
+        If (not timeout or timeout < 5) {
+            timeout := 25
+        }
+        
+        e := {}
+        Try {		
+            commandData	:= ""		; console curl command to return data/content 
+            commandHdr	:= ""		; console curl command to return headers
+            If (binaryDL) {
+                commandData .= " -" redirect "Jkv "		; save as file
+                If (SavePath) {
+                    commandData .= "-o """ SavePath """ "	; set target destination and name
+                }
+            } Else {
+                commandData .= " -" redirect "ks --compressed "
+                If (requestType = "GET") {				
+                    ;commandHdr  .= " -s" redirect " -D - -o /dev/null " ; unix
+                    commandHdr  .= " -s" redirect " -D - -o nul " ; windows
+                } Else {
+                    commandHdr  .= " -I" redirect "ks "
+                }
+                
+                If (appendRetHeaders) {
+                    commandData  .= " -w '%{http_code}' "
+                    commandHdr  .= " -w '%{http_code}' "
+                }
+            }			
+
+            If (not requestType = "GET") {
+                commandData .= headers
+                commandHdr  .= headers
+            }			
+            If (StrLen(cookies)) {
+                commandData .= cookies
+                commandHdr  .= cookies
+            }
+            If (StrLen(uAgent)) {
+                commandData .= uAgent
+                commandHdr  .= uAgent
+            }
+
+            If (StrLen(ioData) and not requestType = "GET") {
+                If (requestType = "POST") {
+                    commandData .= "-X POST "
+                }
+                commandData .= "--data """ ioData """ "
+            } Else If (StrLen(ioData)) {
+                url := url "?" ioData
+            }
+            
+            If (binaryDL) {
+                commandData	.= "--connect-timeout " timeout " "
+                commandData	.= "--connect-timeout " timeout " "
+            } Else {
+                commandData	.= "--connect-timeout " timeout " --max-time " timeout + 15 " "
+                commandHdr	.= "--connect-timeout " timeout " --max-time " timeout + 15 " "
+            }
+            ; get data
+            html	:= StdOutStream(curl """" url """" commandData)
+            
+            ;html := ReadConsoleOutputFromFile(curl """" url """" commandData, "commandData") ; alternative function
+            
+            If (returnCurl) {
+                returnCurl := "curl " """" url """" commandData
+            }
+
+            ; get return headers in seperate request
+            If (not binaryDL and not skipRetHeaders) {
+                If (StrLen(ioData) and not requestType = "GET") {
+                    commandHdr := curl """" url "?" ioData """" commandHdr		; add payload to url since you can't use the -I argument with POST requests					
+                } Else {
+                    commandHdr := curl """" url """" commandHdr
+                }
+                ioHdr := StdOutStream(commandHdr)
+                ;ioHrd := ReadConsoleOutputFromFile(commandHdr, "commandHdr") ; alternative function
+            } Else If (skipRetHeaders) {
+                commandHdr := curl """" url """" commandHdr
+                ioHdr := html
+            } Else {
+                ioHdr := html
+            }
+            ;msgbox % curl """" url """" commandData "`n`n" commandHdr
+            reqHeadersCurl := commandHdr
+        } Catch e {
+
+        }
+        
+        Return html
+    }
+
+    ReadConsoleOutputFromFile(command, fileName, ByRef error = "") {
+        file := "temp\" fileName
+        RunWait %comspec% /c "chcp 1251 /f >nul 2>&1 & %command% > %file%", , Hide
+        FileRead, io, %file%
+        
+        If (FileExist(file) and not StrLen(io)) {
+            error := "Output file is empty."
+        }
+        Else If (not FileExist(file)) {
+            error := "Output file does not exist."
+        }
+        
+        Return io
+    }
+
+    StdOutStream(sCmd, Callback = "") {
+        /*
+            Runs commands in a hidden cmdlet window and returns the output.
+        */
+                                ; Modified  :  Eruyome 18-June-2017
+        Static StrGet := "StrGet"	; Modified  :  SKAN 31-Aug-2013 http://goo.gl/j8XJXY
+                                ; Thanks to :  HotKeyIt         http://goo.gl/IsH1zs
+                                ; Original  :  Sean 20-Feb-2007 http://goo.gl/mxCdn
+        64Bit := A_PtrSize=8
+
+        DllCall( "CreatePipe", UIntP,hPipeRead, UIntP,hPipeWrite, UInt,0, UInt,0 )
+        DllCall( "SetHandleInformation", UInt,hPipeWrite, UInt,1, UInt,1 )
+
+        If 64Bit {
+            VarSetCapacity( STARTUPINFO, 104, 0 )		; STARTUPINFO          ;  http://goo.gl/fZf24
+            NumPut( 68,         STARTUPINFO,  0 )		; cbSize
+            NumPut( 0x100,      STARTUPINFO, 60 )		; dwFlags    =>  STARTF_USESTDHANDLES = 0x100
+            NumPut( hPipeWrite, STARTUPINFO, 88 )		; hStdOutput
+            NumPut( hPipeWrite, STARTUPINFO, 96 )		; hStdError
+
+            VarSetCapacity( PROCESS_INFORMATION, 32 )	; PROCESS_INFORMATION  ;  http://goo.gl/b9BaI
+        } Else {
+            VarSetCapacity( STARTUPINFO, 68,  0 )		; STARTUPINFO          ;  http://goo.gl/fZf24
+            NumPut( 68,         STARTUPINFO,  0 )		; cbSize
+            NumPut( 0x100,      STARTUPINFO, 44 )		; dwFlags    =>  STARTF_USESTDHANDLES = 0x100
+            NumPut( hPipeWrite, STARTUPINFO, 60 )		; hStdOutput
+            NumPut( hPipeWrite, STARTUPINFO, 64 )		; hStdError
+
+            VarSetCapacity( PROCESS_INFORMATION, 32 )	; PROCESS_INFORMATION  ;  http://goo.gl/b9BaI
+        }
+
+        If ! DllCall( "CreateProcess", UInt,0, UInt,&sCmd, UInt,0, UInt,0 ;  http://goo.gl/USC5a
+                    , UInt,1, UInt,0x08000000, UInt,0, UInt,0
+                    , UInt,&STARTUPINFO, UInt,&PROCESS_INFORMATION )
+        Return ""
+        , DllCall( "CloseHandle", UInt,hPipeWrite )
+        , DllCall( "CloseHandle", UInt,hPipeRead )
+        , DllCall( "SetLastError", Int,-1 )
+
+        hProcess := NumGet( PROCESS_INFORMATION, 0 )
+        If 64Bit {
+            hThread  := NumGet( PROCESS_INFORMATION, 8 )
+        } Else {
+            hThread  := NumGet( PROCESS_INFORMATION, 4 )
+        }
+
+        DllCall( "CloseHandle", UInt,hPipeWrite )
+
+        AIC := ( SubStr( A_AhkVersion, 1, 3 ) = "1.0" )                   ;  A_IsClassic
+        VarSetCapacity( Buffer, 4096, 0 ), nSz := 0
+
+        While DllCall( "ReadFile", UInt,hPipeRead, UInt,&Buffer, UInt,4094, UIntP,nSz, Int,0 ) {
+            tOutput := ( AIC && NumPut( 0, Buffer, nSz, "Char" ) && VarSetCapacity( Buffer,-1 ) )
+                    ? Buffer : %StrGet%( &Buffer, nSz, "CP850" )
+
+            Isfunc( Callback ) ? %Callback%( tOutput, A_Index ) : sOutput .= tOutput
+        }
+
+        DllCall( "GetExitCodeProcess", UInt,hProcess, UIntP,ExitCode )
+        DllCall( "CloseHandle",  UInt,hProcess  )
+        DllCall( "CloseHandle",  UInt,hThread   )
+        DllCall( "CloseHandle",  UInt,hPipeRead )
+        DllCall( "SetLastError", UInt,ExitCode  )
+
+        Return Isfunc( Callback ) ? %Callback%( "", 0 ) : sOutput
     }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -11818,7 +13571,7 @@ for i,v in ok
     {
       hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
       DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
-        , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020|0x40000000)
+        , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020) ; |0x40000000)
       DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
     }
 	    DllCall("SelectObject", Ptr,mDC, Ptr,oBM)

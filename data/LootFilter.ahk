@@ -1,12 +1,9 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; The rest of this area is for global settings
+    ; #Warn  ; The rest of this area is for global settings
     SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-    SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-    if not A_IsAdmin
-    {
-        Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
-        ExitApp
-    }
+    SaveDir := RTrim(A_ScriptDir, "\data") "\save"
+    SetWorkingDir %SaveDir%
+
     Global xpos, ypos, Maxed
     OnMessage(0x115, "OnScroll") ; WM_VSCROLL	;necessary for scrollable gui windows (must be added before gui lines)
     OnMessage(0x114, "OnScroll") ; WM_HSCROLL	;necessary for scrollable gui windows (must be added before gui lines)
@@ -539,9 +536,9 @@ BuildMenu(Min,Max,AllEdit:=0)
         if (gkeyarr < 10 ) 
             gkeyarr := 0 . gkeyarr
         Gui, Add, Button,gRemGroup x+5 yp-1 ,% "Rem: " gkeyarr
-        Gui, add, button, xs yp+25 w1 h1,
         Gui, Font, Bold s10 cBlack
-        Gui, Add, GroupBox, % "w335 h" . totalHeight . " xs-3 yp-" . totalHeight - 5 , %GKey%
+        Gui, Add, GroupBox, % "w335 h" . totalHeight - 15 . " xs-3 yp-" . totalHeight - 45, %GKey%
+        Gui, add, button, x+0 y+20 w1 h1,
         Gui, Font
     }
 Return
