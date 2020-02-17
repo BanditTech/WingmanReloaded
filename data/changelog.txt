@@ -1,5 +1,17 @@
 Alpha Patch Notes
 --------------------------------------------------------------------------------
+Version .10.0003 February/17/2020
+--------------------------------------------------------------------------------
+Reduced idle cpu usage when no game found
+
+Changed how most winexist or winactive look for the game using the GameStr var
+    this reduces cpu usage by only asking first for the last found exe
+
+Bugfix for auto check update always using 15 minutes (left old static variable)
+
+attack key triggered Flasks and utilities will now fire on the next cycle of game logic
+    this is to give the game time to process the initial attacks first
+
 Version .10.0002 February/17/2020
 --------------------------------------------------------------------------------
 Stack Release tool added to utility tab

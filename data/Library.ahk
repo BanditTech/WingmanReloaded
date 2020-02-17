@@ -1528,7 +1528,8 @@
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Rescale(){
         Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe
-        IfWinExist, ahk_group POEGameGroup 
+    ;    WinExist(GameStr)
+        If checkActiveType()
         {
 			If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
             {
@@ -1552,7 +1553,6 @@
                 GlobeImported := False
 
             WinGetPos, GameX, GameY, GameW, GameH
-            checkActiveType()
             If (ResolutionScale="Standard") {
                 ; Item Inventory Grid
                 Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
@@ -10723,22 +10723,26 @@
 
     ; checkActiveType - Check for active executable
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	checkActiveType() {
-			global Active_executable
-			Process, Exist, %Active_executable%
-			if !ErrorLevel
-			{
-				WinGet, id, list,ahk_group POEGameGroup,, Program Manager
-				Loop, %id%
-				{
-					this_id := id%A_Index%
-					WinGet, this_name, ProcessName, ahk_id %this_id%
-					Active_executable := this_name
-					found .= ", " . this_name
-				}
-			}
-		return
-		}
+	checkActiveType() 
+    {
+        global Active_executable, GameStr
+        Process, Exist, %Active_executable%
+        if !ErrorLevel
+        {
+            WinGet, id, list,ahk_group POEGameGroup,, Program Manager
+            Loop, %id%
+            {
+                this_id := id%A_Index%
+                WinGet, this_name, ProcessName, ahk_id %this_id%
+                Active_executable := this_name
+                GameStr := "ahk_exe " Active_executable
+                Return True
+            }
+            Return False
+        }
+        Else
+            Return True
+    }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 

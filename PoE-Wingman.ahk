@@ -92,7 +92,7 @@
 		Global Corruption := []
 		Global Bases
 		Global Date_now
-		Global Active_executable := "Blank"
+		Global Active_executable := "TempName"
 		; List available database endpoints
 		Global apiList := ["Currency"
 			, "Fragment"
@@ -150,7 +150,8 @@
 		global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
 		for n, exe in POEGameArr
 			GroupAdd, POEGameGroup, ahk_exe %exe%
-		Global GameStr := "ahk_group POEGameGroup"
+		Global GameStr := "ahk_exe PathOfExile_x64.exe"
+		; Global GameStr := "ahk_group POEGameGroup"
 		Hotkey, IfWinActive, ahk_group POEGameGroup
 
 		global PauseTooltips:=0
@@ -5772,7 +5773,9 @@ Return
 	TGameTick(GuiCheck:=True)
 	{
 		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False, OnScreenMM := 0
-		Global GlobeActive, CurrentMessage
+		Global GlobeActive, CurrentMessage, NoGame
+		If (NoGame)
+			Return
 		If WinExist(GameStr)
 		{
 			If (DebugMessages && YesTimeMS)
@@ -6517,6 +6520,8 @@ Return
 		}
 		Else
 		{
+			If CheckTime("seconds",5,"CheckActiveType")
+				CheckActiveType()
 			If CheckTime("seconds",5,"StatusBar1")
 				SB_SetText("No game found", 1)
 			If CheckTime("seconds",5,"StatusBar3")
@@ -6620,60 +6625,24 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; MainAttackCommand - Main attack Flasks
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MainAttackCommand(){
+	MainAttackCommand()
+	{
 		MainAttackCommand:
 		If (MainAttackPressedActive||OnTown||OnHideout||TriggerMainAttack<=0)
 			Return
-		if AutoFlask
-		{
-			If !GuiStatus(,0)
-				Exit
-			TriggerFlask(TriggerMainAttack)
-			MainAttackPressedActive := True
-			Loop, 10
-			{
-				If (YesUtility%A_Index%) 
-					&& !(OnCooldownUtility%A_Index%) 
-					&& (YesUtility%A_Index%MainAttack) 
-					&& !(YesUtility%A_Index%Quicksilver) 
-					&& (YesUtility%A_Index%LifePercent="Off") 
-					&& (YesUtility%A_Index%ESPercent="Off") 
-					&& (YesUtility%A_Index%ManaPercent="Off") 
-				{
-					TriggerUtility(A_Index)
-				}
-			}
-		}
+		MainAttackPressedActive := True
 		Return	
-		}
+	}
 	; SecondaryAttackCommand - Secondary attack Flasks
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	SecondaryAttackCommand(){
+	SecondaryAttackCommand()
+	{
 		SecondaryAttackCommand:
 		If (SecondaryAttackPressedActive||OnTown||OnHideout||TriggerSecondaryAttack<=0)
 			Return
-		if AutoFlask
-		{
-			If !GuiStatus(,0)
-				Exit
-			TriggerFlask(TriggerSecondaryAttack)
-			SecondaryAttackPressedActive := True
-			Loop, 10
-			{
-				If (YesUtility%A_Index%) 
-					&& !(OnCooldownUtility%A_Index%) 
-					&& (YesUtility%A_Index%SecondaryAttack) 
-					&& !(YesUtility%A_Index%Quicksilver) 
-					&& (YesUtility%A_Index%LifePercent="Off") 
-					&& (YesUtility%A_Index%ESPercent="Off") 
-					&& (YesUtility%A_Index%ManaPercent="Off") 
-				{
-					TriggerUtility(A_Index)
-				}
-			}
-		}
+		SecondaryAttackPressedActive := True
 		Return	
-		}
+	}
 
 	; TriggerFlask - Flask Trigger check
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7204,8 +7173,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	PoEWindowCheck()
 	{
-		Global GamePID
-		Static ScriptUpdateTimeType := "minutes", ScriptUpdateTimeInterval := 15
+		Global GamePID, NoGame
 		If (GamePID := WinExist(GameStr))
 		{
             WinGetPos, , , nGameW, nGameH
@@ -7222,6 +7190,7 @@ Return
 			{
 				Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
 				ToggleExist := True
+				NoGame := False
 				If (YesPersistantToggle)
 					AutoReset()
 			}
@@ -7243,6 +7212,7 @@ Return
 				Gui 2: Show, Hide
 				ToggleExist := False
 				RescaleRan := False
+				NoGame := True
 			}
 			If (!AutoUpdateOff && ScriptUpdateTimeType != "Off" && ScriptUpdateTimeInterval != 0 && CheckTime(ScriptUpdateTimeType,ScriptUpdateTimeInterval,"updateScript"))
 			{
