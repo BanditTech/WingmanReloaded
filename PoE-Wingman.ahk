@@ -84,7 +84,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
-		Global VersionNumber := .10.0001
+		Global VersionNumber := .10.0002
 		Global WR_Statusbar := "WingmanReloaded Status"
 		Global WR_hStatusbar
 		Global Ninja := {}
@@ -385,6 +385,17 @@
 		, XButtonStr
 		, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
 		, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
+	; StackRelease tool
+		Global 1080_StackRelease_BuffIcon := "|<Blade Flurry Icon>0xD8FAD0@0.81$39.000008001k00US0y0071zzU00E0zs00303zk00A0znw00kTk0S06Tw00Tsvz0003fTk0003Tw0000Lz0000Dzk0001zy0000zrs000DznU003zoQ000zy1k007zUD001zw0s00Tz07U03zk0Q00zw4"
+			, 1080_StackRelease_BuffCount := "|<6>0xFEFEFE@0.81$8.01kUM41gFYN6N3U0U"
+			, StackRelease_BuffIcon , StackRelease_BuffCount
+			, StackRelease_Keybind := "RButton"
+			, StackRelease_X1Offset := 0
+			, StackRelease_Y1Offset := 2
+			, StackRelease_X2Offset := 0
+			, StackRelease_Y2Offset := 15
+			, StackRelease_Enable := False
+
 	; Click Vendor after stash, search for stash
 		Global YesVendorAfterStash, YesSearchForStash
     ; General
@@ -1473,6 +1484,37 @@
 		Gui Add, Text, 										x+9 	, 	Mana:
 		Gui, Add, Text, 									x+18 	 		h270 0x11
 
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, GroupBox,  y+20 xs w240 h150 Section, Stack Release tool
+		Gui, Font,
+		Gui, Add, CheckBox, gUpdateStackRelease vStackRelease_Enable Checked%StackRelease_Enable%  Right x+-65 ys+2 , Enable
+		Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffIcon xs+5 ys+19 w150 h21, % StackRelease_BuffIcon
+		Gui, Add, Text, x+4 yp+3, Icon to Find
+		Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffCount xs+5 y+15 w150 h21, % StackRelease_BuffCount
+		Gui, Add, Text, x+4 yp+3, Stack Capture
+		Gui, Add, Edit, gUpdateStackRelease vStackRelease_Keybind xs+5 y+15 w150 h21, %StackRelease_Keybind%
+		Gui, Add, Text, x+4 yp+3, Key to release
+		Gui, Add, Text, xs+5 y+12, Stack Search Offset - Bottom Edge of Buff Icon
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, Text, xs+5 y+5, X1:
+		Gui, Font,
+		Gui, Add, Text, x+2 yp w29 hp,
+		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_X1Offset hp center Range-150-150, %StackRelease_X1Offset%
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, Text, x+10 yp, Y1:
+		Gui, Font,
+		Gui, Add, Text, x+2 yp w29 hp,
+		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y1Offset hp center Range-150-150, %StackRelease_Y1Offset%
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, Text, x+10 yp, X2:
+		Gui, Font,
+		Gui, Add, Text, x+2 yp w29 hp,
+		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_X2Offset hp center Range-150-150, %StackRelease_X2Offset%
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, Text, x+10 yp, Y2:
+		Gui, Font,
+		Gui, Add, Text, x+2 yp w29 hp,
+		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 		;Save Setting
 		Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 		Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
@@ -6441,6 +6483,10 @@ Return
 					}
 				}
 			}
+			If (StackRelease_Enable)
+			{
+				StackRelease()
+			}
 			If LootVacuum
 				LootScan()
 			AutoSkillUp()
@@ -7540,6 +7586,20 @@ Return
 			IniRead, VendorMineStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
 			If VendorMineStr
 				VendorMineStr := """" . VendorMineStr . """"
+			IniRead, StackRelease_BuffIcon, %A_ScriptDir%\save\Settings.ini, FindText Strings, StackRelease_BuffIcon, %1080_StackRelease_BuffIcon%
+			If StackRelease_BuffIcon
+				StackRelease_BuffIcon := """" . StackRelease_BuffIcon . """"
+			IniRead, StackRelease_BuffCount, %A_ScriptDir%\save\Settings.ini, FindText Strings, StackRelease_BuffCount, %1080_StackRelease_BuffCount%
+			If StackRelease_BuffCount
+				StackRelease_BuffCount := """" . StackRelease_BuffCount . """"
+
+			; Stack Release settings
+			IniRead, StackRelease_Keybind, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Keybind, RButton
+			IniRead, StackRelease_X1Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X1Offset, 0
+			IniRead, StackRelease_Y1Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y1Offset, 2
+			IniRead, StackRelease_X2Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X2Offset, 0
+			IniRead, StackRelease_Y2Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y2Offset, 15
+			IniRead, StackRelease_Enable, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Enable, 0
 
 			;Inventory Colors
 			IniRead, varEmptyInvSlotColor, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
@@ -8438,6 +8498,13 @@ Return
 			IniWrite, %CooldownUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility8
 			IniWrite, %CooldownUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility9
 			IniWrite, %CooldownUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility10
+			
+			;StackRelease
+			IniWrite, %StackRelease_Keybind%, %A_ScriptDir%\save\Settings.ini,  StackRelease, StackRelease_Keybind
+			IniWrite, %StackRelease_X1Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X1Offset
+			IniWrite, %StackRelease_Y1Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y1Offset
+			IniWrite, %StackRelease_X2Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X2Offset
+			IniWrite, %StackRelease_Y2Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y2Offset
 			
 			;Utility Keys
 			IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1
@@ -11659,6 +11726,11 @@ Return
 			Gui, Submit, NoHide
 			IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery
 			Rescale()
+		Return
+
+		UpdateStackRelease:
+			Gui, Submit, NoHide
+			IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini, StackRelease,% A_GuiControl
 		Return
 
 		UpdateStringEdit:

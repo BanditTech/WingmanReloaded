@@ -3807,6 +3807,22 @@
         Else
             Return False
     }
+    ; StackRelease
+    StackRelease()
+    {
+        if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, StackRelease_BuffIcon,0))
+        {
+            If FindText(buff.1.1 + StackRelease_X1Offset,buff.1.2 + buff.1.4 + StackRelease_Y1Offset,buff.1.1 + buff.1.3 + StackRelease_X2Offset,buff.1.2 + buff.1.4 + StackRelease_Y2Offset, 0, 0, StackRelease_BuffCount,0)
+            {
+                If GetKeyState(StackRelease_Keybind,"P")
+                {
+                    Send {%StackRelease_Keybind% up}
+                    Sleep, 10
+                    Send {%StackRelease_Keybind% down}
+                }
+            }
+        }
+    }
     ; Cooldown Timers
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         ; TimerFlask - Flask CD Timers

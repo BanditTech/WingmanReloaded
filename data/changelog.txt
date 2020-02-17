@@ -1,5 +1,13 @@
 Alpha Patch Notes
 --------------------------------------------------------------------------------
+Version .10.0002 February/17/2020
+--------------------------------------------------------------------------------
+Stack Release tool added to utility tab
+    Searches for a buff icon, then if found searches for the stack capture
+        if it finds both it releases the assigned keybind
+    You can adjust the offset it looks for the stack count
+        The area defaults to the bottom left to bottom right of the buff icon
+
 Version .10.0001 February/16/2020
 --------------------------------------------------------------------------------
 Cinematic(43:18) adjusted to move stash list position down
