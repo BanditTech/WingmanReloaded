@@ -84,7 +84,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
-		Global VersionNumber := .10.00
+		Global VersionNumber := .10.0001
 		Global WR_Statusbar := "WingmanReloaded Status"
 		Global WR_hStatusbar
 		Global Ninja := {}

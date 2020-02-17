@@ -2043,7 +2043,7 @@
                 global vY_StashTabMenu := GameY + Round(GameH / ( 1440 / 195))
                 ;Stash tabs menu list
                 global vX_StashTabList := GameX + Round(GameW / (3440 / 1000))
-                global vY_StashTabList := GameY + Round(GameH / ( 1440 / 148))
+                global vY_StashTabList := GameY + Round(GameH / ( 1440 / 160))
                 ;calculate the height of each tab
                 global vY_StashTabSize := Round(GameH / ( 1440 / 29))
             }
