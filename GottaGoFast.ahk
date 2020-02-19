@@ -36,12 +36,12 @@
 
 ; Extra vars - Not in INI
      Global GameStr := "ahk_group POEGameGroup"
-     global TriggerQ:=00000
      global AutoQuit:=0 
      global AutoFlask:=0
      global AutoQuick:=0 
      global OnCooldown:=[0,0,0,0,0]
      Global GameX, GameY, GameW, GameH
+
      global newposition := false
      global newpositionPOV := false
      global JoystickNumber := 0
@@ -169,11 +169,11 @@
      ;Quicksilver
      global TriggerQuicksilverDelay:=0.8
      global TriggerQuicksilver:=00000
-     global QuicksilverSlot1:=0
-     global QuicksilverSlot2:=0
-     global QuicksilverSlot3:=0
-     global QuicksilverSlot4:=0
-     global QuicksilverSlot5:=0
+     global Radiobox1QS:=0
+     global Radiobox2QS:=0
+     global Radiobox3QS:=0
+     global Radiobox4QS:=0
+     global Radiobox5QS:=0
 
      ;Gui Status
      global OnTown:=False
@@ -405,8 +405,8 @@
           }
           Else If (wParam=5) {
                If (lParam=1){
-                    If !( ((QuicksilverSlot1=1)&&(OnCooldown[1])) || ((QuicksilverSlot2=1)&&(OnCooldown[2])) || ((QuicksilverSlot3=1)&&(OnCooldown[3])) || ((QuicksilverSlot4=1)&&(OnCooldown[4])) || ((QuicksilverSlot5=1)&&(OnCooldown[5])) ) {
-                         If  ( (QuicksilverSlot1 && OnCooldown[1]) || (QuicksilverSlot2 && OnCooldown[2]) || (QuicksilverSlot3 && OnCooldown[3]) || (QuicksilverSlot4 && OnCooldown[4]) || (QuicksilverSlot5 && OnCooldown[5]) )
+                    If !( ((Radiobox1QS=1)&&(OnCooldown[1])) || ((Radiobox2QS=1)&&(OnCooldown[2])) || ((Radiobox3QS=1)&&(OnCooldown[3])) || ((Radiobox4QS=1)&&(OnCooldown[4])) || ((Radiobox5QS=1)&&(OnCooldown[5])) ) {
+                         If  ( (Radiobox1QS && OnCooldown[1]) || (Radiobox2QS && OnCooldown[2]) || (Radiobox3QS && OnCooldown[3]) || (Radiobox4QS && OnCooldown[4]) || (Radiobox5QS && OnCooldown[5]) )
                          Return
                          TriggerFlask(TriggerQuicksilver)
                     }
@@ -588,7 +588,7 @@
           IniRead, TriggerQuicksilver, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilver, 00000
           Loop, 5 {	
                valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
-               QuicksilverSlot%A_Index% := valueQuicksilver
+               Radiobox%A_Index%QS := valueQuicksilver
           }
 
           ;Controller setup
@@ -669,17 +669,17 @@
      TQuickTick(){
           IfWinActive, Path of Exile
           {
-               if ( AutoQuick && ( QuicksilverSlot1 || QuicksilverSlot2 || QuicksilverSlot3 || QuicksilverSlot4 || QuicksilverSlot5 ) )
-                    If !( (QuicksilverSlot1 && OnCooldown[1]) 
-                    || (QuicksilverSlot2 && OnCooldown[2]) 
-                    || (QuicksilverSlot3 && OnCooldown[3]) 
-                    || (QuicksilverSlot4 && OnCooldown[4]) 
-                    || (QuicksilverSlot5 && OnCooldown[5]) ) ; Check if all the flasks are off cooldown
-                         TriggerFlask(TriggerQuicksilver)
+               if ( AutoQuick && ( Radiobox1QS || Radiobox2QS || Radiobox3QS || Radiobox4QS || Radiobox5QS ) )
+                    If !( (Radiobox1QS && OnCooldown[1]) 
+                    || (Radiobox2QS && OnCooldown[2]) 
+                    || (Radiobox3QS && OnCooldown[3]) 
+                    || (Radiobox4QS && OnCooldown[4]) 
+                    || (Radiobox5QS && OnCooldown[5]) ) ; Check if all the flasks are off cooldown
+                         TriggerQuick(TriggerQuicksilver)
           }
      }
 
-     TriggerFlask(Trigger){
+     TriggerQuick(Trigger){
           If (OnTown || OnHideout)
                Exit
           If !GuiStatus()
@@ -688,11 +688,11 @@
                loop, 5 
                     if ((SubStr(Trigger,A_Index,1)+0) > 0) 
                          FlaskListQS.Push(A_Index)
-          If !( (QuicksilverSlot1 && OnCooldown[1]) 
-          || (QuicksilverSlot2 && OnCooldown[2]) 
-          || (QuicksilverSlot3 && OnCooldown[3]) 
-          || (QuicksilverSlot4 && OnCooldown[4]) 
-          || (QuicksilverSlot5 && OnCooldown[5]) ) 
+          If !( (Radiobox1QS && OnCooldown[1]) 
+          || (Radiobox2QS && OnCooldown[2]) 
+          || (Radiobox3QS && OnCooldown[3]) 
+          || (Radiobox4QS && OnCooldown[4]) 
+          || (Radiobox5QS && OnCooldown[5]) ) 
           { ; If all the flasks are off cooldown, then we are ready to fire one
                LButtonPressed := GetKeyState("LButton", "P")
                MainPressed := GetKeyState(hotkeyMainAttack, "P")
@@ -744,11 +744,11 @@
                loop, 5 
                     if ((SubStr(Trigger,A_Index,1)+0) > 0)
                          FlaskListQS.Push(A_Index)
-          If !( (QuicksilverSlot1 && OnCooldown[1]) 
-          || (QuicksilverSlot2 && OnCooldown[2]) 
-          || (QuicksilverSlot3 && OnCooldown[3]) 
-          || (QuicksilverSlot4 && OnCooldown[4]) 
-          || (QuicksilverSlot5 && OnCooldown[5]) ) 
+          If !( (Radiobox1QS && OnCooldown[1]) 
+          || (Radiobox2QS && OnCooldown[2]) 
+          || (Radiobox3QS && OnCooldown[3]) 
+          || (Radiobox4QS && OnCooldown[4]) 
+          || (Radiobox5QS && OnCooldown[5]) ) 
           { ; If all the flasks are off cooldown, then we are ready to fire one
                QFL:=FlaskListQS.RemoveAt(1)
                If (!QFL)
@@ -856,7 +856,7 @@
                     }
                     if (AutoQuick && HeldCountJoystick > 60)
                     {
-                         if ((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))
+                         if ((Radiobox1QS=1) || (Radiobox2QS=1) || (Radiobox3QS=1) || (Radiobox4QS=1) || (Radiobox5QS=1))
                          {
                               TriggerFlaskForce(TriggerQuicksilver)
                          }
@@ -1142,7 +1142,7 @@
                               TriggerUtility(utilityKeyToFire,1)
                          if (AutoQuick)
                          {
-                              if ((QuicksilverSlot1=1) || (QuicksilverSlot2=1) || (QuicksilverSlot3=1) || (QuicksilverSlot4=1) || (QuicksilverSlot5=1))
+                              if ((Radiobox1QS=1) || (Radiobox2QS=1) || (Radiobox3QS=1) || (Radiobox4QS=1) || (Radiobox5QS=1))
                               {
                                    TriggerFlaskForce(TriggerQuicksilver)
                               }

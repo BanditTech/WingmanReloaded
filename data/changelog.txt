@@ -1,5 +1,25 @@
 Alpha Patch Notes
 --------------------------------------------------------------------------------
+Version .10.0004 February/19/2020
+--------------------------------------------------------------------------------
+Removed the need for a seperate background script to do quicksilver and controller
+    This reduces the overall cpu draw of the script even further
+    the function of quicksilvers has been moved back into the main script
+    for now controller support is not active (the remaining code in GottaGoFast)
+        I have a working testbench for even better controller support coming soon
+    Quicksilver overlay migrated to main script
+
+Added a few bases to crafting, I want to make this editable from the GUI
+
+Commented out the lines that used to feed information about cooldowns to subscript
+
+Cleaned up code for mana triggers
+
+Rewrite of the Quicksilver trigger logic, it no longer hangs the script with keywait
+
+Adjustments to how it detects game window, more re-using the last checked var
+    every 5 seconds if it has not found the game exe, it will look for any others
+
 Version .10.0003 February/17/2020
 --------------------------------------------------------------------------------
 Reduced idle cpu usage when no game found

@@ -1055,7 +1055,7 @@
     ShowToolTip()
     {
         global ft_ToolTip_Text
-        If (PauseTooltips || WinActive(GameStr))
+        If (PauseTooltips || GameActive)
             Return
         ListLines, Off
         static CurrControl, PrevControl, _TT
@@ -1397,7 +1397,7 @@
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CheckOHB()
     {
-        If WinExist(GameStr)
+        If GamePID
         {
             if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
                 Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
@@ -1528,7 +1528,6 @@
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Rescale(){
         Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe
-    ;    WinExist(GameStr)
         If checkActiveType()
         {
 			If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
@@ -3261,7 +3260,7 @@
                         CompareLocation(A_LoopField)
                 }
             }
-            If (DebugMessages && YesLocation && WinActive(GameStr))
+            If (DebugMessages && YesLocation && GameActive)
             {
                 Ding(2000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
                 Ding(2000,5,CurrentLocation)
@@ -10865,7 +10864,7 @@
             Gui, Rect%A_Index%: Color, Red
         }
         PauseTooltips := 1
-        If WinExist(GameStr)
+        If GamePID
             WinActivate, %GameStr%
         If PixelToo
             Ding(0,-11,"Click and hold left mouse to draw box`nUse arrow keys to move mouse,and mousewheel to zoom`nPress Ctrl to Clipboard the color and X,Y")
