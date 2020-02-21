@@ -2,7 +2,7 @@
 
 This is the continuation of the PoE-Wingman script, my personally modified version released to the public.
 
-As of now, the script is in active development, and setup is not as easy as the original by a long shot.
+As of now, the script is in active development, and setup is not as easy as the original. Find more information in the [**Installation Section**](/#?id=installation).
 
 
 # What is it?
