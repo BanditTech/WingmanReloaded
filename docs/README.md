@@ -9,6 +9,7 @@ As of now, the script is in active development, and setup is not as easy as the 
 
 > This multi functional script can perform several actions based on states of the game:
 
+```
     Potions
     Abilities
     Auto-Quit
@@ -25,6 +26,7 @@ As of now, the script is in active development, and setup is not as easy as the 
     Game Controller support
     Chat Hotkeys
     Auto-Fill Metamorph panel
+```
 
 > Some functions may not work if you are using a non 1080 height resolution monitor, then you will need to input your own captures to get them working. I have made it so that anyone can add their own custom strings in to replace the default ones, so all hope is not lost if you really want to get those functions working. Find more information on the Strings tab docs, and I am always happy to add any submitted samples to the default dropdown lists.
 
