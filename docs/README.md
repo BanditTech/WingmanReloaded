@@ -13,19 +13,15 @@ Some functions may not work if you are using a non 1080 height resolution monito
 
 
 > The script can automatically cast Flasks based on several triggers: 
-
-    Life percentage
-    ES Percentage
-    Mana Percentage
-    As Quicksilver
-    With Primary or Secondary attack keys
-    All flasks as one Hotkey
-
-Mana and Quicksilver flasks will wait on cooldown as a group
-
-Quicksilver Flasks trigger with an optional delay
-
-Quicksilver uses LButton default, and optionaly primary or secondary attack
+>     Life percentage
+>     ES Percentage
+>     Mana Percentage
+>     As Quicksilver
+>     With Primary or Secondary attack keys
+>     All flasks as one Hotkey
+> Mana and Quicksilver flasks will wait on cooldown as a group
+> Quicksilver Flasks trigger with an optional delay
+> Quicksilver uses LButton default, and optionaly primary or secondary attack
 
 
 
