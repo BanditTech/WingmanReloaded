@@ -9,7 +9,7 @@ As of now, the script is in active development, and setup is not as easy as the 
 
 > This multi functional script can perform several actions based on states of the game. Potions, Abilities, Auto-Quit, Mines, Loot Vacuum, Custom Loot Filter, Manage Inventory (ID,Vendor,Stash,Divination), Automate going from Stash to vendor, Skill-up Gems, Cast Portal-Scroll, Swap Gems, Price information, Pixel Information, Game Controller support, Chat Hotkeys, Auto-Fill Metamorph panel
 
-Not all functions will work out the box, and if you are using a non 1080 height resolution monitor, then you will need to input your own captures for some of the functions. I have made it so that anyone can add their own custom strings in to replace the default ones, so all hope is not lost if you really want to get it working. Find more information on the Strings tab, and I am always happy to add samples to the default dropdown lists if they are submitted.
+Some functions may not work if you are using a non 1080 height resolution monitor, then you will need to input your own captures to get them working. I have made it so that anyone can add their own custom strings in to replace the default ones, so all hope is not lost if you really want to get those functions working. Find more information on the Strings tab docs, and I am always happy to add any submitted samples to the default dropdown lists.
 
 
 > The script can automatically cast Flasks based on several triggers: 
@@ -22,8 +22,11 @@ Not all functions will work out the box, and if you are using a non 1080 height 
     All flasks as one Hotkey
 
 Mana and Quicksilver flasks will wait on cooldown as a group
+
 Quicksilver Flasks trigger with an optional delay
+
 Quicksilver uses LButton default, and optionaly primary or secondary attack
+
 
 
 > Utilities allow for several triggers for abilities as well:
@@ -42,7 +45,7 @@ Quicksilver uses LButton default, and optionaly primary or secondary attack
 > Detonate mines with adjustable delay for stacking up mines between detonates. Also allows for pausing detonate while stacking up for a boss by double tapping detonate key.
 
 
-## How does it get the information?
+## How does it work?
 
 > It gathers all information without reading from the games memory, so it is a bit safer from a detection standpoint. Primarily the script is using hotkeys intercepted from the keyboard and mouse, and pixel information from the game screen. The script is using incredibly fast screen captures to analyze several areas of the screen at once. It scans an area of the health globes for Life, ES and Mana percentages, and specific pixels on the screen being a set color to determine which panels are open. It also finds the Overhead Health Bar to know when it should pause the script, this setting can be disabled.
 
@@ -60,7 +63,7 @@ I will try and explain each process with detail to provide a clearer instruction
 
 ## Documentation
 
-See [**Documentation**](/documentation) for details about each of the settings panels.
+See [**Documentation**](/documentation?id=main-methods) for details about each of the settings panels.
 
 See [**PLACEHOLDER**](/PLACEHOLDER) PLACEHOLDER.
 
