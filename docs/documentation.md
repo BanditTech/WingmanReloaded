@@ -1,13 +1,13 @@
 # Main Methods
 
 ## .find
-`oGraphicSearch.fisnd(x1, y1, x2, y2, err1, err2, text [, screenshot, findall, jointext, offsetx, offsety])`
+PLACEHOLDER
 
-OutputVarY, X1, Y1, X2, Y2, ColorID , Variation, Mode`
+PLACEHOLDER
 
 ### Arguments
 #### x1, y1                
-> the search scope's upper left corner coordinates
+> PLACEHOLDER
 
 #### x2, y2
 > the search scope's lower right corner coordinates
