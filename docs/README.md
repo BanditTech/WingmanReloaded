@@ -1,4 +1,4 @@
-# WingmanReloaded
+## WingmanReloaded
 
 This is the continuation of the PoE-Wingman script, my personally modified version released to the public.
 
