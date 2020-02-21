@@ -96,20 +96,20 @@ I will try and explain each process with detail to provide a clearer instruction
 
 
 ## Basic
+Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
+
+His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
 
 ## Utilities
-```code
 Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
 
 His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
-```
+
 
 ## Advanced
-```code
 Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
 
 His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
-```
 
 
 ## CLF Examples
