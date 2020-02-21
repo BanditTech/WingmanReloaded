@@ -7,12 +7,14 @@ This is the continuation of the PoE-Wingman script, my personally modified versi
 
 > This multi functional script can perform several actions based on states of the game. 
 The script can automatically cast Flasks and Abilities based on several triggers: 
-    Life, ES, Mana percentages
-    Mana and Quicksilver flasks will wait on cooldown as a group
-    Quicksilver Flasks trigger with an optional delay with LButton default, and optionaly primary or secondary attack
-    Abilities can be assigned to trigger when using a Quicksilver
-    With Primary or Secondary attack (Customizable Hotkeys)
-    Trigger the flask when the Pop Flasks hotkey is pressed or optionally disable that slot
+
+    Life, ES, Mana percentages    
+    Mana and Quicksilver flasks will wait on cooldown as a group    
+    Quicksilver Flasks trigger with an optional delay 
+        Uses LButton default, and optionaly primary or secondary attack    
+    Abilities can be assigned to trigger when using a Quicksilver    
+    With Primary or Secondary attack (Customizable Hotkeys)    
+    Trigger the flask when the Pop Flasks hotkey is pressed or optionally disable that slot    
 
 
 ## How does it get the information?
