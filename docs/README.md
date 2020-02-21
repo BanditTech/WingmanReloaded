@@ -9,22 +9,22 @@ As of now, the script is in active development, and setup is not as easy as the 
 
 > This multi functional script can perform several actions based on states of the game:
 
-    Potions
-    Abilities
-    Auto-Quit
-    Mines
-    Loot Vacuum
-    Custom Loot Filter
-    Manage Inventory (ID,Vendor,Stash,Divination)
-    Automate going from Stash to vendor
-    Skill-up Gems
-    Cast Portal-Scroll
-    Swap Gems
-    Price information
-    Pixel Information
-    Game Controller support
-    Chat Hotkeys
-    Auto-Fill Metamorph panel
+* Potions
+* Abilities
+* Auto-Quit
+* Mines
+* Loot Vacuum
+* Custom Loot Filter
+* Manage Inventory (ID,Vendor,Stash,Divination)
+* Automate going from Stash to vendor
+* Skill-up Gems
+* Cast Portal-Scroll
+* Swap Gems
+* Price information
+* Pixel Information
+* Game Controller support
+* Chat Hotkeys
+* Auto-Fill Metamorph panel
 
 > Some functions may not work if you are using a non 1080 height resolution monitor, then you will need to input your own captures to get them working. I have made it so that anyone can add their own custom strings in to replace the default ones, so all hope is not lost if you really want to get those functions working. Find more information on the Strings tab docs, and I am always happy to add any submitted samples to the default dropdown lists.
 
@@ -32,12 +32,12 @@ As of now, the script is in active development, and setup is not as easy as the 
 ## Flasks
 > The script can automatically cast Flasks based on several triggers: 
 
-    Life percentage
-    ES Percentage
-    Mana Percentage
-    As Quicksilver
-    With Primary or Secondary attack keys
-    All flasks as one Hotkey
+* Life percentage
+* ES Percentage
+* Mana Percentage
+* As Quicksilver
+* With Primary or Secondary attack keys
+* All flasks as one Hotkey
 
 > Mana and Quicksilver flasks will wait on cooldown as a group
 
@@ -49,24 +49,24 @@ As of now, the script is in active development, and setup is not as easy as the 
 ## Utility spells
 > Utilities allow for several triggers for abilities as well:
 
-    On Cooldown
-    Buff Icon showing/not
-    With Quicksilver
-    With Primary or Secondary attack keys
-    Life percentage
-    ES Percentage
-    Mana Percentage
+* On Cooldown
+* Buff Icon showing/not
+* With Quicksilver
+* With Primary or Secondary attack keys
+* Life percentage
+* ES Percentage
+* Mana Percentage
 
 
 ## Inventory Management
 > One button can do so many things! The script detects which panels are active, so it knows what inventory routine to run when pressing the hotkey. 
 
-    It can be pressed while you are elsewhere and no panels are open, then it will quickly open the inventory.
-    If in a location with a stash, it can optionally search for a stash to open if no panels are open.
-    If Inventory alone is open, it can go through your items and identify any needed.
-    If Stash and Inventory is open, then it can send items to assigned stash tabs
-        Supports Custom Loot Filter, currency, crafting, special item types, gems, maps, uniques + rings, and much more
-    
+* It can be pressed while you are elsewhere and no panels are open, then it will quickly open the inventory.
+* If in a location with a stash, it can optionally search for a stash to open if no panels are open.
+* If Inventory alone is open, it can go through your items and identify any needed.
+* If Stash and Inventory is open, then it can send items to assigned stash tabs
+  * Supports Custom Loot Filter, currency, crafting, special item types, gems, maps, uniques + rings, and much more
+* If Divination and Inventory is open then it will trade full stacks of div cards in inventory
 
 
 ## Stack Release
