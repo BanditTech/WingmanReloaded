@@ -1,11 +1,11 @@
-## WingmanReloaded
+# WingmanReloaded
 
 This is the continuation of the PoE-Wingman script, my personally modified version released to the public.
 
 As of now, the script is in active development, and setup is not as easy as the original. Find more information in the [**Installation Section**](?id=installation).
 
 
-# What is it?
+## What is it?
 
 > This multi functional script can perform several actions based on states of the game:
 >  * Potions
@@ -30,12 +30,12 @@ As of now, the script is in active development, and setup is not as easy as the 
 
 ## Flasks
 > The script can automatically cast Flasks based on several triggers: 
->  * Life percentage
->  * ES Percentage
->  * Mana Percentage
->  * As Quicksilver
->  * With Primary or Secondary attack keys
->  * All flasks as one Hotkey
+>   * Life percentage
+>   * ES Percentage
+>   * Mana Percentage
+>   * As Quicksilver
+>   * With Primary or Secondary attack keys
+>   * All flasks as one Hotkey
 
 > Mana and Quicksilver flasks will wait on cooldown as a group
 
@@ -73,12 +73,11 @@ As of now, the script is in active development, and setup is not as easy as the 
 > Detonate mines with adjustable delay for stacking up mines between detonates. Also allows for pausing detonate so you can stack up for a boss by double tapping detonate key.
 
 
-
-
 # Installation
 
-This script is a much more complex to set up than the original.
-I will try and explain each process with detail to provide a clearer instruction to follow.
+> This script is a much more complex to set up than the original.
+>
+> I will try and explain each process with detail to provide a clearer instruction to follow.
 
 
 ## Basic
