@@ -847,6 +847,17 @@
     checkUpdate()
 ; Ensure files are present
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	IfNotExist, %A_ScriptDir%\data\WR.ico
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR.ico, %A_ScriptDir%\data\WR.ico
+		if ErrorLevel{
+ 			Log("data","uhoh", "WR.ico")
+			MsgBox, Error ED02 : There was a problem downloading WR.ico
+		}
+		Else if (ErrorLevel=0){
+ 			Log("data","pass", "WR.ico")
+		}
+	}
 	IfNotExist, %A_ScriptDir%\data\InventorySlots.png
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/InventorySlots.png, %A_ScriptDir%\data\InventorySlots.png

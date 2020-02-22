@@ -222,7 +222,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Go to Configuration Tab > Inventory > Stash Tabs > Stash Management
 * Select the assigned tab from the dropdown list
   * You can assign multiple types to the same stash tab
-* Check the box to enable or disable that type of stash type
+* Check the box to enable or disable stashing that type of item
 
 > While you are in Inventory Settings, go to Stash Hotkeys tab to configure that as well, or disable it.
 * With default settings, Press Numpad0+Numpad1 to go to the first tab.
