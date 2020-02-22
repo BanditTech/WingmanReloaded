@@ -61,7 +61,7 @@
     LookupPrivilegeValue := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "LookupPrivilegeValue", "Ptr")
     AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
     
-    CleanUp()
+    ; CleanUp()
 
 	; Rerun as admin if not already admin, required to disconnect client
     if not A_IsAdmin
@@ -71,7 +71,7 @@
         Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
 	Sleep, -1
     ; Run "%A_ScriptDir%\GottaGoFast.ahk"
-    OnExit("CleanUp")
+    ; OnExit("CleanUp")
     
 	IfNotExist, %A_ScriptDir%\data
 		FileCreateDir, %A_ScriptDir%\data
@@ -147,7 +147,7 @@
 			, "Glorious Plate"
 			, "Zodiac Leather"]
 		; Create a container for the sub-script
-		Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
+		; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
 		Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
 		; Create Executable group for gameHotkey, IfWinActive
 		global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
@@ -7435,12 +7435,12 @@ Return
 		}
 ; SendMSG - Send one or two digits to a sub-script 
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    SendMSG(wParam:=0, lParam:=0, script:="GottaGoFast.ahk ahk_exe AutoHotkey.exe"){
+    SendMSG(wParam:=0, lParam:=0, script:="BlankSubscript.ahk ahk_exe AutoHotkey.exe"){
         DetectHiddenWindows On
         if WinExist(script) 
             PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
         else 
-			Ding(1000,0,"GGF Script Not Found") ;Turn on debug messages to see error information from GGF sendMSG
+			Log("Recipient Script Not Found",script) ;Error  information sent to log file
         DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
         Return
         }
@@ -10462,10 +10462,10 @@ Return
 		runUpdate:
 
 			Fail:=False
-			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/GottaGoFast.ahk, GottaGoFast.ahk
-			if ErrorLevel {
-				Fail:=true
-			}
+			; UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/GottaGoFast.ahk, GottaGoFast.ahk
+			; if ErrorLevel {
+			; 	Fail:=true
+			; }
 			UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/PoE-Wingman.ahk, PoE-Wingman.ahk
 			if ErrorLevel {
 				Fail:=true
@@ -12063,13 +12063,13 @@ Return
 			Gui, ItemInfo: Hide
 		Return
 
-		CleanUp(){
-			DetectHiddenWindows, On
+		; CleanUp(){
+		; 	DetectHiddenWindows, On
 			
-			WinGet, PID, PID, %A_ScriptDir%\GottaGoFast.ahk
-			Process, Close, %PID%
-		Return
-		}
+		; 	WinGet, PID, PID, %A_ScriptDir%\GottaGoFast.ahk
+		; 	Process, Close, %PID%
+		; Return
+		; }
 
 		UpdateProfileText1:
 			;Gui, Submit, NoHide

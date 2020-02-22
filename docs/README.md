@@ -114,11 +114,23 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 # Installation
 
-> This script is a much more complex to set up than the original.
->
-> I will try and explain each process with detail to provide a clearer instruction to follow.
+> This script is more complex to set up than the original. Try to follow along with the different portions of the setup process to ensure you have done it correctly. Use the readout in the statusbar of the scripts GUI to see whats going on with the script. Enable debug messages with Logic or Location to see the information as a tooltip in the top left corner.
+
+> This script is written in [AutoHotKey](https://www.autohotkey.com/), and will require the [latest version of AHK](https://www.autohotkey.com/download/ahk-install.exe) installed to use the script.
 
 ## Basic Setup
+
+>Setup sections:
+>
+> Interface with Game ||||
+> -|-|-|-|-|-|-|-|-|
+> [**In-Game Requirements**](?id=in-game-requirements) | [**Choose Aspect Ratio**](?id=choose-aspect-ratio) | [**Client.txt file location**](?id=client.txt-file-location) | [**Configure Hotkeys**](?id=configure-hotkeys) 
+
+
+> Configure Script ||||
+> -|-|-|-|-|-|-|-|-|
+> [**Calibrate Gamestates**](?id=calibrate-gamestates) | [**Adjust Globes**](?id=Adjust-globes) | Assign [**Scroll**](?id=assign-scroll-locations) / [**Gem**](?id=assign-gem-locations) Locations | [**Assign Stash Tabs**](?id=in-game-requirements) |
+
 
 ### In-Game Requirements
 
