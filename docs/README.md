@@ -10,14 +10,14 @@ As of now, the script is in active development, and setup is not as easy as the 
 
    
 
-## Origins of the script
+### Origins of the script
 
 This code is derived from [Andoesk's PoE-Wingman v1.1](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html), which was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/).
 
 Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. 
 
 
-## What can it do?
+# What can it do?
 
 > This multi functional script can perform several actions based on states of the game:
 * Flasks
@@ -43,7 +43,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 
    
 
-### Flasks
+## Auto-Flasks
 > The script can automatically cast Flasks based on several triggers: 
 * Life percentage
 * ES Percentage
@@ -60,7 +60,15 @@ Large portions of the code have been rewritten or refactored. There are countles
 
    
 
-### Utility spells
+## Auto-Quit
+> Quit automatically when your health reaches a threshold. Select from 10 to 90% health to quit, so even lowlife characters are supported. The script allows for three quit methods:
+* D/C method is nearly instant and is default
+* Portal exit can be somewhat slow, but works great for leveling
+* /exit is an alternative to D/C which is slightly slower
+
+   
+
+## Utility spells
 > Utilities allow for several triggers for abilities as well:
 * On Cooldown
 * Buff Icon showing/not
@@ -72,7 +80,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 
    
 
-### Inventory Management
+## Inventory Management
 > One button can do so many things! The script detects which panels are active, so it knows what inventory routine to run when pressing the hotkey. 
 * It can be pressed while you are elsewhere and no panels are open, then it will quickly open the inventory.
 * If in a location with a stash, it can optionally search for a stash to open if no panels are open.
@@ -83,6 +91,8 @@ Large portions of the code have been rewritten or refactored. There are countles
 * If Divination and Inventory is open then it will trade full stacks of div cards in inventory
 
    
+
+## Other Functions
 
 ### Release Key on Stack Count
 > Stack Release tool for abilities like Blade Flurry
