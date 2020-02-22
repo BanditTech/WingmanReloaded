@@ -70,7 +70,7 @@
     else
         Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
 	Sleep, -1
-    Run "%A_ScriptDir%\GottaGoFast.ahk"
+    ; Run "%A_ScriptDir%\GottaGoFast.ahk"
     OnExit("CleanUp")
     
 	IfNotExist, %A_ScriptDir%\data
@@ -84,7 +84,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
-		Global VersionNumber := .10.00
+		Global VersionNumber := .10.01
 		Global WR_Statusbar := "WingmanReloaded Status"
 		Global WR_hStatusbar
 		Global Ninja := {}
@@ -92,7 +92,8 @@
 		Global Corruption := []
 		Global Bases
 		Global Date_now
-		Global Active_executable := "Blank"
+		Global GameActive, GamePID
+		Global Active_executable := "TempName"
 		; List available database endpoints
 		Global apiList := ["Currency"
 			, "Fragment"
@@ -142,7 +143,9 @@
 			, "Vaal Regalia"
 			, "Diamond Ring"
 			, "Onyx Amulet"
-			, "Two-Stone Ring"]
+			, "Two-Stone Ring"
+			, "Glorious Plate"
+			, "Zodiac Leather"]
 		; Create a container for the sub-script
 		Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
 		Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
@@ -150,7 +153,8 @@
 		global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
 		for n, exe in POEGameArr
 			GroupAdd, POEGameGroup, ahk_exe %exe%
-		Global GameStr := "ahk_group POEGameGroup"
+		Global GameStr := "ahk_exe PathOfExile_x64.exe"
+		; Global GameStr := "ahk_group POEGameGroup"
 		Hotkey, IfWinActive, ahk_group POEGameGroup
 
 		global PauseTooltips:=0
@@ -385,6 +389,17 @@
 		, XButtonStr
 		, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
 		, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
+	; StackRelease tool
+		Global 1080_StackRelease_BuffIcon := "|<Blade Flurry Icon>0xD8FAD0@0.81$39.000008001k00US0y0071zzU00E0zs00303zk00A0znw00kTk0S06Tw00Tsvz0003fTk0003Tw0000Lz0000Dzk0001zy0000zrs000DznU003zoQ000zy1k007zUD001zw0s00Tz07U03zk0Q00zw4"
+			, 1080_StackRelease_BuffCount := "|<6>0xFEFEFE@0.81$8.01kUM41gFYN6N3U0U"
+			, StackRelease_BuffIcon , StackRelease_BuffCount
+			, StackRelease_Keybind := "RButton"
+			, StackRelease_X1Offset := 0
+			, StackRelease_Y1Offset := 2
+			, StackRelease_X2Offset := 0
+			, StackRelease_Y2Offset := 15
+			, StackRelease_Enable := False
+
 	; Click Vendor after stash, search for stash
 		Global YesVendorAfterStash, YesSearchForStash
     ; General
@@ -816,7 +831,12 @@
 		global graphHeight := 221
 		Global ForceMatch6Link := False
 		Global ForceMatchGem20 := False
-	; Automation
+	; Quicksilver globals
+    	Global FlaskListQS := []
+		Global LButtonPressed := 0
+		Global MainPressed := 0
+		Global SecondaryPressed := 0
+
 
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1473,6 +1493,37 @@
 		Gui Add, Text, 										x+9 	, 	Mana:
 		Gui, Add, Text, 									x+18 	 		h270 0x11
 
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, GroupBox,  y+20 xs w240 h150 Section, Stack Release tool
+		Gui, Font,
+		Gui, Add, CheckBox, gUpdateStackRelease vStackRelease_Enable Checked%StackRelease_Enable%  Right x+-65 ys+2 , Enable
+		Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffIcon xs+5 ys+19 w150 h21, % StackRelease_BuffIcon
+		Gui, Add, Text, x+4 yp+3, Icon to Find
+		Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffCount xs+5 y+15 w150 h21, % StackRelease_BuffCount
+		Gui, Add, Text, x+4 yp+3, Stack Capture
+		Gui, Add, Edit, gUpdateStackRelease vStackRelease_Keybind xs+5 y+15 w150 h21, %StackRelease_Keybind%
+		Gui, Add, Text, x+4 yp+3, Key to release
+		Gui, Add, Text, xs+5 y+12, Stack Search Offset - Bottom Edge of Buff Icon
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, Text, xs+5 y+5, X1:
+		Gui, Font,
+		Gui, Add, Text, x+2 yp w29 hp,
+		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_X1Offset hp center Range-150-150, %StackRelease_X1Offset%
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, Text, x+10 yp, Y1:
+		Gui, Font,
+		Gui, Add, Text, x+2 yp w29 hp,
+		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y1Offset hp center Range-150-150, %StackRelease_Y1Offset%
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, Text, x+10 yp, X2:
+		Gui, Font,
+		Gui, Add, Text, x+2 yp w29 hp,
+		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_X2Offset hp center Range-150-150, %StackRelease_X2Offset%
+		Gui, Font, Bold s9 cBlack
+		Gui, Add, Text, x+10 yp, Y2:
+		Gui, Font,
+		Gui, Add, Text, x+2 yp w29 hp,
+		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 		;Save Setting
 		Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 		Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
@@ -1951,6 +2002,7 @@
 	Gui 2:Font, bold cFFFFFF S10, Trebuchet MS
 	Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
 	Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
+	Gui 2:Add, Text, y+0.5 BackgroundTrans vT3, Quicksilver: OFF
 
 	IfWinExist, ahk_group POEGameGroup
 	{
@@ -1968,7 +2020,7 @@
 ; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Check for window to be active
-	SetTimer, PoEWindowCheck, 100
+	SetTimer, PoEWindowCheck, 1000
 	; Check once an hour to see if we should updated database
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses
@@ -5730,8 +5782,10 @@ Return
 	TGameTick(GuiCheck:=True)
 	{
 		Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False, OnScreenMM := 0
-		Global GlobeActive, CurrentMessage
-		If WinExist(GameStr)
+		Global GlobeActive, CurrentMessage, NoGame, GamePID
+		If (NoGame)
+			Return
+		If GamePID
 		{
 			If (DebugMessages && YesTimeMS)
 				t1 := A_TickCount
@@ -5758,7 +5812,6 @@ Return
 				}
 				Exit
 			}
-
 			; Check what status is your character in the game
 			if (GuiCheck)
 			{
@@ -6441,6 +6494,17 @@ Return
 					}
 				}
 			}
+			If (AutoQuick)
+			{
+				If ( Radiobox1QS > 0 || Radiobox2QS > 0 || Radiobox3QS > 0 || Radiobox4QS > 0 || Radiobox5QS > 0 )
+				{
+					TriggerQuick(TriggerQuicksilver)
+				}
+			}
+			If (StackRelease_Enable)
+			{
+				StackRelease()
+			}
 			If LootVacuum
 				LootScan()
 			AutoSkillUp()
@@ -6485,27 +6549,27 @@ Return
 		If ( GetKeyState(KeyFlask1Proper, "P") ) {
 			OnCooldown[1]:=1
 			settimer, TimerFlask1, %CooldownFlask1%
-			SendMSG(3, 1)
+			; SendMSG(3, 1)
 		}
 		If ( GetKeyState(KeyFlask2Proper, "P") ) {
 			OnCooldown[2]:=1
 			settimer, TimerFlask2, %CooldownFlask2%
-			SendMSG(3, 2)
+			; SendMSG(3, 2)
 		}
 		If ( GetKeyState(KeyFlask3Proper, "P") ) {
 			OnCooldown[3]:=1
 			settimer, TimerFlask3, %CooldownFlask3%
-			SendMSG(3, 3)
+			; SendMSG(3, 3)
 		}
 		If ( GetKeyState(KeyFlask4Proper, "P") ) {
 			OnCooldown[4]:=1
 			settimer, TimerFlask4, %CooldownFlask4%
-			SendMSG(3, 4)
+			; SendMSG(3, 4)
 		}
 		If ( GetKeyState(KeyFlask5Proper, "P") ) {
 			OnCooldown[5]:=1
 			settimer, TimerFlask5, %CooldownFlask5%
-			SendMSG(3, 5)
+			; SendMSG(3, 5)
 		}
 	Return
 ; Toggle Main Script Timers - AutoQuit, AutoFlask, AutoReset, GuiUpdate
@@ -6531,25 +6595,23 @@ Return
 		AutoFlaskCommand:	
 			AutoFlask := !AutoFlask
 			IniWrite, %AutoFlask%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoFlask
-			; if ((!AutoFlask) and (!AutoQuit)) {
-			; 	SetTimer TGameTick, Off
-			; } else if ((AutoFlask) || (AutoQuit)) {
-			; 	SetTimer TGameTick, %Tick%
-			; }
 			GuiUpdate()	
 		return
 		}
+	; AutoQuicksilverCommand - Toggle Auto-Quick
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	AutoQuicksilverCommand:
+		AutoQuick := !AutoQuick	
+		IniWrite, %AutoQuick%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick
+		GuiUpdate()
+	return
 
 	; AutoReset - Load Previous Toggle States
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	AutoReset(){
 		IniRead, AutoQuit, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit, 0
 		IniRead, AutoFlask, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoFlask, 0
-		; if ((!AutoFlask) and (!AutoQuit)) {
-		; 	SetTimer TGameTick, Off
-		; } else if ((AutoFlask) || (AutoQuit)) {
-		; 	SetTimer TGameTick, %Tick%
-		; }
+		IniRead, AutoQuick, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick, 0
 		GuiUpdate()	
 		return
 		}
@@ -6557,16 +6619,21 @@ Return
 	; GuiUpdate - Update Overlay ON OFF states
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	GuiUpdate(){
-			if (AutoFlask=1) {
+			if (AutoFlask) {
 				AutoFlaskToggle:="ON" 
 			} else AutoFlaskToggle:="OFF" 
 			
-			if (AutoQuit=1) {
+			if (AutoQuit) {
 				AutoQuitToggle:="ON" 
 			}else AutoQuitToggle:="OFF" 
-			
+
+			if (AutoQuick) {
+				AutoQuickToggle:="ON" 
+			} else AutoQuickToggle:="OFF" 
+
 			GuiControl, 2:, T1, Quit: %AutoQuitToggle%
 			GuiControl, 2:, T2, Flasks: %AutoFlaskToggle%
+			GuiControl, 2:, T3, Quicksilver: %AutoQuickToggle%
 			Return
 		}
 
@@ -6574,65 +6641,28 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; MainAttackCommand - Main attack Flasks
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	MainAttackCommand(){
+	MainAttackCommand()
+	{
 		MainAttackCommand:
 		If (MainAttackPressedActive||OnTown||OnHideout||TriggerMainAttack<=0)
 			Return
-		if AutoFlask
-		{
-			If !GuiStatus(,0)
-				Exit
-			TriggerFlask(TriggerMainAttack)
-			MainAttackPressedActive := True
-			Loop, 10
-			{
-				If (YesUtility%A_Index%) 
-					&& !(OnCooldownUtility%A_Index%) 
-					&& (YesUtility%A_Index%MainAttack) 
-					&& !(YesUtility%A_Index%Quicksilver) 
-					&& (YesUtility%A_Index%LifePercent="Off") 
-					&& (YesUtility%A_Index%ESPercent="Off") 
-					&& (YesUtility%A_Index%ManaPercent="Off") 
-				{
-					TriggerUtility(A_Index)
-				}
-			}
-		}
+		MainAttackPressedActive := True
 		Return	
-		}
+	}
 	; SecondaryAttackCommand - Secondary attack Flasks
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	SecondaryAttackCommand(){
+	SecondaryAttackCommand()
+	{
 		SecondaryAttackCommand:
 		If (SecondaryAttackPressedActive||OnTown||OnHideout||TriggerSecondaryAttack<=0)
 			Return
-		if AutoFlask
-		{
-			If !GuiStatus(,0)
-				Exit
-			TriggerFlask(TriggerSecondaryAttack)
-			SecondaryAttackPressedActive := True
-			Loop, 10
-			{
-				If (YesUtility%A_Index%) 
-					&& !(OnCooldownUtility%A_Index%) 
-					&& (YesUtility%A_Index%SecondaryAttack) 
-					&& !(YesUtility%A_Index%Quicksilver) 
-					&& (YesUtility%A_Index%LifePercent="Off") 
-					&& (YesUtility%A_Index%ESPercent="Off") 
-					&& (YesUtility%A_Index%ManaPercent="Off") 
-				{
-					TriggerUtility(A_Index)
-				}
-			}
-		}
+		SecondaryAttackPressedActive := True
 		Return	
-		}
+	}
 
 	; TriggerFlask - Flask Trigger check
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TriggerFlask(Trigger){
-		Global GamePID
 		FL:=1
 		loop 5 {
 			FLVal:=SubStr(Trigger,FL,1)+0
@@ -6640,7 +6670,7 @@ Return
 				if (OnCooldown[FL]=0) {
 					key := keyFlask%FL%
 					controlsend, , %key%, %GameStr%
-					SendMSG(3, FL)
+					; SendMSG(3, FL)
 					OnCooldown[FL]:=1 
 					Cooldown:=CooldownFlask%FL%
 					settimer, TimerFlask%FL%, %Cooldown%
@@ -6654,27 +6684,89 @@ Return
 	; TriggerMana - Trigger Mana Flasks Sequentially
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	TriggerMana(Trigger){
-		Global GamePID
-		If ((!FlaskList.Count())&& !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) ) {
-			FL=1
-			loop, 5 {
-				FLVal:=SubStr(Trigger,FL,1)+0
-				if (FLVal > 0) {
-					if (OnCooldown[FL]=0)
-						FlaskList.Push(FL)
-				}
-				++FL
-			}
-		}
-		Else If !( ((Radiobox1Mana10=1)&&(OnCooldown[1])) || ((Radiobox2Mana10=1)&&(OnCooldown[2])) || ((Radiobox3Mana10=1)&&(OnCooldown[3])) || ((Radiobox4Mana10=1)&&(OnCooldown[4])) || ((Radiobox5Mana10=1)&&(OnCooldown[5])) ) {
+		If (!FlaskList.Count()) 
+			loop, 5 
+				if (SubStr(Trigger,A_Index,1)+0 > 0) 
+					FlaskList.Push(A_Index)
+		If !( (Radiobox1Mana10 && OnCooldown[1])
+			|| (Radiobox2Mana10 && OnCooldown[2])
+			|| (Radiobox3Mana10 && OnCooldown[3])
+			|| (Radiobox4Mana10 && OnCooldown[4])
+			|| (Radiobox5Mana10 && OnCooldown[5]) )
+		{
 			FL:=FlaskList.RemoveAt(1)
 			key := keyFlask%FL%
 			controlsend, , %key%, %GameStr%
 			OnCooldown[FL] := 1 
 			Cooldown:=CooldownFlask%FL%
 			settimer, TimerFlask%FL%, %Cooldown%
-			SendMSG(3, FL)
+			; SendMSG(3, FL)
 			RandomSleep(23,59)
+		}
+		Return
+	}
+
+	TriggerQuick(Trigger){
+		Static LastHeldLB, LastHeldMA, LastHeldSA
+		If !(FlaskListQS.Count())
+			loop, 5 
+				if (SubStr(Trigger,A_Index,1)+0 > 0)
+					FlaskListQS.Push(A_Index)
+		If !( (Radiobox1QS && OnCooldown[1])
+			|| (Radiobox2QS && OnCooldown[2])
+			|| (Radiobox3QS && OnCooldown[3])
+			|| (Radiobox4QS && OnCooldown[4])
+			|| (Radiobox5QS && OnCooldown[5]) )
+		{ ; If all the flasks are off cooldown, then we are ready to fire one
+			LButtonPressed := GetKeyState("LButton", "P")
+			If QSonMainAttack
+				MainPressed := GetKeyState(hotkeyMainAttack, "P")
+			If QSonSecondaryAttack
+				SecondaryPressed := GetKeyState(hotkeySecondaryAttack, "P")
+			If (TriggerQuicksilverDelay > 0)
+			{
+				delay := TriggerQuicksilverDelay * 1000
+				If (!LastHeldLB && LButtonPressed)
+					LastHeldLB := A_TickCount
+				Else If (LastHeldLB && !LButtonPressed)
+					LastHeldLB := False
+				If (LButtonPressed && A_TickCount - LastHeldLB < delay )
+					Return
+				
+				If QSonMainAttack
+				{
+					If (!LastHeldMA && MainPressed)
+						LastHeldMA := A_TickCount
+					Else If (LastHeldMA && !MainPressed)
+						LastHeldMA := False
+					If (MainPressed && A_TickCount - LastHeldMA < delay )
+						Return
+				}
+
+				If QSonSecondaryAttack
+				{
+					If (!LastHeldSA && SecondaryPressed)
+						LastHeldSA := A_TickCount
+					Else If (LastHeldMA && !SecondaryPressed)
+						LastHeldSA := False
+					If (SecondaryPressed && A_TickCount - LastHeldSA < delay )
+						Return
+				}
+			}
+			if (LButtonPressed || (MainPressed && QSonMainAttack) || (SecondaryPressed && QSonSecondaryAttack) ) 
+			{
+				QFL := FlaskListQS.RemoveAt(1)
+				If (!QFL)
+					Return
+				controlsend, ,% keyFlask%QFL%, %GameStr%
+				settimer, TimerFlask%QFL%, % CooldownFlask%QFL%
+				OnCooldown[QFL] := 1
+				LastHeldLB := LastHeldMA := LastHeldSA := 0
+				; SendMSG(3, QFL)
+				Loop, 10
+					If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver)
+						TriggerUtility(A_Index)
+			}
 		}
 		Return
 	}
@@ -6687,7 +6779,7 @@ Return
 		If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
 			key:=KeyUtility%Utility%
 			controlsend, , %key%, %GameStr%
-			SendMSG(4, Utility)
+			; SendMSG(4, Utility)
 			OnCooldownUtility%Utility%:=1
 			Cooldown:=CooldownUtility%Utility%
 			SetTimer, TimerUtility%Utility%, %Cooldown%
@@ -6982,7 +7074,7 @@ Return
 					Else
 						Send %KeyFlask1Proper%
 					OnCooldown[1]:=1 
-					SendMSG(3, 1)
+					; SendMSG(3, 1)
 					Cooldown:=CooldownFlask1
 					settimer, TimerFlask1, %Cooldown%
 					RandomSleep(-99,99)
@@ -6994,7 +7086,7 @@ Return
 					Else
 						Send %KeyFlask2Proper%
 					OnCooldown[2]:=1 
-					SendMSG(3, 2)
+					; SendMSG(3, 2)
 					Cooldown:=CooldownFlask2
 					settimer, TimerFlask2, %Cooldown%
 					RandomSleep(-99,99)
@@ -7006,7 +7098,7 @@ Return
 					Else
 						Send %KeyFlask3Proper%
 					OnCooldown[3]:=1 
-					SendMSG(3, 3)
+					; SendMSG(3, 3)
 					Cooldown:=CooldownFlask3
 					settimer, TimerFlask3, %Cooldown%
 					RandomSleep(-99,99)
@@ -7019,7 +7111,7 @@ Return
 						Send %KeyFlask4Proper%
 					OnCooldown[4]:=1 
 					Cooldown:=CooldownFlask4
-					SendMSG(3, 4)
+					; SendMSG(3, 4)
 					settimer, TimerFlask4, %Cooldown%
 					RandomSleep(-99,99)
 				}
@@ -7030,7 +7122,7 @@ Return
 					Else
 						Send %KeyFlask5Proper%
 					OnCooldown[5]:=1 
-					SendMSG(3, 5)
+					; SendMSG(3, 5)
 					Cooldown:=CooldownFlask5
 					settimer, TimerFlask5, %Cooldown%
 				}
@@ -7081,7 +7173,7 @@ Return
 			{
 				If ((A_TickCount - LastLogout) > 10000)
 				{
-					If !WinActive(GameStr)
+					If !GameActive
 						WinActivate, %GameStr%
 					QuickPortal(True)
 					LastLogout := A_TickCount
@@ -7158,10 +7250,10 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	PoEWindowCheck()
 	{
-		Global GamePID
-		Static ScriptUpdateTimeType := "minutes", ScriptUpdateTimeInterval := 15
+		Global GamePID, NoGame, GameActive
 		If (GamePID := WinExist(GameStr))
 		{
+			GameActive := WinActive(GameStr)
             WinGetPos, , , nGameW, nGameH
 			newDim := (nGameW != GameW || nGameH != GameH)
 			global GuiX, GuiY, RescaleRan, ToggleExist
@@ -7172,14 +7264,15 @@ Return
 			}
 			If (!RescaleRan || newDim)
 				Rescale()
-			If ((!ToggleExist || newDim) && WinActive(GameStr)) 
+			If ((!ToggleExist || newDim) && GameActive) 
 			{
 				Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
 				ToggleExist := True
+				NoGame := False
 				If (YesPersistantToggle)
 					AutoReset()
 			}
-			Else If (ToggleExist && !WinActive(GameStr))
+			Else If (ToggleExist && !GameActive)
 			{
 				ToggleExist := False
 				Gui 2: Show, Hide
@@ -7187,6 +7280,10 @@ Return
 		} 
 		Else 
 		{
+			If CheckTime("seconds",5,"CheckActiveType")
+				CheckActiveType()
+			If GameActive
+				GameActive := False
 			If GameBound
 			{
 				GameBound := False
@@ -7197,6 +7294,7 @@ Return
 				Gui 2: Show, Hide
 				ToggleExist := False
 				RescaleRan := False
+				NoGame := True
 			}
 			If (!AutoUpdateOff && ScriptUpdateTimeType != "Off" && ScriptUpdateTimeInterval != 0 && CheckTime(ScriptUpdateTimeType,ScriptUpdateTimeInterval,"updateScript"))
 			{
@@ -7540,6 +7638,20 @@ Return
 			IniRead, VendorMineStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
 			If VendorMineStr
 				VendorMineStr := """" . VendorMineStr . """"
+			IniRead, StackRelease_BuffIcon, %A_ScriptDir%\save\Settings.ini, FindText Strings, StackRelease_BuffIcon, %1080_StackRelease_BuffIcon%
+			If StackRelease_BuffIcon
+				StackRelease_BuffIcon := """" . StackRelease_BuffIcon . """"
+			IniRead, StackRelease_BuffCount, %A_ScriptDir%\save\Settings.ini, FindText Strings, StackRelease_BuffCount, %1080_StackRelease_BuffCount%
+			If StackRelease_BuffCount
+				StackRelease_BuffCount := """" . StackRelease_BuffCount . """"
+
+			; Stack Release settings
+			IniRead, StackRelease_Keybind, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Keybind, RButton
+			IniRead, StackRelease_X1Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X1Offset, 0
+			IniRead, StackRelease_Y1Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y1Offset, 2
+			IniRead, StackRelease_X2Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X2Offset, 0
+			IniRead, StackRelease_Y2Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y2Offset, 15
+			IniRead, StackRelease_Enable, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Enable, 0
 
 			;Inventory Colors
 			IniRead, varEmptyInvSlotColor, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
@@ -7856,8 +7968,8 @@ Return
 			IniRead, TriggerQuicksilverDelay, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
 			IniRead, TriggerQuicksilver, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilver, 00000
 			Loop, 5 {	
-				valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
-				GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
+				Radiobox%A_Index%QS := substr(TriggerQuicksilver, (A_Index), 1)
+				GuiControl, , Radiobox%A_Index%QS, % Radiobox%A_Index%QS
 			}
 			
 			;Pop Flasks
@@ -7896,6 +8008,8 @@ Return
 				hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
 			If hotkeyAutoFlask
 				hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
+			If hotkeyAutoQuicksilver
+				hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, Off
 			If hotkeyQuickPortal
 				hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
 			If hotkeyGemSwap
@@ -7946,6 +8060,8 @@ Return
 				hotkey,% hotkeyAutoQuit, AutoQuitCommand, On
 			If hotkeyAutoFlask
 				hotkey,% hotkeyAutoFlask, AutoFlaskCommand, On
+			If hotkeyAutoQuicksilver
+				hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
 			If hotkeyQuickPortal
 				hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
 			If hotkeyGemSwap
@@ -8439,6 +8555,13 @@ Return
 			IniWrite, %CooldownUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility9
 			IniWrite, %CooldownUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility10
 			
+			;StackRelease
+			IniWrite, %StackRelease_Keybind%, %A_ScriptDir%\save\Settings.ini,  StackRelease, StackRelease_Keybind
+			IniWrite, %StackRelease_X1Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X1Offset
+			IniWrite, %StackRelease_Y1Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y1Offset
+			IniWrite, %StackRelease_X2Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X2Offset
+			IniWrite, %StackRelease_Y2Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y2Offset
+			
 			;Utility Keys
 			IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1
 			IniWrite, %KeyUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility2
@@ -8666,7 +8789,7 @@ Return
 				{
 				WinActivate, ahk_group POEGameGroup
 				}
-			SendMSG(1)
+			; SendMSG(1)
 			Thread, NoTimers, False		;End Critical
 		return  
 		}
@@ -8787,7 +8910,7 @@ Return
 			GuiControl,, AlternateGemX, %AlternateGemX%
 			GuiControl,, AlternateGemY, %AlternateGemY%
 			
-			SendMSG(1,1)
+			; SendMSG(1,1)
 		return
 	}
 
@@ -11320,7 +11443,7 @@ Return
 			OHBUpdate:
 				If (A_GuiControl = "OHB_Test")
 				{
-					If WinExist(GameStr)
+					If GamePID
 					{
 						Gui, OHB: Submit
 						WinActivate, %GameStr%
@@ -11661,6 +11784,11 @@ Return
 			Rescale()
 		Return
 
+		UpdateStackRelease:
+			Gui, Submit, NoHide
+			IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini, StackRelease,% A_GuiControl
+		Return
+
 		UpdateStringEdit:
 			Gui, Submit, NoHide
 			IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini, FindText Strings,% A_GuiControl
@@ -11823,7 +11951,7 @@ Return
 			IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility9
 			IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10
 			
-			SendMSG(1, 0)
+			; SendMSG(1, 0)
 		Return
 
 		FlaskCheck:

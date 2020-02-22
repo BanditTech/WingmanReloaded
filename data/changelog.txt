@@ -1,3 +1,75 @@
+Master Patch Notes
+--------------------------------------------------------------------------------
+Version .10.01 February/21/2020
+--------------------------------------------------------------------------------
+Alpha Branch is being merged into Master
+
+Notable changes include:
+    Stack Release tool is a new function in Utility Tab
+    Improvements for the 43:18 aspect ratio
+    Adjustments to CPU load while idle
+    Rework to reduce checks for game window
+    Improvements for Trigger on Attack keys
+    Quicksilver script merged back into main script
+    Bugfixes
+
+Controller Support is currently inactive
+    I am working on a completely new remake of the controller system
+
+Alpha Patch Notes
+--------------------------------------------------------------------------------
+Version .10.0005 February/21/2020
+--------------------------------------------------------------------------------
+Added proper scaling to the Fill metamorph function for 43:18 resolution
+    Thanks to Hx2600 for starting a fork to add better support for that aspect
+
+Work has begun on developing a much nicer looking webpage for the script
+    I used a styling template I thought looks awesome from ChunJee's github page
+
+Version .10.0004 February/19/2020
+--------------------------------------------------------------------------------
+Removed the need for a seperate background script to do quicksilver and controller
+    This reduces the overall cpu draw of the script even further
+    the function of quicksilvers has been moved back into the main script
+    for now controller support is not active (the remaining code in GottaGoFast)
+        I have a working testbench for even better controller support coming soon
+    Quicksilver overlay migrated to main script
+
+Added a few bases to crafting, I want to make this editable from the GUI
+
+Commented out the lines that used to feed information about cooldowns to subscript
+
+Cleaned up code for mana triggers
+
+Rewrite of the Quicksilver trigger logic, it no longer hangs the script with keywait
+
+Adjustments to how it detects game window, more re-using the last checked var
+    every 5 seconds if it has not found the game exe, it will look for any others
+
+Version .10.0003 February/17/2020
+--------------------------------------------------------------------------------
+Reduced idle cpu usage when no game found
+
+Changed how most winexist or winactive look for the game using the GameStr var
+    this reduces cpu usage by only asking first for the last found exe
+
+Bugfix for auto check update always using 15 minutes (left old static variable)
+
+attack key triggered Flasks and utilities will now fire on the next cycle of game logic
+    this is to give the game time to process the initial attacks first
+
+Version .10.0002 February/17/2020
+--------------------------------------------------------------------------------
+Stack Release tool added to utility tab
+    Searches for a buff icon, then if found searches for the stack capture
+        if it finds both it releases the assigned keybind
+    You can adjust the offset it looks for the stack count
+        The area defaults to the bottom left to bottom right of the buff icon
+
+Version .10.0001 February/16/2020
+--------------------------------------------------------------------------------
+Cinematic(43:18) adjusted to move stash list position down
+
 --------------------------------------------------------------------------------
 Release Notes
 --------------------------------------------------------------------------------

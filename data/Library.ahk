@@ -1055,7 +1055,7 @@
     ShowToolTip()
     {
         global ft_ToolTip_Text
-        If (PauseTooltips || WinActive(GameStr))
+        If (PauseTooltips || GameActive)
             Return
         ListLines, Off
         static CurrControl, PrevControl, _TT
@@ -1397,7 +1397,7 @@
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CheckOHB()
     {
-        If WinExist(GameStr)
+        If GamePID
         {
             if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
                 Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
@@ -1528,7 +1528,7 @@
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	Rescale(){
         Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe
-        IfWinExist, ahk_group POEGameGroup 
+        If checkActiveType()
         {
 			If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
             {
@@ -1552,7 +1552,6 @@
                 GlobeImported := False
 
             WinGetPos, GameX, GameY, GameW, GameH
-            checkActiveType()
             If (ResolutionScale="Standard") {
                 ; Item Inventory Grid
                 Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
@@ -2003,6 +2002,9 @@
                 ;Status Check OnDiv
                 global vX_OnDiv:=GameX + Round(GameW / (3440 / 822))
                 global vY_OnDiv:=GameY + Round(GameH / ( 1440 / 181))
+                ;Status Check OnMetamporph
+                global vX_OnMetamorph:=GameX + Round(GameW / ( 3440 / 1480))
+                global vY_OnMetamorph:=GameY + Round(GameH / ( 1440 / 270))
                 ;Life %'s
                 global vX_Life:=GameX + Round(GameW / (3440 / 128))
                 global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
@@ -2043,7 +2045,7 @@
                 global vY_StashTabMenu := GameY + Round(GameH / ( 1440 / 195))
                 ;Stash tabs menu list
                 global vX_StashTabList := GameX + Round(GameW / (3440 / 1000))
-                global vY_StashTabList := GameY + Round(GameH / ( 1440 / 148))
+                global vY_StashTabList := GameY + Round(GameH / ( 1440 / 160))
                 ;calculate the height of each tab
                 global vY_StashTabSize := Round(GameH / ( 1440 / 29))
             }
@@ -3261,7 +3263,7 @@
                         CompareLocation(A_LoopField)
                 }
             }
-            If (DebugMessages && YesLocation && WinActive(GameStr))
+            If (DebugMessages && YesLocation && GameActive)
             {
                 Ding(2000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
                 Ding(2000,5,CurrentLocation)
@@ -3806,6 +3808,22 @@
         }
         Else
             Return False
+    }
+    ; StackRelease
+    StackRelease()
+    {
+        if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, StackRelease_BuffIcon,0))
+        {
+            If FindText(buff.1.1 + StackRelease_X1Offset,buff.1.2 + buff.1.4 + StackRelease_Y1Offset,buff.1.1 + buff.1.3 + StackRelease_X2Offset,buff.1.2 + buff.1.4 + StackRelease_Y2Offset, 0, 0, StackRelease_BuffCount,0)
+            {
+                If GetKeyState(StackRelease_Keybind,"P")
+                {
+                    Send {%StackRelease_Keybind% up}
+                    Sleep, 10
+                    Send {%StackRelease_Keybind% down}
+                }
+            }
+        }
     }
     ; Cooldown Timers
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -10707,22 +10725,26 @@
 
     ; checkActiveType - Check for active executable
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	checkActiveType() {
-			global Active_executable
-			Process, Exist, %Active_executable%
-			if !ErrorLevel
-			{
-				WinGet, id, list,ahk_group POEGameGroup,, Program Manager
-				Loop, %id%
-				{
-					this_id := id%A_Index%
-					WinGet, this_name, ProcessName, ahk_id %this_id%
-					Active_executable := this_name
-					found .= ", " . this_name
-				}
-			}
-		return
-		}
+	checkActiveType() 
+    {
+        global Active_executable, GameStr
+        Process, Exist, %Active_executable%
+        if !ErrorLevel
+        {
+            WinGet, id, list,ahk_group POEGameGroup,, Program Manager
+            Loop, %id%
+            {
+                this_id := id%A_Index%
+                WinGet, this_name, ProcessName, ahk_id %this_id%
+                Active_executable := this_name
+                GameStr := "ahk_exe " Active_executable
+                Return True
+            }
+            Return False
+        }
+        Else
+            Return True
+    }
 
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -10845,7 +10867,7 @@
             Gui, Rect%A_Index%: Color, Red
         }
         PauseTooltips := 1
-        If WinExist(GameStr)
+        If GamePID
             WinActivate, %GameStr%
         If PixelToo
             Ding(0,-11,"Click and hold left mouse to draw box`nUse arrow keys to move mouse,and mousewheel to zoom`nPress Ctrl to Clipboard the color and X,Y")
