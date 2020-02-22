@@ -1,5 +1,31 @@
+Master Patch Notes
+--------------------------------------------------------------------------------
+Version .10.01 February/21/2020
+--------------------------------------------------------------------------------
+Alpha Branch is being merged into Master
+
+Notable changes include:
+    Stack Release tool is a new function in Utility Tab
+    Improvements for the 43:18 aspect ratio
+    Adjustments to CPU load while idle
+    Rework to reduce checks for game window
+    Improvements for Trigger on Attack keys
+    Quicksilver script merged back into main script
+    Bugfixes
+
+Controller Support is currently inactive
+    I am working on a completely new remake of the controller system
+
 Alpha Patch Notes
 --------------------------------------------------------------------------------
+Version .10.0005 February/21/2020
+--------------------------------------------------------------------------------
+Added proper scaling to the Fill metamorph function for 43:18 resolution
+    Thanks to Hx2600 for starting a fork to add better support for that aspect
+
+Work has begun on developing a much nicer looking webpage for the script
+    I used a styling template I thought looks awesome from ChunJee's github page
+
 Version .10.0004 February/19/2020
 --------------------------------------------------------------------------------
 Removed the need for a seperate background script to do quicksilver and controller

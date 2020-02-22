@@ -84,7 +84,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
-		Global VersionNumber := .10.0004
+		Global VersionNumber := .10.01
 		Global WR_Statusbar := "WingmanReloaded Status"
 		Global WR_hStatusbar
 		Global Ninja := {}
@@ -2020,7 +2020,7 @@
 ; Timers for : game window open, Flask presses, Detonate mines, Auto Skill Up
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Check for window to be active
-	SetTimer, PoEWindowCheck, 100
+	SetTimer, PoEWindowCheck, 1000
 	; Check once an hour to see if we should updated database
 	SetTimer, DBUpdateCheck, 360000
 	; Check for Flask presses

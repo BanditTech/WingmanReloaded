@@ -2002,7 +2002,7 @@
                 ;Status Check OnDiv
                 global vX_OnDiv:=GameX + Round(GameW / (3440 / 822))
                 global vY_OnDiv:=GameY + Round(GameH / ( 1440 / 181))
-				;Status Check OnMetamporph
+                ;Status Check OnMetamporph
                 global vX_OnMetamorph:=GameX + Round(GameW / ( 3440 / 1480))
                 global vY_OnMetamorph:=GameY + Round(GameH / ( 1440 / 270))
                 ;Life %'s
