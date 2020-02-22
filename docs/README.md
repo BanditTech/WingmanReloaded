@@ -121,10 +121,10 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 ## Basic Setup
 
 >Setup sections:
+
 Interface with Game ||||
 -|-|-|-|-|-|-|-|-|
 [**In-Game Requirements**](?id=in-game-requirements) | [**Choose Aspect Ratio**](?id=choose-aspect-ratio) | [**Client.txt file location**](?id=client.txt-file-location) | [**Configure Hotkeys**](?id=configure-hotkeys) 
-
 
 Configure Script ||||
 -|-|-|-|-|-|-|-|-|
