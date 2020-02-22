@@ -1,6 +1,6 @@
 # WingmanReloaded
 
-![alt text](/images/logo.png "WingmanReloaded")
+![WingmanReloaded](/images/logo.png)
 
 This is the continuation of the PoE-Wingman script, my personally modified version released to the public. I have always found several game systems of Path of Exile to be rather tedious, and this is my attempt to relieve my stressed wrists and fingers. My main goal is to improve the enjoyment of my time playing the game, and it has definitely suceeded in that goal!
 
@@ -8,19 +8,19 @@ One great aspect of the script is how customizable it has become. There are opti
 
 As of now, the script is in active development, and setup is not as easy as the original. Find more information in the [**Installation Section**](?id=installation).
 
- 
+   
 
-## Origins of the script
+### Origins of the script
 
 This code is derived from [Andoesk's PoE-Wingman v1.1](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html), which was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/).
 
 Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. 
 
 
-## What is it?
+# What can it do?
 
 > This multi functional script can perform several actions based on states of the game:
-* Potions
+* Flasks
 * Abilities
 * Auto-Quit
 * Mines
@@ -37,13 +37,13 @@ Large portions of the code have been rewritten or refactored. There are countles
 * Chat Hotkeys
 * Auto-Fill Metamorph panel
 
- 
+   
 
 > **Some functions may not work if you are using a non 1080 height resolution monitor, then you will need to input your own captures to get them working.** I have made it so that anyone can add their own custom strings in to replace the default ones, so all hope is not lost if you really want to get those functions working. Find more information on the Strings tab docs, and I am always happy to add any submitted samples to the default dropdown lists.
 
- 
+   
 
-## Flasks
+## Auto-Flasks
 > The script can automatically cast Flasks based on several triggers: 
 * Life percentage
 * ES Percentage
@@ -58,7 +58,15 @@ Large portions of the code have been rewritten or refactored. There are countles
 * Quicksilver uses LButton as default trigger
 * Optionaly trigger with primary or secondary attack
 
- 
+   
+
+## Auto-Quit
+> Quit automatically when your health reaches a threshold. Select from 10 to 90% health to quit, so even lowlife characters are supported. The script allows for three quit methods:
+* D/C method is nearly instant and is default
+* Portal exit can be somewhat slow, but works great for leveling
+* /exit is an alternative to D/C which is slightly slower
+
+   
 
 ## Utility spells
 > Utilities allow for several triggers for abilities as well:
@@ -70,7 +78,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 * ES Percentage
 * Mana Percentage
 
- 
+   
 
 ## Inventory Management
 > One button can do so many things! The script detects which panels are active, so it knows what inventory routine to run when pressing the hotkey. 
@@ -82,25 +90,27 @@ Large portions of the code have been rewritten or refactored. There are countles
 * If Vendor Sell and Inventory is open, then it can sell items to vendor
 * If Divination and Inventory is open then it will trade full stacks of div cards in inventory
 
- 
+   
 
-## Release Key on Stack Count
+## Other Functions
+
+### Release Key on Stack Count
 > Stack Release tool for abilities like Blade Flurry
 
 Assign a buff icon to look for, and a capture of the stack count
 
 Then assign the key you want it to release when it detects full stacks!
 
- 
+   
 
-## Auto-Detonate Mines
+### Auto-Detonate Mines
 > Instantly detonate mines when cast, works for both normal and delve
 
 Detonate mines with adjustable delay for stacking up mines between detonates. 
 
 Also allows for pausing detonate so you can stack up for a boss by double tapping detonate key.
 
- 
+   
 
 # Installation
 
@@ -108,15 +118,9 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 >
 > I will try and explain each process with detail to provide a clearer instruction to follow.
 
- 
+## Basic Setup
 
-## Basic
-
-> Basic setup for the script has been altered. Please try to follow allong the different sections
-
- 
-
-### In-Game setup
+### In-Game Requirements
 
 > The script requires a few things set up In-Game to work.
 * Local chat MUST be enabled.
@@ -126,7 +130,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Enable the Overhead Health Bar in game, so the script knows when to pause.
 * Make sure the chat window text does not overlap inventory while stash is open
 
- 
+   
 
 ### Choose Aspect Ratio
 
@@ -137,7 +141,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
   * Also a submitted 43:18 aspect ( 21.5:9 )
 * UltraWide is 32:9
 
- 
+   
 
 ### Client.txt file location
 
@@ -145,7 +149,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Default location is configured as C:\ drive in a steam library
 * If not found you will see a warning message, Simply locate your file and your finished with this part
 
- 
+   
 
 ### Configure Hotkeys
 
@@ -168,7 +172,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * ID/Vend/Stash
 * Item Info
 
- 
+   
 
 ### Calibrate Gamestates
 
@@ -183,7 +187,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 > Once you have done your calibrations, click Show Gamestates button to confirm everything is working. When changing game panels the corresponding gamestate should light up. If everything has lit up green the script is ready to work.
 
- 
+   
 
 ### Adjust Globes
 
@@ -192,7 +196,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Change the "Base Color" to match against
 * Change the variance from the base color it will consider matching
 
- 
+   
 
 ### Assign Scroll Locations
 
@@ -201,7 +205,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Click Locate button for Portal then Wisdom scrolls
   * Press the Control button when you are directly in the center of each scroll.
 
- 
+   
 
 ### Assign Gem Locations
 
@@ -210,7 +214,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Click Locate button for Current and Alternate Gem
   * Press the Control button when you are directly in the center of each Gem.
 
- 
+   
 
 ### Assign Stash Tabs
 
@@ -226,38 +230,46 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
   * This makes the next hotkey open the dropdown list instead of using arrows
   * This is useful when you have moved the tab from the scripts "Current Tab"
 
- 
+   
 
 ## Flasks
 
 > The core of the script is the flask routine. You are given several options in how you would like each flask slot triggered. Depending on the Character Type you have selected, different options of the interface will become available. Life type will have only life triggers active, ES will have only ES triggers active, and Hybrid will have both. 
-* Flasks are arranged in collumns
+* The 5 Flasks are arranged in collumns
+* Assign the duration the flask lasts (Cooldown)
+* Assign key(s) to press when the flask slot triggers
 * Check options in the collumn to enable a trigger type
-  * 
-    Options are Durations, The In-Game Key (can assign ), 
-
- 
-
-> Lets go over some different types of flasks and how they can be used.
+  * Choose between Life/ES, Mana, Quicksilver, or Attack keys
 
 ### Life Flasks
 
-> To select a health threshold for these types of flasks, select one of the radiobutton in that flasks column
- 
+> These flasks are best used with a Life trigger. Select the row matching the percentage to trigger. For example, to trigger when below 90% select the radiobox at the top row.
+
+### Mana Flasks
+
+> These work best when assigned to the mana group. Select the threshold the mana will be considered triggered on the left. An alternative configuration is to use an attack key as the trigger. The Mana flask group will wait on cooldown together when any flask is active, and always cycles through each flask one at a time.
+
+### Buff Flasks
+
+> These work well when assigned with an attack key as trigger. Another option is using a health trigger, or saving these for Pop Flasks hotkey.
+
+### Quicksilver Flasks
+
+> Assign to the quicksilver group to use these when holding Left mouse button. These will always wait for the previous flask to finish before using the next. The Quicksilver flask group will wait on cooldown together when any flask is active, and always cycles through each flask one at a time.
+   
 
 ## Utility
 Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
 
 His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
 
- 
+   
 
-## Advanced
 Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
 
 His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
 
- 
+   
 
 ## CLF Examples
 
@@ -285,7 +297,7 @@ Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissent
 His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
 ```
 
- 
+   
 
 # Documentation
 
