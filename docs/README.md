@@ -20,7 +20,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 ## What can it do?
 
 > This multi functional script can perform several actions based on states of the game:
-* Potions
+* Flasks
 * Abilities
 * Auto-Quit
 * Mines
@@ -225,18 +225,27 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 ## Flasks
 
 > The core of the script is the flask routine. You are given several options in how you would like each flask slot triggered. Depending on the Character Type you have selected, different options of the interface will become available. Life type will have only life triggers active, ES will have only ES triggers active, and Hybrid will have both. 
-* Flasks are arranged in collumns
+* The 5 Flasks are arranged in collumns
+* Assign the duration the flask lasts (Cooldown)
+* Assign key(s) to press when the flask slot triggers
 * Check options in the collumn to enable a trigger type
-  * 
-    Options are Durations, The In-Game Key (can assign ), 
-
-   
-
-> Lets go over some different types of flasks and how they can be used.
+  * Choose between Life/ES, Mana, Quicksilver, or Attack keys
 
 ### Life Flasks
 
-> To select a health threshold for these types of flasks, select one of the radiobutton in that flasks column
+> These flasks are best used with a Life trigger. Select the row matching the percentage to trigger. For example, to trigger when below 90% select the radiobox at the top row.
+
+### Mana Flasks
+
+> These work best when assigned to the mana group. Select the threshold the mana will be considered triggered on the left. An alternative configuration is to use an attack key as the trigger. The Mana flask group will wait on cooldown together when any flask is active, and always cycles through each flask one at a time.
+
+### Buff Flasks
+
+> These work well when assigned with an attack key as trigger. Another option is using a health trigger, or saving these for Pop Flasks hotkey.
+
+### Quicksilver Flasks
+
+> Assign to the quicksilver group to use these when holding Left mouse button. These will always wait for the previous flask to finish before using the next. The Quicksilver flask group will wait on cooldown together when any flask is active, and always cycles through each flask one at a time.
    
 
 ## Utility
