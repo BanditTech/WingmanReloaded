@@ -126,15 +126,15 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 ## Basic Setup
 
->Setup sections:
-
-Interface with Game | | | |
--|-|-|-|
-[**In-Game Requirements**](?id=in-game-requirements) | [**Choose Aspect Ratio**](?id=choose-aspect-ratio) | [**Client.txt file location**](?id=client.txt-file-location) | [**Configure Hotkeys**](?id=configure-hotkeys)
-
-Configure Script | | | |
--|-|-|-|
-[**Calibrate Gamestates**](?id=calibrate-gamestates) | [**Adjust Globes**](?id=Adjust-globes) | Assign [**Scroll**](?id=assign-scroll-locations) / [**Gem**](?id=assign-gem-locations) Locations | [**Assign Stash Tabs**](?id=assign-stash-tabs)
+> Setup sections:
+>
+> Interface with Game | | | |
+> -|-|-|-|
+> [**In-Game Requirements**](?id=in-game-requirements) | [**Choose Aspect Ratio**](?id=choose-aspect-ratio) | [**Client.txt file location**](?id=client.txt-file-location) | [**Configure Hotkeys**](?id=configure-hotkeys)
+> 
+> Configure Script | | | |
+> -|-|-|-|
+> [**Calibrate Gamestates**](?id=calibrate-gamestates) | [**Adjust Globes**](?id=Adjust-globes) | Assign [**Scroll**](?id=assign-scroll-locations) / [**Gem**](?id=assign-gem-locations) Locations | [**Assign Stash Tabs**](?id=assign-stash-tabs)
 
 
 ### In-Game Requirements
