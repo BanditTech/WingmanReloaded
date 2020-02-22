@@ -47,7 +47,7 @@
     SetTitleMatchMode 2
     SetWorkingDir %A_ScriptDir%  
     Thread, interrupt, 0
-    I_Icon = %A_ScriptDir%\data\shield_charge_skill_icon.ico
+    I_Icon = %A_ScriptDir%\data\WR.ico
     IfExist, %I_Icon%
 	Menu, Tray, Icon, %I_Icon%
 
