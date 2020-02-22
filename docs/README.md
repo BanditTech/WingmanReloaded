@@ -8,7 +8,7 @@ One great aspect of the script is how customizable it has become. There are opti
 
 As of now, the script is in active development, and setup is not as easy as the original. Find more information in the [**Installation Section**](?id=installation).
 
- 
+   
 
 ## Origins of the script
 
@@ -37,11 +37,11 @@ Large portions of the code have been rewritten or refactored. There are countles
 * Chat Hotkeys
 * Auto-Fill Metamorph panel
 
- 
+   
 
 > **Some functions may not work if you are using a non 1080 height resolution monitor, then you will need to input your own captures to get them working.** I have made it so that anyone can add their own custom strings in to replace the default ones, so all hope is not lost if you really want to get those functions working. Find more information on the Strings tab docs, and I am always happy to add any submitted samples to the default dropdown lists.
 
- 
+   
 
 ### Flasks
 > The script can automatically cast Flasks based on several triggers: 
@@ -58,7 +58,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 * Quicksilver uses LButton as default trigger
 * Optionaly trigger with primary or secondary attack
 
- 
+   
 
 ### Utility spells
 > Utilities allow for several triggers for abilities as well:
@@ -70,7 +70,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 * ES Percentage
 * Mana Percentage
 
- 
+   
 
 ### Inventory Management
 > One button can do so many things! The script detects which panels are active, so it knows what inventory routine to run when pressing the hotkey. 
@@ -82,7 +82,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 * If Vendor Sell and Inventory is open, then it can sell items to vendor
 * If Divination and Inventory is open then it will trade full stacks of div cards in inventory
 
- 
+   
 
 ### Release Key on Stack Count
 > Stack Release tool for abilities like Blade Flurry
@@ -91,7 +91,7 @@ Assign a buff icon to look for, and a capture of the stack count
 
 Then assign the key you want it to release when it detects full stacks!
 
- 
+   
 
 ### Auto-Detonate Mines
 > Instantly detonate mines when cast, works for both normal and delve
@@ -100,7 +100,7 @@ Detonate mines with adjustable delay for stacking up mines between detonates.
 
 Also allows for pausing detonate so you can stack up for a boss by double tapping detonate key.
 
- 
+   
 
 # Installation
 
@@ -108,6 +108,9 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 >
 > I will try and explain each process with detail to provide a clearer instruction to follow.
 
+## Basic Setup
+
+### In-Game Requirements
 
 > The script requires a few things set up In-Game to work.
 * Local chat MUST be enabled.
@@ -117,7 +120,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Enable the Overhead Health Bar in game, so the script knows when to pause.
 * Make sure the chat window text does not overlap inventory while stash is open
 
- 
+   
 
 ### Choose Aspect Ratio
 
@@ -128,7 +131,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
   * Also a submitted 43:18 aspect ( 21.5:9 )
 * UltraWide is 32:9
 
- 
+   
 
 ### Client.txt file location
 
@@ -136,7 +139,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Default location is configured as C:\ drive in a steam library
 * If not found you will see a warning message, Simply locate your file and your finished with this part
 
- 
+   
 
 ### Configure Hotkeys
 
@@ -159,7 +162,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * ID/Vend/Stash
 * Item Info
 
- 
+   
 
 ### Calibrate Gamestates
 
@@ -174,7 +177,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 > Once you have done your calibrations, click Show Gamestates button to confirm everything is working. When changing game panels the corresponding gamestate should light up. If everything has lit up green the script is ready to work.
 
- 
+   
 
 ### Adjust Globes
 
@@ -183,7 +186,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Change the "Base Color" to match against
 * Change the variance from the base color it will consider matching
 
- 
+   
 
 ### Assign Scroll Locations
 
@@ -192,7 +195,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Click Locate button for Portal then Wisdom scrolls
   * Press the Control button when you are directly in the center of each scroll.
 
- 
+   
 
 ### Assign Gem Locations
 
@@ -201,7 +204,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * Click Locate button for Current and Alternate Gem
   * Press the Control button when you are directly in the center of each Gem.
 
- 
+   
 
 ### Assign Stash Tabs
 
@@ -217,7 +220,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
   * This makes the next hotkey open the dropdown list instead of using arrows
   * This is useful when you have moved the tab from the scripts "Current Tab"
 
- 
+   
 
 ## Flasks
 
@@ -227,27 +230,27 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
   * 
     Options are Durations, The In-Game Key (can assign ), 
 
- 
+   
 
 > Lets go over some different types of flasks and how they can be used.
 
 ### Life Flasks
 
 > To select a health threshold for these types of flasks, select one of the radiobutton in that flasks column
- 
+   
 
 ## Utility
 Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
 
 His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
 
- 
+   
 
 Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
 
 His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
 
- 
+   
 
 ## CLF Examples
 
@@ -275,7 +278,7 @@ Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissent
 His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
 ```
 
- 
+   
 
 # Documentation
 
