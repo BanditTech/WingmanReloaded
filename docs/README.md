@@ -8,14 +8,17 @@ One great aspect of the script is how customizable it has become. There are opti
 
 As of now, the script is in active development, and setup is not as easy as the original. Find more information in the [**Installation Section**](?id=installation).
 
-   
-
 ### Origins of the script
 
 This code is derived from [Andoesk's PoE-Wingman v1.1](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html), which was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/).
 
 Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. 
 
+### Documentation
+
+See [**GUI Documentation**](/doc_documentation) for details about each of the GUI panels and their settings.
+
+See [**Script Functions**](/doc_functions) for developer information regarding script functions.
 
 # What can it do?
 
@@ -87,6 +90,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 * If Inventory alone is open, it can go through your items and identify any needed.
 * If Stash and Inventory is open, then it can send items to assigned stash tabs
   * Supports Custom Loot Filter, currency, crafting, special item types, gems, maps, uniques + rings, and much more
+  * It can be configured to automatically walk to vendor and sell left over items after stashing
 * If Vendor Sell and Inventory is open, then it can sell items to vendor
 * If Divination and Inventory is open then it will trade full stacks of div cards in inventory
 
@@ -101,14 +105,16 @@ Assign a buff icon to look for, and a capture of the stack count
 
 Then assign the key you want it to release when it detects full stacks!
 
+When configured correctly, it will provide maximum stack release the moment it reaches it.
+
    
 
 ### Auto-Detonate Mines
 > Instantly detonate mines when cast, works for both normal and delve
 
-Detonate mines with adjustable delay for stacking up mines between detonates. 
+Detonate mines with adjustable delay for stacking up mines between detonates. This detects when you have the Detonate Mines ability active on your in-game GUI. When found, it will press D.
 
-Also allows for pausing detonate so you can stack up for a boss by double tapping detonate key.
+Also allows for pausing detonate so you can stack up for a boss by double tapping detonate key (D).
 
    
 
@@ -128,7 +134,7 @@ Interface with Game | | | |
 
 Configure Script | | | |
 -|-|-|-|
-[**Calibrate Gamestates**](?id=calibrate-gamestates) | [**Adjust Globes**](?id=Adjust-globes) | Assign [**Scroll**](?id=assign-scroll-locations) / [**Gem**](?id=assign-gem-locations) Locations | [**Assign Stash Tabs**](?id=in-game-requirements)
+[**Calibrate Gamestates**](?id=calibrate-gamestates) | [**Adjust Globes**](?id=Adjust-globes) | Assign [**Scroll**](?id=assign-scroll-locations) / [**Gem**](?id=assign-gem-locations) Locations | [**Assign Stash Tabs**](?id=assign-stash-tabs)
 
 
 ### In-Game Requirements
@@ -246,7 +252,8 @@ Configure Script | | | |
 ## Flasks
 
 > The core of the script is the flask routine. You are given several options in how you would like each flask slot triggered. Depending on the Character Type you have selected, different options of the interface will become available. Life type will have only life triggers active, ES will have only ES triggers active, and Hybrid will have both. 
-* The 5 Flasks are arranged in collumns
+* The 5 Flasks are arranged in collumns 
+  * Flask slot 1 is on the left and slot 5 on the right
 * Assign the duration the flask lasts (Cooldown)
 * Assign key(s) to press when the flask slot triggers
 * Check options in the collumn to enable a trigger type
@@ -262,7 +269,7 @@ Configure Script | | | |
 
 ### Buff Flasks
 
-> These work well when assigned with an attack key as trigger. Another option is using a health trigger, or saving these for Pop Flasks hotkey.
+> These work well when assigned with an attack key as trigger. Another option is using a health trigger, or saving these for the Pop Flasks hotkey.
 
 ### Quicksilver Flasks
 
@@ -270,48 +277,61 @@ Configure Script | | | |
    
 
 ## Utility
-Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
 
-His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
+> This tab of the GUI allows for very flexible configurations of any ability or flask slot. It provides the triggers available to flasks as well as allowing the slot to be cast on cooldown, or associate with a buff icon.
 
-   
+* This section is instead arranged in Rows, so each utility slot goes from left to right.
+  * Utility slot 1 at the top and slot 10 at the bottom
+* Start by assigning a CD (in Milliseconds) and Key
+  * These allow for pressing several keys when triggered
+  * put the initial key first then space then the rest of the keys
+    * to trigger 1 then 3rt we can put "1 3rt" or "1 3 r t"
+* Check options in the row to enable a trigger type
+  * Assign a buff icon to trigger when showing or not showing
+  * Trigger alongside the Quicksilver flask group
+  * Trigger with attack keys
+  * Trigger with Life, ES, or Mana percantage
 
-Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
-
-His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
-
-   
+> The utility section is tied to the Auto-Flasks toggle. If the flask routine is ON then utilities will also fire.
 
 ## CLF Examples
 
-> In the following example
+> Import these examples to the CLF to use or edit them for yourself. I would suggest using the Item Info hotkey to learn which stats to look for. The filters will always return the first result, so order can be important. (Currently requires manually re-ordering in the file, not recommended)
 
-```
-Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
+> In the following example we filter any items with PoE.Ninja price above 4 chaos to stash tab excluding currency
 
-His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
-```
-
-> In the next example, 
-
-```
-Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
-
-His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
+```JSON
+{"Affix":{},"Prop":{"Prop1":"ChaosValue","Prop1Eval":">=","Prop1Min":"4","Prop2":"RarityCurrency","Prop2Eval":"!=","Prop2Min":"1"},"Stats":{}}
 ```
 
-> For the last example, 
+> In the next example, we filter non-unique one hand or claw weapons, with potential q20 dps above 300
 
+```JSON
+{"Affix":{},"Prop":{"Prop1":"RarityUnique","Prop1Eval":"!=","Prop1Min":"1","Prop2":"ItemClass","Prop2Eval":"~","Prop2Min":"One Hand | Claw"},"Stats":{"Stats2":"Dps_Q20","Stats2Eval":">","Stats2Min":"300"}}
 ```
-Lorem ipsum dolor sit amet, ex vix autem movet dictas. Lobortis mandamus dissentias sed et. Pro ut odio quodsi, at vim meis singulis voluptatibus. Cu ius nostrum electram delicatissimi. Veritus vocibus quo no. Audire nostrud praesent cu qui. Tation saperet principes vix cu, sumo praesent moderatius at eos, cum epicuri scaevola an.
 
-His alii modo assum cu. Vis an partem doming vivendo, id sit sanctus invidunt recteque. Vel no inani interesset, ad qui deleniti cotidieque. Nam id graece possit, adhuc percipit id mel.
+> In the next example, we filter by both ItemBase and ItemClass, and then a required affix
+
+```JSON
+{"Affix":{"Affix1":"ChaosDOTMult","Affix1Eval":">","Affix1Min":"10"},"Prop":{"Prop1":"ItemBase","Prop1Eval":"~","Prop1Min":"fingerless","Prop2":"ItemClass","Prop2Eval":"~","Prop2Min":"glove"},"Stats":{}}
+```
+
+> In the next example, we filter for high Energy shield boots with movement speed
+
+```JSON
+{"Affix":{"Affix1":"IncreasedMovementSpeed","Affix1Eval":">","Affix1Min":"24"},"Prop":{},"Stats":{"Stats1":"RatingEnergyShield","Stats1Eval":">","Stats1Min":"145"}}
+```
+
+> In the next example, we filter for life amulets and rings
+
+```JSON
+{"Affix":{"Affix1":"MaximumLife","Affix1Eval":">","Affix1Min":"85"},"Prop":{"Prop1":"ItemClass","Prop1Eval":"~","Prop1Min":"amulet | ring"},"Stats":{}}
+```
+
+> For the last example, we filter non-quality Vaal Gems to their own tab
+
+```JSON
+{"Affix":{},"Prop":{"Prop1":"VaalGem","Prop1Eval":">","Prop1Min":0},"Stats":{"Stats1":"Quality","Stats1Eval":"<","Stats1Min":"1"}}
 ```
 
    
-
-# Documentation
-
-See [**Documentation**](/doc_documentation) for details about each of the settings panels.
-
-See [**PLACEHOLDER**](/doc_functions) PLACEHOLDER.
