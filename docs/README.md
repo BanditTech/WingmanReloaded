@@ -17,7 +17,7 @@ This code is derived from [Andoesk's PoE-Wingman v1.1](https://www.ownedcore.com
 Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. 
 
 
-## What is it?
+## What can it do?
 
 > This multi functional script can perform several actions based on states of the game:
 * Potions
@@ -43,7 +43,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 
  
 
-## Flasks
+### Flasks
 > The script can automatically cast Flasks based on several triggers: 
 * Life percentage
 * ES Percentage
@@ -60,7 +60,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 
  
 
-## Utility spells
+### Utility spells
 > Utilities allow for several triggers for abilities as well:
 * On Cooldown
 * Buff Icon showing/not
@@ -72,7 +72,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 
  
 
-## Inventory Management
+### Inventory Management
 > One button can do so many things! The script detects which panels are active, so it knows what inventory routine to run when pressing the hotkey. 
 * It can be pressed while you are elsewhere and no panels are open, then it will quickly open the inventory.
 * If in a location with a stash, it can optionally search for a stash to open if no panels are open.
@@ -84,7 +84,7 @@ Large portions of the code have been rewritten or refactored. There are countles
 
  
 
-## Release Key on Stack Count
+### Release Key on Stack Count
 > Stack Release tool for abilities like Blade Flurry
 
 Assign a buff icon to look for, and a capture of the stack count
@@ -93,7 +93,7 @@ Then assign the key you want it to release when it detects full stacks!
 
  
 
-## Auto-Detonate Mines
+### Auto-Detonate Mines
 > Instantly detonate mines when cast, works for both normal and delve
 
 Detonate mines with adjustable delay for stacking up mines between detonates. 
