@@ -117,7 +117,7 @@ Then assign the key you want it to release when it detects full stacks!
 
 When configured correctly, it will provide maximum stack release the moment it reaches it.
 
-   
+![WingmanReloaded](/images/stack-release.gif)
 
 ### Auto-Detonate Mines
 > Instantly detonate mines when cast, works for both normal and delve
