@@ -1,4 +1,4 @@
-# ![WingmanReloaded](/images/logo.png)
+# ![WingmanReloaded](/images/logo.png "WingmanReloaded")
  ![GitHub release (latest by date)](https://img.shields.io/github/v/release/BanditTech/WingmanReloaded?label=Latest%20Base%20Version&style=for-the-badge) ![GitHub commits since latest release (branch)](https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/master?style=for-the-badge)
 
 
