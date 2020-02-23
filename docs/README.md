@@ -7,14 +7,23 @@
 <a href="https://github.com/BanditTech/WingmanReloaded/releases/latest" alt="Latest Base Version">
   <img src="https://img.shields.io/github/v/release/BanditTech/WingmanReloaded?label=Latest%20Base%20Version&style=for-the-badge" /></a>
 <a href="https://github.com/BanditTech/WingmanReloaded/pulse" alt="Commit activity">
-  <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/master?label=Master%20Commits%20Since%20Release&style=for-the-badge" /></a>
+  <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest?style=for-the-badge" /></a>
+<a href="https://github.com/BanditTech/WingmanReloaded/releases" alt="Total Downloads">
+  <img src="https://img.shields.io/github/downloads/BanditTech/WingmanReloaded/total?label=Total%20Downloads&style=for-the-badge" /></a>
+</p>
+
+<p align="center">
+<a href="https://github.com/BanditTech/WingmanReloaded/commits/master" alt="Master Commits">
+  <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/master?label=Master%20Commits%20This%20Release&style=for-the-badge" /></a>
 <a href="https://github.com/BanditTech/WingmanReloaded/commits/master" alt="Latest Master Commit">
   <img src="https://img.shields.io/github/last-commit/BanditTech/WingmanReloaded/master?label=Last%20Master%20Commit&style=for-the-badge" /></a>
-<a href="https://github.com/BanditTech/WingmanReloaded/commits/Alpha" alt="Latest Master Commit">
+<a href="https://github.com/BanditTech/WingmanReloaded/commits/Alpha" alt="Alpha Commits">
+  <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/Alpha?label=Alpha%20Commits%20This%20Release&style=for-the-badge" /></a>
+<a href="https://github.com/BanditTech/WingmanReloaded/commits/Alpha" alt="Latest Alpha Commit">
   <img src="https://img.shields.io/github/last-commit/BanditTech/WingmanReloaded/Alpha?label=Last%20Alpha%20Commit&style=for-the-badge" /></a>
 </p>
 
-This is the continuation of the PoE-Wingman script, my personally modified version released to the public. I have always found several game systems of Path of Exile to be rather tedious, and this is my attempt to relieve my stressed wrists and fingers. My main goal is to improve the enjoyment of my time playing the game, and it has definitely suceeded in that goal!
+This is the continuation of the PoE-Wingman script, my personally modified version released to the public. I have always found several game systems of most ARPG to be rather tedious, and this is my attempt to relieve my stressed wrists and fingers. My main goal is to improve the enjoyment of my time playing Path of Exile, and it has definitely suceeded in that goal!
 
 One great aspect of the script is how customizable it has become. There are options for nearly every type of playstyle, including support for Eldridch Battery and Mines. And this does much, much more than simply use your flasks. It is an entire suite of tools designed to make playing Path of Exile more enjoyable by reducing the amount of clicking required to do simple repetitious tasks. The best part is that you can customize nearly all the options of the script, including the samples, so you can get it working for your situation.
 
@@ -24,7 +33,9 @@ As of now, the script is in active development, and setup is not as easy as the 
 
 This code is derived from [**Andoesk's PoE-Wingman v1.1**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html), which was originally derived from [**Nidark's PoE-Companion**](https://github.com/nidark/Poe-Companion) and inspired by [**Gurud's Beta-Autopot**](https://github.com/badplayerr/beta-autopot/releases/).
 
-Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. Major improvements include the ability for the script to properly detect health while in delve darkness, and all inventory management and item parsing                                                                           functions.
+Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. Major improvements include the ability for the script to properly detect health while in delve darkness, and all inventory management and item parsing functions.
+
+
 
 ### Documentation
 
@@ -153,7 +164,9 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 > This script is more complex to set up than the original. Try to follow along with the different portions of the setup process to ensure you have done it correctly. Use the readout in the statusbar of the scripts GUI to see whats going on with the script. Enable debug messages with Logic or Location to see the information as a tooltip in the top left corner.
 
-> This script is written in [**AutoHotKey**](https://www.autohotkey.com/), and will require the [**latest version of AHK**](https://www.autohotkey.com/download/ahk-install.exe) installed to use the script.
+> This script is written in [**AutoHotKey**](https://www.autohotkey.com/), and will require the [**latest version of AHK**](https://www.autohotkey.com/download/ahk-install.exe) installed to use the script. Because it is written in AutoHotKey it is also portable, so it can be run from mostly any folder. 
+
+> It is highly recommended from a safety standpoint that you follow the instructions [**here for basic info**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/676345-run-poe-limited-user.html) and [**here for steam install**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/676345-run-poe-limited-user-13.html#post4065928) to set up the game to run as a limited user, then block the limited user from acessing the folder this script is located in.
 
 ## Basic Setup
 
