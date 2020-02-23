@@ -7,7 +7,7 @@
 <a href="https://github.com/BanditTech/WingmanReloaded/releases/latest" alt="Latest Base Version">
   <img src="https://img.shields.io/github/v/release/BanditTech/WingmanReloaded?label=Latest%20Base%20Version&style=for-the-badge" /></a>
 <a href="https://github.com/BanditTech/WingmanReloaded/pulse" alt="Commit activity">
-  <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest?style=for-the-badge" /></a>
+  <img src="https://img.shields.io/github/last-commit/BanditTech/WingmanReloaded?style=for-the-badge" /></a>
 <a href="https://github.com/BanditTech/WingmanReloaded/releases" alt="Total Downloads">
   <img src="https://img.shields.io/github/downloads/BanditTech/WingmanReloaded/total?label=Total%20Downloads&style=for-the-badge" /></a>
 <a href="https://github.com/BanditTech/WingmanReloaded/releases/latest" alt="Latest Downloads">
