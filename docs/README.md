@@ -94,6 +94,14 @@ See [**Script Functions**](/doc_functions) for developer information regarding s
 * If Vendor Sell and Inventory is open, then it can sell items to vendor
 * If Divination and Inventory is open then it will trade full stacks of div cards in inventory
 
+> The stash function can happen in two ways. The default way is sorting items into groups first, based on the tab the item will end up. This speeds up the time it takes to manage a full inventory of various items.
+
+![WingmanReloaded](/images/item-management.gif)
+
+> When the option to sort into groups is disabled, it stashes each item as it is scanned. It is much slower, as you can see it does not deal with a varied inventory in the same amount of time. This option is best used with only essential tabs like currency and the dump tab enabled. This reduces the need to switch stash tabs.
+
+![WingmanReloaded](/images/item-management-nogrouping.gif)
+
 ## Loot Vacuum
 
 > This function will click on loot near your mouse cursor. Hold down the ingame item pickup key, and it will begin to search for loot and openables.
