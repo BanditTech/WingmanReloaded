@@ -10,6 +10,8 @@
   <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest?style=for-the-badge" /></a>
 <a href="https://github.com/BanditTech/WingmanReloaded/releases" alt="Total Downloads">
   <img src="https://img.shields.io/github/downloads/BanditTech/WingmanReloaded/total?label=Total%20Downloads&style=for-the-badge" /></a>
+<a href="https://github.com/BanditTech/WingmanReloaded/releases/latest" alt="Latest Downloads">
+  <img src="https://img.shields.io/github/downloads/BanditTech/WingmanReloaded/latest/total?style=for-the-badge" /></a>
 </p>
 
 <p align="center">
@@ -29,15 +31,14 @@ One great aspect of the script is how customizable it has become. There are opti
 
 As of now, the script is in active development, and setup is not as easy as the original. Find more information in the [**Installation Section**](?id=installation).
 
-### Origins of the script
+## Origins of the script
 
 This code is derived from [**Andoesk's PoE-Wingman v1.1**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html), which was originally derived from [**Nidark's PoE-Companion**](https://github.com/nidark/Poe-Companion) and inspired by [**Gurud's Beta-Autopot**](https://github.com/badplayerr/beta-autopot/releases/).
 
-Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. Major improvements include the ability for the script to properly detect health while in delve darkness, and all inventory management and item parsing functions.
+Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. Major improvements include the ability for the script to properly detect health while in delve darkness, and all inventory management and item parsing functions. Other improvements include reducing the reaction speed of the script from well over 300ms to 30-40ms, which means near instant disconnect from burst damage.
 
 
-
-### Documentation
+## Documentation
 
 See [**GUI Documentation**](/doc_documentation) for details about each of the GUI panels and their settings.
 
