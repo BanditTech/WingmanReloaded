@@ -10,9 +10,9 @@ As of now, the script is in active development, and setup is not as easy as the 
 
 ### Origins of the script
 
-This code is derived from [Andoesk's PoE-Wingman v1.1](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html), which was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/).
+This code is derived from [**Andoesk's PoE-Wingman v1.1**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/783680-poe-wingman-auto-flask-auto-quit-more-ahk-pixel.html), which was originally derived from [**Nidark's PoE-Companion**](https://github.com/nidark/Poe-Companion) and inspired by [**Gurud's Beta-Autopot**](https://github.com/badplayerr/beta-autopot/releases/).
 
-Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. 
+Large portions of the code have been rewritten or refactored. There are countless new functions added, and many more adjustable options. Major improvements include the ability for the script to properly detect health while in delve darkness, and all inventory management and item parsing                                                                           functions.
 
 ### Documentation
 
@@ -23,22 +23,22 @@ See [**Script Functions**](/doc_functions) for developer information regarding s
 # What can it do?
 
 > This multi functional script can perform several actions based on states of the game:
-* Flasks
-* Abilities
-* Auto-Quit
-* Mines
-* Loot Vacuum
-* Custom Loot Filter
+* Auto-Flasks with custom triggers or hotkey to use all at once
+* Abilities fired on cooldown or with triggers
+* Auto-Quit on health threshold
+* Auto-Detonate Mines
+* Loot Vacuum for picking up items
 * Manage Inventory (ID,Vendor,Stash,Divination)
-* Automate going from Stash to vendor
-* Skill-up Gems
-* Cast Portal-Scroll
-* Swap Gems
-* Price information
-* Pixel Information
-* Game Controller support
-* Chat Hotkeys
-* Auto-Fill Metamorph panel
+* Custom Loot Filter for sorting items to stash tabs
+* Automate going to stash, and then from Stash to vendor
+* Skill-up Gems when they level
+* Cast Portal-Scroll from inventory
+* Swap Gems between two positions
+* Price information for Currency, Uniques, Maps, Rare Items, and More!
+* Pixel Information and Zoom tool with Coord hotkey
+* Game Controller support to remote stream the game
+* Chat Hotkeys for responding to whispers or sending chat commands
+* Auto-Fill Metamorph panel when opened in field
 
    
 
@@ -94,7 +94,17 @@ See [**Script Functions**](/doc_functions) for developer information regarding s
 * If Vendor Sell and Inventory is open, then it can sell items to vendor
 * If Divination and Inventory is open then it will trade full stacks of div cards in inventory
 
-   
+## Loot Vacuum
+
+> This function will click on loot near your mouse cursor. Hold down the ingame item pickup key, and it will begin to search for loot and openables.
+* Customize the colors of your loot background you want to pick up
+* Change the area it will search
+* Change the delay after each click
+* Optionally open containers and openables
+  * There are findtext strings for both normal and delve
+
+![WingmanReloaded](/images/loot-vacuum.gif)
+
 
 ## Other Functions
 
@@ -116,13 +126,14 @@ Detonate mines with adjustable delay for stacking up mines between detonates. Th
 
 Also allows for pausing detonate so you can stack up for a boss by double tapping detonate key (D).
 
+### Loot Vacuum
    
 
 # Installation
 
 > This script is more complex to set up than the original. Try to follow along with the different portions of the setup process to ensure you have done it correctly. Use the readout in the statusbar of the scripts GUI to see whats going on with the script. Enable debug messages with Logic or Location to see the information as a tooltip in the top left corner.
 
-> This script is written in [AutoHotKey](https://www.autohotkey.com/), and will require the [latest version of AHK](https://www.autohotkey.com/download/ahk-install.exe) installed to use the script.
+> This script is written in [**AutoHotKey**](https://www.autohotkey.com/), and will require the [**latest version of AHK**](https://www.autohotkey.com/download/ahk-install.exe) installed to use the script.
 
 ## Basic Setup
 
@@ -151,7 +162,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 ### Choose Aspect Ratio
 
-> Determine the aspect ratio of your game resolution. Use [Aspect Ratio Calulator](https://andrew.hedges.name/experiments/aspect_ratio/) to determine which aspect ratio to choose.
+> Determine the aspect ratio of your game resolution. Use [**Aspect Ratio Calulator**](https://andrew.hedges.name/experiments/aspect_ratio/) to determine which aspect ratio to choose.
 * Standard is 16:9 aspect ratio, and is default
 * Classic is 4:3 ( 12:9 )
 * Cinematic is 21:9
