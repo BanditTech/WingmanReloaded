@@ -1,20 +1,17 @@
 # WingmanReloaded
-
 <p align="center">
-
-![WingmanReloaded](/images/logo.png "WingmanReloaded")
-
+  <img width="100%" src="https://bandittech.github.io/WingmanReloaded/images/logo.png">
 </p>
 
 <p align="center">
 <a href="https://github.com/BanditTech/WingmanReloaded/releases/latest" alt="Latest Base Version">
   <img src="https://img.shields.io/github/v/release/BanditTech/WingmanReloaded?label=Latest%20Base%20Version&style=for-the-badge" /></a>
 <a href="https://github.com/BanditTech/WingmanReloaded/pulse" alt="Commit activity">
-  <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/master?style=for-the-badge" /></a>
-<a href="https://github.com/BanditTech/WingmanReloaded/commits/master" alt="Latest Base Version">
+  <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/master?label=Master%20Commits%20Since%20Release&style=for-the-badge" /></a>
+<a href="https://github.com/BanditTech/WingmanReloaded/commits/master" alt="Latest Master Commit">
   <img src="https://img.shields.io/github/last-commit/BanditTech/WingmanReloaded/master?label=Last%20Master%20Commit&style=for-the-badge" /></a>
-<a href="https://github.com/BanditTech/WingmanReloaded/pulse" alt="Commit activity">
-  <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/master?style=for-the-badge" /></a>
+<a href="https://github.com/BanditTech/WingmanReloaded/commits/Alpha" alt="Latest Master Commit">
+  <img src="https://img.shields.io/github/last-commit/BanditTech/WingmanReloaded/Alpha?label=Last%20Alpha%20Commit&style=for-the-badge" /></a>
 </p>
 
 This is the continuation of the PoE-Wingman script, my personally modified version released to the public. I have always found several game systems of Path of Exile to be rather tedious, and this is my attempt to relieve my stressed wrists and fingers. My main goal is to improve the enjoyment of my time playing the game, and it has definitely suceeded in that goal!
