@@ -1,6 +1,7 @@
-# WingmanReloaded
+# ![WingmanReloaded](/images/logo.png)
+ ![GitHub release (latest by date)](https://img.shields.io/github/v/release/BanditTech/WingmanReloaded?label=Latest%20Base%20Version&style=for-the-badge) ![GitHub commits since latest release (branch)](https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/master?style=for-the-badge)
 
-![WingmanReloaded](/images/logo.png)
+
 
 This is the continuation of the PoE-Wingman script, my personally modified version released to the public. I have always found several game systems of Path of Exile to be rather tedious, and this is my attempt to relieve my stressed wrists and fingers. My main goal is to improve the enjoyment of my time playing the game, and it has definitely suceeded in that goal!
 
@@ -81,7 +82,7 @@ See [**Script Functions**](/doc_functions) for developer information regarding s
 * ES Percentage
 * Mana Percentage
 
-   
+> These utilities can trigger keys for abilities or as more advanced flask setup. They support multiple keys in the same ways the flask slots do, so one utility can trigger multiple keys like 1234 with "1 234".
 
 ## Inventory Management
 > One button can do so many things! The script detects which panels are active, so it knows what inventory routine to run when pressing the hotkey. 
@@ -182,8 +183,10 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 ### Client.txt file location
 
 > You must locate the Client.txt file that will be used for the script
-* Default location is configured as C:\ drive in a steam library
-* If not found you will see a warning message, Simply locate your file and your finished with this part
+* This file is required in order to determine the current location
+* Default file location is configured as C:\ drive in a steam library
+* If not found you will see a warning message, Simply locate your file in your PoE install folder
+* Double check that you have local chat enabled In-Game, and it should now update when you zone change
 
    
 
@@ -197,10 +200,10 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 > Optional hotkeys enable or disable script functions: (To disable leave blank)
 * Open the Main Menu (defaults to Alt-F10 if blank)
-* Auto-Flask
-* Auto-Quit
+* Auto-Flask toggle
+* Auto-Quit toggle
 * Logout
-* Auto-Quicksilver
+* Auto-Quicksilver toggle
 * Coord/Pixel
 * Quick-Portal
 * Gem-Swap
@@ -208,7 +211,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 * ID/Vend/Stash
 * Item Info
 
-   
+> Find more information about these hotkey functions in the [**GUI Documentation**](/doc_documentation)
 
 ### Calibrate Gamestates
 
