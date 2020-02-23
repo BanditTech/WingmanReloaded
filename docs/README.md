@@ -1,7 +1,9 @@
 # WingmanReloaded
 
 <p align="center">
-  <img width="100" src="/images/logo.png">
+
+![WingmanReloaded](/images/logo.png "WingmanReloaded")
+
 </p>
 
 <p align="center">
