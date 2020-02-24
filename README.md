@@ -47,8 +47,9 @@ See [**Script Functions**](/doc_functions) for developer information regarding s
 # What can it do?
 
 > This multi functional script can perform several actions based on states of the game:
-* Auto-Flasks with custom triggers or hotkey to use all at once
-* Abilities fired on cooldown or with triggers
+* Auto-Flasks with custom triggers
+* Customizable pop flasks hotkey to use some or all flasks at once
+* Abilities fired on cooldown or with custom triggers
 * Auto-Quit on health threshold
 * Auto-Detonate Mines
 * Loot Vacuum for picking up items
@@ -158,8 +159,6 @@ Detonate mines with adjustable delay for stacking up mines between detonates. Th
 
 Also allows for pausing detonate so you can stack up for a boss by double tapping detonate key (D).
 
-### Loot Vacuum
-   
 
 # Installation
 
