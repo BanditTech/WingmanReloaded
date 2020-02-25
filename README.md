@@ -17,11 +17,11 @@
 <p align="center">
 <a href="https://github.com/BanditTech/WingmanReloaded/commits/master" alt="Master Commits">
   <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/master?label=Master%20Commits%20This%20Release&style=for-the-badge" /></a>
-<a href="https://github.com/BanditTech/WingmanReloaded/commits/master" alt="Latest Master Commit">
+<a href="https://github.com/BanditTech/WingmanReloaded/network" alt="Latest Master Commit">
   <img src="https://img.shields.io/github/last-commit/BanditTech/WingmanReloaded/master?label=Last%20Master%20Commit&style=for-the-badge" /></a>
 <a href="https://github.com/BanditTech/WingmanReloaded/commits/Alpha" alt="Alpha Commits">
   <img src="https://img.shields.io/github/commits-since/BanditTech/WingmanReloaded/latest/Alpha?label=Alpha%20Commits%20This%20Release&style=for-the-badge" /></a>
-<a href="https://github.com/BanditTech/WingmanReloaded/commits/Alpha" alt="Latest Alpha Commit">
+<a href="https://github.com/BanditTech/WingmanReloaded/network" alt="Latest Alpha Commit">
   <img src="https://img.shields.io/github/last-commit/BanditTech/WingmanReloaded/Alpha?label=Last%20Alpha%20Commit&style=for-the-badge" /></a>
 </p>
 
@@ -43,6 +43,20 @@ Large portions of the code have been rewritten or refactored. There are countles
 See [**GUI Documentation**](/doc_documentation) for details about each of the GUI panels and their settings.
 
 See [**Script Functions**](/doc_functions) for developer information regarding script functions.
+
+
+## Links
+
+You can always find the [**Latest Base Release**](https://github.com/BanditTech/WingmanReloaded/releases/latest) on the GitHub project page. The script will update to the most current version on first start. You are given the option to remain at the base version by turning off auto-updates. Sometimes there may be several files listed in the download section of the Release. The files will always be marked with the version number, so download the highest version listed.
+
+For those wanting to use an older version than the current base release, the entire history of all changes done to the script is available for you to browse in the [**GitHub Commit History**](https://github.com/BanditTech/WingmanReloaded/commits/master). You can download the files of the script as they were at any point in the history of modification.
+
+Visit the [**OwnedCore Forum Thread**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/799983-wingmanreloaded-auto-flask-quit-mine-spell-loot-manage-filter-click-post4065545.html#post4065545) to talk with the forum community about the script. I check in on the forum thread fairly often, but others may also have advice or opinion on the topic.
+
+Join the [**Discord server**](https://discord.gg/tPKC2U) to chat live with other members of the community. I have configured the Discord server with information directly from github to allow for information and discussion.
+
+Browse the information at the [**Github Issues**](https://github.com/BanditTech/WingmanReloaded/issues) page to search for any issues. If you cannot find what your looking for, [**Start a new Issue**](https://github.com/BanditTech/WingmanReloaded/issues/new/choose) and from there you can [**Submit Bug Reports**](https://github.com/BanditTech/WingmanReloaded/issues/new?assignees=BanditTech&labels=Possible+Bug&template=bug_report.md&title=%5BBUG%5D), [**Add Requests**](https://github.com/BanditTech/WingmanReloaded/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BREQUEST%5D), or [**Ask For Help**](https://github.com/BanditTech/WingmanReloaded/issues/new?assignees=BanditTech&labels=Help&template=help-request.md&title=%5BHELP%5D)
+
 
 # What can it do?
 
@@ -166,7 +180,9 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 > This script is written in [**AutoHotKey**](https://www.autohotkey.com/), and will require the [**latest version of AHK**](https://www.autohotkey.com/download/ahk-install.exe) installed to use the script. Because it is written in AutoHotKey it is also portable, so it can be run from mostly any folder. 
 
-> It is highly recommended from a safety standpoint that you follow the instructions [**here for basic info**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/676345-run-poe-limited-user.html) and [**here for steam install**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/676345-run-poe-limited-user-13.html#post4065928) to set up the game to run as a limited user, then block the limited user from acessing the folder this script is located in.
+> It is highly recommended from a safety standpoint that you follow the instructions [**here for basic info**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/676345-run-poe-limited-user.html) and [**here for steam and additional info**](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/676345-run-poe-limited-user-13.html#post4065928) to set up the game to run as a limited user, then block the limited user from acessing the folder this script is located in.
+
+> If you have not already, here is a link to download the [**Latest Base Release**](https://github.com/BanditTech/WingmanReloaded/releases/latest)
 
 ## Basic Setup
 
