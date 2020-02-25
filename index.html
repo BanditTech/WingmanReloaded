@@ -9,7 +9,9 @@
   <meta name="description" content="A multi purpose tool for Path of Exile gameplay">
   <meta name="viewport"    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <!-- appearance -->
-  <link rel="stylesheet" href="styles/style.css"/>
+  <!-- <link rel="stylesheet" href="styles/style.css"/> -->
+  <!-- Theme: Simple Dark -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
   <!-- js -->
@@ -27,8 +29,9 @@
     window.$docsify = {
       name: 'WingmanReloaded',
       repo: "https://github.com/BanditTech/WingmanReloaded",
-      maxLevel: 2,
-      subMaxLevel: 3,
+      search: 'auto',
+      maxLevel: 6,
+      subMaxLevel: 6,
       themeable: {
         readyTransition : true, // default
         responsiveTables: true  // default
@@ -36,7 +39,8 @@
 
       // searchbar settings
       search: {
-        maxAge: 2700000, // Expiration time, the default one day
+        // maxAge: 86400000, // Expiration time, the default one day
+        maxAge: 10000,
         depth: 6, // Headline depth
         noData: {
           '/': 'No results!',
@@ -44,7 +48,11 @@
           '/ja-ja/': '結果がありません！',
           '/zh-cn/': '没有结果!'
         },
-        paths: ['auto'],
+        paths: [
+          '/',
+          '/doc_documentation',
+          '/doc_functions'
+        ],
         placeholder: {
           '/': 'Type to Search',
           '/de-de/': 'Suche',
