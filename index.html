@@ -29,6 +29,8 @@
     window.$docsify = {
       name: 'WingmanReloaded',
       repo: "https://github.com/BanditTech/WingmanReloaded",
+      homepage   : 'wingmanreloaded.md',
+      loadSidebar: true,
       auto2top: true,
       search: 'auto',
       maxLevel: 3,
@@ -40,8 +42,7 @@
 
       // searchbar settings
       search: {
-        // maxAge: 86400000, // Expiration time, the default one day
-        maxAge: 10000,
+        maxAge: 86400000, // Expiration time, the default one day
         depth: 6, // Headline depth
         noData: {
           '/': 'No results!',
@@ -49,7 +50,7 @@
           '/ja-ja/': '結果がありません！',
           '/zh-cn/': '没有结果!'
         },
-        paths: [],
+        paths: ['auto'],
         placeholder: {
           '/': 'Type to Search',
           '/de-de/': 'Suche',
