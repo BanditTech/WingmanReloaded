@@ -29,6 +29,7 @@
     window.$docsify = {
       name: 'WingmanReloaded',
       repo: "https://github.com/BanditTech/WingmanReloaded",
+      auto2top: true,
       search: 'auto',
       maxLevel: 3,
       subMaxLevel: 3,
@@ -48,13 +49,14 @@
           '/ja-ja/': '結果がありません！',
           '/zh-cn/': '没有结果!'
         },
-        paths: ['auto'],
+        paths: [],
         placeholder: {
           '/': 'Type to Search',
           '/de-de/': 'Suche',
           '/ja-ja/': '検索するタイプ',
           '/zh-cn/': '搜索'
-        }
+        },
+        namespace: 'WingmanReloaded'
       },
       // end of searchbar
       

@@ -40,9 +40,9 @@ Large portions of the code have been rewritten or refactored. There are countles
 
 ## Documentation
 
-See [**GUI Documentation**](/doc_documentation) for details about each of the GUI panels and their settings.
+See [**GUI Documentation**](/#/doc_documentation) for details about each of the GUI panels and their settings.
 
-See [**Script Functions**](/doc_functions) for developer information regarding script functions.
+See [**Script Functions**](/#/doc_functions) for developer information regarding script functions.
 
 
 ## Links
