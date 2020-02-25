@@ -155,7 +155,7 @@ Browse the information at the [**Github Issues**](https://github.com/BanditTech/
 
 ## Other Functions
 
-### Release Key on Stack Count
+#### Release Key on Stack Count
 > Stack Release tool for abilities like Blade Flurry
 
 Assign a buff icon to look for, and a capture of the stack count
@@ -166,7 +166,7 @@ When configured correctly, it will provide maximum stack release the moment it r
 
 ![WingmanReloaded](/images/stack-release.gif)
 
-### Auto-Detonate Mines
+#### Auto-Detonate Mines
 > Instantly detonate mines when cast, works for both normal and delve
 
 Detonate mines with adjustable delay for stacking up mines between detonates. This detects when you have the Detonate Mines ability active on your in-game GUI. When found, it will press D.
@@ -186,7 +186,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 ## Basic Setup
 
-> Setup sections:
+<!-- > Setup sections:
 >
 > Interface with Game | | | |
 > -|-|-|-|
@@ -195,7 +195,7 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 > Configure Script | | | |
 > -|-|-|-|
 > [**Calibrate Gamestates**](?id=calibrate-gamestates) | [**Adjust Globes**](?id=Adjust-globes) | Assign [**Scroll**](?id=assign-scroll-locations) / [**Gem**](?id=assign-gem-locations) Locations | [**Assign Stash Tabs**](?id=assign-stash-tabs)
-
+ -->
 
 ### In-Game Requirements
 
