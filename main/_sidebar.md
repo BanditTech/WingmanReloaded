@@ -1,0 +1,7 @@
+* [WingmanReloaded](/)
+  * [About](/main/wingmanreloaded)
+  * [Features](/main/features)
+  * [Installation](/main/installation)
+  * [Configure](/main/configure)
+* [Documentation](/doc/)
+* [Developer Info](/dev/)

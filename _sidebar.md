@@ -1,8 +1,3 @@
-- [WingmanReloaded](wingmanreloaded)
-- [Features](features)
-- [Installation](installation)
-- [Configure](configure)
-- **Index of all GUI Elements**
-- [Documentation](/doc/)
-- **Advanced Users**
-- [Developer Functions](functions)
+* [WingmanReloaded](/main/wingmanreloaded)
+* [Documentation](/doc/)
+* [Developer Info](/dev/)

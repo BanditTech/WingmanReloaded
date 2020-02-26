@@ -7,8 +7,8 @@
   text-decoration: none;
 }
 .github-corner svg {
-  height: 70px;
-  width: 70px;
+  height: 120px;
+  width: 120px;
   fill: var(--theme-color);
   color: var(--base-background-color);
 }
@@ -43,6 +43,25 @@
   80% {
     transform: rotate(10deg);
   }
+}
+.cap-width {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 70%;
+  text-align: center;
+  min-height: 100vh;
+  min-width: 100vh;
+}
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  min-width: 100vh;
 }
 .progress {
   position: fixed;

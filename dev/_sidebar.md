@@ -1,9 +1,10 @@
 * [WingmanReloaded](/main/wingmanreloaded)
-* [Documentation](/)
-  - **Main GUI**
-  * [Flasks Tab](/doc/flask)
+* [Documentation](/doc/)
+* [Developer Info](/)
+  - **Libraries**
+  * [Functions Test](/dev/functions)
   * [Utility Tab](/doc/utility)
   * [Configuration Tab](/doc/configuration)
-  - **Other**
+  - **WingmanReloaded Specific**
   * [FindText Interface](/doc/findtext)
-* [Developer Info](/dev/)
+

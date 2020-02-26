@@ -1,6 +1,4 @@
-# Installation
-
-## Install Information
+## Information
 > This script is more complex to set up than the original. Try to follow along with the different portions of the setup process to ensure you have done it correctly. Use the readout in the statusbar of the scripts GUI to see whats going on with the script. Enable debug messages with Logic or Location to see the information as a tooltip in the top left corner.
 
 > This script is written in [**AutoHotKey**](https://www.autohotkey.com/), and will require the [**latest version of AHK**](https://www.autohotkey.com/download/ahk-install.exe) installed to use the script. Because it is written in AutoHotKey it is also portable, so it can be run from mostly any folder. 
@@ -9,7 +7,7 @@
 
 > If you have not already, here is a link to download the [**Latest Base Release**](https://github.com/BanditTech/WingmanReloaded/releases/latest)
 
-### In-Game Requirements
+## In-Game Requirements
 
 > The script requires a few things set up In-Game to work.
 * Local chat MUST be enabled.
@@ -21,7 +19,7 @@
 
    
 
-### Choose Aspect Ratio
+## Choose Aspect Ratio
 
 > Determine the aspect ratio of your game resolution. Use [**Aspect Ratio Calulator**](https://andrew.hedges.name/experiments/aspect_ratio/) to determine which aspect ratio to choose.
 * Standard is 16:9 aspect ratio, and is default
@@ -32,7 +30,7 @@
 
    
 
-### Client.txt file location
+## Client.txt file location
 
 > You must locate the Client.txt file that will be used for the script
 * This file is required in order to determine the current location
@@ -42,7 +40,7 @@
 
    
 
-### Configure Hotkeys
+## Configure Hotkeys
 
 > Mandatory In-Game hotkeys are required for the script to function properly:
 * Close-UI
@@ -65,7 +63,7 @@
 
 > Find more information about these hotkey functions in the [**GUI Documentation**](documentation)
 
-### Calibrate Gamestates
+## Calibrate Gamestates
 
 > Several bits of information that the script is gathering are based on single pixel locations. When the pixel matches the previously sampled color, it will determine that the specific gamestate is active. This is important for knowing when your on your character and ready to play, or have panels open, are at the stash, etc... 
 * There are two primary methods of performing the calibrations.
@@ -80,7 +78,7 @@
 
    
 
-### Adjust Globes
+## Adjust Globes
 
 > Use the Adjust Globes GUI to change where the script scans the screen for determining the Life, Energy Shield and Mana percentages.
 * Adjust the area to change where it will scan the screenshot
@@ -89,7 +87,7 @@
 
    
 
-### Assign Scroll Locations
+## Assign Scroll Locations
 
 > In order to properly use the inventory functions, you need to have portal and Identify scrolls in fixed position of your inventory.
 * Go to Configuration Tab > Inventory > Scroll and Gem Locations
@@ -98,7 +96,7 @@
 
    
 
-### Assign Gem Locations
+## Assign Gem Locations
 
 > In order to properly use the Gem-Swap function, you need to have two locations set to swap
 * Go to Configuration Tab > Inventory > Scroll and Gem Locations
@@ -107,7 +105,7 @@
 
    
 
-### Assign Stash Tabs
+## Assign Stash Tabs
 
 > In order to properly use the Inventory function to sort to stash tabs, you need to assign the number for each tab that matches the ingame list. From the top of the dropdown list for your stash tabs is position 1 going down to position 32.
 * Go to Configuration Tab > Inventory > Stash Tabs > Stash Management

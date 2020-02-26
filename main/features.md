@@ -1,4 +1,4 @@
-# Features
+## Feature List
 
 > This multi functional script can perform several actions based on states of the game:
 * Auto-Flasks with custom triggers
@@ -75,11 +75,11 @@
 
 > The stash function can happen in two ways. The default way is sorting items into groups first, based on the tab the item will end up. This speeds up the time it takes to manage a full inventory of various items.
 
-![WingmanReloaded](/images/item-management.gif)
+![WingmanReloaded](images/item-management.gif)
 
 > When the option to sort into groups is disabled, it stashes each item as it is scanned. It is much slower, as you can see it does not deal with a varied inventory in the same amount of time. This option is best used with only essential tabs like currency and the dump tab enabled. This reduces the need to switch stash tabs.
 
-![WingmanReloaded](/images/item-management-nogrouping.gif)
+![WingmanReloaded](images/item-management-nogrouping.gif)
 
 ## Loot Vacuum
 

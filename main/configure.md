@@ -1,7 +1,4 @@
-# Configure
-
 ## Flasks
-
 > The core of the script is the flask routine. You are given several options in how you would like each flask slot triggered. Depending on the Character Type you have selected, different options of the interface will become available. Life type will have only life triggers active, ES will have only ES triggers active, and Hybrid will have both. 
 * The 5 Flasks are arranged in collumns 
   * Flask slot 1 is on the left and slot 5 on the right
