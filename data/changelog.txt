@@ -5,6 +5,8 @@ Version .10.0201 February/28/2020
 Adjustments to the GUI, trying to organize it a bit better
 preparing for rework of flask GUI
 
+Added GUI elements for Detonate Mines hotkey and pause hotkey
+
 Master Patch Notes
 --------------------------------------------------------------------------------
 Version .10.02 February/27/2020

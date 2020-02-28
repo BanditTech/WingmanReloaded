@@ -1036,14 +1036,14 @@
 		Gui Add, Text, 										x12 	y30, 				Flask Settings
 		Gui, Font,
 
-		Gui Add, GroupBox, 				Section		w160 h50				x+12 	yp-7, 				Character Type:
+		Gui Add, GroupBox, 				Section		w260 h33				xp 	y+2, 				Character Type:
 		Gui, Font, cRed
 		Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					xs+8 ys+14 gUpdateCharacterType, 	Life
 		Gui, Font, cPurple
 		Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
 		Gui, Font, cBlue
 		Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	ES
-		Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery% Right          	xs+55	y+4				, Eldritch Battery
+		Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery%           	x+8					, Eldritch Battery
 		Gui, Font
 
 		Gui Add, Text, 										x63 	y+10, 				Flask 1
@@ -1232,16 +1232,6 @@
 			GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
 			}
 
-
-		Gui,Font,s9 cBlack 
-		Gui Add, GroupBox, 		Section	w257 h66				x12 	y+5 , 				Quicksilver settings
-		Gui,Font,
-		Gui Add, Text, 										xs+10 	ys+16, 				Quicksilver Flask Delay (in s):
-		Gui Add, Edit, 			vTriggerQuicksilverDelay	x+10 	yp 	w22 h17, 	%TriggerQuicksilverDelay%
-		Gui,Add,GroupBox,Section xs+10 yp+16 w208 h26											,Quicksilver on attack:
-		Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xs+5 ys+15 , Primary Attack
-		Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
-
 		;Vertical Grey Lines
 		Gui, Add, Text, 									x59 	y77 		h381 0x11
 		Gui, Add, Text, 									x+33 				h381 0x11
@@ -1265,14 +1255,16 @@
 		Gui Add, Checkbox, gUpdateExtra	vRelogOnQuit Checked%RelogOnQuit%           	xs+5	y+8				, Log back in afterwards?
 
 		Gui,Font,s9 cBlack 
-		Gui Add, GroupBox, 		Section	w90 h32				xs+230 	ys , 				Auto-Mine
-		Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+5	ys+15				, Enable
-		Gui Add, Edit, 	  gUpdateExtra   vDetonateMinesDelay    h18	x+-2	yp-5  Number Limit w30				, %DetonateMinesDelay% 
-
+		Gui Add, GroupBox, 		Section	w257 h66				xs 	y+10 , 				Quicksilver settings
 		Gui,Font,
+		Gui Add, Text, 										xs+10 	ys+16, 				Quicksilver Flask Delay (in s):
+		Gui Add, Edit, 			vTriggerQuicksilverDelay	x+10 	yp 	w22 h17, 	%TriggerQuicksilverDelay%
+		Gui,Add,GroupBox, xs+10 yp+16 w208 h26											,Quicksilver on attack:
+		Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Primary Attack
+		Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
 		Gui, Font, Bold s9 cBlack
-		Gui, Add, GroupBox, 					Section		w324 h176			x292 	y96+7, 				Profile Management:
+		Gui, Add, GroupBox, 					Section		w324 h176			xs 	y+10, 				Profile Management:
 		Gui, Font
 		Gui, Add, Text, 									xs+161 	ys+41 		h135 0x11
 
@@ -1535,6 +1527,21 @@
 		Gui, Font,
 		Gui, Add, Text, x+2 yp w29 hp,
 		Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
+
+		Gui,Font, Bold s9 cBlack 
+		Gui Add, GroupBox, 		Section	w190 h82				xs+240+7 	ys , 				Auto-Detonate Mines
+		Gui, Font,
+		Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%       Right  	xs+128	ys+2				, Enable
+		Gui Add, Text, xs+5 y+8, Delay after Detonate
+		Gui Add, Edit, 	  gUpdateExtra   vDetonateMinesDelay    h18	x+5	yp-2  Number Limit w30				, %DetonateMinesDelay% 
+		Gui Add, GroupBox, xs+5 y+3 w160 h37, Pause Mines
+		Gui Add, Text, xp+5 yp+16 , Delay
+		Gui Add, Edit, 	  gUpdateExtra   vPauseMinesDelay    h18	x+5	yp-2  Number Limit w30				, %PauseMinesDelay% 
+		Gui Add, Text, x+5 yp+2 , Key
+		Gui Add, Edit, 	  gUpdateExtra   vPauseMinesKey    h18	x+5	yp-2  w50				, %PauseMinesKey% 
+
+		Gui,Font,
+
 		;Save Setting
 		Gui, Add, Button, default gupdateEverything 	 x295 y470	w180 h23, 	Save Configuration
 		Gui, Add, Button,  		gloadSaved 		x+5			 		h23, 	Load
@@ -1652,10 +1659,12 @@
 		Gui Add, Text, 											 	y+10, 				Inventory
 		Gui Add, Text, 											 	y+10, 				W-Swap
 		Gui Add, Text, 											 	y+10, 				Item Pickup
+		Gui Add, Text, 											 	y+10, 				Detonate Mines
 		Gui,Add,Edit,			  	xs+140 ys+20  w60 h19 	vhotkeyCloseAllUI		,%hotkeyCloseAllUI%
 		Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyInventory			,%hotkeyInventory%
 		Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyWeaponSwapKey		,%hotkeyWeaponSwapKey%
-		Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan		,%hotkeyLootScan%
+		Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyLootScan				,%hotkeyLootScan%
+		Gui,Add,Edit,			  		y+4   w60 h19 	vhotkeyDetonateMines		,%hotkeyDetonateMines%
 		Gui Add, Checkbox, section gUpdateExtra	vLootVacuum Checked%LootVacuum%                         	         y+8 ; Loot Vacuum?
 		Gui, Font, Bold
 		Gui Add, Button, gLootColorsMenu    vLootVacuumSettings                      	      h19  x+0 yp-3, Loot Vacuum Settings
