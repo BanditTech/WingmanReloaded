@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-	Global VersionNumber := .10.02
+	Global VersionNumber := .10.0201
 	#IfWinActive Path of Exile 
     #NoEnv
     #MaxHotkeysPerInterval 99000000
@@ -1036,13 +1036,14 @@
 		Gui Add, Text, 										x12 	y30, 				Flask Settings
 		Gui, Font,
 
-		Gui Add, GroupBox, 				Section		w160 h35				x+12 	yp-7, 				Character Type:
+		Gui Add, GroupBox, 				Section		w160 h50				x+12 	yp-7, 				Character Type:
 		Gui, Font, cRed
 		Gui Add, Radio, Group 	vRadioLife Checked%RadioLife% 					xs+8 ys+14 gUpdateCharacterType, 	Life
 		Gui, Font, cPurple
 		Gui Add, Radio, 		vRadioHybrid Checked%RadioHybrid% 				x+8 gUpdateCharacterType, 	Hybrid
 		Gui, Font, cBlue
 		Gui Add, Radio, 		vRadioCi Checked%RadioCi% 					x+8 gUpdateCharacterType, 	ES
+		Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery% Right          	xs+55	y+4				, Eldritch Battery
 		Gui, Font
 
 		Gui Add, Text, 										x63 	y+10, 				Flask 1
@@ -1242,7 +1243,7 @@
 		Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
 		;Vertical Grey Lines
-		Gui, Add, Text, 									x59 	y62 		h381 0x11
+		Gui, Add, Text, 									x59 	y77 		h381 0x11
 		Gui, Add, Text, 									x+33 				h381 0x11
 		Gui, Add, Text, 									x+34 				h381 0x11
 		Gui, Add, Text, 									x+33 				h381 0x11
@@ -1268,12 +1269,10 @@
 		Gui Add, Checkbox, gUpdateExtra	vDetonateMines Checked%DetonateMines%           	xs+5	ys+15				, Enable
 		Gui Add, Edit, 	  gUpdateExtra   vDetonateMinesDelay    h18	x+-2	yp-5  Number Limit w30				, %DetonateMinesDelay% 
 
-		Gui Add, GroupBox, 		Section	w90 h32	vEldritchBatteryGroupbox			xs 	y+6 , 				Eldritch Battery
-		Gui Add, Checkbox, gUpdateEldritchBattery	vYesEldritchBattery Checked%YesEldritchBattery%           	xs+15	ys+15				, Enable
 		Gui,Font,
 
 		Gui, Font, Bold s9 cBlack
-		Gui, Add, GroupBox, 					Section		w324 h176			x292 	y+7, 				Profile Management:
+		Gui, Add, GroupBox, 					Section		w324 h176			x292 	y96+7, 				Profile Management:
 		Gui, Font
 		Gui, Add, Text, 									xs+161 	ys+41 		h135 0x11
 
