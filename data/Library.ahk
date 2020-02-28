@@ -1600,6 +1600,8 @@
                 }
                 ;Detonate Mines
                 Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
+                Global DetonateX:=GameX + Round(GameW/(1920/1658))
+                Global DetonateY:=GameY + Round(GameH/(1080/901))
                 ;Scrolls in currency tab
                 Global WisdomStockX:=GameX + Round(GameW/(1920/125))
                 Global PortalStockX:=GameX + Round(GameW/(1920/175))

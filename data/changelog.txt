@@ -1,5 +1,12 @@
 Master Patch Notes
 --------------------------------------------------------------------------------
+Version .10.02 February/27/2020
+--------------------------------------------------------------------------------
+Bugfix for Missing Detonate X and Y for standard aspect
+
+Script Icon has been changed
+    Will autodownload new icon and restart
+
 Version .10.01 February/21/2020
 --------------------------------------------------------------------------------
 Alpha Branch is being merged into Master

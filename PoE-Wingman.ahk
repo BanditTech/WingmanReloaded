@@ -1,4 +1,5 @@
 ; Contains all the pre-setup for the script
+	Global VersionNumber := .10.02
 	#IfWinActive Path of Exile 
     #NoEnv
     #MaxHotkeysPerInterval 99000000
@@ -84,7 +85,6 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	; Extra vars - Not in INI
-		Global VersionNumber := .10.01
 		Global WR_Statusbar := "WingmanReloaded Status"
 		Global WR_hStatusbar
 		Global Ninja := {}
@@ -856,6 +856,7 @@
 		}
 		Else if (ErrorLevel=0){
  			Log("data","pass", "WR.ico")
+			needReload := True
 		}
 	}
 	IfNotExist, %A_ScriptDir%\data\InventorySlots.png
