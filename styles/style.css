@@ -7,8 +7,8 @@
   text-decoration: none;
 }
 .github-corner svg {
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
   fill: var(--theme-color);
   color: var(--base-background-color);
 }
