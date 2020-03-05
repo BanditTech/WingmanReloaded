@@ -407,6 +407,7 @@
 		Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
 			, ScriptUpdateTimeInterval, ScriptUpdateTimeType
 		Global Latency := 1
+		Global PauseMinesDelay := 250
 		Global ClickLatency := 0
 		Global ClipLatency := 0
 		Global ShowOnStart := 0
@@ -605,6 +606,8 @@
 		global hotkeyItemSort:="F6"
 		global hotkeyItemInfo:="F5"
 		global hotkeyLootScan:="f"
+		global hotkeyDetonateMines:="d"
+		global hotkeyPauseMines:="d"
 		global hotkeyQuickPortal:="!q"
 		global hotkeyGemSwap:="!e"
 		global hotkeyGetMouseCoords:="!o"
@@ -1538,7 +1541,7 @@
 		Gui Add, Text, xp+5 yp+16 , Delay
 		Gui Add, Edit, 	  gUpdateExtra   vPauseMinesDelay    h18	x+5	yp-2  Number Limit w30				, %PauseMinesDelay% 
 		Gui Add, Text, x+5 yp+2 , Key
-		Gui Add, Edit, 	  gUpdateExtra   vPauseMinesKey    h18	x+5	yp-2  w50				, %PauseMinesKey% 
+		Gui Add, Edit, 	  gUpdateExtra   vhotkeyPauseMines    h18	x+5	yp-2  w50				, %hotkeyPauseMines% 
 
 		Gui,Font,
 
@@ -2075,28 +2078,6 @@
 		ExitApp
 		Return
     #IfWinActive, ahk_group POEGameGroup
-	; Hotkey to pause the detonate mines
-	#MaxThreadsPerHotkey, 1
-	~d::
-		KeyWait, d, T0.3 ; Wait .3 seconds until Detonate key is released.
-		If ErrorLevel = 1 ; If not released, just exit out
-			Exit
-		KeyWait, d, D T0.2 ; ErrorLevel = 1 if Detonate Key not down within 0.2 seconds.
-		if ((ErrorLevel = 0) && ( A_PriorHotKey = "~d" ) ) ; Is a double tap on Detonate key?
-		{
-			SetTimer, TDetonated, Delete
-			Detonated := True
-			PauseTooltips := 1
-			Tooltip, Auto-Mines Paused, % A_ScreenWidth / 2 - 57, % A_ScreenHeight / 8
-		}
-		Else If (ErrorLevel = 1)
-		{
-			Detonated := False
-			PauseTooltips := 0
-			Tooltip
-		}
-	Return
-	#MaxThreadsPerHotkey, 2
 ; ------------------------------------------------End of AutoExecute Section-----------------------------------------------------------------------------------------------------------
 Return
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
@@ -5886,7 +5867,7 @@ Return
 			{
 				If (OnDetonate)
 				{
-					Sendraw, d
+					controlsend, , % "{" hotkeyDetonateMines "}", %GameStr%
 					Detonated:=1
 					Settimer, TDetonated, -%DetonateMinesDelay%
 				}
@@ -6625,7 +6606,54 @@ Return
 		IniWrite, %AutoQuick%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick
 		GuiUpdate()
 	return
+	; Hotkey to pause the detonate mines
+	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	PauseMines(){
+		PauseMinesCommand:
+			static keyheld := 0
+			keyheld++
+			settimer, keyheldReset, 200
+			if keyheld > 1
+				return
+			KeyWait, %hotkeyPauseMines%, T0.3 ; Wait .3 seconds until Detonate key is released.
+			If ErrorLevel = 1 ; If not released, just exit out
+				Exit
+			keyheld := 0
+			If PauseMinesDelay <= 50
+			{
+				pauseToggle := !pauseToggle
+			}
+			else if (A_PriorHotkey <> "$~" . hotkeyPauseMines || A_TimeSincePriorHotkey > PauseMinesDelay)
+			{  	;This is a not a double tap
+				pauseToggle := false
+			}
+			else if (A_TimeSincePriorHotkey > 50 && A_TimeSincePriorHotkey < PauseMinesDelay)
+			{	;This is a double tap that works if within range 25-set value
+				pauseToggle := true
+			}
+			else if A_TimeSincePriorHotkey < 50
+			{
+				return
+			}
+			if (!pauseToggle)
+			{
+				Detonated := False
+				PauseTooltips := 0
+				Tooltip
+			}
+			else if (pauseToggle)
+			{
+				SetTimer, TDetonated, Delete
+				Detonated := True
+				PauseTooltips := 1
+				Tooltip, Auto-Mines Paused, % A_ScreenWidth / 2 - 57, % A_ScreenHeight / 8
+			}
+		Return
 
+		keyheldReset:
+			keyheld := 0
+		return
+	}
 	; AutoReset - Load Previous Toggle States
 	; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	AutoReset(){
@@ -7496,6 +7524,7 @@ Return
 			IniRead, ShowItemInfo, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo, 0
 			IniRead, DetonateMines, %A_ScriptDir%\save\Settings.ini, General, DetonateMines, 0
 			IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay, 500
+			IniRead, PauseMinesDelay, %A_ScriptDir%\save\Settings.ini, General, PauseMinesDelay, 250
 			IniRead, LootVacuum, %A_ScriptDir%\save\Settings.ini, General, LootVacuum, 0
 			IniRead, YesVendor, %A_ScriptDir%\save\Settings.ini, General, YesVendor, 1
 			IniRead, YesStash, %A_ScriptDir%\save\Settings.ini, General, YesStash, 1
@@ -8046,6 +8075,8 @@ Return
 				hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
 			If hotkeyLootScan
 				hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+			If hotkeyPauseMines
+				hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
 			If hotkeyMainAttack
 				hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
 			If hotkeySecondaryAttack
@@ -8072,6 +8103,8 @@ Return
 			IniRead, hotkeyItemSort, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemSort, F6
 			IniRead, hotkeyItemInfo, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemInfo, F5
 			IniRead, hotkeyLootScan, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan, f
+			IniRead, hotkeyDetonateMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines, d
+			IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines, d
 			IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
 			IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
 			
@@ -8103,6 +8136,10 @@ Return
 			If hotkeySecondaryAttack
 				hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, On
 			
+			#MaxThreadsPerHotkey, 1
+			If hotkeyPauseMines
+				hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, On
+			#MaxThreadsPerHotkey, 2
 			hotkey, IfWinActive
 			If hotkeyOptions {
 				hotkey,% hotkeyOptions, optionsCommand, On
@@ -8242,6 +8279,8 @@ Return
 				hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
 			If hotkeyLootScan
 				hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+			If hotkeyPauseMines
+				hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
 			If hotkeyMainAttack
 				hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
 			If hotkeySecondaryAttack
@@ -8407,6 +8446,7 @@ Return
 			IniWrite, %ShowItemInfo%, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo
 			IniWrite, %DetonateMines%, %A_ScriptDir%\save\Settings.ini, General, DetonateMines
 			IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay
+			IniWrite, %PauseMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, PauseMinesDelay
 			IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
 			IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
 			IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
@@ -8470,6 +8510,8 @@ Return
 			IniWrite, %hotkeyItemSort%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemSort
 			IniWrite, %hotkeyItemInfo%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemInfo
 			IniWrite, %hotkeyLootScan%, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan
+			IniWrite, %hotkeyDetonateMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines
+			IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
 			IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
 			IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
 			
@@ -8921,6 +8963,8 @@ Return
 			GuiControl,, hotkeyInventory, %hotkeyInventory%
 			GuiControl,, hotkeyWeaponSwapKey, %hotkeyWeaponSwapKey%
 			GuiControl,, hotkeyLootScan, %hotkeyLootScan%
+			GuiControl,, hotkeyDetonateMines, %hotkeyDetonateMines%
+			GuiControl,, hotkeyPauseMines, %hotkeyPauseMines%
 			GuiControl,, PortalScrollX, %PortalScrollX%
 			GuiControl,, PortalScrollY, %PortalScrollY%
 			GuiControl,, WisdomScrollX, %WisdomScrollX%
@@ -9591,7 +9635,9 @@ Return
 			
 			;AutoMines
 			IniWrite, %DetonateMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines
-			IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay
+			; IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay
+			; IniWrite, %PauseMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PauseMinesDelay
+			; IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyPauseMines
 
 			;EldritchBattery
 			IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesEldritchBattery
@@ -10071,9 +10117,13 @@ Return
 			
 			;AutoMines
 			IniRead, DetonateMines, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines, 0
-			IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay, 500
 			GuiControl, , DetonateMines, %DetonateMines%
-			GuiControl, , DetonateMinesDelay, %DetonateMinesDelay%
+			; IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay, 500
+			; GuiControl, , DetonateMinesDelay, %DetonateMinesDelay%
+			; IniRead, PauseMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PauseMinesDelay, 250
+			; GuiControl, , PauseMinesDelay, %PauseMinesDelay%
+			; IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyPauseMines, d
+			; GuiControl, , hotkeyPauseMines, %hotkeyPauseMines%
 
 			;EldritchBattery
 			IniRead, YesEldritchBattery, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesEldritchBattery, 0
@@ -11751,6 +11801,8 @@ Return
 		Return
 
 		UpdateExtra:
+			If hotkeyPauseMines
+				hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
 			Gui, Submit, NoHide
 			; Gui, Inventory: Submit, NoHide
 			IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
@@ -11758,6 +11810,8 @@ Return
 			IniWrite, %ScriptUpdateTimeType%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType
 			IniWrite, %DetonateMines%, %A_ScriptDir%\save\Settings.ini, General, DetonateMines
 			IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay
+			IniWrite, %PauseMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, PauseMinesDelay
+			IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
 			IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
 			IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
 			IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
@@ -11796,6 +11850,10 @@ Return
 			IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
 			If (YesPersistantToggle)
 				AutoReset()
+			#MaxThreadsPerHotkey, 1
+			If hotkeyPauseMines
+				hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, On
+			#MaxThreadsPerHotkey, 2
 		Return
 
 		UpdateEldritchBattery:

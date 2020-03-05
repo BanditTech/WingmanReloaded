@@ -6,7 +6,12 @@
 
 Adjustments to the GUI, trying to organize it a bit better preparing for rework of flask GUI  
 
-Added GUI elements for Detonate Mines hotkey and pause hotkey
+Auto-Detonate Mines has been improved
+* You can now choose the key bound to detonate Mines
+* There are now settings to adjust how to pause auto-detonate
+  * Set any key to bind as the pause hotkey
+  * Adjust the delay it will register a Double Tap
+    * Set to 0 to make it a straight toggle
 
 ---
 
