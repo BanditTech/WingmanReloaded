@@ -1,55 +1,60 @@
-Alpha Patch Notes
---------------------------------------------------------------------------------
-Version .10.0201 February/28/2020
---------------------------------------------------------------------------------
-Adjustments to the GUI, trying to organize it a bit better
-preparing for rework of flask GUI
+
+---
+
+## Version .10.0201 - Alpha Branch - February/28/2020
+
+
+Adjustments to the GUI, trying to organize it a bit better preparing for rework of flask GUI  
 
 Added GUI elements for Detonate Mines hotkey and pause hotkey
 
-Master Patch Notes
---------------------------------------------------------------------------------
-Version .10.02 February/27/2020
---------------------------------------------------------------------------------
-Bugfix for Missing Detonate X and Y for standard aspect
+---
+
+## Version .10.02 - Master Branch - February/27/2020
+
+Bugfix for Missing Detonate X and Y for standard aspect  
 
 Script Icon has been changed
-    Will autodownload new icon and restart
+  * Will autodownload new icon and restart
 
-Version .10.01 February/21/2020
---------------------------------------------------------------------------------
+---
+
+## Version .10.01 - Master Branch - February/21/2020
+
 Alpha Branch is being merged into Master
 
 Notable changes include:
-    Stack Release tool is a new function in Utility Tab
-    Improvements for the 43:18 aspect ratio
-    Adjustments to CPU load while idle
-    Rework to reduce checks for game window
-    Improvements for Trigger on Attack keys
-    Quicksilver script merged back into main script
-    Bugfixes
+  * Stack Release tool is a new function in Utility Tab
+  * Improvements for the 43:18 aspect ratio
+  * Adjustments to CPU load while idle
+  * Rework to reduce checks for game window
+  * Improvements for Trigger on Attack keys
+  * Quicksilver script merged back into main script
+  * Bugfixes
 
-Controller Support is currently inactive
-    I am working on a completely new remake of the controller system
+> **Controller Support is currently inactive I am working on a completely new remake of the controller system**
 
-Alpha Patch Notes
---------------------------------------------------------------------------------
-Version .10.0005 February/21/2020
---------------------------------------------------------------------------------
-Added proper scaling to the Fill metamorph function for 43:18 resolution
-    Thanks to Hx2600 for starting a fork to add better support for that aspect
+---
 
-Work has begun on developing a much nicer looking webpage for the script
-    I used a styling template I thought looks awesome from ChunJee's github page
+## Version .10.0005 - Alpha Branch - February/21/2020
 
-Version .10.0004 February/19/2020
---------------------------------------------------------------------------------
-Removed the need for a seperate background script to do quicksilver and controller
-    This reduces the overall cpu draw of the script even further
-    the function of quicksilvers has been moved back into the main script
-    for now controller support is not active (the remaining code in GottaGoFast)
-        I have a working testbench for even better controller support coming soon
-    Quicksilver overlay migrated to main script
+Added proper scaling to the Fill metamorph function for 43:18 resolution  
+Thanks to Hx2600 for starting a fork to add better support for that aspect
+
+Work has begun on developing a much nicer looking webpage for the script  
+I used a styling template that looks awesome from ChunJee’s github page
+
+---
+
+## Version .10.0004 - Alpha Branch - February/19/2020
+
+Removed the need for a seperate background script to do quicksilver and controller  
+  * This reduces the overall cpu draw of the script even further  
+  * the function of quicksilvers has been moved back into the main script  
+  * Quicksilver overlay migrated to main script
+
+> **For now controller support is not active (the remaining code in GottaGoFast) I have a working testbench for even better controller support coming soon**
+
 
 Added a few bases to crafting, I want to make this editable from the GUI
 
@@ -59,196 +64,195 @@ Cleaned up code for mana triggers
 
 Rewrite of the Quicksilver trigger logic, it no longer hangs the script with keywait
 
-Adjustments to how it detects game window, more re-using the last checked var
-    every 5 seconds if it has not found the game exe, it will look for any others
+Adjustments to how it detects game window, more re-using the last checked var every 5 seconds 
+  * if it has not found the game exe, it will look for any others
 
-Version .10.0003 February/17/2020
---------------------------------------------------------------------------------
-Reduced idle cpu usage when no game found
+---
 
-Changed how most winexist or winactive look for the game using the GameStr var
-    this reduces cpu usage by only asking first for the last found exe
+## Version .10.0003 - Alpha Branch - February/17/2020
 
-Bugfix for auto check update always using 15 minutes (left old static variable)
+Reduced idle cpu usage when no game process found
+* Changed how most winexist or winactive look for the game using the GameStr var 
+* this reduces cpu usage by only asking first for the last found exe
 
-attack key triggered Flasks and utilities will now fire on the next cycle of game logic
-    this is to give the game time to process the initial attacks first
+Bugfix for auto check update always using 15 minutes (had left an old static variable)
 
-Version .10.0002 February/17/2020
---------------------------------------------------------------------------------
-Stack Release tool added to utility tab
-    Searches for a buff icon, then if found searches for the stack capture
-        if it finds both it releases the assigned keybind
-    You can adjust the offset it looks for the stack count
-        The area defaults to the bottom left to bottom right of the buff icon
+attack key triggered Flasks and utilities will now fire on the next cycle of game logic  
+this is to give the game time to process the initial attacks first
 
-Version .10.0001 February/16/2020
---------------------------------------------------------------------------------
+---
+
+## Version .10.0002 - Alpha Branch - February/17/2020
+
+Stack Release tool added to utility tab 
+* Searches for a buff icon, then if found searches for the stack capture 
+  * if it finds both it releases the assigned keybind 
+* You can adjust the offset it looks for the stack count 
+  * The area defaults to the bottom left to bottom right of the buff icon
+
+---
+
+## Version .10.0001 - Alpha Branch - February/16/2020
+
 Cinematic(43:18) adjusted to move stash list position down
 
---------------------------------------------------------------------------------
-Release Notes
---------------------------------------------------------------------------------
-Version .10.00 February/16/2020
+---
 
---------------------------------------------------------------------------------
+# Version .10.00 - Release Notes - February/16/2020
 
--------------------------Script files have been moved---------------------------
+> **Script files have been moved**  
+> **Update Will Require re-install and copy old settings**
 
---------------------------------------------------------------------------------
+> This major version brings with it several new additions to the scripts function  
+> Look at the patch notes for full details on each change
 
----------------Update Will Require re-install and copy old settings-------------
+**Settings to note:**
 
---------------------------------------------------------------------------------
-
-This major version brings with it several new additions to the scripts function
-Look at the patch notes for full details on each change
-Settings to note:
-
-New options for Utilities which now has up to 10 slots!
-    Can now trigger abilities based on Mana threshold
-    Trigger with Primary or secondary attack
-    Trigger with buff icon being present
+New options for Utilities which now has up to 10 slots\!  
+* Can now trigger abilities based on Mana threshold  
+* Trigger with Primary or secondary attack  
+* Trigger with buff icon being present
 
 New Priced Rares stash tab for items with predicted value above minimum
 
-New options in Item Parse Settings (Inventory) to choose the Price Rares value point
-    Choose between Off, Low, Avg, or High
-    Then select the percentage of that price point to evaluate with
+New options in Item Parse Settings (Inventory) to choose the Price Rares value point  
+* Choose between Off, Low, Avg, or High  
+* Then select the percentage of that price point to evaluate with
 
-New Dump Stash tab option for any left over items after stashing
-    option to auto enable dump tab while in Aspirant's trial
-    option to skip jewelers and chromatics when dumping
+New Dump Stash tab option for any left over items after stashing  
+* option to auto enable dump tab while in Aspirant’s trial 
+* option to skip jewelers and chromatics when dumping
 
 New option for crafting tab to filter by minimum item level
 
-New option in Automation (Inventory)
-    Auto Fill metamorph while in field
-    The selected area is the entire left panel of the metamorph window
-        Top left of Brains to bottom right of Livers
-        Outside edge is the border surrounding where you select the organs
-    I scaled them by default, but you can adjust if its not correct
+New option in Automation (Inventory) Auto Fill metamorph while in field
+* The selected area is the entire left panel of the metamorph window 
+  * Top left of Brains to bottom right of Livers 
+* Outside edge is the border surrounding where you select the organs 
+* I scaled them by default, but you can adjust if its not correct
 
-Adjust Globes GUI now displays Current Life, ES, and Mana %
-    This updates in real time to allow making changes
-    There is now a colorpicker on the right, load colors into it or copy from it
-    See patchnotes for full details of new Globe Settings usage
+Adjust Globes GUI now displays Current Life, ES, and Mana % 
+* This updates in real time to allow making changes 
+* There is now a colorpicker on the right, load colors into it or copy from it 
+* See patchnotes for full details of new Globe Settings usage
 
-Globe positions are now scaled by default
-    I would still recommend you double check these are correct
+Globe positions are now scaled by default  
+I would still recommend you double check these are correct
 
-Steam and 64 bit options removed from GUI, as detecting exe is now fully automated
+Steam and 64 bit options removed from GUI
+* detecting game exe is now fully automated
 
-New delve openables string has been added to Loot Vacuum
-    Opens all the different types of containers in delve darkness
-    For anyone using non-1080 height, you will need to gather these captures
+New delve openables string has been added to Loot Vacuum 
+* Opens all the different types of containers in delve darkness 
+* For anyone using non-1080 height, you will need to gather these captures
 
 Improvements to the way the script loads, as well as how it will update
-    You can now skip the update prompt without hanging the script
-    There is now an option to use the Alpha branch as update source
-        Use this with caution (This should be considered very unstable branch)
-    Default branch is Master
+* You can now skip the update prompt without hanging the script 
+* There is now an option to use the Alpha branch as update source 
+  * Use this with caution (This should be considered very unstable branch) 
+  * Default branch is Master
 
 New options to choose if and how often it will check for script updates
-    The script will check for updates while the game is not found open
-    Choose a timescale and interval to enable this option
+* The script will check for updates while the game is not found open
+* Choose a timescale and interval to enable this option
 
---------------------------------------------------------------------------------
-Patch Notes
---------------------------------------------------------------------------------
-Version .10.00 February/16/2020
---------------------------------------------------------------------------------
-Save Files for the script are now all located in "save" folder
-    If you want to migrate an old versions settings, you will need to move them
-    This allows for users to easily understand which files are their settings
-    I also cleared the main script folder of extrenuous files, just the main script
-        Files required for the script are now located in data folder
+---
 
-Files you will need to move into the save folder:
-    Settings.ini                  -->           /save/Settings.ini
-    Profiles.ini                  -->           /save/Profiles.ini
-    /data/Globe.json              -->           /save/Globe.json
-    /data/LootFilter.json         -->           /save/LootFilter.json
-    /data/LootFilterTabs.json     -->           /save/LootFilterTabs.json
-    /data/Lootfilter.ini          -->           /save/Lootfilter.ini
-    /data/IgnoredSlot.json        -->           /save/IgnoredSlot.json
+## Version .10.00 - Patch Notes - February/16/2020
 
-New option to check for updates while the game is closed
-    Configure the time scale, then the interval to automatically check for script updates
-    Choose between Off, Days, Hours, or Minutes
-        Choosing Off will disable automatically checking for updates
-    Set the interval that you would like it to wait before checking
-        Setting the interval to 0 will turn off checking for updates
+Save Files for the script are now all located in “save” folder 
+* If you want to migrate an old versions settings, you will need to move them
+* This allows for users to easily understand which files are their settings 
 
-Adjust Globes GUI now displays Current Life, ES, and Mana %
-    MsgBox popups have been replaced with Notify panels
-        The information is still copied to the clipboard for use
-    There is now a colorpicker on the right
-    Click any of the different areas "Colorbox" to load that color to the picker
-    Use the Copy button get the current color, then paste into one of the color edit fields
-    To get an average of colors, use the Coord button and select an area
-        While active it will update the color picker to the mouse cursor
-        This will take some time for large areas
-        Once you are done paste into one of the color edit fields
-    Reset button now reloads the values that were last loaded
-        If you have saved settings, it will reset to the last loaded values
-        If you have not saved to JSON it will load default scaled values
+I also cleared the main script folder of extrenuous files, just the main script 
+* Files required for the script are now located in data folder
 
-Game window is now bound when detected for further captures
-    Logout and logic actions will happen while the game is in the background
+Files you will need to move into the save folder:  
+> Settings.ini              –\> /save/Settings.ini  
+> Profiles.ini              –\> /save/Profiles.ini  
+> /data/Globe.json          –\> /save/Globe.json  
+> /data/LootFilter.json     –\> /save/LootFilter.json  
+> /data/LootFilterTabs.json –\> /save/LootFilterTabs.json  
+> /data/Lootfilter.ini      –\> /save/Lootfilter.ini  
+> /data/IgnoredSlot.json    –\> /save/IgnoredSlot.json  
 
-A method of Pausing PoE-TradeMacro from parsing clipboard has been implimented
-    Right click TradeMacro tray icon, > Edit Files > Custom Macros Example
-    Copy the changes from the included txt file into your open editor, then save
-    Essentially it adds a way for Wingman to send a message for it to pause
+New option to check for updates while the game is closed  
+* Configure the time scale, then the interval to automatically check for script updates
+* Choose a time scale between Off, Days, Hours, or Minutes 
+  * Choosing Off will disable automatically checking for updates 
+* Set the interval between update checks
+  * Setting the interval to 0 will turn off checking for updates
 
-The script can now use predictive pricing from the PoEPrices.info API
-    To enable this feature, select a pricepoint then the percentage of that price
-    It defaults to 100 percent (the estimated values themselves)
-    To enable using Predictive price while stashing, select the tab and tick the box
-    The Item Info hotkey will now display the price and affixes influencing price
-        they will appear inside the Prop list under PredictPrice and PredictPriceInfo
-    It will save a copy of the results to an array
-        Multiple queries to the same item will used Cached result
-        Array is started fresh every script start
+Adjust Globes GUI now displays Current Life, ES, and Mana % 
+* MsgBox popups have been replaced with Notify panels 
+  * The information is still copied to the clipboard for use 
+* There is now a colorpicker on the right 
+  * Click any of the different areas “Colorbox” to load that color to the picker 
+  * Use the Copy button get the current color, then paste into one of the color edit fields 
+* To get an average of colors, use the Coord button and select an area 
+  * While active it will update the color picker to the mouse cursor 
+  * This will take some time for large areas 
+  * Once you are done paste into one of the color edit fields 
+* Reset button now reloads the values that were last loaded 
+  * If you have saved settings, it will reset to the last loaded values 
+  * If you have not saved to JSON it will load default scaled values
 
-Loot vacuum has been improved with new openables list
-    This is enabled only while in delve, and contains the items you find in the darkness
-    If you are resampling these for another resolution:
-        Copy the entire string to a document
-        Follow the same naming pattern when making your sample, replace 1080 with your height
-        If you want to have it become default option, submit your string and I can add to list
+Game window is now bound when detected for further captures 
+* Logout and logic actions will happen while the game is in the background
 
-Utilities have been improved - new settings
-    Can now support inversed Buff detection, will fire when buff is Found
-    Can now use Mana as a triggered threshold
-    Can now trigger utilities when pressing Primary or Secondary attack
+A method of Pausing PoE-TradeMacro from parsing clipboard has been implimented 
+* Right click TradeMacro tray icon 
+  * From the tray menu \> Edit Files \> Custom Macros Example 
+* Copy the changes from the included txt file into your open editor, then save 
+* Essentially it adds a way for Wingman to send a message for it to pause
+
+The script can now use predictive pricing from the PoEPrices.info API 
+* To enable this feature, select a pricepoint then the percentage of that price 
+  * It defaults to 100 percent (the estimated values themselves) and Off pricepoint
+* To enable using Predictive price while stashing, select the tab and tick the box 
+  * choose the chaos value minimum to send the item to stash
+* The Item Info hotkey will now display the price and affixes influencing price 
+  * they will appear inside the Prop list under PredictPrice and PredictPriceInfo 
+* It will save a copy of the results to an array 
+  * Multiple queries to the same item will used Cached result 
+  * Array is started fresh every script start
+
+Loot vacuum has been improved with new delve openables list 
+* This is enabled only while in delve, and contains the items you find in the darkness 
+* If you are resampling these for another resolution: Copy the entire string to a document to edit
+  * Follow the same naming pattern when making your sample, replace 1080 with your height 
+  * If you want to have it become default option, submit your string and I can add to list
+
+Utilities have been improved - new settings 
+* Can now support inversed Buff detection, will fire when buff is Found 
+* Can now use Mana as a triggered threshold 
+* Can now trigger utilities when pressing Primary or Secondary attack
 
 Gamestates has been improved to allow for the game to be in the background
-    tooltip no longer flickers because it will only update when there are changes
-    OHB detection is now shown in the gamestates
-    Colors of the display have been changed
-        When everything shows green its all clear
-        when anything is lit up red it will pause the script
+* OHB detection is now shown in the gamestates 
+* tooltip no longer flickers because it will only update when there are changes 
+* Colors of the display have been changed 
+  * When everything shows green its all clear 
+  * When anything is lit up red it will pause the script
 
-Crafting tab has new option for filtering by item level
-    Check the box to filter by ilvl, then set the minimum ilvl to stash
+Crafting tab has new option for filtering by item level 
+* Check the box to filter by ilvl, then set the minimum ilvl to stash
 
-Globe scan areas are now scaled based on resolution
-    it is still recommended to adjust these to ensure they work as expected
+Globe scan areas are now scaled based on resolution  
+it is still recommended to adjust these to ensure they work as expected
 
-Bugfix for bulk vendor of flasks
-    If the flask has been augmented it will use its actual quality value
-    This is because quality 20 flasks only vendor on their own if not augmented
-    This function still needs some more attention, not sure why random miscounts
+Bugfix for bulk vendor of flasks  
+If the flask has been augmented it will use its actual quality value  
+This is because quality 20 flasks only vendor on their own if not augmented  
+This function still needs some more attention, not sure why random miscounts
 
-Built new classes for use with the script
-    PixelStatus is a simple class for managing pixel locations on the screen
-    PanelManager is a wrapper class for groups of PixelStatus
-        This class is a rewrite of the GuiStatus function
-    ColorPicker is a class for inserting a new Color Picker GUI into windows
-        This manages a group of Progress_Slider and associated text fields / buttons
-    Progress_Slider was written by HellBent on the AHK forums, modified for my use
+Built new classes for use with the script 
+* PixelStatus is a simple class for managing pixel locations on the screen 
+* PanelManager is a wrapper class for groups of PixelStatus 
+  * This class is a rewrite of the GuiStatus function 
+* ColorPicker is a class for inserting a new Color Picker GUI into windows 
+  * This manages a group of Progress\_Slider and associated text fields / buttons 
+* Progress\_Slider was written by HellBent on the AHK forums, modified for my use
 
 CLF menu adjusted to space the groups better
 
@@ -258,8 +262,13 @@ Bugfix for PoE.Ninja json data being parsed incorrectly
 
 Bugfix for Incubator items not being able to be sorted by the CLF
 
-DC no longer requires to choose type of executable, it will auto find the active game
-    If it cannot find the active game, it will attempt to dc every known process name
+DC no longer requires to choose type of executable, it will auto find the active game 
+* If it cannot find the active game, it will attempt to dc every known process name
 
-Autoupdate will no longer hang the script if you decide to close the window
-    This will allow you to leave auto updates on, but skip the update by pressing esc
+Autoupdate will no longer hang the script if you decide to close the window 
+* This will allow you to leave auto updates on, but skip the update by pressing esc  
+
+
+---
+
+WingmanReloaded - ChangeLog - END OF FILE
