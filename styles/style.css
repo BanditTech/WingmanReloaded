@@ -7,8 +7,8 @@
   text-decoration: none;
 }
 .github-corner svg {
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
   fill: var(--theme-color);
   color: var(--base-background-color);
 }
@@ -1073,7 +1073,7 @@ pre[data-lang] {
   z-index: 30;
   top: calc(35px - (0.5em * var(--base-line-height)));
   left: 45px;
-  right: 80px;
+  right: 120px;
   text-align: right;
 }
 .app-nav.no-badge {
