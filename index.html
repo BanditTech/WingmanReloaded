@@ -19,7 +19,7 @@
 
   <!-- js -->
   <!-- docsify-themeable -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@latest"></script> -->
   <!-- highlight.js -->
   <!-- <link rel="stylesheet" href="styles/xcode.css"> -->
   <!-- <script src="js/highlight.autohotkey.js"></script> -->
@@ -68,7 +68,16 @@
       },
       'flexible-alerts': { },
       loadNavbar : false, // IMPORTANT for changelog
-      changelog : 'https://raw.githubusercontent.com/BanditTech/WingmanReloaded/Alpha/data/changelog.txt' // path of your changelog, it can be remote as well
+      // changelog: 'https://raw.githubusercontent.com/BanditTech/WingmanReloaded/Alpha/data/changelog.txt'
+      changelog: {
+        path : 'https://raw.githubusercontent.com/BanditTech/WingmanReloaded/Alpha/data/changelog.txt', // path of your changelog, it can be remote as well
+        width : "95%",
+        height : "90vh",
+        heading_links : "none",
+        colors : {
+          background : "#000"
+        }
+      }
       // changelog : 'text.md' // path of your changelog, it can be remote as well
     }
   </script>
