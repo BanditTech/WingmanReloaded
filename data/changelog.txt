@@ -277,5 +277,3 @@ Autoupdate will no longer hang the script if you decide to close the window
 ---
 
 WingmanReloaded - ChangeLog - END OF FILE
-
-# {docsify-ignore-all}
