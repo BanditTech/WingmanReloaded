@@ -2,6 +2,7 @@
 window.$docsify.plugins = [].concat((n, e) => {
     var t, o;
     localStorage && (t = !0), window.changelogDisplayHandler = function() {
+        // alert('test');
         if (document.getElementById("CHANGELOG_RENDERER").classList.toggle("show"), t && null === localStorage.getItem(o)) {
             if (document.getElementById("CHANGELOG_NOTIFY") != null ) {
                 document.getElementById("CHANGELOG_NOTIFY").remove();
@@ -18,19 +19,21 @@ window.$docsify.plugins = [].concat((n, e) => {
     if (null === i && (i = document.querySelector("nav"), null === i)) return void console.error("[Docsify-plugin-changelog] : please Write the nav element statically and set the loadNavbar option to false");
     const a = i.outerHTML.split("\n");
     n.ready((function() {
-        e.config.changelog.path && !e.config.loadNavbar && function() {
-            const n = new XMLHttpRequest;
-            n.onreadystatechange = function() {
+        e.config.changelog.path && !e.config.loadNavbar &&  function() {
+            const ht = new XMLHttpRequest();
+            // if (e.target != 'javascript:void(0);')
+            // return
+            ht.onreadystatechange = function() {
                 ! function(n) {
                     var l;
                     const c = JSON.stringify(n);
                     t && localStorage.getItem(c) ? l = '<a href="javascript:void(0);" onClick="window.changelogDisplayHandler(); return false;" id="CHANGELOG">CHANGELOG</a>\n                <div id="CHANGELOG_RENDERER">\n                  <div class="CL_content">\n                    <div class="CL_content-body"></div>\n                  </div>\n                </div>' 
                     : (l = '<a href="javascript:void(0);" onClick="window.changelogDisplayHandler(); return false;" id="CHANGELOG"><i id="CHANGELOG_NOTIFY"></i>  CHANGELOG</a>\n                <div id="CHANGELOG_RENDERER">\n                  <div class="CL_content">\n                    <div class="CL_content-body"></div>\n                  </div>\n                </div>', o = c);
                     i.innerHTML = a.map(n => n.trim()).slice(1, a.length - 1).concat(l.split("\n").map(n => n.trim())).concat(a.slice(-1, -1)).join("\n");
-                    const s = e.compiler._marked.parse(n);
+                    const s = e.compiler._marked.parse(n) + '';
                     document.querySelector("#CHANGELOG_RENDERER .CL_content .CL_content-body").innerHTML = s
                 }(` ${this.responseText} \n # {docsify-ignore-all} `)
-            }, n.open("GET", e.config.changelog.path, !0), n.send()
+            }, ht.open("GET", e.config.changelog.path, !0), ht.send()
         }()
     }));
     n.mounted(function() {
@@ -51,7 +54,7 @@ window.$docsify.plugins = [].concat((n, e) => {
                 border_edge: "#000000",
                 border_header_edge: "#e78931",
                 border_shadow: "#000000",
-                border_shadow_params: "0px 0px 50px 23px",
+                border_shadow_params: "0px 0px 30px 23px",
                 strong_text: "#e6c409",
                 strong_background: "#462200",
                 p_text: "#e78931",

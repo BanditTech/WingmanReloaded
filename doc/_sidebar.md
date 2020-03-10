@@ -4,7 +4,7 @@
   * [Flasks Tab](/doc/flask)
   * [Utility Tab](/doc/utility)
   * [Configuration Tab](/doc/configuration)
-  - **Other**
+  - **Additional GUI**
   * [FindText Interface](/doc/findtext)
 * [Developer Info](/dev/)
 - **Links**

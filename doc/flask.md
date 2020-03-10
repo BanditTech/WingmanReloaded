@@ -14,7 +14,7 @@ Choose between different Triggers:
 
 Choose Quicksilver options to adjust delay (in seconds) and associate the Quicksilver group with either of the Attack Keys.
 
-### Character Type
+#### Character Type
 > This option determines how flasks can trigger, this effects health trigger and Auto-Quit.
 * Life uses only Life Triggers, and Auto-Quit is based on Life. 
 * Hybrid uses both Life and ES Triggers, and Auto-Quit is based on life. 
@@ -22,17 +22,17 @@ Choose Quicksilver options to adjust delay (in seconds) and associate the Quicks
 
 > There is an option on the right for Eldritch Battery for any characters with ES on the mana globe.
 
-### Flask Duration
+#### Flask Duration
 > Assign the duration in MilliSeconds (Time in seconds * 1000)
 * This behaves as a cooldown
 
-### Flask Ingame Key
+#### Flask Ingame Key
 > Assign the key associated with this flask slot. The very first key is considered the flask slots primary key. You can proceed with a space then any number of additional keys to press when triggering that slot. Some possible keybindings:
 * 1
 * 1 {RButton} s a d
 * {Space} 2345asdf
 
-### Life and ES Triggers
+#### Life and ES Triggers
 
 > This section contains two collumns of radio buttons in each flask collumn. The left side is the Life radio buttons, and the right side is the ES radio buttons. 
 * When switching between character types these will become active or inactive.
@@ -41,7 +41,7 @@ Choose Quicksilver options to adjust delay (in seconds) and associate the Quicks
 * Trigger below 90 at the top row, going down to 20 and disabled.
 * Selecting a Quicksilver box, or mana box will disable any selected health triggers for that flask collumn.
 
-### Quicksilver Trigger Group
+#### Quicksilver Trigger Group
 
 > This row of check boxes allows to add the flask slot to the Quicksilver Flask group.
 * They wait to fire sequentially, and will not overlap cooldowns.
@@ -52,7 +52,7 @@ Choose Quicksilver options to adjust delay (in seconds) and associate the Quicks
 * By default the script will use the left mouse button as the trigger for this group.
   * Optionally trigger Quicksilvers with the Primary or Secondary Attack Keys.
 
-### Mana Trigger Group
+#### Mana Trigger Group
 
 > This row of check boxes allows to add the flask slot to the Mana Flask group.
 * They wait to fire sequentially, and will not overlap cooldowns.
@@ -60,14 +60,14 @@ Choose Quicksilver options to adjust delay (in seconds) and associate the Quicks
 * All mana flasks use the same threshold which is set on the left hand side.
   * Use the Up-Down buttons to adjust the percentage of mana to trigger the group.
 
-### Pop Flasks Group
+#### Pop Flasks Group
 
 > This row of checkboxes will enable that flask slot to fire when pressing the Pop Flasks hotkey.
 * Optionally this can respect the cooldown of flasks that are currently active.
 * Optionally allow the Pop Flasks hotkey to fire any extra buttons from the flask bindings.
   * This means if your bindings have more than one key, you can choose not to fire the extra ones
 
-### Attack Key Triggers
+#### Attack Key Triggers
 
 > These rows of check boxes allow flask slots to be tied to two Attack Keys.
 * Choose which keys are considered the Primary and Secondary Attack Keys.
@@ -84,6 +84,17 @@ Choose Quicksilver options to adjust delay (in seconds) and associate the Quicks
   * /exit is simply sending the exit command to chat, slower than dc but you return to character screen instead of logged out
 * The last option allows the script to press Enter to log back in after D/C or /exit
 
-```autohotkey
-Blah blah code blah blah
-```
+## QuickSilver Settings
+> This group of settings are for the QuickSilver flask group, this is any flask with the trigger type "Quicks" checked
+* Choose the delay it will take before triggering a QS on Left Mouse or attack keys
+* Select if the Primary or Secondary Attack also will trigger QuickSilver
+  * These will respect the assigned cooldown for the QuickSilver group
+
+## Profile Management
+> Configure your flasks and utilities and save up to 10 profiles
+* Set your character name for that profile slot, to use in chat hotkeys like "/kick CharacterName"
+* Once you have configured everything, press the save button on one of the profile slots
+  * Give the profile slot a discriptive name to remember which kind of character
+* Press the load button on any of the profiles to load either saved profile or default settings
+
+
