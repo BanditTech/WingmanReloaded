@@ -33,16 +33,12 @@
 }
 
 @media screen and (orientation: landscape) {
-    #CHANGELOG_RENDERER {
-    }
     #CHANGELOG_RENDERER .CL_content-body {
         width: var(--changelog-window-width);
         height: var(--changelog-window-height);
     }
 }
 @media screen and (orientation: portrait) {
-    #CHANGELOG_RENDERER {
-    }
     #CHANGELOG_RENDERER .CL_content-body {
         width: var(--changelog-window-portrait-width);
         height: var(--changelog-window-portrait-height);
