@@ -7,10 +7,20 @@
   text-decoration: none;
 }
 .github-corner svg {
-  height: 90px;
-  width: 90px;
-  fill: var(--theme-color);
-  color: var(--base-background-color);
+    fill: var(--theme-color);
+    color: var(--base-background-color);
+}
+@media screen and (orientation: landscape) {
+  .github-corner svg {
+    height: 3vw;
+    width: 3vw;
+  }
+}
+@media screen and (orientation: portrait) {
+  .github-corner svg {
+    height: 3vw;
+    width: 3vw;
+  }
 }
 .github-corner:hover .octo-arm {
   -webkit-animation: octocat-wave 560ms ease-in-out;

@@ -41,93 +41,203 @@ window.$docsify.plugins = [].concat((n, e) => {
         // We need to first build the entire settings object
         var u = {
             path: "changelog.md",
-            height: "90vh",
-            width: "65%",
-            heading_links: "none",
-            colors: {
-                button_text: "#e78931",
-                button_notify: "#e78931",
-                background: "#000000",
-                background_high: "#070707",
-                scroll_track: "#000000",
-                scroll_button: "#6d6d6d",
-                border_edge: "#000000",
-                border_header_edge: "#e78931",
-                border_shadow: "#000000",
-                border_shadow_params: "0px 0px 30px 23px",
-                strong_text: "#e6c409",
-                strong_background: "#462200",
-                p_text: "#e78931",
-                blockquote_text: "#e6c409",
-                list_text: "#80e42e",
-                a_text: "#e6c409",
-                a_background: "#070707",
-                a_background_hover: "#6868687a",
-                h1_background: "#070707",
-                h2_background: "#070707",
-                h3_background: "#070707",
-                h4_background: "#070707",
+            window: {
+                height: "60vh",
+                width: "400px",
+                portrait_height: "60vh",
+                portrait_width: "400px",
+                background: "#FFF",
+                scroll_track: "inherit",
+                scroll_button: "grey",
+                border: "rgba(0, 0, 0, 0.1)",
+                shadow: "rgba(0, 0, 0, .3)",
+                shadow_params: "0 0 34px 15px",
+            },
+            button:{
+                notify: "orange",
+                text: "goldenrod",
+                text_hover: "darkorange",
+                text_transition: "1s",
+                background: "inherit",
+                background_hover: "grey",
+                background_transition: "1s",
+                brightness_hover: "100%",
+                position: "absolute",
+                offset_right: "0px",
+            },
+            header:{
+                auto_links: "none", 
+                border_edge: "rgba(0, 0, 0, 0.1)",
+                h1_text: "inherit",
+                h1_background: "rgba(0, 0, 0, 0.03)",
+                h1_size: "1.5rem",
+                h2_text: "inherit",
+                h2_background: "inherit",
+                h2_size: "2rem",
+                h3_text: "inherit",
+                h3_background: "inherit",
+                h3_size: "24px",
+                h4_text: "inherit",
+                h4_background: "inherit",
+                h4_size: "inherit",
+            },
+            text: {
+                all: "black",
+                strong: "inherit",
+                strong_background: "silver",
+                p: "darkred",
+                p_background: "inherit",
+                blockquote: "inherit",
+                blockquote_background: "inherit",
+                list: "inherit",
+                list_background: "inherit",
+                list_icon: `"\\f00c"` // accepts "caret", "angle", "chevron", "calendar", "bars", "check", or "arrow"
+            },
+            link: {
+                text: "inherit",
+                text_hover: "orange",
+                text_transition: "0.5s",
+                background: "inherit",
+                background_hover: "inherit",
+                background_transition: "0.5s",
             }
         };
         var a = e.config.changelog;
         if (Object.isObject(a)) {
-            u.path = a.path || u.path
-            , u.width = a.width || u.width
-            , u.height = a.height || u.height
-            , u.heading_links = a.heading_links || u.heading_links;
-            if (Object.isObject(a.colors)){
-                u.colors.button_text = a.colors.button_text || u.colors.button_text
-                , u.colors.button_notify = a.colors.button_notify || a.colors.button_text || u.colors.button_text
-                , u.colors.list_text = a.colors.list_text || u.colors.list_text
-                , u.colors.background = a.colors.background || u.colors.background
-                , u.colors.background_high = a.colors.background_high || u.colors.background_high
-                , u.colors.scroll_track = a.colors.scroll_track || a.colors.background || u.colors.scroll_track
-                , u.colors.scroll_button = a.colors.scroll_button || u.colors.scroll_button
-                , u.colors.border_edge = a.colors.border_edge || a.colors.background || u.colors.border_edge
-                , u.colors.border_header_edge = a.colors.border_header_edge || a.colors.button_text || u.colors.border_header_edge
-                , u.colors.border_shadow = a.colors.border_shadow || a.colors.background || u.colors.border_shadow
-                , u.colors.border_shadow_params = a.colors.border_shadow_params || u.colors.border_shadow_params
-                , u.colors.strong_text = a.colors.strong_text || u.colors.strong_text
-                , u.colors.strong_background = a.colors.strong_background || u.colors.strong_background
-                , u.colors.blockquote_text = a.colors.blockquote_text || a.colors.strong_text || u.colors.blockquote_text
-                , u.colors.p_text = a.colors.p_text || a.colors.button_text || u.colors.p_text
-                , u.colors.a_text = a.colors.a_text || a.colors.strong_text || u.colors.a_text
-                , u.colors.a_background = a.colors.a_background || a.colors.background_high || u.colors.a_background
-                , u.colors.a_background_hover = a.colors.a_background_hover || u.colors.a_background_hover
-                , u.colors.h1_background = a.colors.h1_background || a.colors.background_high || u.colors.h1_background
-                , u.colors.h2_background = a.colors.h2_background || a.colors.background_high || u.colors.h2_background
-                , u.colors.h3_background = a.colors.h3_background || a.colors.background_high || u.colors.h3_background
-                , u.colors.h4_background = a.colors.h4_background || a.colors.background_high || u.colors.h4_background;
+            u.path = a.path || u.path;
+            if (Object.isObject(a.window)) {
+                u.window.height = a.window.height || u.window.height
+                , u.window.width = a.window.width || u.window.width
+                , u.window.portrait_height = a.window.portrait_height || u.window.portrait_height
+                , u.window.portrait_width = a.window.portrait_width || u.window.portrait_width
+                , u.window.background = a.window.background || u.window.background
+                , u.window.scroll_track = a.window.scroll_track || u.window.scroll_track
+                , u.window.scroll_button = a.window.scroll_button || u.window.scroll_button
+                , u.window.border = a.window.border || u.window.border
+                , u.window.shadow = a.window.shadow || u.window.shadow
+                , u.window.shadow_params = a.window.shadow_params || u.window.shadow_params;
+            };
+            if (Object.isObject(a.button)){
+                u.button.notify = a.button.notify || u.button.notify
+                , u.button.text = a.button.text || u.button.text
+                , u.button.text_hover = a.button.text_hover || u.button.text_hover
+                , u.button.text_transition = a.button.text_transition || u.button.text_transition
+                , u.button.background = a.button.background || u.button.background
+                , u.button.background_hover = a.button.background_hover || u.button.background_hover
+                , u.button.background_transition = a.button.background_transition || u.button.background_transition
+                , u.button.brightness_hover = a.button.brightness_hover || u.button.brightness_hover
+                , u.button.position = a.button.position || u.button.position
+                , u.button.offset_right = a.button.offset_right || u.button.offset_right;
+            };
+            if (Object.isObject(a.header)){
+                u.header.auto_links = a.header.auto_links || u.header.auto_links
+                , u.header.border_edge = a.header.border_edge || u.header.border_edge
+                , u.header.h1_text = a.header.h1_text || u.header.h1_text
+                , u.header.h1_background = a.header.h1_background || u.header.h1_background
+                , u.header.h1_size = a.header.h1_size || u.header.h1_size
+                , u.header.h2_text = a.header.h2_text || u.header.h2_text
+                , u.header.h2_background = a.header.h2_background || u.header.h2_background
+                , u.header.h2_size = a.header.h2_size || u.header.h2_size
+                , u.header.h3_text = a.header.h3_text || u.header.h3_text
+                , u.header.h3_background = a.header.h3_background || u.header.h3_background
+                , u.header.h3_size = a.header.h3_size || u.header.h3_size
+                , u.header.h4_text = a.header.h4_text || u.header.h4_text
+                , u.header.h4_background = a.header.h4_background || u.header.h4_background
+                , u.header.h4_size = a.header.h4_size || u.header.h4_size;
+            };
+            if (Object.isObject(a.text)){
+                if        (a.text.list_icon === "caret"){
+                    a.text.list_icon = `"\\f0da"`
+                } else if (a.text.list_icon === "angle"){
+                    a.text.list_icon = `"\\f105"`
+                } else if (a.text.list_icon === "chevron"){
+                    a.text.list_icon = `"\\f138"`
+                } else if (a.text.list_icon === "calendar"){
+                    a.text.list_icon = `"\\f274"`
+                } else if (a.text.list_icon === "bars"){
+                    a.text.list_icon = `"\\f0c9"`
+                } else if (a.text.list_icon === "check"){
+                    a.text.list_icon = `"\\f00c"`
+                } else if (a.text.list_icon === "arrow"){
+                    a.text.list_icon = `"\\f0a9"`
+                };
+
+                u.text.all = a.text.all || u.text.all
+                , u.text.strong = a.text.strong || u.text.strong
+                , u.text.strong_background = a.text.strong_background || u.text.strong_background
+                , u.text.p = a.text.p || u.text.p
+                , u.text.p_background = a.text.p_background || u.text.p_background
+                , u.text.blockquote = a.text.blockquote || u.text.blockquote
+                , u.text.blockquote_background = a.text.blockquote_background || u.text.blockquote_background
+                , u.text.list = a.text.list || u.text.list
+                , u.text.list_background = a.text.list_background || u.text.list_background
+                , u.text.list_icon = a.text.list_icon || u.text.list_icon;
+            };
+            if (Object.isObject(a.link)){
+                u.link.text = a.link.text || u.link.text
+                , u.link.text_hover = a.link.text_hover || u.link.text_hover
+                , u.link.text_transition = a.link.text_transition || u.link.text_transition
+                , u.link.background = a.link.background || u.link.background
+                , u.link.background_hover = a.link.background_hover || u.link.background_hover
+                , u.link.background_transition = a.link.background_transition || u.link.background_transition;
             };
         } else {
             u.path = a
         };
-        document.documentElement.style.setProperty(`--setting-changelog-width`, `${u.width}`)
-        , document.documentElement.style.setProperty(`--setting-changelog-height`, `${u.height}`)
-        , document.documentElement.style.setProperty(`--setting-heading-links`, `${u.heading_links}`)
-        , document.documentElement.style.setProperty(`--color-button-text`, `${u.colors.button_text}`)
-        , document.documentElement.style.setProperty(`--color-button-notify`, `${u.colors.button_notify}`)
-        , document.documentElement.style.setProperty(`--color-background`, `${u.colors.background}`)
-        , document.documentElement.style.setProperty(`--color-background-high`, `${u.colors.background_high}`)
-        , document.documentElement.style.setProperty(`--color-scroll-track`, `${u.colors.scroll_track}`)
-        , document.documentElement.style.setProperty(`--color-scroll-button`, `${u.colors.scroll_button}`)
-        , document.documentElement.style.setProperty(`--color-border-edge`, `${u.colors.border_edge}`)
-        , document.documentElement.style.setProperty(`--color-border-shadow`, `${u.colors.border_shadow}`)
-        , document.documentElement.style.setProperty(`--color-border-shadow-params`, `${u.colors.border_shadow_params}`)
-        , document.documentElement.style.setProperty(`--color-border-header-edge`, `${u.colors.border_header_edge}`)
-        , document.documentElement.style.setProperty(`--color-strong-text`, `${u.colors.strong_text}`)
-        , document.documentElement.style.setProperty(`--color-strong-background`, `${u.colors.strong_background}`)
-        , document.documentElement.style.setProperty(`--color-list-text`, `${u.colors.list_text}`)
-        , document.documentElement.style.setProperty(`--color-p-text`, `${u.colors.p_text}`)
-        , document.documentElement.style.setProperty(`--color-blockquote-text`, `${u.colors.blockquote_text}`)
-        , document.documentElement.style.setProperty(`--color-a-text`, `${u.colors.a_text}`)
-        , document.documentElement.style.setProperty(`--color-a-background`, `${u.colors.a_background}`)
-        , document.documentElement.style.setProperty(`--color-a-background-hover`, `${u.colors.a_background_hover}`)
-        , document.documentElement.style.setProperty(`--color-h1-background`, `${u.colors.h1_background}`)
-        , document.documentElement.style.setProperty(`--color-h2-background`, `${u.colors.h2_background}`)
-        , document.documentElement.style.setProperty(`--color-h3-background`, `${u.colors.h3_background}`)
-        , document.documentElement.style.setProperty(`--color-h4-background`, `${u.colors.h4_background}`);
-        // e.config.changelog = [].concat(a,u)
+          document.documentElement.style.setProperty(`--changelog-window-height`, `${u.window.height}`)
+        , document.documentElement.style.setProperty(`--changelog-window-width`, `${u.window.width}`)
+        , document.documentElement.style.setProperty(`--changelog-window-portrait-height`, `${u.window.portrait_height}`)
+        , document.documentElement.style.setProperty(`--changelog-window-portrait-width`, `${u.window.portrait_width}`)
+        , document.documentElement.style.setProperty(`--changelog-window-background`, `${u.window.background}`)
+        , document.documentElement.style.setProperty(`--changelog-window-scroll-track`, `${u.window.scroll_track}`)
+        , document.documentElement.style.setProperty(`--changelog-window-scroll-button`, `${u.window.scroll_button}`)
+        , document.documentElement.style.setProperty(`--changelog-window-border`, `${u.window.border}`)
+        , document.documentElement.style.setProperty(`--changelog-window-shadow`, `${u.window.shadow}`)
+        , document.documentElement.style.setProperty(`--changelog-window-shadow-params`, `${u.window.shadow_params}`)
+
+        , document.documentElement.style.setProperty(`--changelog-button-notify`, `${u.button.notify}`)
+        , document.documentElement.style.setProperty(`--changelog-button-text`, `${u.button.text}`)
+        , document.documentElement.style.setProperty(`--changelog-button-text-hover`, `${u.button.text_hover}`)
+        , document.documentElement.style.setProperty(`--changelog-button-text-transition`, `${u.button.text_transition}`)
+        , document.documentElement.style.setProperty(`--changelog-button-background`, `${u.button.background}`)
+        , document.documentElement.style.setProperty(`--changelog-button-background-hover`, `${u.button.background_hover}`)
+        , document.documentElement.style.setProperty(`--changelog-button-background-transition`, `${u.button.background_transition}`)
+        , document.documentElement.style.setProperty(`--changelog-button-brightness-hover`, `${u.button.brightness_hover}`)
+        , document.documentElement.style.setProperty(`--changelog-button-position`, `${u.button.position}`)
+        , document.documentElement.style.setProperty(`--changelog-button-offset-right`, `${u.button.offset_right}`)
+
+        , document.documentElement.style.setProperty(`--changelog-header-auto-links`, `${u.header.auto_links}`)
+        , document.documentElement.style.setProperty(`--changelog-header-border-edge`, `${u.header.border_edge}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h1-text`, `${u.header.h1_text}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h2-text`, `${u.header.h2_text}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h3-text`, `${u.header.h3_text}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h4-text`, `${u.header.h4_text}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h1-background`, `${u.header.h1_background}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h2-background`, `${u.header.h2_background}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h3-background`, `${u.header.h3_background}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h4-background`, `${u.header.h4_background}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h1-size`, `${u.header.h1_size}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h2-size`, `${u.header.h2_size}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h3-size`, `${u.header.h3_size}`)
+        , document.documentElement.style.setProperty(`--changelog-header-h4-size`, `${u.header.h4_size}`)
+
+        , document.documentElement.style.setProperty(`--changelog-text-all`, `${u.text.all}`)
+        , document.documentElement.style.setProperty(`--changelog-text-strong`, `${u.text.strong}`)
+        , document.documentElement.style.setProperty(`--changelog-text-strong-background`, `${u.text.strong_background}`)
+        , document.documentElement.style.setProperty(`--changelog-text-p`, `${u.text.p}`)
+        , document.documentElement.style.setProperty(`--changelog-text-p-background`, `${u.text.p_background}`)
+        , document.documentElement.style.setProperty(`--changelog-text-blockquote`, `${u.text.blockquote}`)
+        , document.documentElement.style.setProperty(`--changelog-text-blockquote-background`, `${u.text.blockquote_background}`)
+        , document.documentElement.style.setProperty(`--changelog-text-list`, `${u.text.list}`)
+        , document.documentElement.style.setProperty(`--changelog-text-list-background`, `${u.text.list_background}`)
+        , document.documentElement.style.setProperty(`--changelog-text-list-icon`, `${u.text.list_icon}`)
+
+        , document.documentElement.style.setProperty(`--changelog-link-text`, `${u.link.a_text}`)
+        , document.documentElement.style.setProperty(`--changelog-link-text-hover`, `${u.link.text_hover}`)
+        , document.documentElement.style.setProperty(`--changelog-link-text-transition`, `${u.link.text_transition}`)
+        , document.documentElement.style.setProperty(`--changelog-link-background`, `${u.link.background}`)
+        , document.documentElement.style.setProperty(`--changelog-link-background-hover`, `${u.link.background_hover}`)
+        , document.documentElement.style.setProperty(`--changelog-link-background-transition`, `${u.link.background_transition}`);
         e.config.changelog = u
     });
 }, window.$docsify.plugins);

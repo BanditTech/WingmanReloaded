@@ -70,12 +70,66 @@
       loadNavbar : false, // IMPORTANT for changelog
       changelog: {
         path : 'https://raw.githubusercontent.com/BanditTech/WingmanReloaded/Alpha/data/changelog.txt', // path of your changelog, it can be remote as well
-        width : "85vw",
-        height : "85vh",
-        heading_links : "none",
-        colors : {
-          background : "#000",
-          border_shadow_params : "0px 0px 30px 23px"
+        window: {
+          width: "50vw",
+          height: "87vh",
+          portrait_width: "90vw",
+          portrait_height: "92vh",
+          background: "#242424",
+          scroll_track: "inherit",
+          scroll_button: "grey",
+          border: "#242424",
+          shadow: "#242424",
+          shadow_params: "0 0 34px 25px",
+        },
+        button:{
+          notify: "orange",
+          text: "goldenrod",
+          text_hover: "darkorange",
+          text_transition: "1s",
+          background: "inherit",
+          background_hover: "grey",
+          background_transition: "1s",
+          brightness_hover: "100%",
+          position: "fixed",
+          offset_right: "4vw",
+        },
+        header:{
+          auto_links: "none", 
+          border_edge: "darkorange",
+          h1_text: "darkorange",
+          h1_background: "rgba(0, 0, 0, 0.03)",
+          h1_size: "1.5rem",
+          h2_text: "#e9eea7",
+          h2_background: "inherit",
+          h2_size: "2rem",
+          h3_text: "inherit",
+          h3_background: "inherit",
+          h3_size: "24px",
+          h4_text: "inherit",
+          h4_background: "inherit",
+          h4_size: "inherit",
+        },
+        text: {
+          all: "#ecfd00e0",
+          strong: "inherit",
+          strong_background: "#eeff001f",
+          p: "inherit",
+          p_background: "inherit",
+          blockquote: "darkorange",
+          blockquote_background: "inherit",
+          list: "#00ff2aa4",
+          list_background: "inherit",
+          list_icon: "chevron" // accepts "caret", "angle", "chevron", "calendar", "bars", "check", or "arrow"
+          // also can insert custom string or any of the FontAwesome catalogue
+        },
+        link: {
+          text: "inherit",
+          text_hover: "orange",
+          text_transition: "0.5s",
+          background: "inherit",
+          background_hover: "inherit",
+          background_transition: "0.5s",
         }
       }
     }
