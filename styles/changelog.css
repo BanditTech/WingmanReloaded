@@ -59,7 +59,7 @@
 }
 
 #CHANGELOG_RENDERER.show {
-    display: block
+    display: block;
 }
 
 #CHANGELOG_RENDERER .CL_content-body {

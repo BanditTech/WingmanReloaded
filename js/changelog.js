@@ -51,7 +51,7 @@ window.$docsify.plugins = [].concat((n, e) => {
                 scroll_button: "grey",
                 border: "rgba(0, 0, 0, 0.1)",
                 shadow: "rgba(0, 0, 0, .3)",
-                shadow_params: "0 0 34px 15px",
+                shadow_params: "0 0 34px 15px"
             },
             button:{
                 notify: "orange",
@@ -63,7 +63,7 @@ window.$docsify.plugins = [].concat((n, e) => {
                 background_transition: "1s",
                 brightness_hover: "100%",
                 position: "absolute",
-                offset_right: "0px",
+                offset_right: "0px"
             },
             header:{
                 auto_links: "none", 
@@ -79,7 +79,7 @@ window.$docsify.plugins = [].concat((n, e) => {
                 h3_size: "24px",
                 h4_text: "inherit",
                 h4_background: "inherit",
-                h4_size: "inherit",
+                h4_size: "inherit"
             },
             text: {
                 all: "black",
@@ -99,7 +99,7 @@ window.$docsify.plugins = [].concat((n, e) => {
                 text_transition: "0.5s",
                 background: "inherit",
                 background_hover: "inherit",
-                background_transition: "0.5s",
+                background_transition: "0.5s"
             }
         };
         var a = e.config.changelog;
