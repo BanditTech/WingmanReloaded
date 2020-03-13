@@ -2,151 +2,152 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  
-  <title>WingmanReloaded</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="A multi purpose tool for Path of Exile gameplay">
-  <meta name="viewport"    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <!-- appearance -->
-  <link rel="stylesheet" href="styles/style.css"/>
-  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-changelog-plugin@latest/dist/style.css"/> -->
-  <link rel="stylesheet" href="styles/changelog.css"/>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-  <!-- Theme: Simple Dark
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css"> -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <meta charset="UTF-8" />
 
-  <!-- js -->
-  <!-- docsify-themeable -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@latest"></script> -->
-  <!-- highlight.js -->
-  <!-- <link rel="stylesheet" href="styles/xcode.css"> -->
-  <!-- <script src="js/highlight.autohotkey.js"></script> -->
+    <title>WingmanReloaded</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="A multi purpose tool for Path of Exile gameplay" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <!-- appearance -->
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-changelog-plugin@latest/dist/style.css"/> -->
+    <link rel="stylesheet" href="styles/changelog.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <!-- Theme: Simple Dark
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css"> -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
+    <!-- js -->
+    <!-- docsify-themeable -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@latest"></script> -->
+    <!-- highlight.js -->
+    <!-- <link rel="stylesheet" href="styles/xcode.css"> -->
+    <!-- <script src="js/highlight.autohotkey.js"></script> -->
 </head>
 <nav></nav>
+
 <body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: 'WingmanReloaded',
-      repo: "https://github.com/BanditTech/WingmanReloaded",
-      homepage   : '/README.md',
-      logo: '/images/logo.png',
-      loadSidebar: true,
-      auto2top: true,
-      search: 'auto',
-      maxLevel: 3,
-      subMaxLevel: 3,
-      themeable: {
-        readyTransition : true, // default
-        responsiveTables: true  // default
-      },
-      // searchbar settings
-      search: {
-        maxAge: 86400000, // Expiration time, the default one day
-        depth: 6, // Headline depth
-        noData: {
-          '/': 'No results!',
-          '/de-de/': 'Keine Ergebnisse!',
-          '/ja-ja/': '結果がありません！',
-          '/zh-cn/': '没有结果!'
-        },
-        placeholder: {
-          '/': 'Type to Search',
-          '/de-de/': 'Suche',
-          '/ja-ja/': '検索するタイプ',
-          '/zh-cn/': '搜索'
-        },
-        namespace: 'WingmanReloaded'
-      },
-      // end of searchbar
-      pagination: {
-        crossChapter: false,
-        crossChapterText: true
-      },
-      'flexible-alerts': { },
-      loadNavbar : false, // IMPORTANT for changelog
-      changelog: {
-        path : 'https://raw.githubusercontent.com/BanditTech/WingmanReloaded/Alpha/data/changelog.txt', // path of your changelog, it can be remote as well
-        window: {
-          width: "50vw",
-          height: "87vh",
-          portrait_width: "90vw",
-          portrait_height: "92vh",
-          background: "#242424",
-          scroll_track: "inherit",
-          scroll_button: "grey",
-          border: "#242424",
-          shadow: "#242424",
-          shadow_params: "0 0 34px 25px"
-        },
-        button:{
-          notify: "orange",
-          text: "goldenrod",
-          text_hover: "darkorange",
-          text_transition: "1s",
-          background: "inherit",
-          background_hover: "grey",
-          background_transition: "1s",
-          brightness_hover: "100%",
-          position: "fixed",
-          offset_right: "4vw"
-        },
-        header:{
-          auto_links: "none", 
-          border_edge: "darkorange",
-          h1_text: "darkorange",
-          h1_background: "rgba(0, 0, 0, 0.03)",
-          h1_size: "1.5rem",
-          h2_text: "#e9eea7",
-          h2_background: "inherit",
-          h2_size: "2rem",
-          h3_text: "inherit",
-          h3_background: "inherit",
-          h3_size: "24px",
-          h4_text: "inherit",
-          h4_background: "inherit",
-          h4_size: "inherit"
-        },
-        text: {
-          all: "#ecfd00e0",
-          strong: "inherit",
-          strong_background: "#eeff001f",
-          p: "inherit",
-          p_background: "inherit",
-          blockquote: "darkorange",
-          blockquote_background: "inherit",
-          list: "#00ff2aa4",
-          list_background: "inherit",
-          list_icon: "chevron" // accepts "caret", "angle", "chevron", "calendar", "bars", "check", or "arrow"
-          // also can insert custom string or any of the FontAwesome catalogue
-        },
-        link: {
-          text: "inherit",
-          text_hover: "orange",
-          text_transition: "0.5s",
-          background: "inherit",
-          background_hover: "inherit",
-          background_transition: "0.5s"
-        }
-      }
-    }
-  </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
-  <script src="//unpkg.com/docsify-copy-code"></script>
-  <script src="js/prism-autohotkey.min.js"></script>
-  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
-  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-changelog-plugin@latest/dist/index.js"></script> -->
-  <script src="js/changelog.js"></script>
+    <div id="app"></div>
+    <script>
+        window.$docsify = {
+            name: "WingmanReloaded",
+            repo: "https://github.com/BanditTech/WingmanReloaded",
+            homepage: "/README.md",
+            logo: "/images/logo.png",
+            loadSidebar: true,
+            auto2top: true,
+            search: "auto",
+            maxLevel: 3,
+            subMaxLevel: 3,
+            themeable: {
+                readyTransition: true, // default
+                responsiveTables: true // default
+            },
+            // searchbar settings
+            search: {
+                maxAge: 86400000, // Expiration time, the default one day
+                depth: 6, // Headline depth
+                noData: {
+                    "/": "No results!",
+                    "/de-de/": "Keine Ergebnisse!",
+                    "/ja-ja/": "結果がありません！",
+                    "/zh-cn/": "没有结果!"
+                },
+                placeholder: {
+                    "/": "Type to Search",
+                    "/de-de/": "Suche",
+                    "/ja-ja/": "検索するタイプ",
+                    "/zh-cn/": "搜索"
+                },
+                namespace: "WingmanReloaded"
+            },
+            // end of searchbar
+            pagination: {
+                crossChapter: false,
+                crossChapterText: true
+            },
+            "flexible-alerts": {},
+            loadNavbar: false, // IMPORTANT for changelog
+            changelog: {
+                path: "https://raw.githubusercontent.com/BanditTech/WingmanReloaded/Alpha/data/changelog.txt", // path of your changelog, it can be remote as well
+                window: {
+                    width: "50vw",
+                    height: "87vh",
+                    portrait_width: "90vw",
+                    portrait_height: "92vh",
+                    background: "#242424",
+                    scroll_track: "#242424",
+                    scroll_button: "#242424",
+                    border: "inherit",
+                    shadow: "#242424",
+                    shadow_params: "0 0 34px 25px",
+                    offset_right: "4vw"
+                },
+                button: {
+                    notify: "orange",
+                    text: "goldenrod",
+                    text_hover: "darkorange",
+                    text_transition: "1s",
+                    background: "inherit",
+                    background_hover: "grey",
+                    background_transition: "1s",
+                    brightness_hover: "100%",
+                    position: "fixed",
+                    offset_right: "4vw"
+                },
+                header: {
+                    auto_links: "none",
+                    border_edge: "darkorange",
+                    h1_text: "darkorange",
+                    h1_background: "rgba(0, 0, 0, 0.03)",
+                    h1_size: "1.5rem",
+                    h2_text: "#e9eea7",
+                    h2_background: "inherit",
+                    h2_size: "2rem",
+                    h3_text: "inherit",
+                    h3_background: "inherit",
+                    h3_size: "24px",
+                    h4_text: "inherit",
+                    h4_background: "inherit",
+                    h4_size: "inherit"
+                },
+                text: {
+                    all: "#ecfd00e0",
+                    strong: "inherit",
+                    strong_background: "#eeff001f",
+                    p: "inherit",
+                    p_background: "inherit",
+                    blockquote: "darkorange",
+                    blockquote_background: "inherit",
+                    list: "#00ff2aa4",
+                    list_background: "inherit",
+                    list_icon: "chevron" // accepts "caret", "angle", "chevron", "calendar", "bars", "check", or "arrow"
+                        // also can insert custom string or any of the FontAwesome catalogue
+                },
+                link: {
+                    text: "inherit",
+                    text_hover: "orange",
+                    text_transition: "0.5s",
+                    background: "inherit",
+                    background_hover: "inherit",
+                    background_transition: "0.5s"
+                }
+            }
+        };
+    </script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+    <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+    <script src="//unpkg.com/docsify-copy-code"></script>
+    <script src="js/prism-autohotkey.min.js"></script>
+    <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
+    <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-changelog-plugin@latest/dist/index.js"></script> -->
+    <script src="js/changelog.js"></script>
 </body>
 <footer>
-  <script>
-    // nothing
-  </script>
+    <script>
+        // nothing
+    </script>
 </footer>
 
 </html>
