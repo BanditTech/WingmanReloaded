@@ -8,6 +8,8 @@ Fix for old league name in predictive pricing code
 Few more additions to Quest Item catalogue
 * Submit any quest items that do not have an assigned width/height or quest tag
 
+Code has been reformatted to use Soft Tabs for easier readability
+
 ---
 
 ## Version .10.0201 - Alpha Branch - March/05/2020
