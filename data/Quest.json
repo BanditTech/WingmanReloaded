@@ -70,6 +70,26 @@
     "Height": 1
   },
   {
+    "Name": "Bust of Gaius Sentari",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Bust of Hector Titucius",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Bust of Marceus Lioneye",
+    "Width": 1,
+    "Height": 2
+  },
+  {
+    "Name": "Decanter Spiritus",
+    "Width": 1,
+    "Height": 3
+  },
+  {
     "Name": "Golden Page",
     "Width": 1,
     "Height": 2
@@ -163,6 +183,11 @@
     "Name": "Maligaro's Map",
     "Width": 1,
     "Height": 1
+  },
+  {
+    "Name": "Maligaro's Spike",
+    "Width": 1,
+    "Height": 4
   },
   {
     "Name": "Greust's Necklace",
