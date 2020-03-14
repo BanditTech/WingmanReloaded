@@ -1,8 +1,17 @@
 
 ---
 
-## Version .10.0201 - Alpha Branch - March/05/2020
+## Version .10.03 - Master Branch - March/14/2020
 
+Fix for old league name in predictive pricing code
+* it is now based on selected league in the Item Parse Settings
+* press refresh on league start to get new league strings
+* now displays any error messages that occur when using API
+
+Few more additions to Quest Item catalogue
+* Submit any quest items that do not have an assigned width/height or quest tag
+
+## Version .10.0201 - Alpha Branch - March/05/2020
 
 Adjustments to the GUI, trying to organize it a bit better preparing for rework of flask GUI  
 

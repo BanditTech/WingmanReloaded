@@ -1346,6 +1346,7 @@
   PredictPrice(Switch:="")
   {
     Static ItemList := []
+    Static WarnedError := 0
     FoundMatch := False
     If (Prop.Rarity_Digit = 3 && (Prop.SpecialType = "" || Prop.SpecialType = "6Link" || Prop.SpecialType = "5Link") && YesPredictivePrice != "Off")
     {
@@ -1361,7 +1362,15 @@
       If !FoundMatch
       {
         PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
-        MsgBox, % Array_Print(PriceObj)
+        if (PriceObj.error)
+        {
+          If (A_TickCount - WarnedError > 30000 )
+          {
+            MsgBox % PriceObj.error_msg
+            WarnedError := A_TickCount
+          }
+          return
+        }
         PriceObj.Clip_Contents := Clip_Contents
         If (YesPredictivePrice = "Low")
           Price := SelectedPrice := PriceObj.min
@@ -11657,7 +11666,7 @@
     encodingError := ""
     EncodedItemData := StringToBase64UriEncoded(RawItemData, true, encodingError)
     
-    postData   := "l=" UriEncode(selectedLeague) "&i=" EncodedItemData
+    postData   := "l=" UriEncode("selectedLeague") "&i=" EncodedItemData
     ; postData   := "l=" UriEncode(TradeGlobals.Get("LeagueName")) "&i=" EncodedItemData
     payLength  := StrLen(postData)
     url     := "https://www.poeprices.info/api"
