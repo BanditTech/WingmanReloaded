@@ -17,234 +17,260 @@
     Global LootFilter := {}
     Global LootFilterTabs := {}
 
-    Prop := {ItemName: ""
-        , ItemClass : ""
-        , zz_ItemText : ""
-        , IsItem : False
-        , ChaosValue : 0
-        , ExaltValue : 0
-        , IsWeapon : False
-        , IsMap : False
-        , MapTier : 0
-        , Support : False
-        , VaalGem : False
-        , AffixCount : 0
-        , Rarity : ""
-        , Influence : ""
-        , SpecialType : ""
-        , Rarity_Digit : 0
-        , RarityCurrency : False
-        , RarityDivination : False
-        , RarityGem : False
-        , RarityNormal : False
-        , RarityMagic : False
-        , RarityRare : False
-        , RarityUnique : False
-        , Identified : True
-        , Ring : False
-        , Amulet : False
-        , Belt : False
-        , Chromatic : False
-        , Jewel : False
-        , AbyssJewel : False
-        , Essence : False
-        , Incubator : False
-        , Fossil : False
-        , Resonator : False
-        , IsOrgan : ""
-        , Gem_Sockets : 0
-        , Gem_RawSockets : ""
-        , Gem_Links : 0
-        , Jeweler : False
-        , TimelessSplinter : False
-        , BreachSplinter : False
-        , SacrificeFragment : False
-        , MortalFragment : False
-        , GuardianFragment : False
-        , ProphecyFragment : False
-        , Scarab : False
-        , Offering : False
-        , Vessel : False
-        , Incubator : False
-        , Flask : False
-        , Veiled : False
-        , Prophecy : False
-        , Oil : False
-        , Corrupted : False
-        , DoubleCorrupted : False
-        , Item_Width : 1
-        , Item_Height : 1
-        , Variant : 0
-        , CraftingBase : 0
-        , DropLevel : 0
-        , ItemLevel : 0}
-
+    Prop := OrderedArray()
+      Prop.ItemName := ""
+      Prop.ItemBase := ""
+      Prop.ItemClass := ""
+      Prop.Influence := ""
+      Prop.SpecialType := ""
+      Prop.CLF_MatchGroup := ""
+      Prop.CLF_SendTab := 0
+      Prop.Ring := False
+      Prop.Amulet := False
+      Prop.Belt := False
+      Prop.Chromatic := False
+      Prop.Jewel := False
+      Prop.AbyssJewel := False
+      Prop.Essence := False
+      Prop.Incubator := False
+      Prop.Fossil := False
+      Prop.Resonator := False
+      Prop.IsOrgan := ""
+      Prop.IsBeast := False
+      Prop.Jeweler := False
+      Prop.TimelessSplinter := False
+      Prop.BreachSplinter := False
+      Prop.SacrificeFragment := False
+      Prop.MortalFragment := False
+      Prop.GuardianFragment := False
+      Prop.ProphecyFragment := False
+      Prop.Scarab := False
+      Prop.Offering := False
+      Prop.Vessel := False
+      Prop.Incubator := False
+      Prop.Flask := False
+      Prop.Veiled := False
+      Prop.Prophecy := False
+      Prop.Oil := False
+      Prop.ItemLevel := 0
+      Prop.DropLevel := 0
+      Prop.PredictPrice := 0
+      Prop.PredictPriceInfo := ""
+      Prop.ChaosValue := 0
+      Prop.ExaltValue := 0
+      Prop.Rarity := ""
+      Prop.RarityCurrency := False
+      Prop.RarityDivination := False
+      Prop.RarityGem := False
+      Prop.RarityNormal := False
+      Prop.RarityMagic := False
+      Prop.RarityRare := False
+      Prop.RarityUnique := False
+      Prop.Rarity_Digit := 0
+      Prop.QualityAugmented := False
+      Prop.Gem_Sockets := 0
+      Prop.Gem_RawSockets := ""
+      Prop.Gem_Links := 0
+      Prop.IsItem := False
+      Prop.Item_Width := 1
+      Prop.Item_Height := 1
+      Prop.IsWeapon := False
+      Prop.IsMap := False
+      Prop.MapTier := 0
+      Prop.Support := False
+      Prop.VaalGem := False
+      Prop.AffixCount := 0
+      Prop.Identified := True
+      Prop.Corrupted := False
+      Prop.DoubleCorrupted := False
+      Prop.Variant := 0
+      Prop.CraftingBase := 0
     textListProp= 
     For k, v in Prop
         textListProp .= (!textListProp ? "" : "|") "" k ""
 
-    Stats := { PhysLo : 0
-        , PhysHi : 0
-        , PhysAvg : 0
-        , ChaosLo : 0
-        , ChaosHi : 0
-        , ChaosAvg : 0
-        , EleLo : 0
-        , EleHi : 0
-        , EleAvg : 0
-        , AttackSpeed : 0
-        , Dps_Phys : 0
-        , Dps_Ele : 0
-        , Dps_Chaos : 0
-        , Dps : 0
-        , Dps_Q20 : 0
-        , Quality : 0
-        , GemLevel : 0
-        , Stack : 0
-        , StackMax : 0
-        , RequiredLevel : 0
-        , RequiredStr : 0
-        , RequiredInt : 0
-        , RequiredDex : 0
-        , RatingArmour : 0
-        , RatingEnergyShield : 0
-        , RatingEvasion : 0
-        , RatingBlock : 0
-        , WeaponRange : 0
-        , MapTier : 0
-        , MapItemQuantity : 0
-        , MapItemRarity : 0
-        , MapMonsterPackSize : 0 }
+    Stats := OrderedArray()
+      Stats.MapTier := 0
+      Stats.MapItemQuantity := 0
+      Stats.MapItemRarity := 0
+      Stats.MapMonsterPackSize := 0
+      Stats.Dps := 0
+      Stats.Dps_Q20 := 0
+      Stats.Dps_Phys := 0
+      Stats.Dps_Ele := 0
+      Stats.Dps_Chaos := 0
+      Stats.AttackSpeed := 0
+      Stats.WeaponRange := 0
+      Stats.PhysAvg := 0
+      Stats.ChaosAvg := 0
+      Stats.EleAvg := 0
+      Stats.PhysLo := 0
+      Stats.PhysHi := 0
+      Stats.ChaosLo := 0
+      Stats.ChaosHi := 0
+      Stats.EleLo := 0
+      Stats.EleHi := 0
+      Stats.Quality := 0
+      Stats.GemLevel := 0
+      Stats.Stack := 0
+      Stats.StackMax := 0
+      Stats.RequiredLevel := 0
+      Stats.RequiredStr := 0
+      Stats.RequiredInt := 0
+      Stats.RequiredDex := 0
+      Stats.RatingArmour := 0
+      Stats.RatingEnergyShield := 0
+      Stats.RatingEvasion := 0
+      Stats.RatingBlock := 0
 
     textListStats= 
     For k, v in Stats
         textListStats .= (!textListStats ? "" : "|") "" k ""
 
-    Affix := { SupportGem : ""
-        , SupportGemLevel : 0
-        , GrantedSkill : 0
-        , GrantedSkillLevel : 0
-        , CountSupportGem : 0
-        , AllElementalResistances : 0
-        , ColdLightningResistance : 0
-        , FireColdResistance : 0
-        , FireLightningResistance : 0
-        , ColdResistance : 0
-        , FireResistance : 0
-        , LightningResistance : 0
-        , ChaosResistance : 0
-        , MaximumLife : 0
-        , IncreasedMaximumLife : 0
-        , MaximumEnergyShield : 0
-        , IncreasedEnergyShield : 0
-        , IncreasedMaximumEnergyShield : 0
-        , MaximumMana : 0
-        , IncreasedMaximumMana : 0
-        , IncreasedAttackSpeed : 0
-        , IncreasedColdDamage : 0
-        , IncreasedFireDamage : 0
-        , IncreasedLightningDamage : 0
-        , IncreasedPhysicalDamage : 0
-        , IncreasedSpellDamage : 0
-        , IncreasedChaosDamage : 0
-        , PseudoColdResist : 0
-        , PseudoFireResist : 0
-        , PseudoLightningResist : 0
-        , PseudoChaosResist : 0
-        , PseudoTotalEleResist : 0
-        , PseudoTotalResist : 0
-        , PseudoTotalEleResist : 0
-        , LifeRegeneration : 0
-        , ChanceDoubleDamage : 0
-        , IncreasedRarity : 0
-        , IncreasedEvasion : 0
-        , IncreasedArmour : 0
-        , IncreasedAttackSpeed : 0
-        , IncreasedAttackSpeedWithMoveSkill : 0
-        , IncreasedDamageWithMoveSkill : 0
-        , IncreasedAttackCastSpeed : 0
-        , IncreasedMovementSpeed : 0
-        , ReducedEnemyStunThreshold : 0
-        , IncreasedStunBlockRecovery : 0
-        , LifeGainOnAttack : 0
-        , AddedIntelligence : 0
-        , AddedStrength : 0
-        , AddedDexterity : 0
-        , AddedStrengthDexterity : 0
-        , AddedStrengthIntelligence : 0
-        , AddedDexterityIntelligence : 0
-        , AddedArmour : 0
-        , AddedEvasion : 0
-        , AddedAccuracy : 0
-        , AddedAllStats : 0
-        , PseudoAddedStrength : 0
-        , PseudoAddedDexterity : 0
-        , PseudoAddedIntelligence : 0
-        , IncreasedArmourEnergyShield : 0
-        , IncreasedArmourEvasion : 0
-        , IncreasedEvasionEnergyShield : 0
-        , PseudoIncreasedArmour : 0
-        , PseudoIncreasedEvasion : 0
-        , PseudoIncreasedEnergyShield : 0
-        , ChanceDodgeAttack : 0
-        , ChanceDodgeSpell : 0
-        , ChanceBlockSpell : 0
-        , BlockManaGain : 0
-        , PhysicalDamageReduction : 0
-        , ReducedAttributeRequirement : 0
-        , ReflectPhysical : 0
-        , EnergyShieldRegen : 0
-        , PhysicalLeechLife : 0
-        , PhysicalLeechMana : 0
-        , OnKillLife : 0
-        , OnKillMana : 0
-        , IncreasedElementalAttack : 0
-        , IncreasedFlaskLifeRecovery : 0
-        , IncreasedFlaskManaRecovery : 0
-        , IncreasedStunDuration : 0
-        , IncreasedFlaskDuration : 0
-        , IncreasedFlaskChargesGained : 0
-        , ReducedFlaskChargesUsed : 0
-        , GlobalCriticalChance : 0
-        , GlobalCriticalMultiplier : 0
-        , IncreasedProjectileSpeed : 0
-        , AddedLevelGems : 0
-        , AddedLevelMinionGems : 0
-        , AddedLevelMeleeGems : 0
-        , AddedLevelBowGems : 0
-        , AddedLevelFireGems : 0
-        , AddedLevelColdGems : 0
-        , AddedLevelLightningGems : 0
-        , AddedLevelChaosGems : 0
-        , ChaosDOTMult : 0
-        , ColdDOTMult : 0
-        , ChanceFreeze : 0
-        , ChanceShock : 0
-        , ChanceIgnite : 0
-        , ChanceAvoidElementalAilment : 0
-        , IncreasedBurningDamage : 0
-        , IncreasedSpellCritChance : 0
-        , IncreasedCritChance : 0
-        , IncreasedCritChanceOnKill : 0
-        , IncreasedManaRegeneration : 0
-        , IncreasedCastSpeed : 0
-        , IncreasedPoisonDuration : 0
-        , ChancePoison : 0
-        , IncreasedPoisonDamage : 0
-        , IncreasedBleedDuration : 0
-        , ChanceBleed : 0
-        , IncreasedBleedDamage : 0
-        , IncreasedLightRadius : 0
-        , IncreasedGlobalAccuracy : 0
-        , ChanceBlock : 0
-        , GainFireToExtraChaos : 0
-        , GainColdToExtraChaos : 0
-        , GainLightningToExtraChaos : 0
-        , GainPhysicalToExtraChaos : 0
-        , Implicit : ""
-        , PseudoTotalAddedStats : 0
-        , PseudoTotalAddedAvg : 0
-        , PseudoTotalAddedEleAvg : 0}
+    Affix := OrderedArray() 
+      Affix.Implicit := ""
+      Affix.Corruption := ""
+      Affix.Corruption2 := ""
+      Affix.Corruption3 := ""
+      Affix.Corruption4 := ""
+      Affix.Corruption5 := ""
+      Affix.LabEnchant := ""
+      Affix.Annointment := ""
+      Affix.MaximumLife := 0
+      Affix.IncreasedMaximumLife := 0
+      Affix.MaximumEnergyShield := 0
+      Affix.IncreasedEnergyShield := 0
+      Affix.IncreasedMaximumEnergyShield := 0
+      Affix.MaximumMana := 0
+      Affix.IncreasedMaximumMana := 0
+      Affix.IncreasedMovementSpeed := 0
+      Affix.WeaponRange := 0
+      Affix.PseudoTotalResist := 0
+      Affix.PseudoTotalEleResist := 0
+      Affix.PseudoFireResist := 0
+      Affix.PseudoColdResist := 0
+      Affix.PseudoLightningResist := 0
+      Affix.PseudoChaosResist := 0
+      Affix.PseudoTotalAddedStats := 0
+      Affix.PseudoAddedStrength := 0
+      Affix.PseudoAddedDexterity := 0
+      Affix.PseudoAddedIntelligence := 0
+      Affix.PseudoIncreasedArmour := 0
+      Affix.PseudoIncreasedEvasion := 0
+      Affix.PseudoIncreasedEnergyShield := 0
+      Affix.PseudoTotalAddedAvgAttack := 0
+      Affix.PseudoTotalAddedEleAvgAttack := 0
+      Affix.PseudoTotalAddedEleAvgSpell := 0
+      Affix.PseudoIncreasedColdDamage := 0
+      Affix.PseudoIncreasedFireDamage := 0
+      Affix.PseudoIncreasedLightningDamage := 0
+      Affix.AllElementalResistances := 0
+      Affix.ColdLightningResistance := 0
+      Affix.FireColdResistance := 0
+      Affix.FireLightningResistance := 0
+      Affix.ColdResistance := 0
+      Affix.FireResistance := 0
+      Affix.LightningResistance := 0
+      Affix.ChaosResistance := 0
+      Affix.AddedLevelGems := 0
+      Affix.AddedLevelMinionGems := 0
+      Affix.AddedLevelMeleeGems := 0
+      Affix.AddedLevelBowGems := 0
+      Affix.AddedLevelFireGems := 0
+      Affix.AddedLevelColdGems := 0
+      Affix.AddedLevelLightningGems := 0
+      Affix.AddedLevelChaosGems := 0
+      Affix.AddedLevelAllPhysicalSpellGems := 0
+      Affix.AddedLevelAllColdSpellGems := 0
+      Affix.AddedLevelAllFireSpellGems := 0
+      Affix.AddedLevelAllLightningSpellGems := 0
+      Affix.AddedLevelAllChaosSpellGems := 0
+      Affix.ChaosDOTMult := 0
+      Affix.ColdDOTMult := 0
+      Affix.SupportGem := ""
+      Affix.SupportGemLevel := 0
+      Affix.SupportGem2 := ""
+      Affix.SupportGem2Level := 0
+      Affix.CountSupportGem := 0
+      Affix.GrantedSkill := 0
+      Affix.GrantedSkillLevel := 0
+      Affix.GainFireToExtraChaos := 0
+      Affix.GainColdToExtraChaos := 0
+      Affix.GainLightningToExtraChaos := 0
+      Affix.GainPhysicalToExtraChaos := 0
+      Affix.GlobalCriticalChance := 0
+      Affix.GlobalCriticalMultiplier := 0
+      Affix.IncreasedAttackSpeed := 0
+      Affix.IncreasedAttackSpeedWithMoveSkill := 0
+      Affix.IncreasedAttackCastSpeed := 0
+      Affix.AddedAccuracy := 0
+      Affix.LifeGainOnAttack := 0
+      Affix.PhysicalLeechLife := 0
+      Affix.PhysicalLeechMana := 0
+      Affix.EnergyShieldRegen := 0
+      Affix.LifeRegeneration := 0
+      Affix.PhysicalDamageReduction := 0
+      Affix.ChanceDoubleDamage := 0
+      Affix.ChanceDodgeAttack := 0
+      Affix.ChanceDodgeSpell := 0
+      Affix.ChanceBlock := 0
+      Affix.ChanceBlockSpell := 0
+      Affix.ChanceFreeze := 0
+      Affix.ChanceShock := 0
+      Affix.ChanceIgnite := 0
+      Affix.ChanceBleed := 0
+      Affix.ChancePoison := 0
+      Affix.ChanceAvoidElementalAilment := 0
+      Affix.IncreasedColdDamage := 0
+      Affix.IncreasedFireDamage := 0
+      Affix.IncreasedLightningDamage := 0
+      Affix.IncreasedPhysicalDamage := 0
+      Affix.IncreasedSpellDamage := 0
+      Affix.IncreasedChaosDamage := 0
+      Affix.IncreasedMinionDamage := 0
+      Affix.IncreasedDamageWithMoveSkill := 0
+      Affix.IncreasedRarity := 0
+      Affix.IncreasedArmour := 0
+      Affix.IncreasedEvasion := 0
+      Affix.IncreasedArmourEnergyShield := 0
+      Affix.IncreasedArmourEvasion := 0
+      Affix.IncreasedEvasionEnergyShield := 0
+      Affix.IncreasedElementalAttack := 0
+      Affix.IncreasedGlobalAccuracy := 0
+      Affix.IncreasedBurningDamage := 0
+      Affix.IncreasedPoisonDamage := 0
+      Affix.IncreasedBleedDamage := 0
+      Affix.IncreasedCritChance := 0
+      Affix.IncreasedSpellCritChance := 0
+      Affix.IncreasedCastSpeed := 0
+      Affix.IncreasedProjectileSpeed := 0
+      Affix.IncreasedCritChanceOnKill := 0
+      Affix.IncreasedPoisonDuration := 0
+      Affix.IncreasedBleedDuration := 0
+      Affix.IncreasedManaRegeneration := 0
+      Affix.IncreasedLightRadius := 0
+      Affix.IncreasedStunDuration := 0
+      Affix.IncreasedStunBlockRecovery := 0
+      Affix.IncreasedFlaskLifeRecovery := 0
+      Affix.IncreasedFlaskManaRecovery := 0
+      Affix.IncreasedFlaskDuration := 0
+      Affix.IncreasedFlaskChargesGained := 0
+      Affix.AddedArmour := 0
+      Affix.AddedEvasion := 0
+      Affix.AddedAllStats := 0
+      Affix.AddedStrength := 0
+      Affix.AddedDexterity := 0
+      Affix.AddedIntelligence := 0
+      Affix.AddedStrengthDexterity := 0
+      Affix.AddedStrengthIntelligence := 0
+      Affix.AddedDexterityIntelligence := 0
+      Affix.ReflectPhysical := 0
+      Affix.BlockManaGain := 0
+      Affix.OnKillLife := 0
+      Affix.OnKillMana := 0
+      Affix.ReducedFlaskChargesUsed := 0
+      Affix.ReducedEnemyStunThreshold := 0
+      Affix.ReducedAttributeRequirement := 0
 
     textListAffix= 
     For k, v in Affix

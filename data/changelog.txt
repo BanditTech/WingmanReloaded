@@ -1,3 +1,12 @@
+## Version .10.04 - master Branch - March/15/2020
+Added in submitted affixes 
+
+Added items to Quest Item list
+
+Bugfix for late light edit :P forgot to remove quotes after testing
+
+---
+
 ## Version .10.03 - Master Branch - March/14/2020
 
 Fix for old league name in predictive pricing code
