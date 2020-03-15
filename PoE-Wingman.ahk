@@ -2864,9 +2864,9 @@ Return
       Affix.PseudoTotalAddedAvgAttack := 0
       Affix.PseudoTotalAddedEleAvgAttack := 0
       Affix.PseudoTotalAddedEleAvgSpell := 0
-			Affix.PseudoIncreasedColdDamage := 0
-			Affix.PseudoIncreasedFireDamage := 0
-			Affix.PseudoIncreasedLightningDamage := 0
+      Affix.PseudoIncreasedColdDamage := 0
+      Affix.PseudoIncreasedFireDamage := 0
+      Affix.PseudoIncreasedLightningDamage := 0
       Affix.AllElementalResistances := 0
       Affix.ColdLightningResistance := 0
       Affix.FireColdResistance := 0
