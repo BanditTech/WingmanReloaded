@@ -11667,7 +11667,7 @@
     encodingError := ""
     EncodedItemData := StringToBase64UriEncoded(RawItemData, true, encodingError)
     
-    postData   := "l=" UriEncode("selectedLeague") "&i=" EncodedItemData
+    postData   := "l=" UriEncode(selectedLeague) "&i=" EncodedItemData
     ; postData   := "l=" UriEncode(TradeGlobals.Get("LeagueName")) "&i=" EncodedItemData
     payLength  := StrLen(postData)
     url     := "https://www.poeprices.info/api"

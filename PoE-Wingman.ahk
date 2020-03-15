@@ -2864,6 +2864,9 @@ Return
       Affix.PseudoTotalAddedAvgAttack := 0
       Affix.PseudoTotalAddedEleAvgAttack := 0
       Affix.PseudoTotalAddedEleAvgSpell := 0
+			Affix.PseudoIncreasedColdDamage := 0
+			Affix.PseudoIncreasedFireDamage := 0
+			Affix.PseudoIncreasedLightningDamage := 0
       Affix.AllElementalResistances := 0
       Affix.ColdLightningResistance := 0
       Affix.FireColdResistance := 0
@@ -2923,9 +2926,6 @@ Return
       Affix.ChanceBleed := 0
       Affix.ChancePoison := 0
       Affix.ChanceAvoidElementalAilment := 0
-      Affix.AddedArmour := 0
-      Affix.AddedEvasion := 0
-      Affix.AddedAllStats := 0
       Affix.IncreasedColdDamage := 0
       Affix.IncreasedFireDamage := 0
       Affix.IncreasedLightningDamage := 0
@@ -2960,6 +2960,9 @@ Return
       Affix.IncreasedFlaskManaRecovery := 0
       Affix.IncreasedFlaskDuration := 0
       Affix.IncreasedFlaskChargesGained := 0
+      Affix.AddedArmour := 0
+      Affix.AddedEvasion := 0
+      Affix.AddedAllStats := 0
       Affix.AddedStrength := 0
       Affix.AddedDexterity := 0
       Affix.AddedIntelligence := 0
@@ -4654,7 +4657,11 @@ Return
 
     Affix.PseudoTotalEleResist := Affix.PseudoColdResist + Affix.PseudoFireResist + Affix.PseudoLightningResist
     Affix.PseudoTotalResist := Affix.PseudoTotalEleResist + Affix.PseudoChaosResist
-    
+
+    Affix.PseudoIncreasedColdDamage := Affix.IncreasedColdDamage + Affix.IncreasedSpellDamage
+    Affix.PseudoIncreasedFireDamage := Affix.IncreasedFireDamage + Affix.IncreasedSpellDamage
+    Affix.PseudoIncreasedLightningDamage := Affix.IncreasedLightningDamage + Affix.IncreasedSpellDamage
+
     Affix.PseudoTotalAddedEleAvgAttack := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
     Affix.PseudoTotalAddedEleAvgSpell := (Affix.FireDamageSpellAvg?Affix.FireDamageSpellAvg:0) + ( (Affix.ColdDamageSpellAvg) ? (Affix.ColdDamageSpellAvg) : 0 ) + ( (Affix.LightningDamageSpellAvg) ? (Affix.LightningDamageSpellAvg) : 0 ) + ( (Affix.LightningDamageSpellAvg) ? (Affix.LightningDamageSpellAvg) : 0 )
     Affix.PseudoTotalAddedAvgAttack := (Affix.PseudoTotalAddedEleAvgAttack?Affix.PseudoTotalAddedEleAvgAttack:0) + (Affix.PhysicalDamageAttackAvg?Affix.PhysicalDamageAttackAvg:0) + (Affix.PhysicalDamageBowAttackAvg?Affix.PhysicalDamageBowAttackAvg:0) + (Affix.ChaosDamageAttackAvg?Affix.ChaosDamageAttackAvg:0)
