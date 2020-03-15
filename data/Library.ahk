@@ -1615,7 +1615,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(1920/125))
         Global PortalStockX:=GameX + Round(GameW/(1920/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/262))
+        Global WPStockY:=GameY + Round(GameH/(1080/220))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
         global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
@@ -1741,7 +1741,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(1440/125))
         Global PortalStockX:=GameX + Round(GameW/(1440/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/262))
+        Global WPStockY:=GameY + Round(GameH/(1080/220))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
         global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
@@ -1867,7 +1867,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(2560/125))
         Global PortalStockX:=GameX + Round(GameW/(2560/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/262))
+        Global WPStockY:=GameY + Round(GameH/(1080/220))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
         global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
@@ -1992,6 +1992,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3440/164))
         Global PortalStockX:=GameX + Round(GameW/(3440/228))
+	;danmarzola edit need a fix here not my resolution!!
         Global WPStockY:=GameY + Round(GameH/(1440/353))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
@@ -2111,7 +2112,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3840/125))
         Global PortalStockX:=GameX + Round(GameW/(3840/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/262))
+        Global WPStockY:=GameY + Round(GameH/(1080/220))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
         global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
