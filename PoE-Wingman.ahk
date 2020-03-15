@@ -2879,16 +2879,15 @@ Return
       Affix.AddedLevelFireGems := 0
       Affix.AddedLevelColdGems := 0
       Affix.AddedLevelLightningGems := 0
-      Affix.AddedLevelChaosGems := 0
-	  
+      Affix.AddedLevelChaosGems := 0  
       Affix.AddedLevelAllPhysicalSpellGems := 0
       Affix.AddedLevelAllColdSpellGems := 0
       Affix.AddedLevelAllFireSpellGems := 0
       Affix.AddedLevelAllLightningSpellGems := 0
       Affix.AddedLevelAllChaosSpellGems := 0
-	  Affix.AddedLevelAllSpellGems := 0
+      Affix.AddedLevelAllSpellGems := 0
       Affix.ChaosDOTMult := 0
-	  Affix.FireDOTMult := 0
+      Affix.FireDOTMult := 0
       Affix.ColdDOTMult := 0
       Affix.SupportGem := ""
       Affix.SupportGemLevel := 0
@@ -4341,7 +4340,7 @@ Return
             Affix.ChaosDOTMult := Affix.ChaosDOTMult + Arr1
           Continue  
           }
-		  IfInString, A_LoopField, to Fire Damage over Time Multiplier
+          IfInString, A_LoopField, to Fire Damage over Time Multiplier
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +`%
             Affix.FireDOTMult := Affix.FireDOTMult + Arr1
