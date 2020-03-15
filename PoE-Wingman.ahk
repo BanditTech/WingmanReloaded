@@ -1892,12 +1892,10 @@
     Global DetonateDelveX:=1542
     Global DetonateX:=1658
     Global DetonateY:=901
-    ;danmarzola edit
     Global WisdomStockX:=115
     Global PortalStockX:=175
     Global WPStockY:=225
-    ;danmarzola edit
-	
+    
     global vX_OnMenu:=960
     global vY_OnMenu:=54
     global vX_OnChar:=41
@@ -2882,13 +2880,11 @@ Return
       Affix.AddedLevelColdGems := 0
       Affix.AddedLevelLightningGems := 0
       Affix.AddedLevelChaosGems := 0
-	  ;Danmarzola Edit start
-	Affix.AddedLevelAllPhysicalSpellGems := 0
-	Affix.AddedLevelAllColdSpellGems := 0
-	Affix.AddedLevelAllFireSpellGems := 0
-	Affix.AddedLevelAllLightningSpellGems := 0
-	Affix.AddedLevelAllChaosSpellGems := 0
-	  ;danmarzola edit end
+      Affix.AddedLevelAllPhysicalSpellGems := 0
+      Affix.AddedLevelAllColdSpellGems := 0
+      Affix.AddedLevelAllFireSpellGems := 0
+      Affix.AddedLevelAllLightningSpellGems := 0
+      Affix.AddedLevelAllChaosSpellGems := 0
       Affix.ChaosDOTMult := 0
       Affix.ColdDOTMult := 0
       Affix.SupportGem := ""
@@ -3715,42 +3711,36 @@ Return
             Affix.AddedLevelChaosGems := Affix.AddedLevelChaosGems + Arr1
           Continue  
           }
-			
-			;Danmarzola Edit Start
-
-		  IfInString, A_LoopField, to Level of all Chaos Spell Skill Gems
+	  IfInString, A_LoopField, to Level of all Chaos Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllChaosSpellGems := Affix.AddedLevelAllChaosSpellGems + Arr1
           Continue  
           }
-			IfInString, A_LoopField, to Level of all Fire Spell Skill Gems
+	  IfInString, A_LoopField, to Level of all Fire Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllFireSpellGems := Affix.AddedLevelAllFireSpellGems + Arr1
           Continue  
           }
-		  IfInString, A_LoopField, to Level of all Cold Spell Skill Gems
+	  IfInString, A_LoopField, to Level of all Cold Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllColdSpellGems := Affix.AddedLevelAllColdSpellGems + Arr1
           Continue  
           }
-		  IfInString, A_LoopField, to Level of all Lightning Spell Skill Gems
+	   IfInString, A_LoopField, to Level of all Lightning Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllLightningSpellGems := Affix.AddedLevelAllLightningSpellGems + Arr1
           Continue  
           }
-
 	  IfInString, A_LoopField, to Level of all Physical Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllPhysicalSpellGems := Affix.AddedLevelAllPhysicalSpellGems + Arr1
           Continue  
           }
-
-			;DanMarzola Edit End
           IfInString, A_LoopField, to Strength and Dexterity
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
