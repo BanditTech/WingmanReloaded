@@ -1894,7 +1894,7 @@
     Global DetonateY:=901
     Global WisdomStockX:=115
     Global PortalStockX:=175
-    Global WPStockY:=225
+    Global WPStockY:=220
     
     global vX_OnMenu:=960
     global vY_OnMenu:=54
