@@ -1615,7 +1615,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(1920/125))
         Global PortalStockX:=GameX + Round(GameW/(1920/175))
-        Global WPY:=GameY + Round(GameH/(1080/220))
+        Global WPStockY:=GameY + Round(GameH/(1080/220))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
         global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
