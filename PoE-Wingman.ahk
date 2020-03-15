@@ -2880,12 +2880,15 @@ Return
       Affix.AddedLevelColdGems := 0
       Affix.AddedLevelLightningGems := 0
       Affix.AddedLevelChaosGems := 0
+	  
       Affix.AddedLevelAllPhysicalSpellGems := 0
       Affix.AddedLevelAllColdSpellGems := 0
       Affix.AddedLevelAllFireSpellGems := 0
       Affix.AddedLevelAllLightningSpellGems := 0
       Affix.AddedLevelAllChaosSpellGems := 0
+	  Affix.AddedLevelAllSpellGems := 0
       Affix.ChaosDOTMult := 0
+	  Affix.FireDOTMult := 0
       Affix.ColdDOTMult := 0
       Affix.SupportGem := ""
       Affix.SupportGemLevel := 0
@@ -3711,31 +3714,37 @@ Return
             Affix.AddedLevelChaosGems := Affix.AddedLevelChaosGems + Arr1
           Continue  
           }
-	  IfInString, A_LoopField, to Level of all Chaos Spell Skill Gems
+          IfInString, A_LoopField, to Level of all Spell Skill Gems
+          {
+            StringSplit, Arr, A_LoopField, %A_Space%, +
+            Affix.AddedLevelAllSpellGems := Affix.AddedLevelAllSpellGems + Arr1
+          Continue  
+          }
+          IfInString, A_LoopField, to Level of all Chaos Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllChaosSpellGems := Affix.AddedLevelAllChaosSpellGems + Arr1
           Continue  
           }
-	  IfInString, A_LoopField, to Level of all Fire Spell Skill Gems
+          IfInString, A_LoopField, to Level of all Fire Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllFireSpellGems := Affix.AddedLevelAllFireSpellGems + Arr1
           Continue  
           }
-	  IfInString, A_LoopField, to Level of all Cold Spell Skill Gems
+          IfInString, A_LoopField, to Level of all Cold Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllColdSpellGems := Affix.AddedLevelAllColdSpellGems + Arr1
           Continue  
           }
-	   IfInString, A_LoopField, to Level of all Lightning Spell Skill Gems
+          IfInString, A_LoopField, to Level of all Lightning Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllLightningSpellGems := Affix.AddedLevelAllLightningSpellGems + Arr1
           Continue  
           }
-	  IfInString, A_LoopField, to Level of all Physical Spell Skill Gems
+          IfInString, A_LoopField, to Level of all Physical Spell Skill Gems
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +
             Affix.AddedLevelAllPhysicalSpellGems := Affix.AddedLevelAllPhysicalSpellGems + Arr1
@@ -4330,6 +4339,12 @@ Return
           {
             StringSplit, Arr, A_LoopField, %A_Space%, +`%
             Affix.ChaosDOTMult := Affix.ChaosDOTMult + Arr1
+          Continue  
+          }
+		  IfInString, A_LoopField, to Fire Damage over Time Multiplier
+          {
+            StringSplit, Arr, A_LoopField, %A_Space%, +`%
+            Affix.FireDOTMult := Affix.FireDOTMult + Arr1
           Continue  
           }
           IfInString, A_LoopField, to Cold Damage over Time Multiplier
