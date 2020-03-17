@@ -1,4 +1,4 @@
-## Version .10.0401 - Alpha Branch - March/15/2020
+## Version .10.0401 - Alpha Branch - March/16/2020
 Predictive Price function has been modified
 * When starting a stash routine, it will first confirm PoEPrices.info is online
 * If the server is offline, it will temporarily skip the prediction function
