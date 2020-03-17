@@ -87,6 +87,7 @@
   ; Extra vars - Not in INI
     Global WR_Statusbar := "WingmanReloaded Status"
     Global WR_hStatusbar
+    Global PPServerStatus := True
     Global Ninja := {}
     Global Enchantment  := []
     Global Corruption := []
@@ -2331,6 +2332,10 @@ Return
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StashRoutine()
   {
+    Global PPServerStatus
+    PPServerStatus()
+    If (!PPServerStatus && StashTabYesPredictive)
+      Notify("Predictive Price Down","The POEPrices.info website is offline.`nWARNING`n`nPredictive Pricing is being skipped",5)
     CurrentTab:=0
     SortFirst := {}
     Loop 32
@@ -2476,7 +2481,7 @@ Return
             && (!YesStashCraftingIlvl 
               || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
             sendstash := StashTabCrafting
-          Else If (StashTabYesPredictive && (PredictPrice() >= StashTabYesPredictive_Price) )
+          Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
             sendstash := StashTabPredictive
           Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
             sendstash := StashTabDump
