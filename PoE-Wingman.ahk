@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.0401
+  Global VersionNumber := .10.0402
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -220,7 +220,7 @@
       ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
       ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
       StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
-      YesOHB = Pauses the script when it cannot find the healthbar
+      YesOHB = Pauses the script when it cannot find the Overhead Health Bar
       YesGlobeScan = Use the new Globe scanning method to determine Life, ES and Mana
       ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
       AutoUpdateOff = Enable this to not check for new updates when launching the script
@@ -6670,6 +6670,8 @@ Return
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PauseMines(){
     PauseMinesCommand:
+      if !DetonateMines
+      return
       static keyheld := 0
       keyheld++
       settimer, keyheldReset, 200
@@ -6917,7 +6919,7 @@ Return
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChar hwndCTIDOnChar, % "OnChar"
       CtlColors.Attach(CTIDOnChar, "", "Red")
-      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnOHB hwndCTIDOnOHB, % "O H B"
+      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnOHB hwndCTIDOnOHB, % "Overhead Health Bar"
       CtlColors.Attach(CTIDOnOHB, "", "Red")
       Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChat hwndCTIDOnChat, % "OnChat"
       CtlColors.Attach(CTIDOnChat, "", "Green")
