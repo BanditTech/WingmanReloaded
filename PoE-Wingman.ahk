@@ -2791,6 +2791,7 @@ Return
       Prop.Item_Height := 1
       Prop.IsWeapon := False
       Prop.IsMap := False
+      Prop.IsBlightedMap := False
       Prop.MapTier := 0
       Prop.Support := False
       Prop.VaalGem := False
@@ -2997,11 +2998,16 @@ Return
       Prop.Influence := ( Prop.Influence ? Prop.Influence . " Elder" : "Elder")
     If InStr(Clip_Contents, "`nShaper Item", 1)
       Prop.Influence := ( Prop.Influence ? Prop.Influence . " Shaper" : "Shaper")
+
     If InStr(Clip_Contents, "`nTravel to this Map by using it in a personal Map Device. Maps can only be used once.")
     {
       Prop.IsMap := True
       Prop.SpecialType := "Map"
       Prop.ItemClass := "Maps"
+      If InStr(Clip_Contents, "`nNatural inhabitants of this area have been removed (implicit)")
+      {
+      Prop.IsBlightedMap := True
+      }
     }
     If InStr(Clip_Contents, "`nRight-click to add this to your bestiary.")
     {
