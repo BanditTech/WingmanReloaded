@@ -68,6 +68,9 @@
   padding: 30px 0px 20px 0px;
   margin: auto;
 }
+#CHANGELOG_RENDERER .CL_content-body .anchor {
+  pointer-events: var(--changelog-header-auto-links);
+}
 #CHANGELOG_RENDERER .CL_content-body h1,
 #CHANGELOG_RENDERER .CL_content-body h2,
 #CHANGELOG_RENDERER .CL_content-body h3,
