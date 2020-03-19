@@ -1,286 +1,260 @@
 #CHANGELOG {
-    line-height: normal;
-    text-decoration: none;
-    color: var(--changelog-button-text);
-    background: var(--changelog-button-background);
-    position: var(--changelog-button-position);
-    right: var(--changelog-button-offset-right);
-    transition: color var(--changelog-button-text-transition);
-    transition: background var(--changelog-button-background-transition);
-    border-radius: 4px;
-    margin: -10px;
-    padding: 10px;
-    font-size: unset;
-    font-weight: bold;
+  line-height: normal;
+  text-decoration: none;
+  color: var(--changelog-button-text);
+  background: var(--changelog-button-background);
+  position: var(--changelog-button-position);
+  right: var(--changelog-button-offset-right);
+  transition: color var(--changelog-button-text-transition);
+  transition: background var(--changelog-button-background-transition);
+  border-radius: 4px;
+  /* margin: -var(--changelog-button-background-padding); */
+  padding: var(--changelog-button-background-padding);
+  top: var(--changelog-button-offset-top);
+  font-size: unset;
+  font-weight: bold;
 }
-
 #CHANGELOG_NOTIFY {
-    content: "\A";
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--changelog-button-notify);
-    display: inline-block;
+  content: '\A';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--changelog-button-notify);
+  display: inline-block;
 }
-
 #CHANGELOG:hover {
-    color: var(--changelog-button-text-hover);
-    background: var(--changelog-button-background-hover);
-    filter: brightness(var(--changelog-button-brightness-hover));
-    margin: -10px;
-    padding: 10px;
-    font-weight: bold;
+  color: var(--changelog-button-text-hover);
+  background: var(--changelog-button-background-hover);
+  filter: brightness(var(--changelog-button-brightness-hover));
+  /* margin: -var(--changelog-button-background-padding); */
+  padding: var(--changelog-button-background-padding);
+  font-weight: bold;
 }
-
 @media screen and (orientation: landscape) {
-    #CHANGELOG_RENDERER .CL_content-body {
-        width: var(--changelog-window-width);
-        height: var(--changelog-window-height);
-    }
+  #CHANGELOG_RENDERER .CL_content-body {
+    width: var(--changelog-window-width);
+    height: var(--changelog-window-height);
+  }
 }
-
 @media screen and (orientation: portrait) {
-    #CHANGELOG_RENDERER .CL_content-body {
-        width: var(--changelog-window-portrait-width);
-        height: var(--changelog-window-portrait-height);
-    }
+  #CHANGELOG_RENDERER .CL_content-body {
+    width: var(--changelog-window-portrait-width);
+    height: var(--changelog-window-portrait-height);
+  }
 }
-
 #CHANGELOG_RENDERER {
-    right: var(--changelog-window-offset-right);
-    display: none;
-    position: var(--changelog-button-position);
-    color: var(--changelog-text-all);
-    background: var(--changelog-window-background);
-    box-shadow: var(--changelog-window-shadow-params) var(--changelog-window-shadow);
-    border-radius: 10px;
-    margin-top: 50px;
-    overflow: hidden;
-    border: 4px solid var(--changelog-window-border);
+  right: var(--changelog-window-offset-right);
+  display: none;
+  position: var(--changelog-button-position);
+  color: var(--changelog-text-all);
+  background: var(--changelog-window-background);
+  box-shadow: var(--changelog-window-shadow-params) var(--changelog-window-shadow);
+  border-radius: 10px;
+  margin-top: 50px;
+  overflow: hidden;
+  border: 4px solid var(--changelog-window-border);
 }
-
 #CHANGELOG_RENDERER.show {
-    display: block;
+  display: block;
 }
-
 #CHANGELOG_RENDERER .CL_content-body {
-    padding: 5px;
-    text-align: left;
-    /* overflow-x: auto; */
-    overflow: auto;
-    left: auto;
+  padding: 5px;
+  text-align: left;
+  overflow: auto;
+  left:auto;
 }
-
 #CHANGELOG_RENDERER .CL_content-body hr {
-    border-bottom: 2px solid var(--changelog-header-border-edge);
-    padding: 30px 0px 20px 0px;
-    margin: auto;
+  border-bottom: 2px solid var(--changelog-header-border-edge);
+  padding: 30px 0px 20px 0px;
+  margin: auto;
 }
-
-#CHANGELOG_RENDERER .CL_content-body .anchor {
-    pointer-events: var(--changelog-header-auto-links);
-}
-
 #CHANGELOG_RENDERER .CL_content-body h1,
 #CHANGELOG_RENDERER .CL_content-body h2,
 #CHANGELOG_RENDERER .CL_content-body h3,
 #CHANGELOG_RENDERER .CL_content-body h4,
 #CHANGELOG_RENDERER .CL_content-body h5,
 #CHANGELOG_RENDERER .CL_content-body h6 {
-    display: block;
-    position: relative;
-    margin: auto;
-    padding: 0px 0px 0px 20px;
-    border-bottom: 2px solid var(--changelog-header-border-edge);
-    border-top: 2px solid var(--changelog-header-border-edge);
+  display: block;
+  position: relative;
+  margin: auto;
+  padding: 0px 0px 0px 20px;
+  border-bottom: 2px solid var(--changelog-header-border-edge);
+  border-top: 2px solid var(--changelog-header-border-edge);
 }
-
 #CHANGELOG_RENDERER .CL_content-body h1 {
-    background: var(--changelog-header-h1-background);
-    color: var(--changelog-header-h1-text);
-    font-size: var(--changelog-header-h1-size);
+  background: var(--changelog-header-h1-background);
+  color: var(--changelog-header-h1-text);
+  font-size: var(--changelog-header-h1-size);
 }
-
 #CHANGELOG_RENDERER .CL_content-body h2 {
-    background: var(--changelog-header-h2-background);
-    color: var(--changelog-header-h2-text);
-    font-size: var(--changelog-header-h2-size);
+  background: var(--changelog-header-h2-background);
+  color: var(--changelog-header-h2-text);
+  font-size: var(--changelog-header-h2-size);
 }
-
 #CHANGELOG_RENDERER .CL_content-body h3 {
-    background: var(--changelog-header-h3-background);
-    color: var(--changelog-header-h3-text);
-    font-size: var(--changelog-header-h3-size);
+  background: var(--changelog-header-h3-background);
+  color: var(--changelog-header-h3-text);
+  font-size: var(--changelog-header-h3-size);
 }
-
 #CHANGELOG_RENDERER .CL_content-body h4 {
-    background: var(--changelog-header-h4-background);
-    color: var(--changelog-header-h4-text);
-    font-size: var(--changelog-header-h4-size);
+  background: var(--changelog-header-h4-background);
+  color: var(--changelog-header-h4-text);
+  font-size: var(--changelog-header-h4-size);
 }
-
 #CHANGELOG_RENDERER .CL_content-body::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
-
 #CHANGELOG_RENDERER .CL_content-body::-webkit-scrollbar-track {
     -webkit-border-radius: 10px;
     background-color: var(--changelog-window-scroll-track);
-    border-radius: 10px;
+    border-radius: 10px
 }
-
 #CHANGELOG_RENDERER .CL_content-body::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: var(--changelog-window-scroll-button);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: var(--changelog-window-scroll-button);
 }
-
-#CHANGELOG_RENDERER .CL_content-body p {
-    width: 100%;
-    display: block;
-    padding: 5px 20px;
-    position: relative;
-    margin: auto;
-    color: var(--changelog-text-p);
-    background: var(--changelog-text-p-background);
-}
-
 #CHANGELOG_RENDERER .CL_content-body li:before {
-    /*"\f0da" fa-caret-right
-		"\f105" fa-angle-right
-		"\f138" fa-chevron-circle-right
-		"\f274" fa-calendar-check-o
-		"\f0c9" fa-bars
-		"\f00c" fa-check
-		"\f0a9" fa-arrow-circle-left 
-		content: "\f0da"; */
-    content: var(--changelog-text-list-icon);
-    font-family: FontAwesome;
-    display: inline-block;
-    margin-left: -1.3em;
-    width: 1.3em;
-    /* padding-left: 1.8em ; */
+  /*"\f0da" fa-caret-right
+    "\f105" fa-angle-right
+    "\f138" fa-chevron-circle-right
+    "\f274" fa-calendar-check-o
+    "\f0c9" fa-bars
+    "\f00c" fa-check
+    "\f0a9" fa-arrow-circle-left 
+    content: "\f00c"; */
+  content: var(--changelog-text-list-icon);
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em;
+  width: 1.3em;
 }
-
 #CHANGELOG_RENDERER .CL_content-body li,
 #CHANGELOG_RENDERER .CL_content-body ul {
-    display: block;
-    width: 100%;
-    position: relative;
-    height: auto;
-    color: var(--changelog-text-list);
-    background: var(--changelog-text-list-background);
-    max-height: calc(100vh - 61px);
+  display: block;
+  width: 100%;
+  position: relative;
+  height: auto;
+  color: var(--changelog-text-list);
+  background: var(--changelog-text-list-background);
+  max-height: calc(100vh - 61px);
 }
-
 #CHANGELOG_RENDERER .CL_content-body ul {
-    padding-bottom: 0.5em;
-    padding-left: 1.8em;
+  padding-bottom: 0.5em ;
+  padding-left: 1.8em ;
 }
-
 #CHANGELOG_RENDERER .CL_content-body li {
-    padding-bottom: 0em;
-    padding-left: 1.8em;
+  padding-bottom: 0em ;
+  padding-left: 1.8em ;
 }
-
+#CHANGELOG_RENDERER .CL_content-body p {
+  width: 100%;
+  display: block;
+  padding: 5px 20px;
+  position: relative;
+  margin: auto;
+  color: var(--changelog-text-p);
+  background: var(--changelog-text-p-background);
+}
 #CHANGELOG_RENDERER .CL_content-body blockquote {
-    font-size: 1.5em;
-    margin-left: 1em;
-    width: 95%;
-    color: var(--changelog-text-blockquote);
-    background: var(--changelog-text-blockquote-background);
+  font-size: 1.5em;
+  margin-left: 1em;
+  width: 95%;
+  color: var(--changelog-text-blockquote);
+  background: var(--changelog-text-blockquote-background);
 }
-
 #CHANGELOG_RENDERER .CL_content-body strong {
-    font-size: 1.5rem;
-    margin-left: 0em;
-    width: 95%;
-    color: var(--changelog-text-strong);
-    background: var(--changelog-text-strong-background);
+  font-size: 1.5rem;
+  margin-left: 0em;
+  width: 95%;
+  color: var(--changelog-text-strong);
+  background: var(--changelog-text-strong-background);
 }
-
 #CHANGELOG_RENDERER .CL_content-body a {
-    font-size: 1.1em;
-    color: var(--changelog-link-text);
-    background: var(--changelog-link-background);
-    text-decoration: inherit;
-    display: inline;
-    transition: background var(--changelog-link-background-transition);
-    transition: color var(--changelog-link-text-transition);
-    font-weight: bold;
+  font-size: 1.1em;
+  color: var(--changelog-link-text);
+  background: var(--changelog-link-background);
+  text-decoration: inherit;
+  display: inline;
+  transition: background var(--changelog-link-background-transition);
+  transition: color var(--changelog-link-text-transition);
+  font-weight: bold;
 }
-
 #CHANGELOG_RENDERER .CL_content-body a:hover {
-    color: var(--changelog-link-text-hover);
-    background: var(--changelog-link-background-hover);
-    text-decoration: underline;
-    text-decoration-color: var(--changelog-link-background-hover);
-    transition: background var(--changelog-link-background-transition);
-    transition: color var(--changelog-link-text-transition);
+  color: var(--changelog-link-text-hover);
+  background: var(--changelog-link-background-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--changelog-link-background-hover);
+  transition: background var(--changelog-link-background-transition);
+  transition: color var(--changelog-link-text-transition);
 }
 
 @media screen and (max-width: 768px) {
-    .app-nav {
-        width: 100% !important;
-        margin: auto !important;
-    }
-    #CHANGELOG_RENDERER {
-        left: 0;
-        width: 100%;
-    }
+  .app-nav {
+    width: 100% !important;
+    margin: auto !important;
+  }
+  #CHANGELOG_RENDERER {
+    left: 0;
+    width: 100%;
+  }
 }
 
 :root {
-    --changelog-window-height: 60vh;
-    --changelog-window-width: 400px;
-    --changelog-window-background: #fff;
-    --changelog-window-scroll-track: inherit;
-    /* original rgba(0, 0, 0, 0.03) */
-    --changelog-window-scroll-button: grey;
-    /* originals #6d6d6d */
-    --changelog-window-border: rgba(0, 0, 0, 0.1);
-    --changelog-window-shadow: rgba(0, 0, 0, 0.15);
-    --changelog-window-shadow-params: 0px 0px 24px 5px;
-    --changelog-window-offset-right: 4vw;
-    --changelog-button-notify: orange;
-    --changelog-button-text: goldenrod;
-    --changelog-button-text-hover: darkorange;
-    --changelog-button-text-transition: 1s;
-    --changelog-button-background: inherit;
-    --changelog-button-background-hover: grey;
-    --changelog-button-background-transition: 1s;
-    --changelog-button-brightness-hover: 100%;
-    --changelog-button-position: absolute;
-    --changelog-button-offset-right: 0px;
-    --changelog-header-auto-links: none;
-    /* disables the Heading links auto generated by docsify.*/
-    --changelog-header-border-edge: rgba(0, 0, 0, 0.1);
-    --changelog-header-h1-text: inherit;
-    --changelog-header-h1-background: rgba(0, 0, 0, 0.03);
-    --changelog-header-h1-size: 1.5rem;
-    --changelog-header-h2-text: inherit;
-    --changelog-header-h2-background: inherit;
-    --changelog-header-h2-size: 2rem;
-    --changelog-header-h3-text: inherit;
-    --changelog-header-h3-background: inherit;
-    --changelog-header-h3-size: 24px;
-    --changelog-header-h4-text: inherit;
-    --changelog-header-h4-background: inherit;
-    --changelog-header-h4-size: inherit;
-    --changelog-text-all: black;
-    --changelog-text-strong: inherit;
-    --changelog-text-strong-background: silver;
-    --changelog-text-p: #ecfd00e0;
-    --changelog-text-p: darkred;
-    --changelog-text-p-background: inherit;
-    --changelog-text-blockquote: inherit;
-    --changelog-text-blockquote-background: inherit;
-    --changelog-text-list: inherit;
-    --changelog-text-list-background: inherit;
-    --changelog-link-text: inherit;
-    --changelog-link-text-hover: orange;
-    --changelog-link-text-transition: 0.5s;
-    --changelog-link-background: inherit;
-    --changelog-link-background-hover: inherit;
-    --changelog-link-background-transition: 0.5s;
+  --changelog-window-height: 60vh;
+  --changelog-window-width: 400px;
+  --changelog-window-background: #FFF;
+  --changelog-window-scroll-track: inherit;
+  --changelog-window-scroll-button: grey;
+  --changelog-window-border: rgba(0, 0, 0, 0.1);
+  --changelog-window-shadow: rgba(0, 0, 0, 0.15);
+  --changelog-window-shadow-params: 0px 0px 24px 5px;
+  --changelog-window-offset-right: 4vw;
+
+  --changelog-button-notify: red;
+  --changelog-button-text: goldenrod;
+  --changelog-button-text-hover: darkorange;
+  --changelog-button-text-transition: 1s;
+  --changelog-button-background: inherit;
+  --changelog-button-background-hover: #00000033;
+  --changelog-button-background-transition: 1s;
+  --changelog-button-background-padding: 5px;
+  --changelog-button-brightness-hover: 100%;
+  --changelog-button-position: absolute;
+  --changelog-button-offset-right: 0px;
+  --changelog-button-offset-top: 0px;
+
+  /* disables the Heading links auto generated by docsify.*/
+  --changelog-header-auto-links: none;
+  --changelog-header-border-edge: rgba(0, 0, 0, 0.1);
+  --changelog-header-h1-text: inherit;
+  --changelog-header-h1-background: rgba(0, 0, 0, .03);
+  --changelog-header-h1-size: 1.5rem;
+  --changelog-header-h2-text: inherit;
+  --changelog-header-h2-background: inherit;
+  --changelog-header-h2-size: 2rem;
+  --changelog-header-h3-text: inherit;
+  --changelog-header-h3-background: inherit;
+  --changelog-header-h3-size: 24px;
+  --changelog-header-h4-text: inherit;
+  --changelog-header-h4-background: inherit;
+  --changelog-header-h4-size: inherit;
+
+  --changelog-text-all: black;
+  --changelog-text-strong: inherit;
+  --changelog-text-strong-background: silver;
+  --changelog-text-p: #ecfd00e0;
+  --changelog-text-p: darkred;
+  --changelog-text-p-background: inherit;
+  --changelog-text-blockquote: inherit;
+  --changelog-text-blockquote-background: inherit;
+  --changelog-text-list: inherit;
+  --changelog-text-list-background: inherit;
+
+  --changelog-link-text: inherit;
+  --changelog-link-text-hover: orange;
+  --changelog-link-text-transition: 0.5s;
+  --changelog-link-background: inherit;
+  --changelog-link-background-hover: inherit;
+  --changelog-link-background-transition: 0.5s;
 }

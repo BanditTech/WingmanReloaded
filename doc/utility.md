@@ -1,48 +1,47 @@
 ## Utility Management
 
 #### ON column
-> PLACEHOLDER
-PLACEHOLDER
+> This setting will enable the utility slot, uncheck to disable
 
 #### CD column
-> PLACEHOLDER
-PLACEHOLDER
+> This setting assigns the duration it will go on cooldown
+This is in Milliseconds 1000 is 1 second
 
 #### Key column
-> PLACEHOLDER
-PLACEHOLDER
+> Assign one or more keys to press when the utility is fired  
+
+Place the first key then a space and all following keys
+  * 1
+  * 1 2345
 
 #### Icon column
-> PLACEHOLDER
-PLACEHOLDER
+> This edit field allows a FindText string to search for a buff icon
+If the buff icon is not found, it will trigger the utility
 
 #### Show column
-> PLACEHOLDER
-PLACEHOLDER
+> This setting modifies the Icon behavior
+When checked, this will instead trigger when the buff icon is present
 
 #### QS column
-> PLACEHOLDER
-PLACEHOLDER
+> This setting will trigger the utility when firing Quicksilver flask
 
 #### Pri column
-> PLACEHOLDER
-PLACEHOLDER
+> This setting will trigger the utility when pressing Primary Attack
 
 #### Sec column
-> PLACEHOLDER
-PLACEHOLDER
+> This setting will trigger the utility when pressing Secondary Attack
 
 #### Life column
-> PLACEHOLDER
-PLACEHOLDER
+> Trigger the utility based on a Life percentage
 
 #### ES column
-> PLACEHOLDER
-PLACEHOLDER
+> Trigger the utility based on an Energy Shield percentage
 
 #### Mana column
-> PLACEHOLDER
-PLACEHOLDER
+> Trigger the utility based on a Mana percentage
+
+#### Notes About Trigger Types
+> Generally you should not use multiple trigger types with a single utility
 
 ## Stack Release Tool
 > This tool is designed to release a key once it detects a buff, along with a certain number of stacks. Check the box to Enable.
