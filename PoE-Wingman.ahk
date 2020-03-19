@@ -2745,7 +2745,7 @@ Return
       Prop.Belt := False
       Prop.Chromatic := False
       Prop.Jewel := False
-	  Prop.ClusterJewel := False
+      Prop.ClusterJewel := False
       Prop.AbyssJewel := False
       Prop.Essence := False
       Prop.Incubator := False
@@ -3304,61 +3304,61 @@ Return
             Prop.SpecialType := "Divine Vessel"
             Continue
           }
-		  IfInString, A_LoopField, Hypnotic Eye Jewel
+          IfInString, A_LoopField, Hypnotic Eye Jewel
           {
             Prop.AbyssJewel := True
             Prop.Jewel := True
-			Prop.SpecialType := "Hypnotic Eye Jewel"
+            Prop.SpecialType := "Hypnotic Eye Jewel"
             Continue
           }
-		  IfInString, A_LoopField, Searching Eye Jewel
+          IfInString, A_LoopField, Searching Eye Jewel
           {
             Prop.AbyssJewel := True
             Prop.Jewel := True
-			Prop.SpecialType := "Searching Eye Jewel"
+            Prop.SpecialType := "Searching Eye Jewel"
             Continue
           }
           IfInString, A_LoopField, Murderous Eye Jewel
           {
             Prop.AbyssJewel := True
             Prop.Jewel := True
-			Prop.SpecialType := "Murderous Eye Jewel"
+            Prop.SpecialType := "Murderous Eye Jewel"
             Continue
           }
           IfInString, A_LoopField, Cobalt Jewel
           {
             Prop.Jewel := True
-			Prop.SpecialType := "Cobalt Jewel"
+            Prop.SpecialType := "Cobalt Jewel"
             Continue
           }
           IfInString, A_LoopField, Crimson Jewel
           {
             Prop.Jewel := True
-			Prop.SpecialType := "Crimson Jewel"
+            Prop.SpecialType := "Crimson Jewel"
             Continue
           }
           IfInString, A_LoopField, Viridian Jewel
           {
             Prop.Jewel := True
-			Prop.SpecialType := "Viridian Jewel"
+            Prop.SpecialType := "Viridian Jewel"
             Continue
           }
-		  IfInString, A_LoopField, Large Cluster Jewel
+          IfInString, A_LoopField, Large Cluster Jewel
           {
             Prop.ClusterJewel := True
-			Prop.SpecialType := "Large Cluster Jewel"
+            Prop.SpecialType := "Large Cluster Jewel"
             Continue
           }
-		  IfInString, A_LoopField, Medium Cluster Jewel
+          IfInString, A_LoopField, Medium Cluster Jewel
           {
             Prop.ClusterJewel := True
-			Prop.SpecialType := "Medium Cluster Jewel"
+            Prop.SpecialType := "Medium Cluster Jewel"
             Continue
           }
-		  IfInString, A_LoopField, Small Cluster Jewel
+          IfInString, A_LoopField, Small Cluster Jewel
           {
             Prop.ClusterJewel := True
-			Prop.SpecialType := "Small Cluster Jewel"
+            Prop.SpecialType := "Small Cluster Jewel"
             Continue
           }
           IfInString, A_LoopField, Flask
