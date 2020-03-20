@@ -1992,7 +1992,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3440/164))
         Global PortalStockX:=GameX + Round(GameW/(3440/228))
-	;danmarzola edit need a fix here not my resolution!!
+        ; EDIT NEEDED - Old Y location
         Global WPStockY:=GameY + Round(GameH/(1440/353))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
