@@ -2745,6 +2745,7 @@ Return
       Prop.Belt := False
       Prop.Chromatic := False
       Prop.Jewel := False
+      Prop.ClusterJewel := False
       Prop.AbyssJewel := False
       Prop.Essence := False
       Prop.Incubator := False
@@ -3322,6 +3323,11 @@ Return
           IfInString, A_LoopField, Viridian Jewel
           {
             Prop.Jewel := True
+            Continue
+          }
+          IfInString, A_LoopField, Cluster Jewel
+          {
+            Prop.ClusterJewel := True
             Continue
           }
           IfInString, A_LoopField, Flask
@@ -12300,3 +12306,4 @@ Return
 
   ; Comment out this line if your script crashes on launch
   #Include, %A_ScriptDir%\data\Library.ahk
+
