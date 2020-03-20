@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.0000
+  Global VersionNumber := .10.0404
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -12313,5 +12313,3 @@ Return
 
   ; Comment out this line if your script crashes on launch
   #Include, %A_ScriptDir%\data\Library.ahk
-
-
