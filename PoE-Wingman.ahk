@@ -2920,6 +2920,7 @@ Return
       Affix.GainColdToExtraChaos := 0
       Affix.GainLightningToExtraChaos := 0
       Affix.GainPhysicalToExtraChaos := 0
+      Affix.GainNonChaosToExtraChaos := 0
       Affix.GlobalCriticalChance := 0
       Affix.GlobalCriticalMultiplier := 0
       Affix.IncreasedAttackSpeed := 0
@@ -4556,6 +4557,12 @@ Return
             {
               StringSplit, Arr, A_LoopField, %A_Space%, `%
               Affix.GainPhysicalToExtraChaos := Affix.GainPhysicalToExtraChaos + Arr2
+            Continue
+            }
+            IfInString, A_LoopField, of Non-Chaos as Extra Chaos Damage
+            {
+              StringSplit, Arr, A_LoopField, %A_Space%, `%
+              Affix.GainNonChaosToExtraChaos := Affix.GainNonChaosToExtraChaos + Arr2
             Continue
             }
           }
@@ -12325,4 +12332,3 @@ Return
 
   ; Comment out this line if your script crashes on launch
   #Include, %A_ScriptDir%\data\Library.ahk
-
