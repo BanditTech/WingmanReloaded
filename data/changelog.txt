@@ -9,6 +9,9 @@ Added stash tab for Cluster Jewels to Inventory Settings
 
 Quest.json is added as an automatically updated file when downloading new versions
 
+Bases.json is auto-updated from the RePoE source when updating
+
+You can now force an update by right clicking the tray icon and click Force Update
 
 ---
 

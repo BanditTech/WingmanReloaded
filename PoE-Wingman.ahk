@@ -1320,9 +1320,9 @@
     Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
   Gui, Tab, Utility
@@ -1551,9 +1551,9 @@
     Gui,Font,
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
     ;#######################################################################################################Configuration Tab
@@ -1694,9 +1694,11 @@
     Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
+
+    ForceUpdate := Func("checkUpdate").Bind(True)
 
     Gui, +LastFound
     Gui, +AlwaysOnTop
@@ -1705,7 +1707,7 @@
     Menu, Tray, Add,         WingmanReloaded, optionsCommand
     Menu, Tray, Default,       WingmanReloaded
     Menu, Tray, Add
-    Menu, Tray, Add,         Project Wiki, LaunchWiki
+    Menu, Tray, Add,         Project Site, LaunchSite
     Menu, Tray, Add
     Menu, Tray, Add,         Make a Donation, LaunchDonate
     Menu, Tray, Add
@@ -1717,6 +1719,8 @@
     Menu, Tray, Add
     Menu, Tray, add,         Window Spy, WINSPY
     Menu, Tray, Add
+    Menu, Tray, add,         Force Update, %ForceUpdate%
+    Menu, Tray, add
     Menu, Tray, add,         Reload This Script, RELOAD  
     Menu, Tray, add
     Menu, Tray, add,         Exit, QuitNow ; added exit script option
@@ -10586,6 +10590,7 @@ Return
           Gui, Update:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
           Gui, Update:Add, Button, x+35 ys gLaunchDonate, Support the Project
           Gui, Update:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
+          Gui, Update: +AlwaysOnTop
           Gui, Update:Show,, WingmanReloaded Update
           IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
           {
@@ -12190,8 +12195,8 @@ Return
       Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
     Return
 
-    LaunchWiki:
-      Run, https://github.com/BanditTech/WingmanReloaded/wiki ; Open the wiki page for the script
+    LaunchSite:
+      Run, https://bandittech.github.io/WingmanReloaded ; Open the Website page for the script
     Return
 
     LaunchDonate:
