@@ -1,3 +1,7 @@
+## Version .10.05 - Master Branch - March/20/2020
+Merging Alpha changes to master branch
+read patchnotes from alpha versions for changes
+
 ## Version .10.0403 - Alpha Branch - March/20/2020
 Additions by DanMarzola
 * Added flag for Blighted Maps
