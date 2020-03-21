@@ -1,4 +1,38 @@
-## Version .10.04 - master Branch - March/15/2020
+## Version .10.0403 - Alpha Branch - March/20/2020
+Additions by DanMarzola
+* Added flag for Blighted Maps
+* Added flag for Cluster Jewel
+* Added cluster jewel bases to the list of item types
+
+Added stash tab for Cluster Jewels to Inventory Settings
+* Is listed under "C Jewel Tab"
+
+Quest.json is added as an automatically updated file when downloading new versions
+
+Bases.json is auto-updated from the RePoE source when updating
+
+You can now force an update by right clicking the tray icon and click Force Update
+
+---
+
+## Version .10.0402 - Alpha Branch - March/17/2020
+Hotkey to pause mines is disabled while auto-detonate is off
+
+Added more clarity for Gamestates regarding OHB
+* Now displays the full name Overhead Health Bar
+* Tooltip for the OHB option has also been updated to use the full name
+
+---
+
+## Version .10.0401 - Alpha Branch - March/16/2020
+Predictive Price function has been modified
+* When starting a stash routine, it will first confirm PoEPrices.info is online
+* If the server is offline, it will temporarily skip the prediction function
+  * When the server was offline, it will hang the script while waiting for response
+
+---
+
+## Version .10.04 - Master Branch - March/15/2020
 Added in submitted affixes 
 
 Added items to Quest Item list

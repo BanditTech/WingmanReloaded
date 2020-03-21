@@ -90,6 +90,11 @@
     "Height": 3
   },
   {
+    "Name": "Chitus' Plum",
+    "Width": 1,
+    "Height": 1
+  },
+  {
     "Name": "Ribbon Spool",
     "Width": 2,
     "Height": 2
@@ -123,11 +128,6 @@
     "Name": "Thaumetic Emblem",
     "Width": 1,
     "Height": 1
-  },
-  {
-    "Name": "Deshret's Banner",
-    "Width": 2,
-    "Height": 3
   },
   {
     "Name": "Deshret's Banner",

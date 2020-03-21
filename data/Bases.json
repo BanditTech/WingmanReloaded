@@ -3189,6 +3189,174 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "StackableCurrency",
+    "name": "Abyssal Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Armoursmith's Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Blighted Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Obscured Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Fine Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Diviner's Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Whispering Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Fossilised Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Fragmented Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Thaumaturge's Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Foreboding Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Timeless Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Imperial Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Cartographer's Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Amorphous Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Decadent Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Portentous Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Skittering Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Primal Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Jeweller's Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Singular Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Blacksmith's Delirium Orb"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Simulacrum Splinter"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
     "name": "Armourer's Scrap"
   },
   {
@@ -4988,6 +5156,13 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
+    "name": "Council of Cats"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
     "name": "Coveted Possession"
   },
   {
@@ -5653,6 +5828,13 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
+    "name": "The Cheater"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
     "name": "The Chosen"
   },
   {
@@ -5801,6 +5983,20 @@
     "inventory_width": 1,
     "item_class": "DivinationCard",
     "name": "The Drunken Aristocrat"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Easy Stroll"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Eldritch Decay"
   },
   {
     "drop_level": 1,
@@ -6346,6 +6542,13 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
+    "name": "The Progeny of Lunaris"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
     "name": "The Puzzle"
   },
   {
@@ -6521,6 +6724,13 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
+    "name": "The Strategist"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
     "name": "The Summoner"
   },
   {
@@ -6571,6 +6781,13 @@
     "inventory_width": 1,
     "item_class": "DivinationCard",
     "name": "The Throne"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Tinkerer's Table"
   },
   {
     "drop_level": 1,
@@ -7242,6 +7459,13 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
+    "name": "Arcane Cloak"
+  },
+  {
+    "drop_level": 16,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
     "name": "Arctic Armour"
   },
   {
@@ -7299,6 +7523,13 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Berserk"
+  },
+  {
+    "drop_level": 16,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Blade Blast"
   },
   {
     "drop_level": 4,
@@ -7369,6 +7600,13 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Blood Rage"
+  },
+  {
+    "drop_level": 28,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "[DNT]Blood Whirl"
   },
   {
     "drop_level": 5,
@@ -8113,6 +8351,13 @@
     "name": "Kinetic Blast"
   },
   {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Kinetic Bolt"
+  },
+  {
     "drop_level": 12,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -8363,6 +8608,13 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Pride"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "DNT Projectile Portal"
   },
   {
     "drop_level": 24,
@@ -8659,6 +8911,13 @@
     "name": "Zealotry"
   },
   {
+    "drop_level": 24,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Spellslinger"
+  },
+  {
     "drop_level": 12,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -8692,6 +8951,13 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Steelskin"
+  },
+  {
+    "drop_level": 28,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Stormbind"
   },
   {
     "drop_level": 12,
@@ -9366,6 +9632,13 @@
     "name": "Arcane Surge Support"
   },
   {
+    "drop_level": 31,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Support Skill Gem",
+    "name": "Archmage Support"
+  },
+  {
     "drop_level": 8,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -9895,7 +10168,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Support Skill Gem",
-    "name": "Awakened Increased Area Of Effect Support"
+    "name": "Awakened Increased Area of Effect Support"
   },
   {
     "drop_level": 31,
@@ -10276,6 +10549,13 @@
     "name": "Ruthless Support"
   },
   {
+    "drop_level": 31,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Support Skill Gem",
+    "name": "Second Wind Support"
+  },
+  {
     "drop_level": 18,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -10469,7 +10749,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Support Skill Gem",
-    "name": "Awakened Elemental Damage With Attacks Support"
+    "name": "Awakened Elemental Damage with Attacks Support"
   },
   {
     "drop_level": 1,
@@ -10512,6 +10792,27 @@
     "inventory_width": 1,
     "item_class": "Jewel",
     "name": "Cobalt Jewel"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Jewel",
+    "name": "Large Cluster Jewel"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Jewel",
+    "name": "Medium Cluster Jewel"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Jewel",
+    "name": "Small Cluster Jewel"
   },
   {
     "drop_level": 1,
@@ -11142,6 +11443,13 @@
     "inventory_width": 1,
     "item_class": "Dagger",
     "name": "Sai"
+  },
+  {
+    "drop_level": 1,
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "item_class": "Dagger",
+    "name": "Ethereal Blade"
   },
   {
     "drop_level": 2,

@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.04
+  Global VersionNumber := .10.0403
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -87,6 +87,7 @@
   ; Extra vars - Not in INI
     Global WR_Statusbar := "WingmanReloaded Status"
     Global WR_hStatusbar
+    Global PPServerStatus := True
     Global Ninja := {}
     Global Enchantment  := []
     Global Corruption := []
@@ -219,7 +220,7 @@
       ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
       ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
       StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
-      YesOHB = Pauses the script when it cannot find the healthbar
+      YesOHB = Pauses the script when it cannot find the Overhead Health Bar
       YesGlobeScan = Use the new Globe scanning method to determine Life, ES and Mana
       ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
       AutoUpdateOff = Enable this to not check for new updates when launching the script
@@ -305,6 +306,8 @@
       StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
       StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
       StashTabYesPredictive_Price = Set the minimum value to consider worth stashing
+      StashTabClusterJewel = Assign the Stash tab for cluster jewels
+      StashTabYesClusterJewel = Enable to send Cluster Jewels to the assigned tab on the left
       StashTabDump = Assign the Stash tab for Unsorted items left over during Stash routine
       StashTabYesDump = Enable to send Unsorted items to the assigned Dump tab on the left
       StashDumpInTrial = Enables dump tab for all unsorted items when in Aspirant's Trial
@@ -540,6 +543,7 @@
     Global StashTabVeiled := 1
     Global StashTabGemSupport := 1
     Global StashTabOrgan := 1
+    Global StashTabClusterJewel := 1
     Global StashTabDump := 1
     Global StashTabPredictive := 1
   ; Checkbox to activate each tab
@@ -563,6 +567,7 @@
     Global StashTabYesVeiled := 1
     Global StashTabYesGemSupport := 1
     Global StashTabYesOrgan := 1
+    Global StashTabYesClusterJewel := 1
     Global StashTabYesDump := 1
     Global StashDumpInTrial := 1
     Global StashDumpSkipJC := 1
@@ -1315,9 +1320,9 @@
     Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
   Gui, Tab, Utility
@@ -1546,9 +1551,9 @@
     Gui,Font,
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
     ;#######################################################################################################Configuration Tab
@@ -1689,9 +1694,11 @@
     Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
+
+    ForceUpdate := Func("checkUpdate").Bind(True)
 
     Gui, +LastFound
     Gui, +AlwaysOnTop
@@ -1700,7 +1707,7 @@
     Menu, Tray, Add,         WingmanReloaded, optionsCommand
     Menu, Tray, Default,       WingmanReloaded
     Menu, Tray, Add
-    Menu, Tray, Add,         Project Wiki, LaunchWiki
+    Menu, Tray, Add,         Project Site, LaunchSite
     Menu, Tray, Add
     Menu, Tray, Add,         Make a Donation, LaunchDonate
     Menu, Tray, Add
@@ -1712,6 +1719,8 @@
     Menu, Tray, Add
     Menu, Tray, add,         Window Spy, WINSPY
     Menu, Tray, Add
+    Menu, Tray, add,         Force Update, %ForceUpdate%
+    Menu, Tray, add
     Menu, Tray, add,         Reload This Script, RELOAD  
     Menu, Tray, add
     Menu, Tray, add,         Exit, QuitNow ; added exit script option
@@ -2331,6 +2340,10 @@ Return
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StashRoutine()
   {
+    Global PPServerStatus
+    PPServerStatus()
+    If (!PPServerStatus && StashTabYesPredictive)
+      Notify("PoEPrice.info Offline","",2)
     CurrentTab:=0
     SortFirst := {}
     Loop 32
@@ -2466,6 +2479,8 @@ Return
             sendstash := StashTabOil
           Else If (Prop.Veiled&&StashTabYesVeiled)
             sendstash := StashTabVeiled
+          Else If (Prop.ClusterJewel&&StashTabYesClusterJewel)
+            sendstash := StashTabClusterJewel
           Else If (StashTabYesCrafting 
             && ((YesStashT1 && Prop.CraftingBase = "T1") 
               || (YesStashT2 && Prop.CraftingBase = "T2") 
@@ -2476,7 +2491,7 @@ Return
             && (!YesStashCraftingIlvl 
               || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
             sendstash := StashTabCrafting
-          Else If (StashTabYesPredictive && (PredictPrice() >= StashTabYesPredictive_Price) )
+          Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
             sendstash := StashTabPredictive
           Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
             sendstash := StashTabDump
@@ -2740,6 +2755,7 @@ Return
       Prop.Belt := False
       Prop.Chromatic := False
       Prop.Jewel := False
+      Prop.ClusterJewel := False
       Prop.AbyssJewel := False
       Prop.Essence := False
       Prop.Incubator := False
@@ -2786,6 +2802,7 @@ Return
       Prop.Item_Height := 1
       Prop.IsWeapon := False
       Prop.IsMap := False
+      Prop.IsBlightedMap := False
       Prop.MapTier := 0
       Prop.Support := False
       Prop.VaalGem := False
@@ -2903,6 +2920,7 @@ Return
       Affix.GainColdToExtraChaos := 0
       Affix.GainLightningToExtraChaos := 0
       Affix.GainPhysicalToExtraChaos := 0
+      Affix.GainNonChaosToExtraChaos := 0
       Affix.GlobalCriticalChance := 0
       Affix.GlobalCriticalMultiplier := 0
       Affix.IncreasedAttackSpeed := 0
@@ -2992,11 +3010,16 @@ Return
       Prop.Influence := ( Prop.Influence ? Prop.Influence . " Elder" : "Elder")
     If InStr(Clip_Contents, "`nShaper Item", 1)
       Prop.Influence := ( Prop.Influence ? Prop.Influence . " Shaper" : "Shaper")
+
     If InStr(Clip_Contents, "`nTravel to this Map by using it in a personal Map Device. Maps can only be used once.")
     {
       Prop.IsMap := True
       Prop.SpecialType := "Map"
       Prop.ItemClass := "Maps"
+      If InStr(Clip_Contents, "`nNatural inhabitants of this area have been removed (implicit)")
+      {
+      Prop.IsBlightedMap := True
+      }
     }
     If InStr(Clip_Contents, "`nRight-click to add this to your bestiary.")
     {
@@ -3311,6 +3334,11 @@ Return
           IfInString, A_LoopField, Viridian Jewel
           {
             Prop.Jewel := True
+            Continue
+          }
+          IfInString, A_LoopField, Cluster Jewel
+          {
+            Prop.ClusterJewel := True
             Continue
           }
           IfInString, A_LoopField, Flask
@@ -4529,6 +4557,12 @@ Return
             {
               StringSplit, Arr, A_LoopField, %A_Space%, `%
               Affix.GainPhysicalToExtraChaos := Affix.GainPhysicalToExtraChaos + Arr2
+            Continue
+            }
+            IfInString, A_LoopField, of Non-Chaos as Extra Chaos Damage
+            {
+              StringSplit, Arr, A_LoopField, %A_Space%, `%
+              Affix.GainNonChaosToExtraChaos := Affix.GainNonChaosToExtraChaos + Arr2
             Continue
             }
           }
@@ -6665,6 +6699,8 @@ Return
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PauseMines(){
     PauseMinesCommand:
+      if !DetonateMines
+      return
       static keyheld := 0
       keyheld++
       settimer, keyheldReset, 200
@@ -6912,7 +6948,7 @@ Return
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChar hwndCTIDOnChar, % "OnChar"
       CtlColors.Attach(CTIDOnChar, "", "Red")
-      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnOHB hwndCTIDOnOHB, % "O H B"
+      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnOHB hwndCTIDOnOHB, % "Overhead Health Bar"
       CtlColors.Attach(CTIDOnOHB, "", "Red")
       Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChat hwndCTIDOnChat, % "OnChat"
       CtlColors.Attach(CTIDOnChat, "", "Green")
@@ -7652,6 +7688,8 @@ Return
       IniRead, StashTabOrgan, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOrgan, 1
       IniRead, StashTabYesOrgan, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOrgan, 1
       IniRead, StashTabGemSupport, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemSupport, 1
+      IniRead, StashTabClusterJewel, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel, 1
+      IniRead, StashTabYesClusterJewel, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel, 1
       IniRead, StashTabDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump, 1
       IniRead, StashTabYesCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency, 1
       IniRead, StashTabYesMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap, 1
@@ -8752,6 +8790,7 @@ Return
       IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
       IniWrite, %StashTabProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy
       IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
+      IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
       IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
       IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
       IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
@@ -10558,6 +10597,7 @@ Return
           Gui, Update:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
           Gui, Update:Add, Button, x+35 ys gLaunchDonate, Support the Project
           Gui, Update:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
+          Gui, Update: +AlwaysOnTop
           Gui, Update:Show,, WingmanReloaded Update
           IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
           {
@@ -10574,17 +10614,20 @@ Return
     }
 
     runUpdate:
-
       Fail:=False
-      ; UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/GottaGoFast.ahk, GottaGoFast.ahk
-      ; if ErrorLevel {
-      ;   Fail:=true
-      ; }
       UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/PoE-Wingman.ahk, PoE-Wingman.ahk
       if ErrorLevel {
         Fail:=true
       }
       UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
+      if ErrorLevel {
+        Fail:=true
+      }
+      UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
+      if ErrorLevel {
+        Fail:=true
+      }
+      UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
       if ErrorLevel {
         Fail:=true
       }
@@ -11846,6 +11889,8 @@ Return
       IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
       IniWrite, %StashTabYesProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy
       IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
+      IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
+      IniWrite, %StashTabYesClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel
       IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
       IniWrite, %StashTabYesDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDump
       IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial
@@ -12157,8 +12202,8 @@ Return
       Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
     Return
 
-    LaunchWiki:
-      Run, https://github.com/BanditTech/WingmanReloaded/wiki ; Open the wiki page for the script
+    LaunchSite:
+      Run, https://bandittech.github.io/WingmanReloaded ; Open the Website page for the script
     Return
 
     LaunchDonate:
