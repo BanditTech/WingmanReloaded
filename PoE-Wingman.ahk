@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.0404
+  Global VersionNumber := .10.0403
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -306,6 +306,8 @@
       StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
       StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
       StashTabYesPredictive_Price = Set the minimum value to consider worth stashing
+      StashTabClusterJewel = Assign the Stash tab for cluster jewels
+      StashTabYesClusterJewel = Enable to send Cluster Jewels to the assigned tab on the left
       StashTabDump = Assign the Stash tab for Unsorted items left over during Stash routine
       StashTabYesDump = Enable to send Unsorted items to the assigned Dump tab on the left
       StashDumpInTrial = Enables dump tab for all unsorted items when in Aspirant's Trial
@@ -541,6 +543,7 @@
     Global StashTabVeiled := 1
     Global StashTabGemSupport := 1
     Global StashTabOrgan := 1
+    Global StashTabClusterJewel := 1
     Global StashTabDump := 1
     Global StashTabPredictive := 1
   ; Checkbox to activate each tab
@@ -564,6 +567,7 @@
     Global StashTabYesVeiled := 1
     Global StashTabYesGemSupport := 1
     Global StashTabYesOrgan := 1
+    Global StashTabYesClusterJewel := 1
     Global StashTabYesDump := 1
     Global StashDumpInTrial := 1
     Global StashDumpSkipJC := 1
@@ -1316,9 +1320,9 @@
     Gui, Add, Button, greadProfile10 w50 h21, Load 10
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
   Gui, Tab, Utility
@@ -1547,9 +1551,9 @@
     Gui,Font,
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
     ;#######################################################################################################Configuration Tab
@@ -1690,9 +1694,11 @@
     Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
     ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-    Gui, Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
+
+    ForceUpdate := Func("checkUpdate").Bind(True)
 
     Gui, +LastFound
     Gui, +AlwaysOnTop
@@ -1701,7 +1707,7 @@
     Menu, Tray, Add,         WingmanReloaded, optionsCommand
     Menu, Tray, Default,       WingmanReloaded
     Menu, Tray, Add
-    Menu, Tray, Add,         Project Wiki, LaunchWiki
+    Menu, Tray, Add,         Project Site, LaunchSite
     Menu, Tray, Add
     Menu, Tray, Add,         Make a Donation, LaunchDonate
     Menu, Tray, Add
@@ -1713,6 +1719,8 @@
     Menu, Tray, Add
     Menu, Tray, add,         Window Spy, WINSPY
     Menu, Tray, Add
+    Menu, Tray, add,         Force Update, %ForceUpdate%
+    Menu, Tray, add
     Menu, Tray, add,         Reload This Script, RELOAD  
     Menu, Tray, add
     Menu, Tray, add,         Exit, QuitNow ; added exit script option
@@ -2335,7 +2343,7 @@ Return
     Global PPServerStatus
     PPServerStatus()
     If (!PPServerStatus && StashTabYesPredictive)
-      Notify("Predictive Price Down","The POEPrices.info website is offline.`nWARNING`n`nPredictive Pricing is being skipped",5)
+      Notify("PoEPrice.info Offline","",2)
     CurrentTab:=0
     SortFirst := {}
     Loop 32
@@ -2471,6 +2479,8 @@ Return
             sendstash := StashTabOil
           Else If (Prop.Veiled&&StashTabYesVeiled)
             sendstash := StashTabVeiled
+          Else If (Prop.ClusterJewel&&StashTabYesClusterJewel)
+            sendstash := StashTabClusterJewel
           Else If (StashTabYesCrafting 
             && ((YesStashT1 && Prop.CraftingBase = "T1") 
               || (YesStashT2 && Prop.CraftingBase = "T2") 
@@ -7678,6 +7688,8 @@ Return
       IniRead, StashTabOrgan, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOrgan, 1
       IniRead, StashTabYesOrgan, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOrgan, 1
       IniRead, StashTabGemSupport, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemSupport, 1
+      IniRead, StashTabClusterJewel, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel, 1
+      IniRead, StashTabYesClusterJewel, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel, 1
       IniRead, StashTabDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump, 1
       IniRead, StashTabYesCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency, 1
       IniRead, StashTabYesMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap, 1
@@ -8778,6 +8790,7 @@ Return
       IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
       IniWrite, %StashTabProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy
       IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
+      IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
       IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
       IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
       IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
@@ -10584,6 +10597,7 @@ Return
           Gui, Update:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
           Gui, Update:Add, Button, x+35 ys gLaunchDonate, Support the Project
           Gui, Update:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
+          Gui, Update: +AlwaysOnTop
           Gui, Update:Show,, WingmanReloaded Update
           IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
           {
@@ -10600,17 +10614,20 @@ Return
     }
 
     runUpdate:
-
       Fail:=False
-      ; UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/GottaGoFast.ahk, GottaGoFast.ahk
-      ; if ErrorLevel {
-      ;   Fail:=true
-      ; }
       UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/PoE-Wingman.ahk, PoE-Wingman.ahk
       if ErrorLevel {
         Fail:=true
       }
       UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
+      if ErrorLevel {
+        Fail:=true
+      }
+      UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
+      if ErrorLevel {
+        Fail:=true
+      }
+      UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
       if ErrorLevel {
         Fail:=true
       }
@@ -11872,6 +11889,8 @@ Return
       IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
       IniWrite, %StashTabYesProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy
       IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
+      IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
+      IniWrite, %StashTabYesClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel
       IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
       IniWrite, %StashTabYesDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDump
       IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial
@@ -12183,8 +12202,8 @@ Return
       Run, https://www.autohotkey.com/docs/KeyList.htm ; Open the AutoHotkey List of Keys
     Return
 
-    LaunchWiki:
-      Run, https://github.com/BanditTech/WingmanReloaded/wiki ; Open the wiki page for the script
+    LaunchSite:
+      Run, https://bandittech.github.io/WingmanReloaded ; Open the Website page for the script
     Return
 
     LaunchDonate:

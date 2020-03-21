@@ -150,9 +150,9 @@
           Gui, Inventory: New
           Gui, Inventory: +AlwaysOnTop -MinimizeBox
           ;Save Setting
-          Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+          Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
-          Gui, Inventory: Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+          Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
           Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys
 
@@ -257,6 +257,7 @@
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  %textList%
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  %textList%
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabVeiled Choose%StashTabVeiled% w40 ,  %textList%
+          Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabClusterJewel Choose%StashTabClusterJewel% w40 ,  %textList%
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabDump Choose%StashTabDump% w40 ,  %textList%
 
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
@@ -269,6 +270,7 @@
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% y+14, Veiled Tab
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% y+14, C Jewel Tab
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% y+14, Dump Tab
 
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% x150 y50 w40 ,  %textList%
@@ -378,10 +380,10 @@
           Gui, Inventory: New
           Gui, Inventory: +AlwaysOnTop -MinimizeBox
           ;Save Setting
-          ; Gui, Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+          ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
           
-          Gui, Strings: Add, Button,      gLaunchWiki     x295 y470           h23,   Wiki
+          Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
           Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
           Gui, Strings: Font, Bold cBlack
           Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Use the dropdown to select from 1080 defaults
@@ -440,9 +442,9 @@
           Gui, Chat: Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xm+400 ym                    , Enable chat Hotkeys?
 
           ;Save Setting
-          Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w180 h23,   Save Configuration
+          Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
           ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-          Gui, Chat: Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+          Gui, Chat: Add, Button,      gLaunchSite     x+5           h23,   Website
 
           Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
         Gui, Chat: Tab, Commands
@@ -585,9 +587,9 @@
           Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton2, %hotkeyControllerButton2%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
 
           ;Save Setting
-          Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w180 h23,   Save Configuration
+          Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Controller: Add, Button,      gloadSaved     x+5           h23,   Load
-          Gui, Controller: Add, Button,      gLaunchWiki     x+5           h23,   Wiki
+          Gui, Controller: Add, Button,      gLaunchSite     x+5           h23,   Website
         }
         Gui, Controller: show , w620 h500, Controller Settings
       }
@@ -1992,7 +1994,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3440/164))
         Global PortalStockX:=GameX + Round(GameW/(3440/228))
-	;danmarzola edit need a fix here not my resolution!!
+        ; EDIT NEEDED - Old Y location
         Global WPStockY:=GameY + Round(GameH/(1440/353))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)

@@ -1,3 +1,20 @@
+## Version .10.0403 - Alpha Branch - March/20/2020
+Additions by DanMarzola
+* Added flag for Blighted Maps
+* Added flag for Cluster Jewel
+* Added cluster jewel bases to the list of item types
+
+Added stash tab for Cluster Jewels to Inventory Settings
+* Is listed under "C Jewel Tab"
+
+Quest.json is added as an automatically updated file when downloading new versions
+
+Bases.json is auto-updated from the RePoE source when updating
+
+You can now force an update by right clicking the tray icon and click Force Update
+
+---
+
 ## Version .10.0402 - Alpha Branch - March/17/2020
 Hotkey to pause mines is disabled while auto-detonate is off
 
