@@ -257,6 +257,7 @@
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabEssence Choose%StashTabEssence% w40 ,  %textList%
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabProphecy Choose%StashTabProphecy% w40 ,  %textList%
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabVeiled Choose%StashTabVeiled% w40 ,  %textList%
+          Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabClusterJewel Choose%StashTabClusterJewel% w40 ,  %textList%
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabDump Choose%StashTabDump% w40 ,  %textList%
 
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 y55, Currency Tab
@@ -269,6 +270,7 @@
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% y+14, Essence Tab
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% y+14, Prophecy Tab
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% y+14, Veiled Tab
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% y+14, C Jewel Tab
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% y+14, Dump Tab
 
           Gui, Inventory: Add, DropDownList, gUpdateStash vStashTabGemQuality Choose%StashTabGemQuality% x150 y50 w40 ,  %textList%

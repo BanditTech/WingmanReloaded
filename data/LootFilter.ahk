@@ -30,6 +30,7 @@
       Prop.Belt := False
       Prop.Chromatic := False
       Prop.Jewel := False
+      Prop.ClusterJewel := False
       Prop.AbyssJewel := False
       Prop.Essence := False
       Prop.Incubator := False
@@ -76,6 +77,7 @@
       Prop.Item_Height := 1
       Prop.IsWeapon := False
       Prop.IsMap := False
+      Prop.IsBlightedMap := False
       Prop.MapTier := 0
       Prop.Support := False
       Prop.VaalGem := False
