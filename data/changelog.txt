@@ -12,9 +12,14 @@ Updated Filterblade.zip file with the new v7.8.1
 Added % Increased Strength, Dexterity and Intilligence to CLF
 
 Item Info hotkey now also checks for the PoEPrices.info server status
+
+---
+
 ## Version .10.05 - Master Branch - March/20/2020
 Merging Alpha changes to master branch
 read patchnotes from alpha versions for changes
+
+---
 
 ## Version .10.0403 - Alpha Branch - March/20/2020
 Additions by DanMarzola
