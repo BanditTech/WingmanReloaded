@@ -1,3 +1,10 @@
+## Version .10.0501 - Alpha Branch - March/22/2020
+Added % Increased Strength, Dexterity and Intilligence to CLF
+
+Item Info hotkey now also checks for the PoEPrices.info server status
+
+---
+
 ## Version .10.05 - Master Branch - March/20/2020
 Merging Alpha changes to master branch
 read patchnotes from alpha versions for changes
