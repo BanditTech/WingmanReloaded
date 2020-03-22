@@ -1994,8 +1994,7 @@
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3440/164))
         Global PortalStockX:=GameX + Round(GameW/(3440/228))
-        ; EDIT NEEDED - Old Y location
-        Global WPStockY:=GameY + Round(GameH/(1440/353))
+        Global WPStockY:=GameY + Round(GameH/(1440/299))
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
         global vY_OnMenu:=GameY + Round(GameH / (1440 / 72))
@@ -2017,6 +2016,9 @@
         ;Status Check OnDiv
         global vX_OnDiv:=GameX + Round(GameW / (3440 / 822))
         global vY_OnDiv:=GameY + Round(GameH / ( 1440 / 181))
+        ;Status Check OnLeft
+        global vX_OnLeft:=GameX + Round(GameW / (3440 / 365))
+        global vY_OnLeft:=GameY + Round(GameH / ( 1440 / 90))
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / ( 3440 / 1480))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1440 / 270))
