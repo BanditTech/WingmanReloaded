@@ -1,10 +1,17 @@
+## Version .10.0502 - Alpha Branch - March/22/2020
+Additions by Hx2600
+* stash Scroll Y  position adjustment for 43:18
+* Added missing Onleft position for 43:18
+
+Updated Filterblade.zip file with the new v7.8.1
+* Requires manually updating the file from Alpha repo
+
+---
+
 ## Version .10.0501 - Alpha Branch - March/22/2020
 Added % Increased Strength, Dexterity and Intilligence to CLF
 
 Item Info hotkey now also checks for the PoEPrices.info server status
-
----
-
 ## Version .10.05 - Master Branch - March/20/2020
 Merging Alpha changes to master branch
 read patchnotes from alpha versions for changes
