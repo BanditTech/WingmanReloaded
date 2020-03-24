@@ -1,7 +1,7 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
     ; #Warn  ; The rest of this area is for global settings
     SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-    SaveDir := RTrim(A_ScriptDir, "\data") "\save"
+    SaveDir := RegExReplace(A_ScriptDir, "\\data$", "\\save")
     SetWorkingDir %SaveDir%
 
     Global xpos, ypos, Maxed
