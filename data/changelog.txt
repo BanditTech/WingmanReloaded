@@ -1,3 +1,14 @@
+## Version .10.0503 - Alpha Branch - March/25/2020
+Additions by DanMarzola
+* Fix for parser detecting affixes
+* Flag for enchant and Anoint have been improved
+
+Additions by Hx2600
+* Added 1440 OHB string to dropdown list
+  * Anyone using 1440 height monitor should be able to use the string
+
+---
+
 ## Version .10.0502 - Alpha Branch - March/22/2020
 Additions by Hx2600
 * stash Scroll Y  position adjustment for 43:18
