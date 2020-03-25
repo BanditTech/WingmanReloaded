@@ -3566,15 +3566,14 @@ Return
       }
       ; Get Lab Enchant / Annoint
       If (Prop.ClusterJewel != 1 && itemLevelIsDone > 0 && InStr(A_LoopField, "(enchant)") ) {
-      If InStr(A_LoopField, "Allocates") {
-		    Affix.Annointment := A_LoopField
-		    Prop.SpecialType := "Annointmented"
-      } 
-      Else 
-      {
-		    Affix.LabEnchant := A_LoopField
-		    Prop.SpecialType := "Enchanted"
-      }
+        If InStr(A_LoopField, "Allocates") {
+          Affix.Annointment := A_LoopField
+          Prop.SpecialType := "Annointmented"
+        } Else 
+        {
+          Affix.LabEnchant := A_LoopField
+          Prop.SpecialType := "Enchanted"
+        }
         Continue
       }
       If (itemLevelIsDone > 0)
