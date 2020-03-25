@@ -2856,7 +2856,7 @@ Return
       Affix.Corruption4 := ""
       Affix.Corruption5 := ""
       Affix.LabEnchant := ""
-      Affix.Annointment := ""
+      Affix.Annoint := ""
       Affix.MaximumLife := 0
       Affix.IncreasedMaximumLife := 0
       Affix.MaximumEnergyShield := 0
@@ -3570,8 +3570,8 @@ Return
       ; Get Lab Enchant / Annoint
       If (Prop.ClusterJewel != 1 && itemLevelIsDone > 0 && InStr(A_LoopField, "(enchant)") ) {
         If (Prop.Amulet || Prop.Ring)  {
-          Affix.Annointment := A_LoopField
-          Prop.SpecialType := "Annointmented"
+          Affix.Annoint := A_LoopField
+          Prop.SpecialType := "Anointed"
         } Else 
         {
           Affix.LabEnchant := A_LoopField
