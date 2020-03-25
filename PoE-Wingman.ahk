@@ -2753,6 +2753,7 @@ Return
       Prop.CLF_SendTab := 0
       Prop.Ring := False
       Prop.Amulet := False
+      Prop.Talisman := False
       Prop.Belt := False
       Prop.Chromatic := False
       Prop.Jewel := False
@@ -3002,6 +3003,8 @@ Return
     
     If InStr(Clip_Contents, "`nCorrupted", 1)
       Prop.Corrupted := True
+    If InStr(Clip_Contents, "`nTalisman Tier:")
+      Prop.Talisman := True
     If InStr(Clip_Contents, "`nCrusader Item", 1)
       Prop.Influence := ( Prop.Influence ? Prop.Influence . " Crusader" : "Crusader")
     If InStr(Clip_Contents, "`nWarlord Item", 1)
