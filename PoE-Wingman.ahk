@@ -662,7 +662,13 @@
     global CurrentGemY:=372
     global AlternateGemX:=1379 
     global AlternateGemY:=171
-    global AlternateGemOnSecondarySlot:=1
+    global AlternateGemOnSecondarySlot:=0
+
+    global CurrentGem2X:=0
+    global CurrentGem2Y:=0
+    global AlternateGem2X:=0
+    global AlternateGem2Y:=0
+    global AlternateGem2OnSecondarySlot:=0
 
   ; Attack Triggers
     global TriggerMainAttack:=00000
@@ -7133,7 +7139,9 @@ Return
         Send {%hotkeyInventory%} 
         RandomSleep(45,45)
       }
-
+      ;first gem
+      If (CurrentGemX != 0 && CurrentGemY != 0 && AlternateGemX !=0 && AlternateGemY != 0) {
+      
       RightClick(CurrentGemX, CurrentGemY)
       RandomSleep(45,45)
       
@@ -7150,7 +7158,26 @@ Return
       
       LeftClick(CurrentGemX, CurrentGemY)
         RandomSleep(90,120)
+      }
+      If (CurrentGem2X != 0 && CurrentGem2Y != 0 && AlternateGem2X !=0 && AlternateGem2Y != 0) {
+      ;second gem
+      RightClick(CurrentGem2X, CurrentGem2Y)
+      RandomSleep(45,45)
       
+      if (AlternateGem2OnSecondarySlot) 
+        Send {%hotkeyWeaponSwapKey%} 
+      RandomSleep(45,45)
+      
+      LeftClick(AlternateGem2X, AlternateGem2Y)
+        RandomSleep(90,120)
+      
+      if (AlternateGem2OnSecondarySlot) 
+        Send {%hotkeyWeaponSwapKey%} 
+      RandomSleep(45,45)
+      
+      LeftClick(CurrentGem2X, CurrentGem2Y)
+        RandomSleep(90,120)
+      }
       Send {%hotkeyInventory%} 
       MouseMove, xx, yy, 0
       BlockInput, MouseMoveOff
@@ -8083,6 +8110,12 @@ Return
       IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
       IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
       IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
+
+      IniRead, CurrentGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X, 0
+      IniRead, CurrentGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y, 0
+      IniRead, AlternateGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X, 0
+      IniRead, AlternateGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2Y, 0
+      IniRead, AlternateGem2OnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2OnSecondarySlot, 0
       
       ;Coordinates
       IniRead, GuiX, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiX, -10
@@ -8760,6 +8793,12 @@ Return
       IniWrite, %AlternateGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX
       IniWrite, %AlternateGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY
       IniWrite, %AlternateGemOnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot
+
+      IniWrite, %CurrentGem2X%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X
+      IniWrite, %CurrentGem2Y%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y
+      IniWrite, %AlternateGem2X%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X
+      IniWrite, %AlternateGem2Y%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2Y
+      IniWrite, %AlternateGem2OnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2OnSecondarySlot
       
       ;~ Scroll locations
       IniWrite, %PortalScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX
@@ -9066,6 +9105,10 @@ Return
       GuiControl,, CurrentGemY, %CurrentGemY%
       GuiControl,, AlternateGemX, %AlternateGemX%
       GuiControl,, AlternateGemY, %AlternateGemY%
+      GuiControl,, CurrentGem2X, %CurrentGem2X%
+      GuiControl,, CurrentGem2Y, %CurrentGem2Y%
+      GuiControl,, AlternateGem2X, %AlternateGem2X%
+      GuiControl,, AlternateGem2Y, %AlternateGem2Y%
       
       ; SendMSG(1,1)
     return
