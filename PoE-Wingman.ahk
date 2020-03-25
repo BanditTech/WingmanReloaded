@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.0403
+  Global VersionNumber := .10.0502
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -2943,6 +2943,18 @@ Return
       Affix.ChanceIgnite := 0
       Affix.ChanceBleed := 0
       Affix.ChancePoison := 0
+      Affix.AddedArmour := 0
+      Affix.AddedEvasion := 0
+      Affix.AddedAllStats := 0
+      Affix.AddedStrength := 0
+      Affix.AddedDexterity := 0
+      Affix.AddedIntelligence := 0
+      Affix.AddedStrengthDexterity := 0
+      Affix.AddedStrengthIntelligence := 0
+      Affix.AddedDexterityIntelligence := 0
+      Affix.IncreasedStrength := 0
+      Affix.IncreasedDexterity := 0
+      Affix.IncreasedIntelligence := 0
       Affix.ChanceAvoidElementalAilment := 0
       Affix.IncreasedColdDamage := 0
       Affix.IncreasedFireDamage := 0
@@ -2978,15 +2990,6 @@ Return
       Affix.IncreasedFlaskManaRecovery := 0
       Affix.IncreasedFlaskDuration := 0
       Affix.IncreasedFlaskChargesGained := 0
-      Affix.AddedArmour := 0
-      Affix.AddedEvasion := 0
-      Affix.AddedAllStats := 0
-      Affix.AddedStrength := 0
-      Affix.AddedDexterity := 0
-      Affix.AddedIntelligence := 0
-      Affix.AddedStrengthDexterity := 0
-      Affix.AddedStrengthIntelligence := 0
-      Affix.AddedDexterityIntelligence := 0
       Affix.ReflectPhysical := 0
       Affix.BlockManaGain := 0
       Affix.OnKillLife := 0
@@ -3832,6 +3835,24 @@ Return
             Affix.PseudoAddedIntelligence := Affix.PseudoAddedIntelligence + Arr1
             Affix.PseudoAddedStrength := Affix.PseudoAddedStrength + Arr1
             Affix.PseudoAddedDexterity := Affix.PseudoAddedDexterity + Arr1
+          Continue  
+          }
+          IfInString, A_LoopField, increased Strength
+          {
+            StringSplit, Arr, A_LoopField, %A_Space%, `%
+            Affix.IncreasedStrength := Affix.IncreasedStrength + Arr1
+          Continue  
+          }
+          IfInString, A_LoopField, increased Intelligence
+          {
+            StringSplit, Arr, A_LoopField, %A_Space%, `%
+            Affix.IncreasedIntelligence := Affix.IncreasedIntelligence + Arr1
+          Continue  
+          }
+          IfInString, A_LoopField, increased Dexterity
+          {
+            StringSplit, Arr, A_LoopField, %A_Space%, `%
+            Affix.IncreasedDexterity := Affix.IncreasedDexterity + Arr1
           Continue  
           }
           IfInString, A_LoopField, to Armour
@@ -4785,7 +4806,9 @@ Return
     SendMSG(1,0,scriptTradeMacro)
     Prop.CLF_SendTab := MatchLootFilter()
     Prop.CLF_MatchGroup := MatchLootFilter(1)
-    If (YesPredictivePrice && (PriceObj := PredictPrice("Obj")))
+    If (YesPredictivePrice && !PPServerStatus())
+      Notify("PoEPrice.info Offline","",2)
+    If (YesPredictivePrice && PPServerStatus && (PriceObj := PredictPrice("Obj")))
     {
       Prop.PredictPrice := PriceObj.price
       Prop.PredictPriceInfo := PriceObj.tt
