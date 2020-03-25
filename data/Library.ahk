@@ -129,7 +129,7 @@
     {
       Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe
         , DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC
-        ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu
+        ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu
         , WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB
         , WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe
         , Obj, WR_Save_JSON_FillMetamorph
@@ -170,35 +170,43 @@
           Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,         Section      w370 h120      xm+180   ym+25,         Scroll and Gem Locations
+          Gui, Inventory: Add, GroupBox,         Section      w370 h160      xm+180   ym+25,         Scroll and Gem Locations
           Gui, Inventory: Font
 
           Gui, Inventory: Add, Text,                     xs+93   ys+15,        X-Pos
           Gui, Inventory: Add, Text,                     x+12,             Y-Pos
 
-          Gui, Inventory: Add, Text,                     xs+22  y+5,         Portal Scroll:
-          Gui, Inventory: Add, Edit,       vPortalScrollX         x+8    y+-15   w34  h17,   %PortalScrollX%
-          Gui, Inventory: Add, Edit,       vPortalScrollY         x+8         w34  h17,   %PortalScrollY%  
-          Gui, Inventory: Add, Text,                     xs+14  y+6,         Wisdm. Scroll:
-          Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8    y+-15   w34  h17,   %WisdomScrollX%
-          Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8         w34  h17,   %WisdomScrollY%  
-          Gui, Inventory: Add, Text,                     xs+19  y+6,         Current Gem:
-          Gui, Inventory: Add, Edit,       vCurrentGemX         x+8    y+-15   w34  h17,   %CurrentGemX%
-          Gui, Inventory: Add, Edit,       vCurrentGemY         x+8         w34  h17,   %CurrentGemY%
-
-          Gui, Inventory: Add, Text,                     xs+11  y+6,         Alternate Gem:
-          Gui, Inventory: Add, Edit,       vAlternateGemX         x+8    y+-15   w34  h17,   %AlternateGemX%
-          Gui, Inventory: Add, Edit,       vAlternateGemY         x+8         w34  h17,   %AlternateGemY%
+          Gui, Inventory: Add, Text,                     xs+21  y+5,         Portal Scroll:
+          Gui, Inventory: Add, Edit,       vPortalScrollX         x+8        y+-15   w34  h17,   %PortalScrollX%
+          Gui, Inventory: Add, Edit,       vPortalScrollY         x+8                w34  h17,   %PortalScrollY%  
+          Gui, Inventory: Add, Text,                     xs+10  y+6,         Wisdom Scroll:
+          Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
+          Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
+          Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem1:
+          Gui, Inventory: Add, Edit,       vCurrentGemX           x+8        y+-15   w34  h17,   %CurrentGemX%
+          Gui, Inventory: Add, Edit,       vCurrentGemY           x+8                w34  h17,   %CurrentGemY%
+          Gui, Inventory: Add, Text,                     xs+04  y+6,         Alternate Gem1:
+          Gui, Inventory: Add, Edit,       vAlternateGemX         x+8        y+-15   w34  h17,   %AlternateGemX%
+          Gui, Inventory: Add, Edit,       vAlternateGemY         x+8                w34  h17,   %AlternateGemY%
+          Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem2:
+          Gui, Inventory: Add, Edit,       vCurrentGem2X          x+8        y+-15   w34  h17,   %CurrentGem2X%
+          Gui, Inventory: Add, Edit,       vCurrentGem2Y          x+8                w34  h17,   %CurrentGem2Y%
+          Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem2:
+          Gui, Inventory: Add, Edit,       vAlternateGem2X        x+8        y+-15   w34  h17,   %AlternateGem2X%
+          Gui, Inventory: Add, Edit,       vAlternateGem2Y        x+8                w34  h17,   %AlternateGem2Y%
           Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll      xs+173       ys+31  h17    , Locate
           Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll               y+4    h17    , Locate
           Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem                 y+4    h17    , Locate
           Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem               y+4    h17    , Locate
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem2                y+4    h17    , Locate
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2              y+4    h17    , Locate
           Gui, Inventory: Add, Checkbox,     vStockPortal Checked%StockPortal%          x+13       ys+33      , Stock Portal?
           Gui, Inventory: Add, Checkbox,     vStockWisdom Checked%StockWisdom%                   y+8        , Stock Wisdom?
-          Gui, Inventory: Add, Checkbox,   vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%    y+8        , Weapon Swap?
-          Gui, Inventory: Add, Text,                   xs+84   ys+15    h107 0x11
-          Gui, Inventory: Add, Text,                   x+33          h107 0x11
-          Gui, Inventory: Add, Text,                   x+33          h107 0x11
+          Gui, Inventory: Add, Checkbox,   vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%    y+8        , Weapon Swap Gem1?
+          Gui, Inventory: Add, Checkbox,   vAlternateGem2OnSecondarySlot Checked%AlternateGem2OnSecondarySlot%    y+8        , Weapon Swap Gem2?
+          Gui, Inventory: Add, Text,                   xs+84   ys+25   h132 0x11
+          Gui, Inventory: Add, Text,                   x+33          h132 0x11
+          Gui, Inventory: Add, Text,                   x+33          h132 0x11
 
           IfNotExist, %A_ScriptDir%\data\leagues.json
           {
@@ -211,7 +219,7 @@
             textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+10,         Item Parse Settings
+          Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+25,         Item Parse Settings
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
           Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7

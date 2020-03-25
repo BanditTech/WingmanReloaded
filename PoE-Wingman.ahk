@@ -233,13 +233,18 @@
       PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
       WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
       WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-      CurrentGemX = Select the X location of the Gem to swap from`rPress Locate to grab positions
-      CurrentGemY = Select the Y location of the Gem to swap from`rPress Locate to grab positions
-      AlternateGemX = Select the X location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rPress Locate to grab positions
-      AlternateGemY = Select the Y location of the Gem to swap with`rThis can be in secondary weapon, enable weapon swap`rPress Locate to grab positions
+      CurrentGemX = Select the X location for the first Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
+      CurrentGemY = Select the Y location for the first Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
+      AlternateGemX = Select the X location of the first Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
+      AlternateGemY = Select the Y location of the first Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
+      AlternateGemOnSecondarySlot = Enable this to get your First Alternate Gem from Secondary Weapon Set (Swap Weapons)
+      CurrentGem2X = Select the X location for the second Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
+      CurrentGem2Y = Select the Y location for the second Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
+      AlternateGem2X = Select the Y location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
+      AlternateGem2Y = Select the Y location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
+      AlternateGem2OnSecondarySlot = Enable this to get your Second Alternate Gem from Secondary Weapon Set (Swap Weapons)
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
-      StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
-      AlternateGemOnSecondarySlot = Enable this to Swap Weapons for your Alternate Gem Swap location
+      StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
       YesAutoSkillUp = Enable this to Automatically level up skill gems
       YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
       DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
@@ -662,7 +667,13 @@
     global CurrentGemY:=372
     global AlternateGemX:=1379 
     global AlternateGemY:=171
-    global AlternateGemOnSecondarySlot:=1
+    global AlternateGemOnSecondarySlot:=0
+
+    global CurrentGem2X:=0
+    global CurrentGem2Y:=0
+    global AlternateGem2X:=0
+    global AlternateGem2Y:=0
+    global AlternateGem2OnSecondarySlot:=0
 
   ; Attack Triggers
     global TriggerMainAttack:=00000
@@ -7127,7 +7138,9 @@ Return
         Send {%hotkeyInventory%} 
         RandomSleep(45,45)
       }
-
+      ;first gem
+      If (CurrentGemX != 0 && CurrentGemY != 0 && AlternateGemX !=0 && AlternateGemY != 0) {
+      
       RightClick(CurrentGemX, CurrentGemY)
       RandomSleep(45,45)
       
@@ -7144,7 +7157,26 @@ Return
       
       LeftClick(CurrentGemX, CurrentGemY)
         RandomSleep(90,120)
+      }
+      If (CurrentGem2X != 0 && CurrentGem2Y != 0 && AlternateGem2X !=0 && AlternateGem2Y != 0) {
+      ;second gem
+      RightClick(CurrentGem2X, CurrentGem2Y)
+      RandomSleep(45,45)
       
+      if (AlternateGem2OnSecondarySlot) 
+        Send {%hotkeyWeaponSwapKey%} 
+      RandomSleep(45,45)
+      
+      LeftClick(AlternateGem2X, AlternateGem2Y)
+        RandomSleep(90,120)
+      
+      if (AlternateGem2OnSecondarySlot) 
+        Send {%hotkeyWeaponSwapKey%} 
+      RandomSleep(45,45)
+      
+      LeftClick(CurrentGem2X, CurrentGem2Y)
+        RandomSleep(90,120)
+      }
       Send {%hotkeyInventory%} 
       MouseMove, xx, yy, 0
       BlockInput, MouseMoveOff
@@ -8077,6 +8109,12 @@ Return
       IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
       IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
       IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
+
+      IniRead, CurrentGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X, 0
+      IniRead, CurrentGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y, 0
+      IniRead, AlternateGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X, 0
+      IniRead, AlternateGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2Y, 0
+      IniRead, AlternateGem2OnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2OnSecondarySlot, 0
       
       ;Coordinates
       IniRead, GuiX, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiX, -10
@@ -8754,6 +8792,12 @@ Return
       IniWrite, %AlternateGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX
       IniWrite, %AlternateGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY
       IniWrite, %AlternateGemOnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot
+
+      IniWrite, %CurrentGem2X%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X
+      IniWrite, %CurrentGem2Y%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y
+      IniWrite, %AlternateGem2X%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X
+      IniWrite, %AlternateGem2Y%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2Y
+      IniWrite, %AlternateGem2OnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2OnSecondarySlot
       
       ;~ Scroll locations
       IniWrite, %PortalScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX
@@ -9060,6 +9104,10 @@ Return
       GuiControl,, CurrentGemY, %CurrentGemY%
       GuiControl,, AlternateGemX, %AlternateGemX%
       GuiControl,, AlternateGemY, %AlternateGemY%
+      GuiControl,, CurrentGem2X, %CurrentGem2X%
+      GuiControl,, CurrentGem2Y, %CurrentGem2Y%
+      GuiControl,, AlternateGem2X, %AlternateGem2X%
+      GuiControl,, AlternateGem2Y, %AlternateGem2Y%
       
       ; SendMSG(1,1)
     return
