@@ -219,7 +219,7 @@
             textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+10,         Item Parse Settings
+          Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+25,         Item Parse Settings
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
           Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
