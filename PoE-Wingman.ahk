@@ -3565,53 +3565,14 @@ Return
           Continue
         }
       }
-      ;Capture Implicit and Affixes after the Item Level
-      If (itemLevelIsDone > 0 && itemLevelIsDone < 3) {
-        If InStr(A_LoopField, "----")
+      ; Get Lab Enchant / Annoint
+      If (Prop.ClusterJewel != 1 && itemLevelIsDone > 0 && InStr(A_LoopField, "(enchant)") ) {
+        Affix.LabEnchant := A_LoopField
+        Prop.SpecialType = "Enchanted";
+        Continue
+      }
+      If (itemLevelIsDone > 0)
         {
-          If !ExtraSection
-            ++itemLevelIsDone
-          Else
-            --ExtraSection
-        }
-        Else
-        {
-          If (A_LoopField = "")
-            Continue
-          If (itemLevelIsDone=2 && !Affix.LabEnchant && captureLines < 1) {
-            imp := RegExReplace(A_LoopField, "i)([-.0-9]+)", "#")
-            if (indexOf(imp, Enchantment)) 
-            {
-              Affix.LabEnchant := A_LoopField
-              ExtraSection := 1
-              Continue
-            }
-          }
-          If (itemLevelIsDone=2 && !Affix.TalismanTier && captureLines < 1) {
-            IfInString, A_LoopField, Talisman Tier:
-            {  
-              StringSplit, Arr, A_LoopField, %A_Space%
-              Affix.TalismanTier := Arr3
-              ExtraSection := 1
-            Continue
-            }
-          }
-          If (itemLevelIsDone=2 && !Affix.Annointment && captureLines < 1) {
-            IfInString, A_LoopField, Allocates
-            {  
-              Arr := StrSplit(A_LoopField, "Allocates ")
-              Affix.Annointment := Arr[2]
-              ExtraSection := 1
-            Continue
-            }
-            IfInString, A_LoopField, Your
-            {  
-              Arr := StrSplit(A_LoopField, "Your ")
-              Affix.Annointment := Arr[2]
-              ExtraSection := 1
-            Continue
-            }
-          }
           if InStr(A_LoopField, "(implicit)")
           {
             If (captureLines < 1) 
@@ -4596,7 +4557,6 @@ Return
           Continue
           }
         }
-      }
       ; Stack size
       IfInString, A_LoopField, Stack Size:
       {
