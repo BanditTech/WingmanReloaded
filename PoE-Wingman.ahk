@@ -3570,7 +3570,7 @@ Return
       }
       ; Get Lab Enchant / Annoint
       If (Prop.ClusterJewel != 1 && itemLevelIsDone > 0 && InStr(A_LoopField, "(enchant)") ) {
-        If InStr(A_LoopField, "Allocates") {
+        If (Prop.Amulet || Prop.Ring)  {
           Affix.Annointment := A_LoopField
           Prop.SpecialType := "Annointmented"
         } Else 
