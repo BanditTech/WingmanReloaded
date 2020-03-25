@@ -4805,6 +4805,8 @@ Return
     {
       matched := False
       nomatched := False
+      ormatched := False
+      ormismatch := False
       For SKey, Selected in Groups
       {
         For AKey, AVal in Selected
@@ -4823,35 +4825,95 @@ Return
           orflag := LootFilter[GKey][SKey][AKey . "OrFlag"]
 
           if eval = >
+          {
             If (arrval > min)
-            matched := True
-            Else if !orflag
-            nomatched := True
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              nomatched := True
+              if orflag
+                ormismatch := True
+            }
+          }
           Else if eval = >=
+          {
             If (arrval >= min)
-            matched := True
-            Else if !orflag
-            nomatched := True
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              nomatched := True
+              if orflag
+                ormismatch := True
+            }
+          }
           else if eval = =
-            if (arrval = min)
-            matched := True
-            Else if !orflag
-            nomatched := True
+          {
+            If (arrval = min)
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              nomatched := True
+              if orflag
+                ormismatch := True
+            }
+          }
           else if eval = <
-            if (arrval < min)
-            matched := True
-            Else if !orflag
-            nomatched := True
+          {
+            If (arrval < min)
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              nomatched := True
+              if orflag
+                ormismatch := True
+            }
+          }
           else if eval = <=
-            if (arrval <= min)
-            matched := True
-            Else if !orflag
-            nomatched := True
+          {
+            If (arrval <= min)
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              nomatched := True
+              if orflag
+                ormismatch := True
+            }
+          }
           else if eval = !=
-            if (arrval != min)
-            matched := True
-            Else if !orflag
-            nomatched := True
+          {
+            If (arrval != min)
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              nomatched := True
+              if orflag
+                ormismatch := True
+            }
+          }
           else if eval = ~
           {
             minarr := StrSplit(min, "|"," ")
@@ -4879,20 +4941,23 @@ Return
                 break
               }
             }
-
-            if matchedOR       ; We can now perform final evaluation
-                               ; If any of the sections produced a match it will flag true
+            if matchedOR       ; If any of the sections produced a match it will flag true
             {
               matched := True
+              If orflag
+                ormatched := True
             }
-            if !matchedOR && !orflag
-            {                  ; If we did not end with a match for the entire OR sections,
-                               ; and we do not have OR flag on the CLF slot
+            Else
+            {
               nomatched := True
+              If orflag
+                ormismatch := True
             }
           }
         }
       }
+      If ormismatch && !ormatched
+        nomatched := True
       If matched && !nomatched
       {
         If GroupOut

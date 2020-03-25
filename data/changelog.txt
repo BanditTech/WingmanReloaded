@@ -1,3 +1,13 @@
+## Version .10.0504 - Alpha Branch - March/25/2020
+Additions by DanMarzola
+* Added optional second gem slot for swapping
+
+New Major Feature of the CLF!
+* You can now select OR on any of the selected Prop, Affix or Stats
+* When enabled, the slot becomes mutually bolean with others in the group
+  * If any match, it is true
+  * If all do not match, it is false
+  
 ## Version .10.0503 - Alpha Branch - March/25/2020
 Additions by DanMarzola
 * Fix for parser detecting affixes
