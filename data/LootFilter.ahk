@@ -598,8 +598,9 @@ BuildNewGroupMenu(GKey)
       %strLootFilterGSAMin% := LootFilter[GKey][SKey][AKey . "Min"]
       strLootFilterGSAOrFlag := "LootFilter_" . GKey . "_" . SKey . "_" . AKey . "OrFlag"
       %strLootFilterGSAOrFlag% := LootFilter[GKey][SKey][AKey . "OrFlag"]
+      ischecked := LootFilter[GKey][SKey][AKey . "OrFlag"]
       ;MsgBox % AKey
-      Gui,2: Add,  Checkbox, v%strLootFilterGSAOrFlag% gUpdateLootFilterDDL Right checked%strLootFilterGSAOrFlag% xs+2 yp+25 ,% ""
+      Gui,2: Add,  Checkbox, v%strLootFilterGSAOrFlag% gUpdateLootFilterDDL Right checked%ischecked% xs+2 yp+25 ,% ""
       Gui,2: Add,  DropDownList, v%strLootFilterGSA% gUpdateLootFilterDDL x+9 w240, % LootFilter[GKey][SKey][AKey] "||" textList%SKey%
       Gui,2: Add, DropDownList, v%strLootFilterGSAEval% gUpdateLootFilterDDL x+9 w50, % LootFilter[GKey][SKey][AKey . "Eval"] "||" textListEval
       Gui,2: Add, Edit, v%strLootFilterGSAMin% gUpdateLootFilterDDL x+6 w250 h21, % LootFilter[GKey][SKey][AKey . "Min"]
@@ -642,7 +643,7 @@ LoadArray()
       {
         If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
           Continue
-        If !IsObject(Sval[AKey . "OrFlag"])
+        If !(Sval[AKey . "OrFlag"] = 0 || Sval[AKey . "OrFlag"])
           Sval[AKey . "OrFlag"] := 0
       }
     }
