@@ -692,9 +692,10 @@ RemoveMenuItem:
   SKey := buttonstr3
   buttonstr4 := RegExReplace(buttonstr4, "Min$", "")
   AKey := buttonstr4
-  LootFilter[GKey][SKey].Delete(AKey . "Min")
-  LootFilter[GKey][SKey].Delete(AKey . "Eval")
-  LootFilter[GKey][SKey].Delete(AKey)
+  LootFilter[GKey][SKey].Remove(AKey . "Min")
+  LootFilter[GKey][SKey].Remove(AKey . "Eval")
+  LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
+  LootFilter[GKey][SKey].Remove(AKey)
   SaveWinPos()
   Gui, Destroy
   GoSub, Redraw
@@ -707,9 +708,10 @@ RemoveNewMenuItem:
   SKey := buttonstr3
   buttonstr4 := RegExReplace(buttonstr4, "Min$", "")
   AKey := buttonstr4
-  LootFilter[GKey][SKey].Delete(AKey . "Min")
-  LootFilter[GKey][SKey].Delete(AKey . "Eval")
-  LootFilter[GKey][SKey].Delete(AKey)
+  LootFilter[GKey][SKey].Remove(AKey . "Min")
+  LootFilter[GKey][SKey].Remove(AKey . "Eval")
+  LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
+  LootFilter[GKey][SKey].Remove(AKey)
   SaveWinPos()
   Gui,2: Destroy
   GoSub, RedrawNewGroup
@@ -722,9 +724,10 @@ RemoveNewGroupMenuItem:
   SKey := buttonstr3
   buttonstr4 := RegExReplace(buttonstr4, "Min$", "")
   AKey := buttonstr4
-  LootFilter[GKey][SKey].Delete(AKey . "Min")
-  LootFilter[GKey][SKey].Delete(AKey . "Eval")
-  LootFilter[GKey][SKey].Delete(AKey)
+  LootFilter[GKey][SKey].Remove(AKey . "Min")
+  LootFilter[GKey][SKey].Remove(AKey . "Eval")
+  LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
+  LootFilter[GKey][SKey].Remove(AKey)
   SaveWinPos()
   Gui,2: Destroy
   GoSub, RedrawNewGroup
@@ -737,8 +740,8 @@ RemGroup:
     StringTrimLeft, buttonstr2, buttonstr2, 1
   gnumber := buttonstr2
   GKey := "Group" gnumber
-  LootFilter.Delete(GKey)
-  LootFilterTabs.Delete(GKey)
+  LootFilter.Remove(GKey)
+  LootFilterTabs.Remove(GKey)
   SaveWinPos()
   Gui, Destroy
   GoSub, Redraw
@@ -747,8 +750,8 @@ Return
 RemNewGroup:
   Gui, Submit, NoHide
   GKey := groupKey
-  LootFilter.Delete(GKey)
-  LootFilterTabs.Delete(GKey)
+  LootFilter.Remove(GKey)
+  LootFilterTabs.Remove(GKey)
   Gui, 2: Destroy
   SaveWinPos()
   Gui, 1: Default
