@@ -4805,11 +4805,13 @@ Return
     {
       matched := False
       nomatched := False
+      ormatched := False
+      ormismatch := False
       For SKey, Selected in Groups
       {
         For AKey, AVal in Selected
         {
-          If (InStr(AKey, "Eval") || InStr(AKey, "Min"))
+          If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
             Continue
           if InStr(SKey, "Affix")
             arrval := Affix[AVal]
@@ -4817,77 +4819,146 @@ Return
             arrval := Prop[AVal]
           else if InStr(SKey, "Stats")
             arrval := Stats[AVal]
+
           eval := LootFilter[GKey][SKey][AKey . "Eval"]
           min := LootFilter[GKey][SKey][AKey . "Min"]
+          orflag := LootFilter[GKey][SKey][AKey . "OrFlag"]
+
           if eval = >
+          {
             If (arrval > min)
-            matched := True
-            Else
-            nomatched := True
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              if !orflag
+                nomatched := True
+              ormismatch := True
+            }
+          }
           Else if eval = >=
+          {
             If (arrval >= min)
-            matched := True
-            Else
-            nomatched := True
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              if !orflag
+                nomatched := True
+              ormismatch := True
+            }
+          }
           else if eval = =
-            if (arrval = min)
-            matched := True
-            Else
-            nomatched := True
+          {
+            If (arrval = min)
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              if !orflag
+                nomatched := True
+              ormismatch := True
+            }
+          }
           else if eval = <
-            if (arrval < min)
-            matched := True
-            Else
-            nomatched := True
+          {
+            If (arrval < min)
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              if !orflag
+                nomatched := True
+              ormismatch := True
+            }
+          }
           else if eval = <=
-            if (arrval <= min)
-            matched := True
-            Else
-            nomatched := True
+          {
+            If (arrval <= min)
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              if !orflag
+                nomatched := True
+              ormismatch := True
+            }
+          }
           else if eval = !=
-            if (arrval != min)
-            matched := True
-            Else
-            nomatched := True
+          {
+            If (arrval != min)
+            {
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else 
+            {
+              if !orflag
+                nomatched := True
+              ormismatch := True
+            }
+          }
           else if eval = ~
           {
             minarr := StrSplit(min, "|"," ")
-            for k, v in minarr
+            matchedOR := False
+            for k, v in minarr ; for each element of the minimum
+                               ; We split the line into sections
             {
-              if InStr(v, "&")
+              if InStr(v, "&") ; Check for any & sections
               {
                 mismatched := false
                 for kk, vv in StrSplit(v, "&"," ")
-                {
-                  If !InStr(arrval, vv)
+                {              ; Split the array again
+                  If !InStr(arrval, vv) ; Check all sections for mismatch
                     mismatched := true
                 }
-                if mismatched
-                  matched := false
-                else
-                {
-                  matched := true
+                if !mismatched
+                {              ; if no mismatch that means all sections found in the string
+                  matchedOR := true ; This means we have fully matched an OR+AND section
                   Break
                 }
               }
               Else if InStr(arrval, v)
-              {
-                matched := True
+              {                ; If there was no & symbol this is an OR section
+                matchedOR := True
                 break
               }
-              Else
-              {
-                matched := False
-              }
             }
-            if !matched
+            if matchedOR       ; If any of the sections produced a match it will flag true
             {
-              nomatched := True
+              matched := True
+              If orflag
+                ormatched := True
+            }
+            Else
+            {
+              if !orflag
+                nomatched := True
+              ormismatch := True
             }
           }
         }
       }
-      If matched && !nomatched
+      If (ormismatch && !ormatched)
+        nomatched := True
+      If (matched && !nomatched)
       {
         If GroupOut
         Return GKey
