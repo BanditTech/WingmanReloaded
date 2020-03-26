@@ -4834,9 +4834,9 @@ Return
             }
             Else 
             {
-              nomatched := True
-              if orflag
-                ormismatch := True
+              if !orflag
+                nomatched := True
+              ormismatch := True
             }
           }
           Else if eval = >=
@@ -4849,9 +4849,9 @@ Return
             }
             Else 
             {
-              nomatched := True
-              if orflag
-                ormismatch := True
+              if !orflag
+                nomatched := True
+              ormismatch := True
             }
           }
           else if eval = =
@@ -4864,9 +4864,9 @@ Return
             }
             Else 
             {
-              nomatched := True
-              if orflag
-                ormismatch := True
+              if !orflag
+                nomatched := True
+              ormismatch := True
             }
           }
           else if eval = <
@@ -4879,9 +4879,9 @@ Return
             }
             Else 
             {
-              nomatched := True
-              if orflag
-                ormismatch := True
+              if !orflag
+                nomatched := True
+              ormismatch := True
             }
           }
           else if eval = <=
@@ -4894,9 +4894,9 @@ Return
             }
             Else 
             {
-              nomatched := True
-              if orflag
-                ormismatch := True
+              if !orflag
+                nomatched := True
+              ormismatch := True
             }
           }
           else if eval = !=
@@ -4909,9 +4909,9 @@ Return
             }
             Else 
             {
-              nomatched := True
-              if orflag
-                ormismatch := True
+              if !orflag
+                nomatched := True
+              ormismatch := True
             }
           }
           else if eval = ~
@@ -4949,16 +4949,16 @@ Return
             }
             Else
             {
-              nomatched := True
-              If orflag
-                ormismatch := True
+              if !orflag
+                nomatched := True
+              ormismatch := True
             }
           }
         }
       }
-      If ormismatch && !ormatched
+      If (ormismatch && !ormatched)
         nomatched := True
-      If matched && !nomatched
+      If (matched && !nomatched)
       {
         If GroupOut
         Return GKey
