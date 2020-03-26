@@ -87,6 +87,7 @@
     Prop.DoubleCorrupted := False
     Prop.Variant := 0
     Prop.CraftingBase := 0
+    Prop.zz_ItemText := ""
   textListProp= 
   For k, v in Prop
     textListProp .= (!textListProp ? "" : "|") "" k ""
