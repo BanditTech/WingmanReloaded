@@ -1,3 +1,8 @@
+## Version .10.0505 - Alpha Branch - March/25/2020
+Bugfix for removing groups or items from within groups in CLF
+
+---
+
 ## Version .10.0504 - Alpha Branch - March/25/2020
 Additions by DanMarzola
 * Added optional second gem slot for swapping
@@ -7,6 +12,8 @@ New Major Feature of the CLF!
 * When enabled, the slot becomes mutually bolean with others with OR
   * If any match, it is true
   * If all do not match, it is false
+
+---
 
 ## Version .10.0503 - Alpha Branch - March/25/2020
 Additions by DanMarzola
