@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.0601
+  Global VersionNumber := .10.0602
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -4805,10 +4805,13 @@ Return
     {
       matched := False
       nomatched := False
-      ormatched := False
+      ormatched := 0
       ormismatch := False
+      orcount := LootFilter[GKey]["OrCount"]
       For SKey, Selected in Groups
       {
+        If (SKey = "OrCount" || SKey = "StashTab")
+          Continue
         For AKey, AVal in Selected
         {
           If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
@@ -4830,7 +4833,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4845,7 +4848,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4860,7 +4863,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4875,7 +4878,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4890,7 +4893,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4905,7 +4908,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4945,7 +4948,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else
             {
@@ -4956,14 +4959,14 @@ Return
           }
         }
       }
-      If (ormismatch && !ormatched)
+      If (ormismatch && ormatched < orcount)
         nomatched := True
       If (matched && !nomatched)
       {
         If GroupOut
         Return GKey
         Else
-        Return LootFilterTabs[GKey]
+        Return LootFilter[GKey]["StashTab"]
       }
     }
   Return False

@@ -486,8 +486,7 @@ AddGroup:
     Else
       break
   }
-  LootFilter[groupstr] := {Prop: {}, Stats: {}, Affix: {}}
-  LootFilterTabs[groupstr] := CLFStashTabDefault
+  LootFilter[groupstr] := {"Prop": {}, "Stats": {}, "Affix": {}, "OrCount": 1, "StashTab": CLFStashTabDefault}
   Global groupKey := groupstr
   Gui, 2: Destroy
   GoSub, RedrawNewGroup
@@ -548,6 +547,8 @@ BuildMenu(Min,Max,AllEdit:=0)
       Continue
     For SKey, selectedItems in Groups
     {
+      If (SKey = "OrCount" || SKey = "StashTab")
+        Continue
       totalHeight += (((LootFilter[GKey][SKey].Count() / 4) + 1) * 25) + 30
       Gui, Add, GroupBox,% " section xs y+15 w325 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,%SKey%
       For AKey, Val in selectedItems
@@ -559,10 +560,7 @@ BuildMenu(Min,Max,AllEdit:=0)
       }
       Gui, add, button, xs yp+25 w1 h1,
     }
-    Gui, Add, Text, y+15 ,______%GKey% Stash Tab:
-    strLootFilterGroupStash := "LootFilter_" . GKey . "_Stash"
-    %strLootFilterGroupStash% := LootFilterTabs[GKey]
-    Gui, Add,  Text,  w30 x+5, % LootFilterTabs[GKey]
+    Gui, Add, Text, y+15 , % GKey "  Stash Tab: " LootFilter[GKey]["StashTab"] "   OR #: " LootFilter[GKey]["OrCount"] "   "
     strLootFilterEdit := "LootFilter_" . GKey . "_Edit"
     Gui, Add, Button, v%strLootFilterEdit% gEditGroup w60 h21 x+0 yp-3, Edit
     strLootFilterExport := "LootFilter_" . GKey . "_Export"
@@ -583,6 +581,8 @@ BuildNewGroupMenu(GKey)
   Global
   For SKey, selectedItems in LootFilter[GKey]
   {
+    If (SKey = "OrCount" || SKey = "StashTab")
+      Continue
     Gui,2: Add, GroupBox,% " section xs y+18 w37 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,% "  OR"
     Gui,2: Add, GroupBox,% " x+2 yp w247 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,%SKey%
     Gui,2: Add, GroupBox,% " x+2 yp w54 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,Eval:
@@ -610,10 +610,14 @@ BuildNewGroupMenu(GKey)
     }
     Gui,2: add, button, gAddNewGroupDDL xs yp+25, Add new %SKey% to %GKey%
   }
-  Gui,2: Add, Text, ,_________%GKey% Stash Tab:
-  strLootFilterGroupStash := "LootFilter_" . GKey . "_Stash"
-  %strLootFilterGroupStash% := LootFilterTabs[GKey]
-  Gui,2: Add,  DropDownList, v%strLootFilterGroupStash% gUpdateGroupStash w40 x+5 yp-6, % LootFilterTabs[GKey] "||" textListStashTabs
+  strLootFilterGroupStash := "LootFilter_" . GKey . "_StashTab"
+  %strLootFilterGroupStash% := LootFilter[GKey]["StashTab"]
+  Gui,2: Add, Text, y+12, %GKey% Stash Tab:
+  Gui,2: Add,  DropDownList, v%strLootFilterGroupStash% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["StashTab"] "||" textListStashTabs
+  strLootFilterGroupOrCount := "LootFilter_" . GKey . "_OrCount"
+  %strLootFilterGroupOrCount% := LootFilter[GKey]["OrCount"]
+  Gui,2: Add, Text, x+5 yp+6, Min OR #:
+  Gui,2: Add,  DropDownList, v%strLootFilterGroupOrCount% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["OrCount"] "||1|2|3|4|5|6|7|8|9|10|11|12"
   strLootFilterExport := "LootFilter_" . GKey . "_Export"
   Gui,2: Add, Button, v%strLootFilterExport% gExportGroup w60 h21 x+5, Export
 Return
@@ -632,14 +636,15 @@ LoadArray()
   LootFilter := JSON.Load(JSONtext)
   If !LootFilter
     LootFilter:={}
-  FileRead, JSONtexttabs, LootFilterTabs.json
-  LootFilterTabs := JSON.Load(JSONtexttabs)
-  If !LootFilterTabs
-    LootFilterTabs:={}
+
   For GKey, Gval in LootFilter
   {
+    If !(Gval.HasKey("OrCount"))
+      Gval["OrCount"] := 1
     For SKey, Sval in Gval
     {
+      If (SKey = "OrCount" || SKey = "StashTab")
+        Continue
       For AKey, Aval in Sval
       {
         If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
@@ -649,6 +654,19 @@ LoadArray()
       }
     }
   }
+
+  If FileExist("LootFilterTabs.json")
+  {
+    FileRead, JSONtexttabs, LootFilterTabs.json
+    LootFilterTabs := JSON.Load(JSONtexttabs)
+    If !LootFilterTabs
+      LootFilterTabs:={}
+    For GKey, GTab in LootFilterTabs
+    {
+      LootFilter[GKey].StashTab := GTab
+    }
+  }
+
 Return
 }
 
@@ -659,9 +677,10 @@ SaveArray()
   JSONtext := JSON.Dump(LootFilter)
   FileDelete, LootFilter.json
   FileAppend, %JSONtext%, LootFilter.json
-  JSONtexttabs := JSON.Dump(LootFilterTabs)
+
+  ; JSONtexttabs := JSON.Dump(LootFilterTabs)
   FileDelete, LootFilterTabs.json
-  FileAppend, %JSONtexttabs%, LootFilterTabs.json
+  ; FileAppend, %JSONtexttabs%, LootFilterTabs.json
   Return
 }
 
@@ -674,11 +693,12 @@ UpdateLootFilterDDL:
   LootFilter[GKey][SKey][AKey] := %A_GuiControl%
 Return
 
-UpdateGroupStash:
+UpdateGroupInfo:
   Gui, Submit, NoHide
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
-  LootFilterTabs[GKey] := %A_GuiControl%
+  IKey := buttonstr3
+  LootFilter[GKey][IKey] := %A_GuiControl%
 Return
 
 UpdateStashDefault:
@@ -742,7 +762,7 @@ RemGroup:
   gnumber := buttonstr2
   GKey := "Group" gnumber
   LootFilter.Remove(GKey)
-  LootFilterTabs.Remove(GKey)
+  ; LootFilterTabs.Remove(GKey)
   SaveWinPos()
   Gui, Destroy
   GoSub, Redraw
@@ -752,7 +772,7 @@ RemNewGroup:
   Gui, Submit, NoHide
   GKey := groupKey
   LootFilter.Remove(GKey)
-  LootFilterTabs.Remove(GKey)
+  ; LootFilterTabs.Remove(GKey)
   Gui, 2: Destroy
   SaveWinPos()
   Gui, 1: Default

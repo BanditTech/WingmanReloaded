@@ -1,9 +1,20 @@
+## Version .10.0602 - Alpha Branch - March/27/2020
+More improvements on the CLF function
+* Can now have minimum number of matching OR selections
+* StashTab and OrCount are now part of the main array
+  * LootFilterStashTabs.json file will be loaded and merged
+  * when you save the array it will delete the old file
+
+---
+
 ## Version .10.0601 - Alpha Branch - March/26/2020
 Bugfix for Utility section
 * Slot 6-10 have been properly given cooldown labels
 * Attack key logic slightly refactored for both Flasks / Utilities
 * Removed restriction from Utility Attack key triggers
   * they no longer require all other options to be disabled
+
+---
 
 ## Version .10.06 - Master Branch - March/25/2020
 Merging Alpha changes to master branch
