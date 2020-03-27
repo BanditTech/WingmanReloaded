@@ -1,3 +1,10 @@
+## Version .10.0601 - Alpha Branch - March/26/2020
+Bugfix for Utility section
+* Slot 6-10 have been properly given cooldown labels
+* Attack key logic slightly refactored for both Flasks / Utilities
+* Removed restriction from Utility Attack key triggers
+  * they no longer require all other options to be disabled
+
 ## Version .10.06 - Master Branch - March/25/2020
 Merging Alpha changes to master branch
 Scroll down to read all the previous Alpha patch notes

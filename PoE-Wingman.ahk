@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.06
+  Global VersionNumber := .10.0601
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -6586,20 +6586,15 @@ Return
           }
         }
 
-        If (MainAttackPressedActive && TriggerMainAttack > 0 && AutoFlask)
+        If (MainAttackPressedActive && AutoFlask)
         {
           If GetKeyState(hotkeyMainAttack)
           {
-            TriggerFlask(TriggerMainAttack)
+            If (TriggerMainAttack > 0)
+              TriggerFlask(TriggerMainAttack)
             Loop, 10
             {
-              If (YesUtility%A_Index%) 
-                && !(OnCooldownUtility%A_Index%) 
-                && (YesUtility%A_Index%MainAttack) 
-                && !(YesUtility%A_Index%Quicksilver) 
-                && (YesUtility%A_Index%LifePercent="Off") 
-                && (YesUtility%A_Index%ESPercent="Off") 
-                && (YesUtility%A_Index%ManaPercent="Off") 
+              If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%MainAttack)
               {
                 TriggerUtility(A_Index)
               }
@@ -6608,20 +6603,15 @@ Return
           Else
             MainAttackPressedActive := False
         }
-        If (SecondaryAttackPressedActive && TriggerSecondaryAttack > 0 && AutoFlask)
+        If (SecondaryAttackPressedActive && AutoFlask)
         {
           If GetKeyState(hotkeySecondaryAttack)
           {
-            TriggerFlask(TriggerSecondaryAttack)
+            If (TriggerSecondaryAttack > 0)
+              TriggerFlask(TriggerSecondaryAttack)
             Loop, 10
             {
-              If (YesUtility%A_Index%) 
-                && !(OnCooldownUtility%A_Index%) 
-                && (YesUtility%A_Index%SecondaryAttack) 
-                && !(YesUtility%A_Index%Quicksilver) 
-                && (YesUtility%A_Index%LifePercent="Off") 
-                && (YesUtility%A_Index%ESPercent="Off") 
-                && (YesUtility%A_Index%ManaPercent="Off") 
+              If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%SecondaryAttack)
               {
                 TriggerUtility(A_Index)
               }
@@ -6631,30 +6621,32 @@ Return
             SecondaryAttackPressedActive := False
         }
 
-        If AutoFlask
-        Loop, 10
+        If (AutoFlask)
         {
-          If (YesUtility%A_Index%) 
-            && !(OnCooldownUtility%A_Index%) 
-            && !(YesUtility%A_Index%Quicksilver) 
-            && !(YesUtility%A_Index%MainAttack) 
-            && !(YesUtility%A_Index%SecondaryAttack) 
-            && (YesUtility%A_Index%LifePercent="Off") 
-            && (YesUtility%A_Index%ESPercent="Off") 
-            && (YesUtility%A_Index%ManaPercent="Off") 
+          Loop, 10
           {
-            If !(IconStringUtility%A_Index%)
-              TriggerUtility(A_Index)
-            Else If (IconStringUtility%A_Index%)
+            If (YesUtility%A_Index%) 
+              && !(OnCooldownUtility%A_Index%) 
+              && !(YesUtility%A_Index%Quicksilver) 
+              && !(YesUtility%A_Index%MainAttack) 
+              && !(YesUtility%A_Index%SecondaryAttack) 
+              && (YesUtility%A_Index%LifePercent="Off") 
+              && (YesUtility%A_Index%ESPercent="Off") 
+              && (YesUtility%A_Index%ManaPercent="Off") 
             {
-              BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
-              If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
-              {
-                OnCooldownUtility%A_Index%:=1
-                SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
-              }
-              Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
+              If !(IconStringUtility%A_Index%)
                 TriggerUtility(A_Index)
+              Else If (IconStringUtility%A_Index%)
+              {
+                BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
+                If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
+                {
+                  OnCooldownUtility%A_Index%:=1
+                  SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
+                }
+                Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
+                  TriggerUtility(A_Index)
+              }
             }
           }
         }
