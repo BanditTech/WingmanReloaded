@@ -1,4 +1,10 @@
 ## Version .10.0603 - Alpha Branch - March/27/2020
+Additions by DanMarzola
+* bugfix for issue with save location submit by slippy
+* Added manually enabled VendorBeforeStash routine
+  * To enable the option you must add the key to your settings
+  * YesVendorBeforeStash
+
 More improvements on the CLF function
 * Can now press tab while selecting a key on the left
   * this will open up a key search for browsing that type
