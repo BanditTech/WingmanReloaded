@@ -1,3 +1,11 @@
+## Version .10.0603 - Alpha Branch - March/27/2020
+More improvements on the CLF function
+* Can now press tab while selecting a key on the left
+  * this will open up a key search for browsing that type
+  * Press enter or tab to select 
+
+---
+
 ## Version .10.0602 - Alpha Branch - March/27/2020
 More improvements on the CLF function
 * Can now have minimum number of matching OR selections
