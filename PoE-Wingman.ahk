@@ -410,7 +410,7 @@
       , StackRelease_Enable := False
 
   ; Click Vendor after stash, search for stash
-    Global YesVendorAfterStash, YesSearchForStash
+    Global YesVendorAfterStash, YesVendorBeforeStash, YesSearchForStash
   ; General
     Global BranchName := "master"
     Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
@@ -2134,27 +2134,15 @@ Return
       } 
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
       { 
-        If (YesSearchForStash && (OnTown || OnHideout || OnMines))
+        If (YesSearchForStash && YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
         {
-          If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
-          {
-            LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
-            Loop, 66
-            {
-              Sleep, 200
-              GuiStatus()
-              If OnStash
-              Break
-            }
-          }
-          Else
-          {
-            Send {%hotkeyInventory%}
-            RunningToggle := False
-            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-              SetTimer, TGameTick, On
-            Return
-          }
+          SearchVendor()
+          VendorRoutine()
+          SearchStash()
+        }
+        Else If (YesSearchForStash && !YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
+        {
+          SearchStash()
         }
         Else
         {
@@ -2182,6 +2170,30 @@ Return
     If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
       SetTimer, TGameTick, On
   Return
+
+  ; Search Stash Routine
+  SearchStash()
+  {
+    If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
+    {
+      LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
+      Loop, 66
+      {
+        Sleep, 200
+        GuiStatus()
+        If OnStash
+        Break
+      }
+    }
+    Else
+    {
+      Send {%hotkeyInventory%}
+      RunningToggle := False
+      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+        SetTimer, TGameTick, On
+    }
+    Return
+  }
   ; ShooMouse - Move mouse out of the inventory area
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ShooMouse()
@@ -2303,6 +2315,10 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
+          If (YesVendorBeforeStash && Prop.RarityUnique)
+          {
+            Continue
+          }
           If ( Prop.SpecialType="" )
           {
             CtrlClick(Grid.X,Grid.Y)
@@ -2345,6 +2361,12 @@ Return
           RandomSleep(60,90)
         }
       }
+    }
+    If (YesVendorBeforeStash){
+      RandomSleep(60,90)
+      ;CtrlClick(378,820)
+      CtrlClick(874,818)
+      RandomSleep(60,90)
     }
     Return
   }
@@ -2546,76 +2568,83 @@ Return
       }
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
-      If (YesVendorAfterStash && Unstashed && (OnHideout || OnTown || OnMines))
+      If (YesVendorAfterStash && !YesVendorBeforeStash && Unstashed && (OnHideout || OnTown || OnMines))
       {
-        If OnHideout
-          SearchStr := VendorStr
-        Else If OnMines
+        SearchVendor()
+        VendorRoutine()
+      }
+    }
+    Return
+  }
+
+  ; Search Vendor Routine
+
+  SearchVendor()
+  {
+    If OnHideout
+      SearchStr := VendorStr
+    Else If OnMines
+    {
+      SearchStr := VendorMineStr
+      Town := "Mines"
+    }
+    Else
+    {
+      Town := CompareLocation("Town")
+      If (Town = "Lioneye's Watch")
+        SearchStr := VendorLioneyeStr
+      Else If (Town = "The Forest Encampment")
+        SearchStr := VendorForestStr
+      Else If (Town = "The Sarn Encampment")
+        SearchStr := VendorSarnStr
+      Else If (Town = "Highgate")
+        SearchStr := VendorHighgateStr
+      Else If (Town = "Overseer's Tower")
+        SearchStr := VendorOverseerStr
+      Else If (Town = "The Bridge Encampment")
+        SearchStr := VendorBridgeStr
+      Else If (Town = "Oriath Docks")
+        SearchStr := VendorDocksStr
+      Else If (Town = "Oriath")
+        SearchStr := VendorOriathStr
+      Else
+        Return
+    }
+    Sleep, 45*Latency
+    SendInput, {%hotkeyCloseAllUI%}
+    Sleep, 45*Latency
+    If (Town = "The Sarn Encampment")
+    {
+      LeftClick(GameX + GameW//6, GameY + GameH//1.5)
+      Sleep, 600
+      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+    }
+    Else If (Town = "Oriath Docks")
+    {
+      LeftClick(GameX + 5, GameY + GameH//2)
+      Sleep, 1200
+      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+    }
+    Else If (Town = "Mines")
+    {
+      LeftClick(GameX + GameW//3, GameY + GameH//5)
+      Sleep, 800
+      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+    }
+    if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+    {
+      LeftClick(Vendor.1.x, Vendor.1.y)
+      Sleep, 60
+      Loop, 66
+      {
+        If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
         {
-          SearchStr := VendorMineStr
-          Town := "Mines"
+          Sleep, 30*Latency
+          LeftClick(Sell.1.x,Sell.1.y)
+          Sleep, 120*Latency
+          Break
         }
-        Else
-        {
-          Town := CompareLocation("Town")
-          If (Town = "Lioneye's Watch")
-            SearchStr := VendorLioneyeStr
-          Else If (Town = "The Forest Encampment")
-            SearchStr := VendorForestStr
-          Else If (Town = "The Sarn Encampment")
-            SearchStr := VendorSarnStr
-          Else If (Town = "Highgate")
-            SearchStr := VendorHighgateStr
-          Else If (Town = "Overseer's Tower")
-            SearchStr := VendorOverseerStr
-          Else If (Town = "The Bridge Encampment")
-            SearchStr := VendorBridgeStr
-          Else If (Town = "Oriath Docks")
-            SearchStr := VendorDocksStr
-          Else If (Town = "Oriath")
-            SearchStr := VendorOriathStr
-          Else
-            Return
-        }
-        Sleep, 45*Latency
-        SendInput, {%hotkeyCloseAllUI%}
-        Sleep, 45*Latency
-        If (Town = "The Sarn Encampment")
-        {
-          LeftClick(GameX + GameW//6, GameY + GameH//1.5)
-          Sleep, 600
-          LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-        }
-        Else If (Town = "Oriath Docks")
-        {
-          LeftClick(GameX + 5, GameY + GameH//2)
-          Sleep, 1200
-          LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-        }
-        Else If (Town = "Mines")
-        {
-          LeftClick(GameX + GameW//3, GameY + GameH//5)
-          Sleep, 800
-          LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-        }
-        if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
-        {
-          LeftClick(Vendor.1.x, Vendor.1.y)
-          Sleep, 60
-          Loop, 66
-          {
-            If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
-            {
-              Sleep, 30*Latency
-              LeftClick(Sell.1.x,Sell.1.y)
-              Sleep, 120*Latency
-              Break
-            }
-            Sleep, 100
-          }
-          VendorRoutine()
-          Return
-        }
+        Sleep, 100
       }
     }
     Return
@@ -7756,6 +7785,7 @@ Return
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
       IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
+      IniRead, YesVendorBeforeStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash, 0
       
       ;Stash Tab Management
       IniRead, StashTabCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency, 1
@@ -12050,6 +12080,7 @@ Return
       IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
       IniWrite, %YesSearchForStash%, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash
       IniWrite, %YesVendorAfterStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash
+      IniWrite, %YesVendorBeforeStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash
       IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
