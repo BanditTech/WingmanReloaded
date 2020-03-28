@@ -1,3 +1,10 @@
+## Version .10.0604 - Alpha Branch - March/28/2020
+More improvements on the CLF function
+* Adding and removing keys will no longer break the order
+* Information added on how to use search
+
+---
+
 ## Version .10.0603 - Alpha Branch - March/27/2020
 Additions by DanMarzola
 * bugfix for issue with save location submit by slippy

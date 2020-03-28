@@ -402,8 +402,8 @@ RedrawNewGroup:
               ;+Resize (allows resize of windows)
   Gui,2: Add, Text, Section y+-5 w1 h1
   Gui,2: add, button, gFinishAddGroup xs y+20 HwndFinishButton, Click here to Finish and Return to CLF
-  Gui,2: add, button, gRemNewGroup vgroupKey x+150 yp HwndDeleteButton, Delete Group
-  Gui,2: add, text, xm+55 y+20 center, Press tab to search the selected keys
+  Gui,2: add, button, gRemNewGroup vgroupKey x+100 yp HwndDeleteButton, Delete Group
+  Gui,2: add, text, x+55 yp+6 center, Press tab to search the selected keys
   Tooltip, Building menu... 
   BuildNewGroupMenu(groupKey)
   tooltip
@@ -487,7 +487,7 @@ AddGroup:
     Else
       break
   }
-  LootFilter[groupstr] := {"Prop": {}, "Stats": {}, "Affix": {}, "OrCount": 1, "StashTab": CLFStashTabDefault}
+  LootFilter[groupstr] := {"Prop": OrderedArray(), "Stats": OrderedArray(), "Affix": OrderedArray(), "OrCount": 1, "StashTab": CLFStashTabDefault}
   Global groupKey := groupstr
   Gui, 2: Destroy
   GoSub, RedrawNewGroup
@@ -502,34 +502,44 @@ FinishAddGroup:
   GoSub, Redraw
 Return
 
-AddNewDDL:
-  Gui, Submit, NoHide
-  StringSplit, buttonstr, A_GuiControl, %A_Space%
-  SKey := buttonstr3
-  GKey := buttonstr5
-  skeyItemsActive := Round(LootFilter[GKey][SKey].Count() / 4)
-  ++skeyItemsActive
-  ;msgbox, %skeyItemsActive% %GKey% %SKey%
+; AddNewDDL:
+;   Gui, Submit, NoHide
+;   StringSplit, buttonstr, A_GuiControl, %A_Space%
+;   SKey := buttonstr3
+;   GKey := buttonstr5
+;   skeyItemsActive := Round(LootFilter[GKey][SKey].Count() / 4)
+;   ++skeyItemsActive
+;   ;msgbox, %skeyItemsActive% %GKey% %SKey%
 
-  AKey := SKey . skeyItemsActive
-  ;msgbox %AKey%
-  LootFilter[GKey][SKey][AKey] := "Blank"
-  LootFilter[GKey][SKey][AKey . "Eval"] := ">"
-  LootFilter[GKey][SKey][AKey . "Min"] := 0
-  LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
-  SaveWinPos()
-  Gui, Destroy
-  GoSub, Redraw
-Return
+;   AKey := SKey . skeyItemsActive
+;   ;msgbox %AKey%
+;   LootFilter[GKey][SKey][AKey] := "Blank"
+;   LootFilter[GKey][SKey][AKey . "Eval"] := ">"
+;   LootFilter[GKey][SKey][AKey . "Min"] := 0
+;   LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
+;   SaveWinPos()
+;   Gui, Destroy
+;   GoSub, Redraw
+; Return
 
 AddNewGroupDDL:
   Gui, Submit, NoHide
   StringSplit, buttonstr, A_GuiControl, %A_Space%
   SKey := buttonstr3
   GKey := buttonstr5
-  AKey := SKey . (Round(LootFilter[GKey][SKey].Count() / 4) + 1)
+  LootFilterEmpty := 0
+  Loop, % (LootFilter[GKey][SKey].Count() // 4 + 1)
+  {
+    ++LootFilterEmpty
+    AKey := SKey . LootFilterEmpty
+    if LootFilter[GKey][SKey].HasKey(AKey)
+      continue
+    Else
+      break
+  }
+  ; AKey := SKey . (Round(LootFilter[GKey][SKey].Count() / 4) + 1)
   LootFilter[GKey][SKey][AKey] := "Blank"
-  LootFilter[GKey][SKey][AKey . "Eval"] := ">"
+  LootFilter[GKey][SKey][AKey . "Eval"] := ">="
   LootFilter[GKey][SKey][AKey . "Min"] := 0
   LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
   SaveWinPos()
@@ -636,7 +646,7 @@ LoadArray()
   FileRead, JSONtext, LootFilter.json
   LootFilter := JSON.Load(JSONtext)
   If !LootFilter
-    LootFilter:={}
+    LootFilter:=OrderedArray()
 
   For GKey, Gval in LootFilter
   {
@@ -675,7 +685,7 @@ SaveArray()
 {
   SaveArray:
   Gui, Submit, NoHide
-  JSONtext := JSON.Dump(LootFilter)
+  JSONtext := JSON.Dump(LootFilter,,1)
   FileDelete, LootFilter.json
   FileAppend, %JSONtext%, LootFilter.json
 
@@ -1063,7 +1073,7 @@ Return
 
 #If WinActive("Add or Edit a Group")
 Tab::
-
+Gui, submit, NoHide
 ;...context specific stuff
 
 KeyWait, Tab
