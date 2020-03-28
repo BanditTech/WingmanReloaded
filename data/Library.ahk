@@ -3909,6 +3909,26 @@
       OnCooldownUtility5 := 0
       settimer,TimerUtility5,delete
     Return
+    TimerUtility6:
+      OnCooldownUtility6 := 0
+      settimer,TimerUtility6,delete
+    Return
+    TimerUtility7:
+      OnCooldownUtility7 := 0
+      settimer,TimerUtility7,delete
+    Return
+    TimerUtility8:
+      OnCooldownUtility8 := 0
+      settimer,TimerUtility8,delete
+    Return
+    TimerUtility9:
+      OnCooldownUtility9 := 0
+      settimer,TimerUtility9,delete
+    Return
+    TimerUtility10:
+      OnCooldownUtility10 := 0
+      settimer,TimerUtility10,delete
+    Return
     ; TDetonated - Detonate CD Timer
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     TDetonated:

@@ -1,3 +1,70 @@
+## Version .10.0602 - Alpha Branch - March/27/2020
+More improvements on the CLF function
+* Can now have minimum number of matching OR selections
+* StashTab and OrCount are now part of the main array
+  * LootFilterStashTabs.json file will be loaded and merged
+  * when you save the array it will delete the old file
+
+---
+
+## Version .10.0601 - Alpha Branch - March/26/2020
+Bugfix for Utility section
+* Slot 6-10 have been properly given cooldown labels
+* Attack key logic slightly refactored for both Flasks / Utilities
+* Removed restriction from Utility Attack key triggers
+  * they no longer require all other options to be disabled
+
+---
+
+## Version .10.06 - Master Branch - March/25/2020
+Merging Alpha changes to master branch
+Scroll down to read all the previous Alpha patch notes
+* Some major contributions from the community
+  * Big shout out to DanMarzola and Hx2600
+  * New OHB string for people with 1440 height monitors
+  * Option for Two gem swap
+  * bugfixes and parser improvements
+
+Definitely check out the new CLF feature of OR
+* Check the box on any selected Prop, Stats or Affix
+  * Anything without the box checked is mandatory match
+  * Anything with OR checked is matched as a group
+    * If any OR flagged selections match, its true
+    * If all OR flagged selections do not match, its false
+* This feature even works with the ~ evaluator for nested logic
+  * ~ evaluator can search for multiple strings
+    * Combine with OR to create many possiblities
+    * Example : AffixPropOrStatsSelection ~ String one | string & two | StrInG & three & Stronk
+    * Example : zz_ItemText ~ Critical Strike Chance & Critical Strike Multiplier | w & e
+
+> **IN-GAME LOOT FILTER HAS BEEN UPDATED**
+
+I have uploaded the latest version of the loot filter from FilterBlade.xyz
+* This requires going and downloading the new version
+* Follow the link to download from filterblade or edit it
+  * [FilterBlade](https://www.filterblade.xyz/?profile=throwawaysfortheplebs&saveState=FilterBlade&platform=pc)
+* Or download from the Files to Use folder of GitHub project
+  * [Files To Use](https://github.com/BanditTech/WingmanReloaded/tree/master/Files%20to%20Use)
+
+---
+
+## Version .10.0505 - Alpha Branch - March/25/2020
+Bugfix for removing groups or items from within groups in CLF
+
+---
+
+## Version .10.0504 - Alpha Branch - March/25/2020
+Additions by DanMarzola
+* Added optional second gem slot for swapping
+
+New Major Feature of the CLF!
+* You can now select OR on any of the selected Prop, Affix or Stats
+* When enabled, the slot becomes mutually bolean with others with OR
+  * If any match, it is true
+  * If all do not match, it is false
+
+---
+
 ## Version .10.0503 - Alpha Branch - March/25/2020
 Additions by DanMarzola
 * Fix for parser detecting affixes
