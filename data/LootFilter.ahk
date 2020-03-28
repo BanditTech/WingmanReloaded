@@ -458,7 +458,7 @@ ExportGroup:
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
   exportArr := LootFilter[GKey]
-  Clipboard := JSON.Dump(exportArr)
+  Clipboard := JSON.Dump(exportArr,,1)
   SetTimer, ChangeButtonNamesVar, 10
   MsgBox 262147, Export String,% Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy"
   IfMsgBox, Yes
@@ -827,9 +827,9 @@ return
 
 PrintJSON:
   Gui, Submit, NoHide
-  arrStr := JSON.Dump(LootFilter)
+  arrStr := JSON.Dump(LootFilter,,1)
   MsgBox % arrStr
-  arrStr := JSON.Dump(LootFilterTabs)
+  arrStr := JSON.Dump(LootFilterTabs,,1)
   MsgBox % arrStr
 return
 

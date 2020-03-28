@@ -1,3 +1,8 @@
+## Version .10.0605 - Alpha Branch - March/28/2020
+More improvements on the CLF function
+* Exporting a group now provides human readable JSON
+* The loot filter array is now also saved as human readable JSON
+
 ## Version .10.0604 - Alpha Branch - March/28/2020
 More improvements on the CLF function
 * Adding and removing keys will no longer break the order
