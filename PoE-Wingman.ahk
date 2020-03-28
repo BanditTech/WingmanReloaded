@@ -1727,6 +1727,8 @@
     Menu, Tray, Add
     Menu, Tray, Add,         Show Gamestates, ShowDebugGamestates
     Menu, Tray, Add
+    Menu, Tray, Add,         Custom Loot Filter, LaunchLootFilter
+    Menu, Tray, Add
     Menu, Tray, Add,         Open FindText interface, ft_Start
     Menu, Tray, Add
     Menu, Tray, add,         Window Spy, WINSPY
