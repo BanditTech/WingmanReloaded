@@ -2364,8 +2364,7 @@ Return
     }
     If (YesVendorBeforeStash){
       RandomSleep(60,90)
-      ;CtrlClick(378,820)
-      CtrlClick(874,818)
+      CtrlClick(378,820)
       RandomSleep(60,90)
     }
     Return
