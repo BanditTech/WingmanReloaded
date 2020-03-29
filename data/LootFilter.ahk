@@ -1129,7 +1129,7 @@ CreateCBMatchingGUI(hCB, parentWindowTitle) {
 CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
 ;--------------------------------------------------------------------------------
   GuiControlGet, userInput,, % CBMatchingGUI.hEdit
-  userInputArr := StrSplit(userInput, A_Space)
+  userInputArr := StrSplit(RTrim(userInput," "), " ")
   choicesList := CBMatchingGUI.parentCBList
   MatchCount := MatchList := MisMatchList := 0
 
@@ -1142,8 +1142,10 @@ CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
       MisMatchList := True
   }
   if (MatchList && !MisMatchList) {
+
     Loop, Parse, choicesList, "`n"
     {
+      MatchString := MisMatchString := 0
       for k, v in userInputArr
       {
         If (FoundPos := InStr(A_LoopField, v))
@@ -1152,16 +1154,19 @@ CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
           posArr.Push(FoundPos)
         }
         else
-          MatchString := False
+          MisMatchString := True
       }
-      If MatchString
+      If (MatchString && !MisMatchString)
       {
+        tt=
         For k, v in posArr
         {
-          If (v = 1)
+          If (v = 1 && k = 1)
             atStart := True
+          tt .= k " " v
         }
-        If atStart
+        Tooltip % tt
+        If (atStart)
           MatchesAtStart .= "`n"A_LoopField
         else
           MatchesAnywhere .= "`n"A_LoopField
