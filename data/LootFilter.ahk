@@ -5,8 +5,8 @@
   SetWorkingDir %SaveDir%
 
   Global xpos, ypos, Maxed
-  OnMessage(0x115, "OnScroll") ; WM_VSCROLL	;necessary for scrollable gui windows (must be added before gui lines)
-  OnMessage(0x114, "OnScroll") ; WM_HSCROLL	;necessary for scrollable gui windows (must be added before gui lines)
+  OnMessage(0x115, "OnScroll") ; WM_VSCROLL  ;necessary for scrollable gui windows (must be added before gui lines)
+  OnMessage(0x114, "OnScroll") ; WM_HSCROLL  ;necessary for scrollable gui windows (must be added before gui lines)
   Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
   Global scriptPOEWingmanSecondary := "WingmanReloaded ahk_exe AutoHotkey.exe"
   global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
@@ -295,7 +295,7 @@
 LoadArray()
 
 Redraw:
-  Gui, +Resize -MinimizeBox +0x300000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
+  Gui, +Resize -MinimizeBox +0x300000  ; WS_VSCROLL | WS_HSCROLL  ;necessary for scrollable gui windows 
               ;+Resize (allows resize of windows)
   Gui, Add, Text, Section y+-5 w1 h1
   Tooltip, Building menu... 
@@ -393,12 +393,12 @@ Redraw:
     Gui, show, w740 h575 x%xpos% y%ypos%
   If (Maxed)
     WinMaximize, LootFilter
-  Gui,  +LastFound				;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
-  GroupAdd, MyGui, % "ahk_id " . WinExist()		;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
+  Gui,  +LastFound        ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
+  GroupAdd, MyGui, % "ahk_id " . WinExist()    ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
 return
 
 RedrawNewGroup:
-  Gui,2: -Resize +AlwaysOnTop -DPIScale -MinimizeBox -MaximizeBox  +0x200000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
+  Gui,2: -Resize +AlwaysOnTop -DPIScale -MinimizeBox -MaximizeBox  +0x200000  ; WS_VSCROLL | WS_HSCROLL  ;necessary for scrollable gui windows 
               ;+Resize (allows resize of windows)
   Gui,2: Add, Text, Section y+-5 w1 h1
   Gui,2: add, button, gFinishAddGroup xs y+20 HwndFinishButton, Click here to Finish and Return to CLF
@@ -409,8 +409,8 @@ RedrawNewGroup:
   tooltip
   Gui,2: show, w650 h475 , Add or Edit a Group
   DisableCloseButton()
-  Gui,2:  +LastFound				;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
-  GroupAdd, MyGui, % "ahk_id " . WinExist()		;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
+  Gui,2:  +LastFound        ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
+  GroupAdd, MyGui, % "ahk_id " . WinExist()    ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
 return
 
 DisableCloseButton(hWnd="") 
@@ -844,16 +844,16 @@ GuiSize:
 
 return
 
-ScrollUpLeft:	;________Scroll Up / Left Edge (prevents blank spaces while adding new controls)_______
+ScrollUpLeft:  ;________Scroll Up / Left Edge (prevents blank spaces while adding new controls)_______
 
-  SendMessage, 0x115, 6, 0, ,A 		;moves vertical scroll to windows top (to prevent "blank" areas in gui windows)
+  SendMessage, 0x115, 6, 0, ,A     ;moves vertical scroll to windows top (to prevent "blank" areas in gui windows)
           ;"1" means move down ("3" moves down higher)
           ;"0" means move up ("2" moves up higher)
           ;"6" moves top
           ;"7" moves to bottom
           ; "A" may mean for any active windows (yet to be confirmed)
 
-  SendMessage, 0x114, 6, 0, , A		;moves horizontal scroll to windows left edge (to prevent "blank" areas in gui windows)
+  SendMessage, 0x114, 6, 0, , A    ;moves horizontal scroll to windows left edge (to prevent "blank" areas in gui windows)
           ;"1" means move right ("3" moves right higher)
           ;"0" means move left ("2" moves left higher)
           ;"6" moves left edge
@@ -862,17 +862,17 @@ ScrollUpLeft:	;________Scroll Up / Left Edge (prevents blank spaces while adding
   sleep 50
 return
 
-ScrollDownRight:	;________Scroll Down / Right Edge (prevents blank spaces while adding new controls)_______
+ScrollDownRight:  ;________Scroll Down / Right Edge (prevents blank spaces while adding new controls)_______
   sleep 50
 
-  SendMessage, 0x115, 7, 0, ,A 		;moves vertical scroll to windows bottom 
+  SendMessage, 0x115, 7, 0, ,A     ;moves vertical scroll to windows bottom 
           ;"1" means move down ("3" moves down higher)
           ;"0" means move up ("2" moves up higher)
           ;"6" moves top
           ;"7" moves to bottom
           ; "A" may mean for any active windows (yet to be confirmed)
 
-  SendMessage, 0x114, 7, 0, , A		;moves horizontal scroll to windows left edge (to prevent "blank" areas in gui windows)
+  SendMessage, 0x114, 7, 0, , A    ;moves horizontal scroll to windows left edge (to prevent "blank" areas in gui windows)
           ;"1" means move right ("3" moves right higher)
           ;"0" means move left ("2" moves left higher)
           ;"6" moves left edge
@@ -1085,86 +1085,118 @@ OutputVar := StrReplace(OutputVarE, "Edit", "ComboBox")
 ControlGet, hCBe, hwnd,,%OutputVarE%
 ControlGet, hCB, hwnd,,%OutputVar%
 if (!WinExist("ahk_id "hCBMatchesGui) && hCB && hCBe) {
-	CreateCBMatchingGUI(hCB, "Add or Edit a Group")
+  CreateCBMatchingGUI(hCB, "Add or Edit a Group")
 }
 return
 
 ;--------------------------------------------------------------------------------
 CreateCBMatchingGUI(hCB, parentWindowTitle) {
 ;--------------------------------------------------------------------------------
-	Global CBMatchingGUI := {}
-	Gui CBMatchingGUI:New, -Caption -SysMenu -Resize +ToolWindow +AlwaysOnTop
-	Gui, +HWNDhCBMatchesGui +Delimiter`n
-	Gui, Margin, 0, 0
-	Gui, Font, s14 q5
-	
-	; get Parent ComboBox info
-	WinGetPos, cX, cY, cW, cH, % "ahk_id " hCB
-	ControlGet, CBList, List,,, % "ahk_id " hCB
+  Global CBMatchingGUI := {}
+  Gui CBMatchingGUI:New, -Caption -SysMenu -Resize +ToolWindow +AlwaysOnTop
+  Gui, +HWNDhCBMatchesGui +Delimiter`n
+  Gui, Margin, 0, 0
+  Gui, Font, s14 q5
+  
+  ; get Parent ComboBox info
+  WinGetPos, cX, cY, cW, cH, % "ahk_id " hCB
+  ControlGet, CBList, List,,, % "ahk_id " hCB
   ; MsgBox % ErrorLevel
-	ControlGet, CBChoice, Choice,,, % "ahk_id " hCB
-	; MsgBox % CBList ? "True" : "False"
-	; set Gui controls with Parent ComboBox info
-	Gui, Add, Edit, % "+HWNDhEdit x0 y0 w"cW+200 " R1"
-	GuiControl,, %hEdit%, %CBChoice%
-	Gui, Add, ListBox, % "+HWNDhLB xp y+0 wp" " R20", % CBList
-	GuiControl, ChooseString, %hLB%, %CBChoice%
-	
-	CBMatchingGUI.hwnd := hCBMatchesGui
-	CBMatchingGUI.hEdit := hEdit
-	CBMatchingGUI.hLB := hLB
-	CBMatchingGUI.hParentCB := hCB
-	CBMatchingGUI.parentCBList := CBList
-	CBMatchingGUI.parentWindowTitle := parentWindowTitle
-	
-	gFunction := Func("CBMatching").Bind(CBMatchingGUI)
-	GuiControl, +g, %hEdit%, %gFunction%
-	
-	Gui, Show, % "x"cX-5 " y"cY-5 " ", % "CBMatchingGUI"
-	ControlFocus,, % "ahk_id "CBMatchingGUI.hEdit
-	SetTimer, DestroyCBMatchingGUI, 80
+  ControlGet, CBChoice, Choice,,, % "ahk_id " hCB
+  ; MsgBox % CBList ? "True" : "False"
+  ; set Gui controls with Parent ComboBox info
+  Gui, Add, Edit, % "+HWNDhEdit x0 y0 w"cW+200 " R1"
+  GuiControl,, %hEdit%, %CBChoice%
+  Gui, Add, ListBox, % "+HWNDhLB xp y+0 wp" " R20", % CBList
+  GuiControl, ChooseString, %hLB%, %CBChoice%
+  
+  CBMatchingGUI.hwnd := hCBMatchesGui
+  CBMatchingGUI.hEdit := hEdit
+  CBMatchingGUI.hLB := hLB
+  CBMatchingGUI.hParentCB := hCB
+  CBMatchingGUI.parentCBList := CBList
+  CBMatchingGUI.parentWindowTitle := parentWindowTitle
+  
+  gFunction := Func("CBMatching").Bind(CBMatchingGUI)
+  GuiControl, +g, %hEdit%, %gFunction%
+  
+  Gui, Show, % "x"cX-5 " y"cY-5 " ", % "CBMatchingGUI"
+  ControlFocus,, % "ahk_id "CBMatchingGUI.hEdit
+  SetTimer, DestroyCBMatchingGUI, 80
 }
 
 ;--------------------------------------------------------------------------------
 CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
 ;--------------------------------------------------------------------------------
-	GuiControlGet, userInput,, % CBMatchingGUI.hEdit
-	
-	;--Find in list
-	choicesList := CBMatchingGUI.parentCBList
-	if (InStr(choicesList, userInput)) {
-		Loop, Parse, choicesList, "`n"
-		{
-			if (FoundPos := InStr(A_LoopField, userInput)) {
-				if (FoundPos = 1)
-					MatchesAtStart .= "`n"A_LoopField
-				else
-					MatchesAnywhere .= "`n"A_LoopField 	   	     
-				MatchCount++
-			} 
-		}
-		Matches := MatchesAtStart . MatchesAnywhere ; Ordered Match list
-		GuiControl,, % CBMatchingGUI.hLB, %Matches%
-		if (MatchCount = 1) {
-			UniqueMatch := Matches
-			GuiControl, ChooseString, % CBMatchingGUI.hLB, %UniqueMatch%
-		} 
-		else
-			GuiControl, Choose, % CBMatchingGUI.hLB, 1
-	} 
-	else
-		GuiControl,, % CBMatchingGUI.hLB, `n<! No Match !>
+  GuiControlGet, userInput,, % CBMatchingGUI.hEdit
+  userInputArr := StrSplit(userInput, A_Space)
+  choicesList := CBMatchingGUI.parentCBList
+  MatchCount := MatchList := MisMatchList := 0
+
+  ;--Find in list
+  for k, v in userInputArr
+  {
+    If (InStr(choicesList, v))
+      MatchList := True
+    else
+      MisMatchList := True
+  }
+  if (MatchList && !MisMatchList) {
+    Loop, Parse, choicesList, "`n"
+    {
+      for k, v in userInputArr
+      {
+        If (FoundPos := InStr(A_LoopField, v))
+        {
+          MatchString := True
+          posArr.Push(FoundPos)
+        }
+        else
+          MatchString := False
+      }
+      If MatchString
+      {
+        For k, v in posArr
+        {
+          If (v = 1)
+            atStart := True
+        }
+        If atStart
+          MatchesAtStart .= "`n"A_LoopField
+        else
+          MatchesAnywhere .= "`n"A_LoopField
+        MatchCount++
+      }
+      if (FoundPos := InStr(A_LoopField, userInput)) {
+        if (FoundPos = 1)
+          MatchesAtStart .= "`n"A_LoopField
+        else
+          MatchesAnywhere .= "`n"A_LoopField             
+        MatchCount++
+      } 
+    }
+    Matches := MatchesAtStart . MatchesAnywhere ; Ordered Match list
+    GuiControl,, % CBMatchingGUI.hLB, %Matches%
+    if (MatchCount = 1) {
+      UniqueMatch := Matches
+      GuiControl, ChooseString, % CBMatchingGUI.hLB, %UniqueMatch%
+    } 
+    else
+      GuiControl, Choose, % CBMatchingGUI.hLB, 1
+  } 
+  else
+    GuiControl,, % CBMatchingGUI.hLB, `n<! No Match !>
 }
 
 ;--------------------------------------------------------------------------------
 DestroyCBMatchingGUI() {
 ;--------------------------------------------------------------------------------
-	Global CBMatchingGUI ; global object created with the CBMatchingGUI
-	
-	if (!WinActive("Ahk_id " CBMatchingGUI.hwnd) and WinExist("ahk_id " CBMatchingGUI.hwnd)) {
-		Gui, % CBMatchingGUI.hwnd ":Destroy"
-		SetTimer, DestroyCBMatchingGUI, Delete
-	}
+  Global CBMatchingGUI ; global object created with the CBMatchingGUI
+  
+  if (!WinActive("Ahk_id " CBMatchingGUI.hwnd) and WinExist("ahk_id " CBMatchingGUI.hwnd)) {
+    Gui, % CBMatchingGUI.hwnd ":Destroy"
+    SetTimer, DestroyCBMatchingGUI, Delete
+  }
 }
 
 ;================================================================================
@@ -1174,29 +1206,29 @@ DestroyCBMatchingGUI() {
 Enter::
 NumpadEnter::
 Tab::setCBMatchingGUILBChoice(CBMatchingGUI) ; pass GUI object reference
-		
+    
 Up::
 Down::ControlSend,, % A_ThisHotkey = "Up" ? "{Up}" : "{Down}", % "ahk_id "CBMatchingGUI.hLB
-		
+    
 ;--------------------------------------------------------------------------------
 setCBMatchingGUILBChoice(CBMatchingGUI) {
 ;--------------------------------------------------------------------------------
-	; get ListBox choice
-	GuiControlGet, LBMatchesSelectedChoice,, % CBMatchingGUI.hLB 
-			
-	; set choice in parent ComboBox
-	Control, ChooseString, %LBMatchesSelectedChoice%,,% "ahk_id "CBMatchingGUI.hParentCB
-	; set focus to Parent ComboBox, this will destroy matching GUI
-	ControlFocus,, % "ahk_id "CBMatchingGUI.hParentCB
+  ; get ListBox choice
+  GuiControlGet, LBMatchesSelectedChoice,, % CBMatchingGUI.hLB 
+      
+  ; set choice in parent ComboBox
+  Control, ChooseString, %LBMatchesSelectedChoice%,,% "ahk_id "CBMatchingGUI.hParentCB
+  ; set focus to Parent ComboBox, this will destroy matching GUI
+  ControlFocus,, % "ahk_id "CBMatchingGUI.hParentCB
 
-	; execute next Tab_EnregFournisseursClients() step
-	; parentWinTitle := CBMatchingGUI.parentWindowTitle
-	; if (InStr(parentWinTitle, WinTitles.EnregFournisseurs)) {
-	; 	; Tab_EnregFournisseursClients("Fournisseurs")
-	; } 
-	; else if (InStr(parentWinTitle, WinTitles.EnregClients)) {
-	; 	; Tab_EnregFournisseursClients("Clients")
-	; }
+  ; execute next Tab_EnregFournisseursClients() step
+  ; parentWinTitle := CBMatchingGUI.parentWindowTitle
+  ; if (InStr(parentWinTitle, WinTitles.EnregFournisseurs)) {
+  ;   ; Tab_EnregFournisseursClients("Fournisseurs")
+  ; } 
+  ; else if (InStr(parentWinTitle, WinTitles.EnregClients)) {
+  ;   ; Tab_EnregFournisseursClients("Clients")
+  ; }
 }
 
 GuiEscape:

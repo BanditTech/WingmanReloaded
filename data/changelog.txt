@@ -1,8 +1,17 @@
+## Version .10.0606 - Alpha Branch - March/28/2020
+More improvements on the CLF function
+* Search can now handle spaces in the search phrase
+* You can now search for multiple partial words
+
+---
+
 ## Version .10.0605 - Alpha Branch - March/28/2020
 More improvements on the CLF function
 * Exporting a group now provides human readable JSON
 * The loot filter array is now also saved as human readable JSON
 * Open CLF from tray menu
+
+---
 
 ## Version .10.0604 - Alpha Branch - March/28/2020
 More improvements on the CLF function
