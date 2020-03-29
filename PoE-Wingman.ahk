@@ -2317,14 +2317,17 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
-          If (YesVendorBeforeStash && Prop.RarityUnique)
-          {
-            Continue
-          }
           If ( Prop.SpecialType="" )
           {
             CtrlClick(Grid.X,Grid.Y)
             Continue
+          }
+          If (YesVendorBeforeStash)
+          {
+            If (Prop.RarityRare){
+              Continue
+            }
+            ;Dan marker need some extra filtering here to match stash routine
           }
         }
       }
@@ -2364,7 +2367,7 @@ Return
         }
       }
     }
-    If (YesVendorBeforeStash){
+    If (OnVendor && RunningToggle && YesVendorBeforeStash){
       RandomSleep(60,90)
       CtrlClick(378,820)
       RandomSleep(60,90)
@@ -2569,7 +2572,7 @@ Return
       }
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
-      If (YesVendorAfterStash && !YesVendorBeforeStash && Unstashed && (OnHideout || OnTown || OnMines))
+      If (YesVendorAfterStash && !YesVendorBeforeStash && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
         SearchVendor()
         VendorRoutine()
@@ -3387,6 +3390,7 @@ Return
           IfInString, A_LoopField, Cluster Jewel
           {
             Prop.ClusterJewel := True
+            Prop.SpecialType : = "Cluster Jewel"
             Continue
           }
           IfInString, A_LoopField, Flask

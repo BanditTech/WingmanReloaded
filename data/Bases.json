@@ -10797,21 +10797,21 @@
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
-    "item_class": "Jewel",
+    "item_class": "Cluster Jewel",
     "name": "Large Cluster Jewel"
   },
   {
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
-    "item_class": "Jewel",
+    "item_class": "Cluster Jewel",
     "name": "Medium Cluster Jewel"
   },
   {
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
-    "item_class": "Jewel",
+    "item_class": "Cluster Jewel",
     "name": "Small Cluster Jewel"
   },
   {
