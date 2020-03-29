@@ -3390,7 +3390,7 @@ Return
           IfInString, A_LoopField, Cluster Jewel
           {
             Prop.ClusterJewel := True
-            Prop.SpecialType : = "Cluster Jewel"
+            Prop.SpecialType := "Cluster Jewel"
             Continue
           }
           IfInString, A_LoopField, Flask
