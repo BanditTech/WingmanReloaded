@@ -240,9 +240,11 @@
       AlternateGemOnSecondarySlot = Enable this to get your First Alternate Gem from Secondary Weapon Set (Swap Weapons)
       CurrentGem2X = Select the X location for the second Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
       CurrentGem2Y = Select the Y location for the second Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      AlternateGem2X = Select the Y location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
+      AlternateGem2X = Select the X location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2Y = Select the Y location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2OnSecondarySlot = Enable this to get your Second Alternate Gem from Secondary Weapon Set (Swap Weapons)
+      GrabCurrencyPosX = Select the X location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rPress Locate to grab positions
+      GrabCurrencyPosY = Select the Y location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
       StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
       YesAutoSkillUp = Enable this to Automatically level up skill gems
@@ -621,6 +623,7 @@
     global hotkeyPauseMines:="d"
     global hotkeyQuickPortal:="!q"
     global hotkeyGemSwap:="!e"
+    global hotkeyGrabCurrency:="!a"
     global hotkeyGetMouseCoords:="!o"
     global hotkeyCloseAllUI:="Space"
     global hotkeyInventory:="c"
@@ -661,6 +664,11 @@
     global varLife20, varLife30, varLife40, varLife50, varLife60, varLife70, varLife80, varLife90
     global varES20, varES30, varES40, varES50, varES60, varES70, varES80, varES90
     global varMana10, varManaThreshold, ManaThreshold
+
+
+  ; Grab Currency
+    global GrabCurrencyPosX:=1877
+    global GrabCurrencyPosY:=772
 
   ; Gem Swap
     global CurrentGemX:=1483
@@ -1653,24 +1661,26 @@
     Gui Add, Text,                     xs+65   y+10,         Auto-Quit
     Gui Add, Text,                     xs+65   y+10,         Logout
     Gui Add, Text,                     xs+65   y+10,         Auto-QSilver
-    Gui Add, Text,                       xs+65   y+10,         Coord/Pixel         
+    Gui Add, Text,                     xs+65   y+10,         Coord/Pixel         
     Gui Add, Text,                     xs+65   y+10,         Quick-Portal
     Gui Add, Text,                     xs+65   y+10,         Gem-Swap
+    Gui Add, Text,                     xs+65   y+10,         Grab Currency
     Gui Add, Text,                     xs+65   y+10,         Pop Flasks
     Gui Add, Text,                     xs+65   y+10,         ID/Vend/Stash
     Gui Add, Text,                     xs+65   y+10,         Item Info
 
-    Gui,Add,Edit,       xs ys+20 w60 h19     vhotkeyOptions      ,%hotkeyOptions%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyAutoFlask      ,%hotkeyAutoFlask%
-    Gui,Add,Edit,           y+4  w60 h19   vhotkeyAutoQuit      ,%hotkeyAutoQuit%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyLogout      ,%hotkeyLogout%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyAutoQuicksilver  ,%hotkeyAutoQuicksilver%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyGetMouseCoords  ,%hotkeyGetMouseCoords%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyQuickPortal    ,%hotkeyQuickPortal%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyGemSwap      ,%hotkeyGemSwap%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyPopFlasks      ,%hotkeyPopFlasks%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyItemSort   ,%hotkeyItemSort%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyItemInfo   ,%hotkeyItemInfo%
+    Gui,Add,Edit,  xs ys+20        w60 h19     vhotkeyOptions         ,%hotkeyOptions%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuit          ,%hotkeyAutoQuit%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuicksilver   ,%hotkeyAutoQuicksilver%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
 
     Gui, Font, Bold
     Gui Add, Text,                     xs+145   ys,         Ingame:
@@ -7333,6 +7343,29 @@ Return
     ; ----------------------------------------------------------------------------------------------------------------------
   }
 
+; GrabCurrency - Get currency fast to use on a white/blue/rare strongbox
+  GrabCurrency(){
+    GrabCurrencyCommand:
+      Thread, NoTimers, true    ;Critical
+      Keywait, Alt
+      BlockInput, MouseMove
+      MouseGetPos xx, yy
+      RandomSleep(45,45)
+      If !GuiStatus("OnInventory")
+      {      
+        Send {%hotkeyInventory%} 
+        RandomSleep(45,45)
+      }
+      RandomSleep(45,45)
+      RightClick(GrabCurrencyPosX, GrabCurrencyPosY)
+      RandomSleep(45,45)
+      
+      Send {%hotkeyInventory%} 
+      MouseMove, xx, yy, 0
+      BlockInput, MouseMoveOff
+    return
+    }
+; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GemSwap(){
@@ -8313,14 +8346,19 @@ Return
         str := StrSplit(key, " ", ,2)
         KeyFlask%A_Index%Proper := str[1]
       }
-      
-      ;Gem Swap
+
+      ;Grab Currency From Inventory
+      IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 1877
+      IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 772
+
+      ;Gem Swap Gem 1
       IniRead, CurrentGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX, 1353
       IniRead, CurrentGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY, 224
       IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
       IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
       IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
 
+      ;Gem Swap Gem 2
       IniRead, CurrentGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X, 0
       IniRead, CurrentGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y, 0
       IniRead, AlternateGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X, 0
@@ -8398,6 +8436,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+      If hotkeyGrabCurrency
+        hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off  
       If hotkeyGetCoords
         hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
       If hotkeyPopFlasks
@@ -8429,6 +8469,7 @@ Return
       IniRead, hotkeyAutoQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver, !MButton
       IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
       IniRead, hotkeyGemSwap, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap, !e
+      IniRead, hotkeyGrabCurrency, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency, !a
       IniRead, hotkeyGetMouseCoords, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords, !o
       IniRead, hotkeyPopFlasks, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks, CapsLock
       IniRead, hotkeyLogout, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout, F12
@@ -8454,6 +8495,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, On
+      If hotkeyGrabCurrency
+        hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, On
       If hotkeyGetMouseCoords
         hotkey,% hotkeyGetMouseCoords, CoordCommand, On
       If hotkeyPopFlasks
@@ -8602,6 +8645,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+      If hotkeyGrabCurrency
+        hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
       If hotkeyGetCoords
         hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
       If hotkeyPopFlasks
@@ -8836,6 +8881,7 @@ Return
       IniWrite, %hotkeyAutoQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver
       IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
       IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
+      IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
       IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
       IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
       IniWrite, %hotkeyLogout%, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout
@@ -8997,7 +9043,13 @@ Return
       IniWrite, %keyFlask4%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask4
       IniWrite, %keyFlask5%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask5  
       
+      ;Grab Currency
+      IniWrite, %GrabCurrencyPosX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX
+      IniWrite, %GrabCurrencyPosY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY
+
       ;Gem Swap
+      IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
+      IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
       IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY
       IniWrite, %AlternateGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX
@@ -9298,6 +9350,7 @@ Return
       GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
       GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
       GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
+      GuiControl,, hotkeyGrabCurrency, %hotkeyGrabCurrency%
       GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
       GuiControl,, hotkeyItemSort, %hotkeyItemSort%
       GuiControl,, hotkeyItemInfo, %hotkeyItemInfo%
@@ -9311,8 +9364,8 @@ Return
       GuiControl,, PortalScrollY, %PortalScrollY%
       GuiControl,, WisdomScrollX, %WisdomScrollX%
       GuiControl,, WisdomScrollY, %WisdomScrollY%
-      GuiControl,, CurrentGemX, %CurrentGemX%
-      GuiControl,, CurrentGemY, %CurrentGemY%
+      GuiControl,, GrabCurrencyPosX, %GrabCurrencyPosX%
+      GuiControl,, GrabCurrencyPosY, %GrabCurrencyPosY%
       GuiControl,, AlternateGemX, %AlternateGemX%
       GuiControl,, AlternateGemY, %AlternateGemY%
       GuiControl,, CurrentGem2X, %CurrentGem2X%
