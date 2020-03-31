@@ -2109,7 +2109,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; ItemSortCommand - Sort inventory and determine action
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ItemSortCommand:
+  ItemSortCommand(){
     Thread, NoTimers, True
     If RunningToggle  ; This means an underlying thread is already running the loop below.
     {
@@ -2143,7 +2143,14 @@ Return
         }
         Else If (YesSearchForStash && !YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
         {
-          SearchStash()
+          If !SearchStash()
+          {
+            Send {%hotkeyInventory%}
+            RunningToggle := False
+            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+              SetTimer, TGameTick, On
+            Return
+          }
         }
         Else
         {
@@ -2154,6 +2161,7 @@ Return
           Return
         }
       }
+      Sleep, -1
       SendMSG(1,1,scriptTradeMacro)
       If (OnDiv && YesDiv)
         DivRoutine()
@@ -2170,7 +2178,8 @@ Return
     MouseMove, xx, yy, 0
     If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
       SetTimer, TGameTick, On
-  Return
+    Return
+  }
 
   ; Search Stash Routine
   SearchStash()
@@ -2180,20 +2189,13 @@ Return
       LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
       Loop, 66
       {
-        Sleep, 200
+        Sleep, -1
         GuiStatus()
         If OnStash
-        Break
+          Return True
       }
     }
-    Else
-    {
-      Send {%hotkeyInventory%}
-      RunningToggle := False
-      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-        SetTimer, TGameTick, On
-    }
-    Return
+    Return False
   }
   ; ShooMouse - Move mouse out of the inventory area
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7782,7 +7784,7 @@ Return
         }    
       If (lParam=5){
         ; hotkeyItemSort
-        GoSub, ItemSortCommand
+        ItemSortCommand()
         return
         }    
       }
