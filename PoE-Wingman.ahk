@@ -2294,7 +2294,7 @@ Return
             ClipItem(Grid.X,Grid.Y)
           }
         }
-        If (YesVendorBeforeStash && !OnStash) 
+        If (YesVendorBeforeStash && !OnStash && RunningToggle) 
         {
           If (Prop.SpecialType = "Quest Item")
             Continue
@@ -2369,18 +2369,9 @@ Return
             sendstash := StashTabPredictive
           Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
             sendstash := StashTabDump
-          Else
-            ++Unstashed
           If (sendstash > 0)
           {
-            If YesSortFirst
-              SortFirst[sendstash].Push({"C":C,"R":R})
-            Else
-            {
-              MoveStash(sendstash)
-              RandomSleep(45,45)
-              CtrlClick(Grid.X,Grid.Y)
-            }
+            SortFirst[sendstash].Push({"C":C,"R":R})
           }
         }
         If (OnVendor&&YesVendor)
