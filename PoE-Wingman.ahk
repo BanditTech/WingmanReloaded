@@ -2140,7 +2140,6 @@ Return
         {
           SearchVendor()
           VendorRoutine()
-          SearchStash()
         }
         Else If (YesSearchForStash && !YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
         {
@@ -2232,6 +2231,14 @@ Return
     tGQ := 0
     SortFlask := {}
     SortGem := {}
+    If (YesVendorBeforeStash){
+      CurrentTab:=0
+      SortFirst := {}
+      Loop 32
+      {
+        SortFirst[A_Index] := {}
+      }
+    }
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
@@ -2260,7 +2267,6 @@ Return
           ;Seems to be an empty slot, no need to clip item info
           Continue
         }
-        
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
         If !Prop.IsItem
@@ -2286,6 +2292,86 @@ Return
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
+          }
+        }
+        If (YesVendorBeforeStash && !OnStash && RunningToggle) 
+        {
+          If (Prop.SpecialType = "Quest Item")
+            Continue
+          Else If (sendstash:=MatchLootFilter())
+            Sleep, -1
+          Else If (Prop.Incubator)
+            Continue
+          Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
+            Continue
+          Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
+            sendstash := StashTabCurrency
+          Else If (Prop.IsMap&&StashTabYesMap)
+            sendstash := StashTabMap
+          Else If ( StashTabYesFragment 
+            && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
+            || Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
+            sendstash := StashTabFragment
+          Else If (Prop.RarityDivination&&StashTabYesDivination)
+            sendstash := StashTabDivination
+          Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
+            sendstash := StashTabOrgan
+          Else If (Prop.RarityUnique&&Prop.IsOrgan="")
+          {
+            If (StashTabYesUniqueRing&&Prop.Ring)
+            {
+              sendstash := StashTabUniqueRing
+            }
+            Else If (StashTabYesUniqueDump)
+            {
+              sendstash := StashTabUniqueDump
+            }
+            Continue
+          }
+          Else If (Prop.Essence&&StashTabYesEssence)
+            sendstash := StashTabEssence
+          Else If (Prop.Fossil&&StashTabYesFossil)
+            sendstash := StashTabFossil
+          Else If (Prop.Resonator&&StashTabYesResonator)
+            sendstash := StashTabResonator
+          Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
+            sendstash := StashTabFlaskQuality
+          Else If (Prop.RarityGem)
+          {
+            If ((Stats.Quality>0)&&StashTabYesGemQuality)
+              sendstash := StashTabGemQuality
+            Else If (Prop.Support && StashTabYesGemSupport)
+              sendstash := StashTabGemSupport
+            Else If (StashTabYesGem)
+              sendstash := StashTabGem
+          }
+          Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
+            sendstash := StashTabLinked
+          Else If (Prop.Prophecy&&StashTabYesProphecy)
+            sendstash := StashTabProphecy
+          Else If (Prop.Oil&&StashTabYesOil)
+            sendstash := StashTabOil
+          Else If (Prop.Veiled&&StashTabYesVeiled)
+            sendstash := StashTabVeiled
+          Else If (Prop.ClusterJewel&&StashTabYesClusterJewel)
+            sendstash := StashTabClusterJewel
+          Else If (StashTabYesCrafting 
+            && ((YesStashT1 && Prop.CraftingBase = "T1") 
+              || (YesStashT2 && Prop.CraftingBase = "T2") 
+              || (YesStashT3 && Prop.CraftingBase = "T3"))
+            && ((YesStashCraftingNormal && Prop.RarityNormal)
+              || (YesStashCraftingMagic && Prop.RarityMagic)
+              || (YesStashCraftingRare && Prop.RarityRare))
+            && (!YesStashCraftingIlvl 
+              || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
+            sendstash := StashTabCrafting
+          Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
+            sendstash := StashTabPredictive
+          Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
+            sendstash := StashTabDump
+          If (sendstash > 0)
+          {
+            SortFirst[sendstash].Push({"C":C,"R":R})
           }
         }
         If (OnVendor&&YesVendor)
@@ -2317,17 +2403,17 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
+          if (YesVendorBeforeStash)
+          {
+            If (Prop.RarityUnique)
+            {
+              Continue
+            }
+          }
           If ( Prop.SpecialType="" )
           {
             CtrlClick(Grid.X,Grid.Y)
             Continue
-          }
-          If (YesVendorBeforeStash)
-          {
-            If (Prop.RarityRare){
-              Continue
-            }
-            ;Dan marker need some extra filtering here to match stash routine
           }
         }
       }
@@ -2367,10 +2453,32 @@ Return
         }
       }
     }
-    If (OnVendor && RunningToggle && YesVendorBeforeStash){
+    If (OnVendor && RunningToggle && YesVendorBeforeStash)
+    {
       RandomSleep(60,90)
       CtrlClick(378,820)
       RandomSleep(60,90)
+      SearchStash()
+      If (OnStash && RunningToggle && YesStash)
+      {
+          For Tab, Tv in SortFirst
+          {
+            For Item, Iv in Tv
+            {
+              MoveStash(Tab)
+              C := SortFirst[Tab][Item]["C"]
+              R := SortFirst[Tab][Item]["R"]
+              GridX := InventoryGridX[C]
+              GridY := InventoryGridY[R]
+              Grid := RandClick(GridX, GridY)
+              Sleep, 15*Latency
+              CtrlClick(Grid.X,Grid.Y)
+              Sleep, 45*Latency
+            }
+          }
+        If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+          StockScrolls()
+      }
     }
     Return
   }
