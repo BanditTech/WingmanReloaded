@@ -243,8 +243,8 @@
       AlternateGem2X = Select the X location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2Y = Select the Y location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2OnSecondarySlot = Enable this to get your Second Alternate Gem from Secondary Weapon Set (Swap Weapons)
-      GrabCurrencyPosX = Select the X location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rPress Locate to grab positions
-      GrabCurrencyPosY = Select the Y location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rPress Locate to grab positions
+      GrabCurrencyPosX = Select the X location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+      GrabCurrencyPosY = Select the Y location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
       StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
       YesAutoSkillUp = Enable this to Automatically level up skill gems
@@ -260,6 +260,7 @@
       hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
       hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
       hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
+      hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
       hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
       hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
       hotkeyItemInfo = Set your hotkey to display information about an item`rWill graph price info if there is any match
