@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.0606
+  Global VersionNumber := .10.0607
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -41,7 +41,7 @@
   }
 
   OnMessage(0x5555, "MsgMonitor")
-  OnMessage(0x5556, "MsgMonitor")
+  ; OnMessage(0x5556, "MsgMonitor")
   OnMessage( 0xF, "WM_PAINT")
   OnMessage(0x200, Func("ShowToolTip"))  ; WM_MOUSEMOVE
 
@@ -2088,7 +2088,7 @@
   If FileExist(ClientLog)
   {
     Monitor_GameLogs(1)
-    SetTimer, Monitor_GameLogs, 500
+    SetTimer, Monitor_GameLogs, 300
   }
   Else
   {
@@ -2200,7 +2200,7 @@ Return
       LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
       Loop, 66
       {
-        Sleep, -1
+        Sleep, 50
         GuiStatus()
         If OnStash
           Return True
@@ -2512,6 +2512,23 @@ Return
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse away for Screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
+    If (!OnStash)
+    {
+      Loop 2
+      {
+        Sleep, 50
+        If (OnStash)
+        Break
+      }
+      If (!OnStash)
+      {
+        RunningToggle:=False
+        Send, %hotkeyCloseAllUI%
+        SearchStash()
+        SetTimer, ItemSortCommand, -50
+        Exit
+      }
+    }
     ; Main loop through inventory
     For C, GridX in InventoryGridX
     {
@@ -2530,7 +2547,6 @@ Return
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
         } 
         PointColor := ScreenShot_GetColor(GridX,GridY)
-        
         If indexOf(PointColor, varEmptyInvSlotColor) {
           ;Seems to be an empty slot, no need to clip item info
           Continue
@@ -2673,7 +2689,7 @@ Return
     ; Sorted items are sent together
     If (OnStash && RunningToggle && YesStash)
     {
-      If YesSortFirst
+      If (YesSortFirst)
       {
         For Tab, Tv in SortFirst
         {

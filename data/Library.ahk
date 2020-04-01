@@ -1106,7 +1106,7 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiStatus(Fetch:="",SS:=1){
     If (SS)
-      ScreenShot(Gamex,GameY,GameX+GameW,GameY+GameH)
+      ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
     If (Fetch="OnDetonate")
     {
       POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)

@@ -1,3 +1,16 @@
+## Version .10.0607 - Alpha Branch - March/29/2020
+Additions by DanMarzola
+* New function to quickly use currency on items ingame
+* Assign the location in Inventory Settings
+
+Attempting to fix issues with very first stash routine after maps
+* Something has happened to the Stash GUI
+  * When returning from the very first map it is not matching colors
+  * The solution is to close the window and re-open
+  * If the script detects a mismatch, it will reset the window
+
+---
+
 ## Version .10.0606 - Alpha Branch - March/29/2020
 More improvements on the CLF function
 * Search can now handle spaces in the search phrase
