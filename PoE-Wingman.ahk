@@ -9051,8 +9051,6 @@ Return
       ;Gem Swap
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
       IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY
-      IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
-      IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY
       IniWrite, %AlternateGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX
       IniWrite, %AlternateGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY
       IniWrite, %AlternateGemOnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot
