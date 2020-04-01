@@ -9365,6 +9365,8 @@ Return
       GuiControl,, WisdomScrollY, %WisdomScrollY%
       GuiControl,, GrabCurrencyPosX, %GrabCurrencyPosX%
       GuiControl,, GrabCurrencyPosY, %GrabCurrencyPosY%
+      GuiControl,, CurrentGemX, %CurrentGemX%
+      GuiControl,, CurrentGemY, %CurrentGemY%
       GuiControl,, AlternateGemX, %AlternateGemX%
       GuiControl,, AlternateGemY, %AlternateGemY%
       GuiControl,, CurrentGem2X, %CurrentGem2X%
