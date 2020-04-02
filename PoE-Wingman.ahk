@@ -2295,7 +2295,7 @@ Return
           ShooMouse(),GuiStatus(),Continue
         If (!Prop.Identified&&YesIdentify)
         {
-          If (Prop.IsMap&&!YesMapUnid)
+          If (Prop.IsMap&&!YesMapUnid&&!Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -2565,7 +2565,7 @@ Return
         addToBlacklist(C, R)
         If (!Prop.Identified&&YesIdentify)
         {
-          If (Prop.IsMap&&!YesMapUnid)
+          If (Prop.IsMap&&!YesMapUnid&&!Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -2883,7 +2883,7 @@ Return
         ; Trade full div stacks
         If (!Prop.Identified&&YesIdentify)
         {
-          If (Prop.IsMap&&!YesMapUnid)
+          If (Prop.IsMap&&!YesMapUnid&&!Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -11705,7 +11705,7 @@ Return
         If CalibrationOnMetamorph
         {
           ToolTip,% "This will sample the OnMetamorph Color"
-            . "`nMake sure you have the Subterranean Chart open"
+            . "`nMake sure you have the Metamorph Panel open"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
