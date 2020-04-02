@@ -11705,7 +11705,7 @@ Return
         If CalibrationOnMetamorph
         {
           ToolTip,% "This will sample the OnMetamorph Color"
-            . "`nMake sure you have the Subterranean Chart open"
+            . "`nMake sure you have the Metamorph Panel open"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
@@ -12289,7 +12289,7 @@ Return
       IniWrite, %YesSearchForStash%, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash
       IniWrite, %YesVendorAfterStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash
       IniWrite, %YesVendorBeforeStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash
-      IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
+2      IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
       IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
