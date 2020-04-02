@@ -674,8 +674,8 @@
 
 
   ; Grab Currency
-    global GrabCurrencyPosX:=0
-    global GrabCurrencyPosY:=0
+    global GrabCurrencyPosX:=1877
+    global GrabCurrencyPosY:=772
 
   ; First Gem/Item Swap
     global CurrentGemX:=1483
@@ -8392,14 +8392,14 @@ Return
       }
 
       ;Grab Currency From Inventory
-      IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 0
-      IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 0
+      IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 1877
+      IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 772
 
       ;Gem Swap Gem 1
-      IniRead, CurrentGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX, 0
-      IniRead, CurrentGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY, 0
-      IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 0
-      IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 0
+      IniRead, CurrentGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX, 1353
+      IniRead, CurrentGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY, 224
+      IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
+      IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
       IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
 
       ;Gem Swap Gem 2
