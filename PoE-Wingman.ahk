@@ -7385,7 +7385,8 @@ Return
 ; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  GemSwap(){
+  GemSwap()
+  {
     GemSwapCommand:
       Thread, NoTimers, true    ;Critical
       Keywait, Alt
@@ -7398,50 +7399,49 @@ Return
         Send {%hotkeyInventory%} 
         RandomSleep(45,45)
       }
-      ;first gem
-      If (CurrentGemX != 0 && CurrentGemY != 0 && AlternateGemX !=0 && AlternateGemY != 0) {
-      
-      RightClick(CurrentGemX, CurrentGemY)
-      RandomSleep(45,45)
-      
-      if (AlternateGemOnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(AlternateGemX, AlternateGemY)
+      ;First Gem or Item Swap
+      If ((CurrentGemX != 0 && CurrentGemY != 0) || (AlternateGemX !=0 && AlternateGemY != 0)) {
+        RightClick(CurrentGemX, CurrentGemY)
+        RandomSleep(45,45)
+        If (AlternateGemOnSecondarySlot)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(AlternateGemX, AlternateGemY)
         RandomSleep(90,120)
-      
-      if (AlternateGemOnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(CurrentGemX, CurrentGemY)
+        If (AlternateGemOnSecondarySlot)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(CurrentGemX, CurrentGemY)
         RandomSleep(90,120)
       }
-      If (CurrentGem2X != 0 && CurrentGem2Y != 0 && AlternateGem2X !=0 && AlternateGem2Y != 0) {
-      ;second gem
-      RightClick(CurrentGem2X, CurrentGem2Y)
-      RandomSleep(45,45)
-      
-      if (AlternateGem2OnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(AlternateGem2X, AlternateGem2Y)
+      ;Second Gem of Item Swap
+      If ((CurrentGem2X != 0 && CurrentGem2Y != 0) || (AlternateGem2X !=0 && AlternateGem2Y != 0)) {
+        RightClick(CurrentGem2X, CurrentGem2Y)
+        RandomSleep(45,45)
+        if (AlternateGem2OnSecondarySlot)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(AlternateGem2X, AlternateGem2Y)
         RandomSleep(90,120)
-      
-      if (AlternateGem2OnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(CurrentGem2X, CurrentGem2Y)
+        If (AlternateGem2OnSecondarySlot)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(CurrentGem2X, CurrentGem2Y)
         RandomSleep(90,120)
       }
       Send {%hotkeyInventory%} 
       MouseMove, xx, yy, 0
       BlockInput, MouseMoveOff
     return
-    }
+  }
 
 ; QuickPortal - Open Town Portal
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
