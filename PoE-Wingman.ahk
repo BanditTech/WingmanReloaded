@@ -12289,7 +12289,7 @@ Return
       IniWrite, %YesSearchForStash%, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash
       IniWrite, %YesVendorAfterStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash
       IniWrite, %YesVendorBeforeStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash
-2      IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
+      IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
       IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
