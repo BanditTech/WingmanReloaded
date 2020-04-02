@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.0607
+  Global VersionNumber := .11.00
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -13,7 +13,7 @@
   #MaxThreadsPerHotkey 2
   #MaxMem 256
   ListLines Off
-  Process, Priority, , A
+  ; Process, Priority, , A
   SetBatchLines, -1
   SetKeyDelay, -1, -1
   SetMouseDelay, -1
