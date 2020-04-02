@@ -1,12 +1,12 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
   ; #Warn  ; The rest of this area is for global settings
   SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-  SaveDir := RTrim(A_ScriptDir, "\data") "\save"
+  SaveDir := RegExReplace(A_ScriptDir, "data$", "save")
   SetWorkingDir %SaveDir%
 
   Global xpos, ypos, Maxed
-  OnMessage(0x115, "OnScroll") ; WM_VSCROLL	;necessary for scrollable gui windows (must be added before gui lines)
-  OnMessage(0x114, "OnScroll") ; WM_HSCROLL	;necessary for scrollable gui windows (must be added before gui lines)
+  OnMessage(0x115, "OnScroll") ; WM_VSCROLL  ;necessary for scrollable gui windows (must be added before gui lines)
+  OnMessage(0x114, "OnScroll") ; WM_HSCROLL  ;necessary for scrollable gui windows (must be added before gui lines)
   Global scriptPOEWingman := "PoE-Wingman.ahk ahk_exe AutoHotkey.exe"
   Global scriptPOEWingmanSecondary := "WingmanReloaded ahk_exe AutoHotkey.exe"
   global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
@@ -295,7 +295,7 @@
 LoadArray()
 
 Redraw:
-  Gui, +Resize -MinimizeBox +0x300000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
+  Gui, +Resize -MinimizeBox +0x300000  ; WS_VSCROLL | WS_HSCROLL  ;necessary for scrollable gui windows 
               ;+Resize (allows resize of windows)
   Gui, Add, Text, Section y+-5 w1 h1
   Tooltip, Building menu... 
@@ -393,23 +393,24 @@ Redraw:
     Gui, show, w740 h575 x%xpos% y%ypos%
   If (Maxed)
     WinMaximize, LootFilter
-  Gui,  +LastFound				;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
-  GroupAdd, MyGui, % "ahk_id " . WinExist()		;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
+  Gui,  +LastFound        ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
+  GroupAdd, MyGui, % "ahk_id " . WinExist()    ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
 return
 
 RedrawNewGroup:
-  Gui,2: -Resize +AlwaysOnTop -MinimizeBox -MaximizeBox  +0x200000  ; WS_VSCROLL | WS_HSCROLL	;necessary for scrollable gui windows 
+  Gui,2: -Resize +AlwaysOnTop -DPIScale -MinimizeBox -MaximizeBox  +0x200000  ; WS_VSCROLL | WS_HSCROLL  ;necessary for scrollable gui windows 
               ;+Resize (allows resize of windows)
   Gui,2: Add, Text, Section y+-5 w1 h1
   Gui,2: add, button, gFinishAddGroup xs y+20 HwndFinishButton, Click here to Finish and Return to CLF
-  Gui,2: add, button, gRemNewGroup vgroupKey x+150 yp HwndDeleteButton, Delete Group
+  Gui,2: add, button, gRemNewGroup vgroupKey x+100 yp HwndDeleteButton, Delete Group
+  Gui,2: add, text, x+55 yp+6 center, Press tab to search the selected keys
   Tooltip, Building menu... 
   BuildNewGroupMenu(groupKey)
   tooltip
   Gui,2: show, w650 h475 , Add or Edit a Group
   DisableCloseButton()
-  Gui,2:  +LastFound				;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
-  GroupAdd, MyGui, % "ahk_id " . WinExist()		;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
+  Gui,2:  +LastFound        ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
+  GroupAdd, MyGui, % "ahk_id " . WinExist()    ;necessary for scrollable gui windows (allow scrolling with mouse wheel - must be added after gui lines)
 return
 
 DisableCloseButton(hWnd="") 
@@ -457,7 +458,7 @@ ExportGroup:
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
   exportArr := LootFilter[GKey]
-  Clipboard := JSON.Dump(exportArr)
+  Clipboard := JSON.Dump(exportArr,,1)
   SetTimer, ChangeButtonNamesVar, 10
   MsgBox 262147, Export String,% Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy"
   IfMsgBox, Yes
@@ -486,8 +487,7 @@ AddGroup:
     Else
       break
   }
-  LootFilter[groupstr] := {Prop: {}, Stats: {}, Affix: {}}
-  LootFilterTabs[groupstr] := CLFStashTabDefault
+  LootFilter[groupstr] := {"Prop": OrderedArray(), "Stats": OrderedArray(), "Affix": OrderedArray(), "OrCount": 1, "StashTab": CLFStashTabDefault}
   Global groupKey := groupstr
   Gui, 2: Destroy
   GoSub, RedrawNewGroup
@@ -502,34 +502,44 @@ FinishAddGroup:
   GoSub, Redraw
 Return
 
-AddNewDDL:
-  Gui, Submit, NoHide
-  StringSplit, buttonstr, A_GuiControl, %A_Space%
-  SKey := buttonstr3
-  GKey := buttonstr5
-  skeyItemsActive := Round(LootFilter[GKey][SKey].Count() / 4)
-  ++skeyItemsActive
-  ;msgbox, %skeyItemsActive% %GKey% %SKey%
+; AddNewDDL:
+;   Gui, Submit, NoHide
+;   StringSplit, buttonstr, A_GuiControl, %A_Space%
+;   SKey := buttonstr3
+;   GKey := buttonstr5
+;   skeyItemsActive := Round(LootFilter[GKey][SKey].Count() / 4)
+;   ++skeyItemsActive
+;   ;msgbox, %skeyItemsActive% %GKey% %SKey%
 
-  AKey := SKey . skeyItemsActive
-  ;msgbox %AKey%
-  LootFilter[GKey][SKey][AKey] := "Blank"
-  LootFilter[GKey][SKey][AKey . "Eval"] := ">"
-  LootFilter[GKey][SKey][AKey . "Min"] := 0
-  LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
-  SaveWinPos()
-  Gui, Destroy
-  GoSub, Redraw
-Return
+;   AKey := SKey . skeyItemsActive
+;   ;msgbox %AKey%
+;   LootFilter[GKey][SKey][AKey] := "Blank"
+;   LootFilter[GKey][SKey][AKey . "Eval"] := ">"
+;   LootFilter[GKey][SKey][AKey . "Min"] := 0
+;   LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
+;   SaveWinPos()
+;   Gui, Destroy
+;   GoSub, Redraw
+; Return
 
 AddNewGroupDDL:
   Gui, Submit, NoHide
   StringSplit, buttonstr, A_GuiControl, %A_Space%
   SKey := buttonstr3
   GKey := buttonstr5
-  AKey := SKey . (Round(LootFilter[GKey][SKey].Count() / 4) + 1)
+  LootFilterEmpty := 0
+  Loop, % (LootFilter[GKey][SKey].Count() // 4 + 1)
+  {
+    ++LootFilterEmpty
+    AKey := SKey . LootFilterEmpty
+    if LootFilter[GKey][SKey].HasKey(AKey)
+      continue
+    Else
+      break
+  }
+  ; AKey := SKey . (Round(LootFilter[GKey][SKey].Count() / 4) + 1)
   LootFilter[GKey][SKey][AKey] := "Blank"
-  LootFilter[GKey][SKey][AKey . "Eval"] := ">"
+  LootFilter[GKey][SKey][AKey . "Eval"] := ">="
   LootFilter[GKey][SKey][AKey . "Min"] := 0
   LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
   SaveWinPos()
@@ -548,6 +558,8 @@ BuildMenu(Min,Max,AllEdit:=0)
       Continue
     For SKey, selectedItems in Groups
     {
+      If (SKey = "OrCount" || SKey = "StashTab")
+        Continue
       totalHeight += (((LootFilter[GKey][SKey].Count() / 4) + 1) * 25) + 30
       Gui, Add, GroupBox,% " section xs y+15 w325 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,%SKey%
       For AKey, Val in selectedItems
@@ -559,10 +571,7 @@ BuildMenu(Min,Max,AllEdit:=0)
       }
       Gui, add, button, xs yp+25 w1 h1,
     }
-    Gui, Add, Text, y+15 ,______%GKey% Stash Tab:
-    strLootFilterGroupStash := "LootFilter_" . GKey . "_Stash"
-    %strLootFilterGroupStash% := LootFilterTabs[GKey]
-    Gui, Add,  Text,  w30 x+5, % LootFilterTabs[GKey]
+    Gui, Add, Text, y+15 , % GKey "  Stash Tab: " LootFilter[GKey]["StashTab"] "   OR #: " LootFilter[GKey]["OrCount"] "   "
     strLootFilterEdit := "LootFilter_" . GKey . "_Edit"
     Gui, Add, Button, v%strLootFilterEdit% gEditGroup w60 h21 x+0 yp-3, Edit
     strLootFilterExport := "LootFilter_" . GKey . "_Export"
@@ -583,6 +592,8 @@ BuildNewGroupMenu(GKey)
   Global
   For SKey, selectedItems in LootFilter[GKey]
   {
+    If (SKey = "OrCount" || SKey = "StashTab")
+      Continue
     Gui,2: Add, GroupBox,% " section xs y+18 w37 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,% "  OR"
     Gui,2: Add, GroupBox,% " x+2 yp w247 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,%SKey%
     Gui,2: Add, GroupBox,% " x+2 yp w54 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,Eval:
@@ -602,7 +613,7 @@ BuildNewGroupMenu(GKey)
       ischecked := LootFilter[GKey][SKey][AKey . "OrFlag"]
       ;MsgBox % AKey
       Gui,2: Add,  Checkbox, v%strLootFilterGSAOrFlag% gUpdateLootFilterDDL Right checked%ischecked% xs+2 yp+25 ,% ""
-      Gui,2: Add,  DropDownList, v%strLootFilterGSA% gUpdateLootFilterDDL x+9 w240, % LootFilter[GKey][SKey][AKey] "||" textList%SKey%
+      Gui,2: Add,  ComboBox, v%strLootFilterGSA% gUpdateLootFilterDDL x+9 w240, % LootFilter[GKey][SKey][AKey] "||" textList%SKey%
       Gui,2: Add, DropDownList, v%strLootFilterGSAEval% gUpdateLootFilterDDL x+9 w50, % LootFilter[GKey][SKey][AKey . "Eval"] "||" textListEval
       Gui,2: Add, Edit, v%strLootFilterGSAMin% gUpdateLootFilterDDL x+6 w250 h21, % LootFilter[GKey][SKey][AKey . "Min"]
       %strLootFilterGSAMin%_Remove := False
@@ -610,10 +621,14 @@ BuildNewGroupMenu(GKey)
     }
     Gui,2: add, button, gAddNewGroupDDL xs yp+25, Add new %SKey% to %GKey%
   }
-  Gui,2: Add, Text, ,_________%GKey% Stash Tab:
-  strLootFilterGroupStash := "LootFilter_" . GKey . "_Stash"
-  %strLootFilterGroupStash% := LootFilterTabs[GKey]
-  Gui,2: Add,  DropDownList, v%strLootFilterGroupStash% gUpdateGroupStash w40 x+5 yp-6, % LootFilterTabs[GKey] "||" textListStashTabs
+  strLootFilterGroupStash := "LootFilter_" . GKey . "_StashTab"
+  %strLootFilterGroupStash% := LootFilter[GKey]["StashTab"]
+  Gui,2: Add, Text, y+12, %GKey% Stash Tab:
+  Gui,2: Add,  DropDownList, v%strLootFilterGroupStash% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["StashTab"] "||" textListStashTabs
+  strLootFilterGroupOrCount := "LootFilter_" . GKey . "_OrCount"
+  %strLootFilterGroupOrCount% := LootFilter[GKey]["OrCount"]
+  Gui,2: Add, Text, x+5 yp+6, Min OR #:
+  Gui,2: Add,  DropDownList, v%strLootFilterGroupOrCount% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["OrCount"] "||1|2|3|4|5|6|7|8|9|10|11|12"
   strLootFilterExport := "LootFilter_" . GKey . "_Export"
   Gui,2: Add, Button, v%strLootFilterExport% gExportGroup w60 h21 x+5, Export
 Return
@@ -631,15 +646,16 @@ LoadArray()
   FileRead, JSONtext, LootFilter.json
   LootFilter := JSON.Load(JSONtext)
   If !LootFilter
-    LootFilter:={}
-  FileRead, JSONtexttabs, LootFilterTabs.json
-  LootFilterTabs := JSON.Load(JSONtexttabs)
-  If !LootFilterTabs
-    LootFilterTabs:={}
+    LootFilter:=OrderedArray()
+
   For GKey, Gval in LootFilter
   {
+    If !(Gval.HasKey("OrCount"))
+      Gval["OrCount"] := 1
     For SKey, Sval in Gval
     {
+      If (SKey = "OrCount" || SKey = "StashTab")
+        Continue
       For AKey, Aval in Sval
       {
         If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
@@ -649,6 +665,19 @@ LoadArray()
       }
     }
   }
+
+  If FileExist("LootFilterTabs.json")
+  {
+    FileRead, JSONtexttabs, LootFilterTabs.json
+    LootFilterTabs := JSON.Load(JSONtexttabs)
+    If !LootFilterTabs
+      LootFilterTabs:={}
+    For GKey, GTab in LootFilterTabs
+    {
+      LootFilter[GKey].StashTab := GTab
+    }
+  }
+
 Return
 }
 
@@ -656,12 +685,13 @@ SaveArray()
 {
   SaveArray:
   Gui, Submit, NoHide
-  JSONtext := JSON.Dump(LootFilter)
+  JSONtext := JSON.Dump(LootFilter,,1)
   FileDelete, LootFilter.json
   FileAppend, %JSONtext%, LootFilter.json
-  JSONtexttabs := JSON.Dump(LootFilterTabs)
+
+  ; JSONtexttabs := JSON.Dump(LootFilterTabs)
   FileDelete, LootFilterTabs.json
-  FileAppend, %JSONtexttabs%, LootFilterTabs.json
+  ; FileAppend, %JSONtexttabs%, LootFilterTabs.json
   Return
 }
 
@@ -674,11 +704,12 @@ UpdateLootFilterDDL:
   LootFilter[GKey][SKey][AKey] := %A_GuiControl%
 Return
 
-UpdateGroupStash:
+UpdateGroupInfo:
   Gui, Submit, NoHide
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
-  LootFilterTabs[GKey] := %A_GuiControl%
+  IKey := buttonstr3
+  LootFilter[GKey][IKey] := %A_GuiControl%
 Return
 
 UpdateStashDefault:
@@ -742,7 +773,7 @@ RemGroup:
   gnumber := buttonstr2
   GKey := "Group" gnumber
   LootFilter.Remove(GKey)
-  LootFilterTabs.Remove(GKey)
+  ; LootFilterTabs.Remove(GKey)
   SaveWinPos()
   Gui, Destroy
   GoSub, Redraw
@@ -752,7 +783,7 @@ RemNewGroup:
   Gui, Submit, NoHide
   GKey := groupKey
   LootFilter.Remove(GKey)
-  LootFilterTabs.Remove(GKey)
+  ; LootFilterTabs.Remove(GKey)
   Gui, 2: Destroy
   SaveWinPos()
   Gui, 1: Default
@@ -796,9 +827,9 @@ return
 
 PrintJSON:
   Gui, Submit, NoHide
-  arrStr := JSON.Dump(LootFilter)
+  arrStr := JSON.Dump(LootFilter,,1)
   MsgBox % arrStr
-  arrStr := JSON.Dump(LootFilterTabs)
+  arrStr := JSON.Dump(LootFilterTabs,,1)
   MsgBox % arrStr
 return
 
@@ -813,16 +844,16 @@ GuiSize:
 
 return
 
-ScrollUpLeft:	;________Scroll Up / Left Edge (prevents blank spaces while adding new controls)_______
+ScrollUpLeft:  ;________Scroll Up / Left Edge (prevents blank spaces while adding new controls)_______
 
-  SendMessage, 0x115, 6, 0, ,A 		;moves vertical scroll to windows top (to prevent "blank" areas in gui windows)
+  SendMessage, 0x115, 6, 0, ,A     ;moves vertical scroll to windows top (to prevent "blank" areas in gui windows)
           ;"1" means move down ("3" moves down higher)
           ;"0" means move up ("2" moves up higher)
           ;"6" moves top
           ;"7" moves to bottom
           ; "A" may mean for any active windows (yet to be confirmed)
 
-  SendMessage, 0x114, 6, 0, , A		;moves horizontal scroll to windows left edge (to prevent "blank" areas in gui windows)
+  SendMessage, 0x114, 6, 0, , A    ;moves horizontal scroll to windows left edge (to prevent "blank" areas in gui windows)
           ;"1" means move right ("3" moves right higher)
           ;"0" means move left ("2" moves left higher)
           ;"6" moves left edge
@@ -831,17 +862,17 @@ ScrollUpLeft:	;________Scroll Up / Left Edge (prevents blank spaces while adding
   sleep 50
 return
 
-ScrollDownRight:	;________Scroll Down / Right Edge (prevents blank spaces while adding new controls)_______
+ScrollDownRight:  ;________Scroll Down / Right Edge (prevents blank spaces while adding new controls)_______
   sleep 50
 
-  SendMessage, 0x115, 7, 0, ,A 		;moves vertical scroll to windows bottom 
+  SendMessage, 0x115, 7, 0, ,A     ;moves vertical scroll to windows bottom 
           ;"1" means move down ("3" moves down higher)
           ;"0" means move up ("2" moves up higher)
           ;"6" moves top
           ;"7" moves to bottom
           ; "A" may mean for any active windows (yet to be confirmed)
 
-  SendMessage, 0x114, 7, 0, , A		;moves horizontal scroll to windows left edge (to prevent "blank" areas in gui windows)
+  SendMessage, 0x114, 7, 0, , A    ;moves horizontal scroll to windows left edge (to prevent "blank" areas in gui windows)
           ;"1" means move right ("3" moves right higher)
           ;"0" means move left ("2" moves left higher)
           ;"6" moves left edge
@@ -1038,6 +1069,168 @@ SaveWinPos()
     IniWrite, %ypos%, LootFilter.ini, Settings, ypos
   }
 Return
+}
+
+#If WinActive("Add or Edit a Group")
+Tab::
+Gui, submit, NoHide
+;...context specific stuff
+
+KeyWait, Tab
+GuiControlGet, OutputVarE, 2:Focus
+GuiControlGet, varname, 2:Focusv
+If (InStr(varname,"OrFlag") || InStr(varname,"Min") || InStr(varname,"Eval") || InStr(varname,"OrCount") || InStr(varname,"StashTab") || InStr(varname,"Export") || InStr(varname,"groupKey") || InStr(varname,"Click here to Finish and Return to CLF") || InStr(varname,"Remove") || InStr(varname,"Add new"))
+  return
+OutputVar := StrReplace(OutputVarE, "Edit", "ComboBox")
+ControlGet, hCBe, hwnd,,%OutputVarE%
+ControlGet, hCB, hwnd,,%OutputVar%
+if (!WinExist("ahk_id "hCBMatchesGui) && hCB && hCBe) {
+  CreateCBMatchingGUI(hCB, "Add or Edit a Group")
+}
+return
+
+;--------------------------------------------------------------------------------
+CreateCBMatchingGUI(hCB, parentWindowTitle) {
+;--------------------------------------------------------------------------------
+  Global CBMatchingGUI := {}
+  Gui CBMatchingGUI:New, -Caption -SysMenu -Resize +ToolWindow +AlwaysOnTop
+  Gui, +HWNDhCBMatchesGui +Delimiter`n
+  Gui, Margin, 0, 0
+  Gui, Font, s14 q5
+  
+  ; get Parent ComboBox info
+  WinGetPos, cX, cY, cW, cH, % "ahk_id " hCB
+  ControlGet, CBList, List,,, % "ahk_id " hCB
+  ; MsgBox % ErrorLevel
+  ControlGet, CBChoice, Choice,,, % "ahk_id " hCB
+  ; MsgBox % CBList ? "True" : "False"
+  ; set Gui controls with Parent ComboBox info
+  Gui, Add, Edit, % "+HWNDhEdit x0 y0 w"cW+200 " R1"
+  GuiControl,, %hEdit%, %CBChoice%
+  Gui, Add, ListBox, % "+HWNDhLB xp y+0 wp" " R20", % CBList
+  GuiControl, ChooseString, %hLB%, %CBChoice%
+  
+  CBMatchingGUI.hwnd := hCBMatchesGui
+  CBMatchingGUI.hEdit := hEdit
+  CBMatchingGUI.hLB := hLB
+  CBMatchingGUI.hParentCB := hCB
+  CBMatchingGUI.parentCBList := CBList
+  CBMatchingGUI.parentWindowTitle := parentWindowTitle
+  
+  gFunction := Func("CBMatching").Bind(CBMatchingGUI)
+  GuiControl, +g, %hEdit%, %gFunction%
+  
+  Gui, Show, % "x"cX-5 " y"cY-5 " ", % "CBMatchingGUI"
+  ControlFocus,, % "ahk_id "CBMatchingGUI.hEdit
+  SetTimer, DestroyCBMatchingGUI, 80
+}
+
+;--------------------------------------------------------------------------------
+CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
+;--------------------------------------------------------------------------------
+  GuiControlGet, userInput,, % CBMatchingGUI.hEdit
+  userInputArr := StrSplit(RTrim(userInput), " ")
+  choicesList := CBMatchingGUI.parentCBList
+  MatchCount := MatchList := MisMatchList := 0
+  ;--Find in list
+  for k, v in userInputArr
+  {
+    If (InStr(choicesList, v))
+      MatchList := True
+    else
+      MisMatchList := True
+  }
+  if (MatchList && !MisMatchList) {
+
+    Loop, Parse, choicesList, "`n"
+    {
+      MatchString := MisMatchString := 0
+      posArr := {}
+      for k, v in userInputArr
+      {
+        If (FoundPos := InStr(A_LoopField, v))
+        {
+          MatchString := True
+          posArr.Push(FoundPos)
+        }
+        else
+          MisMatchString := True
+      }
+      If (MatchString && !MisMatchString)
+      {
+        For k, v in posArr
+        {
+          If (v = 1 && A_Index = 1)
+            atStart := True
+        }
+        If (atStart)
+          MatchesAtStart .= "`n"A_LoopField
+        else
+          MatchesAnywhere .= "`n"A_LoopField
+        MatchCount++
+      }
+      if (FoundPos := InStr(A_LoopField, userInput)) {
+        if (FoundPos = 1)
+          MatchesAtStart .= "`n"A_LoopField
+        else
+          MatchesAnywhere .= "`n"A_LoopField             
+        MatchCount++
+      } 
+    }
+    Matches := MatchesAtStart . MatchesAnywhere ; Ordered Match list
+    GuiControl,, % CBMatchingGUI.hLB, %Matches%
+    if (MatchCount = 1) {
+      UniqueMatch := Matches
+      GuiControl, ChooseString, % CBMatchingGUI.hLB, %UniqueMatch%
+    } 
+    else
+      GuiControl, Choose, % CBMatchingGUI.hLB, 1
+  } 
+  else
+    GuiControl,, % CBMatchingGUI.hLB, `n<! No Match !>
+}
+
+;--------------------------------------------------------------------------------
+DestroyCBMatchingGUI() {
+;--------------------------------------------------------------------------------
+  Global CBMatchingGUI ; global object created with the CBMatchingGUI
+  
+  if (!WinActive("Ahk_id " CBMatchingGUI.hwnd) and WinExist("ahk_id " CBMatchingGUI.hwnd)) {
+    Gui, % CBMatchingGUI.hwnd ":Destroy"
+    SetTimer, DestroyCBMatchingGUI, Delete
+  }
+}
+
+;================================================================================
+;#[3.3.2.1 CBMatchingGUI]
+#IfWinActive, CBMatchingGUI
+;================================================================================
+Enter::
+NumpadEnter::
+Tab::setCBMatchingGUILBChoice(CBMatchingGUI) ; pass GUI object reference
+    
+Up::
+Down::ControlSend,, % A_ThisHotkey = "Up" ? "{Up}" : "{Down}", % "ahk_id "CBMatchingGUI.hLB
+    
+;--------------------------------------------------------------------------------
+setCBMatchingGUILBChoice(CBMatchingGUI) {
+;--------------------------------------------------------------------------------
+  ; get ListBox choice
+  GuiControlGet, LBMatchesSelectedChoice,, % CBMatchingGUI.hLB 
+      
+  ; set choice in parent ComboBox
+  Control, ChooseString, %LBMatchesSelectedChoice%,,% "ahk_id "CBMatchingGUI.hParentCB
+  ; set focus to Parent ComboBox, this will destroy matching GUI
+  ControlFocus,, % "ahk_id "CBMatchingGUI.hParentCB
+
+  ; execute next Tab_EnregFournisseursClients() step
+  ; parentWinTitle := CBMatchingGUI.parentWindowTitle
+  ; if (InStr(parentWinTitle, WinTitles.EnregFournisseurs)) {
+  ;   ; Tab_EnregFournisseursClients("Fournisseurs")
+  ; } 
+  ; else if (InStr(parentWinTitle, WinTitles.EnregClients)) {
+  ;   ; Tab_EnregFournisseursClients("Clients")
+  ; }
 }
 
 GuiEscape:

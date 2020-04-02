@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .10.06
+  Global VersionNumber := .11.00
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -13,7 +13,7 @@
   #MaxThreadsPerHotkey 2
   #MaxMem 256
   ListLines Off
-  Process, Priority, , A
+  ; Process, Priority, , A
   SetBatchLines, -1
   SetKeyDelay, -1, -1
   SetMouseDelay, -1
@@ -41,7 +41,7 @@
   }
 
   OnMessage(0x5555, "MsgMonitor")
-  OnMessage(0x5556, "MsgMonitor")
+  ; OnMessage(0x5556, "MsgMonitor")
   OnMessage( 0xF, "WM_PAINT")
   OnMessage(0x200, Func("ShowToolTip"))  ; WM_MOUSEMOVE
 
@@ -190,7 +190,7 @@
       , ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
       , ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
     Global FillMetamorph := {}
-    ft_ToolTip_Text=
+    ft_ToolTip_Text_Part1=
       (LTrim
       QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
       ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
@@ -233,16 +233,20 @@
       PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
       WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
       WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-      CurrentGemX = Select the X location for the first Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      CurrentGemY = Select the Y location for the first Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      AlternateGemX = Select the X location of the first Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
-      AlternateGemY = Select the Y location of the first Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
+      CurrentGemX = Select the X location for the first Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGemY = Select the Y location for the first Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      AlternateGemX = Select the X location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
+      AlternateGemY = Select the Y location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
       AlternateGemOnSecondarySlot = Enable this to get your First Alternate Gem from Secondary Weapon Set (Swap Weapons)
-      CurrentGem2X = Select the X location for the second Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      CurrentGem2Y = Select the Y location for the second Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      AlternateGem2X = Select the Y location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
-      AlternateGem2Y = Select the Y location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
+      GemItemToogle = Enable this to use Gem Swap1 as Item Swap1
+      CurrentGem2X = Select the X location for the second Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGem2Y = Select the Y location for the second Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      AlternateGem2X = Select the X location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
+      AlternateGem2Y = Select the Y location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2OnSecondarySlot = Enable this to get your Second Alternate Gem from Secondary Weapon Set (Swap Weapons)
+      GemItemToogle2 = Enable this to use Gem Swap2 as Item Swap2
+      GrabCurrencyPosX = Select the X location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+      GrabCurrencyPosY = Select the Y location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
       StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
       YesAutoSkillUp = Enable this to Automatically level up skill gems
@@ -258,6 +262,7 @@
       hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
       hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
       hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
+      hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
       hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
       hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
       hotkeyItemInfo = Set your hotkey to display information about an item`rWill graph price info if there is any match
@@ -289,6 +294,9 @@
       selectedLeague = Which league are you playing on?
       UpdateLeaguesBtn = Use this button when there is a new league
       LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
+      )
+      ft_ToolTip_Text_Part2=
+      (LTrim
       AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
       StashTabCurrency = Assign the Stash tab for Currency items
       StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
@@ -354,6 +362,7 @@
       WR_Reset_Globe = Loads unmodified default values and reloads UI
       WR_Save_JSON_Globe = Save changes to disk`rThese changes will load on script launch
       )
+      ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2
   ; Globals For client.txt file
     Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
     Global CurrentLocation := ""
@@ -410,7 +419,7 @@
       , StackRelease_Enable := False
 
   ; Click Vendor after stash, search for stash
-    Global YesVendorAfterStash, YesSearchForStash
+    Global YesVendorAfterStash, YesVendorBeforeStash, YesSearchForStash
   ; General
     Global BranchName := "master"
     Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
@@ -621,6 +630,7 @@
     global hotkeyPauseMines:="d"
     global hotkeyQuickPortal:="!q"
     global hotkeyGemSwap:="!e"
+    global hotkeyGrabCurrency:="!a"
     global hotkeyGetMouseCoords:="!o"
     global hotkeyCloseAllUI:="Space"
     global hotkeyInventory:="c"
@@ -662,18 +672,26 @@
     global varES20, varES30, varES40, varES50, varES60, varES70, varES80, varES90
     global varMana10, varManaThreshold, ManaThreshold
 
-  ; Gem Swap
+
+  ; Grab Currency
+    global GrabCurrencyPosX:=1877
+    global GrabCurrencyPosY:=772
+
+  ; First Gem/Item Swap
     global CurrentGemX:=1483
     global CurrentGemY:=372
     global AlternateGemX:=1379 
     global AlternateGemY:=171
     global AlternateGemOnSecondarySlot:=0
+    global GemItemToogle:=0
 
+  ; Second Gem/Item Swap
     global CurrentGem2X:=0
     global CurrentGem2Y:=0
     global AlternateGem2X:=0
     global AlternateGem2Y:=0
     global AlternateGem2OnSecondarySlot:=0
+    global GemItemToogle2:=0
 
   ; Attack Triggers
     global TriggerMainAttack:=00000
@@ -1653,24 +1671,26 @@
     Gui Add, Text,                     xs+65   y+10,         Auto-Quit
     Gui Add, Text,                     xs+65   y+10,         Logout
     Gui Add, Text,                     xs+65   y+10,         Auto-QSilver
-    Gui Add, Text,                       xs+65   y+10,         Coord/Pixel         
+    Gui Add, Text,                     xs+65   y+10,         Coord/Pixel         
     Gui Add, Text,                     xs+65   y+10,         Quick-Portal
     Gui Add, Text,                     xs+65   y+10,         Gem-Swap
+    Gui Add, Text,                     xs+65   y+10,         Grab Currency
     Gui Add, Text,                     xs+65   y+10,         Pop Flasks
     Gui Add, Text,                     xs+65   y+10,         ID/Vend/Stash
     Gui Add, Text,                     xs+65   y+10,         Item Info
 
-    Gui,Add,Edit,       xs ys+20 w60 h19     vhotkeyOptions      ,%hotkeyOptions%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyAutoFlask      ,%hotkeyAutoFlask%
-    Gui,Add,Edit,           y+4  w60 h19   vhotkeyAutoQuit      ,%hotkeyAutoQuit%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyLogout      ,%hotkeyLogout%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyAutoQuicksilver  ,%hotkeyAutoQuicksilver%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyGetMouseCoords  ,%hotkeyGetMouseCoords%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyQuickPortal    ,%hotkeyQuickPortal%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyGemSwap      ,%hotkeyGemSwap%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyPopFlasks      ,%hotkeyPopFlasks%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyItemSort   ,%hotkeyItemSort%
-    Gui,Add,Edit,           y+4   w60 h19   vhotkeyItemInfo   ,%hotkeyItemInfo%
+    Gui,Add,Edit,  xs ys+20        w60 h19     vhotkeyOptions         ,%hotkeyOptions%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuit          ,%hotkeyAutoQuit%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuicksilver   ,%hotkeyAutoQuicksilver%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
 
     Gui, Font, Bold
     Gui Add, Text,                     xs+145   ys,         Ingame:
@@ -1726,6 +1746,8 @@
     Menu, Tray, Add,         Run Calibration Wizard, StartCalibrationWizard
     Menu, Tray, Add
     Menu, Tray, Add,         Show Gamestates, ShowDebugGamestates
+    Menu, Tray, Add
+    Menu, Tray, Add,         Custom Loot Filter, LaunchLootFilter
     Menu, Tray, Add
     Menu, Tray, Add,         Open FindText interface, ft_Start
     Menu, Tray, Add
@@ -2075,7 +2097,7 @@
   If FileExist(ClientLog)
   {
     Monitor_GameLogs(1)
-    SetTimer, Monitor_GameLogs, 500
+    SetTimer, Monitor_GameLogs, 300
   }
   Else
   {
@@ -2107,7 +2129,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; ItemSortCommand - Sort inventory and determine action
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ItemSortCommand:
+  ItemSortCommand(){
     Thread, NoTimers, True
     If RunningToggle  ; This means an underlying thread is already running the loop below.
     {
@@ -2134,20 +2156,14 @@ Return
       } 
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
       { 
-        If (YesSearchForStash && (OnTown || OnHideout || OnMines))
+        If (YesSearchForStash && YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
         {
-          If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
-          {
-            LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
-            Loop, 66
-            {
-              Sleep, 200
-              GuiStatus()
-              If OnStash
-              Break
-            }
-          }
-          Else
+          SearchVendor()
+          VendorRoutine()
+        }
+        Else If (YesSearchForStash && !YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
+        {
+          If !SearchStash()
           {
             Send {%hotkeyInventory%}
             RunningToggle := False
@@ -2165,6 +2181,7 @@ Return
           Return
         }
       }
+      Sleep, -1
       SendMSG(1,1,scriptTradeMacro)
       If (OnDiv && YesDiv)
         DivRoutine()
@@ -2181,7 +2198,25 @@ Return
     MouseMove, xx, yy, 0
     If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
       SetTimer, TGameTick, On
-  Return
+    Return
+  }
+
+  ; Search Stash Routine
+  SearchStash()
+  {
+    If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
+    {
+      LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
+      Loop, 66
+      {
+        Sleep, 50
+        GuiStatus()
+        If OnStash
+          Return True
+      }
+    }
+    Return False
+  }
   ; ShooMouse - Move mouse out of the inventory area
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ShooMouse()
@@ -2218,6 +2253,14 @@ Return
     tGQ := 0
     SortFlask := {}
     SortGem := {}
+    If (YesVendorBeforeStash){
+      CurrentTab:=0
+      SortFirst := {}
+      Loop 32
+      {
+        SortFirst[A_Index] := {}
+      }
+    }
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
@@ -2246,7 +2289,6 @@ Return
           ;Seems to be an empty slot, no need to clip item info
           Continue
         }
-        
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
         If !Prop.IsItem
@@ -2272,6 +2314,86 @@ Return
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
+          }
+        }
+        If (YesVendorBeforeStash && !OnStash && RunningToggle) 
+        {
+          If (Prop.SpecialType = "Quest Item")
+            Continue
+          Else If (sendstash:=MatchLootFilter())
+            Sleep, -1
+          Else If (Prop.Incubator)
+            Continue
+          Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
+            Continue
+          Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
+            sendstash := StashTabCurrency
+          Else If (Prop.IsMap&&StashTabYesMap)
+            sendstash := StashTabMap
+          Else If ( StashTabYesFragment 
+            && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
+            || Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
+            sendstash := StashTabFragment
+          Else If (Prop.RarityDivination&&StashTabYesDivination)
+            sendstash := StashTabDivination
+          Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
+            sendstash := StashTabOrgan
+          Else If (Prop.RarityUnique&&Prop.IsOrgan="")
+          {
+            If (StashTabYesUniqueRing&&Prop.Ring)
+            {
+              sendstash := StashTabUniqueRing
+            }
+            Else If (StashTabYesUniqueDump)
+            {
+              sendstash := StashTabUniqueDump
+            }
+            Continue
+          }
+          Else If (Prop.Essence&&StashTabYesEssence)
+            sendstash := StashTabEssence
+          Else If (Prop.Fossil&&StashTabYesFossil)
+            sendstash := StashTabFossil
+          Else If (Prop.Resonator&&StashTabYesResonator)
+            sendstash := StashTabResonator
+          Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
+            sendstash := StashTabFlaskQuality
+          Else If (Prop.RarityGem)
+          {
+            If ((Stats.Quality>0)&&StashTabYesGemQuality)
+              sendstash := StashTabGemQuality
+            Else If (Prop.Support && StashTabYesGemSupport)
+              sendstash := StashTabGemSupport
+            Else If (StashTabYesGem)
+              sendstash := StashTabGem
+          }
+          Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
+            sendstash := StashTabLinked
+          Else If (Prop.Prophecy&&StashTabYesProphecy)
+            sendstash := StashTabProphecy
+          Else If (Prop.Oil&&StashTabYesOil)
+            sendstash := StashTabOil
+          Else If (Prop.Veiled&&StashTabYesVeiled)
+            sendstash := StashTabVeiled
+          Else If (Prop.ClusterJewel&&StashTabYesClusterJewel)
+            sendstash := StashTabClusterJewel
+          Else If (StashTabYesCrafting 
+            && ((YesStashT1 && Prop.CraftingBase = "T1") 
+              || (YesStashT2 && Prop.CraftingBase = "T2") 
+              || (YesStashT3 && Prop.CraftingBase = "T3"))
+            && ((YesStashCraftingNormal && Prop.RarityNormal)
+              || (YesStashCraftingMagic && Prop.RarityMagic)
+              || (YesStashCraftingRare && Prop.RarityRare))
+            && (!YesStashCraftingIlvl 
+              || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
+            sendstash := StashTabCrafting
+          Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
+            sendstash := StashTabPredictive
+          Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
+            sendstash := StashTabDump
+          If (sendstash > 0)
+          {
+            SortFirst[sendstash].Push({"C":C,"R":R})
           }
         }
         If (OnVendor&&YesVendor)
@@ -2302,6 +2424,13 @@ Return
             tGQ += Q
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
+          }
+          if (YesVendorBeforeStash)
+          {
+            If (Prop.RarityUnique)
+            {
+              Continue
+            }
           }
           If ( Prop.SpecialType="" )
           {
@@ -2346,6 +2475,33 @@ Return
         }
       }
     }
+    If (OnVendor && RunningToggle && YesVendorBeforeStash)
+    {
+      RandomSleep(60,90)
+      CtrlClick(378,820)
+      RandomSleep(60,90)
+      SearchStash()
+      If (OnStash && RunningToggle && YesStash)
+      {
+          For Tab, Tv in SortFirst
+          {
+            For Item, Iv in Tv
+            {
+              MoveStash(Tab)
+              C := SortFirst[Tab][Item]["C"]
+              R := SortFirst[Tab][Item]["R"]
+              GridX := InventoryGridX[C]
+              GridY := InventoryGridY[R]
+              Grid := RandClick(GridX, GridY)
+              Sleep, 15*Latency
+              CtrlClick(Grid.X,Grid.Y)
+              Sleep, 45*Latency
+            }
+          }
+        If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+          StockScrolls()
+      }
+    }
     Return
   }
   ; StashRoutine - Does stash functions
@@ -2365,6 +2521,23 @@ Return
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse away for Screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
+    If (!OnStash)
+    {
+      Loop 2
+      {
+        Sleep, 50
+        If (OnStash)
+        Break
+      }
+      If (!OnStash)
+      {
+        RunningToggle:=False
+        Send, %hotkeyCloseAllUI%
+        SearchStash()
+        SetTimer, ItemSortCommand, -50
+        Exit
+      }
+    }
     ; Main loop through inventory
     For C, GridX in InventoryGridX
     {
@@ -2383,7 +2556,6 @@ Return
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
         } 
         PointColor := ScreenShot_GetColor(GridX,GridY)
-        
         If indexOf(PointColor, varEmptyInvSlotColor) {
           ;Seems to be an empty slot, no need to clip item info
           Continue
@@ -2526,7 +2698,7 @@ Return
     ; Sorted items are sent together
     If (OnStash && RunningToggle && YesStash)
     {
-      If YesSortFirst
+      If (YesSortFirst)
       {
         For Tab, Tv in SortFirst
         {
@@ -2546,76 +2718,83 @@ Return
       }
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
-      If (YesVendorAfterStash && Unstashed && (OnHideout || OnTown || OnMines))
+      If (YesVendorAfterStash && !YesVendorBeforeStash && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
-        If OnHideout
-          SearchStr := VendorStr
-        Else If OnMines
+        SearchVendor()
+        VendorRoutine()
+      }
+    }
+    Return
+  }
+
+  ; Search Vendor Routine
+
+  SearchVendor()
+  {
+    If OnHideout
+      SearchStr := VendorStr
+    Else If OnMines
+    {
+      SearchStr := VendorMineStr
+      Town := "Mines"
+    }
+    Else
+    {
+      Town := CompareLocation("Town")
+      If (Town = "Lioneye's Watch")
+        SearchStr := VendorLioneyeStr
+      Else If (Town = "The Forest Encampment")
+        SearchStr := VendorForestStr
+      Else If (Town = "The Sarn Encampment")
+        SearchStr := VendorSarnStr
+      Else If (Town = "Highgate")
+        SearchStr := VendorHighgateStr
+      Else If (Town = "Overseer's Tower")
+        SearchStr := VendorOverseerStr
+      Else If (Town = "The Bridge Encampment")
+        SearchStr := VendorBridgeStr
+      Else If (Town = "Oriath Docks")
+        SearchStr := VendorDocksStr
+      Else If (Town = "Oriath")
+        SearchStr := VendorOriathStr
+      Else
+        Return
+    }
+    Sleep, 45*Latency
+    SendInput, {%hotkeyCloseAllUI%}
+    Sleep, 45*Latency
+    If (Town = "The Sarn Encampment")
+    {
+      LeftClick(GameX + GameW//6, GameY + GameH//1.5)
+      Sleep, 600
+      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+    }
+    Else If (Town = "Oriath Docks")
+    {
+      LeftClick(GameX + 5, GameY + GameH//2)
+      Sleep, 1200
+      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+    }
+    Else If (Town = "Mines")
+    {
+      LeftClick(GameX + GameW//3, GameY + GameH//5)
+      Sleep, 800
+      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+    }
+    if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+    {
+      LeftClick(Vendor.1.x, Vendor.1.y)
+      Sleep, 60
+      Loop, 66
+      {
+        If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
         {
-          SearchStr := VendorMineStr
-          Town := "Mines"
+          Sleep, 30*Latency
+          LeftClick(Sell.1.x,Sell.1.y)
+          Sleep, 120*Latency
+          Break
         }
-        Else
-        {
-          Town := CompareLocation("Town")
-          If (Town = "Lioneye's Watch")
-            SearchStr := VendorLioneyeStr
-          Else If (Town = "The Forest Encampment")
-            SearchStr := VendorForestStr
-          Else If (Town = "The Sarn Encampment")
-            SearchStr := VendorSarnStr
-          Else If (Town = "Highgate")
-            SearchStr := VendorHighgateStr
-          Else If (Town = "Overseer's Tower")
-            SearchStr := VendorOverseerStr
-          Else If (Town = "The Bridge Encampment")
-            SearchStr := VendorBridgeStr
-          Else If (Town = "Oriath Docks")
-            SearchStr := VendorDocksStr
-          Else If (Town = "Oriath")
-            SearchStr := VendorOriathStr
-          Else
-            Return
-        }
-        Sleep, 45*Latency
-        SendInput, {%hotkeyCloseAllUI%}
-        Sleep, 45*Latency
-        If (Town = "The Sarn Encampment")
-        {
-          LeftClick(GameX + GameW//6, GameY + GameH//1.5)
-          Sleep, 600
-          LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-        }
-        Else If (Town = "Oriath Docks")
-        {
-          LeftClick(GameX + 5, GameY + GameH//2)
-          Sleep, 1200
-          LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-        }
-        Else If (Town = "Mines")
-        {
-          LeftClick(GameX + GameW//3, GameY + GameH//5)
-          Sleep, 800
-          LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-        }
-        if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
-        {
-          LeftClick(Vendor.1.x, Vendor.1.y)
-          Sleep, 60
-          Loop, 66
-          {
-            If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
-            {
-              Sleep, 30*Latency
-              LeftClick(Sell.1.x,Sell.1.y)
-              Sleep, 120*Latency
-              Break
-            }
-            Sleep, 100
-          }
-          VendorRoutine()
-          Return
-        }
+        Sleep, 100
       }
     }
     Return
@@ -3357,6 +3536,7 @@ Return
           IfInString, A_LoopField, Cluster Jewel
           {
             Prop.ClusterJewel := True
+            Prop.SpecialType := "Cluster Jewel"
             Continue
           }
           IfInString, A_LoopField, Flask
@@ -4805,10 +4985,13 @@ Return
     {
       matched := False
       nomatched := False
-      ormatched := False
+      ormatched := 0
       ormismatch := False
+      orcount := LootFilter[GKey]["OrCount"]
       For SKey, Selected in Groups
       {
+        If (SKey = "OrCount" || SKey = "StashTab")
+          Continue
         For AKey, AVal in Selected
         {
           If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
@@ -4830,7 +5013,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4845,7 +5028,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4860,7 +5043,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4875,7 +5058,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4890,7 +5073,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4905,7 +5088,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else 
             {
@@ -4945,7 +5128,7 @@ Return
             {
               matched := True
               If orflag
-                ormatched := True
+                ormatched++
             }
             Else
             {
@@ -4956,14 +5139,14 @@ Return
           }
         }
       }
-      If (ormismatch && !ormatched)
+      If (ormismatch && ormatched < orcount)
         nomatched := True
       If (matched && !nomatched)
       {
         If GroupOut
         Return GKey
         Else
-        Return LootFilterTabs[GKey]
+        Return LootFilter[GKey]["StashTab"]
       }
     }
   Return False
@@ -6586,20 +6769,15 @@ Return
           }
         }
 
-        If (MainAttackPressedActive && TriggerMainAttack > 0 && AutoFlask)
+        If (MainAttackPressedActive && AutoFlask)
         {
           If GetKeyState(hotkeyMainAttack)
           {
-            TriggerFlask(TriggerMainAttack)
+            If (TriggerMainAttack > 0)
+              TriggerFlask(TriggerMainAttack)
             Loop, 10
             {
-              If (YesUtility%A_Index%) 
-                && !(OnCooldownUtility%A_Index%) 
-                && (YesUtility%A_Index%MainAttack) 
-                && !(YesUtility%A_Index%Quicksilver) 
-                && (YesUtility%A_Index%LifePercent="Off") 
-                && (YesUtility%A_Index%ESPercent="Off") 
-                && (YesUtility%A_Index%ManaPercent="Off") 
+              If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%MainAttack)
               {
                 TriggerUtility(A_Index)
               }
@@ -6608,20 +6786,15 @@ Return
           Else
             MainAttackPressedActive := False
         }
-        If (SecondaryAttackPressedActive && TriggerSecondaryAttack > 0 && AutoFlask)
+        If (SecondaryAttackPressedActive && AutoFlask)
         {
           If GetKeyState(hotkeySecondaryAttack)
           {
-            TriggerFlask(TriggerSecondaryAttack)
+            If (TriggerSecondaryAttack > 0)
+              TriggerFlask(TriggerSecondaryAttack)
             Loop, 10
             {
-              If (YesUtility%A_Index%) 
-                && !(OnCooldownUtility%A_Index%) 
-                && (YesUtility%A_Index%SecondaryAttack) 
-                && !(YesUtility%A_Index%Quicksilver) 
-                && (YesUtility%A_Index%LifePercent="Off") 
-                && (YesUtility%A_Index%ESPercent="Off") 
-                && (YesUtility%A_Index%ManaPercent="Off") 
+              If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%SecondaryAttack)
               {
                 TriggerUtility(A_Index)
               }
@@ -6631,30 +6804,32 @@ Return
             SecondaryAttackPressedActive := False
         }
 
-        If AutoFlask
-        Loop, 10
+        If (AutoFlask)
         {
-          If (YesUtility%A_Index%) 
-            && !(OnCooldownUtility%A_Index%) 
-            && !(YesUtility%A_Index%Quicksilver) 
-            && !(YesUtility%A_Index%MainAttack) 
-            && !(YesUtility%A_Index%SecondaryAttack) 
-            && (YesUtility%A_Index%LifePercent="Off") 
-            && (YesUtility%A_Index%ESPercent="Off") 
-            && (YesUtility%A_Index%ManaPercent="Off") 
+          Loop, 10
           {
-            If !(IconStringUtility%A_Index%)
-              TriggerUtility(A_Index)
-            Else If (IconStringUtility%A_Index%)
+            If (YesUtility%A_Index%) 
+              && !(OnCooldownUtility%A_Index%) 
+              && !(YesUtility%A_Index%Quicksilver) 
+              && !(YesUtility%A_Index%MainAttack) 
+              && !(YesUtility%A_Index%SecondaryAttack) 
+              && (YesUtility%A_Index%LifePercent="Off") 
+              && (YesUtility%A_Index%ESPercent="Off") 
+              && (YesUtility%A_Index%ManaPercent="Off") 
             {
-              BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
-              If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
-              {
-                OnCooldownUtility%A_Index%:=1
-                SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
-              }
-              Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
+              If !(IconStringUtility%A_Index%)
                 TriggerUtility(A_Index)
+              Else If (IconStringUtility%A_Index%)
+              {
+                BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
+                If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
+                {
+                  OnCooldownUtility%A_Index%:=1
+                  SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
+                }
+                Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
+                  TriggerUtility(A_Index)
+              }
             }
           }
         }
@@ -7194,9 +7369,33 @@ Return
     ; ----------------------------------------------------------------------------------------------------------------------
   }
 
+; GrabCurrency - Get currency fast to use on a white/blue/rare strongbox
+  GrabCurrency(){
+    GrabCurrencyCommand:
+      Thread, NoTimers, true    ;Critical
+      Keywait, Alt
+      BlockInput, MouseMove
+      MouseGetPos xx, yy
+      RandomSleep(45,45)
+      If !GuiStatus("OnInventory")
+      {      
+        Send {%hotkeyInventory%} 
+        RandomSleep(45,45)
+      }
+      RandomSleep(45,45)
+      RightClick(GrabCurrencyPosX, GrabCurrencyPosY)
+      RandomSleep(45,45)
+      
+      Send {%hotkeyInventory%} 
+      MouseMove, xx, yy, 0
+      BlockInput, MouseMoveOff
+  return
+  }
+; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  GemSwap(){
+  GemSwap()
+  {
     GemSwapCommand:
       Thread, NoTimers, true    ;Critical
       Keywait, Alt
@@ -7209,50 +7408,63 @@ Return
         Send {%hotkeyInventory%} 
         RandomSleep(45,45)
       }
-      ;first gem
-      If (CurrentGemX != 0 && CurrentGemY != 0 && AlternateGemX !=0 && AlternateGemY != 0) {
-      
-      RightClick(CurrentGemX, CurrentGemY)
-      RandomSleep(45,45)
-      
-      if (AlternateGemOnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(AlternateGemX, AlternateGemY)
+      ;First Gem or Item Swap
+      If ((CurrentGemX != 0 && CurrentGemY != 0) || (AlternateGemX !=0 && AlternateGemY != 0)) {
+        If (GemItemToogle)
+        {
+          LeftClick(CurrentGemX, CurrentGemY)
+        }
+        Else
+        {
+          RightClick(CurrentGemX, CurrentGemY)
+        }
+        RandomSleep(45,45)
+        If (AlternateGemOnSecondarySlot && !GemItemToogle)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(AlternateGemX, AlternateGemY)
         RandomSleep(90,120)
-      
-      if (AlternateGemOnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(CurrentGemX, CurrentGemY)
+        If (AlternateGemOnSecondarySlot && !GemItemToogle)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(CurrentGemX, CurrentGemY)
         RandomSleep(90,120)
       }
-      If (CurrentGem2X != 0 && CurrentGem2Y != 0 && AlternateGem2X !=0 && AlternateGem2Y != 0) {
-      ;second gem
-      RightClick(CurrentGem2X, CurrentGem2Y)
-      RandomSleep(45,45)
-      
-      if (AlternateGem2OnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(AlternateGem2X, AlternateGem2Y)
+      ;Second Gem of Item Swap
+      If ((CurrentGem2X != 0 && CurrentGem2Y != 0) || (AlternateGem2X !=0 && AlternateGem2Y != 0)) {
+        If (GemItemToogle2)
+        {
+          LeftClick(CurrentGem2X, CurrentGem2Y)
+        }
+        Else
+        {
+          RightClick(CurrentGem2X, CurrentGem2Y)
+        }
+        RandomSleep(45,45)
+        If (AlternateGem2OnSecondarySlot && !GemItemToogle2)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(AlternateGem2X, AlternateGem2Y)
         RandomSleep(90,120)
-      
-      if (AlternateGem2OnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(CurrentGem2X, CurrentGem2Y)
+        If (AlternateGem2OnSecondarySlot && !GemItemToogle2)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(CurrentGem2X, CurrentGem2Y)
         RandomSleep(90,120)
       }
       Send {%hotkeyInventory%} 
       MouseMove, xx, yy, 0
       BlockInput, MouseMoveOff
     return
-    }
+  }
 
 ; QuickPortal - Open Town Portal
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7645,7 +7857,7 @@ Return
         }    
       If (lParam=5){
         ; hotkeyItemSort
-        GoSub, ItemSortCommand
+        ItemSortCommand()
         return
         }    
       }
@@ -7761,6 +7973,7 @@ Return
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
       IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
+      IniRead, YesVendorBeforeStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash, 0
       
       ;Stash Tab Management
       IniRead, StashTabCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency, 1
@@ -8173,14 +8386,19 @@ Return
         str := StrSplit(key, " ", ,2)
         KeyFlask%A_Index%Proper := str[1]
       }
-      
-      ;Gem Swap
+
+      ;Grab Currency From Inventory
+      IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 1877
+      IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 772
+
+      ;Gem Swap Gem 1
       IniRead, CurrentGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX, 1353
       IniRead, CurrentGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY, 224
       IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
       IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
       IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
 
+      ;Gem Swap Gem 2
       IniRead, CurrentGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X, 0
       IniRead, CurrentGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y, 0
       IniRead, AlternateGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X, 0
@@ -8258,6 +8476,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+      If hotkeyGrabCurrency
+        hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off  
       If hotkeyGetCoords
         hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
       If hotkeyPopFlasks
@@ -8289,6 +8509,7 @@ Return
       IniRead, hotkeyAutoQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver, !MButton
       IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
       IniRead, hotkeyGemSwap, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap, !e
+      IniRead, hotkeyGrabCurrency, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency, !a
       IniRead, hotkeyGetMouseCoords, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords, !o
       IniRead, hotkeyPopFlasks, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks, CapsLock
       IniRead, hotkeyLogout, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout, F12
@@ -8314,6 +8535,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, On
+      If hotkeyGrabCurrency
+        hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, On
       If hotkeyGetMouseCoords
         hotkey,% hotkeyGetMouseCoords, CoordCommand, On
       If hotkeyPopFlasks
@@ -8462,6 +8685,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+      If hotkeyGrabCurrency
+        hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
       If hotkeyGetCoords
         hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
       If hotkeyPopFlasks
@@ -8696,6 +8921,7 @@ Return
       IniWrite, %hotkeyAutoQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver
       IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
       IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
+      IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
       IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
       IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
       IniWrite, %hotkeyLogout%, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout
@@ -8857,6 +9083,10 @@ Return
       IniWrite, %keyFlask4%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask4
       IniWrite, %keyFlask5%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask5  
       
+      ;Grab Currency
+      IniWrite, %GrabCurrencyPosX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX
+      IniWrite, %GrabCurrencyPosY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY
+
       ;Gem Swap
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
       IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY
@@ -9158,6 +9388,7 @@ Return
       GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
       GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
       GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
+      GuiControl,, hotkeyGrabCurrency, %hotkeyGrabCurrency%
       GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
       GuiControl,, hotkeyItemSort, %hotkeyItemSort%
       GuiControl,, hotkeyItemInfo, %hotkeyItemInfo%
@@ -9171,6 +9402,8 @@ Return
       GuiControl,, PortalScrollY, %PortalScrollY%
       GuiControl,, WisdomScrollX, %WisdomScrollX%
       GuiControl,, WisdomScrollY, %WisdomScrollY%
+      GuiControl,, GrabCurrencyPosX, %GrabCurrencyPosX%
+      GuiControl,, GrabCurrencyPosY, %GrabCurrencyPosY%
       GuiControl,, CurrentGemX, %CurrentGemX%
       GuiControl,, CurrentGemY, %CurrentGemY%
       GuiControl,, AlternateGemX, %AlternateGemX%
@@ -12055,6 +12288,7 @@ Return
       IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
       IniWrite, %YesSearchForStash%, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash
       IniWrite, %YesVendorAfterStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash
+      IniWrite, %YesVendorBeforeStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash
       IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit

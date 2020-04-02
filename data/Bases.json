@@ -8351,7 +8351,7 @@
     "name": "Kinetic Blast"
   },
   {
-    "drop_level": 1,
+    "drop_level": 5,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
