@@ -44,41 +44,342 @@
 
 ## CLF Examples
 
+Using the CLF has become much easier, press the TAB key to search for keys
+
+Use the OR condition to match for mutliple types in one filter
+
+These examples show a few demonstrations using the breakpoints from the community thread [You can find HERE](https://docs.google.com/spreadsheets/d/1cH1Kd5nQnXSjY6SFQ_bPVei8n_Hy6fje5OWdG7s48UI/edit#gid=262670440)
+
 > Import these examples to the CLF to use or edit them for yourself. I would suggest using the Item Info hotkey to learn which stats to look for. The filters will always return the first result, so order can be important. (Currently requires manually re-ordering in the file, not recommended)
 
 > In the following example we filter any items with PoE.Ninja price above 4 chaos to stash tab excluding currency
 
 ```JSON
-{"Affix":{},"Prop":{"Prop1":"ChaosValue","Prop1Eval":">=","Prop1Min":"4","Prop2":"RarityCurrency","Prop2Eval":"!=","Prop2Min":"1"},"Stats":{}}
+{
+ "Affix": {},
+ "Prop": {
+  "Prop1": "ChaosValue",
+  "Prop1Eval": ">=",
+  "Prop1Min": "4",
+  "Prop2": "RarityCurrency",
+  "Prop2Eval": "!=",
+  "Prop2Min": "1",
+  "Prop1OrFlag": 0,
+  "Prop2OrFlag": 0
+ },
+ "Stats": {},
+ "OrCount": 1,
+ "StashTab": "2"
+}
 ```
 
-> In the next example, we filter non-unique one hand or claw weapons, with potential q20 dps above 300
+> In the next example, we filter for tier one boots
 
 ```JSON
-{"Affix":{},"Prop":{"Prop1":"RarityUnique","Prop1Eval":"!=","Prop1Min":"1","Prop2":"ItemClass","Prop2Eval":"~","Prop2Min":"One Hand | Claw"},"Stats":{"Stats2":"Dps_Q20","Stats2Eval":">","Stats2Min":"300"}}
+{
+ "Affix": {
+  "Affix1": "MaximumLife",
+  "Affix1Eval": ">=",
+  "Affix1Min": "70",
+  "Affix1OrFlag": "1",
+  "Affix2": "MaximumEnergyShield",
+  "Affix2Eval": ">=",
+  "Affix2Min": "39",
+  "Affix2OrFlag": "1",
+  "Affix3": "IncreasedEnergyShield",
+  "Affix3Eval": ">=",
+  "Affix3Min": "80",
+  "Affix3OrFlag": "1",
+  "Affix4": "IncreasedMovementSpeed",
+  "Affix4Eval": ">=",
+  "Affix4Min": "30",
+  "Affix4OrFlag": "1",
+  "Affix5": "PseudoColdResist",
+  "Affix5Eval": ">=",
+  "Affix5Min": "42",
+  "Affix5OrFlag": "1",
+  "Affix6": "PseudoFireResist",
+  "Affix6Eval": ">=",
+  "Affix6Min": "42",
+  "Affix6OrFlag": "1",
+  "Affix7": "PseudoLightningResist",
+  "Affix7Eval": ">=",
+  "Affix7Min": "42",
+  "Affix7OrFlag": "1"
+ },
+ "OrCount": "2",
+ "Prop": {
+  "Prop1": "ItemClass",
+  "Prop1Eval": "~",
+  "Prop1Min": "boot",
+  "Prop1OrFlag": "0"
+ },
+ "StashTab": "2",
+ "Stats": {}
+}
 ```
 
-> In the next example, we filter by both ItemBase and ItemClass, and then a required affix
+> In the next example, we filter for tier one helm
 
 ```JSON
-{"Affix":{"Affix1":"ChaosDOTMult","Affix1Eval":">","Affix1Min":"10"},"Prop":{"Prop1":"ItemBase","Prop1Eval":"~","Prop1Min":"fingerless","Prop2":"ItemClass","Prop2Eval":"~","Prop2Min":"glove"},"Stats":{}}
+{
+ "Affix": {
+  "Affix1": "MaximumLife",
+  "Affix1Eval": ">=",
+  "Affix1Min": "80",
+  "Affix1OrFlag": "1",
+  "Affix2": "MaximumEnergyShield",
+  "Affix2Eval": ">=",
+  "Affix2Min": "39",
+  "Affix2OrFlag": "1",
+  "Affix3": "IncreasedEnergyShield",
+  "Affix3Eval": ">=",
+  "Affix3Min": "80",
+  "Affix3OrFlag": "1",
+  "Affix4": "AddedLevelMinionGems",
+  "Affix4Eval": ">=",
+  "Affix4Min": "3",
+  "Affix4OrFlag": "1",
+  "Affix5": "PseudoColdResist",
+  "Affix5Eval": ">=",
+  "Affix5Min": "42",
+  "Affix5OrFlag": "1",
+  "Affix6": "PseudoFireResist",
+  "Affix6Eval": ">=",
+  "Affix6Min": "42",
+  "Affix6OrFlag": "1",
+  "Affix7": "PseudoLightningResist",
+  "Affix7Eval": ">=",
+  "Affix7Min": "42",
+  "Affix7OrFlag": "1",
+  "Affix8": "AddedAccuracy",
+  "Affix8Eval": ">=",
+  "Affix8Min": "351",
+  "Affix8OrFlag": "1"
+ },
+ "OrCount": "2",
+ "Prop": {
+  "Prop1": "ItemClass",
+  "Prop1Eval": "~",
+  "Prop1Min": "helm",
+  "Prop1OrFlag": 0
+ },
+ "StashTab": "2",
+ "Stats": {}
+}
 ```
 
-> In the next example, we filter for high Energy shield boots with movement speed
+> In the next example, we filter for tier one body armour
 
 ```JSON
-{"Affix":{"Affix1":"IncreasedMovementSpeed","Affix1Eval":">","Affix1Min":"24"},"Prop":{},"Stats":{"Stats1":"RatingEnergyShield","Stats1Eval":">","Stats1Min":"145"}}
+{
+ "Affix": {
+  "Affix1": "MaximumLife",
+  "Affix1Eval": ">=",
+  "Affix1Min": "80",
+  "Affix1OrFlag": "1",
+  "Affix2": "MaximumEnergyShield",
+  "Affix2Eval": ">=",
+  "Affix2Min": "77",
+  "Affix2OrFlag": "1",
+  "Affix3": "IncreasedEnergyShield",
+  "Affix3Eval": ">=",
+  "Affix3Min": "92",
+  "Affix3OrFlag": "1",
+  "Affix4": "PseudoColdResist",
+  "Affix4Eval": ">=",
+  "Affix4Min": "42",
+  "Affix4OrFlag": "1",
+  "Affix5": "PseudoFireResist",
+  "Affix5Eval": ">=",
+  "Affix5Min": "42",
+  "Affix5OrFlag": "1",
+  "Affix6": "PseudoLightningResist",
+  "Affix6Eval": ">=",
+  "Affix6Min": "42",
+  "Affix6OrFlag": "1"
+ },
+ "OrCount": "2",
+ "Prop": {
+  "Prop1": "ItemClass",
+  "Prop1Eval": "~",
+  "Prop1Min": "body arm",
+  "Prop1OrFlag": "0"
+ },
+ "StashTab": "2",
+ "Stats": {}
+}
 ```
 
-> In the next example, we filter for life amulets and rings
+> In the next example, we filter for tier one shields
 
 ```JSON
-{"Affix":{"Affix1":"MaximumLife","Affix1Eval":">","Affix1Min":"85"},"Prop":{"Prop1":"ItemClass","Prop1Eval":"~","Prop1Min":"amulet | ring"},"Stats":{}}
+{
+ "Affix": {
+  "Affix1": "AddedLevelGems",
+  "Affix1Eval": ">=",
+  "Affix1Min": "1",
+  "Affix1OrFlag": "1",
+  "Affix2": "MaximumLife",
+  "Affix2Eval": ">=",
+  "Affix2Min": "90",
+  "Affix2OrFlag": "1",
+  "Affix3": "MaximumEnergyShield",
+  "Affix3Eval": ">=",
+  "Affix3Min": "62",
+  "Affix3OrFlag": "1",
+  "Affix4": "IncreasedEnergyShield",
+  "Affix4Eval": ">=",
+  "Affix4Min": "92",
+  "Affix4OrFlag": "1",
+  "Affix5": "PseudoFireResist",
+  "Affix5Eval": ">=",
+  "Affix5Min": "42",
+  "Affix5OrFlag": "1",
+  "Affix6": "PseudoColdResist",
+  "Affix6Eval": ">=",
+  "Affix6Min": "42",
+  "Affix6OrFlag": "1",
+  "Affix7": "PseudoLightningResist",
+  "Affix7Eval": ">=",
+  "Affix7Min": "42",
+  "Affix7OrFlag": "1",
+  "Affix8": "ChanceBlockSpell",
+  "Affix8Eval": ">=",
+  "Affix8Min": "10",
+  "Affix8OrFlag": "1",
+  "Affix9": "PseudoIncreasedColdDamage",
+  "Affix9Eval": ">=",
+  "Affix9Min": "100",
+  "Affix9OrFlag": "1",
+  "Affix10": "PseudoIncreasedFireDamage",
+  "Affix10Eval": ">=",
+  "Affix10Min": "100",
+  "Affix10OrFlag": "1",
+  "Affix11": "PseudoIncreasedLightningDamage",
+  "Affix11Eval": ">=",
+  "Affix11Min": "100",
+  "Affix11OrFlag": "1",
+  "Affix12": "IncreasedSpellDamage",
+  "Affix12Eval": ">=",
+  "Affix12Min": "100",
+  "Affix12OrFlag": "1",
+  "Affix13": "IncreasedSpellCritChance",
+  "Affix13Eval": ">=",
+  "Affix13Min": "100",
+  "Affix13OrFlag": "1"
+ },
+ "OrCount": 2,
+ "Prop": {
+  "Prop1": "ItemClass",
+  "Prop1Eval": "~",
+  "Prop1Min": "shield",
+  "Prop1OrFlag": 0
+ },
+ "StashTab": "2",
+ "Stats": {}
+}
+```
+
+> In the next example, we filter for tier one Phys 2H
+
+```JSON
+{
+ "Affix": {
+  "Affix1": "IncreasedPhysicalDamage",
+  "Affix1Eval": ">=",
+  "Affix1Min": "170",
+  "Affix1OrFlag": "1",
+  "Affix2": "PseudoTotalAddedAvgAttack",
+  "Affix2Eval": ">=",
+  "Affix2Min": "52",
+  "Affix2OrFlag": "1",
+  "Affix3": "IncreasedCritChance",
+  "Affix3Eval": ">=",
+  "Affix3Min": "35",
+  "Affix3OrFlag": "1",
+  "Affix4": "GlobalCriticalMultiplier",
+  "Affix4Eval": ">=",
+  "Affix4Min": "35",
+  "Affix4OrFlag": "1",
+  "Affix5": "IncreasedAttackSpeed",
+  "Affix5Eval": ">=",
+  "Affix5Min": "26",
+  "Affix5OrFlag": "1",
+  "Affix6": "AddedLevelGems",
+  "Affix6Eval": ">=",
+  "Affix6Min": "3",
+  "Affix6OrFlag": "1"
+ },
+ "OrCount": "2",
+ "Prop": {
+  "Prop1": "ItemClass",
+  "Prop1Eval": "~",
+  "Prop1Min": "Two Hand Axe | Two Hand Sword | Two Hand Mace | Warsta",
+  "Prop1OrFlag": 0
+ },
+ "StashTab": "2",
+ "Stats": {}
+}
+```
+
+> For the last example, we filter for tier one Elemental 2H
+
+```JSON
+{
+ "Affix": {
+  "Affix1": "IncreasedElementalAttack",
+  "Affix1Eval": ">=",
+  "Affix1Min": "87",
+  "Affix1OrFlag": "1",
+  "Affix2": "IncreasedCritChance",
+  "Affix2Eval": ">=",
+  "Affix2Min": "35",
+  "Affix2OrFlag": "1",
+  "Affix3": "GlobalCriticalMultiplier",
+  "Affix3Eval": ">=",
+  "Affix3Min": "35",
+  "Affix3OrFlag": "1",
+  "Affix4": "IncreasedAttackSpeed",
+  "Affix4Eval": ">=",
+  "Affix4Min": "26",
+  "Affix4OrFlag": "1",
+  "Affix5": "AddedLevelGems",
+  "Affix5Eval": ">=",
+  "Affix5Min": "3",
+  "Affix5OrFlag": "1"
+ },
+ "OrCount": "2",
+ "Prop": {
+  "Prop1": "ItemClass",
+  "Prop1Eval": "~",
+  "Prop1Min": "Two Hand Axe | Two Hand Sword | Two Hand Mace | Warsta",
+  "Prop1OrFlag": 0
+ },
+ "StashTab": "2",
+ "Stats": {}
+}
 ```
 
 > For the last example, we filter non-quality Vaal Gems to their own tab
 
 ```JSON
-{"Affix":{},"Prop":{"Prop1":"VaalGem","Prop1Eval":">","Prop1Min":0},"Stats":{"Stats1":"Quality","Stats1Eval":"<","Stats1Min":"1"}}
+{
+ "Affix": {},
+ "Prop": {
+  "Prop1": "VaalGem",
+  "Prop1Eval": ">",
+  "Prop1Min": 0,
+  "Prop1OrFlag": 0
+ },
+ "Stats": {
+  "Stats1": "Quality",
+  "Stats1Eval": "<",
+  "Stats1Min": "1",
+  "Stats1OrFlag": 0
+ },
+ "OrCount": 1,
+ "StashTab": "2"
+}
 ```
 
