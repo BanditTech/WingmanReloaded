@@ -233,14 +233,14 @@
       PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
       WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
       WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-      CurrentGemX = Select the X location for the first Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
-      CurrentGemY = Select the Y location for the first Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGemX = Select the X location for the first Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGemY = Select the Y location for the first Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
       AlternateGemX = Select the X location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
       AlternateGemY = Select the Y location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
       AlternateGemOnSecondarySlot = Enable this to get your First Alternate Gem from Secondary Weapon Set (Swap Weapons)
       GemItemToogle = Enable this to use Gem Swap1 as Item Swap1
-      CurrentGem2X = Select the X location for the second Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
-      CurrentGem2Y = Select the Y location for the second Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGem2X = Select the X location for the second Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGem2Y = Select the Y location for the second Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
       AlternateGem2X = Select the X location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2Y = Select the Y location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2OnSecondarySlot = Enable this to get your Second Alternate Gem from Secondary Weapon Set (Swap Weapons)
@@ -674,8 +674,8 @@
 
 
   ; Grab Currency
-    global GrabCurrencyPosX:=1877
-    global GrabCurrencyPosY:=772
+    global GrabCurrencyPosX:=0
+    global GrabCurrencyPosY:=0
 
   ; First Gem/Item Swap
     global CurrentGemX:=1483
@@ -7377,18 +7377,20 @@ Return
       BlockInput, MouseMove
       MouseGetPos xx, yy
       RandomSleep(45,45)
-      If !GuiStatus("OnInventory")
-      {      
-        Send {%hotkeyInventory%} 
+      If (GrabCurrencyPosX && GrabCurrencyPosY)
+      {
+        If !GuiStatus("OnInventory")
+        {      
+          Send {%hotkeyInventory%} 
+          RandomSleep(45,45)
+        }
         RandomSleep(45,45)
+        RightClick(GrabCurrencyPosX, GrabCurrencyPosY)
+        RandomSleep(45,45)
+        Send {%hotkeyInventory%} 
+        MouseMove, xx, yy, 0
+        BlockInput, MouseMoveOff
       }
-      RandomSleep(45,45)
-      RightClick(GrabCurrencyPosX, GrabCurrencyPosY)
-      RandomSleep(45,45)
-      
-      Send {%hotkeyInventory%} 
-      MouseMove, xx, yy, 0
-      BlockInput, MouseMoveOff
   return
   }
 ; 
@@ -7409,7 +7411,8 @@ Return
         RandomSleep(45,45)
       }
       ;First Gem or Item Swap
-      If ((CurrentGemX != 0 && CurrentGemY != 0) || (AlternateGemX !=0 && AlternateGemY != 0)) {
+      If (CurrentGemX && CurrentGemY && AlternateGemX && AlternateGemY) 
+      {
         If (GemItemToogle)
         {
           LeftClick(CurrentGemX, CurrentGemY)
@@ -7435,7 +7438,8 @@ Return
         RandomSleep(90,120)
       }
       ;Second Gem of Item Swap
-      If ((CurrentGem2X != 0 && CurrentGem2Y != 0) || (AlternateGem2X !=0 && AlternateGem2Y != 0)) {
+      If (CurrentGem2X && CurrentGem2Y && AlternateGem2X && AlternateGem2Y) 
+      {
         If (GemItemToogle2)
         {
           LeftClick(CurrentGem2X, CurrentGem2Y)
@@ -8388,14 +8392,14 @@ Return
       }
 
       ;Grab Currency From Inventory
-      IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 1877
-      IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 772
+      IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 0
+      IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 0
 
       ;Gem Swap Gem 1
-      IniRead, CurrentGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX, 1353
-      IniRead, CurrentGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY, 224
-      IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
-      IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
+      IniRead, CurrentGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX, 0
+      IniRead, CurrentGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY, 0
+      IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 0
+      IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 0
       IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
 
       ;Gem Swap Gem 2
