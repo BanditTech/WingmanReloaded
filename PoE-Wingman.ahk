@@ -190,7 +190,7 @@
       , ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
       , ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
     Global FillMetamorph := {}
-    ft_ToolTip_Text=
+    ft_ToolTip_Text_Part1=
       (LTrim
       QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
       ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
@@ -233,16 +233,18 @@
       PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
       WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
       WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-      CurrentGemX = Select the X location for the first Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      CurrentGemY = Select the Y location for the first Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      AlternateGemX = Select the X location of the first Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
-      AlternateGemY = Select the Y location of the first Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
+      CurrentGemX = Select the X location for the first Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGemY = Select the Y location for the first Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      AlternateGemX = Select the X location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
+      AlternateGemY = Select the Y location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
       AlternateGemOnSecondarySlot = Enable this to get your First Alternate Gem from Secondary Weapon Set (Swap Weapons)
-      CurrentGem2X = Select the X location for the second Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      CurrentGem2Y = Select the Y location for the second Gem Swap`rSelecting 0 will disable this feature!`rPress Locate to grab positions
-      AlternateGem2X = Select the X location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
-      AlternateGem2Y = Select the Y location of the second Gem to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
+      GemItemToogle = Enable this to use Gem Swap1 as Item Swap1
+      CurrentGem2X = Select the X location for the second Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGem2Y = Select the Y location for the second Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      AlternateGem2X = Select the X location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
+      AlternateGem2Y = Select the Y location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2OnSecondarySlot = Enable this to get your Second Alternate Gem from Secondary Weapon Set (Swap Weapons)
+      GemItemToogle2 = Enable this to use Gem Swap2 as Item Swap2
       GrabCurrencyPosX = Select the X location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       GrabCurrencyPosY = Select the Y location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
@@ -292,6 +294,9 @@
       selectedLeague = Which league are you playing on?
       UpdateLeaguesBtn = Use this button when there is a new league
       LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
+      )
+      ft_ToolTip_Text_Part2=
+      (LTrim
       AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
       StashTabCurrency = Assign the Stash tab for Currency items
       StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
@@ -357,6 +362,7 @@
       WR_Reset_Globe = Loads unmodified default values and reloads UI
       WR_Save_JSON_Globe = Save changes to disk`rThese changes will load on script launch
       )
+      ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2
   ; Globals For client.txt file
     Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
     Global CurrentLocation := ""
@@ -671,18 +677,21 @@
     global GrabCurrencyPosX:=1877
     global GrabCurrencyPosY:=772
 
-  ; Gem Swap
+  ; First Gem/Item Swap
     global CurrentGemX:=1483
     global CurrentGemY:=372
     global AlternateGemX:=1379 
     global AlternateGemY:=171
     global AlternateGemOnSecondarySlot:=0
+    global GemItemToogle:=0
 
+  ; Second Gem/Item Swap
     global CurrentGem2X:=0
     global CurrentGem2Y:=0
     global AlternateGem2X:=0
     global AlternateGem2Y:=0
     global AlternateGem2OnSecondarySlot:=0
+    global GemItemToogle2:=0
 
   ; Attack Triggers
     global TriggerMainAttack:=00000
@@ -7380,12 +7389,13 @@ Return
       Send {%hotkeyInventory%} 
       MouseMove, xx, yy, 0
       BlockInput, MouseMoveOff
-    return
-    }
+  return
+  }
 ; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  GemSwap(){
+  GemSwap()
+  {
     GemSwapCommand:
       Thread, NoTimers, true    ;Critical
       Keywait, Alt
@@ -7398,50 +7408,63 @@ Return
         Send {%hotkeyInventory%} 
         RandomSleep(45,45)
       }
-      ;first gem
-      If (CurrentGemX != 0 && CurrentGemY != 0 && AlternateGemX !=0 && AlternateGemY != 0) {
-      
-      RightClick(CurrentGemX, CurrentGemY)
-      RandomSleep(45,45)
-      
-      if (AlternateGemOnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(AlternateGemX, AlternateGemY)
+      ;First Gem or Item Swap
+      If ((CurrentGemX != 0 && CurrentGemY != 0) || (AlternateGemX !=0 && AlternateGemY != 0)) {
+        If (GemItemToogle)
+        {
+          LeftClick(CurrentGemX, CurrentGemY)
+        }
+        Else
+        {
+          RightClick(CurrentGemX, CurrentGemY)
+        }
+        RandomSleep(45,45)
+        If (AlternateGemOnSecondarySlot && !GemItemToogle)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(AlternateGemX, AlternateGemY)
         RandomSleep(90,120)
-      
-      if (AlternateGemOnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(CurrentGemX, CurrentGemY)
+        If (AlternateGemOnSecondarySlot && !GemItemToogle)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(CurrentGemX, CurrentGemY)
         RandomSleep(90,120)
       }
-      If (CurrentGem2X != 0 && CurrentGem2Y != 0 && AlternateGem2X !=0 && AlternateGem2Y != 0) {
-      ;second gem
-      RightClick(CurrentGem2X, CurrentGem2Y)
-      RandomSleep(45,45)
-      
-      if (AlternateGem2OnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(AlternateGem2X, AlternateGem2Y)
+      ;Second Gem of Item Swap
+      If ((CurrentGem2X != 0 && CurrentGem2Y != 0) || (AlternateGem2X !=0 && AlternateGem2Y != 0)) {
+        If (GemItemToogle2)
+        {
+          LeftClick(CurrentGem2X, CurrentGem2Y)
+        }
+        Else
+        {
+          RightClick(CurrentGem2X, CurrentGem2Y)
+        }
+        RandomSleep(45,45)
+        If (AlternateGem2OnSecondarySlot && !GemItemToogle2)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(AlternateGem2X, AlternateGem2Y)
         RandomSleep(90,120)
-      
-      if (AlternateGem2OnSecondarySlot) 
-        Send {%hotkeyWeaponSwapKey%} 
-      RandomSleep(45,45)
-      
-      LeftClick(CurrentGem2X, CurrentGem2Y)
+        If (AlternateGem2OnSecondarySlot && !GemItemToogle2)
+        {
+          Send {%hotkeyWeaponSwapKey%}
+          RandomSleep(45,45)
+        }
+        LeftClick(CurrentGem2X, CurrentGem2Y)
         RandomSleep(90,120)
       }
       Send {%hotkeyInventory%} 
       MouseMove, xx, yy, 0
       BlockInput, MouseMoveOff
     return
-    }
+  }
 
 ; QuickPortal - Open Town Portal
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
