@@ -197,20 +197,22 @@
           Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
           Gui, Inventory: Add, Edit,       vGrabCurrencyPosX        x+8        y+-15   w34  h17,   %GrabCurrencyPosX%
           Gui, Inventory: Add, Edit,       vGrabCurrencyPosY        x+8                w34  h17,   %GrabCurrencyPosY%
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll      xs+173       ys+31  h17    , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll               y+4    h17    , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem                 y+4    h17    , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem               y+4    h17    , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem2                y+4    h17    , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2              y+4    h17    , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency               y+4    h17    , Locate
-          Gui, Inventory: Add, Checkbox,     vStockPortal Checked%StockPortal%          x+13       ys+33      , Stock Portal?
-          Gui, Inventory: Add, Checkbox,     vStockWisdom Checked%StockWisdom%                   y+8        , Stock Wisdom?
-          Gui, Inventory: Add, Checkbox,   vAlternateGemOnSecondarySlot Checked%AlternateGemOnSecondarySlot%    y+8        , Weapon Swap Gem1?
-          Gui, Inventory: Add, Checkbox,   vAlternateGem2OnSecondarySlot Checked%AlternateGem2OnSecondarySlot%    y+8        , Weapon Swap Gem2?
-          Gui, Inventory: Add, Text,                   xs+84   ys+25   h152 0x11
-          Gui, Inventory: Add, Text,                   x+33          h152 0x11
-          Gui, Inventory: Add, Text,                   x+33          h152 0x11
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem                                    y+4    h17            , Locate
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem                                  y+4    h17            , Locate
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem2                                   y+4    h17            , Locate
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2                                 y+4    h17            , Locate
+          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
+          Gui, Inventory: Add, Checkbox,    vStockPortal                    Checked%StockPortal%                    x+13   ys+33          , Stock Portal?
+          Gui, Inventory: Add, Checkbox,    vStockWisdom                    Checked%StockWisdom%                    y+8                   , Stock Wisdom?
+          Gui, Inventory: Add, Checkbox,    vAlternateGemOnSecondarySlot    Checked%AlternateGemOnSecondarySlot%    y+8                   , Weapon Swap Gem1?
+          Gui, Inventory: Add, Checkbox,    vGemItemToogle                  Checked%GemItemToogle%                  y+8                   , Enable Swap Item1?
+          Gui, Inventory: Add, Checkbox,    vAlternateGem2OnSecondarySlot   Checked%AlternateGem2OnSecondarySlot%   y+8                   , Weapon Swap Gem2?
+          Gui, Inventory: Add, Checkbox,    vGemItemToogle2                 Checked%GemItemToogle2%                 y+8                   , Enable Swap Item2?
+          Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
+          Gui, Inventory: Add, Text,                   x+33             h152 0x11
+          Gui, Inventory: Add, Text,                   x+33             h152 0x11
 
           IfNotExist, %A_ScriptDir%\data\leagues.json
           {
