@@ -1,3 +1,15 @@
+## Version .11.0001 - Alpha Branch - April/02/2020
+* Bugfix for ControlSend usage in the script
+  * When firing flasks, it first confirms an active game
+    * When game is active, we use standard Send
+    * When game is background, we use ControlSend
+  * Flasks can still fire in the background
+    * But now they will no longer interupt other keypresses
+
+* Adjustment for Gem/Item Swap function
+  * Instead of only allowing 0 to disable, accepts blank editbox
+---
+
 ## Version .11.00 - Release Notes - April/01/2020
 Merging Alpha changes to master branch
 * New functions added by DanMarzola

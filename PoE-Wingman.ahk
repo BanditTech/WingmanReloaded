@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.00
+  Global VersionNumber := .11.0001
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -6214,7 +6214,10 @@ Return
       {
         If (OnDetonate)
         {
-          controlsend, , % "{" hotkeyDetonateMines "}", %GameStr%
+          If GameActive
+            send, % "{" hotkeyDetonateMines "}"
+          Else
+            controlsend, , % "{" hotkeyDetonateMines "}", %GameStr%
           Detonated:=1
           Settimer, TDetonated, -%DetonateMinesDelay%
         }
@@ -6771,37 +6774,27 @@ Return
 
         If (MainAttackPressedActive && AutoFlask)
         {
-          If GetKeyState(hotkeyMainAttack)
+          If (TriggerMainAttack > 0)
+            TriggerFlask(TriggerMainAttack)
+          Loop, 10
           {
-            If (TriggerMainAttack > 0)
-              TriggerFlask(TriggerMainAttack)
-            Loop, 10
+            If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%MainAttack)
             {
-              If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%MainAttack)
-              {
-                TriggerUtility(A_Index)
-              }
+              TriggerUtility(A_Index)
             }
           }
-          Else
-            MainAttackPressedActive := False
         }
         If (SecondaryAttackPressedActive && AutoFlask)
         {
-          If GetKeyState(hotkeySecondaryAttack)
+          If (TriggerSecondaryAttack > 0)
+            TriggerFlask(TriggerSecondaryAttack)
+          Loop, 10
           {
-            If (TriggerSecondaryAttack > 0)
-              TriggerFlask(TriggerSecondaryAttack)
-            Loop, 10
+            If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%SecondaryAttack)
             {
-              If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%SecondaryAttack)
-              {
-                TriggerUtility(A_Index)
-              }
+              TriggerUtility(A_Index)
             }
           }
-          Else
-            SecondaryAttackPressedActive := False
         }
 
         If (AutoFlask)
@@ -7038,6 +7031,12 @@ Return
     MainAttackPressedActive := True
     Return  
   }
+  MainAttackCommandRelease()
+  {
+    MainAttackCommandRelease:
+    MainAttackPressedActive := False
+    Return  
+  }
   ; SecondaryAttackCommand - Secondary attack Flasks
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   SecondaryAttackCommand()
@@ -7046,6 +7045,12 @@ Return
     If (SecondaryAttackPressedActive||OnTown||OnHideout||TriggerSecondaryAttack<=0)
       Return
     SecondaryAttackPressedActive := True
+    Return  
+  }
+  SecondaryAttackCommandRelease()
+  {
+    SecondaryAttackCommandRelease:
+    SecondaryAttackPressedActive := False
     Return  
   }
 
@@ -7058,7 +7063,10 @@ Return
       if (FLVal > 0) {
         if (OnCooldown[FL]=0) {
           key := keyFlask%FL%
-          controlsend, , %key%, %GameStr%
+          If GameActive
+            send, %key%
+          Else
+            controlsend, , %key%, %GameStr%
           ; SendMSG(3, FL)
           OnCooldown[FL]:=1 
           Cooldown:=CooldownFlask%FL%
@@ -7085,7 +7093,10 @@ Return
     {
       FL:=FlaskList.RemoveAt(1)
       key := keyFlask%FL%
-      controlsend, , %key%, %GameStr%
+      If GameActive
+        send, %key%
+      Else
+        controlsend, , %key%, %GameStr%
       OnCooldown[FL] := 1 
       Cooldown:=CooldownFlask%FL%
       settimer, TimerFlask%FL%, %Cooldown%
@@ -7147,7 +7158,11 @@ Return
         QFL := FlaskListQS.RemoveAt(1)
         If (!QFL)
           Return
-        controlsend, ,% keyFlask%QFL%, %GameStr%
+        key := keyFlask%QFL%
+        If GameActive
+          send, %key%
+        Else
+          controlsend, , %key%, %GameStr%
         settimer, TimerFlask%QFL%, % CooldownFlask%QFL%
         OnCooldown[QFL] := 1
         LastHeldLB := LastHeldMA := LastHeldSA := 0
@@ -7167,7 +7182,10 @@ Return
       Return
     If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
       key:=KeyUtility%Utility%
-      controlsend, , %key%, %GameStr%
+      If GameActive
+        send, %key%
+      Else
+        controlsend, , %key%, %GameStr%
       ; SendMSG(4, Utility)
       OnCooldownUtility%Utility%:=1
       Cooldown:=CooldownUtility%Utility%
@@ -8497,9 +8515,15 @@ Return
       If hotkeyPauseMines
         hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
       If hotkeyMainAttack
+      {
         hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+        hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
+      }
       If hotkeySecondaryAttack
+      {
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+        hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
+      }
 
       hotkey, IfWinActive
       If hotkeyOptions
@@ -8554,9 +8578,15 @@ Return
       If hotkeyLootScan
         hotkey, $~%hotkeyLootScan%, LootScanCommand, On
       If hotkeyMainAttack
+      {
         hotkey, $~%hotkeyMainAttack%, MainAttackCommand, On
+        hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, On
+      }
       If hotkeySecondaryAttack
+      {
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, On
+        hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, On
+      }
       
       #MaxThreadsPerHotkey, 1
       If hotkeyPauseMines
@@ -8706,9 +8736,15 @@ Return
       If hotkeyPauseMines
         hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
       If hotkeyMainAttack
+      {
         hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+        hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
+      }
       If hotkeySecondaryAttack
+      {
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+        hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
+      }
 
       Hotkey If, % fn1
       If 1Suffix1 != A_Space
