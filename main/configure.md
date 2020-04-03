@@ -1,16 +1,16 @@
 ## Flasks
 > The core of the script is the flask routine. You are given several options in how you would like each flask slot triggered. Depending on the Character Type you have selected, different options of the interface will become available. Life type will have only life triggers active, ES will have only ES triggers active, and Hybrid will have both. 
-* The 5 Flasks are arranged in collumns 
+* The 5 Flasks are arranged in columns 
   * Flask slot 1 is on the left and slot 5 on the right
 * Assign the duration the flask lasts (Cooldown)
 * Assign key(s) to press when the flask slot triggers
-* Check options in the collumn to enable a trigger type
+* Check options in the column to enable a trigger type
   * Choose between Life/ES, Mana, Quicksilver, or Attack keys
 * Choose whether each flask slot will be included in the Pop Flasks hotkey
 
 ### Life Flasks
 
-> These flasks are best used with a Life trigger. Select the row matching the percentage to trigger. For example, to trigger when below 90% select the radiobox at the top row.
+> These flasks are best used with a Life trigger. Select the row matching the percentage to trigger. For example, to trigger when below 90% select the radio box at the top row.
 
 ### Mana Flasks
 
@@ -38,7 +38,7 @@
   * Assign a buff icon to trigger when showing or not showing
   * Trigger alongside the Quicksilver flask group
   * Trigger with attack keys
-  * Trigger with Life, ES, or Mana percantage
+  * Trigger with Life, ES, or Mana percentage
 
 > The utility section is tied to the Auto-Flasks toggle. If the flask routine is ON then utilities will also fire.
 
@@ -46,7 +46,7 @@
 
 Using the CLF has become much easier, press the TAB key to search for keys
 
-Use the OR condition to match for mutliple types in one filter
+Use the OR condition to match for multiple types in one filter
 
 These examples show a few demonstrations using the breakpoints from the community thread [You can find HERE](https://docs.google.com/spreadsheets/d/1cH1Kd5nQnXSjY6SFQ_bPVei8n_Hy6fje5OWdG7s48UI/edit#gid=262670440)
 
