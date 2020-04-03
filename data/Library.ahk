@@ -160,13 +160,14 @@
           Gui, Inventory: Font, Bold
           Gui, Inventory: Add, Text,     Section                xm   ym+25,         ID/Vend/Stash Options:
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesIdentify Checked%YesIdentify%           , Identify Items?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStash Checked%YesStash%             , Deposit at stash?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesVendor Checked%YesVendor%             , Sell at vendor?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesDiv Checked%YesDiv%               , Trade Divination?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSortFirst Checked%YesSortFirst%         , Group Items before stashing?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesMapUnid Checked%YesMapUnid%           , Leave Map Un-ID?
-          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps          , %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify          Checked%YesIdentify%          , Identify Items?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash             Checked%YesStash%             , Deposit at stash?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor            Checked%YesVendor%            , Sell at vendor?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv               Checked%YesDiv%               , Trade Divination?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst         Checked%YesSortFirst%         , Group Items before stashing?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap%  , Stash BlightedMaps?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid           Checked%YesMapUnid%           , Leave Map Un-ID?
+          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps , %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
           Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
 
           Gui, Inventory: Font, Bold s9 cBlack

@@ -280,6 +280,7 @@
       YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
       YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
+      YesStashBlightedMap = This option enable auto-stash for blighted maps in your map stash`rPOE Map Stash don't highlight Blighted Maps yet!
       YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
       YesStashT1 = Enable to stash T1 crafting bases
       YesStashT2 = Enable to stash T2 crafting bases
@@ -446,6 +447,7 @@
     Global YesIdentify := 1
     Global YesDiv := 1
     Global YesMapUnid := 1
+    Global YesStashBlightedMap := 1
     Global YesStashKeys := 1
     Global YesPopAllExtraKeys := 1
     Global OnHideout := False
@@ -2328,7 +2330,7 @@ Return
             Continue
           Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
             sendstash := StashTabCurrency
-          Else If (Prop.IsMap&&StashTabYesMap)
+          Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
             sendstash := StashTabMap
           Else If ( StashTabYesFragment 
             && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
@@ -2598,7 +2600,7 @@ Return
             Continue
           Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
             sendstash := StashTabCurrency
-          Else If (Prop.IsMap&&StashTabYesMap)
+          Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
             sendstash := StashTabMap
           Else If ( StashTabYesFragment 
             && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
@@ -3216,6 +3218,7 @@ Return
       If InStr(Clip_Contents, "`nNatural inhabitants of this area have been removed (implicit)")
       {
       Prop.IsBlightedMap := True
+      Prop.SpecialType := "Blighted Map"
       }
     }
     If InStr(Clip_Contents, "`nRight-click to add this to your bestiary.")
@@ -7952,6 +7955,7 @@ Return
       IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
+      IniRead, YesStashBlightedMap, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap, 1
       IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
       IniRead, Latency, %A_ScriptDir%\save\Settings.ini, General, Latency, 1
       IniRead, ClickLatency, %A_ScriptDir%\save\Settings.ini, General, ClickLatency, 0
@@ -8692,7 +8696,7 @@ Return
 
       ;settings for the Ninja Database
       IniRead, LastDatabaseParseDate, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate, 20190913
-      IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Blight
+      IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Delirium
       IniRead, UpdateDatabaseInterval, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval, 2
       IniRead, YesNinjaDatabase, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase, 1
       IniRead, ForceMatch6Link, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link, 0
@@ -8913,6 +8917,7 @@ Return
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
+      IniWrite, %YesStashBlightedMap%, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
       IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
       IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
@@ -12313,6 +12318,7 @@ Return
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
+      IniWrite, %YesStashBlightedMap%, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
       IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
       IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
