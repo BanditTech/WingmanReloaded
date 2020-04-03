@@ -8,6 +8,8 @@
 
 * Adjustment for Gem/Item Swap function
   * Instead of only allowing 0 to disable, accepts blank editbox
+* Bugfix for script attempting ID'ing corrupted maps
+
 ---
 
 ## Version .11.00 - Release Notes - April/01/2020
