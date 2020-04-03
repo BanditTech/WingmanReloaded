@@ -6,9 +6,13 @@
   * Flasks can still fire in the background
     * But now they will no longer interupt other keypresses
 
-* Adjustment for Gem/Item Swap function
+* Adjustment for Gem/Item Swap function and Grab Currency
   * Instead of only allowing 0 to disable, accepts blank editbox
 * Bugfix for script attempting ID'ing corrupted maps
+
+* New addition to Auto-Detonate Mines
+  * Cast an ability the moment after detonating
+  * Mainly for Smoke Mine and Flame Dash
 
 ---
 

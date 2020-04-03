@@ -475,6 +475,7 @@
     Global HPerc := 100
     Global GameX, GameY, GameW, GameH, mouseX, mouseY
     Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
+    Global CastOnDetonate := 0
 
     ; Loot colors for the vacuum
     Global LootColors := { 1 : 0xF6FEC4
@@ -642,6 +643,7 @@
     global hotkeyDown := "S"
     global hotkeyLeft := "A"
     global hotkeyRight := "D"
+    global hotkeyCastOnDetonate := "Q"
   ; Coordinates
     global PortalScrollX:=1825
     global PortalScrollY:=825
@@ -1567,7 +1569,7 @@
     Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 
     Gui,Font, Bold s9 cBlack 
-    Gui Add, GroupBox,     Section  w190 h82        xs+240+7   ys ,         Auto-Detonate Mines
+    Gui Add, GroupBox,     Section  w190 h120        xs+240+7   ys ,         Auto-Detonate Mines
     Gui, Font,
     Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
     Gui Add, Text, xs+5 y+8, Delay after Detonate
@@ -1577,7 +1579,10 @@
     Gui Add, Edit,     gUpdateExtra   vPauseMinesDelay  h18  x+5  yp-2  Number Limit w30        , %PauseMinesDelay% 
     Gui Add, Text, x+5 yp+2 , Key
     Gui Add, Edit,     gUpdateExtra   vhotkeyPauseMines  h18  x+5  yp-2  w50        , %hotkeyPauseMines% 
-
+    Gui Add, GroupBox, xs+5 y+5 w160 h37, Cast on Detonate
+    Gui Add, CheckBox, gUpdateExtra xp+5 yp+16 vCastOnDetonate Checked%CastOnDetonate%, Enable
+    Gui Add, Text, x+5 yp+2 , Key
+    Gui Add, Edit,     gUpdateExtra   vhotkeyCastOnDetonate  h18  x+5  yp-2  w50        , %hotkeyCastOnDetonate% 
     Gui,Font,
 
     ;Save Setting
@@ -3734,7 +3739,7 @@ Return
         ; }
         Loop, parse, A_LoopField
         {
-          if (A_LoopField ~= "[BGR]")
+          if (A_LoopField ~= "[RGB]")
             Prop.Gem_Sockets++
         }
         If (Prop.Gem_Sockets = 6)
@@ -6218,6 +6223,8 @@ Return
             send, % "{" hotkeyDetonateMines "}"
           Else
             controlsend, , % "{" hotkeyDetonateMines "}", %GameStr%
+          If CastOnDetonate
+            Send, % "{" hotkeyCastOnDetonate "}"
           Detonated:=1
           Settimer, TDetonated, -%DetonateMinesDelay%
         }
@@ -7991,6 +7998,8 @@ Return
       IniRead, YesFillMetamorph, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph, 0
       IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
+      IniRead, CastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate, 0
+      IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate, q
 
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
@@ -10114,6 +10123,8 @@ Return
       
       ;AutoMines
       IniWrite, %DetonateMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines
+      IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CastOnDetonate
+      IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyCastOnDetonate
       ; IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay
       ; IniWrite, %PauseMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PauseMinesDelay
       ; IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyPauseMines
@@ -10597,6 +10608,10 @@ Return
       ;AutoMines
       IniRead, DetonateMines, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines, 0
       GuiControl, , DetonateMines, %DetonateMines%
+      IniRead, CastOnDetonate, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CastOnDetonate, 0
+      GuiControl, , CastOnDetonate, %CastOnDetonate%
+      IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyCastOnDetonate, q
+      GuiControl, , hotkeyCastOnDetonate, %hotkeyCastOnDetonate%
       ; IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay, 500
       ; GuiControl, , DetonateMinesDelay, %DetonateMinesDelay%
       ; IniRead, PauseMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PauseMinesDelay, 250
@@ -11500,7 +11515,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar)
-            SampleTT .= "OnChar      took BGR color hex: " . varOnChar . "  At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
+            SampleTT .= "OnChar      took RGB color hex: " . varOnChar . "  At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
         }
@@ -11524,7 +11539,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat)
-            SampleTT .= "OnChat      took BGR color hex: " . varOnChat . "  At coords x: " . vX_OnChat . " and y: " . vY_OnChat . "`n"
+            SampleTT .= "OnChat      took RGB color hex: " . varOnChat . "  At coords x: " . vX_OnChat . " and y: " . vY_OnChat . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnChat didn't work"
         }
@@ -11548,7 +11563,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu)
-            SampleTT .= "OnMenu      took BGR color hex: " . varOnMenu . "  At coords x: " . vX_OnMenu . " and y: " . vY_OnMenu . "`n"
+            SampleTT .= "OnMenu      took RGB color hex: " . varOnMenu . "  At coords x: " . vX_OnMenu . " and y: " . vY_OnMenu . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
         }
@@ -11571,7 +11586,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory)
-            SampleTT .= "OnInventory   took BGR color hex: " . varOnInventory . "  At coords x: " . vX_OnInventory . " and y: " . vY_OnInventory . "`n"
+            SampleTT .= "OnInventory   took RGB color hex: " . varOnInventory . "  At coords x: " . vX_OnInventory . " and y: " . vY_OnInventory . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
         }
@@ -11616,7 +11631,7 @@ Return
             NewString := StringReplaceN(NewString,",",",`n",46)
             NewString := StringReplaceN(NewString,",",",`n",53)
             SampleTT .= " "
-            EmptySampleTT := "`nEmpty Inventory took BGR color hexes: " . NewString
+            EmptySampleTT := "`nEmpty Inventory took RGB color hexes: " . NewString
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of Empty Inventory didn't work"
         }
@@ -11639,7 +11654,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor)
-            SampleTT .= "OnVendor    took BGR color hex: " . varOnVendor . "  At coords x: " . vX_OnVendor . " and y: " . vY_OnVendor . "`n"
+            SampleTT .= "OnVendor    took RGB color hex: " . varOnVendor . "  At coords x: " . vX_OnVendor . " and y: " . vY_OnVendor . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
         }
@@ -11663,8 +11678,8 @@ Return
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash)
             , varOnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft)
-            SampleTT .= "OnStash      took BGR color hex: " . varOnStash . "  At coords x: " . vX_OnStash . " and y: " . vY_OnStash . "`n"
-            SampleTT .= "OnLeft      took BGR color hex: " . varOnLeft . "  At coords x: " . vX_OnLeft . " and y: " . vY_OnLeft . "`n"
+            SampleTT .= "OnStash      took RGB color hex: " . varOnStash . "  At coords x: " . vX_OnStash . " and y: " . vY_OnStash . "`n"
+            SampleTT .= "OnLeft      took RGB color hex: " . varOnLeft . "  At coords x: " . vX_OnLeft . " and y: " . vY_OnLeft . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnStash/OnLeft didn't work"
         }
@@ -11687,7 +11702,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv)
-            SampleTT .= "OnDiv       took BGR color hex: " . varOnDiv . "  At coords x: " . vX_OnDiv . " and y: " . vY_OnDiv . "`n"
+            SampleTT .= "OnDiv       took RGB color hex: " . varOnDiv . "  At coords x: " . vX_OnDiv . " and y: " . vY_OnDiv . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
         }
@@ -11715,7 +11730,7 @@ Return
               varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
             Else
               varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-            SampleTT .= "Detonate Mines took BGR color hex: " . varOnDetonate . "  At coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY . "`n"
+            SampleTT .= "Detonate Mines took RGB color hex: " . varOnDetonate . "  At coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
         }
@@ -11738,7 +11753,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart)
-            SampleTT .= "OnDelveChart       took BGR color hex: " . varOnDelveChart . "  At coords x: " . vX_OnDelveChart . " and y: " . vY_OnDelveChart . "`n"
+            SampleTT .= "OnDelveChart       took RGB color hex: " . varOnDelveChart . "  At coords x: " . vX_OnDelveChart . " and y: " . vY_OnDelveChart . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
         }
@@ -11761,7 +11776,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph)
-            SampleTT .= "OnMetamorph       took BGR color hex: " . varOnMetamorph . "  At coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph . "`n"
+            SampleTT .= "OnMetamorph       took RGB color hex: " . varOnMetamorph . "  At coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
         }
@@ -12334,6 +12349,8 @@ Return
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
       IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
       IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
+      IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate
+      IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate
       If (YesPersistantToggle)
         AutoReset()
       #MaxThreadsPerHotkey, 1
