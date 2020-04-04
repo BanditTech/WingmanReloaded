@@ -2105,25 +2105,24 @@
         Global DetonateX:=GameX + Round(GameW/(3440/3090))
         Global DetonateY:=GameY + Round(GameH/(1440/1202))
         ;Currency
-; MARKER - These need scaling
-          ;Scouring 175,47
-        Global ScouringX:=GameX + Round(GameW/(1920/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/475))
-          ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(1920/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/220))
-          ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(1920/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/290))
-          ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(1920/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/290))
-          ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(1920/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/340))
-          ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(1920/230))
-        Global VaalY:=GameY + Round(GameH/(1080/475))
+          ;Scouring 235,631
+        Global ScouringX:=GameX + Round(GameW/(3440/235))
+        Global ScouringY:=GameY + Round(GameH/(1440/630))
+          ;Chisel 810,235
+        Global ChiselX:=GameX + Round(GameW/(3440/810))
+        Global ChiselY:=GameY + Round(GameH/(1440/235))
+          ;Alchemy 655,390
+        Global AlchemyX:=GameX + Round(GameW/(3440/655))
+        Global AlchemyY:=GameY + Round(GameH/(1440/390))
+          ;Transmutation 80,390
+        Global TransmutationX:=GameX + Round(GameW/(3440/80))
+        Global TransmutationY:=GameY + Round(GameH/(1440/390))
+          ;Augmentation 310,465
+        Global AugmentationX:=GameX + Round(GameW/(3440/310))
+        Global AugmentationY:=GameY + Round(GameH/(1440/465))
+          ;Vaal 310, 631
+        Global VaalX:=GameX + Round(GameW/(3440/310))
+        Global VaalY:=GameY + Round(GameH/(1440/630))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3440/164))
         Global PortalStockX:=GameX + Round(GameW/(3440/228))
