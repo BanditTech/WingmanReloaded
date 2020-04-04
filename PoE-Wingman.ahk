@@ -7590,7 +7590,7 @@ Return
             {
               If (!Prop.RarityNormal)
               {
-                If ((Prop.RarityMagic && CraftingMapMethod%i% = "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy")) || (Prop.RarityRare && Prop.Quality == 20 && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy" || CraftingMapMethod%i% = "Chisel+Alchemy")))
+                If ((Prop.RarityMagic && CraftingMapMethod%i% = "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy")) || (Prop.RarityRare && Prop.Quality >= 20 && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy" || CraftingMapMethod%i% = "Chisel+Alchemy")))
                 {
                   ;msgbox, % CraftingMapMethod%i%
                   Continue
@@ -7603,6 +7603,10 @@ Return
               }
               If (Prop.RarityNormal)
               {
+                If Prop.Quality <= 20
+                  numberChisel := (20 - Prop.Quality) // 5
+                Else
+                  numberChisel := 0
                 If (CraftingMapMethod%i% == "Transmutation+Augmentation")
                 {
                   ApplyTrasmutation(Grid.X,Grid.Y)
@@ -7616,19 +7620,15 @@ Return
                 }
                 Else if (CraftingMapMethod%i% == "Chisel + Alchemy")
                 {
-                  ApplyChisel(Grid.X,Grid.Y)
-                  ApplyChisel(Grid.X,Grid.Y)
-                  ApplyChisel(Grid.X,Grid.Y)
-                  ApplyChisel(Grid.X,Grid.Y)
+                  Loop, %numberChisel%
+                    ApplyChisel(Grid.X,Grid.Y)
                   ApplyAlchemy(Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
                 {
-                  ApplyChisel(Grid.X,Grid.Y)
-                  ApplyChisel(Grid.X,Grid.Y)
-                  ApplyChisel(Grid.X,Grid.Y)
-                  ApplyChisel(Grid.X,Grid.Y)
+                  Loop, %numberChisel%
+                    ApplyChisel(Grid.X,Grid.Y)
                   ApplyAlchemy(Grid.X,Grid.Y)
                   ApplyVaal(Grid.X,Grid.Y)
                   Continue
