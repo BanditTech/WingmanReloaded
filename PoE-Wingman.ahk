@@ -7519,6 +7519,8 @@ Return
           }
         }
       }
+      BlockInput, MouseMoveOff
+      MouseMove %xx%, %yy%
     return
   }
 
@@ -7544,7 +7546,8 @@ Return
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
         } 
         PointColor := ScreenShot_GetColor(GridX,GridY)
-        If indexOf(PointColor, varEmptyInvSlotColor) {
+        If indexOf(PointColor, varEmptyInvSlotColor) 
+        {
           ;Seems to be an empty slot, no need to clip item info
           Continue
         }
@@ -7576,67 +7579,69 @@ Return
         }
         ;dan marker
         ;Crafting Map Actual Script
-        If (OnStash && OnInventory) 
+        If (OnStash&&OnInventory&&Prop.IsMap&&!Prop.Corrupted) 
         {
-          i = 1
-          While (i<3)
+          i = 0
+          ;Check Tiers
+          Loop, 3
           {
-            If (Prop.IsMap&&!Prop.Corrupted)
+            i++
+            If (EndMapTier%i% >= StartMapTier%i% && CraftingMapMethod%i% != "Disable" && Prop.MapTier >= StartMapTier%i% && Prop.MapTier <= EndMapTier%i%)
             {
-              ;Check Tiers
-              If (EndMapTier%i% >= StartMapTier%i% && CraftingMapMethod%i% != "Disable" && Prop.MapTier >= StartMapTier%i% && Prop.MapTier <= EndMapTier%i%)
+              If (!Prop.RarityNormal)
               {
-                If (!Prop.RarityNormal)
+                If ((Prop.RarityMagic && CraftingMapMethod%i% = "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy")) || (Prop.RarityRare && Prop.Quality == 20 && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy" || CraftingMapMethod%i% = "Chisel+Alchemy")))
                 {
-                  If ((Prop.RarityMagic && CraftingMapMethod%i% = "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy")) || (Prop.RarityRare && Prop.Quality == 20 && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy" || CraftingMapMethod%i% = "Chisel+Alchemy")))
-                  {
-                    Continue
-                  }
-                  Else
-                  {
-                    ApplyScouring(Grid.X,Grid.Y)
-                  }
+                  ;msgbox, % CraftingMapMethod%i%
+                  Continue
                 }
-                If (Prop.RarityNormal)
+                Else
                 {
-                  If (CraftingMapMethod%i% == "Transmutation+Augmentation"){
-                    ApplyTrasmutation(Grid.X,Grid.Y)
-                    ApplyAugmentation(Grid.X,Grid.Y)
-                    Continue
-                  }
-                  Else if (CraftingMapMethod%i% == "Alchemy")
-                  {
-                    ApplyAlchemy(Grid.X,Grid.Y)
-                    Continue
-                  }
-                  Else if (CraftingMapMethod%i% == "Chisel + Alchemy")
-                  {
-                    ApplyChisel(Grid.X,Grid.Y)
-                    ApplyChisel(Grid.X,Grid.Y)
-                    ApplyChisel(Grid.X,Grid.Y)
-                    ApplyChisel(Grid.X,Grid.Y)
-                    ApplyAlchemy(Grid.X,Grid.Y)
-                    Continue
-                  }
-                  Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
-                  {
-                    ApplyChisel(Grid.X,Grid.Y)
-                    ApplyChisel(Grid.X,Grid.Y)
-                    ApplyChisel(Grid.X,Grid.Y)
-                    ApplyChisel(Grid.X,Grid.Y)
-                    ApplyAlchemy(Grid.X,Grid.Y)
-                    ApplyVaal(Grid.X,Grid.Y)
-                    Continue
-                  }
+                  ApplyScouring(Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                }
+              }
+              If (Prop.RarityNormal)
+              {
+                If (CraftingMapMethod%i% == "Transmutation+Augmentation")
+                {
+                  ApplyTrasmutation(Grid.X,Grid.Y)
+                  ApplyAugmentation(Grid.X,Grid.Y)
+                  Continue
+                }
+                Else if (CraftingMapMethod%i% == "Alchemy")
+                {
+                  ApplyAlchemy(Grid.X,Grid.Y)
+                  Continue
+                }
+                Else if (CraftingMapMethod%i% == "Chisel + Alchemy")
+                {
+                  ApplyChisel(Grid.X,Grid.Y)
+                  ApplyChisel(Grid.X,Grid.Y)
+                  ApplyChisel(Grid.X,Grid.Y)
+                  ApplyChisel(Grid.X,Grid.Y)
+                  ApplyAlchemy(Grid.X,Grid.Y)
+                  Continue
+                }
+                Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
+                {
+                  ApplyChisel(Grid.X,Grid.Y)
+                  ApplyChisel(Grid.X,Grid.Y)
+                  ApplyChisel(Grid.X,Grid.Y)
+                  ApplyChisel(Grid.X,Grid.Y)
+                  ApplyAlchemy(Grid.X,Grid.Y)
+                  ApplyVaal(Grid.X,Grid.Y)
+                  Continue
                 }
               }
             }
-            i++
           }
         }
       }
     }
   }
+
+; Currency Apply Functions
 
   ApplyScouring(x, y){
     RightClick(ScouringX, ScouringY)
@@ -7646,15 +7651,14 @@ Return
     return
   }
   ApplyTrasmutation(x,y){
-    msgbox, TX = %TrasmutationX% e TY = %TrasmutationY% e x = %x% e x = %y%
-    RightClick(TrasmutationX, TrasmutationY)
+    RightClick(TransmutationX, TransmutationY)
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 45*Latency
     return
   }
   ApplyAugmentation(x,y){
-    RightClick(AugmentationX, Augmentation)
+    RightClick(AugmentationX, AugmentationY)
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 45*Latency
