@@ -148,7 +148,7 @@
         {
           Built_Inventory := 1
           Gui, Inventory: New
-          Gui, Inventory: +AlwaysOnTop -MinimizeBox
+          Gui, Inventory: +AlwaysOnTop -MinimizeBox -DPIScale
           ;Save Setting
           Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
@@ -160,13 +160,14 @@
           Gui, Inventory: Font, Bold
           Gui, Inventory: Add, Text,     Section                xm   ym+25,         ID/Vend/Stash Options:
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesIdentify Checked%YesIdentify%           , Identify Items?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStash Checked%YesStash%             , Deposit at stash?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesVendor Checked%YesVendor%             , Sell at vendor?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesDiv Checked%YesDiv%               , Trade Divination?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSortFirst Checked%YesSortFirst%         , Group Items before stashing?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesMapUnid Checked%YesMapUnid%           , Leave Map Un-ID?
-          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps          , %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify          Checked%YesIdentify%          , Identify Items?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash             Checked%YesStash%             , Deposit at stash?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor            Checked%YesVendor%            , Sell at vendor?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv               Checked%YesDiv%               , Trade Divination?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst         Checked%YesSortFirst%         , Group Items before stashing?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap%  , Stash BlightedMaps?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid           Checked%YesMapUnid%           , Leave Map Un-ID?
+          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps , %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
           Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
 
           Gui, Inventory: Font, Bold s9 cBlack
@@ -391,8 +392,8 @@
         If !Built_Strings
         {
           Built_Strings := 1
-          Gui, Inventory: New
-          Gui, Inventory: +AlwaysOnTop -MinimizeBox
+          Gui, Strings: New
+          Gui, Strings: +AlwaysOnTop -MinimizeBox -DPIScale
           ;Save Setting
           ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
@@ -453,6 +454,8 @@
         If !Built_Chat
         {
           Built_Chat := 1
+          Gui, Chat: New
+          Gui, Chat: +AlwaysOnTop -MinimizeBox -DPIScale
           Gui, Chat: Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xm+400 ym                    , Enable chat Hotkeys?
 
           ;Save Setting
@@ -545,6 +548,8 @@
         If !Built_Controller
         {
           Built_Controller := 1
+          Gui, Controller: New
+          Gui, Controller: +AlwaysOnTop -MinimizeBox -DPIScale
           DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
           textList= 
           For k, v in DefaultButtons
@@ -619,6 +624,8 @@
             Globe := Array_DeepClone(Base.Globe)
           }
           Built_Globe := 1
+          Gui, Globe: New
+          Gui, Globe: +AlwaysOnTop -MinimizeBox -DPIScale
           Global Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
           Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
           Gui, Globe: Add, Button, xm ym+8 w1 h1
@@ -800,6 +807,7 @@
             {
               FillMetamorphInitialized := True
               Gui, FillMetamorph: New, -MinimizeBox -Resize
+              Gui, FillMetamorph: -DPIScale
               Gui, FillMetamorph: Font, s12 c777777 bold
               Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
               Gui, FillMetamorph: Font,

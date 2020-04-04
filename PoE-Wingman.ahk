@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.00
+  Global VersionNumber := .11.01
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -233,20 +233,20 @@
       PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
       WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
       WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-      CurrentGemX = Select the X location for the first Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
-      CurrentGemY = Select the Y location for the first Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGemX = Select the X location for the first Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGemY = Select the Y location for the first Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
       AlternateGemX = Select the X location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
       AlternateGemY = Select the Y location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
       AlternateGemOnSecondarySlot = Enable this to get your First Alternate Gem from Secondary Weapon Set (Swap Weapons)
       GemItemToogle = Enable this to use Gem Swap1 as Item Swap1
-      CurrentGem2X = Select the X location for the second Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
-      CurrentGem2Y = Select the Y location for the second Gem or Item Swap`rWriting 0 in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGem2X = Select the X location for the second Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
+      CurrentGem2Y = Select the Y location for the second Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
       AlternateGem2X = Select the X location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2Y = Select the Y location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
       AlternateGem2OnSecondarySlot = Enable this to get your Second Alternate Gem from Secondary Weapon Set (Swap Weapons)
       GemItemToogle2 = Enable this to use Gem Swap2 as Item Swap2
-      GrabCurrencyPosX = Select the X location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
-      GrabCurrencyPosY = Select the Y location in your inventory for a currency`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+      GrabCurrencyPosX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+      GrabCurrencyPosY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
       StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
       YesAutoSkillUp = Enable this to Automatically level up skill gems
@@ -280,6 +280,7 @@
       YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
       YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
+      YesStashBlightedMap = This option enable auto-stash for blighted maps in your map stash`rPOE Map Stash don't highlight Blighted Maps yet!
       YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
       YesStashT1 = Enable to stash T1 crafting bases
       YesStashT2 = Enable to stash T2 crafting bases
@@ -394,6 +395,7 @@
       , 1080_ChestStr .= "|<1080 Crank>*100$54.wDzzzzzzzk3zzzzzzzXnzzrvyxx7r0TblwMs7z6T3swwtDz6D3sQwnDz6CFsAwb7z6SNt4wD7z0y1tYw77z0w0tUwb3v4QwtkwnVX69wtswlk771wNwwsyzzzzzzzzU"
       , 1080_ChestStr .= "|<1080 Hoard>*100$56.DlzzzzzzznwTzzzzzzwz7wzxzzzzDlw3yT0Q1nwSQT3lba4z77bkwMtl01nst76CS00QyCNlbbUz7DXUQ3tsDlnsk30ySHwQSQwl7bYz7X6TAMtnDlw7bl761zzzrzzzzzy"
       , 1080_ChestStr .= "|<1080 Sulphite>*100$36.lzzzzziTzzzzDTzzzzDwywz17wywzAXwywzSlwywzSswywzSyQywz1yQywzDzQywzDSQwwzDUy1w3DU"
+      , 1080_ChestStr .= "|<1080 Hand>*47$48.7szzzzzzbszzzzzzbszjrxzTbsz7Xsk3bsy7lstVbsy7kttlU0wXkNtsU0wXk9tsbss3m1tsbss1n1tsbstlnVttbsnsnltXbsnsnts7U"
     Global 1080_DelveStr := "|<1080 Hidden>*100$65.7szzzzzzzzzDlzzzzzzzzyTXnyzyzzyzgz770D0D0My9yDDADADAswHwSSQSQSTktU0wwwQwQzUn01ttstssD0aTXnnlnlkSEAz7bbXbXbwkNyDDDDDDDtknwSSMyMyTnlbsww3w3w3bn"
       , 1080_DelveStr .= "|<1080 Lost>*100$37.7zzzzznzzzzztztzbTozkD0U2TlXaKBDlsnz7btwMzXnwyA7ltyT7Vswz7XswSTXnyCDCElrD7UA1s7XzzXyDzs"
       , 1080_DelveStr .= "|<1080 Forgot>*100$61.0zzzzzzzzzUDzzzzzzzznbnzzz7yTTlzUS0y0w3U0zX76CAQMqATXlX6DQSD70nslXDyT7XUtwMnbzDXlnwyA1ntblstyD61sslswQz7b4QSMwyCTVXX77AAT7Ds3llk70TXzz7zzwTszzs"
@@ -446,6 +448,7 @@
     Global YesIdentify := 1
     Global YesDiv := 1
     Global YesMapUnid := 1
+    Global YesStashBlightedMap := 1
     Global YesStashKeys := 1
     Global YesPopAllExtraKeys := 1
     Global OnHideout := False
@@ -475,6 +478,7 @@
     Global HPerc := 100
     Global GameX, GameY, GameW, GameH, mouseX, mouseY
     Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
+    Global CastOnDetonate := 0
 
     ; Loot colors for the vacuum
     Global LootColors := { 1 : 0xF6FEC4
@@ -642,6 +646,7 @@
     global hotkeyDown := "S"
     global hotkeyLeft := "A"
     global hotkeyRight := "D"
+    global hotkeyCastOnDetonate := "Q"
   ; Coordinates
     global PortalScrollX:=1825
     global PortalScrollY:=825
@@ -1053,6 +1058,7 @@
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Critical
+  Gui, -DPIScale
   Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     x610   y5     w13 h13
   Gui Add, Text,                     x515  y5,         Debug Messages:
   Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     x490   y5     w13 h13
@@ -1567,7 +1573,7 @@
     Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 
     Gui,Font, Bold s9 cBlack 
-    Gui Add, GroupBox,     Section  w190 h82        xs+240+7   ys ,         Auto-Detonate Mines
+    Gui Add, GroupBox,     Section  w190 h120        xs+240+7   ys ,         Auto-Detonate Mines
     Gui, Font,
     Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
     Gui Add, Text, xs+5 y+8, Delay after Detonate
@@ -1577,7 +1583,10 @@
     Gui Add, Edit,     gUpdateExtra   vPauseMinesDelay  h18  x+5  yp-2  Number Limit w30        , %PauseMinesDelay% 
     Gui Add, Text, x+5 yp+2 , Key
     Gui Add, Edit,     gUpdateExtra   vhotkeyPauseMines  h18  x+5  yp-2  w50        , %hotkeyPauseMines% 
-
+    Gui Add, GroupBox, xs+5 y+5 w160 h37, Cast on Detonate
+    Gui Add, CheckBox, gUpdateExtra xp+5 yp+16 vCastOnDetonate Checked%CastOnDetonate%, Enable
+    Gui Add, Text, x+5 yp+2 , Key
+    Gui Add, Edit,     gUpdateExtra   vhotkeyCastOnDetonate  h18  x+5  yp-2  w50        , %hotkeyCastOnDetonate% 
     Gui,Font,
 
     ;Save Setting
@@ -1732,8 +1741,7 @@
 
     ForceUpdate := Func("checkUpdate").Bind(True)
 
-    Gui, +LastFound
-    Gui, +AlwaysOnTop
+    Gui, +LastFound +AlwaysOnTop -DPIScale
     Menu, Tray, Tip,         WingmanReloaded Dev Ver%VersionNumber%
     Menu, Tray, NoStandard
     Menu, Tray, Add,         WingmanReloaded, optionsCommand
@@ -1829,7 +1837,7 @@
         }
       }
 
-    Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
+    Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox -DPIScale
     Gui, ItemInfo: Margin, 10, 10
     Gui, ItemInfo: Font, Bold s8 c4D7186, Verdana
     Gui, ItemInfo: Add, GroupBox, vGroupBox1 xm+1 y+1  h251 w554 , %GroupBox1%
@@ -2295,7 +2303,7 @@ Return
           ShooMouse(),GuiStatus(),Continue
         If (!Prop.Identified&&YesIdentify)
         {
-          If (Prop.IsMap&&!YesMapUnid)
+          If (Prop.IsMap&&!YesMapUnid&&!Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -2328,7 +2336,7 @@ Return
             Continue
           Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
             sendstash := StashTabCurrency
-          Else If (Prop.IsMap&&StashTabYesMap)
+          Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
             sendstash := StashTabMap
           Else If ( StashTabYesFragment 
             && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
@@ -2565,7 +2573,7 @@ Return
         addToBlacklist(C, R)
         If (!Prop.Identified&&YesIdentify)
         {
-          If (Prop.IsMap&&!YesMapUnid)
+          If (Prop.IsMap&&!YesMapUnid&&!Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -2598,7 +2606,7 @@ Return
             Continue
           Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
             sendstash := StashTabCurrency
-          Else If (Prop.IsMap&&StashTabYesMap)
+          Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
             sendstash := StashTabMap
           Else If ( StashTabYesFragment 
             && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
@@ -2883,7 +2891,7 @@ Return
         ; Trade full div stacks
         If (!Prop.Identified&&YesIdentify)
         {
-          If (Prop.IsMap&&!YesMapUnid)
+          If (Prop.IsMap&&!YesMapUnid&&!Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -3216,6 +3224,7 @@ Return
       If InStr(Clip_Contents, "`nNatural inhabitants of this area have been removed (implicit)")
       {
       Prop.IsBlightedMap := True
+      Prop.SpecialType := "Blighted Map"
       }
     }
     If InStr(Clip_Contents, "`nRight-click to add this to your bestiary.")
@@ -3734,7 +3743,7 @@ Return
         ; }
         Loop, parse, A_LoopField
         {
-          if (A_LoopField ~= "[BGR]")
+          if (A_LoopField ~= "[RGB]")
             Prop.Gem_Sockets++
         }
         If (Prop.Gem_Sockets = 6)
@@ -6214,7 +6223,12 @@ Return
       {
         If (OnDetonate)
         {
-          controlsend, , % "{" hotkeyDetonateMines "}", %GameStr%
+          If GameActive
+            send, % "{" hotkeyDetonateMines "}"
+          Else
+            controlsend, , % "{" hotkeyDetonateMines "}", %GameStr%
+          If CastOnDetonate
+            Send, % "{" hotkeyCastOnDetonate "}"
           Detonated:=1
           Settimer, TDetonated, -%DetonateMinesDelay%
         }
@@ -6771,37 +6785,27 @@ Return
 
         If (MainAttackPressedActive && AutoFlask)
         {
-          If GetKeyState(hotkeyMainAttack)
+          If (TriggerMainAttack > 0)
+            TriggerFlask(TriggerMainAttack)
+          Loop, 10
           {
-            If (TriggerMainAttack > 0)
-              TriggerFlask(TriggerMainAttack)
-            Loop, 10
+            If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%MainAttack)
             {
-              If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%MainAttack)
-              {
-                TriggerUtility(A_Index)
-              }
+              TriggerUtility(A_Index)
             }
           }
-          Else
-            MainAttackPressedActive := False
         }
         If (SecondaryAttackPressedActive && AutoFlask)
         {
-          If GetKeyState(hotkeySecondaryAttack)
+          If (TriggerSecondaryAttack > 0)
+            TriggerFlask(TriggerSecondaryAttack)
+          Loop, 10
           {
-            If (TriggerSecondaryAttack > 0)
-              TriggerFlask(TriggerSecondaryAttack)
-            Loop, 10
+            If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%SecondaryAttack)
             {
-              If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%SecondaryAttack)
-              {
-                TriggerUtility(A_Index)
-              }
+              TriggerUtility(A_Index)
             }
           }
-          Else
-            SecondaryAttackPressedActive := False
         }
 
         If (AutoFlask)
@@ -7038,6 +7042,12 @@ Return
     MainAttackPressedActive := True
     Return  
   }
+  MainAttackCommandRelease()
+  {
+    MainAttackCommandRelease:
+    MainAttackPressedActive := False
+    Return  
+  }
   ; SecondaryAttackCommand - Secondary attack Flasks
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   SecondaryAttackCommand()
@@ -7046,6 +7056,12 @@ Return
     If (SecondaryAttackPressedActive||OnTown||OnHideout||TriggerSecondaryAttack<=0)
       Return
     SecondaryAttackPressedActive := True
+    Return  
+  }
+  SecondaryAttackCommandRelease()
+  {
+    SecondaryAttackCommandRelease:
+    SecondaryAttackPressedActive := False
     Return  
   }
 
@@ -7058,7 +7074,10 @@ Return
       if (FLVal > 0) {
         if (OnCooldown[FL]=0) {
           key := keyFlask%FL%
-          controlsend, , %key%, %GameStr%
+          If GameActive
+            send, %key%
+          Else
+            controlsend, , %key%, %GameStr%
           ; SendMSG(3, FL)
           OnCooldown[FL]:=1 
           Cooldown:=CooldownFlask%FL%
@@ -7085,7 +7104,10 @@ Return
     {
       FL:=FlaskList.RemoveAt(1)
       key := keyFlask%FL%
-      controlsend, , %key%, %GameStr%
+      If GameActive
+        send, %key%
+      Else
+        controlsend, , %key%, %GameStr%
       OnCooldown[FL] := 1 
       Cooldown:=CooldownFlask%FL%
       settimer, TimerFlask%FL%, %Cooldown%
@@ -7147,7 +7169,11 @@ Return
         QFL := FlaskListQS.RemoveAt(1)
         If (!QFL)
           Return
-        controlsend, ,% keyFlask%QFL%, %GameStr%
+        key := keyFlask%QFL%
+        If GameActive
+          send, %key%
+        Else
+          controlsend, , %key%, %GameStr%
         settimer, TimerFlask%QFL%, % CooldownFlask%QFL%
         OnCooldown[QFL] := 1
         LastHeldLB := LastHeldMA := LastHeldSA := 0
@@ -7167,7 +7193,10 @@ Return
       Return
     If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
       key:=KeyUtility%Utility%
-      controlsend, , %key%, %GameStr%
+      If GameActive
+        send, %key%
+      Else
+        controlsend, , %key%, %GameStr%
       ; SendMSG(4, Utility)
       OnCooldownUtility%Utility%:=1
       Cooldown:=CooldownUtility%Utility%
@@ -7194,6 +7223,7 @@ Return
       Gui, Submit
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
+      Gui, States: -DPIScale
       Gui, States: Margin, 10, 10
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChar hwndCTIDOnChar, % "OnChar"
@@ -7377,18 +7407,20 @@ Return
       BlockInput, MouseMove
       MouseGetPos xx, yy
       RandomSleep(45,45)
-      If !GuiStatus("OnInventory")
-      {      
-        Send {%hotkeyInventory%} 
+      If (GrabCurrencyPosX && GrabCurrencyPosY)
+      {
+        If !GuiStatus("OnInventory")
+        {      
+          Send {%hotkeyInventory%} 
+          RandomSleep(45,45)
+        }
         RandomSleep(45,45)
+        RightClick(GrabCurrencyPosX, GrabCurrencyPosY)
+        RandomSleep(45,45)
+        Send {%hotkeyInventory%} 
+        MouseMove, xx, yy, 0
+        BlockInput, MouseMoveOff
       }
-      RandomSleep(45,45)
-      RightClick(GrabCurrencyPosX, GrabCurrencyPosY)
-      RandomSleep(45,45)
-      
-      Send {%hotkeyInventory%} 
-      MouseMove, xx, yy, 0
-      BlockInput, MouseMoveOff
   return
   }
 ; 
@@ -7409,7 +7441,8 @@ Return
         RandomSleep(45,45)
       }
       ;First Gem or Item Swap
-      If ((CurrentGemX != 0 && CurrentGemY != 0) || (AlternateGemX !=0 && AlternateGemY != 0)) {
+      If (CurrentGemX && CurrentGemY && AlternateGemX && AlternateGemY) 
+      {
         If (GemItemToogle)
         {
           LeftClick(CurrentGemX, CurrentGemY)
@@ -7435,7 +7468,8 @@ Return
         RandomSleep(90,120)
       }
       ;Second Gem of Item Swap
-      If ((CurrentGem2X != 0 && CurrentGem2Y != 0) || (AlternateGem2X !=0 && AlternateGem2Y != 0)) {
+      If (CurrentGem2X && CurrentGem2Y && AlternateGem2X && AlternateGem2Y) 
+      {
         If (GemItemToogle2)
         {
           LeftClick(CurrentGem2X, CurrentGem2Y)
@@ -7930,6 +7964,7 @@ Return
       IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
+      IniRead, YesStashBlightedMap, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap, 1
       IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
       IniRead, Latency, %A_ScriptDir%\save\Settings.ini, General, Latency, 1
       IniRead, ClickLatency, %A_ScriptDir%\save\Settings.ini, General, ClickLatency, 0
@@ -7969,6 +8004,8 @@ Return
       IniRead, YesFillMetamorph, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph, 0
       IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
+      IniRead, CastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate, 0
+      IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate, q
 
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
@@ -8493,9 +8530,15 @@ Return
       If hotkeyPauseMines
         hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
       If hotkeyMainAttack
+      {
         hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+        hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
+      }
       If hotkeySecondaryAttack
+      {
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+        hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
+      }
 
       hotkey, IfWinActive
       If hotkeyOptions
@@ -8550,9 +8593,15 @@ Return
       If hotkeyLootScan
         hotkey, $~%hotkeyLootScan%, LootScanCommand, On
       If hotkeyMainAttack
+      {
         hotkey, $~%hotkeyMainAttack%, MainAttackCommand, On
+        hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, On
+      }
       If hotkeySecondaryAttack
+      {
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, On
+        hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, On
+      }
       
       #MaxThreadsPerHotkey, 1
       If hotkeyPauseMines
@@ -8658,7 +8707,7 @@ Return
 
       ;settings for the Ninja Database
       IniRead, LastDatabaseParseDate, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate, 20190913
-      IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Blight
+      IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Delirium
       IniRead, UpdateDatabaseInterval, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval, 2
       IniRead, YesNinjaDatabase, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase, 1
       IniRead, ForceMatch6Link, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link, 0
@@ -8702,9 +8751,15 @@ Return
       If hotkeyPauseMines
         hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
       If hotkeyMainAttack
+      {
         hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+        hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
+      }
       If hotkeySecondaryAttack
+      {
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+        hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
+      }
 
       Hotkey If, % fn1
       If 1Suffix1 != A_Space
@@ -8873,6 +8928,7 @@ Return
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
+      IniWrite, %YesStashBlightedMap%, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
       IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
       IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
@@ -10074,6 +10130,8 @@ Return
       
       ;AutoMines
       IniWrite, %DetonateMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines
+      IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CastOnDetonate
+      IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyCastOnDetonate
       ; IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay
       ; IniWrite, %PauseMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PauseMinesDelay
       ; IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyPauseMines
@@ -10557,6 +10615,10 @@ Return
       ;AutoMines
       IniRead, DetonateMines, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines, 0
       GuiControl, , DetonateMines, %DetonateMines%
+      IniRead, CastOnDetonate, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CastOnDetonate, 0
+      GuiControl, , CastOnDetonate, %CastOnDetonate%
+      IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyCastOnDetonate, q
+      GuiControl, , hotkeyCastOnDetonate, %hotkeyCastOnDetonate%
       ; IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay, 500
       ; GuiControl, , DetonateMinesDelay, %DetonateMinesDelay%
       ; IniRead, PauseMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PauseMinesDelay, 250
@@ -10936,13 +10998,13 @@ Return
         {
           UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
           FileRead, changelog, %A_ScriptDir%\temp\changelog.txt
+          Gui, Update: +AlwaysOnTop -DPIScale
           Gui, Update:Add, Button, x0 y0 h1 w1, a
           Gui, Update:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
           Gui, Update:Add, Edit, w600 h200 +ReadOnly, %changelog% 
           Gui, Update:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
           Gui, Update:Add, Button, x+35 ys gLaunchDonate, Support the Project
           Gui, Update:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
-          Gui, Update: +AlwaysOnTop
           Gui, Update:Show,, WingmanReloaded Update
           IfWinExist WingmanReloaded Update ahk_exe AutoHotkey.exe
           {
@@ -11397,7 +11459,7 @@ Return
       StartCalibrationWizard:
         Thread, NoTimers, true
         Gui, Submit
-        Gui, Wizard: New, +LabelWizard +AlwaysOnTop
+        Gui, Wizard: New, +LabelWizard +AlwaysOnTop -DPIScale
         Gui, Wizard: Font, Bold
         Gui, Wizard: Add, GroupBox, x10 y9 w460 h270 , Select which calibrations to run
         Gui, Wizard: Font
@@ -11460,7 +11522,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar)
-            SampleTT .= "OnChar      took BGR color hex: " . varOnChar . "  At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
+            SampleTT .= "OnChar      took RGB color hex: " . varOnChar . "  At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
         }
@@ -11484,7 +11546,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat)
-            SampleTT .= "OnChat      took BGR color hex: " . varOnChat . "  At coords x: " . vX_OnChat . " and y: " . vY_OnChat . "`n"
+            SampleTT .= "OnChat      took RGB color hex: " . varOnChat . "  At coords x: " . vX_OnChat . " and y: " . vY_OnChat . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnChat didn't work"
         }
@@ -11508,7 +11570,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu)
-            SampleTT .= "OnMenu      took BGR color hex: " . varOnMenu . "  At coords x: " . vX_OnMenu . " and y: " . vY_OnMenu . "`n"
+            SampleTT .= "OnMenu      took RGB color hex: " . varOnMenu . "  At coords x: " . vX_OnMenu . " and y: " . vY_OnMenu . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
         }
@@ -11531,7 +11593,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory)
-            SampleTT .= "OnInventory   took BGR color hex: " . varOnInventory . "  At coords x: " . vX_OnInventory . " and y: " . vY_OnInventory . "`n"
+            SampleTT .= "OnInventory   took RGB color hex: " . varOnInventory . "  At coords x: " . vX_OnInventory . " and y: " . vY_OnInventory . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
         }
@@ -11576,7 +11638,7 @@ Return
             NewString := StringReplaceN(NewString,",",",`n",46)
             NewString := StringReplaceN(NewString,",",",`n",53)
             SampleTT .= " "
-            EmptySampleTT := "`nEmpty Inventory took BGR color hexes: " . NewString
+            EmptySampleTT := "`nEmpty Inventory took RGB color hexes: " . NewString
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of Empty Inventory didn't work"
         }
@@ -11599,7 +11661,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor)
-            SampleTT .= "OnVendor    took BGR color hex: " . varOnVendor . "  At coords x: " . vX_OnVendor . " and y: " . vY_OnVendor . "`n"
+            SampleTT .= "OnVendor    took RGB color hex: " . varOnVendor . "  At coords x: " . vX_OnVendor . " and y: " . vY_OnVendor . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
         }
@@ -11623,8 +11685,8 @@ Return
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash)
             , varOnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft)
-            SampleTT .= "OnStash      took BGR color hex: " . varOnStash . "  At coords x: " . vX_OnStash . " and y: " . vY_OnStash . "`n"
-            SampleTT .= "OnLeft      took BGR color hex: " . varOnLeft . "  At coords x: " . vX_OnLeft . " and y: " . vY_OnLeft . "`n"
+            SampleTT .= "OnStash      took RGB color hex: " . varOnStash . "  At coords x: " . vX_OnStash . " and y: " . vY_OnStash . "`n"
+            SampleTT .= "OnLeft      took RGB color hex: " . varOnLeft . "  At coords x: " . vX_OnLeft . " and y: " . vY_OnLeft . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnStash/OnLeft didn't work"
         }
@@ -11647,7 +11709,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv)
-            SampleTT .= "OnDiv       took BGR color hex: " . varOnDiv . "  At coords x: " . vX_OnDiv . " and y: " . vY_OnDiv . "`n"
+            SampleTT .= "OnDiv       took RGB color hex: " . varOnDiv . "  At coords x: " . vX_OnDiv . " and y: " . vY_OnDiv . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
         }
@@ -11675,7 +11737,7 @@ Return
               varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
             Else
               varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-            SampleTT .= "Detonate Mines took BGR color hex: " . varOnDetonate . "  At coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY . "`n"
+            SampleTT .= "Detonate Mines took RGB color hex: " . varOnDetonate . "  At coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
         }
@@ -11698,7 +11760,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart)
-            SampleTT .= "OnDelveChart       took BGR color hex: " . varOnDelveChart . "  At coords x: " . vX_OnDelveChart . " and y: " . vY_OnDelveChart . "`n"
+            SampleTT .= "OnDelveChart       took RGB color hex: " . varOnDelveChart . "  At coords x: " . vX_OnDelveChart . " and y: " . vY_OnDelveChart . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
         }
@@ -11721,7 +11783,7 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph)
-            SampleTT .= "OnMetamorph       took BGR color hex: " . varOnMetamorph . "  At coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph . "`n"
+            SampleTT .= "OnMetamorph       took RGB color hex: " . varOnMetamorph . "  At coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
         }
@@ -11791,7 +11853,7 @@ Return
         Global LootColors, LG_Vary
         Gui, Submit
         gui,LootColors: new, LabelLootColors
-        gui,LootColors: -MinimizeBox
+        gui,LootColors: -MinimizeBox -DPIScale
         Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
         Gui,LootColors: Add, Text,                     x+3 yp+5              , AreaScale of search
         Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
@@ -11920,7 +11982,7 @@ Return
       If !Initialized
       {
         Gui, OHB: new
-        Gui, OHB: +AlwaysOnTop
+        Gui, OHB: +AlwaysOnTop -DPIScale
         Gui, OHB: Font, cBlack s20
         Gui, OHB: add, Text, xm , Output String:
         Gui, OHB: add, Button, x+120 yp hp wp vOHB_Test gOHBUpdate, Test String
@@ -12041,7 +12103,7 @@ Return
 
     BuildIgnoreMenu:
       Gui, Submit
-      Gui, Ignore: +LabelIgnore -MinimizeBox +AlwaysOnTop
+      Gui, Ignore: +LabelIgnore -MinimizeBox +AlwaysOnTop -DPIScale
       Gui, Ignore: Font, Bold
       Gui, Ignore: Add, GroupBox, w660 h305 Section xm ym, Ignored Inventory Slots:
       Gui, Ignore: Add, Picture, w650 h-1 xs+5 ys+15, %A_ScriptDir%\data\InventorySlots.png
@@ -12273,6 +12335,7 @@ Return
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
+      IniWrite, %YesStashBlightedMap%, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
       IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
       IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
@@ -12294,6 +12357,8 @@ Return
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
       IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
       IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
+      IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate
+      IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate
       If (YesPersistantToggle)
         AutoReset()
       #MaxThreadsPerHotkey, 1

@@ -1,4 +1,39 @@
-## Version .11.00 - Release Notes - April/01/2020
+## Version .11.01 - Master Branch - April/04/2020  
+
+Merging Alpha changes to master branch
+
+Scroll down to read alpha notes for changes
+
+---
+
+## Version .11.0002 - Alpha Branch - April/03/2020  
+Few small adjustments
+* Removed DPIScaling from the GUI menus
+* "Hand" added to list of openable containers in Loot Vacuum
+
+---
+
+## Version .11.0001 - Alpha Branch - April/02/2020  
+Bugfix for ControlSend usage in the script
+* When firing flasks, it first confirms an active game
+  * When game is active, we use standard Send
+  * When game is background, we use ControlSend
+* Flasks can still fire in the background
+  * But now they will no longer interrupt other keypresses
+
+Additions by DanMarzola
+* Adjustment for Gem/Item Swap function and Grab Currency
+  * Instead of only allowing 0 to disable, accepts blank edit box
+* Bugfix for script attempting ID'ing corrupted maps
+* Option to skip stashing blighted maps
+
+New addition to Auto-Detonate Mines
+* Cast an ability the moment after detonating
+  * Mainly for Smoke Mine and Flame Dash
+
+---
+
+## Version .11.00 - Release Notes - April/01/2020  
 Merging Alpha changes to master branch
 * New functions added by DanMarzola
   * quickly apply currency from inventory onto mouse
@@ -14,7 +49,7 @@ Merging Alpha changes to master branch
 Major changes since last release:
 Stack Release tool added to utility tab 
 * Searches for a buff icon, then if found searches for the stack capture 
-  * if it finds both it releases the assigned keybind, and represses
+  * if it finds both it releases the assigned key bind, and represses
 * You can adjust the offset it looks for the stack count 
   * The area defaults to the bottom left to bottom right of the buff icon
 
@@ -30,7 +65,7 @@ Predictive Price function has been modified
 
 New Major Feature of the CLF!
 * You can now select OR on any of the selected Prop, Affix or Stats
-* When enabled, the slot becomes mutually bolean with others with OR
+* When enabled, the slot becomes mutually Boolean with others with OR
   * If any match, it is true
   * If all do not match, it is false
 * Select the minimum number of required OR matches
@@ -41,7 +76,7 @@ New Major Feature of the CLF!
 
 > **For now controller support is not active (the remaining code in GottaGoFast)**
 
-> Read the patchnotes archive file in the data folder for more information
+> Read the patch notes archive file in the data folder for more information
 
 ---
 
