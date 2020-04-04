@@ -1,8 +1,35 @@
-## Configuration Tab
+## Information
 
-> This setting panel contains the bulk of the options for the script, as well as buttons to open additional portions of the settings menu.
+> This setting panel contains the bulk of the options for the script, as well as buttons to open additional portions of the settings menu. 
 
-### Interface Options
+## Gamestate Calibration
+> This contains buttons for launching additional GUI related to calibration.
+
+### Run Wizard
+> This will allow you to sample multiple locations while following onscreen tooltip prompts. Select the type of calibrations you will be doing during the Wizard, all the options are default selected which can be performed upon reaching the very first town. To capture the samples, follow the prompts and press the A button at each step. To cancel the Wizard, hold down Escape then press A.
+
+### Individual Sample
+> This panel is for quickly sampling colors for a specific location. It provides the same options for calibration that are provided by the wizard.
+
+### Show Gamestates
+> This is a debug tool which shows the current logic states of the script. When the script shows all clear, it will be all green. If anything that will pause the script is active, it will show in red. You can also use this to get a readout of the inventory system for debugging purposes.
+
+### Adjust Globes
+> This panel allows for adjustment of the screen locations used to search for Life, Mana or Energy Shield percentages.
+
+The areas are split into Life, Mana, Energy Shield, and Eldritch Battery
+
+Click the color to load it into the color picker on the right. Click Show Area to see a box around the search area in-game.
+
+If you want to make adjustments, there are three adjustable fields. First is the area to search, second is the Color to match against, third is the variance from the matching color.
+
+To get averages of areas of the globe, use the Coord tool to select a rectangle of the area. It will calculate all the unique pixel colors and create an average. This may take some time to process large areas.
+
+Press the Copy button to put the current color of the color picker into the Clipboard. Paste a Hex color into any of the color edit boxes to update it.
+
+> The percentages in the bottom of the panel will update in real time as you make adjustments to any of the settings.
+
+## Interface Options
 > These settings are primarily how the script interacts with the game. 
 
 #### Pause script when OHB missing?
@@ -55,34 +82,7 @@ for the standalone client the file path will look like:
 C:\Program Files (x86)\Grinding Gear Games\Path of Exile\logs\Client.txt
 ```
 
-### Gamestate Calibration
-> This contains buttons for launching additional GUI related to calibration.
-
-#### Run Wizard
-> This will allow you to sample multiple locations while following onscreen tooltip prompts. Select the type of calibrations you will be doing during the Wizard, all the options are default selected which can be performed upon reaching the very first town. To capture the samples, follow the prompts and press the A button at each step. To cancel the Wizard, hold down Escape then press A.
-
-#### Individual Sample
-> This panel is for quickly sampling colors for a specific location. It provides the same options for calibration that are provided by the wizard.
-
-#### Show Gamestates
-> This is a debug tool which shows the current logic states of the script. When the script shows all clear, it will be all green. If anything that will pause the script is active, it will show in red. You can also use this to get a readout of the inventory system for debugging purposes.
-
-#### Adjust Globes
-> This panel allows for adjustment of the screen locations used to search for Life, Mana or Energy Shield percentages.
-
-The areas are split into Life, Mana, Energy Shield, and Eldritch Battery
-
-Click the color to load it into the color picker on the right. Click Show Area to see a box around the search area in-game.
-
-If you want to make adjustments, there are three adjustable fields. First is the area to search, second is the Color to match against, third is the variance from the matching color.
-
-To get averages of areas of the globe, use the Coord tool to select a rectangle of the area. It will calculate all the unique pixel colors and create an average. This may take some time to process large areas.
-
-Press the Copy button to put the current color of the color picker into the Clipboard. Paste a Hex color into any of the color edit boxes to update it.
-
-> The percentages in the bottom of the panel will update in real time as you make adjustments to any of the settings.
-
-### Add Info
+## Additional Settings
 > PLACEHOLDER
 
 ### Add Info
