@@ -382,16 +382,41 @@
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab7 Choose%stashSuffixTab7%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
-        
         Gui, Inventory: Tab, Crafting Settings
           Gui, Inventory: Font, Bold
           Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
+          Gui, Inventory: Add,GroupBox,Section w260 h65 xs, Map Tier Range 1:
           Gui, Inventory: Font,
-          Gui, Inventory: Font,s9,Arial
-          Gui, Inventory: Add, Text,                     xs+4  y+5,         Map Tier Range 1:
-          Gui, Inventory: Add, DropDownList, xs+4 ys+45     w60    vStartMapTier1  Choose%StartMapTier1%,  Disable|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-          Gui, Inventory: Add, DropDownList, xs+74 ys+45    w60    vEndMapTier1    Choose%EndMapTier1%,    Disable|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-          Gui, Inventory: Add, DropDownList, xs+144 ys+45    w200    vCraftingMapMethod1    Choose%CraftingMapMethod1%,    Disable|Trasmutation|Trasmutation + Augmentation|Alchemy|Chisel + Alchemy|Chisel + Alchemy + Vaal
+          Gui, Inventory: Font,s7,Arial
+            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod1    Choose%CraftingMapMethod1%,    Trasmutation|Alchemy|Chisel + Alchemy|Chisel + Alchemy + Vaal
+            Gui, Inventory: Font, Bold
+          Gui, Inventory: Add,GroupBox,Section w260 h65 xs, Map Tier Range 2:
+            Gui, Inventory: Font,
+            Gui, Inventory: Font,s7,Arial
+            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    Trasmutation|Alchemy|Chisel + Alchemy|Chisel + Alchemy + Vaal
+            Gui, Inventory: Font, Bold
+          Gui, Inventory: Add,GroupBox,Section w260 h65 xs, Map Tier Range 3:
+            Gui, Inventory: Font,
+            Gui, Inventory: Font,s7,Arial
+            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    Trasmutation|Alchemy|Chisel + Alchemy|Chisel + Alchemy + Vaal
         }
         Gui, Inventory: show , w600 h500, Inventory Settings
       }

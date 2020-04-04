@@ -63,14 +63,14 @@
   AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
   
   ; CleanUp()
-
+  ;REMEMBER TO ENABLE!!!
   ; Rerun as admin if not already admin, required to disconnect client
-  if not A_IsAdmin
-    if A_IsCompiled
-    Run *RunAs "%A_ScriptFullPath%" /restart
-  else
-    Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
-  Sleep, -1
+  ;if not A_IsAdmin
+  ;  if A_IsCompiled
+   ; Run *RunAs "%A_ScriptFullPath%" /restart
+  ;else
+   ; Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+  ;Sleep, -1
   ; Run "%A_ScriptDir%\GottaGoFast.ahk"
   ; OnExit("CleanUp")
   
@@ -822,9 +822,8 @@
     Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
     Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
-  ; Crafting Tab
-    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,EndMapTier4
-    Global CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,CraftingMapMethod4
+  ; Crafting Tab dan
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
     Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21, 
@@ -8009,6 +8008,17 @@ Return
       IniRead, CastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate, 0
       IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate, q
 
+      ;Crafting Tab Settings Dan
+      IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier1, 1
+      IniRead, StartMapTier2, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier2, 6
+      IniRead, StartMapTier3, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier3, 13
+      IniRead, EndMapTier1, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier1, 5
+      IniRead, EndMapTier2, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier2, 12
+      IniRead, EndMapTier3, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier3, 16
+      IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod1, 1
+      IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod2, 2
+      IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod3, 3
+
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
       IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
@@ -12361,6 +12371,16 @@ Return
       IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
       IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate
       IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate
+      ;dan marker
+      IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier1
+      IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier2
+      IniWrite, %StartMapTier3%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier3
+      IniWrite, %EndMapTier1%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier1
+      IniWrite, %EndMapTier2%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier2
+      IniWrite, %EndMapTier3%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier3
+      IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod1
+      IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod2
+      IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod3
       If (YesPersistantToggle)
         AutoReset()
       #MaxThreadsPerHotkey, 1
