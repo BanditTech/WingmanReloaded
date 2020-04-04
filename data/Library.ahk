@@ -1671,22 +1671,22 @@
         Global DetonateX:=GameX + Round(GameW/(1920/1658))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
         ;Currency
-          ;Scouring 175,476
+        ;Scouring 175,476
         Global ScouringX:=GameX + Round(GameW/(1920/175))
         Global ScouringY:=GameY + Round(GameH/(1080/475))
-          ;Chisel 605,220
+        ;Chisel 605,220
         Global ChiselX:=GameX + Round(GameW/(1920/605))
         Global ChiselY:=GameY + Round(GameH/(1080/220))
-          ;Alchemy 490,290
+        ;Alchemy 490,290
         Global AlchemyX:=GameX + Round(GameW/(1920/490))
         Global AlchemyY:=GameY + Round(GameH/(1080/290))
-          ;Transmutation 60,290
+        ;Transmutation 60,290
         Global TransmutationX:=GameX + Round(GameW/(1920/60))
         Global TransmutationY:=GameY + Round(GameH/(1080/290))
-          ;Augmentation 230,340
+        ;Augmentation 230,340
         Global AugmentationX:=GameX + Round(GameW/(1920/230))
         Global AugmentationY:=GameY + Round(GameH/(1080/340))
-          ;Vaal 230,475
+        ;Vaal 230,475
         Global VaalX:=GameX + Round(GameW/(1920/230))
         Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
@@ -1817,22 +1817,22 @@
         Global DetonateY:=GameY + Round(GameH/(1080/901))
                 ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringX:=GameX + Round(GameW/(1440/175))
         Global ScouringY:=GameY + Round(GameH/(1080/475))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselX:=GameX + Round(GameW/(1440/605))
         Global ChiselY:=GameY + Round(GameH/(1080/220))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyX:=GameX + Round(GameW/(1440/490))
         Global AlchemyY:=GameY + Round(GameH/(1080/290))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationX:=GameX + Round(GameW/(1440/60))
         Global TransmutationY:=GameY + Round(GameH/(1080/290))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationX:=GameX + Round(GameW/(1440/230))
         Global AugmentationY:=GameY + Round(GameH/(1080/340))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalX:=GameX + Round(GameW/(1440/230))
         Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(1440/125))
@@ -1962,22 +1962,22 @@
         Global DetonateY:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringX:=GameX + Round(GameW/(2560/175))
         Global ScouringY:=GameY + Round(GameH/(1080/475))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselX:=GameX + Round(GameW/(2560/605))
         Global ChiselY:=GameY + Round(GameH/(1080/220))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyX:=GameX + Round(GameW/(2560/490))
         Global AlchemyY:=GameY + Round(GameH/(1080/290))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationX:=GameX + Round(GameW/(2560/60))
         Global TransmutationY:=GameY + Round(GameH/(1080/290))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationX:=GameX + Round(GameW/(2560/230))
         Global AugmentationY:=GameY + Round(GameH/(1080/340))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalX:=GameX + Round(GameW/(2560/230))
         Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(2560/125))
@@ -2105,6 +2105,7 @@
         Global DetonateX:=GameX + Round(GameW/(3440/3090))
         Global DetonateY:=GameY + Round(GameH/(1440/1202))
         ;Currency
+; MARKER - These need scaling
           ;Scouring 175,47
         Global ScouringX:=GameX + Round(GameW/(1920/175))
         Global ScouringY:=GameY + Round(GameH/(1080/475))
@@ -2247,22 +2248,22 @@
         Global DetonateY:=GameY + Round(GameH/(1080/901))
                 ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringX:=GameX + Round(GameW/(3840/175))
         Global ScouringY:=GameY + Round(GameH/(1080/475))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselX:=GameX + Round(GameW/(3840/605))
         Global ChiselY:=GameY + Round(GameH/(1080/220))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyX:=GameX + Round(GameW/(3840/490))
         Global AlchemyY:=GameY + Round(GameH/(1080/290))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationX:=GameX + Round(GameW/(3840/60))
         Global TransmutationY:=GameY + Round(GameH/(1080/290))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationX:=GameX + Round(GameW/(3840/230))
         Global AugmentationY:=GameY + Round(GameH/(1080/340))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalX:=GameX + Round(GameW/(3840/230))
         Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3840/125))
