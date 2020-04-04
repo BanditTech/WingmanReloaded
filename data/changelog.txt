@@ -1,3 +1,18 @@
+## Version .11.01 - Master Branch - April/04/2020  
+
+Merging Alpha changes to master branch
+
+Scroll down to read alpha notes for changes
+
+---
+
+## Version .11.0002 - Alpha Branch - April/03/2020  
+Few small adjustments
+* Removed DPIScaling from the GUI menus
+* "Hand" added to list of openable containers in Loot Vacuum
+
+---
+
 ## Version .11.0001 - Alpha Branch - April/02/2020  
 Bugfix for ControlSend usage in the script
 * When firing flasks, it first confirms an active game
