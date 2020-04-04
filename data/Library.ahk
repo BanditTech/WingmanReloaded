@@ -154,7 +154,7 @@
           ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
           Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-          Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys
+          Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Crafting Settings
 
         Gui, Inventory: Tab, Options
           Gui, Inventory: Font, Bold
@@ -382,7 +382,16 @@
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab7 Choose%stashSuffixTab7%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
-
+        
+        Gui, Inventory: Tab, Crafting Settings
+          Gui, Inventory: Font, Bold
+          Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
+          Gui, Inventory: Font,
+          Gui, Inventory: Font,s9,Arial
+          Gui, Inventory: Add, Text,                     xs+4  y+5,         Map Tier Range 1:
+          Gui, Inventory: Add, DropDownList, xs+4 ys+45     w60    vStartMapTier1  Choose%StartMapTier1%,  Disable|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+          Gui, Inventory: Add, DropDownList, xs+74 ys+45    w60    vEndMapTier1    Choose%EndMapTier1%,    Disable|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+          Gui, Inventory: Add, DropDownList, xs+144 ys+45    w200    vCraftingMapMethod1    Choose%CraftingMapMethod1%,    Disable|Trasmutation|Trasmutation + Augmentation|Alchemy|Chisel + Alchemy|Chisel + Alchemy + Vaal
         }
         Gui, Inventory: show , w600 h500, Inventory Settings
       }
