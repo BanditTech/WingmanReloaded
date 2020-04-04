@@ -262,6 +262,7 @@
       hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
       hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
       hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
+      hotkeyStartCraft = Set your hotkey to use Crafting Tab functions
       hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
       hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
       hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
@@ -634,6 +635,7 @@
     global hotkeyPauseMines:="d"
     global hotkeyQuickPortal:="!q"
     global hotkeyGemSwap:="!e"
+    global hotkeyStartCraft:="!y"
     global hotkeyGrabCurrency:="!a"
     global hotkeyGetMouseCoords:="!o"
     global hotkeyCloseAllUI:="Space"
@@ -1684,6 +1686,7 @@
     Gui Add, Text,                     xs+65   y+10,         Coord/Pixel         
     Gui Add, Text,                     xs+65   y+10,         Quick-Portal
     Gui Add, Text,                     xs+65   y+10,         Gem-Swap
+    Gui Add, Text,                     xs+65   y+10,         Start Crafting
     Gui Add, Text,                     xs+65   y+10,         Grab Currency
     Gui Add, Text,                     xs+65   y+10,         Pop Flasks
     Gui Add, Text,                     xs+65   y+10,         ID/Vend/Stash
@@ -1697,6 +1700,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyStartCraft        ,%hotkeyStartCraft%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
@@ -1948,7 +1952,24 @@
     Global WisdomStockX:=115
     Global PortalStockX:=175
     Global WPStockY:=220
-    
+    ;Scouring 175,475
+    Global ScouringX:=175
+    Global ScouringY:=475
+    ;Chisel 605,220
+    Global ChiselX:=605
+    Global ChiselY:=220
+    ;Alchemy 490,290
+    Global AlchemyX:=490
+    Global AlchemyY:=290
+    ;Transmutation 60,290
+    Global TransmutationX:=60
+    Global TransmutationY:=290
+    ;Augmentation 230,340
+    Global AugmentationX:=230
+    Global AugmentationY:=340
+    ;Vaal 230,475
+    Global VaalX:=230
+    Global VaalY:=475
     global vX_OnMenu:=960
     global vY_OnMenu:=54
     global vX_OnChar:=41
@@ -7424,6 +7445,241 @@ Return
       }
   return
   }
+; General Function for Crafting
+  Crafting()
+  {
+    StartCraftCommand:
+      Thread, NoTimers, True
+      If RunningToggle
+      {
+        RunningToggle := False
+        If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+        {
+          SetTimer, TGameTick, On
+        }
+      SendMSG(1,0,scriptTradeMacro)
+      exit
+      }
+      MouseGetPos xx, yy
+      BlockInput, MouseMove
+      IfWinActive, ahk_group POEGameGroup
+      {
+        RunningToggle := True
+        If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+          SetTimer, TGameTick, Off
+        GuiStatus()
+        If (!OnChar) 
+        {
+          MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
+          RunningToggle := False
+          If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+            SetTimer, TGameTick, On
+          Return
+        }
+        ;BeginScript
+        Else
+        {
+          If (OnInventory && OnStash)
+          {
+            RandomSleep(45,45)
+            CraftingMaps()
+          }
+          ;FailSafe agains Onstash, but inventory closed
+          Else If (!OnInventory && OnStash)
+          {
+            Send {%hotkeyInventory%}
+            RandomSleep(45,45)
+            GuiStatus()
+            RandomSleep(45,45)
+            CraftingMaps()
+          }
+          Else If (!OnStash && YesSearchForStash)
+          {
+            ; If don't find stash, return
+            If !SearchStash()
+            {
+              Send {%hotkeyInventory%}
+              RunningToggle := False
+              If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum){
+                SetTimer, TGameTick, On
+              }
+              Return
+            }
+            RandomSleep(45,45)
+            CraftingMaps()
+          }
+          Else
+          {
+            ; Exit Routine
+            RunningToggle := False
+            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+              SetTimer, TGameTick, On
+            Return
+          }
+        }
+      }
+    return
+  }
+
+; Crafting Map Section
+  CraftingMaps()
+  {
+    MoveStash(1)
+    ;Start Scan on Inventory
+    For C, GridX in InventoryGridX
+    {
+      If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+        Break
+      For R, GridY in InventoryGridY
+      {
+        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+          Break
+        If BlackList[C][R]
+          Continue
+        Grid := RandClick(GridX, GridY)
+        If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+        {   
+          Ding(500,11,"Hit Scroll")
+          Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+        } 
+        PointColor := ScreenShot_GetColor(GridX,GridY)
+        If indexOf(PointColor, varEmptyInvSlotColor) {
+          ;Seems to be an empty slot, no need to clip item info
+          Continue
+        }
+        ; Identify Items, not need on this routine, but can be usefull
+        ClipItem(Grid.X,Grid.Y)
+        addToBlacklist(C, R)
+        If (!Prop.Identified&&YesIdentify)
+        {
+          If (Prop.IsMap&&!YesMapUnid&&!Prop.Corrupted)
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If (Prop.Jeweler && ( Prop.Gem_Links >= 5 || Prop.RarityRare || Prop.RarityUnique) )
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+        }
+        ;dan marker
+        ;Crafting Map Actual Script
+        If (OnStash && OnInventory) 
+        {
+          i = 1
+          While (i<3)
+          {
+            If (Prop.IsMap&&!Prop.Corrupted)
+            {
+              ;Check Tiers
+              If (EndMapTier%i% >= StartMapTier%i% && CraftingMapMethod%i% != "Disable" && Prop.MapTier >= StartMapTier%i% && Prop.MapTier <= EndMapTier%i%)
+              {
+                If (!Prop.RarityNormal)
+                {
+                  If ((Prop.RarityMagic && CraftingMapMethod%i% = "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy")) || (Prop.RarityRare && Prop.Quality == 20 && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy" || CraftingMapMethod%i% = "Chisel+Alchemy")))
+                  {
+                    Continue
+                  }
+                  Else
+                  {
+                    ApplyScouring(Grid.X,Grid.Y)
+                  }
+                }
+                If (Prop.RarityNormal)
+                {
+                  If (CraftingMapMethod%i% == "Transmutation+Augmentation"){
+                    ApplyTrasmutation(Grid.X,Grid.Y)
+                    ApplyAugmentation(Grid.X,Grid.Y)
+                    Continue
+                  }
+                  Else if (CraftingMapMethod%i% == "Alchemy")
+                  {
+                    ApplyAlchemy(Grid.X,Grid.Y)
+                    Continue
+                  }
+                  Else if (CraftingMapMethod%i% == "Chisel + Alchemy")
+                  {
+                    ApplyChisel(Grid.X,Grid.Y)
+                    ApplyChisel(Grid.X,Grid.Y)
+                    ApplyChisel(Grid.X,Grid.Y)
+                    ApplyChisel(Grid.X,Grid.Y)
+                    ApplyAlchemy(Grid.X,Grid.Y)
+                    Continue
+                  }
+                  Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
+                  {
+                    ApplyChisel(Grid.X,Grid.Y)
+                    ApplyChisel(Grid.X,Grid.Y)
+                    ApplyChisel(Grid.X,Grid.Y)
+                    ApplyChisel(Grid.X,Grid.Y)
+                    ApplyAlchemy(Grid.X,Grid.Y)
+                    ApplyVaal(Grid.X,Grid.Y)
+                    Continue
+                  }
+                }
+              }
+            }
+            i++
+          }
+        }
+      }
+    }
+  }
+
+  ApplyScouring(x, y){
+    RightClick(ScouringX, ScouringY)
+    Sleep, 45*Latency
+    LeftClick(x,y)
+    Sleep, 45*Latency
+    return
+  }
+  ApplyTrasmutation(x,y){
+    msgbox, TX = %TrasmutationX% e TY = %TrasmutationY% e x = %x% e x = %y%
+    RightClick(TrasmutationX, TrasmutationY)
+    Sleep, 45*Latency
+    LeftClick(x,y)
+    Sleep, 45*Latency
+    return
+  }
+  ApplyAugmentation(x,y){
+    RightClick(AugmentationX, Augmentation)
+    Sleep, 45*Latency
+    LeftClick(x,y)
+    Sleep, 45*Latency
+    return
+  }
+  ApplyAlchemy(x,y){
+    RightClick(AlchemyX, AlchemyY)
+    Sleep, 45*Latency
+    LeftClick(x,y)
+    Sleep, 45*Latency
+    return
+  }
+  ApplyChisel(x,y){
+    RightClick(ChiselX, ChiselY)
+    Sleep, 45*Latency
+    LeftClick(x,y)
+    Sleep, 45*Latency
+    return
+  }
+  ApplyVaal(x,y){
+    RightClick(VaalX, VaalY)
+    Sleep, 45*Latency
+    LeftClick(x,y)
+    Sleep, 45*Latency
+    return
+  }
 ; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -8009,15 +8265,15 @@ Return
       IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate, q
 
       ;Crafting Tab Settings Dan
-      IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier1, 1
-      IniRead, StartMapTier2, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier2, 6
-      IniRead, StartMapTier3, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier3, 13
-      IniRead, EndMapTier1, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier1, 5
-      IniRead, EndMapTier2, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier2, 12
-      IniRead, EndMapTier3, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier3, 16
-      IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod1, 1
-      IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod2, 2
-      IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod3, 3
+      IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier1, 1
+      IniRead, StartMapTier2, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier2, 6
+      IniRead, StartMapTier3, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier3, 13
+      IniRead, EndMapTier1, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier1, 5
+      IniRead, EndMapTier2, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier2, 12
+      IniRead, EndMapTier3, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier3, 16
+      IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod1, 1
+      IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod2, 1
+      IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod3, 1
 
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
@@ -8525,6 +8781,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+      If hotkeyStartCraft
+        hotkey,% hotkeyStartCraft, StartCraftCommand, Off
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off  
       If hotkeyGetCoords
@@ -8563,6 +8821,7 @@ Return
       IniRead, hotkeyAutoFlask, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask, !F11
       IniRead, hotkeyAutoQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver, !MButton
       IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
+      IniRead, hotkeyStartCraft, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft, !y
       IniRead, hotkeyGemSwap, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap, !e
       IniRead, hotkeyGrabCurrency, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency, !a
       IniRead, hotkeyGetMouseCoords, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords, !o
@@ -8590,6 +8849,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, On
+      If hotkeyStartCraft
+        hotkey,% hotkeyStartCraft, StartCraftCommand, On
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, On
       If hotkeyGetMouseCoords
@@ -8746,6 +9007,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+      If hotkeyStartCraft
+        hotkey,% hotkeyStartCraft, StartCraftCommand, Off
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
       If hotkeyGetCoords
@@ -8989,6 +9252,7 @@ Return
       IniWrite, %hotkeyAutoQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver
       IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
       IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
+      IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyStartCraft
       IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
       IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
       IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
@@ -9154,6 +9418,17 @@ Return
       ;Grab Currency
       IniWrite, %GrabCurrencyPosX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX
       IniWrite, %GrabCurrencyPosY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY
+
+      ;CraftingMapTab dan marker
+      IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier1
+      IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier2
+      IniWrite, %StartMapTier3%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier3
+      IniWrite, %EndMapTier1%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier1
+      IniWrite, %EndMapTier2%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier2
+      IniWrite, %EndMapTier3%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier3
+      IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod1
+      IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod2
+      IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod3
 
       ;Gem Swap
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
@@ -9456,6 +9731,7 @@ Return
       GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
       GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
       GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
+      GuiControl,, hotkeyStartCraft, %hotkeyStartCraft%
       GuiControl,, hotkeyGrabCurrency, %hotkeyGrabCurrency%
       GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
       GuiControl,, hotkeyItemSort, %hotkeyItemSort%
@@ -12371,16 +12647,6 @@ Return
       IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
       IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate
       IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate
-      ;dan marker
-      IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier1
-      IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier2
-      IniWrite, %StartMapTier3%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, StartMapTier3
-      IniWrite, %EndMapTier1%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier1
-      IniWrite, %EndMapTier2%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier2
-      IniWrite, %EndMapTier3%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, EndMapTier3
-      IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod1
-      IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod2
-      IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, CraftingMapTab, CraftingMapMethod3
       If (YesPersistantToggle)
         AutoReset()
       #MaxThreadsPerHotkey, 1

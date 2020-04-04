@@ -394,7 +394,7 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod1    Choose%CraftingMapMethod1%,    Trasmutation|Alchemy|Chisel + Alchemy|Chisel + Alchemy + Vaal
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod1    Choose%CraftingMapMethod1%,    Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal
             Gui, Inventory: Font, Bold
           Gui, Inventory: Add,GroupBox,Section w260 h65 xs, Map Tier Range 2:
             Gui, Inventory: Font,
@@ -405,7 +405,7 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    Trasmutation|Alchemy|Chisel + Alchemy|Chisel + Alchemy + Vaal
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal
             Gui, Inventory: Font, Bold
           Gui, Inventory: Add,GroupBox,Section w260 h65 xs, Map Tier Range 3:
             Gui, Inventory: Font,
@@ -416,7 +416,7 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    Trasmutation|Alchemy|Chisel + Alchemy|Chisel + Alchemy + Vaal
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w150   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal
         }
         Gui, Inventory: show , w600 h500, Inventory Settings
       }
@@ -1663,8 +1663,27 @@
         Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
         Global DetonateX:=GameX + Round(GameW/(1920/1658))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
+        ;Currency
+          ;Scouring 175,476
+        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+          ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+          ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+          ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+          ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(1920/125))
+        Global WisdomStockX:=GameX + Round(GameW/(1920/115))
         Global PortalStockX:=GameX + Round(GameW/(1920/175))
         Global WPStockY:=GameY + Round(GameH/(1080/220))
         ;Status Check OnMenu
@@ -1789,6 +1808,25 @@
         Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
         Global DetonateX:=GameX + Round(GameW/(1440/1178))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
+                ;Currency
+          ;Scouring 175,476
+        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+          ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+          ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+          ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+          ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(1440/125))
         Global PortalStockX:=GameX + Round(GameW/(1440/175))
@@ -1915,6 +1953,25 @@
         Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
         Global DetonateX:=GameX + Round(GameW/(2560/2298))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
+        ;Currency
+          ;Scouring 175,476
+        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+          ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+          ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+          ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+          ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(2560/125))
         Global PortalStockX:=GameX + Round(GameW/(2560/175))
@@ -2040,6 +2097,25 @@
         Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
         Global DetonateX:=GameX + Round(GameW/(3440/3090))
         Global DetonateY:=GameY + Round(GameH/(1440/1202))
+        ;Currency
+          ;Scouring 175,47
+        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+          ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+          ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+          ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+          ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3440/164))
         Global PortalStockX:=GameX + Round(GameW/(3440/228))
@@ -2162,6 +2238,25 @@
         Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
         Global DetonateX:=GameX + Round(GameW/(3840/3578))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
+                ;Currency
+          ;Scouring 175,476
+        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+          ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+          ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+          ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+          ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3840/125))
         Global PortalStockX:=GameX + Round(GameW/(3840/175))
