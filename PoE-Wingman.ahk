@@ -7597,7 +7597,7 @@ Return
                 }
                 Else
                 {
-                  ApplyScouring(Grid.X,Grid.Y)
+                  ApplyCurrency(Grid.X,Grid.Y,"Scouring")
                   ClipItem(Grid.X,Grid.Y)
                 }
               }
@@ -7609,28 +7609,28 @@ Return
                   numberChisel := 0
                 If (CraftingMapMethod%i% == "Transmutation+Augmentation")
                 {
-                  ApplyTrasmutation(Grid.X,Grid.Y)
-                  ApplyAugmentation(Grid.X,Grid.Y)
+                  ApplyCurrency(Grid.X,Grid.Y,"Trasmutation")
+                  ApplyCurrency(Grid.X,Grid.Y,"Augmentation")
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Alchemy")
                 {
-                  ApplyAlchemy(Grid.X,Grid.Y)
+                  ApplyCurrency(Grid.X,Grid.Y,"Alchemy")
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Chisel + Alchemy")
                 {
                   Loop, %numberChisel%
-                    ApplyChisel(Grid.X,Grid.Y)
-                  ApplyAlchemy(Grid.X,Grid.Y)
+                    ApplyCurrency(Grid.X,Grid.Y,"Chisel")
+                  ApplyCurrency(Grid.X,Grid.Y,"Alchemy")
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
                 {
                   Loop, %numberChisel%
-                    ApplyChisel(Grid.X,Grid.Y)
-                  ApplyAlchemy(Grid.X,Grid.Y)
-                  ApplyVaal(Grid.X,Grid.Y)
+                    ApplyCurrency(Grid.X,Grid.Y,"Chisel")
+                  ApplyCurrency(Grid.X,Grid.Y,"Alchemy")
+                  ApplyCurrency(Grid.X,Grid.Y,"Vaal")
                   Continue
                 }
               }
@@ -7643,48 +7643,58 @@ Return
 
 ; Currency Apply Functions
 
-  ApplyScouring(x, y){
-    RightClick(ScouringX, ScouringY)
+  ApplyCurrency( x, y, Name:=""){
+    ; List of Currency names: 
+    ; Scouring, Transmutation, Augmentation
+    ; Alchemy, Chisel, Vaal
+    RightClick(%Name%X, %Name%Y)
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 45*Latency
     return
   }
-  ApplyTrasmutation(x,y){
-    RightClick(TransmutationX, TransmutationY)
-    Sleep, 45*Latency
-    LeftClick(x,y)
-    Sleep, 45*Latency
-    return
-  }
-  ApplyAugmentation(x,y){
-    RightClick(AugmentationX, AugmentationY)
-    Sleep, 45*Latency
-    LeftClick(x,y)
-    Sleep, 45*Latency
-    return
-  }
-  ApplyAlchemy(x,y){
-    RightClick(AlchemyX, AlchemyY)
-    Sleep, 45*Latency
-    LeftClick(x,y)
-    Sleep, 45*Latency
-    return
-  }
-  ApplyChisel(x,y){
-    RightClick(ChiselX, ChiselY)
-    Sleep, 45*Latency
-    LeftClick(x,y)
-    Sleep, 45*Latency
-    return
-  }
-  ApplyVaal(x,y){
-    RightClick(VaalX, VaalY)
-    Sleep, 45*Latency
-    LeftClick(x,y)
-    Sleep, 45*Latency
-    return
-  }
+  ; ApplyScouring(x, y){
+  ;   RightClick(ScouringX, ScouringY)
+  ;   Sleep, 45*Latency
+  ;   LeftClick(x,y)
+  ;   Sleep, 45*Latency
+  ;   return
+  ; }
+  ; ApplyTrasmutation(x,y){
+  ;   RightClick(TransmutationX, TransmutationY)
+  ;   Sleep, 45*Latency
+  ;   LeftClick(x,y)
+  ;   Sleep, 45*Latency
+  ;   return
+  ; }
+  ; ApplyAugmentation(x,y){
+  ;   RightClick(AugmentationX, AugmentationY)
+  ;   Sleep, 45*Latency
+  ;   LeftClick(x,y)
+  ;   Sleep, 45*Latency
+  ;   return
+  ; }
+  ; ApplyAlchemy(x,y){
+  ;   RightClick(AlchemyX, AlchemyY)
+  ;   Sleep, 45*Latency
+  ;   LeftClick(x,y)
+  ;   Sleep, 45*Latency
+  ;   return
+  ; }
+  ; ApplyChisel(x,y){
+  ;   RightClick(ChiselX, ChiselY)
+  ;   Sleep, 45*Latency
+  ;   LeftClick(x,y)
+  ;   Sleep, 45*Latency
+  ;   return
+  ; }
+  ; ApplyVaal(x,y){
+  ;   RightClick(VaalX, VaalY)
+  ;   Sleep, 45*Latency
+  ;   LeftClick(x,y)
+  ;   Sleep, 45*Latency
+  ;   return
+  ; }
 ; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
