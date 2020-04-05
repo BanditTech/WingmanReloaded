@@ -6132,7 +6132,7 @@ Return
         dif := (40 - Stats.Stack)
         If (dif>10)
         {
-          MoveStash(1)
+          MoveStash(StashTabCurrency)
           ShiftClick(WisdomStockX, WPStockY)
           Sleep, 45*Latency
           Send %dif%
@@ -6148,7 +6148,7 @@ Return
         dif := (40 - Stats.Stack)
         If (dif>10)
         {
-          MoveStash(1)
+          MoveStash(StashTabCurrency)
           ShiftClick(PortalStockX, WPStockY)
           Sleep, 45*Latency
           Send %dif%
@@ -7649,7 +7649,7 @@ Return
   {
     Global RunningToggle
     CurrentTab := 0
-    MoveStash(1)
+    MoveStash(StashTabCurrency)
     ;Start Scan on Inventory
     For C, GridX in InventoryGridX
     {
