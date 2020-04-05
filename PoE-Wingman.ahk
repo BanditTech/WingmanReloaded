@@ -359,8 +359,8 @@
       CraftingMapMethod1 = Select Crafting/ReCrafting Method for Range 1
       CraftingMapMethod2 = Select Crafting/ReCrafting Method for Range 2
       CraftingMapMethod3 = Select Crafting/ReCrafting Method for Range 3
-      ElementalReflect = Select this if you can't run maps with this mod
-      PhysicalReflect = Select this if you can't run maps with this mod
+      ElementalReflect = Select this if your build can't run maps with this mod
+      PhysicalReflect = Select this if your build can't run maps with this mod
       NoLeech = Select this if your build can't run maps with this mod
       NoRegen = Select this if your build can't run maps with this mod
       AvoidAilments = Select this if your build can't run maps with this mod
