@@ -2958,13 +2958,16 @@ Return
   ; ParseClip - Checks the contents of the clipboard and parses the information from the tooltip capture
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ParseClip(){
-    Global QuestItems
+    Global QuestItems, affixBlock
     ;Reset Variables
     NameIsDone := False
     IgnoreDash := False
     itemLevelIsDone := 0
     captureLines := 0
     countCorruption := 0
+    num := "\+{0,1}(\d{1,}\.{0,1}\d{0,})\%{0,1}" 
+    Clip_Contents_Trimmed := RegExReplace(Clip_Contents, "i)" num, "#")
+
     Prop := OrderedArray()
       Prop.ItemName := ""
       Prop.ItemBase := ""
@@ -3227,8 +3230,30 @@ Return
       Affix.MapNoRegen := 0 
       Affix.MapAvoidAilments := 0
       Affix.MapAvoidPBB := 0
-
-    
+    ; Split the affix section out to count
+    itemSections := StrSplit(Clip_Contents, "`r`n--------`r`n")
+    For SectionKey, SVal in itemSections
+    {
+      If (SVal ~=":")
+      {
+        ; These sections can be used later
+        If (SectionKey = 1 && SVal ~= "Rarity:")
+          Continue ; NamePlate
+        Else
+          Continue ; Item Properties
+      } Else {
+        If (SVal ~= "\.$")
+          Continue ; Flavor Text
+        Else If (SVal ~= "\(implicit\)$")
+          continue ; Implicit
+        Else If (SVal ~= "\(enchant\)$")
+          continue ; Enchant
+        Else
+          affixBlock := SVal
+      }
+    }
+    affixBlock := StrSplit(affixBlock, "`n", "`r")
+    Prop.AffixCount := affixBlock.Count()
     If InStr(Clip_Contents, "`nCorrupted", 1)
       Prop.Corrupted := True
     If InStr(Clip_Contents, "`nTalisman Tier:")
@@ -3258,16 +3283,13 @@ Return
       }
       ;Flag Dangerous Mods
       ;Reflect
-      If InStr(Clip_Contents, "Reflect")
+      If RegExMatch(Clip_Contents, "O)Monsters reflect " num " of Physical Damage", RxMatch )
       {
-        If InStr(Clip_Contents, "of Physical Damage")
-        {
-          Affix.MapPhysicalReflect := 1
-        }
-        Else If InStr(Clip_Contents, "of Elemental Damage")
-        {
-          Affix.MapElementalReflect := 1
-        }
+        Affix.MapPhysicalReflect := RxMatch[1]
+      }
+      If RegExMatch(Clip_Contents, "O)Monsters reflect " num " of Elemental Damage", RxMatch )
+      {
+        Affix.MapElementalReflect := RxMatch[1]
       }
       ;No Leech
       If InStr(Clip_Contents, "cannot Leech Life")
@@ -3297,7 +3319,7 @@ Return
       Prop.SpecialType := "Beast"
       Prop.ItemClass := "Beasts"
     }
-    Prop.zz_ItemText := "Trimmed Clipboard`n`n" RegExReplace(Clip_Contents, "i)([+`%.0-9]+)", "#") "`nRaw Clipboard`n`n" Clip_Contents
+    Prop.zz_ItemText := "Trimmed Clipboard`n`n" Clip_Contents_Trimmed "`nRaw Clipboard`n`n" Clip_Contents
     ;Begin parsing information  
     Loop, Parse, Clip_Contents, `n, `r
     {
@@ -5027,8 +5049,6 @@ Return
       Prop.Belt := True
     If (Prop.ItemClass = "Support Skill Gem")
       Prop.Support := True
-    If captureLines
-      Prop.AffixCount := captureLines
     Return
   }
   ; ItemInfo - Display information about item under cursor
@@ -7500,12 +7520,12 @@ Return
         {
           SetTimer, TGameTick, On
         }
-      SendMSG(1,0,scriptTradeMacro)
+        SendMSG(1,0,scriptTradeMacro)
       exit
       }
       MouseGetPos xx, yy
-      BlockInput, MouseMove
-      IfWinActive, ahk_group POEGameGroup
+      ; BlockInput, MouseMove
+      If GameActive
       {
         RunningToggle := True
         If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
@@ -7522,32 +7542,30 @@ Return
         ;BeginScript
         Else
         {
-          If (OnInventory && OnStash)
-          {
-            RandomSleep(45,45)
-            CraftingMaps()
-          }
-          ;FailSafe agains Onstash, but inventory closed
-          Else If (!OnInventory && OnStash)
-          {
-            Send {%hotkeyInventory%}
-            RandomSleep(45,45)
-            GuiStatus()
-            RandomSleep(45,45)
-            CraftingMaps()
-          }
-          Else If (!OnStash && YesSearchForStash)
+          If (!OnStash && YesSearchForStash)
           {
             ; If don't find stash, return
             If !SearchStash()
             {
-              Send {%hotkeyInventory%}
+              ; Send {%hotkeyInventory%}
               RunningToggle := False
               If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum){
                 SetTimer, TGameTick, On
               }
               Return
             }
+          }
+          ;FailSafe agains Onstash, but inventory closed
+          If (!OnInventory && OnStash)
+          {
+            Send {%hotkeyInventory%}
+            RandomSleep(45,45)
+            GuiStatus()
+            RandomSleep(45,45)
+          }
+
+          If (OnInventory && OnStash)
+          {
             RandomSleep(45,45)
             CraftingMaps()
           }
@@ -7557,18 +7575,24 @@ Return
             RunningToggle := False
             If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
               SetTimer, TGameTick, On
+            SendMSG(1,0,scriptTradeMacro)
             Return
           }
         }
       }
-      BlockInput, MouseMoveOff
+      ; BlockInput, MouseMoveOff
       MouseMove %xx%, %yy%
+      RunningToggle := False
+      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+        SetTimer, TGameTick, On
+      SendMSG(1,0,scriptTradeMacro)
     Return
   }
 
 ; Crafting Map Section
   CraftingMaps()
   {
+    CurrentTab := 0
     MoveStash(1)
     ;Start Scan on Inventory
     For C, GridX in InventoryGridX
@@ -7656,7 +7680,7 @@ Return
                 {
                   ApplyCurrency("Transmutation",Grid.X,Grid.Y)
                   ClipItem(Grid.X,Grid.Y)
-                  If(AffixCount < 2)
+                  If(Prop.AffixCount < 2)
                   {
                     ApplyCurrency("Augmentation",Grid.X,Grid.Y)
                   }
@@ -7732,7 +7756,7 @@ Return
     {
       ApplyCurrency("Scouring", x, y)
       ApplyCurrency(cname, x, y)
-      If (AffixCount < 2 && Prop.RarityMagic)
+      If (Prop.AffixCount < 2 && Prop.RarityMagic)
       {
         ApplyCurrency("Augmentation",Grid.X,Grid.Y)
       }
