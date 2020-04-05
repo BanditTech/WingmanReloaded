@@ -2950,7 +2950,13 @@ Return
       MouseMove %x%, %y%
       Sleep, 45+(ClipLatency>0?ClipLatency*15:0)
       Send ^c
-      ClipWait, 0
+      ClipWait, 0.1
+      If ErrorLevel
+      {
+        Sleep, 15
+        Send ^c
+        ClipWait, 0.1
+      }
       Clip_Contents := Clipboard
       ParseClip()
       BlockInput, MouseMoveOff
@@ -7624,6 +7630,7 @@ Return
 ; Crafting Map Section
   CraftingMaps()
   {
+    Global RunningToggle
     CurrentTab := 0
     MoveStash(1)
     ;Start Scan on Inventory
@@ -7676,7 +7683,7 @@ Return
           }
         }
         ;Crafting Map Script
-        If (OnStash&&OnInventory&&Prop.IsMap&&!Prop.Corrupted) 
+        If (Prop.IsMap&&!Prop.Corrupted) 
         {
           i = 0
           ;Check Tiers
