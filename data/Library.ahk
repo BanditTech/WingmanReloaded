@@ -1,4 +1,4 @@
-﻿if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
 {
   ft_Gui("Show")
   Return
@@ -383,9 +383,10 @@
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
         Gui, Inventory: Tab, Crafting Settings
+          MethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal" 
           Gui, Inventory: Font, Bold
           Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
-          Gui, Inventory: Add,GroupBox,Section w275 h65 xs, Map Tier Range 1:
+          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
           Gui, Inventory: Font,
           Gui, Inventory: Font,s7,Arial
             Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
@@ -394,9 +395,9 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w165   vCraftingMapMethod1    Choose%CraftingMapMethod1%,    Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %CraftingMapMethod1%||%MethodList%
             Gui, Inventory: Font, Bold
-          Gui, Inventory: Add,GroupBox,Section w275 h65 xs, Map Tier Range 2:
+          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
             Gui, Inventory: Font,
             Gui, Inventory: Font,s7,Arial
             Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
@@ -405,9 +406,9 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w165   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %CraftingMapMethod2%||%MethodList%
             Gui, Inventory: Font, Bold
-          Gui, Inventory: Add,GroupBox,Section w275 h65 xs, Map Tier Range 3:
+          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
             Gui, Inventory: Font,
             Gui, Inventory: Font,s7,Arial
             Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
@@ -416,7 +417,17 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w165   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %CraftingMapMethod3%||%MethodList%
+            Gui, Inventory: Font, Bold
+          Gui, Inventory: Add,GroupBox,Section w285 h140 xs, Undesireble Mods:
+            Gui, Inventory: Font,
+            Gui, Inventory: Font,s8,Arial
+            Gui, Inventory: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Physical Damage
+            Gui, Inventory: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Elemental Damage
+            Gui, Inventory: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
+            Gui, Inventory: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
+            Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
+            Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
         }
         Gui, Inventory: show , w600 h500, Inventory Settings
       }
