@@ -1,9 +1,27 @@
+## Version .11.02 - Master Branch - April/05/2020  
+
+Merging Alpha changes to master branch
+
+Make sure to check out the Map crafting function
+Give Feedback on Discord/OC to improve Undesirable Mods list
+
+Scroll down to read full changes from Alpha Notes
+
+---
+
 ## Version .11.0101 - Alpha Branch - April/05/2020  
 Major addition by DanMarzola
 * Added a new routine for crafting maps in inventory
   * Assign the options in the Inventory Settings submenu
   * Press the hotkey (F2) to begin crafting
   * Requires an assigned Currency Stash Tab
+* Each Map Tier Range can have different crafting methods
+  * Set the Initial and Ending map tier for each range
+  * Method decides which currency will be used
+  * Scouring will be used when required
+* This function can filter affixes that are Undesirable Mods
+  * Check any of the boxes to reroll maps with that affix
+  * Crafting method will be repeated until no Undesirable Mods
 
 Reverting DPIScale changes
 * The option did not behave as expected
