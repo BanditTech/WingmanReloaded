@@ -7631,7 +7631,7 @@ Return
             {
               If (!Prop.RarityNormal)
               {
-                If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) || (Prop.RarityRare && Prop.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
+                If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) || (Prop.RarityRare && Stats.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
                 {
                   MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
@@ -7644,9 +7644,9 @@ Return
               }
               If (Prop.RarityNormal)
               {
-                If (Prop.Quality <= 20)
+                If (Stats.Quality <= 20)
                 {
-                  numberChisel := (20 - Prop.Quality) // 5
+                  numberChisel := (20 - Stats.Quality)//5
                 }  
                 Else
                 {
@@ -7732,6 +7732,10 @@ Return
     {
       ApplyCurrency("Scouring", x, y)
       ApplyCurrency(cname, x, y)
+      If (AffixCount < 2 && Prop.RarityMagic)
+      {
+        ApplyCurrency("Augmentation",Grid.X,Grid.Y)
+      }
       ClipItem(x,y)
     }
     return
