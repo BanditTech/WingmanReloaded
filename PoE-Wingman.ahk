@@ -92,6 +92,7 @@
     Global Enchantment  := []
     Global Corruption := []
     Global Bases
+    Global num := "\+{0,1}(\d{1,}\.{0,1}\d{0,})\%{0,1}" 
     Global Date_now
     Global GameActive, GamePID
     Global Active_executable := "TempName"
@@ -2965,7 +2966,6 @@ Return
     itemLevelIsDone := 0
     captureLines := 0
     countCorruption := 0
-    num := "\+{0,1}(\d{1,}\.{0,1}\d{0,})\%{0,1}" 
     Clip_Contents_Trimmed := RegExReplace(Clip_Contents, "i)" num, "#")
 
     Prop := OrderedArray()
@@ -3252,8 +3252,9 @@ Return
           affixBlock := SVal
       }
     }
-    affixBlock := StrSplit(affixBlock, "`n", "`r")
-    Prop.AffixCount := affixBlock.Count()
+    affixBlockLines := StrSplit(affixBlock, "`n", "`r")
+    Prop.AffixCount := affixBlockLines.Count()
+    FilterDoubleMods()
     If InStr(Clip_Contents, "`nCorrupted", 1)
       Prop.Corrupted := True
     If InStr(Clip_Contents, "`nTalisman Tier:")
@@ -5049,6 +5050,35 @@ Return
       Prop.Belt := True
     If (Prop.ItemClass = "Support Skill Gem")
       Prop.Support := True
+    Return
+  }
+  ; FilterDoubleMods - decriment the affixcount when finding known dual affix
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  FilterDoubleMods(){
+    Global affixBlock, Prop
+    affixTrim := RegExReplace(affixBlock, "i)" num, "#")
+    If (affixTrim ~= "Rare Monsters each have a Nemesis Mod" && affixTrim ~= "# more Rare Monsters")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Monsters' Action Speed cannot be modified to below base value" && affixTrim ~= "Monsters cannot be Taunted")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Monsters cannot be Stunned" && affixTrim ~= "# more Monster Life")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "# increased Monster Movement Speed" && affixTrim ~= "# increased Monster Attack Speed" && affixTrim ~= "# increased Monster Cast Speed")
+      Prop.AffixCount -= 2
+    If (affixTrim ~= "Unique Boss deals # increased Damage" && affixTrim ~= "Unique Boss has # increased Attack and Cast Speed")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Unique Boss has # increased Life" && affixTrim ~= "Unique Boss has # increased Area of Effect")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "# Monster Chaos Resistance" && affixTrim ~= "# Monster Elemental Resistance")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Magic Monster Packs each have a Bloodline Mod" && affixTrim ~= "# more Magic Monsters")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Monsters have # increased Critical Strike Chance" && affixTrim ~= "# to Monster Critical Strike Multiplier")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Players have # reduced Chance to Block" && affixTrim ~= "Players have # less Armour")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Player chance to Dodge is Unlucky" && affixTrim ~= "Monsters have # increased Accuracy Rating")
+      Prop.AffixCount -= 1
     Return
   }
   ; ItemInfo - Display information about item under cursor
@@ -7554,6 +7584,8 @@ Return
               }
               Return
             }
+            Else
+              RandomSleep(90,90)
           }
           ;FailSafe agains Onstash, but inventory closed
           If (!OnInventory && OnStash)
@@ -7566,7 +7598,7 @@ Return
 
           If (OnInventory && OnStash)
           {
-            RandomSleep(45,45)
+            ; RandomSleep(45,45)
             CraftingMaps()
           }
           Else
