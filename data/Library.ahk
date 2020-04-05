@@ -1,4 +1,4 @@
-if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+﻿if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
 {
   ft_Gui("Show")
   Return
@@ -148,7 +148,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         {
           Built_Inventory := 1
           Gui, Inventory: New
-          Gui, Inventory: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Inventory: +AlwaysOnTop -MinimizeBox
           ;Save Setting
           Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
@@ -438,7 +438,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         {
           Built_Strings := 1
           Gui, Strings: New
-          Gui, Strings: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Strings: +AlwaysOnTop -MinimizeBox
           ;Save Setting
           ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
@@ -500,7 +500,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         {
           Built_Chat := 1
           Gui, Chat: New
-          Gui, Chat: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Chat: +AlwaysOnTop -MinimizeBox
           Gui, Chat: Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xm+400 ym                    , Enable chat Hotkeys?
 
           ;Save Setting
@@ -594,7 +594,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         {
           Built_Controller := 1
           Gui, Controller: New
-          Gui, Controller: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Controller: +AlwaysOnTop -MinimizeBox
           DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
           textList= 
           For k, v in DefaultButtons
@@ -670,7 +670,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           }
           Built_Globe := 1
           Gui, Globe: New
-          Gui, Globe: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Globe: +AlwaysOnTop -MinimizeBox
           Global Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
           Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
           Gui, Globe: Add, Button, xm ym+8 w1 h1
@@ -852,7 +852,6 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
             {
               FillMetamorphInitialized := True
               Gui, FillMetamorph: New, -MinimizeBox -Resize
-              Gui, FillMetamorph: -DPIScale
               Gui, FillMetamorph: Font, s12 c777777 bold
               Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
               Gui, FillMetamorph: Font,
@@ -1255,7 +1254,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
       This.Start_Blue := 0x0000ff & pGroup_Start_Color
 
       ; Gui,% This.GUI_NAME ":Destroy"
-      Gui,% This.GUI_NAME ":+AlwaysOnTop -DPIScale +ToolWindow"
+      Gui,% This.GUI_NAME ":+AlwaysOnTop +ToolWindow"
       Gui,% This.GUI_NAME ":Color",000000
       Gui,% This.GUI_NAME ":Font",s10 w600
 
@@ -12487,7 +12486,7 @@ ft_Gui(cmd)
   if (cmd="MakeCaptureWindow")
   {
   Gui, ft_Capture:New
-  Gui, +AlwaysOnTop -DPIScale
+  Gui, +AlwaysOnTop
   Gui, Margin, 15, 15
   Gui, Color, %WindowColor%
   Gui, Font, s12, Verdana
@@ -12574,7 +12573,8 @@ ft_Gui(cmd)
   if (cmd="MakeSubPicWindow")
   {
   Gui, ft_SubPic:New
-  Gui, +AlwaysOnTop -Caption +ToolWindow -DPIScale +Parent%hPic%
+  Gui, +AlwaysOnTop -Caption +ToolWindow +Parent%hPic%
+  ; Gui, +AlwaysOnTop -Caption +ToolWindow -DPIScale +Parent%hPic%
   Gui, Margin, 0, 0
   Gui, Color, %WindowColor%
   Gui, -Theme
@@ -12602,7 +12602,8 @@ ft_Gui(cmd)
   if (cmd="MakeMainWindow")
   {
   Gui, ft_Main:New
-  Gui, +AlwaysOnTop -DPIScale
+  Gui, +AlwaysOnTop
+  ; Gui, +AlwaysOnTop -DPIScale
   Gui, Margin, 15, 15
   Gui, Color, %WindowColor%
   Gui, Font, s12 norm, Verdana
@@ -12676,7 +12677,8 @@ ft_Gui(cmd)
     ft_ShowScreenShot(1)
   ;----------------------
   Gui, ft_Mini:New
-  Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
+  Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow +E0x08000000
+  ; Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
   Gui, Color, Red
   d:=2, w:=nW+2*d, h:=nH+2*d, i:=w-d, j:=h-d
   Gui, Show, Hide w%w% h%h%
@@ -13442,7 +13444,8 @@ for i,v in ok
   ScreenShot()
   Gui, ft_Tip:New
   ; WS_EX_NOACTIVATE:=0x08000000, WS_EX_TRANSPARENT:=0x20
-  Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
+  Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption +E0x08000020
+  ; Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
   Gui, Color, Yellow
   Gui, Font, cRed s48 bold
   Gui, Add, Text,, Success
@@ -13640,7 +13643,8 @@ for i,v in ok
     DllCall("DeleteDC", Ptr,mDC)
     DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
     ;-------------------------
-    Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
+    Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow +E0x08000000
+    ; Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
     Gui, ft_ScreenShot:Margin, 0, 0
     Gui, ft_ScreenShot:Add, Picture, x0 y0 w%zw% h%zh% +HwndhPic +0xE
     SendMessage, 0x172, 0, hBM,, ahk_id %hPic%

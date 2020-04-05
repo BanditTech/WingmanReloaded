@@ -1,3 +1,16 @@
+## Version .11.0101 - Alpha Branch - April/05/2020  
+Major addition by DanMarzola
+* Added a new routine for crafting maps in inventory
+  * Assign the options in the Inventory Settings submenu
+  * Press the hotkey (F2) to begin crafting
+  * Requires an assigned Currency Stash Tab ()
+
+Reverting DPIScale changes
+* The option did not behave as expected
+* Scaling still occurs, there is no way to remove scaling
+
+---
+
 ## Version .11.01 - Master Branch - April/04/2020  
 
 Merging Alpha changes to master branch

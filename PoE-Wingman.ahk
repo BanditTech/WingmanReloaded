@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.01
+  Global VersionNumber := .11.0101
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -1080,7 +1080,6 @@
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Critical
-  Gui, -DPIScale
   Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     x610   y5     w13 h13
   Gui Add, Text,                     x515  y5,         Debug Messages:
   Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     x490   y5     w13 h13
@@ -1765,7 +1764,7 @@
 
     ForceUpdate := Func("checkUpdate").Bind(True)
 
-    Gui, +LastFound +AlwaysOnTop -DPIScale
+    Gui, +LastFound +AlwaysOnTop
     Menu, Tray, Tip,         WingmanReloaded Dev Ver%VersionNumber%
     Menu, Tray, NoStandard
     Menu, Tray, Add,         WingmanReloaded, optionsCommand
@@ -1861,7 +1860,7 @@
         }
       }
 
-    Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox -DPIScale
+    Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
     Gui, ItemInfo: Margin, 10, 10
     Gui, ItemInfo: Font, Bold s8 c4D7186, Verdana
     Gui, ItemInfo: Add, GroupBox, vGroupBox1 xm+1 y+1  h251 w554 , %GroupBox1%
@@ -7359,7 +7358,6 @@ Return
       Gui, Submit
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
-      Gui, States: -DPIScale
       Gui, States: Margin, 10, 10
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChar hwndCTIDOnChar, % "OnChar"
@@ -11450,7 +11448,7 @@ Return
         {
           UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
           FileRead, changelog, %A_ScriptDir%\temp\changelog.txt
-          Gui, Update: +AlwaysOnTop -DPIScale
+          Gui, Update: +AlwaysOnTop
           Gui, Update:Add, Button, x0 y0 h1 w1, a
           Gui, Update:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
           Gui, Update:Add, Edit, w600 h200 +ReadOnly, %changelog% 
@@ -11911,7 +11909,7 @@ Return
       StartCalibrationWizard:
         Thread, NoTimers, true
         Gui, Submit
-        Gui, Wizard: New, +LabelWizard +AlwaysOnTop -DPIScale
+        Gui, Wizard: New, +LabelWizard +AlwaysOnTop
         Gui, Wizard: Font, Bold
         Gui, Wizard: Add, GroupBox, x10 y9 w460 h270 , Select which calibrations to run
         Gui, Wizard: Font
@@ -12305,7 +12303,7 @@ Return
         Global LootColors, LG_Vary
         Gui, Submit
         gui,LootColors: new, LabelLootColors
-        gui,LootColors: -MinimizeBox -DPIScale
+        gui,LootColors: -MinimizeBox
         Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
         Gui,LootColors: Add, Text,                     x+3 yp+5              , AreaScale of search
         Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
@@ -12434,7 +12432,7 @@ Return
       If !Initialized
       {
         Gui, OHB: new
-        Gui, OHB: +AlwaysOnTop -DPIScale
+        Gui, OHB: +AlwaysOnTop
         Gui, OHB: Font, cBlack s20
         Gui, OHB: add, Text, xm , Output String:
         Gui, OHB: add, Button, x+120 yp hp wp vOHB_Test gOHBUpdate, Test String
@@ -12555,7 +12553,7 @@ Return
 
     BuildIgnoreMenu:
       Gui, Submit
-      Gui, Ignore: +LabelIgnore -MinimizeBox +AlwaysOnTop -DPIScale
+      Gui, Ignore: +LabelIgnore -MinimizeBox +AlwaysOnTop
       Gui, Ignore: Font, Bold
       Gui, Ignore: Add, GroupBox, w660 h305 Section xm ym, Ignored Inventory Slots:
       Gui, Ignore: Add, Picture, w650 h-1 xs+5 ys+15, %A_ScriptDir%\data\InventorySlots.png
