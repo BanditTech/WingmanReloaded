@@ -7520,7 +7520,9 @@ Return
     ; ----------------------------------------------------------------------------------------------------------------------
   }
 
+;
 ; GrabCurrency - Get currency fast to use on a white/blue/rare strongbox
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GrabCurrency(){
     GrabCurrencyCommand:
       Thread, NoTimers, true    ;Critical
@@ -7544,7 +7546,10 @@ Return
       }
   return
   }
-; General Function for Crafting
+
+;
+; Crafting - Deal with Crafting requirement conditions
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Crafting()
   {
     StartCraftCommand:
@@ -7560,7 +7565,6 @@ Return
       exit
       }
       MouseGetPos xx, yy
-      ; BlockInput, MouseMove
       If GameActive
       {
         RunningToggle := True
@@ -7575,7 +7579,7 @@ Return
             SetTimer, TGameTick, On
           Return
         }
-        ;BeginScript
+        ; Begin Crafting Script
         Else
         {
           If (!OnStash && YesSearchForStash)
@@ -7583,7 +7587,6 @@ Return
             ; If don't find stash, return
             If !SearchStash()
             {
-              ; Send {%hotkeyInventory%}
               RunningToggle := False
               If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum){
                 SetTimer, TGameTick, On
@@ -7593,7 +7596,7 @@ Return
             Else
               RandomSleep(90,90)
           }
-          ;FailSafe agains Onstash, but inventory closed
+          ; Open Inventory if is closed
           If (!OnInventory && OnStash)
           {
             Send {%hotkeyInventory%}
@@ -7601,10 +7604,8 @@ Return
             GuiStatus()
             RandomSleep(45,45)
           }
-
           If (OnInventory && OnStash)
           {
-            ; RandomSleep(45,45)
             CraftingMaps()
           }
           Else
@@ -7618,7 +7619,6 @@ Return
           }
         }
       }
-      ; BlockInput, MouseMoveOff
       MouseMove %xx%, %yy%
       RunningToggle := False
       If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
@@ -7627,7 +7627,9 @@ Return
     Return
   }
 
-; Crafting Map Section
+;
+; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CraftingMaps()
   {
     Global RunningToggle
@@ -7656,7 +7658,7 @@ Return
           ;Seems to be an empty slot, no need to clip item info
           Continue
         }
-        ; Identify Items, not need on this routine, but can be usefull
+        ; Identify Items routines
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
         If (!Prop.Identified&&YesIdentify)
@@ -7685,8 +7687,8 @@ Return
         ;Crafting Map Script
         If (Prop.IsMap&&!Prop.Corrupted) 
         {
+          ;Check all 3 ranges tier with same logic
           i = 0
-          ;Check Tiers
           Loop, 3
           {
             i++
@@ -7719,7 +7721,7 @@ Return
                 {
                   ApplyCurrency("Transmutation",Grid.X,Grid.Y)
                   ClipItem(Grid.X,Grid.Y)
-                  If(Prop.AffixCount < 2)
+                  If (Prop.AffixCount < 2)
                   {
                     ApplyCurrency("Augmentation",Grid.X,Grid.Y)
                   }
@@ -7765,14 +7767,21 @@ Return
     Return
   }
 
-; Currency Apply Function
-  ApplyCurrency(cname, x, y){
+;
+; ApplyCurrency - Using cname = currency name string and x, y as apply position
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ApplyCurrency(cname, x, y)
+  {
     RightClick(%cname%X, %cname%Y)
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 45*Latency
     return
   }
+
+;
+; MapReRoll - Reapply currency based on select undesireable mods
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MapReRoll(Method, x, y)
   {
     If (Method =="Transmutation+Augmentation")
@@ -8400,7 +8409,7 @@ Return
       IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3, Disable
       IniRead, ElementalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect, 0
       IniRead, PhysicalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect, 0
-      IniRead, NoRegen, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
+      IniRead, NoRegen, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen, 0
       IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
       IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
       IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
@@ -9561,7 +9570,7 @@ Return
       IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3
       IniWrite, %ElementalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect
       IniWrite, %PhysicalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect
-      IniWrite, %NoRegen%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
+      IniWrite, %NoRegen%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen
       IniWrite, %NoLeech%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
       IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
       IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
