@@ -148,13 +148,13 @@
         {
           Built_Inventory := 1
           Gui, Inventory: New
-          Gui, Inventory: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Inventory: +AlwaysOnTop -MinimizeBox
           ;Save Setting
           Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
           Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-          Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys
+          Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Crafting Settings
 
         Gui, Inventory: Tab, Options
           Gui, Inventory: Font, Bold
@@ -382,7 +382,52 @@
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab7 Choose%stashSuffixTab7%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
-
+        Gui, Inventory: Tab, Crafting Settings
+          MethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal" 
+          Gui, Inventory: Font, Bold
+          Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
+          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
+          Gui, Inventory: Font,
+          Gui, Inventory: Font,s7,Arial
+            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %CraftingMapMethod1%||%MethodList%
+            Gui, Inventory: Font, Bold
+          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
+            Gui, Inventory: Font,
+            Gui, Inventory: Font,s7,Arial
+            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %CraftingMapMethod2%||%MethodList%
+            Gui, Inventory: Font, Bold
+          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
+            Gui, Inventory: Font,
+            Gui, Inventory: Font,s7,Arial
+            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %CraftingMapMethod3%||%MethodList%
+            Gui, Inventory: Font, Bold
+          Gui, Inventory: Add,GroupBox,Section w285 h140 xs, Undesireble Mods:
+            Gui, Inventory: Font,
+            Gui, Inventory: Font,s8,Arial
+            Gui, Inventory: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Physical Damage
+            Gui, Inventory: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Elemental Damage
+            Gui, Inventory: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
+            Gui, Inventory: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
+            Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
+            Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
         }
         Gui, Inventory: show , w600 h500, Inventory Settings
       }
@@ -393,7 +438,7 @@
         {
           Built_Strings := 1
           Gui, Strings: New
-          Gui, Strings: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Strings: +AlwaysOnTop -MinimizeBox
           ;Save Setting
           ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
           ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
@@ -455,7 +500,7 @@
         {
           Built_Chat := 1
           Gui, Chat: New
-          Gui, Chat: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Chat: +AlwaysOnTop -MinimizeBox
           Gui, Chat: Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xm+400 ym                    , Enable chat Hotkeys?
 
           ;Save Setting
@@ -549,7 +594,7 @@
         {
           Built_Controller := 1
           Gui, Controller: New
-          Gui, Controller: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Controller: +AlwaysOnTop -MinimizeBox
           DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
           textList= 
           For k, v in DefaultButtons
@@ -625,7 +670,7 @@
           }
           Built_Globe := 1
           Gui, Globe: New
-          Gui, Globe: +AlwaysOnTop -MinimizeBox -DPIScale
+          Gui, Globe: +AlwaysOnTop -MinimizeBox
           Global Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
           Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
           Gui, Globe: Add, Button, xm ym+8 w1 h1
@@ -807,7 +852,6 @@
             {
               FillMetamorphInitialized := True
               Gui, FillMetamorph: New, -MinimizeBox -Resize
-              Gui, FillMetamorph: -DPIScale
               Gui, FillMetamorph: Font, s12 c777777 bold
               Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
               Gui, FillMetamorph: Font,
@@ -1210,7 +1254,7 @@
       This.Start_Blue := 0x0000ff & pGroup_Start_Color
 
       ; Gui,% This.GUI_NAME ":Destroy"
-      Gui,% This.GUI_NAME ":+AlwaysOnTop -DPIScale +ToolWindow"
+      Gui,% This.GUI_NAME ":+AlwaysOnTop +ToolWindow"
       Gui,% This.GUI_NAME ":Color",000000
       Gui,% This.GUI_NAME ":Font",s10 w600
 
@@ -1636,8 +1680,27 @@
         Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
         Global DetonateX:=GameX + Round(GameW/(1920/1658))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
+        ;Currency
+        ;Scouring 175,476
+        Global ScouringX:=GameX + Round(GameW/(1920/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+        ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(1920/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+        ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(1920/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+        ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(1920/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+        ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(1920/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+        ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(1920/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(1920/125))
+        Global WisdomStockX:=GameX + Round(GameW/(1920/115))
         Global PortalStockX:=GameX + Round(GameW/(1920/175))
         Global WPStockY:=GameY + Round(GameH/(1080/220))
         ;Status Check OnMenu
@@ -1762,6 +1825,25 @@
         Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
         Global DetonateX:=GameX + Round(GameW/(1440/1178))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
+                ;Currency
+          ;Scouring 175,476
+        Global ScouringX:=GameX + Round(GameW/(1440/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+          ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(1440/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+          ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(1440/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+          ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(1440/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(1440/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+          ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(1440/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(1440/125))
         Global PortalStockX:=GameX + Round(GameW/(1440/175))
@@ -1888,6 +1970,25 @@
         Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
         Global DetonateX:=GameX + Round(GameW/(2560/2298))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
+        ;Currency
+          ;Scouring 175,476
+        Global ScouringX:=GameX + Round(GameW/(2560/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+          ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(2560/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+          ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(2560/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+          ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(2560/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(2560/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+          ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(2560/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(2560/125))
         Global PortalStockX:=GameX + Round(GameW/(2560/175))
@@ -2013,6 +2114,25 @@
         Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
         Global DetonateX:=GameX + Round(GameW/(3440/3090))
         Global DetonateY:=GameY + Round(GameH/(1440/1202))
+        ;Currency
+          ;Scouring 235,631
+        Global ScouringX:=GameX + Round(GameW/(3440/235))
+        Global ScouringY:=GameY + Round(GameH/(1440/630))
+          ;Chisel 810,235
+        Global ChiselX:=GameX + Round(GameW/(3440/810))
+        Global ChiselY:=GameY + Round(GameH/(1440/235))
+          ;Alchemy 655,390
+        Global AlchemyX:=GameX + Round(GameW/(3440/655))
+        Global AlchemyY:=GameY + Round(GameH/(1440/390))
+          ;Transmutation 80,390
+        Global TransmutationX:=GameX + Round(GameW/(3440/80))
+        Global TransmutationY:=GameY + Round(GameH/(1440/390))
+          ;Augmentation 310,465
+        Global AugmentationX:=GameX + Round(GameW/(3440/310))
+        Global AugmentationY:=GameY + Round(GameH/(1440/465))
+          ;Vaal 310, 631
+        Global VaalX:=GameX + Round(GameW/(3440/310))
+        Global VaalY:=GameY + Round(GameH/(1440/630))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3440/164))
         Global PortalStockX:=GameX + Round(GameW/(3440/228))
@@ -2135,6 +2255,25 @@
         Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
         Global DetonateX:=GameX + Round(GameW/(3840/3578))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
+                ;Currency
+          ;Scouring 175,476
+        Global ScouringX:=GameX + Round(GameW/(3840/175))
+        Global ScouringY:=GameY + Round(GameH/(1080/475))
+          ;Chisel 605,220
+        Global ChiselX:=GameX + Round(GameW/(3840/605))
+        Global ChiselY:=GameY + Round(GameH/(1080/220))
+          ;Alchemy 490,290
+        Global AlchemyX:=GameX + Round(GameW/(3840/490))
+        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+          ;Transmutation 60,290
+        Global TransmutationX:=GameX + Round(GameW/(3840/60))
+        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Augmentation 230,340
+        Global AugmentationX:=GameX + Round(GameW/(3840/230))
+        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+          ;Vaal 230,475
+        Global VaalX:=GameX + Round(GameW/(3840/230))
+        Global VaalY:=GameY + Round(GameH/(1080/475))
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3840/125))
         Global PortalStockX:=GameX + Round(GameW/(3840/175))
@@ -12347,7 +12486,7 @@ ft_Gui(cmd)
   if (cmd="MakeCaptureWindow")
   {
   Gui, ft_Capture:New
-  Gui, +AlwaysOnTop -DPIScale
+  Gui, +AlwaysOnTop
   Gui, Margin, 15, 15
   Gui, Color, %WindowColor%
   Gui, Font, s12, Verdana
@@ -12434,7 +12573,8 @@ ft_Gui(cmd)
   if (cmd="MakeSubPicWindow")
   {
   Gui, ft_SubPic:New
-  Gui, +AlwaysOnTop -Caption +ToolWindow -DPIScale +Parent%hPic%
+  Gui, +AlwaysOnTop -Caption +ToolWindow +Parent%hPic%
+  ; Gui, +AlwaysOnTop -Caption +ToolWindow -DPIScale +Parent%hPic%
   Gui, Margin, 0, 0
   Gui, Color, %WindowColor%
   Gui, -Theme
@@ -12462,7 +12602,8 @@ ft_Gui(cmd)
   if (cmd="MakeMainWindow")
   {
   Gui, ft_Main:New
-  Gui, +AlwaysOnTop -DPIScale
+  Gui, +AlwaysOnTop
+  ; Gui, +AlwaysOnTop -DPIScale
   Gui, Margin, 15, 15
   Gui, Color, %WindowColor%
   Gui, Font, s12 norm, Verdana
@@ -12536,7 +12677,8 @@ ft_Gui(cmd)
     ft_ShowScreenShot(1)
   ;----------------------
   Gui, ft_Mini:New
-  Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
+  Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow +E0x08000000
+  ; Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
   Gui, Color, Red
   d:=2, w:=nW+2*d, h:=nH+2*d, i:=w-d, j:=h-d
   Gui, Show, Hide w%w% h%h%
@@ -13302,7 +13444,8 @@ for i,v in ok
   ScreenShot()
   Gui, ft_Tip:New
   ; WS_EX_NOACTIVATE:=0x08000000, WS_EX_TRANSPARENT:=0x20
-  Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
+  Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption +E0x08000020
+  ; Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
   Gui, Color, Yellow
   Gui, Font, cRed s48 bold
   Gui, Add, Text,, Success
@@ -13500,7 +13643,8 @@ for i,v in ok
     DllCall("DeleteDC", Ptr,mDC)
     DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
     ;-------------------------
-    Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
+    Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow +E0x08000000
+    ; Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
     Gui, ft_ScreenShot:Margin, 0, 0
     Gui, ft_ScreenShot:Add, Picture, x0 y0 w%zw% h%zh% +HwndhPic +0xE
     SendMessage, 0x172, 0, hBM,, ahk_id %hPic%
