@@ -7685,7 +7685,7 @@ Return
           }
         }
         ;Crafting Map Script
-        If (Prop.IsMap&&!Prop.Corrupted) 
+        If (Prop.IsMap && !Prop.IsBlightedMap && !Prop.Corrupted) 
         {
           ;Check all 3 ranges tier with same logic
           i = 0
