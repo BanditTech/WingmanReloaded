@@ -8434,6 +8434,7 @@ Return
       IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
       IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
       IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
+      IniRead, GemItemToogle, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle, 0
 
       ;Gem Swap Gem 2
       IniRead, CurrentGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X, 0
@@ -8441,6 +8442,7 @@ Return
       IniRead, AlternateGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X, 0
       IniRead, AlternateGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2Y, 0
       IniRead, AlternateGem2OnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2OnSecondarySlot, 0
+      IniRead, GemItemToogle2, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle2, 0
       
       ;Coordinates
       IniRead, GuiX, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiX, -10
@@ -9149,12 +9151,14 @@ Return
       IniWrite, %AlternateGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX
       IniWrite, %AlternateGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY
       IniWrite, %AlternateGemOnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot
+      IniWrite, %GemItemToogle%, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle
 
       IniWrite, %CurrentGem2X%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X
       IniWrite, %CurrentGem2Y%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y
       IniWrite, %AlternateGem2X%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X
       IniWrite, %AlternateGem2Y%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2Y
       IniWrite, %AlternateGem2OnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2OnSecondarySlot
+      IniWrite, %GemItemToogle2%, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle2
       
       ;~ Scroll locations
       IniWrite, %PortalScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX
