@@ -825,7 +825,8 @@
     Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
   ; Crafting Tab dan
-    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB
+    
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
     Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21, 
@@ -3220,6 +3221,12 @@ Return
       Affix.ReducedFlaskChargesUsed := 0
       Affix.ReducedEnemyStunThreshold := 0
       Affix.ReducedAttributeRequirement := 0
+      Affix.MapElementalReflect := 0
+      Affix.MapPhysicalReflect := 0
+      Affix.MapNoLeech := 0
+      Affix.MapNoRegen := 0 
+      Affix.MapAvoidAilments := 0
+      Affix.MapAvoidPBB := 0
 
     
     If InStr(Clip_Contents, "`nCorrupted", 1)
@@ -3249,6 +3256,40 @@ Return
       Prop.IsBlightedMap := True
       Prop.SpecialType := "Blighted Map"
       }
+      ;Flag Dangerous Mods
+      ;Reflect
+      If InStr(Clip_Contents, "Reflect")
+      {
+        If InStr(Clip_Contents, "of Physical Damage")
+        {
+          Affix.MapPhysicalReflect := 1
+        }
+        Else If InStr(Clip_Contents, "of Elemental Damage")
+        {
+          Affix.MapElementalReflect := 1
+        }
+      }
+      ;No Leech
+      If InStr(Clip_Contents, "cannot Leech Life")
+      {
+        Affix.MapNoLeech := 1
+      }
+      ;No Regen
+      If InStr(Clip_Contents, "cannot Regenerate Life, Mana or Energy Shield")
+      {
+        Affix.MapNoRegen := 1
+      }
+      ;Avoid elemental ailments
+      If InStr(Clip_Contents, "avoid Elemental Ailments")
+      {
+        Affix.MapAvoidAilments := 1
+      }
+      ;Avoid Poison, Blind, and Bleeding
+      If InStr(Clip_Contents, "chance to avoid Poison, Blind, and Bleeding")
+      {
+        Affix.MapAvoidPBB := 1
+      }
+      
     }
     If InStr(Clip_Contents, "`nRight-click to add this to your bestiary.")
     {
@@ -4598,6 +4639,7 @@ Return
             Affix.ColdDOTMult := Affix.ColdDOTMult + Arr1
           Continue  
           }
+          ;Map Dangerous Affix
           IfInString, A_LoopField, Adds
           {
             IfInString, A_LoopField, Physical Damage to Attacks
@@ -7577,8 +7619,7 @@ Return
             ClipItem(Grid.X,Grid.Y)
           }
         }
-        ;dan marker
-        ;Crafting Map Actual Script
+        ;Crafting Map Script
         If (OnStash&&OnInventory&&Prop.IsMap&&!Prop.Corrupted) 
         {
           i = 0
@@ -7590,47 +7631,66 @@ Return
             {
               If (!Prop.RarityNormal)
               {
-                If ((Prop.RarityMagic && CraftingMapMethod%i% = "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy")) || (Prop.RarityRare && Prop.Quality >= 20 && (CraftingMapMethod%i% = "Transmutation+Augmentation" || CraftingMapMethod%i% = "Alchemy" || CraftingMapMethod%i% = "Chisel+Alchemy")))
+                If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) || (Prop.RarityRare && Prop.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
                 {
-                  ;msgbox, % CraftingMapMethod%i%
+                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else
                 {
-                  ApplyCurrency(Grid.X,Grid.Y,"Scouring")
+                  ApplyCurrency("Scouring",Grid.X,Grid.Y)
                   ClipItem(Grid.X,Grid.Y)
                 }
               }
               If (Prop.RarityNormal)
               {
-                If Prop.Quality <= 20
+                If (Prop.Quality <= 20)
+                {
                   numberChisel := (20 - Prop.Quality) // 5
+                }  
                 Else
+                {
                   numberChisel := 0
+                }
                 If (CraftingMapMethod%i% == "Transmutation+Augmentation")
                 {
-                  ApplyCurrency(Grid.X,Grid.Y,"Trasmutation")
-                  ApplyCurrency(Grid.X,Grid.Y,"Augmentation")
+                  ApplyCurrency("Transmutation",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                  If(AffixCount < 2)
+                  {
+                    ApplyCurrency("Augmentation",Grid.X,Grid.Y)
+                  }
+                  ClipItem(Grid.X,Grid.Y)
+                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Alchemy")
                 {
-                  ApplyCurrency(Grid.X,Grid.Y,"Alchemy")
+                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
-                Else if (CraftingMapMethod%i% == "Chisel + Alchemy")
+                Else if (CraftingMapMethod%i% == "Chisel+Alchemy")
                 {
                   Loop, %numberChisel%
-                    ApplyCurrency(Grid.X,Grid.Y,"Chisel")
-                  ApplyCurrency(Grid.X,Grid.Y,"Alchemy")
+                  {
+                    ApplyCurrency("Chisel",Grid.X,Grid.Y)
+                  }
+                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
                 {
                   Loop, %numberChisel%
-                    ApplyCurrency(Grid.X,Grid.Y,"Chisel")
-                  ApplyCurrency(Grid.X,Grid.Y,"Alchemy")
-                  ApplyCurrency(Grid.X,Grid.Y,"Vaal")
+                  {
+                    ApplyCurrency("Chisel",Grid.X,Grid.Y)
+                  }
+                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+                  ApplyCurrency("Vaal",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
                   Continue
                 }
               }
@@ -7641,60 +7701,41 @@ Return
     }
   }
 
-; Currency Apply Functions
-
-  ApplyCurrency( x, y, Name:=""){
-    ; List of Currency names: 
-    ; Scouring, Transmutation, Augmentation
-    ; Alchemy, Chisel, Vaal
-    RightClick(%Name%X, %Name%Y)
+; Currency Apply Function
+  ApplyCurrency(cname, x, y){
+    RightClick(%cname%X, %cname%Y)
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 45*Latency
     return
   }
-  ; ApplyScouring(x, y){
-  ;   RightClick(ScouringX, ScouringY)
-  ;   Sleep, 45*Latency
-  ;   LeftClick(x,y)
-  ;   Sleep, 45*Latency
-  ;   return
-  ; }
-  ; ApplyTrasmutation(x,y){
-  ;   RightClick(TransmutationX, TransmutationY)
-  ;   Sleep, 45*Latency
-  ;   LeftClick(x,y)
-  ;   Sleep, 45*Latency
-  ;   return
-  ; }
-  ; ApplyAugmentation(x,y){
-  ;   RightClick(AugmentationX, AugmentationY)
-  ;   Sleep, 45*Latency
-  ;   LeftClick(x,y)
-  ;   Sleep, 45*Latency
-  ;   return
-  ; }
-  ; ApplyAlchemy(x,y){
-  ;   RightClick(AlchemyX, AlchemyY)
-  ;   Sleep, 45*Latency
-  ;   LeftClick(x,y)
-  ;   Sleep, 45*Latency
-  ;   return
-  ; }
-  ; ApplyChisel(x,y){
-  ;   RightClick(ChiselX, ChiselY)
-  ;   Sleep, 45*Latency
-  ;   LeftClick(x,y)
-  ;   Sleep, 45*Latency
-  ;   return
-  ; }
-  ; ApplyVaal(x,y){
-  ;   RightClick(VaalX, VaalY)
-  ;   Sleep, 45*Latency
-  ;   LeftClick(x,y)
-  ;   Sleep, 45*Latency
-  ;   return
-  ; }
+  MapReRoll(Method, x, y)
+  {
+    If (Method =="Transmutation+Augmentation")
+    {
+      cname := "Transmutation"
+    }
+    Else If (Method =="Alchemy")
+    {
+      cname := "Alchemy"
+    }
+    Else If (Method =="Chisel+Alchemy")
+    {
+      cname := "Alchemy"
+    }
+    Else
+    {
+      return
+    }
+    While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech))
+    {
+      ApplyCurrency("Scouring", x, y)
+      ApplyCurrency(cname, x, y)
+      ClipItem(x,y)
+    }
+    return
+  }
+  
 ; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -8279,16 +8320,22 @@ Return
       IniRead, CastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate, 0
       IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate, q
 
-      ;Crafting Tab Settings Dan
-      IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier1, 1
-      IniRead, StartMapTier2, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier2, 6
-      IniRead, StartMapTier3, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier3, 13
-      IniRead, EndMapTier1, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier1, 5
-      IniRead, EndMapTier2, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier2, 12
-      IniRead, EndMapTier3, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier3, 16
-      IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod1, 1
-      IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod2, 1
-      IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod3, 1
+      ;Crafting Map Settings
+      IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
+      IniRead, StartMapTier2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2, 6
+      IniRead, StartMapTier3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier3, 13
+      IniRead, EndMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier1, 5
+      IniRead, EndMapTier2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier2, 12
+      IniRead, EndMapTier3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier3, 16
+      IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1, Disable
+      IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2, Disable
+      IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3, Disable
+      IniRead, ElementalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect, 0
+      IniRead, PhysicalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect, 0
+      IniRead, NoRegen, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
+      IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
+      IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
+      IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
 
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
@@ -9434,16 +9481,22 @@ Return
       IniWrite, %GrabCurrencyPosX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX
       IniWrite, %GrabCurrencyPosY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY
 
-      ;CraftingMapTab dan marker
-      IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier1
-      IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier2
-      IniWrite, %StartMapTier3%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, StartMapTier3
-      IniWrite, %EndMapTier1%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier1
-      IniWrite, %EndMapTier2%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier2
-      IniWrite, %EndMapTier3%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, EndMapTier3
-      IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod1
-      IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod2
-      IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Craft Tab Map Section, CraftingMapMethod3
+      ;Crafting Map Settings
+      IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
+      IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2
+      IniWrite, %StartMapTier3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier3
+      IniWrite, %EndMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier1
+      IniWrite, %EndMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier2
+      IniWrite, %EndMapTier3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier3
+      IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1
+      IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2
+      IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3
+      IniWrite, %ElementalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect
+      IniWrite, %PhysicalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect
+      IniWrite, %NoRegen%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
+      IniWrite, %NoLeech%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
+      IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
+      IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
 
       ;Gem Swap
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
