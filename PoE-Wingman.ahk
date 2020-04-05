@@ -63,14 +63,14 @@
   AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
   
   ; CleanUp()
-  ;REMEMBER TO ENABLE!!!
+  ;REMEMBER TO ENABLE IF PUSHING TO ALPHA/MASTER!!!
   ; Rerun as admin if not already admin, required to disconnect client
-  ;if not A_IsAdmin
-  ;  if A_IsCompiled
-   ; Run *RunAs "%A_ScriptFullPath%" /restart
-  ;else
-   ; Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
-  ;Sleep, -1
+  if not A_IsAdmin
+    if A_IsCompiled
+    Run *RunAs "%A_ScriptFullPath%" /restart
+  else
+    Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+  Sleep, -1
   ; Run "%A_ScriptDir%\GottaGoFast.ahk"
   ; OnExit("CleanUp")
   
