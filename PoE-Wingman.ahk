@@ -651,7 +651,7 @@
     global hotkeyPauseMines:="d"
     global hotkeyQuickPortal:="!q"
     global hotkeyGemSwap:="!e"
-    global hotkeyStartCraft:="!y"
+    global hotkeyStartCraft:="F2"
     global hotkeyGrabCurrency:="!a"
     global hotkeyGetMouseCoords:="!o"
     global hotkeyCloseAllUI:="Space"
