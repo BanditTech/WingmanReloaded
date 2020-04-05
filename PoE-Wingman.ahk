@@ -63,7 +63,7 @@
   AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
   
   ; CleanUp()
-
+  ;REMEMBER TO ENABLE IF PUSHING TO ALPHA/MASTER!!!
   ; Rerun as admin if not already admin, required to disconnect client
   if not A_IsAdmin
     if A_IsCompiled
@@ -92,6 +92,7 @@
     Global Enchantment  := []
     Global Corruption := []
     Global Bases
+    Global num := "\+{0,1}(\d{1,}\.{0,1}\d{0,})\%{0,1}" 
     Global Date_now
     Global GameActive, GamePID
     Global Active_executable := "TempName"
@@ -262,6 +263,7 @@
       hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
       hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
       hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
+      hotkeyStartCraft = Set your hotkey to use Crafting Settings functions, as Map Crafting
       hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
       hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
       hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
@@ -348,6 +350,21 @@
       StashTabYesResonator = Enable to send Resonator items to the assigned tab on the left
       StashTabCrafting = Assign the Stash tab for Crafting items
       StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
+      StartMapTier1 = Select Initial Map Tier Range 1
+      StartMapTier2 = Select Initial Map Tier Range 2
+      StartMapTier3 = Select Initial Map Tier Range 3
+      EndMapTier1 = Select Ending Map Tier Range 1
+      EndMapTier2 = Select Ending Map Tier Range 2
+      EndMapTier3 = Select Ending Map Tier Range 3
+      CraftingMapMethod1 = Select Crafting/ReCrafting Method for Range 1
+      CraftingMapMethod2 = Select Crafting/ReCrafting Method for Range 2
+      CraftingMapMethod3 = Select Crafting/ReCrafting Method for Range 3
+      ElementalReflect = Select this if your build can't run maps with this mod
+      PhysicalReflect = Select this if your build can't run maps with this mod
+      NoLeech = Select this if your build can't run maps with this mod
+      NoRegen = Select this if your build can't run maps with this mod
+      AvoidAilments = Select this if your build can't run maps with this mod
+      AvoidPBB = Select this if your build can't run maps with this mod
       YesNinjaDatabase = Enable to Update Ninja Database and load at start
       YesUtility1InverseBuff = Fire instead only when buff icon is present
       YesUtility2InverseBuff = Fire instead only when buff icon is present
@@ -634,6 +651,7 @@
     global hotkeyPauseMines:="d"
     global hotkeyQuickPortal:="!q"
     global hotkeyGemSwap:="!e"
+    global hotkeyStartCraft:="F2"
     global hotkeyGrabCurrency:="!a"
     global hotkeyGetMouseCoords:="!o"
     global hotkeyCloseAllUI:="Space"
@@ -822,6 +840,10 @@
     Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
     Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
+  
+  ; Crafting Settings
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB
+    
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
     Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21, 
@@ -1683,6 +1705,7 @@
     Gui Add, Text,                     xs+65   y+10,         Coord/Pixel         
     Gui Add, Text,                     xs+65   y+10,         Quick-Portal
     Gui Add, Text,                     xs+65   y+10,         Gem-Swap
+    Gui Add, Text,                     xs+65   y+10,         Start Crafting
     Gui Add, Text,                     xs+65   y+10,         Grab Currency
     Gui Add, Text,                     xs+65   y+10,         Pop Flasks
     Gui Add, Text,                     xs+65   y+10,         ID/Vend/Stash
@@ -1696,6 +1719,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyStartCraft        ,%hotkeyStartCraft%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
@@ -1946,7 +1970,24 @@
     Global WisdomStockX:=115
     Global PortalStockX:=175
     Global WPStockY:=220
-    
+    ;Scouring 175,475
+    Global ScouringX:=175
+    Global ScouringY:=475
+    ;Chisel 605,220
+    Global ChiselX:=605
+    Global ChiselY:=220
+    ;Alchemy 490,290
+    Global AlchemyX:=490
+    Global AlchemyY:=290
+    ;Transmutation 60,290
+    Global TransmutationX:=60
+    Global TransmutationY:=290
+    ;Augmentation 230,340
+    Global AugmentationX:=230
+    Global AugmentationY:=340
+    ;Vaal 230,475
+    Global VaalX:=230
+    Global VaalY:=475
     global vX_OnMenu:=960
     global vY_OnMenu:=54
     global vX_OnChar:=41
@@ -2925,7 +2966,13 @@ Return
       MouseMove %x%, %y%
       Sleep, 45+(ClipLatency>0?ClipLatency*15:0)
       Send ^c
-      ClipWait, 0
+      ClipWait, 0.1
+      If ErrorLevel
+      {
+        Sleep, 15
+        Send ^c
+        ClipWait, 0.1
+      }
       Clip_Contents := Clipboard
       ParseClip()
       BlockInput, MouseMoveOff
@@ -2934,13 +2981,15 @@ Return
   ; ParseClip - Checks the contents of the clipboard and parses the information from the tooltip capture
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ParseClip(){
-    Global QuestItems
+    Global QuestItems, affixBlock
     ;Reset Variables
     NameIsDone := False
     IgnoreDash := False
     itemLevelIsDone := 0
     captureLines := 0
     countCorruption := 0
+    Clip_Contents_Trimmed := RegExReplace(Clip_Contents, "i)" num, "#")
+
     Prop := OrderedArray()
       Prop.ItemName := ""
       Prop.ItemBase := ""
@@ -3197,8 +3246,37 @@ Return
       Affix.ReducedFlaskChargesUsed := 0
       Affix.ReducedEnemyStunThreshold := 0
       Affix.ReducedAttributeRequirement := 0
-
-    
+      Affix.MapElementalReflect := 0
+      Affix.MapPhysicalReflect := 0
+      Affix.MapNoLeech := 0
+      Affix.MapNoRegen := 0 
+      Affix.MapAvoidAilments := 0
+      Affix.MapAvoidPBB := 0
+    ; Split the affix section out to count
+    itemSections := StrSplit(Clip_Contents, "`r`n--------`r`n")
+    For SectionKey, SVal in itemSections
+    {
+      If (SVal ~=":")
+      {
+        ; These sections can be used later
+        If (SectionKey = 1 && SVal ~= "Rarity:")
+          Continue ; NamePlate
+        Else
+          Continue ; Item Properties
+      } Else {
+        If (SVal ~= "\.$")
+          Continue ; Flavor Text
+        Else If (SVal ~= "\(implicit\)$")
+          continue ; Implicit
+        Else If (SVal ~= "\(enchant\)$")
+          continue ; Enchant
+        Else
+          affixBlock := SVal
+      }
+    }
+    affixBlockLines := StrSplit(affixBlock, "`n", "`r")
+    Prop.AffixCount := affixBlockLines.Count()
+    FilterDoubleMods()
     If InStr(Clip_Contents, "`nCorrupted", 1)
       Prop.Corrupted := True
     If InStr(Clip_Contents, "`nTalisman Tier:")
@@ -3226,6 +3304,37 @@ Return
       Prop.IsBlightedMap := True
       Prop.SpecialType := "Blighted Map"
       }
+      ;Flag Dangerous Mods
+      ;Reflect
+      If RegExMatch(Clip_Contents, "O)Monsters reflect " num " of Physical Damage", RxMatch )
+      {
+        Affix.MapPhysicalReflect := RxMatch[1]
+      }
+      If RegExMatch(Clip_Contents, "O)Monsters reflect " num " of Elemental Damage", RxMatch )
+      {
+        Affix.MapElementalReflect := RxMatch[1]
+      }
+      ;No Leech
+      If InStr(Clip_Contents, "cannot Leech Life")
+      {
+        Affix.MapNoLeech := 1
+      }
+      ;No Regen
+      If InStr(Clip_Contents, "cannot Regenerate Life, Mana or Energy Shield")
+      {
+        Affix.MapNoRegen := 1
+      }
+      ;Avoid elemental ailments
+      If InStr(Clip_Contents, "avoid Elemental Ailments")
+      {
+        Affix.MapAvoidAilments := 1
+      }
+      ;Avoid Poison, Blind, and Bleeding
+      If InStr(Clip_Contents, "chance to avoid Poison, Blind, and Bleeding")
+      {
+        Affix.MapAvoidPBB := 1
+      }
+      
     }
     If InStr(Clip_Contents, "`nRight-click to add this to your bestiary.")
     {
@@ -3233,7 +3342,7 @@ Return
       Prop.SpecialType := "Beast"
       Prop.ItemClass := "Beasts"
     }
-    Prop.zz_ItemText := "Trimmed Clipboard`n`n" RegExReplace(Clip_Contents, "i)([+`%.0-9]+)", "#") "`nRaw Clipboard`n`n" Clip_Contents
+    Prop.zz_ItemText := "Trimmed Clipboard`n`n" Clip_Contents_Trimmed "`nRaw Clipboard`n`n" Clip_Contents
     ;Begin parsing information  
     Loop, Parse, Clip_Contents, `n, `r
     {
@@ -4962,8 +5071,35 @@ Return
       Prop.Belt := True
     If (Prop.ItemClass = "Support Skill Gem")
       Prop.Support := True
-    If captureLines
-      Prop.AffixCount := captureLines
+    Return
+  }
+  ; FilterDoubleMods - decriment the affixcount when finding known dual affix
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  FilterDoubleMods(){
+    Global affixBlock, Prop
+    affixTrim := RegExReplace(affixBlock, "i)" num, "#")
+    If (affixTrim ~= "Rare Monsters each have a Nemesis Mod" && affixTrim ~= "# more Rare Monsters")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Monsters' Action Speed cannot be modified to below base value" && affixTrim ~= "Monsters cannot be Taunted")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Monsters cannot be Stunned" && affixTrim ~= "# more Monster Life")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "# increased Monster Movement Speed" && affixTrim ~= "# increased Monster Attack Speed" && affixTrim ~= "# increased Monster Cast Speed")
+      Prop.AffixCount -= 2
+    If (affixTrim ~= "Unique Boss deals # increased Damage" && affixTrim ~= "Unique Boss has # increased Attack and Cast Speed")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Unique Boss has # increased Life" && affixTrim ~= "Unique Boss has # increased Area of Effect")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "# Monster Chaos Resistance" && affixTrim ~= "# Monster Elemental Resistance")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Magic Monster Packs each have a Bloodline Mod" && affixTrim ~= "# more Magic Monsters")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Monsters have # increased Critical Strike Chance" && affixTrim ~= "# to Monster Critical Strike Multiplier")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Players have # reduced Chance to Block" && affixTrim ~= "Players have # less Armour")
+      Prop.AffixCount -= 1
+    If (affixTrim ~= "Player chance to Dodge is Unlucky" && affixTrim ~= "Monsters have # increased Accuracy Rating")
+      Prop.AffixCount -= 1
     Return
   }
   ; ItemInfo - Display information about item under cursor
@@ -7399,7 +7535,9 @@ Return
     ; ----------------------------------------------------------------------------------------------------------------------
   }
 
+;
 ; GrabCurrency - Get currency fast to use on a white/blue/rare strongbox
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GrabCurrency(){
     GrabCurrencyCommand:
       Thread, NoTimers, true    ;Critical
@@ -7423,6 +7561,273 @@ Return
       }
   return
   }
+
+;
+; Crafting - Deal with Crafting requirement conditions
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Crafting()
+  {
+    StartCraftCommand:
+      Thread, NoTimers, True
+      If RunningToggle
+      {
+        RunningToggle := False
+        If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+        {
+          SetTimer, TGameTick, On
+        }
+        SendMSG(1,0,scriptTradeMacro)
+      exit
+      }
+      MouseGetPos xx, yy
+      If GameActive
+      {
+        RunningToggle := True
+        If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+          SetTimer, TGameTick, Off
+        GuiStatus()
+        If (!OnChar) 
+        {
+          MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
+          RunningToggle := False
+          If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+            SetTimer, TGameTick, On
+          Return
+        }
+        ; Begin Crafting Script
+        Else
+        {
+          If (!OnStash && YesSearchForStash)
+          {
+            ; If don't find stash, return
+            If !SearchStash()
+            {
+              RunningToggle := False
+              If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum){
+                SetTimer, TGameTick, On
+              }
+              Return
+            }
+            Else
+              RandomSleep(90,90)
+          }
+          ; Open Inventory if is closed
+          If (!OnInventory && OnStash)
+          {
+            Send {%hotkeyInventory%}
+            RandomSleep(45,45)
+            GuiStatus()
+            RandomSleep(45,45)
+          }
+          If (OnInventory && OnStash)
+          {
+            CraftingMaps()
+          }
+          Else
+          {
+            ; Exit Routine
+            RunningToggle := False
+            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+              SetTimer, TGameTick, On
+            SendMSG(1,0,scriptTradeMacro)
+            Return
+          }
+        }
+      }
+      MouseMove %xx%, %yy%
+      RunningToggle := False
+      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+        SetTimer, TGameTick, On
+      SendMSG(1,0,scriptTradeMacro)
+    Return
+  }
+
+;
+; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  CraftingMaps()
+  {
+    Global RunningToggle
+    CurrentTab := 0
+    MoveStash(1)
+    ;Start Scan on Inventory
+    For C, GridX in InventoryGridX
+    {
+      If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+        Break
+      For R, GridY in InventoryGridY
+      {
+        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+          Break
+        If BlackList[C][R]
+          Continue
+        Grid := RandClick(GridX, GridY)
+        If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+        {   
+          Ding(500,11,"Hit Scroll")
+          Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+        } 
+        PointColor := ScreenShot_GetColor(GridX,GridY)
+        If indexOf(PointColor, varEmptyInvSlotColor) 
+        {
+          ;Seems to be an empty slot, no need to clip item info
+          Continue
+        }
+        ; Identify Items routines
+        ClipItem(Grid.X,Grid.Y)
+        addToBlacklist(C, R)
+        If (!Prop.Identified&&YesIdentify)
+        {
+          If (Prop.IsMap&&!YesMapUnid&&!Prop.Corrupted)
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If (Prop.Chromatic && (Prop.RarityRare || Prop.RarityUnique ) ) 
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If (Prop.Jeweler && ( Prop.Gem_Links >= 5 || Prop.RarityRare || Prop.RarityUnique) )
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If (!Prop.Chromatic && !Prop.Jeweler && !Prop.IsMap)
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+        }
+        ;Crafting Map Script
+        If (Prop.IsMap && !Prop.IsBlightedMap && !Prop.Corrupted) 
+        {
+          ;Check all 3 ranges tier with same logic
+          i = 0
+          Loop, 3
+          {
+            i++
+            If (EndMapTier%i% >= StartMapTier%i% && CraftingMapMethod%i% != "Disable" && Prop.MapTier >= StartMapTier%i% && Prop.MapTier <= EndMapTier%i%)
+            {
+              If (!Prop.RarityNormal)
+              {
+                If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) || (Prop.RarityRare && Stats.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
+                {
+                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  Continue
+                }
+                Else
+                {
+                  ApplyCurrency("Scouring",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                }
+              }
+              If (Prop.RarityNormal)
+              {
+                If (Stats.Quality <= 20)
+                {
+                  numberChisel := (20 - Stats.Quality)//5
+                }  
+                Else
+                {
+                  numberChisel := 0
+                }
+                If (CraftingMapMethod%i% == "Transmutation+Augmentation")
+                {
+                  ApplyCurrency("Transmutation",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                  If (Prop.AffixCount < 2)
+                  {
+                    ApplyCurrency("Augmentation",Grid.X,Grid.Y)
+                  }
+                  ClipItem(Grid.X,Grid.Y)
+                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  Continue
+                }
+                Else if (CraftingMapMethod%i% == "Alchemy")
+                {
+                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  Continue
+                }
+                Else if (CraftingMapMethod%i% == "Chisel+Alchemy")
+                {
+                  Loop, %numberChisel%
+                  {
+                    ApplyCurrency("Chisel",Grid.X,Grid.Y)
+                  }
+                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  Continue
+                }
+                Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
+                {
+                  Loop, %numberChisel%
+                  {
+                    ApplyCurrency("Chisel",Grid.X,Grid.Y)
+                  }
+                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+                  ApplyCurrency("Vaal",Grid.X,Grid.Y)
+                  ClipItem(Grid.X,Grid.Y)
+                  Continue
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    Return
+  }
+
+;
+; ApplyCurrency - Using cname = currency name string and x, y as apply position
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ApplyCurrency(cname, x, y)
+  {
+    RightClick(%cname%X, %cname%Y)
+    Sleep, 45*Latency
+    LeftClick(x,y)
+    Sleep, 45*Latency
+    return
+  }
+
+;
+; MapReRoll - Reapply currency based on select undesireable mods
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  MapReRoll(Method, x, y)
+  {
+    If (Method =="Transmutation+Augmentation")
+    {
+      cname := "Transmutation"
+    }
+    Else If (Method =="Alchemy")
+    {
+      cname := "Alchemy"
+    }
+    Else If (Method =="Chisel+Alchemy")
+    {
+      cname := "Alchemy"
+    }
+    Else
+    {
+      return
+    }
+    While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech))
+    {
+      ApplyCurrency("Scouring", x, y)
+      ApplyCurrency(cname, x, y)
+      If (Prop.AffixCount < 2 && Prop.RarityMagic)
+      {
+        ApplyCurrency("Augmentation",Grid.X,Grid.Y)
+      }
+      ClipItem(x,y)
+    }
+    return
+  }
+  
 ; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -8007,6 +8412,23 @@ Return
       IniRead, CastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate, 0
       IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate, q
 
+      ;Crafting Map Settings
+      IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
+      IniRead, StartMapTier2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2, 6
+      IniRead, StartMapTier3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier3, 13
+      IniRead, EndMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier1, 5
+      IniRead, EndMapTier2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier2, 12
+      IniRead, EndMapTier3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier3, 16
+      IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1, Disable
+      IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2, Disable
+      IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3, Disable
+      IniRead, ElementalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect, 0
+      IniRead, PhysicalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect, 0
+      IniRead, NoRegen, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen, 0
+      IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
+      IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
+      IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
+
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
       IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
@@ -8515,6 +8937,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+      If hotkeyStartCraft
+        hotkey,% hotkeyStartCraft, StartCraftCommand, Off
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off  
       If hotkeyGetCoords
@@ -8553,6 +8977,7 @@ Return
       IniRead, hotkeyAutoFlask, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask, !F11
       IniRead, hotkeyAutoQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver, !MButton
       IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
+      IniRead, hotkeyStartCraft, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft, F2
       IniRead, hotkeyGemSwap, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap, !e
       IniRead, hotkeyGrabCurrency, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency, !a
       IniRead, hotkeyGetMouseCoords, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords, !o
@@ -8580,6 +9005,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, On
+      If hotkeyStartCraft
+        hotkey,% hotkeyStartCraft, StartCraftCommand, On
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, On
       If hotkeyGetMouseCoords
@@ -8736,6 +9163,8 @@ Return
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+      If hotkeyStartCraft
+        hotkey,% hotkeyStartCraft, StartCraftCommand, Off
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
       If hotkeyGetCoords
@@ -8979,6 +9408,7 @@ Return
       IniWrite, %hotkeyAutoQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver
       IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
       IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
+      IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyStartCraft
       IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
       IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
       IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
@@ -9144,6 +9574,23 @@ Return
       ;Grab Currency
       IniWrite, %GrabCurrencyPosX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX
       IniWrite, %GrabCurrencyPosY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY
+
+      ;Crafting Map Settings
+      IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
+      IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2
+      IniWrite, %StartMapTier3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier3
+      IniWrite, %EndMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier1
+      IniWrite, %EndMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier2
+      IniWrite, %EndMapTier3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier3
+      IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1
+      IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2
+      IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3
+      IniWrite, %ElementalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect
+      IniWrite, %PhysicalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect
+      IniWrite, %NoRegen%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen
+      IniWrite, %NoLeech%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
+      IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
+      IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
 
       ;Gem Swap
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
@@ -9448,6 +9895,7 @@ Return
       GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
       GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
       GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
+      GuiControl,, hotkeyStartCraft, %hotkeyStartCraft%
       GuiControl,, hotkeyGrabCurrency, %hotkeyGrabCurrency%
       GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
       GuiControl,, hotkeyItemSort, %hotkeyItemSort%
