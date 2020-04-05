@@ -7563,7 +7563,7 @@ Return
       }
       BlockInput, MouseMoveOff
       MouseMove %xx%, %yy%
-    return
+    Return
   }
 
 ; Crafting Map Section
@@ -7699,6 +7699,7 @@ Return
         }
       }
     }
+    Return
   }
 
 ; Currency Apply Function
