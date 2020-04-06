@@ -2136,9 +2136,9 @@
           ;Transmutation 80,390
         Global TransmutationX:=GameX + Round(GameW/(3440/80))
         Global TransmutationY:=GameY + Round(GameH/(1440/390))
-          ;Alteration need coord Hx2600
-        Global AlterationX:=GameX + Round(GameW/(3440/999))
-        Global AlterationY:=GameY + Round(GameH/(1440/999))
+          ;Alteration 155, 390
+        Global AlterationX:=GameX + Round(GameW/(3440/155))
+        Global AlterationY:=GameY + Round(GameH/(1440/390))
           ;Augmentation 310,465
         Global AugmentationX:=GameX + Round(GameW/(3440/310))
         Global AugmentationY:=GameY + Round(GameH/(1440/465))
