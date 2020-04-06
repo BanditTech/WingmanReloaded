@@ -7567,6 +7567,7 @@ Return
   {
     StartCraftCommand:
       Thread, NoTimers, True
+      MouseGetPos xx, yy
       If RunningToggle
       {
         RunningToggle := False
@@ -7577,7 +7578,6 @@ Return
         SendMSG(1,0,scriptTradeMacro)
       exit
       }
-      MouseGetPos xx, yy
       If GameActive
       {
         RunningToggle := True
@@ -7601,9 +7601,11 @@ Return
             If !SearchStash()
             {
               RunningToggle := False
-              If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum){
+              If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+              {
                 SetTimer, TGameTick, On
               }
+              SendMSG(1,0,scriptTradeMacro)
               Return
             }
             Else
@@ -7619,6 +7621,7 @@ Return
           }
           If (OnInventory && OnStash)
           {
+            RandomSleep(45,45)
             CraftingMaps()
           }
           Else
@@ -7648,7 +7651,11 @@ Return
     Global RunningToggle
     CurrentTab := 0
     MoveStash(StashTabCurrency)
-    ;Start Scan on Inventory
+    ; Move mouse away for Screenshot
+    ShooMouse(), GuiStatus(), ClearNotifications()
+    ; Ignore Slot
+    BlackList := Array_DeepClone(IgnoredSlot)
+    ; Start Scan on Inventory
     For C, GridX in InventoryGridX
     {
       If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
