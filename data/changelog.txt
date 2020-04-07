@@ -3,10 +3,11 @@ Add debugging hotkey for listing all variables of the script
 * Ctrl+Shift+Alt+L
 
 Dan improves the Map crafting again
-* Apply minimum values for quantity, rarity and Pack Size
-* be warned, there is no failsafe yet for this feature
+* Apply minimum values for quantity, rarity and Monster Pack Size
+* You can stop the crafting loop by pressing the hotkey again
+* Include a enable minimum values for magic map crafting (low tier)
 
-Bugfix for Start Craft hotkey
+Bugfix for StartCraft hotkey
 * value will now load and save to the correct INI key
 
 ---
