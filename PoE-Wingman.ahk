@@ -842,7 +842,7 @@
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
   
   ; Map Crafting Settings
-    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
     
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
@@ -7807,10 +7807,19 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MapRoll(Method, x, y)
   {
+    Temp1 := MMapItemRarity
+    Temp2 := MMapMonsterPackSize
+    Temp3 := MMapItemQuantity
     If (Method == "Transmutation+Augmentation")
     {
       cname := "Transmutation"
       crname := "Alteration"
+      If (!EnableMQQForMagicMap)
+      {
+        MMapItemRarity := 0
+        MMapMonsterPackSize := 0
+        MMapItemQuantity := 0
+      }
     }
     Else If (Method == "Alchemy")
     {
@@ -7854,6 +7863,10 @@ Return
         ApplyCurrency("Augmentation",Grid.X,Grid.Y)
       }
     }
+    ;Ugly Solution
+    MMapItemRarity := Temp1
+    MMapMonsterPackSize := Temp2
+    MMapItemQuantity := Temp3
     return
   }
   
@@ -8460,6 +8473,8 @@ Return
       IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
       IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
       IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
+      IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
+      
 
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
@@ -9626,7 +9641,8 @@ Return
       IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
       IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
       IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
-
+      IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
+      
       ;Gem Swap
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
       IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY

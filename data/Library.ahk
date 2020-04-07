@@ -439,9 +439,16 @@
             Gui, Inventory: Add, Text,         x380 y104       , Item Rarity
             Gui, Inventory: Add, Text,         x380 y134       , Monster Pack Size
             Gui, Inventory: Font,
+            Gui, Inventory: Font,s8,Arial
             Gui, Inventory: Add, DropDownList, x335 y70    w40    vMMapItemQuantity  Choose%MMapItemQuantity%,  %MapSetValue%
             Gui, Inventory: Add, DropDownList, x335 y100   w40    vMMapItemRarity  Choose%MMapItemRarity%,  %MapSetValue%
             Gui, Inventory: Add, DropDownList,  x335 y130  w40    vMMapMonsterPackSize  Choose%MMapMonsterPackSize%,  %MapSetValue%
+            Gui, Inventory: Font, Bold
+            Gui, Inventory: Font,s9,Arial
+          Gui, Inventory: Add,GroupBox,Section w170 h50 x320 y170, Minimum Settings Options:
+          Gui, Inventory: Font,
+            Gui, Inventory: Font,s8,Arial
+            Gui, Inventory: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
         }
         Gui, Inventory: show , w600 h500, Inventory Settings
       }
