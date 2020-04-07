@@ -841,8 +841,8 @@
     Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
   
-  ; Crafting Settings
-    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB
+  ; Map Crafting Settings
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize
     
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
@@ -3302,6 +3302,19 @@ Return
       {
       Prop.IsBlightedMap := True
       Prop.SpecialType := "Blighted Map"
+      }
+      ;Map Stats
+      If RegExMatch(Clip_Contents, "O)Item Quantity: +" num "%", RxMatch )
+      {
+        Stats.MapItemQuantity := RxMatch[1]
+      }
+      If RegExMatch(Clip_Contents, "O)Item Rarity: +" num "%", RxMatch )
+      {
+        Stats.MapItemRarity := RxMatch[1]
+      }
+      If RegExMatch(Clip_Contents, "O)Monster Pack Size: +" num "%", RxMatch )
+      {
+        Stats.MapMonsterPackSize := RxMatch[1]
       }
       ;Flag Dangerous Mods
       ;Reflect
@@ -7821,8 +7834,12 @@ Return
     {
       ApplyCurrency(cname, x, y)
     }
-    While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech) || Prop.RarityNormal)
+    While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech) || (Prop.RarityNormal) || Stats.MapItemRarity <= MMapItemRarity || Stats.MapMonsterPackSize <= MMapMonsterPackSize || Stats.MapItemQuantity <= MMapItemQuantity)
     {
+      If (!RunningToggle)
+      {
+        break
+      }
       ; Scouring or Alteration
       ApplyCurrency(crname, x, y)
       If (Prop.RarityNormal)
@@ -8438,6 +8455,9 @@ Return
       IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
       IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
       IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
+      IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
+      IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
+      IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
 
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
@@ -9601,6 +9621,9 @@ Return
       IniWrite, %NoLeech%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
       IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
       IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
+      IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
+      IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
+      IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
 
       ;Gem Swap
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
