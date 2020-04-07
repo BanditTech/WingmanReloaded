@@ -1,3 +1,16 @@
+## Version .11.0202 - Alpha Branch - April/06/2020  
+Add debugging hotkey for listing all variables of the script
+* Ctrl+Shift+Alt+L
+
+Dan improves the Map crafting again
+* Apply minimum values for quantity, rarity and Pack Size
+* be warned, there is no failsafe yet for this feature
+
+Bugfix for Start Craft hotkey
+* value will now load and save to the correct INI key
+
+---
+
 ## Version .11.0201 - Alpha Branch - April/06/2020  
 Improvements and Bugfixes by the Project Team
 * Crafting routine improved to now use Alterations
