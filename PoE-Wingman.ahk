@@ -7724,7 +7724,6 @@ Return
                 Else
                 {
                   ApplyCurrency("Scouring",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
                 }
               }
               If (Prop.RarityNormal)
@@ -7739,21 +7738,12 @@ Return
                 }
                 If (CraftingMapMethod%i% == "Transmutation+Augmentation")
                 {
-                  ApplyCurrency("Transmutation",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
-                  If (Prop.AffixCount < 2)
-                  {
-                    ApplyCurrency("Augmentation",Grid.X,Grid.Y)
-                  }
-                  ClipItem(Grid.X,Grid.Y)
                   MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Alchemy")
                 {
-                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
-                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Chisel+Alchemy")
@@ -7762,9 +7752,7 @@ Return
                   {
                     ApplyCurrency("Chisel",Grid.X,Grid.Y)
                   }
-                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
-                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
@@ -7773,9 +7761,8 @@ Return
                   {
                     ApplyCurrency("Chisel",Grid.X,Grid.Y)
                   }
-                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+                  MapRoll("Alchemy",Grid.X,Grid.Y)
                   ApplyCurrency("Vaal",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
                   Continue
                 }
               }
@@ -7796,39 +7783,52 @@ Return
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 45*Latency
+    ClipItem(x,y)
     return
   }
 
 ;
 ; MapReRoll - Reapply currency based on select undesireable mods
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  MapReRoll(Method, x, y)
+  MapRoll(Method, x, y)
   {
-    If (Method =="Transmutation+Augmentation")
+    If (Method == "Transmutation+Augmentation")
     {
       cname := "Transmutation"
+      crname := "Alteration"
     }
-    Else If (Method =="Alchemy")
+    Else If (Method == "Alchemy")
     {
       cname := "Alchemy"
+      crname := "Scouring"
     }
-    Else If (Method =="Chisel+Alchemy")
+    Else If (Method == "Chisel+Alchemy")
     {
       cname := "Alchemy"
+      crname := "Scouring"
+    }
+    Else If (Method == "Chisel+Alchemy+Vaal")
+    {
+      cname := "Alchemy"
+      crname := "Scouring"
     }
     Else
     {
       return
     }
-    While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech))
+    While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech) || Prop.RarityNormal)
     {
-      ApplyCurrency("Scouring", x, y)
-      ApplyCurrency(cname, x, y)
-      If (Prop.AffixCount < 2 && Prop.RarityMagic)
+      ; Scouring or Alteration
+      ApplyCurrency(crname, x, y)
+      If (Prop.RarityNormal)
+      {
+        ApplyCurrency(cname, x, y)
+      }
+      ; Augmentation if not 2 mods on magic maps
+      Else If (Prop.AffixCount < 2 && Prop.RarityMagic)
       {
         ApplyCurrency("Augmentation",Grid.X,Grid.Y)
       }
-      ClipItem(x,y)
     }
     return
   }
