@@ -7718,7 +7718,7 @@ Return
               {
                 If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) || (Prop.RarityRare && Stats.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
                 {
-                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else
@@ -7738,7 +7738,7 @@ Return
                 }
                 If (CraftingMapMethod%i% == "Transmutation+Augmentation")
                 {
-                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Alchemy")
@@ -7788,7 +7788,7 @@ Return
   }
 
 ;
-; MapReRoll - Reapply currency based on select undesireable mods
+; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MapRoll(Method, x, y)
   {
@@ -7815,6 +7815,11 @@ Return
     Else
     {
       return
+    }
+    ; Apply Currency if Normal
+    If (Prop.RarityNormal)
+    {
+      ApplyCurrency(cname, x, y)
     }
     While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech) || Prop.RarityNormal)
     {
