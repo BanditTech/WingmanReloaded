@@ -7802,7 +7802,6 @@ Return
     LeftClick(x,y)
     Sleep, 45*Latency
     ClipItem(x,y)
-    Sleep, 30*Latency
     return
   }
 
