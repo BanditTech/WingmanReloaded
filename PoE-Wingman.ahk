@@ -7731,7 +7731,9 @@ Return
             {
               If (!Prop.RarityNormal)
               {
-                If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) || (Prop.RarityRare && Stats.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
+                If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
+                || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) 
+                || (Prop.RarityRare && Stats.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
                 {
                   MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
@@ -7800,6 +7802,7 @@ Return
     LeftClick(x,y)
     Sleep, 45*Latency
     ClipItem(x,y)
+    Sleep, 30*Latency
     return
   }
 
@@ -7808,18 +7811,14 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MapRoll(Method, x, y)
   {
-    Temp1 := MMapItemRarity
-    Temp2 := MMapMonsterPackSize
-    Temp3 := MMapItemQuantity
+    MMQIgnore := False
     If (Method == "Transmutation+Augmentation")
     {
       cname := "Transmutation"
       crname := "Alteration"
       If (!EnableMQQForMagicMap)
       {
-        MMapItemRarity := 0
-        MMapMonsterPackSize := 0
-        MMapItemQuantity := 0
+        MMQIgnore := True
       }
     }
     Else If (Method == "Alchemy")
@@ -7841,12 +7840,42 @@ Return
     {
       return
     }
+    If !(Prop.Identified)
+    {
+      If (Prop.Rarity_Digit > 1 && cname = "Transmutation" && YesMapUnid )
+      {
+        Return
+      }
+      Else If (Prop.Rarity_Digit > 2 && cname = "Alchemy" && YesMapUnid )
+      {
+        Return
+      }
+      Else
+      {
+        WisdomScroll(x,y)
+        ClipItem(x,y)
+      }
+    }
     ; Apply Currency if Normal
     If (Prop.RarityNormal)
     {
       ApplyCurrency(cname, x, y)
     }
-    While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech) || (Prop.RarityNormal) || Stats.MapItemRarity <= MMapItemRarity || Stats.MapMonsterPackSize <= MMapMonsterPackSize || Stats.MapItemQuantity <= MMapItemQuantity)
+    If (Prop.AffixCount < 2 && Prop.RarityMagic && cname = "Transmutation")
+    {
+      ApplyCurrency("Augmentation",x,y)
+    }
+    While ( (Affix.MapAvoidAilments && AvoidAilments) 
+    || (Affix.MapAvoidPBB && AvoidPBB) 
+    || (Affix.MapElementalReflect && ElementalReflect) 
+    || (Affix.MapPhysicalReflect && PhysicalReflect) 
+    || (Affix.MapNoRegen && NoRegen) 
+    || (Affix.MapNoLeech && NoLeech) 
+    || (Prop.RarityNormal) 
+    || (!MMQIgnore && (Stats.MapItemRarity <= MMapItemRarity 
+    || Stats.MapMonsterPackSize <= MMapMonsterPackSize 
+    || Stats.MapItemQuantity <= MMapItemQuantity)) )
+    && Prop.Identified
     {
       If (!RunningToggle)
       {
@@ -7861,13 +7890,9 @@ Return
       ; Augmentation if not 2 mods on magic maps
       Else If (Prop.AffixCount < 2 && Prop.RarityMagic)
       {
-        ApplyCurrency("Augmentation",Grid.X,Grid.Y)
+        ApplyCurrency("Augmentation",x,y)
       }
     }
-    ;Ugly Solution
-    MMapItemRarity := Temp1
-    MMapMonsterPackSize := Temp2
-    MMapItemQuantity := Temp3
     return
   }
   
