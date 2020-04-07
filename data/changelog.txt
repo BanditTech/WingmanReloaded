@@ -1,3 +1,11 @@
+## Version .11.0201 - Alpha Branch - April/06/2020  
+Improvements and Bugfixes by the Project Team
+* Crafting routine improved to now use Alterations
+* Bugfix adjustments attempting to fix craft scan not starting
+* Fix for Text being reversed on Physical and Elemental reflect
+
+---
+
 ## Version .11.02 - Master Branch - April/05/2020  
 
 Merging Alpha changes to master branch

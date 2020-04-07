@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.02
+  Global VersionNumber := .11.0201
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -7669,6 +7669,7 @@ Return
     ; Ignore Slot
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Start Scan on Inventory
+    SendMSG(1,1,scriptTradeMacro)
     For C, GridX in InventoryGridX
     {
       If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
@@ -7784,6 +7785,7 @@ Return
         }
       }
     }
+    SendMSG(1,0,scriptTradeMacro)
     Return
   }
 
