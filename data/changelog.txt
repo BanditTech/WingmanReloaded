@@ -1,3 +1,7 @@
+## Version .11.021 - Master Branch - April/07/2020  
+Bugfix for StartCraft hotkey
+* value will now load and save to the correct INI key
+
 ## Version .11.02 - Master Branch - April/05/2020  
 
 Merging Alpha changes to master branch
