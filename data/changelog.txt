@@ -1,3 +1,37 @@
+## Version .11.03 - master Branch - April/07/2020  
+Merging Alpha changes to master branch
+* Bugfixes and improvements, read notes for details
+
+## Version .11.0203 - Alpha Branch - April/06/2020  
+* Improved logic for dealing with Unidentified maps
+  * will respect the option of leaving maps UnID
+  * If UnID but lower than desired rarity, it will force ID
+
+---
+
+## Version .11.0202 - Alpha Branch - April/06/2020  
+Add debugging hotkey for listing all variables of the script
+* Ctrl+Shift+Alt+L
+
+Dan improves the Map crafting again
+* Apply minimum values for quantity, rarity and Monster Pack Size
+* You can stop the crafting loop by pressing the hotkey again
+* Include a enable minimum values for magic map crafting (low tier)
+  * Use this setting with care, magic maps have lower stat max
+
+Bugfix for StartCraft hotkey
+* value will now load and save to the correct INI key
+
+---
+
+## Version .11.0201 - Alpha Branch - April/06/2020  
+Improvements and Bugfixes by the Project Team
+* Crafting routine improved to now use Alterations
+* Bugfix adjustments attempting to fix craft scan not starting
+* Fix for Text being reversed on Physical and Elemental reflect
+
+---
+
 ## Version .11.02 - Master Branch - April/05/2020  
 
 Merging Alpha changes to master branch

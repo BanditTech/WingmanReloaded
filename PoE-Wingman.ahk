@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.02
+  Global VersionNumber := .11.03
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -841,8 +841,8 @@
     Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
   
-  ; Crafting Settings
-    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB
+  ; Map Crafting Settings
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
     
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
@@ -2158,7 +2158,8 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   #IfWinActive
 
-  Return
+  ; Return
+  !+^L::ListVars
   ; Reload Script with Alt+Escape
   !Escape::
     Reload
@@ -3302,6 +3303,19 @@ Return
       {
       Prop.IsBlightedMap := True
       Prop.SpecialType := "Blighted Map"
+      }
+      ;Map Stats
+      If RegExMatch(Clip_Contents, "O)Item Quantity: +" num "%", RxMatch )
+      {
+        Stats.MapItemQuantity := RxMatch[1]
+      }
+      If RegExMatch(Clip_Contents, "O)Item Rarity: +" num "%", RxMatch )
+      {
+        Stats.MapItemRarity := RxMatch[1]
+      }
+      If RegExMatch(Clip_Contents, "O)Monster Pack Size: +" num "%", RxMatch )
+      {
+        Stats.MapMonsterPackSize := RxMatch[1]
       }
       ;Flag Dangerous Mods
       ;Reflect
@@ -7567,6 +7581,7 @@ Return
   {
     StartCraftCommand:
       Thread, NoTimers, True
+      MouseGetPos xx, yy
       If RunningToggle
       {
         RunningToggle := False
@@ -7577,7 +7592,6 @@ Return
         SendMSG(1,0,scriptTradeMacro)
       exit
       }
-      MouseGetPos xx, yy
       If GameActive
       {
         RunningToggle := True
@@ -7601,9 +7615,11 @@ Return
             If !SearchStash()
             {
               RunningToggle := False
-              If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum){
+              If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+              {
                 SetTimer, TGameTick, On
               }
+              SendMSG(1,0,scriptTradeMacro)
               Return
             }
             Else
@@ -7619,6 +7635,7 @@ Return
           }
           If (OnInventory && OnStash)
           {
+            RandomSleep(45,45)
             CraftingMaps()
           }
           Else
@@ -7648,7 +7665,12 @@ Return
     Global RunningToggle
     CurrentTab := 0
     MoveStash(StashTabCurrency)
-    ;Start Scan on Inventory
+    ; Move mouse away for Screenshot
+    ShooMouse(), GuiStatus(), ClearNotifications()
+    ; Ignore Slot
+    BlackList := Array_DeepClone(IgnoredSlot)
+    ; Start Scan on Inventory
+    SendMSG(1,1,scriptTradeMacro)
     For C, GridX in InventoryGridX
     {
       If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
@@ -7709,15 +7731,16 @@ Return
             {
               If (!Prop.RarityNormal)
               {
-                If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) || (Prop.RarityRare && Stats.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
+                If ((Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
+                || (Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) 
+                || (Prop.RarityRare && Stats.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
                 {
-                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else
                 {
                   ApplyCurrency("Scouring",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
                 }
               }
               If (Prop.RarityNormal)
@@ -7732,21 +7755,12 @@ Return
                 }
                 If (CraftingMapMethod%i% == "Transmutation+Augmentation")
                 {
-                  ApplyCurrency("Transmutation",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
-                  If (Prop.AffixCount < 2)
-                  {
-                    ApplyCurrency("Augmentation",Grid.X,Grid.Y)
-                  }
-                  ClipItem(Grid.X,Grid.Y)
-                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Alchemy")
                 {
-                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
-                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Chisel+Alchemy")
@@ -7755,9 +7769,7 @@ Return
                   {
                     ApplyCurrency("Chisel",Grid.X,Grid.Y)
                   }
-                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
-                  MapReRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+                  MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue
                 }
                 Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
@@ -7766,9 +7778,8 @@ Return
                   {
                     ApplyCurrency("Chisel",Grid.X,Grid.Y)
                   }
-                  ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+                  MapRoll("Alchemy",Grid.X,Grid.Y)
                   ApplyCurrency("Vaal",Grid.X,Grid.Y)
-                  ClipItem(Grid.X,Grid.Y)
                   Continue
                 }
               }
@@ -7777,6 +7788,7 @@ Return
         }
       }
     }
+    SendMSG(1,0,scriptTradeMacro)
     Return
   }
 
@@ -7789,39 +7801,96 @@ Return
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 45*Latency
+    ClipItem(x,y)
     return
   }
 
 ;
-; MapReRoll - Reapply currency based on select undesireable mods
+; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  MapReRoll(Method, x, y)
+  MapRoll(Method, x, y)
   {
-    If (Method =="Transmutation+Augmentation")
+    MMQIgnore := False
+    If (Method == "Transmutation+Augmentation")
     {
       cname := "Transmutation"
+      crname := "Alteration"
+      If (!EnableMQQForMagicMap)
+      {
+        MMQIgnore := True
+      }
     }
-    Else If (Method =="Alchemy")
+    Else If (Method == "Alchemy")
     {
       cname := "Alchemy"
+      crname := "Scouring"
     }
-    Else If (Method =="Chisel+Alchemy")
+    Else If (Method == "Chisel+Alchemy")
     {
       cname := "Alchemy"
+      crname := "Scouring"
+    }
+    Else If (Method == "Chisel+Alchemy+Vaal")
+    {
+      cname := "Alchemy"
+      crname := "Scouring"
     }
     Else
     {
       return
     }
-    While ((Affix.MapAvoidAilments && AvoidAilments) || (Affix.MapAvoidPBB && AvoidPBB) || (Affix.MapElementalReflect && ElementalReflect) || (Affix.MapPhysicalReflect && PhysicalReflect) || (Affix.MapNoRegen && NoRegen) || (Affix.MapNoLeech && NoLeech))
+    If !(Prop.Identified)
     {
-      ApplyCurrency("Scouring", x, y)
-      ApplyCurrency(cname, x, y)
-      If (Prop.AffixCount < 2 && Prop.RarityMagic)
+      If (Prop.Rarity_Digit > 1 && cname = "Transmutation" && YesMapUnid )
       {
-        ApplyCurrency("Augmentation",Grid.X,Grid.Y)
+        Return
       }
-      ClipItem(x,y)
+      Else If (Prop.Rarity_Digit > 2 && cname = "Alchemy" && YesMapUnid )
+      {
+        Return
+      }
+      Else
+      {
+        WisdomScroll(x,y)
+        ClipItem(x,y)
+      }
+    }
+    ; Apply Currency if Normal
+    If (Prop.RarityNormal)
+    {
+      ApplyCurrency(cname, x, y)
+    }
+    If (Prop.AffixCount < 2 && Prop.RarityMagic && cname = "Transmutation")
+    {
+      ApplyCurrency("Augmentation",x,y)
+    }
+    While ( (Affix.MapAvoidAilments && AvoidAilments) 
+    || (Affix.MapAvoidPBB && AvoidPBB) 
+    || (Affix.MapElementalReflect && ElementalReflect) 
+    || (Affix.MapPhysicalReflect && PhysicalReflect) 
+    || (Affix.MapNoRegen && NoRegen) 
+    || (Affix.MapNoLeech && NoLeech) 
+    || (Prop.RarityNormal) 
+    || (!MMQIgnore && (Stats.MapItemRarity <= MMapItemRarity 
+    || Stats.MapMonsterPackSize <= MMapMonsterPackSize 
+    || Stats.MapItemQuantity <= MMapItemQuantity)) )
+    && Prop.Identified
+    {
+      If (!RunningToggle)
+      {
+        break
+      }
+      ; Scouring or Alteration
+      ApplyCurrency(crname, x, y)
+      If (Prop.RarityNormal)
+      {
+        ApplyCurrency(cname, x, y)
+      }
+      ; Augmentation if not 2 mods on magic maps
+      Else If (Prop.AffixCount < 2 && Prop.RarityMagic)
+      {
+        ApplyCurrency("Augmentation",x,y)
+      }
     }
     return
   }
@@ -8426,6 +8495,11 @@ Return
       IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
       IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
       IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
+      IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
+      IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
+      IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
+      IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
+      
 
       ;Settings for Auto-Vendor
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
@@ -9406,7 +9480,7 @@ Return
       IniWrite, %hotkeyAutoQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver
       IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
       IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
-      IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyStartCraft
+      IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft
       IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
       IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
       IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
@@ -9589,7 +9663,11 @@ Return
       IniWrite, %NoLeech%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
       IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
       IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
-
+      IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
+      IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
+      IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
+      IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
+      
       ;Gem Swap
       IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
       IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY

@@ -154,7 +154,7 @@
           ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
           Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-          Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Crafting Settings
+          Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Map Crafting Settings
 
         Gui, Inventory: Tab, Options
           Gui, Inventory: Font, Bold
@@ -382,8 +382,10 @@
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab7 Choose%stashSuffixTab7%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab8 Choose%stashSuffixTab8%, %textList%
           Gui, Inventory: Add, DropDownList,  y+5     w40 vstashSuffixTab9 Choose%stashSuffixTab9%, %textList%
-        Gui, Inventory: Tab, Crafting Settings
-          MethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal" 
+        Gui, Inventory: Tab, Map Crafting Settings
+          MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
+          MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
+          MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
           Gui, Inventory: Font, Bold
           Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
@@ -393,9 +395,9 @@
             Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
             Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
             Gui, Inventory: Font,s9,Arial
-            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %CraftingMapMethod1%||%MethodList%
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %CraftingMapMethod1%||%MapMethodList%
             Gui, Inventory: Font, Bold
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
             Gui, Inventory: Font,
@@ -404,9 +406,9 @@
             Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
             Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
             Gui, Inventory: Font,s9,Arial
-            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %CraftingMapMethod2%||%MethodList%
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %CraftingMapMethod2%||%MapMethodList%
             Gui, Inventory: Font, Bold
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
             Gui, Inventory: Font,
@@ -415,9 +417,9 @@
             Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
             Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
             Gui, Inventory: Font,s9,Arial
-            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %CraftingMapMethod3%||%MethodList%
+            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
+            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %CraftingMapMethod3%||%MapMethodList%
             Gui, Inventory: Font, Bold
           Gui, Inventory: Add,GroupBox,Section w285 h140 xs, Undesireble Mods:
             Gui, Inventory: Font,
@@ -428,6 +430,25 @@
             Gui, Inventory: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
             Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
             Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
+            Gui, Inventory: Font, Bold
+            Gui, Inventory: Font,s9,Arial
+          Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
+            Gui, Inventory: Font, 
+            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Add, Text,         x380 y74        , Item Quantity
+            Gui, Inventory: Add, Text,         x380 y104       , Item Rarity
+            Gui, Inventory: Add, Text,         x380 y134       , Monster Pack Size
+            Gui, Inventory: Font,
+            Gui, Inventory: Font,s8,Arial
+            Gui, Inventory: Add, DropDownList, x335 y70    w40    vMMapItemQuantity  Choose%MMapItemQuantity%,  %MapSetValue%
+            Gui, Inventory: Add, DropDownList, x335 y100   w40    vMMapItemRarity  Choose%MMapItemRarity%,  %MapSetValue%
+            Gui, Inventory: Add, DropDownList,  x335 y130  w40    vMMapMonsterPackSize  Choose%MMapMonsterPackSize%,  %MapSetValue%
+            Gui, Inventory: Font, Bold
+            Gui, Inventory: Font,s9,Arial
+          Gui, Inventory: Add,GroupBox,Section w170 h50 x320 y170, Minimum Settings Options:
+          Gui, Inventory: Font,
+            Gui, Inventory: Font,s8,Arial
+            Gui, Inventory: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
         }
         Gui, Inventory: show , w600 h500, Inventory Settings
       }
@@ -1693,6 +1714,9 @@
         ;Transmutation 60,290
         Global TransmutationX:=GameX + Round(GameW/(1920/60))
         Global TransmutationY:=GameY + Round(GameH/(1080/290))
+        ;Alteration 120,290
+        Global AlterationX:=GameX + Round(GameW/(1920/120))
+        Global AlterationY:=GameY + Round(GameH/(1080/290))
         ;Augmentation 230,340
         Global AugmentationX:=GameX + Round(GameW/(1920/230))
         Global AugmentationY:=GameY + Round(GameH/(1080/340))
@@ -1838,6 +1862,9 @@
           ;Transmutation 60,290
         Global TransmutationX:=GameX + Round(GameW/(1440/60))
         Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Alteration 120,290
+        Global AlterationX:=GameX + Round(GameW/(1440/120))
+        Global AlterationY:=GameY + Round(GameH/(1080/290))
           ;Augmentation 230,340
         Global AugmentationX:=GameX + Round(GameW/(1440/230))
         Global AugmentationY:=GameY + Round(GameH/(1080/340))
@@ -1983,6 +2010,9 @@
           ;Transmutation 60,290
         Global TransmutationX:=GameX + Round(GameW/(2560/60))
         Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Alteration 120,290
+        Global AlterationX:=GameX + Round(GameW/(2560/120))
+        Global AlterationY:=GameY + Round(GameH/(1080/290))
           ;Augmentation 230,340
         Global AugmentationX:=GameX + Round(GameW/(2560/230))
         Global AugmentationY:=GameY + Round(GameH/(1080/340))
@@ -2127,6 +2157,9 @@
           ;Transmutation 80,390
         Global TransmutationX:=GameX + Round(GameW/(3440/80))
         Global TransmutationY:=GameY + Round(GameH/(1440/390))
+          ;Alteration 155, 390
+        Global AlterationX:=GameX + Round(GameW/(3440/155))
+        Global AlterationY:=GameY + Round(GameH/(1440/390))
           ;Augmentation 310,465
         Global AugmentationX:=GameX + Round(GameW/(3440/310))
         Global AugmentationY:=GameY + Round(GameH/(1440/465))
@@ -2268,6 +2301,9 @@
           ;Transmutation 60,290
         Global TransmutationX:=GameX + Round(GameW/(3840/60))
         Global TransmutationY:=GameY + Round(GameH/(1080/290))
+          ;Alteration 120,290
+        Global AlterationX:=GameX + Round(GameW/(3840/120))
+        Global AlterationY:=GameY + Round(GameH/(1080/290))
           ;Augmentation 230,340
         Global AugmentationX:=GameX + Round(GameW/(3840/230))
         Global AugmentationY:=GameY + Round(GameH/(1080/340))
