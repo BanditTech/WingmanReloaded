@@ -7800,7 +7800,7 @@ Return
     RightClick(%cname%X, %cname%Y)
     Sleep, 45*Latency
     LeftClick(x,y)
-    Sleep, 45*Latency
+    Sleep, 90*Latency
     ClipItem(x,y)
     return
   }
