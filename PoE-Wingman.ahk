@@ -6096,22 +6096,44 @@ Return
     {
       Sleep, 60*Latency
       Dif:=(CurrentTab-Tab)
-      If (CurrentTab = 0 || (Abs(Dif) > 20))
+      If (CurrentTab = 0)
       {
-        MouseGetPos MSx, MSy
-        BlockInput, MouseMove
-        Sleep, 90*Latency
-        LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-        Sleep, 195*Latency
-        send {WheelUp 20}
-        send {Enter}
-        Sleep, 90*Latency
-        LeftClick(vX_StashTabMenu, vY_StashTabMenu)
+        ; MouseGetPos MSx, MSy
+        ; BlockInput, MouseMove
+        ; Sleep, 90*Latency
+        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
+        ; MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
+        ; Sleep, 195*Latency
+        ; send {WheelUp 20}
+        ; send {Enter}
+        ; Sleep, 90*Latency
+        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
+        ; CurrentTab:=Tab
+        ; MouseMove, MSx, MSy, 0
+        ; Sleep, 195*Latency
+        ; BlockInput, MouseMoveOff
+        ; MouseGetPos MSx, MSy
+        ; BlockInput, MouseMove
+        ; Sleep, 90*Latency
+        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
+        ; MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
+        ; Sleep, 195*Latency
+        ; send {Enter}
+        ; Sleep, 90*Latency
+        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
+        ; MouseMove, MSx, MSy, 0
+        Loop, 64
+        {
+          send {Left}
+        }
+        Loop % Tab - 1
+        {
+          send {Right}
+          ; Sleep, 15*Latency
+        }
         CurrentTab:=Tab
-        MouseMove, MSx, MSy, 0
         Sleep, 195*Latency
-        BlockInput, MouseMoveOff
+        ; BlockInput, MouseMoveOff
       }
       Else
       {
@@ -6120,12 +6142,12 @@ Return
           If (Dif > 0)
           {
             SendInput {Left}
-            Sleep 15*Latency
+            ; Sleep 15*Latency
           }
           Else
           {
             SendInput {Right}
-            Sleep 15*Latency
+            ; Sleep 15*Latency
           }
         }
         CurrentTab:=Tab
