@@ -5277,16 +5277,35 @@ Return
           }
           Else If (Prop.IsMap)
           {
-            If InStr(Prop.ItemBase, Ninja[TKey][index]["name"]) && (Prop.RarityUnique || (!Prop.RarityUnique && Prop.MapTier = Ninja[TKey][index]["mapTier"]))
+            ; Deal with Unique Maps Prop.ItemName = Name Matched on Poe Ninja
+            If (Prop.RarityUnique)
             {
+              If (InStr(Prop.ItemName, Ninja[TKey][index]["name"]) && Prop.MapTier = Ninja[TKey][index]["mapTier"])
+              {
               Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
               Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
-              If graph
-              {
+                If graph
+                {
                 GraphNinjaPrices(TKey,index)
                 DisplayPSA()
+                }
+                Return True
               }
-              Return True
+            }
+            ; Deal with Non-Unique Maps Prop.ItemBase = Name Matched on Poe Ninja
+            Else
+            {
+              If (InStr(Prop.ItemBase, Ninja[TKey][index]["name"]) && Prop.MapTier = Ninja[TKey][index]["mapTier"])
+              {
+              Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+              Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+                If graph
+                {
+                GraphNinjaPrices(TKey,index)
+                DisplayPSA()
+                }
+                Return True
+              }
             }
           }
           Else If (Prop.IsBeast)
