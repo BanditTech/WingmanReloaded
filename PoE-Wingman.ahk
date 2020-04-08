@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.03
+  Global VersionNumber := .11.0301
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -11543,7 +11543,13 @@ Return
       {
         UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/version.html, %A_ScriptDir%\temp\version.html
         FileRead, newestVersion, %A_ScriptDir%\temp\version.html
-        
+        If InStr(newestVersion, "404: Not Found")
+        {
+          Log("Error loading version number","404 error")
+          Return
+        }
+        If RegExMatch(newestVersion, "O)[.0-9]+", matchVersion)
+          newestVersion := matchVersion[1]
         if ( VersionNumber < newestVersion || force) 
         {
           UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt

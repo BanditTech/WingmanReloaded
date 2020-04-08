@@ -1,3 +1,19 @@
+## Version .11.0301 - Alpha Branch - April/08/2020  
+Adjustments to Click and Right Click
+* Separated Down and Up on same line
+
+Refactor MoveStash
+* MoveStash now only uses keyboard
+* This should now allow any number of stash slots
+* Trying out removing the delay between key press
+  * Very fast, need to test accuracy of switching tabs
+
+Add failsafe for update check
+* If 404 error, it sends to log and returns
+* Use RegExMatch to grab only version number
+
+---
+
 ## Version .11.03 - master Branch - April/07/2020  
 Merging Alpha changes to master branch
 * Bugfixes and improvements, read notes for details
