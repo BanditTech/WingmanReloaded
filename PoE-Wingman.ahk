@@ -2365,86 +2365,6 @@ Return
             ClipItem(Grid.X,Grid.Y)
           }
         }
-        If (YesVendorBeforeStash && !OnStash && RunningToggle) 
-        {
-          If (Prop.SpecialType = "Quest Item")
-            Continue
-          Else If (sendstash:=MatchLootFilter())
-            Sleep, -1
-          Else If (Prop.Incubator)
-            Continue
-          Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
-            Continue
-          Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
-            sendstash := StashTabCurrency
-          Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
-            sendstash := StashTabMap
-          Else If ( StashTabYesFragment 
-            && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
-            || Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
-            sendstash := StashTabFragment
-          Else If (Prop.RarityDivination&&StashTabYesDivination)
-            sendstash := StashTabDivination
-          Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
-            sendstash := StashTabOrgan
-          Else If (Prop.RarityUnique&&Prop.IsOrgan="")
-          {
-            If (StashTabYesUniqueRing&&Prop.Ring)
-            {
-              sendstash := StashTabUniqueRing
-            }
-            Else If (StashTabYesUniqueDump)
-            {
-              sendstash := StashTabUniqueDump
-            }
-            Continue
-          }
-          Else If (Prop.Essence&&StashTabYesEssence)
-            sendstash := StashTabEssence
-          Else If (Prop.Fossil&&StashTabYesFossil)
-            sendstash := StashTabFossil
-          Else If (Prop.Resonator&&StashTabYesResonator)
-            sendstash := StashTabResonator
-          Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-            sendstash := StashTabFlaskQuality
-          Else If (Prop.RarityGem)
-          {
-            If ((Stats.Quality>0)&&StashTabYesGemQuality)
-              sendstash := StashTabGemQuality
-            Else If (Prop.Support && StashTabYesGemSupport)
-              sendstash := StashTabGemSupport
-            Else If (StashTabYesGem)
-              sendstash := StashTabGem
-          }
-          Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
-            sendstash := StashTabLinked
-          Else If (Prop.Prophecy&&StashTabYesProphecy)
-            sendstash := StashTabProphecy
-          Else If (Prop.Oil&&StashTabYesOil)
-            sendstash := StashTabOil
-          Else If (Prop.Veiled&&StashTabYesVeiled)
-            sendstash := StashTabVeiled
-          Else If (Prop.ClusterJewel&&StashTabYesClusterJewel)
-            sendstash := StashTabClusterJewel
-          Else If (StashTabYesCrafting 
-            && ((YesStashT1 && Prop.CraftingBase = "T1") 
-              || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3"))
-            && ((YesStashCraftingNormal && Prop.RarityNormal)
-              || (YesStashCraftingMagic && Prop.RarityMagic)
-              || (YesStashCraftingRare && Prop.RarityRare))
-            && (!YesStashCraftingIlvl 
-              || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
-            sendstash := StashTabCrafting
-          Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
-            sendstash := StashTabPredictive
-          Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
-            sendstash := StashTabDump
-          If (sendstash > 0)
-          {
-            SortFirst[sendstash].Push({"C":C,"R":R})
-          }
-        }
         If (OnVendor&&YesVendor)
         {
           If MatchLootFilter()
@@ -2476,7 +2396,20 @@ Return
           }
           if (YesVendorBeforeStash)
           {
-            If (Prop.RarityUnique)
+            If ( (Prop.RarityUnique) 
+            && ( (StashTabYesUniqueRing&&Prop.Ring) || StashTabYesCollection || StashTabYesUniqueDump))
+            {
+              Continue
+            }
+            If (StashTabYesCrafting
+            && ((YesStashT1 && Prop.CraftingBase = "T1") 
+              || (YesStashT2 && Prop.CraftingBase = "T2") 
+              || (YesStashT3 && Prop.CraftingBase = "T3"))
+            && ((YesStashCraftingNormal && Prop.RarityNormal)
+              || (YesStashCraftingMagic && Prop.RarityMagic)
+              || (YesStashCraftingRare && Prop.RarityRare))
+            && (!YesStashCraftingIlvl 
+              || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
             {
               Continue
             }
