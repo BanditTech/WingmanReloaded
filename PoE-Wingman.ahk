@@ -2394,7 +2394,7 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
-          if (YesVendorBeforeStash)
+          If (YesVendorBeforeStash)
           {
             If ( (Prop.RarityUnique) 
             && ( (StashTabYesUniqueRing&&Prop.Ring) || StashTabYesCollection || StashTabYesUniqueDump))
@@ -2985,6 +2985,7 @@ Return
       Prop.IsWeapon := False
       Prop.IsMap := False
       Prop.IsBlightedMap := False
+      Prop.MapAtlasRegion := 0
       Prop.MapTier := 0
       Prop.Support := False
       Prop.VaalGem := False
@@ -2996,7 +2997,6 @@ Return
       Prop.CraftingBase := 0
 
     Stats := OrderedArray()
-      Stats.MapTier := 0
       Stats.MapItemQuantity := 0
       Stats.MapItemRarity := 0
       Stats.MapMonsterPackSize := 0
@@ -3374,6 +3374,10 @@ Return
           StandardBase := PossibleBase[1]
           PossibleBase := StrSplit(PossibleBase[1], " ",,2)
           PrefixMagicBase := PossibleBase[2]
+          If (Prop.IsMap)
+          {
+            Prop.ItemBase := StandardBase
+          }
           For k, v in QuestItems
           {
             If (v["Name"] = A_LoopField)
@@ -3414,6 +3418,7 @@ Return
                 Prop.Amulet := True
               Break
             }
+            
           }
           If Prop.IsBeast
           {
@@ -3667,6 +3672,10 @@ Return
       If InStr(A_LoopField,"Map Tier:")
       {
         Prop.MapTier := StrSplit(A_LoopField, "Map Tier:", " ")[2]
+      }
+      If InStr(A_LoopField,"Atlas Region:")
+      {
+        Prop.MapAtlasRegion := StrSplit(A_LoopField, "Atlas Region:", " ")[2]
       }
       ; Get Requirements
 
@@ -5268,7 +5277,7 @@ Return
           }
           Else If (Prop.IsMap)
           {
-            If InStr(Prop.ItemName, Ninja[TKey][index]["name"]) && (Prop.RarityUnique || (!Prop.RarityUnique && Prop.MapTier = Ninja[TKey][index]["mapTier"]))
+            If InStr(Prop.ItemBase, Ninja[TKey][index]["name"]) && (Prop.RarityUnique || (!Prop.RarityUnique && Prop.MapTier = Ninja[TKey][index]["mapTier"]))
             {
               Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
               Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
