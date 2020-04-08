@@ -1,3 +1,7 @@
+## Version .11.0302 - Alpha Branch - April/08/2020  
+Adjustments to Click and Right Click Removed
+* Problems with id/stash/vendor routine and closing inventory.
+
 ## Version .11.0301 - Alpha Branch - April/08/2020  
 Adjustments to Click and Right Click
 * Separated Down and Up on same line
