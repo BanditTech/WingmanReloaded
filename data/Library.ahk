@@ -30,7 +30,7 @@
         BlockInput, MouseMove
         MouseMove, x, y
         Sleep, 60+(ClickLatency*15)
-        Send {Click}
+        Send {Click Down} {Click Up}
         Sleep, 60+(ClickLatency*15)
         BlockInput, MouseMoveOff
       }
@@ -55,7 +55,7 @@
         BlockInput, MouseMove
         MouseMove, x, y
         Sleep, 60+(ClickLatency*15)
-        Send {Click, Right}
+        Send {Click, Right, Down} {Click, Right, Up}
         Sleep, 60+(ClickLatency*15)
         BlockInput, MouseMoveOff
       }
@@ -98,7 +98,7 @@
       Send {Ctrl Down}
       Sleep, 45
       Send {Click, Down, x, y}
-      Sleep, 45+(ClickLatency*15)
+      Sleep, 60+(ClickLatency*15)
       Send {Click, Up, x, y}
       Sleep, 30
       Send {Ctrl Up}
