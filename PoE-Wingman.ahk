@@ -291,10 +291,10 @@
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
       YesStashBlightedMap = This option enable auto-stash for blighted maps in your map stash`rPOE Map Stash don't highlight Blighted Maps yet!
       YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
-      YesStashT1 = Enable to stash T1 crafting bases
-      YesStashT2 = Enable to stash T2 crafting bases
-      YesStashT3 = Enable to stash T3 crafting bases
-      YesStashT4 = Enable to stash abyss jewel and jewel crafting bases
+      YesStashT1 = Enable to stash Tier 1 crafting bases
+      YesStashT2 = Enable to stash Tier 2 crafting bases
+      YesStashT3 = Enable to stash Tier 3 crafting bases
+      YesStashT4 = Enable to stash Abyss Jewel and Jewel as crafting bases
       YesStashCraftingNormal = Enable to stash Normal crafting bases
       YesStashCraftingMagic = Enable to stash Magic crafting bases
       YesStashCraftingRare = Enable to stash Rare crafting bases
