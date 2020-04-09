@@ -157,17 +157,17 @@
           Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Map Crafting Settings
 
         Gui, Inventory: Tab, Options
-          Gui, Inventory: Font, Bold
-          Gui, Inventory: Add, Text,     Section                xm   ym+25,         ID/Vend/Stash Options:
+          Gui, Inventory: Font, Bold s9 cBlack
+          Gui, Inventory: Add, GroupBox,       Section    w170 h190    xm   ym+25,         ID/Vend/Stash Options
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify          Checked%YesIdentify%          , Identify Items?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash             Checked%YesStash%             , Deposit at stash?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor            Checked%YesVendor%            , Sell at vendor?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv               Checked%YesDiv%               , Trade Divination?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst         Checked%YesSortFirst%         , Group Items before stashing?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap%  , Stash BlightedMaps?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid           Checked%YesMapUnid%           , Leave Map Un-ID?
-          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps , %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify          Checked%YesIdentify%    xs+5  ys+18   , Identify Items?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash             Checked%YesStash%         y+8    , Deposit at stash?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor            Checked%YesVendor%        y+8    , Sell at vendor?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv               Checked%YesDiv%            y+8   , Trade Divination?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst         Checked%YesSortFirst%     y+8    , Group Items before stashing?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap% y+8 , Stash BlightedMaps?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid           Checked%YesMapUnid%          y+8 , Leave Map Un-ID?
+          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps y+8 , %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
           Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
 
           Gui, Inventory: Font, Bold s9 cBlack
@@ -226,7 +226,7 @@
             textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+25,         Item Parse Settings
+          Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
           Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
@@ -245,11 +245,17 @@
           Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,             w180 h110    section    xm+370   ys,         Automation:
+          Gui, Inventory: Add, GroupBox,             w180 h130    section    xm+370   ys,         Automation
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSearchForStash Checked%YesSearchForStash%       xs+5 ys+18  , Search for stash?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesVendorAfterStash Checked%YesVendorAfterStash%     y+8      , Move to vendor after stash?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesFillMetamorph Checked%YesFillMetamorph%       y+8      , Auto fill metamorph?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
+          Gui, Inventory: Add, Text, y+8, First Automation Action
+          Gui, Inventory: Add, DropDownList, vFirstAutomationSetting y+3 w170 Choose%FirstAutomationSetting%, %FirstAutomationSetting%||Search Stash|Search Vendor
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%       y+8  , Enable Second Automation ?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutoSellConfirmation Checked%esEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
+          Gui, Inventory: Font, Bold s9 cBlack
+          Gui, Inventory: Add, GroupBox,             w180 h70    section   xm+370   y+15,         Metamorph Options
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesFillMetamorph Checked%YesFillMetamorph%       xs+5 ys+18      , Auto fill metamorph?
           Gui, Inventory: Add, Button, gWR_Update  vWR_Btn_FillMetamorph_Menu y+8  w170 center    , Adjust Metamorph Panel
         Gui, Inventory: show , w600 h500, Inventory Settings
         Gui, Inventory: Tab, Stash Tabs
@@ -386,7 +392,7 @@
           MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
           MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
           MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
-          Gui, Inventory: Font, Bold
+          Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
           Gui, Inventory: Font,
@@ -398,7 +404,7 @@
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %CraftingMapMethod1%||%MapMethodList%
-            Gui, Inventory: Font, Bold
+            Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
             Gui, Inventory: Font,
             Gui, Inventory: Font,s7,Arial
@@ -409,7 +415,7 @@
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %CraftingMapMethod2%||%MapMethodList%
-            Gui, Inventory: Font, Bold
+            Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
             Gui, Inventory: Font,
             Gui, Inventory: Font,s7,Arial
@@ -420,7 +426,7 @@
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %CraftingMapMethod3%||%MapMethodList%
-            Gui, Inventory: Font, Bold
+            Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w285 h140 xs, Undesireble Mods:
             Gui, Inventory: Font,
             Gui, Inventory: Font,s8,Arial
@@ -431,7 +437,7 @@
             Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
             Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
             Gui, Inventory: Font, Bold
-            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
             Gui, Inventory: Font, 
             Gui, Inventory: Font,s9,Arial
@@ -443,8 +449,7 @@
             Gui, Inventory: Add, DropDownList, x335 y70    w40    vMMapItemQuantity  Choose%MMapItemQuantity%,  %MapSetValue%
             Gui, Inventory: Add, DropDownList, x335 y100   w40    vMMapItemRarity  Choose%MMapItemRarity%,  %MapSetValue%
             Gui, Inventory: Add, DropDownList,  x335 y130  w40    vMMapMonsterPackSize  Choose%MMapMonsterPackSize%,  %MapSetValue%
-            Gui, Inventory: Font, Bold
-            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w170 h50 x320 y170, Minimum Settings Options:
           Gui, Inventory: Font,
             Gui, Inventory: Font,s8,Arial

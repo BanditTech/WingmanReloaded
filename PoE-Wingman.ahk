@@ -437,8 +437,9 @@
       , StackRelease_Y2Offset := 15
       , StackRelease_Enable := False
 
-  ; Click Vendor after stash, search for stash
-    Global YesVendorAfterStash, YesVendorBeforeStash, YesSearchForStash
+  ; Automation Settings
+    Global YesEnableAutomation, FirstAutomationSetting, YesVendorAfterStash, YesEnableNextAutomation,YesEnableAutoSellConfirmation, YesVendorBeforeStash, YesSearchForStash, YesSearchForStash
+
   ; General
     Global BranchName := "master"
     Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
