@@ -1500,7 +1500,7 @@
   {
     If GamePID
     {
-      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
+      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
         Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
       Else
       {
@@ -1516,7 +1516,7 @@
     Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
     If WinActive(GameStr)
     {
-      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
+      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
       {
         ok.1.3 -= 1
         ok.1.4 += 8
