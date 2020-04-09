@@ -446,7 +446,7 @@
       , StackRelease_Enable := False
 
   ; Automation Settings
-    Global YesEnableAutomation, FirstAutomationSetting, YesVendorAfterStash, YesEnableNextAutomation,YesEnableAutoSellConfirmation, YesVendorBeforeStash, YesSearchForStash, YesSearchForStash
+    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableAutoSellConfirmation
 
   ; General
     Global BranchName := "master"
@@ -2215,12 +2215,12 @@ Return
       } 
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
       { 
-        If (YesSearchForStash && YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
+        If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
           SearchVendor()
           VendorRoutine()
         }
-        Else If (YesSearchForStash && !YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
+        Else If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
           If !SearchStash()
           {
@@ -2404,7 +2404,7 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
-          If (YesVendorBeforeStash)
+          If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
           {
             If ( (Prop.RarityUnique) 
             && ( (StashTabYesUniqueRing&&Prop.Ring) || StashTabYesCollection || StashTabYesUniqueDump))
@@ -2468,32 +2468,17 @@ Return
         }
       }
     }
-    If (OnVendor && RunningToggle && YesVendorBeforeStash)
+    If (OnVendor && RunningToggle && FirstAutomationSetting=="Search Vendor" && YesEnableNextAutomation)
     {
       RandomSleep(60,90)
-      CtrlClick(378,820)
-      RandomSleep(60,90)
-      SearchStash()
-      If (OnStash && RunningToggle && YesStash)
+      If (YesEnableAutoSellConfirmation)
       {
-          For Tab, Tv in SortFirst
-          {
-            For Item, Iv in Tv
-            {
-              MoveStash(Tab)
-              C := SortFirst[Tab][Item]["C"]
-              R := SortFirst[Tab][Item]["R"]
-              GridX := InventoryGridX[C]
-              GridY := InventoryGridY[R]
-              Grid := RandClick(GridX, GridY)
-              Sleep, 15*Latency
-              CtrlClick(Grid.X,Grid.Y)
-              Sleep, 45*Latency
-            }
-          }
-        If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-          StockScrolls()
+        CtrlClick(378,820)
       }
+      RandomSleep(60,90)
+      ; Search Stash and StashRoutine
+      SearchStash()
+      StashRoutine()
     }
     Return
   }
@@ -2712,7 +2697,7 @@ Return
       }
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
-      If (YesVendorAfterStash && !YesVendorBeforeStash && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
+      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
         SearchVendor()
         VendorRoutine()
@@ -7566,7 +7551,7 @@ Return
         ; Begin Crafting Script
         Else
         {
-          If (!OnStash && YesSearchForStash)
+          If (!OnStash && YesEnableAutomation)
           {
             ; If don't find stash, return
             If !SearchStash()
@@ -7757,7 +7742,7 @@ Return
     RightClick(%cname%X, %cname%Y)
     Sleep, 45*Latency
     LeftClick(x,y)
-    Sleep, 90*Latency
+    Sleep, 45*Latency
     ClipItem(x,y)
     return
   }
