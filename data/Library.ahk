@@ -261,10 +261,13 @@
           Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h130    section    xm+370   ys,         Automation
+          AutomationList := "Search Stash|Search Vendor"
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
           Gui, Inventory: Add, Text, y+8, First Automation Action
-          Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 Choose%FirstAutomationSetting%, %FirstAutomationSetting%||Search Stash|Search Vendor
+          ;problems here
+          msgbox, %FirstAutomationSetting%
+          Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 Choose%FirstAutomationSetting%, %FirstAutomationSetting%||%AutomationList%
           Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
 
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
