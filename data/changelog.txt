@@ -4,9 +4,24 @@ Map Parser Improved
 * Prop.ItemBase will work for map bases (Ex: Desert Map, Burial Chambers Map, Tower Map)
 * Ninja DB will work with non unique maps, try pressing Item Info Hotkey and check it out!
 
+Crafting bases
+* New T4 for Crafting Abyss Jewel and Jewel (Mostly for SSF)
+
+Fix for RegExMatch of Map stats
+
+Adjusting delay on MoveStash and WisdomScroll
+* This should help to prevent picking up items
+
+Bugfix for missing Y2 offset for OHB
+* Only affected people with game on secondary monitor
+
+---
+
 ## Version .11.0302 - Alpha Branch - April/08/2020  
 Adjustments to Click and Right Click Removed
 * Problems with id/stash/vendor routine and closing inventory.
+
+---
 
 ## Version .11.0301 - Alpha Branch - April/08/2020  
 Adjustments to Click and Right Click

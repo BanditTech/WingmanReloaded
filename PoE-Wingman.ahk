@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.0302
+  Global VersionNumber := .11.0303
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -148,6 +148,13 @@
       , "Two-Stone Ring"
       , "Glorious Plate"
       , "Zodiac Leather"]
+    ;Crafting Jewel
+    Global craftingBasesJewel := ["Cobalt Jewel"
+      , "Viridian Jewel"
+      , "Crimson Jewel"
+      , "Searching Eye Jewel"
+      , "Murderous Eye Jewel"
+      , "Ghastly Eye Jewel"]
     ; Create a container for the sub-script
     ; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
@@ -284,9 +291,10 @@
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
       YesStashBlightedMap = This option enable auto-stash for blighted maps in your map stash`rPOE Map Stash don't highlight Blighted Maps yet!
       YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
-      YesStashT1 = Enable to stash T1 crafting bases
-      YesStashT2 = Enable to stash T2 crafting bases
-      YesStashT3 = Enable to stash T3 crafting bases
+      YesStashT1 = Enable to stash Tier 1 crafting bases
+      YesStashT2 = Enable to stash Tier 2 crafting bases
+      YesStashT3 = Enable to stash Tier 3 crafting bases
+      YesStashT4 = Enable to stash Abyss Jewel and Jewel as crafting bases
       YesStashCraftingNormal = Enable to stash Normal crafting bases
       YesStashCraftingMagic = Enable to stash Magic crafting bases
       YesStashCraftingRare = Enable to stash Rare crafting bases
@@ -614,6 +622,7 @@
     Global YesStashT1 := 1
     Global YesStashT2 := 1
     Global YesStashT3 := 1
+    Global YesStashT4 := 1
     Global YesStashCraftingNormal := 1
     Global YesStashCraftingMagic := 1
     Global YesStashCraftingRare := 1
@@ -2405,7 +2414,8 @@ Return
             If (StashTabYesCrafting
             && ((YesStashT1 && Prop.CraftingBase = "T1") 
               || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3"))
+              || (YesStashT3 && Prop.CraftingBase = "T3")
+              || (YesStashT4 && Prop.CraftingBase = "T4"))
             && ((YesStashCraftingNormal && Prop.RarityNormal)
               || (YesStashCraftingMagic && Prop.RarityMagic)
               || (YesStashCraftingRare && Prop.RarityRare))
@@ -2651,7 +2661,8 @@ Return
           Else If (StashTabYesCrafting 
             && ((YesStashT1 && Prop.CraftingBase = "T1") 
               || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3"))
+              || (YesStashT3 && Prop.CraftingBase = "T3")
+              || (YesStashT4 && Prop.CraftingBase = "T4"))
             && ((YesStashCraftingNormal && Prop.RarityNormal)
               || (YesStashCraftingMagic && Prop.RarityMagic)
               || (YesStashCraftingRare && Prop.RarityRare))
@@ -3239,15 +3250,15 @@ Return
       Prop.SpecialType := "Blighted Map"
       }
       ;Map Stats
-      If RegExMatch(Clip_Contents, "O)Item Quantity: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Item Quantity: " num , RxMatch )
       {
         Stats.MapItemQuantity := RxMatch[1]
       }
-      If RegExMatch(Clip_Contents, "O)Item Rarity: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Item Rarity: " num , RxMatch )
       {
         Stats.MapItemRarity := RxMatch[1]
       }
-      If RegExMatch(Clip_Contents, "O)Monster Pack Size: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Monster Pack Size: " num , RxMatch )
       {
         Stats.MapMonsterPackSize := RxMatch[1]
       }
@@ -4973,6 +4984,8 @@ Return
       Prop.CraftingBase := "T2"
     Else if indexOf(Prop.ItemBase, craftingBasesT3) 
       Prop.CraftingBase := "T3"
+    Else if indexOf(Prop.ItemBase, craftingBasesJewel) 
+      Prop.CraftingBase := "T4"
     
     If Prop.RarityGem
     {
@@ -6031,7 +6044,7 @@ Return
     }
     GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
   }
-  ; MoveStash - Input any digit and it will move to that Stash tab, only tested up to 25 tabs
+  ; MoveStash - Input any digit and it will move to that Stash tab
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MoveStash(Tab,CheckStatus:=0)
   {
@@ -6045,30 +6058,11 @@ Return
       Dif:=(CurrentTab-Tab)
       If (CurrentTab = 0)
       {
-        ; MouseGetPos MSx, MSy
-        ; BlockInput, MouseMove
-        ; Sleep, 90*Latency
-        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        ; MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-        ; Sleep, 195*Latency
-        ; send {WheelUp 20}
-        ; send {Enter}
-        ; Sleep, 90*Latency
-        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        ; CurrentTab:=Tab
-        ; MouseMove, MSx, MSy, 0
-        ; Sleep, 195*Latency
-        ; BlockInput, MouseMoveOff
-        ; MouseGetPos MSx, MSy
-        ; BlockInput, MouseMove
-        ; Sleep, 90*Latency
-        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        ; MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-        ; Sleep, 195*Latency
-        ; send {Enter}
-        ; Sleep, 90*Latency
-        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        ; MouseMove, MSx, MSy, 0
+        If (OnChat)
+        {
+          Send {Escape}
+          Sleep, 15
+        }
         Loop, 64
         {
           send {Left}
@@ -6076,11 +6070,9 @@ Return
         Loop % Tab - 1
         {
           send {Right}
-          ; Sleep, 15*Latency
         }
         CurrentTab:=Tab
-        Sleep, 195*Latency
-        ; BlockInput, MouseMoveOff
+        Sleep, 210*Latency
       }
       Else
       {
@@ -6089,18 +6081,14 @@ Return
           If (Dif > 0)
           {
             SendInput {Left}
-            ; Sleep 15*Latency
           }
           Else
           {
             SendInput {Right}
-            ; Sleep 15*Latency
           }
         }
         CurrentTab:=Tab
-        Sleep, 170*Latency
-        If (Tab = StashTabMap || Tab = StashTabDivination || Tab = StashTabCollection)
-          Sleep, 60*Latency
+        Sleep, 210*Latency
       }
     }
     return
@@ -8427,6 +8415,7 @@ Return
       IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
       IniRead, YesStashT2, %A_ScriptDir%\save\Settings.ini, General, YesStashT2, 1
       IniRead, YesStashT3, %A_ScriptDir%\save\Settings.ini, General, YesStashT3, 1
+      IniRead, YesStashT4, %A_ScriptDir%\save\Settings.ini, General, YesStashT4, 1
       IniRead, YesStashCraftingNormal, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal, 1
       IniRead, YesStashCraftingMagic, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic, 1
       IniRead, YesStashCraftingRare, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare, 1
@@ -9427,6 +9416,7 @@ Return
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
+      IniWrite, %YesStashT4%, %A_ScriptDir%\save\Settings.ini, General, YesStashT4
       IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
       IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
       IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
@@ -12838,6 +12828,7 @@ Return
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
+      IniWrite, %YesStashT4%, %A_ScriptDir%\save\Settings.ini, General, YesStashT4
       IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
       IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
       IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
