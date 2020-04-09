@@ -267,7 +267,8 @@
           Gui, Inventory: Add, Text, y+8, First Automation Action
           ;problems here
           msgbox, %FirstAutomationSetting%
-          Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 Choose%FirstAutomationSetting%, %FirstAutomationSetting%||%AutomationList%
+          Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 ,%AutomationList%
+          GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
           Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
 
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
