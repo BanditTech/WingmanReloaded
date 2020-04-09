@@ -8460,10 +8460,10 @@ Return
       
 
       ;Automation Settings
-      IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
+      IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
       IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, %A_Space%
-      IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
-      IniRead, YesVendorBeforeStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash, 0
+      IniRead, YesEnableNextAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation, 0
+      IniRead, YesEnableAutoSellConfirmation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation, 0
       
       ;Stash Tab Management
       IniRead, StashTabCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency, 1
@@ -12844,9 +12844,14 @@ Return
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
       IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
-      IniWrite, %YesSearchForStash%, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash
-      IniWrite, %YesVendorAfterStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash
-      IniWrite, %YesVendorBeforeStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash
+
+      ;Automation Settings
+      IniWrite, %YesEnableAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation
+      IniWrite, %FirstAutomationSetting%, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting
+      IniWrite, %YesEnableNextAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation
+      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+      
+      ;Automation Metamorph Settings
       IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
