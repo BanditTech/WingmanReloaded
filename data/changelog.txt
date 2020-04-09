@@ -9,8 +9,11 @@ Crafting bases
 
 Fix for RegExMatch of Map stats
 
-Adjusting delay on MoveStash
+Adjusting delay on MoveStash and WisdomScroll
 * This should help to prevent picking up items
+
+Bugfix for missing Y2 offset for OHB
+* Only affected people with game on secondary monitor
 
 ---
 
