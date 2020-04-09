@@ -315,9 +315,10 @@
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h80    section    xm+370   ys,         Crafting Tab:
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18      , T1?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+21        , T2?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT3 Checked%YesStashT3%   x+16        , T3?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT3 Checked%YesStashT3%   x+3        , T3?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT4 Checked%YesStashT4%   x+3        , T4?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingNormal Checked%YesStashCraftingNormal%     xs+5  y+8    , Normal?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingMagic Checked%YesStashCraftingMagic%   x+0        , Magic?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingRare Checked%YesStashCraftingRare%   x+0        , Rare?

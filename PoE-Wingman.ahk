@@ -148,6 +148,13 @@
       , "Two-Stone Ring"
       , "Glorious Plate"
       , "Zodiac Leather"]
+    ;Crafting Jewel
+    Global craftingBasesJewel := ["Cobalt Jewel"
+      , "Viridian Jewel"
+      , "Crimson Jewel"
+      , "Searching Eye Jewel"
+      , "Murderous Eye Jewel"
+      , "Ghastly Eye Jewel"]
     ; Create a container for the sub-script
     ; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
@@ -287,6 +294,7 @@
       YesStashT1 = Enable to stash T1 crafting bases
       YesStashT2 = Enable to stash T2 crafting bases
       YesStashT3 = Enable to stash T3 crafting bases
+      YesStashT4 = Enable to stash abyss jewel and jewel crafting bases
       YesStashCraftingNormal = Enable to stash Normal crafting bases
       YesStashCraftingMagic = Enable to stash Magic crafting bases
       YesStashCraftingRare = Enable to stash Rare crafting bases
@@ -613,6 +621,7 @@
     Global YesStashT1 := 1
     Global YesStashT2 := 1
     Global YesStashT3 := 1
+    Global YesStashT4 := 1
     Global YesStashCraftingNormal := 1
     Global YesStashCraftingMagic := 1
     Global YesStashCraftingRare := 1
@@ -2404,7 +2413,8 @@ Return
             If (StashTabYesCrafting
             && ((YesStashT1 && Prop.CraftingBase = "T1") 
               || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3"))
+              || (YesStashT3 && Prop.CraftingBase = "T3")
+              || (YesStashT4 && Prop.CraftingBase = "T4"))
             && ((YesStashCraftingNormal && Prop.RarityNormal)
               || (YesStashCraftingMagic && Prop.RarityMagic)
               || (YesStashCraftingRare && Prop.RarityRare))
@@ -2650,7 +2660,8 @@ Return
           Else If (StashTabYesCrafting 
             && ((YesStashT1 && Prop.CraftingBase = "T1") 
               || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3"))
+              || (YesStashT3 && Prop.CraftingBase = "T3")
+              || (YesStashT4 && Prop.CraftingBase = "T4"))
             && ((YesStashCraftingNormal && Prop.RarityNormal)
               || (YesStashCraftingMagic && Prop.RarityMagic)
               || (YesStashCraftingRare && Prop.RarityRare))
@@ -4972,6 +4983,8 @@ Return
       Prop.CraftingBase := "T2"
     Else if indexOf(Prop.ItemBase, craftingBasesT3) 
       Prop.CraftingBase := "T3"
+    Else if indexOf(Prop.ItemBase, craftingBasesJewel) 
+      Prop.CraftingBase := "T4"
     
     If Prop.RarityGem
     {
@@ -8426,6 +8439,7 @@ Return
       IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
       IniRead, YesStashT2, %A_ScriptDir%\save\Settings.ini, General, YesStashT2, 1
       IniRead, YesStashT3, %A_ScriptDir%\save\Settings.ini, General, YesStashT3, 1
+      IniRead, YesStashT4, %A_ScriptDir%\save\Settings.ini, General, YesStashT4, 1
       IniRead, YesStashCraftingNormal, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal, 1
       IniRead, YesStashCraftingMagic, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic, 1
       IniRead, YesStashCraftingRare, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare, 1
@@ -9416,6 +9430,7 @@ Return
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
+      IniWrite, %YesStashT4%, %A_ScriptDir%\save\Settings.ini, General, YesStashT4
       IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
       IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
       IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
@@ -12827,6 +12842,7 @@ Return
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
+      IniWrite, %YesStashT4%, %A_ScriptDir%\save\Settings.ini, General, YesStashT4
       IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
       IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
       IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
