@@ -8461,16 +8461,7 @@ Return
 
       ;Automation Settings
       IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
-      IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, Search Stash
-      If (YesEnableAutomation)
-      {
-        If (FirstAutomationSetting == "Search Stash"){
-          YesSearchForStash := 1
-        }
-        Else If (FirstAutomationSetting == "Search Vendor") {
-          YesVendorBeforeStash := 1
-        }
-      }
+      IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, %A_Space%
       IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
       IniRead, YesVendorBeforeStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash, 0
       

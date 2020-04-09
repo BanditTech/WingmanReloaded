@@ -124,6 +124,15 @@
       BlockInput, MouseMoveOff
       return
     }
+/*** Wingman GUI Handlers
+
+*/
+    helpAutomation:
+      Gui, submit
+      MsgBox, Automation can start from two ways:`n`n* Search Stash`n`n* Search Vendor`n`nIf you Enable Second Automation, after doing your selected first automation, script will execute non-selected one`n`nThe following result can be done using this settings:`n`n1) Search Stash > Auto Stash Routine > END`n`n2) Search Stash > Auto Stash Routine > Search Vendor > Auto Sell Routine > END`n`n3) Search Stash > Auto Stash Routine > Search Vendor > Auto Sell Routine > Auto Confirm Sell > END`n`n4) Search Vendor > Auto Vendor Routine > END`n`n5) Search Vendor > Auto Vendor Routine > Wait Until You Leave Vendor > Search Stash > Auto Stash Routine > END`n`n6) Search Vendor > Auto Vendor Routine > Auto Confirm Sell > Search Stash > Auto Stash Routine > END
+      Hotkeys()
+    Return
+
   ; WR_Menu - New menu handling method
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     WR_Menu(Function:="",Var*)
@@ -244,15 +253,16 @@
           Gui, Inventory: Font,
           ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
           Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
-
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h130    section    xm+370   ys,         Automation
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
           Gui, Inventory: Add, Text, y+8, First Automation Action
-          Gui, Inventory: Add, DropDownList, vFirstAutomationSetting y+3 w170 Choose%FirstAutomationSetting%, %FirstAutomationSetting%||Search Stash|Search Vendor
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%       y+8  , Enable Second Automation ?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutoSellConfirmation Checked%esEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
+          Gui, Inventory: Add, DropDownList, vFirstAutomationSetting y+3 w100 Choose%FirstAutomationSetting%, %FirstAutomationSetting%||Search Stash|Search Vendor
+          Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
+
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h70    section   xm+370   y+15,         Metamorph Options
           Gui, Inventory: Font,
