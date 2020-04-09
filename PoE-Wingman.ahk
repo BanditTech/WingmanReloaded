@@ -3249,15 +3249,15 @@ Return
       Prop.SpecialType := "Blighted Map"
       }
       ;Map Stats
-      If RegExMatch(Clip_Contents, "O)Item Quantity: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Item Quantity: " num , RxMatch )
       {
         Stats.MapItemQuantity := RxMatch[1]
       }
-      If RegExMatch(Clip_Contents, "O)Item Rarity: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Item Rarity: " num , RxMatch )
       {
         Stats.MapItemRarity := RxMatch[1]
       }
-      If RegExMatch(Clip_Contents, "O)Monster Pack Size: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Monster Pack Size: " num , RxMatch )
       {
         Stats.MapMonsterPackSize := RxMatch[1]
       }
