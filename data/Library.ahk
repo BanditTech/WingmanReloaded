@@ -118,6 +118,7 @@
     WisdomScroll(x, y){
       BlockInput, MouseMove
       RightClick(WisdomScrollX,WisdomScrollY)
+      Sleep, 30+Abs(ClickLatency*15)
       LeftClick(x,y)
       Sleep, 15+Abs(ClickLatency*15)
       BlockInput, MouseMoveOff
