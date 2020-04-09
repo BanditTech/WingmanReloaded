@@ -6043,7 +6043,7 @@ Return
     }
     GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
   }
-  ; MoveStash - Input any digit and it will move to that Stash tab, only tested up to 25 tabs
+  ; MoveStash - Input any digit and it will move to that Stash tab
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MoveStash(Tab,CheckStatus:=0)
   {
@@ -6057,30 +6057,11 @@ Return
       Dif:=(CurrentTab-Tab)
       If (CurrentTab = 0)
       {
-        ; MouseGetPos MSx, MSy
-        ; BlockInput, MouseMove
-        ; Sleep, 90*Latency
-        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        ; MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-        ; Sleep, 195*Latency
-        ; send {WheelUp 20}
-        ; send {Enter}
-        ; Sleep, 90*Latency
-        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        ; CurrentTab:=Tab
-        ; MouseMove, MSx, MSy, 0
-        ; Sleep, 195*Latency
-        ; BlockInput, MouseMoveOff
-        ; MouseGetPos MSx, MSy
-        ; BlockInput, MouseMove
-        ; Sleep, 90*Latency
-        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        ; MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-        ; Sleep, 195*Latency
-        ; send {Enter}
-        ; Sleep, 90*Latency
-        ; LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        ; MouseMove, MSx, MSy, 0
+        If (OnChat)
+        {
+          Send {Escape}
+          Sleep, 15
+        }
         Loop, 64
         {
           send {Left}
@@ -6088,11 +6069,9 @@ Return
         Loop % Tab - 1
         {
           send {Right}
-          ; Sleep, 15*Latency
         }
         CurrentTab:=Tab
-        Sleep, 195*Latency
-        ; BlockInput, MouseMoveOff
+        Sleep, 210*Latency
       }
       Else
       {
@@ -6101,18 +6080,14 @@ Return
           If (Dif > 0)
           {
             SendInput {Left}
-            ; Sleep 15*Latency
           }
           Else
           {
             SendInput {Right}
-            ; Sleep 15*Latency
           }
         }
         CurrentTab:=Tab
-        Sleep, 170*Latency
-        If (Tab = StashTabMap || Tab = StashTabDivination || Tab = StashTabCollection)
-          Sleep, 60*Latency
+        Sleep, 210*Latency
       }
     }
     return
