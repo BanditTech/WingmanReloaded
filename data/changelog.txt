@@ -7,6 +7,11 @@ Map Parser Improved
 Crafting bases
 * New T4 for Crafting Abyss Jewel and Jewel (Mostly for SSF)
 
+Fix for RegExMatch of Map stats
+
+Adjusting delay on MoveStash
+* This should help to prevent picking up items
+
 ---
 
 ## Version .11.0302 - Alpha Branch - April/08/2020  
