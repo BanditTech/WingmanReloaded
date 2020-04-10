@@ -1,3 +1,26 @@
+## Version .11.0304 - Alpha Branch - April/10/2020
+Major rework to the Automation Section of the Inventory Settings
+* Automation settings have been simplified, please reconfigure your settings
+  * Search Vendor, Stash, or Both in either order
+  * Press [?] button to get more information on possible configurations
+* The Enable Auto Confirm Vendor must be used with care
+  * Please read all information before enabling it
+  * This option should only be used by those who have fully configured CLF
+
+Stash Tabs Rework
+* Improved Visibility and Selection
+* Changed from DropDownList to UpDown Selector
+* Now supports up to 64 tabs
+
+DropDownList Rework
+* Proper selection of the saved DDL value, no longer uses double pipes ||
+
+Other GUI Changes
+* Minor Upgrade on Crafting Tab and Option Tab
+* Split Metamorph Options from Automation
+
+---
+
 ## Version .11.0303 - Alpha Branch - April/08/2020
 Map Parser Improved
 * Prop.MapAtlasRegion is now live, you can use on CLF for filtering map regions (Helpful if you don't have map stash)

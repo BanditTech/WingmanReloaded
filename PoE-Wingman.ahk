@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.0303
+  Global VersionNumber := .11.0304
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -445,8 +445,9 @@
       , StackRelease_Y2Offset := 15
       , StackRelease_Enable := False
 
-  ; Click Vendor after stash, search for stash
-    Global YesVendorAfterStash, YesVendorBeforeStash, YesSearchForStash
+  ; Automation Settings
+    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableAutoSellConfirmation
+
   ; General
     Global BranchName := "master"
     Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
@@ -1321,7 +1322,8 @@
     Gui Add, GroupBox,     Section  w227 h66        x292   y30 ,         Auto-Quit settings
     Gui,Font,
     ;Gui Add, Text,                       x292   y30,         Auto-Quit:
-    Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             %QuitBelow%||10|20|30|40|50|60|70|80|90
+    Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             10|20|30|40|50|60|70|80|90
+    GuiControl, ChooseString, QuitBelow, %QuitBelow%
     Gui Add, Text,                     x+5   yp+3,         Quit via:
     Gui, Add, Radio, Group  vRadioCritQuit  Checked%RadioCritQuit%          x+1    y+-13,      D/C
     Gui, Add, Radio,     vRadioPortalQuit Checked%RadioPortalQuit%      x+1  ,        Portal
@@ -1677,19 +1679,24 @@
     Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                       , Show GUI on startup?
     Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%             , Persistant Auto-Toggles?
     Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%                   , Turn off Auto-Update?
-    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90                         , %BranchName%||master|Alpha
+    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90                         , master|Alpha
+    GuiControl, ChooseString, BranchName, %BranchName%
     Gui, Add, Text,       x+8 yp+3                                   , Update Branch
-    Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs  w90                  , %ScriptUpdateTimeType%||Off|days|hours|minutes
+    Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs  w90                  , Off|days|hours|minutes
+    GuiControl, ChooseString, ScriptUpdateTimeType, %ScriptUpdateTimeType%
     Gui Add, Edit, gUpdateExtra  vScriptUpdateTimeInterval  x+5   w40                     , %ScriptUpdateTimeInterval%
     Gui, Add, Text,       x+8 yp+3                                   , Auto-check Update
     Gui Add, DropDownList, gUpdateResolutionScale  vResolutionScale     w90   xs              , Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
     GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
     Gui, Add, Text,       x+8 y+-18                                   , Aspect Ratio
-    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  %Latency%||1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+    GuiControl, ChooseString, Latency, %Latency%
     Gui, Add, Text,                     x+5 yp+3 hp-3              , Latency
-    Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  %ClickLatency%||-2|-1|0|1|2|3|4
+    Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
+    GuiControl, ChooseString, ClickLatency, %ClickLatency%
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clicks
-    Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  %ClipLatency%||-2|-1|0|1|2|3|4
+    Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
+    GuiControl, ChooseString, ClipLatency, %ClipLatency%
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip
     Gui, Add, Edit,       vClientLog         xs y+10  w144  h21,   %ClientLog%
     Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
@@ -1975,6 +1982,8 @@
     Global DetonateDelveX:=1542
     Global DetonateX:=1658
     Global DetonateY:=901
+    Global VendorAcceptX:=380
+    Global VendorAcceptY:=820
     Global WisdomStockX:=115
     Global PortalStockX:=175
     Global WPStockY:=220
@@ -2214,13 +2223,22 @@ Return
       } 
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
       { 
-        If (YesSearchForStash && YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
+        ; First Automation Entry
+        If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
-          SearchVendor()
-          VendorRoutine()
+          ; This automation use the following Else If (OnVendor && YesVendor) to entry on Vendor Routine
+          If !SearchVendor()
+          {
+            RunningToggle := False
+            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+              SetTimer, TGameTick, On
+            Return
+          }
         }
-        Else If (YesSearchForStash && !YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
+        ; First Automation Entry
+        Else If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
+          ; This automation use the following Else If (OnStash && YesStash) to entry on Stash Routine
           If !SearchStash()
           {
             Send {%hotkeyInventory%}
@@ -2240,6 +2258,7 @@ Return
         }
       }
       Sleep, -1
+      GuiStatus()
       SendMSG(1,1,scriptTradeMacro)
       If (OnDiv && YesDiv)
         DivRoutine()
@@ -2311,19 +2330,13 @@ Return
     tGQ := 0
     SortFlask := {}
     SortGem := {}
-    If (YesVendorBeforeStash){
-      CurrentTab:=0
-      SortFirst := {}
-      Loop 32
-      {
-        SortFirst[A_Index] := {}
-      }
-    }
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
     If !OnVendor
-    Return
+    {
+      Return
+    }
     ; Main loop through inventory
     For C, GridX in InventoryGridX
     {
@@ -2403,7 +2416,8 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
-          If (YesVendorBeforeStash)
+          ; Only need entry this condition if Search Vendor/Vendor is the first option
+          If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
           {
             If ( (Prop.RarityUnique) 
             && ( (StashTabYesUniqueRing&&Prop.Ring) || StashTabYesCollection || StashTabYesUniqueDump))
@@ -2467,35 +2481,44 @@ Return
         }
       }
     }
-    If (OnVendor && RunningToggle && YesVendorBeforeStash)
+    ; Auto Confirm Vendoring Option
+    If (OnVendor && RunningToggle && YesEnableAutomation)
     {
-      RandomSleep(60,90)
-      CtrlClick(378,820)
-      RandomSleep(60,90)
-      SearchStash()
-      If (OnStash && RunningToggle && YesStash)
+      ContinueFlag := False
+      If (YesEnableAutoSellConfirmation)
       {
-          For Tab, Tv in SortFirst
+        RandomSleep(60,90)
+        LeftClick(VendorAcceptX,VendorAcceptY)
+        RandomSleep(60,90)
+        ContinueFlag := True
+      }
+      Else If (FirstAutomationSetting=="Search Vendor")
+      {
+        CheckTime("Seconds",30,"VendorUI",A_Now)
+        While (!CheckTime("Seconds",30,"VendorUI"))
+        {
+          Sleep, 100
+          GuiStatus()
+          If !OnVendor
           {
-            For Item, Iv in Tv
-            {
-              MoveStash(Tab)
-              C := SortFirst[Tab][Item]["C"]
-              R := SortFirst[Tab][Item]["R"]
-              GridX := InventoryGridX[C]
-              GridY := InventoryGridY[R]
-              Grid := RandClick(GridX, GridY)
-              Sleep, 15*Latency
-              CtrlClick(Grid.X,Grid.Y)
-              Sleep, 45*Latency
-            }
+            ContinueFlag := True
+            break
           }
-        If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-          StockScrolls()
+        }
+      }
+      ; Search Stash and StashRoutine
+      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
+      {
+        Send {%hotkeyCloseAllUI%}
+        RandomSleep(45,90)
+        GuiStatus()
+        SearchStash()
+        StashRoutine()
       }
     }
     Return
   }
+    
   ; StashRoutine - Does stash functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StashRoutine()
@@ -2711,8 +2734,12 @@ Return
       }
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
-      If (YesVendorAfterStash && !YesVendorBeforeStash && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
+      ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
+      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
+        Send {%hotkeyCloseAllUI%}
+        RandomSleep(45,90)
+        GuiStatus()
         SearchVendor()
         VendorRoutine()
       }
@@ -2754,8 +2781,6 @@ Return
         Return
     }
     Sleep, 45*Latency
-    SendInput, {%hotkeyCloseAllUI%}
-    Sleep, 45*Latency
     If (Town = "The Sarn Encampment")
     {
       LeftClick(GameX + GameW//6, GameY + GameH//1.5)
@@ -2785,13 +2810,14 @@ Return
           Sleep, 30*Latency
           LeftClick(Sell.1.x,Sell.1.y)
           Sleep, 120*Latency
-          Break
+          Return True
         }
         Sleep, 100
       }
     }
-    Return
+    Return False
   }
+
   ; DivRoutine - Does divination trading function
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DivRoutine()
@@ -7565,7 +7591,7 @@ Return
         ; Begin Crafting Script
         Else
         {
-          If (!OnStash && YesSearchForStash)
+          If (!OnStash && YesEnableAutomation)
           {
             ; If don't find stash, return
             If !SearchStash()
@@ -7756,7 +7782,7 @@ Return
     RightClick(%cname%X, %cname%Y)
     Sleep, 45*Latency
     LeftClick(x,y)
-    Sleep, 90*Latency
+    Sleep, 45*Latency
     ClipItem(x,y)
     return
   }
@@ -8457,11 +8483,11 @@ Return
       IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
       IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
       
-
-      ;Settings for Auto-Vendor
-      IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
-      IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
-      IniRead, YesVendorBeforeStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash, 0
+      ;Automation Settings
+      IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
+      IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, %A_Space%
+      IniRead, YesEnableNextAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation, 0
+      IniRead, YesEnableAutoSellConfirmation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation, 0
       
       ;Stash Tab Management
       IniRead, StashTabCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency, 1
@@ -12346,9 +12372,11 @@ Return
         Gui, Submit
         gui,LootColors: new, LabelLootColors
         gui,LootColors: -MinimizeBox
-        Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
+        Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  0|30|40|50|60|70|80|90|100|200|300|400|500
+        GuiControl,LootColors: ChooseString, AreaScale, %AreaScale%
         Gui,LootColors: Add, Text,                     x+3 yp+5              , AreaScale of search
-        Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
+        Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  0|15|30|45|60|75|90|105|120|135|150|195|300
+        GuiControl,LootColors: ChooseString, LVdelay, %LVdelay%
         Gui,LootColors: Add, Text,                     x+3 yp+5              , Delay after click
         gui,LootColors: add, CheckBox, gUpdateExtra vYesLootChests Checked%YesLootChests% Right xm h22, Open Containers?
         Gui,LootColors:  +Delimiter?
@@ -12842,9 +12870,14 @@ Return
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
       IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
-      IniWrite, %YesSearchForStash%, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash
-      IniWrite, %YesVendorAfterStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash
-      IniWrite, %YesVendorBeforeStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash
+
+      ;Automation Settings
+      IniWrite, %YesEnableAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation
+      IniWrite, %FirstAutomationSetting%, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting
+      IniWrite, %YesEnableNextAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation
+      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+      
+      ;Automation Metamorph Settings
       IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
