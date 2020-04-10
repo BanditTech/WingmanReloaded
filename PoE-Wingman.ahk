@@ -2512,7 +2512,7 @@ Return
           break
       }
       ; Do Next Automation
-      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor")
+      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && i < 100)
       {
         Send {Escape}
         RandomSleep(45,90)
