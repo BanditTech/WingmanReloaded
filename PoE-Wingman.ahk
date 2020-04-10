@@ -2229,6 +2229,9 @@ Return
           SearchVendor()
           VendorRoutine()
           ;This Return Fix Double Auto Stash Routine
+          RunningToggle := False
+          If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+            SetTimer, TGameTick, On
           Return
         }
         ; First Automation Entry
