@@ -136,6 +136,7 @@
     WarningAutomation:
       Gui, submit
       MsgBox, WARNING!!!!!`n`n`nEnabling this option will auto confirm vendoring itens, only use this if you have a good CLF`n`n`nWe will not be responsible for any lost using this option.`n`n`nIf you are unsure about this option, We strongly recomend coming into WingmanReloaded Discord to talk with us or looking for more information.`n`n`nYou are warned NOW!!!
+      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
       Hotkeys()
     Return
 
@@ -272,7 +273,7 @@
           GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
           Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
+          Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h70    section   xm+370   y+15,         Metamorph Options
           Gui, Inventory: Font,

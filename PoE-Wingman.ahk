@@ -2491,6 +2491,9 @@ Return
       ; Search Stash and StashRoutine
       If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor")
       {
+        Send {Escape}
+        RandomSleep(45,90)
+        GuiStatus()
         SearchStash()
         StashRoutine()
       }
@@ -2500,7 +2503,7 @@ Return
     {
       ; Wait 30 Second before return from routine
       i:=0
-      While(i<=100)
+      While (i<= 100)
       {
         i++
         Sleep, 300
@@ -2508,16 +2511,22 @@ Return
         If !OnVendor
           break
       }
-      ; Still On Vendor After 30s, break Automation
-      If (i>=100)
-      {
-        Return
-      }
       ; Do Next Automation
-      Else If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor")
+      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor")
       {
+        Send {Escape}
+        RandomSleep(45,90)
+        GuiStatus()
+        RandomSleep(45,90)
         SearchStash()
         StashRoutine()
+      }
+      Else
+      {
+        Send {Escape}
+        RandomSleep(45,90)
+        GuiStatus()
+        Return
       }
     }
     Return
