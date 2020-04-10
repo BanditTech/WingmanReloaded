@@ -2221,13 +2221,18 @@ Return
       } 
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
       { 
+        ; First Automation Entry
         If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
           SearchVendor()
           VendorRoutine()
+          ;This Return Fix Double Auto Stash Routine
+          Return
         }
+        ; First Automation Entry
         Else If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
+          ; This automation use the following Else If (OnStash && YesStash) to entry on Stash Routine
           If !SearchStash()
           {
             Send {%hotkeyInventory%}
@@ -2410,6 +2415,7 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
+          ; Only need entry this condition if Search Vendor/Vendor is the first option
           If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
           {
             If ( (Prop.RarityUnique) 
@@ -2474,20 +2480,47 @@ Return
         }
       }
     }
-    If (OnVendor && RunningToggle && FirstAutomationSetting=="Search Vendor" && YesEnableNextAutomation)
+    ; Auto Confirm Vendoring Option
+    If (OnVendor && RunningToggle && YesEnableAutoSellConfirmation && YesEnableAutomation)
     {
       RandomSleep(60,90)
-      If (YesEnableAutoSellConfirmation)
-      {
-        CtrlClick(378,820)
-      }
+      CtrlClick(378,820)
       RandomSleep(60,90)
       ; Search Stash and StashRoutine
-      SearchStash()
-      StashRoutine()
+      If (YesEnableNextAutomation)
+      {
+        SearchStash()
+        StashRoutine()
+      }
+    }
+    ; Auto Confirm Vendoring Option
+    Else if (OnVendor && RunningToggle && YesEnableAutomation && YesEnableNextAutomation && !YesEnableAutoSellConfirmation)
+    {
+      ; Wait 30 Second before return from routine
+      i:=0
+      While(i<=100)
+      {
+        i++
+        Sleep, 300
+        GuiStatus()
+        If !OnVendor
+          break
+      }
+      ; Still On Vendor After 30s, break Automation
+      If (i>=100)
+      {
+        Return
+      }
+      ; Do Next Automation
+      Else
+      {
+        SearchStash()
+        StashRoutine()
+      }
     }
     Return
   }
+    
   ; StashRoutine - Does stash functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StashRoutine()
@@ -2703,7 +2736,8 @@ Return
       }
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
-      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
+      ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
+      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
         SearchVendor()
         VendorRoutine()

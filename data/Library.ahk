@@ -130,7 +130,7 @@
 ; dan marker, feel free to edit this text to make more readable
     helpAutomation:
       Gui, submit
-      MsgBox, Automation can start from two ways:`n`n* Search Stash`n`n* Search Vendor`n`nIf you Enable Second Automation, after doing your selected first automation, script will execute non-selected one`n`nThe following result can be done using this settings:`n`n1) Search Stash > Auto Stash Routine > END`n`n2) Search Stash > Auto Stash Routine > Search Vendor > Auto Sell Routine > END`n`n3) Search Stash > Auto Stash Routine > Search Vendor > Auto Sell Routine > Auto Confirm Sell > END`n`n4) Search Vendor > Auto Vendor Routine > END`n`n5) Search Vendor > Auto Vendor Routine > Wait Until You Leave Vendor > Search Stash > Auto Stash Routine > END`n`n6) Search Vendor > Auto Vendor Routine > Auto Confirm Sell > Search Stash > Auto Stash Routine > END
+      MsgBox, Automation can start from two ways:`n`n* Search Stash`n`n* Search Vendor`n`nIf you Enable Second Automation, after doing your selected first automation, script will execute non-selected one`n`nThe following result can be done using this settings:`n`n1) Search Stash > Auto Stash Routine > END`n`n2) Search Stash > Auto Stash Routine > Search Vendor > Auto Sell Routine > END`n`n3) Search Stash > Auto Stash Routine > Search Vendor > Auto Sell Routine > Auto Confirm Sell > END`n`n4) Search Vendor > Auto Vendor Routine > END`n`n5) Search Vendor > Auto Vendor Routine > Wait 30s or Closing Vendor UI > Search Stash > Auto Stash Routine > END`n`n6) Search Vendor > Auto Vendor Routine > Auto Confirm Sell > Search Stash > Auto Stash Routine > END
       Hotkeys()
     Return
     WarningAutomation:
