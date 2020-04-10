@@ -2345,7 +2345,6 @@ Return
     ShooMouse(), GuiStatus(), ClearNotifications()
     If !OnVendor
     {
-      MsgBox Mismatch
       Return
     }
     ; Main loop through inventory
