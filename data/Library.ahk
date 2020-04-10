@@ -183,7 +183,8 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst         Checked%YesSortFirst%     y+8    , Group Items before stashing?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap% y+8 , Stash BlightedMaps?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid           Checked%YesMapUnid%          y+8 , Leave Map Un-ID?
-          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps y+8 , %YesSkipMaps%||0|1|2|3|4|5|6|7|8|9|10|11|12 
+          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps y+8 , 0|1|2|3|4|5|6|7|8|9|10|11|12
+          GuiControl,Inventory: ChooseString, YesSkipMaps, %YesSkipMaps%
           Gui, Inventory: Add, Text, yp x+5 , >`= Column Skip maps
 
           Gui, Inventory: Font, Bold s9 cBlack
@@ -246,12 +247,14 @@
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
           Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
-          Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %selectedLeague%||%textList%
+          Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %textList%
+          GuiControl,Inventory: ChooseString, selectedLeague, %selectedLeague%
           Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
           Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
           Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
           Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
-          Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, %YesPredictivePrice%||Off|Low|Avg|High
+          Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
+          GuiControl,Inventory: ChooseString, YesPredictivePrice, %YesPredictivePrice%
           
           Gui, Inventory: Font, s18
           Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
@@ -265,12 +268,9 @@
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
           Gui, Inventory: Add, Text, y+8, First Automation Action
-          ;problems here
-          msgbox, %FirstAutomationSetting%
           Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 ,%AutomationList%
           GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
           Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
-
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
           Gui, Inventory: Add, Checkbox, gUpdateExtra gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
           Gui, Inventory: Font, Bold s9 cBlack
@@ -425,7 +425,8 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %CraftingMapMethod1%||%MapMethodList%
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
+            GuiControl,Inventory: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
             Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
             Gui, Inventory: Font,
@@ -436,7 +437,8 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %CraftingMapMethod2%||%MapMethodList%
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
+            GuiControl,Inventory: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
             Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
             Gui, Inventory: Font,
@@ -447,7 +449,8 @@
             Gui, Inventory: Font,s9,Arial
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %CraftingMapMethod3%||%MapMethodList%
+            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
+            GuiControl,Inventory: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
             Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w285 h140 xs, Undesireble Mods:
             Gui, Inventory: Font,
@@ -585,15 +588,24 @@
           textList=
           For k, v in DefaultCommands
             textList .= (!textList ? "" : "|") v
-          Gui, Chat: Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %1Suffix1Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix2Text, %1Suffix2Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix3Text, %1Suffix3Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix4Text, %1Suffix4Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix5Text, %1Suffix5Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix6Text, %1Suffix6Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix7Text, %1Suffix7Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix8Text, %1Suffix8Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix9Text, %1Suffix9Text%||%textList%
+          Gui, Chat: Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix1Text, %1Suffix1Text%
+          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix2Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix2Text, %1Suffix2Text%
+          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix3Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix3Text, %1Suffix3Text%
+          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix4Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix4Text, %1Suffix4Text%
+          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix5Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix5Text, %1Suffix5Text%
+          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix6Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix6Text, %1Suffix6Text%
+          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix7Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix7Text, %1Suffix7Text%
+          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix8Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix8Text, %1Suffix8Text%
+          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix9Text, %textList%
+          GuiControl,Chat: ChooseString, 1Suffix9Text, %1Suffix9Text%
         Gui, Chat: Tab, Reply Whisper
           Gui, Chat: Font,s9 cBlack Bold Underline
           Gui, Chat: Add,GroupBox,Section  w60 h85                      ,Modifier
@@ -623,15 +635,24 @@
           textList=
           For k, v in DefaultWhisper
             textList .= (!textList ? "" : "|") v
-          Gui, Chat: Add, ComboBox,   xs+4 ys+20   w290 v2Suffix1Text, %2Suffix1Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix2Text, %2Suffix2Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix3Text, %2Suffix3Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix4Text, %2Suffix4Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix5Text, %2Suffix5Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix6Text, %2Suffix6Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix7Text, %2Suffix7Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix8Text, %2Suffix8Text%||%textList%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix9Text, %2Suffix9Text%||%textList%
+          Gui, Chat: Add, ComboBox,   xs+4 ys+20   w290 v2Suffix1Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix1Text, %2Suffix1Text%
+          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix2Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix2Text, %2Suffix2Text%
+          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix3Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix3Text, %2Suffix3Text%
+          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix4Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix4Text, %2Suffix4Text%
+          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix5Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix5Text, %2Suffix5Text%
+          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix6Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix6Text, %2Suffix6Text%
+          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix7Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix7Text, %2Suffix7Text%
+          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix8Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix8Text, %2Suffix8Text%
+          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix9Text, %textList%
+          GuiControl,Chat: ChooseString, 2Suffix9Text, %2Suffix9Text%
         }
         Gui, Chat: show , w620 h370, Chat Hotkeys
       }
@@ -657,9 +678,11 @@
           Gui, Controller: Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
           
           Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,5
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton5, %hotkeyControllerButton5%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton5, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton5, %hotkeyControllerButton5%
           Gui, Controller: Add,GroupBox,  xs+360 ys w80 h40                        ,6
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton6, %hotkeyControllerButton6%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton6, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton6, %hotkeyControllerButton6%
 
           Gui, Controller: Add,GroupBox, section  xm+65 ym+100 w90 h80                        ,D-Pad
           Gui, Controller: add,text, xs+15 ys+30, Mouse`nMovement
@@ -667,18 +690,23 @@
           Gui, Controller: Add,GroupBox, section xm+165 ym+180 w80 h80                        ,Joystick1
           Gui, Controller: Add,Checkbox, xs+5 ys+30     Checked%YesTriggerUtilityJoystickKey%      vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
           Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,9 / L3
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton9, %hotkeyControllerButton9%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton9, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton9, %hotkeyControllerButton9%
 
           Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80                        ,Joystick2
           Gui, Controller: Add,Checkbox, xp+5 y+-53     Checked%YesTriggerJoystick2Key%      vYesTriggerJoystick2Key, Use key?
-          Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystick2, %hotkeyControllerJoystick2%||LButton|RButton|q|w|e|r|t
+          Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystick2, LButton|RButton|q|w|e|r|t
+          GuiControl,Controller: ChooseString, hotkeyControllerJoystick2, %hotkeyControllerJoystick2%
           Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,10 / R3
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton10, %hotkeyControllerButton10%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton10, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton10, %hotkeyControllerButton10%
 
           Gui, Controller: Add,GroupBox, section xm+140 ym+60 w80 h40                        ,7 / Select
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton7, %hotkeyControllerButton7%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton7, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton7, %hotkeyControllerButton7%
           Gui, Controller: Add,GroupBox, xs+245 ys w80 h40                        ,8 / Start
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton8, %hotkeyControllerButton8%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton8, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton8, %hotkeyControllerButton8%
 
           Gui, Controller: Add,GroupBox, section xm+65 ym+280 w40 h40                  ,Up
           Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyUp, %hotkeyUp%
@@ -690,13 +718,17 @@
           Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyRight, %hotkeyRight%
 
           Gui, Controller: Add,GroupBox,section xm+465 ym+80 w70 h40                      ,4
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton4, %hotkeyControllerButton4%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton4, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton4, %hotkeyControllerButton4%
           Gui, Controller: Add,GroupBox, xs ys+80 w70 h40                      ,1
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton1, %hotkeyControllerButton1%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton1, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton1, %hotkeyControllerButton1%
           Gui, Controller: Add,GroupBox, xs-40 ys+40 w70 h40                      ,3
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton3, %hotkeyControllerButton3%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton3, %hotkeyControllerButton3%
           Gui, Controller: Add,GroupBox, xs+40 ys+40 w70 h40                      ,2
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton2, %hotkeyControllerButton2%||%textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton2, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+          GuiControl,Controller: ChooseString, hotkeyControllerButton2, %hotkeyControllerButton2%
 
           ;Save Setting
           Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -3790,7 +3822,8 @@
     textList= 
     For K, V in LeagueIndex
       textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
-    GuiControl, , selectedLeague, |%selectedLeague%||%textList%
+    GuiControl, , selectedLeague, %textList%
+    GuiControl, ChooseString, selectedLeague, %selectedLeague%
   Return
   ; Zoom script found on AHK forum and modified to enclose in one function - Bandit
   DrawZoom( Switch := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)

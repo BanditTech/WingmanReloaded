@@ -1322,7 +1322,8 @@
     Gui Add, GroupBox,     Section  w227 h66        x292   y30 ,         Auto-Quit settings
     Gui,Font,
     ;Gui Add, Text,                       x292   y30,         Auto-Quit:
-    Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             %QuitBelow%||10|20|30|40|50|60|70|80|90
+    Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             10|20|30|40|50|60|70|80|90
+    GuiControl, ChooseString, QuitBelow, %QuitBelow%
     Gui Add, Text,                     x+5   yp+3,         Quit via:
     Gui, Add, Radio, Group  vRadioCritQuit  Checked%RadioCritQuit%          x+1    y+-13,      D/C
     Gui, Add, Radio,     vRadioPortalQuit Checked%RadioPortalQuit%      x+1  ,        Portal
@@ -1678,19 +1679,24 @@
     Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                       , Show GUI on startup?
     Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%             , Persistant Auto-Toggles?
     Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%                   , Turn off Auto-Update?
-    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90                         , %BranchName%||master|Alpha
+    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90                         , master|Alpha
+    GuiControl, ChooseString, BranchName, %BranchName%
     Gui, Add, Text,       x+8 yp+3                                   , Update Branch
-    Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs  w90                  , %ScriptUpdateTimeType%||Off|days|hours|minutes
+    Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs  w90                  , Off|days|hours|minutes
+    GuiControl, ChooseString, ScriptUpdateTimeType, %ScriptUpdateTimeType%
     Gui Add, Edit, gUpdateExtra  vScriptUpdateTimeInterval  x+5   w40                     , %ScriptUpdateTimeInterval%
     Gui, Add, Text,       x+8 yp+3                                   , Auto-check Update
     Gui Add, DropDownList, gUpdateResolutionScale  vResolutionScale     w90   xs              , Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
     GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
     Gui, Add, Text,       x+8 y+-18                                   , Aspect Ratio
-    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  %Latency%||1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+    GuiControl, ChooseString, Latency, %Latency%
     Gui, Add, Text,                     x+5 yp+3 hp-3              , Latency
-    Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  %ClickLatency%||-2|-1|0|1|2|3|4
+    Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
+    GuiControl, ChooseString, ClickLatency, %ClickLatency%
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clicks
-    Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  %ClipLatency%||-2|-1|0|1|2|3|4
+    Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
+    GuiControl, ChooseString, ClipLatency, %ClipLatency%
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip
     Gui, Add, Edit,       vClientLog         xs y+10  w144  h21,   %ClientLog%
     Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
@@ -12332,9 +12338,11 @@ Return
         Gui, Submit
         gui,LootColors: new, LabelLootColors
         gui,LootColors: -MinimizeBox
-        Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
+        Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  0|30|40|50|60|70|80|90|100|200|300|400|500
+        GuiControl,LootColors: ChooseString, AreaScale, %AreaScale%
         Gui,LootColors: Add, Text,                     x+3 yp+5              , AreaScale of search
-        Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
+        Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  0|15|30|45|60|75|90|105|120|135|150|195|300
+        GuiControl,LootColors: ChooseString, LVdelay, %LVdelay%
         Gui,LootColors: Add, Text,                     x+3 yp+5              , Delay after click
         gui,LootColors: add, CheckBox, gUpdateExtra vYesLootChests Checked%YesLootChests% Right xm h22, Open Containers?
         Gui,LootColors:  +Delimiter?
