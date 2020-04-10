@@ -12,8 +12,9 @@ Stash Tabs Rework
 * Now support until 64 tabs
 
 DropDownList Rework
-* Use the correct way to display previus selected option, instead creating a new option on top.
-GUI changes
+* Use the correct way to display previous selected option, instead creating a new option on top.
+
+Others GUI Changes
 * Minor Upgrade on Crafting Tab and Option Tab
 * Split Metamorph Options from Automation
 
