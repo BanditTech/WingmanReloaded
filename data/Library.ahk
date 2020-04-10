@@ -1401,7 +1401,7 @@
           if(This.Pair_With_Edit<=2)
           {
             GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value
-            IniWrite, % This.Slider_Value, Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
+            IniWrite, % This.Slider_Value, %A_ScriptDir%\save\Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
           }
           if(This.Pair_With_Edit>=2)
           GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
