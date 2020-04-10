@@ -1,3 +1,24 @@
+## Version .11.04 - Alpha Branch - April/10/2020
+Automation Rework
+* Removed Search Stash, Search Vendor, YesVendorBeforeStash and YesVendorAfterStash
+* All settings got merged into Enable Automation, First Automation Action, Enable Second Automation and Enable Auto Confirm Vendor
+* You can have 6 following results/uses/paths with Automation
+* You can press [?] button to get more information
+* The Enable Auto Confirm Vendor must be use with care, please read all information before enable it
+
+Stash Tabs Rework
+* Improved Visibility and Selection
+* Changed from DropDownList to UpDown Selector
+* Now support until 64 tabs
+
+DropDownList Rework
+* Use the correct way to display previus selected option, instead creating a new option on top.
+GUI changes
+* Minor Upgrade on Crafting Tab and Option Tab
+* Split Metamorph Options from Automation
+
+---
+
 ## Version .11.0303 - Alpha Branch - April/08/2020
 Map Parser Improved
 * Prop.MapAtlasRegion is now live, you can use on CLF for filtering map regions (Helpful if you don't have map stash)

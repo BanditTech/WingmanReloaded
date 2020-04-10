@@ -2226,6 +2226,7 @@ Return
         ; First Automation Entry
         If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
+          ; This automation use the following Else If (OnVendor && YesVendor) to entry on Vendor Routine
           If !SearchVendor()
           {
             RunningToggle := False
@@ -2233,8 +2234,6 @@ Return
               SetTimer, TGameTick, On
             Return
           }
-          ;This Return Fix Double Auto Stash Routine
-          ; VendorRoutine()
         }
         ; First Automation Entry
         Else If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
@@ -2261,7 +2260,6 @@ Return
       Sleep, -1
       GuiStatus()
       SendMSG(1,1,scriptTradeMacro)
-
       If (OnDiv && YesDiv)
         DivRoutine()
       Else If (OnStash && YesStash)
@@ -2332,14 +2330,6 @@ Return
     tGQ := 0
     SortFlask := {}
     SortGem := {}
-    ; If (YesVendorBeforeStash){
-    ;   CurrentTab:=0
-    ;   SortFirst := {}
-    ;   Loop 32
-    ;   {
-    ;     SortFirst[A_Index] := {}
-    ;   }
-    ; }
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
@@ -2495,7 +2485,7 @@ Return
     If (OnVendor && RunningToggle && YesEnableAutomation)
     {
       ContinueFlag := False
-      If YesEnableAutoSellConfirmation
+      If (YesEnableAutoSellConfirmation)
       {
         RandomSleep(60,90)
         LeftClick(VendorAcceptX,VendorAcceptY)
@@ -2790,8 +2780,6 @@ Return
       Else
         Return
     }
-    ; Sleep, 45*Latency
-    ; SendInput, {%hotkeyCloseAllUI%}
     Sleep, 45*Latency
     If (Town = "The Sarn Encampment")
     {
@@ -2829,6 +2817,7 @@ Return
     }
     Return False
   }
+
   ; DivRoutine - Does divination trading function
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DivRoutine()
