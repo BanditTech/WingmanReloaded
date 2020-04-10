@@ -2489,7 +2489,7 @@ Return
       LeftClick(VendorAcceptX,VendorAcceptY)
       RandomSleep(60,90)
       ; Search Stash and StashRoutine
-      If (YesEnableNextAutomation)
+      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor")
       {
         SearchStash()
         StashRoutine()
@@ -2514,7 +2514,7 @@ Return
         Return
       }
       ; Do Next Automation
-      Else
+      Else If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor")
       {
         SearchStash()
         StashRoutine()
@@ -2739,8 +2739,11 @@ Return
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
       ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
-      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
+      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && RunningToggle && (OnHideout || OnTown || OnMines))
       {
+        Send {Escape}
+        RandomSleep(45,90)
+        GuiStatus()
         SearchVendor()
         VendorRoutine()
       }
