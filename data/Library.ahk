@@ -2366,7 +2366,7 @@
         Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
         Global DetonateX:=GameX + Round(GameW/(3840/3578))
         Global DetonateY:=GameY + Round(GameH/(1080/901))
-                ;Currency
+        ;Currency
           ;Scouring 175,476
         Global ScouringX:=GameX + Round(GameW/(3840/175))
         Global ScouringY:=GameY + Round(GameH/(1080/475))
