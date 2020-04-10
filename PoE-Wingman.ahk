@@ -1982,6 +1982,8 @@
     Global DetonateDelveX:=1542
     Global DetonateX:=1658
     Global DetonateY:=901
+    Global VendorAcceptX:=380
+    Global VendorAcceptY:=820
     Global WisdomStockX:=115
     Global PortalStockX:=175
     Global WPStockY:=220
@@ -2484,7 +2486,7 @@ Return
     If (OnVendor && RunningToggle && YesEnableAutoSellConfirmation && YesEnableAutomation)
     {
       RandomSleep(60,90)
-      CtrlClick(378,820)
+      LeftClick(VendorAcceptX,VendorAcceptY)
       RandomSleep(60,90)
       ; Search Stash and StashRoutine
       If (YesEnableNextAutomation)
@@ -9453,7 +9455,7 @@ Return
       ; ASCII Search Strings
       IniWrite, %HealthBarStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, HealthBarStr
       IniWrite, %VendorStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr
-      IniWrite, %SellItemsStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SellItemsStr
+      IniWrite, %SellItemsStr%, %A_ScriptDiSpacer%\save\Settings.ini, FindText Strings, SellItemsStr
       IniWrite, %StashStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr
       IniWrite, %SkillUpStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr
 
