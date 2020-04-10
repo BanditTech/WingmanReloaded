@@ -1756,6 +1756,10 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
+        ;Auto Vendor Settings
+          ;380,820
+        Global VendorAcceptX:=GameX + Round(GameW/(1920/380))
+        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
         Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
         Global DetonateX:=GameX + Round(GameW/(1920/1658))
@@ -1904,6 +1908,10 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
+        ;Auto Vendor Settings
+          ;380,820
+        Global VendorAcceptX:=GameX + Round(GameW/(1440/380))
+        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
         Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
         Global DetonateX:=GameX + Round(GameW/(1440/1178))
@@ -2052,6 +2060,10 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
+        ;Auto Vendor Settings
+        ;380,820
+        Global VendorAcceptX:=GameX + Round(GameW/(2560/380))
+        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
         Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
         Global DetonateX:=GameX + Round(GameW/(2560/2298))
@@ -2199,6 +2211,11 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
+        ;Auto Vendor Settings
+        ;380,820
+        ;Hx marker
+        Global VendorAcceptX:=GameX + Round(GameW/(3440/9999))
+        Global VendorAcceptY:=GameY + Round(GameH/(1440/9999))
         ;Detonate Mines
         Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
         Global DetonateX:=GameX + Round(GameW/(3440/3090))
@@ -2343,6 +2360,10 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
+        ;Auto Vendor Settings
+        ;380,820
+        Global VendorAcceptX:=GameX + Round(GameW/(3840/380))
+        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
         Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
         Global DetonateX:=GameX + Round(GameW/(3840/3578))
