@@ -130,14 +130,58 @@
 ; dan marker, feel free to edit this text to make more readable
     helpAutomation:
       Gui, submit
-      MsgBox, Automation can start from two ways:`n`n* Search Stash`n`n* Search Vendor`n`nIf you Enable Second Automation, after doing your selected first automation, script will execute non-selected one`n`nThe following result can be done using this settings:`n`n1) Search Stash > Auto Stash Routine > END`n`n2) Search Stash > Auto Stash Routine > Search Vendor > Auto Sell Routine > END`n`n3) Search Stash > Auto Stash Routine > Search Vendor > Auto Sell Routine > Auto Confirm Sell > END`n`n4) Search Vendor > Auto Vendor Routine > END`n`n5) Search Vendor > Auto Vendor Routine > Wait 30s or Closing Vendor UI > Search Stash > Auto Stash Routine > END`n`n6) Search Vendor > Auto Vendor Routine > Auto Confirm Sell > Search Stash > Auto Stash Routine > END
+      MsgBox,% "Automation can start from two ways:`n`n"
+       . "* Search for the Stash, and begin sorting items`n`n"
+       . "* Search for the Vendor, and begin selling items`n`n"
+       . "If you Enable Second Automation, both routines will occur`n"
+       . "Whatever was not selected will be performed second`n`n"
+       . "The following results can be arranged using these settings:`n`n"
+       . "1) Search for Stash > Auto Stash Routine > END`n`n"
+       . "2) Search for Stash > Auto Stash Routine > Search for Vendor >`n"
+       . "Auto Sell Routine > END`n`n"
+       . "3) Search for Stash > Auto Stash Routine > Search for Vendor >`n"
+       . "Auto Sell Routine > Auto Confirm Sell > END`n`n"
+       . "4) Search for Vendor > Auto Vendor Routine > END`n`n"
+       . "5) Search for Vendor > Auto Vendor Routine > Wait at Vendor UI 30s >`n"
+       . "Search Stash > Auto Stash Routine > END`n`n"
+       . "6) Search for Vendor > Auto Vendor Routine > Auto Confirm Sell >`n"
+       . "Search for Stash > Auto Stash Routine > END"
       Hotkeys()
     Return
     WarningAutomation:
-      Gui, submit
-      MsgBox, WARNING!!!!!`n`n`nEnabling this option will auto confirm vendoring itens, only use this if you have a good CLF`n`n`nWe will not be responsible for any lost using this option.`n`n`nIf you are unsure about this option, We strongly recomend coming into WingmanReloaded Discord to talk with us or looking for more information.`n`n`nYou are warned NOW!!!
-      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
-      Hotkeys()
+      Gui, submit, nohide
+      If YesEnableAutoSellConfirmation
+      {
+        Gui, submit
+        MsgBox,1,% "WARNING!!!", % "Please Be Advised`n`n"
+        . "Enabling this option will auto confirm vendoring items, only use this option if you have a well configured CLF to catch good items`n`n"
+        . "We will not be responsible for anything lost using this option.`n`n"
+        . "If you are unsure about this option, We strongly recomend doing more research before enabling.`n`n"
+        . "Come to WingmanReloaded Discord to talk with us or look for more information.`n`n"
+        . "You have been warned!!! This option can be dangerous if done incorrectly!!!`n"
+        . "Press OK to accept"
+        IfMsgBox, OK
+        {
+          IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+          Hotkeys()
+        }
+        Else IfMsgBox, Cancel
+        {
+          YesEnableAutoSellConfirmation := 0
+          Hotkeys()
+          GuiControl,Inventory:, YesEnableAutoSellConfirmation, 0
+          IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+        }
+        Else
+        {
+          YesEnableAutoSellConfirmation := 0
+          Hotkeys()
+          GuiControl,Inventory:, YesEnableAutoSellConfirmation, 0
+          IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+        }
+      }
+      Else 
+        IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
     Return
 
   ; WR_Menu - New menu handling method

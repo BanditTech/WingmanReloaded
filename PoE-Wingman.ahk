@@ -2226,13 +2226,15 @@ Return
         ; First Automation Entry
         If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
-          SearchVendor()
-          VendorRoutine()
+          If !SearchVendor()
+          {
+            RunningToggle := False
+            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+              SetTimer, TGameTick, On
+            Return
+          }
           ;This Return Fix Double Auto Stash Routine
-          RunningToggle := False
-          If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-            SetTimer, TGameTick, On
-          Return
+          ; VendorRoutine()
         }
         ; First Automation Entry
         Else If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
@@ -2257,7 +2259,9 @@ Return
         }
       }
       Sleep, -1
+      GuiStatus()
       SendMSG(1,1,scriptTradeMacro)
+
       If (OnDiv && YesDiv)
         DivRoutine()
       Else If (OnStash && YesStash)
@@ -2340,7 +2344,10 @@ Return
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
     If !OnVendor
-    Return
+    {
+      MsgBox Mismatch
+      Return
+    }
     ; Main loop through inventory
     For C, GridX in InventoryGridX
     {
@@ -2486,50 +2493,38 @@ Return
       }
     }
     ; Auto Confirm Vendoring Option
-    If (OnVendor && RunningToggle && YesEnableAutoSellConfirmation && YesEnableAutomation)
+    If (OnVendor && RunningToggle && YesEnableAutomation)
     {
-      RandomSleep(60,90)
-      LeftClick(VendorAcceptX,VendorAcceptY)
-      RandomSleep(60,90)
+      ContinueFlag := False
+      If YesEnableAutoSellConfirmation
+      {
+        RandomSleep(60,90)
+        LeftClick(VendorAcceptX,VendorAcceptY)
+        RandomSleep(60,90)
+        ContinueFlag := True
+      }
+      Else If (FirstAutomationSetting=="Search Vendor")
+      {
+        CheckTime("Seconds",30,"VendorUI",A_Now)
+        While (!CheckTime("Seconds",30,"VendorUI"))
+        {
+          Sleep, 100
+          GuiStatus()
+          If !OnVendor
+          {
+            ContinueFlag := True
+            break
+          }
+        }
+      }
       ; Search Stash and StashRoutine
-      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor")
+      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
       {
-        Send {Escape}
+        Send {%hotkeyCloseAllUI%}
         RandomSleep(45,90)
         GuiStatus()
         SearchStash()
         StashRoutine()
-      }
-    }
-    ; Auto Confirm Vendoring Option
-    Else if (OnVendor && RunningToggle && YesEnableAutomation && YesEnableNextAutomation && !YesEnableAutoSellConfirmation)
-    {
-      ; Wait 30 Second before return from routine
-      i:=0
-      While (i<= 100)
-      {
-        i++
-        Sleep, 300
-        GuiStatus()
-        If !OnVendor
-          break
-      }
-      ; Do Next Automation
-      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && i < 100)
-      {
-        Send {Escape}
-        RandomSleep(45,90)
-        GuiStatus()
-        RandomSleep(45,90)
-        SearchStash()
-        StashRoutine()
-      }
-      Else
-      {
-        Send {Escape}
-        RandomSleep(45,90)
-        GuiStatus()
-        Return
       }
     }
     Return
@@ -2751,7 +2746,7 @@ Return
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
       ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
-      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && RunningToggle && (OnHideout || OnTown || OnMines))
+      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
         Send {Escape}
         RandomSleep(45,90)
@@ -2796,8 +2791,8 @@ Return
       Else
         Return
     }
-    Sleep, 45*Latency
-    SendInput, {%hotkeyCloseAllUI%}
+    ; Sleep, 45*Latency
+    ; SendInput, {%hotkeyCloseAllUI%}
     Sleep, 45*Latency
     If (Town = "The Sarn Encampment")
     {
@@ -2828,12 +2823,12 @@ Return
           Sleep, 30*Latency
           LeftClick(Sell.1.x,Sell.1.y)
           Sleep, 120*Latency
-          Break
+          Return True
         }
         Sleep, 100
       }
     }
-    Return
+    Return False
   }
   ; DivRoutine - Does divination trading function
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
