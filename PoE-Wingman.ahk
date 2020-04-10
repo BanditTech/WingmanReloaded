@@ -2332,14 +2332,14 @@ Return
     tGQ := 0
     SortFlask := {}
     SortGem := {}
-    If (YesVendorBeforeStash){
-      CurrentTab:=0
-      SortFirst := {}
-      Loop 32
-      {
-        SortFirst[A_Index] := {}
-      }
-    }
+    ; If (YesVendorBeforeStash){
+    ;   CurrentTab:=0
+    ;   SortFirst := {}
+    ;   Loop 32
+    ;   {
+    ;     SortFirst[A_Index] := {}
+    ;   }
+    ; }
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
