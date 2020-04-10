@@ -2747,7 +2747,7 @@ Return
       ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
       If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
-        Send {Escape}
+        Send {%hotkeyCloseAllUI%}
         RandomSleep(45,90)
         GuiStatus()
         SearchVendor()
