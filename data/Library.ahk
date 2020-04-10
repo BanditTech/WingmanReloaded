@@ -2212,10 +2212,8 @@
           Base.Globe := Array_DeepClone(Globe)
         }
         ;Auto Vendor Settings
-        ;380,820
-        ;Hx marker
-        Global VendorAcceptX:=GameX + Round(GameW/(3440/9999))
-        Global VendorAcceptY:=GameY + Round(GameH/(1440/9999))
+        Global VendorAcceptX:=GameX + Round(GameW/(3440/945))
+        Global VendorAcceptY:=GameY + Round(GameH/(1440/1090))
         ;Detonate Mines
         Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
         Global DetonateX:=GameX + Round(GameW/(3440/3090))
