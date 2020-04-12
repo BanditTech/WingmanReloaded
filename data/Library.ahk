@@ -2352,9 +2352,9 @@
           ;Scouring 235,631
         Global ScouringX:=GameX + Round(GameW/(3440/235))
         Global ScouringY:=GameY + Round(GameH/(1440/630))
-          ;Chisel 810,235
+          ;Chisel 810,290
         Global ChiselX:=GameX + Round(GameW/(3440/810))
-        Global ChiselY:=GameY + Round(GameH/(1440/235))
+        Global ChiselY:=GameY + Round(GameH/(1440/290))
           ;Alchemy 655,390
         Global AlchemyX:=GameX + Round(GameW/(3440/655))
         Global AlchemyY:=GameY + Round(GameH/(1440/390))
