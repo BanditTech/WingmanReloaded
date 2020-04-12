@@ -7844,7 +7844,7 @@ Return
     {
       return
     }
-    If !(Prop.Identified)
+    If (!Prop.Identified)
     {
       If (Prop.Rarity_Digit > 1 && cname = "Transmutation" && YesMapUnid )
       {
@@ -11540,8 +11540,8 @@ Return
           Log("Error loading version number","404 error")
           Return
         }
-        If RegExMatch(newestVersion, "O)[.0-9]+", matchVersion)
-          newestVersion := matchVersion[1]
+        If RegExMatch(newestVersion, "[.0-9]+", matchVersion)
+          newestVersion := matchVersion
         if ( VersionNumber < newestVersion || force) 
         {
           UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
