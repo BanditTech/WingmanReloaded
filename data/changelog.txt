@@ -19,7 +19,7 @@ Adjustment to Quicksilver
 
 Add Damage Averages to CLF
 * Attack or Spell added damage
-* Global added damage
+* Local added damage (weapons)
 
 Bugfix for Lightning damage being added to total twice
 
