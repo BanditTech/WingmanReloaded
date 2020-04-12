@@ -439,6 +439,13 @@
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
 
           Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
           Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
           Gui, Inventory: Font,
           Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
@@ -451,13 +458,6 @@
           Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGem , %StashTabGem%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
 
           Gui, Inventory: Font, Bold s7 cBlack
           Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Cluster Jewel
