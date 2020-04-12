@@ -6,6 +6,8 @@ Stash Tabs
 * Include Catalyst Tab
 * Include Vaal Gem Tab
   * Priority for gem Tabs is: Quality > Vaal > Support > Normal
+* Include Ninja Priced Tab
+  * Set minimum value on the right
 
 Changes to Stash Hotkeys
 * Change Stash Hotkeys DropDownList to UpDown

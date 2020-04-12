@@ -453,6 +453,11 @@
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabPredictive , %StashTabPredictive%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp, Enable
 
+          Gui, Inventory: Add, GroupBox, w110 h36 xs yp+20 , Ninja Priced Tab
+          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabNinjaPrice%
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabNinjaPrice , %StashTabNinjaPrice%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp, Enable
+
           Gui, Inventory: Add, GroupBox, w110 h36 xs yp+20 , Crafting Tab
           Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabCrafting%
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabCrafting , %StashTabCrafting%
@@ -485,6 +490,13 @@
           Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
           Gui, Inventory: Font, s10
           Gui, Inventory: Add, Edit, gUpdateStash  vStashTabYesPredictive_Price x+13 yp-6 w40 hp+8 center, % StashTabYesPredictive_Price
+
+          Gui, Inventory: Font, Bold s9 cBlack
+          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+20,         Ninja Priced Tab:
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+          Gui, Inventory: Font, s10
+          Gui, Inventory: Add, Edit, gUpdateStash  vStashTabYesNinjaPrice_Price x+13 yp-6 w40 hp+8 center, % StashTabYesNinjaPrice_Price
 
         Gui, Inventory: Tab, Stash Hotkeys
 

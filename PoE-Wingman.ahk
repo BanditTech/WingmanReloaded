@@ -333,6 +333,9 @@
       StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
       StashTabCatalyst = Assign the Stash tab for Catalyst items
       StashTabYesCatalyst = Enable to send Catalyst items to the assigned tab on the left
+      StashTabNinjaPrice = Assign the Stash tab for Ninja Priced items
+      StashTabYesNinjaPrice = Enable to send Ninja Priced items to the assigned tab on the left`rChaos Value must be at or above threshold 
+      StashTabYesNinjaPrice_Price = Assign the minimum value in chaos to send to Ninja Priced Tab
       StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
       StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
       StashTabYesPredictive_Price = Set the minimum value to consider worth stashing
@@ -624,6 +627,7 @@
     Global StashTabDump := 1
     Global StashTabCatalyst := 1
     Global StashTabPredictive := 1
+    Global StashTabNinjaPrice := 1
   ; Checkbox to activate each tab
     Global StashTabYesCurrency := 1
     Global StashTabYesMap := 1
@@ -650,9 +654,11 @@
     Global StashTabYesDump := 1
     Global StashDumpInTrial := 1
     Global StashDumpSkipJC := 1
-    Global StashTabYesPredictive := 0
     Global StashTabYesCatalyst := 0
+    Global StashTabYesPredictive := 0
     Global StashTabYesPredictive_Price := 5
+    Global StashTabYesNinjaPrice := 0
+    Global StashTabYesNinjaPrice_Price := 5
   ; Crafting bases to stash
     Global YesStashT1 := 1
     Global YesStashT2 := 1
@@ -2642,12 +2648,14 @@ Return
             Continue
           Else If (sendstash:=MatchLootFilter())
             Sleep, -1
-          Else If (Prop.Incubator)
-            Continue
           Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
             Continue
           Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
             sendstash := StashTabCurrency
+          Else If (StashTabYesNinjaPrice && Prop.ChaosValue >= StashTabYesNinjaPrice_Price )
+            sendstash := StashTabNinjaPrice
+          Else If (Prop.Incubator)
+            Continue
           Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
             sendstash := StashTabMap
           Else If (StashTabYesCatalyst&&Prop.Catalyst)
@@ -8595,6 +8603,9 @@ Return
       IniRead, StashTabYesCatalyst, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst, 0
       IniRead, StashTabGemVaal, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal, 1
       IniRead, StashTabYesGemVaal, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal, 0
+      IniRead, StashTabNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice, 1
+      IniRead, StashTabYesNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice, 0
+      IniRead, StashTabYesNinjaPrice_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price, 5
       
       ;Settings for the Client Log file location
       IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
@@ -9783,6 +9794,9 @@ Return
       IniWrite, %StashTabYesCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst
       IniWrite, %StashTabGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal
       IniWrite, %StashTabYesGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal
+      IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
+      IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
+      IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
 
       ;Attack Flasks
       IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerMainAttack
@@ -12891,6 +12905,9 @@ Return
       IniWrite, %StashTabYesCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst
       IniWrite, %StashTabGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal
       IniWrite, %StashTabYesGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal
+      IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
+      IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
+      IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
     Return
 
     UpdateExtra:
