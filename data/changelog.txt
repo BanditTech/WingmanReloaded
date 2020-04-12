@@ -1,3 +1,12 @@
+## Version .11.0305 - Alpha Branch - April/11/2020
+Map Crafting Settings
+* Include new Undesirable Mod - X% Maximum Player Resistances
+
+Stash Tabs
+* Include Catalyst Tab
+
+---
+
 ## Version .11.0304 - Alpha Branch - April/10/2020
 Major rework to the Automation Section of the Inventory Settings
 * Automation settings have been simplified, please reconfigure your settings
