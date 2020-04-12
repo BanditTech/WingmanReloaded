@@ -454,6 +454,11 @@
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDump x+0 yp hp ,  %StashTabDump%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% x+5 yp, Enable
 
+          Gui, Inventory: Add, GroupBox, w110 h36 xs yp+20 , Catalyst Tab
+          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabCatalyst%
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabCatalyst , %StashTabCatalyst%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCatalyst Checked%StashTabYesCatalyst% x+5 yp, Enable
+
           ; Crafting Bases
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h80    section    x+15   ys,         Crafting Tab:
@@ -568,7 +573,7 @@
             Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
             GuiControl,Inventory: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
             Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add,GroupBox,Section w285 h140 xs, Undesireble Mods:
+          Gui, Inventory: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
             Gui, Inventory: Font,
             Gui, Inventory: Font,s8,Arial
             Gui, Inventory: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
@@ -577,6 +582,7 @@
             Gui, Inventory: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
             Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
             Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
+            Gui, Inventory: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances
             Gui, Inventory: Font, Bold
             Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:

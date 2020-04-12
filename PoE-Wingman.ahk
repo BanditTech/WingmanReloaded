@@ -257,6 +257,10 @@
       GrabCurrencyPosY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
       StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
+      YesEnableAutomation = Enable Automation Routines
+      FirstAutomationSetting = Start Automation selected option
+      YesEnableNextAutomation = Enable next automation after the first selected
+      YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
       YesAutoSkillUp = Enable this to Automatically level up skill gems
       YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
       DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
@@ -328,6 +332,8 @@
       StashTabVeiled = Assign the Stash tab for Veiled items
       StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
       StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
+      StashTabCatalyst = Assign the Stash tab for Catalyst items
+      StashTabYesCatalyst = Enable to send Catalyst items to the assigned tab on the left
       StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
       StashTabYesPredictive_Price = Set the minimum value to consider worth stashing
       StashTabClusterJewel = Assign the Stash tab for cluster jewels
@@ -373,6 +379,7 @@
       NoRegen = Select this if your build can't run maps with this mod
       AvoidAilments = Select this if your build can't run maps with this mod
       AvoidPBB = Select this if your build can't run maps with this mod
+      MinusMPR = Select this if your build can't run maps with this mod
       YesNinjaDatabase = Enable to Update Ninja Database and load at start
       YesUtility1InverseBuff = Fire instead only when buff icon is present
       YesUtility2InverseBuff = Fire instead only when buff icon is present
@@ -591,6 +598,7 @@
     Global StashTabClusterJewel := 1
     Global StashTabDump := 1
     Global StashTabPredictive := 1
+    Global StashTabCatalyst := 1
   ; Checkbox to activate each tab
     Global StashTabYesCurrency := 1
     Global StashTabYesMap := 1
@@ -617,6 +625,7 @@
     Global StashDumpInTrial := 1
     Global StashDumpSkipJC := 1
     Global StashTabYesPredictive := 0
+    Global StashTabYesCatalyst := 0
     Global StashTabYesPredictive_Price := 5
   ; Crafting bases to stash
     Global YesStashT1 := 1
@@ -852,7 +861,7 @@
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
   
   ; Map Crafting Settings
-    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MinusMPR,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
     
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
@@ -2615,6 +2624,8 @@ Return
             sendstash := StashTabCurrency
           Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
             sendstash := StashTabMap
+          Else If (StashTabYesCatalyst&&Prop.Catalyst)
+            sendstash := StashTabCatalyst
           Else If ( StashTabYesFragment 
             && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
             || Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
@@ -3032,6 +3043,7 @@ Return
       Prop.DoubleCorrupted := False
       Prop.Variant := 0
       Prop.CraftingBase := 0
+      Prop.Catalyst := False
 
     Stats := OrderedArray()
       Stats.MapItemQuantity := 0
@@ -3218,6 +3230,7 @@ Return
       Affix.ReducedAttributeRequirement := 0
       Affix.MapElementalReflect := 0
       Affix.MapPhysicalReflect := 0
+      Affix.MapMinusMPR := 0
       Affix.MapNoLeech := 0
       Affix.MapNoRegen := 0 
       Affix.MapAvoidAilments := 0
@@ -3296,6 +3309,11 @@ Return
       If RegExMatch(Clip_Contents, "O)Monsters reflect " num " of Elemental Damage", RxMatch )
       {
         Affix.MapElementalReflect := RxMatch[1]
+      }
+      ;- # Maximum Player Resistances
+      If RegExMatch(Clip_Contents, "O)" num " maximum Player Resistances", RxMatch )
+      {
+        Affix.MapMinusMPR := RxMatch[1]
       }
       ;No Leech
       If InStr(Clip_Contents, "cannot Leech Life")
@@ -3673,6 +3691,11 @@ Return
               Prop.SpecialType := "Oil"
               Continue
             }
+          }
+          If InStr(Clip_Contents, "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.")
+          {
+            Prop.Catalyst := True
+            Prop.SpecialType := "Catalyst"
           }
           If InStr(Clip_Contents, "Combine this with four other different samples in Tane's Laboratory.")
           {
@@ -7851,7 +7874,8 @@ Return
     || (Affix.MapElementalReflect && ElementalReflect) 
     || (Affix.MapPhysicalReflect && PhysicalReflect) 
     || (Affix.MapNoRegen && NoRegen) 
-    || (Affix.MapNoLeech && NoLeech) 
+    || (Affix.MapNoLeech && NoLeech)
+    || (Affix.MapMinusMPR && MinusMPR)
     || (Prop.RarityNormal) 
     || (!MMQIgnore && (Stats.MapItemRarity <= MMapItemRarity 
     || Stats.MapMonsterPackSize <= MMapMonsterPackSize 
@@ -8478,6 +8502,7 @@ Return
       IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
       IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
       IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
+      IniRead, MinusMPR, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR, 0
       IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
       IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
       IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
@@ -8538,6 +8563,8 @@ Return
       IniRead, StashTabPredictive, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive, 1
       IniRead, StashTabYesPredictive, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive, 0
       IniRead, StashTabYesPredictive_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price, 5
+      IniRead, StashTabCatalyst, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst, 1
+      IniRead, StashTabYesCatalyst, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst, 0
       
       ;Settings for the Client Log file location
       IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
@@ -9647,6 +9674,7 @@ Return
       IniWrite, %NoLeech%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
       IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
       IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
+      IniWrite, %MinusMPR%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR
       IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
       IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
       IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
@@ -9721,7 +9749,9 @@ Return
       IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
       IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
       IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
-      
+      IniWrite, %StashTabCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst
+      IniWrite, %StashTabYesCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst
+
       ;Attack Flasks
       IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerMainAttack
       IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerSecondaryAttack
@@ -12825,6 +12855,8 @@ Return
       IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
       IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
       IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
+      IniWrite, %StashTabCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst
+      IniWrite, %StashTabYesCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst
     Return
 
     UpdateExtra:
