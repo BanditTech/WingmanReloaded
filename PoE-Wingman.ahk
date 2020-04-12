@@ -331,9 +331,9 @@
       StashTabYesProphecy = Enable to send Prophecy items to the assigned tab on the left
       StashTabVeiled = Assign the Stash tab for Veiled items
       StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
-      StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
       StashTabCatalyst = Assign the Stash tab for Catalyst items
       StashTabYesCatalyst = Enable to send Catalyst items to the assigned tab on the left
+      StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
       StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
       StashTabYesPredictive_Price = Set the minimum value to consider worth stashing
       StashTabClusterJewel = Assign the Stash tab for cluster jewels
@@ -348,6 +348,8 @@
       StashTabYesOrgan = Enable to send Organ Part items to the assigned tab on the left
       StashTabGem = Assign the Stash tab for Normal Gem items
       StashTabYesGem = Enable to send Normal Gem items to the assigned tab on the left
+      StashTabGemVaal = Assign the Stash tab for Vaal Gem items
+      StashTabYesGemVaal = Enable to send Vaal Gem items to the assigned tab on the left`rIf Quality Gems are enabled, that will take priority
       StashTabGemQuality = Assign the Stash tab for Quality Gem items
       StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
       StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
@@ -394,7 +396,29 @@
       WR_Btn_IgnoreSlot = Assign the ignored slots in your inventory`rThe script will not touch items in these locations
       WR_Reset_Globe = Loads unmodified default values and reloads UI
       WR_Save_JSON_Globe = Save changes to disk`rThese changes will load on script launch
+      stashPrefix1 = Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
+      stashPrefix2 = Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
+      stashReset = Assign the hotkey to reset the CurrentTab`rThis hotkey will only activate while the Modifier(s) are pressed`rThis hotkey is necessary after moving the tab manually
+      stashSuffix1 = Hotkey for the 1st Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix2 = Hotkey for the 2nd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix3 = Hotkey for the 3rd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix4 = Hotkey for the 4th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix5 = Hotkey for the 5th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix6 = Hotkey for the 6th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix7 = Hotkey for the 7th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix8 = Hotkey for the 8th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix9 = Hotkey for the 9th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffixTab1 = Assign the Stash Tab for the 1st Stash Hotkey slot
+      stashSuffixTab2 = Assign the Stash Tab for the 2nd Stash Hotkey slot
+      stashSuffixTab3 = Assign the Stash Tab for the 3rd Stash Hotkey slot
+      stashSuffixTab4 = Assign the Stash Tab for the 4th Stash Hotkey slot
+      stashSuffixTab5 = Assign the Stash Tab for the 5th Stash Hotkey slot
+      stashSuffixTab6 = Assign the Stash Tab for the 6th Stash Hotkey slot
+      stashSuffixTab7 = Assign the Stash Tab for the 7th Stash Hotkey slot
+      stashSuffixTab8 = Assign the Stash Tab for the 8th Stash Hotkey slot
+      stashSuffixTab9 = Assign the Stash Tab for the 9th Stash Hotkey slot
       )
+
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2
   ; Globals For client.txt file
     Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
@@ -579,6 +603,7 @@
     Global StashTabMap := 1
     Global StashTabDivination := 1
     Global StashTabGem := 1
+    Global StashTabGemVaal := 1
     Global StashTabGemQuality := 1
     Global StashTabFlaskQuality := 1
     Global StashTabLinked := 1
@@ -597,13 +622,14 @@
     Global StashTabOrgan := 1
     Global StashTabClusterJewel := 1
     Global StashTabDump := 1
-    Global StashTabPredictive := 1
     Global StashTabCatalyst := 1
+    Global StashTabPredictive := 1
   ; Checkbox to activate each tab
     Global StashTabYesCurrency := 1
     Global StashTabYesMap := 1
     Global StashTabYesDivination := 1
     Global StashTabYesGem := 1
+    Global StashTabYesGemVaal := 1
     Global StashTabYesGemQuality := 1
     Global StashTabYesFlaskQuality := 1
     Global StashTabYesLinked := 1
@@ -2676,6 +2702,8 @@ Return
           {
             If ((Stats.Quality>0)&&StashTabYesGemQuality)
               sendstash := StashTabGemQuality
+            Else If (Prop.VaalGem && StashTabYesGemVaal)
+              sendstash := StashTabGemVaal
             Else If (Prop.Support && StashTabYesGemSupport)
               sendstash := StashTabGemSupport
             Else If (StashTabYesGem)
@@ -8565,6 +8593,8 @@ Return
       IniRead, StashTabYesPredictive_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price, 5
       IniRead, StashTabCatalyst, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst, 1
       IniRead, StashTabYesCatalyst, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst, 0
+      IniRead, StashTabGemVaal, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal, 1
+      IniRead, StashTabYesGemVaal, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal, 0
       
       ;Settings for the Client Log file location
       IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
@@ -9751,6 +9781,8 @@ Return
       IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
       IniWrite, %StashTabCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst
       IniWrite, %StashTabYesCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst
+      IniWrite, %StashTabGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal
+      IniWrite, %StashTabYesGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal
 
       ;Attack Flasks
       IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerMainAttack
@@ -12857,6 +12889,8 @@ Return
       IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
       IniWrite, %StashTabCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst
       IniWrite, %StashTabYesCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst
+      IniWrite, %StashTabGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal
+      IniWrite, %StashTabYesGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal
     Return
 
     UpdateExtra:

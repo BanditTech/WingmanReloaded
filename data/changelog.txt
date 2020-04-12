@@ -4,6 +4,13 @@ Map Crafting Settings
 
 Stash Tabs
 * Include Catalyst Tab
+* Include Vaal Gem Tab
+  * Priority for gem Tabs is: Quality > Vaal > Support > Normal
+
+Changes to Stash Hotkeys
+* Change Stash Hotkeys DropDownList to UpDown
+  * allows for larger range of tabs 1-64
+* Added tooltips to explain the settings
 
 ---
 
