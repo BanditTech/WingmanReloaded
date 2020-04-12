@@ -1646,19 +1646,19 @@
     Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 
     Gui,Font, Bold s9 cBlack 
-    Gui Add, GroupBox,     Section  w190 h120        xs+240+7   ys ,         Auto-Detonate Mines
+    Gui Add, GroupBox,     Section  w190 h110        xs+240+7   ys ,         Auto-Detonate Mines
     Gui, Font,
     Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
-    Gui Add, Text, xs+5 y+8, Delay after Detonate
+    Gui Add, Text, xs+5 y+4, Delay after Detonate
     Gui Add, Edit,     gUpdateExtra   vDetonateMinesDelay  h18  x+5  yp-2  Number Limit w30        , %DetonateMinesDelay% 
-    Gui Add, GroupBox, xs+5 y+3 w160 h37, Pause Mines
+    Gui Add, GroupBox, xs+5 y+1 w160 h37, Pause Mines
     Gui Add, Text, xp+5 yp+16 , Delay
     Gui Add, Edit,     gUpdateExtra   vPauseMinesDelay  h18  x+5  yp-2  Number Limit w30        , %PauseMinesDelay% 
     Gui Add, Text, x+5 yp+2 , Key
     Gui Add, Edit,     gUpdateExtra   vhotkeyPauseMines  h18  x+5  yp-2  w50        , %hotkeyPauseMines% 
-    Gui Add, GroupBox, xs+5 y+5 w160 h37, Cast on Detonate
-    Gui Add, CheckBox, gUpdateExtra xp+5 yp+16 vCastOnDetonate Checked%CastOnDetonate%, Enable
-    Gui Add, Text, x+5 yp+2 , Key
+    Gui Add, GroupBox, xs+5 y+3 w160 h37, Cast on Detonate
+    Gui Add, CheckBox, gUpdateExtra xp+9 yp+16 vCastOnDetonate Checked%CastOnDetonate%, Enable
+    Gui Add, Text, x+9 yp , Key
     Gui Add, Edit,     gUpdateExtra   vhotkeyCastOnDetonate  h18  x+5  yp-2  w50        , %hotkeyCastOnDetonate% 
     Gui,Font,
 
@@ -3151,6 +3151,20 @@ Return
       Affix.PseudoIncreasedColdDamage := 0
       Affix.PseudoIncreasedFireDamage := 0
       Affix.PseudoIncreasedLightningDamage := 0
+      Affix.PhysicalDamageAttackAvg:= 0
+      Affix.PhysicalDamageBowAttackAvg:= 0
+      Affix.FireDamageAttackAvg:= 0
+      Affix.FireDamageSpellAvg:= 0
+      Affix.ColdDamageAttackAvg:= 0
+      Affix.ColdDamageSpellAvg:= 0
+      Affix.LightningDamageAttackAvg:= 0
+      Affix.LightningDamageSpellAvg:= 0
+      Affix.ChaosDamageAttackAvg:= 0
+      Affix.PhysicalDamageAvg:= 0
+      Affix.ChaosDamageAvg:= 0
+      Affix.ColdDamageAvg:= 0
+      Affix.FireDamageAvg:= 0
+      Affix.LightningDamageAvg:= 0
       Affix.AllElementalResistances := 0
       Affix.ColdLightningResistance := 0
       Affix.FireColdResistance := 0
@@ -5051,7 +5065,7 @@ Return
     Affix.PseudoIncreasedFireDamage := Affix.IncreasedFireDamage + Affix.IncreasedSpellDamage
     Affix.PseudoIncreasedLightningDamage := Affix.IncreasedLightningDamage + Affix.IncreasedSpellDamage
 
-    Affix.PseudoTotalAddedEleAvgAttack := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
+    Affix.PseudoTotalAddedEleAvgAttack := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
     Affix.PseudoTotalAddedEleAvgSpell := (Affix.FireDamageSpellAvg?Affix.FireDamageSpellAvg:0) + ( (Affix.ColdDamageSpellAvg) ? (Affix.ColdDamageSpellAvg) : 0 ) + ( (Affix.LightningDamageSpellAvg) ? (Affix.LightningDamageSpellAvg) : 0 ) + ( (Affix.LightningDamageSpellAvg) ? (Affix.LightningDamageSpellAvg) : 0 )
     Affix.PseudoTotalAddedAvgAttack := (Affix.PseudoTotalAddedEleAvgAttack?Affix.PseudoTotalAddedEleAvgAttack:0) + (Affix.PhysicalDamageAttackAvg?Affix.PhysicalDamageAttackAvg:0) + (Affix.PhysicalDamageBowAttackAvg?Affix.PhysicalDamageBowAttackAvg:0) + (Affix.ChaosDamageAttackAvg?Affix.ChaosDamageAttackAvg:0)
     Affix.PseudoTotalAddedStats := Affix.PseudoAddedStrength + Affix.PseudoAddedDexterity + Affix.PseudoAddedIntelligence
@@ -7321,9 +7335,9 @@ Return
     { ; If all the flasks are off cooldown, then we are ready to fire one
       LButtonPressed := GetKeyState("LButton", "P")
       If QSonMainAttack
-        MainPressed := GetKeyState(hotkeyMainAttack, "P")
+        MainPressed := MainAttackPressedActive
       If QSonSecondaryAttack
-        SecondaryPressed := GetKeyState(hotkeySecondaryAttack, "P")
+        SecondaryPressed := SecondaryAttackPressedActive
       If (TriggerQuicksilverDelay > 0)
       {
         delay := TriggerQuicksilverDelay * 1000
@@ -7336,25 +7350,25 @@ Return
         
         If QSonMainAttack
         {
-          If (!LastHeldMA && MainPressed)
+          If (!LastHeldMA && MainAttackPressedActive)
             LastHeldMA := A_TickCount
-          Else If (LastHeldMA && !MainPressed)
+          Else If (LastHeldMA && !MainAttackPressedActive)
             LastHeldMA := False
-          If (MainPressed && A_TickCount - LastHeldMA < delay )
+          If (MainAttackPressedActive && A_TickCount - LastHeldMA < delay )
             Return
         }
 
         If QSonSecondaryAttack
         {
-          If (!LastHeldSA && SecondaryPressed)
+          If (!LastHeldSA && SecondaryAttackPressedActive)
             LastHeldSA := A_TickCount
-          Else If (LastHeldMA && !SecondaryPressed)
+          Else If (LastHeldSA && !SecondaryAttackPressedActive)
             LastHeldSA := False
-          If (SecondaryPressed && A_TickCount - LastHeldSA < delay )
+          If (SecondaryAttackPressedActive && A_TickCount - LastHeldSA < delay )
             Return
         }
       }
-      if (LButtonPressed || (MainPressed && QSonMainAttack) || (SecondaryPressed && QSonSecondaryAttack) ) 
+      if (LButtonPressed || (MainAttackPressedActive && QSonMainAttack) || (SecondaryAttackPressedActive && QSonSecondaryAttack) ) 
       {
         QFL := FlaskListQS.RemoveAt(1)
         If (!QFL)
@@ -7366,7 +7380,7 @@ Return
           controlsend, , %key%, %GameStr%
         settimer, TimerFlask%QFL%, % CooldownFlask%QFL%
         OnCooldown[QFL] := 1
-        LastHeldLB := LastHeldMA := LastHeldSA := 0
+        ; LastHeldLB := LastHeldMA := LastHeldSA := 0
         ; SendMSG(3, QFL)
         Loop, 10
           If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver)
