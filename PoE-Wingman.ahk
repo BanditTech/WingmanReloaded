@@ -304,7 +304,13 @@
       YesStashCraftingRare = Enable to stash Rare crafting bases
       YesStashCraftingIlvl = Enable to only stash above selected ilvl
       YesStashCraftingIlvlMin = Set minimum ilvl
-      YesSkipMaps = Select the column which you will begin skipping rolled maps`rThis includes magic, rare or unique maps >= the selected column
+      YesSkipMaps = Select the column which you will begin skipping rolled maps`rDisable by setting to 0
+      YesSkipMaps_eval = Choose either Greater than or Less than the selected column
+      YesSkipMaps_normal = Skip normal quality maps within the column range
+      YesSkipMaps_magic = Skip magic quality maps within the column range
+      YesSkipMaps_rare = Skip rare quality maps within the column range
+      YesSkipMaps_unique = Skip unique quality maps within the column range
+      YesSkipMaps_tier = Skip maps at or above this Map Tier
       UpdateDatabaseInterval = How many days between database updates?
       selectedLeague = Which league are you playing on?
       UpdateLeaguesBtn = Use this button when there is a new league
@@ -671,6 +677,12 @@
     Global YesStashCraftingIlvlMin := 76
   ; Skip Maps after column #
     Global YesSkipMaps := 0
+    Global YesSkipMaps_eval := ">="
+    Global YesSkipMaps_normal := 0
+    Global YesSkipMaps_magic := 1
+    Global YesSkipMaps_rare := 1
+    Global YesSkipMaps_unique := 1
+    Global YesSkipMaps_tier := 2
   ; Controller
     Global YesController := 1
     global checkvar:=0
@@ -2648,7 +2660,13 @@ Return
             Continue
           Else If (sendstash:=MatchLootFilter())
             Sleep, -1
-          Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
+          Else If ( Prop.IsMap && YesSkipMaps
+          && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
+          && ((Prop.RarityNormal && YesSkipMaps_normal) 
+            || (Prop.RarityMagic && YesSkipMaps_magic) 
+            || (Prop.RarityRare && YesSkipMaps_rare) 
+            || (Prop.RarityUnique && YesSkipMaps_unique)) 
+          && (Prop.MapTier >= YesSkipMaps_tier))
             Continue
           Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
             sendstash := StashTabCurrency
@@ -8521,6 +8539,12 @@ Return
       IniRead, YesStashCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl, 0
       IniRead, YesStashCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin, 76
       IniRead, YesSkipMaps, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps, 11
+      IniRead, YesSkipMaps_eval, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval, >=
+      IniRead, YesSkipMaps_normal, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal, 0
+      IniRead, YesSkipMaps_magic, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic, 1
+      IniRead, YesSkipMaps_rare, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare, 1
+      IniRead, YesSkipMaps_unique, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique, 1
+      IniRead, YesSkipMaps_tier, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier, 2
       IniRead, YesAutoSkillUp, %A_ScriptDir%\save\Settings.ini, General, YesAutoSkillUp, 0
       IniRead, YesWaitAutoSkillUp, %A_ScriptDir%\save\Settings.ini, General, YesWaitAutoSkillUp, 0
       IniRead, YesClickPortal, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal, 0
@@ -9520,6 +9544,12 @@ Return
       IniWrite, %YesStashCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl
       IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
       IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
+      IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
+      IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
+      IniWrite, %YesSkipMaps_magic%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic
+      IniWrite, %YesSkipMaps_rare%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare
+      IniWrite, %YesSkipMaps_unique%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique
+      IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
       IniWrite, %YesAutoSkillUp%, %A_ScriptDir%\save\Settings.ini, General, YesAutoSkillUp
       IniWrite, %YesWaitAutoSkillUp%, %A_ScriptDir%\save\Settings.ini, General, YesWaitAutoSkillUp
       IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
@@ -12950,6 +12980,12 @@ Return
       IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
       IniWrite, %YesPredictivePrice%, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice
       IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
+      IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
+      IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
+      IniWrite, %YesSkipMaps_magic%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic
+      IniWrite, %YesSkipMaps_rare%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare
+      IniWrite, %YesSkipMaps_unique%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique
+      IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid

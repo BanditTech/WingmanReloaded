@@ -1,3 +1,15 @@
+## Version .11.0306 - Alpha Branch - April/12/2020
+
+Map Tab has been given a section in Stash Tabs
+* Stash Blightedmaps? has been moved here
+* Skipping maps has been given full options
+  * Chose the direction of columns
+  * Chose the column to begin determining to skip
+  * Chose any rarity to skip
+  * Chose the Map Tier to begin skipping
+
+---
+
 ## Version .11.0305 - Alpha Branch - April/11/2020
 Map Crafting Settings
 * Include new Undesirable Mod - X% Maximum Player Resistances
