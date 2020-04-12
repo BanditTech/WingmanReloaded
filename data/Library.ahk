@@ -218,7 +218,7 @@
 
         Gui, Inventory: Tab, Options
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,       Section    w170 h160    xm   ym+25,         ID/Vend/Stash Options
+          Gui, Inventory: Add, GroupBox,       Section    w170 h145    xm   ym+25,         ID/Vend/Stash Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify          Checked%YesIdentify%    xs+5  ys+18   , Identify Items?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash             Checked%YesStash%         y+8    , Deposit at stash?
@@ -318,201 +318,201 @@
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesFillMetamorph Checked%YesFillMetamorph%       xs+5 ys+18      , Auto fill metamorph?
           Gui, Inventory: Add, Button, gWR_Update  vWR_Btn_FillMetamorph_Menu y+8  w170 center    , Adjust Metamorph Panel
-        ; Gui, Inventory: show , w600 h500, Inventory Settings
+
         Gui, Inventory: Tab, Stash Tabs
           Gui, Inventory: Font, Bold
           Gui, Inventory: Add, Text,       Section              x12   ym+25,         Stash Tab Management
           Gui, Inventory: Font,
 
+          ; Keeping Specific Tab first
 
+          ; Currency
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 ys+18 , Currency
+          Gui, Inventory: Add, GroupBox, w110 h50 xs ys+18 , Currency
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabCurrency%
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCurrency x+0 yp hp , %StashTabCurrency%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 yp, Enable
-
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCurrency yp hp , %StashTabCurrency%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 yp+4, Enable
+          ; Map
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Organ
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Map
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17, %StashTabOrgan%
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOrgan x+0 yp hp , %StashTabOrgan%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan%  x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Oil
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17,  %StashTabOil%
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOil x+0 yp hp ,  %StashTabOil%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Map
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17,  %StashTabMap%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabMap x+0 yp hp ,  %StashTabMap%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% x+5 yp, Enable
-
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% x+5 yp+4, Enable
+          
+          ; Divination
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Fragment
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Divination
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17,  %StashTabFragment%
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabFragment x+0 yp hp ,  %StashTabFragment%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Divination
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 ,  %StashTabDivination%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDivination x+0 yp hp ,  %StashTabDivination%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% x+5 yp, Enable
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% x+5 yp+4, Enable
 
+          ; Fragments
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Collection
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Fragment
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 ,  %StashTabCollection%
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCollection x+0 yp hp ,  %StashTabCollection%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% x+5 yp, Enable
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabFragment x+0 yp hp ,  %StashTabFragment%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% x+5 yp+4, Enable
 
+          ; Essence
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Essence
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Essence
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 ,  %StashTabEssence%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabEssence x+0 yp hp ,  %StashTabEssence%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% x+5 yp, Enable
-
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% x+5 yp+4, Enable
+          
+          ; Collection
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Prophecy
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Collection
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 ,  %StashTabProphecy%
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabProphecy x+0 yp hp ,  %StashTabProphecy%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% x+5 yp, Enable
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCollection x+0 yp hp ,  %StashTabCollection%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% x+5 yp+4, Enable
 
+          ; Fossil
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Veiled
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Fossil
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 ,  %StashTabVeiled%
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabVeiled x+0 yp hp ,  %StashTabVeiled%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs-5 yp+20 , Cluster Jewel
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 ,  %StashTabClusterJewel%
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp, Enable
-
-          ; Second column
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, center Section w110 h36 x+15 ys+18 , Quality Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabGemQuality%
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemQuality , %StashTabGemQuality%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Vaal Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabGemVaal%
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Support Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabGemSupport%
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemSupport , %StashTabGemSupport%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabGem%
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGem , %StashTabGem%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Quality Flask
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabFlaskQuality%
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Linked
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabLinked%
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Unique Dump
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabUniqueDump%
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueDump , %StashTabUniqueDump%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Unique Ring
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabUniqueRing%
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueRing , %StashTabUniqueRing%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% x+5 yp, Enable
-
-          Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Fossil
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabFossil%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFossil , %StashTabFossil%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% x+5 yp, Enable
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% x+5 yp+4, Enable
 
+          ; Resonator
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Resonator
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Resonator
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabResonator%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabResonator , %StashTabResonator%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% x+5 yp, Enable
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% x+5 yp+4, Enable
           
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Catalyst
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Prophecy
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 ,  %StashTabCatalyst%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabProphecy x+0 yp hp ,  %StashTabProphecy%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Veiled
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabVeiled x+0 yp hp ,  %StashTabVeiled%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% x+5 yp+4, Enable
+
+          ; Second column Gui
+          
+          ; Organ
+          
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , Organ
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOrgan x+0 yp hp , %StashTabOrgan%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan%  x+5 yp+4, Enable
+
+          ; Oil
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Oil
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOil x+0 yp hp ,  %StashTabOil%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% x+5 yp+4, Enable
+          Gui, Inventory: Font, Bold s7 cBlack
+
+          ;Catalyst
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Catalyst
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCatalyst x+0 yp hp ,  %StashTabCatalyst%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCatalyst Checked%StashTabYesCatalyst% x+5 yp, Enable
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCatalyst Checked%StashTabYesCatalyst% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Gem
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemQuality , %StashTabGemQuality%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemSupport , %StashTabGemSupport%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Gem
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGem , %StashTabGem%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Cluster Jewel
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s7 cBlack
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Linked
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
 
           ; Third Column
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center Section w110 h36 x+15 ys , Dump
+          Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys , Dump
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 ,  %StashTabDump%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDump x+0 yp hp ,  %StashTabDump%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% x+5 yp, Enable
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% x+5 yp+4, Enable
+
 
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Priced Rares
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Priced Rares
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabPredictive%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabPredictive , %StashTabPredictive%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp, Enable
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp+4, Enable
 
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Ninja Priced
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Ninja Priced
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabNinjaPrice%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabNinjaPrice , %StashTabNinjaPrice%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp, Enable
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp+4, Enable
 
           Gui, Inventory: Font, Bold s7 cBlack
-          Gui, Inventory: Add, GroupBox, Center w110 h36 xs yp+20 , Crafting
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Crafting
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, Center w45 xp+3 yp+17 , %StashTabCrafting%
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabCrafting , %StashTabCrafting%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp, Enable
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
 
           ; Crafting Bases
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,             w180 h80    section    x+15   ys,         Crafting Tab:
+          Gui, Inventory: Add, GroupBox,             w180 h80    section    x+15   ys,         Crafting Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
@@ -526,31 +526,30 @@
           Gui, Inventory: Add, Edit, gUpdateExtra  vYesStashCraftingIlvlMin      x+5  yp-3  w40 center  hp+5, %YesStashCraftingIlvlMin%
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+15,         Dump Tab:
+          Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+15,         Dump Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Priced Rares Tab:
+          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Priced Rares Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
           Gui, Inventory: Font, s10
           Gui, Inventory: Add, Edit, gUpdateStash  vStashTabYesPredictive_Price x+13 yp-6 w40 hp+8 center, % StashTabYesPredictive_Price
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Ninja Priced Tab:
+          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Ninja Priced Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
           Gui, Inventory: Font, s10
           Gui, Inventory: Add, Edit, gUpdateStash  vStashTabYesNinjaPrice_Price x+13 yp-6 w40 hp+8 center, % StashTabYesNinjaPrice_Price
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,             w180 h135    section    xs   y+15,         Map Tab:
+          Gui, Inventory: Add, GroupBox,             w180 h135    section    xs   y+15,         Map Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap% xs+5 ys+18 , Stash BlightedMaps?
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox, w176 xs+2 y+2 h100 , Skip Specific maps
           Gui, Inventory: Font,
           Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
           GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
@@ -561,9 +560,9 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_magic Checked%YesSkipMaps_magic%     x+0 yp   , Skip Magic?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_rare Checked%YesSkipMaps_rare%   xs+5 y+8        , Skip Rare?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_unique Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
-          Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps at or above Tier
-          Gui, Inventory: Add, Text, x+5 yp w30 center , %YesSkipMaps_tier%
-          Gui, Inventory: Add, UpDown, center x+0 yp hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
+          Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
+          Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
+          Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
 
         Gui, Inventory: Tab, Stash Hotkeys
 
