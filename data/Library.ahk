@@ -216,19 +216,22 @@
     Return
     AddCustomCraftingBase:
       Gui, Submit, nohide
-      craftingBasesT1.Push(CustomCraftingBase)
+      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      If (CustomCraftingBase = "")
+        Return
+      craftingBasesT%RxMatch1%.Push(CustomCraftingBase)
       textList := ""
-      For k, v in craftingBasesT1
+      For k, v in craftingBasesT%RxMatch1%
             textList .= (!textList ? "" : ", ") v
-      GuiControl,, ActiveCraftTier1, %textList%
+      GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
     Return
     RemoveCustomCraftingBase:
       Gui, Submit, nohide
-      craftingBasesT1.Delete(CustomCraftingBase)
+      craftingBasesT%RxMatch1%.Delete(CustomCraftingBase)
       textList := ""
-      For k, v in craftingBasesT1
+      For k, v in craftingBasesT%RxMatch1%
             textList .= (!textList ? "" : ", ") v
-      GuiControl,, ActiveCraftTier1, %textList%
+      GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
     Return
   ; WR_Menu - New menu handling method
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
