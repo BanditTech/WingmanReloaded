@@ -219,7 +219,10 @@
       RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
       If (CustomCraftingBase = "")
         Return
-      craftingBasesT%RxMatch1%.Push(CustomCraftingBase)
+      If !IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%)
+        craftingBasesT%RxMatch1%.Push(CustomCraftingBase)
+      Else
+        Return
       textList := ""
       For k, v in craftingBasesT%RxMatch1%
             textList .= (!textList ? "" : ", ") v
