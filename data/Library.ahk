@@ -184,10 +184,22 @@
     Return
     CustomCrafting:
       Global CustomCraftingBase
-      textList := ""
+      textList1 := ""
       For k, v in craftingBasesT1
-        textList .= (!textList ? "" : ", ") v
+        textList1 .= (!textList1 ? "" : ", ") v
+      baseList := ""
       textList2 := ""
+      For k, v in craftingBasesT2
+        textList2 .= (!textList2 ? "" : ", ") v
+      baseList := ""
+      textList3 := ""
+      For k, v in craftingBasesT3
+        textList3 .= (!textList3 ? "" : ", ") v
+      baseList := ""
+      textList4 := ""
+      For k, v in craftingBasesT4
+        textList4 .= (!textList4 ? "" : ", ") v
+      baseList := ""
       For k, v in Bases
       {
         If ( !IndexOf("talisman",v["tags"]) 
@@ -197,7 +209,7 @@
           || IndexOf("armour",v["tags"]) 
           || IndexOf("weapon",v["tags"]) ) )
         {
-          textList2 .= v["name"]"|"
+          baseList .= v["name"]"|"
         }
       }
       Gui, 1: Submit
@@ -205,12 +217,24 @@
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
       Gui, CustomCrafting: Add, Button, default gupdateEverything    x175 y180  w150 h23,   Save Configuration
       Gui, CustomCrafting: Add, Button,      gLaunchSite     x+5           h23,   Website
-      Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w350, %textList2%
+      Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w350, %baseList%
       Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w400 h205 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
       Gui, CustomCrafting: Tab, Tier 1
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w350 r6 , %textList%
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w350 r6 , %textList1%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT1 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT1 Base
+      Gui, CustomCrafting: Tab, Tier 2
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier2 ReadOnly y+38 w350 r6 , %textList2%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT2 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT2 Base
+      Gui, CustomCrafting: Tab, Tier 3
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier3 ReadOnly y+38 w350 r6 , %textList3%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT3 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT3 Base
+      Gui, CustomCrafting: Tab, Tier 4
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier4 ReadOnly y+38 w350 r6 , %textList4%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT4 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT4 Base
       Gui, CustomCrafting: Show, , Edit Crafting Tiers
     Return
     AddCustomCraftingBase:
