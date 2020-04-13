@@ -511,6 +511,20 @@
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabCrafting , %StashTabCrafting%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
 
+          Gui, Inventory: Font, Bold s8 cBlack, Arial
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Ring
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueRing , %StashTabUniqueRing%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s8 cBlack, Arial
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Dump
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueDump , %StashTabUniqueDump%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp+4, Enable
+
           ; Crafting Bases
           Gui, Inventory: Font, Bold s9 cBlack, Arial
           Gui, Inventory: Add, GroupBox,             w180 h85    section    x+15   ys,         Crafting Tab
