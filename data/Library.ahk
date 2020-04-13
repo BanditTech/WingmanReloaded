@@ -205,14 +205,13 @@
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
       Gui, CustomCrafting: Add, Button, default gupdateEverything    x175 y180  w150 h23,   Save Configuration
       Gui, CustomCrafting: Add, Button,      gLaunchSite     x+5           h23,   Website
-      Gui, CustomCrafting: Add, ComboBox, vCustomCraftingBase xm+5 ym+28 w350, %textList2%
+      Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w350, %textList2%
       Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w400 h205 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
       Gui, CustomCrafting: Tab, Tier 1
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w350 r6 , %textList%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT1 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT1 Base
       Gui, CustomCrafting: Show, , Edit Crafting Tiers
-      ; Hotkeys()
     Return
     AddCustomCraftingBase:
       Gui, Submit, nohide
