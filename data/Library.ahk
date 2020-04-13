@@ -675,12 +675,19 @@
           Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
             Gui, Inventory: Font, 
             Gui, Inventory: Font,s8
-            Gui, Inventory: Add, Text,         x380 y74        , Item Quantity
-            Gui, Inventory: Add, Text,         x380 y104       , Item Rarity
-            Gui, Inventory: Add, Text,         x380 y134       , Monster Pack Size
-            Gui, Inventory: Add, DropDownList, x335 y70    w40    vMMapItemQuantity  Choose%MMapItemQuantity%,  %MapSetValue%
-            Gui, Inventory: Add, DropDownList, x335 y100   w40    vMMapItemRarity  Choose%MMapItemRarity%,  %MapSetValue%
-            Gui, Inventory: Add, DropDownList,  x335 y130  w40    vMMapMonsterPackSize  Choose%MMapMonsterPackSize%,  %MapSetValue%
+
+            Gui, Inventory: Add, Edit, number limit3 xs+15 yp+18 w40
+            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+            Gui, Inventory: Add, Text,         x+10 yp+3        , Item Quantity
+
+            Gui, Inventory: Add, Edit, number limit3 xs+15 y+15 w40
+            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
+            Gui, Inventory: Add, Text,         x+10 yp+3        , Item Rarity
+
+            Gui, Inventory: Add, Edit, number limit3 xs+15 y+15 w40
+            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
+            Gui, Inventory: Add, Text,         x+10 yp+3        , Monster Pack Size
+
             Gui, Inventory: Font, Bold s9 cBlack, Arial
           Gui, Inventory: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
           Gui, Inventory: Font,
