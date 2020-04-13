@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.03
+  Global VersionNumber := .11.04
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -148,6 +148,13 @@
       , "Two-Stone Ring"
       , "Glorious Plate"
       , "Zodiac Leather"]
+    ;Crafting Jewel
+    Global craftingBasesJewel := ["Cobalt Jewel"
+      , "Viridian Jewel"
+      , "Crimson Jewel"
+      , "Searching Eye Jewel"
+      , "Murderous Eye Jewel"
+      , "Ghastly Eye Jewel"]
     ; Create a container for the sub-script
     ; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
@@ -250,6 +257,10 @@
       GrabCurrencyPosY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
       StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
+      YesEnableAutomation = Enable Automation Routines
+      FirstAutomationSetting = Start Automation selected option
+      YesEnableNextAutomation = Enable next automation after the first selected
+      YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
       YesAutoSkillUp = Enable this to Automatically level up skill gems
       YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
       DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
@@ -284,15 +295,22 @@
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
       YesStashBlightedMap = This option enable auto-stash for blighted maps in your map stash`rPOE Map Stash don't highlight Blighted Maps yet!
       YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
-      YesStashT1 = Enable to stash T1 crafting bases
-      YesStashT2 = Enable to stash T2 crafting bases
-      YesStashT3 = Enable to stash T3 crafting bases
+      YesStashT1 = Enable to stash Tier 1 crafting bases
+      YesStashT2 = Enable to stash Tier 2 crafting bases
+      YesStashT3 = Enable to stash Tier 3 crafting bases
+      YesStashT4 = Enable to stash Abyss Jewel and Jewel as crafting bases
       YesStashCraftingNormal = Enable to stash Normal crafting bases
       YesStashCraftingMagic = Enable to stash Magic crafting bases
       YesStashCraftingRare = Enable to stash Rare crafting bases
       YesStashCraftingIlvl = Enable to only stash above selected ilvl
       YesStashCraftingIlvlMin = Set minimum ilvl
-      YesSkipMaps = Select the column which you will begin skipping rolled maps`rThis includes magic, rare or unique maps >= the selected column
+      YesSkipMaps = Select the inventory column which you will begin skipping rolled maps`rDisable by setting to 0
+      YesSkipMaps_eval = Choose either Greater than or Less than the selected column`rYou can start skipping maps store on the right or left from the inventory column selected
+      YesSkipMaps_normal = Skip normal quality maps within the column range
+      YesSkipMaps_magic = Skip magic quality maps within the column range
+      YesSkipMaps_rare = Skip rare quality maps within the column range
+      YesSkipMaps_unique = Skip unique quality maps within the column range
+      YesSkipMaps_tier = Skip maps at or above this Map Tier
       UpdateDatabaseInterval = How many days between database updates?
       selectedLeague = Which league are you playing on?
       UpdateLeaguesBtn = Use this button when there is a new league
@@ -319,6 +337,11 @@
       StashTabYesProphecy = Enable to send Prophecy items to the assigned tab on the left
       StashTabVeiled = Assign the Stash tab for Veiled items
       StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
+      StashTabCatalyst = Assign the Stash tab for Catalyst items
+      StashTabYesCatalyst = Enable to send Catalyst items to the assigned tab on the left
+      StashTabNinjaPrice = Assign the Stash tab for Ninja Priced items
+      StashTabYesNinjaPrice = Enable to send Ninja Priced items to the assigned tab on the left`rChaos Value must be at or above threshold 
+      StashTabYesNinjaPrice_Price = Assign the minimum value in chaos to send to Ninja Priced Tab
       StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
       StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
       StashTabYesPredictive_Price = Set the minimum value to consider worth stashing
@@ -334,6 +357,8 @@
       StashTabYesOrgan = Enable to send Organ Part items to the assigned tab on the left
       StashTabGem = Assign the Stash tab for Normal Gem items
       StashTabYesGem = Enable to send Normal Gem items to the assigned tab on the left
+      StashTabGemVaal = Assign the Stash tab for Vaal Gem items
+      StashTabYesGemVaal = Enable to send Vaal Gem items to the assigned tab on the left`rIf Quality Gems are enabled, that will take priority
       StashTabGemQuality = Assign the Stash tab for Quality Gem items
       StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
       StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
@@ -365,6 +390,7 @@
       NoRegen = Select this if your build can't run maps with this mod
       AvoidAilments = Select this if your build can't run maps with this mod
       AvoidPBB = Select this if your build can't run maps with this mod
+      MinusMPR = Select this if your build can't run maps with this mod
       YesNinjaDatabase = Enable to Update Ninja Database and load at start
       YesUtility1InverseBuff = Fire instead only when buff icon is present
       YesUtility2InverseBuff = Fire instead only when buff icon is present
@@ -379,7 +405,29 @@
       WR_Btn_IgnoreSlot = Assign the ignored slots in your inventory`rThe script will not touch items in these locations
       WR_Reset_Globe = Loads unmodified default values and reloads UI
       WR_Save_JSON_Globe = Save changes to disk`rThese changes will load on script launch
+      stashPrefix1 = Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
+      stashPrefix2 = Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
+      stashReset = Assign the hotkey to reset the CurrentTab`rThis hotkey will only activate while the Modifier(s) are pressed`rThis hotkey is necessary after moving the tab manually
+      stashSuffix1 = Hotkey for the 1st Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix2 = Hotkey for the 2nd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix3 = Hotkey for the 3rd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix4 = Hotkey for the 4th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix5 = Hotkey for the 5th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix6 = Hotkey for the 6th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix7 = Hotkey for the 7th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix8 = Hotkey for the 8th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffix9 = Hotkey for the 9th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+      stashSuffixTab1 = Assign the Stash Tab for the 1st Stash Hotkey slot
+      stashSuffixTab2 = Assign the Stash Tab for the 2nd Stash Hotkey slot
+      stashSuffixTab3 = Assign the Stash Tab for the 3rd Stash Hotkey slot
+      stashSuffixTab4 = Assign the Stash Tab for the 4th Stash Hotkey slot
+      stashSuffixTab5 = Assign the Stash Tab for the 5th Stash Hotkey slot
+      stashSuffixTab6 = Assign the Stash Tab for the 6th Stash Hotkey slot
+      stashSuffixTab7 = Assign the Stash Tab for the 7th Stash Hotkey slot
+      stashSuffixTab8 = Assign the Stash Tab for the 8th Stash Hotkey slot
+      stashSuffixTab9 = Assign the Stash Tab for the 9th Stash Hotkey slot
       )
+
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2
   ; Globals For client.txt file
     Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
@@ -437,8 +485,9 @@
       , StackRelease_Y2Offset := 15
       , StackRelease_Enable := False
 
-  ; Click Vendor after stash, search for stash
-    Global YesVendorAfterStash, YesVendorBeforeStash, YesSearchForStash
+  ; Automation Settings
+    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableAutoSellConfirmation
+
   ; General
     Global BranchName := "master"
     Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
@@ -563,6 +612,7 @@
     Global StashTabMap := 1
     Global StashTabDivination := 1
     Global StashTabGem := 1
+    Global StashTabGemVaal := 1
     Global StashTabGemQuality := 1
     Global StashTabFlaskQuality := 1
     Global StashTabLinked := 1
@@ -581,12 +631,15 @@
     Global StashTabOrgan := 1
     Global StashTabClusterJewel := 1
     Global StashTabDump := 1
+    Global StashTabCatalyst := 1
     Global StashTabPredictive := 1
+    Global StashTabNinjaPrice := 1
   ; Checkbox to activate each tab
     Global StashTabYesCurrency := 1
     Global StashTabYesMap := 1
     Global StashTabYesDivination := 1
     Global StashTabYesGem := 1
+    Global StashTabYesGemVaal := 1
     Global StashTabYesGemQuality := 1
     Global StashTabYesFlaskQuality := 1
     Global StashTabYesLinked := 1
@@ -607,12 +660,16 @@
     Global StashTabYesDump := 1
     Global StashDumpInTrial := 1
     Global StashDumpSkipJC := 1
+    Global StashTabYesCatalyst := 0
     Global StashTabYesPredictive := 0
     Global StashTabYesPredictive_Price := 5
+    Global StashTabYesNinjaPrice := 0
+    Global StashTabYesNinjaPrice_Price := 5
   ; Crafting bases to stash
     Global YesStashT1 := 1
     Global YesStashT2 := 1
     Global YesStashT3 := 1
+    Global YesStashT4 := 1
     Global YesStashCraftingNormal := 1
     Global YesStashCraftingMagic := 1
     Global YesStashCraftingRare := 1
@@ -620,6 +677,12 @@
     Global YesStashCraftingIlvlMin := 76
   ; Skip Maps after column #
     Global YesSkipMaps := 0
+    Global YesSkipMaps_eval := ">="
+    Global YesSkipMaps_normal := 0
+    Global YesSkipMaps_magic := 1
+    Global YesSkipMaps_rare := 1
+    Global YesSkipMaps_unique := 1
+    Global YesSkipMaps_tier := 2
   ; Controller
     Global YesController := 1
     global checkvar:=0
@@ -842,7 +905,7 @@
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
   
   ; Map Crafting Settings
-    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MinusMPR,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
     
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
@@ -1312,7 +1375,8 @@
     Gui Add, GroupBox,     Section  w227 h66        x292   y30 ,         Auto-Quit settings
     Gui,Font,
     ;Gui Add, Text,                       x292   y30,         Auto-Quit:
-    Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             %QuitBelow%||10|20|30|40|50|60|70|80|90
+    Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             10|20|30|40|50|60|70|80|90
+    GuiControl, ChooseString, QuitBelow, %QuitBelow%
     Gui Add, Text,                     x+5   yp+3,         Quit via:
     Gui, Add, Radio, Group  vRadioCritQuit  Checked%RadioCritQuit%          x+1    y+-13,      D/C
     Gui, Add, Radio,     vRadioPortalQuit Checked%RadioPortalQuit%      x+1  ,        Portal
@@ -1594,19 +1658,19 @@
     Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 
     Gui,Font, Bold s9 cBlack 
-    Gui Add, GroupBox,     Section  w190 h120        xs+240+7   ys ,         Auto-Detonate Mines
+    Gui Add, GroupBox,     Section  w190 h110        xs+240+7   ys ,         Auto-Detonate Mines
     Gui, Font,
     Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
-    Gui Add, Text, xs+5 y+8, Delay after Detonate
+    Gui Add, Text, xs+5 y+4, Delay after Detonate
     Gui Add, Edit,     gUpdateExtra   vDetonateMinesDelay  h18  x+5  yp-2  Number Limit w30        , %DetonateMinesDelay% 
-    Gui Add, GroupBox, xs+5 y+3 w160 h37, Pause Mines
+    Gui Add, GroupBox, xs+5 y+1 w160 h37, Pause Mines
     Gui Add, Text, xp+5 yp+16 , Delay
     Gui Add, Edit,     gUpdateExtra   vPauseMinesDelay  h18  x+5  yp-2  Number Limit w30        , %PauseMinesDelay% 
     Gui Add, Text, x+5 yp+2 , Key
     Gui Add, Edit,     gUpdateExtra   vhotkeyPauseMines  h18  x+5  yp-2  w50        , %hotkeyPauseMines% 
-    Gui Add, GroupBox, xs+5 y+5 w160 h37, Cast on Detonate
-    Gui Add, CheckBox, gUpdateExtra xp+5 yp+16 vCastOnDetonate Checked%CastOnDetonate%, Enable
-    Gui Add, Text, x+5 yp+2 , Key
+    Gui Add, GroupBox, xs+5 y+3 w160 h37, Cast on Detonate
+    Gui Add, CheckBox, gUpdateExtra xp+9 yp+16 vCastOnDetonate Checked%CastOnDetonate%, Enable
+    Gui Add, Text, x+9 yp , Key
     Gui Add, Edit,     gUpdateExtra   vhotkeyCastOnDetonate  h18  x+5  yp-2  w50        , %hotkeyCastOnDetonate% 
     Gui,Font,
 
@@ -1668,19 +1732,24 @@
     Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                       , Show GUI on startup?
     Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%             , Persistant Auto-Toggles?
     Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%                   , Turn off Auto-Update?
-    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90                         , %BranchName%||master|Alpha
+    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90                         , master|Alpha
+    GuiControl, ChooseString, BranchName, %BranchName%
     Gui, Add, Text,       x+8 yp+3                                   , Update Branch
-    Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs  w90                  , %ScriptUpdateTimeType%||Off|days|hours|minutes
+    Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs  w90                  , Off|days|hours|minutes
+    GuiControl, ChooseString, ScriptUpdateTimeType, %ScriptUpdateTimeType%
     Gui Add, Edit, gUpdateExtra  vScriptUpdateTimeInterval  x+5   w40                     , %ScriptUpdateTimeInterval%
     Gui, Add, Text,       x+8 yp+3                                   , Auto-check Update
     Gui Add, DropDownList, gUpdateResolutionScale  vResolutionScale     w90   xs              , Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide
     GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
     Gui, Add, Text,       x+8 y+-18                                   , Aspect Ratio
-    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  %Latency%||1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+    GuiControl, ChooseString, Latency, %Latency%
     Gui, Add, Text,                     x+5 yp+3 hp-3              , Latency
-    Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  %ClickLatency%||-2|-1|0|1|2|3|4
+    Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
+    GuiControl, ChooseString, ClickLatency, %ClickLatency%
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clicks
-    Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  %ClipLatency%||-2|-1|0|1|2|3|4
+    Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
+    GuiControl, ChooseString, ClipLatency, %ClipLatency%
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip
     Gui, Add, Edit,       vClientLog         xs y+10  w144  h21,   %ClientLog%
     Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
@@ -1966,6 +2035,8 @@
     Global DetonateDelveX:=1542
     Global DetonateX:=1658
     Global DetonateY:=901
+    Global VendorAcceptX:=380
+    Global VendorAcceptY:=820
     Global WisdomStockX:=115
     Global PortalStockX:=175
     Global WPStockY:=220
@@ -2205,13 +2276,22 @@ Return
       } 
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
       { 
-        If (YesSearchForStash && YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
+        ; First Automation Entry
+        If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
-          SearchVendor()
-          VendorRoutine()
+          ; This automation use the following Else If (OnVendor && YesVendor) to entry on Vendor Routine
+          If !SearchVendor()
+          {
+            RunningToggle := False
+            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+              SetTimer, TGameTick, On
+            Return
+          }
         }
-        Else If (YesSearchForStash && !YesVendorBeforeStash && (OnTown || OnHideout || OnMines))
+        ; First Automation Entry
+        Else If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
+          ; This automation use the following Else If (OnStash && YesStash) to entry on Stash Routine
           If !SearchStash()
           {
             Send {%hotkeyInventory%}
@@ -2231,6 +2311,7 @@ Return
         }
       }
       Sleep, -1
+      GuiStatus()
       SendMSG(1,1,scriptTradeMacro)
       If (OnDiv && YesDiv)
         DivRoutine()
@@ -2302,19 +2383,13 @@ Return
     tGQ := 0
     SortFlask := {}
     SortGem := {}
-    If (YesVendorBeforeStash){
-      CurrentTab:=0
-      SortFirst := {}
-      Loop 32
-      {
-        SortFirst[A_Index] := {}
-      }
-    }
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
     If !OnVendor
-    Return
+    {
+      Return
+    }
     ; Main loop through inventory
     For C, GridX in InventoryGridX
     {
@@ -2365,86 +2440,6 @@ Return
             ClipItem(Grid.X,Grid.Y)
           }
         }
-        If (YesVendorBeforeStash && !OnStash && RunningToggle) 
-        {
-          If (Prop.SpecialType = "Quest Item")
-            Continue
-          Else If (sendstash:=MatchLootFilter())
-            Sleep, -1
-          Else If (Prop.Incubator)
-            Continue
-          Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
-            Continue
-          Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
-            sendstash := StashTabCurrency
-          Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
-            sendstash := StashTabMap
-          Else If ( StashTabYesFragment 
-            && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
-            || Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
-            sendstash := StashTabFragment
-          Else If (Prop.RarityDivination&&StashTabYesDivination)
-            sendstash := StashTabDivination
-          Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
-            sendstash := StashTabOrgan
-          Else If (Prop.RarityUnique&&Prop.IsOrgan="")
-          {
-            If (StashTabYesUniqueRing&&Prop.Ring)
-            {
-              sendstash := StashTabUniqueRing
-            }
-            Else If (StashTabYesUniqueDump)
-            {
-              sendstash := StashTabUniqueDump
-            }
-            Continue
-          }
-          Else If (Prop.Essence&&StashTabYesEssence)
-            sendstash := StashTabEssence
-          Else If (Prop.Fossil&&StashTabYesFossil)
-            sendstash := StashTabFossil
-          Else If (Prop.Resonator&&StashTabYesResonator)
-            sendstash := StashTabResonator
-          Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-            sendstash := StashTabFlaskQuality
-          Else If (Prop.RarityGem)
-          {
-            If ((Stats.Quality>0)&&StashTabYesGemQuality)
-              sendstash := StashTabGemQuality
-            Else If (Prop.Support && StashTabYesGemSupport)
-              sendstash := StashTabGemSupport
-            Else If (StashTabYesGem)
-              sendstash := StashTabGem
-          }
-          Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
-            sendstash := StashTabLinked
-          Else If (Prop.Prophecy&&StashTabYesProphecy)
-            sendstash := StashTabProphecy
-          Else If (Prop.Oil&&StashTabYesOil)
-            sendstash := StashTabOil
-          Else If (Prop.Veiled&&StashTabYesVeiled)
-            sendstash := StashTabVeiled
-          Else If (Prop.ClusterJewel&&StashTabYesClusterJewel)
-            sendstash := StashTabClusterJewel
-          Else If (StashTabYesCrafting 
-            && ((YesStashT1 && Prop.CraftingBase = "T1") 
-              || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3"))
-            && ((YesStashCraftingNormal && Prop.RarityNormal)
-              || (YesStashCraftingMagic && Prop.RarityMagic)
-              || (YesStashCraftingRare && Prop.RarityRare))
-            && (!YesStashCraftingIlvl 
-              || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
-            sendstash := StashTabCrafting
-          Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
-            sendstash := StashTabPredictive
-          Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
-            sendstash := StashTabDump
-          If (sendstash > 0)
-          {
-            SortFirst[sendstash].Push({"C":C,"R":R})
-          }
-        }
         If (OnVendor&&YesVendor)
         {
           If MatchLootFilter()
@@ -2474,9 +2469,24 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
-          if (YesVendorBeforeStash)
+          ; Only need entry this condition if Search Vendor/Vendor is the first option
+          If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
           {
-            If (Prop.RarityUnique)
+            If ( (Prop.RarityUnique) 
+            && ( (StashTabYesUniqueRing&&Prop.Ring) || StashTabYesCollection || StashTabYesUniqueDump))
+            {
+              Continue
+            }
+            If (StashTabYesCrafting
+            && ((YesStashT1 && Prop.CraftingBase = "T1") 
+              || (YesStashT2 && Prop.CraftingBase = "T2") 
+              || (YesStashT3 && Prop.CraftingBase = "T3")
+              || (YesStashT4 && Prop.CraftingBase = "T4"))
+            && ((YesStashCraftingNormal && Prop.RarityNormal)
+              || (YesStashCraftingMagic && Prop.RarityMagic)
+              || (YesStashCraftingRare && Prop.RarityRare))
+            && (!YesStashCraftingIlvl 
+              || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
             {
               Continue
             }
@@ -2524,35 +2534,44 @@ Return
         }
       }
     }
-    If (OnVendor && RunningToggle && YesVendorBeforeStash)
+    ; Auto Confirm Vendoring Option
+    If (OnVendor && RunningToggle && YesEnableAutomation)
     {
-      RandomSleep(60,90)
-      CtrlClick(378,820)
-      RandomSleep(60,90)
-      SearchStash()
-      If (OnStash && RunningToggle && YesStash)
+      ContinueFlag := False
+      If (YesEnableAutoSellConfirmation)
       {
-          For Tab, Tv in SortFirst
+        RandomSleep(60,90)
+        LeftClick(VendorAcceptX,VendorAcceptY)
+        RandomSleep(60,90)
+        ContinueFlag := True
+      }
+      Else If (FirstAutomationSetting=="Search Vendor")
+      {
+        CheckTime("Seconds",30,"VendorUI",A_Now)
+        While (!CheckTime("Seconds",30,"VendorUI"))
+        {
+          Sleep, 100
+          GuiStatus()
+          If !OnVendor
           {
-            For Item, Iv in Tv
-            {
-              MoveStash(Tab)
-              C := SortFirst[Tab][Item]["C"]
-              R := SortFirst[Tab][Item]["R"]
-              GridX := InventoryGridX[C]
-              GridY := InventoryGridY[R]
-              Grid := RandClick(GridX, GridY)
-              Sleep, 15*Latency
-              CtrlClick(Grid.X,Grid.Y)
-              Sleep, 45*Latency
-            }
+            ContinueFlag := True
+            break
           }
-        If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
-          StockScrolls()
+        }
+      }
+      ; Search Stash and StashRoutine
+      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
+      {
+        Send {%hotkeyCloseAllUI%}
+        RandomSleep(45,90)
+        GuiStatus()
+        SearchStash()
+        StashRoutine()
       }
     }
     Return
   }
+    
   ; StashRoutine - Does stash functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StashRoutine()
@@ -2641,14 +2660,24 @@ Return
             Continue
           Else If (sendstash:=MatchLootFilter())
             Sleep, -1
-          Else If (Prop.Incubator)
-            Continue
-          Else If (Prop.IsMap && (C >= YesSkipMaps && YesSkipMaps) && (Prop.RarityMagic || Prop.RarityRare || Prop.RarityUnique))
+          Else If ( Prop.IsMap && YesSkipMaps
+          && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
+          && ((Prop.RarityNormal && YesSkipMaps_normal) 
+            || (Prop.RarityMagic && YesSkipMaps_magic) 
+            || (Prop.RarityRare && YesSkipMaps_rare) 
+            || (Prop.RarityUnique && YesSkipMaps_unique)) 
+          && (Prop.MapTier >= YesSkipMaps_tier))
             Continue
           Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
             sendstash := StashTabCurrency
+          Else If (StashTabYesNinjaPrice && Prop.ChaosValue >= StashTabYesNinjaPrice_Price )
+            sendstash := StashTabNinjaPrice
+          Else If (Prop.Incubator)
+            Continue
           Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
             sendstash := StashTabMap
+          Else If (StashTabYesCatalyst&&Prop.Catalyst)
+            sendstash := StashTabCatalyst
           Else If ( StashTabYesFragment 
             && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
             || Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
@@ -2699,6 +2728,8 @@ Return
           {
             If ((Stats.Quality>0)&&StashTabYesGemQuality)
               sendstash := StashTabGemQuality
+            Else If (Prop.VaalGem && StashTabYesGemVaal)
+              sendstash := StashTabGemVaal
             Else If (Prop.Support && StashTabYesGemSupport)
               sendstash := StashTabGemSupport
             Else If (StashTabYesGem)
@@ -2717,7 +2748,8 @@ Return
           Else If (StashTabYesCrafting 
             && ((YesStashT1 && Prop.CraftingBase = "T1") 
               || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3"))
+              || (YesStashT3 && Prop.CraftingBase = "T3")
+              || (YesStashT4 && Prop.CraftingBase = "T4"))
             && ((YesStashCraftingNormal && Prop.RarityNormal)
               || (YesStashCraftingMagic && Prop.RarityMagic)
               || (YesStashCraftingRare && Prop.RarityRare))
@@ -2767,8 +2799,12 @@ Return
       }
       If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
         StockScrolls()
-      If (YesVendorAfterStash && !YesVendorBeforeStash && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
+      ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
+      If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
+        Send {%hotkeyCloseAllUI%}
+        RandomSleep(45,90)
+        GuiStatus()
         SearchVendor()
         VendorRoutine()
       }
@@ -2810,8 +2846,6 @@ Return
         Return
     }
     Sleep, 45*Latency
-    SendInput, {%hotkeyCloseAllUI%}
-    Sleep, 45*Latency
     If (Town = "The Sarn Encampment")
     {
       LeftClick(GameX + GameW//6, GameY + GameH//1.5)
@@ -2841,13 +2875,14 @@ Return
           Sleep, 30*Latency
           LeftClick(Sell.1.x,Sell.1.y)
           Sleep, 120*Latency
-          Break
+          Return True
         }
         Sleep, 100
       }
     }
-    Return
+    Return False
   }
+
   ; DivRoutine - Does divination trading function
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DivRoutine()
@@ -3052,6 +3087,7 @@ Return
       Prop.IsWeapon := False
       Prop.IsMap := False
       Prop.IsBlightedMap := False
+      Prop.MapAtlasRegion := 0
       Prop.MapTier := 0
       Prop.Support := False
       Prop.VaalGem := False
@@ -3061,9 +3097,9 @@ Return
       Prop.DoubleCorrupted := False
       Prop.Variant := 0
       Prop.CraftingBase := 0
+      Prop.Catalyst := False
 
     Stats := OrderedArray()
-      Stats.MapTier := 0
       Stats.MapItemQuantity := 0
       Stats.MapItemRarity := 0
       Stats.MapMonsterPackSize := 0
@@ -3133,6 +3169,20 @@ Return
       Affix.PseudoIncreasedColdDamage := 0
       Affix.PseudoIncreasedFireDamage := 0
       Affix.PseudoIncreasedLightningDamage := 0
+      Affix.PhysicalDamageAttackAvg:= 0
+      Affix.PhysicalDamageBowAttackAvg:= 0
+      Affix.FireDamageAttackAvg:= 0
+      Affix.FireDamageSpellAvg:= 0
+      Affix.ColdDamageAttackAvg:= 0
+      Affix.ColdDamageSpellAvg:= 0
+      Affix.LightningDamageAttackAvg:= 0
+      Affix.LightningDamageSpellAvg:= 0
+      Affix.ChaosDamageAttackAvg:= 0
+      Affix.PhysicalDamageAvg:= 0
+      Affix.ChaosDamageAvg:= 0
+      Affix.ColdDamageAvg:= 0
+      Affix.FireDamageAvg:= 0
+      Affix.LightningDamageAvg:= 0
       Affix.AllElementalResistances := 0
       Affix.ColdLightningResistance := 0
       Affix.FireColdResistance := 0
@@ -3248,6 +3298,7 @@ Return
       Affix.ReducedAttributeRequirement := 0
       Affix.MapElementalReflect := 0
       Affix.MapPhysicalReflect := 0
+      Affix.MapMinusMPR := 0
       Affix.MapNoLeech := 0
       Affix.MapNoRegen := 0 
       Affix.MapAvoidAilments := 0
@@ -3305,15 +3356,15 @@ Return
       Prop.SpecialType := "Blighted Map"
       }
       ;Map Stats
-      If RegExMatch(Clip_Contents, "O)Item Quantity: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Item Quantity: " num , RxMatch )
       {
         Stats.MapItemQuantity := RxMatch[1]
       }
-      If RegExMatch(Clip_Contents, "O)Item Rarity: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Item Rarity: " num , RxMatch )
       {
         Stats.MapItemRarity := RxMatch[1]
       }
-      If RegExMatch(Clip_Contents, "O)Monster Pack Size: +" num "%", RxMatch )
+      If RegExMatch(Clip_Contents, "O)Monster Pack Size: " num , RxMatch )
       {
         Stats.MapMonsterPackSize := RxMatch[1]
       }
@@ -3326,6 +3377,11 @@ Return
       If RegExMatch(Clip_Contents, "O)Monsters reflect " num " of Elemental Damage", RxMatch )
       {
         Affix.MapElementalReflect := RxMatch[1]
+      }
+      ;- # Maximum Player Resistances
+      If RegExMatch(Clip_Contents, "O)" num " maximum Player Resistances", RxMatch )
+      {
+        Affix.MapMinusMPR := RxMatch[1]
       }
       ;No Leech
       If InStr(Clip_Contents, "cannot Leech Life")
@@ -3441,6 +3497,14 @@ Return
           StandardBase := PossibleBase[1]
           PossibleBase := StrSplit(PossibleBase[1], " ",,2)
           PrefixMagicBase := PossibleBase[2]
+          If (Prop.IsMap)
+          {
+            If (!Prop.RarityUnique)
+            {
+              Prop.ItemName := StandardBase
+            }
+            Prop.ItemBase := StandardBase
+          }
           For k, v in QuestItems
           {
             If (v["Name"] = A_LoopField)
@@ -3481,6 +3545,7 @@ Return
                 Prop.Amulet := True
               Break
             }
+            
           }
           If Prop.IsBeast
           {
@@ -3695,6 +3760,11 @@ Return
               Continue
             }
           }
+          If InStr(Clip_Contents, "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower-rarity jewellery. The maximum quality is 20%.")
+          {
+            Prop.Catalyst := True
+            Prop.SpecialType := "Catalyst"
+          }
           If InStr(Clip_Contents, "Combine this with four other different samples in Tane's Laboratory.")
           {
             IfInString, A_LoopField, 's Lung
@@ -3734,6 +3804,10 @@ Return
       If InStr(A_LoopField,"Map Tier:")
       {
         Prop.MapTier := StrSplit(A_LoopField, "Map Tier:", " ")[2]
+      }
+      If InStr(A_LoopField,"Atlas Region:")
+      {
+        Prop.MapAtlasRegion := StrSplit(A_LoopField, "Atlas Region:", " ")[2]
       }
       ; Get Requirements
 
@@ -5009,7 +5083,7 @@ Return
     Affix.PseudoIncreasedFireDamage := Affix.IncreasedFireDamage + Affix.IncreasedSpellDamage
     Affix.PseudoIncreasedLightningDamage := Affix.IncreasedLightningDamage + Affix.IncreasedSpellDamage
 
-    Affix.PseudoTotalAddedEleAvgAttack := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
+    Affix.PseudoTotalAddedEleAvgAttack := (Affix.FireDamageAttackAvg?Affix.FireDamageAttackAvg:0) + ( (Affix.ColdDamageAttackAvg) ? (Affix.ColdDamageAttackAvg) : 0 ) + ( (Affix.LightningDamageAttackAvg) ? (Affix.LightningDamageAttackAvg) : 0 )
     Affix.PseudoTotalAddedEleAvgSpell := (Affix.FireDamageSpellAvg?Affix.FireDamageSpellAvg:0) + ( (Affix.ColdDamageSpellAvg) ? (Affix.ColdDamageSpellAvg) : 0 ) + ( (Affix.LightningDamageSpellAvg) ? (Affix.LightningDamageSpellAvg) : 0 ) + ( (Affix.LightningDamageSpellAvg) ? (Affix.LightningDamageSpellAvg) : 0 )
     Affix.PseudoTotalAddedAvgAttack := (Affix.PseudoTotalAddedEleAvgAttack?Affix.PseudoTotalAddedEleAvgAttack:0) + (Affix.PhysicalDamageAttackAvg?Affix.PhysicalDamageAttackAvg:0) + (Affix.PhysicalDamageBowAttackAvg?Affix.PhysicalDamageBowAttackAvg:0) + (Affix.ChaosDamageAttackAvg?Affix.ChaosDamageAttackAvg:0)
     Affix.PseudoTotalAddedStats := Affix.PseudoAddedStrength + Affix.PseudoAddedDexterity + Affix.PseudoAddedIntelligence
@@ -5026,6 +5100,8 @@ Return
       Prop.CraftingBase := "T2"
     Else if indexOf(Prop.ItemBase, craftingBasesT3) 
       Prop.CraftingBase := "T3"
+    Else if indexOf(Prop.ItemBase, craftingBasesJewel) 
+      Prop.CraftingBase := "T4"
     
     If Prop.RarityGem
     {
@@ -5335,14 +5411,14 @@ Return
           }
           Else If (Prop.IsMap)
           {
-            If InStr(Prop.ItemName, Ninja[TKey][index]["name"]) && (Prop.RarityUnique || (!Prop.RarityUnique && Prop.MapTier = Ninja[TKey][index]["mapTier"]))
+            If (InStr(Prop.ItemName, Ninja[TKey][index]["name"]) && Prop.MapTier = Ninja[TKey][index]["mapTier"])
             {
-              Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
-              Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
+            Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
+            Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
               If graph
               {
-                GraphNinjaPrices(TKey,index)
-                DisplayPSA()
+              GraphNinjaPrices(TKey,index)
+              DisplayPSA()
               }
               Return True
             }
@@ -6084,7 +6160,7 @@ Return
     }
     GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
   }
-  ; MoveStash - Input any digit and it will move to that Stash tab, only tested up to 25 tabs
+  ; MoveStash - Input any digit and it will move to that Stash tab
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MoveStash(Tab,CheckStatus:=0)
   {
@@ -6096,22 +6172,23 @@ Return
     {
       Sleep, 60*Latency
       Dif:=(CurrentTab-Tab)
-      If (CurrentTab = 0 || (Abs(Dif) > 20))
+      If (CurrentTab = 0)
       {
-        MouseGetPos MSx, MSy
-        BlockInput, MouseMove
-        Sleep, 90*Latency
-        LeftClick(vX_StashTabMenu, vY_StashTabMenu)
-        MouseMove, vX_StashTabList, (vY_StashTabList + (Tab*vY_StashTabSize)), 0
-        Sleep, 195*Latency
-        send {WheelUp 20}
-        send {Enter}
-        Sleep, 90*Latency
-        LeftClick(vX_StashTabMenu, vY_StashTabMenu)
+        If (OnChat)
+        {
+          Send {Escape}
+          Sleep, 15
+        }
+        Loop, 64
+        {
+          send {Left}
+        }
+        Loop % Tab - 1
+        {
+          send {Right}
+        }
         CurrentTab:=Tab
-        MouseMove, MSx, MSy, 0
-        Sleep, 195*Latency
-        BlockInput, MouseMoveOff
+        Sleep, 210*Latency
       }
       Else
       {
@@ -6120,18 +6197,14 @@ Return
           If (Dif > 0)
           {
             SendInput {Left}
-            Sleep 15*Latency
           }
           Else
           {
             SendInput {Right}
-            Sleep 15*Latency
           }
         }
         CurrentTab:=Tab
-        Sleep, 170*Latency
-        If (Tab = StashTabMap || Tab = StashTabDivination || Tab = StashTabCollection)
-          Sleep, 60*Latency
+        Sleep, 210*Latency
       }
     }
     return
@@ -7280,9 +7353,9 @@ Return
     { ; If all the flasks are off cooldown, then we are ready to fire one
       LButtonPressed := GetKeyState("LButton", "P")
       If QSonMainAttack
-        MainPressed := GetKeyState(hotkeyMainAttack, "P")
+        MainPressed := MainAttackPressedActive
       If QSonSecondaryAttack
-        SecondaryPressed := GetKeyState(hotkeySecondaryAttack, "P")
+        SecondaryPressed := SecondaryAttackPressedActive
       If (TriggerQuicksilverDelay > 0)
       {
         delay := TriggerQuicksilverDelay * 1000
@@ -7295,25 +7368,25 @@ Return
         
         If QSonMainAttack
         {
-          If (!LastHeldMA && MainPressed)
+          If (!LastHeldMA && MainAttackPressedActive)
             LastHeldMA := A_TickCount
-          Else If (LastHeldMA && !MainPressed)
+          Else If (LastHeldMA && !MainAttackPressedActive)
             LastHeldMA := False
-          If (MainPressed && A_TickCount - LastHeldMA < delay )
+          If (MainAttackPressedActive && A_TickCount - LastHeldMA < delay )
             Return
         }
 
         If QSonSecondaryAttack
         {
-          If (!LastHeldSA && SecondaryPressed)
+          If (!LastHeldSA && SecondaryAttackPressedActive)
             LastHeldSA := A_TickCount
-          Else If (LastHeldMA && !SecondaryPressed)
+          Else If (LastHeldSA && !SecondaryAttackPressedActive)
             LastHeldSA := False
-          If (SecondaryPressed && A_TickCount - LastHeldSA < delay )
+          If (SecondaryAttackPressedActive && A_TickCount - LastHeldSA < delay )
             Return
         }
       }
-      if (LButtonPressed || (MainPressed && QSonMainAttack) || (SecondaryPressed && QSonSecondaryAttack) ) 
+      if (LButtonPressed || (MainAttackPressedActive && QSonMainAttack) || (SecondaryAttackPressedActive && QSonSecondaryAttack) ) 
       {
         QFL := FlaskListQS.RemoveAt(1)
         If (!QFL)
@@ -7325,7 +7398,7 @@ Return
           controlsend, , %key%, %GameStr%
         settimer, TimerFlask%QFL%, % CooldownFlask%QFL%
         OnCooldown[QFL] := 1
-        LastHeldLB := LastHeldMA := LastHeldSA := 0
+        ; LastHeldLB := LastHeldMA := LastHeldSA := 0
         ; SendMSG(3, QFL)
         Loop, 10
           If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver)
@@ -7609,7 +7682,7 @@ Return
         ; Begin Crafting Script
         Else
         {
-          If (!OnStash && YesSearchForStash)
+          If (!OnStash && YesEnableAutomation)
           {
             ; If don't find stash, return
             If !SearchStash()
@@ -7800,7 +7873,7 @@ Return
     RightClick(%cname%X, %cname%Y)
     Sleep, 45*Latency
     LeftClick(x,y)
-    Sleep, 45*Latency
+    Sleep, 90*Latency
     ClipItem(x,y)
     return
   }
@@ -7839,7 +7912,7 @@ Return
     {
       return
     }
-    If !(Prop.Identified)
+    If (!Prop.Identified)
     {
       If (Prop.Rarity_Digit > 1 && cname = "Transmutation" && YesMapUnid )
       {
@@ -7869,7 +7942,8 @@ Return
     || (Affix.MapElementalReflect && ElementalReflect) 
     || (Affix.MapPhysicalReflect && PhysicalReflect) 
     || (Affix.MapNoRegen && NoRegen) 
-    || (Affix.MapNoLeech && NoLeech) 
+    || (Affix.MapNoLeech && NoLeech)
+    || (Affix.MapMinusMPR && MinusMPR)
     || (Prop.RarityNormal) 
     || (!MMQIgnore && (Stats.MapItemRarity <= MMapItemRarity 
     || Stats.MapMonsterPackSize <= MMapMonsterPackSize 
@@ -8458,12 +8532,19 @@ Return
       IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
       IniRead, YesStashT2, %A_ScriptDir%\save\Settings.ini, General, YesStashT2, 1
       IniRead, YesStashT3, %A_ScriptDir%\save\Settings.ini, General, YesStashT3, 1
+      IniRead, YesStashT4, %A_ScriptDir%\save\Settings.ini, General, YesStashT4, 1
       IniRead, YesStashCraftingNormal, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal, 1
       IniRead, YesStashCraftingMagic, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic, 1
       IniRead, YesStashCraftingRare, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare, 1
       IniRead, YesStashCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl, 0
       IniRead, YesStashCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin, 76
       IniRead, YesSkipMaps, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps, 11
+      IniRead, YesSkipMaps_eval, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval, >=
+      IniRead, YesSkipMaps_normal, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal, 0
+      IniRead, YesSkipMaps_magic, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic, 1
+      IniRead, YesSkipMaps_rare, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare, 1
+      IniRead, YesSkipMaps_unique, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique, 1
+      IniRead, YesSkipMaps_tier, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier, 2
       IniRead, YesAutoSkillUp, %A_ScriptDir%\save\Settings.ini, General, YesAutoSkillUp, 0
       IniRead, YesWaitAutoSkillUp, %A_ScriptDir%\save\Settings.ini, General, YesWaitAutoSkillUp, 0
       IniRead, YesClickPortal, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal, 0
@@ -8495,16 +8576,17 @@ Return
       IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
       IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
       IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
+      IniRead, MinusMPR, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR, 0
       IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
       IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
       IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
       IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
       
-
-      ;Settings for Auto-Vendor
-      IniRead, YesSearchForStash, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash, 0
-      IniRead, YesVendorAfterStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash, 0
-      IniRead, YesVendorBeforeStash, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash, 0
+      ;Automation Settings
+      IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
+      IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, %A_Space%
+      IniRead, YesEnableNextAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation, 0
+      IniRead, YesEnableAutoSellConfirmation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation, 0
       
       ;Stash Tab Management
       IniRead, StashTabCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency, 1
@@ -8555,6 +8637,13 @@ Return
       IniRead, StashTabPredictive, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive, 1
       IniRead, StashTabYesPredictive, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive, 0
       IniRead, StashTabYesPredictive_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price, 5
+      IniRead, StashTabCatalyst, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst, 1
+      IniRead, StashTabYesCatalyst, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst, 0
+      IniRead, StashTabGemVaal, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal, 1
+      IniRead, StashTabYesGemVaal, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal, 0
+      IniRead, StashTabNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice, 1
+      IniRead, StashTabYesNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice, 0
+      IniRead, StashTabYesNinjaPrice_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price, 5
       
       ;Settings for the Client Log file location
       IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
@@ -9448,12 +9537,19 @@ Return
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
+      IniWrite, %YesStashT4%, %A_ScriptDir%\save\Settings.ini, General, YesStashT4
       IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
       IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
       IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
       IniWrite, %YesStashCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl
       IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
       IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
+      IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
+      IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
+      IniWrite, %YesSkipMaps_magic%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic
+      IniWrite, %YesSkipMaps_rare%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare
+      IniWrite, %YesSkipMaps_unique%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique
+      IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
       IniWrite, %YesAutoSkillUp%, %A_ScriptDir%\save\Settings.ini, General, YesAutoSkillUp
       IniWrite, %YesWaitAutoSkillUp%, %A_ScriptDir%\save\Settings.ini, General, YesWaitAutoSkillUp
       IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
@@ -9663,6 +9759,7 @@ Return
       IniWrite, %NoLeech%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
       IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
       IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
+      IniWrite, %MinusMPR%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR
       IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
       IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
       IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
@@ -9737,7 +9834,14 @@ Return
       IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
       IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
       IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
-      
+      IniWrite, %StashTabCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst
+      IniWrite, %StashTabYesCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst
+      IniWrite, %StashTabGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal
+      IniWrite, %StashTabYesGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal
+      IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
+      IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
+      IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
+
       ;Attack Flasks
       IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerMainAttack
       IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerSecondaryAttack
@@ -11521,7 +11625,13 @@ Return
       {
         UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/version.html, %A_ScriptDir%\temp\version.html
         FileRead, newestVersion, %A_ScriptDir%\temp\version.html
-        
+        If InStr(newestVersion, "404: Not Found")
+        {
+          Log("Error loading version number","404 error")
+          Return
+        }
+        If RegExMatch(newestVersion, "[.0-9]+", matchVersion)
+          newestVersion := matchVersion
         if ( VersionNumber < newestVersion || force) 
         {
           UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
@@ -12382,9 +12492,11 @@ Return
         Gui, Submit
         gui,LootColors: new, LabelLootColors
         gui,LootColors: -MinimizeBox
-        Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  %AreaScale%||0|30|40|50|60|70|80|90|100|200|300|400|500
+        Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  0|30|40|50|60|70|80|90|100|200|300|400|500
+        GuiControl,LootColors: ChooseString, AreaScale, %AreaScale%
         Gui,LootColors: Add, Text,                     x+3 yp+5              , AreaScale of search
-        Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  %LVdelay%||0|15|30|45|60|75|90|105|120|135|150|195|300
+        Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  0|15|30|45|60|75|90|105|120|135|150|195|300
+        GuiControl,LootColors: ChooseString, LVdelay, %LVdelay%
         Gui,LootColors: Add, Text,                     x+3 yp+5              , Delay after click
         gui,LootColors: add, CheckBox, gUpdateExtra vYesLootChests Checked%YesLootChests% Right xm h22, Open Containers?
         Gui,LootColors:  +Delimiter?
@@ -12833,6 +12945,13 @@ Return
       IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
       IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
       IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
+      IniWrite, %StashTabCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCatalyst
+      IniWrite, %StashTabYesCatalyst%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCatalyst
+      IniWrite, %StashTabGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal
+      IniWrite, %StashTabYesGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal
+      IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
+      IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
+      IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
     Return
 
     UpdateExtra:
@@ -12853,6 +12972,7 @@ Return
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
+      IniWrite, %YesStashT4%, %A_ScriptDir%\save\Settings.ini, General, YesStashT4
       IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
       IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
       IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
@@ -12860,6 +12980,12 @@ Return
       IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
       IniWrite, %YesPredictivePrice%, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice
       IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
+      IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
+      IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
+      IniWrite, %YesSkipMaps_magic%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic
+      IniWrite, %YesSkipMaps_rare%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare
+      IniWrite, %YesSkipMaps_unique%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique
+      IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
@@ -12877,9 +13003,14 @@ Return
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
       IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
-      IniWrite, %YesSearchForStash%, %A_ScriptDir%\save\Settings.ini, General, YesSearchForStash
-      IniWrite, %YesVendorAfterStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorAfterStash
-      IniWrite, %YesVendorBeforeStash%, %A_ScriptDir%\save\Settings.ini, General, YesVendorBeforeStash
+
+      ;Automation Settings
+      IniWrite, %YesEnableAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation
+      IniWrite, %FirstAutomationSetting%, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting
+      IniWrite, %YesEnableNextAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation
+      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+      
+      ;Automation Metamorph Settings
       IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit

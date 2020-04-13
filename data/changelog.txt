@@ -1,6 +1,164 @@
+## Version .11.04 - Master Branch - April/12/2020
+Merging Alpha changes to master branch
+* There is a sizable list of improvements
+* I have shortened to some key notes here
+  * For more verbose information, read full alpha patch notes below
+
+New Features:
+* New Types for Stash Tab Management
+  * Catalyst Tab
+  * Vaal Gem Tab
+  * Ninja Priced Tab
+* Automation has been expanded with Vendor before Stash
+  * Search Vendor, Stash, or Both in either order
+* Growing list of recognized map affixes
+* New Crafting bases tier for Jewels (T4)
+* Full control of what maps to skip in inventory
+* Improvements to the Map Crafting function
+  * Include new Undesirable Mod - X% Maximum Player Resistances
+* CLF can now filter for specific damage averages
+
+Refactored:
+* MoveStash function now only uses keyboard
+* Stash Hotkeys and Stash Tabs can now be assigned 1-64
+  * Press Enter when typing into an edit field to save your input
+* Granular settings for Skipping maps in inventory
+  * control the Inventory Area, Type, and Tier to skip
+* Automation Options are now simplified
+  * Search for a Stash or Vendor first then finish with the other
+  * Option to accept vendor trade (Use with extreme caution)
+* Options in the Inventory Settings have been converted to UpDown controls
+  * These load much faster than DropDownList and are easier to use
+* Inventory Settings Stash Tabs panel has been Re-Organized
+  * First column of stash tabs contain the Purchasable Stash types
+
+Bugfixes:
+* Script update logic has been improved to handle errors
+* Fix for OHB Y2 scaled coordinate of scan (for game on second window)
+* Recognizing the Correct Name for Maps on Ninja Database
+* Fix for items being picked up during Wisdom Scroll action
+* Logic for Quicksilver delay fixed to work as intended
+* Fix for Lightning damage being added to total twice
+
+---
+
+## Version .11.0307 - Alpha Branch - April/12/2020
+GUI Changes
+* Replace UpDown for TextBox + UpDown, allowing inserting number or using selectors
+* Reorder Stash Tab Management, now every unique stash (currency tab, fragment tab, divination tab...) will be on first column
+
+Map Crafting
+* Increased delay when crafting to give clip parser more time to identify affix/stats
+
+---
+
+## Version .11.0306 - Alpha Branch - April/12/2020
+Map Tab has been given a section in Stash Tabs
+* Stash BlightedMaps? has been moved here
+* Skipping maps has been given full options
+  * Chose the direction of columns
+  * Chose the column to begin determining to skip
+  * Chose any rarity to skip
+  * Chose the Map Tier to begin skipping
+
+---
+
+## Version .11.0305 - Alpha Branch - April/11/2020
+Map Crafting Settings
+* Include new Undesirable Mod - X% Maximum Player Resistances
+
+Stash Tabs
+* Include Catalyst Tab
+* Include Vaal Gem Tab
+  * Priority for gem Tabs is: Quality > Vaal > Support > Normal
+* Include Ninja Priced Tab
+  * Set minimum value on the right
+
+Changes to Stash Hotkeys
+* Change Stash Hotkeys DropDownList to UpDown
+  * allows for larger range of tabs 1-64
+* Added tooltips to explain the settings
+
+Adjustment to Quicksilver
+* Delay only applies to the first flask fired
+
+Add Damage Averages to CLF
+* Attack or Spell added damage
+* Local added damage (weapons)
+
+Bugfix for Lightning damage being added to total twice
+
+---
+
+## Version .11.0304 - Alpha Branch - April/10/2020
+Major rework to the Automation Section of the Inventory Settings
+* Automation settings have been simplified, please reconfigure your settings
+  * Search Vendor, Stash, or Both in either order
+  * Press [?] button to get more information on possible configurations
+* The Enable Auto Confirm Vendor must be used with care
+  * Please read all information before enabling it
+  * This option should only be used by those who have fully configured CLF
+
+Stash Tabs Rework
+* Improved Visibility and Selection
+* Changed from DropDownList to UpDown Selector
+* Now supports up to 64 tabs
+
+DropDownList Rework
+* Proper selection of the saved DDL value, no longer uses double pipes ||
+
+Other GUI Changes
+* Minor Upgrade on Crafting Tab and Option Tab
+* Split Metamorph Options from Automation
+
+---
+
+## Version .11.0303 - Alpha Branch - April/08/2020
+Map Parser Improved
+* Prop.MapAtlasRegion is now live, you can use on CLF for filtering map regions (Helpful if you don't have map stash)
+* Prop.ItemBase will work for map bases (Ex: Desert Map, Burial Chambers Map, Tower Map)
+* Ninja DB will work with non unique maps, try pressing Item Info Hotkey and check it out!
+
+Crafting bases
+* New T4 for Crafting Abyss Jewel and Jewel (Mostly for SSF)
+
+Fix for RegExMatch of Map stats
+
+Adjusting delay on MoveStash and WisdomScroll
+* This should help to prevent picking up items
+
+Bugfix for missing Y2 offset for OHB
+* Only affected people with game on secondary monitor
+
+---
+
+## Version .11.0302 - Alpha Branch - April/08/2020  
+Adjustments to Click and Right Click Removed
+* Problems with id/stash/vendor routine and closing inventory.
+
+---
+
+## Version .11.0301 - Alpha Branch - April/08/2020  
+Adjustments to Click and Right Click
+* Separated Down and Up on same line
+
+Refactor MoveStash
+* MoveStash now only uses keyboard
+* This should now allow any number of stash slots
+* Trying out removing the delay between key press
+  * Very fast, need to test accuracy of switching tabs
+
+Add failsafe for update check
+* If 404 error, it sends to log and returns
+* Use RegExMatch to grab only version number
+
+---
+
 ## Version .11.03 - master Branch - April/07/2020  
 Merging Alpha changes to master branch
 * Bugfixes and improvements, read notes for details
+
+---
 
 ## Version .11.0203 - Alpha Branch - April/06/2020  
 * Improved logic for dealing with Unidentified maps
