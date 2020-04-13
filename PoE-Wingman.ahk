@@ -1099,7 +1099,7 @@
        Log("data","pass", "Bases.json")
       FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
       Holder := []
-      Bases := JSON.Load(JSONtext)
+      Global Bases := JSON.Load(JSONtext)
       For k, v in Bases
       {
         temp := {"name":v["name"]
