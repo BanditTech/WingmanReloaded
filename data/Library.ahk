@@ -207,11 +207,12 @@
       Gui, CustomCrafting: Add, Button,      gLaunchSite     x+5           h23,   Website
       Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w400 h205 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
       Gui, CustomCrafting: Tab, Tier 1
-        Gui, CustomCrafting: Add, Edit, vEdit2 ReadOnly y+8 w300 , %textList%
-        Gui, CustomCrafting: Add, DropDownList, vCustomCraftingBase y+8 w300, %textList2%
-        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60, Add Base
-        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60, Remove Base
-      Hotkeys()
+        Gui, CustomCrafting: Add, Text, vActiveCraftTier1 ReadOnly y+8 w350 r6 , %textList%
+        Gui, CustomCrafting: Add, ComboBox, vCustomCraftingBase y+8 w300, %textList2%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT1 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT1 Base
+      Gui, CustomCrafting: Show, , Edit Crafting Tiers
+      ; Hotkeys()
     Return
     AddCustomCraftingBase:
       Gui, Submit, nohide
@@ -219,7 +220,7 @@
       textList := ""
       For k, v in craftingBasesT1
             textList .= (!textList ? "" : ", ") v
-      GuiControl,, Edit2, %textList%
+      GuiControl,, ActiveCraftTier1, %textList%
     Return
     RemoveCustomCraftingBase:
       Gui, Submit, nohide
@@ -227,7 +228,7 @@
       textList := ""
       For k, v in craftingBasesT1
             textList .= (!textList ? "" : ", ") v
-      GuiControl,, Edit2, %textList%
+      GuiControl,, ActiveCraftTier1, %textList%
     Return
   ; WR_Menu - New menu handling method
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -12756,6 +12757,189 @@
     Return Result.RTTime
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+; Function: Create Matching ComboBox GUI
+;--------------------------------------------------------------------------------
+;================================================================================
+  ;#[3.3.2.1 CBMatchingGUI]
+  #IfWinActive, CBMatchingGUI
+  ;================================================================================
+  Enter::
+  NumpadEnter::
+  Tab::setCBMatchingGUILBChoice(CBMatchingGUI) ; pass GUI object reference
+
+  Up::
+  Down::ControlSend,, % A_ThisHotkey = "Up" ? "{Up}" : "{Down}", % "ahk_id "CBMatchingGUI.hLB
+
+  #If WinActive("Add or Edit a Group")
+  Tab::
+    Gui, submit, NoHide
+    ;...context specific stuff
+    KeyWait, Tab
+    GuiControlGet, OutputVarE, 2:Focus
+    GuiControlGet, varname, 2:Focusv
+    If (InStr(varname,"OrFlag") || InStr(varname,"Min") || InStr(varname,"Eval") || InStr(varname,"OrCount") || InStr(varname,"StashTab") || InStr(varname,"Export") || InStr(varname,"groupKey") || InStr(varname,"Click here to Finish and Return to CLF") || InStr(varname,"Remove") || InStr(varname,"Add new"))
+      return
+    OutputVar := StrReplace(OutputVarE, "Edit", "ComboBox")
+    ControlGet, hCBe, hwnd,,%OutputVarE%
+    ControlGet, hCB, hwnd,,%OutputVar%
+    if (!WinExist("ahk_id "hCBMatchesGui) && hCB && hCBe) {
+      CreateCBMatchingGUI(hCB, "Add or Edit a Group")
+    }
+  return
+
+  #If WinActive("Edit Crafting Tiers")
+  Tab::
+    Gui, submit, NoHide
+    ;...context specific stuff
+    KeyWait, Tab
+    GuiControlGet, OutputVarE, CustomCrafting:Focus
+    GuiControlGet, varname, CustomCrafting:Focusv
+    If ( InStr(OutputVarE,"SysTabControl") || InStr(OutputVarE,"Button") || !InStr(varname, "CustomCrafting") )
+      Return
+    OutputVar := StrReplace(OutputVarE, "Edit", "ComboBox")
+    ControlGet, hCBe, hwnd,,%OutputVarE%
+    ControlGet, hCB, hwnd,,%OutputVar%
+    if (!WinExist("ahk_id "hCBMatchesGui) && hCB && hCBe) {
+      CreateCBMatchingGUI(hCB, "Edit Crafting Tiers")
+    }
+  return
+
+  CreateCBMatchingGUI(hCB, parentWindowTitle) {
+  ;--------------------------------------------------------------------------------
+    Global CBMatchingGUI := {}
+    Gui CBMatchingGUI:New, -Caption -SysMenu -Resize +ToolWindow +AlwaysOnTop
+    Gui, +HWNDhCBMatchesGui +Delimiter`n
+    Gui, Margin, 0, 0
+    Gui, Font, s14 q5
+    
+    ; get Parent ComboBox info
+    WinGetPos, cX, cY, cW, cH, % "ahk_id " hCB
+    ControlGet, CBList, List,,, % "ahk_id " hCB
+    ; MsgBox % ErrorLevel
+    ControlGet, CBChoice, Choice,,, % "ahk_id " hCB
+    ; MsgBox % CBList ? "True" : "False"
+    ; set Gui controls with Parent ComboBox info
+    Gui, Add, Edit, % "+HWNDhEdit x0 y0 w"cW+200 " R1"
+    GuiControl,, %hEdit%, %CBChoice%
+    Gui, Add, ListBox, % "+HWNDhLB xp y+0 wp" " R20", % CBList
+    GuiControl, ChooseString, %hLB%, %CBChoice%
+    
+    CBMatchingGUI.hwnd := hCBMatchesGui
+    CBMatchingGUI.hEdit := hEdit
+    CBMatchingGUI.hLB := hLB
+    CBMatchingGUI.hParentCB := hCB
+    CBMatchingGUI.parentCBList := CBList
+    CBMatchingGUI.parentWindowTitle := parentWindowTitle
+    
+    gFunction := Func("CBMatching").Bind(CBMatchingGUI)
+    GuiControl, +g, %hEdit%, %gFunction%
+    
+    Gui, Show, % "x"cX-5 " y"cY-5 " ", % "CBMatchingGUI"
+    ControlFocus,, % "ahk_id "CBMatchingGUI.hEdit
+    SetTimer, DestroyCBMatchingGUI, 80
+  }
+
+  ;--------------------------------------------------------------------------------
+  CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
+  ;--------------------------------------------------------------------------------
+    GuiControlGet, userInput,, % CBMatchingGUI.hEdit
+    userInputArr := StrSplit(RTrim(userInput), " ")
+    choicesList := CBMatchingGUI.parentCBList
+    MatchCount := MatchList := MisMatchList := 0
+    ;--Find in list
+    for k, v in userInputArr
+    {
+      If (InStr(choicesList, v))
+        MatchList := True
+      else
+        MisMatchList := True
+    }
+    if (MatchList && !MisMatchList) {
+
+      Loop, Parse, choicesList, "`n"
+      {
+        MatchString := MisMatchString := 0
+        posArr := {}
+        for k, v in userInputArr
+        {
+          If (FoundPos := InStr(A_LoopField, v))
+          {
+            MatchString := True
+            posArr.Push(FoundPos)
+          }
+          else
+            MisMatchString := True
+        }
+        If (MatchString && !MisMatchString)
+        {
+          For k, v in posArr
+          {
+            If (v = 1 && A_Index = 1)
+              atStart := True
+          }
+          If (atStart)
+            MatchesAtStart .= "`n"A_LoopField
+          else
+            MatchesAnywhere .= "`n"A_LoopField
+          MatchCount++
+        }
+        if (FoundPos := InStr(A_LoopField, userInput)) {
+          if (FoundPos = 1)
+            MatchesAtStart .= "`n"A_LoopField
+          else
+            MatchesAnywhere .= "`n"A_LoopField             
+          MatchCount++
+        } 
+      }
+      Matches := MatchesAtStart . MatchesAnywhere ; Ordered Match list
+      GuiControl,, % CBMatchingGUI.hLB, %Matches%
+      if (MatchCount = 1) {
+        UniqueMatch := Matches
+        GuiControl, ChooseString, % CBMatchingGUI.hLB, %UniqueMatch%
+      } 
+      else
+        GuiControl, Choose, % CBMatchingGUI.hLB, 1
+    } 
+    else
+      GuiControl,, % CBMatchingGUI.hLB, `n<! No Match !>
+  }
+
+  ;--------------------------------------------------------------------------------
+  DestroyCBMatchingGUI() {
+  ;--------------------------------------------------------------------------------
+    Global CBMatchingGUI ; global object created with the CBMatchingGUI
+    
+    if (!WinActive("Ahk_id " CBMatchingGUI.hwnd) and WinExist("ahk_id " CBMatchingGUI.hwnd)) {
+      Gui, % CBMatchingGUI.hwnd ":Destroy"
+      SetTimer, DestroyCBMatchingGUI, Delete
+    }
+  }
+
+  ;--------------------------------------------------------------------------------
+  setCBMatchingGUILBChoice(CBMatchingGUI) {
+  ;--------------------------------------------------------------------------------
+    ; get ListBox choice
+    GuiControlGet, LBMatchesSelectedChoice,, % CBMatchingGUI.hLB 
+        
+    ; set choice in parent ComboBox
+    Control, ChooseString, %LBMatchesSelectedChoice%,,% "ahk_id "CBMatchingGUI.hParentCB
+    ; set focus to Parent ComboBox, this will destroy matching GUI
+    ControlFocus,, % "ahk_id "CBMatchingGUI.hParentCB
+
+    ; execute next Tab_EnregFournisseursClients() step
+    ; parentWinTitle := CBMatchingGUI.parentWindowTitle
+    ; if (InStr(parentWinTitle, WinTitles.EnregFournisseurs)) {
+    ;   ; Tab_EnregFournisseursClients("Fournisseurs")
+    ; } 
+    ; else if (InStr(parentWinTitle, WinTitles.EnregClients)) {
+    ;   ; Tab_EnregFournisseursClients("Clients")
+    ; }
+  }
+;--------------------------------------------------------------------------------
+
+
 
 
 
