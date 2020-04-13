@@ -1,6 +1,5 @@
 ## Version .11.0307 - Alpha Branch - April/12/2020
 
-Map Tab has been given a section in Stash Tabs
 GUI Changes
 * Replace UpDown for TextBox + UpDown, allowing inserting number or using selectors
 * Reorder Stash Tab Management, now every unique stash (currency tab, fragment tab, divination tab...) will be on first column
