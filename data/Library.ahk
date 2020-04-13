@@ -182,6 +182,15 @@
       Else 
         IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
     Return
+    CustomCrafting:
+      Gui, 1: Submit
+      Gui, CustomCrafting: New
+      Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
+      Gui, CustomCrafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+      Gui, CustomCrafting: Add, Button,      gLaunchSite     x+5           h23,   Website
+      Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
+      Hotkeys()
+    Return
 
   ; WR_Menu - New menu handling method
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -527,7 +536,7 @@
 
           ; Crafting Bases
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h85    section    x+15   ys,         Crafting Tab
+          Gui, Inventory: Add, GroupBox,             w180 h110    section    x+15   ys,         Crafting Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
@@ -539,29 +548,30 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
           Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
           Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
+          Gui, Inventory: Add, Button, gCustomCrafting xs+5 y+5  w150,   Custom Crafting List
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+15,         Dump Tab
+          Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Priced Rares Tab
+          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
           Gui, Inventory: Add, Edit, x+5 yp-3 w40
           Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Ninja Priced Tab
+          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Ninja Priced Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
           Gui, Inventory: Add, Edit, x+5 yp-3 w40
           Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h125    section    xs   y+15,         Map Options
+          Gui, Inventory: Add, GroupBox,             w180 h125    section    xs   y+10,         Map Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap% xs+5 ys+18 , Stash BlightedMaps?
           Gui, Inventory: Font,
