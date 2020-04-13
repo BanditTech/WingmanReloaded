@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.0306
+  Global VersionNumber := .11.0307
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -304,8 +304,8 @@
       YesStashCraftingRare = Enable to stash Rare crafting bases
       YesStashCraftingIlvl = Enable to only stash above selected ilvl
       YesStashCraftingIlvlMin = Set minimum ilvl
-      YesSkipMaps = Select the column which you will begin skipping rolled maps`rDisable by setting to 0
-      YesSkipMaps_eval = Choose either Greater than or Less than the selected column
+      YesSkipMaps = Select the inventory column which you will begin skipping rolled maps`rDisable by setting to 0
+      YesSkipMaps_eval = Choose either Greater than or Less than the selected column`rYou can start skipping maps store on the right or left from the inventory column selected
       YesSkipMaps_normal = Skip normal quality maps within the column range
       YesSkipMaps_magic = Skip magic quality maps within the column range
       YesSkipMaps_rare = Skip rare quality maps within the column range
@@ -7873,7 +7873,7 @@ Return
     RightClick(%cname%X, %cname%Y)
     Sleep, 45*Latency
     LeftClick(x,y)
-    Sleep, 45*Latency
+    Sleep, 90*Latency
     ClipItem(x,y)
     return
   }
