@@ -321,7 +321,9 @@
 
         Gui, Inventory: Tab, Stash Tabs
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,       Section    w352 h437    xm   ym+25,Stash Tab Management
+          ;You can test with Stash Tab management as a groupbox, but i dont like it
+          ;Gui, Inventory: Add, GroupBox,       Section    w352 h437    xm   ym+25,Stash Tab Management
+          Gui, Inventory: Add, Text,       Section    xm+5   ym+25,Stash Tab Management
           Gui, Inventory: Font,
 
           ; Keeping Specific Tab first
@@ -521,8 +523,8 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingMagic Checked%YesStashCraftingMagic%   x+0        , Magic?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingRare Checked%YesStashCraftingRare%   x+0        , Rare?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
-          Gui, Inventory: Add, Edit, Number w40  x+2  yp-3  w40
-          Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
+          Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+          Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
           Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+15,         Dump Tab
@@ -533,15 +535,15 @@
           Gui, Inventory: Font, Bold s9 cBlack, Arial
           Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Priced Rares Tab
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash:
-          Gui, Inventory: Add, Edit, x+2 yp-3 w40
+          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+          Gui, Inventory: Add, Edit, x+5 yp-3 w40
           Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
           Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Ninja Priced Tab
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash:
-          Gui, Inventory: Add, Edit, x+2 yp-3 w40
+          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+          Gui, Inventory: Add, Edit, x+5 yp-3 w40
           Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -766,13 +768,13 @@
 
           Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
         Gui, Chat: Tab, Commands
-          Gui, Chat: Font,s9 cBlack Bold Underline
+          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
           Gui, Chat: Add,GroupBox,Section w60 h85                      ,Modifier
           Gui, Chat: Font,
           Gui, Chat: Font,s9,Arial
           Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v1Prefix1, %1Prefix1%
           Gui, Chat: Add, Edit, y+8    w50 h23 v1Prefix2, %1Prefix2%
-          Gui, Chat: Font,s9 cBlack Bold Underline
+          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
           Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
           Gui, Chat: Font,
           Gui, Chat: Font,s9,Arial
@@ -785,7 +787,7 @@
           Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix7, %1Suffix7%
           Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix8, %1Suffix8%
           Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix9, %1Suffix9%
-          Gui, Chat: Font,s9 cBlack Bold Underline
+          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
           Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Commands
           Gui, Chat: Font,
           Gui, Chat: Font,s9,Arial
@@ -812,14 +814,14 @@
           Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix9Text, %textList%
           GuiControl,Chat: ChooseString, 1Suffix9Text, %1Suffix9Text%
         Gui, Chat: Tab, Reply Whisper
-          Gui, Chat: Font,s9 cBlack Bold Underline
+          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
           Gui, Chat: Add,GroupBox,Section  w60 h85                      ,Modifier
           Gui, Chat: Font,
 
           Gui, Chat: Font,s9,Arial
           Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
           Gui, Chat: Add, Edit, y+8    w50 h23 v2Prefix2, %2Prefix2%
-          Gui, Chat: Font,s9 cBlack Bold Underline
+          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
           Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
           Gui, Chat: Font,
           Gui, Chat: Font,s9,Arial
@@ -832,7 +834,7 @@
           Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix7, %2Suffix7%
           Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix8, %2Suffix8%
           Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix9, %2Suffix9%
-          Gui, Chat: Font,s9 cBlack Bold Underline
+          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
           Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Whisper Reply
           Gui, Chat: Font,
           Gui, Chat: Font,s9,Arial
