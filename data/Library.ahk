@@ -512,7 +512,7 @@
 
           ; Crafting Bases
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,             w180 h80    section    x+15   ys,         Crafting Tab
+          Gui, Inventory: Add, GroupBox,             w180 h85    section    x+15   ys,         Crafting Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
@@ -522,8 +522,8 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingMagic Checked%YesStashCraftingMagic%   x+0        , Magic?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingRare Checked%YesStashCraftingRare%   x+0        , Rare?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
-          Gui, Inventory: Font, s10
-          Gui, Inventory: Add, Edit, gUpdateExtra  vYesStashCraftingIlvlMin      x+5  yp-3  w40 center  hp+5, %YesStashCraftingIlvlMin%
+          Gui, Inventory: Add, Edit, Number w40  x+2  yp-3  w40
+          Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
 
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+15,         Dump Tab
@@ -534,19 +534,19 @@
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Priced Rares Tab
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
-          Gui, Inventory: Font, s10
-          Gui, Inventory: Add, Edit, gUpdateStash  vStashTabYesPredictive_Price x+13 yp-6 w40 hp+8 center, % StashTabYesPredictive_Price
+          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash:
+          Gui, Inventory: Add, Edit, x+2 yp-3 w40
+          Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Ninja Priced Tab
           Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
-          Gui, Inventory: Font, s10
-          Gui, Inventory: Add, Edit, gUpdateStash  vStashTabYesNinjaPrice_Price x+13 yp-6 w40 hp+8 center, % StashTabYesNinjaPrice_Price
+          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash:
+          Gui, Inventory: Add, Edit, x+2 yp-3 w40
+          Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack
-          Gui, Inventory: Add, GroupBox,             w180 h135    section    xs   y+15,         Map Options
+          Gui, Inventory: Add, GroupBox,             w180 h125    section    xs   y+15,         Map Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap% xs+5 ys+18 , Stash BlightedMaps?
           Gui, Inventory: Font, Bold s9 cBlack
@@ -623,13 +623,14 @@
           MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
           Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
+          Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
           Gui, Inventory: Font,
           Gui, Inventory: Font,s7,Arial
             Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
             Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
             Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Font,s8
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
@@ -641,7 +642,7 @@
             Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
             Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
             Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Font,s8
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
@@ -653,7 +654,7 @@
             Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
             Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
             Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Font,s8
             Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
             Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
@@ -661,7 +662,7 @@
             Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
             Gui, Inventory: Font,
-            Gui, Inventory: Font,s8,Arial
+            Gui, Inventory: Font,s8
             Gui, Inventory: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
             Gui, Inventory: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
             Gui, Inventory: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
@@ -673,19 +674,17 @@
             Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
             Gui, Inventory: Font, 
-            Gui, Inventory: Font,s9,Arial
+            Gui, Inventory: Font,s8
             Gui, Inventory: Add, Text,         x380 y74        , Item Quantity
             Gui, Inventory: Add, Text,         x380 y104       , Item Rarity
             Gui, Inventory: Add, Text,         x380 y134       , Monster Pack Size
-            Gui, Inventory: Font,
-            Gui, Inventory: Font,s8,Arial
             Gui, Inventory: Add, DropDownList, x335 y70    w40    vMMapItemQuantity  Choose%MMapItemQuantity%,  %MapSetValue%
             Gui, Inventory: Add, DropDownList, x335 y100   w40    vMMapItemRarity  Choose%MMapItemRarity%,  %MapSetValue%
             Gui, Inventory: Add, DropDownList,  x335 y130  w40    vMMapMonsterPackSize  Choose%MMapMonsterPackSize%,  %MapSetValue%
             Gui, Inventory: Font, Bold s9 cBlack
           Gui, Inventory: Add,GroupBox,Section w170 h50 x320 y170, Minimum Settings Options:
           Gui, Inventory: Font,
-            Gui, Inventory: Font,s8,Arial
+            Gui, Inventory: Font,s8
             Gui, Inventory: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
         }
         Gui, Inventory: show , w600 h500, Inventory Settings
