@@ -1104,6 +1104,8 @@
       {
         temp := {"name":v["name"]
           ,"item_class":v["item_class"]
+          ,"domain":v["domain"]
+          ,"tags":v["tags"]
           ,"inventory_width":v["inventory_width"]
           ,"inventory_height":v["inventory_height"]
           ,"drop_level":v["drop_level"]}
@@ -11675,7 +11677,27 @@ Return
       UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
       if ErrorLevel {
         Fail:=true
+      } Else {
+        FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
+        Holder := []
+        Global Bases := JSON.Load(JSONtext)
+        For k, v in Bases
+        {
+          temp := {"name":v["name"]
+            ,"item_class":v["item_class"]
+            ,"domain":v["domain"]
+            ,"tags":v["tags"]
+            ,"inventory_width":v["inventory_width"]
+            ,"inventory_height":v["inventory_height"]
+            ,"drop_level":v["drop_level"]}
+          Holder.Push(temp)
+        }
+        Bases := Holder
+        JSONtext := JSON.Dump(Bases,,2)
+        FileDelete, %A_ScriptDir%\data\Bases.json
+        FileAppend, %JSONtext%, %A_ScriptDir%\data\Bases.json
       }
+
       UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Library.ahk, %A_ScriptDir%\data\Library.ahk
       if ErrorLevel {
         Fail:=true

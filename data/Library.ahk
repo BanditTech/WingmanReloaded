@@ -189,17 +189,28 @@
         textList .= (!textList ? "" : ", ") v
       textList2 := ""
       For k, v in Bases
-        textList2 .= v["name"]"|"
+      {
+        If ( !IndexOf("talisman",v["tags"]) 
+        && ( IndexOf("amulet",v["tags"]) 
+          || IndexOf("ring",v["tags"]) 
+          || IndexOf("belt",v["tags"]) 
+          || IndexOf("armour",v["tags"]) 
+          || IndexOf("weapon",v["tags"]) ) )
+        {
+          textList2 .= v["name"]"|"
+        }
+      }
       Gui, 1: Submit
       Gui, CustomCrafting: New
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
       Gui, CustomCrafting: Add, Button, default gupdateEverything    x175 y180  w150 h23,   Save Configuration
       Gui, CustomCrafting: Add, Button,      gLaunchSite     x+5           h23,   Website
       Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w400 h205 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
-      Gui, CustomCrafting: Add, Edit, vEdit2 ReadOnly y+8 w300 , %textList%
-      Gui, CustomCrafting: Add, DropDownList, vCustomCraftingBase y+8 w300, %textList2%
-      Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60, Add Base
-      Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60, Remove Base
+      Gui, CustomCrafting: Tab, Tier 1
+        Gui, CustomCrafting: Add, Edit, vEdit2 ReadOnly y+8 w300 , %textList%
+        Gui, CustomCrafting: Add, DropDownList, vCustomCraftingBase y+8 w300, %textList2%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60, Add Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60, Remove Base
       Hotkeys()
     Return
     AddCustomCraftingBase:
