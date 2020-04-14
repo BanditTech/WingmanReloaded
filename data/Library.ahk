@@ -290,9 +290,9 @@
     Return
     ResetCustomCraftingBase:
       RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
-      craftingBasesT%RxMatch1% := DefaultcraftingBasesT%RxMatch1%
+      craftingBasesT%RxMatch1% := DefaultcraftingBasesT%RxMatch1%.Clone()
       textList := ""
-      For k, v in DefaultcraftingBasesT%RxMatch1%
+      For k, v in craftingBasesT%RxMatch1%
             textList .= (!textList ? "" : ", ") v
       GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
     Return
