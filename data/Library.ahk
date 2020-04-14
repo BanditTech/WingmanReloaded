@@ -12914,6 +12914,7 @@
     userInputArr := StrSplit(RTrim(userInput), " ")
     choicesList := CBMatchingGUI.parentCBList
     MatchCount := MatchList := MisMatchList := 0
+    matchArr := {}
     ;--Find in list
     for k, v in userInputArr
     {
@@ -12945,13 +12946,17 @@
             If (v = 1 && A_Index = 1)
               atStart := True
           }
-          If (atStart)
-            MatchesAtStart .= "`n"A_LoopField
-          else
-            MatchesAnywhere .= "`n"A_LoopField
-          MatchCount++
+          If !IndexOf(A_LoopField,matchArr)
+          {
+            If (atStart)
+              MatchesAtStart .= "`n"A_LoopField
+            else
+              MatchesAnywhere .= "`n"A_LoopField
+            MatchCount++
+            matchArr.Push(A_LoopField)
+          }
         }
-        if (FoundPos := InStr(A_LoopField, userInput)) {
+        Else if (FoundPos := InStr(A_LoopField, userInput)) {
           if (FoundPos = 1)
             MatchesAtStart .= "`n"A_LoopField
           else
