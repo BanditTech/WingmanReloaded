@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.04
+  Global VersionNumber := .11.0401
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -117,11 +117,11 @@
       , "Fossil"
       , "Beast"]
     ; List crafting T1
-    Global craftingBasesT1 := ["Opal Ring"
+    Global DefaultcraftingBasesT1 := ["Opal Ring"
       , "Steel Ring"
       , "Vermillion Ring"]
     ; List crafting T2
-    Global craftingBasesT2 := ["Blue Pearl Amulet"
+    Global DefaultcraftingBasesT2 := ["Blue Pearl Amulet"
       , "Bone Helmet"
       , "Cerulean Ring"
       , "Convoking Wand"
@@ -135,7 +135,7 @@
       , "Two-Toned Boots"
       , "Vanguard Belt"]
     ; List crafting T3
-    Global craftingBasesT3 := ["Colossal Tower Shield"
+    Global DefaultcraftingBasesT3 := ["Colossal Tower Shield"
       , "Eternal Burgonet"
       , "Hubris Circlet"
       , "Lion Pelt"
@@ -148,13 +148,20 @@
       , "Two-Stone Ring"
       , "Glorious Plate"
       , "Zodiac Leather"]
-    ;Crafting Jewel
-    Global craftingBasesJewel := ["Cobalt Jewel"
+    ; List crafting T4/Jewel
+    Global DefaultcraftingBasesT4 := ["Cobalt Jewel"
       , "Viridian Jewel"
       , "Crimson Jewel"
       , "Searching Eye Jewel"
       , "Murderous Eye Jewel"
-      , "Ghastly Eye Jewel"]
+      , "Ghastly Eye Jewel"
+      , "Large Cluster Jewel"
+      , "Medium Cluster Jewel"
+      , "Small Cluster Jewel"]
+    Global craftingBasesT1 := []
+    Global craftingBasesT2 := []
+    Global craftingBasesT3 := []
+    Global craftingBasesT4 := []
     ; Create a container for the sub-script
     ; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
@@ -1104,6 +1111,8 @@
       {
         temp := {"name":v["name"]
           ,"item_class":v["item_class"]
+          ,"domain":v["domain"]
+          ,"tags":v["tags"]
           ,"inventory_width":v["inventory_width"]
           ,"inventory_height":v["inventory_height"]
           ,"drop_level":v["drop_level"]}
@@ -5100,7 +5109,7 @@ Return
       Prop.CraftingBase := "T2"
     Else if indexOf(Prop.ItemBase, craftingBasesT3) 
       Prop.CraftingBase := "T3"
-    Else if indexOf(Prop.ItemBase, craftingBasesJewel) 
+    Else if indexOf(Prop.ItemBase, craftingBasesT4) 
       Prop.CraftingBase := "T4"
     
     If Prop.RarityGem
@@ -8581,7 +8590,7 @@ Return
       IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
       IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
       IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
-      
+
       ;Automation Settings
       IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
       IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, %A_Space%
@@ -8644,6 +8653,22 @@ Return
       IniRead, StashTabNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice, 1
       IniRead, StashTabYesNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice, 0
       IniRead, StashTabYesNinjaPrice_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price, 5
+      
+      ;Custom Crafting Bases
+      ;loading default list
+      sDefaultcraftingBasesT1 := ArrayToString(DefaultcraftingBasesT1)
+      sDefaultcraftingBasesT2 := ArrayToString(DefaultcraftingBasesT2)
+      sDefaultcraftingBasesT3 := ArrayToString(DefaultcraftingBasesT3)
+      sDefaultcraftingBasesT4 := ArrayToString(DefaultcraftingBasesT4)
+      IniRead, craftingBasesT1, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT1, %sDefaultcraftingBasesT1%
+      IniRead, craftingBasesT2, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT2, %sDefaultcraftingBasesT2%
+      IniRead, craftingBasesT3, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT3, %sDefaultcraftingBasesT3%
+      IniRead, craftingBasesT4, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT4, %sDefaultcraftingBasesT4%
+      ;converting string to array
+      craftingBasesT1 := StringToArray(craftingBasesT1)
+      craftingBasesT2 := StringToArray(craftingBasesT2)
+      craftingBasesT3 := StringToArray(craftingBasesT3)
+      craftingBasesT4 := StringToArray(craftingBasesT4)
       
       ;Settings for the Client Log file location
       IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
@@ -9961,6 +9986,16 @@ Return
       IniWrite, %YesNinjaDatabase%, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase
       IniWrite, %ForceMatch6Link%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link
       IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
+
+      ;Custom Crafting Bases
+      scraftingBasesT1 := ArrayToString(craftingBasesT1)
+      scraftingBasesT2 := ArrayToString(craftingBasesT2)
+      scraftingBasesT3 := ArrayToString(craftingBasesT3)
+      scraftingBasesT4 := ArrayToString(craftingBasesT4)
+      IniWrite, %scraftingBasesT1%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT1
+      IniWrite, %scraftingBasesT2%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT2
+      IniWrite, %scraftingBasesT3%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT3
+      IniWrite, %scraftingBasesT4%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT4
 
       readFromFile()
       If (YesPersistantToggle)
@@ -11675,7 +11710,27 @@ Return
       UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
       if ErrorLevel {
         Fail:=true
+      } Else {
+        FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
+        Holder := []
+        Global Bases := JSON.Load(JSONtext)
+        For k, v in Bases
+        {
+          temp := {"name":v["name"]
+            ,"item_class":v["item_class"]
+            ,"domain":v["domain"]
+            ,"tags":v["tags"]
+            ,"inventory_width":v["inventory_width"]
+            ,"inventory_height":v["inventory_height"]
+            ,"drop_level":v["drop_level"]}
+          Holder.Push(temp)
+        }
+        Bases := Holder
+        JSONtext := JSON.Dump(Bases,,2)
+        FileDelete, %A_ScriptDir%\data\Bases.json
+        FileAppend, %JSONtext%, %A_ScriptDir%\data\Bases.json
       }
+
       UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Library.ahk, %A_ScriptDir%\data\Library.ahk
       if ErrorLevel {
         Fail:=true
