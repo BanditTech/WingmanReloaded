@@ -158,6 +158,10 @@
       , "Large Cluster Jewel"
       , "Medium Cluster Jewel"
       , "Small Cluster Jewel"]
+    Global craftingBasesT1 := []
+    Global craftingBasesT2 := []
+    Global craftingBasesT3 := []
+    Global craftingBasesT4 := []
     ; Create a container for the sub-script
     ; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
