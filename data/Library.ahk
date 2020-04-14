@@ -124,6 +124,27 @@
       BlockInput, MouseMoveOff
       return
     }
+
+    ArrayToString(Array)
+    {
+      for index, element in Array
+      {
+	      if(text == "")
+        {
+	        text = %element% 
+	      }
+        else
+	      {
+	        text = %text%|%element% 
+	      }
+      }
+      return text
+    }
+    StringToArray(text)
+    {
+      Array := StrSplit(text,"|")
+      return array
+    }
   /*** Wingman GUI Handlers
 
   */
@@ -207,7 +228,9 @@
           || IndexOf("ring",v["tags"]) 
           || IndexOf("belt",v["tags"]) 
           || IndexOf("armour",v["tags"]) 
-          || IndexOf("weapon",v["tags"]) ) )
+          || IndexOf("weapon",v["tags"])
+          || IndexOf("jewel",v["tags"])
+          || IndexOf("abyss_jewel",v["tags"]) ) )
         {
           baseList .= v["name"]"|"
         }
@@ -215,26 +238,29 @@
       Gui, 1: Submit
       Gui, CustomCrafting: New
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
-      Gui, CustomCrafting: Add, Button, default gupdateEverything    x175 y180  w150 h23,   Save Configuration
-      Gui, CustomCrafting: Add, Button,      gLaunchSite     x+5           h23,   Website
+      Gui, CustomCrafting: Add, Button, default gupdateEverything    x225 y180  w150 h23,   Save Configuration
       Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w350, %baseList%
       Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w400 h205 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
       Gui, CustomCrafting: Tab, Tier 1
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w350 r6 , %textList1%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT1 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT1 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT1 Base
       Gui, CustomCrafting: Tab, Tier 2
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier2 ReadOnly y+38 w350 r6 , %textList2%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT2 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT2 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT2 Base
       Gui, CustomCrafting: Tab, Tier 3
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier3 ReadOnly y+38 w350 r6 , %textList3%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT3 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT3 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT3 Base
       Gui, CustomCrafting: Tab, Tier 4
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier4 ReadOnly y+38 w350 r6 , %textList4%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT4 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT4 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT4 Base
       Gui, CustomCrafting: Show, , Edit Crafting Tiers
     Return
     AddCustomCraftingBase:
@@ -261,6 +287,14 @@
             textList .= (!textList ? "" : ", ") v
       GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
       Gui, Show
+    Return
+    ResetCustomCraftingBase:
+      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      craftingBasesT%RxMatch1% := DefaultcraftingBasesT%RxMatch1%
+      textList := ""
+      For k, v in DefaultcraftingBasesT%RxMatch1%
+            textList .= (!textList ? "" : ", ") v
+      GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
     Return
   ; WR_Menu - New menu handling method
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
