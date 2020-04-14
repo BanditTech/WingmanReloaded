@@ -9,7 +9,7 @@ Customize the list of items for each crafting tier
   * Click "Add T# Base" to add the base type to that tier's list
 * To remove a Base Type, copy and paste or select the name in the combo box
   * Click "Remove T# Base" to remove a matching name from the list
-* To reset a Tier list simply click the "Reset T# Base" to go back to default
+* To reset a Tier list, simply click the "Reset T# Base" to go back to default
 * Save Configuration when you are finished
 
 Adjusted the range of Minimum Map Qualities options
