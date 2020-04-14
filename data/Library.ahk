@@ -804,16 +804,16 @@
             Gui, Inventory: Font, 
             Gui, Inventory: Font,s8
 
-            Gui, Inventory: Add, Edit, number limit3 xs+15 yp+18 w40
-            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+            Gui, Inventory: Add, Edit, number limit2 xs+15 yp+18 w40
+            Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
             Gui, Inventory: Add, Text,         x+10 yp+3        , Item Quantity
 
-            Gui, Inventory: Add, Edit, number limit3 xs+15 y+15 w40
-            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
+            Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
+            Gui, Inventory: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
             Gui, Inventory: Add, Text,         x+10 yp+3        , Item Rarity
 
-            Gui, Inventory: Add, Edit, number limit3 xs+15 y+15 w40
-            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
+            Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
+            Gui, Inventory: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
             Gui, Inventory: Add, Text,         x+10 yp+3        , Monster Pack Size
 
             Gui, Inventory: Font, Bold s9 cBlack, Arial
