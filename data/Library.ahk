@@ -652,7 +652,7 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
           Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
           Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
-          Gui, Inventory: Add, Button, gCustomCrafting xs+5 y+5  w150,   Custom Crafting List
+          Gui, Inventory: Add, Button, gCustomCrafting xs+15 y+5  w150,   Custom Crafting List
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
           Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
