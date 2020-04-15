@@ -2679,6 +2679,7 @@ Return
               MoveStash(sendstash)
               RandomSleep(45,45)
               CtrlClick(Grid.X,Grid.Y)
+              ; Check if we need to send to alternate stash for uniques
               If (sendstash = StashTabCollection || sendstash = StashTabUniqueRing )
               && (Prop.RarityUnique && Prop.IsOrgan="")
               {
@@ -2728,13 +2729,16 @@ Return
             Sleep, 15*Latency
             CtrlClick(Grid.X,Grid.Y)
             Sleep, 45*Latency
+            ; Check for unique items
             If (Tab = StashTabCollection || Tab = StashTabUniqueRing )
+            && (Prop.RarityUnique && Prop.IsOrgan="")
             {
               If (StashTabYesUniqueRing && Prop.Ring 
               && Tab != StashTabUniqueRing)
               {
                 Sleep, 200*Latency
                 ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+                ; Check if the item is gone, if it is we can move on
                 if (indexOfHex(Pitem, varEmptyInvSlotColor))
                   Continue
                 MoveStash(StashTabUniqueRing)
@@ -2745,6 +2749,7 @@ Return
               {
                 Sleep, 200*Latency
                 ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+                ; Check if the item is gone, if it is we can move on
                 if (indexOfHex(Pitem, varEmptyInvSlotColor))
                   Continue
                 MoveStash(StashTabUniqueDump)
