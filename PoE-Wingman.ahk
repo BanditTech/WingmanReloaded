@@ -7784,7 +7784,7 @@ Return
         {
           If ( Prop.IsMap
           && (!YesMapUnid || ( Prop.RarityMagic && ( getMapCraftingMethod() ~= "Alchemy" )))
-          &&!Prop.Corrupted)
+          &&!Prop.Corrupted&&!Prop.RarityUnique)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
