@@ -3991,6 +3991,7 @@ Return
         {
           if InStr(A_LoopField, "(implicit)")
           {
+            Affix.Implicit := A_LoopField
             If (captureLines < 1) 
             {
               imp := RegExReplace(StrSplit(A_LoopField, "(implicit)", " ")[1], "i)([-.0-9]+)", "#")
@@ -4018,6 +4019,7 @@ Return
                 ExtraSection := 1
               }
             }
+            Continue
           }
           Else
           {
