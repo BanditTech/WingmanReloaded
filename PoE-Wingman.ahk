@@ -1771,7 +1771,7 @@
     Gui, add, button, gWR_Update vWR_Btn_Chat     xs y+10 w110, Chat
     Gui, add, button, gWR_Update vWR_Btn_Controller x+10 yp w110, Controller
     Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, C.L.F.
-    Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
+    ;Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
 
     Gui, Font, Bold
     Gui Add, Text,   Section                  x295   ym+25,         Keybinds:
@@ -12796,7 +12796,7 @@ Return
     IgnoreEscape:
       SaveIgnoreArray()
       Gui, Ignore: Destroy
-      Gui, 1: Show
+      Gui, Inventory: Show
     Return
 
     addToBlacklist(C, R)
@@ -12835,7 +12835,7 @@ Return
         }
       }
       ind=0
-
+      Hotkeys()
       Gui, Ignore: Show
     Return
 
