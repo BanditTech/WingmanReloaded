@@ -1171,8 +1171,8 @@
   ;#######################################################################################################Flasks and Utility Tab
   Gui, Tab, Flasks
     Gui, Font,
-    Gui, Font, Bold
-    Gui Add, Text,                     x12   y30,         Flask Settings
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, Text,                     x12   y30,         Flask Settings
     Gui, Font,
 
     Gui Add, GroupBox,         Section    w260 h33        xp   y+2,         Character Type:
@@ -1212,7 +1212,7 @@
     Gui Add, Text,                    x+24,             Life
     Gui Add, Text,                    x+24,             Life
     Gui, Font
-    Gui Add, Text,                    x80     ys,        |
+    Gui Add, Text,                    x80     ys,       |
     Gui Add, Text,                    x+40,             |
     Gui Add, Text,                    x+39,             |
     Gui Add, Text,                    x+39,             |
@@ -1297,7 +1297,6 @@
       }  
 
     Gui Add, Text,           Section                x16   y+8,         Quicks.:
-    ;Gui,Font,cBlack
     Gui,Font,cBlack
     Gui Add, GroupBox,     w257 h26                xp-5   yp-9, 
     Gui,Font
@@ -1382,9 +1381,9 @@
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
 
-    Gui,Font,s9 cBlack 
-    Gui Add, GroupBox,     Section  w227 h66        x292   y30 ,         Auto-Quit settings
-    Gui,Font,
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,     Section  w227 h66        x292   y30 ,         Auto-Quit Settings
+    Gui, Font,
     ;Gui Add, Text,                       x292   y30,         Auto-Quit:
     Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             10|20|30|40|50|60|70|80|90
     GuiControl, ChooseString, QuitBelow, %QuitBelow%
@@ -1394,8 +1393,8 @@
     Gui, Add, Radio,     vRadioNormalQuit Checked%RadioNormalQuit%      x+1  ,        /exit
     Gui Add, Checkbox, gUpdateExtra  vRelogOnQuit Checked%RelogOnQuit%         xs+5  y+8        , Log back in afterwards?
 
-    Gui,Font,s9 cBlack 
-    Gui Add, GroupBox,     Section  w257 h66        xs   y+10 ,         Quicksilver settings
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,     Section  w257 h66        xs   y+10 ,         Quicksilver Settings
     Gui,Font,
     Gui Add, Text,                     xs+10   ys+16,         Quicksilver Flask Delay (in s):
     Gui Add, Edit,       vTriggerQuicksilverDelay  x+10   yp   w22 h17,   %TriggerQuicksilverDelay%
@@ -1403,7 +1402,7 @@
     Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Primary Attack
     Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
-    Gui, Font, Bold s9 cBlack
+    Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,           Section    w324 h176      xs   y+10,         Profile Management:
     Gui, Font
     Gui, Add, Text,                   xs+161   ys+41     h135 0x11
@@ -1458,7 +1457,7 @@
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
   Gui, Tab, Utility
-    Gui, Font, Bold s9 cBlack
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, GroupBox,             w605 h311    section    xm+5   y+15,         Utility Management:
     Gui, Font,
 
@@ -1636,8 +1635,8 @@
     Gui Add, Text,                     x+9   ,   Mana:
     Gui, Add, Text,                   x+18        h270 0x11
 
-    Gui, Font, Bold s9 cBlack
-    Gui, Add, GroupBox,  y+20 xs w240 h150 Section, Stack Release tool
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,  y+20 xs w240 h150 Section, Stack Release Tool
     Gui, Font,
     Gui, Add, CheckBox, gUpdateStackRelease vStackRelease_Enable Checked%StackRelease_Enable%  Right x+-65 ys+2 , Enable
     Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffIcon xs+5 ys+19 w150 h21, % StackRelease_BuffIcon
@@ -1668,8 +1667,8 @@
     Gui, Add, Text, x+2 yp w29 hp,
     Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 
-    Gui,Font, Bold s9 cBlack 
-    Gui Add, GroupBox,     Section  w190 h110        xs+240+7   ys ,         Auto-Detonate Mines
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,     Section  w190 h110        xs+240+7   ys ,         Auto-Detonate Mines
     Gui, Font,
     Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
     Gui Add, Text, xs+5 y+4, Delay after Detonate
@@ -1696,8 +1695,9 @@
     Gui, Add, Text,                   x279   y23    w1  h441 0x7
     Gui, Add, Text,                   x+1   y23    w1  h441 0x7
 
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, Text,             section        x22   y30,         Gamestate Calibration:
+    Gui, Font, s8
     Gui, Add, Button, ghelpCalibration   x+10 ys-4    w20 h20,   ?
     Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs  ys+20 Section  w110 h25,   Run Wizard
     Gui, Add, Button, gShowDebugGamestates vShowDebugGamestatesBtn  x+8  yp        w110 h25,   Show Gamestates
@@ -1707,7 +1707,7 @@
     Gui, Font
 
 
-    Gui,SampleInd: Font, Bold
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
     Gui,SampleInd: Add, Text,         section            xm   ym+5,         Gamestate Calibration:
     Gui,SampleInd: Font
 
@@ -1722,19 +1722,19 @@
     Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn  xs y+3      w110,   OnMetamorph
 
 
-    Gui,SampleInd: Font, Bold
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
     Gui,SampleInd: Add, Text,         section            xm   y+10,         Inventory Calibration:
     Gui,SampleInd: Font
     Gui,SampleInd: Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20         w110,   Empty Inventory
 
-    Gui,SampleInd: Font, Bold
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
     Gui,SampleInd: Add, Text,         section            xm   y+10,         AutoDetonate Calibration:
     Gui,SampleInd: Font
     Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn     xs ys+20          w110,   OnDetonate
 
     Gui,SampleInd: +AlwaysOnTop
 
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,           Section          xs   y+10,         Interface Options:
     Gui, Font, 
 
@@ -1764,8 +1764,9 @@
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip
     Gui, Add, Edit,       vClientLog         xs y+10  w144  h21,   %ClientLog%
     Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,           Section          xs   y+15,         Additional Settings:
+    Gui, Font, s8
     Gui, add, button, gWR_Update vWR_Btn_Inventory   xs y+10 w110, Inventory
     Gui, add, button, gWR_Update vWR_Btn_Strings   x+10 yp w110, Strings
     Gui, add, button, gWR_Update vWR_Btn_Chat     xs y+10 w110, Chat
@@ -1773,7 +1774,7 @@
     Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, C.L.F.
     ;Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
 
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,   Section                  x295   ym+25,         Keybinds:
     Gui, Font
     Gui Add, Text,                     xs+65   y+10,         Open this GUI
@@ -1804,7 +1805,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
 
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,                     xs+145   ys,         Ingame:
     Gui, Font
     Gui Add, Text,                     xs+205   y+10,         Close UI
@@ -1818,7 +1819,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyLootScan        ,%hotkeyLootScan%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyDetonateMines    ,%hotkeyDetonateMines%
     Gui Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%                    y+8 ; Loot Vacuum?
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Button, gLootColorsMenu  vLootVacuumSettings                  h19  x+0 yp-3, Loot Vacuum Settings
     Gui, Font
     Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xs y+6 , Pop Flasks Respect CD?
@@ -1828,7 +1829,7 @@
     Gui Add, Checkbox,   vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%    x+5 yp      , Wait?
 
     ;~ =========================================================================================== Subgroup: Hints
-    Gui,Font,Bold
+    Gui,Font, Bold s9 cBlack, Arial
     Gui,Add,GroupBox,Section xs  x450 y+10  w120 h80              ,Hotkey Modifiers
     Gui, Add, Button,      gLaunchHelp vLaunchHelp    xs+108 ys w18 h18 ,   ?
     Gui,Font,Norm
