@@ -2775,6 +2775,8 @@ Return
     Return
   }
 
+  ; MatchStashManagement - Match an item to any enabled Stash Management settings
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MatchStashManagement()
   {
     If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
