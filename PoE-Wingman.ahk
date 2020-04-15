@@ -1172,24 +1172,25 @@
   Gui, Tab, Flasks
     Gui, Font,
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, Text,                     x12   y30,         Flask Settings
+    Gui Add, GroupBox,         Section    w260 h40        xp+5   y+2,         Character Type:
     Gui, Font,
-
-    Gui Add, GroupBox,         Section    w260 h33        xp   y+2,         Character Type:
     Gui, Font, cRed
-    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+8 ys+14 gUpdateCharacterType,   Life
+    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+8 ys+20 gUpdateCharacterType,   Life
     Gui, Font, cPurple
     Gui Add, Radio,     vRadioHybrid Checked%RadioHybrid%         x+8 gUpdateCharacterType,   Hybrid
     Gui, Font, cBlue
     Gui Add, Radio,     vRadioCi Checked%RadioCi%           x+8 gUpdateCharacterType,   ES
     Gui Add, Checkbox, gUpdateEldritchBattery  vYesEldritchBattery Checked%YesEldritchBattery%         x+8          , Eldritch Battery
     Gui, Font
-
-    Gui Add, Text,                     x63   y+10,         Flask 1
-    Gui Add, Text,                     x+8,             Flask 2
-    Gui Add, Text,                     x+7,             Flask 3
-    Gui Add, Text,                     x+8,             Flask 4
-    Gui Add, Text,                     x+7,             Flask 5
+    ; Flask GUI
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,        Section    w260 h410 xs y+8  , Flask Settings
+    Gui, Font
+    Gui Add, Text,                     xs+55   ys+15,       Flask 1
+    Gui Add, Text,                     x+8,                 Flask 2
+    Gui Add, Text,                     x+7,                 Flask 3
+    Gui Add, Text,                     x+8,                 Flask 4
+    Gui Add, Text,                     x+7,                 Flask 5
 
     Gui Add, Text,       Section            x12   y+5,         Duration:
     Gui Add, Edit,       vCooldownFlask1       x63   ys-2   w34  h17,   %CooldownFlask1%
@@ -1295,27 +1296,26 @@
       valueDisableES := substr(DisableES, (A_Index), 1)
       GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
       }  
-
-    Gui Add, Text,           Section                x16   y+8,         Quicks.:
     Gui,Font,cBlack
-    Gui Add, GroupBox,     w257 h26                xp-5   yp-9, 
+    Gui Add, GroupBox,           Section  w257 h28       x11   y+5,         Quicks.:
+    ;Gui Add, GroupBox,     w257 h26                xp-5   yp-9, 
     Gui,Font
-    Gui Add, CheckBox, Group   vRadiobox1QS     gUtilityCheck    xs+60   ys   w13 h13
+    Gui Add, CheckBox, Group   vRadiobox1QS     gUtilityCheck    xs+64   ys+10   w13 h13
     vFlask=2
     loop 4 {
-      Gui Add, CheckBox, Group   vRadiobox%vFlask%QS    gUtilityCheck  x+28   ys   w13 h13
+      Gui Add, CheckBox, Group   vRadiobox%vFlask%QS    gUtilityCheck  x+28     w13 h13
       vFlask:=vFlask+1
       }
 
     Gui,Font,cBlack
-    Gui Add, GroupBox,   Section  w257 h30                x11   y+3, Mana `%
+    Gui Add, GroupBox,   Section  w257 h40                 x11   y+6, Mana `%
     Gui,Font
-    Gui, Add, text, section x20 ys+13 w35, %ManaThreshold%
+    Gui, Add, Edit, number limit2 xs+5 ys+15 w35
     Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
-    Gui Add, CheckBox,     vRadiobox1Mana10   gUtilityCheck    x+20    ys-2   w13 h13
+    Gui Add, CheckBox,     vRadiobox1Mana10   gUtilityCheck    xs+64    ys+18   w13 h13
     vFlask=2
     loop 4 {
-      Gui Add, CheckBox,     vRadiobox%vFlask%Mana10 gUtilityCheck    x+28  ys-2   w13 h13
+      Gui Add, CheckBox,     vRadiobox%vFlask%Mana10 gUtilityCheck    x+28   w13 h13
       vFlask:=vFlask+1
       }
     Loop, 5 {  
@@ -1325,14 +1325,14 @@
       GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
       }
     Gui,Font,cBlack
-    Gui Add, GroupBox,   Section  w257 h30                x11   y+2
+    Gui Add, GroupBox,   Section  w257 h30                 x11   y+8, Pop
     Gui,Font
-    Gui Add, Text,           Section                x13   yp+12,         Pop Flsk:
-    Gui Add, Checkbox,     vPopFlasks1       x75   ys   w13 h13
-    Gui Add, Checkbox,     vPopFlasks2     x+28       w13 h13
-    Gui Add, Checkbox,     vPopFlasks3     x+28       w13 h13
-    Gui Add, Checkbox,     vPopFlasks4     x+28       w13 h13
-    Gui Add, Checkbox,     vPopFlasks5     x+28       w13 h13
+    Gui Add, CheckBox, Group   vPopFlasks1    xs+64   ys+12   w13 h13
+    Pop=2
+    loop 4 {
+      Gui Add, CheckBox, Group   vPopFlasks%Pop%   x+28     w13 h13
+      Pop:=Pop+1
+      }
 
     Loop, 5 {  
       valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
@@ -1340,15 +1340,11 @@
       }
 
 
-    Gui,Font,cBlack
-    Gui Add, GroupBox,       Section            x11   y+13   w257 h58,    Attack:
-    Gui Add, text, vFlaskColumn1                  xp+53   ys-8   , Flask 1
-    Gui Add, text, vFlaskColumn2                  xp+42   ys-8   , Flask 2
-    Gui Add, text, vFlaskColumn3                  xp+41   ys-8   , Flask 3
-    Gui Add, text, vFlaskColumn4                  xp+41   ys-8   , Flask 4
-    Gui Add, text, vFlaskColumn5                  xp+41   ys-8   , Flask 5
+    Gui, Font, s8 cBlack
+    Gui Add, GroupBox,       Section            x11   y+6   w257 h58,    Trigger
+
     Gui,Font
-    Gui Add, Edit,       vhotkeyMainAttack         xs+1   ys+14   w48 h17,   %hotkeyMainAttack%
+    Gui Add, Edit,       vhotkeyMainAttack         xs+3   ys+14   w43 h17,   %hotkeyMainAttack%
     Gui Add, Checkbox,     vMainAttackbox1       x75   y+-15   w13 h13
     vFlask=2
     loop 4 {
@@ -1356,7 +1352,7 @@
       vFlask:=vFlask+1
       } 
 
-    Gui Add, Edit,       vhotkeySecondaryAttack     x12   y+8   w48 h17,   %hotkeySecondaryAttack%
+    Gui Add, Edit,       vhotkeySecondaryAttack     xs+3   y+8   w43 h17,   %hotkeySecondaryAttack%
     Gui Add, Checkbox,     vSecondaryAttackbox1     x75   y+-15   w13 h13
     vFlask=2
     loop 4 {
@@ -1371,12 +1367,13 @@
       }
 
     ;Vertical Grey Lines
-    Gui, Add, Text,                   x59   y77     h381 0x11
-    Gui, Add, Text,                   x+33         h381 0x11
-    Gui, Add, Text,                   x+34         h381 0x11
-    Gui, Add, Text,                   x+33         h381 0x11
-    Gui, Add, Text,                   x+34         h381 0x11
-    Gui, Add, Text,                   x+33         h381 0x11
+    Gui, Add, Text,                   x59   y84    h396 0x11
+    Gui, Add, Text,                   x+33         h396 0x11
+    Gui, Add, Text,                   x+34         h396 0x11
+    Gui, Add, Text,                   x+33         h396 0x11
+    Gui, Add, Text,                   x+34         h396 0x11
+    Gui, Add, Text,                   x+33         h396 0x11
+    ;Middle Vertical Lines
     Gui, Add, Text,                   x+5   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
@@ -1398,7 +1395,10 @@
     Gui,Font,
     Gui Add, Text,                     xs+10   ys+16,         Quicksilver Flask Delay (in s):
     Gui Add, Edit,       vTriggerQuicksilverDelay  x+10   yp   w22 h17,   %TriggerQuicksilverDelay%
-    Gui,Add,GroupBox, xs+10 yp+16 w208 h26                      ,Quicksilver on attack:
+    Gui, Font, s8 cBlack
+    ;Improve UI later
+    Gui,Add,GroupBox, xs+10 yp+16 w208 h26                      ,Quicksilver on Attack:
+    Gui,Font,
     Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Primary Attack
     Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
@@ -1692,8 +1692,8 @@
 
     ;#######################################################################################################Configuration Tab
   Gui, Tab, Configuration
-    Gui, Add, Text,                   x279   y23    w1  h441 0x7
-    Gui, Add, Text,                   x+1   y23    w1  h441 0x7
+    Gui, Add, Text,                   x279   y23    w1  h483 0x7
+    Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, Text,             section        x22   y30,         Gamestate Calibration:
