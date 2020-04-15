@@ -7784,7 +7784,7 @@ Return
         {
           If ( Prop.IsMap
           && (!YesMapUnid || ( Prop.RarityMagic && ( getMapCraftingMethod() ~= "Alchemy" )))
-          &&!Prop.Corrupted&&!Prop.RarityUnique)
+          &&!Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -7806,7 +7806,7 @@ Return
           }
         }
         ;Crafting Map Script
-        If (Prop.IsMap && !Prop.IsBlightedMap && !Prop.Corrupted) 
+        If (Prop.IsMap && !Prop.IsBlightedMap && !Prop.Corrupted && !Prop.RarityUnique) 
         {
           ;Check all 3 ranges tier with same logic
           i = 0
