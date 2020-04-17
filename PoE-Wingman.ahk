@@ -2452,7 +2452,7 @@ Return
         }
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
-        If !Prop.IsItem
+        If (!Prop.IsItem || Prop.ItemName = "")
           ShooMouse(),GuiStatus(),Continue
         If (!Prop.Identified&&YesIdentify)
         {
@@ -2509,21 +2509,7 @@ Return
           ; Only need entry this condition if Search Vendor/Vendor is the first option
           If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
           {
-            If ( (Prop.RarityUnique) 
-            && ( (StashTabYesUniqueRing&&Prop.Ring) || StashTabYesCollection || StashTabYesUniqueDump))
-            {
-              Continue
-            }
-            If (StashTabYesCrafting
-            && ((YesStashT1 && Prop.CraftingBase = "T1") 
-              || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3")
-              || (YesStashT4 && Prop.CraftingBase = "T4"))
-            && ((YesStashCraftingNormal && Prop.RarityNormal)
-              || (YesStashCraftingMagic && Prop.RarityMagic)
-              || (YesStashCraftingRare && Prop.RarityRare))
-            && (!YesStashCraftingIlvl 
-              || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
+            If MatchStashManagement()
             {
               Continue
             }
@@ -2705,109 +2691,46 @@ Return
             || (Prop.RarityUnique && YesSkipMaps_unique)) 
           && (Prop.MapTier >= YesSkipMaps_tier))
             Continue
-          Else If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
-            sendstash := StashTabCurrency
-          Else If (StashTabYesNinjaPrice && Prop.ChaosValue >= StashTabYesNinjaPrice_Price )
-            sendstash := StashTabNinjaPrice
-          Else If (Prop.Incubator)
-            Continue
-          Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
-            sendstash := StashTabMap
-          Else If (StashTabYesCatalyst&&Prop.Catalyst)
-            sendstash := StashTabCatalyst
-          Else If ( StashTabYesFragment 
-            && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
-            || Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
-            sendstash := StashTabFragment
-          Else If (Prop.RarityDivination&&StashTabYesDivination)
-            sendstash := StashTabDivination
-          Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
-            sendstash := StashTabOrgan
-          Else If (Prop.RarityUnique&&Prop.IsOrgan="")
-          {
-            If (StashTabYesCollection)
-            {
-              MoveStash(StashTabCollection)
-              RandomSleep(45,45)
-              CtrlClick(Grid.X,Grid.Y)
-            }
-            If (StashTabYesUniqueRing&&Prop.Ring)
-            {
-              Sleep, 200*Latency
-              ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
-              if (indexOfHex(Pitem, varEmptyInvSlotColor))
-                Continue
-              MoveStash(StashTabUniqueRing)
-              RandomSleep(45,45)
-              CtrlClick(Grid.X,Grid.Y)
-            }
-            If (StashTabYesUniqueDump)
-            {
-              Sleep, 200*Latency
-              ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
-              if (indexOfHex(Pitem, varEmptyInvSlotColor))
-                Continue
-              MoveStash(StashTabUniqueDump)
-              RandomSleep(45,45)
-              CtrlClick(Grid.X,Grid.Y)
-            }
-            Continue
-          }
-          Else If (Prop.Essence&&StashTabYesEssence)
-            sendstash := StashTabEssence
-          Else If (Prop.Fossil&&StashTabYesFossil)
-            sendstash := StashTabFossil
-          Else If (Prop.Resonator&&StashTabYesResonator)
-            sendstash := StashTabResonator
-          Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
-            sendstash := StashTabFlaskQuality
-          Else If (Prop.RarityGem)
-          {
-            If ((Stats.Quality>0)&&StashTabYesGemQuality)
-              sendstash := StashTabGemQuality
-            Else If (Prop.VaalGem && StashTabYesGemVaal)
-              sendstash := StashTabGemVaal
-            Else If (Prop.Support && StashTabYesGemSupport)
-              sendstash := StashTabGemSupport
-            Else If (StashTabYesGem)
-              sendstash := StashTabGem
-          }
-          Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
-            sendstash := StashTabLinked
-          Else If (Prop.Prophecy&&StashTabYesProphecy)
-            sendstash := StashTabProphecy
-          Else If (Prop.Oil&&StashTabYesOil)
-            sendstash := StashTabOil
-          Else If (Prop.Veiled&&StashTabYesVeiled)
-            sendstash := StashTabVeiled
-          Else If (Prop.ClusterJewel&&StashTabYesClusterJewel)
-            sendstash := StashTabClusterJewel
-          Else If (StashTabYesCrafting 
-            && ((YesStashT1 && Prop.CraftingBase = "T1") 
-              || (YesStashT2 && Prop.CraftingBase = "T2") 
-              || (YesStashT3 && Prop.CraftingBase = "T3")
-              || (YesStashT4 && Prop.CraftingBase = "T4"))
-            && ((YesStashCraftingNormal && Prop.RarityNormal)
-              || (YesStashCraftingMagic && Prop.RarityMagic)
-              || (YesStashCraftingRare && Prop.RarityRare))
-            && (!YesStashCraftingIlvl 
-              || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
-            sendstash := StashTabCrafting
-          Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
-            sendstash := StashTabPredictive
-          Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
-            sendstash := StashTabDump
+          Else If (sendstash:=MatchStashManagement())
+            If (sendstash = -1)
+              Continue
           Else
             ++Unstashed
           If (sendstash > 0)
           {
             If YesSortFirst
-              SortFirst[sendstash].Push({"C":C,"R":R})
+              SortFirst[sendstash].Push({"C":C,"R":R,"Prop":Prop})
             Else
             {
               MoveStash(sendstash)
               RandomSleep(45,45)
               CtrlClick(Grid.X,Grid.Y)
+              ; Check if we need to send to alternate stash for uniques
+              If (sendstash = StashTabCollection || sendstash = StashTabUniqueRing )
+              && (Prop.RarityUnique && Prop.IsOrgan="")
+              {
+                If (StashTabYesUniqueRing && Prop.Ring 
+                && sendstash != StashTabUniqueRing)
+                {
+                  Sleep, 200*Latency
+                  ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+                  if (indexOfHex(Pitem, varEmptyInvSlotColor))
+                    Continue
+                  MoveStash(StashTabUniqueRing)
+                  RandomSleep(45,45)
+                  CtrlClick(Grid.X,Grid.Y)
+                }
+                If (StashTabYesUniqueDump)
+                {
+                  Sleep, 200*Latency
+                  ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+                  if (indexOfHex(Pitem, varEmptyInvSlotColor))
+                    Continue
+                  MoveStash(StashTabUniqueDump)
+                  RandomSleep(45,45)
+                  CtrlClick(Grid.X,Grid.Y)
+                }
+              }
             }
           }
         }
@@ -2825,12 +2748,41 @@ Return
             MoveStash(Tab)
             C := SortFirst[Tab][Item]["C"]
             R := SortFirst[Tab][Item]["R"]
+            Prop := SortFirst[Tab][Item]["Prop"]
             GridX := InventoryGridX[C]
             GridY := InventoryGridY[R]
             Grid := RandClick(GridX, GridY)
             Sleep, 15*Latency
             CtrlClick(Grid.X,Grid.Y)
             Sleep, 45*Latency
+            ; Check for unique items
+            If (Tab = StashTabCollection || Tab = StashTabUniqueRing )
+            && (Prop.RarityUnique && Prop.IsOrgan="")
+            {
+              If (StashTabYesUniqueRing && Prop.Ring 
+              && Tab != StashTabUniqueRing)
+              {
+                Sleep, 200*Latency
+                ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+                ; Check if the item is gone, if it is we can move on
+                if (indexOfHex(Pitem, varEmptyInvSlotColor))
+                  Continue
+                MoveStash(StashTabUniqueRing)
+                RandomSleep(45,45)
+                CtrlClick(Grid.X,Grid.Y)
+              }
+              If (StashTabYesUniqueDump)
+              {
+                Sleep, 200*Latency
+                ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+                ; Check if the item is gone, if it is we can move on
+                if (indexOfHex(Pitem, varEmptyInvSlotColor))
+                  Continue
+                MoveStash(StashTabUniqueDump)
+                RandomSleep(45,45)
+                CtrlClick(Grid.X,Grid.Y)
+              }
+            }
           }
         }
       }
@@ -2847,6 +2799,114 @@ Return
       }
     }
     Return
+  }
+
+  ; MatchStashManagement - Match an item to any enabled Stash Management settings
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  MatchStashManagement()
+  {
+    If (Prop.RarityCurrency&&Prop.SpecialType=""&&StashTabYesCurrency)
+      sendstash := StashTabCurrency
+    Else If (StashTabYesNinjaPrice && Prop.ChaosValue >= StashTabYesNinjaPrice_Price )
+      sendstash := StashTabNinjaPrice
+    Else If (Prop.Incubator)
+      Return -1
+    Else If (Prop.IsMap && StashTabYesMap && (!Prop.IsBlightedMap || YesStashBlightedMap))
+      sendstash := StashTabMap
+    Else If (StashTabYesCatalyst&&Prop.Catalyst)
+      sendstash := StashTabCatalyst
+    Else If ( StashTabYesFragment 
+      && ( Prop.TimelessSplinter || Prop.BreachSplinter || Prop.Offering || Prop.Vessel || Prop.Scarab
+      || Prop.SacrificeFragment || Prop.MortalFragment || Prop.GuardianFragment || Prop.ProphecyFragment ) )
+      sendstash := StashTabFragment
+    Else If (Prop.RarityDivination&&StashTabYesDivination)
+      sendstash := StashTabDivination
+    Else If (Prop.IsOrgan != "" && StashTabYesOrgan)
+      sendstash := StashTabOrgan
+    Else If (Prop.RarityUnique&&Prop.IsOrgan="")
+    {
+      If (StashTabYesCollection)
+      sendstash := StashTabCollection
+      Else If (StashTabYesUniqueRing&&Prop.Ring)
+      sendstash := StashTabUniqueRing
+      Else If (StashTabYesUniqueDump)
+      sendstash := StashTabUniqueDump
+
+      ; If (StashTabYesCollection)
+      ; {
+      ;   MoveStash(StashTabCollection)
+      ;   RandomSleep(45,45)
+      ;   CtrlClick(Grid.X,Grid.Y)
+      ; }
+      ; If (StashTabYesUniqueRing&&Prop.Ring)
+      ; {
+      ;   Sleep, 200*Latency
+      ;   ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+      ;   if (indexOfHex(Pitem, varEmptyInvSlotColor))
+      ;     Continue
+      ;   MoveStash(StashTabUniqueRing)
+      ;   RandomSleep(45,45)
+      ;   CtrlClick(Grid.X,Grid.Y)
+      ; }
+      ; If (StashTabYesUniqueDump)
+      ; {
+      ;   Sleep, 200*Latency
+      ;   ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+      ;   if (indexOfHex(Pitem, varEmptyInvSlotColor))
+      ;     Continue
+      ;   MoveStash(StashTabUniqueDump)
+      ;   RandomSleep(45,45)
+      ;   CtrlClick(Grid.X,Grid.Y)
+      ; }
+      ; Continue
+    }
+    Else If (Prop.Essence&&StashTabYesEssence)
+      sendstash := StashTabEssence
+    Else If (Prop.Fossil&&StashTabYesFossil)
+      sendstash := StashTabFossil
+    Else If (Prop.Resonator&&StashTabYesResonator)
+      sendstash := StashTabResonator
+    Else If (Prop.Flask&&(Stats.Quality>0)&&StashTabYesFlaskQuality)
+      sendstash := StashTabFlaskQuality
+    Else If (Prop.RarityGem)
+    {
+      If ((Stats.Quality>0)&&StashTabYesGemQuality)
+        sendstash := StashTabGemQuality
+      Else If (Prop.VaalGem && StashTabYesGemVaal)
+        sendstash := StashTabGemVaal
+      Else If (Prop.Support && StashTabYesGemSupport)
+        sendstash := StashTabGemSupport
+      Else If (StashTabYesGem)
+        sendstash := StashTabGem
+    }
+    Else If ((Prop.Gem_Links >= 5)&&StashTabYesLinked)
+      sendstash := StashTabLinked
+    Else If (Prop.Prophecy&&StashTabYesProphecy)
+      sendstash := StashTabProphecy
+    Else If (Prop.Oil&&StashTabYesOil)
+      sendstash := StashTabOil
+    Else If (Prop.Veiled&&StashTabYesVeiled)
+      sendstash := StashTabVeiled
+    Else If (Prop.ClusterJewel&&StashTabYesClusterJewel)
+      sendstash := StashTabClusterJewel
+    Else If (StashTabYesCrafting 
+      && ((YesStashT1 && Prop.CraftingBase = "T1") 
+        || (YesStashT2 && Prop.CraftingBase = "T2") 
+        || (YesStashT3 && Prop.CraftingBase = "T3")
+        || (YesStashT4 && Prop.CraftingBase = "T4"))
+      && ((YesStashCraftingNormal && Prop.RarityNormal)
+        || (YesStashCraftingMagic && Prop.RarityMagic)
+        || (YesStashCraftingRare && Prop.RarityRare))
+      && (!YesStashCraftingIlvl 
+        || (YesStashCraftingIlvl && Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
+      sendstash := StashTabCrafting
+    Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
+      sendstash := StashTabPredictive
+    Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Prop.Jeweler || Prop.Chromatic))))
+      sendstash := StashTabDump
+    Else
+      Return False
+    Return sendstash
   }
 
   ; Search Vendor Routine
