@@ -7986,6 +7986,7 @@ Return
     LeftClick(x,y)
     Sleep, 90*Latency
     ClipItem(x,y)
+    Sleep, 45*Latency
     return
   }
 
@@ -8037,6 +8038,7 @@ Return
       {
         WisdomScroll(x,y)
         ClipItem(x,y)
+        Sleep, 45*Latency
       }
     }
     ; Apply Currency if Normal
@@ -8048,6 +8050,9 @@ Return
     {
       ApplyCurrency("Augmentation",x,y)
     }
+    antr := Stats.MapItemRarity
+    antp := Stats.MapMonsterPackSize
+    antq := Stats.MapItemQuantity
     While ( (Affix.MapAvoidAilments && AvoidAilments) 
     || (Affix.MapAvoidPBB && AvoidPBB) 
     || (Affix.MapElementalReflect && ElementalReflect) 
@@ -8061,6 +8066,10 @@ Return
     || Stats.MapItemQuantity <= MMapItemQuantity)) )
     && Prop.Identified
     {
+      If (DebugMessages)
+      {
+      Notify("MapCrafting: " Prop.ItemBase "","Before Rolling`nItem Rarity: " antr "`nMonsterPackSize: " antp "`nItem Quantity: " antq "`nAfter Rolling`nItem Rarity: " Stats.MapItemRarity "`nMonsterPackSize: " Stats.MapMonsterPackSize "`nItem Quantity: " Stats.MapItemQuantity "`nEnd",4)
+      }
       If (!RunningToggle)
       {
         break
