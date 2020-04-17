@@ -2427,6 +2427,11 @@ Return
     {
       Return
     }
+    If StashTabYesPredictive
+    {
+      If !PPServerStatus()
+      Notify("PoEPrice.info Offline","",2)
+    }
     ; Main loop through inventory
     For C, GridX in InventoryGridX
     {
@@ -2600,9 +2605,11 @@ Return
   StashRoutine()
   {
     Global PPServerStatus
-    PPServerStatus()
-    If (!PPServerStatus && StashTabYesPredictive)
+    If StashTabYesPredictive
+    {
+      If !PPServerStatus()
       Notify("PoEPrice.info Offline","",2)
+    }
     CurrentTab:=0
     SortFirst := {}
     Loop 32

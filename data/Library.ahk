@@ -12760,7 +12760,7 @@
   ; MSDN:           Winsock Functions   -> http://msdn.microsoft.com/en-us/library/ms741394(v=vs.85).aspx
   ;                 IP Helper Functions -> hhttp://msdn.microsoft.com/en-us/library/aa366071(v=vs.85).aspx
   ; ======================================================================================================================
-  Ping4(Addr, ByRef Result := "", Timeout := 512) {
+  Ping4(Addr, ByRef Result := "", Timeout := 1024) {
     ; ICMP status codes -> http://msdn.microsoft.com/en-us/library/aa366053(v=vs.85).aspx
     ; WSA error codes  -> http://msdn.microsoft.com/en-us/library/ms740668(v=vs.85).aspx
     Static WSADATAsize := (2 * 2) + 257 + 129 + (2 * 2) + (A_PtrSize - 2) + A_PtrSize
