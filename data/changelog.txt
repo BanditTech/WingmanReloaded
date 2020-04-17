@@ -1,3 +1,19 @@
+## Version .11.0402 - Alpha Branch - April/16/2020
+Tooltips have been added to the Flask Settings menu: 
+* Quicksilver
+* Mana
+* Pop All Flasks
+* Attack Keys
+
+Ignore Slots submenu has been moved to Inventory Settings
+
+Fonts on the main menu headers have been changed to Use Arial
+
+Vendor before Stash will now respect all Stash Management options
+* Determining an items stash tab is now in its own function
+
+---
+
 ## Version .11.0401 - Alpha Branch - April/14/2020
 Customize the list of items for each crafting tier
 * Use the Custom Crafting List button to open the editor
