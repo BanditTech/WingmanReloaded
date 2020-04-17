@@ -217,6 +217,26 @@
       PopFlasks3 = Enable flask slot 3 when using Pop Flasks hotkey
       PopFlasks4 = Enable flask slot 4 when using Pop Flasks hotkey
       PopFlasks5 = Enable flask slot 5 when using Pop Flasks hotkey
+      Radiobox1QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox2QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox3QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox4QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox5QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox1Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      Radiobox2Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      Radiobox3Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      Radiobox4Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      Radiobox5Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      MainAttackbox1 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      MainAttackbox2 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      MainAttackbox3 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      MainAttackbox4 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      MainAttackbox5 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      SecondaryAttackbox1 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
+      SecondaryAttackbox2 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
+      SecondaryAttackbox3 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
+      SecondaryAttackbox4 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
+      SecondaryAttackbox5 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
       DetonateMines = Enable this to automatically Detonate Mines when placed`rDouble tap the D key to pause until next manual detonate
       DetonateMinesDelay = Delay for this long after detonating
       YesEldritchBattery = Enable this to sample the energy shield on the mana globe instead
@@ -433,6 +453,8 @@
       stashSuffixTab7 = Assign the Stash Tab for the 7th Stash Hotkey slot
       stashSuffixTab8 = Assign the Stash Tab for the 8th Stash Hotkey slot
       stashSuffixTab9 = Assign the Stash Tab for the 9th Stash Hotkey slot
+      hotkeyMainAttack = Bind the Primary Attack for this Character
+      hotkeySecondaryAttack = Bind the Secondary Attack for this Character
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2
@@ -1297,7 +1319,9 @@
       GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
       }  
     Gui,Font,cBlack
-    Gui Add, GroupBox,           Section  w257 h28       x11   y+5,         Quicks.:
+    Gui Add, GroupBox,           Section  w257 h28       x11   y+5,
+    Gui Add, Text,     Center      xp+5   yp+0,         Quick`nSilvers:
+
     ;Gui Add, GroupBox,     w257 h26                xp-5   yp-9, 
     Gui,Font
     Gui Add, CheckBox, Group   vRadiobox1QS     gUtilityCheck    xs+64   ys+10   w13 h13
@@ -1325,7 +1349,8 @@
       GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
       }
     Gui,Font,cBlack
-    Gui Add, GroupBox,   Section  w257 h30                 x11   y+8, Pop
+    Gui Add, GroupBox,   Section  w257 h30                 x11   y+8,
+    Gui Add, Text,   center xp+5 yp+0, Pop All`nFlasks:
     Gui,Font
     Gui Add, CheckBox, Group   vPopFlasks1    xs+64   ys+12   w13 h13
     Pop=2
@@ -1341,7 +1366,7 @@
 
 
     Gui, Font, s8 cBlack
-    Gui Add, GroupBox,       Section            x11   y+6   w257 h58,    Trigger
+    Gui Add, GroupBox,       Section            x11   y+6   w257 h58, Attack
 
     Gui,Font
     Gui Add, Edit,       vhotkeyMainAttack         xs+3   ys+14   w43 h17,   %hotkeyMainAttack%
