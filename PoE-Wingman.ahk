@@ -217,6 +217,26 @@
       PopFlasks3 = Enable flask slot 3 when using Pop Flasks hotkey
       PopFlasks4 = Enable flask slot 4 when using Pop Flasks hotkey
       PopFlasks5 = Enable flask slot 5 when using Pop Flasks hotkey
+      Radiobox1QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox2QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox3QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox4QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox5QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
+      Radiobox1Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      Radiobox2Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      Radiobox3Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      Radiobox4Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      Radiobox5Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
+      MainAttackbox1 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      MainAttackbox2 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      MainAttackbox3 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      MainAttackbox4 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      MainAttackbox5 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
+      SecondaryAttackbox1 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
+      SecondaryAttackbox2 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
+      SecondaryAttackbox3 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
+      SecondaryAttackbox4 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
+      SecondaryAttackbox5 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
       DetonateMines = Enable this to automatically Detonate Mines when placed`rDouble tap the D key to pause until next manual detonate
       DetonateMinesDelay = Delay for this long after detonating
       YesEldritchBattery = Enable this to sample the energy shield on the mana globe instead
@@ -433,6 +453,8 @@
       stashSuffixTab7 = Assign the Stash Tab for the 7th Stash Hotkey slot
       stashSuffixTab8 = Assign the Stash Tab for the 8th Stash Hotkey slot
       stashSuffixTab9 = Assign the Stash Tab for the 9th Stash Hotkey slot
+      hotkeyMainAttack = Bind the Primary Attack for this Character
+      hotkeySecondaryAttack = Bind the Secondary Attack for this Character
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2
@@ -1171,25 +1193,26 @@
   ;#######################################################################################################Flasks and Utility Tab
   Gui, Tab, Flasks
     Gui, Font,
-    Gui, Font, Bold
-    Gui Add, Text,                     x12   y30,         Flask Settings
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,         Section    w260 h40        xp+5   y+2,         Character Type:
     Gui, Font,
-
-    Gui Add, GroupBox,         Section    w260 h33        xp   y+2,         Character Type:
     Gui, Font, cRed
-    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+8 ys+14 gUpdateCharacterType,   Life
+    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+8 ys+20 gUpdateCharacterType,   Life
     Gui, Font, cPurple
     Gui Add, Radio,     vRadioHybrid Checked%RadioHybrid%         x+8 gUpdateCharacterType,   Hybrid
     Gui, Font, cBlue
     Gui Add, Radio,     vRadioCi Checked%RadioCi%           x+8 gUpdateCharacterType,   ES
     Gui Add, Checkbox, gUpdateEldritchBattery  vYesEldritchBattery Checked%YesEldritchBattery%         x+8          , Eldritch Battery
     Gui, Font
-
-    Gui Add, Text,                     x63   y+10,         Flask 1
-    Gui Add, Text,                     x+8,             Flask 2
-    Gui Add, Text,                     x+7,             Flask 3
-    Gui Add, Text,                     x+8,             Flask 4
-    Gui Add, Text,                     x+7,             Flask 5
+    ; Flask GUI
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,        Section    w260 h410 xs y+8  , Flask Settings
+    Gui, Font
+    Gui Add, Text,                     xs+55   ys+15,       Flask 1
+    Gui Add, Text,                     x+8,                 Flask 2
+    Gui Add, Text,                     x+7,                 Flask 3
+    Gui Add, Text,                     x+8,                 Flask 4
+    Gui Add, Text,                     x+7,                 Flask 5
 
     Gui Add, Text,       Section            x12   y+5,         Duration:
     Gui Add, Edit,       vCooldownFlask1       x63   ys-2   w34  h17,   %CooldownFlask1%
@@ -1212,7 +1235,7 @@
     Gui Add, Text,                    x+24,             Life
     Gui Add, Text,                    x+24,             Life
     Gui, Font
-    Gui Add, Text,                    x80     ys,        |
+    Gui Add, Text,                    x80     ys,       |
     Gui Add, Text,                    x+40,             |
     Gui Add, Text,                    x+39,             |
     Gui Add, Text,                    x+39,             |
@@ -1295,28 +1318,28 @@
       valueDisableES := substr(DisableES, (A_Index), 1)
       GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
       }  
-
-    Gui Add, Text,           Section                x16   y+8,         Quicks.:
-    ;Gui,Font,cBlack
     Gui,Font,cBlack
-    Gui Add, GroupBox,     w257 h26                xp-5   yp-9, 
+    Gui Add, GroupBox,           Section  w257 h28       x11   y+5,
+    Gui Add, Text,     Center      xp+5   yp+0,         Quick`nSilvers:
+
+    ;Gui Add, GroupBox,     w257 h26                xp-5   yp-9, 
     Gui,Font
-    Gui Add, CheckBox, Group   vRadiobox1QS     gUtilityCheck    xs+60   ys   w13 h13
+    Gui Add, CheckBox, Group   vRadiobox1QS     gUtilityCheck    xs+64   ys+10   w13 h13
     vFlask=2
     loop 4 {
-      Gui Add, CheckBox, Group   vRadiobox%vFlask%QS    gUtilityCheck  x+28   ys   w13 h13
+      Gui Add, CheckBox, Group   vRadiobox%vFlask%QS    gUtilityCheck  x+28     w13 h13
       vFlask:=vFlask+1
       }
 
     Gui,Font,cBlack
-    Gui Add, GroupBox,   Section  w257 h30                x11   y+3, Mana `%
+    Gui Add, GroupBox,   Section  w257 h40                 x11   y+6, Mana `%
     Gui,Font
-    Gui, Add, text, section x20 ys+13 w35, %ManaThreshold%
+    Gui, Add, Edit, number limit2 xs+5 ys+15 w35
     Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
-    Gui Add, CheckBox,     vRadiobox1Mana10   gUtilityCheck    x+20    ys-2   w13 h13
+    Gui Add, CheckBox,     vRadiobox1Mana10   gUtilityCheck    xs+64    ys+18   w13 h13
     vFlask=2
     loop 4 {
-      Gui Add, CheckBox,     vRadiobox%vFlask%Mana10 gUtilityCheck    x+28  ys-2   w13 h13
+      Gui Add, CheckBox,     vRadiobox%vFlask%Mana10 gUtilityCheck    x+28   w13 h13
       vFlask:=vFlask+1
       }
     Loop, 5 {  
@@ -1326,14 +1349,15 @@
       GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
       }
     Gui,Font,cBlack
-    Gui Add, GroupBox,   Section  w257 h30                x11   y+2
+    Gui Add, GroupBox,   Section  w257 h30                 x11   y+8,
+    Gui Add, Text,   center xp+5 yp+0, Pop All`nFlasks:
     Gui,Font
-    Gui Add, Text,           Section                x13   yp+12,         Pop Flsk:
-    Gui Add, Checkbox,     vPopFlasks1       x75   ys   w13 h13
-    Gui Add, Checkbox,     vPopFlasks2     x+28       w13 h13
-    Gui Add, Checkbox,     vPopFlasks3     x+28       w13 h13
-    Gui Add, Checkbox,     vPopFlasks4     x+28       w13 h13
-    Gui Add, Checkbox,     vPopFlasks5     x+28       w13 h13
+    Gui Add, CheckBox, Group   vPopFlasks1    xs+64   ys+12   w13 h13
+    Pop=2
+    loop 4 {
+      Gui Add, CheckBox, Group   vPopFlasks%Pop%   x+28     w13 h13
+      Pop:=Pop+1
+      }
 
     Loop, 5 {  
       valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
@@ -1341,15 +1365,11 @@
       }
 
 
-    Gui,Font,cBlack
-    Gui Add, GroupBox,       Section            x11   y+13   w257 h58,    Attack:
-    Gui Add, text, vFlaskColumn1                  xp+53   ys-8   , Flask 1
-    Gui Add, text, vFlaskColumn2                  xp+42   ys-8   , Flask 2
-    Gui Add, text, vFlaskColumn3                  xp+41   ys-8   , Flask 3
-    Gui Add, text, vFlaskColumn4                  xp+41   ys-8   , Flask 4
-    Gui Add, text, vFlaskColumn5                  xp+41   ys-8   , Flask 5
+    Gui, Font, s8 cBlack
+    Gui Add, GroupBox,       Section            x11   y+6   w257 h58, Attack
+
     Gui,Font
-    Gui Add, Edit,       vhotkeyMainAttack         xs+1   ys+14   w48 h17,   %hotkeyMainAttack%
+    Gui Add, Edit,       vhotkeyMainAttack         xs+3   ys+14   w43 h17,   %hotkeyMainAttack%
     Gui Add, Checkbox,     vMainAttackbox1       x75   y+-15   w13 h13
     vFlask=2
     loop 4 {
@@ -1357,7 +1377,7 @@
       vFlask:=vFlask+1
       } 
 
-    Gui Add, Edit,       vhotkeySecondaryAttack     x12   y+8   w48 h17,   %hotkeySecondaryAttack%
+    Gui Add, Edit,       vhotkeySecondaryAttack     xs+3   y+8   w43 h17,   %hotkeySecondaryAttack%
     Gui Add, Checkbox,     vSecondaryAttackbox1     x75   y+-15   w13 h13
     vFlask=2
     loop 4 {
@@ -1372,19 +1392,20 @@
       }
 
     ;Vertical Grey Lines
-    Gui, Add, Text,                   x59   y77     h381 0x11
-    Gui, Add, Text,                   x+33         h381 0x11
-    Gui, Add, Text,                   x+34         h381 0x11
-    Gui, Add, Text,                   x+33         h381 0x11
-    Gui, Add, Text,                   x+34         h381 0x11
-    Gui, Add, Text,                   x+33         h381 0x11
+    Gui, Add, Text,                   x59   y84    h396 0x11
+    Gui, Add, Text,                   x+33         h396 0x11
+    Gui, Add, Text,                   x+34         h396 0x11
+    Gui, Add, Text,                   x+33         h396 0x11
+    Gui, Add, Text,                   x+34         h396 0x11
+    Gui, Add, Text,                   x+33         h396 0x11
+    ;Middle Vertical Lines
     Gui, Add, Text,                   x+5   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
 
-    Gui,Font,s9 cBlack 
-    Gui Add, GroupBox,     Section  w227 h66        x292   y30 ,         Auto-Quit settings
-    Gui,Font,
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,     Section  w227 h66        x292   y30 ,         Auto-Quit Settings
+    Gui, Font,
     ;Gui Add, Text,                       x292   y30,         Auto-Quit:
     Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             10|20|30|40|50|60|70|80|90
     GuiControl, ChooseString, QuitBelow, %QuitBelow%
@@ -1394,16 +1415,19 @@
     Gui, Add, Radio,     vRadioNormalQuit Checked%RadioNormalQuit%      x+1  ,        /exit
     Gui Add, Checkbox, gUpdateExtra  vRelogOnQuit Checked%RelogOnQuit%         xs+5  y+8        , Log back in afterwards?
 
-    Gui,Font,s9 cBlack 
-    Gui Add, GroupBox,     Section  w257 h66        xs   y+10 ,         Quicksilver settings
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,     Section  w257 h66        xs   y+10 ,         Quicksilver Settings
     Gui,Font,
     Gui Add, Text,                     xs+10   ys+16,         Quicksilver Flask Delay (in s):
     Gui Add, Edit,       vTriggerQuicksilverDelay  x+10   yp   w22 h17,   %TriggerQuicksilverDelay%
-    Gui,Add,GroupBox, xs+10 yp+16 w208 h26                      ,Quicksilver on attack:
+    Gui, Font, s8 cBlack
+    ;Improve UI later
+    Gui,Add,GroupBox, xs+10 yp+16 w208 h26                      ,Quicksilver on Attack:
+    Gui,Font,
     Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Primary Attack
     Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
-    Gui, Font, Bold s9 cBlack
+    Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,           Section    w324 h176      xs   y+10,         Profile Management:
     Gui, Font
     Gui, Add, Text,                   xs+161   ys+41     h135 0x11
@@ -1458,7 +1482,7 @@
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
   Gui, Tab, Utility
-    Gui, Font, Bold s9 cBlack
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, GroupBox,             w605 h311    section    xm+5   y+15,         Utility Management:
     Gui, Font,
 
@@ -1636,8 +1660,8 @@
     Gui Add, Text,                     x+9   ,   Mana:
     Gui, Add, Text,                   x+18        h270 0x11
 
-    Gui, Font, Bold s9 cBlack
-    Gui, Add, GroupBox,  y+20 xs w240 h150 Section, Stack Release tool
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,  y+20 xs w240 h150 Section, Stack Release Tool
     Gui, Font,
     Gui, Add, CheckBox, gUpdateStackRelease vStackRelease_Enable Checked%StackRelease_Enable%  Right x+-65 ys+2 , Enable
     Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffIcon xs+5 ys+19 w150 h21, % StackRelease_BuffIcon
@@ -1668,8 +1692,8 @@
     Gui, Add, Text, x+2 yp w29 hp,
     Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 
-    Gui,Font, Bold s9 cBlack 
-    Gui Add, GroupBox,     Section  w190 h110        xs+240+7   ys ,         Auto-Detonate Mines
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,     Section  w190 h110        xs+240+7   ys ,         Auto-Detonate Mines
     Gui, Font,
     Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
     Gui Add, Text, xs+5 y+4, Delay after Detonate
@@ -1693,11 +1717,12 @@
 
     ;#######################################################################################################Configuration Tab
   Gui, Tab, Configuration
-    Gui, Add, Text,                   x279   y23    w1  h441 0x7
-    Gui, Add, Text,                   x+1   y23    w1  h441 0x7
+    Gui, Add, Text,                   x279   y23    w1  h483 0x7
+    Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, Text,             section        x22   y30,         Gamestate Calibration:
+    Gui, Font, s8
     Gui, Add, Button, ghelpCalibration   x+10 ys-4    w20 h20,   ?
     Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs  ys+20 Section  w110 h25,   Run Wizard
     Gui, Add, Button, gShowDebugGamestates vShowDebugGamestatesBtn  x+8  yp        w110 h25,   Show Gamestates
@@ -1707,7 +1732,7 @@
     Gui, Font
 
 
-    Gui,SampleInd: Font, Bold
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
     Gui,SampleInd: Add, Text,         section            xm   ym+5,         Gamestate Calibration:
     Gui,SampleInd: Font
 
@@ -1722,19 +1747,19 @@
     Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn  xs y+3      w110,   OnMetamorph
 
 
-    Gui,SampleInd: Font, Bold
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
     Gui,SampleInd: Add, Text,         section            xm   y+10,         Inventory Calibration:
     Gui,SampleInd: Font
     Gui,SampleInd: Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20         w110,   Empty Inventory
 
-    Gui,SampleInd: Font, Bold
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
     Gui,SampleInd: Add, Text,         section            xm   y+10,         AutoDetonate Calibration:
     Gui,SampleInd: Font
     Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn     xs ys+20          w110,   OnDetonate
 
     Gui,SampleInd: +AlwaysOnTop
 
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,           Section          xs   y+10,         Interface Options:
     Gui, Font, 
 
@@ -1764,16 +1789,17 @@
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip
     Gui, Add, Edit,       vClientLog         xs y+10  w144  h21,   %ClientLog%
     Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,           Section          xs   y+15,         Additional Settings:
+    Gui, Font, s8
     Gui, add, button, gWR_Update vWR_Btn_Inventory   xs y+10 w110, Inventory
     Gui, add, button, gWR_Update vWR_Btn_Strings   x+10 yp w110, Strings
     Gui, add, button, gWR_Update vWR_Btn_Chat     xs y+10 w110, Chat
     Gui, add, button, gWR_Update vWR_Btn_Controller x+10 yp w110, Controller
     Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, C.L.F.
-    Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
+    ;Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
 
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,   Section                  x295   ym+25,         Keybinds:
     Gui, Font
     Gui Add, Text,                     xs+65   y+10,         Open this GUI
@@ -1804,7 +1830,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
 
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,                     xs+145   ys,         Ingame:
     Gui, Font
     Gui Add, Text,                     xs+205   y+10,         Close UI
@@ -1818,7 +1844,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyLootScan        ,%hotkeyLootScan%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyDetonateMines    ,%hotkeyDetonateMines%
     Gui Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%                    y+8 ; Loot Vacuum?
-    Gui, Font, Bold
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Button, gLootColorsMenu  vLootVacuumSettings                  h19  x+0 yp-3, Loot Vacuum Settings
     Gui, Font
     Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xs y+6 , Pop Flasks Respect CD?
@@ -1828,7 +1854,7 @@
     Gui Add, Checkbox,   vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%    x+5 yp      , Wait?
 
     ;~ =========================================================================================== Subgroup: Hints
-    Gui,Font,Bold
+    Gui,Font, Bold s9 cBlack, Arial
     Gui,Add,GroupBox,Section xs  x450 y+10  w120 h80              ,Hotkey Modifiers
     Gui, Add, Button,      gLaunchHelp vLaunchHelp    xs+108 ys w18 h18 ,   ?
     Gui,Font,Norm
@@ -12796,7 +12822,7 @@ Return
     IgnoreEscape:
       SaveIgnoreArray()
       Gui, Ignore: Destroy
-      Gui, 1: Show
+      Gui, Inventory: Show
     Return
 
     addToBlacklist(C, R)
@@ -12835,7 +12861,7 @@ Return
         }
       }
       ind=0
-
+      Hotkeys()
       Gui, Ignore: Show
     Return
 
