@@ -8073,14 +8073,13 @@ Return
     || Stats.MapItemQuantity <= MMapItemQuantity)) )
     && Prop.Identified
     {
-      If (DebugMessages)
-      {
-      Notify("MapCrafting: " Prop.ItemBase "","Before Rolling`nItem Rarity: " antr "`nMonsterPackSize: " antp "`nItem Quantity: " antq "`nAfter Rolling`nItem Rarity: " Stats.MapItemRarity "`nMonsterPackSize: " Stats.MapMonsterPackSize "`nItem Quantity: " Stats.MapItemQuantity "`nEnd",4)
-      }
       If (!RunningToggle)
       {
         break
       }
+      antr := Stats.MapItemRarity
+      antp := Stats.MapMonsterPackSize
+      antq := Stats.MapItemQuantity
       ; Scouring or Alteration
       ApplyCurrency(crname, x, y)
       If (Prop.RarityNormal)
@@ -8091,6 +8090,10 @@ Return
       Else If (Prop.AffixCount < 2 && Prop.RarityMagic)
       {
         ApplyCurrency("Augmentation",x,y)
+      }
+      If (DebugMessages)
+      {
+      Notify("MapCrafting: " Prop.ItemBase "","Before Rolling`nItem Rarity: " antr "`nMonsterPackSize: " antp "`nItem Quantity: " antq "`nAfter Rolling`nItem Rarity: " Stats.MapItemRarity "`nMonsterPackSize: " Stats.MapMonsterPackSize "`nItem Quantity: " Stats.MapItemQuantity "`nEnd",4)
       }
     }
     return
