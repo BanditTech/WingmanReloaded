@@ -2483,7 +2483,7 @@ Return
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
           }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Gem_Links >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -2502,9 +2502,9 @@ Return
             Continue
           If (Item.Prop.RarityUnique && (Item.Prop.Ring||Item.Prop.Amulet||Item.Prop.Jewel||Item.Prop.Flask))
             Continue
-          If ( Item.Prop.Flask && ( Item.Prop.Quality > 0 ))
+          If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
           {
-            If (Item.Prop.Quality >= 20 && !Item.Prop.QualityAugmented)
+            If (Item.Prop.Quality >= 20)
               Q := 40 
             Else 
               Q := Item.Prop.Quality
@@ -2685,7 +2685,7 @@ Return
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
           }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Gem_Links >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -2850,34 +2850,6 @@ Return
       sendstash := StashTabUniqueRing
       Else If (StashTabYesUniqueDump)
       sendstash := StashTabUniqueDump
-
-      ; If (StashTabYesCollection)
-      ; {
-      ;   MoveStash(StashTabCollection)
-      ;   RandomSleep(45,45)
-      ;   CtrlClick(Grid.X,Grid.Y)
-      ; }
-      ; If (StashTabYesUniqueRing&&Item.Prop.Ring)
-      ; {
-      ;   Sleep, 200*Latency
-      ;   ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
-      ;   if (indexOfHex(Pitem, varEmptyInvSlotColor))
-      ;     Continue
-      ;   MoveStash(StashTabUniqueRing)
-      ;   RandomSleep(45,45)
-      ;   CtrlClick(Grid.X,Grid.Y)
-      ; }
-      ; If (StashTabYesUniqueDump)
-      ; {
-      ;   Sleep, 200*Latency
-      ;   ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
-      ;   if (indexOfHex(Pitem, varEmptyInvSlotColor))
-      ;     Continue
-      ;   MoveStash(StashTabUniqueDump)
-      ;   RandomSleep(45,45)
-      ;   CtrlClick(Grid.X,Grid.Y)
-      ; }
-      ; Continue
     }
     Else If (Item.Prop.Essence&&StashTabYesEssence)
       sendstash := StashTabEssence
@@ -2898,7 +2870,7 @@ Return
       Else If (StashTabYesGem)
         sendstash := StashTabGem
     }
-    Else If ((Item.Prop.Gem_Links >= 5)&&StashTabYesLinked)
+    Else If ((Item.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
       sendstash := StashTabLinked
     Else If (Item.Prop.Prophecy&&StashTabYesProphecy)
       sendstash := StashTabProphecy
@@ -3093,7 +3065,7 @@ Return
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
           }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Gem_Links >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -3378,7 +3350,7 @@ Return
             }
             Return True
           }
-          Else If (Item.Prop.ItemName = Ninja[TKey][index]["name"] && ((ForceMatch6Link && Ninja[TKey][index]["links"] = "6") || (Item.Prop.Gem_Links=6 && Ninja[TKey][index]["links"] = "6") || (Item.Prop.Gem_Links=5 && Ninja[TKey][index]["links"] = "5") || (Item.Prop.Gem_Links <= 4 && Ninja[TKey][index]["links"] = "0")))
+          Else If (Item.Prop.ItemName = Ninja[TKey][index]["name"] && ((ForceMatch6Link && Ninja[TKey][index]["links"] = "6") || (Item.Prop.Sockets_Link=6 && Ninja[TKey][index]["links"] = "6") || (Item.Prop.Sockets_Link=5 && Ninja[TKey][index]["links"] = "5") || (Item.Prop.Sockets_Link <= 4 && Ninja[TKey][index]["links"] = "0")))
           {
             Item.Prop.ChaosValue := (Ninja[TKey][index]["chaosValue"] ? Ninja[TKey][index]["chaosValue"] : False)
             Item.Prop.ExaltValue := (Ninja[TKey][index]["exaltedValue"] ? Ninja[TKey][index]["exaltedValue"] : False)
@@ -5720,7 +5692,7 @@ Return
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
           }
-          Else If (Item.Prop.Jeweler && ( Item.Prop.Gem_Links >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+          Else If (Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
