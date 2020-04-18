@@ -4014,7 +4014,24 @@
       }
       Else If (ErrorLevel=0){
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
-        holder := JSON.Load(JSONtext)
+        Try {
+          holder := JSON.Load(JSONtext)
+        } Catch e {
+          Log("Something has gone wrong downloading " apiString " Ninja API data",e)
+          RetryDL := True
+        }
+        If RetryDL
+        {
+          Sleep, 1000
+          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+          Try {
+            holder := JSON.Load(JSONtext)
+          } Catch e {
+            Log("Something has gone all wrong downloading " apiString ,e)
+            Return
+          }
+        }
         for index, indexArr in holder.lines
         { ; This will extract the information and standardize the chaos value to one variable.
           grabName := (indexArr["currencyTypeName"] ? indexArr["currencyTypeName"] : False)
@@ -4047,7 +4064,24 @@
       }
       Else if (ErrorLevel=0){
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
-        holder := JSON.Load(JSONtext)
+        Try {
+          holder := JSON.Load(JSONtext)
+        } Catch e {
+          Log("Something has gone wrong downloading " apiString " Ninja API data",e)
+          RetryDL := True
+        }
+        If RetryDL
+        {
+          Sleep, 1000
+          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+          Try {
+            holder := JSON.Load(JSONtext)
+          } Catch e {
+            Log("Something has gone all wrong downloading " apiString ,e)
+            Return
+          }
+        }
         for index, indexArr in holder.lines
         {
           grabName := (indexArr["currencyTypeName"] ? indexArr["currencyTypeName"] : False)
@@ -4096,17 +4130,18 @@
         Try {
           holder := JSON.Load(JSONtext)
         } Catch e {
-          MsgBox, Something has gone wrong downloading %apiString% Ninja API data`nLets try again!`n`n%e%
+          Log("Something has gone wrong downloading " apiString " Ninja API data",e)
           RetryDL := True
         }
         If RetryDL
         {
+          Sleep, 1000
           UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
           FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
           Try {
             holder := JSON.Load(JSONtext)
           } Catch e {
-            MsgBox, Something has gone all wrong downloading %apiString%`nWe must now Return`n`n%e%
+            Log("Something has gone all wrong downloading " apiString ,e)
             Return
           }
         }

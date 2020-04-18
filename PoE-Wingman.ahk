@@ -2184,9 +2184,9 @@
       Load_BarControl(0,"Initializing",1)
       For k, apiKey in apiList
       {
-        ScrapeNinjaData(apiKey)
         Load_BarControl(k/l*100,"Downloading " k " of " l " (" apiKey ")")
         Sleep, -1
+        ScrapeNinjaData(apiKey)
       }
       Load_BarControl(100,"Database Updated",-1)
       JSONtext := JSON.Dump(Ninja,,2)
@@ -2200,9 +2200,9 @@
         Load_BarControl(0,"Initializing",1)
         For k, apiKey in apiList
         {
-          ScrapeNinjaData(apiKey)
           Load_BarControl(k/l*100,"Downloaded " k " of " l " (" apiKey ")")
           Sleep, -1
+          ScrapeNinjaData(apiKey)
         }
         JSONtext := JSON.Dump(Ninja,,2)
         FileDelete, %A_ScriptDir%\data\Ninja.json
