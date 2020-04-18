@@ -168,6 +168,7 @@
         This.MatchAffixes(This.Data.Blocks.Influence)
         This.MatchProperties()
         This.MatchPseudoAffix()
+        This.MatchExtenalDB()
         This.FuckingSugoiFreeMate()
       }
       MatchProperties(){
@@ -610,6 +611,7 @@
           If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal",RxMatch))
           {
             This.Prop.VaalGem := True
+            This.Prop.ItemName := "Vaal " . This.Prop.ItemName
           }
         }
         ;End Prop Block Parser for Vaal Gems
@@ -885,36 +887,22 @@
           {	
             If (v["Name"] = This.Prop.ItemName)	
             {	
-              This.Prop.Item_Width := v["Width"]	
-              This.Prop.Item_Height := v["Height"]	
+              This.Prop.Item_Width := v["Width"]
+              This.Prop.Item_Height := v["Height"]
               This.Prop.SpecialType := "Quest Item"	
               Break	
             }	
           }	
           For k, v in Bases	
           {	
-            If ((v["name"] = This.Prop.ItemName) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )	
-            {	
+            If ((v["name"] = This.Prop.ItemBase) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )	
+            {
               This.Prop.Item_Width := v["inventory_width"]	
               This.Prop.Item_Height := v["inventory_height"]	
               This.Prop.ItemClass := v["item_class"]	
               This.Prop.ItemBase := v["name"]	
               This.Prop.DropLevel := v["drop_level"]	
-              If This.Prop.Corrupted	
-              {	
-                If InStr(Clip_Contents, "Vaal " . This.Prop.ItemBase, 1)	
-                {	
-                  This.Prop.VaalGem := True	
-                  This.Prop.ItemBase := "Vaal " . This.Prop.ItemBase	
-                  This.Prop.ItemName := "Vaal " . This.Prop.ItemName	
-                }	
-                Else If InStr(Clip_Contents, "Vaal " . StrReplace(Prop.ItemBase,"Purity","Impurity"),1)	
-                {	
-                  This.Prop.VaalGem := True	
-                  This.Prop.ItemBase := "Vaal " . StrReplace(This.Prop.ItemBase,"Purity","Impurity")	
-                  This.Prop.ItemName := "Vaal " . StrReplace(This.Prop.ItemName,"Purity","Impurity")	
-                }	
-              }	
+
               If InStr(This.Prop.ItemClass, "Ring")	
                 This.Prop.Ring := True	
               If InStr(This.Prop.ItemClass, "Amulet")	
