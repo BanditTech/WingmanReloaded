@@ -4091,8 +4091,25 @@
         MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
       }
       Else if (ErrorLevel=0){
+        RetryDL := False
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
-        holder := JSON.Load(JSONtext)
+        Try {
+          holder := JSON.Load(JSONtext)
+        } Catch e {
+          MsgBox, Something has gone wrong downloading %apiString% Ninja API data`nLets try again!`n`n%e%
+          RetryDL := True
+        }
+        If RetryDL
+        {
+          UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+          Try {
+            holder := JSON.Load(JSONtext)
+          } Catch e {
+            MsgBox, Something has gone all wrong downloading %apiString%`nWe must now Return`n`n%e%
+            Return
+          }
+        }
         for index, indexArr in holder.lines
         {
           grabSparklineVal := (indexArr["sparkline"] ? indexArr["sparkline"] : False)
