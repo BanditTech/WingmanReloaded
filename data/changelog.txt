@@ -12,6 +12,9 @@ Fonts on the main menu headers have been changed to Use Arial
 Vendor before Stash will now respect all Stash Management options
 * Determining an items stash tab is now in its own function
 
+Debug for MapCrafting
+* Enabling Debug, will notify (a small box at bottom left on your screen) always when a map need to be reroll with stats before rerolling and after.
+
 ---
 
 ## Version .11.0401 - Alpha Branch - April/14/2020
