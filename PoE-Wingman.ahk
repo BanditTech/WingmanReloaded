@@ -2186,6 +2186,7 @@
       {
         ScrapeNinjaData(apiKey)
         Load_BarControl(k/l*100,"Downloading " k " of " l " (" apiKey ")")
+        Sleep, -1
       }
       Load_BarControl(100,"Database Updated",-1)
       JSONtext := JSON.Dump(Ninja,,2)
