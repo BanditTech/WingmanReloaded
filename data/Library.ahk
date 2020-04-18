@@ -122,7 +122,8 @@
       BlockInput, MouseMoveOff
       return
     }
-
+    ; ItemScan - Parse data from Cliboard to Prop and Affix
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemScan
     {
       __New()
@@ -904,9 +905,11 @@
               This.Prop.DropLevel := v["drop_level"]	
 
               If InStr(This.Prop.ItemClass, "Ring")	
-                This.Prop.Ring := True	
+                This.Prop.Ring := True
               If InStr(This.Prop.ItemClass, "Amulet")	
-                This.Prop.Amulet := True	
+                This.Prop.Amulet := True
+              If InStr(This.Prop.ItemClass, "Belt")	
+                This.Prop.Belt := True	
               Break	
             }	
 
@@ -921,7 +924,8 @@
           }
       }
     }
-
+    ; ArrayToString - Make a string from array using | as delimiters
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ArrayToString(Array)
     {
       for index, element in Array
@@ -937,6 +941,8 @@
       }
       return text
     }
+    ; StringToArray - Make a array from a string using | as delimiters
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     StringToArray(text)
     {
       Array := StrSplit(text,"|")
