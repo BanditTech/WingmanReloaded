@@ -3132,13 +3132,7 @@ Return
         {
           If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
             Continue
-          if InStr(SKey, "Affix")
-            arrval := Affix[AVal]
-          else if InStr(SKey, "Prop")
-            arrval := Prop[AVal]
-          else if InStr(SKey, "Stats")
-            arrval := Stats[AVal]
-
+          arrval := %SKey%[AVal]
           eval := LootFilter[GKey][SKey][AKey . "Eval"]
           min := LootFilter[GKey][SKey][AKey . "Min"]
           orflag := LootFilter[GKey][SKey][AKey . "OrFlag"]
