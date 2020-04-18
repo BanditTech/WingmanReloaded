@@ -149,7 +149,7 @@
           }
           Else 
           {
-            If (SVal ~= "\.$" || SVal ~= """$")
+            If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= """$")
               This.Data.Blocks.FlavorText := SVal
             Else If (SVal ~= "\(implicit\)$")
               This.Data.Blocks.Implicit := SVal
