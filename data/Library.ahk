@@ -1,10 +1,8 @@
-if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+﻿if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
 {
   ft_Gui("Show")
   Return
 }
-
-
 
 /*** Wingman Functions
 *  Contains all the assorted functions written for Wingman
@@ -125,748 +123,749 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
       return
     }
 
-class ItemScan
-{
-  __New(){
-    This.Data := {}
-    This.Data.ClipContents := loaded_item ; Clipboard
-    This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
-    This.Data.Blocks := {}
-    This.Pseudo := OrderedArray()
-    This.Affix := OrderedArray()
-    This.Prop := OrderedArray()
-    ; This.Stats := {}
-    ; Split our sections from the clipboard
-    ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
-    For SectionKey, SVal in This.Data.Sections
+    class ItemScan
     {
-      If (SVal ~= ":")
+      __New()
       {
-        If (SectionKey = 1 && SVal ~= "Rarity:")
-          This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
-        Else
-          This.Data.Blocks.Properties .= SVal "`n"
-      }
-      Else 
-      {
-        If (SVal ~= "\.$")
-          This.Data.Blocks.FlavorText := SVal
-        Else If (SVal ~= "\(implicit\)$")
-          This.Data.Blocks.Implicit := SVal
-        Else If (SVal ~= "\(enchant\)$")
-          This.Data.Blocks.Enchant := SVal
-        Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
-          This.Data.Blocks.Influence := SVal
-        Else If (SVal ~= "^Corrupted$")
-          This.Prop.Corrupted := True
-        Else
-          This.Data.Blocks.Affix := SVal
-      }
-    }
-    This.MatchAffixes(This.Data.Blocks.Affix)
-    This.MatchAffixes(This.Data.Blocks.Enchant)
-    This.MatchAffixes(This.Data.Blocks.Implicit)
-    This.MatchAffixes(This.Data.Blocks.Influence)
-    This.MatchProperties()
-    This.MatchPseudoAffix()
-    ;This.FuckingSugoiFreeMate()
-  }
-  MatchProperties(){
-    ;Start NamePlate Parser
-    If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
-    {
-      This.Prop.Rarity := RxMatch1
-      ;Prop Rarity Comparator
-      If (InStr(This.Prop.Rarity, "Currency"))
-      {
-        This.Prop.RarityCurrency := True
-        This.Prop.DefaultSendStash := "CurrencyTab"
-      }
-      Else If (InStr(This.Prop.Rarity, "Divination Card"))
-      {
-        This.Prop.RarityDivination := True
-        This.Prop.SpecialType := "Divination Card"
-        This.Prop.DefaultSendStash := "DivinationTab"
-      }
-      Else If (InStr(This.Prop.Rarity, "Gem"))
-      {
-        This.Prop.RarityGem := True
-        This.Prop.SpecialType := "Gem"
-        This.Prop.DefaultSendStash := "GemTab"
-      }
-      Else If (InStr(This.Prop.Rarity, "Normal"))
-      {
-        This.Prop.RarityNormal := True
-        This.Prop.Rarity_Digit := 1
-      }
-      Else If (InStr(This.Prop.Rarity, "Magic"))
-      {
-        This.Prop.RarityMagic := True
-        This.Prop.Rarity_Digit := 2
-      }
-      Else If (InStr(This.Prop.Rarity, "Rare"))
-      {
-        This.Prop.RarityRare := True
-        This.Prop.Rarity_Digit := 3
-      }
-      Else If (InStr(This.Prop.Rarity, "Unique"))
-      {
-        This.Prop.RarityUnique := True
-        This.Prop.Rarity_Digit := 4
-        This.Prop.DefaultSendStash := "CollectionTab"
-      }
-      ; Fail Safe in case nothing match, to avoid auto-sell
-      Else
-      {
-        This.Prop.SpecialType := This.Prop.Rarity
-      }
-      ; 3 Lines in NamePlate => Rarity / Item Name/ Item Base
-      If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)`r`n(.+)",RxMatch))
-      {
-        This.Prop.ItemName := RxMatch1
-        This.Prop.ItemBase := RxMatch2
-      }
-      ; 2 Lines in NamePlate => Rarity / Item Base
-      Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)",RxMatch))
-      {
-        This.Prop.ItemName := RxMatch1
-        This.Prop.ItemBase := RxMatch1
-      }
-      ;Start Parse
-      If (InStr(This.Prop.ItemBase, "Map"))
-      {
-        This.Prop.IsMap := True
-        This.Prop.ItemClass := "Maps"
-        ; Deal with Blighted Map
-        If (InStr(This.Prop.ItemBase, "Blighted"))
+        This.Data := {}
+        This.Data.ClipContents := Clip_Contents ; Clipboard
+        This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
+        This.Data.Blocks := {}
+        This.Pseudo := OrderedArray()
+        This.Affix := OrderedArray()
+        This.Prop := OrderedArray()
+        ; This.Stats := {}
+        ; Split our sections from the clipboard
+        ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
+        For SectionKey, SVal in This.Data.Sections
         {
-          This.Prop.IsBlightedMap := True
-          Prop.SpecialType := "Blighted Map"
-        }
-        Else
-        {
-          This.Prop.SpecialType := "Map"
-          This.Prop.DefaultSendStash := "MapTab"
-        }
-      }
-      Else If (InStr(This.Prop.ItemBase, "Incubator"))
-      {
-        This.Prop.Incubator := True
-        This.Prop.SpecialType := "Incubator"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Timeless Karui Splinter") 
-      || InStr(This.Prop.ItemBase, "Timeless Eternal Empire Splinter") 
-      || InStr(This.Prop.ItemBase, "Timeless Vaal Splinter") 
-      || InStr(This.Prop.ItemBase, "Timeless Templar Splinter") 
-      || InStr(This.Prop.ItemBase, "Timeless Maraketh Splinter"))
-      {
-        This.Prop.TimelessSplinter := True
-        This.Prop.SpecialType := "Timeless Splinter"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Splinter of"))
-      {
-        This.Prop.BreachSplinter := True
-        This.Prop.SpecialType := "Breach Splinter"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Breachstone"))
-      {
-        This.Prop.BreachSplinter := True
-        This.Prop.SpecialType := "Breachstone"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Sacrifice at"))
-      {
-        This.Prop.SacrificeFragment := True
-        This.Prop.SpecialType := "Sacrifice Fragment"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Mortal Grief") 
-      || InStr(This.Prop.ItemBase, "Mortal Hope") 
-      || InStr(This.Prop.ItemBase, "Mortal Ignorance")
-      || InStr(This.Prop.ItemBase, "Mortal Rage"))
-      {
-        This.Prop.MortalFragment := True
-        This.Prop.SpecialType := "Mortal Fragment"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Fragment of"))
-      {
-        This.Prop.GuardianFragment := True
-        This.Prop.SpecialType := "Guardian Fragment"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Volkuur's Key") 
-      || InStr(This.Prop.ItemBase, "Eber's Key")
-      || InStr(This.Prop.ItemBase, "Yriel's Key")
-      || InStr(This.Prop.ItemBase, "Inya's Key"))
-      {
-        This.Prop.ProphecyFragment := True
-        This.Prop.SpecialType := "Prophecy Fragment"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Scarab"))
-      {
-        This.Prop.Scarab := True
-        This.Prop.SpecialType := "Scarab"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess"))
-      {
-        This.Prop.Offering := True
-        This.Prop.SpecialType := "Offering"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Essence of")
-      || InStr(This.Prop.ItemBase, "Remnant of Corruption"))
-      {
-        This.Prop.Essence := True
-        This.Prop.SpecialType := "Essence"
-        This.Prop.DefaultSendStash := "EssenceTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Fossil")
-      || InStr(This.Prop.ItemBase, "Resonator"))
-      {
-        This.Prop.Resonator := True
-        This.Prop.SpecialType := "Resonator"
-        This.Prop.DefaultSendStash := "ResonatorTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Divine Vessel"))
-      {
-        This.Prop.Vessel := True
-        This.Prop.SpecialType := "Divine Vessel"
-        This.Prop.DefaultSendStash := "FragmentsTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Eye Jewel"))
-      {
-        This.Prop.AbyssJewel := True
-        This.Prop.Jewel := True
-      }
-      Else If (InStr(This.Prop.ItemBase, "Cobalt Jewel")
-      || InStr(This.Prop.ItemBase, "Crimson Jewel")
-      || InStr(This.Prop.ItemBase, "Viridian Jewel"))
-      {
-        This.Prop.Jewel := True
-      }
-      Else If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
-      {
-        This.Prop.ClusterJewel := True
-        This.Prop.SpecialType := "Cluster Jewel"
-        This.Prop.DefaultSendStash := "ClusterJewelTab"
-      }
-      Else If (InStr(This.Prop.ItemBase, "Flask"))
-      {
-        This.Prop.Flask := True
-        This.Prop.ItemClass := "Flasks"
-        This.Prop.DefaultSendStash := "QualityFlaskTab"
-        This.Prop.Item_Width := 1
-        This.Prop.Item_Height := 2
-      }
-      Else If (InStr(This.Prop.ItemBase, "Quiver"))
-      {
-        This.Prop.Quiver := True
-        This.Prop.ItemClass := "Quivers"
-        This.Prop.Item_Width := 2
-        This.Prop.Item_Height := 3
-      }
-      Else If (InStr(This.Prop.ItemBase, "Oil"))
-      {
-        If (This.Prop.RarityCurrency)
-        {
-        This.Prop.Oil := True
-        This.Prop.SpecialType := "Oil"
-        This.Prop.DefaultSendStash := "OilTab"
-        }
-      }
-      Else If (InStr(This.Prop.ItemBase, "Catalyst"))
-      {
-        If (This.Prop.RarityCurrency)
-        {
-        This.Prop.Catalyst := True
-        This.Prop.SpecialType := "Catalyst"
-        }
-      }
-      Else If (InStr(This.Prop.ItemBase, "'s Lung"))
-      {	     
-        If (This.Prop.RarityUnique)
-        {
-          This.Prop.IsOrgan := "Lung"
-          This.Prop.SpecialType := "Organ"
-          This.Prop.DefaultSendStash := "OrganTab"
-        }
-      }
-      Else If (InStr(This.Prop.ItemBase, "'s Heart"))
-      {			        
-        If (This.Prop.RarityUnique)
-        {
-          This.Prop.IsOrgan := "Heart"
-          This.Prop.SpecialType := "Organ"
-          This.Prop.DefaultSendStash := "OrganTab"
-        }
-      }
-      Else If (InStr(This.Prop.ItemBase, "'s Brain"))
-      {			        
-        If (This.Prop.RarityUnique)
-        {
-          This.Prop.IsOrgan := "Brain"
-          This.Prop.SpecialType := "Organ"
-          This.Prop.DefaultSendStash := "OrganTab"
-        }
-      }
-      Else If (InStr(This.Prop.ItemBase, "'s Liver"))
-      {
-        If (This.Prop.RarityUnique)
-        {
-          This.Prop.IsOrgan := "Liver"
-          This.Prop.SpecialType := "Organ"
-          This.Prop.DefaultSendStash := "OrganTab"
-        }
-      }
-      Else If (InStr(This.Prop.ItemBase, "'s Eye"))
-      {
-        If (This.Prop.RarityUnique)
-        {
-          This.Prop.IsOrgan := "Eye"
-          This.Prop.SpecialType := "Organ"
-          This.Prop.DefaultSendStash := "OrganTab"
-        }
-      }
-      Else If (InStr(This.Prop.ItemBase, " Beast"))
-      {
-        ;Only Rare and Unique Beasts
-        If (This.Prop.Rarity_Digit >= 3)
-        {
-          This.Prop.IsBeast := True
-          This.Prop.SpecialType := "Beast"
-          This.Prop.ItemClass := "Beasts"
-        }
-      }
-    }
-    ;End NamePlate Parser
-
-    ;Start Extra Blocks Parser
-      ;Parse Influence data block
-    Loop, Parse,% This.Data.Blocks.Influence, `n, `r
-    {
-      ; Match for influence type
-      If (RegExMatch(A_LoopField, "`am)(.+) Item",RxMatch))
-      {
-        This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch1
-      }
-    }
-    ; Get Prophecy using Flavor Txt
-    If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this prophecy to your character",RxMatch))
-    {
-      This.Prop.Prophecy := True
-      This.Prop.SpecialType := "Prophecy"
-    }
-    ;End Extra Blocks Parser
-
-    ;Start Prop Block Parser for General Items
-      ;Every Item has a Item Level
-    If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
-    {
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
-      {
-        This.Prop.ItemLevel := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: (.+)",RxMatch))
-      {
-        This.Prop.Required_Level := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: (.+)",RxMatch))
-      {
-        This.Prop.Required_Str := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: (.+)",RxMatch))
-      {
-        This.Prop.Required_Dex := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: (.+)",RxMatch))
-      {
-        This.Prop.Required_Int := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: (.+)",RxMatch))
-      {
-        This.Prop.Sockets_Raw := RxMatch1
-        This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
-        This.Prop.Sockets_Link := 0
-        For k, v in StrSplit(RxMatch1, " ")
-        {
-          nlink := StrLen(RegExReplace(v, "\w" , "")) + 1
-          if (This.Prop.Sockets_Link < nlink)
+          If (SVal ~= ":")
           {
-            This.Prop.Sockets_Link := nlink
+            If (SectionKey = 1 && SVal ~= "Rarity:")
+              This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
+            Else
+              This.Data.Blocks.Properties .= SVal "`n"
           }
-          if (v ~= "R" && v ~= "G" && v ~= "B")
+          Else 
           {
-            This.Prop.Chromatic := True
+            If (SVal ~= "\.$")
+              This.Data.Blocks.FlavorText := SVal
+            Else If (SVal ~= "\(implicit\)$")
+              This.Data.Blocks.Implicit := SVal
+            Else If (SVal ~= "\(enchant\)$")
+              This.Data.Blocks.Enchant := SVal
+            Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
+              This.Data.Blocks.Influence := SVal
+            Else If (SVal ~= "^Corrupted$")
+              This.Prop.Corrupted := True
+            Else
+              This.Data.Blocks.Affix := SVal
           }
         }
-        If (This.Prop.Sockets_Link == 5)
+        This.MatchAffixes(This.Data.Blocks.Affix)
+        This.MatchAffixes(This.Data.Blocks.Enchant)
+        This.MatchAffixes(This.Data.Blocks.Implicit)
+        This.MatchAffixes(This.Data.Blocks.Influence)
+        This.MatchProperties()
+        This.MatchPseudoAffix()
+        This.FuckingSugoiFreeMate()
+      }
+      MatchProperties(){
+        ;Start NamePlate Parser
+        If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
         {
-          This.Prop.SpecialType := "5Link"
-        }
-        Else If (This.Prop.Sockets_Link == 6)
-        {
-          This.Prop.SpecialType := "6Link"
-        }
-      }
-      ;Generic Props
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
-      {
-        This.Prop.Quality := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum,RxMatch))
-      {
-        This.Prop.RatingArmour := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum,RxMatch))
-      {
-        This.Prop.RatingEnergyShield := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion: "rxNum,RxMatch))
-      {
-        This.Prop.RatingEvasion := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum,RxMatch))
-      {
-        This.Prop.RatingBlock := RxMatch1
-      }
-
-      ;Weapon Specific Props
-        ;Every Weapon has APS
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum,RxMatch))
-      {
-        This.Prop.IsWeapon := True
-        This.Prop.Weapon_APS := RxMatch1
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum ,RxMatch))
-        {
-          This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
-          This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
-          This.Prop.Weapon_Min_Physical_Dmg := RxMatch1
-        }
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+",RxMatch))
-        {
-          This.Prop.Weapon_Avg_Elemental_Dmg := 0
-          This.Prop.Weapon_Max_Elemental_Dmg := 0
-          This.Prop.Weapon_Min_Elemental_Dmg := 0
-          For k, v in StrSplit(RxMatch,",")
+          This.Prop.Rarity := RxMatch1
+          ;Prop Rarity Comparator
+          If (InStr(This.Prop.Rarity, "Currency"))
           {
-            values := This.MatchLine(v)
-            This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + values.avg)
-            This.Prop.Weapon_Max_Elemental_Dmg += values.max
-            This.Prop.Weapon_Min_Elemental_Dmg += values.min
+            This.Prop.RarityCurrency := True
+            This.Prop.DefaultSendStash := "CurrencyTab"
           }
-          values := ""
+          Else If (InStr(This.Prop.Rarity, "Divination Card"))
+          {
+            This.Prop.RarityDivination := True
+            This.Prop.SpecialType := "Divination Card"
+            This.Prop.DefaultSendStash := "DivinationTab"
+          }
+          Else If (InStr(This.Prop.Rarity, "Gem"))
+          {
+            This.Prop.RarityGem := True
+            This.Prop.SpecialType := "Gem"
+            This.Prop.DefaultSendStash := "GemTab"
+          }
+          Else If (InStr(This.Prop.Rarity, "Normal"))
+          {
+            This.Prop.RarityNormal := True
+            This.Prop.Rarity_Digit := 1
+          }
+          Else If (InStr(This.Prop.Rarity, "Magic"))
+          {
+            This.Prop.RarityMagic := True
+            This.Prop.Rarity_Digit := 2
+          }
+          Else If (InStr(This.Prop.Rarity, "Rare"))
+          {
+            This.Prop.RarityRare := True
+            This.Prop.Rarity_Digit := 3
+          }
+          Else If (InStr(This.Prop.Rarity, "Unique"))
+          {
+            This.Prop.RarityUnique := True
+            This.Prop.Rarity_Digit := 4
+            This.Prop.DefaultSendStash := "CollectionTab"
+          }
+          ; Fail Safe in case nothing match, to avoid auto-sell
+          Else
+          {
+            This.Prop.SpecialType := This.Prop.Rarity
+          }
+          ; 3 Lines in NamePlate => Rarity / Item Name/ Item Base
+          If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)`r`n(.+)",RxMatch))
+          {
+            This.Prop.ItemName := RxMatch1
+            This.Prop.ItemBase := RxMatch2
+          }
+          ; 2 Lines in NamePlate => Rarity / Item Base
+          Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)",RxMatch))
+          {
+            This.Prop.ItemName := RxMatch1
+            This.Prop.ItemBase := RxMatch1
+          }
+          ;Start Parse
+          If (InStr(This.Prop.ItemBase, "Map"))
+          {
+            This.Prop.IsMap := True
+            This.Prop.ItemClass := "Maps"
+            ; Deal with Blighted Map
+            If (InStr(This.Prop.ItemBase, "Blighted"))
+            {
+              This.Prop.IsBlightedMap := True
+              Prop.SpecialType := "Blighted Map"
+            }
+            Else
+            {
+              This.Prop.SpecialType := "Map"
+              This.Prop.DefaultSendStash := "MapTab"
+            }
+          }
+          Else If (InStr(This.Prop.ItemBase, "Incubator"))
+          {
+            This.Prop.Incubator := True
+            This.Prop.SpecialType := "Incubator"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Timeless Karui Splinter") 
+          || InStr(This.Prop.ItemBase, "Timeless Eternal Empire Splinter") 
+          || InStr(This.Prop.ItemBase, "Timeless Vaal Splinter") 
+          || InStr(This.Prop.ItemBase, "Timeless Templar Splinter") 
+          || InStr(This.Prop.ItemBase, "Timeless Maraketh Splinter"))
+          {
+            This.Prop.TimelessSplinter := True
+            This.Prop.SpecialType := "Timeless Splinter"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Splinter of"))
+          {
+            This.Prop.BreachSplinter := True
+            This.Prop.SpecialType := "Breach Splinter"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Breachstone"))
+          {
+            This.Prop.BreachSplinter := True
+            This.Prop.SpecialType := "Breachstone"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Sacrifice at"))
+          {
+            This.Prop.SacrificeFragment := True
+            This.Prop.SpecialType := "Sacrifice Fragment"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Mortal Grief") 
+          || InStr(This.Prop.ItemBase, "Mortal Hope") 
+          || InStr(This.Prop.ItemBase, "Mortal Ignorance")
+          || InStr(This.Prop.ItemBase, "Mortal Rage"))
+          {
+            This.Prop.MortalFragment := True
+            This.Prop.SpecialType := "Mortal Fragment"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Fragment of"))
+          {
+            This.Prop.GuardianFragment := True
+            This.Prop.SpecialType := "Guardian Fragment"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Volkuur's Key") 
+          || InStr(This.Prop.ItemBase, "Eber's Key")
+          || InStr(This.Prop.ItemBase, "Yriel's Key")
+          || InStr(This.Prop.ItemBase, "Inya's Key"))
+          {
+            This.Prop.ProphecyFragment := True
+            This.Prop.SpecialType := "Prophecy Fragment"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Scarab"))
+          {
+            This.Prop.Scarab := True
+            This.Prop.SpecialType := "Scarab"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess"))
+          {
+            This.Prop.Offering := True
+            This.Prop.SpecialType := "Offering"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Essence of")
+          || InStr(This.Prop.ItemBase, "Remnant of Corruption"))
+          {
+            This.Prop.Essence := True
+            This.Prop.SpecialType := "Essence"
+            This.Prop.DefaultSendStash := "EssenceTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Fossil")
+          || InStr(This.Prop.ItemBase, "Resonator"))
+          {
+            This.Prop.Resonator := True
+            This.Prop.SpecialType := "Resonator"
+            This.Prop.DefaultSendStash := "ResonatorTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Divine Vessel"))
+          {
+            This.Prop.Vessel := True
+            This.Prop.SpecialType := "Divine Vessel"
+            This.Prop.DefaultSendStash := "FragmentsTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Eye Jewel"))
+          {
+            This.Prop.AbyssJewel := True
+            This.Prop.Jewel := True
+          }
+          Else If (InStr(This.Prop.ItemBase, "Cobalt Jewel")
+          || InStr(This.Prop.ItemBase, "Crimson Jewel")
+          || InStr(This.Prop.ItemBase, "Viridian Jewel"))
+          {
+            This.Prop.Jewel := True
+          }
+          Else If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
+          {
+            This.Prop.ClusterJewel := True
+            This.Prop.SpecialType := "Cluster Jewel"
+            This.Prop.DefaultSendStash := "ClusterJewelTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Flask"))
+          {
+            This.Prop.Flask := True
+            This.Prop.ItemClass := "Flasks"
+            This.Prop.DefaultSendStash := "QualityFlaskTab"
+            This.Prop.Item_Width := 1
+            This.Prop.Item_Height := 2
+          }
+          Else If (InStr(This.Prop.ItemBase, "Quiver"))
+          {
+            This.Prop.Quiver := True
+            This.Prop.ItemClass := "Quivers"
+            This.Prop.Item_Width := 2
+            This.Prop.Item_Height := 3
+          }
+          Else If (InStr(This.Prop.ItemBase, "Oil"))
+          {
+            If (This.Prop.RarityCurrency)
+            {
+            This.Prop.Oil := True
+            This.Prop.SpecialType := "Oil"
+            This.Prop.DefaultSendStash := "OilTab"
+            }
+          }
+          Else If (InStr(This.Prop.ItemBase, "Catalyst"))
+          {
+            If (This.Prop.RarityCurrency)
+            {
+            This.Prop.Catalyst := True
+            This.Prop.SpecialType := "Catalyst"
+            }
+          }
+          Else If (InStr(This.Prop.ItemBase, "'s Lung"))
+          {	     
+            If (This.Prop.RarityUnique)
+            {
+              This.Prop.IsOrgan := "Lung"
+              This.Prop.SpecialType := "Organ"
+              This.Prop.DefaultSendStash := "OrganTab"
+            }
+          }
+          Else If (InStr(This.Prop.ItemBase, "'s Heart"))
+          {			        
+            If (This.Prop.RarityUnique)
+            {
+              This.Prop.IsOrgan := "Heart"
+              This.Prop.SpecialType := "Organ"
+              This.Prop.DefaultSendStash := "OrganTab"
+            }
+          }
+          Else If (InStr(This.Prop.ItemBase, "'s Brain"))
+          {			        
+            If (This.Prop.RarityUnique)
+            {
+              This.Prop.IsOrgan := "Brain"
+              This.Prop.SpecialType := "Organ"
+              This.Prop.DefaultSendStash := "OrganTab"
+            }
+          }
+          Else If (InStr(This.Prop.ItemBase, "'s Liver"))
+          {
+            If (This.Prop.RarityUnique)
+            {
+              This.Prop.IsOrgan := "Liver"
+              This.Prop.SpecialType := "Organ"
+              This.Prop.DefaultSendStash := "OrganTab"
+            }
+          }
+          Else If (InStr(This.Prop.ItemBase, "'s Eye"))
+          {
+            If (This.Prop.RarityUnique)
+            {
+              This.Prop.IsOrgan := "Eye"
+              This.Prop.SpecialType := "Organ"
+              This.Prop.DefaultSendStash := "OrganTab"
+            }
+          }
+          Else If (InStr(This.Prop.ItemBase, " Beast"))
+          {
+            ;Only Rare and Unique Beasts
+            If (This.Prop.Rarity_Digit >= 3)
+            {
+              This.Prop.IsBeast := True
+              This.Prop.SpecialType := "Beast"
+              This.Prop.ItemClass := "Beasts"
+            }
+          }
         }
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Critical Strike Chance: "rxNum,RxMatch))
+        ;End NamePlate Parser
+
+        ;Start Extra Blocks Parser
+          ;Parse Influence data block
+        Loop, Parse,% This.Data.Blocks.Influence, `n, `r
         {
-          This.Prop.Weapon_Critical_Strike := RxMatch1
+          ; Match for influence type
+          If (RegExMatch(A_LoopField, "`am)(.+) Item",RxMatch))
+          {
+            This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch1
+          }
         }
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Weapon Range: "rxNum,RxMatch))
+        ; Get Prophecy using Flavor Txt
+        If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this prophecy to your character",RxMatch))
         {
-          This.Prop.Weapon_Range := RxMatch1
+          This.Prop.Prophecy := True
+          This.Prop.SpecialType := "Prophecy"
+        }
+        ;End Extra Blocks Parser
+
+        ;Start Prop Block Parser for General Items
+          ;Every Item has a Item Level
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
+        {
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
+          {
+            This.Prop.ItemLevel := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: (.+)",RxMatch))
+          {
+            This.Prop.Required_Level := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: (.+)",RxMatch))
+          {
+            This.Prop.Required_Str := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: (.+)",RxMatch))
+          {
+            This.Prop.Required_Dex := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: (.+)",RxMatch))
+          {
+            This.Prop.Required_Int := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: (.+)",RxMatch))
+          {
+            This.Prop.Sockets_Raw := RxMatch1
+            This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
+            This.Prop.Sockets_Link := 0
+            For k, v in StrSplit(RxMatch1, " ")
+            {
+              nlink := StrLen(RegExReplace(v, "\w" , "")) + 1
+              if (This.Prop.Sockets_Link < nlink)
+              {
+                This.Prop.Sockets_Link := nlink
+              }
+              if (v ~= "R" && v ~= "G" && v ~= "B")
+              {
+                This.Prop.Chromatic := True
+              }
+            }
+            If (This.Prop.Sockets_Link == 5)
+            {
+              This.Prop.SpecialType := "5Link"
+            }
+            Else If (This.Prop.Sockets_Link == 6)
+            {
+              This.Prop.SpecialType := "6Link"
+            }
+          }
+          ;Generic Props
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
+          {
+            This.Prop.Quality := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum,RxMatch))
+          {
+            This.Prop.RatingArmour := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum,RxMatch))
+          {
+            This.Prop.RatingEnergyShield := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion: "rxNum,RxMatch))
+          {
+            This.Prop.RatingEvasion := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum,RxMatch))
+          {
+            This.Prop.RatingBlock := RxMatch1
+          }
+
+          ;Weapon Specific Props
+            ;Every Weapon has APS
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum,RxMatch))
+          {
+            This.Prop.IsWeapon := True
+            This.Prop.Weapon_APS := RxMatch1
+            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum ,RxMatch))
+            {
+              This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
+              This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
+              This.Prop.Weapon_Min_Physical_Dmg := RxMatch1
+            }
+            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+",RxMatch))
+            {
+              This.Prop.Weapon_Avg_Elemental_Dmg := 0
+              This.Prop.Weapon_Max_Elemental_Dmg := 0
+              This.Prop.Weapon_Min_Elemental_Dmg := 0
+              For k, v in StrSplit(RxMatch,",")
+              {
+                values := This.MatchLine(v)
+                This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + values.avg)
+                This.Prop.Weapon_Max_Elemental_Dmg += values.max
+                This.Prop.Weapon_Min_Elemental_Dmg += values.min
+              }
+              values := ""
+            }
+            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Critical Strike Chance: "rxNum,RxMatch))
+            {
+              This.Prop.Weapon_Critical_Strike := RxMatch1
+            }
+            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Weapon Range: "rxNum,RxMatch))
+            {
+              This.Prop.Weapon_Range := RxMatch1
+            }
+          }
+        }
+        ;End Prop Block Parser for General Items
+
+        ;Start Prop Block Parser for Maps
+          ;Every map has a Map Tier!
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum,RxMatch))
+        {
+          This.Prop.MapTier := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: "rxNum,RxMatch))
+          {
+            This.Prop.MapAtlasRegion := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: "rxNum,RxMatch))
+          {
+            This.Prop.MapQuantity := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: "rxNum,RxMatch))
+          {
+            This.Prop.MapRarity := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: "rxNum,RxMatch))
+          {
+            This.Prop.MapMPS := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
+          {
+            This.Prop.MapQuality := RxMatch1
+          }
+        }
+        ;End Prop Block Parser for Maps
+
+
+      }
+      MatchAffixes(content:=""){
+        ; Do Stuff with info
+        Loop, Parse,% content, `n, `r
+        {
+          If (A_LoopField = "")
+            Continue
+          key := This.Standardize(A_LoopField)
+          If (vals := This.MatchLine(A_LoopField))
+          {
+            If (vals.HasKey("avg"))
+            {
+              This.Affix[key "_Avg"] := vals.avg
+              This.Affix[key "_Max"] := vals.max
+              This.Affix[key "_Min"] := vals.min
+            }
+            Else
+            {
+              For k, v in vals
+                This.Affix[ key (k = 1 ? "" : "_value" k) ] := v
+            }
+          }
+          Else
+            This.Affix[key] := True
         }
       }
-    }
-    ;End Prop Block Parser for General Items
-
-    ;Start Prop Block Parser for Maps
-      ;Every map has a Map Tier!
-    If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum,RxMatch))
-    {
-      This.Prop.MapTier := RxMatch1
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: "rxNum,RxMatch))
-      {
-        This.Prop.MapAtlasRegion := RxMatch1
+      MatchLine(lineString){
+        If (RegExMatch(lineString, "O)" rxNum " to " rxNum , RxMatch) || RegExMatch(lineString, "O)" rxNum "-" rxNum , RxMatch))
+          Return {"min":RxMatch[1],"max":RxMatch[2],"avg":(Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))}
+        Else If (RegExMatch(lineString, "O)" rxNum " .* " rxNum , RxMatch))
+          Return [ RxMatch[1], RxMatch[2] ]
+        Else If (RegExMatch(lineString, "O)" rxNum , RxMatch))
+          Return [ RxMatch[1] ]
+        Else
+          Return False
       }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: "rxNum,RxMatch))
-      {
-        This.Prop.MapQuantity := RxMatch1
+      Standardize(str:=""){
+        Return RegExReplace(str, rxNum , "#")
       }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: "rxNum,RxMatch))
-      {
-        This.Prop.MapAtlasRegion := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: "rxNum,RxMatch))
-      {
-        This.Prop.MapMPS := RxMatch1
-      }
-      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
-      {
-        This.Prop.MapQuality := RxMatch1
-      }
-    }
-    ;End Prop Block Parser for Maps
-
-
-  }
-  MatchAffixes(content:=""){
-    ; Do Stuff with info
-    Loop, Parse,% content, `n, `r
-    {
-      If (A_LoopField = "")
-        Continue
-      key := This.Standardize(A_LoopField)
-      If (vals := This.MatchLine(A_LoopField))
-      {
-        If (vals.HasKey("avg"))
+      MatchPseudoAffix(){
+        for k, v in This.Affix
         {
-          This.Affix[key "_Avg"] := vals.avg
-          This.Affix[key "_Max"] := vals.max
-          This.Affix[key "_Min"] := vals.min
+          trimKey := RegExReplace(k," \(.*\)","")
+          ; Singular Resistances
+          If (trimKey = "# to Cold Resistance")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
+          }
+          Else If (trimKey = "# to Fire Resistance")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
+          }
+          Else If (trimKey = "# to Lightning Resistance")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
+          }
+          Else If (trimKey = "# to Chaos Resistance")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Chaos Resistance",k)
+          }
+          ; Double Resistances
+          Else If (trimKey = "# to Cold and Lightning Resistances")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
+            This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
+          }
+          Else If (trimKey = "# to Fire and Cold Resistances")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
+            This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
+          }
+          Else If (trimKey = "# to Fire and Lightning Resistances")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
+            This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
+          }
+          ; All Resistances
+          Else If (trimKey = "# to all Elemental Resistances")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
+            This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
+            This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
+          }
+          ; Attributes Singular
+          Else If (trimKey = "# to Intelligence")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
+          }
+          Else If (trimKey = "# to Dexterity")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
+          }
+          Else If (trimKey = "# to Strength")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Strength",k)
+          }
+          ; Double Atributes
+          Else If (trimKey = "# to Strength and Dexterity")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Strength",k)
+            This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
+          }
+          Else If (trimKey = "# to Dexterity and Intelligence")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
+            This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
+          }
+          Else If (trimKey = "# to Strength and Intelligence")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Strength",k)
+            This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
+          }
+          ; All Atribbutes
+          Else If (trimKey = "# to all Attributes")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Strength",k)
+            This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
+            This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
+          }
+          ; Singular Armour Affix
+          Else If (trimKey = "# increased Armour")
+          {
+            This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
+          }
+          Else If (trimKey = "# increased Evasion Rating")
+          {
+            This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
+          }
+          Else If (trimKey = "# increased Energy Shield")
+          {
+            This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
+          }
+          ; Double Armour Affix
+          Else If (trimKey = "# increased Evasion and Energy Shield")
+          {
+            This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
+            This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
+          }
+          Else If (trimKey = "# increased Armour and Energy Shield")
+          {
+            This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
+            This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k) 
+          }
+          Else If (trimKey = "# increased Armour and Evasion")
+          {
+            This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
+            This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
+          }
+          ; Damage Mods
+          Else If (trimKey = "Adds # to # Physical Damage to Attacks_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Physical Damage to Attacks_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Physical Damage to Spells_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Physical Damage to Spells_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Cold Damage to Attacks_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Cold Damage to Attacks_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Cold Damage to Spells_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Cold Damage to Spells_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Fire Damage to Attacks_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Fire Damage to Attacks_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Fire Damage to Spells_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Fire Damage to Spells_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Lightning Damage to Attacks_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Lightning Damage to Attacks_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Lightning Damage to Spells_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Lightning Damage to Spells_Avg",k)
+          }
+          ; Spell Pseudo
+          Else If (trimKey = "# increased Lightning Damage")
+          {
+            This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
+          }
+          Else If (trimKey = "# increased Cold Damage")
+          {
+            This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
+          }
+          Else If (trimKey = "# increased Fire Damage")
+          {
+            This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
+          }
+          Else If (trimKey = "# increased Spell Damage")
+          {
+            This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
+            This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
+            This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
+            This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
+          }
+          Else If (trimKey = "# increased Elemental Damage")
+          {
+            This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
+            This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
+            This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
+          }
+
+
+        }
+        ; SUM Pseudo
+        ; Total Elemental Resistance
+        This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Fire Resistance","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Lightning Resistance","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Cold Resistance","Pseudo")
+        ; Total Resistance
+        This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Elemental Resistance","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Chaos Resistance","Pseudo")
+        ; Total Stats
+        This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Strength","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Intelligence","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Dexterity","Pseudo")
+        ; Maximum Life, yeah unfortunally we need do this way =/
+        aux:= This.GetValue("Affix","# to maximum Life") 
+        + This.GetValue("Affix","# to maximum Life (crafted)") 
+        + This.GetValue("Affix","# to maximum Life (implicit)") 
+        + (This.GetValue("Pseudo","(Pseudo) Total to Strength"))//2
+        If(aux > 0)
+        {
+          This.Pseudo["(Pseudo) Total Maximum Life"] :=aux
+        }
+
+        ; Merge
+        This.MergePseudoInAffixs()
+      }
+      GetValue(Type, Context){
+        If !This[Type][Context]
+        {
+          return 0
         }
         Else
         {
-          For k, v in vals
-            This.Affix[ key (k = 1 ? "" : "_value" k) ] := v
+          return This[Type][Context]
         }
       }
-      Else
-        This.Affix[key] := True
+      AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
+        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue(StandardType, StandardKey)
+        If  (aux != 0)
+          This.Pseudo[PseudoKey] := aux
+        return
+      }
+      MergePseudoInAffixs(){
+        for k, v in This.Pseudo
+        {
+          This.Affix[k] := v
+        }
+        ; Free Object (Not needed)
+        This.Pseudo := ""
+        This.Delete("Pseudo")
+      }
+      FuckingSugoiFreeMate(){
+        This.Data := ""
+        This.Delete("Data")
+      }
     }
-  }
-  MatchLine(lineString){
-    If (RegExMatch(lineString, "O)" rxNum " to " rxNum , RxMatch) || RegExMatch(lineString, "O)" rxNum "-" rxNum , RxMatch))
-      Return {"min":RxMatch[1],"max":RxMatch[2],"avg":(Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))}
-    Else If (RegExMatch(lineString, "O)" rxNum " .* " rxNum , RxMatch))
-      Return [ RxMatch[1], RxMatch[2] ]
-    Else If (RegExMatch(lineString, "O)" rxNum , RxMatch))
-      Return [ RxMatch[1] ]
-    Else
-      Return False
-  }
-  Standardize(str:=""){
-    Return RegExReplace(str, rxNum , "#")
-  }
-  MatchPseudoAffix(){
-    for k, v in This.Affix
-    {
-      trimKey := RegExReplace(k," \(.*\)","")
-      ; Singular Resistances
-      If (trimKey = "# to Cold Resistance")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
-      }
-      Else If (trimKey = "# to Fire Resistance")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
-      }
-      Else If (trimKey = "# to Lightning Resistance")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
-      }
-      Else If (trimKey = "# to Chaos Resistance")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Chaos Resistance",k)
-      }
-      ; Double Resistances
-      Else If (trimKey = "# to Cold and Lightning Resistances")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
-        This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
-      }
-      Else If (trimKey = "# to Fire and Cold Resistances")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
-        This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
-      }
-      Else If (trimKey = "# to Fire and Lightning Resistances")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
-        This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
-      }
-      ; All Resistances
-      Else If (trimKey = "# to all Elemental Resistances")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
-        This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
-        This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
-      }
-      ; Attributes Singular
-      Else If (trimKey = "# to Intelligence")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
-      }
-      Else If (trimKey = "# to Dexterity")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
-      }
-      Else If (trimKey = "# to Strength")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Strength",k)
-      }
-      ; Double Atributes
-      Else If (trimKey = "# to Strength and Dexterity")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Strength",k)
-        This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
-      }
-      Else If (trimKey = "# to Dexterity and Intelligence")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
-        This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
-      }
-      Else If (trimKey = "# to Strength and Intelligence")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Strength",k)
-        This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
-      }
-      ; All Atribbutes
-      Else If (trimKey = "# to all Attributes")
-      {
-        This.AddPseudoAffix("(Pseudo) Total to Strength",k)
-        This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
-        This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
-      }
-      ; Singular Armour Affix
-      Else If (trimKey = "# increased Armour")
-      {
-        This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
-      }
-      Else If (trimKey = "# increased Evasion Rating")
-      {
-        This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
-      }
-      Else If (trimKey = "# increased Energy Shield")
-      {
-        This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
-      }
-      ; Double Armour Affix
-      Else If (trimKey = "# increased Evasion and Energy Shield")
-      {
-        This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
-        This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
-      }
-      Else If (trimKey = "# increased Armour and Energy Shield")
-      {
-        This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
-        This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k) 
-      }
-      Else If (trimKey = "# increased Armour and Evasion")
-      {
-        This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
-        This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
-      }
-      ; Damage Mods
-      Else If (trimKey = "Adds # to # Physical Damage to Attacks_Avg")
-      {
-        This.AddPseudoAffix("(Pseudo) Physical Damage to Attacks_Avg",k)
-      }
-      Else If (trimKey = "Adds # to # Physical Damage to Spells_Avg")
-      {
-        This.AddPseudoAffix("(Pseudo) Physical Damage to Spells_Avg",k)
-      }
-      Else If (trimKey = "Adds # to # Cold Damage to Attacks_Avg")
-      {
-        This.AddPseudoAffix("(Pseudo) Cold Damage to Attacks_Avg",k)
-      }
-      Else If (trimKey = "Adds # to # Cold Damage to Spells_Avg")
-      {
-        This.AddPseudoAffix("(Pseudo) Cold Damage to Spells_Avg",k)
-      }
-      Else If (trimKey = "Adds # to # Fire Damage to Attacks_Avg")
-      {
-        This.AddPseudoAffix("(Pseudo) Fire Damage to Attacks_Avg",k)
-      }
-      Else If (trimKey = "Adds # to # Fire Damage to Spells_Avg")
-      {
-        This.AddPseudoAffix("(Pseudo) Fire Damage to Spells_Avg",k)
-      }
-      Else If (trimKey = "Adds # to # Lightning Damage to Attacks_Avg")
-      {
-        This.AddPseudoAffix("(Pseudo) Lightning Damage to Attacks_Avg",k)
-      }
-      Else If (trimKey = "Adds # to # Lightning Damage to Spells_Avg")
-      {
-        This.AddPseudoAffix("(Pseudo) Lightning Damage to Spells_Avg",k)
-      }
-      ; Spell Pseudo
-      Else If (trimKey = "# increased Lightning Damage")
-      {
-        This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
-      }
-      Else If (trimKey = "# increased Cold Damage")
-      {
-        This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
-      }
-      Else If (trimKey = "# increased Fire Damage")
-      {
-        This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
-      }
-      Else If (trimKey = "# increased Spell Damage")
-      {
-        This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
-        This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
-        This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
-        This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
-      }
-      Else If (trimKey = "# increased Elemental Damage")
-      {
-        This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
-        This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
-        This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
-      }
-
-
-    }
-    ; SUM Pseudo
-    ; Total Elemental Resistance
-    This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Fire Resistance","Pseudo")
-    This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Lightning Resistance","Pseudo")
-    This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Cold Resistance","Pseudo")
-    ; Total Resistance
-    This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Elemental Resistance","Pseudo")
-    This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Chaos Resistance","Pseudo")
-    ; Total Stats
-    This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Strength","Pseudo")
-    This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Intelligence","Pseudo")
-    This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Dexterity","Pseudo")
-    ; Maximum Life, yeah unfortunally we need do this way =/
-    aux:= This.GetValue("Affix","# to maximum Life") 
-    + This.GetValue("Affix","# to maximum Life (crafted)") 
-    + This.GetValue("Affix","# to maximum Life (implicit)") 
-    + (This.GetValue("Pseudo","(Pseudo) Total to Strength"))//2
-    If(aux > 0)
-    {
-      This.Pseudo["(Pseudo) Total Maximum Life"] :=aux
-    }
-
-    ; Merge
-    This.MergePseudoInAffixs()
-  }
-  GetValue(Type, Context){
-    If !This[Type][Context]
-    {
-      return 0
-    }
-    Else
-    {
-      return This[Type][Context]
-    }
-  }
-  AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
-    aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue(StandardType, StandardKey)
-    If  (aux != 0)
-      This.Pseudo[PseudoKey] := aux
-    return
-  }
-  MergePseudoInAffixs(){
-    for k, v in This.Pseudo
-    {
-      This.Affix[k] := v
-    }
-    ; Free Object (Not needed)
-    This.Pseudo := ""
-    This.Delete("Pseudo")
-  }
-  FuckingSugoiFreeMate(){
-    This.Data := ""
-    This.Delete("Data")
-  }
-}
 
     ArrayToString(Array)
     {
