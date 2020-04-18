@@ -2200,7 +2200,7 @@
         Load_BarControl(0,"Initializing",1)
         For k, apiKey in apiList
         {
-          Load_BarControl(k/l*100,"Downloaded " k " of " l " (" apiKey ")")
+          Load_BarControl(k/l*100,"Downloading " k " of " l " (" apiKey ")")
           Sleep, -1
           ScrapeNinjaData(apiKey)
         }
