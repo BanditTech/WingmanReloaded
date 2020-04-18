@@ -4958,16 +4958,27 @@
           grabLinks := (indexArr["links"] ? indexArr["links"] : False)
           grabVariant := (indexArr["variant"] ? indexArr["variant"] : False)
           grabMapTier := (indexArr["mapTier"] ? indexArr["mapTier"] : False)
+          grabLevelRequired := (indexArr["levelRequired"] ? indexArr["levelRequired"] : False)
+          grabGemLevel := (indexArr["gemLevel"] ? indexArr["gemLevel"] : False)
+          grabGemQuality := (indexArr["gemQuality"] ? indexArr["gemQuality"] : False)
           
           holder.lines[index] := {"name":grabName
             ,"chaosValue":grabChaosVal
             ,"exaltedValue":grabExaltVal
             ,"sparkline":grabSparklineVal
-            ,"lowConfidenceSparkline":grabLowSparklineVal
-            ,"links":grabLinks
-            ,"variant":grabVariant}
+            ,"lowConfidenceSparkline":grabLowSparklineVal}
+          If grabVariant
+            holder.lines[index]["variant"] := grabVariant
+          If grabLinks
+            holder.lines[index]["links"] := grabLinks
           If grabMapTier
             holder.lines[index]["mapTier"] := grabMapTier
+          If grabLevelRequired
+            holder.lines[index]["levelRequired"] := grabLevelRequired
+          If grabGemLevel
+            holder.lines[index]["gemLevel"] := grabGemLevel
+          If grabGemQuality
+            holder.lines[index]["gemQuality"] := grabGemQuality
         }
         Ninja[apiString] := holder.lines
       }
