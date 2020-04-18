@@ -99,22 +99,25 @@
     ; List available database endpoints
     Global apiList := ["Currency"
       , "Fragment"
-      , "Prophecy"
-      , "DivinationCard"
-      , "Map"
-      , "Essence"
-      , "UniqueArmour"
-      , "UniqueFlask"
-      , "UniqueWeapon"
-      , "UniqueAccessory"
-      , "UniqueJewel"
-      , "UniqueMap"
-      , "SkillGem"
-      , "Scarab"
+      , "DeliriumOrb"
       , "Oil"
       , "Incubator"
-      , "Resonator"
+      , "Scarab"
       , "Fossil"
+      , "Resonator"
+      , "Essence"
+      , "DivinationCard"
+      , "Prophecy"
+      , "SkillGem"
+      , "BaseType"
+      , "HelmetEnchant"
+      , "UniqueMap"
+      , "Map"
+      , "UniqueJewel"
+      , "UniqueFlask"
+      , "UniqueWeapon"
+      , "UniqueArmour"
+      , "UniqueAccessory"
       , "Beast"]
     ; List crafting T1
     Global DefaultcraftingBasesT1 := ["Opal Ring"
@@ -2198,6 +2201,7 @@
         {
           ScrapeNinjaData(apiKey)
           Load_BarControl(k/l*100,"Downloaded " k " of " l " (" apiKey ")")
+          Sleep, -1
         }
         JSONtext := JSON.Dump(Ninja,,2)
         FileDelete, %A_ScriptDir%\data\Ninja.json
