@@ -668,7 +668,15 @@
       MatchPseudoAffix(){
         for k, v in This.Affix
         {
-          trimKey := RegExReplace(k," \(.*\)","")
+          ; We don't want any things like implicts (implicit) or (enchanted), getting inside Pseudos
+          If (RegExMatch(k, "`am) \((.*)\)$", RxMatch))
+          {
+            If (RxMatch1 != "crafted")
+            {
+              Continue
+            }
+          }
+          trimKey := RegExReplace(k," \(.*\)$","")
           ; Singular Resistances
           If (trimKey = "# to Cold Resistance")
           {
