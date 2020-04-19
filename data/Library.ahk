@@ -5531,16 +5531,12 @@
           grabRecVal := (indexArr["receive"] ? indexArr["receive"] : False)
           grabPaySparklineVal := (indexArr["paySparkLine"] ? indexArr["paySparkLine"] : False)
           grabRecSparklineVal := (indexArr["receiveSparkLine"] ? indexArr["receiveSparkLine"] : False)
-          grabPayLowSparklineVal := (indexArr["lowConfidencePaySparkLine"] ? indexArr["lowConfidencePaySparkLine"] : False)
-          grabRecLowSparklineVal := (indexArr["lowConfidenceReceiveSparkLine"] ? indexArr["lowConfidenceReceiveSparkLine"] : False)
           holder.lines[index] := {"name":grabName
             ,"chaosValue":grabChaosVal
             ,"pay":grabPayVal
             ,"receive":grabRecVal
             ,"paySparkLine":grabPaySparklineVal
-            ,"receiveSparkLine":grabRecSparklineVal
-            ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-            ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+            ,"receiveSparkLine":grabRecSparklineVal}
         }
         Ninja[apiString] := holder.lines
         FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
@@ -5581,16 +5577,12 @@
           grabRecVal := (indexArr["receive"] ? indexArr["receive"] : False)
           grabPaySparklineVal := (indexArr["paySparkLine"] ? indexArr["paySparkLine"] : False)
           grabRecSparklineVal := (indexArr["receiveSparkLine"] ? indexArr["receiveSparkLine"] : False)
-          grabPayLowSparklineVal := (indexArr["lowConfidencePaySparkLine"] ? indexArr["lowConfidencePaySparkLine"] : False)
-          grabRecLowSparklineVal := (indexArr["lowConfidenceReceiveSparkLine"] ? indexArr["lowConfidenceReceiveSparkLine"] : False)
           holder.lines[index] := {"name":grabName
             ,"chaosValue":grabChaosVal
             ,"pay":grabPayVal
             ,"receive":grabRecVal
             ,"paySparkLine":grabPaySparklineVal
-            ,"receiveSparkLine":grabRecSparklineVal
-            ,"lowConfidencePaySparkLine":grabPayLowSparklineVal
-            ,"lowConfidenceReceiveSparkLine":grabRecLowSparklineVal}
+            ,"receiveSparkLine":grabRecSparklineVal}
         }
         Ninja[apiString] := holder.lines
         for index, indexArr in holder.currencyDetails
@@ -5639,7 +5631,6 @@
         for index, indexArr in holder.lines
         {
           grabSparklineVal := (indexArr["sparkline"] ? indexArr["sparkline"] : False)
-          grabLowSparklineVal := (indexArr["lowConfidenceSparkline"] ? indexArr["lowConfidenceSparkline"] : False)
           grabExaltVal := (indexArr["exaltedValue"] ? indexArr["exaltedValue"] : False)
           grabChaosVal := (indexArr["chaosValue"] ? indexArr["chaosValue"] : False)
           grabName := (indexArr["name"] ? indexArr["name"] : False)
@@ -5653,10 +5644,8 @@
           
           holder.lines[index] := {"name":grabName
             ,"chaosValue":grabChaosVal
-            ,"sparkline":grabSparklineVal
-            ,"lowConfidenceSparkline":grabLowSparklineVal}
+            ,"sparkline":grabSparklineVal}
 
-            ; ,"lowConfidenceSparkline":grabLowSparklineVal}
           If grabExaltVal
             holder.lines[index]["exaltedValue"] := grabExaltVal
           If grabVariant
