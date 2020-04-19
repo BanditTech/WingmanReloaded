@@ -158,6 +158,8 @@
               This.Data.Blocks.Influence := SVal
             Else If (SVal ~= "^Corrupted$")
               This.Prop.Corrupted := True
+            Else If (This.Data.Blocks.HasKey("Affix"))
+              This.Data.Blocks.FlavorText := SVal
             Else
               This.Data.Blocks.Affix := SVal
           }
