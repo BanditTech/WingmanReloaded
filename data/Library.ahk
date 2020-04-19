@@ -170,7 +170,7 @@
         This.MatchProperties()
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
-        This.FuckingSugoiFreeMate()
+        ; This.FuckingSugoiFreeMate()
       }
       MatchProperties(){
         ;Start NamePlate Parser
@@ -992,6 +992,11 @@
             If This.MatchNinjaDB("UniqueJewel")
               Return
           }
+          Else If (This.Prop.IsWeapon)
+          {
+            If This.MatchNinjaDB("UniqueWeapon")
+              Return
+          }
         }
         If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "")
         {	
@@ -1026,6 +1031,703 @@
           }
         }
         Return False
+      }
+      DisplayPSA()
+      {
+        propText:=statText:=affixText:=""
+        For key, value in This.Prop
+        {
+          If( RegExMatch(key, "^Required")
+          || RegExMatch(key, "^Rating")
+          || RegExMatch(key, "^Sockets")
+          || RegExMatch(key, "^Quality")
+          || RegExMatch(key, "^Map")
+          || RegExMatch(key, "^Weapon"))
+          {
+            statText .= key . ":  " . value . "`n"
+          }
+          Else
+          {
+            propText .= key . ":  " . value . "`n"
+          }
+        }
+
+        GuiControl, ItemInfo:, ItemInfoPropText, %propText%
+
+        GuiControl, ItemInfo:, ItemInfoStatText, %statText%
+
+        For key, value in This.Affix
+        {
+          If (value != 0 && value != "" && value != False)
+            affixText .= key . ":  " . value . "`n"
+        }
+        GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
+      }
+      GraphNinjaPrices()
+      {
+        If This.Data.HasKey("Ninja")
+        {
+          Gosub, ShowGraph
+          Gui, ItemInfo: Show, AutoSize, % Item.Prop.ItemName " Sparkline"
+        }
+        Else
+        {
+          GoSub, noDataGraph
+          GoSub, HideGraph
+          Gui, ItemInfo: Show, AutoSize, % Item.Prop.ItemName " has no Graph Data"
+          Return
+        }
+          
+        If (This.Data.Ninja["paySparkLine"])
+        {
+          dataPayPoint := This.Data.Ninja["paySparkLine"]["data"]
+          dataRecPoint := This.Data.Ninja["receiveSparkLine"]["data"]
+          totalPayChange := This.Data.Ninja["paySparkLine"]["totalChange"]
+          totalRecChange := This.Data.Ninja["receiveSparkLine"]["totalChange"]
+
+          basePayPoint := 0
+          For k, v in dataPayPoint
+          {
+            If Abs(v) > basePayPoint
+              basePayPoint := Abs(v)
+          }
+          If basePayPoint = 0
+          FormatStr := "{1:0.0f}"
+          Else If basePayPoint < 1
+          FormatStr := "{1:0.3f}"
+          Else If basePayPoint < 10
+          FormatStr := "{1:0.2f}"
+          Else If basePayPoint < 100
+          FormatStr := "{1:0.1f}"
+          Else If basePayPoint > 100
+          FormatStr := "{1:0.0f}"
+
+          GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
+          GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
+          GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePayPoint*0.8)) "`%"
+          GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePayPoint*0.7)) "`%"
+          GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePayPoint*0.6)) "`%"
+          GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePayPoint*0.5)) "`%"
+          GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePayPoint*0.4)) "`%"
+          GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePayPoint*0.3)) "`%"
+          GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePayPoint*0.2)) "`%"
+          GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePayPoint*0.1)) "`%"
+          GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+          GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePayPoint*0.1)) "`%"
+          GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePayPoint*0.2)) "`%"
+          GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePayPoint*0.3)) "`%"
+          GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePayPoint*0.4)) "`%"
+          GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePayPoint*0.5)) "`%"
+          GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePayPoint*0.6)) "`%"
+          GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePayPoint*0.7)) "`%"
+          GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePayPoint*0.8)) "`%"
+          GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
+          GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
+
+
+          baseRecPoint := 0
+          For k, v in dataRecPoint
+          {
+            If Abs(v) > baseRecPoint
+              baseRecPoint := Abs(v)
+          }
+          If baseRecPoint = 0
+          FormatStr := "{1:0.0f}"
+          Else If baseRecPoint < 1
+          FormatStr := "{1:0.3f}"
+          Else If baseRecPoint < 10
+          FormatStr := "{1:0.2f}"
+          Else If baseRecPoint < 100
+          FormatStr := "{1:0.1f}"
+          Else If baseRecPoint > 100
+          FormatStr := "{1:0.0f}"
+
+          GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
+          GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
+          GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseRecPoint*0.8)) "`%"
+          GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseRecPoint*0.7)) "`%"
+          GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseRecPoint*0.6)) "`%"
+          GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseRecPoint*0.5)) "`%"
+          GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseRecPoint*0.4)) "`%"
+          GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseRecPoint*0.3)) "`%"
+          GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseRecPoint*0.2)) "`%"
+          GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseRecPoint*0.1)) "`%"
+          GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+          GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseRecPoint*0.1)) "`%"
+          GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseRecPoint*0.2)) "`%"
+          GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseRecPoint*0.3)) "`%"
+          GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseRecPoint*0.4)) "`%"
+          GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseRecPoint*0.5)) "`%"
+          GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseRecPoint*0.6)) "`%"
+          GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseRecPoint*0.7)) "`%"
+          GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
+          GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
+          GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
+
+
+          AvgPay := {}
+          Loop 5
+          {
+            AvgPay[A_Index] := (dataPayPoint[A_Index+1] + dataPayPoint[A_Index+2]) / 2
+          }
+          paddedPayData := {}
+          paddedPayData[1] := dataPayPoint[1]
+          paddedPayData[2] := dataPayPoint[1]
+          paddedPayData[3] := dataPayPoint[2]
+          paddedPayData[4] := AvgPay[1]
+          paddedPayData[5] := dataPayPoint[3]
+          paddedPayData[6] := AvgPay[2]
+          paddedPayData[7] := dataPayPoint[4]
+          paddedPayData[8] := AvgPay[3]
+          paddedPayData[9] := dataPayPoint[5]
+          paddedPayData[10] := AvgPay[4]
+          paddedPayData[11] := dataPayPoint[6]
+          paddedPayData[12] := AvgPay[5]
+          paddedPayData[13] := dataPayPoint[7]
+          For k, v in paddedPayData
+          {
+            div := v / basePayPoint * 100
+            XGraph_Plot( pGraph1, 100 - div, "", True )
+            ;MsgBox % "Key : " k "   Val : " v
+          }
+          AvgRec := {}
+          Loop 5
+          {
+            AvgRec[A_Index] := (dataRecPoint[A_Index+1] + dataRecPoint[A_Index+2]) / 2
+          }
+          paddedRecData := {}
+          paddedRecData[1] := dataRecPoint[1]
+          paddedRecData[2] := dataRecPoint[1]
+          paddedRecData[3] := dataRecPoint[2]
+          paddedRecData[4] := AvgRec[1]
+          paddedRecData[5] := dataRecPoint[3]
+          paddedRecData[6] := AvgRec[2]
+          paddedRecData[7] := dataRecPoint[4]
+          paddedRecData[8] := AvgRec[3]
+          paddedRecData[9] := dataRecPoint[5]
+          paddedRecData[10] := AvgRec[4]
+          paddedRecData[11] := dataRecPoint[6]
+          paddedRecData[12] := AvgRec[5]
+          paddedRecData[13] := dataRecPoint[7]
+          For k, v in paddedRecData
+          {
+            div := v / baseRecPoint * 100
+            XGraph_Plot( pGraph2, 100 - div, "", True )
+            ;MsgBox % "Key : " k "   Val : " v
+          }
+
+          GuiControl,ItemInfo: , GroupBox1, % "Sell " Item.Prop.ItemName " to Chaos"
+          GuiControl,ItemInfo: , PComment1, Sell Value
+          GuiControl,ItemInfo: , PData1, % sellval := (1 / This.Data.Ninja["pay"]["value"])
+          GuiControl,ItemInfo: , PComment2, Sell Value `% Change
+          GuiControl,ItemInfo: , PData2, % This.Data.Ninja["paySparkLine"]["totalChange"]
+          GuiControl,ItemInfo: , PComment3, Orb per Chaos
+          GuiControl,ItemInfo: , PData3, % This.Data.Ninja["pay"]["value"]
+          GuiControl,ItemInfo: , PComment4, Day 6 Change
+          GuiControl,ItemInfo: , PData4, % dataPayPoint[2]
+          GuiControl,ItemInfo: , PComment5, Day 5 Change
+          GuiControl,ItemInfo: , PData5, % dataPayPoint[3]
+          GuiControl,ItemInfo: , PComment6, Day 4 Change
+          GuiControl,ItemInfo: , PData6, % dataPayPoint[4]
+          GuiControl,ItemInfo: , PComment7, Day 3 Change
+          GuiControl,ItemInfo: , PData7, % dataPayPoint[5]
+          GuiControl,ItemInfo: , PComment8, Day 2 Change
+          GuiControl,ItemInfo: , PData8, % dataPayPoint[6]
+          GuiControl,ItemInfo: , PComment9, Day 1 Change
+          GuiControl,ItemInfo: , PData9, % dataPayPoint[7]
+          GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
+          GuiControl,ItemInfo: , PData10, C / O
+
+          GuiControl,ItemInfo: , GroupBox2, % "Buy " Item.Prop.ItemName " from Chaos"
+          GuiControl,ItemInfo: , SComment1, Buy Value
+          GuiControl,ItemInfo: , SData1, % sellval := (This.Data.Ninja["receive"]["value"])
+          GuiControl,ItemInfo: , SComment2, Buy Value `% Change
+          GuiControl,ItemInfo: , SData2, % This.Data.Ninja["receiveSparkLine"]["totalChange"]
+          GuiControl,ItemInfo: , SComment3, Orb per Chaos
+          GuiControl,ItemInfo: , SData3, % 1 / This.Data.Ninja["receive"]["value"]
+          GuiControl,ItemInfo: , SComment4, Day 6 Change
+          GuiControl,ItemInfo: , SData4, % dataRecPoint[2]
+          GuiControl,ItemInfo: , SComment5, Day 5 Change
+          GuiControl,ItemInfo: , SData5, % dataRecPoint[3]
+          GuiControl,ItemInfo: , SComment6, Day 4 Change
+          GuiControl,ItemInfo: , SData6, % dataRecPoint[4]
+          GuiControl,ItemInfo: , SComment7, Day 3 Change
+          GuiControl,ItemInfo: , SData7, % dataRecPoint[5]
+          GuiControl,ItemInfo: , SComment8, Day 2 Change
+          GuiControl,ItemInfo: , SData8, % dataRecPoint[6]
+          GuiControl,ItemInfo: , SComment9, Day 1 Change
+          GuiControl,ItemInfo: , SData9, % dataRecPoint[7]
+          GuiControl,ItemInfo: , SComment10, % Decimal2Fraction(sellval,"ID3")
+          GuiControl,ItemInfo: , SData10, C / O
+
+        }
+        Else If (This.Data.Ninja["sparkline"])
+        {
+          dataPoint := This.Data.Ninja["sparkline"]["data"]
+          dataLTPoint := This.Data.Ninja["lowConfidenceSparkline"]["data"]
+          totalChange := This.Data.Ninja["sparkline"]["totalChange"]
+          totalLTChange := This.Data.Ninja["lowConfidenceSparkline"]["totalChange"]
+
+          basePoint := 0
+          For k, v in dataPoint
+          {
+            If Abs(v) > basePoint
+              basePoint := Abs(v)
+          }
+          If basePoint = 0
+          FormatStr := "{1:0.0f}"
+          Else If basePoint < 1
+          FormatStr := "{1:0.3f}"
+          Else If basePoint < 10
+          FormatStr := "{1:0.2f}"
+          Else If basePoint < 100
+          FormatStr := "{1:0.1f}"
+          Else If basePoint > 100
+          FormatStr := "{1:0.0f}"
+
+          GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePoint*1.0)) "`%"
+          GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePoint*0.9)) "`%"
+          GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePoint*0.8)) "`%"
+          GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePoint*0.7)) "`%"
+          GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePoint*0.6)) "`%"
+          GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePoint*0.5)) "`%"
+          GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePoint*0.4)) "`%"
+          GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePoint*0.3)) "`%"
+          GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePoint*0.2)) "`%"
+          GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePoint*0.1)) "`%"
+          GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+          GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePoint*0.1)) "`%"
+          GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePoint*0.2)) "`%"
+          GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePoint*0.3)) "`%"
+          GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePoint*0.4)) "`%"
+          GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePoint*0.5)) "`%"
+          GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePoint*0.6)) "`%"
+          GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePoint*0.7)) "`%"
+          GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePoint*0.8)) "`%"
+          GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePoint*0.9)) "`%"
+          GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePoint*1.0)) "`%"
+
+          baseLTPoint := 0
+          For k, v in dataLTPoint
+          {
+            If Abs(v) > baseLTPoint
+              baseLTPoint := Abs(v)
+          }
+          If baseLTPoint = 0
+          FormatStr := "{1:0.0f}"
+          If baseLTPoint < 1
+          FormatStr := "{1:0.3f}"
+          Else If baseLTPoint < 10
+          FormatStr := "{1:0.2f}"
+          Else If baseLTPoint < 100
+          FormatStr := "{1:0.1f}"
+          Else If baseLTPoint > 100
+          FormatStr := "{1:0.0f}"
+
+          GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseLTPoint*1.0)) "`%"
+          GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseLTPoint*0.9)) "`%"
+          GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseLTPoint*0.8)) "`%"
+          GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseLTPoint*0.7)) "`%"
+          GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseLTPoint*0.6)) "`%"
+          GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseLTPoint*0.5)) "`%"
+          GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseLTPoint*0.4)) "`%"
+          GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseLTPoint*0.3)) "`%"
+          GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseLTPoint*0.2)) "`%"
+          GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseLTPoint*0.1)) "`%"
+          GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+          GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseLTPoint*0.1)) "`%"
+          GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseLTPoint*0.2)) "`%"
+          GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseLTPoint*0.3)) "`%"
+          GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseLTPoint*0.4)) "`%"
+          GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseLTPoint*0.5)) "`%"
+          GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseLTPoint*0.6)) "`%"
+          GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseLTPoint*0.7)) "`%"
+          GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseLTPoint*0.8)) "`%"
+          GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseLTPoint*0.9)) "`%"
+          GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseLTPoint*1.0)) "`%"
+
+          Avg := {}
+          Loop 5
+          {
+            Avg[A_Index] := (dataPoint[A_Index+1] + dataPoint[A_Index+2]) / 2
+          }
+          paddedData := {}
+          paddedData[1] := dataPoint[1]
+          paddedData[2] := dataPoint[1]
+          paddedData[3] := dataPoint[2]
+          paddedData[4] := Avg[1]
+          paddedData[5] := dataPoint[3]
+          paddedData[6] := Avg[2]
+          paddedData[7] := dataPoint[4]
+          paddedData[8] := Avg[3]
+          paddedData[9] := dataPoint[5]
+          paddedData[10] := Avg[4]
+          paddedData[11] := dataPoint[6]
+          paddedData[12] := Avg[5]
+          paddedData[13] := dataPoint[7]
+          For k, v in paddedData
+          {
+            div := v / basePoint * 100
+            XGraph_Plot( pGraph1, 100 - div, "", True )
+            ;MsgBox % "Key : " k "   Val : " v
+          }
+          LTAvg := {}
+          Loop 5
+          {
+            LTAvg[A_Index] := (dataLTPoint[A_Index+1] + dataLTPoint[A_Index+2]) / 2
+          }
+          paddedLTData := {}
+          paddedLTData[1] := dataLTPoint[1]
+          paddedLTData[2] := dataLTPoint[1]
+          paddedLTData[3] := dataLTPoint[2]
+          paddedLTData[4] := LTAvg[1]
+          paddedLTData[5] := dataLTPoint[3]
+          paddedLTData[6] := LTAvg[2]
+          paddedLTData[7] := dataLTPoint[4]
+          paddedLTData[8] := LTAvg[3]
+          paddedLTData[9] := dataLTPoint[5]
+          paddedLTData[10] := LTAvg[4]
+          paddedLTData[11] := dataLTPoint[6]
+          paddedLTData[12] := LTAvg[5]
+          paddedLTData[13] := dataLTPoint[7]
+          For k, v in paddedLTData
+          {
+            div := v / baseLTPoint * 100
+            XGraph_Plot( pGraph2, 100 - div, "", True )
+            ;MsgBox % "Key : " k "   Val : " v
+          }
+
+          GuiControl,ItemInfo: , GroupBox1, % "Value of " Item.Prop.ItemName
+          GuiControl,ItemInfo: , PComment1, Chaos Value
+          GuiControl,ItemInfo: , PData1, % This.Data.Ninja["chaosValue"]
+          GuiControl,ItemInfo: , PComment2, Chaos Value `% Change
+          GuiControl,ItemInfo: , PData2, % This.Data.Ninja["sparkline"]["totalChange"]
+          GuiControl,ItemInfo: , PComment3, Exalted Value
+          GuiControl,ItemInfo: , PData3, % This.Data.Ninja["exaltedValue"]
+          GuiControl,ItemInfo: , PComment4, Day 6 Change
+          GuiControl,ItemInfo: , PData4, % dataPoint[2]
+          GuiControl,ItemInfo: , PComment5, Day 5 Change
+          GuiControl,ItemInfo: , PData5, % dataPoint[3]
+          GuiControl,ItemInfo: , PComment6, Day 4 Change
+          GuiControl,ItemInfo: , PData6, % dataPoint[4]
+          GuiControl,ItemInfo: , PComment7, Day 3 Change
+          GuiControl,ItemInfo: , PData7, % dataPoint[5]
+          GuiControl,ItemInfo: , PComment8, Day 2 Change
+          GuiControl,ItemInfo: , PData8, % dataPoint[6]
+          GuiControl,ItemInfo: , PComment9, Day 1 Change
+          GuiControl,ItemInfo: , PData9, % dataPoint[7]
+          GuiControl,ItemInfo: , PComment10, 
+          GuiControl,ItemInfo: , PData10,
+
+          GuiControl,ItemInfo: , GroupBox2, % "Low Confidence Value of " Item.Prop.ItemName
+          GuiControl,ItemInfo: , SComment1, Chaos Value `% Change
+          GuiControl,ItemInfo: , SData1, % This.Data.Ninja["lowConfidenceSparkline"]["totalChange"]
+          GuiControl,ItemInfo: , SComment2,
+          GuiControl,ItemInfo: , SData2, 
+          GuiControl,ItemInfo: , SComment3, 
+          GuiControl,ItemInfo: , SData3, 
+          GuiControl,ItemInfo: , SComment4, Day 6 Change
+          GuiControl,ItemInfo: , SData4, % dataLTPoint[2]
+          GuiControl,ItemInfo: , SComment5, Day 5 Change
+          GuiControl,ItemInfo: , SData5, % dataLTPoint[3]
+          GuiControl,ItemInfo: , SComment6, Day 4 Change
+          GuiControl,ItemInfo: , SData6, % dataLTPoint[4]
+          GuiControl,ItemInfo: , SComment7, Day 3 Change
+          GuiControl,ItemInfo: , SData7, % dataLTPoint[5]
+          GuiControl,ItemInfo: , SComment8, Day 2 Change
+          GuiControl,ItemInfo: , SData8, % dataLTPoint[6]
+          GuiControl,ItemInfo: , SComment9, Day 1 Change
+          GuiControl,ItemInfo: , SData9, % dataLTPoint[7]
+          GuiControl,ItemInfo: , SComment10,
+          GuiControl,ItemInfo: , SData10,
+        }
+        Return
+
+        noDataGraph:
+            GuiControl,ItemInfo: , PercentText1G1, 0`%
+            GuiControl,ItemInfo: , PercentText1G2, 0`%
+            GuiControl,ItemInfo: , PercentText1G3, 0`%
+            GuiControl,ItemInfo: , PercentText1G4, 0`%
+            GuiControl,ItemInfo: , PercentText1G5, 0`%
+            GuiControl,ItemInfo: , PercentText1G6, 0`%
+            GuiControl,ItemInfo: , PercentText1G7, 0`%
+            GuiControl,ItemInfo: , PercentText1G8, 0`%
+            GuiControl,ItemInfo: , PercentText1G9, 0`%
+            GuiControl,ItemInfo: , PercentText1G10, 0`%
+            GuiControl,ItemInfo: , PercentText1G11, 0`%
+            GuiControl,ItemInfo: , PercentText1G12, 0`%
+            GuiControl,ItemInfo: , PercentText1G13, 0`%
+            GuiControl,ItemInfo: , PercentText1G14, 0`%
+            GuiControl,ItemInfo: , PercentText1G15, 0`%
+            GuiControl,ItemInfo: , PercentText1G16, 0`%
+            GuiControl,ItemInfo: , PercentText1G17, 0`%
+            GuiControl,ItemInfo: , PercentText1G18, 0`%
+            GuiControl,ItemInfo: , PercentText1G19, 0`%
+            GuiControl,ItemInfo: , PercentText1G20, 0`%
+            GuiControl,ItemInfo: , PercentText1G21, 0`%
+            GuiControl,ItemInfo: , PercentText2G1, 0`%
+            GuiControl,ItemInfo: , PercentText2G2, 0`%
+            GuiControl,ItemInfo: , PercentText2G3, 0`%
+            GuiControl,ItemInfo: , PercentText2G4, 0`%
+            GuiControl,ItemInfo: , PercentText2G5, 0`%
+            GuiControl,ItemInfo: , PercentText2G6, 0`%
+            GuiControl,ItemInfo: , PercentText2G7, 0`%
+            GuiControl,ItemInfo: , PercentText2G8, 0`%
+            GuiControl,ItemInfo: , PercentText2G9, 0`%
+            GuiControl,ItemInfo: , PercentText2G10, 0`%
+            GuiControl,ItemInfo: , PercentText2G11, 0`%
+            GuiControl,ItemInfo: , PercentText2G12, 0`%
+            GuiControl,ItemInfo: , PercentText2G13, 0`%
+            GuiControl,ItemInfo: , PercentText2G14, 0`%
+            GuiControl,ItemInfo: , PercentText2G15, 0`%
+            GuiControl,ItemInfo: , PercentText2G16, 0`%
+            GuiControl,ItemInfo: , PercentText2G17, 0`%
+            GuiControl,ItemInfo: , PercentText2G18, 0`%
+            GuiControl,ItemInfo: , PercentText2G19, 0`%
+            GuiControl,ItemInfo: , PercentText2G20, 0`%
+            GuiControl,ItemInfo: , PercentText2G21, 0`%
+
+            Loop 13
+            {
+              XGraph_Plot( pGraph1, 100, "", True )
+            }
+            Loop 13
+            {
+              XGraph_Plot( pGraph2, 100, "", True )
+            }
+
+            GuiControl,ItemInfo: , GroupBox1, No Data
+            GuiControl,ItemInfo: , PComment1,
+            GuiControl,ItemInfo: , PData1, 
+            GuiControl,ItemInfo: , PComment2,
+            GuiControl,ItemInfo: , PData2, 
+            GuiControl,ItemInfo: , PComment3,
+            GuiControl,ItemInfo: , PData3, 
+            GuiControl,ItemInfo: , PComment4,
+            GuiControl,ItemInfo: , PData4, 
+            GuiControl,ItemInfo: , PComment5,
+            GuiControl,ItemInfo: , PData5, 
+            GuiControl,ItemInfo: , PComment6,
+            GuiControl,ItemInfo: , PData6, 
+            GuiControl,ItemInfo: , PComment7,
+            GuiControl,ItemInfo: , PData7, 
+            GuiControl,ItemInfo: , PComment8,
+            GuiControl,ItemInfo: , PData8, 
+            GuiControl,ItemInfo: , PComment9,
+            GuiControl,ItemInfo: , PData9, 
+            GuiControl,ItemInfo: , PComment10, 
+            GuiControl,ItemInfo: , PData10, 
+
+            GuiControl,ItemInfo: , GroupBox2, No Data
+            GuiControl,ItemInfo: , SComment1,
+            GuiControl,ItemInfo: , SData1,
+            GuiControl,ItemInfo: , SComment2,
+            GuiControl,ItemInfo: , SData2,
+            GuiControl,ItemInfo: , SComment3,
+            GuiControl,ItemInfo: , SData3,
+            GuiControl,ItemInfo: , SComment4,
+            GuiControl,ItemInfo: , SData4,
+            GuiControl,ItemInfo: , SComment5,
+            GuiControl,ItemInfo: , SData5,
+            GuiControl,ItemInfo: , SComment6,
+            GuiControl,ItemInfo: , SData6,
+            GuiControl,ItemInfo: , SComment7,
+            GuiControl,ItemInfo: , SData7,
+            GuiControl,ItemInfo: , SComment8,
+            GuiControl,ItemInfo: , SData8,
+            GuiControl,ItemInfo: , SComment9,
+            GuiControl,ItemInfo: , SData9,
+            GuiControl,ItemInfo: , SComment10,
+            GuiControl,ItemInfo: , SData10
+        Return
+
+        HideGraph:
+            GuiControl,ItemInfo: Hide, PercentText1G1
+            GuiControl,ItemInfo: Hide, PercentText1G2
+            GuiControl,ItemInfo: Hide, PercentText1G3
+            GuiControl,ItemInfo: Hide, PercentText1G4
+            GuiControl,ItemInfo: Hide, PercentText1G5
+            GuiControl,ItemInfo: Hide, PercentText1G6
+            GuiControl,ItemInfo: Hide, PercentText1G7
+            GuiControl,ItemInfo: Hide, PercentText1G8
+            GuiControl,ItemInfo: Hide, PercentText1G9
+            GuiControl,ItemInfo: Hide, PercentText1G10
+            GuiControl,ItemInfo: Hide, PercentText1G11
+            GuiControl,ItemInfo: Hide, PercentText1G12
+            GuiControl,ItemInfo: Hide, PercentText1G13
+            GuiControl,ItemInfo: Hide, PercentText1G14
+            GuiControl,ItemInfo: Hide, PercentText1G15
+            GuiControl,ItemInfo: Hide, PercentText1G16
+            GuiControl,ItemInfo: Hide, PercentText1G17
+            GuiControl,ItemInfo: Hide, PercentText1G18
+            GuiControl,ItemInfo: Hide, PercentText1G19
+            GuiControl,ItemInfo: Hide, PercentText1G20
+            GuiControl,ItemInfo: Hide, PercentText1G21
+            GuiControl,ItemInfo: Hide, PercentText2G1
+            GuiControl,ItemInfo: Hide, PercentText2G2
+            GuiControl,ItemInfo: Hide, PercentText2G3
+            GuiControl,ItemInfo: Hide, PercentText2G4
+            GuiControl,ItemInfo: Hide, PercentText2G5
+            GuiControl,ItemInfo: Hide, PercentText2G6
+            GuiControl,ItemInfo: Hide, PercentText2G7
+            GuiControl,ItemInfo: Hide, PercentText2G8
+            GuiControl,ItemInfo: Hide, PercentText2G9
+            GuiControl,ItemInfo: Hide, PercentText2G10
+            GuiControl,ItemInfo: Hide, PercentText2G11
+            GuiControl,ItemInfo: Hide, PercentText2G12
+            GuiControl,ItemInfo: Hide, PercentText2G13
+            GuiControl,ItemInfo: Hide, PercentText2G14
+            GuiControl,ItemInfo: Hide, PercentText2G15
+            GuiControl,ItemInfo: Hide, PercentText2G16
+            GuiControl,ItemInfo: Hide, PercentText2G17
+            GuiControl,ItemInfo: Hide, PercentText2G18
+            GuiControl,ItemInfo: Hide, PercentText2G19
+            GuiControl,ItemInfo: Hide, PercentText2G20
+            GuiControl,ItemInfo: Hide, PercentText2G21
+
+            GuiControl,ItemInfo: Hide, pGraph1
+            GuiControl,ItemInfo: Hide, pGraph2
+
+            GuiControl,ItemInfo: Hide, GroupBox1
+            GuiControl,ItemInfo: Hide, PComment1
+            GuiControl,ItemInfo: Hide, PData1
+            GuiControl,ItemInfo: Hide, PComment2
+            GuiControl,ItemInfo: Hide, PData2
+            GuiControl,ItemInfo: Hide, PComment3
+            GuiControl,ItemInfo: Hide, PData3
+            GuiControl,ItemInfo: Hide, PComment4
+            GuiControl,ItemInfo: Hide, PData4
+            GuiControl,ItemInfo: Hide, PComment5
+            GuiControl,ItemInfo: Hide, PData5
+            GuiControl,ItemInfo: Hide, PComment6
+            GuiControl,ItemInfo: Hide, PData6
+            GuiControl,ItemInfo: Hide, PComment7
+            GuiControl,ItemInfo: Hide, PData7
+            GuiControl,ItemInfo: Hide, PComment8
+            GuiControl,ItemInfo: Hide, PData8
+            GuiControl,ItemInfo: Hide, PComment9
+            GuiControl,ItemInfo: Hide, PData9
+            GuiControl,ItemInfo: Hide, PComment10
+            GuiControl,ItemInfo: Hide, PData10
+
+            GuiControl,ItemInfo: Hide, GroupBox2
+            GuiControl,ItemInfo: Hide, SComment1
+            GuiControl,ItemInfo: Hide, SData1
+            GuiControl,ItemInfo: Hide, SComment2
+            GuiControl,ItemInfo: Hide, SData2
+            GuiControl,ItemInfo: Hide, SComment3
+            GuiControl,ItemInfo: Hide, SData3
+            GuiControl,ItemInfo: Hide, SComment4
+            GuiControl,ItemInfo: Hide, SData4
+            GuiControl,ItemInfo: Hide, SComment5
+            GuiControl,ItemInfo: Hide, SData5
+            GuiControl,ItemInfo: Hide, SComment6
+            GuiControl,ItemInfo: Hide, SData6
+            GuiControl,ItemInfo: Hide, SComment7
+            GuiControl,ItemInfo: Hide, SData7
+            GuiControl,ItemInfo: Hide, SComment8
+            GuiControl,ItemInfo: Hide, SData8
+            GuiControl,ItemInfo: Hide, SComment9
+            GuiControl,ItemInfo: Hide, SData9
+            GuiControl,ItemInfo: Hide, SComment10
+            GuiControl,ItemInfo: Hide, SData10
+        Return
+        ShowGraph:
+            GuiControl,ItemInfo: Show, PercentText1G1
+            GuiControl,ItemInfo: Show, PercentText1G2
+            GuiControl,ItemInfo: Show, PercentText1G3
+            GuiControl,ItemInfo: Show, PercentText1G4
+            GuiControl,ItemInfo: Show, PercentText1G5
+            GuiControl,ItemInfo: Show, PercentText1G6
+            GuiControl,ItemInfo: Show, PercentText1G7
+            GuiControl,ItemInfo: Show, PercentText1G8
+            GuiControl,ItemInfo: Show, PercentText1G9
+            GuiControl,ItemInfo: Show, PercentText1G10
+            GuiControl,ItemInfo: Show, PercentText1G11
+            GuiControl,ItemInfo: Show, PercentText1G12
+            GuiControl,ItemInfo: Show, PercentText1G13
+            GuiControl,ItemInfo: Show, PercentText1G14
+            GuiControl,ItemInfo: Show, PercentText1G15
+            GuiControl,ItemInfo: Show, PercentText1G16
+            GuiControl,ItemInfo: Show, PercentText1G17
+            GuiControl,ItemInfo: Show, PercentText1G18
+            GuiControl,ItemInfo: Show, PercentText1G19
+            GuiControl,ItemInfo: Show, PercentText1G20
+            GuiControl,ItemInfo: Show, PercentText1G21
+            GuiControl,ItemInfo: Show, PercentText2G1
+            GuiControl,ItemInfo: Show, PercentText2G2
+            GuiControl,ItemInfo: Show, PercentText2G3
+            GuiControl,ItemInfo: Show, PercentText2G4
+            GuiControl,ItemInfo: Show, PercentText2G5
+            GuiControl,ItemInfo: Show, PercentText2G6
+            GuiControl,ItemInfo: Show, PercentText2G7
+            GuiControl,ItemInfo: Show, PercentText2G8
+            GuiControl,ItemInfo: Show, PercentText2G9
+            GuiControl,ItemInfo: Show, PercentText2G10
+            GuiControl,ItemInfo: Show, PercentText2G11
+            GuiControl,ItemInfo: Show, PercentText2G12
+            GuiControl,ItemInfo: Show, PercentText2G13
+            GuiControl,ItemInfo: Show, PercentText2G14
+            GuiControl,ItemInfo: Show, PercentText2G15
+            GuiControl,ItemInfo: Show, PercentText2G16
+            GuiControl,ItemInfo: Show, PercentText2G17
+            GuiControl,ItemInfo: Show, PercentText2G18
+            GuiControl,ItemInfo: Show, PercentText2G19
+            GuiControl,ItemInfo: Show, PercentText2G20
+            GuiControl,ItemInfo: Show, PercentText2G21
+
+            GuiControl,ItemInfo: Show, pGraph1
+            GuiControl,ItemInfo: Show, pGraph2
+
+            GuiControl,ItemInfo: Show, GroupBox1
+            GuiControl,ItemInfo: Show, PComment1
+            GuiControl,ItemInfo: Show, PData1
+            GuiControl,ItemInfo: Show, PComment2
+            GuiControl,ItemInfo: Show, PData2
+            GuiControl,ItemInfo: Show, PComment3
+            GuiControl,ItemInfo: Show, PData3
+            GuiControl,ItemInfo: Show, PComment4
+            GuiControl,ItemInfo: Show, PData4
+            GuiControl,ItemInfo: Show, PComment5
+            GuiControl,ItemInfo: Show, PData5
+            GuiControl,ItemInfo: Show, PComment6
+            GuiControl,ItemInfo: Show, PData6
+            GuiControl,ItemInfo: Show, PComment7
+            GuiControl,ItemInfo: Show, PData7
+            GuiControl,ItemInfo: Show, PComment8
+            GuiControl,ItemInfo: Show, PData8
+            GuiControl,ItemInfo: Show, PComment9
+            GuiControl,ItemInfo: Show, PData9
+            GuiControl,ItemInfo: Show, PComment10
+            GuiControl,ItemInfo: Show, PData10
+
+            GuiControl,ItemInfo: Show, GroupBox2
+            GuiControl,ItemInfo: Show, SComment1
+            GuiControl,ItemInfo: Show, SData1
+            GuiControl,ItemInfo: Show, SComment2
+            GuiControl,ItemInfo: Show, SData2
+            GuiControl,ItemInfo: Show, SComment3
+            GuiControl,ItemInfo: Show, SData3
+            GuiControl,ItemInfo: Show, SComment4
+            GuiControl,ItemInfo: Show, SData4
+            GuiControl,ItemInfo: Show, SComment5
+            GuiControl,ItemInfo: Show, SData5
+            GuiControl,ItemInfo: Show, SComment6
+            GuiControl,ItemInfo: Show, SData6
+            GuiControl,ItemInfo: Show, SComment7
+            GuiControl,ItemInfo: Show, SData7
+            GuiControl,ItemInfo: Show, SComment8
+            GuiControl,ItemInfo: Show, SData8
+            GuiControl,ItemInfo: Show, SComment9
+            GuiControl,ItemInfo: Show, SData9
+            GuiControl,ItemInfo: Show, SComment10
+            GuiControl,ItemInfo: Show, SData10
+        Return
+      }
+      ItemInfo()
+      {
+        This.DisplayPSA()
+        This.GraphNinjaPrices()
       }
     }
     ; ArrayToString - Make a string from array using | as delimiters
@@ -5065,12 +5767,16 @@
           grabLevelRequired := (indexArr["levelRequired"] ? indexArr["levelRequired"] : False)
           grabGemLevel := (indexArr["gemLevel"] ? indexArr["gemLevel"] : False)
           grabGemQuality := (indexArr["gemQuality"] ? indexArr["gemQuality"] : False)
+          grabBaseType := (indexArr["baseType"] ? indexArr["baseType"] : False)
           
           holder.lines[index] := {"name":grabName
             ,"chaosValue":grabChaosVal
-            ,"exaltedValue":grabExaltVal
             ,"sparkline":grabSparklineVal
             ,"lowConfidenceSparkline":grabLowSparklineVal}
+
+            ; ,"lowConfidenceSparkline":grabLowSparklineVal}
+          If grabExaltVal
+            holder.lines[index]["exaltedValue"] := grabExaltVal
           If grabVariant
             holder.lines[index]["variant"] := grabVariant
           If grabLinks
@@ -5083,6 +5789,8 @@
             holder.lines[index]["gemLevel"] := grabGemLevel
           If grabGemQuality
             holder.lines[index]["gemQuality"] := grabGemQuality
+          If (grabBaseType && apiString = "UniqueMap")
+            holder.lines[index]["baseType"] := grabBaseType
         }
         Ninja[apiString] := holder.lines
       }
