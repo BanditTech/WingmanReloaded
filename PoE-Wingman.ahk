@@ -93,7 +93,7 @@
     . "(?!\d{1,} Intelligence)"
     . "(?!\d{1,} Strength)"
     . "\+{0,1}"
-    . "(\d{1,}\.{0,1}\d{0,})"
+    . "(\d{1,}[.,\d]+?)"
     . "\%{0,1}"
     Global Item
     Global WR_Statusbar := "WingmanReloaded Status"
@@ -2279,7 +2279,7 @@
   #IfWinActive
 
   ; Return
-  !+^L::ListVars
+  !+^L::Array_Gui(Item)
   ; Reload Script with Alt+Escape
   !Escape::
     Reload

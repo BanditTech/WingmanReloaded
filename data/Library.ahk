@@ -617,6 +617,12 @@
         }
         ;End Prop Block Parser for Vaal Gems
 
+        ;Stack size
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
+        {
+          This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
+          This.Prop.Stack_Max := RxMatch2
+        }
       }
       MatchAffixes(content:=""){
         ; Do Stuff with info
@@ -1081,13 +1087,13 @@
         If This.Data.HasKey("Ninja")
         {
           Gosub, ShowGraph
-          Gui, ItemInfo: Show, AutoSize, % Item.Prop.ItemName " Sparkline"
+          Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " Sparkline"
         }
         Else
         {
           GoSub, noDataGraph
           GoSub, HideGraph
-          Gui, ItemInfo: Show, AutoSize, % Item.Prop.ItemName " has no Graph Data"
+          Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " has no Graph Data" (Item)
           Return
         }
           
@@ -1433,10 +1439,10 @@
           GuiControl,ItemInfo: , PData10,
 
           GuiControl,ItemInfo: , GroupBox2, % "Low Confidence Value of " Item.Prop.ItemName
-          GuiControl,ItemInfo: , SComment1, Chaos Value `% Change
-          GuiControl,ItemInfo: , SData1, % This.Data.Ninja["lowConfidenceSparkline"]["totalChange"]
-          GuiControl,ItemInfo: , SComment2,
-          GuiControl,ItemInfo: , SData2, 
+          GuiControl,ItemInfo: , SComment1, Chaos Value
+          GuiControl,ItemInfo: , SData1, % This.Data.Ninja["chaosValue"]
+          GuiControl,ItemInfo: , SComment2, Chaos Value `% Change
+          GuiControl,ItemInfo: , SData2, % This.Data.Ninja["lowConfidenceSparkline"]["totalChange"]
           GuiControl,ItemInfo: , SComment3, 
           GuiControl,ItemInfo: , SData3, 
           GuiControl,ItemInfo: , SComment4, Day 6 Change
@@ -1457,284 +1463,69 @@
         Return
 
         noDataGraph:
-            GuiControl,ItemInfo: , PercentText1G1, 0`%
-            GuiControl,ItemInfo: , PercentText1G2, 0`%
-            GuiControl,ItemInfo: , PercentText1G3, 0`%
-            GuiControl,ItemInfo: , PercentText1G4, 0`%
-            GuiControl,ItemInfo: , PercentText1G5, 0`%
-            GuiControl,ItemInfo: , PercentText1G6, 0`%
-            GuiControl,ItemInfo: , PercentText1G7, 0`%
-            GuiControl,ItemInfo: , PercentText1G8, 0`%
-            GuiControl,ItemInfo: , PercentText1G9, 0`%
-            GuiControl,ItemInfo: , PercentText1G10, 0`%
-            GuiControl,ItemInfo: , PercentText1G11, 0`%
-            GuiControl,ItemInfo: , PercentText1G12, 0`%
-            GuiControl,ItemInfo: , PercentText1G13, 0`%
-            GuiControl,ItemInfo: , PercentText1G14, 0`%
-            GuiControl,ItemInfo: , PercentText1G15, 0`%
-            GuiControl,ItemInfo: , PercentText1G16, 0`%
-            GuiControl,ItemInfo: , PercentText1G17, 0`%
-            GuiControl,ItemInfo: , PercentText1G18, 0`%
-            GuiControl,ItemInfo: , PercentText1G19, 0`%
-            GuiControl,ItemInfo: , PercentText1G20, 0`%
-            GuiControl,ItemInfo: , PercentText1G21, 0`%
-            GuiControl,ItemInfo: , PercentText2G1, 0`%
-            GuiControl,ItemInfo: , PercentText2G2, 0`%
-            GuiControl,ItemInfo: , PercentText2G3, 0`%
-            GuiControl,ItemInfo: , PercentText2G4, 0`%
-            GuiControl,ItemInfo: , PercentText2G5, 0`%
-            GuiControl,ItemInfo: , PercentText2G6, 0`%
-            GuiControl,ItemInfo: , PercentText2G7, 0`%
-            GuiControl,ItemInfo: , PercentText2G8, 0`%
-            GuiControl,ItemInfo: , PercentText2G9, 0`%
-            GuiControl,ItemInfo: , PercentText2G10, 0`%
-            GuiControl,ItemInfo: , PercentText2G11, 0`%
-            GuiControl,ItemInfo: , PercentText2G12, 0`%
-            GuiControl,ItemInfo: , PercentText2G13, 0`%
-            GuiControl,ItemInfo: , PercentText2G14, 0`%
-            GuiControl,ItemInfo: , PercentText2G15, 0`%
-            GuiControl,ItemInfo: , PercentText2G16, 0`%
-            GuiControl,ItemInfo: , PercentText2G17, 0`%
-            GuiControl,ItemInfo: , PercentText2G18, 0`%
-            GuiControl,ItemInfo: , PercentText2G19, 0`%
-            GuiControl,ItemInfo: , PercentText2G20, 0`%
-            GuiControl,ItemInfo: , PercentText2G21, 0`%
-
+          Loop 2
+          {
+            aVal := A_Index
+            Loop 21
+            {
+              GuiControl,ItemInfo: , PercentText%aVal%G%A_Index%, 0`%
+            }
+            GuiControl,ItemInfo: , GroupBox%aVal%, No Data
             Loop 13
             {
-              XGraph_Plot( pGraph1, 100, "", True )
+              XGraph_Plot( pGraph%aVal%, 100, "", True )
             }
-            Loop 13
-            {
-              XGraph_Plot( pGraph2, 100, "", True )
-            }
-
-            GuiControl,ItemInfo: , GroupBox1, No Data
-            GuiControl,ItemInfo: , PComment1,
-            GuiControl,ItemInfo: , PData1, 
-            GuiControl,ItemInfo: , PComment2,
-            GuiControl,ItemInfo: , PData2, 
-            GuiControl,ItemInfo: , PComment3,
-            GuiControl,ItemInfo: , PData3, 
-            GuiControl,ItemInfo: , PComment4,
-            GuiControl,ItemInfo: , PData4, 
-            GuiControl,ItemInfo: , PComment5,
-            GuiControl,ItemInfo: , PData5, 
-            GuiControl,ItemInfo: , PComment6,
-            GuiControl,ItemInfo: , PData6, 
-            GuiControl,ItemInfo: , PComment7,
-            GuiControl,ItemInfo: , PData7, 
-            GuiControl,ItemInfo: , PComment8,
-            GuiControl,ItemInfo: , PData8, 
-            GuiControl,ItemInfo: , PComment9,
-            GuiControl,ItemInfo: , PData9, 
-            GuiControl,ItemInfo: , PComment10, 
-            GuiControl,ItemInfo: , PData10, 
-
-            GuiControl,ItemInfo: , GroupBox2, No Data
-            GuiControl,ItemInfo: , SComment1,
-            GuiControl,ItemInfo: , SData1,
-            GuiControl,ItemInfo: , SComment2,
-            GuiControl,ItemInfo: , SData2,
-            GuiControl,ItemInfo: , SComment3,
-            GuiControl,ItemInfo: , SData3,
-            GuiControl,ItemInfo: , SComment4,
-            GuiControl,ItemInfo: , SData4,
-            GuiControl,ItemInfo: , SComment5,
-            GuiControl,ItemInfo: , SData5,
-            GuiControl,ItemInfo: , SComment6,
-            GuiControl,ItemInfo: , SData6,
-            GuiControl,ItemInfo: , SComment7,
-            GuiControl,ItemInfo: , SData7,
-            GuiControl,ItemInfo: , SComment8,
-            GuiControl,ItemInfo: , SData8,
-            GuiControl,ItemInfo: , SComment9,
-            GuiControl,ItemInfo: , SData9,
-            GuiControl,ItemInfo: , SComment10,
-            GuiControl,ItemInfo: , SData10
+          }
+          Loop 10
+          {
+            GuiControl,ItemInfo: , PComment%A_Index%,
+            GuiControl,ItemInfo: , PData%A_Index%,
+            GuiControl,ItemInfo: , SComment%A_Index%,
+            GuiControl,ItemInfo: , SData%A_Index%,
+          }
+          aVal := ""
         Return
 
         HideGraph:
-            GuiControl,ItemInfo: Hide, PercentText1G1
-            GuiControl,ItemInfo: Hide, PercentText1G2
-            GuiControl,ItemInfo: Hide, PercentText1G3
-            GuiControl,ItemInfo: Hide, PercentText1G4
-            GuiControl,ItemInfo: Hide, PercentText1G5
-            GuiControl,ItemInfo: Hide, PercentText1G6
-            GuiControl,ItemInfo: Hide, PercentText1G7
-            GuiControl,ItemInfo: Hide, PercentText1G8
-            GuiControl,ItemInfo: Hide, PercentText1G9
-            GuiControl,ItemInfo: Hide, PercentText1G10
-            GuiControl,ItemInfo: Hide, PercentText1G11
-            GuiControl,ItemInfo: Hide, PercentText1G12
-            GuiControl,ItemInfo: Hide, PercentText1G13
-            GuiControl,ItemInfo: Hide, PercentText1G14
-            GuiControl,ItemInfo: Hide, PercentText1G15
-            GuiControl,ItemInfo: Hide, PercentText1G16
-            GuiControl,ItemInfo: Hide, PercentText1G17
-            GuiControl,ItemInfo: Hide, PercentText1G18
-            GuiControl,ItemInfo: Hide, PercentText1G19
-            GuiControl,ItemInfo: Hide, PercentText1G20
-            GuiControl,ItemInfo: Hide, PercentText1G21
-            GuiControl,ItemInfo: Hide, PercentText2G1
-            GuiControl,ItemInfo: Hide, PercentText2G2
-            GuiControl,ItemInfo: Hide, PercentText2G3
-            GuiControl,ItemInfo: Hide, PercentText2G4
-            GuiControl,ItemInfo: Hide, PercentText2G5
-            GuiControl,ItemInfo: Hide, PercentText2G6
-            GuiControl,ItemInfo: Hide, PercentText2G7
-            GuiControl,ItemInfo: Hide, PercentText2G8
-            GuiControl,ItemInfo: Hide, PercentText2G9
-            GuiControl,ItemInfo: Hide, PercentText2G10
-            GuiControl,ItemInfo: Hide, PercentText2G11
-            GuiControl,ItemInfo: Hide, PercentText2G12
-            GuiControl,ItemInfo: Hide, PercentText2G13
-            GuiControl,ItemInfo: Hide, PercentText2G14
-            GuiControl,ItemInfo: Hide, PercentText2G15
-            GuiControl,ItemInfo: Hide, PercentText2G16
-            GuiControl,ItemInfo: Hide, PercentText2G17
-            GuiControl,ItemInfo: Hide, PercentText2G18
-            GuiControl,ItemInfo: Hide, PercentText2G19
-            GuiControl,ItemInfo: Hide, PercentText2G20
-            GuiControl,ItemInfo: Hide, PercentText2G21
-
-            GuiControl,ItemInfo: Hide, pGraph1
-            GuiControl,ItemInfo: Hide, pGraph2
-
-            GuiControl,ItemInfo: Hide, GroupBox1
-            GuiControl,ItemInfo: Hide, PComment1
-            GuiControl,ItemInfo: Hide, PData1
-            GuiControl,ItemInfo: Hide, PComment2
-            GuiControl,ItemInfo: Hide, PData2
-            GuiControl,ItemInfo: Hide, PComment3
-            GuiControl,ItemInfo: Hide, PData3
-            GuiControl,ItemInfo: Hide, PComment4
-            GuiControl,ItemInfo: Hide, PData4
-            GuiControl,ItemInfo: Hide, PComment5
-            GuiControl,ItemInfo: Hide, PData5
-            GuiControl,ItemInfo: Hide, PComment6
-            GuiControl,ItemInfo: Hide, PData6
-            GuiControl,ItemInfo: Hide, PComment7
-            GuiControl,ItemInfo: Hide, PData7
-            GuiControl,ItemInfo: Hide, PComment8
-            GuiControl,ItemInfo: Hide, PData8
-            GuiControl,ItemInfo: Hide, PComment9
-            GuiControl,ItemInfo: Hide, PData9
-            GuiControl,ItemInfo: Hide, PComment10
-            GuiControl,ItemInfo: Hide, PData10
-
-            GuiControl,ItemInfo: Hide, GroupBox2
-            GuiControl,ItemInfo: Hide, SComment1
-            GuiControl,ItemInfo: Hide, SData1
-            GuiControl,ItemInfo: Hide, SComment2
-            GuiControl,ItemInfo: Hide, SData2
-            GuiControl,ItemInfo: Hide, SComment3
-            GuiControl,ItemInfo: Hide, SData3
-            GuiControl,ItemInfo: Hide, SComment4
-            GuiControl,ItemInfo: Hide, SData4
-            GuiControl,ItemInfo: Hide, SComment5
-            GuiControl,ItemInfo: Hide, SData5
-            GuiControl,ItemInfo: Hide, SComment6
-            GuiControl,ItemInfo: Hide, SData6
-            GuiControl,ItemInfo: Hide, SComment7
-            GuiControl,ItemInfo: Hide, SData7
-            GuiControl,ItemInfo: Hide, SComment8
-            GuiControl,ItemInfo: Hide, SData8
-            GuiControl,ItemInfo: Hide, SComment9
-            GuiControl,ItemInfo: Hide, SData9
-            GuiControl,ItemInfo: Hide, SComment10
-            GuiControl,ItemInfo: Hide, SData10
+          Loop 2
+          {
+            aVal := A_Index
+            Loop 21
+            {
+              GuiControl,ItemInfo: Hide, PercentText%aVal%G%A_Index%
+            }
+            GuiControl,ItemInfo: Hide, pGraph%aVal%
+            GuiControl,ItemInfo: Hide, GroupBox%aVal%
+          }
+          Loop 10
+          {
+            GuiControl,ItemInfo: Hide, PComment%A_Index%
+            GuiControl,ItemInfo: Hide, PData%A_Index%
+            GuiControl,ItemInfo: Hide, SComment%A_Index%
+            GuiControl,ItemInfo: Hide, SData%A_Index%
+          }
+          aVal := ""
         Return
+
         ShowGraph:
-            GuiControl,ItemInfo: Show, PercentText1G1
-            GuiControl,ItemInfo: Show, PercentText1G2
-            GuiControl,ItemInfo: Show, PercentText1G3
-            GuiControl,ItemInfo: Show, PercentText1G4
-            GuiControl,ItemInfo: Show, PercentText1G5
-            GuiControl,ItemInfo: Show, PercentText1G6
-            GuiControl,ItemInfo: Show, PercentText1G7
-            GuiControl,ItemInfo: Show, PercentText1G8
-            GuiControl,ItemInfo: Show, PercentText1G9
-            GuiControl,ItemInfo: Show, PercentText1G10
-            GuiControl,ItemInfo: Show, PercentText1G11
-            GuiControl,ItemInfo: Show, PercentText1G12
-            GuiControl,ItemInfo: Show, PercentText1G13
-            GuiControl,ItemInfo: Show, PercentText1G14
-            GuiControl,ItemInfo: Show, PercentText1G15
-            GuiControl,ItemInfo: Show, PercentText1G16
-            GuiControl,ItemInfo: Show, PercentText1G17
-            GuiControl,ItemInfo: Show, PercentText1G18
-            GuiControl,ItemInfo: Show, PercentText1G19
-            GuiControl,ItemInfo: Show, PercentText1G20
-            GuiControl,ItemInfo: Show, PercentText1G21
-            GuiControl,ItemInfo: Show, PercentText2G1
-            GuiControl,ItemInfo: Show, PercentText2G2
-            GuiControl,ItemInfo: Show, PercentText2G3
-            GuiControl,ItemInfo: Show, PercentText2G4
-            GuiControl,ItemInfo: Show, PercentText2G5
-            GuiControl,ItemInfo: Show, PercentText2G6
-            GuiControl,ItemInfo: Show, PercentText2G7
-            GuiControl,ItemInfo: Show, PercentText2G8
-            GuiControl,ItemInfo: Show, PercentText2G9
-            GuiControl,ItemInfo: Show, PercentText2G10
-            GuiControl,ItemInfo: Show, PercentText2G11
-            GuiControl,ItemInfo: Show, PercentText2G12
-            GuiControl,ItemInfo: Show, PercentText2G13
-            GuiControl,ItemInfo: Show, PercentText2G14
-            GuiControl,ItemInfo: Show, PercentText2G15
-            GuiControl,ItemInfo: Show, PercentText2G16
-            GuiControl,ItemInfo: Show, PercentText2G17
-            GuiControl,ItemInfo: Show, PercentText2G18
-            GuiControl,ItemInfo: Show, PercentText2G19
-            GuiControl,ItemInfo: Show, PercentText2G20
-            GuiControl,ItemInfo: Show, PercentText2G21
-
-            GuiControl,ItemInfo: Show, pGraph1
-            GuiControl,ItemInfo: Show, pGraph2
-
-            GuiControl,ItemInfo: Show, GroupBox1
-            GuiControl,ItemInfo: Show, PComment1
-            GuiControl,ItemInfo: Show, PData1
-            GuiControl,ItemInfo: Show, PComment2
-            GuiControl,ItemInfo: Show, PData2
-            GuiControl,ItemInfo: Show, PComment3
-            GuiControl,ItemInfo: Show, PData3
-            GuiControl,ItemInfo: Show, PComment4
-            GuiControl,ItemInfo: Show, PData4
-            GuiControl,ItemInfo: Show, PComment5
-            GuiControl,ItemInfo: Show, PData5
-            GuiControl,ItemInfo: Show, PComment6
-            GuiControl,ItemInfo: Show, PData6
-            GuiControl,ItemInfo: Show, PComment7
-            GuiControl,ItemInfo: Show, PData7
-            GuiControl,ItemInfo: Show, PComment8
-            GuiControl,ItemInfo: Show, PData8
-            GuiControl,ItemInfo: Show, PComment9
-            GuiControl,ItemInfo: Show, PData9
-            GuiControl,ItemInfo: Show, PComment10
-            GuiControl,ItemInfo: Show, PData10
-
-            GuiControl,ItemInfo: Show, GroupBox2
-            GuiControl,ItemInfo: Show, SComment1
-            GuiControl,ItemInfo: Show, SData1
-            GuiControl,ItemInfo: Show, SComment2
-            GuiControl,ItemInfo: Show, SData2
-            GuiControl,ItemInfo: Show, SComment3
-            GuiControl,ItemInfo: Show, SData3
-            GuiControl,ItemInfo: Show, SComment4
-            GuiControl,ItemInfo: Show, SData4
-            GuiControl,ItemInfo: Show, SComment5
-            GuiControl,ItemInfo: Show, SData5
-            GuiControl,ItemInfo: Show, SComment6
-            GuiControl,ItemInfo: Show, SData6
-            GuiControl,ItemInfo: Show, SComment7
-            GuiControl,ItemInfo: Show, SData7
-            GuiControl,ItemInfo: Show, SComment8
-            GuiControl,ItemInfo: Show, SData8
-            GuiControl,ItemInfo: Show, SComment9
-            GuiControl,ItemInfo: Show, SData9
-            GuiControl,ItemInfo: Show, SComment10
-            GuiControl,ItemInfo: Show, SData10
+          Loop 2
+          {
+            aVal := A_Index
+            Loop 21
+            {
+              GuiControl,ItemInfo: Show, PercentText%aVal%G%A_Index%
+            }
+            GuiControl,ItemInfo: Show, pGraph%aVal%
+            GuiControl,ItemInfo: Show, GroupBox%aVal%
+          }
+          Loop 10
+          {
+            GuiControl,ItemInfo: Show, PComment%A_Index%
+            GuiControl,ItemInfo: Show, PData%A_Index%
+            GuiControl,ItemInfo: Show, SComment%A_Index%
+            GuiControl,ItemInfo: Show, SData%A_Index%
+          }
+          aVal := ""
         Return
       }
       ItemInfo()
