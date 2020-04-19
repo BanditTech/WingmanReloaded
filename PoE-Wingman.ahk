@@ -2046,11 +2046,11 @@
 
 
     Gui, ItemInfo: Add, GroupBox, Section xm+1 y+30  h251 w364 , Item Properties
-    Gui, ItemInfo: Add, Edit, vItemInfoPropText xp+2 ys+17 w358, %ItemInfoPropText%
+    Gui, ItemInfo: Add, Edit, VScroll HScroll vItemInfoPropText xp+2 ys+17 w358, %ItemInfoPropText%
     Gui, ItemInfo: Add, GroupBox, x+10 ys   h251 w364 , Item Statistics
-    Gui, ItemInfo: Add, Edit, vItemInfoStatText xp+2 ys+17 w358, %ItemInfoStatText%
+    Gui, ItemInfo: Add, Edit, VScroll HScroll vItemInfoStatText xp+2 ys+17 w358, %ItemInfoStatText%
     Gui, ItemInfo: Add, GroupBox, x+9 ys  h251 w364 , Item Affixes
-    Gui, ItemInfo: Add, Edit, vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
+    Gui, ItemInfo: Add, Edit, VScroll HScroll vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
     ;Gui, ItemInfo: Show, AutoSize, % Item.Prop.ItemName " Sparkline"
     ;Gui, ItemInfo: Hide
     If (DebugMessages)
@@ -3110,7 +3110,7 @@ Return
     ClipItem(Mx, My)
     SendMSG(1,0,scriptTradeMacro)
 
-    MatchNinjaPrice(True)
+    ; MatchNinjaPrice(True)
     Return
   }
   ; MatchLootFilter - Evaluate Loot Filter Match

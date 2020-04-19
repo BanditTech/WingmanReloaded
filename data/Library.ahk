@@ -883,45 +883,149 @@
       }
       MatchExtenalDB()
       {
-        ;Start Ninja DB Matching
         For k, v in QuestItems
+        {	
+          If (v["Name"] = This.Prop.ItemName)	
           {	
-            If (v["Name"] = This.Prop.ItemName)	
-            {	
-              This.Prop.Item_Width := v["Width"]
-              This.Prop.Item_Height := v["Height"]
-              This.Prop.SpecialType := "Quest Item"	
-              Break	
-            }	
+            This.Prop.Item_Width := v["Width"]
+            This.Prop.Item_Height := v["Height"]
+            This.Prop.SpecialType := "Quest Item"	
+            Return	
           }	
-          For k, v in Bases	
-          {	
-            If ((v["name"] = This.Prop.ItemBase) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )	
-            {
-              This.Prop.Item_Width := v["inventory_width"]	
-              This.Prop.Item_Height := v["inventory_height"]	
-              This.Prop.ItemClass := v["item_class"]	
-              This.Prop.ItemBase := v["name"]	
-              This.Prop.DropLevel := v["drop_level"]	
+        }	
+        For k, v in Bases	
+        {	
+          If ((v["name"] = This.Prop.ItemBase) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )	
+          {
+            This.Prop.Item_Width := v["inventory_width"]	
+            This.Prop.Item_Height := v["inventory_height"]	
+            This.Prop.ItemClass := v["item_class"]	
+            This.Prop.ItemBase := v["name"]	
+            This.Prop.DropLevel := v["drop_level"]	
 
-              If InStr(This.Prop.ItemClass, "Ring")	
-                This.Prop.Ring := True
-              If InStr(This.Prop.ItemClass, "Amulet")	
-                This.Prop.Amulet := True
-              If InStr(This.Prop.ItemClass, "Belt")	
-                This.Prop.Belt := True	
-              Break	
-            }	
-
+            If InStr(This.Prop.ItemClass, "Ring")	
+              This.Prop.Ring := True
+            If InStr(This.Prop.ItemClass, "Amulet")	
+              This.Prop.Amulet := True
+            If InStr(This.Prop.ItemClass, "Belt")	
+              This.Prop.Belt := True	
+            Break	
           }	
-          If Prop.IsBeast	
-          {	
-            For k, v in Ninja.Beast	
-            {	
-              If (v["name"] = This.Prop.ItemName)	
-                Prop.ItemBase := This.Prop.ItemName
-            }	
+        }	
+        ;Start Ninja DB Matching
+        If (This.Prop.RarityCurrency)
+        {
+          If (This.Prop.ItemName ~= "Delirium Orb")
+          {
+            If This.MatchNinjaDB("DeliriumOrb")
+              Return
           }
+          Else If (This.Prop.ItemName ~= "Essence of")
+          {
+            If This.MatchNinjaDB("Essence")
+              Return
+          }
+          Else If (This.Prop.Incubator )
+          {
+            If This.MatchNinjaDB("Incubator")
+              Return
+          }
+          Else If (This.Prop.Oil )
+          {
+            If This.MatchNinjaDB("Oil")
+              Return
+          }
+          Else If (This.Prop.ItemName ~= "Fossil" )
+          {
+            If This.MatchNinjaDB("Fossil")
+              Return
+          }
+          Else If (This.Prop.ItemName ~= "Resonator" )
+          {
+            If This.MatchNinjaDB("Resonator")
+              Return
+          }
+          If This.MatchNinjaDB("Currency")
+            Return
+        }
+        If (This.Prop.RarityDivination)
+        {
+          If This.MatchNinjaDB("DivinationCard")
+            Return
+        }
+        If (This.Prop.Prophecy)
+        {
+          If This.MatchNinjaDB("Prophecy")
+            Return
+        }
+        If (This.Prop.DefaultSendStash = "FragmentsTab" || This.Prop.ItemName ~= "Simulacrum")
+        {
+          If This.MatchNinjaDB("Fragment")
+            Return
+          If This.MatchNinjaDB("Scarab")
+            Return
+        }
+        If (This.Prop.IsBeast)	
+        {	
+          If This.MatchNinjaDB("Beast")
+            Return
+        }
+        If (This.Prop.RarityUnique)
+        {
+          If (This.Prop.ItemClass ~= "(Belt|Amulet|Ring)")
+          {
+            If This.MatchNinjaDB("UniqueAccessory")
+              Return
+          }
+          Else If (This.Prop.ItemClass ~= "(Body Armour|Gloves|Boots|Helmet|Shield)")
+          {
+            If This.MatchNinjaDB("UniqueArmour")
+              Return
+          }
+          Else If (This.Prop.ItemClass ~= "Flasks")
+          {
+            If This.MatchNinjaDB("UniqueFlask")
+              Return
+          }
+          Else If (This.Prop.ItemClass ~= "Jewel")
+          {
+            If This.MatchNinjaDB("UniqueJewel")
+              Return
+          }
+        }
+        If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "")
+        {	
+          For k, v in Ninja.BaseType	
+          {	
+            If (This.Prop.ItemBase = v["name"] 
+            && This.Prop.Influence ~= v["variant"] 
+            && This.Prop.ItemLevel >= v["levelRequired"])
+            {
+              This.Prop.ChaosValue := v["chaosValue"]
+              This.Prop.ExaltValue := v["exaltedValue"]
+              This.Data.Ninja := v
+              This.Prop.SpecialType := "Valuable Base"
+              Return
+            }
+          }	
+        }
+      }
+      MatchNinjaDB(ApiStr,MatchKey:="ItemName",NinjaKey:="name")
+      {
+        For k, v in Ninja[ApiStr]
+        {
+          If (This.Prop[MatchKey] = v[NinjaKey])
+          {
+            This.Prop.ChaosValue := v["chaosValue"]
+            If v["exaltedValue"]
+              This.Prop.ExaltValue := v["exaltedValue"]
+            If This.Prop.IsBeast
+              Prop.ItemBase := This.Prop.ItemName
+            This.Data.Ninja := v
+            Return True
+          }
+        }
+        Return False
       }
     }
     ; ArrayToString - Make a string from array using | as delimiters
