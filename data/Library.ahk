@@ -515,7 +515,7 @@
             }
             If (This.Prop.Sockets_Num == 6)
             {
-              This.Prop.Jeweler
+              This.Prop.Jeweler := True
             }
           }
           ;Generic Props
@@ -617,12 +617,16 @@
         }
         ;End Prop Block Parser for Vaal Gems
 
-        ;Stack size
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
+        ;Start Prop Block Parser for Divinations
+        If (This.RarityDivination)
         {
-          This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
-          This.Prop.Stack_Max := RxMatch2
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
+          {
+            This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
+            This.Prop.Stack_Max := RxMatch2
+          }
         }
+        ;End Prop Block Parser for Divinations
       }
       MatchAffixes(content:=""){
         ; Do Stuff with info
