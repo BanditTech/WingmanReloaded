@@ -766,6 +766,10 @@
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
           }
+          Else If (trimKey = "# to maximum Energy Shield")
+          {
+            This.AddPseudoAffix("(Pseudo) Total to Maximum Energy Shield",k)
+          }
           ; Double Armour Affix
           Else If (trimKey = "# increased Evasion and Energy Shield")
           {
@@ -785,35 +789,43 @@
           ; Damage Mods
           Else If (trimKey = "Adds # to # Physical Damage to Attacks_Avg")
           {
-            This.AddPseudoAffix("(Pseudo) Physical Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Attacks_Avg",k)
           }
           Else If (trimKey = "Adds # to # Physical Damage to Spells_Avg")
           {
-            This.AddPseudoAffix("(Pseudo) Physical Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Spells_Avg",k)
           }
           Else If (trimKey = "Adds # to # Cold Damage to Attacks_Avg")
           {
-            This.AddPseudoAffix("(Pseudo) Cold Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Attacks_Avg",k)
           }
           Else If (trimKey = "Adds # to # Cold Damage to Spells_Avg")
           {
-            This.AddPseudoAffix("(Pseudo) Cold Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Spells_Avg",k)
           }
           Else If (trimKey = "Adds # to # Fire Damage to Attacks_Avg")
           {
-            This.AddPseudoAffix("(Pseudo) Fire Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Attacks_Avg",k)
           }
           Else If (trimKey = "Adds # to # Fire Damage to Spells_Avg")
           {
-            This.AddPseudoAffix("(Pseudo) Fire Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Spells_Avg",k)
           }
           Else If (trimKey = "Adds # to # Lightning Damage to Attacks_Avg")
           {
-            This.AddPseudoAffix("(Pseudo) Lightning Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Attacks_Avg",k)
           }
           Else If (trimKey = "Adds # to # Lightning Damage to Spells_Avg")
           {
-            This.AddPseudoAffix("(Pseudo) Lightning Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Spells_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Chaos Damage to Attacks_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Attacks_Avg",k)
+          }
+          Else If (trimKey = "Adds # to # Chaos Damage to Spells_Avg")
+          {
+            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells_Avg",k)
           }
           ; Spell Pseudo
           Else If (trimKey = "# increased Lightning Damage")
@@ -863,7 +875,7 @@
         + (This.GetValue("Pseudo","(Pseudo) Total to Strength"))//2
         If(aux > 0)
         {
-          This.Pseudo["(Pseudo) Total Maximum Life"] :=aux
+          This.Pseudo["(Pseudo) Total to Maximum Life"] := aux
         }
 
         ; Merge
