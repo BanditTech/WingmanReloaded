@@ -135,7 +135,6 @@
         This.Pseudo := OrderedArray()
         This.Affix := OrderedArray()
         This.Prop := OrderedArray()
-        ; This.Stats := {}
         ; Split our sections from the clipboard
         ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
         For SectionKey, SVal in This.Data.Sections
@@ -389,7 +388,7 @@
             }
           }
           Else If (InStr(This.Prop.ItemBase, "'s Lung"))
-          {	     
+          {
             If (This.Prop.RarityUnique)
             {
               This.Prop.IsOrgan := "Lung"
@@ -398,7 +397,7 @@
             }
           }
           Else If (InStr(This.Prop.ItemBase, "'s Heart"))
-          {			        
+          {
             If (This.Prop.RarityUnique)
             {
               This.Prop.IsOrgan := "Heart"
@@ -407,7 +406,7 @@
             }
           }
           Else If (InStr(This.Prop.ItemBase, "'s Brain"))
-          {			        
+          {
             If (This.Prop.RarityUnique)
             {
               This.Prop.IsOrgan := "Brain"
@@ -890,34 +889,34 @@
       MatchExtenalDB()
       {
         For k, v in QuestItems
-        {	
-          If (v["Name"] = This.Prop.ItemName)	
-          {	
+        {
+          If (v["Name"] = This.Prop.ItemName)
+          {
             This.Prop.Item_Width := v["Width"]
             This.Prop.Item_Height := v["Height"]
-            This.Prop.SpecialType := "Quest Item"	
-            Return	
-          }	
-        }	
-        For k, v in Bases	
-        {	
-          If ((v["name"] = This.Prop.ItemBase) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )	
+            This.Prop.SpecialType := "Quest Item"
+            Return
+          }
+        }
+        For k, v in Bases
+        {
+          If ((v["name"] = This.Prop.ItemBase) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )
           {
-            This.Prop.Item_Width := v["inventory_width"]	
-            This.Prop.Item_Height := v["inventory_height"]	
-            This.Prop.ItemClass := v["item_class"]	
-            This.Prop.ItemBase := v["name"]	
-            This.Prop.DropLevel := v["drop_level"]	
+            This.Prop.Item_Width := v["inventory_width"]
+            This.Prop.Item_Height := v["inventory_height"]
+            This.Prop.ItemClass := v["item_class"]
+            This.Prop.ItemBase := v["name"]
+            This.Prop.DropLevel := v["drop_level"]
 
-            If InStr(This.Prop.ItemClass, "Ring")	
+            If InStr(This.Prop.ItemClass, "Ring")
               This.Prop.Ring := True
-            If InStr(This.Prop.ItemClass, "Amulet")	
+            If InStr(This.Prop.ItemClass, "Amulet")
               This.Prop.Amulet := True
-            If InStr(This.Prop.ItemClass, "Belt")	
-              This.Prop.Belt := True	
-            Break	
-          }	
-        }	
+            If InStr(This.Prop.ItemClass, "Belt")
+              This.Prop.Belt := True
+            Break
+          }
+        }
         ;Start Ninja DB Matching
         If (This.Prop.RarityCurrency)
         {
@@ -976,10 +975,25 @@
           If This.MatchNinjaDB("Scarab")
             Return
         }
-        If (This.Prop.IsBeast)	
-        {	
+        If (This.Prop.IsBeast)
+        {
           If This.MatchNinjaDB("Beast")
             Return
+        }
+        If (This.Prop.ItemClass ~= "Helmet" && This.Data.Blocks.HasKey("Enchant"))
+        {
+          For k, v in Ninja.HelmetEnchant
+          {
+            If (InStr(This.Data.Blocks.Enchant, v["name"]))
+            {
+              This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
+              This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
+              This.Data.HelmNinja := v
+              If (v["chaosValue"] >= 5)
+                This.Prop.SpecialType := "Valuable Helm Enchant"
+              Break
+            }
+          }
         }
         If (This.Prop.RarityUnique)
         {
@@ -1020,9 +1034,9 @@
             Return
         }
         If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "")
-        {	
-          For k, v in Ninja.BaseType	
-          {	
+        {
+          For k, v in Ninja.BaseType
+          {
             If (This.Prop.ItemBase = v["name"] 
             && This.Prop.Influence ~= v["variant"] 
             && This.Prop.ItemLevel >= v["levelRequired"])
@@ -1031,9 +1045,10 @@
               This.Prop.ExaltValue := v["exaltedValue"]
               This.Data.Ninja := v
               This.Prop.SpecialType := "Valuable Base"
-              Return
+              ; Return
+              Break
             }
-          }	
+          }
         }
       }
       MatchNinjaDB(ApiStr,MatchKey:="ItemName",NinjaKey:="name")
@@ -1045,9 +1060,9 @@
             If ((ApiStr = "Map" || ApiStr = "UniqueMap") 
             && This.Prop.MapTier < v["mapTier"])
               Continue
-            This.Prop.ChaosValue := v["chaosValue"]
+            This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
             If v["exaltedValue"]
-              This.Prop.ExaltValue := v["exaltedValue"]
+              This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
             If This.Prop.IsBeast
               Prop.ItemBase := This.Prop.ItemName
             This.Data.Ninja := v
@@ -1066,6 +1081,7 @@
           || RegExMatch(key, "^Sockets")
           || RegExMatch(key, "^Quality")
           || RegExMatch(key, "^Map")
+          || RegExMatch(key, "^Stack")
           || RegExMatch(key, "^Weapon"))
           {
             statText .= key . ":  " . value . "`n"
@@ -1545,14 +1561,14 @@
     {
       for index, element in Array
       {
-	      if(text == "")
+        if(text == "")
         {
-	        text = %element% 
-	      }
+          text = %element% 
+        }
         else
-	      {
-	        text = %text%|%element% 
-	      }
+        {
+          text = %text%|%element% 
+        }
       }
       return text
     }
