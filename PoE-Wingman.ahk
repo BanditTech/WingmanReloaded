@@ -93,7 +93,7 @@
     . "(?!\d{1,} Intelligence)"
     . "(?!\d{1,} Strength)"
     . "\+{0,1}"
-    . "(\d{1,}[.,\d]+?)"
+    . "(\d{1,}\.{0,1}\,{0,1}\d{0,})"
     . "\%{0,1}"
     Global Item
     Global WR_Statusbar := "WingmanReloaded Status"
