@@ -129,7 +129,8 @@
       , "UniqueWeapon"
       , "UniqueArmour"
       , "UniqueAccessory"
-      , "Beast"]
+      , "Beast"
+      , "Vial"]
     ; List crafting T1
     Global DefaultcraftingBasesT1 := ["Opal Ring"
       , "Steel Ring"
