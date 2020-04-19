@@ -1020,7 +1020,7 @@
               This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
               This.Data.HelmNinja := v
               If (v["chaosValue"] >= 5)
-                This.Prop.SpecialType := "Valuable Helm Enchant"
+                This.Prop.ValuableHelmEnch := True
               Break
             }
           }
@@ -1073,8 +1073,9 @@
             {
               This.Prop.ChaosValue := v["chaosValue"]
               This.Prop.ExaltValue := v["exaltedValue"]
-              This.Data.Ninja := v
-              This.Prop.SpecialType := "Valuable Base"
+              This.Data.BaseNinja := v
+              If (v["chaosValue"] >= 5)
+                This.Prop.ValuableBase := True
               ; Return
               Break
             }
@@ -1135,7 +1136,7 @@
       }
       GraphNinjaPrices()
       {
-        If This.Data.HasKey("Ninja")
+        If This.Data.HasKey("Ninja") || This.Data.HasKey("HelmNinja") || This.Data.HasKey("BaseNinja")
         {
           Gosub, ShowGraph
           Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " Sparkline"
@@ -1144,7 +1145,7 @@
         {
           GoSub, noDataGraph
           GoSub, HideGraph
-          Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " has no Graph Data" (Item)
+          Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " has no Graph Data" (This.Prop.IsMap?" for this Tier":"")
           Return
         }
           
@@ -1286,7 +1287,7 @@
             ;MsgBox % "Key : " k "   Val : " v
           }
 
-          GuiControl,ItemInfo: , GroupBox1, % "Sell " Item.Prop.ItemName " to Chaos"
+          GuiControl,ItemInfo: , GroupBox1, % "Sell " This.Prop.ItemName " to Chaos"
           GuiControl,ItemInfo: , PComment1, Sell Value
           GuiControl,ItemInfo: , PData1, % sellval := (1 / This.Data.Ninja["pay"]["value"])
           GuiControl,ItemInfo: , PComment2, Sell Value `% Change
@@ -1308,7 +1309,7 @@
           GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
           GuiControl,ItemInfo: , PData10, C / O
 
-          GuiControl,ItemInfo: , GroupBox2, % "Buy " Item.Prop.ItemName " from Chaos"
+          GuiControl,ItemInfo: , GroupBox2, % "Buy " This.Prop.ItemName " from Chaos"
           GuiControl,ItemInfo: , SComment1, Buy Value
           GuiControl,ItemInfo: , SData1, % sellval := (This.Data.Ninja["receive"]["value"])
           GuiControl,ItemInfo: , SComment2, Buy Value `% Change
@@ -1331,17 +1332,42 @@
           GuiControl,ItemInfo: , SData10, C / O
 
         }
-        Else If (This.Data.Ninja["sparkline"])
+        Else If (This.Data.Ninja["sparkline"] || This.Data.HelmNinja["sparkline"] || This.Data.BaseNinja["sparkline"] )
         {
+          HTGraph := "Name"
+          LTGraph := True
           dataPoint := This.Data.Ninja["sparkline"]["data"]
-          dataLTPoint := This.Data.Ninja["lowConfidenceSparkline"]["data"]
           totalChange := This.Data.Ninja["sparkline"]["totalChange"]
-          totalLTChange := This.Data.Ninja["lowConfidenceSparkline"]["totalChange"]
+          If (This.Data.HasKey("HelmNinja") && This.Data.HasKey("BaseNinja"))
+          {
+            dataPoint := This.Data.BaseNinja["sparkline"]["data"]
+            totalChange := This.Data.BaseNinja["sparkline"]["totalChange"]
+            dataLTPoint := This.Data.HelmNinja["sparkline"]["data"]
+            totalLTChange := This.Data.HelmNinja["sparkline"]["totalChange"]
+            HTGraph := "Base"
+            LTGraph := "Helm"
+          }
+          Else If (This.Data.HasKey("BaseNinja"))
+          {
+            dataLTPoint := This.Data.BaseNinja["sparkline"]["data"]
+            totalLTChange := This.Data.BaseNinja["sparkline"]["totalChange"]
+            LTGraph := "Base"
+          }
+          Else If (This.Data.HasKey("HelmNinja"))
+          {
+            dataLTPoint := This.Data.HelmNinja["sparkline"]["data"]
+            totalLTChange := This.Data.HelmNinja["sparkline"]["totalChange"]
+            LTGraph := "Helm"
+          }
+          Else
+          {
+            LTGraph := False
+          }
 
           basePoint := 0
           For k, v in dataPoint
           {
-            If Abs(v) > basePoint
+            If (Abs(v) > basePoint)
               basePoint := Abs(v)
           }
           If basePoint = 0
@@ -1419,22 +1445,22 @@
           Avg := {}
           Loop 5
           {
-            Avg[A_Index] := (dataPoint[A_Index+1] + dataPoint[A_Index+2]) / 2
+            Avg[A_Index] := ((dataPoint[A_Index+1]?dataPoint[A_Index+1]:0) + (dataPoint[A_Index+2]?dataPoint[A_Index+2]:0)) / 2
           }
           paddedData := {}
-          paddedData[1] := dataPoint[1]
-          paddedData[2] := dataPoint[1]
-          paddedData[3] := dataPoint[2]
-          paddedData[4] := Avg[1]
-          paddedData[5] := dataPoint[3]
-          paddedData[6] := Avg[2]
-          paddedData[7] := dataPoint[4]
-          paddedData[8] := Avg[3]
-          paddedData[9] := dataPoint[5]
-          paddedData[10] := Avg[4]
-          paddedData[11] := dataPoint[6]
-          paddedData[12] := Avg[5]
-          paddedData[13] := dataPoint[7]
+          paddedData[1] := (dataPoint[1]?dataPoint[1]:0)
+          paddedData[2] := (dataPoint[1]?dataPoint[1]:0)
+          paddedData[3] := (dataPoint[2]?dataPoint[2]:0)
+          paddedData[4] := (Avg[1]?Avg[1]:0)
+          paddedData[5] := (dataPoint[3]?dataPoint[3]:0)
+          paddedData[6] := (Avg[2]?Avg[2]:0)
+          paddedData[7] := (dataPoint[4]?dataPoint[4]:0)
+          paddedData[8] := (Avg[3]?Avg[3]:0)
+          paddedData[9] := (dataPoint[5]?dataPoint[5]:0)
+          paddedData[10] := (Avg[4]?Avg[4]:0)
+          paddedData[11] := (dataPoint[6]?dataPoint[6]:0)
+          paddedData[12] := (Avg[5]?Avg[5]:0)
+          paddedData[13] := (dataPoint[7]?dataPoint[7]:0)
           For k, v in paddedData
           {
             div := v / basePoint * 100
@@ -1447,19 +1473,19 @@
             LTAvg[A_Index] := (dataLTPoint[A_Index+1] + dataLTPoint[A_Index+2]) / 2
           }
           paddedLTData := {}
-          paddedLTData[1] := dataLTPoint[1]
-          paddedLTData[2] := dataLTPoint[1]
-          paddedLTData[3] := dataLTPoint[2]
-          paddedLTData[4] := LTAvg[1]
-          paddedLTData[5] := dataLTPoint[3]
-          paddedLTData[6] := LTAvg[2]
-          paddedLTData[7] := dataLTPoint[4]
-          paddedLTData[8] := LTAvg[3]
-          paddedLTData[9] := dataLTPoint[5]
-          paddedLTData[10] := LTAvg[4]
-          paddedLTData[11] := dataLTPoint[6]
-          paddedLTData[12] := LTAvg[5]
-          paddedLTData[13] := dataLTPoint[7]
+          paddedLTData[1] := (dataLTPoint[1]?dataLTPoint[1]:0)
+          paddedLTData[2] := (dataLTPoint[1]?dataLTPoint[1]:0)
+          paddedLTData[3] := (dataLTPoint[2]?dataLTPoint[2]:0)
+          paddedLTData[4] := (LTAvg[1]?LTAvg[1]:0)
+          paddedLTData[5] := (dataLTPoint[3]?dataLTPoint[3]:0)
+          paddedLTData[6] := (LTAvg[2]?LTAvg[2]:0)
+          paddedLTData[7] := (dataLTPoint[4]?dataLTPoint[4]:0)
+          paddedLTData[8] := (LTAvg[3]?LTAvg[3]:0)
+          paddedLTData[9] := (dataLTPoint[5]?dataLTPoint[5]:0)
+          paddedLTData[10] := (LTAvg[4]?LTAvg[4]:0)
+          paddedLTData[11] := (dataLTPoint[6]?dataLTPoint[6]:0)
+          paddedLTData[12] := (LTAvg[5]?LTAvg[5]:0)
+          paddedLTData[13] := (dataLTPoint[7]?dataLTPoint[7]:0)
           For k, v in paddedLTData
           {
             div := v / baseLTPoint * 100
@@ -1467,13 +1493,13 @@
             ;MsgBox % "Key : " k "   Val : " v
           }
 
-          GuiControl,ItemInfo: , GroupBox1, % "Value of " Item.Prop.ItemName
+          GuiControl,ItemInfo: , GroupBox1, % (HTGraph = "Name"?"Value of " This.Prop.ItemName : (HTGraph = "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
           GuiControl,ItemInfo: , PComment1, Chaos Value
-          GuiControl,ItemInfo: , PData1, % This.Data.Ninja["chaosValue"]
-          GuiControl,ItemInfo: , PComment2, Chaos Value `% Change
-          GuiControl,ItemInfo: , PData2, % This.Data.Ninja["sparkline"]["totalChange"]
-          GuiControl,ItemInfo: , PComment3, Exalted Value
-          GuiControl,ItemInfo: , PData3, % This.Data.Ninja["exaltedValue"]
+          GuiControl,ItemInfo: , PData1, % (HTGraph = "Name"?This.Data.Ninja["chaosValue"]:(HTGraph = "Base"?This.Data.BaseNinja["chaosValue"]:""))
+          GuiControl,ItemInfo: , PComment2, Exalted Value
+          GuiControl,ItemInfo: , PData2, % (HTGraph = "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph = "Base"?This.Data.BaseNinja["exaltedValue"]:""))
+          GuiControl,ItemInfo: , PComment3, Chaos Value `% Change
+          GuiControl,ItemInfo: , PData3, % (HTGraph = "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph = "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
           GuiControl,ItemInfo: , PComment4, Day 6 Change
           GuiControl,ItemInfo: , PData4, % dataPoint[2]
           GuiControl,ItemInfo: , PComment5, Day 5 Change
@@ -1489,13 +1515,14 @@
           GuiControl,ItemInfo: , PComment10, 
           GuiControl,ItemInfo: , PData10,
 
-          GuiControl,ItemInfo: , GroupBox2, % "Low Confidence Value of " Item.Prop.ItemName
+
+          GuiControl,ItemInfo: , GroupBox2, % (LTGraph = "Base"? ("Value of " This.Prop.ItemLevel " " This.Prop.Influence " " This.Prop.ItemBase ) : (LTGraph = "Helm" ? "Value of " This.Data.HelmNinja["name"] : "") )
           GuiControl,ItemInfo: , SComment1, Chaos Value
-          GuiControl,ItemInfo: , SData1, % This.Data.Ninja["chaosValue"]
-          GuiControl,ItemInfo: , SComment2, Chaos Value `% Change
-          GuiControl,ItemInfo: , SData2, % This.Data.Ninja["lowConfidenceSparkline"]["totalChange"]
-          GuiControl,ItemInfo: , SComment3, 
-          GuiControl,ItemInfo: , SData3, 
+          GuiControl,ItemInfo: , SData1, % (LTGraph = "Base"? This.Data.BaseNinja["chaosValue"] : (LTGraph = "Helm" ? This.Data.HelmNinja["chaosValue"] : "") )
+          GuiControl,ItemInfo: , SComment2, 
+          GuiControl,ItemInfo: , SData2, 
+          GuiControl,ItemInfo: , SComment3, Chaos Value `% Change
+          GuiControl,ItemInfo: , SData3, % (LTGraph = "Base"? This.Data.BaseNinja["sparkline"]["totalChange"] : (LTGraph = "Helm" ? This.Data.HelmNinja["sparkline"]["totalChange"] : "") )
           GuiControl,ItemInfo: , SComment4, Day 6 Change
           GuiControl,ItemInfo: , SData4, % dataLTPoint[2]
           GuiControl,ItemInfo: , SComment5, Day 5 Change
