@@ -926,6 +926,11 @@
             If This.MatchNinjaDB("DeliriumOrb")
               Return
           }
+          If (This.Prop.ItemName ~= "Vial of")
+          {
+            If This.MatchNinjaDB("Vial")
+              Return
+          }
           Else If (This.Prop.ItemName ~= "Essence of")
           {
             If This.MatchNinjaDB("Essence")
