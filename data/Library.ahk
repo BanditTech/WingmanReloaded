@@ -997,6 +997,16 @@
             If This.MatchNinjaDB("UniqueWeapon")
               Return
           }
+          Else If (This.Prop.IsMap)
+          {
+            If This.MatchNinjaDB("UniqueMap","ItemBase","baseType")
+              Return
+          }
+        }
+        If (This.Prop.IsMap)
+        {
+          If This.MatchNinjaDB("Map","ItemBase","baseType")
+            Return
         }
         If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "")
         {	
@@ -1021,6 +1031,9 @@
         {
           If (This.Prop[MatchKey] = v[NinjaKey])
           {
+            If ((ApiStr = "Map" || ApiStr = "UniqueMap") 
+            && This.Prop.MapTier < v["mapTier"])
+              Continue
             This.Prop.ChaosValue := v["chaosValue"]
             If v["exaltedValue"]
               This.Prop.ExaltValue := v["exaltedValue"]
