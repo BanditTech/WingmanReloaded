@@ -842,6 +842,10 @@
           {
             This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
           }
+          Else If (trimKey = "# increased Chaos Damage")
+          {
+            This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
+          }
           Else If (trimKey = "# increased Spell Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
