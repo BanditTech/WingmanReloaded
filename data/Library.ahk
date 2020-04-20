@@ -1108,7 +1108,7 @@
       }
       If (This.Prop.IsMap)
       {
-        If This.MatchNinjaDB("Map","ItemBase","baseType")
+        If This.MatchNinjaDB("Map","ItemBase","name")
           Return
       }
       If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "")
@@ -1138,7 +1138,7 @@
           If ((ApiStr = "Map" || ApiStr = "UniqueMap") 
           && This.Prop.MapTier < v["mapTier"])
             Continue
-          If  (v["links"] && ApiStr ~= "Unique"
+          If (v["links"] && ApiStr ~= "Unique"
           && This.Prop.Sockets_Link < v["links"])
             Continue
           This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
