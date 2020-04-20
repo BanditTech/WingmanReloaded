@@ -626,6 +626,8 @@
       }
       ;End Prop Block Parser for Vaal Gems
 
+      If (This.Affix["Veiled Prefix"] || This.Affix["Veiled Suffix"])
+        This.Prop.Veiled := True
       ;Start Prop Block Parser for Divinations
       If (This.RarityDivination)
       {
@@ -900,6 +902,7 @@
       {
         This.Pseudo["(Pseudo) Total to Maximum Life"] := aux
       }
+      aux:=""
       ; Merge
       This.MergePseudoInAffixs()
     }
