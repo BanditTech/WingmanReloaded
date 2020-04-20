@@ -237,12 +237,8 @@
         }
         If (This.Prop.ItemName ~= "^Superior ")
           This.Prop.ItemName := RegExReplace(This.Prop.ItemName, "^Superior ", "")
-        If (This.Prop.RarityMagic)
-        {
-          If (This.Prop.ItemName ~= " of .+")
-            This.Prop.ItemName := RegExReplace(This.Prop.ItemName, " of .+", "")
-          This.Prop.ItemBase := This.Prop.ItemName
-        }
+        If (This.Prop.RarityMagic && This.Prop.ItemBase ~= " of .+")
+            This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
         ;Start Parse
         If (InStr(This.Prop.ItemBase, "Map"))
         {
@@ -965,23 +961,38 @@
           Return
         }
       }
-      For k, v in Bases
+      If (!This.Prop.IsMap)
       {
-        If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
+        For k, v in Bases
         {
-          This.Prop.Item_Width := v["inventory_width"]
-          This.Prop.Item_Height := v["inventory_height"]
-          This.Prop.ItemClass := v["item_class"]
-          This.Prop.ItemBase := v["name"]
-          This.Prop.DropLevel := v["drop_level"]
+          If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
+          {
+            This.Prop.Item_Width := v["inventory_width"]
+            This.Prop.Item_Height := v["inventory_height"]
+            This.Prop.ItemClass := v["item_class"]
+            This.Prop.ItemBase := v["name"]
+            This.Prop.DropLevel := v["drop_level"]
 
-          If InStr(This.Prop.ItemClass, "Ring")
-            This.Prop.Ring := True
-          If InStr(This.Prop.ItemClass, "Amulet")
-            This.Prop.Amulet := True
-          If InStr(This.Prop.ItemClass, "Belt")
-            This.Prop.Belt := True
-          Break
+            If InStr(This.Prop.ItemClass, "Ring")
+              This.Prop.Ring := True
+            If InStr(This.Prop.ItemClass, "Amulet")
+              This.Prop.Amulet := True
+            If InStr(This.Prop.ItemClass, "Belt")
+              This.Prop.Belt := True
+            Break
+          }
+        }
+      }
+      Else If (This.Prop.RarityMagic)
+      {
+        For k, v in Ninja.Map
+        {
+          If (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])
+          {
+            This.Prop.ItemBase := v["name"]
+            This.Prop.Item_Width := 1
+            This.Prop.Item_Height := 1
+          }
         }
       }
       ;Start Ninja DB Matching
