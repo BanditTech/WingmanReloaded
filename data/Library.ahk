@@ -1090,6 +1090,9 @@
           If ((ApiStr = "Map" || ApiStr = "UniqueMap") 
           && This.Prop.MapTier < v["mapTier"])
             Continue
+          If  (v["links"] && ApiStr ~= "Unique"
+          && This.Prop.Sockets_Link < v["links"])
+            Continue
           This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
           If v["exaltedValue"]
             This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
