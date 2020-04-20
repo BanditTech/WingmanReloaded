@@ -853,6 +853,7 @@
           This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
           This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
           This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
+          This.AddPseudoAffix("(Pseudo) Increased Spell Damage",k)
         }
         Else If (trimKey = "# increased Elemental Damage")
         {
@@ -868,9 +869,24 @@
       This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Fire Resistance","Pseudo")
       This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Lightning Resistance","Pseudo")
       This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Cold Resistance","Pseudo")
+
       ; Total Resistance
       This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Elemental Resistance","Pseudo")
       This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Chaos Resistance","Pseudo")
+      aux := 0
+      If (This.GetValue("Pseudo","(Pseudo) Total to Fire Resistance") > aux)
+        aux := This.GetValue("Pseudo","(Pseudo) Total to Fire Resistance")
+      If (This.GetValue("Pseudo","(Pseudo) Total to Cold Resistance") > aux)
+        aux := This.GetValue("Pseudo","(Pseudo) Total to Cold Resistance")
+      If (This.GetValue("Pseudo","(Pseudo) Total to Lightning Resistance") > aux)
+        aux := This.GetValue("Pseudo","(Pseudo) Total to Lightning Resistance")
+      If (This.GetValue("Pseudo","(Pseudo) Total to Chaos Resistance") > aux)
+        aux := This.GetValue("Pseudo","(Pseudo) Total to Chaos Resistance")
+      If(aux > 0)
+      {
+        This.Pseudo["(Pseudo) Total to Single Resistance"] := aux
+      }
+
       ; Total Stats
       This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Strength","Pseudo")
       This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Intelligence","Pseudo")
@@ -884,7 +900,6 @@
       {
         This.Pseudo["(Pseudo) Total to Maximum Life"] := aux
       }
-
       ; Merge
       This.MergePseudoInAffixs()
     }
