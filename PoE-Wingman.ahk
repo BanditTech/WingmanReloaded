@@ -2719,7 +2719,7 @@ Return
           If (sendstash > 0)
           {
             If YesSortFirst
-              SortFirst[sendstash].Push({"C":C,"R":R,"Prop":Prop})
+              SortFirst[sendstash].Push({"C":C,"R":R,"Item":Item})
             Else
             {
               MoveStash(sendstash)
@@ -2727,7 +2727,7 @@ Return
               CtrlClick(Grid.X,Grid.Y)
               ; Check if we need to send to alternate stash for uniques
               If (sendstash = StashTabCollection || sendstash = StashTabUniqueRing )
-              && (Item.Prop.RarityUnique && Item.Prop.IsOrgan="")
+              && (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
               {
                 If (StashTabYesUniqueRing && Item.Prop.Ring 
                 && sendstash != StashTabUniqueRing)
@@ -2763,12 +2763,12 @@ Return
       {
         For Tab, Tv in SortFirst
         {
-          For Item, Iv in Tv
+          For Items, Iv in Tv
           {
             MoveStash(Tab)
-            C := SortFirst[Tab][Item]["C"]
-            R := SortFirst[Tab][Item]["R"]
-            Prop := SortFirst[Tab][Item]["Prop"]
+            C := SortFirst[Tab][Items]["C"]
+            R := SortFirst[Tab][Items]["R"]
+            Item := SortFirst[Tab][Items]["Item"]
             GridX := InventoryGridX[C]
             GridY := InventoryGridY[R]
             Grid := RandClick(GridX, GridY)
@@ -2777,7 +2777,7 @@ Return
             Sleep, 45*Latency
             ; Check for unique items
             If (Tab = StashTabCollection || Tab = StashTabUniqueRing )
-            && (Item.Prop.RarityUnique && Item.Prop.IsOrgan="")
+            && (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
             {
               If (StashTabYesUniqueRing && Item.Prop.Ring 
               && Tab != StashTabUniqueRing)
