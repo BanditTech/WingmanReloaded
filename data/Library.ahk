@@ -235,6 +235,14 @@
           This.Prop.ItemName := RxMatch1
           This.Prop.ItemBase := RxMatch1
         }
+        If (This.Prop.ItemName ~= "^Superior ")
+          This.Prop.ItemName := RegExReplace(This.Prop.ItemName, "^Superior ", "")
+        If (This.Prop.RarityMagic)
+        {
+          If (This.Prop.ItemName ~= " of .+")
+            This.Prop.ItemName := RegExReplace(This.Prop.ItemName, " of .+", "")
+          This.Prop.ItemBase := This.Prop.ItemName
+        }
         ;Start Parse
         If (InStr(This.Prop.ItemBase, "Map"))
         {
@@ -638,6 +646,17 @@
         }
       }
       ;End Prop Block Parser for Divinations
+
+      ;Get total count of affixes
+      temp := 0
+      For k, v in StrSplit(This.Data.Blocks.Affix, "`n", "`r")
+      {
+        If (v = "")
+        Continue
+        temp++
+      }
+      This.Prop.AffixCount := temp
+      temp:=""
     }
     MatchAffixes(content:=""){
       ; Do Stuff with info
