@@ -328,8 +328,15 @@
           This.Prop.SpecialType := "Essence"
           This.Prop.DefaultSendStash := "EssenceTab"
         }
-        Else If (InStr(This.Prop.ItemBase, "Fossil")
-        || InStr(This.Prop.ItemBase, "Resonator"))
+        Else If (This.Prop.RarityCurrency 
+        && InStr(This.Prop.ItemBase, "Fossil"))
+        {
+          This.Prop.Fossil := True
+          This.Prop.SpecialType := "Fossil"
+          This.Prop.DefaultSendStash := "FossilTab"
+        }
+        Else If (This.Prop.RarityCurrency 
+        && InStr(This.Prop.ItemBase, "Resonator"))
         {
           This.Prop.Resonator := True
           This.Prop.SpecialType := "Resonator"
