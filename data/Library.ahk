@@ -122,1248 +122,1255 @@
       BlockInput, MouseMoveOff
       return
     }
-    ; ItemScan - Parse data from Cliboard to Prop and Affix
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    class ItemScan
-    {
-      __New()
+  ; ItemScan - Parse data from Cliboard to Prop and Affix
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  class ItemScan
+  {
+    __New(){
+      This.Data := {}
+      This.Data.ClipContents := Clip_Contents ; Clipboard
+      This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
+      This.Data.Blocks := {}
+      This.Pseudo := OrderedArray()
+      This.Affix := OrderedArray()
+      This.Prop := OrderedArray()
+      ; Split our sections from the clipboard
+      ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
+      For SectionKey, SVal in This.Data.Sections
       {
-        This.Data := {}
-        This.Data.ClipContents := Clip_Contents ; Clipboard
-        This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
-        This.Data.Blocks := {}
-        This.Pseudo := OrderedArray()
-        This.Affix := OrderedArray()
-        This.Prop := OrderedArray()
-        ; Split our sections from the clipboard
-        ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
-        For SectionKey, SVal in This.Data.Sections
+        If (SVal ~= ":")
         {
-          If (SVal ~= ":")
-          {
-            If (SectionKey = 1 && SVal ~= "Rarity:")
-              This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
-            Else
-              This.Data.Blocks.Properties .= SVal "`n"
-          }
-          Else 
-          {
-            If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= """$")
-              This.Data.Blocks.FlavorText := SVal
-            Else If (SVal ~= "\(implicit\)$")
-              This.Data.Blocks.Implicit := SVal
-            Else If (SVal ~= "\(enchant\)$")
-              This.Data.Blocks.Enchant := SVal
-            Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
-              This.Data.Blocks.Influence := SVal
-            Else If (SVal ~= "^Corrupted$")
-              This.Prop.Corrupted := True
-            Else If (This.Data.Blocks.HasKey("Affix"))
-              This.Data.Blocks.FlavorText := SVal
-            Else
-              This.Data.Blocks.Affix := SVal
-          }
+          If (SectionKey = 1 && SVal ~= "Rarity:")
+            This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
+          Else
+            This.Data.Blocks.Properties .= SVal "`n"
         }
-        This.MatchAffixes(This.Data.Blocks.Affix)
-        This.MatchAffixes(This.Data.Blocks.Enchant)
-        This.MatchAffixes(This.Data.Blocks.Implicit)
-        This.MatchAffixes(This.Data.Blocks.Influence)
-        This.MatchProperties()
-        This.MatchPseudoAffix()
-        This.MatchExtenalDB()
-        ; This.FuckingSugoiFreeMate()
-      }
-      MatchProperties(){
-        ;Start NamePlate Parser
-        If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
+        Else 
         {
-          This.Prop.Rarity := RxMatch1
-          ;Prop Rarity Comparator
-          If (InStr(This.Prop.Rarity, "Currency"))
+          If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= """$")
+            This.Data.Blocks.FlavorText := SVal
+          Else If (SVal ~= "\(implicit\)$")
+            This.Data.Blocks.Implicit := SVal
+          Else If (SVal ~= "\(enchant\)$")
+            This.Data.Blocks.Enchant := SVal
+          Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
+            This.Data.Blocks.Influence := SVal
+          Else If (SVal ~= "^Corrupted$")
+            This.Prop.Corrupted := True
+          Else If (This.Data.Blocks.HasKey("Affix"))
+            This.Data.Blocks.FlavorText := SVal
+          Else
+            This.Data.Blocks.Affix := SVal
+        }
+      }
+        This.Data.Sections := ""
+        This.Data.Delete("Sections")
+      This.MatchAffixes(This.Data.Blocks.Affix)
+      This.MatchAffixes(This.Data.Blocks.Enchant)
+      This.MatchAffixes(This.Data.Blocks.Implicit)
+      This.MatchAffixes(This.Data.Blocks.Influence)
+      This.MatchProperties()
+      This.MatchPseudoAffix()
+      This.MatchExtenalDB()
+      ; This.FuckingSugoiFreeMate()
+    }
+    MatchProperties(){
+      ;Start NamePlate Parser
+      If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
+      {
+        This.Prop.Rarity := RxMatch1
+        ;Prop Rarity Comparator
+        If (InStr(This.Prop.Rarity, "Currency"))
+        {
+          This.Prop.RarityCurrency := True
+          This.Prop.DefaultSendStash := "CurrencyTab"
+        }
+        Else If (InStr(This.Prop.Rarity, "Divination Card"))
+        {
+          This.Prop.RarityDivination := True
+          This.Prop.SpecialType := "Divination Card"
+          This.Prop.DefaultSendStash := "DivinationTab"
+        }
+        Else If (InStr(This.Prop.Rarity, "Gem"))
+        {
+          This.Prop.RarityGem := True
+          This.Prop.SpecialType := "Gem"
+          This.Prop.DefaultSendStash := "GemTab"
+        }
+        Else If (InStr(This.Prop.Rarity, "Normal"))
+        {
+          This.Prop.RarityNormal := True
+          This.Prop.Rarity_Digit := 1
+        }
+        Else If (InStr(This.Prop.Rarity, "Magic"))
+        {
+          This.Prop.RarityMagic := True
+          This.Prop.Rarity_Digit := 2
+        }
+        Else If (InStr(This.Prop.Rarity, "Rare"))
+        {
+          This.Prop.RarityRare := True
+          This.Prop.Rarity_Digit := 3
+        }
+        Else If (InStr(This.Prop.Rarity, "Unique"))
+        {
+          This.Prop.RarityUnique := True
+          This.Prop.Rarity_Digit := 4
+          This.Prop.DefaultSendStash := "CollectionTab"
+        }
+        ; Fail Safe in case nothing match, to avoid auto-sell
+        Else
+        {
+          This.Prop.SpecialType := This.Prop.Rarity
+        }
+        ; 3 Lines in NamePlate => Rarity / Item Name/ Item Base
+        If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)`r`n(.+)",RxMatch))
+        {
+          This.Prop.ItemName := RxMatch1
+          This.Prop.ItemBase := RxMatch2
+        }
+        ; 2 Lines in NamePlate => Rarity / Item Base
+        Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)",RxMatch))
+        {
+          This.Prop.ItemName := RxMatch1
+          This.Prop.ItemBase := RxMatch1
+        }
+        ;Start Parse
+        If (InStr(This.Prop.ItemBase, "Map"))
+        {
+          This.Prop.IsMap := True
+          This.Prop.ItemClass := "Maps"
+          ; Deal with Blighted Map
+          If (InStr(This.Prop.ItemBase, "Blighted"))
           {
-            This.Prop.RarityCurrency := True
-            This.Prop.DefaultSendStash := "CurrencyTab"
+            This.Prop.IsBlightedMap := True
+            Prop.SpecialType := "Blighted Map"
           }
-          Else If (InStr(This.Prop.Rarity, "Divination Card"))
-          {
-            This.Prop.RarityDivination := True
-            This.Prop.SpecialType := "Divination Card"
-            This.Prop.DefaultSendStash := "DivinationTab"
-          }
-          Else If (InStr(This.Prop.Rarity, "Gem"))
-          {
-            This.Prop.RarityGem := True
-            This.Prop.SpecialType := "Gem"
-            This.Prop.DefaultSendStash := "GemTab"
-          }
-          Else If (InStr(This.Prop.Rarity, "Normal"))
-          {
-            This.Prop.RarityNormal := True
-            This.Prop.Rarity_Digit := 1
-          }
-          Else If (InStr(This.Prop.Rarity, "Magic"))
-          {
-            This.Prop.RarityMagic := True
-            This.Prop.Rarity_Digit := 2
-          }
-          Else If (InStr(This.Prop.Rarity, "Rare"))
-          {
-            This.Prop.RarityRare := True
-            This.Prop.Rarity_Digit := 3
-          }
-          Else If (InStr(This.Prop.Rarity, "Unique"))
-          {
-            This.Prop.RarityUnique := True
-            This.Prop.Rarity_Digit := 4
-            This.Prop.DefaultSendStash := "CollectionTab"
-          }
-          ; Fail Safe in case nothing match, to avoid auto-sell
           Else
           {
-            This.Prop.SpecialType := This.Prop.Rarity
-          }
-          ; 3 Lines in NamePlate => Rarity / Item Name/ Item Base
-          If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)`r`n(.+)",RxMatch))
-          {
-            This.Prop.ItemName := RxMatch1
-            This.Prop.ItemBase := RxMatch2
-          }
-          ; 2 Lines in NamePlate => Rarity / Item Base
-          Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)",RxMatch))
-          {
-            This.Prop.ItemName := RxMatch1
-            This.Prop.ItemBase := RxMatch1
-          }
-          ;Start Parse
-          If (InStr(This.Prop.ItemBase, "Map"))
-          {
-            This.Prop.IsMap := True
-            This.Prop.ItemClass := "Maps"
-            ; Deal with Blighted Map
-            If (InStr(This.Prop.ItemBase, "Blighted"))
-            {
-              This.Prop.IsBlightedMap := True
-              Prop.SpecialType := "Blighted Map"
-            }
-            Else
-            {
-              This.Prop.SpecialType := "Map"
-              This.Prop.DefaultSendStash := "MapTab"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "Incubator"))
-          {
-            This.Prop.Incubator := True
-            This.Prop.SpecialType := "Incubator"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Timeless Karui Splinter") 
-          || InStr(This.Prop.ItemBase, "Timeless Eternal Empire Splinter") 
-          || InStr(This.Prop.ItemBase, "Timeless Vaal Splinter") 
-          || InStr(This.Prop.ItemBase, "Timeless Templar Splinter") 
-          || InStr(This.Prop.ItemBase, "Timeless Maraketh Splinter"))
-          {
-            This.Prop.TimelessSplinter := True
-            This.Prop.SpecialType := "Timeless Splinter"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Splinter of"))
-          {
-            This.Prop.BreachSplinter := True
-            This.Prop.SpecialType := "Breach Splinter"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Breachstone"))
-          {
-            This.Prop.BreachSplinter := True
-            This.Prop.SpecialType := "Breachstone"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Sacrifice at"))
-          {
-            This.Prop.SacrificeFragment := True
-            This.Prop.SpecialType := "Sacrifice Fragment"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Mortal Grief") 
-          || InStr(This.Prop.ItemBase, "Mortal Hope") 
-          || InStr(This.Prop.ItemBase, "Mortal Ignorance")
-          || InStr(This.Prop.ItemBase, "Mortal Rage"))
-          {
-            This.Prop.MortalFragment := True
-            This.Prop.SpecialType := "Mortal Fragment"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Fragment of"))
-          {
-            This.Prop.GuardianFragment := True
-            This.Prop.SpecialType := "Guardian Fragment"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Volkuur's Key") 
-          || InStr(This.Prop.ItemBase, "Eber's Key")
-          || InStr(This.Prop.ItemBase, "Yriel's Key")
-          || InStr(This.Prop.ItemBase, "Inya's Key"))
-          {
-            This.Prop.ProphecyFragment := True
-            This.Prop.SpecialType := "Prophecy Fragment"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Scarab"))
-          {
-            This.Prop.Scarab := True
-            This.Prop.SpecialType := "Scarab"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess"))
-          {
-            This.Prop.Offering := True
-            This.Prop.SpecialType := "Offering"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Essence of")
-          || InStr(This.Prop.ItemBase, "Remnant of Corruption"))
-          {
-            This.Prop.Essence := True
-            This.Prop.SpecialType := "Essence"
-            This.Prop.DefaultSendStash := "EssenceTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Fossil")
-          || InStr(This.Prop.ItemBase, "Resonator"))
-          {
-            This.Prop.Resonator := True
-            This.Prop.SpecialType := "Resonator"
-            This.Prop.DefaultSendStash := "ResonatorTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Divine Vessel"))
-          {
-            This.Prop.Vessel := True
-            This.Prop.SpecialType := "Divine Vessel"
-            This.Prop.DefaultSendStash := "FragmentsTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Eye Jewel"))
-          {
-            This.Prop.AbyssJewel := True
-            This.Prop.Jewel := True
-          }
-          Else If (InStr(This.Prop.ItemBase, "Cobalt Jewel")
-          || InStr(This.Prop.ItemBase, "Crimson Jewel")
-          || InStr(This.Prop.ItemBase, "Viridian Jewel"))
-          {
-            This.Prop.Jewel := True
-          }
-          Else If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
-          {
-            This.Prop.ClusterJewel := True
-            This.Prop.SpecialType := "Cluster Jewel"
-            This.Prop.DefaultSendStash := "ClusterJewelTab"
-          }
-          Else If (InStr(This.Prop.ItemBase, "Flask"))
-          {
-            This.Prop.Flask := True
-            This.Prop.ItemClass := "Flasks"
-            This.Prop.DefaultSendStash := "QualityFlaskTab"
-            This.Prop.Item_Width := 1
-            This.Prop.Item_Height := 2
-          }
-          Else If (InStr(This.Prop.ItemBase, "Quiver"))
-          {
-            This.Prop.Quiver := True
-            This.Prop.ItemClass := "Quivers"
-            This.Prop.Item_Width := 2
-            This.Prop.Item_Height := 3
-          }
-          Else If (InStr(This.Prop.ItemBase, "Oil"))
-          {
-            If (This.Prop.RarityCurrency)
-            {
-            This.Prop.Oil := True
-            This.Prop.SpecialType := "Oil"
-            This.Prop.DefaultSendStash := "OilTab"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "Catalyst"))
-          {
-            If (This.Prop.RarityCurrency)
-            {
-            This.Prop.Catalyst := True
-            This.Prop.SpecialType := "Catalyst"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Lung"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Lung"
-              This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Heart"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Heart"
-              This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Brain"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Brain"
-              This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Liver"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Liver"
-              This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Eye"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Eye"
-              This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, " Beast"))
-          {
-            ;Only Rare and Unique Beasts
-            If (This.Prop.Rarity_Digit >= 3)
-            {
-              This.Prop.IsBeast := True
-              This.Prop.SpecialType := "Beast"
-              This.Prop.ItemClass := "Beasts"
-            }
+            This.Prop.SpecialType := "Map"
+            This.Prop.DefaultSendStash := "MapTab"
           }
         }
-        ;End NamePlate Parser
-
-        ;Start Extra Blocks Parser
-          ;Parse Influence data block
-        Loop, Parse,% This.Data.Blocks.Influence, `n, `r
+        Else If (InStr(This.Prop.ItemBase, "Incubator"))
         {
-          ; Match for influence type
-          If (RegExMatch(A_LoopField, "`am)(.+) Item",RxMatch))
+          This.Prop.Incubator := True
+          This.Prop.SpecialType := "Incubator"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Timeless Karui Splinter") 
+        || InStr(This.Prop.ItemBase, "Timeless Eternal Empire Splinter") 
+        || InStr(This.Prop.ItemBase, "Timeless Vaal Splinter") 
+        || InStr(This.Prop.ItemBase, "Timeless Templar Splinter") 
+        || InStr(This.Prop.ItemBase, "Timeless Maraketh Splinter"))
+        {
+          This.Prop.TimelessSplinter := True
+          This.Prop.SpecialType := "Timeless Splinter"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Splinter of"))
+        {
+          This.Prop.BreachSplinter := True
+          This.Prop.SpecialType := "Breach Splinter"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Breachstone"))
+        {
+          This.Prop.BreachSplinter := True
+          This.Prop.SpecialType := "Breachstone"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Sacrifice at"))
+        {
+          This.Prop.SacrificeFragment := True
+          This.Prop.SpecialType := "Sacrifice Fragment"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Mortal Grief") 
+        || InStr(This.Prop.ItemBase, "Mortal Hope") 
+        || InStr(This.Prop.ItemBase, "Mortal Ignorance")
+        || InStr(This.Prop.ItemBase, "Mortal Rage"))
+        {
+          This.Prop.MortalFragment := True
+          This.Prop.SpecialType := "Mortal Fragment"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Fragment of"))
+        {
+          This.Prop.GuardianFragment := True
+          This.Prop.SpecialType := "Guardian Fragment"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Volkuur's Key") 
+        || InStr(This.Prop.ItemBase, "Eber's Key")
+        || InStr(This.Prop.ItemBase, "Yriel's Key")
+        || InStr(This.Prop.ItemBase, "Inya's Key"))
+        {
+          This.Prop.ProphecyFragment := True
+          This.Prop.SpecialType := "Prophecy Fragment"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Scarab"))
+        {
+          This.Prop.Scarab := True
+          This.Prop.SpecialType := "Scarab"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess"))
+        {
+          This.Prop.Offering := True
+          This.Prop.SpecialType := "Offering"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Essence of")
+        || InStr(This.Prop.ItemBase, "Remnant of Corruption"))
+        {
+          This.Prop.Essence := True
+          This.Prop.SpecialType := "Essence"
+          This.Prop.DefaultSendStash := "EssenceTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Fossil")
+        || InStr(This.Prop.ItemBase, "Resonator"))
+        {
+          This.Prop.Resonator := True
+          This.Prop.SpecialType := "Resonator"
+          This.Prop.DefaultSendStash := "ResonatorTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Divine Vessel"))
+        {
+          This.Prop.Vessel := True
+          This.Prop.SpecialType := "Divine Vessel"
+          This.Prop.DefaultSendStash := "FragmentsTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Eye Jewel"))
+        {
+          This.Prop.AbyssJewel := True
+          This.Prop.Jewel := True
+        }
+        Else If (InStr(This.Prop.ItemBase, "Cobalt Jewel")
+        || InStr(This.Prop.ItemBase, "Crimson Jewel")
+        || InStr(This.Prop.ItemBase, "Viridian Jewel"))
+        {
+          This.Prop.Jewel := True
+        }
+        Else If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
+        {
+          This.Prop.ClusterJewel := True
+          This.Prop.SpecialType := "Cluster Jewel"
+          This.Prop.DefaultSendStash := "ClusterJewelTab"
+        }
+        Else If (InStr(This.Prop.ItemBase, "Flask"))
+        {
+          This.Prop.Flask := True
+          This.Prop.ItemClass := "Flasks"
+          This.Prop.DefaultSendStash := "QualityFlaskTab"
+          This.Prop.Item_Width := 1
+          This.Prop.Item_Height := 2
+        }
+        Else If (InStr(This.Prop.ItemBase, "Quiver"))
+        {
+          This.Prop.Quiver := True
+          This.Prop.ItemClass := "Quivers"
+          This.Prop.Item_Width := 2
+          This.Prop.Item_Height := 3
+        }
+        Else If (InStr(This.Prop.ItemBase, "Oil"))
+        {
+          If (This.Prop.RarityCurrency)
           {
-            This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch1
+          This.Prop.Oil := True
+          This.Prop.SpecialType := "Oil"
+          This.Prop.DefaultSendStash := "OilTab"
           }
         }
-        ; Get Prophecy using Flavor Txt
-        If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this prophecy to your character",RxMatch))
+        Else If (InStr(This.Prop.ItemBase, "Catalyst"))
         {
-          This.Prop.Prophecy := True
-          This.Prop.SpecialType := "Prophecy"
+          If (This.Prop.RarityCurrency)
+          {
+          This.Prop.Catalyst := True
+          This.Prop.SpecialType := "Catalyst"
+          }
         }
-        ;End Extra Blocks Parser
+        Else If (InStr(This.Prop.ItemBase, "'s Lung"))
+        {
+          If (This.Prop.RarityUnique)
+          {
+            This.Prop.IsOrgan := "Lung"
+            This.Prop.SpecialType := "Organ"
+            This.Prop.DefaultSendStash := "OrganTab"
+          }
+        }
+        Else If (InStr(This.Prop.ItemBase, "'s Heart"))
+        {
+          If (This.Prop.RarityUnique)
+          {
+            This.Prop.IsOrgan := "Heart"
+            This.Prop.SpecialType := "Organ"
+            This.Prop.DefaultSendStash := "OrganTab"
+          }
+        }
+        Else If (InStr(This.Prop.ItemBase, "'s Brain"))
+        {
+          If (This.Prop.RarityUnique)
+          {
+            This.Prop.IsOrgan := "Brain"
+            This.Prop.SpecialType := "Organ"
+            This.Prop.DefaultSendStash := "OrganTab"
+          }
+        }
+        Else If (InStr(This.Prop.ItemBase, "'s Liver"))
+        {
+          If (This.Prop.RarityUnique)
+          {
+            This.Prop.IsOrgan := "Liver"
+            This.Prop.SpecialType := "Organ"
+            This.Prop.DefaultSendStash := "OrganTab"
+          }
+        }
+        Else If (InStr(This.Prop.ItemBase, "'s Eye"))
+        {
+          If (This.Prop.RarityUnique)
+          {
+            This.Prop.IsOrgan := "Eye"
+            This.Prop.SpecialType := "Organ"
+            This.Prop.DefaultSendStash := "OrganTab"
+          }
+        }
+        Else If (InStr(This.Prop.ItemBase, " Beast"))
+        {
+          ;Only Rare and Unique Beasts
+          If (This.Prop.Rarity_Digit >= 3)
+          {
+            This.Prop.IsBeast := True
+            This.Prop.SpecialType := "Beast"
+            This.Prop.ItemClass := "Beasts"
+          }
+        }
+      }
+      ;End NamePlate Parser
 
-        ;Start Prop Block Parser for General Items
-          ;Every Item has a Item Level
+      ;Start Extra Blocks Parser
+        ;Parse Influence data block
+      Loop, Parse,% This.Data.Blocks.Influence, `n, `r
+      {
+        ; Match for influence type
+        If (RegExMatch(A_LoopField, "`am)(.+) Item",RxMatch))
+        {
+          This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch1
+        }
+      }
+      ; Get Prophecy using Flavor Txt
+      If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this prophecy to your character",RxMatch))
+      {
+        This.Prop.Prophecy := True
+        This.Prop.SpecialType := "Prophecy"
+      }
+      ;End Extra Blocks Parser
+
+      ;Start Prop Block Parser for General Items
+        ;Every Item has a Item Level
+      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
+      {
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
         {
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
-          {
-            This.Prop.ItemLevel := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: (.+)",RxMatch))
-          {
-            This.Prop.Required_Level := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: (.+)",RxMatch))
-          {
-            This.Prop.Required_Str := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: (.+)",RxMatch))
-          {
-            This.Prop.Required_Dex := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: (.+)",RxMatch))
-          {
-            This.Prop.Required_Int := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: (.+)",RxMatch))
-          {
-            This.Prop.Sockets_Raw := RxMatch1
-            This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
-            This.Prop.Sockets_Link := 0
-            For k, v in StrSplit(RxMatch1, " ")
-            {
-              nlink := StrLen(RegExReplace(v, "\w" , "")) + 1
-              if (This.Prop.Sockets_Link < nlink)
-              {
-                This.Prop.Sockets_Link := nlink
-              }
-              if (v ~= "R" && v ~= "G" && v ~= "B")
-              {
-                This.Prop.Chromatic := True
-              }
-            }
-            If (This.Prop.Sockets_Link == 5)
-            {
-              This.Prop.SpecialType := "5Link"
-            }
-            Else If (This.Prop.Sockets_Link == 6)
-            {
-              This.Prop.SpecialType := "6Link"
-            }
-            If (This.Prop.Sockets_Num == 6)
-            {
-              This.Prop.Jeweler := True
-            }
-          }
-          ;Generic Props
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
-          {
-            This.Prop.Quality := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum,RxMatch))
-          {
-            This.Prop.RatingArmour := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum,RxMatch))
-          {
-            This.Prop.RatingEnergyShield := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion: "rxNum,RxMatch))
-          {
-            This.Prop.RatingEvasion := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum,RxMatch))
-          {
-            This.Prop.RatingBlock := RxMatch1
-          }
-
-          ;Weapon Specific Props
-            ;Every Weapon has APS
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum,RxMatch))
-          {
-            This.Prop.IsWeapon := True
-            This.Prop.Weapon_APS := RxMatch1
-            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum ,RxMatch))
-            {
-              This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
-              This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
-              This.Prop.Weapon_Min_Physical_Dmg := RxMatch1
-            }
-            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+",RxMatch))
-            {
-              This.Prop.Weapon_Avg_Elemental_Dmg := 0
-              This.Prop.Weapon_Max_Elemental_Dmg := 0
-              This.Prop.Weapon_Min_Elemental_Dmg := 0
-              For k, v in StrSplit(RxMatch,",")
-              {
-                values := This.MatchLine(v)
-                This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + values.avg)
-                This.Prop.Weapon_Max_Elemental_Dmg += values.max
-                This.Prop.Weapon_Min_Elemental_Dmg += values.min
-              }
-              values := ""
-            }
-            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Critical Strike Chance: "rxNum,RxMatch))
-            {
-              This.Prop.Weapon_Critical_Strike := RxMatch1
-            }
-            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Weapon Range: "rxNum,RxMatch))
-            {
-              This.Prop.Weapon_Range := RxMatch1
-            }
-          }
+          This.Prop.ItemLevel := RxMatch1
         }
-        ;End Prop Block Parser for General Items
-
-        ;Start Prop Block Parser for Maps
-          ;Every map has a Map Tier!
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum,RxMatch))
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: (.+)",RxMatch))
         {
-          This.Prop.MapTier := RxMatch1
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: "rxNum,RxMatch))
-          {
-            This.Prop.MapAtlasRegion := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: "rxNum,RxMatch))
-          {
-            This.Prop.MapQuantity := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: "rxNum,RxMatch))
-          {
-            This.Prop.MapRarity := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: "rxNum,RxMatch))
-          {
-            This.Prop.MapMPS := RxMatch1
-          }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
-          {
-            This.Prop.MapQuality := RxMatch1
-          }
+          This.Prop.Required_Level := RxMatch1
         }
-        ;End Prop Block Parser for Maps
-
-        ;Start Prop Block Parser for Vaal Gems
-        If (This.Prop.RarityGem && This.Prop.Corrupted)
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: (.+)",RxMatch))
         {
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal",RxMatch))
-          {
-            This.Prop.VaalGem := True
-            This.Prop.ItemName := "Vaal " . This.Prop.ItemName
-          }
+          This.Prop.Required_Str := RxMatch1
         }
-        ;End Prop Block Parser for Vaal Gems
-
-        ;Start Prop Block Parser for Divinations
-        If (This.RarityDivination)
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: (.+)",RxMatch))
         {
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
+          This.Prop.Required_Dex := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: (.+)",RxMatch))
+        {
+          This.Prop.Required_Int := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: (.+)",RxMatch))
+        {
+          This.Prop.Sockets_Raw := RxMatch1
+          This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
+          This.Prop.Sockets_Link := 0
+          For k, v in StrSplit(RxMatch1, " ")
           {
-            This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
-            This.Prop.Stack_Max := RxMatch2
+            nlink := StrLen(RegExReplace(v, "\w" , "")) + 1
+            if (This.Prop.Sockets_Link < nlink)
+            {
+              This.Prop.Sockets_Link := nlink
+            }
+            if (v ~= "R" && v ~= "G" && v ~= "B")
+            {
+              This.Prop.Chromatic := True
+            }
+          }
+          If (This.Prop.Sockets_Link == 5)
+          {
+            This.Prop.SpecialType := "5Link"
+          }
+          Else If (This.Prop.Sockets_Link == 6)
+          {
+            This.Prop.SpecialType := "6Link"
+          }
+          If (This.Prop.Sockets_Num == 6)
+          {
+            This.Prop.Jeweler := True
           }
         }
-        ;End Prop Block Parser for Divinations
+        ;Generic Props
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
+        {
+          This.Prop.Quality := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum,RxMatch))
+        {
+          This.Prop.RatingArmour := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum,RxMatch))
+        {
+          This.Prop.RatingEnergyShield := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion: "rxNum,RxMatch))
+        {
+          This.Prop.RatingEvasion := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum,RxMatch))
+        {
+          This.Prop.RatingBlock := RxMatch1
+        }
+
+        ;Weapon Specific Props
+          ;Every Weapon has APS
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum,RxMatch))
+        {
+          This.Prop.IsWeapon := True
+          This.Prop.Weapon_APS := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum ,RxMatch))
+          {
+            This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
+            This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
+            This.Prop.Weapon_Min_Physical_Dmg := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+",RxMatch))
+          {
+            This.Prop.Weapon_Avg_Elemental_Dmg := 0
+            This.Prop.Weapon_Max_Elemental_Dmg := 0
+            This.Prop.Weapon_Min_Elemental_Dmg := 0
+            For k, v in StrSplit(RxMatch,",")
+            {
+              values := This.MatchLine(v)
+              This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + values.avg)
+              This.Prop.Weapon_Max_Elemental_Dmg += values.max
+              This.Prop.Weapon_Min_Elemental_Dmg += values.min
+            }
+            values := ""
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Critical Strike Chance: "rxNum,RxMatch))
+          {
+            This.Prop.Weapon_Critical_Strike := RxMatch1
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Weapon Range: "rxNum,RxMatch))
+          {
+            This.Prop.Weapon_Range := RxMatch1
+          }
+        }
       }
-      MatchAffixes(content:=""){
-        ; Do Stuff with info
-        Loop, Parse,% content, `n, `r
+      ;End Prop Block Parser for General Items
+
+      ;Start Prop Block Parser for Maps
+        ;Every map has a Map Tier!
+      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum,RxMatch))
+      {
+        This.Prop.MapTier := RxMatch1
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: "rxNum,RxMatch))
         {
-          If (A_LoopField = "")
-            Continue
-          key := This.Standardize(A_LoopField)
-          If (vals := This.MatchLine(A_LoopField))
+          This.Prop.MapAtlasRegion := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: "rxNum,RxMatch))
+        {
+          This.Prop.MapQuantity := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: "rxNum,RxMatch))
+        {
+          This.Prop.MapRarity := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: "rxNum,RxMatch))
+        {
+          This.Prop.MapMPS := RxMatch1
+        }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
+        {
+          This.Prop.MapQuality := RxMatch1
+        }
+      }
+      ;End Prop Block Parser for Maps
+
+      ;Start Prop Block Parser for Vaal Gems
+      If (This.Prop.RarityGem && This.Prop.Corrupted)
+      {
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal",RxMatch))
+        {
+          This.Prop.VaalGem := True
+          This.Prop.ItemName := "Vaal " . This.Prop.ItemName
+        }
+      }
+      ;End Prop Block Parser for Vaal Gems
+
+      ;Start Prop Block Parser for Divinations
+      If (This.RarityDivination)
+      {
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
+        {
+          This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
+          This.Prop.Stack_Max := RxMatch2
+        }
+      }
+      ;End Prop Block Parser for Divinations
+    }
+    MatchAffixes(content:=""){
+      ; Do Stuff with info
+      Loop, Parse,% content, `n, `r
+      {
+        If (A_LoopField = "")
+          Continue
+        key := This.Standardize(A_LoopField)
+        If (vals := This.MatchLine(A_LoopField))
+        {
+          If (vals.HasKey("avg"))
           {
-            If (vals.HasKey("avg"))
-            {
-              This.Affix[key "_Avg"] := vals.avg
-              This.Affix[key "_Max"] := vals.max
-              This.Affix[key "_Min"] := vals.min
-            }
-            Else
-            {
-              For k, v in vals
-                This.Affix[ key (k = 1 ? "" : "_value" k) ] := v
-            }
+            This.Affix[key "_Avg"] := vals.avg
+            This.Affix[key "_Max"] := vals.max
+            This.Affix[key "_Min"] := vals.min
           }
           Else
-            This.Affix[key] := True
-        }
-      }
-      MatchLine(lineString){
-        If (RegExMatch(lineString, "O)" rxNum " to " rxNum , RxMatch) || RegExMatch(lineString, "O)" rxNum "-" rxNum , RxMatch))
-          Return {"min":RxMatch[1],"max":RxMatch[2],"avg":(Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))}
-        Else If (RegExMatch(lineString, "O)" rxNum " .* " rxNum , RxMatch))
-          Return [ RxMatch[1], RxMatch[2] ]
-        Else If (RegExMatch(lineString, "O)" rxNum , RxMatch))
-          Return [ RxMatch[1] ]
-        Else
-          Return False
-      }
-      Standardize(str:=""){
-        Return RegExReplace(str, rxNum , "#")
-      }
-      MatchPseudoAffix(){
-        for k, v in This.Affix
-        {
-          ; We don't want any things like implicts (implicit) or (enchanted), getting inside Pseudos
-          If (RegExMatch(k, "`am) \((.*)\)$", RxMatch))
           {
-            If (RxMatch1 != "crafted")
-            {
-              Continue
-            }
+            For k, v in vals
+              This.Affix[ key (k = 1 ? "" : "_value" k) ] := v
           }
-          trimKey := RegExReplace(k," \(.*\)$","")
-          ; Singular Resistances
-          If (trimKey = "# to Cold Resistance")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
-          }
-          Else If (trimKey = "# to Fire Resistance")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
-          }
-          Else If (trimKey = "# to Lightning Resistance")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
-          }
-          Else If (trimKey = "# to Chaos Resistance")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Chaos Resistance",k)
-          }
-          ; Double Resistances
-          Else If (trimKey = "# to Cold and Lightning Resistances")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
-            This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
-          }
-          Else If (trimKey = "# to Fire and Cold Resistances")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
-            This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
-          }
-          Else If (trimKey = "# to Fire and Lightning Resistances")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
-            This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
-          }
-          ; All Resistances
-          Else If (trimKey = "# to all Elemental Resistances")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
-            This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
-            This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
-          }
-          ; Attributes Singular
-          Else If (trimKey = "# to Intelligence")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
-          }
-          Else If (trimKey = "# to Dexterity")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
-          }
-          Else If (trimKey = "# to Strength")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Strength",k)
-          }
-          ; Double Atributes
-          Else If (trimKey = "# to Strength and Dexterity")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Strength",k)
-            This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
-          }
-          Else If (trimKey = "# to Dexterity and Intelligence")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
-            This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
-          }
-          Else If (trimKey = "# to Strength and Intelligence")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Strength",k)
-            This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
-          }
-          ; All Atribbutes
-          Else If (trimKey = "# to all Attributes")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Strength",k)
-            This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
-            This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
-          }
-          ; Singular Armour Affix
-          Else If (trimKey = "# increased Armour")
-          {
-            This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
-          }
-          Else If (trimKey = "# increased Evasion Rating")
-          {
-            This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
-          }
-          Else If (trimKey = "# increased Energy Shield")
-          {
-            This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
-          }
-          Else If (trimKey = "# to maximum Energy Shield")
-          {
-            This.AddPseudoAffix("(Pseudo) Total to Maximum Energy Shield",k)
-          }
-          ; Double Armour Affix
-          Else If (trimKey = "# increased Evasion and Energy Shield")
-          {
-            This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
-            This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
-          }
-          Else If (trimKey = "# increased Armour and Energy Shield")
-          {
-            This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
-            This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k) 
-          }
-          Else If (trimKey = "# increased Armour and Evasion")
-          {
-            This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
-            This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
-          }
-          ; Damage Mods
-          Else If (trimKey = "Adds # to # Physical Damage to Attacks_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Attacks_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Physical Damage to Spells_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Spells_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Cold Damage to Attacks_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Attacks_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Cold Damage to Spells_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Spells_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Fire Damage to Attacks_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Attacks_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Fire Damage to Spells_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Spells_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Lightning Damage to Attacks_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Attacks_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Lightning Damage to Spells_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Spells_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Chaos Damage to Attacks_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Attacks_Avg",k)
-          }
-          Else If (trimKey = "Adds # to # Chaos Damage to Spells_Avg")
-          {
-            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells_Avg",k)
-          }
-          ; Spell Pseudo
-          Else If (trimKey = "# increased Lightning Damage")
-          {
-            This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
-          }
-          Else If (trimKey = "# increased Cold Damage")
-          {
-            This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
-          }
-          Else If (trimKey = "# increased Fire Damage")
-          {
-            This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
-          }
-          Else If (trimKey = "# increased Chaos Damage")
-          {
-            This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
-          }
-          Else If (trimKey = "# increased Spell Damage")
-          {
-            This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
-            This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
-            This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
-            This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
-          }
-          Else If (trimKey = "# increased Elemental Damage")
-          {
-            This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
-            This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
-            This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
-          }
-
-
-        }
-        ; SUM Pseudo
-        ; Total Elemental Resistance
-        This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Fire Resistance","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Lightning Resistance","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Cold Resistance","Pseudo")
-        ; Total Resistance
-        This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Elemental Resistance","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Chaos Resistance","Pseudo")
-        ; Total Stats
-        This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Strength","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Intelligence","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Dexterity","Pseudo")
-        ; Maximum Life, yeah unfortunally we need do this way =/
-        aux:= This.GetValue("Affix","# to maximum Life") 
-        + This.GetValue("Affix","# to maximum Life (crafted)") 
-        + This.GetValue("Affix","# to maximum Life (implicit)") 
-        + (This.GetValue("Pseudo","(Pseudo) Total to Strength"))//2
-        If(aux > 0)
-        {
-          This.Pseudo["(Pseudo) Total to Maximum Life"] := aux
-        }
-
-        ; Merge
-        This.MergePseudoInAffixs()
-      }
-      GetValue(Type, Context){
-        If !This[Type][Context]
-        {
-          return 0
         }
         Else
-        {
-          return This[Type][Context]
-        }
+          This.Affix[key] := True
       }
-      AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
-        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue(StandardType, StandardKey)
-        If  (aux != 0)
-          This.Pseudo[PseudoKey] := aux
-        return
-      }
-      MergePseudoInAffixs(){
-        for k, v in This.Pseudo
-        {
-          This.Affix[k] := v
-        }
-        ; Free Object (Not needed)
-        This.Pseudo := ""
-        This.Delete("Pseudo")
-      }
-      FuckingSugoiFreeMate(){
-        This.Data := ""
-        This.Delete("Data")
-      }
-      MatchExtenalDB()
+    }
+    MatchLine(lineString){
+      If (RegExMatch(lineString, "O)" rxNum " to " rxNum , RxMatch) || RegExMatch(lineString, "O)" rxNum "-" rxNum , RxMatch))
+        Return {"min":RxMatch[1],"max":RxMatch[2],"avg":(Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))}
+      Else If (RegExMatch(lineString, "O)" rxNum " .* " rxNum , RxMatch))
+        Return [ RxMatch[1], RxMatch[2] ]
+      Else If (RegExMatch(lineString, "O)" rxNum , RxMatch))
+        Return [ RxMatch[1] ]
+      Else
+        Return False
+    }
+    Standardize(str:=""){
+      Return RegExReplace(str, rxNum , "#")
+    }
+    MatchPseudoAffix(){
+      for k, v in This.Affix
       {
-        For k, v in QuestItems
+        ; We don't want any things like implicts (implicit) or (enchanted), getting inside Pseudos
+        If (RegExMatch(k, "`am) \((.*)\)$", RxMatch))
         {
-          If (v["Name"] = This.Prop.ItemName)
+          If (RxMatch1 != "crafted")
           {
-            This.Prop.Item_Width := v["Width"]
-            This.Prop.Item_Height := v["Height"]
-            This.Prop.SpecialType := "Quest Item"
-            Return
+            Continue
           }
         }
-        For k, v in Bases
+        trimKey := RegExReplace(k," \(.*\)$","")
+        ; Singular Resistances
+        If (trimKey = "# to Cold Resistance")
         {
-          If ((v["name"] = This.Prop.ItemBase) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )
-          {
-            This.Prop.Item_Width := v["inventory_width"]
-            This.Prop.Item_Height := v["inventory_height"]
-            This.Prop.ItemClass := v["item_class"]
-            This.Prop.ItemBase := v["name"]
-            This.Prop.DropLevel := v["drop_level"]
+          This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
+        }
+        Else If (trimKey = "# to Fire Resistance")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
+        }
+        Else If (trimKey = "# to Lightning Resistance")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
+        }
+        Else If (trimKey = "# to Chaos Resistance")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Chaos Resistance",k)
+        }
+        ; Double Resistances
+        Else If (trimKey = "# to Cold and Lightning Resistances")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
+          This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
+        }
+        Else If (trimKey = "# to Fire and Cold Resistances")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
+          This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
+        }
+        Else If (trimKey = "# to Fire and Lightning Resistances")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
+          This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
+        }
+        ; All Resistances
+        Else If (trimKey = "# to all Elemental Resistances")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
+          This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
+          This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
+        }
+        ; Attributes Singular
+        Else If (trimKey = "# to Intelligence")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
+        }
+        Else If (trimKey = "# to Dexterity")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
+        }
+        Else If (trimKey = "# to Strength")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Strength",k)
+        }
+        ; Double Atributes
+        Else If (trimKey = "# to Strength and Dexterity")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Strength",k)
+          This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
+        }
+        Else If (trimKey = "# to Dexterity and Intelligence")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
+          This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
+        }
+        Else If (trimKey = "# to Strength and Intelligence")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Strength",k)
+          This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
+        }
+        ; All Atribbutes
+        Else If (trimKey = "# to all Attributes")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Strength",k)
+          This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
+          This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
+        }
+        ; Singular Armour Affix
+        Else If (trimKey = "# increased Armour")
+        {
+          This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
+        }
+        Else If (trimKey = "# increased Evasion Rating")
+        {
+          This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
+        }
+        Else If (trimKey = "# increased Energy Shield")
+        {
+          This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
+        }
+        Else If (trimKey = "# to maximum Energy Shield")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Maximum Energy Shield",k)
+        }
+        ; Double Armour Affix
+        Else If (trimKey = "# increased Evasion and Energy Shield")
+        {
+          This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
+          This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
+        }
+        Else If (trimKey = "# increased Armour and Energy Shield")
+        {
+          This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
+          This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k) 
+        }
+        Else If (trimKey = "# increased Armour and Evasion")
+        {
+          This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
+          This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
+        }
+        ; Damage Mods
+        Else If (trimKey = "Adds # to # Physical Damage to Attacks_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Physical Damage to Attacks_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Physical Damage to Spells_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Physical Damage to Spells_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Cold Damage to Attacks_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Cold Damage to Attacks_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Cold Damage to Spells_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Cold Damage to Spells_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Fire Damage to Attacks_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Fire Damage to Attacks_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Fire Damage to Spells_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Fire Damage to Spells_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Lightning Damage to Attacks_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Attacks_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Lightning Damage to Spells_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Spells_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Chaos Damage to Attacks_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Attacks_Avg",k)
+        }
+        Else If (trimKey = "Adds # to # Chaos Damage to Spells_Avg")
+        {
+          This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells_Avg",k)
+        }
+        ; Spell Pseudo
+        Else If (trimKey = "# increased Lightning Damage")
+        {
+          This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
+        }
+        Else If (trimKey = "# increased Cold Damage")
+        {
+          This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
+        }
+        Else If (trimKey = "# increased Fire Damage")
+        {
+          This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
+        }
+        Else If (trimKey = "# increased Chaos Damage")
+        {
+          This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
+        }
+        Else If (trimKey = "# increased Spell Damage")
+        {
+          This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
+          This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
+          This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
+          This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
+        }
+        Else If (trimKey = "# increased Elemental Damage")
+        {
+          This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
+          This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
+          This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
+        }
 
-            If InStr(This.Prop.ItemClass, "Ring")
-              This.Prop.Ring := True
-            If InStr(This.Prop.ItemClass, "Amulet")
-              This.Prop.Amulet := True
-            If InStr(This.Prop.ItemClass, "Belt")
-              This.Prop.Belt := True
+
+      }
+      ; SUM Pseudo
+      ; Total Elemental Resistance
+      This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Fire Resistance","Pseudo")
+      This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Lightning Resistance","Pseudo")
+      This.AddPseudoAffix("(Pseudo) Total to Elemental Resistance","(Pseudo) Total to Cold Resistance","Pseudo")
+      ; Total Resistance
+      This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Elemental Resistance","Pseudo")
+      This.AddPseudoAffix("(Pseudo) Total to Resistance","(Pseudo) Total to Chaos Resistance","Pseudo")
+      ; Total Stats
+      This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Strength","Pseudo")
+      This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Intelligence","Pseudo")
+      This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Dexterity","Pseudo")
+      ; Maximum Life, yeah unfortunally we need do this way =/
+      aux:= This.GetValue("Affix","# to maximum Life") 
+      + This.GetValue("Affix","# to maximum Life (crafted)") 
+      + This.GetValue("Affix","# to maximum Life (implicit)") 
+      + (This.GetValue("Pseudo","(Pseudo) Total to Strength"))//2
+      If(aux > 0)
+      {
+        This.Pseudo["(Pseudo) Total to Maximum Life"] := aux
+      }
+
+      ; Merge
+      This.MergePseudoInAffixs()
+    }
+    GetValue(Type, Context){
+      If !This[Type][Context]
+      {
+        return 0
+      }
+      Else
+      {
+        return This[Type][Context]
+      }
+    }
+    AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
+      aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue(StandardType, StandardKey)
+      If  (aux != 0)
+        This.Pseudo[PseudoKey] := aux
+      return
+    }
+    MergePseudoInAffixs(){
+      for k, v in This.Pseudo
+      {
+        This.Affix[k] := v
+      }
+      ; Free Object (Not needed)
+      This.Pseudo := ""
+      This.Delete("Pseudo")
+    }
+    FuckingSugoiFreeMate(){
+      This.Data := ""
+      This.Delete("Data")
+    }
+    MatchExtenalDB(){
+      For k, v in QuestItems
+      {
+        If (v["Name"] = This.Prop.ItemName)
+        {
+          This.Prop.Item_Width := v["Width"]
+          This.Prop.Item_Height := v["Height"]
+          This.Prop.SpecialType := "Quest Item"
+          Return
+        }
+      }
+      For k, v in Bases
+      {
+        If ((v["name"] = This.Prop.ItemBase) || (v["name"] = StandardBase) || ( Prop.Rarity_Digit = 2 && v["name"] = PrefixMagicBase ) )
+        {
+          This.Prop.Item_Width := v["inventory_width"]
+          This.Prop.Item_Height := v["inventory_height"]
+          This.Prop.ItemClass := v["item_class"]
+          This.Prop.ItemBase := v["name"]
+          This.Prop.DropLevel := v["drop_level"]
+
+          If InStr(This.Prop.ItemClass, "Ring")
+            This.Prop.Ring := True
+          If InStr(This.Prop.ItemClass, "Amulet")
+            This.Prop.Amulet := True
+          If InStr(This.Prop.ItemClass, "Belt")
+            This.Prop.Belt := True
+          Break
+        }
+      }
+      ;Start Ninja DB Matching
+      If (This.Prop.RarityCurrency)
+      {
+        If (This.Prop.ItemName ~= "Delirium Orb")
+        {
+          If This.MatchNinjaDB("DeliriumOrb")
+            Return
+        }
+        If (This.Prop.ItemName ~= "Vial of")
+        {
+          If This.MatchNinjaDB("Vial")
+            Return
+        }
+        Else If (This.Prop.ItemName ~= "Essence of")
+        {
+          If This.MatchNinjaDB("Essence")
+            Return
+        }
+        Else If (This.Prop.Incubator )
+        {
+          If This.MatchNinjaDB("Incubator")
+            Return
+        }
+        Else If (This.Prop.Oil )
+        {
+          If This.MatchNinjaDB("Oil")
+            Return
+        }
+        Else If (This.Prop.ItemName ~= "Fossil" )
+        {
+          If This.MatchNinjaDB("Fossil")
+            Return
+        }
+        Else If (This.Prop.ItemName ~= "Resonator" )
+        {
+          If This.MatchNinjaDB("Resonator")
+            Return
+        }
+        If This.MatchNinjaDB("Currency")
+          Return
+      }
+      If (This.Prop.RarityDivination)
+      {
+        If This.MatchNinjaDB("DivinationCard")
+          Return
+      }
+      If (This.Prop.Prophecy)
+      {
+        If This.MatchNinjaDB("Prophecy")
+          Return
+      }
+      If (This.Prop.DefaultSendStash = "FragmentsTab" || This.Prop.ItemName ~= "Simulacrum")
+      {
+        If This.MatchNinjaDB("Fragment")
+          Return
+        If This.MatchNinjaDB("Scarab")
+          Return
+      }
+      If (This.Prop.IsBeast)
+      {
+        If This.MatchNinjaDB("Beast")
+          Return
+      }
+      If (This.Prop.ItemClass ~= "Helmet" && This.Data.Blocks.HasKey("Enchant"))
+      {
+        For k, v in Ninja.HelmetEnchant
+        {
+          If (InStr(This.Data.Blocks.Enchant, v["name"]))
+          {
+            This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
+            This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
+            This.Data.HelmNinja := v
+            If (v["chaosValue"] >= 5)
+              This.Prop.ValuableHelmEnch := True
             Break
           }
         }
-        ;Start Ninja DB Matching
-        If (This.Prop.RarityCurrency)
+      }
+      If (This.Prop.RarityUnique)
+      {
+        If (This.Prop.ItemClass ~= "(Belt|Amulet|Ring)")
         {
-          If (This.Prop.ItemName ~= "Delirium Orb")
-          {
-            If This.MatchNinjaDB("DeliriumOrb")
-              Return
-          }
-          If (This.Prop.ItemName ~= "Vial of")
-          {
-            If This.MatchNinjaDB("Vial")
-              Return
-          }
-          Else If (This.Prop.ItemName ~= "Essence of")
-          {
-            If This.MatchNinjaDB("Essence")
-              Return
-          }
-          Else If (This.Prop.Incubator )
-          {
-            If This.MatchNinjaDB("Incubator")
-              Return
-          }
-          Else If (This.Prop.Oil )
-          {
-            If This.MatchNinjaDB("Oil")
-              Return
-          }
-          Else If (This.Prop.ItemName ~= "Fossil" )
-          {
-            If This.MatchNinjaDB("Fossil")
-              Return
-          }
-          Else If (This.Prop.ItemName ~= "Resonator" )
-          {
-            If This.MatchNinjaDB("Resonator")
-              Return
-          }
-          If This.MatchNinjaDB("Currency")
+          If This.MatchNinjaDB("UniqueAccessory")
             Return
         }
-        If (This.Prop.RarityDivination)
+        Else If (This.Prop.ItemClass ~= "(Body Armour|Gloves|Boots|Helmet|Shield)")
         {
-          If This.MatchNinjaDB("DivinationCard")
+          If This.MatchNinjaDB("UniqueArmour")
             Return
         }
-        If (This.Prop.Prophecy)
+        Else If (This.Prop.ItemClass ~= "Flasks")
         {
-          If This.MatchNinjaDB("Prophecy")
+          If This.MatchNinjaDB("UniqueFlask")
             Return
         }
-        If (This.Prop.DefaultSendStash = "FragmentsTab" || This.Prop.ItemName ~= "Simulacrum")
+        Else If (This.Prop.ItemClass ~= "Jewel")
         {
-          If This.MatchNinjaDB("Fragment")
-            Return
-          If This.MatchNinjaDB("Scarab")
+          If This.MatchNinjaDB("UniqueJewel")
             Return
         }
-        If (This.Prop.IsBeast)
+        Else If (This.Prop.IsWeapon)
         {
-          If This.MatchNinjaDB("Beast")
+          If This.MatchNinjaDB("UniqueWeapon")
             Return
         }
-        If (This.Prop.ItemClass ~= "Helmet" && This.Data.Blocks.HasKey("Enchant"))
+        Else If (This.Prop.IsMap)
         {
-          For k, v in Ninja.HelmetEnchant
-          {
-            If (InStr(This.Data.Blocks.Enchant, v["name"]))
-            {
-              This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
-              This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
-              This.Data.HelmNinja := v
-              If (v["chaosValue"] >= 5)
-                This.Prop.ValuableHelmEnch := True
-              Break
-            }
-          }
-        }
-        If (This.Prop.RarityUnique)
-        {
-          If (This.Prop.ItemClass ~= "(Belt|Amulet|Ring)")
-          {
-            If This.MatchNinjaDB("UniqueAccessory")
-              Return
-          }
-          Else If (This.Prop.ItemClass ~= "(Body Armour|Gloves|Boots|Helmet|Shield)")
-          {
-            If This.MatchNinjaDB("UniqueArmour")
-              Return
-          }
-          Else If (This.Prop.ItemClass ~= "Flasks")
-          {
-            If This.MatchNinjaDB("UniqueFlask")
-              Return
-          }
-          Else If (This.Prop.ItemClass ~= "Jewel")
-          {
-            If This.MatchNinjaDB("UniqueJewel")
-              Return
-          }
-          Else If (This.Prop.IsWeapon)
-          {
-            If This.MatchNinjaDB("UniqueWeapon")
-              Return
-          }
-          Else If (This.Prop.IsMap)
-          {
-            If This.MatchNinjaDB("UniqueMap","ItemBase","baseType")
-              Return
-          }
-        }
-        If (This.Prop.IsMap)
-        {
-          If This.MatchNinjaDB("Map","ItemBase","baseType")
+          If This.MatchNinjaDB("UniqueMap","ItemBase","baseType")
             Return
         }
-        If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "")
+      }
+      If (This.Prop.IsMap)
+      {
+        If This.MatchNinjaDB("Map","ItemBase","baseType")
+          Return
+      }
+      If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "")
+      {
+        For k, v in Ninja.BaseType
         {
-          For k, v in Ninja.BaseType
+          If (This.Prop.ItemBase = v["name"] 
+          && This.Prop.Influence ~= v["variant"] 
+          && This.Prop.ItemLevel >= v["levelRequired"])
           {
-            If (This.Prop.ItemBase = v["name"] 
-            && This.Prop.Influence ~= v["variant"] 
-            && This.Prop.ItemLevel >= v["levelRequired"])
-            {
-              This.Prop.ChaosValue := v["chaosValue"]
-              This.Prop.ExaltValue := v["exaltedValue"]
-              This.Data.BaseNinja := v
-              If (v["chaosValue"] >= 5)
-                This.Prop.ValuableBase := True
-              ; Return
-              Break
-            }
+            This.Prop.ChaosValue := v["chaosValue"]
+            This.Prop.ExaltValue := v["exaltedValue"]
+            This.Data.BaseNinja := v
+            If (v["chaosValue"] >= 5)
+              This.Prop.ValuableBase := True
+            ; Return
+            Break
           }
         }
       }
-      MatchNinjaDB(ApiStr,MatchKey:="ItemName",NinjaKey:="name")
+    }
+    MatchNinjaDB(ApiStr,MatchKey:="ItemName",NinjaKey:="name"){
+      For k, v in Ninja[ApiStr]
       {
-        For k, v in Ninja[ApiStr]
+        If (This.Prop[MatchKey] = v[NinjaKey])
         {
-          If (This.Prop[MatchKey] = v[NinjaKey])
-          {
-            If ((ApiStr = "Map" || ApiStr = "UniqueMap") 
-            && This.Prop.MapTier < v["mapTier"])
-              Continue
-            This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
-            If v["exaltedValue"]
-              This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
-            If This.Prop.IsBeast
-              Prop.ItemBase := This.Prop.ItemName
-            This.Data.Ninja := v
-            Return True
-          }
+          If ((ApiStr = "Map" || ApiStr = "UniqueMap") 
+          && This.Prop.MapTier < v["mapTier"])
+            Continue
+          This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
+          If v["exaltedValue"]
+            This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
+          If This.Prop.IsBeast
+            Prop.ItemBase := This.Prop.ItemName
+          This.Data.Ninja := v
+          Return True
         }
-        Return False
       }
-      DisplayPSA()
+      Return False
+    }
+    DisplayPSA(){
+      propText:=statText:=affixText:=""
+      For key, value in This.Prop
       {
-        propText:=statText:=affixText:=""
-        For key, value in This.Prop
+        If( RegExMatch(key, "^Required")
+        || RegExMatch(key, "^Rating")
+        || RegExMatch(key, "^Sockets")
+        || RegExMatch(key, "^Quality")
+        || RegExMatch(key, "^Map")
+        || RegExMatch(key, "^Stack")
+        || RegExMatch(key, "^Weapon"))
         {
-          If( RegExMatch(key, "^Required")
-          || RegExMatch(key, "^Rating")
-          || RegExMatch(key, "^Sockets")
-          || RegExMatch(key, "^Quality")
-          || RegExMatch(key, "^Map")
-          || RegExMatch(key, "^Stack")
-          || RegExMatch(key, "^Weapon"))
-          {
-            statText .= key . ":  " . value . "`n"
-          }
-          Else
-          {
-            propText .= key . ":  " . value . "`n"
-          }
-        }
-
-        GuiControl, ItemInfo:, ItemInfoPropText, %propText%
-
-        GuiControl, ItemInfo:, ItemInfoStatText, %statText%
-
-        For key, value in This.Affix
-        {
-          If (value != 0 && value != "" && value != False)
-            affixText .= key . ":  " . value . "`n"
-        }
-        GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
-      }
-      GraphNinjaPrices()
-      {
-        If This.Data.HasKey("Ninja") || This.Data.HasKey("HelmNinja") || This.Data.HasKey("BaseNinja")
-        {
-          Gosub, ShowGraph
-          Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " Sparkline"
+          statText .= key . ":  " . value . "`n"
         }
         Else
         {
-          GoSub, noDataGraph
-          GoSub, HideGraph
-          Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " has no Graph Data" (This.Prop.IsMap?" for this Tier":"")
-          Return
+          propText .= key . ":  " . value . "`n"
         }
-          
-        If (This.Data.Ninja["paySparkLine"])
+      }
+
+      GuiControl, ItemInfo:, ItemInfoPropText, %propText%
+
+      GuiControl, ItemInfo:, ItemInfoStatText, %statText%
+
+      For key, value in This.Affix
+      {
+        If (value != 0 && value != "" && value != False)
+          affixText .= key . ":  " . value . "`n"
+      }
+      GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
+    }
+    GraphNinjaPrices(){
+      If This.Data.HasKey("Ninja") || This.Data.HasKey("HelmNinja") || This.Data.HasKey("BaseNinja")
+      {
+        Gosub, ShowGraph
+        Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " Sparkline"
+      }
+      Else
+      {
+        GoSub, noDataGraph
+        GoSub, HideGraph
+        Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " has no Graph Data" (This.Prop.IsMap?" for this Tier":"")
+        Return
+      }
+        
+      If (This.Data.Ninja["paySparkLine"])
+      {
+        dataPayPoint := This.Data.Ninja["paySparkLine"]["data"]
+        dataRecPoint := This.Data.Ninja["receiveSparkLine"]["data"]
+        totalPayChange := This.Data.Ninja["paySparkLine"]["totalChange"]
+        totalRecChange := This.Data.Ninja["receiveSparkLine"]["totalChange"]
+
+        basePayPoint := 0
+        For k, v in dataPayPoint
         {
-          dataPayPoint := This.Data.Ninja["paySparkLine"]["data"]
-          dataRecPoint := This.Data.Ninja["receiveSparkLine"]["data"]
-          totalPayChange := This.Data.Ninja["paySparkLine"]["totalChange"]
-          totalRecChange := This.Data.Ninja["receiveSparkLine"]["totalChange"]
-
-          basePayPoint := 0
-          For k, v in dataPayPoint
-          {
-            If Abs(v) > basePayPoint
-              basePayPoint := Abs(v)
-          }
-          If basePayPoint = 0
-          FormatStr := "{1:0.0f}"
-          Else If basePayPoint < 1
-          FormatStr := "{1:0.3f}"
-          Else If basePayPoint < 10
-          FormatStr := "{1:0.2f}"
-          Else If basePayPoint < 100
-          FormatStr := "{1:0.1f}"
-          Else If basePayPoint > 100
-          FormatStr := "{1:0.0f}"
-
-          GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
-          GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
-          GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePayPoint*0.8)) "`%"
-          GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePayPoint*0.7)) "`%"
-          GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePayPoint*0.6)) "`%"
-          GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePayPoint*0.5)) "`%"
-          GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePayPoint*0.4)) "`%"
-          GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePayPoint*0.3)) "`%"
-          GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePayPoint*0.2)) "`%"
-          GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePayPoint*0.1)) "`%"
-          GuiControl,ItemInfo: , PercentText1G11, % "0`%"
-          GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePayPoint*0.1)) "`%"
-          GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePayPoint*0.2)) "`%"
-          GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePayPoint*0.3)) "`%"
-          GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePayPoint*0.4)) "`%"
-          GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePayPoint*0.5)) "`%"
-          GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePayPoint*0.6)) "`%"
-          GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePayPoint*0.7)) "`%"
-          GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePayPoint*0.8)) "`%"
-          GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
-          GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
-
-
-          baseRecPoint := 0
-          For k, v in dataRecPoint
-          {
-            If Abs(v) > baseRecPoint
-              baseRecPoint := Abs(v)
-          }
-          If baseRecPoint = 0
-          FormatStr := "{1:0.0f}"
-          Else If baseRecPoint < 1
-          FormatStr := "{1:0.3f}"
-          Else If baseRecPoint < 10
-          FormatStr := "{1:0.2f}"
-          Else If baseRecPoint < 100
-          FormatStr := "{1:0.1f}"
-          Else If baseRecPoint > 100
-          FormatStr := "{1:0.0f}"
-
-          GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
-          GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
-          GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseRecPoint*0.8)) "`%"
-          GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseRecPoint*0.7)) "`%"
-          GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseRecPoint*0.6)) "`%"
-          GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseRecPoint*0.5)) "`%"
-          GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseRecPoint*0.4)) "`%"
-          GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseRecPoint*0.3)) "`%"
-          GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseRecPoint*0.2)) "`%"
-          GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseRecPoint*0.1)) "`%"
-          GuiControl,ItemInfo: , PercentText2G11, % "0`%"
-          GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseRecPoint*0.1)) "`%"
-          GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseRecPoint*0.2)) "`%"
-          GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseRecPoint*0.3)) "`%"
-          GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseRecPoint*0.4)) "`%"
-          GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseRecPoint*0.5)) "`%"
-          GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseRecPoint*0.6)) "`%"
-          GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseRecPoint*0.7)) "`%"
-          GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
-          GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
-          GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
-
-
-          AvgPay := {}
-          Loop 5
-          {
-            AvgPay[A_Index] := (dataPayPoint[A_Index+1] + dataPayPoint[A_Index+2]) / 2
-          }
-          paddedPayData := {}
-          paddedPayData[1] := dataPayPoint[1]
-          paddedPayData[2] := dataPayPoint[1]
-          paddedPayData[3] := dataPayPoint[2]
-          paddedPayData[4] := AvgPay[1]
-          paddedPayData[5] := dataPayPoint[3]
-          paddedPayData[6] := AvgPay[2]
-          paddedPayData[7] := dataPayPoint[4]
-          paddedPayData[8] := AvgPay[3]
-          paddedPayData[9] := dataPayPoint[5]
-          paddedPayData[10] := AvgPay[4]
-          paddedPayData[11] := dataPayPoint[6]
-          paddedPayData[12] := AvgPay[5]
-          paddedPayData[13] := dataPayPoint[7]
-          For k, v in paddedPayData
-          {
-            div := v / basePayPoint * 100
-            XGraph_Plot( pGraph1, 100 - div, "", True )
-            ;MsgBox % "Key : " k "   Val : " v
-          }
-          AvgRec := {}
-          Loop 5
-          {
-            AvgRec[A_Index] := (dataRecPoint[A_Index+1] + dataRecPoint[A_Index+2]) / 2
-          }
-          paddedRecData := {}
-          paddedRecData[1] := dataRecPoint[1]
-          paddedRecData[2] := dataRecPoint[1]
-          paddedRecData[3] := dataRecPoint[2]
-          paddedRecData[4] := AvgRec[1]
-          paddedRecData[5] := dataRecPoint[3]
-          paddedRecData[6] := AvgRec[2]
-          paddedRecData[7] := dataRecPoint[4]
-          paddedRecData[8] := AvgRec[3]
-          paddedRecData[9] := dataRecPoint[5]
-          paddedRecData[10] := AvgRec[4]
-          paddedRecData[11] := dataRecPoint[6]
-          paddedRecData[12] := AvgRec[5]
-          paddedRecData[13] := dataRecPoint[7]
-          For k, v in paddedRecData
-          {
-            div := v / baseRecPoint * 100
-            XGraph_Plot( pGraph2, 100 - div, "", True )
-            ;MsgBox % "Key : " k "   Val : " v
-          }
-
-          GuiControl,ItemInfo: , GroupBox1, % "Sell " This.Prop.ItemName " to Chaos"
-          GuiControl,ItemInfo: , PComment1, Sell Value
-          GuiControl,ItemInfo: , PData1, % sellval := (1 / This.Data.Ninja["pay"]["value"])
-          GuiControl,ItemInfo: , PComment2, Sell Value `% Change
-          GuiControl,ItemInfo: , PData2, % This.Data.Ninja["paySparkLine"]["totalChange"]
-          GuiControl,ItemInfo: , PComment3, Orb per Chaos
-          GuiControl,ItemInfo: , PData3, % This.Data.Ninja["pay"]["value"]
-          GuiControl,ItemInfo: , PComment4, Day 6 Change
-          GuiControl,ItemInfo: , PData4, % dataPayPoint[2]
-          GuiControl,ItemInfo: , PComment5, Day 5 Change
-          GuiControl,ItemInfo: , PData5, % dataPayPoint[3]
-          GuiControl,ItemInfo: , PComment6, Day 4 Change
-          GuiControl,ItemInfo: , PData6, % dataPayPoint[4]
-          GuiControl,ItemInfo: , PComment7, Day 3 Change
-          GuiControl,ItemInfo: , PData7, % dataPayPoint[5]
-          GuiControl,ItemInfo: , PComment8, Day 2 Change
-          GuiControl,ItemInfo: , PData8, % dataPayPoint[6]
-          GuiControl,ItemInfo: , PComment9, Day 1 Change
-          GuiControl,ItemInfo: , PData9, % dataPayPoint[7]
-          GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
-          GuiControl,ItemInfo: , PData10, C / O
-
-          GuiControl,ItemInfo: , GroupBox2, % "Buy " This.Prop.ItemName " from Chaos"
-          GuiControl,ItemInfo: , SComment1, Buy Value
-          GuiControl,ItemInfo: , SData1, % sellval := (This.Data.Ninja["receive"]["value"])
-          GuiControl,ItemInfo: , SComment2, Buy Value `% Change
-          GuiControl,ItemInfo: , SData2, % This.Data.Ninja["receiveSparkLine"]["totalChange"]
-          GuiControl,ItemInfo: , SComment3, Orb per Chaos
-          GuiControl,ItemInfo: , SData3, % 1 / This.Data.Ninja["receive"]["value"]
-          GuiControl,ItemInfo: , SComment4, Day 6 Change
-          GuiControl,ItemInfo: , SData4, % dataRecPoint[2]
-          GuiControl,ItemInfo: , SComment5, Day 5 Change
-          GuiControl,ItemInfo: , SData5, % dataRecPoint[3]
-          GuiControl,ItemInfo: , SComment6, Day 4 Change
-          GuiControl,ItemInfo: , SData6, % dataRecPoint[4]
-          GuiControl,ItemInfo: , SComment7, Day 3 Change
-          GuiControl,ItemInfo: , SData7, % dataRecPoint[5]
-          GuiControl,ItemInfo: , SComment8, Day 2 Change
-          GuiControl,ItemInfo: , SData8, % dataRecPoint[6]
-          GuiControl,ItemInfo: , SComment9, Day 1 Change
-          GuiControl,ItemInfo: , SData9, % dataRecPoint[7]
-          GuiControl,ItemInfo: , SComment10, % Decimal2Fraction(sellval,"ID3")
-          GuiControl,ItemInfo: , SData10, C / O
-
+          If Abs(v) > basePayPoint
+            basePayPoint := Abs(v)
         }
-        Else If (This.Data.Ninja["sparkline"] || This.Data.HelmNinja["sparkline"] || This.Data.BaseNinja["sparkline"] )
+        If basePayPoint = 0
+        FormatStr := "{1:0.0f}"
+        Else If basePayPoint < 1
+        FormatStr := "{1:0.3f}"
+        Else If basePayPoint < 10
+        FormatStr := "{1:0.2f}"
+        Else If basePayPoint < 100
+        FormatStr := "{1:0.1f}"
+        Else If basePayPoint > 100
+        FormatStr := "{1:0.0f}"
+
+        GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
+        GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
+        GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePayPoint*0.8)) "`%"
+        GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePayPoint*0.7)) "`%"
+        GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePayPoint*0.6)) "`%"
+        GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePayPoint*0.5)) "`%"
+        GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePayPoint*0.4)) "`%"
+        GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePayPoint*0.3)) "`%"
+        GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePayPoint*0.2)) "`%"
+        GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePayPoint*0.1)) "`%"
+        GuiControl,ItemInfo: , PercentText1G11, % "0`%"
+        GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePayPoint*0.1)) "`%"
+        GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePayPoint*0.2)) "`%"
+        GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePayPoint*0.3)) "`%"
+        GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePayPoint*0.4)) "`%"
+        GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePayPoint*0.5)) "`%"
+        GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePayPoint*0.6)) "`%"
+        GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePayPoint*0.7)) "`%"
+        GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePayPoint*0.8)) "`%"
+        GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
+        GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
+
+
+        baseRecPoint := 0
+        For k, v in dataRecPoint
+        {
+          If Abs(v) > baseRecPoint
+            baseRecPoint := Abs(v)
+        }
+        If baseRecPoint = 0
+        FormatStr := "{1:0.0f}"
+        Else If baseRecPoint < 1
+        FormatStr := "{1:0.3f}"
+        Else If baseRecPoint < 10
+        FormatStr := "{1:0.2f}"
+        Else If baseRecPoint < 100
+        FormatStr := "{1:0.1f}"
+        Else If baseRecPoint > 100
+        FormatStr := "{1:0.0f}"
+
+        GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
+        GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
+        GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseRecPoint*0.8)) "`%"
+        GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseRecPoint*0.7)) "`%"
+        GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseRecPoint*0.6)) "`%"
+        GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseRecPoint*0.5)) "`%"
+        GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseRecPoint*0.4)) "`%"
+        GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseRecPoint*0.3)) "`%"
+        GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseRecPoint*0.2)) "`%"
+        GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseRecPoint*0.1)) "`%"
+        GuiControl,ItemInfo: , PercentText2G11, % "0`%"
+        GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseRecPoint*0.1)) "`%"
+        GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseRecPoint*0.2)) "`%"
+        GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseRecPoint*0.3)) "`%"
+        GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseRecPoint*0.4)) "`%"
+        GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseRecPoint*0.5)) "`%"
+        GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseRecPoint*0.6)) "`%"
+        GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseRecPoint*0.7)) "`%"
+        GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
+        GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
+        GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
+
+
+        AvgPay := {}
+        Loop 5
+        {
+          AvgPay[A_Index] := (dataPayPoint[A_Index+1] + dataPayPoint[A_Index+2]) / 2
+        }
+        paddedPayData := {}
+        paddedPayData[1] := dataPayPoint[1]
+        paddedPayData[2] := dataPayPoint[1]
+        paddedPayData[3] := dataPayPoint[2]
+        paddedPayData[4] := AvgPay[1]
+        paddedPayData[5] := dataPayPoint[3]
+        paddedPayData[6] := AvgPay[2]
+        paddedPayData[7] := dataPayPoint[4]
+        paddedPayData[8] := AvgPay[3]
+        paddedPayData[9] := dataPayPoint[5]
+        paddedPayData[10] := AvgPay[4]
+        paddedPayData[11] := dataPayPoint[6]
+        paddedPayData[12] := AvgPay[5]
+        paddedPayData[13] := dataPayPoint[7]
+        For k, v in paddedPayData
+        {
+          div := v / basePayPoint * 100
+          XGraph_Plot( pGraph1, 100 - div, "", True )
+          ;MsgBox % "Key : " k "   Val : " v
+        }
+        AvgRec := {}
+        Loop 5
+        {
+          AvgRec[A_Index] := (dataRecPoint[A_Index+1] + dataRecPoint[A_Index+2]) / 2
+        }
+        paddedRecData := {}
+        paddedRecData[1] := dataRecPoint[1]
+        paddedRecData[2] := dataRecPoint[1]
+        paddedRecData[3] := dataRecPoint[2]
+        paddedRecData[4] := AvgRec[1]
+        paddedRecData[5] := dataRecPoint[3]
+        paddedRecData[6] := AvgRec[2]
+        paddedRecData[7] := dataRecPoint[4]
+        paddedRecData[8] := AvgRec[3]
+        paddedRecData[9] := dataRecPoint[5]
+        paddedRecData[10] := AvgRec[4]
+        paddedRecData[11] := dataRecPoint[6]
+        paddedRecData[12] := AvgRec[5]
+        paddedRecData[13] := dataRecPoint[7]
+        For k, v in paddedRecData
+        {
+          div := v / baseRecPoint * 100
+          XGraph_Plot( pGraph2, 100 - div, "", True )
+          ;MsgBox % "Key : " k "   Val : " v
+        }
+
+        GuiControl,ItemInfo: , GroupBox1, % "Sell " This.Prop.ItemName " to Chaos"
+        GuiControl,ItemInfo: , PComment1, Sell Value
+        GuiControl,ItemInfo: , PData1, % sellval := (1 / This.Data.Ninja["pay"]["value"])
+        GuiControl,ItemInfo: , PComment2, Sell Value `% Change
+        GuiControl,ItemInfo: , PData2, % This.Data.Ninja["paySparkLine"]["totalChange"]
+        GuiControl,ItemInfo: , PComment3, Orb per Chaos
+        GuiControl,ItemInfo: , PData3, % This.Data.Ninja["pay"]["value"]
+        GuiControl,ItemInfo: , PComment4, Day 6 Change
+        GuiControl,ItemInfo: , PData4, % dataPayPoint[2]
+        GuiControl,ItemInfo: , PComment5, Day 5 Change
+        GuiControl,ItemInfo: , PData5, % dataPayPoint[3]
+        GuiControl,ItemInfo: , PComment6, Day 4 Change
+        GuiControl,ItemInfo: , PData6, % dataPayPoint[4]
+        GuiControl,ItemInfo: , PComment7, Day 3 Change
+        GuiControl,ItemInfo: , PData7, % dataPayPoint[5]
+        GuiControl,ItemInfo: , PComment8, Day 2 Change
+        GuiControl,ItemInfo: , PData8, % dataPayPoint[6]
+        GuiControl,ItemInfo: , PComment9, Day 1 Change
+        GuiControl,ItemInfo: , PData9, % dataPayPoint[7]
+        GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
+        GuiControl,ItemInfo: , PData10, C / O
+
+        GuiControl,ItemInfo: , GroupBox2, % "Buy " This.Prop.ItemName " from Chaos"
+        GuiControl,ItemInfo: , SComment1, Buy Value
+        GuiControl,ItemInfo: , SData1, % sellval := (This.Data.Ninja["receive"]["value"])
+        GuiControl,ItemInfo: , SComment2, Buy Value `% Change
+        GuiControl,ItemInfo: , SData2, % This.Data.Ninja["receiveSparkLine"]["totalChange"]
+        GuiControl,ItemInfo: , SComment3, Orb per Chaos
+        GuiControl,ItemInfo: , SData3, % 1 / This.Data.Ninja["receive"]["value"]
+        GuiControl,ItemInfo: , SComment4, Day 6 Change
+        GuiControl,ItemInfo: , SData4, % dataRecPoint[2]
+        GuiControl,ItemInfo: , SComment5, Day 5 Change
+        GuiControl,ItemInfo: , SData5, % dataRecPoint[3]
+        GuiControl,ItemInfo: , SComment6, Day 4 Change
+        GuiControl,ItemInfo: , SData6, % dataRecPoint[4]
+        GuiControl,ItemInfo: , SComment7, Day 3 Change
+        GuiControl,ItemInfo: , SData7, % dataRecPoint[5]
+        GuiControl,ItemInfo: , SComment8, Day 2 Change
+        GuiControl,ItemInfo: , SData8, % dataRecPoint[6]
+        GuiControl,ItemInfo: , SComment9, Day 1 Change
+        GuiControl,ItemInfo: , SData9, % dataRecPoint[7]
+        GuiControl,ItemInfo: , SComment10, % Decimal2Fraction(sellval,"ID3")
+        GuiControl,ItemInfo: , SData10, C / O
+
+      }
+      Else If (This.Data.Ninja["sparkline"] || This.Data.HelmNinja["sparkline"] || This.Data.BaseNinja["sparkline"] )
+      {
+        LTGraph := HTGraph := True
+        If (This.Data.HasKey("Ninja"))
         {
           HTGraph := "Name"
-          LTGraph := True
           dataPoint := This.Data.Ninja["sparkline"]["data"]
           totalChange := This.Data.Ninja["sparkline"]["totalChange"]
-          If (This.Data.HasKey("HelmNinja") && This.Data.HasKey("BaseNinja"))
-          {
-            dataPoint := This.Data.BaseNinja["sparkline"]["data"]
-            totalChange := This.Data.BaseNinja["sparkline"]["totalChange"]
-            dataLTPoint := This.Data.HelmNinja["sparkline"]["data"]
-            totalLTChange := This.Data.HelmNinja["sparkline"]["totalChange"]
-            HTGraph := "Base"
-            LTGraph := "Helm"
-          }
-          Else If (This.Data.HasKey("BaseNinja"))
-          {
-            dataLTPoint := This.Data.BaseNinja["sparkline"]["data"]
-            totalLTChange := This.Data.BaseNinja["sparkline"]["totalChange"]
-            LTGraph := "Base"
-          }
-          Else If (This.Data.HasKey("HelmNinja"))
-          {
-            dataLTPoint := This.Data.HelmNinja["sparkline"]["data"]
-            totalLTChange := This.Data.HelmNinja["sparkline"]["totalChange"]
-            LTGraph := "Helm"
-          }
-          Else
-          {
-            LTGraph := False
-          }
+        }
+        Else
+          HTGraph := False
 
+        If (This.Data.HasKey("HelmNinja") && This.Data.HasKey("BaseNinja"))
+        {
+          dataPoint := This.Data.BaseNinja["sparkline"]["data"]
+          totalChange := This.Data.BaseNinja["sparkline"]["totalChange"]
+          dataLTPoint := This.Data.HelmNinja["sparkline"]["data"]
+          totalLTChange := This.Data.HelmNinja["sparkline"]["totalChange"]
+          HTGraph := "Base"
+          LTGraph := "Helm"
+        }
+        Else If (This.Data.HasKey("BaseNinja"))
+        {
+          dataLTPoint := This.Data.BaseNinja["sparkline"]["data"]
+          totalLTChange := This.Data.BaseNinja["sparkline"]["totalChange"]
+          LTGraph := "Base"
+        }
+        Else If (This.Data.HasKey("HelmNinja"))
+        {
+          dataLTPoint := This.Data.HelmNinja["sparkline"]["data"]
+          totalLTChange := This.Data.HelmNinja["sparkline"]["totalChange"]
+          LTGraph := "Helm"
+        }
+        Else
+        {
+          LTGraph := False
+          GoSub, noDataGraph2
+          GoSub, noDataGraph2
+        }
+
+        If (HTGraph)
+        {
           basePoint := 0
           For k, v in dataPoint
           {
@@ -1403,6 +1410,62 @@
           GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePoint*0.9)) "`%"
           GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePoint*1.0)) "`%"
 
+          Avg := {}
+          Loop 5
+          {
+            Avg[A_Index] := ((dataPoint[A_Index+1]?dataPoint[A_Index+1]:0) + (dataPoint[A_Index+2]?dataPoint[A_Index+2]:0)) / 2
+          }
+          paddedData := {}
+          paddedData[1] := (dataPoint[1]?dataPoint[1]:0)
+          paddedData[2] := (dataPoint[1]?dataPoint[1]:0)
+          paddedData[3] := (dataPoint[2]?dataPoint[2]:0)
+          paddedData[4] := (Avg[1]?Avg[1]:0)
+          paddedData[5] := (dataPoint[3]?dataPoint[3]:0)
+          paddedData[6] := (Avg[2]?Avg[2]:0)
+          paddedData[7] := (dataPoint[4]?dataPoint[4]:0)
+          paddedData[8] := (Avg[3]?Avg[3]:0)
+          paddedData[9] := (dataPoint[5]?dataPoint[5]:0)
+          paddedData[10] := (Avg[4]?Avg[4]:0)
+          paddedData[11] := (dataPoint[6]?dataPoint[6]:0)
+          paddedData[12] := (Avg[5]?Avg[5]:0)
+          paddedData[13] := (dataPoint[7]?dataPoint[7]:0)
+          For k, v in paddedData
+          {
+            div := v / basePoint * 100
+            XGraph_Plot( pGraph1, 100 - div, "", True )
+            ;MsgBox % "Key : " k "   Val : " v
+          }
+
+          GuiControl,ItemInfo: , GroupBox1, % (HTGraph = "Name"?"Value of " This.Prop.ItemName : (HTGraph = "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
+          GuiControl,ItemInfo: , PComment1, Chaos Value
+          GuiControl,ItemInfo: , PData1, % (HTGraph = "Name"?This.Data.Ninja["chaosValue"]:(HTGraph = "Base"?This.Data.BaseNinja["chaosValue"]:""))
+          GuiControl,ItemInfo: , PComment2, Exalted Value
+          GuiControl,ItemInfo: , PData2, % (HTGraph = "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph = "Base"?This.Data.BaseNinja["exaltedValue"]:""))
+          GuiControl,ItemInfo: , PComment3, Chaos Value `% Change
+          GuiControl,ItemInfo: , PData3, % (HTGraph = "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph = "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
+          GuiControl,ItemInfo: , PComment4, Day 6 Change
+          GuiControl,ItemInfo: , PData4, % dataPoint[2]
+          GuiControl,ItemInfo: , PComment5, Day 5 Change
+          GuiControl,ItemInfo: , PData5, % dataPoint[3]
+          GuiControl,ItemInfo: , PComment6, Day 4 Change
+          GuiControl,ItemInfo: , PData6, % dataPoint[4]
+          GuiControl,ItemInfo: , PComment7, Day 3 Change
+          GuiControl,ItemInfo: , PData7, % dataPoint[5]
+          GuiControl,ItemInfo: , PComment8, Day 2 Change
+          GuiControl,ItemInfo: , PData8, % dataPoint[6]
+          GuiControl,ItemInfo: , PComment9, Day 1 Change
+          GuiControl,ItemInfo: , PData9, % dataPoint[7]
+          GuiControl,ItemInfo: , PComment10, 
+          GuiControl,ItemInfo: , PData10,
+        }
+        Else
+        {
+          Gosub, noDataGraph1
+          Gosub, HideGraph1
+        }
+
+        If (LTGraph)
+        {
           baseLTPoint := 0
           For k, v in dataLTPoint
           {
@@ -1442,31 +1505,6 @@
           GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseLTPoint*0.9)) "`%"
           GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseLTPoint*1.0)) "`%"
 
-          Avg := {}
-          Loop 5
-          {
-            Avg[A_Index] := ((dataPoint[A_Index+1]?dataPoint[A_Index+1]:0) + (dataPoint[A_Index+2]?dataPoint[A_Index+2]:0)) / 2
-          }
-          paddedData := {}
-          paddedData[1] := (dataPoint[1]?dataPoint[1]:0)
-          paddedData[2] := (dataPoint[1]?dataPoint[1]:0)
-          paddedData[3] := (dataPoint[2]?dataPoint[2]:0)
-          paddedData[4] := (Avg[1]?Avg[1]:0)
-          paddedData[5] := (dataPoint[3]?dataPoint[3]:0)
-          paddedData[6] := (Avg[2]?Avg[2]:0)
-          paddedData[7] := (dataPoint[4]?dataPoint[4]:0)
-          paddedData[8] := (Avg[3]?Avg[3]:0)
-          paddedData[9] := (dataPoint[5]?dataPoint[5]:0)
-          paddedData[10] := (Avg[4]?Avg[4]:0)
-          paddedData[11] := (dataPoint[6]?dataPoint[6]:0)
-          paddedData[12] := (Avg[5]?Avg[5]:0)
-          paddedData[13] := (dataPoint[7]?dataPoint[7]:0)
-          For k, v in paddedData
-          {
-            div := v / basePoint * 100
-            XGraph_Plot( pGraph1, 100 - div, "", True )
-            ;MsgBox % "Key : " k "   Val : " v
-          }
           LTAvg := {}
           Loop 5
           {
@@ -1493,29 +1531,6 @@
             ;MsgBox % "Key : " k "   Val : " v
           }
 
-          GuiControl,ItemInfo: , GroupBox1, % (HTGraph = "Name"?"Value of " This.Prop.ItemName : (HTGraph = "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
-          GuiControl,ItemInfo: , PComment1, Chaos Value
-          GuiControl,ItemInfo: , PData1, % (HTGraph = "Name"?This.Data.Ninja["chaosValue"]:(HTGraph = "Base"?This.Data.BaseNinja["chaosValue"]:""))
-          GuiControl,ItemInfo: , PComment2, Exalted Value
-          GuiControl,ItemInfo: , PData2, % (HTGraph = "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph = "Base"?This.Data.BaseNinja["exaltedValue"]:""))
-          GuiControl,ItemInfo: , PComment3, Chaos Value `% Change
-          GuiControl,ItemInfo: , PData3, % (HTGraph = "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph = "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
-          GuiControl,ItemInfo: , PComment4, Day 6 Change
-          GuiControl,ItemInfo: , PData4, % dataPoint[2]
-          GuiControl,ItemInfo: , PComment5, Day 5 Change
-          GuiControl,ItemInfo: , PData5, % dataPoint[3]
-          GuiControl,ItemInfo: , PComment6, Day 4 Change
-          GuiControl,ItemInfo: , PData6, % dataPoint[4]
-          GuiControl,ItemInfo: , PComment7, Day 3 Change
-          GuiControl,ItemInfo: , PData7, % dataPoint[5]
-          GuiControl,ItemInfo: , PComment8, Day 2 Change
-          GuiControl,ItemInfo: , PData8, % dataPoint[6]
-          GuiControl,ItemInfo: , PComment9, Day 1 Change
-          GuiControl,ItemInfo: , PData9, % dataPoint[7]
-          GuiControl,ItemInfo: , PComment10, 
-          GuiControl,ItemInfo: , PData10,
-
-
           GuiControl,ItemInfo: , GroupBox2, % (LTGraph = "Base"? ("Value of " This.Prop.ItemLevel " " This.Prop.Influence " " This.Prop.ItemBase ) : (LTGraph = "Helm" ? "Value of " This.Data.HelmNinja["name"] : "") )
           GuiControl,ItemInfo: , SComment1, Chaos Value
           GuiControl,ItemInfo: , SData1, % (LTGraph = "Base"? This.Data.BaseNinja["chaosValue"] : (LTGraph = "Helm" ? This.Data.HelmNinja["chaosValue"] : "") )
@@ -1538,104 +1553,137 @@
           GuiControl,ItemInfo: , SComment10,
           GuiControl,ItemInfo: , SData10,
         }
-        Return
-
-        noDataGraph:
-          Loop 2
-          {
-            aVal := A_Index
-            Loop 21
-            {
-              GuiControl,ItemInfo: , PercentText%aVal%G%A_Index%, 0`%
-            }
-            GuiControl,ItemInfo: , GroupBox%aVal%, No Data
-            Loop 13
-            {
-              XGraph_Plot( pGraph%aVal%, 100, "", True )
-            }
-          }
-          Loop 10
-          {
-            GuiControl,ItemInfo: , PComment%A_Index%,
-            GuiControl,ItemInfo: , PData%A_Index%,
-            GuiControl,ItemInfo: , SComment%A_Index%,
-            GuiControl,ItemInfo: , SData%A_Index%,
-          }
-          aVal := ""
-        Return
-
-        HideGraph:
-          Loop 2
-          {
-            aVal := A_Index
-            Loop 21
-            {
-              GuiControl,ItemInfo: Hide, PercentText%aVal%G%A_Index%
-            }
-            GuiControl,ItemInfo: Hide, pGraph%aVal%
-            GuiControl,ItemInfo: Hide, GroupBox%aVal%
-          }
-          Loop 10
-          {
-            GuiControl,ItemInfo: Hide, PComment%A_Index%
-            GuiControl,ItemInfo: Hide, PData%A_Index%
-            GuiControl,ItemInfo: Hide, SComment%A_Index%
-            GuiControl,ItemInfo: Hide, SData%A_Index%
-          }
-          aVal := ""
-        Return
-
-        ShowGraph:
-          Loop 2
-          {
-            aVal := A_Index
-            Loop 21
-            {
-              GuiControl,ItemInfo: Show, PercentText%aVal%G%A_Index%
-            }
-            GuiControl,ItemInfo: Show, pGraph%aVal%
-            GuiControl,ItemInfo: Show, GroupBox%aVal%
-          }
-          Loop 10
-          {
-            GuiControl,ItemInfo: Show, PComment%A_Index%
-            GuiControl,ItemInfo: Show, PData%A_Index%
-            GuiControl,ItemInfo: Show, SComment%A_Index%
-            GuiControl,ItemInfo: Show, SData%A_Index%
-          }
-          aVal := ""
-        Return
-      }
-      ItemInfo()
-      {
-        This.DisplayPSA()
-        This.GraphNinjaPrices()
-      }
-    }
-    ; ArrayToString - Make a string from array using | as delimiters
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ArrayToString(Array)
-    {
-      for index, element in Array
-      {
-        if(text == "")
+        Else
         {
-          text = %element% 
+          Gosub, noDataGraph2
+          Gosub, HideGraph2
         }
-        else
-        {
-          text = %text%|%element% 
-        }
+
       }
-      return text
+      Return
+
+      noDataGraph:
+        GoSub, noDataGraph1
+        GoSub, noDataGraph2
+      Return
+
+      noDataGraph1:
+        Loop 21
+        {
+          GuiControl,ItemInfo: , PercentText1G%A_Index%, 0`%
+        }
+        GuiControl,ItemInfo: , GroupBox1, No Data
+        Loop 13
+        {
+          XGraph_Plot( pGraph1, 100, "", True )
+        }
+        Loop 10
+        {
+          GuiControl,ItemInfo: , PComment%A_Index%,
+          GuiControl,ItemInfo: , PData%A_Index%,
+        }
+      Return
+
+      noDataGraph2:
+        Loop 21
+        {
+          GuiControl,ItemInfo: , PercentText2G%A_Index%, 0`%
+        }
+        GuiControl,ItemInfo: , GroupBox2, No Data
+        Loop 13
+        {
+          XGraph_Plot( pGraph2, 100, "", True )
+        }
+        Loop 10
+        {
+          GuiControl,ItemInfo: , SComment%A_Index%,
+          GuiControl,ItemInfo: , SData%A_Index%,
+        }
+      Return
+
+      HideGraph:
+        GoSub, HideGraph1
+        GoSub, HideGraph2
+      Return
+
+      HideGraph1:
+        Loop 21
+        {
+          GuiControl,ItemInfo: Hide, PercentText1G%A_Index%
+        }
+        GuiControl,ItemInfo: Hide, pGraph1
+        GuiControl,ItemInfo: Hide, GroupBox1
+        Loop 10
+        {
+          GuiControl,ItemInfo: Hide, PComment%A_Index%
+          GuiControl,ItemInfo: Hide, PData%A_Index%
+        }
+      Return
+
+      HideGraph2:
+        Loop 21
+        {
+          GuiControl,ItemInfo: Hide, PercentText2G%A_Index%
+        }
+        GuiControl,ItemInfo: Hide, pGraph2
+        GuiControl,ItemInfo: Hide, GroupBox2
+        Loop 10
+        {
+          GuiControl,ItemInfo: Hide, SComment%A_Index%
+          GuiControl,ItemInfo: Hide, SData%A_Index%
+        }
+      Return
+
+      ShowGraph:
+        Loop 2
+        {
+          aVal := A_Index
+          Loop 21
+          {
+            GuiControl,ItemInfo: Show, PercentText%aVal%G%A_Index%
+          }
+          GuiControl,ItemInfo: Show, pGraph%aVal%
+          GuiControl,ItemInfo: Show, GroupBox%aVal%
+        }
+        Loop 10
+        {
+          GuiControl,ItemInfo: Show, PComment%A_Index%
+          GuiControl,ItemInfo: Show, PData%A_Index%
+          GuiControl,ItemInfo: Show, SComment%A_Index%
+          GuiControl,ItemInfo: Show, SData%A_Index%
+        }
+        aVal := ""
+      Return
     }
-    ; StringToArray - Make a array from a string using | as delimiters
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    StringToArray(text)
+    ItemInfo(){
+      This.DisplayPSA()
+      This.GraphNinjaPrices()
+    }
+  }
+  ; ArrayToString - Make a string from array using | as delimiters
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ArrayToString(Array)
+  {
+    for index, element in Array
     {
-      Array := StrSplit(text,"|")
-      return array
+      if(text == "")
+      {
+        text = %element% 
+      }
+      else
+      {
+        text = %text%|%element% 
+      }
     }
+    return text
+  }
+  ; StringToArray - Make a array from a string using | as delimiters
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  StringToArray(text)
+  {
+    Array := StrSplit(text,"|")
+    return array
+  }
   /*** Wingman GUI Handlers
 
   */
