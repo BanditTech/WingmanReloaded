@@ -157,7 +157,7 @@
             This.Data.Blocks.Influence := SVal
           Else If (SVal ~= "^Corrupted$")
             This.Prop.Corrupted := True
-          Else If (This.Data.Blocks.HasKey("Affix"))
+          Else If (This.Data.Blocks.HasKey("Affix") || SVal ~= """.*""")
             This.Data.Blocks.FlavorText := SVal
           Else
             This.Data.Blocks.Affix := SVal
@@ -632,14 +632,11 @@
 
       If (This.Affix["Veiled Prefix"] || This.Affix["Veiled Suffix"])
         This.Prop.Veiled := True
-      ;Start Prop Block Parser for Divinations
-      If (This.RarityDivination)
+      ;Stack size for anything with it
+      If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
       {
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
-        {
-          This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
-          This.Prop.Stack_Max := RxMatch2
-        }
+        This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
+        This.Prop.Stack_Max := RxMatch2
       }
       ;End Prop Block Parser for Divinations
 
@@ -1709,6 +1706,249 @@
     ItemInfo(){
       This.DisplayPSA()
       This.GraphNinjaPrices()
+    }
+    MatchStashManagement(){
+      If (This.Prop.RarityCurrency&&This.Prop.SpecialType=""&&StashTabYesCurrency)
+        sendstash := StashTabCurrency
+      Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price )
+        sendstash := StashTabNinjaPrice
+      Else If (This.Prop.Incubator)
+        Return -1
+      Else If (This.Prop.IsMap && StashTabYesMap && (!This.Prop.IsBlightedMap || YesStashBlightedMap))
+        sendstash := StashTabMap
+      Else If (StashTabYesCatalyst&&This.Prop.Catalyst)
+        sendstash := StashTabCatalyst
+      Else If ( StashTabYesFragment 
+        && ( This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab
+        || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment ) )
+        sendstash := StashTabFragment
+      Else If (This.Prop.RarityDivination&&StashTabYesDivination)
+        sendstash := StashTabDivination
+      Else If (This.Prop.IsOrgan != "" && StashTabYesOrgan)
+        sendstash := StashTabOrgan
+      Else If (This.Prop.RarityUnique&&This.Prop.IsOrgan="")
+      {
+        If (StashTabYesCollection)
+        sendstash := StashTabCollection
+        Else If (StashTabYesUniqueRing&&This.Prop.Ring)
+        sendstash := StashTabUniqueRing
+        Else If (StashTabYesUniqueDump)
+        sendstash := StashTabUniqueDump
+      }
+      Else If (This.Prop.Essence&&StashTabYesEssence)
+        sendstash := StashTabEssence
+      Else If (This.Prop.Fossil&&StashTabYesFossil)
+        sendstash := StashTabFossil
+      Else If (This.Prop.Resonator&&StashTabYesResonator)
+        sendstash := StashTabResonator
+      Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality)
+        sendstash := StashTabFlaskQuality
+      Else If (This.Prop.RarityGem)
+      {
+        If ((This.Prop.Quality>0)&&StashTabYesGemQuality)
+          sendstash := StashTabGemQuality
+        Else If (This.Prop.VaalGem && StashTabYesGemVaal)
+          sendstash := StashTabGemVaal
+        Else If (This.Prop.Support && StashTabYesGemSupport)
+          sendstash := StashTabGemSupport
+        Else If (StashTabYesGem)
+          sendstash := StashTabGem
+      }
+      Else If ((This.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
+        sendstash := StashTabLinked
+      Else If (This.Prop.Prophecy&&StashTabYesProphecy)
+        sendstash := StashTabProphecy
+      Else If (This.Prop.Oil&&StashTabYesOil)
+        sendstash := StashTabOil
+      Else If (This.Prop.Veiled&&StashTabYesVeiled)
+        sendstash := StashTabVeiled
+      Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
+        sendstash := StashTabClusterJewel
+      Else If (StashTabYesCrafting 
+        && ((YesStashT1 && This.Prop.CraftingBase = "T1") 
+          || (YesStashT2 && This.Prop.CraftingBase = "T2") 
+          || (YesStashT3 && This.Prop.CraftingBase = "T3")
+          || (YesStashT4 && This.Prop.CraftingBase = "T4"))
+        && ((YesStashCraftingNormal && This.Prop.RarityNormal)
+          || (YesStashCraftingMagic && This.Prop.RarityMagic)
+          || (YesStashCraftingRare && This.Prop.RarityRare))
+        && (!YesStashCraftingIlvl 
+          || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
+        sendstash := StashTabCrafting
+      Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
+        sendstash := StashTabPredictive
+      Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic))))
+        sendstash := StashTabDump
+      Else
+        Return False
+      Return sendstash
+    }
+    MatchLootFilter(GroupOut:=0){
+      For GKey, Groups in LootFilter
+      {
+        matched := False
+        nomatched := False
+        ormatched := 0
+        ormismatch := False
+        orcount := LootFilter[GKey]["OrCount"]
+        For SKey, Selected in Groups
+        {
+          If (SKey = "OrCount" || SKey = "StashTab")
+            Continue
+          For AKey, AVal in Selected
+          {
+            If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
+              Continue
+            If (SKey = "Stats")
+              SKey := "Prop"
+            arrval := Item[SKey][AVal]
+            eval := LootFilter[GKey][SKey][AKey . "Eval"]
+            min := LootFilter[GKey][SKey][AKey . "Min"]
+            orflag := LootFilter[GKey][SKey][AKey . "OrFlag"]
+
+            if eval = >
+            {
+              If (arrval > min)
+              {
+                matched := True
+                If orflag
+                  ormatched++
+              }
+              Else 
+              {
+                if !orflag
+                  nomatched := True
+                ormismatch := True
+              }
+            }
+            Else if eval = >=
+            {
+              If (arrval >= min)
+              {
+                matched := True
+                If orflag
+                  ormatched++
+              }
+              Else 
+              {
+                if !orflag
+                  nomatched := True
+                ormismatch := True
+              }
+            }
+            else if eval = =
+            {
+              If (arrval = min)
+              {
+                matched := True
+                If orflag
+                  ormatched++
+              }
+              Else 
+              {
+                if !orflag
+                  nomatched := True
+                ormismatch := True
+              }
+            }
+            else if eval = <
+            {
+              If (arrval < min)
+              {
+                matched := True
+                If orflag
+                  ormatched++
+              }
+              Else 
+              {
+                if !orflag
+                  nomatched := True
+                ormismatch := True
+              }
+            }
+            else if eval = <=
+            {
+              If (arrval <= min)
+              {
+                matched := True
+                If orflag
+                  ormatched++
+              }
+              Else 
+              {
+                if !orflag
+                  nomatched := True
+                ormismatch := True
+              }
+            }
+            else if eval = !=
+            {
+              If (arrval != min)
+              {
+                matched := True
+                If orflag
+                  ormatched++
+              }
+              Else 
+              {
+                if !orflag
+                  nomatched := True
+                ormismatch := True
+              }
+            }
+            else if eval = ~
+            {
+              minarr := StrSplit(min, "|"," ")
+              matchedOR := False
+              for k, v in minarr ; for each element of the minimum
+                                ; We split the line into sections
+              {
+                if InStr(v, "&") ; Check for any & sections
+                {
+                  mismatched := false
+                  for kk, vv in StrSplit(v, "&"," ")
+                  {              ; Split the array again
+                    If !InStr(arrval, vv) ; Check all sections for mismatch
+                      mismatched := true
+                  }
+                  if !mismatched
+                  {              ; if no mismatch that means all sections found in the string
+                    matchedOR := true ; This means we have fully matched an OR+AND section
+                    Break
+                  }
+                }
+                Else if InStr(arrval, v)
+                {                ; If there was no & symbol this is an OR section
+                  matchedOR := True
+                  break
+                }
+              }
+              if matchedOR       ; If any of the sections produced a match it will flag true
+              {
+                matched := True
+                If orflag
+                  ormatched++
+              }
+              Else
+              {
+                if !orflag
+                  nomatched := True
+                ormismatch := True
+              }
+            }
+          }
+        }
+        If (ormismatch && ormatched < orcount)
+          nomatched := True
+        If (matched && !nomatched)
+        {
+          If GroupOut
+          Return GKey
+          Else
+          Return LootFilter[GKey]["StashTab"]
+        }
+      }
+      Return False
     }
   }
   ; ArrayToString - Make a string from array using | as delimiters
@@ -3424,7 +3664,7 @@
     Static ItemList := []
     Static WarnedError := 0
     FoundMatch := False
-    If (Prop.Rarity_Digit = 3 && (Prop.SpecialType = "" || Prop.SpecialType = "6Link" || Prop.SpecialType = "5Link") && YesPredictivePrice != "Off")
+    If (Item.Prop.Rarity_Digit = 3 && (Item.Prop.SpecialType = "" || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && YesPredictivePrice != "Off")
     {
       For k, obj in ItemList
       {

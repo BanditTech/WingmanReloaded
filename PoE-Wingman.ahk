@@ -2497,7 +2497,7 @@ Return
         }
         If (OnVendor&&YesVendor)
         {
-          If MatchLootFilter()
+          If Item.MatchLootFilter()
             Continue
           If (Item.Prop.RarityCurrency)
             Continue
@@ -2527,7 +2527,7 @@ Return
           ; Only need entry this condition if Search Vendor/Vendor is the first option
           If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
           {
-            If MatchStashManagement()
+            If Item.MatchStashManagement()
             {
               Continue
             }
@@ -2701,7 +2701,7 @@ Return
         {
           If (Item.Prop.SpecialType = "Quest Item")
             Continue
-          Else If (sendstash:=MatchLootFilter())
+          Else If (sendstash:=Item.MatchLootFilter())
             Sleep, -1
           Else If ( Item.Prop.IsMap && YesSkipMaps
           && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
@@ -2711,7 +2711,7 @@ Return
             || (Item.Prop.RarityUnique && YesSkipMaps_unique)) 
           && (Item.Prop.MapTier >= YesSkipMaps_tier))
             Continue
-          Else If (sendstash:=MatchStashManagement())
+          Else If (sendstash:=Item.MatchStashManagement())
             If (sendstash = -1)
               Continue
           Else
@@ -2819,86 +2819,6 @@ Return
       }
     }
     Return
-  }
-
-  ; MatchStashManagement - Match an item to any enabled Stash Management settings
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  MatchStashManagement()
-  {
-    If (Item.Prop.RarityCurrency&&Item.Prop.SpecialType=""&&StashTabYesCurrency)
-      sendstash := StashTabCurrency
-    Else If (StashTabYesNinjaPrice && Item.Prop.ChaosValue >= StashTabYesNinjaPrice_Price )
-      sendstash := StashTabNinjaPrice
-    Else If (Item.Prop.Incubator)
-      Return -1
-    Else If (Item.Prop.IsMap && StashTabYesMap && (!Item.Prop.IsBlightedMap || YesStashBlightedMap))
-      sendstash := StashTabMap
-    Else If (StashTabYesCatalyst&&Item.Prop.Catalyst)
-      sendstash := StashTabCatalyst
-    Else If ( StashTabYesFragment 
-      && ( Item.Prop.TimelessSplinter || Item.Prop.BreachSplinter || Item.Prop.Offering || Item.Prop.Vessel || Item.Prop.Scarab
-      || Item.Prop.SacrificeFragment || Item.Prop.MortalFragment || Item.Prop.GuardianFragment || Item.Prop.ProphecyFragment ) )
-      sendstash := StashTabFragment
-    Else If (Item.Prop.RarityDivination&&StashTabYesDivination)
-      sendstash := StashTabDivination
-    Else If (Item.Prop.IsOrgan != "" && StashTabYesOrgan)
-      sendstash := StashTabOrgan
-    Else If (Item.Prop.RarityUnique&&Item.Prop.IsOrgan="")
-    {
-      If (StashTabYesCollection)
-      sendstash := StashTabCollection
-      Else If (StashTabYesUniqueRing&&Item.Prop.Ring)
-      sendstash := StashTabUniqueRing
-      Else If (StashTabYesUniqueDump)
-      sendstash := StashTabUniqueDump
-    }
-    Else If (Item.Prop.Essence&&StashTabYesEssence)
-      sendstash := StashTabEssence
-    Else If (Item.Prop.Fossil&&StashTabYesFossil)
-      sendstash := StashTabFossil
-    Else If (Item.Prop.Resonator&&StashTabYesResonator)
-      sendstash := StashTabResonator
-    Else If (Item.Prop.Flask&&(Item.Prop.Quality>0)&&StashTabYesFlaskQuality)
-      sendstash := StashTabFlaskQuality
-    Else If (Item.Prop.RarityGem)
-    {
-      If ((Item.Prop.Quality>0)&&StashTabYesGemQuality)
-        sendstash := StashTabGemQuality
-      Else If (Item.Prop.VaalGem && StashTabYesGemVaal)
-        sendstash := StashTabGemVaal
-      Else If (Item.Prop.Support && StashTabYesGemSupport)
-        sendstash := StashTabGemSupport
-      Else If (StashTabYesGem)
-        sendstash := StashTabGem
-    }
-    Else If ((Item.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
-      sendstash := StashTabLinked
-    Else If (Item.Prop.Prophecy&&StashTabYesProphecy)
-      sendstash := StashTabProphecy
-    Else If (Item.Prop.Oil&&StashTabYesOil)
-      sendstash := StashTabOil
-    Else If (Item.Prop.Veiled&&StashTabYesVeiled)
-      sendstash := StashTabVeiled
-    Else If (Item.Prop.ClusterJewel&&StashTabYesClusterJewel)
-      sendstash := StashTabClusterJewel
-    Else If (StashTabYesCrafting 
-      && ((YesStashT1 && Item.Prop.CraftingBase = "T1") 
-        || (YesStashT2 && Item.Prop.CraftingBase = "T2") 
-        || (YesStashT3 && Item.Prop.CraftingBase = "T3")
-        || (YesStashT4 && Item.Prop.CraftingBase = "T4"))
-      && ((YesStashCraftingNormal && Item.Prop.RarityNormal)
-        || (YesStashCraftingMagic && Item.Prop.RarityMagic)
-        || (YesStashCraftingRare && Item.Prop.RarityRare))
-      && (!YesStashCraftingIlvl 
-        || (YesStashCraftingIlvl && Item.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
-      sendstash := StashTabCrafting
-    Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
-      sendstash := StashTabPredictive
-    Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(Item.Prop.Jeweler || Item.Prop.Chromatic))))
-      sendstash := StashTabDump
-    Else
-      Return False
-    Return sendstash
   }
 
   ; Search Vendor Routine
@@ -3115,174 +3035,6 @@ Return
     ; MatchNinjaPrice(True)
     Return
   }
-  ; MatchLootFilter - Evaluate Loot Filter Match
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  MatchLootFilter(GroupOut:=0)
-  {
-    For GKey, Groups in LootFilter
-    {
-      matched := False
-      nomatched := False
-      ormatched := 0
-      ormismatch := False
-      orcount := LootFilter[GKey]["OrCount"]
-      For SKey, Selected in Groups
-      {
-        If (SKey = "OrCount" || SKey = "StashTab")
-          Continue
-        For AKey, AVal in Selected
-        {
-          If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
-            Continue
-          arrval := %SKey%[AVal]
-          eval := LootFilter[GKey][SKey][AKey . "Eval"]
-          min := LootFilter[GKey][SKey][AKey . "Min"]
-          orflag := LootFilter[GKey][SKey][AKey . "OrFlag"]
-
-          if eval = >
-          {
-            If (arrval > min)
-            {
-              matched := True
-              If orflag
-                ormatched++
-            }
-            Else 
-            {
-              if !orflag
-                nomatched := True
-              ormismatch := True
-            }
-          }
-          Else if eval = >=
-          {
-            If (arrval >= min)
-            {
-              matched := True
-              If orflag
-                ormatched++
-            }
-            Else 
-            {
-              if !orflag
-                nomatched := True
-              ormismatch := True
-            }
-          }
-          else if eval = =
-          {
-            If (arrval = min)
-            {
-              matched := True
-              If orflag
-                ormatched++
-            }
-            Else 
-            {
-              if !orflag
-                nomatched := True
-              ormismatch := True
-            }
-          }
-          else if eval = <
-          {
-            If (arrval < min)
-            {
-              matched := True
-              If orflag
-                ormatched++
-            }
-            Else 
-            {
-              if !orflag
-                nomatched := True
-              ormismatch := True
-            }
-          }
-          else if eval = <=
-          {
-            If (arrval <= min)
-            {
-              matched := True
-              If orflag
-                ormatched++
-            }
-            Else 
-            {
-              if !orflag
-                nomatched := True
-              ormismatch := True
-            }
-          }
-          else if eval = !=
-          {
-            If (arrval != min)
-            {
-              matched := True
-              If orflag
-                ormatched++
-            }
-            Else 
-            {
-              if !orflag
-                nomatched := True
-              ormismatch := True
-            }
-          }
-          else if eval = ~
-          {
-            minarr := StrSplit(min, "|"," ")
-            matchedOR := False
-            for k, v in minarr ; for each element of the minimum
-                               ; We split the line into sections
-            {
-              if InStr(v, "&") ; Check for any & sections
-              {
-                mismatched := false
-                for kk, vv in StrSplit(v, "&"," ")
-                {              ; Split the array again
-                  If !InStr(arrval, vv) ; Check all sections for mismatch
-                    mismatched := true
-                }
-                if !mismatched
-                {              ; if no mismatch that means all sections found in the string
-                  matchedOR := true ; This means we have fully matched an OR+AND section
-                  Break
-                }
-              }
-              Else if InStr(arrval, v)
-              {                ; If there was no & symbol this is an OR section
-                matchedOR := True
-                break
-              }
-            }
-            if matchedOR       ; If any of the sections produced a match it will flag true
-            {
-              matched := True
-              If orflag
-                ormatched++
-            }
-            Else
-            {
-              if !orflag
-                nomatched := True
-              ormismatch := True
-            }
-          }
-        }
-      }
-      If (ormismatch && ormatched < orcount)
-        nomatched := True
-      If (matched && !nomatched)
-      {
-        If GroupOut
-        Return GKey
-        Else
-        Return LootFilter[GKey]["StashTab"]
-      }
-    }
-  Return False
-  }
   ; MoveStash - Input any digit and it will move to that Stash tab
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MoveStash(Tab,CheckStatus:=0)
@@ -3338,7 +3090,7 @@ Return
       BlockInput, MouseMove
       If StockWisdom{
         ClipItem(WisdomScrollX, WisdomScrollY)
-        dif := (40 - Item.Prop.Stack)
+        dif := (40 - Item.Prop.Stack_Size)
         If (dif>10)
         {
           MoveStash(StashTabCurrency)
@@ -3354,7 +3106,7 @@ Return
       }
       If StockPortal{
         ClipItem(PortalScrollX, PortalScrollY)
-        dif := (40 - Item.Prop.Stack)
+        dif := (40 - Item.Prop.Stack_Size)
         If (dif>10)
         {
           MoveStash(StashTabCurrency)
