@@ -8552,7 +8552,7 @@ Return
       {
         UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/version.html, %A_ScriptDir%\temp\version.html
         FileRead, newestVersion, %A_ScriptDir%\temp\version.html
-        If InStr(newestVersion, "404: Not Found")
+        If (InStr(newestVersion, "404: Not Found") || InStr(newestVersion, "500: Internal Server Error"))
         {
           Log("Error loading version number","404 error")
           Return

@@ -638,7 +638,6 @@
         This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
         This.Prop.Stack_Max := RxMatch2
       }
-      ;End Prop Block Parser for Divinations
 
       ;Get total count of affixes
       temp := 0
