@@ -694,15 +694,20 @@
       {
         ; Standardize implicit and crafted for Pseudo sums
         ; Implicits can be disable being merge into Pseudos checking YesCLFIgnoreImplicit
-        If (RegExMatch(k, "`am) \((.*)\)$", RxMatch) && YesCLFIgnoreImplicit)	
-        {	
-          If (RxMatch1 != "crafted")	
-          {	
-            Continue	
-          }	
+        If ((RegExMatch(k, "`am) \((.*)\)$", RxMatch) || RegExMatch(k, "`am) \((.*)\)_Avg$", RxMatch)) && YesCLFIgnoreImplicit)	
+        {
+          If (RxMatch1 != "crafted")
+          {
+            Continue
+          }
         }
         trimKey := RegExReplace(k," \(.*\)$","")
+        trimKey := RegExReplace(trimKey," \(.*\)_Avg$","_Avg")
         ; Singular Resistances
+        If (trimKey = "# to maximum Life")
+        {
+          This.AddPseudoAffix("(Pseudo) Total to Maximum Life",k)
+        }
         If (trimKey = "# to Cold Resistance")
         {
           This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
@@ -883,8 +888,6 @@
           This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
           This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
         }
-
-
       }
       ; SUM Pseudo
       ; Total Elemental Resistance
@@ -913,10 +916,8 @@
       This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Strength","Pseudo")
       This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Intelligence","Pseudo")
       This.AddPseudoAffix("(Pseudo) Total to Stats","(Pseudo) Total to Dexterity","Pseudo")
-      ; Maximum Life, yeah unfortunally we need do this way =/
-      aux:= This.GetValue("Affix","# to maximum Life") 
-      + This.GetValue("Affix","# to maximum Life (crafted)") 
-      + This.GetValue("Affix","# to maximum Life (implicit)") 
+      ; Maximum Life
+      aux:= This.GetValue("Pseudo","(Pseudo) Total to Maximum Life")
       + (This.GetValue("Pseudo","(Pseudo) Total to Strength"))//2
       If(aux > 0)
       {
