@@ -467,6 +467,7 @@
         If (RegExMatch(A_LoopField, "`am)(.+) Item",RxMatch))
         {
           This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch1
+          This.Prop.IsInfluenceItem := True
         }
       }
       ; Get Prophecy using Flavor Txt
@@ -692,6 +693,14 @@
       for k, v in This.Affix
       {
         ; Standardize implicit and crafted for Pseudo sums
+        ; Implicits can be disable being merge into Pseudos checking YesCLFIgnoreImplicit
+        If (RegExMatch(k, "`am) \((.*)\)$", RxMatch) && YesCLFIgnoreImplicit)	
+        {	
+          If (RxMatch1 != "crafted")	
+          {	
+            Continue	
+          }	
+        }
         trimKey := RegExReplace(k," \(.*\)$","")
         ; Singular Resistances
         If (trimKey = "# to Cold Resistance")
@@ -1753,6 +1762,8 @@
         Else If (StashTabYesGem)
           sendstash := StashTabGem
       }
+      Else If (This.Prop.IsInfluenceItem&&StashTabYesInfluencedItem)
+        sendstash := StashTabInfluencedItem
       Else If ((This.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
         sendstash := StashTabLinked
       Else If (This.Prop.Prophecy&&StashTabYesProphecy)
@@ -2155,7 +2166,7 @@
 
         Gui, Inventory: Tab, Options
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,       Section    w170 h170    xm   ym+25,         ID/Vend/Stash Options
+          Gui, Inventory: Add, GroupBox,       Section    w170 h190    xm   ym+25,         ID/Vend/Stash/CLF Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify          Checked%YesIdentify%    xs+5  ys+18   , Identify Items?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash             Checked%YesStash%         y+8    , Deposit at stash?
@@ -2163,6 +2174,7 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv               Checked%YesDiv%            y+8   , Trade Divination?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst         Checked%YesSortFirst%     y+8    , Group Items before stashing?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid           Checked%YesMapUnid%          y+8 , Leave Map Un-ID?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit       Checked%YesCLFIgnoreImplicit%          y+8 , Ignore Implicit in CLF?
           Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -2462,6 +2474,13 @@
           Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueDump , %StashTabUniqueDump%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s8 cBlack, Arial
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabInfluencedItem , %StashTabInfluencedItem%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
 
           ; Crafting Bases
           Gui, Inventory: Font, Bold s9 cBlack, Arial
