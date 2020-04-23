@@ -78,7 +78,7 @@
     Prop.IsWeapon := False
     Prop.IsMap := False
     Prop.IsBlightedMap := False
-    Prop.MapTier := 0
+    Prop.Map_Tier := 0
     Prop.Support := False
     Prop.VaalGem := False
     Prop.AffixCount := 0
@@ -93,7 +93,7 @@
     textListProp .= (!textListProp ? "" : "|") "" k ""
 
   Stats := OrderedArray()
-    Stats.MapTier := 0
+    Stats.Map_Tier := 0
     Stats.MapItemQuantity := 0
     Stats.MapItemRarity := 0
     Stats.MapMonsterPackSize := 0
@@ -440,7 +440,6 @@ Return ""
 }
 
 ImportGroup:
-  
   Gui, Submit, NoHide
   LootFilterEmpty:=0
   Loop, % LootFilter.Count() + 1
@@ -453,7 +452,7 @@ ImportGroup:
       break
   }
   LootFilter[groupstr] := JSON.Load(Clipboard)
-  LootFilterTabs[groupstr]:=CLFStashTabDefault
+  LootFilter[groupstr]["StashTab"]:=CLFStashTabDefault
   Gui, Destroy
   GoSub, Redraw
 Return
@@ -516,25 +515,6 @@ FinishAddGroup:
   GoSub, Redraw
 Return
 
-; AddNewDDL:
-;   Gui, Submit, NoHide
-;   StringSplit, buttonstr, A_GuiControl, %A_Space%
-;   SKey := buttonstr3
-;   GKey := buttonstr5
-;   skeyItemsActive := Round(LootFilter[GKey][SKey].Count() / 4)
-;   ++skeyItemsActive
-;   ;msgbox, %skeyItemsActive% %GKey% %SKey%
-
-;   AKey := SKey . skeyItemsActive
-;   ;msgbox %AKey%
-;   LootFilter[GKey][SKey][AKey] := "Blank"
-;   LootFilter[GKey][SKey][AKey . "Eval"] := ">"
-;   LootFilter[GKey][SKey][AKey . "Min"] := 0
-;   LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
-;   SaveWinPos()
-;   Gui, Destroy
-;   GoSub, Redraw
-; Return
 
 AddNewGroupDDL:
   Gui, Submit, NoHide

@@ -155,7 +155,7 @@ Other GUI Changes
 
 ## Version .11.0303 - Alpha Branch - April/08/2020
 Map Parser Improved
-* Prop.MapAtlasRegion is now live, you can use on CLF for filtering map regions (Helpful if you don't have map stash)
+* Prop.Map_AtlasRegion is now live, you can use on CLF for filtering map regions (Helpful if you don't have map stash)
 * Prop.ItemBase will work for map bases (Ex: Desert Map, Burial Chambers Map, Tower Map)
 * Ninja DB will work with non unique maps, try pressing Item Info Hotkey and check it out!
 

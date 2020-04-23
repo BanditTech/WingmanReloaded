@@ -209,7 +209,6 @@
     global Radiobox4Mana10
     global Radiobox5Mana10
     Global LootFilter := {}
-    Global LootFilterTabs := {}
     Global IgnoredSlot := {}
     Global BlackList := {}
     Global YesClickPortal := True
@@ -2715,7 +2714,7 @@ Return
             || (Item.Prop.RarityMagic && YesSkipMaps_magic) 
             || (Item.Prop.RarityRare && YesSkipMaps_rare) 
             || (Item.Prop.RarityUnique && YesSkipMaps_unique)) 
-          && (Item.Prop.MapTier >= YesSkipMaps_tier))
+          && (Item.Prop.Map_Tier >= YesSkipMaps_tier))
             Continue
           Else If (sendstash:=Item.MatchStashManagement())
             If (sendstash = -1)
@@ -4683,7 +4682,7 @@ Return
           Loop, 3
           {
             i++
-            If (EndMapTier%i% >= StartMapTier%i% && CraftingMapMethod%i% != "Disable" && Item.Prop.MapTier >= StartMapTier%i% && Item.Prop.MapTier <= EndMapTier%i%)
+            If (EndMapTier%i% >= StartMapTier%i% && CraftingMapMethod%i% != "Disable" && Item.Prop.Map_Tier >= StartMapTier%i% && Item.Prop.Map_Tier <= EndMapTier%i%)
             {
               If (!Item.Prop.RarityNormal)
               {
@@ -4754,8 +4753,8 @@ Return
     {
       If ( EndMapTier%A_Index% >= StartMapTier%A_Index% 
       && CraftingMapMethod%A_Index% != "Disable" 
-      && Item.Prop.MapTier >= StartMapTier%A_Index% 
-      && Item.Prop.MapTier <= EndMapTier%A_Index% )
+      && Item.Prop.Map_Tier >= StartMapTier%A_Index% 
+      && Item.Prop.Map_Tier <= EndMapTier%A_Index% )
         Return CraftingMapMethod%A_Index%
     }
     Return False
@@ -4834,9 +4833,9 @@ Return
     {
       ApplyCurrency("Augmentation",x,y)
     }
-    antr := Item.Prop.MapRarity
-    antp := Item.Prop.MapMPS
-    antq := Item.Prop.MapQuantity
+    antr := Item.Prop.Map_Rarity
+    antp := Item.Prop.Map_PackSize
+    antq := Item.Prop.Map_Quantity
     While ( (Item.Affix["Monsters have # chance to Avoid Elemental Ailments"] && AvoidAilments) 
     || (Item.Affix["Monsters have a # chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
     || (Item.Affix["Monsters reflect # of Elemental Damage"] && ElementalReflect) 
@@ -4845,18 +4844,18 @@ Return
     || (Item.Affix["Cannot Leech Life from Monsters"] && NoLeech)
     || (Item.Affix["-# maximum Player Resistances"] && MinusMPR)
     || (Item.Prop.RarityNormal) 
-    || (!MMQIgnore && (Item.Prop.MapRarity <= MMapItemRarity 
-    || Item.Prop.MapMPS <= MMapMonsterPackSize 
-    || Item.Prop.MapQuantity <= MMapItemQuantity)) )
+    || (!MMQIgnore && (Item.Prop.Map_Rarity <= MMapItemRarity 
+    || Item.Prop.Map_PackSize <= MMapMonsterPackSize 
+    || Item.Prop.Map_Quantity <= MMapItemQuantity)) )
     && !Item.Affix["Unidentified"]
     {
       If (!RunningToggle)
       {
         break
       }
-      antr := Item.Prop.MapRarity
-      antp := Item.Prop.MapMPS
-      antq := Item.Prop.MapQuantity
+      antr := Item.Prop.Map_Rarity
+      antp := Item.Prop.Map_PackSize
+      antq := Item.Prop.Map_Quantity
       ; Scouring or Alteration
       ApplyCurrency(crname, x, y)
       If (Item.Prop.RarityNormal)
@@ -4870,7 +4869,7 @@ Return
       }
       If (DebugMessages)
       {
-      Notify("MapCrafting: " Item.Prop.ItemBase "","Before Rolling`nItem Rarity: " antr "`nMonsterPackSize: " antp "`nItem Quantity: " antq "`nAfter Rolling`nItem Rarity: " Item.Prop.MapRarity "`nMonsterPackSize: " Item.Prop.MapMPS "`nItem Quantity: " Item.Prop.MapQuantity "`nEnd",4)
+      Notify("MapCrafting: " Item.Prop.ItemBase "","Before Rolling`nItem Rarity: " antr "`nMonsterPackSize: " antp "`nItem Quantity: " antq "`nAfter Rolling`nItem Rarity: " Item.Prop.Map_Rarity "`nMonsterPackSize: " Item.Prop.Map_PackSize "`nItem Quantity: " Item.Prop.Map_Quantity "`nEnd",4)
       }
     }
     return
@@ -9769,10 +9768,6 @@ Return
       LootFilter := JSON.Load(JSONtext)
       If !LootFilter
         LootFilter:={}
-      FileRead, JSONtexttabs, %A_ScriptDir%\save\LootFilterTabs.json
-      LootFilterTabs := JSON.Load(JSONtexttabs)
-      If !LootFilterTabs
-        LootFilterTabs:={}
     Return
     }
   }

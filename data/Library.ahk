@@ -539,19 +539,19 @@
         }
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum,RxMatch))
         {
-          This.Prop.RatingArmour := RxMatch1
+          This.Prop.Rating_Armour := RxMatch1
         }
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum,RxMatch))
         {
-          This.Prop.RatingEnergyShield := RxMatch1
+          This.Prop.Rating_EnergyShield := RxMatch1
         }
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion: "rxNum,RxMatch))
         {
-          This.Prop.RatingEvasion := RxMatch1
+          This.Prop.Rating_Evasion := RxMatch1
         }
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum,RxMatch))
         {
-          This.Prop.RatingBlock := RxMatch1
+          This.Prop.Rating_Block := RxMatch1
         }
 
         ;Weapon Specific Props
@@ -596,26 +596,26 @@
         ;Every map has a Map Tier!
       If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum,RxMatch))
       {
-        This.Prop.MapTier := RxMatch1
+        This.Prop.Map_Tier := RxMatch1
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: "rxNum,RxMatch))
         {
-          This.Prop.MapAtlasRegion := RxMatch1
+          This.Prop.Map_AtlasRegion := RxMatch1
         }
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: "rxNum,RxMatch))
         {
-          This.Prop.MapQuantity := RxMatch1
+          This.Prop.Map_Quantity := RxMatch1
         }
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: "rxNum,RxMatch))
         {
-          This.Prop.MapRarity := RxMatch1
+          This.Prop.Map_Rarity := RxMatch1
         }
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: "rxNum,RxMatch))
         {
-          This.Prop.MapMPS := RxMatch1
+          This.Prop.Map_PackSize := RxMatch1
         }
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
         {
-          This.Prop.MapQuality := RxMatch1
+          This.Prop.Map_Quality := RxMatch1
         }
       }
       ;End Prop Block Parser for Maps
@@ -1142,7 +1142,7 @@
         If (This.Prop[MatchKey] = v[NinjaKey])
         {
           If ((ApiStr = "Map" || ApiStr = "UniqueMap") 
-          && This.Prop.MapTier < v["mapTier"])
+          && This.Prop.Map_Tier < v["mapTier"])
             Continue
           If (v["links"] && ApiStr ~= "Unique"
           && This.Prop.Sockets_Link < v["links"])

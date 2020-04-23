@@ -723,7 +723,7 @@ Additions to the Custom Loot Filter
     Added inlfuence types to item parser
         Prop.Influence ~ Elder|Shaper|Hunter|Redeemer|Warlord|Crusader
     Prop.ChaosValue and Prop.ExaltValue added to selectable list
-    Prop.MapTier, Affix.GrantedSkill & Affix.GrantedSkillLevel have been added
+    Prop.Map_Tier, Affix.GrantedSkill & Affix.GrantedSkillLevel have been added
 
 Ninja API Parser adjusted to acount for changes to maps
     Now matches maps based on their tier
