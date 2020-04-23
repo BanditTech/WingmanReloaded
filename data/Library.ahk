@@ -1074,7 +1074,7 @@
             This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
             This.Data.HelmNinja := v
             If (v["chaosValue"] >= 5)
-              This.Prop.ValuableHelmEnch := True
+              This.Prop.ValuableEnch := True
             Break
           }
         }
