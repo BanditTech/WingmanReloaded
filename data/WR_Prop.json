@@ -1,8 +1,8 @@
 [
-  "Rarity",
-  "IsItem",
+	"Rarity",
+	"IsItem",
 	"SpecialType",
-  "DropLevel",
+	"DropLevel",
 	"DefaultSendStash",
 	"RarityCurrency",
 	"RarityDivination",
