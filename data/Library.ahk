@@ -1717,6 +1717,11 @@
       Return
     }
     ItemInfo(){
+      If (This.MatchLootFilter())
+      {
+        This.Prop.CLF_Tab := This.MatchLootFilter()
+        This.Prop.CLF_Group := This.MatchLootFilter(1)
+      }
       This.DisplayPSA()
       This.GraphNinjaPrices()
     }
@@ -1805,21 +1810,17 @@
         nomatched := False
         ormatched := 0
         ormismatch := False
-        orcount := LootFilter[GKey]["OrCount"]
+        orcount := LootFilter[GKey]["Data"]["OrCount"]
         For SKey, Selected in Groups
         {
-          If (SKey = "OrCount" || SKey = "StashTab")
+          If ( SKey = "Data" )
             Continue
           For AKey, AVal in Selected
           {
-            If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
-              Continue
-            If (SKey = "Stats")
-              SKey := "Prop"
-            arrval := Item[SKey][AVal]
-            eval := LootFilter[GKey][SKey][AKey . "Eval"]
-            min := LootFilter[GKey][SKey][AKey . "Min"]
-            orflag := LootFilter[GKey][SKey][AKey . "OrFlag"]
+            arrval := Item[SKey][LootFilter[GKey][SKey][AKey]["#Key"]]
+            eval := LootFilter[GKey][SKey][AKey]["Eval"]
+            min := LootFilter[GKey][SKey][AKey]["Min"]
+            orflag := LootFilter[GKey][SKey][AKey]["OrFlag"]
 
             if eval = >
             {
@@ -1960,7 +1961,7 @@
           If GroupOut
           Return GKey
           Else
-          Return LootFilter[GKey]["StashTab"]
+          Return LootFilter[GKey]["Data"]["StashTab"]
         }
       }
       Return False
