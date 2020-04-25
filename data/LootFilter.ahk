@@ -49,6 +49,15 @@
   For k, v in StashTabs
     textListStashTabs .= (!textListStashTabs ? "" : "|") v
 
+
+Menu, MyMenuBar, Add, &Load CLF from file, LoadArray
+Menu, MyMenuBar, Add ; with no more options, this is a seperator
+Menu, MyMenuBar, Add, &Save CLF to file, SaveArray
+Menu, MyMenuBar, Add
+Menu, MyMenuBar, Add, Add New Group, AddGroup
+Menu, MyMenuBar, Add 
+Menu, MyMenuBar, Add, Import Group From Clipboard, ImportGroup
+
 LoadArray()
 
 Redraw:
@@ -60,87 +69,39 @@ Redraw:
   IniRead, xpos, LootFilter.ini, Settings, xpos, first
   IniRead, ypos, LootFilter.ini, Settings, ypos, first
 
-  Gui, add, button, gAddGroup xs y+20, Add new Group
-  Gui, add, DropDownList, gUpdateStashDefault vCLFStashTabDefault x+10 yp+1 w40, %CLFStashTabDefault%||%textListStashTabs%
+  ; Gui, add, button, gAddGroup xs y+20, Add new Group
+  Gui, add, DropDownList, gUpdateStashDefault vCLFStashTabDefault xs y+20 w40, %CLFStashTabDefault%||%textListStashTabs%
+  Gui, Add, Text, x+5 yp+3 , Assign default stash tab for new or imported groups
   ; Gui, add, button, gPrintout x+10 yp, Print Array
   ;Gui, add, button, gPrintJSON x+10 yp, JSON string
-  Gui, add, button, gLoadArray x+10 yp-1, Load Loot Filter
-  Gui, add, button, gSaveArray x+10 yp, Save Loot Filter
-  Gui, add, button, gImportGroup x+10 yp, Import Loot Filter
+  ; Gui, add, button, gLoadArray x+10 yp-1, Load Loot Filter
+  ; Gui, add, button, gSaveArray x+10 yp, Save Loot Filter
+  ; Gui, add, button, gImportGroup x+10 yp, Import Loot Filter
   ;Gui, add, button, gRefreshGUI x+10 yp, Refresh Menu
   ;Gui, add, button, gTestEval x+10 yp, Test Eval vs 5
-
+  Gui, Menu, MyMenuBar ; Attach MyMenuBar to the GUI
   Gui, Add, Text, Section xm yp+52 w1 h1
 
   For GKey, Groups in LootFilter
   {
     gkeyarr := StrSplit(GKey, , , 6)
     
-    if (gkeyarr[6] > 9 && gkeyarr[6] < 20) 
-      activeGKeys10 := True
-    else if (gkeyarr[6] > 19 && gkeyarr[6] < 30) 
-      activeGKeys20 := True
-    else if (gkeyarr[6] > 29 && gkeyarr[6] < 40) 
-      activeGKeys30 := True
-    else if (gkeyarr[6] > 39 && gkeyarr[6] < 50) 
-      activeGKeys40 := True
-    else if (gkeyarr[6] > 49 && gkeyarr[6] < 60) 
-      activeGKeys50 := True
-    else if (gkeyarr[6] > 59 && gkeyarr[6] < 70) 
-      activeGKeys60 := True
-    else if (gkeyarr[6] > 69 && gkeyarr[6] < 80) 
-      activeGKeys70 := True
-    else if (gkeyarr[6] > 79 && gkeyarr[6] < 90) 
-      activeGKeys80 := True
-    else if (gkeyarr[6] > 89) 
-      activeGKeys90 := True
+    if (gkeyarr[6] > 99 && gkeyarr[6] < 200) 
+      activeGKeys100 := True
+    else if (gkeyarr[6] > 199 && gkeyarr[6] < 999) 
+      activeGKeys200 := True
   }
 
-  BuildMenu(1,9)
-  if activeGKeys10 
+  BuildMenu(1,99)
+  if activeGKeys100 
   {
   Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(10,19)
+  BuildMenu(100,199)
   }
-  if activeGKeys20 
+  if activeGKeys200 
   {
   Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(20,29)
-  }
-  if activeGKeys30 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(30,39)
-  }
-  if activeGKeys40 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(40,49)
-  }
-  if activeGKeys50 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(50,59)
-  }
-  if activeGKeys60 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(60,69)
-  }
-  if activeGKeys70 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(70,79)
-  }
-  if activeGKeys80 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(80,89)
-  }
-  if activeGKeys90 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(90,999)
+  BuildMenu(200,999)
   }
   tooltip
   Gui, +AlwaysOnTop
@@ -188,14 +149,14 @@ ImportGroup:
   Loop, % LootFilter.Count() + 1
   {
     ++LootFilterEmpty
-    groupstr := "Group" LootFilterEmpty
+    groupstr := ReplaceDigit000("Group" LootFilterEmpty)
     if LootFilter.HasKey(groupstr)
       continue
     Else
       break
   }
   LootFilter[groupstr] := JSON.Load(Clipboard)
-  LootFilter[groupstr]["StashTab"]:=CLFStashTabDefault
+  LootFilter[groupstr]["Data"]["StashTab"]:=CLFStashTabDefault
   Gui, Destroy
   GoSub, Redraw
 Return
@@ -237,7 +198,7 @@ AddGroup:
   Loop, % (LootFilter.Count() + 1)
   {
     ++LootFilterEmpty
-    groupstr := "Group" LootFilterEmpty
+    groupstr := ReplaceDigit000("Group" LootFilterEmpty)
     if LootFilter.HasKey(groupstr)
       continue
     Else
@@ -284,25 +245,23 @@ BuildMenu(Min,Max,AllEdit:=0)
       If (SKey = "Data")
         Continue
       totalHeight += ((LootFilter[GKey][SKey].Count() + 1) * 25) + 45
-      Gui, Add, GroupBox,% " section xs y+15 w325 h" (LootFilter[GKey][SKey].Count() + 1) * 25 ,%SKey%
+      Gui, Add, GroupBox,% " section xs y+15 w675 h" (LootFilter[GKey][SKey].Count() + 1) * 25 ,%SKey%
       Gui, Font, Bold s10 cBlack
       For AKey, Val in selectedItems
       {
-        Gui, Add,  Text, w318 xs+5 yp+25 h19, % (LootFilter[GKey][SKey][AKey]["OrFlag"]?"OR ":"") LootFilter[GKey][SKey][AKey]["#Key"] "  " LootFilter[GKey][SKey][AKey]["Eval"] "  " LootFilter[GKey][SKey][AKey]["Min"]
+        Gui, Add,  Text, w668 xs+5 yp+25 h19, % (LootFilter[GKey][SKey][AKey]["OrFlag"]?"OR ":"") LootFilter[GKey][SKey][AKey]["#Key"] "  " LootFilter[GKey][SKey][AKey]["Eval"] "  " LootFilter[GKey][SKey][AKey]["Min"]
       }
       Gui, Font,
       Gui, add, button, xs yp+25 w1 h1,
     }
     Gui, Add, Text, y+15 , % GKey "  Stash Tab: " LootFilter[GKey]["Data"]["StashTab"] "   OR #: " LootFilter[GKey]["Data"]["OrCount"] "   "
     strLootFilterEdit := "LootFilter_" . GKey . "_Edit"
-    Gui, Add, Button, v%strLootFilterEdit% gEditGroup w60 h21 x+0 yp-3, Edit
+    Gui, Add, Button, v%strLootFilterEdit% gEditGroup w40 h21 x+0 yp-3, Edit
     strLootFilterExport := "LootFilter_" . GKey . "_Export"
     Gui, Add, Button, v%strLootFilterExport% gExportGroup w40 h21 x+5, Export
-    if (gkeyarr < 10 ) 
-      gkeyarr := 0 . gkeyarr
     Gui, Add, Button,gRemGroup x+5 yp-1 ,% "Rem: " gkeyarr
     Gui, Font, Bold s10 cBlack
-    Gui, Add, GroupBox, % "w335 h" . totalHeight - 15 . " xs-3 yp-" . totalHeight - 45, %GKey%
+    Gui, Add, GroupBox, % "w685 h" . totalHeight - 15 . " xs-3 yp-" . totalHeight - 45, %GKey%
     Gui, add, button, x+0 y+20 w1 h1,
     Gui, Font
   }
@@ -368,7 +327,7 @@ LoadArray()
   FileRead, JSONtext, LootFilter.json
   LootFilter := JSON.Load(JSONtext)
   If !LootFilter
-    LootFilter:=OrderedArray()
+    LootFilter:={}
 Return
 }
 
@@ -444,9 +403,9 @@ RemoveNewGroupMenuItem:
   SKey := buttonstr3
   buttonstr4 := RegExReplace(buttonstr4, "Min$", "")
   AKey := buttonstr4
-  LootFilter[GKey][SKey].Remove(AKey . "Min")
-  LootFilter[GKey][SKey].Remove(AKey . "Eval")
-  LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
+  ; LootFilter[GKey][SKey].Remove(AKey . "Min")
+  ; LootFilter[GKey][SKey].Remove(AKey . "Eval")
+  ; LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
   LootFilter[GKey][SKey].Remove(AKey)
   SaveWinPos()
   Gui,2: Destroy
@@ -456,12 +415,10 @@ Return
 RemGroup:
   Gui, Submit, NoHide
   StringSplit, buttonstr, A_GuiControl, %A_Space%
-  if (buttonstr2 < 10)
-    StringTrimLeft, buttonstr2, buttonstr2, 1
   gnumber := buttonstr2
   GKey := "Group" gnumber
+
   LootFilter.Remove(GKey)
-  ; LootFilterTabs.Remove(GKey)
   SaveWinPos()
   Gui, Destroy
   GoSub, Redraw
@@ -771,5 +728,9 @@ GuiClose:
   }
   SendMSG( 7, 0)
 ExitApp
+
+ReplaceDigit000(Name:="Group1"){
+  Return "Group" . Format("{1:03i}",StrSplit(Name,," ",6)[6])
+}
 
 #Include %A_ScriptDir%\Library.ahk

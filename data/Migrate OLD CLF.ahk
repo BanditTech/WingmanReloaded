@@ -7,8 +7,8 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
   FileRead, JSONtext, LootFilter.json
   LootFilter := JSON.Load(JSONtext)
   If !LootFilter
-    LootFilter:=OrderedArray()
-
+    LootFilter:= {}
+  ReLootFilter := {} 
   For GKey, Gval in LootFilter
   {
     TempProp := []
@@ -34,21 +34,24 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
         }
       }
     }
-    LootFilter[GKey].Prop := TempProp
-    LootFilter[GKey].Affix := TempAffix
-    LootFilter[GKey].Remove("Stats")
-    LootFilter[GKey].Data := {"StashTab":Gval["StashTab"],"OrCount":Gval["OrCount"]}
-    LootFilter[GKey].Remove("StashTab")
-    LootFilter[GKey].Remove("OrCount")
+    nKey := ReplaceDigit000(GKey)
+    ReLootFilter[nKey] := {}
+    ReLootFilter[nKey].Prop := TempProp
+    ReLootFilter[nKey].Affix := TempAffix
+    ReLootFilter[nKey].Data := {"StashTab":Gval["StashTab"],"OrCount":Gval["OrCount"]}
   }
 
   ; FileAppend, JSONtext, LootFilter.Backup.json
   FileCopy, LootFilter.json, LootFilter.%A_Now%.json, 0
   FileDelete, LootFilter.json
-  FileAppend,% JSON.Dump(LootFilter,,1) , LootFilter.json
+  FileAppend,% JSON.Dump(ReLootFilter,,1) , LootFilter.json
 ExitApp 
 
 #Include, %A_ScriptDir%/Library.ahk
+
+ReplaceDigit000(Name:="Group1"){
+  Return "Group" . Format("{1:03i}",StrSplit(Name,," ",6)[6])
+}
 
 SwapKeyName(KeyName:=""){
   If (KeyName = "IncreasedEnergyShield")

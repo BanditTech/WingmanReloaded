@@ -6468,6 +6468,15 @@
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
+IsLinear(arr, i=0) {
+    
+    For k, v in arr {
+        If (++i != k)
+             Return 0
+    }
+   Return 1
+}
+
 /*** JSON v2.1.3 : JSON lib for AutoHotkey.
  * Lib: JSON.ahk
  *   JSON lib for AutoHotkey.
@@ -6546,7 +6555,7 @@
             ; sacrifice readability for minor(actually negligible) performance gain
               (ch == "{")
                 ? ( is_key := true
-                , value := OrderedArray()
+                , value := {}
                 , next := object_key_or_object_closing )
               ; ch == "["
                 : ( value := json_array ? new json_array : []
@@ -11514,7 +11523,7 @@
   Array_DeepClone(Array, Objs=0)
   {
     if !Objs
-      Objs := OrderedArray()
+      Objs := {}
     Obj := Array.Clone()
     Objs[&Array] := Obj ; Save this new array
     For Key, Val in Obj
