@@ -1,3 +1,55 @@
+## Version .11.05 - Master Branch - April/26/2020
+Assorted Bugfixes and improvements
+
+Merging Alpha changes to master branch
+
+This will be the final master push for this version increment
+
+Alpha branch will soon be updated with a New Item Parsing system
+If you would like to remain on a stable branch switch to master
+
+---
+
+## Version .11.0402 - Alpha Branch - April/16/2020
+Tooltips have been added to the Flask Settings menu: 
+* Quicksilver
+* Mana
+* Pop All Flasks
+* Attack Keys
+
+Ignore Slots submenu has been moved to Inventory Settings
+
+Fonts on the main menu headers have been changed to Use Arial
+
+Vendor before Stash will now respect all Stash Management options
+* Determining an items stash tab is now in its own function
+
+Debug for MapCrafting
+* Enabling Debug, will notify (a small box at bottom left on your screen) always when a map need to be reroll with stats before rerolling and after.
+
+---
+
+## Version .11.0401 - Alpha Branch - April/14/2020
+Customize the list of items for each crafting tier
+* Use the Custom Crafting List button to open the editor
+* Find the button at Inventory Settings > Stash Tabs > Crafting Tab
+* Select from the 4 tier lists to add or remove
+* Lets you add any base type in the game
+  * To search click the combo box, press tab then type the name
+  * Press enter or tab again once you find the Base Type
+  * Click "Add T# Base" to add the base type to that tier's list
+* To remove a Base Type, copy and paste or select the name in the combo box
+  * Click "Remove T# Base" to remove a matching name from the list
+* To reset a Tier list, simply click the "Reset T# Base" to go back to default
+* Save Configuration when you are finished
+
+Adjusted the range of Minimum Map Qualities options
+* Item Quantity range is now 1-99
+* Item Rarity range is now 1-54
+* Monster Pack Size range is now 1-45
+
+---
+
 ## Version .11.04 - Master Branch - April/12/2020
 Merging Alpha changes to master branch
 * There is a sizable list of improvements

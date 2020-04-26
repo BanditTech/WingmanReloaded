@@ -124,6 +124,27 @@
       BlockInput, MouseMoveOff
       return
     }
+
+    ArrayToString(Array)
+    {
+      for index, element in Array
+      {
+	      if(text == "")
+        {
+	        text = %element% 
+	      }
+        else
+	      {
+	        text = %text%|%element% 
+	      }
+      }
+      return text
+    }
+    StringToArray(text)
+    {
+      Array := StrSplit(text,"|")
+      return array
+    }
   /*** Wingman GUI Handlers
 
   */
@@ -182,17 +203,104 @@
       Else 
         IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
     Return
-
+    CustomCrafting:
+      Global CustomCraftingBase
+      textList1 := ""
+      For k, v in craftingBasesT1
+        textList1 .= (!textList1 ? "" : ", ") v
+      baseList := ""
+      textList2 := ""
+      For k, v in craftingBasesT2
+        textList2 .= (!textList2 ? "" : ", ") v
+      baseList := ""
+      textList3 := ""
+      For k, v in craftingBasesT3
+        textList3 .= (!textList3 ? "" : ", ") v
+      baseList := ""
+      textList4 := ""
+      For k, v in craftingBasesT4
+        textList4 .= (!textList4 ? "" : ", ") v
+      baseList := ""
+      For k, v in Bases
+      {
+        If ( !IndexOf("talisman",v["tags"]) 
+        && ( IndexOf("amulet",v["tags"]) 
+          || IndexOf("ring",v["tags"]) 
+          || IndexOf("belt",v["tags"]) 
+          || IndexOf("armour",v["tags"]) 
+          || IndexOf("weapon",v["tags"])
+          || IndexOf("jewel",v["tags"])
+          || IndexOf("abyss_jewel",v["tags"]) ) )
+        {
+          baseList .= v["name"]"|"
+        }
+      }
+      Gui, 1: Submit
+      Gui, CustomCrafting: New
+      Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
+      Gui, CustomCrafting: Add, Button, default gupdateEverything    x225 y180  w150 h23,   Save Configuration
+      Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w350, %baseList%
+      Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w400 h205 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
+      Gui, CustomCrafting: Tab, Tier 1
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w350 r6 , %textList1%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT1 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT1 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT1 Base
+      Gui, CustomCrafting: Tab, Tier 2
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier2 ReadOnly y+38 w350 r6 , %textList2%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT2 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT2 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT2 Base
+      Gui, CustomCrafting: Tab, Tier 3
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier3 ReadOnly y+38 w350 r6 , %textList3%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT3 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT3 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT3 Base
+      Gui, CustomCrafting: Tab, Tier 4
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier4 ReadOnly y+38 w350 r6 , %textList4%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT4 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT4 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT4 Base
+      Gui, CustomCrafting: Show, , Edit Crafting Tiers
+    Return
+    AddCustomCraftingBase:
+      Gui, Submit, nohide
+      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      If (CustomCraftingBase = "" || IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%))
+        Return
+      craftingBasesT%RxMatch1%.Push(CustomCraftingBase)
+      textList := ""
+      For k, v in craftingBasesT%RxMatch1%
+            textList .= (!textList ? "" : ", ") v
+      GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
+    Return
+    RemoveCustomCraftingBase:
+      Gui, Submit, nohide
+      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      If (CustomCraftingBase = "" || !IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%))
+        Return
+      For k, v in craftingBasesT%RxMatch1%
+        If (v = CustomCraftingBase)
+          craftingBasesT%RxMatch1%.Delete(k)
+      textList := ""
+      For k, v in craftingBasesT%RxMatch1%
+            textList .= (!textList ? "" : ", ") v
+      GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
+      Gui, Show
+    Return
+    ResetCustomCraftingBase:
+      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      craftingBasesT%RxMatch1% := DefaultcraftingBasesT%RxMatch1%.Clone()
+      textList := ""
+      For k, v in craftingBasesT%RxMatch1%
+            textList .= (!textList ? "" : ", ") v
+      GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
+    Return
   ; WR_Menu - New menu handling method
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     WR_Menu(Function:="",Var*)
     {
-      Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe
-        , DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC
-        ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu
-        , WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB
-        , WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe
-        , Obj, WR_Save_JSON_FillMetamorph
+      Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
 
       Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
         , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
@@ -218,7 +326,7 @@
 
         Gui, Inventory: Tab, Options
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,       Section    w170 h145    xm   ym+25,         ID/Vend/Stash Options
+          Gui, Inventory: Add, GroupBox,       Section    w170 h170    xm   ym+25,         ID/Vend/Stash Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify          Checked%YesIdentify%    xs+5  ys+18   , Identify Items?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash             Checked%YesStash%         y+8    , Deposit at stash?
@@ -226,6 +334,7 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv               Checked%YesDiv%            y+8   , Trade Divination?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst         Checked%YesSortFirst%     y+8    , Group Items before stashing?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid           Checked%YesMapUnid%          y+8 , Leave Map Un-ID?
+          Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
           Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
@@ -527,7 +636,7 @@
 
           ; Crafting Bases
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h85    section    x+15   ys,         Crafting Tab
+          Gui, Inventory: Add, GroupBox,             w180 h110    section    x+15   ys,         Crafting Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
@@ -539,29 +648,30 @@
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
           Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
           Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
+          Gui, Inventory: Add, Button, gCustomCrafting xs+15 y+5  w150,   Custom Crafting List
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+15,         Dump Tab
+          Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Priced Rares Tab
+          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
           Gui, Inventory: Add, Edit, x+5 yp-3 w40
           Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+15,         Ninja Priced Tab
+          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Ninja Priced Tab
           Gui, Inventory: Font,
           Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
           Gui, Inventory: Add, Edit, x+5 yp-3 w40
           Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h125    section    xs   y+15,         Map Options
+          Gui, Inventory: Add, GroupBox,             w180 h125    section    xs   y+10,         Map Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap% xs+5 ys+18 , Stash BlightedMaps?
           Gui, Inventory: Font,
@@ -690,16 +800,16 @@
             Gui, Inventory: Font, 
             Gui, Inventory: Font,s8
 
-            Gui, Inventory: Add, Edit, number limit3 xs+15 yp+18 w40
-            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+            Gui, Inventory: Add, Edit, number limit2 xs+15 yp+18 w40
+            Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
             Gui, Inventory: Add, Text,         x+10 yp+3        , Item Quantity
 
-            Gui, Inventory: Add, Edit, number limit3 xs+15 y+15 w40
-            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
+            Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
+            Gui, Inventory: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
             Gui, Inventory: Add, Text,         x+10 yp+3        , Item Rarity
 
-            Gui, Inventory: Add, Edit, number limit3 xs+15 y+15 w40
-            Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
+            Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
+            Gui, Inventory: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
             Gui, Inventory: Add, Text,         x+10 yp+3        , Monster Pack Size
 
             Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -3904,7 +4014,24 @@
       }
       Else If (ErrorLevel=0){
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
-        holder := JSON.Load(JSONtext)
+        Try {
+          holder := JSON.Load(JSONtext)
+        } Catch e {
+          Log("Something has gone wrong downloading " apiString " Ninja API data",e)
+          RetryDL := True
+        }
+        If RetryDL
+        {
+          Sleep, 1000
+          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+          Try {
+            holder := JSON.Load(JSONtext)
+          } Catch e {
+            Log("Something has gone all wrong downloading " apiString ,e)
+            Return
+          }
+        }
         for index, indexArr in holder.lines
         { ; This will extract the information and standardize the chaos value to one variable.
           grabName := (indexArr["currencyTypeName"] ? indexArr["currencyTypeName"] : False)
@@ -3937,7 +4064,24 @@
       }
       Else if (ErrorLevel=0){
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
-        holder := JSON.Load(JSONtext)
+        Try {
+          holder := JSON.Load(JSONtext)
+        } Catch e {
+          Log("Something has gone wrong downloading " apiString " Ninja API data",e)
+          RetryDL := True
+        }
+        If RetryDL
+        {
+          Sleep, 1000
+          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+          Try {
+            holder := JSON.Load(JSONtext)
+          } Catch e {
+            Log("Something has gone all wrong downloading " apiString ,e)
+            Return
+          }
+        }
         for index, indexArr in holder.lines
         {
           grabName := (indexArr["currencyTypeName"] ? indexArr["currencyTypeName"] : False)
@@ -3981,8 +4125,26 @@
         MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
       }
       Else if (ErrorLevel=0){
+        RetryDL := False
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
-        holder := JSON.Load(JSONtext)
+        Try {
+          holder := JSON.Load(JSONtext)
+        } Catch e {
+          Log("Something has gone wrong downloading " apiString " Ninja API data",e)
+          RetryDL := True
+        }
+        If RetryDL
+        {
+          Sleep, 1000
+          UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+          Try {
+            holder := JSON.Load(JSONtext)
+          } Catch e {
+            Log("Something has gone all wrong downloading " apiString ,e)
+            Return
+          }
+        }
         for index, indexArr in holder.lines
         {
           grabSparklineVal := (indexArr["sparkline"] ? indexArr["sparkline"] : False)
@@ -3993,16 +4155,27 @@
           grabLinks := (indexArr["links"] ? indexArr["links"] : False)
           grabVariant := (indexArr["variant"] ? indexArr["variant"] : False)
           grabMapTier := (indexArr["mapTier"] ? indexArr["mapTier"] : False)
+          grabLevelRequired := (indexArr["levelRequired"] ? indexArr["levelRequired"] : False)
+          grabGemLevel := (indexArr["gemLevel"] ? indexArr["gemLevel"] : False)
+          grabGemQuality := (indexArr["gemQuality"] ? indexArr["gemQuality"] : False)
           
           holder.lines[index] := {"name":grabName
             ,"chaosValue":grabChaosVal
             ,"exaltedValue":grabExaltVal
             ,"sparkline":grabSparklineVal
-            ,"lowConfidenceSparkline":grabLowSparklineVal
-            ,"links":grabLinks
-            ,"variant":grabVariant}
+            ,"lowConfidenceSparkline":grabLowSparklineVal}
+          If grabVariant
+            holder.lines[index]["variant"] := grabVariant
+          If grabLinks
+            holder.lines[index]["links"] := grabLinks
           If grabMapTier
             holder.lines[index]["mapTier"] := grabMapTier
+          If grabLevelRequired
+            holder.lines[index]["levelRequired"] := grabLevelRequired
+          If grabGemLevel
+            holder.lines[index]["gemLevel"] := grabGemLevel
+          If grabGemQuality
+            holder.lines[index]["gemQuality"] := grabGemQuality
         }
         Ninja[apiString] := holder.lines
       }
@@ -12650,7 +12823,7 @@
   ; MSDN:           Winsock Functions   -> http://msdn.microsoft.com/en-us/library/ms741394(v=vs.85).aspx
   ;                 IP Helper Functions -> hhttp://msdn.microsoft.com/en-us/library/aa366071(v=vs.85).aspx
   ; ======================================================================================================================
-  Ping4(Addr, ByRef Result := "", Timeout := 512) {
+  Ping4(Addr, ByRef Result := "", Timeout := 1024) {
     ; ICMP status codes -> http://msdn.microsoft.com/en-us/library/aa366053(v=vs.85).aspx
     ; WSA error codes  -> http://msdn.microsoft.com/en-us/library/ms740668(v=vs.85).aspx
     Static WSADATAsize := (2 * 2) + 257 + 129 + (2 * 2) + (A_PtrSize - 2) + A_PtrSize
@@ -12709,6 +12882,194 @@
     Return Result.RTTime
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+; Function: Create Matching ComboBox GUI
+;--------------------------------------------------------------------------------
+;================================================================================
+  ;#[3.3.2.1 CBMatchingGUI]
+  #IfWinActive, CBMatchingGUI
+  ;================================================================================
+  Enter::
+  NumpadEnter::
+  Tab::setCBMatchingGUILBChoice(CBMatchingGUI) ; pass GUI object reference
+
+  Up::
+  Down::ControlSend,, % A_ThisHotkey = "Up" ? "{Up}" : "{Down}", % "ahk_id "CBMatchingGUI.hLB
+
+  #If WinActive("Add or Edit a Group")
+  Tab::
+    Gui, submit, NoHide
+    ;...context specific stuff
+    KeyWait, Tab
+    GuiControlGet, OutputVarE, 2:Focus
+    GuiControlGet, varname, 2:Focusv
+    If (InStr(varname,"OrFlag") || InStr(varname,"Min") || InStr(varname,"Eval") || InStr(varname,"OrCount") || InStr(varname,"StashTab") || InStr(varname,"Export") || InStr(varname,"groupKey") || InStr(varname,"Click here to Finish and Return to CLF") || InStr(varname,"Remove") || InStr(varname,"Add new"))
+      return
+    OutputVar := StrReplace(OutputVarE, "Edit", "ComboBox")
+    ControlGet, hCBe, hwnd,,%OutputVarE%
+    ControlGet, hCB, hwnd,,%OutputVar%
+    if (!WinExist("ahk_id "hCBMatchesGui) && hCB && hCBe) {
+      CreateCBMatchingGUI(hCB, "Add or Edit a Group")
+    }
+  return
+
+  #If WinActive("Edit Crafting Tiers")
+  Tab::
+    Gui, submit, NoHide
+    ;...context specific stuff
+    KeyWait, Tab
+    GuiControlGet, OutputVarE, CustomCrafting:Focus
+    GuiControlGet, varname, CustomCrafting:Focusv
+    If ( InStr(OutputVarE,"SysTabControl") || InStr(OutputVarE,"Button") || !InStr(varname, "CustomCrafting") )
+      Return
+    OutputVar := StrReplace(OutputVarE, "Edit", "ComboBox")
+    ControlGet, hCBe, hwnd,,%OutputVarE%
+    ControlGet, hCB, hwnd,,%OutputVar%
+    if (!WinExist("ahk_id "hCBMatchesGui) && hCB && hCBe) {
+      CreateCBMatchingGUI(hCB, "Edit Crafting Tiers")
+    }
+  return
+
+  CreateCBMatchingGUI(hCB, parentWindowTitle) {
+  ;--------------------------------------------------------------------------------
+    Global CBMatchingGUI := {}
+    Gui CBMatchingGUI:New, -Caption -SysMenu -Resize +ToolWindow +AlwaysOnTop
+    Gui, +HWNDhCBMatchesGui +Delimiter`n
+    Gui, Margin, 0, 0
+    Gui, Font, s14 q5
+    
+    ; get Parent ComboBox info
+    WinGetPos, cX, cY, cW, cH, % "ahk_id " hCB
+    ControlGet, CBList, List,,, % "ahk_id " hCB
+    ; MsgBox % ErrorLevel
+    ControlGet, CBChoice, Choice,,, % "ahk_id " hCB
+    ; MsgBox % CBList ? "True" : "False"
+    ; set Gui controls with Parent ComboBox info
+    Gui, Add, Edit, % "+HWNDhEdit x0 y0 w"cW+200 " R1"
+    GuiControl,, %hEdit%, %CBChoice%
+    Gui, Add, ListBox, % "+HWNDhLB xp y+0 wp" " R20", % CBList
+    GuiControl, ChooseString, %hLB%, %CBChoice%
+    
+    CBMatchingGUI.hwnd := hCBMatchesGui
+    CBMatchingGUI.hEdit := hEdit
+    CBMatchingGUI.hLB := hLB
+    CBMatchingGUI.hParentCB := hCB
+    CBMatchingGUI.parentCBList := CBList
+    CBMatchingGUI.parentWindowTitle := parentWindowTitle
+    
+    gFunction := Func("CBMatching").Bind(CBMatchingGUI)
+    GuiControl, +g, %hEdit%, %gFunction%
+    
+    Gui, Show, % "x"cX-5 " y"cY-5 " ", % "CBMatchingGUI"
+    ControlFocus,, % "ahk_id "CBMatchingGUI.hEdit
+    SetTimer, DestroyCBMatchingGUI, 80
+  }
+
+  ;--------------------------------------------------------------------------------
+  CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
+  ;--------------------------------------------------------------------------------
+    GuiControlGet, userInput,, % CBMatchingGUI.hEdit
+    userInputArr := StrSplit(RTrim(userInput), " ")
+    choicesList := CBMatchingGUI.parentCBList
+    MatchCount := MatchList := MisMatchList := 0
+    matchArr := {}
+    ;--Find in list
+    for k, v in userInputArr
+    {
+      If (InStr(choicesList, v))
+        MatchList := True
+      else
+        MisMatchList := True
+    }
+    if (MatchList && !MisMatchList) {
+
+      Loop, Parse, choicesList, "`n"
+      {
+        MatchString := MisMatchString := 0
+        posArr := {}
+        for k, v in userInputArr
+        {
+          If (FoundPos := InStr(A_LoopField, v))
+          {
+            MatchString := True
+            posArr.Push(FoundPos)
+          }
+          else
+            MisMatchString := True
+        }
+        If (MatchString && !MisMatchString)
+        {
+          For k, v in posArr
+          {
+            If (v = 1 && A_Index = 1)
+              atStart := True
+          }
+          If !IndexOf(A_LoopField,matchArr)
+          {
+            If (atStart)
+              MatchesAtStart .= "`n"A_LoopField
+            else
+              MatchesAnywhere .= "`n"A_LoopField
+            MatchCount++
+            matchArr.Push(A_LoopField)
+          }
+        }
+        Else if (FoundPos := InStr(A_LoopField, userInput)) {
+          if (FoundPos = 1)
+            MatchesAtStart .= "`n"A_LoopField
+          else
+            MatchesAnywhere .= "`n"A_LoopField             
+          MatchCount++
+        } 
+      }
+      Matches := MatchesAtStart . MatchesAnywhere ; Ordered Match list
+      GuiControl,, % CBMatchingGUI.hLB, %Matches%
+      if (MatchCount = 1) {
+        UniqueMatch := Matches
+        GuiControl, ChooseString, % CBMatchingGUI.hLB, %UniqueMatch%
+      } 
+      else
+        GuiControl, Choose, % CBMatchingGUI.hLB, 1
+    } 
+    else
+      GuiControl,, % CBMatchingGUI.hLB, `n<! No Match !>
+  }
+
+  ;--------------------------------------------------------------------------------
+  DestroyCBMatchingGUI() {
+  ;--------------------------------------------------------------------------------
+    Global CBMatchingGUI ; global object created with the CBMatchingGUI
+    
+    if (!WinActive("Ahk_id " CBMatchingGUI.hwnd) and WinExist("ahk_id " CBMatchingGUI.hwnd)) {
+      Gui, % CBMatchingGUI.hwnd ":Destroy"
+      SetTimer, DestroyCBMatchingGUI, Delete
+    }
+  }
+
+  ;--------------------------------------------------------------------------------
+  setCBMatchingGUILBChoice(CBMatchingGUI) {
+  ;--------------------------------------------------------------------------------
+    ; get ListBox choice
+    GuiControlGet, LBMatchesSelectedChoice,, % CBMatchingGUI.hLB 
+        
+    ; set choice in parent ComboBox
+    Control, ChooseString, %LBMatchesSelectedChoice%,,% "ahk_id "CBMatchingGUI.hParentCB
+    ; set focus to Parent ComboBox, this will destroy matching GUI
+    ControlFocus,, % "ahk_id "CBMatchingGUI.hParentCB
+
+    ; execute next Tab_EnregFournisseursClients() step
+    ; parentWinTitle := CBMatchingGUI.parentWindowTitle
+    ; if (InStr(parentWinTitle, WinTitles.EnregFournisseurs)) {
+    ;   ; Tab_EnregFournisseursClients("Fournisseurs")
+    ; } 
+    ; else if (InStr(parentWinTitle, WinTitles.EnregClients)) {
+    ;   ; Tab_EnregFournisseursClients("Clients")
+    ; }
+  }
+;--------------------------------------------------------------------------------
+
+
 
 
 
