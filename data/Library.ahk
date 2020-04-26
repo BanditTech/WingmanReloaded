@@ -138,7 +138,7 @@
       ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
       For SectionKey, SVal in This.Data.Sections
       {
-        If (SVal ~= ":")
+        If (SVal ~= ":" && !(SVal ~= "grant:"))
         {
           If (SectionKey = 1 && SVal ~= "Rarity:")
             This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
@@ -151,6 +151,8 @@
             This.Data.Blocks.FlavorText := SVal
           Else If (SVal ~= "\(implicit\)$")
             This.Data.Blocks.Implicit := SVal
+          Else If (SVal ~= "Adds \d{1,} Passive Skills (enchant)")
+            This.Data.Blocks.ClusterImplicit := SVal
           Else If (SVal ~= "\(enchant\)$")
             This.Data.Blocks.Enchant := SVal
           Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
@@ -173,6 +175,7 @@
       This.MatchAffixes(This.Data.Blocks.Enchant)
       This.MatchAffixes(This.Data.Blocks.Implicit)
       This.MatchAffixes(This.Data.Blocks.Influence)
+      This.MatchAffixes(This.Data.Blocks.ClusterImplicit)
       This.MatchProperties()
       This.MatchPseudoAffix()
       This.MatchExtenalDB()
