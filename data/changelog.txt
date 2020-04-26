@@ -1,3 +1,15 @@
+## Version .11.05 - Master Branch - April/26/2020
+Assorted Bugfixes and improvements
+
+Merging Alpha changes to master branch
+
+This will be the final master push for this version increment
+
+Alpha branch will soon be updated with a New Item Parsing system
+If you would like to remain on a stable branch switch to master
+
+---
+
 ## Version .11.0402 - Alpha Branch - April/16/2020
 Tooltips have been added to the Flask Settings menu: 
 * Quicksilver
