@@ -128,7 +128,7 @@
   {
     __New(){
       This.Data := {}
-      This.Data.ClipContents := Clip_Contents ; Clipboard
+      This.Data.ClipContents := RegExReplace(Clip_Contents, "<<.*?>>|<.*?>") ; Clipboard
       This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
       This.Data.Blocks := {}
       This.Pseudo := OrderedArray()
@@ -14243,7 +14243,6 @@ IsLinear(arr, i=0) {
     EncodedItemData := StringToBase64UriEncoded(RawItemData, true, encodingError)
     
     postData   := "l=" UriEncode(selectedLeague) "&i=" EncodedItemData
-    ; postData   := "l=" UriEncode(TradeGlobals.Get("LeagueName")) "&i=" EncodedItemData
     payLength  := StrLen(postData)
     url     := "https://www.poeprices.info/api"
     
