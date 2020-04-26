@@ -11780,9 +11780,9 @@ Return
       {
         UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/version.html, %A_ScriptDir%\temp\version.html
         FileRead, newestVersion, %A_ScriptDir%\temp\version.html
-        If InStr(newestVersion, "404: Not Found")
+        If InStr(newestVersion, ":")
         {
-          Log("Error loading version number","404 error")
+          Log("Error loading version number",newestVersion)
           Return
         }
         If RegExMatch(newestVersion, "[.0-9]+", matchVersion)
