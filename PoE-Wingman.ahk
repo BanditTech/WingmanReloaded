@@ -2613,6 +2613,12 @@ Return
       {
         Send {%hotkeyCloseAllUI%}
         RandomSleep(45,90)
+        If OnMines
+        {
+          LeftClick(GameX + GameW//1.1, GameY + GameH//1.1)
+          Sleep, 800
+          LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+        }
         GuiStatus()
         SearchStash()
         StashRoutine()
@@ -2639,24 +2645,7 @@ Return
     }
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse away for Screenshot
-    ShooMouse(), GuiStatus(), ClearNotifications()
-    If (!OnStash)
-    {
-      Loop 2
-      {
-        Sleep, 50
-        If (OnStash)
-        Break
-      }
-      If (!OnStash)
-      {
-        RunningToggle:=False
-        Send, %hotkeyCloseAllUI%
-        SearchStash()
-        SetTimer, ItemSortCommand, -50
-        Exit
-      }
-    }
+    ShooMouse(), ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
     ; Main loop through inventory
     For C, GridX in InventoryGridX
     {
@@ -2771,8 +2760,12 @@ Return
       {
         For Tab, Tv in SortFirst
         {
+          If !RunningToggle
+          Break
           For Items, Iv in Tv
           {
+            If !RunningToggle
+            Break
             MoveStash(Tab)
             C := SortFirst[Tab][Items]["C"]
             R := SortFirst[Tab][Items]["R"]
@@ -2814,7 +2807,7 @@ Return
           }
         }
       }
-      If (OnStash && RunningToggle && YesStash && (StockPortal||StockWisdom))
+      If (RunningToggle && (StockPortal||StockWisdom))
         StockScrolls()
       ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
       If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
@@ -3155,11 +3148,13 @@ Return
           MouseGetPos mX, mY
           ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
           ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-          If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0))
+          If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,1))
           {
-            ScanPx := loot.1.1 + loot.1.3, ScanPy := loot.1.2 + loot.1.4, ScanId := loot.1.id
+            ; MARKER
+            loot := SortOK2(loot,mX,mY)
+            ScanPx := loot.1.x, ScanPy := loot.1.y, ScanId := loot.1.id
             , difX := Abs(ScanPx - mX), difY := Abs(ScanPy - mY)
-             , ScanPx += 10, ScanPy += 10
+            ;  , ScanPx += 10, ScanPy += 10
             If (Pressed := GetKeyState(hotkeyLootScan,"P"))
               GoSub LootScan_Click
             LV_LastClick := A_TickCount
