@@ -3148,13 +3148,10 @@ Return
           MouseGetPos mX, mY
           ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
           ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-          If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,1))
+          If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0))
           {
-            ; MARKER
-            loot := SortOK2(loot,mX,mY)
             ScanPx := loot.1.x, ScanPy := loot.1.y, ScanId := loot.1.id
-            , difX := Abs(ScanPx - mX), difY := Abs(ScanPy - mY)
-            ;  , ScanPx += 10, ScanPy += 10
+            ScanPx += 15, ScanPy += 15
             If (Pressed := GetKeyState(hotkeyLootScan,"P"))
               GoSub LootScan_Click
             LV_LastClick := A_TickCount
