@@ -3131,8 +3131,8 @@ Return
       Static GreenHex := 0x32DE24, QuestHex := 0x47E635, LV_LastClick := 0
       If (!ComboHex || Reset)
       {
-        ComboHex := Hex2FindText(LootColors)
-        ComboHex .= Hex2FindText(QuestHex,2)
+        ComboHex := Hex2FindText(LootColors,0,0,"",3,3)
+        ; ComboHex .= Hex2FindText(QuestHex,2)
         ; ComboHex .= ChestStr
         ComboHex := """" . ComboHex . """"
         If Reset
@@ -3148,7 +3148,7 @@ Return
           MouseGetPos mX, mY
           ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
           ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-          If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0))
+          If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,1))
           {
             ScanPx := loot.1.x, ScanPy := loot.1.y, ScanId := loot.1.id
             ScanPx += 15, ScanPy += 15
@@ -3160,8 +3160,8 @@ Return
           If OnMines
           {
             MouseGetPos mX, mY
-            ClampGameScreen(x := mX - AreaScale * 2.5, y := mY - AreaScale * 2.5)
-            ClampGameScreen(xx := mX + AreaScale * 2.5, yy := mY + AreaScale * 2.5)
+            ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
+            ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
             If (loot := FindText(x,y,xx,yy,0,0,DelveStr,0,0))
             {
               ScanPx := loot.1.1, ScanPy := loot.1.y
@@ -3174,8 +3174,8 @@ Return
             }
           }
           MouseGetPos mX, mY
-          ClampGameScreen(x := mX - AreaScale * 2.5, y := mY - AreaScale * 2.5)
-          ClampGameScreen(xx := mX + AreaScale * 2.5, yy := mY + AreaScale * 2.5)
+          ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
+          ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
           If (loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0))
           {
             ScanPx := loot.1.1, ScanPy := loot.1.y
