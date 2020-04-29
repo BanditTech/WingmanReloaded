@@ -2613,14 +2613,33 @@ Return
       {
         Send {%hotkeyCloseAllUI%}
         RandomSleep(45,90)
+        If OnHideout
+          Town := "Hideout"
+        Else If OnMines
+          Town := "Mines"
+        Else
+          Town := CompareLocation("Town")
+
         If OnMines
         {
           LeftClick(GameX + GameW//1.1, GameY + GameH//1.1)
           Sleep, 800
-          LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+          ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+        }
+        Else If (Town = "Oriath Docks")
+        {
+          LeftClick(GameX + GameW//1.1, GameY + GameH//3)
+          Sleep, 800
+          ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+        }
+        Else If (Town = "The Sarn Encampment")
+        {
+          LeftClick(GameX + GameW//1.1, GameY + GameH//3)
+          Sleep, 800
+          ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
         }
         GuiStatus()
-        SearchStash()
+        If SearchStash()
         StashRoutine()
       }
     }
@@ -2815,7 +2834,7 @@ Return
         Send {%hotkeyCloseAllUI%}
         RandomSleep(45,90)
         GuiStatus()
-        SearchVendor()
+        If SearchVendor()
         VendorRoutine()
       }
     }
@@ -2856,23 +2875,26 @@ Return
         Return
     }
     Sleep, 45*Latency
-    If (Town = "The Sarn Encampment")
+    If (FirstAutomationSetting == "Search Stash")
     {
-      LeftClick(GameX + GameW//6, GameY + GameH//1.5)
-      Sleep, 600
-      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-    }
-    Else If (Town = "Oriath Docks")
-    {
-      LeftClick(GameX + 5, GameY + GameH//2)
-      Sleep, 1200
-      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
-    }
-    Else If (Town = "Mines")
-    {
-      LeftClick(GameX + GameW//3, GameY + GameH//5)
-      Sleep, 800
-      LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+      If (Town = "The Sarn Encampment")
+      {
+        LeftClick(GameX + GameW//6, GameY + GameH//1.5)
+        Sleep, 600
+        ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+      }
+      Else If (Town = "Oriath Docks")
+      {
+        LeftClick(GameX + 5, GameY + GameH//2)
+        Sleep, 1200
+        ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+      }
+      Else If (Town = "Mines")
+      {
+        LeftClick(GameX + GameW//3, GameY + GameH//5)
+        Sleep, 800
+        ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+      }
     }
     if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
     {
@@ -3150,8 +3172,8 @@ Return
           ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
           If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,1))
           {
+            loot := SortOK2(loot,loot.1.x + 15,loot.1.y + 15)
             ScanPx := loot.1.x, ScanPy := loot.1.y, ScanId := loot.1.id
-            ScanPx += 15, ScanPy += 15
             If (Pressed := GetKeyState(hotkeyLootScan,"P"))
               GoSub LootScan_Click
             LV_LastClick := A_TickCount
