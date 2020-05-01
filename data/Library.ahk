@@ -244,6 +244,8 @@
           }
           If (This.Prop.ItemName ~= "^Superior ")
             This.Prop.ItemName := RegExReplace(This.Prop.ItemName, "^Superior ", "")
+          If (This.Prop.ItemBase ~= "^Superior ")
+            This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^Superior ", "")
           If (This.Prop.RarityMagic && This.Prop.ItemBase ~= " of .+")
               This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
           ;Start Parse

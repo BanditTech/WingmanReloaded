@@ -3182,8 +3182,8 @@ Return
           If OnMines
           {
             MouseGetPos mX, mY
-            ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
-            ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
+            ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
+            ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
             If (loot := FindText(x,y,xx,yy,0,0,DelveStr,0,0))
             {
               ScanPx := loot.1.1, ScanPy := loot.1.y
@@ -3195,16 +3195,19 @@ Return
               Return
             }
           }
-          MouseGetPos mX, mY
-          ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
-          ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-          If (loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0))
+          Else
           {
-            ScanPx := loot.1.1, ScanPy := loot.1.y
-            , ScanPy += 30
-            GoSub LootScan_Click
-            LV_LastClick := A_TickCount
-            Return
+            MouseGetPos mX, mY
+            ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
+            ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
+            If (loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0))
+            {
+              ScanPx := loot.1.1, ScanPy := loot.1.y
+              , ScanPy += 30
+              GoSub LootScan_Click
+              LV_LastClick := A_TickCount
+              Return
+            }
           }
         }
         Else
