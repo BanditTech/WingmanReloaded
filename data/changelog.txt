@@ -8,6 +8,9 @@ This will be the final master push for this version increment
 Alpha branch will soon be updated with a New Item Parsing system
 If you would like to remain on a stable branch switch to master
 
+Hotfix - Force update
+* Primary and secondary attack hotkeys no longer require a flask slot checked
+
 ---
 
 ## Version .11.0402 - Alpha Branch - April/16/2020
