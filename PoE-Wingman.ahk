@@ -7362,7 +7362,7 @@ Return
   MainAttackCommand()
   {
     MainAttackCommand:
-    If (MainAttackPressedActive||OnTown||OnHideout||TriggerMainAttack<=0)
+    If (MainAttackPressedActive||OnTown||OnHideout)
       Return
     MainAttackPressedActive := True
     Return  
@@ -7378,7 +7378,7 @@ Return
   SecondaryAttackCommand()
   {
     SecondaryAttackCommand:
-    If (SecondaryAttackPressedActive||OnTown||OnHideout||TriggerSecondaryAttack<=0)
+    If (SecondaryAttackPressedActive||OnTown||OnHideout)
       Return
     SecondaryAttackPressedActive := True
     Return  
