@@ -3170,10 +3170,9 @@ Return
           MouseGetPos mX, mY
           ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
           ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-          If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,1))
+          If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0))
           {
-            loot := SortOK2(loot,loot.1.x + 15,loot.1.y + 15)
-            ScanPx := loot.1.x, ScanPy := loot.1.y, ScanId := loot.1.id
+            ScanPx := loot.1.x + 10, ScanPy := loot.1.y + 10, ScanId := loot.1.id
             If (Pressed := GetKeyState(hotkeyLootScan,"P"))
               GoSub LootScan_Click
             LV_LastClick := A_TickCount
@@ -4159,7 +4158,7 @@ Return
   MainAttackCommand()
   {
     MainAttackCommand:
-    If (MainAttackPressedActive||OnTown||OnHideout||TriggerMainAttack<=0)
+    If (MainAttackPressedActive||OnTown||OnHideout)
       Return
     MainAttackPressedActive := True
     Return  
@@ -4175,7 +4174,7 @@ Return
   SecondaryAttackCommand()
   {
     SecondaryAttackCommand:
-    If (SecondaryAttackPressedActive||OnTown||OnHideout||TriggerSecondaryAttack<=0)
+    If (SecondaryAttackPressedActive||OnTown||OnHideout)
       Return
     SecondaryAttackPressedActive := True
     Return  
