@@ -1138,6 +1138,39 @@
        Log("data","pass", "LootFilter.ahk")
     }
   }
+  IfNotExist, %A_ScriptDir%\data\WR_Prop.json
+  {
+    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR_Prop.json, %A_ScriptDir%\data\WR_Prop.json
+    if ErrorLevel {
+       Log("data","uhoh", "WR_Prop.json")
+      MsgBox, Error ED02 : There was a problem downloading WR_Prop.json
+    }
+    Else if (ErrorLevel=0){
+       Log("data","pass", "WR_Prop.json")
+    }
+  }
+  IfNotExist, %A_ScriptDir%\data\WR_Pseudo.json
+  {
+    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR_Pseudo.json, %A_ScriptDir%\data\WR_Pseudo.json
+    if ErrorLevel {
+       Log("data","uhoh", "WR_Pseudo.json")
+      MsgBox, Error ED02 : There was a problem downloading WR_Pseudo.json
+    }
+    Else if (ErrorLevel=0){
+       Log("data","pass", "WR_Pseudo.json")
+    }
+  }
+  IfNotExist, %A_ScriptDir%\data\WR_Affix.json
+  {
+    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR_Affix.json, %A_ScriptDir%\data\WR_Affix.json
+    if ErrorLevel {
+       Log("data","uhoh", "WR_Affix.json")
+      MsgBox, Error ED02 : There was a problem downloading WR_Affix.json
+    }
+    Else if (ErrorLevel=0){
+       Log("data","pass", "WR_Affix.json")
+    }
+  }
   IfNotExist, %A_ScriptDir%\data\Migrate OLD CLF.ahk
   {
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Migrate OLD CLF.ahk, %A_ScriptDir%\data\Migrate OLD CLF.ahk
