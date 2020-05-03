@@ -1138,6 +1138,33 @@
        Log("data","pass", "LootFilter.ahk")
     }
   }
+  IfNotExist, %A_ScriptDir%\data\Migrate OLD CLF.ahk
+  {
+    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Migrate OLD CLF.ahk, %A_ScriptDir%\data\Migrate OLD CLF.ahk
+    if ErrorLevel {
+      Log("data","uhoh", "Migrate OLD CLF.ahk")
+      MsgBox, Error ED02 : There was a problem downloading Migrate OLD CLF.ahk
+    }
+    Else if (ErrorLevel=0){
+      Log("data","pass", "Migrate OLD CLF.ahk")
+      IfExist, %A_ScriptDir%\save\LootFilter.json
+      {
+        MsgBox, 4, Migrate OLD CLF detected, % ""
+        . "The script has detected you are updating from an older version`n"
+        . "The script has downloaded a migration tool to the DATA folder`n"
+        . "`n"
+        . "Click YES to migrate common CLF keys to their new format`n"
+        . "`n"
+        . "Click NO to Continue`n"
+        . "`n"
+        . "You will not receive this prompt again."
+        IfMsgBox Yes
+        {
+          Run, %A_ScriptDir%\data\Migrate OLD CLF.ahk
+        }
+      }
+    }
+  }
   IfNotExist, %A_ScriptDir%\data\Bases.json
   {
     UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json

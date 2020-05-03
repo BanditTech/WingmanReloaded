@@ -1,3 +1,26 @@
+## Version .11.0501 - Alpha Branch - May/03/2020
+Transition towards new Item Parsing system
+* old functions have been merged into ItemScan class
+* Item information is compiled into an object
+  * All associated information can be viewed in one place
+  * Ctrl+Shift+Alt+L will open a listing of all information of the current item
+* Item text blocks are now split apart before extracting their information
+  * This allows for much easier logic to determine which section is Affix, Implicit etc
+* Overall speed of the item parse is MUCH faster, excluding PoEPrices
+* Affix keys are now generated Dynamically
+  * Now the text on the item is what you can use as the Key
+  * Numbers and symbols have been replaced with # symbol
+    * This includes the + or % symbols
+    * This does not include - symbols
+  * Very specific keywords are skipped from converting the number to pound
+    * # second
+    * # (Intelligence|Strength|Dexterity)
+    * # Total (Intelligence|Strength|Dexterity)
+    * # Rampage
+    * # Poison
+
+---
+
 ## Version .11.05 - Master Branch - April/26/2020
 Assorted Bugfixes and improvements
 
