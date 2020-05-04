@@ -12,12 +12,12 @@ Transition towards new Item Parsing system
   * Numbers and symbols have been replaced with # symbol
     * This includes the + or % symbols
     * This does not include - symbols
-  * Very specific keywords are skipped from converting the number to pound
-    * # second
-    * # (Intelligence|Strength|Dexterity)
-    * # Total (Intelligence|Strength|Dexterity)
-    * # Rampage
-    * # Poison
+  * Very specific keywords are skipped from converting the number to #
+    * (Number) second
+    * (Number) (Intelligence|Strength|Dexterity)
+    * (Number) Total (Intelligence|Strength|Dexterity)
+    * (Number) Rampage
+    * (Number) Poison
 
 ---
 
