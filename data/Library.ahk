@@ -249,7 +249,7 @@
           If (This.Prop.RarityMagic && This.Prop.ItemBase ~= " of .+")
               This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
           ;Start Parse
-          If (InStr(This.Prop.ItemBase, "Map"))
+          If (This.Prop.ItemBase ~= " Map$")
           {
             This.Prop.IsMap := True
             This.Prop.ItemClass := "Maps"
@@ -265,7 +265,7 @@
               This.Prop.DefaultSendStash := "MapTab"
             }
           }
-          Else If (InStr(This.Prop.ItemBase, "Incubator"))
+          Else If (This.Prop.ItemBase ~= " Incubator$")
           {
             This.Prop.Incubator := True
             This.Prop.SpecialType := "Incubator"
@@ -342,14 +342,14 @@
             This.Prop.DefaultSendStash := "EssenceTab"
           }
           Else If (This.Prop.RarityCurrency 
-          && InStr(This.Prop.ItemBase, "Fossil"))
+          && (This.Prop.ItemBase ~= " Fossil$"))
           {
             This.Prop.Fossil := True
             This.Prop.SpecialType := "Fossil"
             This.Prop.DefaultSendStash := "FossilTab"
           }
           Else If (This.Prop.RarityCurrency 
-          && InStr(This.Prop.ItemBase, "Resonator"))
+          && (This.Prop.ItemBase ~= " Resonator$"))
           {
             This.Prop.Resonator := True
             This.Prop.SpecialType := "Resonator"
@@ -393,7 +393,7 @@
             This.Prop.Item_Width := 2
             This.Prop.Item_Height := 3
           }
-          Else If (InStr(This.Prop.ItemBase, "Oil"))
+          Else If (This.Prop.ItemBase ~= " Oil$")
           {
             If (This.Prop.RarityCurrency)
             {
