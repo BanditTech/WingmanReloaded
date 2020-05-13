@@ -10,5 +10,4 @@
 - [![OwnedCore](https://icongr.am/material/brain.svg?size=32&color=808080)OwnedCore Forum Thread](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/799983-wingmanreloaded-auto-flask-quit-mine-spell-loot-manage-filter-click.html#post4065545)
 - [![Discord](https://icongr.am/simple/discord.svg?size=32&color=808080)Join Discord Server](https://discord.gg/aja28F9)
 - **Donation**
-- [![Patreon](https://icongr.am/simple/patreon.svg?size=32&color=808080)Pledge on Patreon](https://patreon.com/BanditTech)
 - [![PayPal](https://icongr.am/simple/paypal.svg?size=32&color=808080)Donate with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ESDL6W59QR63A&item_name=Open+Source+Script+Building&currency_code=USD&source=url)
