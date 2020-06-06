@@ -356,7 +356,7 @@ UpdateGroupInfo:
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
   IKey := buttonstr3
-  LootFilter[GKey][IKey] := %A_GuiControl%
+  LootFilter[GKey]["Data"][IKey] := %A_GuiControl%
 Return
 
 UpdateStashDefault:

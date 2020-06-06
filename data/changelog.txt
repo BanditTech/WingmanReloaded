@@ -1,3 +1,8 @@
+## Version .11.0502 - Alpha Branch - May/06/2020
+Fix for selecting stash tab number within the CLF
+
+---
+
 ## Version .11.0501 - Alpha Branch - May/03/2020
 Transition towards new Item Parsing system
 * old functions have been merged into ItemScan class
