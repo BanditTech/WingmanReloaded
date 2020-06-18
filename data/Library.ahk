@@ -626,6 +626,11 @@
           {
             This.Prop.Map_Quality := RxMatch1
           }
+          Else
+          {
+            ;Set Quality to 0 if not in map prop (instead flagging as false)
+            This.Prop.Map_Quality := 0
+          }
         }
         ;End Prop Block Parser for Maps
 

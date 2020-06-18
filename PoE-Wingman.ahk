@@ -4779,9 +4779,9 @@ Return
               }
               If (Item.Prop.RarityNormal)
               {
-                If (Item.Prop.Quality <= 20)
+                If (Item.Prop.Map_Quality <= 20)
                 {
-                  numberChisel := (20 - Item.Prop.Quality)//5
+                  numberChisel := (20 - Item.Prop.Map_Quality)//5
                 }  
                 Else
                 {
