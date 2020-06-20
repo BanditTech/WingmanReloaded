@@ -108,7 +108,9 @@
     Global Bases
     Global num := "\+{0,1}(\d{1,}\.{0,1}\d{0,})\%{0,1}" 
     Global Date_now
-    Global GameActive, GamePID
+    Global GameActive
+    Global GamePID
+    Global QuestItems
     Global Active_executable := "TempName"
     ; List available database endpoints
     Global apiList := ["Currency"
