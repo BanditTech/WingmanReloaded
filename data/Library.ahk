@@ -516,7 +516,7 @@
 
         ;Start Prop Block Parser for General Items
           ;Every Item has a Item Level
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
+        If (This.Prop.Rarity)
         {
           If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
           {
