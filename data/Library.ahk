@@ -122,6 +122,16 @@
       BlockInput, MouseMoveOff
       return
     }
+     ; WisdomScroll - Identify Item at Coord
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
+    HasVal(haystack, needle) {
+    for index, value in haystack
+    {
+        if (value = needle)
+            return true
+    }
+    return false
+}
   ; ItemScan - Parse data from Cliboard Text into Prop and Affix values
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemScan
@@ -465,6 +475,23 @@
               This.Prop.ItemClass := "Beasts"
             }
           }
+        }
+        ;Crafting Bases Props
+        If(HasVal(craftingBasesT1,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "T1"
+        }
+        Else If(HasVal(craftingBasesT2,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "T2"
+        }
+        Else If(HasVal(craftingBasesT3,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "T3"
+        }
+        Else If(HasVal(craftingBasesT4,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "T4"
         }
         ;End NamePlate Parser
 
