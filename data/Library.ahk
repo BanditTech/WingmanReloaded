@@ -646,7 +646,13 @@
         ;End Prop Block Parser for Vaal Gems
 
         If (This.Affix["Veiled Prefix"] || This.Affix["Veiled Suffix"])
+        {
           This.Prop.Veiled := True
+        }
+        Else
+        {
+          This.Prop.Veiled := False
+        }
         ;Stack size for anything with it
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
         {
