@@ -659,6 +659,8 @@
           This.Prop.IsSeed := True
           This.Prop.SpecialType := "Seed"
         }
+        Else If (This.Data.Blocks.FlavorText ~= "in the Sacred Grove")
+          This.Prop.SpecialType := "Harvest Item"
 
         ;Get total count of affixes
         temp := 0
