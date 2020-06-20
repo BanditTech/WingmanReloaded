@@ -5193,7 +5193,7 @@ Return
       }
       Else If RadioNormalQuit
       {
-        ControlSend,, {Enter}/exit{Enter}, %GameStr%
+        Send, {Enter}/exit{Enter}
         If RelogOnQuit
         {
           RandomSleep(300,400)
