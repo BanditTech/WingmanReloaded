@@ -29,5 +29,7 @@
 	"(Pseudo) Total to Resistance",
 	"(Pseudo) Total to Single Resistance",
 	"(Pseudo) Total to Stats",
-	"(Pseudo) Total to Maximum Life"
+	"(Pseudo) Total to Maximum Life",
+	"(Pseudo) Total Elemental Damage to Attacks_Avg",
+	"(Pseudo) Total Elemental Damage to Spells_Avg"
 ]

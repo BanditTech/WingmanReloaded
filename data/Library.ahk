@@ -653,6 +653,12 @@
           This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
           This.Prop.Stack_Max := RxMatch2
         }
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Seed Tier: "rxNum,RxMatch))
+        {
+          This.Prop.Seed_Tier := RxMatch1
+          This.Prop.IsSeed := True
+          This.Prop.SpecialType := "Seed"
+        }
 
         ;Get total count of affixes
         temp := 0
@@ -938,6 +944,14 @@
           This.Pseudo["(Pseudo) Total to Maximum Life"] := aux
         }
         aux:=""
+        ; Total Flat Elemental Spell Damage
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Cold Damage to Spells_Avg","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Fire Damage to Spells_Avg","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Lightning Damage to Spells_Avg","Pseudo")
+        ; Total Flat Elemental Atack Dmg
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Cold Damage to Attacks_Avg","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Fire Damage to Attacks_Avg","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Lightning Damage to Attacks_Avg","Pseudo")
         ; Merge
         This.MergePseudoInAffixs()
       }
