@@ -1048,6 +1048,8 @@
                 This.Prop.Amulet := True
               If InStr(This.Prop.ItemClass, "Belt")
                 This.Prop.Belt := True
+              If (This.Prop.ItemClass = "Support Skill Gem")
+                This.Prop.Support := True
               Break
             }
           }
