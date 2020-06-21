@@ -1,3 +1,17 @@
+## Version .11.0503 - Alpha Branch - June/20/2020
+Several Bugfixes for changes on Alpha
+* Fix for chisel logic while crafting maps
+* Fix for map double affixes in affix count
+* Fix for Quest Item matching
+* Fix for Normal /exit method
+* Fix for veiled flag
+* Fix for crafting bases
+* Fix for Quality and Support flag on gems
+
+Added support for new harvest items
+* Detects seeds as new Seed Specialtype
+* All other harvest items are given generic Harvest Specialtype
+
 ## Version .11.0502 - Alpha Branch - June/06/2020
 Fix for selecting stash tab number within the CLF
 
