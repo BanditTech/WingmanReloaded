@@ -131,7 +131,7 @@
             return true
     }
     return false
-}
+    }
   ; ItemScan - Parse data from Cliboard Text into Prop and Affix values
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemScan
@@ -189,6 +189,7 @@
         This.MatchProperties()
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
+        This.FilterDoubleMods()
         ; This.FuckingSugoiFreeMate()
       }
       MatchProperties(){
@@ -2026,6 +2027,31 @@
           }
         }
         Return False
+      }
+      FilterDoubleMods(){
+        If (This.Affix["Rare Monsters each have a Nemesis Mod"] && This.Affix["# more Rare Monsters"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["Monsters' Action Speed cannot be modified to below base value"] && This.Affix["Monsters cannot be Taunted"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["Monsters cannot be Stunned"] && This.Affix["# more Monster Life"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["# increased Monster Movement Speed"] && This.Affix["# increased Monster Attack Speed"] && This.Affix["# increased Monster Cast Speed"])
+          This.Prop.AffixCount -= 2
+        If (This.Affix["Unique Boss deals # increased Damage"] && This.Affix["Unique Boss has # increased Attack and Cast Speed"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["Unique Boss has # increased Life"] && This.Affix["Unique Boss has # increased Area of Effect"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["# Monster Chaos Resistance"] && This.Affix["# Monster Elemental Resistance"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["Magic Monster Packs each have a Bloodline Mod"] && This.Affix["# more Magic Monsters"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["Monsters have # increased Critical Strike Chance"] && This.Affix["# to Monster Critical Strike Multiplier"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["Players have # reduced Chance to Block"] && This.Affix["Players have # less Armour"])
+          This.Prop.AffixCount -= 1
+        If (This.Affix["Player chance to Dodge is Unlucky"] && This.Affix["Monsters have # increased Accuracy Rating"])
+          This.Prop.AffixCount -= 1
+        Return
       }
     }
   ; ArrayToString - Make a string from array using | as delimiters
