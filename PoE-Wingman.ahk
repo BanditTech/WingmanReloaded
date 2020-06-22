@@ -306,6 +306,7 @@
       YesEnableAutomation = Enable Automation Routines
       FirstAutomationSetting = Start Automation selected option
       YesEnableNextAutomation = Enable next automation after the first selected
+      YesEnableSeedAutomation = Enable seed automation to find and deposit at Seed Stockpile
       YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
       YesAutoSkillUp = Enable this to Automatically level up skill gems
       YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
@@ -336,6 +337,7 @@
       LaunchHelp = Opens the AutoHotkey List of Keys
       YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
       YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
+      YesSeedStockpile = This option is for the Seed Stockpile logic`rEnable to stash Seeds and Equipment when the Seed Stockpile panel is open
       YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
       YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
@@ -540,7 +542,7 @@
       , StackRelease_Enable := False
 
   ; Automation Settings
-    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableAutoSellConfirmation
+    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableSeedAutomation,YesEnableAutoSellConfirmation
 
   ; General
     Global BranchName := "master"
@@ -565,6 +567,7 @@
     Global LootVacuum := 1
     Global YesVendor := 1
     Global YesStash := 1
+    Global YesSeedStockpile := 1
     Global YesIdentify := 1
     Global YesDiv := 1
     Global YesMapUnid := 1
@@ -2444,6 +2447,8 @@ Return
         StashRoutine()
       Else If (OnVendor && YesVendor)
         VendorRoutine()
+      Else If (OnStockPile && YesSeedStockpile)
+        StockpileRoutine()
       Else If (OnInventory&&YesIdentify)
         IdentifyRoutine()
     }
@@ -2733,7 +2738,11 @@ Return
     }
     Return
   }
-    
+  StockpileRoutine(){
+    MsgBox, Contratulations
+    Return
+  }
+
   ; StashRoutine - Does stash functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StashRoutine()
@@ -2926,7 +2935,7 @@ Return
       {
         StockScrolls()
       }
-      If (YesEnableAutomation)
+      If (YesEnableSeedAutomation)
       {
       Send {%hotkeyCloseAllUI%}
       RandomSleep(45,90)
@@ -5563,6 +5572,7 @@ Return
       IniRead, LootVacuum, %A_ScriptDir%\save\Settings.ini, General, LootVacuum, 0
       IniRead, YesVendor, %A_ScriptDir%\save\Settings.ini, General, YesVendor, 1
       IniRead, YesStash, %A_ScriptDir%\save\Settings.ini, General, YesStash, 1
+      IniRead, YesSeedStockpile, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockpile, 1
       IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
@@ -5643,6 +5653,7 @@ Return
       IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
       IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, %A_Space%
       IniRead, YesEnableNextAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation, 0
+      IniRead, YesEnableSeedAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableSeedAutomation, 0
       IniRead, YesEnableAutoSellConfirmation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation, 0
       
       ;Stash Tab Management
@@ -6596,6 +6607,7 @@ Return
       IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
+      IniWrite, %YesSeedStockpile%, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockpile
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
@@ -10080,6 +10092,7 @@ Return
       IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
+      IniWrite, %YesSeedStockpile%, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockpile
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
@@ -10119,6 +10132,7 @@ Return
       IniWrite, %YesEnableAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation
       IniWrite, %FirstAutomationSetting%, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting
       IniWrite, %YesEnableNextAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation
+      IniWrite, %YesEnableSeedAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableSeedAutomation
       IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
       
       ;Automation Metamorph Settings
