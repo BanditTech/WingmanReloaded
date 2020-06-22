@@ -1858,8 +1858,12 @@
           sendstash := StashTabCrafting
         Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
           sendstash := StashTabPredictive
-        Else If ((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic))))
+        Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
+          || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
+          && !This.Prop.SpecialType
           sendstash := StashTabDump
+        Else If (This.Prop.SpecialType)
+          Return -1
         Else
           Return False
         Return sendstash
