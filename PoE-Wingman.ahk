@@ -3220,6 +3220,10 @@ Return
         Sleep, 210*Latency
       }
     }
+    If(Tab == StashTabMap)
+    {
+      Sleep, 500*Latency
+    }
     return
   }
   ; StockScrolls - Restock scrolls that have more than 10 missing
