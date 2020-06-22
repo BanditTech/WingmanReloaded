@@ -2111,7 +2111,7 @@
 
         Gui, Inventory: Tab, Options
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,       Section    w170 h190    xm   ym+25,         ID/Vend/Stash/CLF Options
+          Gui, Inventory: Add, GroupBox,       Section    w170 h220    xm   ym+25,         ID/Vend/Stash/CLF Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
@@ -2199,7 +2199,7 @@
           ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
           Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h130    section    xm+370   ys,         Automation
+          Gui, Inventory: Add, GroupBox,             w180 h145    section    xm+370   ys,         Automation
           AutomationList := "Search Stash|Search Vendor"
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
