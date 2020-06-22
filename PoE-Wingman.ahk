@@ -489,6 +489,7 @@
       , 1440_HealthBarStr := "|<1440 Overhead Health Bar>0x190D11@0.99$138.TzzzzzzzzzzzzzzzzzzzzzyU"
       , OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
       , 1080_SellItemsStr := "|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
+      , 1080_SeedStockPileStr :="|<1080 SeedStockPile>*106$100.kzzzzzzwDzzzzzzzy1zzzzzzUTzzzzzzznbzzzzzwtzznznvvvDs70s3znw0Q3w3740TnSPn3z7qBb7X6QlUTDtzCDw7swSQStbaUwzbwwTsDXnsnzYyPVkS3nlzsSDDXDy7tj73sTD7zlswyAzsDUyAzbwwzzXXnslzYyDtnyTnnzySD7b7yNtn7DtzCTwlsyASCNX70w3UQ3zkDXw7w3b4TDzzzzzznzzxzwzzzs"
       , 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
       , 1080_SkillUpStr := "|<1080 Skill Up>0xAA6204@0.66$9.sz7ss0000sz7sw"
       , 1080_XButtonStr := "|<1080 X Button>*43$12.0307sDwSDwDs7k7sDwSSwTsDk7U"
@@ -523,7 +524,7 @@
       , 1080_DelveStr .= "|<1080 Fossil>*100$50.0Tzzzzzzs3zzzzzzyQyTtyTDDby1s61XXtz6CNaQwyTXlbtzDDUNwMyDnnsCT63UwwyTblsS7DDbswT7lnntyDDsyAwyTVXiPbDCbw1s61nkDzlz7lzzy"
       , 1080_DelveStr .= "|<1080 Resona>*100$62.0Tzzzzzzzzk3zzzzzzzzyQTznzDvyzjb60kD0wT7ltlnAnX7XlsSQQzDlssQy7bDDlwyC3D8s7kQ7DXUHmC1w7knst0s3aDDyASCMC0NVnzl7bb3b6QQzQkltsnsXX0kC0yTAyDzzyDszzzzy"
   ; FindText strings from INI
-    Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
+    Global StashStr, SeedStockPileStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
     , XButtonStr
     , VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
     , VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
@@ -588,6 +589,7 @@
     Global OnLeft := False
     Global OnDelveChart := False
     Global OnMetamorph := False
+    Global OnStockPile := False
     Global RescaleRan := False
     Global ToggleExist := False
     Global YesOHB := True
@@ -803,6 +805,7 @@
     global varOnLeft:=0xB58C4D
     global varOnDelveChart:=0xB58C4D
     global varOnMetamorph:=0xE06718
+    global varOnStockPile:=0x1F2732
     Global varOnDetonate := 0x5D4661
 
   ; Life, ES, Mana Colors
@@ -2196,7 +2199,9 @@
     global vY_OnDelveChart:=89
     global vX_OnMetamorph:=785
     global vY_OnMetamorph:=204
-    
+    ;638, 600
+    global vX_OnStockPile:=638
+    global vY_OnStockPile:=600
     global vX_Life:=95
     global vY_Life20:=1034
     global vY_Life30:=1014
@@ -2451,7 +2456,28 @@ Return
     Return
   }
 
-  ; Search Stash Routine
+  ; Search Seed StockPile
+;Client:	638, 600 (recommended)
+;Color:	1F2732 (Red=1F Green=27 Blue=32)
+  SearchStockPile()
+  {
+    If (FindStock:=FindText(GameX,GameY,GameW,GameH,0,0,SeedStockPileStr))
+    {
+      LeftClick(FindStock.1.1 + 5,FindStock.1.2 + 5)
+      Loop, 66
+      {
+        Sleep, 50
+        GuiStatus()
+        If OnStockPile
+        {
+          Return True
+        }
+          
+      }
+    }
+    Return False
+  }
+    ; Search Stash Routine
   SearchStash()
   {
     If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
@@ -2724,6 +2750,8 @@ Return
     {
       SortFirst[A_Index] := {}
     }
+    SeedC := {}
+    SeedR := {}
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse away for Screenshot
     ShooMouse(), ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
@@ -2781,6 +2809,12 @@ Return
             Continue
           Else If (sendstash:=Item.MatchLootFilter())
             Sleep, -1
+          Else If (Item.Prop.SpecialType= "Harvest Item")
+            {
+              SeedC.Push(C)
+              SeedR.Push(R)
+              Continue
+            }
           Else If ( Item.Prop.IsMap && YesSkipMaps
           && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
           && ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
@@ -2889,7 +2923,26 @@ Return
         }
       }
       If (RunningToggle && (StockPortal||StockWisdom))
+      {
         StockScrolls()
+      }
+      If (YesEnableAutomation)
+      {
+      Send {%hotkeyCloseAllUI%}
+      RandomSleep(45,90)
+      GuiStatus()
+      If (SearchStockPile()){
+        RandomSleep(45,90)
+        For k, v in SeedC
+        {
+            GridX := InventoryGridX[v]
+            GridY := InventoryGridY[ObjRawGet(SeedR, k)]
+            Grid := RandClick(GridX, GridY)
+            CtrlClick(Grid.X,Grid.Y)
+            RandomSleep(45,45)
+        }
+      }
+      }
       ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
       If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
@@ -3176,6 +3229,12 @@ Return
       If StockWisdom{
         ClipItem(WisdomScrollX, WisdomScrollY)
         dif := (40 - Item.Prop.Stack_Size)
+        If(Item.Prop.ItemBase != "Scroll of Wisdom")
+        {
+          CtrlClick(WisdomScrollX, WisdomScrollY)
+          Sleep, 45*Latency
+          dif := 40
+        }
         If (dif>10)
         {
           MoveStash(StashTabCurrency)
@@ -3192,6 +3251,12 @@ Return
       If StockPortal{
         ClipItem(PortalScrollX, PortalScrollY)
         dif := (40 - Item.Prop.Stack_Size)
+        If(Item.Prop.ItemBase != "Portal Scroll")
+        {
+          CtrlClick(PortalScrollX, PortalScrollY)
+          Sleep, 45*Latency
+          dif := 40
+        }
         If (dif>10)
         {
           MoveStash(StashTabCurrency)
@@ -5682,6 +5747,9 @@ Return
       IniRead, StashStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr, %1080_StashStr%
       If StashStr
         StashStr := """" . StashStr . """"
+      IniRead, SeedStockPileStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, SeedStockPileStr, %1080_SeedStockPileStr%
+      If SeedStockPileStr
+        SeedStockPileStr := """" . SeedStockPileStr . """"
       IniRead, SkillUpStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr, %1080_SkillUpStr%
       If SkillUpStr
         SkillUpStr := """" . SkillUpStr . """"
@@ -5751,6 +5819,7 @@ Return
       IniRead, varOnLeft, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
       IniRead, varOnDelveChart, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
       IniRead, varOnMetamorph, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph, 0xE06718
+      IniRead, varOnStockPile, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStockPile, 0x1F2732
       IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
 
       ;Life Colors
@@ -6574,6 +6643,7 @@ Return
       IniWrite, %VendorStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr
       IniWrite, %SellItemsStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SellItemsStr
       IniWrite, %StashStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr
+      IniWrite, %SeedStockPileStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SeedStockPileStr
       IniWrite, %SkillUpStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr
 
       ;~ Hotkeys 

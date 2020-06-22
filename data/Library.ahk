@@ -691,9 +691,8 @@
         {
           This.Prop.Seed_Tier := RxMatch1
           This.Prop.IsSeed := True
-          This.Prop.SpecialType := "Seed"
         }
-        Else If (This.Data.Blocks.FlavorText ~= "in the Sacred Grove")
+        If (This.Data.Blocks.FlavorText ~= "in the Sacred Grove")
           This.Prop.SpecialType := "Harvest Item"
 
         ;Get total count of affixes
@@ -3391,11 +3390,12 @@
     POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
     POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
     POnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
+    POnStockPile := ScreenShot_GetColor(vX_OnStockPile,vY_OnStockPile), OnStockPile := (POnStockPile=varOnStockPile?True:False)
     If OnMines
     POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
     Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
-    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph))
+    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile))
   }
   ; PanelManager - This class manages every gamestate within one place
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3948,6 +3948,9 @@
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / (1920 / 785))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        ;Status Check OnStockPile 600
+        global vX_OnStockPile:=GameX + Round(GameW / (1920 / 638))
+        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (1920 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
