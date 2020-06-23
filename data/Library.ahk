@@ -190,6 +190,7 @@
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
         This.FilterDoubleMods()
+        This.MatchCraftingBases()
         ; This.FuckingSugoiFreeMate()
       }
       MatchProperties(){
@@ -476,23 +477,6 @@
               This.Prop.ItemClass := "Beasts"
             }
           }
-        }
-        ;Crafting Bases Props
-        If(HasVal(craftingBasesT1,This.Prop.ItemBase))
-        {
-          This.Prop.CraftingBase := "T1"
-        }
-        Else If(HasVal(craftingBasesT2,This.Prop.ItemBase))
-        {
-          This.Prop.CraftingBase := "T2"
-        }
-        Else If(HasVal(craftingBasesT3,This.Prop.ItemBase))
-        {
-          This.Prop.CraftingBase := "T3"
-        }
-        Else If(HasVal(craftingBasesT4,This.Prop.ItemBase))
-        {
-          This.Prop.CraftingBase := "T4"
         }
         ;End NamePlate Parser
 
@@ -1789,7 +1773,7 @@
       MatchStashManagement(){
         If (This.Prop.RarityCurrency&&This.Prop.SpecialType=""&&StashTabYesCurrency)
           sendstash := StashTabCurrency
-        Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price )
+        Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap)
           sendstash := StashTabNinjaPrice
         Else If (This.Prop.Incubator)
           Return -1
@@ -2055,6 +2039,24 @@
         If (This.Affix["Player chance to Dodge is Unlucky"] && This.Affix["Monsters have # increased Accuracy Rating"])
           This.Prop.AffixCount -= 1
         Return
+      }
+      MatchCraftingBases(){
+        If(HasVal(craftingBasesT1,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "T1"
+        }
+        Else If(HasVal(craftingBasesT2,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "T2"
+        }
+        Else If(HasVal(craftingBasesT3,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "T3"
+        }
+        Else If(HasVal(craftingBasesT4,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "T4"
+        }
       }
     }
   ; ArrayToString - Make a string from array using | as delimiters

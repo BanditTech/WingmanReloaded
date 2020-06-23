@@ -2448,7 +2448,7 @@ Return
       Else If (OnVendor && YesVendor)
         VendorRoutine()
       Else If (OnStockPile && YesSeedStockpile)
-        StockpileRoutine()
+        StockPileRoutine()
       Else If (OnInventory&&YesIdentify)
         IdentifyRoutine()
     }
@@ -2738,7 +2738,7 @@ Return
     }
     Return
   }
-  StockpileRoutine(){
+  StockPileRoutine(){
     MsgBox, Contratulations
     Return
   }
