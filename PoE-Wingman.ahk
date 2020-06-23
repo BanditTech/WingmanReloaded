@@ -2738,8 +2738,49 @@ Return
     }
     Return
   }
+  ; StockpileRoutine - Deposit seeds and equipment at the Seed Stockpile
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StockpileRoutine(){
-    MsgBox, Contratulations
+    BlackList := Array_DeepClone(IgnoredSlot)
+    ; Move mouse out of the way to grab screenshot
+    ShooMouse(), GuiStatus(), ClearNotifications()
+    If !OnStockPile
+    {
+      Return
+    }
+    ; Main loop through inventory
+    For C, GridX in InventoryGridX
+    {
+      If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+        Break
+      For R, GridY in InventoryGridY
+      {
+        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+          Break
+        If BlackList[C][R]
+          Continue
+        Grid := RandClick(GridX, GridY)
+        If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+        {   
+          Ding(500,11,"Hit Scroll")
+          Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+        } 
+        PointColor := ScreenShot_GetColor(GridX,GridY)
+        If indexOf(PointColor, varEmptyInvSlotColor) {
+          ;Seems to be an empty slot, no need to clip item info
+          Continue
+        }
+        ClipItem(Grid.X,Grid.Y)
+        addToBlacklist(C, R)
+        If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
+          ShooMouse(),GuiStatus(),Continue
+        If (Item.Prop.SpecialType = "Harvest Item")
+        {
+          CtrlClick(Grid.X,Grid.Y)
+          Sleep, 45 + (15*ClickLatency)
+        }
+      }
+    }
     Return
   }
 
