@@ -6429,7 +6429,7 @@ Return
 
       ;settings for the Ninja Database
       IniRead, LastDatabaseParseDate, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate, 20190913
-      IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Delirium
+      IniRead, selectedLeague, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague, Harvest
       IniRead, UpdateDatabaseInterval, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval, 2
       IniRead, YesNinjaDatabase, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase, 1
       IniRead, ForceMatch6Link, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link, 0
