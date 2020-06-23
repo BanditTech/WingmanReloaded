@@ -2863,6 +2863,7 @@ Return
             {
               SeedC.Push(C)
               SeedR.Push(R)
+              ++HarvestCount
               Continue
             }
           Else If ( Item.Prop.IsMap && YesSkipMaps
@@ -2977,7 +2978,7 @@ Return
       {
         StockScrolls()
       }
-      If (YesEnableSeedAutomation)
+      If (YesEnableSeedAutomation&&HarvestCount)
       {
       Send {%hotkeyCloseAllUI%}
       RandomSleep(45,90)
