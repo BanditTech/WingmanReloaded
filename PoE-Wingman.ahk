@@ -2873,9 +2873,10 @@ Return
             || (Item.Prop.RarityUnique && YesSkipMaps_unique)) 
           && (Item.Prop.Map_Tier >= YesSkipMaps_tier))
             Continue
-          Else If (sendstash:=Item.MatchStashManagement())
+          Else If (sendstash:=Item.MatchStashManagement()){
             If (sendstash = -1)
               Continue
+          }
           Else
             ++Unstashed
           If (sendstash > 0)
