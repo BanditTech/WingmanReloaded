@@ -2738,10 +2738,6 @@ Return
     }
     Return
   }
-<<<<<<< HEAD
-  StockPileRoutine(){
-    MsgBox, Contratulations
-=======
   ; StockpileRoutine - Deposit seeds and equipment at the Seed Stockpile
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StockpileRoutine(){
@@ -2785,7 +2781,6 @@ Return
         }
       }
     }
->>>>>>> 5ef5d5a400bc3381cfd707555893cda1cb0d51e1
     Return
   }
 
