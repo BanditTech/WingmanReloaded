@@ -174,10 +174,7 @@
       , "Crimson Jewel"
       , "Searching Eye Jewel"
       , "Murderous Eye Jewel"
-      , "Ghastly Eye Jewel"
-      , "Large Cluster Jewel"
-      , "Medium Cluster Jewel"
-      , "Small Cluster Jewel"]
+      , "Ghastly Eye Jewel"]
     Global craftingBasesT1 := []
     Global craftingBasesT2 := []
     Global craftingBasesT3 := []
@@ -342,7 +339,6 @@
       YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
       YesCLFIgnoreImplicit = This option disable implicits being merged with Pseudos.`rEx: This will ignore implicits in base like two-stone boots (elemental resists)`ror two-stone rings (elemental resists) or wand (spell damage)
-      YesStashBlightedMap = This option enable auto-stash for blighted maps in your map stash`rPOE Map Stash don't highlight Blighted Maps yet!
       YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
       YesStashT1 = Enable to stash Tier 1 crafting bases
       YesStashT2 = Enable to stash Tier 2 crafting bases
@@ -572,7 +568,6 @@
     Global YesDiv := 1
     Global YesMapUnid := 1
     Global YesCLFIgnoreImplicit := 0
-    Global YesStashBlightedMap := 1
     Global YesStashKeys := 1
     Global YesPopAllExtraKeys := 1
     Global OnHideout := False
@@ -678,6 +673,8 @@
     Global StashTabFragment := 1
     Global StashTabEssence := 1
     Global StashTabOil := 1
+    Global StashTabBlightedMap := 1
+    Global StashTabDelirium := 1
     Global StashTabFossil := 1
     Global StashTabResonator := 1
     Global StashTabCrafting := 1
@@ -703,6 +700,8 @@
     Global StashTabYesUniqueRing := 1
     Global StashTabYesUniqueDump := 1
     Global StashTabYesInfluencedItem := 1
+    Global StashTabYesBlightedMap := 1
+    Global StashTabYesDelirium := 1
     Global StashTabYesFragment := 1
     Global StashTabYesEssence := 1
     Global StashTabYesOil := 1
@@ -5620,7 +5619,6 @@ Return
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
       IniRead, YesCLFIgnoreImplicit, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit, 0 
-      IniRead, YesStashBlightedMap, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap, 1
       IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
       IniRead, Latency, %A_ScriptDir%\save\Settings.ini, General, Latency, 1
       IniRead, ClickLatency, %A_ScriptDir%\save\Settings.ini, General, ClickLatency, 0
@@ -5714,6 +5712,8 @@ Return
       IniRead, StashTabFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment, 1
       IniRead, StashTabEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence, 1
       IniRead, StashTabOil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil, 1
+      IniRead, StashTabBlightedMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlightedMap, 1
+      IniRead, StashTabDelirium, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium, 1
       IniRead, StashTabFossil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil, 1
       IniRead, StashTabResonator, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator, 1
       IniRead, StashTabCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting, 1
@@ -5740,6 +5740,8 @@ Return
       IniRead, StashTabYesFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment, 1
       IniRead, StashTabYesEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence, 1
       IniRead, StashTabYesOil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil, 1
+      IniRead, StashTabYesBlightedMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlightedMap, 1
+      IniRead, StashTabYesDelirium, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium, 1
       IniRead, StashTabYesFossil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFossil, 1
       IniRead, StashTabYesResonator, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesResonator, 1
       IniRead, StashTabYesCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting, 1
@@ -6655,7 +6657,6 @@ Return
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
       IniWrite, %YesCLFIgnoreImplicit%, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit
-      IniWrite, %YesStashBlightedMap%, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
       IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
       IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
@@ -6939,6 +6940,8 @@ Return
       IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
       IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
       IniWrite, %StashTabOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil
+      IniWrite, %StashTabBlightedMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlightedMap
+      IniWrite, %StashTabDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium
       IniWrite, %StashTabYesOrgan%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOrgan
       IniWrite, %StashTabFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil
       IniWrite, %StashTabResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator
@@ -6959,6 +6962,8 @@ Return
       IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
       IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
       IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
+      IniWrite, %StashTabYesBlightedMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlightedMap
+      IniWrite, %StashTabYesDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium
       IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
       IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
       IniWrite, %StashTabYesOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil
@@ -10075,6 +10080,8 @@ Return
       IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
       IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
       IniWrite, %StashTabOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil
+      IniWrite, %StashTabBlightedMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlightedMap
+      IniWrite, %StashTabDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium
       IniWrite, %StashTabOrgan%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOrgan
       IniWrite, %StashTabFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil
       IniWrite, %StashTabResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator
@@ -10093,6 +10100,8 @@ Return
       IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
       IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
       IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
+      IniWrite, %StashTabYesBlightedMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlightedMap
+      IniWrite, %StashTabYesDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium
       IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
       IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
       IniWrite, %StashTabYesOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil
@@ -10156,7 +10165,6 @@ Return
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
-      IniWrite, %YesStashBlightedMap%, %A_ScriptDir%\save\Settings.ini, General, YesStashBlightedMap
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
       IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
       IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency

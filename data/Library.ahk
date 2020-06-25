@@ -292,6 +292,16 @@
             This.Prop.SpecialType := "Timeless Splinter"
             This.Prop.DefaultSendStash := "FragmentsTab"
           }
+          Else If (InStr(This.Prop.ItemBase, "Simulacrum"))
+          {
+            This.Prop.DeliriumSimulacrum := True
+            This.Prop.SpecialType := "Delirium"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Delirium Orb"))
+          {
+            This.Prop.DeliriumOrb := True
+            This.Prop.SpecialType := "Delirium"
+          }
           Else If (InStr(This.Prop.ItemBase, "Splinter of"))
           {
             This.Prop.BreachSplinter := True
@@ -581,6 +591,19 @@
           {
             This.Prop.IsWeapon := True
             This.Prop.Weapon_APS := RxMatch1
+            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Two Handed",RxMatch)){
+              This.Prop.IsTwoHanded := True  
+            }
+            Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Staff",RxMatch)){
+              This.Prop.IsTwoHanded := True  
+            }
+            Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Bow",RxMatch)){
+              This.Prop.IsTwoHanded := True  
+            }
+            Else
+            {
+              This.Prop.IsOneHanded := True
+            }
             If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum ,RxMatch))
             {
               This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
@@ -1777,10 +1800,14 @@
           sendstash := StashTabNinjaPrice
         Else If (This.Prop.Incubator)
           Return -1
-        Else If (This.Prop.IsMap && StashTabYesMap && (!This.Prop.IsBlightedMap || YesStashBlightedMap))
+        Else If (This.Prop.IsMap && StashTabYesBlightedMap && This.Prop.IsBlightedMap)
+          sendstash := StashTabBlightedMap
+        Else If (This.Prop.IsMap && StashTabYesMap)
           sendstash := StashTabMap
         Else If (StashTabYesCatalyst&&This.Prop.Catalyst)
           sendstash := StashTabCatalyst
+        Else If (StashTabYesDelirium&&This.Prop.SpecialType="Delirium")
+          sendstash := StashTabDelirium
         Else If ( StashTabYesFragment 
           && ( This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab
           || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment ) )
@@ -2315,6 +2342,14 @@
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOrgan x+0 yp hp , %StashTabOrgan%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan%  x+5 yp+4, Enable
 
+          ;Catalyst
+          Gui, Inventory: Font, Bold s8 cBlack, Arial
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Catalyst
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCatalyst x+0 yp hp ,  %StashTabCatalyst%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCatalyst Checked%StashTabYesCatalyst% x+5 yp+4, Enable
+
           ; Oil
           Gui, Inventory: Font, Bold s8 cBlack, Arial
           Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Oil
@@ -2323,13 +2358,21 @@
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOil x+0 yp hp ,  %StashTabOil%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% x+5 yp+4, Enable
 
-          ;Catalyst
+          ;BlightedMap
           Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Catalyst
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Blighted Map
           Gui, Inventory: Font,
           Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCatalyst x+0 yp hp ,  %StashTabCatalyst%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCatalyst Checked%StashTabYesCatalyst% x+5 yp+4, Enable
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabBlightedMap, %StashTabBlightedMap%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesBlightedMap Checked%StashTabYesBlightedMap% x+5 yp+4, Enable
+
+          ;Delirium
+          Gui, Inventory: Font, Bold s8 cBlack, Arial
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Delirium
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabDelirium, %StashTabDelirium%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDelirium Checked%StashTabYesDelirium% x+5 yp+4, Enable
 
           Gui, Inventory: Font, Bold s8 cBlack, Arial
           Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Gem
@@ -2366,28 +2409,14 @@
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp+4, Enable
 
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Linked
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
-
           ; Third Column
+          
           Gui, Inventory: Font, Bold s8 cBlack, Arial
           Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys , Dump
           Gui, Inventory: Font,
           Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
           Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDump x+0 yp hp ,  %StashTabDump%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% x+5 yp+4, Enable
-
 
           Gui, Inventory: Font, Bold s8 cBlack, Arial
           Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Priced Rares
@@ -2431,6 +2460,20 @@
           Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabInfluencedItem , %StashTabInfluencedItem%
           Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
 
+          Gui, Inventory: Font, Bold s8 cBlack, Arial
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Linked
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
+
+          Gui, Inventory: Font, Bold s8 cBlack, Arial
+          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
+          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
+
           ; Crafting Bases
           Gui, Inventory: Font, Bold s9 cBlack, Arial
           Gui, Inventory: Add, GroupBox,             w180 h110    section    x+15   ys,         Crafting Tab
@@ -2468,9 +2511,7 @@
           Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h125    section    xs   y+10,         Map Options
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStashBlightedMap  Checked%YesStashBlightedMap% xs+5 ys+18 , Stash BlightedMaps?
+          Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map Options
           Gui, Inventory: Font,
           Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
           GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%

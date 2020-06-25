@@ -64,6 +64,8 @@
 	"Amulet",
 	"Ring",
 	"IsWeapon",
+	"IsOneHanded",
+	"IsTwoHanded",
 	"Weapon_APS",
 	"Weapon_Avg_Physical_Dmg",
 	"Weapon_Max_Physical_Dmg",
