@@ -2691,6 +2691,8 @@
           Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
           Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
           Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"
+          Gui, Strings: Add, Text, x+10 ys , Capture of the Seed Stockpile
+          Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"
           Gui, Strings: +Delimiter|
 
         Gui, Strings: Tab, Vendor
