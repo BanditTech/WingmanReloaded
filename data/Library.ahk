@@ -2144,7 +2144,7 @@
           Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSeedStockpile      Checked%YesSeedStockpile%      y+8    , Deposit at Seed Stockpile?
+          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSeedStockPile      Checked%YesSeedStockPile%      y+8    , Deposit at Seed StockPile?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
           Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
@@ -2691,7 +2691,7 @@
           Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
           Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
           Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"
-          Gui, Strings: Add, Text, x+10 ys , Capture of the Seed Stockpile
+          Gui, Strings: Add, Text, x+10 ys , Capture of the Seed StockPile
           Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"
           Gui, Strings: +Delimiter|
 

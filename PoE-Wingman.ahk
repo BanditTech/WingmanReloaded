@@ -261,7 +261,7 @@
       UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
       UpdateOnDelveChartBtn = Calibrate the OnDelveChart Color`rThis color determines if the Delve Chart panel is open`rSample located at the left of the Delve Chart panel
       UpdateOnMetamorphBtn = Calibrate the OnMetamorph Color`rThis color determines if the Metamorph panel is open`rSample located at the i Button of the Metamorph panel
-      UpdateOnStockPileBtn = Calibrate the OnStockPile Color`rThis color determines if the Seed Stockpile panel is open`rSample located in the center of the Seed Stockpile panel
+      UpdateOnStockPileBtn = Calibrate the OnStockPile Color`rThis color determines if the Seed StockPile panel is open`rSample located in the center of the Seed StockPile panel
       UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
       UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
       UpdateOnStashBtn = Calibrate the OnStash/OnLeft Colors`rThese colors determine if the Stash/Left panel is open`rSample is located at the top of the Stash panel
@@ -304,7 +304,7 @@
       YesEnableAutomation = Enable Automation Routines
       FirstAutomationSetting = Start Automation selected option
       YesEnableNextAutomation = Enable next automation after the first selected
-      YesEnableSeedAutomation = Enable seed automation to find and deposit at Seed Stockpile
+      YesEnableSeedAutomation = Enable seed automation to find and deposit at Seed StockPile
       YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
       YesAutoSkillUp = Enable this to Automatically level up skill gems
       YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
@@ -335,7 +335,7 @@
       LaunchHelp = Opens the AutoHotkey List of Keys
       YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
       YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
-      YesSeedStockpile = This option is for the Seed Stockpile logic`rEnable to stash Seeds and Equipment when the Seed Stockpile panel is open
+      YesSeedStockPile = This option is for the Seed StockPile logic`rEnable to stash Seeds and Equipment when the Seed StockPile panel is open
       YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
       YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
@@ -564,7 +564,7 @@
     Global LootVacuum := 1
     Global YesVendor := 1
     Global YesStash := 1
-    Global YesSeedStockpile := 1
+    Global YesSeedStockPile := 1
     Global YesIdentify := 1
     Global YesDiv := 1
     Global YesMapUnid := 1
@@ -2448,7 +2448,7 @@ Return
         StashRoutine()
       Else If (OnVendor && YesVendor)
         VendorRoutine()
-      Else If (OnStockPile && YesSeedStockpile)
+      Else If (OnStockPile && YesSeedStockPile)
         StockPileRoutine()
       Else If (OnInventory&&YesIdentify)
         IdentifyRoutine()
@@ -2739,9 +2739,9 @@ Return
     }
     Return
   }
-  ; StockpileRoutine - Deposit seeds and equipment at the Seed Stockpile
+  ; StockPileRoutine - Deposit seeds and equipment at the Seed StockPile
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  StockpileRoutine(){
+  StockPileRoutine(){
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
@@ -3273,7 +3273,11 @@ Return
         Sleep, 210*Latency
       }
     }
-    If(Tab == StashTabMap)
+    If (Tab == StashTabMap)
+    {
+      Sleep, 500*Latency
+    }
+    Else If (Tab == StashTabCollection)
     {
       Sleep, 500*Latency
     }
@@ -5626,7 +5630,7 @@ Return
       IniRead, LootVacuum, %A_ScriptDir%\save\Settings.ini, General, LootVacuum, 0
       IniRead, YesVendor, %A_ScriptDir%\save\Settings.ini, General, YesVendor, 1
       IniRead, YesStash, %A_ScriptDir%\save\Settings.ini, General, YesStash, 1
-      IniRead, YesSeedStockpile, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockpile, 1
+      IniRead, YesSeedStockPile, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockPile, 1
       IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
@@ -6664,7 +6668,7 @@ Return
       IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
-      IniWrite, %YesSeedStockpile%, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockpile
+      IniWrite, %YesSeedStockPile%, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockPile
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
@@ -10183,7 +10187,7 @@ Return
       IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
-      IniWrite, %YesSeedStockpile%, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockpile
+      IniWrite, %YesSeedStockPile%, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockPile
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
