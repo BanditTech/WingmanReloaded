@@ -3997,7 +3997,7 @@
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / (1920 / 785))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Status Check OnStockPile 600
+        ;Status Check OnStockPile ((1920/3)-2)
         global vX_OnStockPile:=GameX + Round(GameW / (1920 / 638))
         global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
         ;Life %'s
@@ -4304,6 +4304,9 @@
         ;Status Check OnMetamorph
         global vX_OnMetamorph:=GameX + Round(GameW / (2560 / 1105))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        ;Status Check OnStockPile ((2560/3)-2)
+        global vX_OnStockPile:=GameX + Round(GameW / (2560 / 851))
+        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (2560 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -4448,9 +4451,15 @@
         ;Status Check OnLeft
         global vX_OnLeft:=GameX + Round(GameW / (3440 / 365))
         global vY_OnLeft:=GameY + Round(GameH / ( 1440 / 90))
+        ;Status Check OnDelveChart
+        global vX_OnDelveChart:=GameX + Round(GameW / (3440 / 1056))
+        global vY_OnDelveChart:=GameY + Round(GameH / ( 1440 / 118))
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / ( 3440 / 1480))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1440 / 270))
+        ;Status Check OnStockPile ((3440/3)-2)
+        global vX_OnStockPile:=GameX + Round(GameW / (3440 / 1144))
+        global vY_OnStockPile:=GameY + Round(GameH / ( 1440 / 800))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (3440 / 128))
         global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
@@ -4602,6 +4611,9 @@
         ;Status Check OnMetamorph
         global vX_OnMetamorph:=GameX + Round(GameW / (3840 / 1745))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        ;Status Check OnStockPile ((3840/3)-2)
+        global vX_OnStockPile:=GameX + Round(GameW / (3840 / 1278))
+        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (3840 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
