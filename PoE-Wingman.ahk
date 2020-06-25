@@ -1831,6 +1831,7 @@
     Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn         xs y+3      w110,   OnMenu
     Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn  x+8  yp      w110,   OnDelveChart
     Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn  xs y+3      w110,   OnMetamorph
+    Gui,SampleInd: Add, Button, gupdateOnStockPile vUpdateOnStockPileBtn  x+8  yp      w110,   OnStockPile
 
 
     Gui,SampleInd: Font, Bold s9 cBlack, Arial
@@ -4512,7 +4513,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DebugGamestates(Switch:=""){
     Global
-    Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1
+    Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnStockPile:=-1
     Local NewOHB
     If (Switch := "CheckGamestates")
     {
@@ -4522,16 +4523,16 @@ Return
     ShowDebugGamestates:
       ; SetTimer, CheckGamestates, 50
       CheckGamestates := True
-      OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1
+      OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnStockPile:=-1
       Gui, Submit
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
       Gui, States: Margin, 10, 10
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChar hwndCTIDOnChar, % "OnChar"
-      CtlColors.Attach(CTIDOnChar, "", "Red")
+      CtlColors.Attach(CTIDOnChar, "Lime", "")
       Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnOHB hwndCTIDOnOHB, % "Overhead Health Bar"
-      CtlColors.Attach(CTIDOnOHB, "", "Red")
+      CtlColors.Attach(CTIDOnOHB, "Lime", "")
       Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChat hwndCTIDOnChat, % "OnChat"
       CtlColors.Attach(CTIDOnChat, "", "Green")
       Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnInventory hwndCTIDOnInventory, % "OnInventory"
@@ -4552,6 +4553,8 @@ Return
       CtlColors.Attach(CTIDOnMetamorph, "", "Green")
       Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnDetonate hwndCTIDOnDetonate, % "OnDetonate"
       CtlColors.Attach(CTIDOnDetonate, "", "Green")
+      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnStockPile hwndCTIDOnStockPile, % "OnStockPile"
+      CtlColors.Attach(CTIDOnStockPile, "", "Green")
       Gui, States: Add, Button, gCheckPixelGrid xm+5 y+15 w190 , Check Inventory Grid
       ; ----------------------------------------------------------------------------------------------------------------------
       GoSub CheckGamestates
@@ -4584,7 +4587,7 @@ Return
         Else
           CtlColors.Change(CTIDOnChar, "Red", "")
       }
-      If ((NewOHB := CheckOHB()) != OldOHB)
+      If ((NewOHB := (CheckOHB()?1:0)) != OldOHB)
       {
         OldOHB := NewOHB
         If NewOHB
@@ -4671,6 +4674,14 @@ Return
           CtlColors.Change(CTIDOnMetamorph, "Red", "")
         Else
           CtlColors.Change(CTIDOnMetamorph, "", "Green")
+      }
+      If (OnStockPile != OldOnStockPile)
+      {
+        OldOnStockPile := OnStockPile
+        If (OnStockPile)
+          CtlColors.Change(CTIDOnStockPile, "Red", "")
+        Else
+          CtlColors.Change(CTIDOnStockPile, "", "Green")
       }
     Return
     ; ----------------------------------------------------------------------------------------------------------------------
@@ -9001,6 +9012,33 @@ Return
         MsgBox % "OnMetamorph recalibrated!`nTook color hex: " . varOnMetamorph . " `nAt coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
+      
+      hotkeys()
+      
+    return
+
+    updateOnStockPile:
+      Thread, NoTimers, True
+      Gui, Submit ; , NoHide
+      
+      IfWinExist, ahk_group POEGameGroup
+      {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+      } else {
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnStockPile didn't work"
+        Return
+      }
+      
+      
+      if WinActive(ahk_group POEGameGroup){
+        ScreenShot()
+        varOnStockPile := ScreenShot_GetColor(vX_OnStockPile,vY_OnStockPile)
+        IniWrite, %varOnStockPile%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStockPile
+        readFromFile()
+        MsgBox % "OnStockPile recalibrated!`nTook color hex: " . varOnStockPile . " `nAt coords x: " . vX_OnStockPile . " and y: " . vY_OnStockPile
+      }else
+      MsgBox % "PoE Window is not active. `nRecalibrate of OnStockPile didn't work"
       
       hotkeys()
       
