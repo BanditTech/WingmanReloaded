@@ -1,3 +1,24 @@
+## Version .11.0504 - Alpha Branch - June/25/2020
+Seed stockpile now part of inventory logic
+* Enable Seed automation to search for Seed Stockpile after stash
+* Use Id/Vend/Trade key while at stockpile to deposit Harvest items
+  * Disable by unchecking the option in the Inventory Settings
+* Calibrate the Seed Stockpile sample in individual samples panel
+* Like any other automation, edit the string to search in the Strings Settings
+
+Other Additions
+* New standard stash tab filters for delirium items and Blighted Maps
+* New property to easily flag one-hand or two hand items for CLF
+  * Item.Prop.IsOneHanded
+  * Item.Prop.IsTwoHanded
+
+Bugfixes
+* Fix for flickering Overhead Health Bar readout in gamestates
+* Fix for OnChar showing as red text when first opening gamestates
+* Crafting bases were not being flagged as such, it is now fixed
+
+---
+
 ## Version .11.0503 - Alpha Branch - June/20/2020
 Several Bugfixes for changes on Alpha
 * Fix for chisel logic while crafting maps
@@ -12,6 +33,8 @@ Added support for new harvest items
 * Detects seeds as new Seed Specialtype
 * All other harvest items are given generic Harvest Specialtype
 
+---
+
 ## Version .11.0502 - Alpha Branch - June/06/2020
 Fix for selecting stash tab number within the CLF
 
@@ -24,7 +47,7 @@ Transition towards new Item Parsing system
   * All associated information can be viewed in one place
   * Ctrl+Shift+Alt+L will open a listing of all information of the current item
 * Item text blocks are now split apart before extracting their information
-  * This allows for much easier logic to determine which section is Affix, Implicit etc
+  * This allows for much easier logic to determine which section is Affix, Implicit etc.
 * Overall speed of the item parse is MUCH faster, excluding PoEPrices
 * Affix keys are now generated Dynamically
   * Now the text on the item is what you can use as the Key
