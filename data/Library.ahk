@@ -708,6 +708,11 @@
         {
           If (v = "")
           Continue
+          ; Flag curse on hit items
+          If (v ~= "^Curse Enemies with .+ on Hit$")
+          {
+            This.Prop.IsCurseOnHit := True
+          }
           temp++
         }
         This.Prop.AffixCount := temp
