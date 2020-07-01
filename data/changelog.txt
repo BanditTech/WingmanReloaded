@@ -1,3 +1,18 @@
+## Version .11.0505 - Alpha Branch - July/01/2020
+CLF affixes have been expanded to support filtering for Cluster Jewels
+* Updating the Affix file will require to manually delete the /Data/WR_Affix.json file
+* Restart the script and it will download the new Affixes
+
+Vulkan display bug now has an inhouse fix
+* The script will fix the POE window to allow for overlays without requiring windowed mode
+  * Allows to return Vulkan display setting to Windowed Fullscreen
+  * The script will automatically apply the fix when it finds the game
+
+Bugfixes
+* Delay added before stashing to Collection and Map tabs
+
+---
+
 ## Version .11.0504 - Alpha Branch - June/25/2020
 Seed stockpile now part of inventory logic
 * Enable Seed automation to search for Seed Stockpile after stash
