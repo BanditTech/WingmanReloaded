@@ -1,12 +1,15 @@
 ﻿#SingleInstance, Force
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
-; SaveDir := RegExReplace(A_ScriptDir, "data$", "save")
+SaveDir := RegExReplace(A_ScriptDir, "data$", "save")
 ; SetWorkingDir %SaveDir%
 
 Global PoESessionID := ""
 , AccountNameSTR := ""
 , selectedLeague := "Harvest"
+
+IniRead, PoESessionID, %SaveDir%\Account.ini, GGG, PoESessionID, %A_Space%
+IniRead, AccountNameSTR, %SaveDir%\Account.ini, GGG, AccountNameSTR, %A_Space%
 
 curlReturn := ""
 Object := POE_StashRequest(11,1)
