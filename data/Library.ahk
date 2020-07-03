@@ -14415,7 +14415,7 @@ IsLinear(arr, i=0) {
     
     ; ShowToolTip("Getting price prediction... ")
     retCurl := true
-    response := PoEScripts_Download(url, postData, reqHeaders, options, false, false, false, "", "", true, retCurl)
+    response := Curl_Download(url, postData, reqHeaders, options, false, false, false, "", "", true, retCurl)
     
     ; debugout := RegExReplace("""" A_ScriptDir "\lib\" retCurl, "curl", "curl.exe""")
     ; FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
@@ -14567,7 +14567,7 @@ IsLinear(arr, i=0) {
     Return, s
   }
 
-  PoEScripts_Download(url, ioData, ByRef ioHdr, options, useFallback = true, critical = false, binaryDL = false, errorMsg = "", ByRef reqHeadersCurl = "", handleAccessForbidden = true, ByRef returnCurl = false) {
+  Curl_Download(url, ioData, ByRef ioHdr, options, useFallback = true, critical = false, binaryDL = false, errorMsg = "", ByRef reqHeadersCurl = "", handleAccessForbidden = true, ByRef returnCurl = false) {
     /*
       url    = download url
       ioData  = uri encoded postData 
@@ -14587,7 +14587,15 @@ IsLinear(arr, i=0) {
       parse options, create the cURL request and execute it
     */
     reqLoops++
-    curl    := """" A_ScriptDir "\data\curl.exe"" "  
+    If FileExist(A_ScriptDir . "\data\curl.exe")
+      curl    := """" A_ScriptDir "\data\curl.exe"" "  
+    Else If FileExist(A_ScriptDir . "\curl.exe")
+      curl    := """" A_ScriptDir "\curl.exe"" "  
+    Else
+      {
+        MsgBox, Curl exe not found
+        return {}
+      }
     headers  := ""
     cookies  := ""
     uAgent  := ""
