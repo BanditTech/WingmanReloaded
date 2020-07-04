@@ -2091,6 +2091,14 @@
         }
       }
     }
+  ; ItemBuild - Create Prop and Affix Values in WR format from GGG Stash API
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    class ItemBuild extends ItemScan
+    {
+      __New(){
+        
+      }
+    }
   ; ArrayToString - Make a string from array using | as delimiters
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ArrayToString(Array)
@@ -3869,9 +3877,12 @@
   ; Rescale - Rescales values of the script to the user's resolution
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Rescale(){
-    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe
+    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, StashGrid
     If checkActiveType()
     {
+      ; Build array framework
+      StashGrid:={"Stash":{"X":{},"Y":{}}
+              ,"StashQuad":{"X":{},"Y":{}}}
       If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
       {
         WR_Menu("JSON","Load","FillMetamorph")
@@ -3940,8 +3951,17 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
-        ;Auto Vendor Settings
-          ;380,820
+        ; Stash grid area
+        If (!StashImported)
+        {
+          ; Scale the stash area automatically based on aspect ratio
+          vX_StashTopL:=GameX + Round(GameW/(1920/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
+          vX_StashBotR:=GameX + Round(GameW/(1920/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          ; Give pixels for lines between slots
+          SlotSpacing:=Round(GameH/(1080/2))
+        }
+
+        ;Auto Vendor Settings 380,820
         Global VendorAcceptX:=GameX + Round(GameW/(1920/380))
         Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
@@ -4673,6 +4693,43 @@
       Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) }
       RescaleRan := True
       Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
+
+      ; Calculate space for the Stash grid
+      totalX:=vX_StashBotR - vX_StashTopL, totalY:=vY_StashBotR - vY_StashTopL
+      ; Fill in array with grid locations for 12x12 stash
+      Cnum:=Rnum:=12
+      Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
+      , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
+      Loop, %Cnum%
+      {
+        If (A_Index = 1) 
+        {
+          PointX:=vX_StashTopL+Cwidth//2
+          PointY:=vY_StashTopL+Rwidth//2
+        } Else {
+          PointX+=Cwidth+SlotSpacing
+          PointY+=Rwidth+SlotSpacing
+        }
+        StashGrid.Stash.X.Push(Round(PointX))
+        StashGrid.Stash.Y.Push(Round(PointY))
+      }
+      ; Fill in array with grid locations for 24x24 stash
+      Cnum:=Rnum:=24
+      Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
+      , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
+      Loop, %Cnum%
+      {
+        If (A_Index = 1) 
+        {
+          PointX:=vX_StashTopL+Cwidth//2
+          PointY:=vY_StashTopL+Rwidth//2
+        } Else {
+          PointX+=Cwidth+SlotSpacing
+          PointY+=Rwidth+SlotSpacing
+        }
+        StashGrid.StashQuad.X.Push(Round(PointX))
+        StashGrid.StashQuad.Y.Push(Round(PointY))
+      }
     }
     return
   }

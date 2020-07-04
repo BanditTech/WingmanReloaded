@@ -71,7 +71,7 @@ POE_StashRequest(FetchTab,tabs:=0) {
 
   If (True) {
     FileDelete, %A_ScriptDir%\temp\DebugSearchJSON.json
-    FileAppend, % JSON.Dump(responseObj,,2) "<br />", %A_ScriptDir%\temp\DebugSearchJSON.json
+    FileAppend, % JSON.Dump(responseObj,,2), %A_ScriptDir%\temp\DebugSearchJSON.json
   }
 
   Return responseObj
