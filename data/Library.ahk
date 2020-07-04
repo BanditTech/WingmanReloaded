@@ -2095,8 +2095,11 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemBuild extends ItemScan
     {
-      __New(){
-        
+      __New(Object){
+        This.Data := {"Blocks":{},"ClipContents":""}
+        This.Data.Blocks.NamePlate := ""
+        This.Data.Blocks.Affix := ""
+        This.Data.Blocks.Properties := ""
       }
     }
   ; ArrayToString - Make a string from array using | as delimiters
