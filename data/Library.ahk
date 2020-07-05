@@ -2136,6 +2136,7 @@
 
         This.Prop.ItemName := (Object.name!=""?Object.name:Object.typeLine)
         This.Prop.ItemBase := Object.typeLine
+        This.MatchBaseType()
         This.Prop.ItemLevel := Object.ilvl
         This.Prop.Item_Width := Object.w
         This.Prop.Item_Height := Object.h
@@ -2154,6 +2155,27 @@
         This.Prop.Stack_Max := Object.maxStackSize
 
         This.MatchAffixes(This.Data.Blocks.Affix)
+      }
+      MatchBaseType(){
+        For k, v in Bases
+        {
+          If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
+          {
+            This.Prop.ItemClass := v["item_class"]
+            This.Prop.ItemBase := v["name"]
+            This.Prop.DropLevel := v["drop_level"]
+
+            If InStr(This.Prop.ItemClass, "Ring")
+              This.Prop.Ring := True
+            If InStr(This.Prop.ItemClass, "Amulet")
+              This.Prop.Amulet := True
+            If InStr(This.Prop.ItemClass, "Belt")
+              This.Prop.Belt := True
+            If (This.Prop.ItemClass = "Support Skill Gem")
+              This.Prop.Support := True
+            Break
+          }
+        }
       }
     }
   ; ArrayToString - Make a string from array using | as delimiters

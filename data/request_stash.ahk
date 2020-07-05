@@ -17,6 +17,9 @@ SaveDir := RegExReplace(A_ScriptDir, "data$", "save")
     . "\+{0,1}"
     . "(\d{1,}\.{0,1}\,{0,1}\d{0,})"
     . "\%{0,1}"
+    Global Bases
+    FileRead, JSONtext, %A_ScriptDir%\Bases.json
+    Bases := JSON.Load(JSONtext)
 
 Global PoESessionID := ""
 , AccountNameSTR := ""
