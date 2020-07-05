@@ -2225,49 +2225,53 @@
         RecipeArray[item.Prop.SlotType].Push(item)
       }
     }
-
-    ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
-    If (IsObject(RecipeArray.Amulet.1) 
-    && IsObject(RecipeArray.Ring.1) && IsObject(RecipeArray.Ring.2)
-    && IsObject(RecipeArray.Belt.1)
-    && IsObject(RecipeArray.Body.1)
-    && IsObject(RecipeArray.Boots.1)
-    && IsObject(RecipeArray.Gloves.1)
-    && IsObject(RecipeArray.Helmet.1))
-    {
-      Set := {}
-      If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray.Shield.2))
+    RecipeSets:={}
+    Loop {
+      ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
+      If (IsObject(RecipeArray.Amulet.1) 
+      && IsObject(RecipeArray.Ring.1) && IsObject(RecipeArray.Ring.2)
+      && IsObject(RecipeArray.Belt.1)
+      && IsObject(RecipeArray.Body.1)
+      && IsObject(RecipeArray.Boots.1)
+      && IsObject(RecipeArray.Gloves.1)
+      && IsObject(RecipeArray.Helmet.1))
       {
-        Set.Push(RecipeArray.Shield.RemoveAt(1))
-        Set.Push(RecipeArray.Shield.RemoveAt(1))
+        Set := {}
+        If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray.Shield.2))
+        {
+          Set.Push(RecipeArray.Shield.RemoveAt(1))
+          Set.Push(RecipeArray.Shield.RemoveAt(1))
+        }
+        Else If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray["One Hand"].1))
+        {
+          Set.Push(RecipeArray.Shield.RemoveAt(1))
+          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
+        }
+        Else If (IsObject(RecipeArray["Two Hand"].1))
+        {
+          Set.Push(RecipeArray["Two Hand"].RemoveAt(1))
+        }
+        Else If (IsObject(RecipeArray["One Hand"].1) && IsObject(RecipeArray["One Hand"].2))
+        {
+          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
+          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
+        }
+        Else 
+          Break
+        Set.Push(RecipeArray.Amulet.RemoveAt(1))
+        Set.Push(RecipeArray.Ring.RemoveAt(1))
+        Set.Push(RecipeArray.Ring.RemoveAt(1))
+        Set.Push(RecipeArray.Belt.RemoveAt(1))
+        Set.Push(RecipeArray.Body.RemoveAt(1))
+        Set.Push(RecipeArray.Boots.RemoveAt(1))
+        Set.Push(RecipeArray.Gloves.RemoveAt(1))
+        Set.Push(RecipeArray.Helmet.RemoveAt(1))
+        RecipeSets.Push(Set)
       }
-      Else If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray["One Hand"].1))
-      {
-        Set.Push(RecipeArray.Shield.RemoveAt(1))
-        Set.Push(RecipeArray["One Hand"].RemoveAt(1))
-      }
-      Else If (IsObject(RecipeArray["Two Hand"].1))
-      {
-        Set.Push(RecipeArray["Two Hand"].RemoveAt(1))
-      }
-      Else If (IsObject(RecipeArray["One Hand"].1) && IsObject(RecipeArray["One Hand"].2))
-      {
-        Set.Push(RecipeArray["One Hand"].RemoveAt(1))
-        Set.Push(RecipeArray["One Hand"].RemoveAt(1))
-      }
-      Else 
-        Return False
-      Set.Push(RecipeArray.Amulet.RemoveAt(1))
-      Set.Push(RecipeArray.Ring.RemoveAt(1))
-      Set.Push(RecipeArray.Ring.RemoveAt(1))
-      Set.Push(RecipeArray.Belt.RemoveAt(1))
-      Set.Push(RecipeArray.Body.RemoveAt(1))
-      Set.Push(RecipeArray.Boots.RemoveAt(1))
-      Set.Push(RecipeArray.Gloves.RemoveAt(1))
-      Set.Push(RecipeArray.Helmet.RemoveAt(1))
-      Return Set
+      Else
+        Break
     }
-    Return False
+    Return RecipeSets
   }
   ; ArrayToString - Make a string from array using | as delimiters
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
