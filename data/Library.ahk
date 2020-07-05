@@ -2110,6 +2110,8 @@
           :(Object.frameType=5?"Currency"
           :(Object.frameType=6?"Divination Card"
           :(Object.frameType>=7?"Unknown":"ERROR"))))))))
+        If (Object.frameType >= 0 && Object.frameType <= 3)
+        This.Prop.Rarity_Digit := Object.frameType + 1
 
         For k, v in Object.explicitMods
         {
@@ -2155,6 +2157,34 @@
         This.Prop.Stack_Max := Object.maxStackSize
 
         This.MatchAffixes(This.Data.Blocks.Affix)
+        If (This.Prop.Rarity_Digit = 3 
+        && This.Prop.ItemClass ~= "(One|Two|Bow|Shield|Wand|Staff|Dagger|Sceptre|Claw|Body Armour|Helmet|Gloves|Boots|Belt|Amulet|Ring)")
+        {
+          If (This.Prop.ItemLevel >= 60 && This.Prop.ItemLevel <= 74)
+            This.Prop.ChaosRecipe := 1
+          Else If (This.Prop.ItemLevel >= 75 && This.Prop.ItemLevel <= 100)
+            This.Prop.RegalRecipe := 1
+          If (This.Prop.ItemClass ~= "Body Armour")
+            This.Prop.SlotType := "Body"
+          Else If (This.Prop.ItemClass ~= "Helmet")
+            This.Prop.SlotType := "Helmet"
+          Else If (This.Prop.ItemClass ~= "Gloves")
+            This.Prop.SlotType := "Gloves"
+          Else If (This.Prop.ItemClass ~= "Boots")
+            This.Prop.SlotType := "Boots"
+          Else If (This.Prop.ItemClass ~= "Belt")
+            This.Prop.SlotType := "Belt"
+          Else If (This.Prop.ItemClass ~= "Amulet")
+            This.Prop.SlotType := "Amulet"
+          Else If (This.Prop.ItemClass ~= "Ring")
+            This.Prop.SlotType := "Ring"
+          Else If (This.Prop.ItemClass ~= "(One|Wand|Dagger|Sceptre|Claw)")
+            This.Prop.SlotType := "One Hand"
+          Else If (This.Prop.ItemClass ~= "(Two|Bow|Staff)")
+            This.Prop.SlotType := "Two Hand"
+          Else If (This.Prop.ItemClass ~= "Shield")
+            This.Prop.SlotType := "Shield"
+        }
       }
       MatchBaseType(){
         For k, v in Bases

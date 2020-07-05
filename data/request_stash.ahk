@@ -26,18 +26,23 @@ Global PoESessionID := ""
 , selectedLeague := "Harvest"
 
 IniRead, PoESessionID, %SaveDir%\Account.ini, GGG, PoESessionID, %A_Space%
-; IniRead, AccountNameSTR, %SaveDir%\Account.ini, GGG, AccountNameSTR, %A_Space%
 
 AccountNameSTR := POE_RequestAccount().accountName
 
-curlReturn := ""
+RecipeArray := {}
 Object := POE_RequestStash(13,1)
 For i, content in Object.items
 {
   item := new ItemBuild(content,Object.quadLayout)
-  Array_Gui(item)
+  ; Array_Gui(item)
+  If (item.Prop.ChaosRecipe || item.Prop.RegalRecipe)
+  {
+    If !IsObject(RecipeArray[item.Prop.SlotType])
+      RecipeArray[item.Prop.SlotType] := {}
+    RecipeArray[item.Prop.SlotType].Push(item)
+  }
 }
-; Array_Gui(Object)
+Array_Gui(RecipeArray)
 ExitApp
 
 #Include %A_ScriptDir%/Library.ahk
