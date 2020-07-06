@@ -1,3 +1,14 @@
+## Version .11.0506 - Alpha Branch - July/05/2020
+There is now automation for Chaos/Regal recipe
+* Assign a hotkey in Keybinds section
+* Pulls items from dump tab
+* Uses automation strings to find stash and vendor
+* Press again when you finish selling your items to get next set
+* Will show notification when there are no complete recipe
+* Requires PoESessionID in order to scan from stash API
+
+---
+
 ## Version .11.0505 - Alpha Branch - July/01/2020
 CLF affixes have been expanded to support filtering for Cluster Jewels
 * Updating the Affix file will require to manually delete the /Data/WR_Affix.json file

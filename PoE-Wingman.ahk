@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.0505
+  Global VersionNumber := .11.0506
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -1958,6 +1958,11 @@
     Gui,Add,Text,              y+5          ,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
     Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
+
+    Gui, Add, Text, x295 y400 , PoESessionID
+    Gui, Add, Edit, password vPoESessionID  xp y+5  w300 h23, %PoESessionID%
+
+
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
@@ -3050,8 +3055,10 @@ Return
     If !Object.Count()
       Object := ChaosRecipe(StashTabDump)
     If !Object.Count()
+    {
+      Notify("Chaos Recipe","No Complete Set",1)
       Return
-    
+    }
     IfWinActive, ahk_group POEGameGroup
     {
       ; Refresh our screenshot
@@ -6794,6 +6801,8 @@ Return
       global
       Thread, NoTimers, true    ;Critical
 
+      IniWrite, %PoESessionID%, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID
+
       ;~ hotkeys reset
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
@@ -6984,6 +6993,7 @@ Return
       ;Mana Flasks
       IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, %A_ScriptDir%\save\Settings.ini, Mana Triggers, TriggerMana10
       
+
       ;Bandit Extra options
       IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
       IniWrite, %ScriptUpdateTimeInterval%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval
