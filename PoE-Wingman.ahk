@@ -324,6 +324,7 @@
       hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
       hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
       hotkeyItemInfo = Set your hotkey to display information about an item`rWill graph price info if there is any match
+      hotkeyChaosRecipe = Set your hotkey to scan the dump tab for chaos recipe`rRequires POESESSID to function`rWill use automation to search for stash and vendor`rAdjust your strings if it cannot find them
       hotkeyCloseAllUI = Put your ingame assigned hotkey to Close All User Interface here
       hotkeyInventory = Put your ingame assigned hotkey to open inventory panel here
       hotkeyWeaponSwapKey = Put your ingame assigned hotkey to Weapon Swap here
@@ -769,6 +770,7 @@
     global hotkeyPopFlasks:="CapsLock"
     global hotkeyItemSort:="F6"
     global hotkeyItemInfo:="F5"
+    global hotkeyChaosRecipe:="F8"
     global hotkeyLootScan:="f"
     global hotkeyDetonateMines:="d"
     global hotkeyPauseMines:="d"
@@ -1906,6 +1908,7 @@
     Gui Add, Text,                     xs+65   y+10,         Pop Flasks
     Gui Add, Text,                     xs+65   y+10,         ID/Vend/Stash
     Gui Add, Text,                     xs+65   y+10,         Item Info
+    Gui Add, Text,                     xs+65   y+10,         Chaos Recipe
 
     Gui,Add,Edit,  xs ys+20        w60 h19     vhotkeyOptions         ,%hotkeyOptions%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
@@ -1920,6 +1923,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyChaosRecipe       ,%hotkeyChaosRecipe%
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,                     xs+145   ys,         Ingame:
@@ -2363,8 +2367,6 @@
 
   ; Return
   !+^L::Array_Gui(Item)
-  ;Chaos Recipe
-  F8::VendorChaosRecipe()
 
   ; Reload Script with Alt+Escape
   !Escape::
@@ -6585,6 +6587,8 @@ Return
         hotkey,% hotkeyItemSort, ItemSortCommand, Off
       If hotkeyItemInfo
         hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
+      If hotkeyChaosRecipe
+        hotkey,% hotkeyChaosRecipe, VendorChaosRecipe, Off
       If hotkeyLootScan
         hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
       If hotkeyPauseMines
@@ -6622,6 +6626,7 @@ Return
       IniRead, hotkeyWeaponSwapKey, %A_ScriptDir%\save\Settings.ini, hotkeys, WeaponSwapKey, x
       IniRead, hotkeyItemSort, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemSort, F6
       IniRead, hotkeyItemInfo, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemInfo, F5
+      IniRead, hotkeyChaosRecipe, %A_ScriptDir%\save\Settings.ini, hotkeys, ChaosRecipe, F8
       IniRead, hotkeyLootScan, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan, f
       IniRead, hotkeyDetonateMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines, d
       IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines, d
@@ -6653,6 +6658,8 @@ Return
         hotkey,% hotkeyItemSort, ItemSortCommand, On
       If hotkeyItemInfo
         hotkey,% hotkeyItemInfo, ItemInfoCommand, On
+      If hotkeyChaosRecipe
+        hotkey,% hotkeyChaosRecipe, VendorChaosRecipe, On
       If hotkeyLootScan
         hotkey, $~%hotkeyLootScan%, LootScanCommand, On
       If hotkeyMainAttack
@@ -6811,6 +6818,8 @@ Return
         hotkey,% hotkeyItemSort, ItemSortCommand, Off
       If hotkeyItemInfo
         hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
+      If hotkeyChaosRecipe
+        hotkey,% hotkeyChaosRecipe, VendorChaosRecipe, Off
       If hotkeyLootScan
         hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
       If hotkeyPauseMines
@@ -7061,6 +7070,7 @@ Return
       IniWrite, %hotkeyWeaponSwapKey%, %A_ScriptDir%\save\Settings.ini, hotkeys, WeaponSwapKey
       IniWrite, %hotkeyItemSort%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemSort
       IniWrite, %hotkeyItemInfo%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemInfo
+      IniWrite, %hotkeyChaosRecipe%, %A_ScriptDir%\save\Settings.ini, hotkeys, ChaosRecipe
       IniWrite, %hotkeyLootScan%, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan
       IniWrite, %hotkeyDetonateMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines
       IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
@@ -7571,6 +7581,7 @@ Return
       GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
       GuiControl,, hotkeyItemSort, %hotkeyItemSort%
       GuiControl,, hotkeyItemInfo, %hotkeyItemInfo%
+      GuiControl,, hotkeyChaosRecipe, %hotkeyChaosRecipe%
       GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
       GuiControl,, hotkeyInventory, %hotkeyInventory%
       GuiControl,, hotkeyWeaponSwapKey, %hotkeyWeaponSwapKey%
