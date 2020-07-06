@@ -479,6 +479,9 @@
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2
+  ; Login POESESSID
+    Global PoESessionID := ""
+    Global AccountNameSTR := ""
   ; Globals For client.txt file
     Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
     Global CurrentLocation := ""
@@ -2354,12 +2357,15 @@
     SB_SetText("Client.txt file not found", 2)
   }
 
-; Hotkeys to reload or exit script
+; Hotkeys to reload or exit script - Hardcoded Hotkeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   #IfWinActive
 
   ; Return
   !+^L::Array_Gui(Item)
+  ;Chaos Recipe
+  F8::VendorChaosRecipe()
+
   ; Reload Script with Alt+Escape
   !Escape::
     Reload
@@ -2463,8 +2469,8 @@ Return
   }
 
   ; Search Seed StockPile
-;Client:	638, 600 (recommended)
-;Color:	1F2732 (Red=1F Green=27 Blue=32)
+    ;Client:	638, 600 (recommended)
+    ;Color:	1F2732 (Red=1F Green=27 Blue=32)
   SearchStockPile()
   {
     If (FindStock:=FindText(GameX,GameY,GameW,GameH,0,0,SeedStockPileStr))
@@ -2483,7 +2489,7 @@ Return
     }
     Return False
   }
-    ; Search Stash Routine
+  ; Search Stash Routine
   SearchStash()
   {
     If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
@@ -2739,6 +2745,180 @@ Return
     }
     Return
   }
+  ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  VendorRoutineChaos()
+  {
+    tQ := 0
+    tGQ := 0
+    SortFlask := {}
+    SortGem := {}
+    BlackList := Array_DeepClone(IgnoredSlot)
+    ; Move mouse out of the way to grab screenshot
+    ShooMouse(), GuiStatus(), ClearNotifications()
+    If !OnVendor
+    {
+      MsgBox Not at vendor
+      Return
+    }
+
+    ; Main loop through inventory
+    For C, GridX in InventoryGridX
+    {
+      If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+        Break
+      For R, GridY in InventoryGridY
+      {
+        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+          Break
+        If BlackList[C][R]
+          Continue
+        Grid := RandClick(GridX, GridY)
+        If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+        {   
+          Ding(500,11,"Hit Scroll")
+          Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+        } 
+        PointColor := ScreenShot_GetColor(GridX,GridY)
+        
+        If indexOf(PointColor, varEmptyInvSlotColor) {
+          ;Seems to be an empty slot, no need to clip item info
+          Continue
+        }
+        ClipItem(Grid.X,Grid.Y)
+        addToBlacklist(C, R)
+        If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
+          ShooMouse(),GuiStatus(),Continue
+        If (Item.Affix["Unidentified"]&&YesIdentify)
+        {
+          If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
+          {
+            WisdomScroll(Grid.X,Grid.Y)
+            ClipItem(Grid.X,Grid.Y)
+          }
+        }
+        If (OnVendor&&YesVendor)
+        {
+          If Item.MatchLootFilter()
+            Continue
+          If (Item.Prop.RarityCurrency)
+            Continue
+          If (Item.Prop.RarityUnique && (Item.Prop.Ring||Item.Prop.Amulet||Item.Prop.Jewel||Item.Prop.Flask))
+            Continue
+          If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
+          {
+            If (Item.Prop.Quality >= 20)
+              Q := 40 
+            Else 
+              Q := Item.Prop.Quality
+            tQ += Q
+            SortFlask.Push({"C":C,"R":R,"Q":Q})
+            Continue
+          }
+          If ( Item.Prop.RarityGem && ( Item.Prop.Quality > 0 ))
+          {
+            If Item.Prop.Quality >= 20
+              Continue 
+            Else 
+              Q := Item.Prop.Quality
+            Q := Item.Prop.Quality
+            tGQ += Q
+            SortGem.Push({"C":C,"R":R,"Q":Q})
+            Continue
+          }
+          ; Only need entry this condition if Search Vendor/Vendor is the first option
+          ; If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
+          ; {
+          ;   If Item.MatchStashManagement()
+          ;   {
+          ;     Continue
+          ;   }
+          ; }
+          If ( Item.Prop.SpecialType="" )
+          {
+            CtrlClick(Grid.X,Grid.Y)
+            Continue
+          }
+        }
+      }
+    }
+    ; Auto Confirm Vendoring Option
+    If (OnVendor && RunningToggle && YesEnableAutomation)
+    {
+      ContinueFlag := False
+      If (YesEnableAutoSellConfirmation)
+      {
+        RandomSleep(60,90)
+        LeftClick(VendorAcceptX,VendorAcceptY)
+        RandomSleep(60,90)
+        ContinueFlag := True
+      }
+      Else If (FirstAutomationSetting=="Search Vendor")
+      {
+        CheckTime("Seconds",30,"VendorUI",A_Now)
+        While (!CheckTime("Seconds",30,"VendorUI"))
+        {
+          Sleep, 100
+          GuiStatus()
+          If !OnVendor
+          {
+            ContinueFlag := True
+            break
+          }
+        }
+      }
+      ; Search Stash and StashRoutine
+      If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
+      {
+        Send {%hotkeyCloseAllUI%}
+        RandomSleep(45,90)
+        If OnHideout
+          Town := "Hideout"
+        Else If OnMines
+          Town := "Mines"
+        Else
+          Town := CompareLocation("Town")
+
+        If OnMines
+        {
+          LeftClick(GameX + GameW//1.1, GameY + GameH//1.1)
+          Sleep, 800
+          ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+        }
+        Else If (Town = "Oriath Docks")
+        {
+          LeftClick(GameX + GameW//1.1, GameY + GameH//3)
+          Sleep, 800
+          ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+        }
+        Else If (Town = "The Sarn Encampment")
+        {
+          LeftClick(GameX + GameW//1.1, GameY + GameH//3)
+          Sleep, 800
+          ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+        }
+        GuiStatus()
+        SearchStash()
+        ; StashRoutine()
+      }
+    }
+    Return
+  }
   ; StockPileRoutine - Deposit seeds and equipment at the Seed StockPile
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StockPileRoutine(){
@@ -2784,7 +2964,142 @@ Return
     }
     Return
   }
+  ; Find and retreive Chaos recipe items from a Stash Tab
+  ChaosRecipe(tab){
+    If (AccountNameSTR = "")
+      AccountNameSTR := POE_RequestAccount().accountName
+    RecipeArray := {}
+    Object := POE_RequestStash(tab,0)
+    For i, content in Object.items
+    {
+      item := new ItemBuild(content,Object.quadLayout)
+      ; Array_Gui(item)
+      If (item.Prop.ChaosRecipe || item.Prop.RegalRecipe)
+      {
+        If !IsObject(RecipeArray[item.Prop.SlotType])
+          RecipeArray[item.Prop.SlotType] := {}
+        RecipeArray[item.Prop.SlotType].Push(item)
+      }
+    }
+    RecipeSets:={}
+    Loop {
+      ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
+      If (IsObject(RecipeArray.Amulet.1) 
+      && IsObject(RecipeArray.Ring.1) && IsObject(RecipeArray.Ring.2)
+      && IsObject(RecipeArray.Belt.1)
+      && IsObject(RecipeArray.Body.1)
+      && IsObject(RecipeArray.Boots.1)
+      && IsObject(RecipeArray.Gloves.1)
+      && IsObject(RecipeArray.Helmet.1))
+      {
+        Set := {}
+        If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray.Shield.2))
+        {
+          Set.Push(RecipeArray.Shield.RemoveAt(1))
+          Set.Push(RecipeArray.Shield.RemoveAt(1))
+        }
+        Else If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray["One Hand"].1))
+        {
+          Set.Push(RecipeArray.Shield.RemoveAt(1))
+          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
+        }
+        Else If (IsObject(RecipeArray["Two Hand"].1))
+        {
+          Set.Push(RecipeArray["Two Hand"].RemoveAt(1))
+        }
+        Else If (IsObject(RecipeArray["One Hand"].1) && IsObject(RecipeArray["One Hand"].2))
+        {
+          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
+          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
+        }
+        Else 
+          Break
+        Set.Push(RecipeArray.Amulet.RemoveAt(1))
+        Set.Push(RecipeArray.Ring.RemoveAt(1))
+        Set.Push(RecipeArray.Ring.RemoveAt(1))
+        Set.Push(RecipeArray.Belt.RemoveAt(1))
+        Set.Push(RecipeArray.Body.RemoveAt(1))
+        Set.Push(RecipeArray.Boots.RemoveAt(1))
+        Set.Push(RecipeArray.Gloves.RemoveAt(1))
+        Set.Push(RecipeArray.Helmet.RemoveAt(1))
+        RecipeSets.Push(Set)
+      }
+      Else
+        Break
+    }
+    Return RecipeSets
+  }
+  ; Takes a list of Recipe Sets to the vendor
+  VendorChaosRecipe()
+  {
+    ; Ensure we only run one instance, second press of hotkey should stop function
+    If RunningToggle  ; This means an underlying thread is already running the loop below.
+    {
+      RunningToggle := False  ; Signal that thread's loop to stop.
+      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+        SetTimer, TGameTick, On
+      SendMSG(1,0,scriptTradeMacro)
+      exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
+    }
 
+    Global StashGrid, CurrentTab
+    CurrentTab := 0
+    Static Object := {}
+    If !Object.Count()
+      Object := ChaosRecipe(StashTabDump)
+    If !Object.Count()
+      Return
+    
+    IfWinActive, ahk_group POEGameGroup
+    {
+      ; Refresh our screenshot
+      GuiStatus()
+      ; Check OnStash / Search for stash
+      If (!OnStash)
+      {
+        If !SearchStash()
+          Return
+      }
+      RunningToggle := True
+      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+        SetTimer, TGameTick, Off
+    } Else
+      Return
+
+    For k, v in Object.1
+    {
+      ; Move to Tab
+      MoveStash(v.Prop.StashTab)
+      Sleep, 15
+      ; Ctrl+Click to inventory
+      CtrlClick(StashGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
+      , StashGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
+      Sleep, 30
+    }
+
+    ; Remove set from Object array
+    Object.RemoveAt(1)
+
+    ; Close Stash panel
+    Send % hotkeyCloseAllUI
+    GuiStatus()
+    ; Search for Vendor
+    If SearchVendor()
+    {
+      Sleep, 45
+      ; Vendor set
+      VendorRoutineChaos()
+    }
+
+    ; Reset in preparation for the next press of this hotkey.
+    RunningToggle := False  
+    SendMSG(1,0,scriptTradeMacro)
+    Sleep, 90*Latency
+    MouseMove, xx, yy, 0
+    If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+      SetTimer, TGameTick, On
+    Return
+  }
   ; StashRoutine - Does stash functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StashRoutine()
@@ -5615,6 +5930,10 @@ Return
       Thread, NoTimers, true    ;Critical
 
       LoadArray()
+
+      ; Login Information
+      IniRead, PoESessionID, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID, %A_Space%
+
       ;General settings
       IniRead, BranchName, %A_ScriptDir%\save\Settings.ini, General, BranchName, master
       IniRead, ScriptUpdateTimeInterval, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval, 1

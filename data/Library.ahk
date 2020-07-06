@@ -2208,71 +2208,6 @@
         }
       }
     }
-  ; Find and retreive Chaos recipe items from a Stash Tab
-  ChaosRecipe(tab){
-    If (AccountNameSTR = "")
-      AccountNameSTR := POE_RequestAccount().accountName
-    RecipeArray := {}
-    Object := POE_RequestStash(tab,0)
-    For i, content in Object.items
-    {
-      item := new ItemBuild(content,Object.quadLayout)
-      ; Array_Gui(item)
-      If (item.Prop.ChaosRecipe || item.Prop.RegalRecipe)
-      {
-        If !IsObject(RecipeArray[item.Prop.SlotType])
-          RecipeArray[item.Prop.SlotType] := {}
-        RecipeArray[item.Prop.SlotType].Push(item)
-      }
-    }
-    RecipeSets:={}
-    Loop {
-      ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
-      If (IsObject(RecipeArray.Amulet.1) 
-      && IsObject(RecipeArray.Ring.1) && IsObject(RecipeArray.Ring.2)
-      && IsObject(RecipeArray.Belt.1)
-      && IsObject(RecipeArray.Body.1)
-      && IsObject(RecipeArray.Boots.1)
-      && IsObject(RecipeArray.Gloves.1)
-      && IsObject(RecipeArray.Helmet.1))
-      {
-        Set := {}
-        If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray.Shield.2))
-        {
-          Set.Push(RecipeArray.Shield.RemoveAt(1))
-          Set.Push(RecipeArray.Shield.RemoveAt(1))
-        }
-        Else If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray["One Hand"].1))
-        {
-          Set.Push(RecipeArray.Shield.RemoveAt(1))
-          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
-        }
-        Else If (IsObject(RecipeArray["Two Hand"].1))
-        {
-          Set.Push(RecipeArray["Two Hand"].RemoveAt(1))
-        }
-        Else If (IsObject(RecipeArray["One Hand"].1) && IsObject(RecipeArray["One Hand"].2))
-        {
-          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
-          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
-        }
-        Else 
-          Break
-        Set.Push(RecipeArray.Amulet.RemoveAt(1))
-        Set.Push(RecipeArray.Ring.RemoveAt(1))
-        Set.Push(RecipeArray.Ring.RemoveAt(1))
-        Set.Push(RecipeArray.Belt.RemoveAt(1))
-        Set.Push(RecipeArray.Body.RemoveAt(1))
-        Set.Push(RecipeArray.Boots.RemoveAt(1))
-        Set.Push(RecipeArray.Gloves.RemoveAt(1))
-        Set.Push(RecipeArray.Helmet.RemoveAt(1))
-        RecipeSets.Push(Set)
-      }
-      Else
-        Break
-    }
-    Return RecipeSets
-  }
   ; ArrayToString - Make a string from array using | as delimiters
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ArrayToString(Array)
@@ -2299,1107 +2234,1107 @@
   }
   ; WR_Menu - New menu handling method
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    WR_Menu(Function:="",Var*)
+  WR_Menu(Function:="",Var*)
+  {
+    Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
+
+    Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
+      , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
+      , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
+      , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
+      , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
+      , WR_Btn_FillMetamorph_Area
+      , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
+    If (Function = "Inventory")
     {
-      Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
-
-      Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
-        , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
-        , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
-        , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
-        , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
-        , WR_Btn_FillMetamorph_Area
-        , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
-      If (Function = "Inventory")
+      Gui, 1: Submit
+      If !Built_Inventory
       {
-        Gui, 1: Submit
-        If !Built_Inventory
+        Built_Inventory := 1
+        Gui, Inventory: New
+        Gui, Inventory: +AlwaysOnTop -MinimizeBox
+        ;Save Setting
+        Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
+        Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
+
+        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Map Crafting Settings
+
+      Gui, Inventory: Tab, Options
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,       Section    w170 h215    xm   ym+25,         ID/Vend/Stash/CLF Options
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSeedStockPile      Checked%YesSeedStockPile%      y+8    , Deposit at Seed StockPile?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid            Checked%YesMapUnid%            y+8    , Leave Map Un-ID?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
+        Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
+        Gui, Inventory: Font
+
+        Gui, Inventory: Add, Text,                     xs+93   ys+15,        X-Pos
+        Gui, Inventory: Add, Text,                     x+12,             Y-Pos
+
+        Gui, Inventory: Add, Text,                     xs+21  y+5,         Portal Scroll:
+        Gui, Inventory: Add, Edit,       vPortalScrollX         x+8        y+-15   w34  h17,   %PortalScrollX%
+        Gui, Inventory: Add, Edit,       vPortalScrollY         x+8                w34  h17,   %PortalScrollY%  
+        Gui, Inventory: Add, Text,                     xs+10  y+6,         Wisdom Scroll:
+        Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
+        Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
+        Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem1:
+        Gui, Inventory: Add, Edit,       vCurrentGemX           x+8        y+-15   w34  h17,   %CurrentGemX%
+        Gui, Inventory: Add, Edit,       vCurrentGemY           x+8                w34  h17,   %CurrentGemY%
+        Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem1:
+        Gui, Inventory: Add, Edit,       vAlternateGemX         x+8        y+-15   w34  h17,   %AlternateGemX%
+        Gui, Inventory: Add, Edit,       vAlternateGemY         x+8                w34  h17,   %AlternateGemY%
+        Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem2:
+        Gui, Inventory: Add, Edit,       vCurrentGem2X          x+8        y+-15   w34  h17,   %CurrentGem2X%
+        Gui, Inventory: Add, Edit,       vCurrentGem2Y          x+8                w34  h17,   %CurrentGem2Y%
+        Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem2:
+        Gui, Inventory: Add, Edit,       vAlternateGem2X        x+8        y+-15   w34  h17,   %AlternateGem2X%
+        Gui, Inventory: Add, Edit,       vAlternateGem2Y        x+8                w34  h17,   %AlternateGem2Y%
+        Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
+        Gui, Inventory: Add, Edit,       vGrabCurrencyPosX        x+8        y+-15   w34  h17,   %GrabCurrencyPosX%
+        Gui, Inventory: Add, Edit,       vGrabCurrencyPosY        x+8                w34  h17,   %GrabCurrencyPosY%
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem                                    y+4    h17            , Locate
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem                                  y+4    h17            , Locate
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem2                                   y+4    h17            , Locate
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2                                 y+4    h17            , Locate
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
+        Gui, Inventory: Add, Checkbox,    vStockPortal                    Checked%StockPortal%                    x+13   ys+33          , Stock Portal?
+        Gui, Inventory: Add, Checkbox,    vStockWisdom                    Checked%StockWisdom%                    y+8                   , Stock Wisdom?
+        Gui, Inventory: Add, Checkbox,    vAlternateGemOnSecondarySlot    Checked%AlternateGemOnSecondarySlot%    y+8                   , Weapon Swap Gem1?
+        Gui, Inventory: Add, Checkbox,    vGemItemToogle                  Checked%GemItemToogle%                  y+8                   , Enable Swap Item1?
+        Gui, Inventory: Add, Checkbox,    vAlternateGem2OnSecondarySlot   Checked%AlternateGem2OnSecondarySlot%   y+8                   , Weapon Swap Gem2?
+        Gui, Inventory: Add, Checkbox,    vGemItemToogle2                 Checked%GemItemToogle2%                 y+8                   , Enable Swap Item2?
+        Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
+        Gui, Inventory: Add, Text,                   x+33             h152 0x11
+        Gui, Inventory: Add, Text,                   x+33             h152 0x11
+
+        IfNotExist, %A_ScriptDir%\data\leagues.json
         {
-          Built_Inventory := 1
-          Gui, Inventory: New
-          Gui, Inventory: +AlwaysOnTop -MinimizeBox
-          ;Save Setting
-          Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-          ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
-          Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
+          UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+        }
+        FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+        LeagueIndex := JSON.Load(JSONtext)
+        textList= 
+        For K, V in LeagueIndex
+          textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
-          Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Map Crafting Settings
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
+        Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
+        Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %textList%
+        GuiControl,Inventory: ChooseString, selectedLeague, %selectedLeague%
+        Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
+        Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
+        Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
+        Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
+        Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
+        GuiControl,Inventory: ChooseString, YesPredictivePrice, %YesPredictivePrice%
+        
+        Gui, Inventory: Font, s18
+        Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
+        Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
+        Gui, Inventory: Font,
+        ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
+        Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h145    section    xm+370   ys,         Automation
+        AutomationList := "Search Stash|Search Vendor"
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
+        Gui, Inventory: Add, Text, y+8, First Automation Action
+        Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 ,%AutomationList%
+        GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
+        Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableSeedAutomation Checked%YesEnableSeedAutomation%   xs+5    y+8  , Enable Seed Automation ?
+        Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h70    section   xm+370   y+15,         Metamorph Options
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesFillMetamorph Checked%YesFillMetamorph%       xs+5 ys+18      , Auto fill metamorph?
+        Gui, Inventory: Add, Button, gWR_Update  vWR_Btn_FillMetamorph_Menu y+8  w170 center    , Adjust Metamorph Panel
 
-        Gui, Inventory: Tab, Options
+      Gui, Inventory: Tab, Stash Tabs
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        ;You can test with Stash Tab management as a groupbox, but i dont like it
+        ;Gui, Inventory: Add, GroupBox,       Section    w352 h437    xm   ym+25,Stash Tab Management
+        Gui, Inventory: Add, Text,       Section    xm+5   ym+25,Stash Tab Management
+        Gui, Inventory: Font,
+
+        ; Keeping Specific Tab first
+
+        ; Currency
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs ys+18 , Currency
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCurrency yp hp , %StashTabCurrency%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 yp+4, Enable
+        ; Map
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Map
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabMap x+0 yp hp ,  %StashTabMap%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% x+5 yp+4, Enable
+        
+        ; Divination
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Divination
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDivination x+0 yp hp ,  %StashTabDivination%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% x+5 yp+4, Enable
+
+        ; Fragments
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Fragment
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabFragment x+0 yp hp ,  %StashTabFragment%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% x+5 yp+4, Enable
+
+        ; Essence
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Essence
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabEssence x+0 yp hp ,  %StashTabEssence%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% x+5 yp+4, Enable
+        
+        ; Collection
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Collection
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCollection x+0 yp hp ,  %StashTabCollection%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% x+5 yp+4, Enable
+
+        ; Fossil
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Fossil
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFossil , %StashTabFossil%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% x+5 yp+4, Enable
+
+        ; Resonator
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Resonator
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabResonator , %StashTabResonator%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% x+5 yp+4, Enable
+        
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Prophecy
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabProphecy x+0 yp hp ,  %StashTabProphecy%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Veiled
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabVeiled x+0 yp hp ,  %StashTabVeiled%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% x+5 yp+4, Enable
+
+        ; Second column Gui
+        
+        ; Organ
+        
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , Organ
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOrgan x+0 yp hp , %StashTabOrgan%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan%  x+5 yp+4, Enable
+
+        ;Catalyst
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Catalyst
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCatalyst x+0 yp hp ,  %StashTabCatalyst%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCatalyst Checked%StashTabYesCatalyst% x+5 yp+4, Enable
+
+        ; Oil
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Oil
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOil x+0 yp hp ,  %StashTabOil%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% x+5 yp+4, Enable
+
+        ;BlightedMap
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Blighted Map
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabBlightedMap, %StashTabBlightedMap%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesBlightedMap Checked%StashTabYesBlightedMap% x+5 yp+4, Enable
+
+        ;Delirium
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Delirium
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabDelirium, %StashTabDelirium%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDelirium Checked%StashTabYesDelirium% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemQuality , %StashTabGemQuality%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemSupport , %StashTabGemSupport%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGem , %StashTabGem%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Cluster Jewel
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp+4, Enable
+
+        ; Third Column
+        
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys , Dump
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDump x+0 yp hp ,  %StashTabDump%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Priced Rares
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabPredictive , %StashTabPredictive%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Ninja Priced
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabNinjaPrice , %StashTabNinjaPrice%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Crafting
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabCrafting , %StashTabCrafting%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Ring
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueRing , %StashTabUniqueRing%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Dump
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueDump , %StashTabUniqueDump%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabInfluencedItem , %StashTabInfluencedItem%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Linked
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
+
+        ; Crafting Bases
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h110    section    x+15   ys,         Crafting Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT3 Checked%YesStashT3%   x+3        , T3?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT4 Checked%YesStashT4%   x+3        , T4?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingNormal Checked%YesStashCraftingNormal%     xs+5  y+8    , Normal?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingMagic Checked%YesStashCraftingMagic%   x+0        , Magic?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingRare Checked%YesStashCraftingRare%   x+0        , Rare?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+15 y+5  w150,   Custom Crafting List
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+        Gui, Inventory: Add, Edit, x+5 yp-3 w40
+        Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Ninja Priced Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+        Gui, Inventory: Add, Edit, x+5 yp-3 w40
+        Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map Options
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
+        GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
+        Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps x+3 yp , 0|1|2|3|4|5|6|7|8|9|10|11|12
+        GuiControl,Inventory: ChooseString, YesSkipMaps, %YesSkipMaps%
+        Gui, Inventory: Add, Text, yp+3 x+5 , Column to Skip
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_normal Checked%YesSkipMaps_normal%     xs+5  y+8    , Skip Normal?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_magic Checked%YesSkipMaps_magic%     x+0 yp   , Skip Magic?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_rare Checked%YesSkipMaps_rare%   xs+5 y+8        , Skip Rare?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_unique Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
+        Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
+        Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
+        Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
+
+      Gui, Inventory: Tab, Stash Hotkeys
+
+        Gui, Inventory: Add, Checkbox, xm+5 ym+25  vYesStashKeys Checked%YesStashKeys%                    , Enable stash hotkeys?
+
+        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
+        Gui, Inventory: Add,GroupBox,Section xp-5 yp+20 w100 h85                      ,Modifier
+        Gui, Inventory: Font,
+        Gui, Inventory: Font,s9,Arial
+        Gui, Inventory: Add, Edit, xs+4 ys+20 w90 h23 vstashPrefix1, %stashPrefix1%
+        Gui, Inventory: Add, Edit, y+8    w90 h23 vstashPrefix2, %stashPrefix2%
+
+        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
+        Gui, Inventory: Add,GroupBox, xp-5 y+20 w100 h55                      ,Reset Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Font,s9,Arial
+        Gui, Inventory: Add, Edit, xp+4 yp+20 w90 h23 vstashReset, %stashReset%
+
+        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
+        Gui, Inventory: Add,GroupBox,Section x+10 ys w100 h275                      ,Keys
+        Gui, Inventory: Font,
+        Gui, Inventory: Font,s9,Arial
+        Gui, Inventory: Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
+        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
+        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
+        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
+        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
+        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
+        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
+        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
+        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
+
+        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
+        Gui, Inventory: Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Font,s9,Arial
+        Gui, Inventory: Add, Edit, Number xs+4 ys+20 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
+        Gui, Inventory: Add, Edit, Number y+5 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
+        Gui, Inventory: Add, Edit, Number y+5 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
+        Gui, Inventory: Add, Edit, Number y+5 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
+        Gui, Inventory: Add, Edit, Number y+5 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
+        Gui, Inventory: Add, Edit, Number y+5 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
+        Gui, Inventory: Add, Edit, Number y+5 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
+        Gui, Inventory: Add, Edit, Number y+5 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
+        Gui, Inventory: Add, Edit, Number y+5 w40
+        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
+      Gui, Inventory: Tab, Map Crafting Settings
+        MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
+        MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
+        MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
+        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
+        Gui, Inventory: Font,
+        Gui, Inventory: Font,s7
+          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+          Gui, Inventory: Font,s8
+          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
+          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
+          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
+          GuiControl,Inventory: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,       Section    w170 h215    xm   ym+25,         ID/Vend/Stash/CLF Options
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSeedStockPile      Checked%YesSeedStockPile%      y+8    , Deposit at Seed StockPile?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid            Checked%YesMapUnid%            y+8    , Leave Map Un-ID?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
-          Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
-
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
-          Gui, Inventory: Font
-
-          Gui, Inventory: Add, Text,                     xs+93   ys+15,        X-Pos
-          Gui, Inventory: Add, Text,                     x+12,             Y-Pos
-
-          Gui, Inventory: Add, Text,                     xs+21  y+5,         Portal Scroll:
-          Gui, Inventory: Add, Edit,       vPortalScrollX         x+8        y+-15   w34  h17,   %PortalScrollX%
-          Gui, Inventory: Add, Edit,       vPortalScrollY         x+8                w34  h17,   %PortalScrollY%  
-          Gui, Inventory: Add, Text,                     xs+10  y+6,         Wisdom Scroll:
-          Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
-          Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
-          Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem1:
-          Gui, Inventory: Add, Edit,       vCurrentGemX           x+8        y+-15   w34  h17,   %CurrentGemX%
-          Gui, Inventory: Add, Edit,       vCurrentGemY           x+8                w34  h17,   %CurrentGemY%
-          Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem1:
-          Gui, Inventory: Add, Edit,       vAlternateGemX         x+8        y+-15   w34  h17,   %AlternateGemX%
-          Gui, Inventory: Add, Edit,       vAlternateGemY         x+8                w34  h17,   %AlternateGemY%
-          Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem2:
-          Gui, Inventory: Add, Edit,       vCurrentGem2X          x+8        y+-15   w34  h17,   %CurrentGem2X%
-          Gui, Inventory: Add, Edit,       vCurrentGem2Y          x+8                w34  h17,   %CurrentGem2Y%
-          Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem2:
-          Gui, Inventory: Add, Edit,       vAlternateGem2X        x+8        y+-15   w34  h17,   %AlternateGem2X%
-          Gui, Inventory: Add, Edit,       vAlternateGem2Y        x+8                w34  h17,   %AlternateGem2Y%
-          Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
-          Gui, Inventory: Add, Edit,       vGrabCurrencyPosX        x+8        y+-15   w34  h17,   %GrabCurrencyPosX%
-          Gui, Inventory: Add, Edit,       vGrabCurrencyPosY        x+8                w34  h17,   %GrabCurrencyPosY%
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem                                    y+4    h17            , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem                                  y+4    h17            , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem2                                   y+4    h17            , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2                                 y+4    h17            , Locate
-          Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
-          Gui, Inventory: Add, Checkbox,    vStockPortal                    Checked%StockPortal%                    x+13   ys+33          , Stock Portal?
-          Gui, Inventory: Add, Checkbox,    vStockWisdom                    Checked%StockWisdom%                    y+8                   , Stock Wisdom?
-          Gui, Inventory: Add, Checkbox,    vAlternateGemOnSecondarySlot    Checked%AlternateGemOnSecondarySlot%    y+8                   , Weapon Swap Gem1?
-          Gui, Inventory: Add, Checkbox,    vGemItemToogle                  Checked%GemItemToogle%                  y+8                   , Enable Swap Item1?
-          Gui, Inventory: Add, Checkbox,    vAlternateGem2OnSecondarySlot   Checked%AlternateGem2OnSecondarySlot%   y+8                   , Weapon Swap Gem2?
-          Gui, Inventory: Add, Checkbox,    vGemItemToogle2                 Checked%GemItemToogle2%                 y+8                   , Enable Swap Item2?
-          Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
-          Gui, Inventory: Add, Text,                   x+33             h152 0x11
-          Gui, Inventory: Add, Text,                   x+33             h152 0x11
-
-          IfNotExist, %A_ScriptDir%\data\leagues.json
-          {
-            UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-          }
-          FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-          LeagueIndex := JSON.Load(JSONtext)
-          textList= 
-          For K, V in LeagueIndex
-            textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
-
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
-          Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
-          Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %textList%
-          GuiControl,Inventory: ChooseString, selectedLeague, %selectedLeague%
-          Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
-          Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
-          Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
-          Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
-          Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
-          GuiControl,Inventory: ChooseString, YesPredictivePrice, %YesPredictivePrice%
-          
-          Gui, Inventory: Font, s18
-          Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
-          Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
-          Gui, Inventory: Font,
-          ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
-          Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h145    section    xm+370   ys,         Automation
-          AutomationList := "Search Stash|Search Vendor"
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
-          Gui, Inventory: Add, Text, y+8, First Automation Action
-          Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 ,%AutomationList%
-          GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
-          Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableSeedAutomation Checked%YesEnableSeedAutomation%   xs+5    y+8  , Enable Seed Automation ?
-          Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h70    section   xm+370   y+15,         Metamorph Options
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesFillMetamorph Checked%YesFillMetamorph%       xs+5 ys+18      , Auto fill metamorph?
-          Gui, Inventory: Add, Button, gWR_Update  vWR_Btn_FillMetamorph_Menu y+8  w170 center    , Adjust Metamorph Panel
-
-        Gui, Inventory: Tab, Stash Tabs
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          ;You can test with Stash Tab management as a groupbox, but i dont like it
-          ;Gui, Inventory: Add, GroupBox,       Section    w352 h437    xm   ym+25,Stash Tab Management
-          Gui, Inventory: Add, Text,       Section    xm+5   ym+25,Stash Tab Management
-          Gui, Inventory: Font,
-
-          ; Keeping Specific Tab first
-
-          ; Currency
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs ys+18 , Currency
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCurrency yp hp , %StashTabCurrency%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 yp+4, Enable
-          ; Map
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Map
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabMap x+0 yp hp ,  %StashTabMap%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% x+5 yp+4, Enable
-          
-          ; Divination
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Divination
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDivination x+0 yp hp ,  %StashTabDivination%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% x+5 yp+4, Enable
-
-          ; Fragments
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Fragment
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabFragment x+0 yp hp ,  %StashTabFragment%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% x+5 yp+4, Enable
-
-          ; Essence
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Essence
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabEssence x+0 yp hp ,  %StashTabEssence%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% x+5 yp+4, Enable
-          
-          ; Collection
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Collection
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCollection x+0 yp hp ,  %StashTabCollection%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% x+5 yp+4, Enable
-
-          ; Fossil
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Fossil
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFossil , %StashTabFossil%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% x+5 yp+4, Enable
-
-          ; Resonator
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Resonator
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabResonator , %StashTabResonator%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% x+5 yp+4, Enable
-          
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Prophecy
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabProphecy x+0 yp hp ,  %StashTabProphecy%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Veiled
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabVeiled x+0 yp hp ,  %StashTabVeiled%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% x+5 yp+4, Enable
-
-          ; Second column Gui
-          
-          ; Organ
-          
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , Organ
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOrgan x+0 yp hp , %StashTabOrgan%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan%  x+5 yp+4, Enable
-
-          ;Catalyst
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Catalyst
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCatalyst x+0 yp hp ,  %StashTabCatalyst%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCatalyst Checked%StashTabYesCatalyst% x+5 yp+4, Enable
-
-          ; Oil
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Oil
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOil x+0 yp hp ,  %StashTabOil%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% x+5 yp+4, Enable
-
-          ;BlightedMap
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Blighted Map
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabBlightedMap, %StashTabBlightedMap%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesBlightedMap Checked%StashTabYesBlightedMap% x+5 yp+4, Enable
-
-          ;Delirium
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Delirium
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabDelirium, %StashTabDelirium%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDelirium Checked%StashTabYesDelirium% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemQuality , %StashTabGemQuality%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemSupport , %StashTabGemSupport%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Gem
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGem , %StashTabGem%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Cluster Jewel
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp+4, Enable
-
-          ; Third Column
-          
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys , Dump
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDump x+0 yp hp ,  %StashTabDump%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Priced Rares
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabPredictive , %StashTabPredictive%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Ninja Priced
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabNinjaPrice , %StashTabNinjaPrice%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Crafting
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabCrafting , %StashTabCrafting%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Ring
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueRing , %StashTabUniqueRing%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Dump
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueDump , %StashTabUniqueDump%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabInfluencedItem , %StashTabInfluencedItem%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Linked
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
-
-          Gui, Inventory: Font, Bold s8 cBlack, Arial
-          Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-          Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
-
-          ; Crafting Bases
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h110    section    x+15   ys,         Crafting Tab
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT3 Checked%YesStashT3%   x+3        , T3?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT4 Checked%YesStashT4%   x+3        , T4?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingNormal Checked%YesStashCraftingNormal%     xs+5  y+8    , Normal?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingMagic Checked%YesStashCraftingMagic%   x+0        , Magic?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingRare Checked%YesStashCraftingRare%   x+0        , Rare?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
-          Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
-          Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
-          Gui, Inventory: Add, Button, gCustomCrafting xs+15 y+5  w150,   Custom Crafting List
-
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
-          Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
-
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
-          Gui, Inventory: Add, Edit, x+5 yp-3 w40
-          Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
-
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Ninja Priced Tab
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
-          Gui, Inventory: Add, Edit, x+5 yp-3 w40
-          Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
-
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map Options
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
-          GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
-          Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps x+3 yp , 0|1|2|3|4|5|6|7|8|9|10|11|12
-          GuiControl,Inventory: ChooseString, YesSkipMaps, %YesSkipMaps%
-          Gui, Inventory: Add, Text, yp+3 x+5 , Column to Skip
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_normal Checked%YesSkipMaps_normal%     xs+5  y+8    , Skip Normal?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_magic Checked%YesSkipMaps_magic%     x+0 yp   , Skip Magic?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_rare Checked%YesSkipMaps_rare%   xs+5 y+8        , Skip Rare?
-          Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_unique Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
-          Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
-          Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
-          Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
-
-        Gui, Inventory: Tab, Stash Hotkeys
-
-          Gui, Inventory: Add, Checkbox, xm+5 ym+25  vYesStashKeys Checked%YesStashKeys%                    , Enable stash hotkeys?
-
-          Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-          Gui, Inventory: Add,GroupBox,Section xp-5 yp+20 w100 h85                      ,Modifier
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s9,Arial
-          Gui, Inventory: Add, Edit, xs+4 ys+20 w90 h23 vstashPrefix1, %stashPrefix1%
-          Gui, Inventory: Add, Edit, y+8    w90 h23 vstashPrefix2, %stashPrefix2%
-
-          Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-          Gui, Inventory: Add,GroupBox, xp-5 y+20 w100 h55                      ,Reset Tab
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s9,Arial
-          Gui, Inventory: Add, Edit, xp+4 yp+20 w90 h23 vstashReset, %stashReset%
-
-          Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-          Gui, Inventory: Add,GroupBox,Section x+10 ys w100 h275                      ,Keys
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s9,Arial
-          Gui, Inventory: Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
-          Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
-          Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
-          Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
-          Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
-          Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
-          Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
-          Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
-          Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
-
-          Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-          Gui, Inventory: Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s9,Arial
-          Gui, Inventory: Add, Edit, Number xs+4 ys+20 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
-          Gui, Inventory: Add, Edit, Number y+5 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
-          Gui, Inventory: Add, Edit, Number y+5 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
-          Gui, Inventory: Add, Edit, Number y+5 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
-          Gui, Inventory: Add, Edit, Number y+5 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
-          Gui, Inventory: Add, Edit, Number y+5 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
-          Gui, Inventory: Add, Edit, Number y+5 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
-          Gui, Inventory: Add, Edit, Number y+5 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
-          Gui, Inventory: Add, Edit, Number y+5 w40
-          Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
-        Gui, Inventory: Tab, Map Crafting Settings
-          MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
-          MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
-          MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
-          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
+        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
           Gui, Inventory: Font,
           Gui, Inventory: Font,s7
-            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-            Gui, Inventory: Font,s8
-            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
-            GuiControl,Inventory: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
-            Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
-            Gui, Inventory: Font,
-            Gui, Inventory: Font,s7
-            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-            Gui, Inventory: Font,s8
-            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
-            GuiControl,Inventory: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
-            Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
-            Gui, Inventory: Font,
-            Gui, Inventory: Font,s7
-            Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-            Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-            Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-            Gui, Inventory: Font,s8
-            Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
-            Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
-            GuiControl,Inventory: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
-            Gui, Inventory: Font,
-            Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
-            Gui, Inventory: Font,
-            Gui, Inventory: Font,s8
-            Gui, Inventory: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
-            Gui, Inventory: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
-            Gui, Inventory: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
-            Gui, Inventory: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
-            Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
-            Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-            Gui, Inventory: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances
-            Gui, Inventory: Font, Bold
-            Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
-            Gui, Inventory: Font, 
-            Gui, Inventory: Font,s8
-
-            Gui, Inventory: Add, Edit, number limit2 xs+15 yp+18 w40
-            Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
-            Gui, Inventory: Add, Text,         x+10 yp+3        , Item Quantity
-
-            Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
-            Gui, Inventory: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
-            Gui, Inventory: Add, Text,         x+10 yp+3        , Item Rarity
-
-            Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
-            Gui, Inventory: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
-            Gui, Inventory: Add, Text,         x+10 yp+3        , Monster Pack Size
-
-            Gui, Inventory: Font, Bold s9 cBlack, Arial
-          Gui, Inventory: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
+          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+          Gui, Inventory: Font,s8
+          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
+          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
+          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
+          GuiControl,Inventory: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
           Gui, Inventory: Font,
-            Gui, Inventory: Font,s8
-            Gui, Inventory: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
-        }
-        Gui, Inventory: show , w600 h500, Inventory Settings
+          Gui, Inventory: Font,s7
+          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
+          Gui, Inventory: Font,s8
+          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
+          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
+          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
+          GuiControl,Inventory: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
+          Gui, Inventory: Font,
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
+          Gui, Inventory: Font,
+          Gui, Inventory: Font,s8
+          Gui, Inventory: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
+          Gui, Inventory: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
+          Gui, Inventory: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
+          Gui, Inventory: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
+          Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
+          Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
+          Gui, Inventory: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances
+          Gui, Inventory: Font, Bold
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
+          Gui, Inventory: Font, 
+          Gui, Inventory: Font,s8
+
+          Gui, Inventory: Add, Edit, number limit2 xs+15 yp+18 w40
+          Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+          Gui, Inventory: Add, Text,         x+10 yp+3        , Item Quantity
+
+          Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
+          Gui, Inventory: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
+          Gui, Inventory: Add, Text,         x+10 yp+3        , Item Rarity
+
+          Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
+          Gui, Inventory: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
+          Gui, Inventory: Add, Text,         x+10 yp+3        , Monster Pack Size
+
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
+        Gui, Inventory: Font,
+          Gui, Inventory: Font,s8
+          Gui, Inventory: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
       }
-      Else If (Function = "Strings")
-      {
-        Gui, 1: Submit
-        If !Built_Strings
-        {
-          Built_Strings := 1
-          Gui, Strings: New
-          Gui, Strings: +AlwaysOnTop -MinimizeBox
-          ;Save Setting
-          ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-          ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-          
-          Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
-          Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
-          Gui, Strings: Font, Bold cBlack
-          Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Use the dropdown to select from 1080 defaults
-          Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor
-          Gui, Strings: Font,
-
-        Gui, Strings: Tab, General
-          Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
-          Gui, Strings: +Delimiter?
-          Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
-          Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"
-          Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
-          Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
-          Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"
-          Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
-          Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"
-          Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
-          Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
-          Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
-          Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"
-          Gui, Strings: Add, Text, x+10 ys , Capture of the Seed StockPile
-          Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"
-          Gui, Strings: +Delimiter|
-
-        Gui, Strings: Tab, Vendor
-          Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
-          Gui, Strings: +Delimiter?
-          Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"
-          Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"
-          Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorLioneyeStr gUpdateStringEdit , %VendorLioneyeStr%??"%1080_BestelStr%"
-          Gui, Strings: Add, Text, x+10 ys , Capture of the Forest vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorForestStr gUpdateStringEdit , %VendorForestStr%??"%1080_GreustStr%"
-          Gui, Strings: Add, Text, xs y+15 section, Capture of the Sarn vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorSarnStr gUpdateStringEdit , %VendorSarnStr%??"%1080_ClarissaStr%"
-          Gui, Strings: Add, Text, x+10 ys , Capture of the Highgate vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorHighgateStr gUpdateStringEdit , %VendorHighgateStr%??"%1080_PetarusStr%"
-          Gui, Strings: Add, Text, xs y+15 section, Capture of the Overseer vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorOverseerStr gUpdateStringEdit , %VendorOverseerStr%??"%1080_LaniStr%"
-          Gui, Strings: Add, Text, x+10 ys , Capture of the Bridge vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorBridgeStr gUpdateStringEdit , %VendorBridgeStr%??"%1080_HelenaStr%"
-          Gui, Strings: Add, Text, xs y+15 section, Capture of the Docks vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"
-          Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
-          Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"
-          Gui, Strings: +Delimiter|
-        }
-        Gui, Strings: show , w640 h525, FindText Strings
-      }
-      Else If (Function = "Chat")
-      {
-        Gui, 1: Submit
-        If !Built_Chat
-        {
-          Built_Chat := 1
-          Gui, Chat: New
-          Gui, Chat: +AlwaysOnTop -MinimizeBox
-          Gui, Chat: Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xm+400 ym                    , Enable chat Hotkeys?
-
-          ;Save Setting
-          Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
-          ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-          Gui, Chat: Add, Button,      gLaunchSite     x+5           h23,   Website
-
-          Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
-        Gui, Chat: Tab, Commands
-          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-          Gui, Chat: Add,GroupBox,Section w60 h85                      ,Modifier
-          Gui, Chat: Font,
-          Gui, Chat: Font,s9,Arial
-          Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v1Prefix1, %1Prefix1%
-          Gui, Chat: Add, Edit, y+8    w50 h23 v1Prefix2, %1Prefix2%
-          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-          Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
-          Gui, Chat: Font,
-          Gui, Chat: Font,s9,Arial
-          Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v1Suffix1, %1Suffix1%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix2, %1Suffix2%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix3, %1Suffix3%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix4, %1Suffix4%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix5, %1Suffix5%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix6, %1Suffix6%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix7, %1Suffix7%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix8, %1Suffix8%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix9, %1Suffix9%
-          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-          Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Commands
-          Gui, Chat: Font,
-          Gui, Chat: Font,s9,Arial
-          DefaultCommands := [ "/Hideout","/Menagerie","/Delve","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
-          textList=
-          For k, v in DefaultCommands
-            textList .= (!textList ? "" : "|") v
-          Gui, Chat: Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix1Text, %1Suffix1Text%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix2Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix2Text, %1Suffix2Text%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix3Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix3Text, %1Suffix3Text%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix4Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix4Text, %1Suffix4Text%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix5Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix5Text, %1Suffix5Text%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix6Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix6Text, %1Suffix6Text%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix7Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix7Text, %1Suffix7Text%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix8Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix8Text, %1Suffix8Text%
-          Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix9Text, %textList%
-          GuiControl,Chat: ChooseString, 1Suffix9Text, %1Suffix9Text%
-        Gui, Chat: Tab, Reply Whisper
-          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-          Gui, Chat: Add,GroupBox,Section  w60 h85                      ,Modifier
-          Gui, Chat: Font,
-
-          Gui, Chat: Font,s9,Arial
-          Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
-          Gui, Chat: Add, Edit, y+8    w50 h23 v2Prefix2, %2Prefix2%
-          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-          Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
-          Gui, Chat: Font,
-          Gui, Chat: Font,s9,Arial
-          Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v2Suffix1, %2Suffix1%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix2, %2Suffix2%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix3, %2Suffix3%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix4, %2Suffix4%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix5, %2Suffix5%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix6, %2Suffix6%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix7, %2Suffix7%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix8, %2Suffix8%
-          Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix9, %2Suffix9%
-          Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-          Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Whisper Reply
-          Gui, Chat: Font,
-          Gui, Chat: Font,s9,Arial
-          DefaultWhisper := [ "/invite RecipientName","Sure, will invite in a sec.","In a map, will get to you in a minute.","Sorry, going to be a while.","No thank you.","Sold","/afk Sold to RecipientName"]
-          textList=
-          For k, v in DefaultWhisper
-            textList .= (!textList ? "" : "|") v
-          Gui, Chat: Add, ComboBox,   xs+4 ys+20   w290 v2Suffix1Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix1Text, %2Suffix1Text%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix2Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix2Text, %2Suffix2Text%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix3Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix3Text, %2Suffix3Text%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix4Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix4Text, %2Suffix4Text%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix5Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix5Text, %2Suffix5Text%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix6Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix6Text, %2Suffix6Text%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix7Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix7Text, %2Suffix7Text%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix8Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix8Text, %2Suffix8Text%
-          Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix9Text, %textList%
-          GuiControl,Chat: ChooseString, 2Suffix9Text, %2Suffix9Text%
-        }
-        Gui, Chat: show , w620 h370, Chat Hotkeys
-      }
-      Else If (Function = "Controller")
-      {
-        Gui, 1: Submit
-        If !Built_Controller
-        {
-          Built_Controller := 1
-          Gui, Controller: New
-          Gui, Controller: +AlwaysOnTop -MinimizeBox
-          DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
-          textList= 
-          For k, v in DefaultButtons
-            textList .= (!textList ? "" : "|") v
-          
-          Gui, Controller: Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
-
-          Gui, Controller: Add, Checkbox,  section  xp y+-10          vYesMovementKeys Checked%YesMovementKeys%                     , Use Move Keys?
-          Gui, Controller: Add, Checkbox,             vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                     , Use utility on Move?
-          Gui, Controller: Add, DropDownList,   x+5 yp-5   w40   vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
-
-          Gui, Controller: Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
-          
-          Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,5
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton5, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton5, %hotkeyControllerButton5%
-          Gui, Controller: Add,GroupBox,  xs+360 ys w80 h40                        ,6
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton6, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton6, %hotkeyControllerButton6%
-
-          Gui, Controller: Add,GroupBox, section  xm+65 ym+100 w90 h80                        ,D-Pad
-          Gui, Controller: add,text, xs+15 ys+30, Mouse`nMovement
-
-          Gui, Controller: Add,GroupBox, section xm+165 ym+180 w80 h80                        ,Joystick1
-          Gui, Controller: Add,Checkbox, xs+5 ys+30     Checked%YesTriggerUtilityJoystickKey%      vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
-          Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,9 / L3
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton9, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton9, %hotkeyControllerButton9%
-
-          Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80                        ,Joystick2
-          Gui, Controller: Add,Checkbox, xp+5 y+-53     Checked%YesTriggerJoystick2Key%      vYesTriggerJoystick2Key, Use key?
-          Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystick2, LButton|RButton|q|w|e|r|t
-          GuiControl,Controller: ChooseString, hotkeyControllerJoystick2, %hotkeyControllerJoystick2%
-          Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,10 / R3
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton10, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton10, %hotkeyControllerButton10%
-
-          Gui, Controller: Add,GroupBox, section xm+140 ym+60 w80 h40                        ,7 / Select
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton7, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton7, %hotkeyControllerButton7%
-          Gui, Controller: Add,GroupBox, xs+245 ys w80 h40                        ,8 / Start
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton8, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton8, %hotkeyControllerButton8%
-
-          Gui, Controller: Add,GroupBox, section xm+65 ym+280 w40 h40                  ,Up
-          Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyUp, %hotkeyUp%
-          Gui, Controller: Add,GroupBox, xs ys+80 w40 h40                        ,Down
-          Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyDown, %hotkeyDown%
-          Gui, Controller: Add,GroupBox, xs-40 ys+40 w40 h40                      ,Left
-          Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyLeft, %hotkeyLeft%
-          Gui, Controller: Add,GroupBox, xs+40 ys+40 w40 h40                      ,Right
-          Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyRight, %hotkeyRight%
-
-          Gui, Controller: Add,GroupBox,section xm+465 ym+80 w70 h40                      ,4
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton4, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton4, %hotkeyControllerButton4%
-          Gui, Controller: Add,GroupBox, xs ys+80 w70 h40                      ,1
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton1, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton1, %hotkeyControllerButton1%
-          Gui, Controller: Add,GroupBox, xs-40 ys+40 w70 h40                      ,3
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton3, %hotkeyControllerButton3%
-          Gui, Controller: Add,GroupBox, xs+40 ys+40 w70 h40                      ,2
-          Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton2, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-          GuiControl,Controller: ChooseString, hotkeyControllerButton2, %hotkeyControllerButton2%
-
-          ;Save Setting
-          Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-          ; Gui, Controller: Add, Button,      gloadSaved     x+5           h23,   Load
-          Gui, Controller: Add, Button,      gLaunchSite     x+5           h23,   Website
-        }
-        Gui, Controller: show , w620 h500, Controller Settings
-      }
-      Else if (Function = "Globe")
-      {
-        Gui, 1: Submit
-        Element := Var[1]
-        If (!Built_Globe || Element = "Reset")
-        {
-          If (Element = "Reset")
-          {
-            Gui, Globe: Destroy
-            Globe := Array_DeepClone(Base.Globe)
-          }
-          Built_Globe := 1
-          Gui, Globe: New
-          Gui, Globe: +AlwaysOnTop -MinimizeBox
-          Global Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
-          Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
-          Gui, Globe: Add, Button, xm ym+8 w1 h1
-          Gui, Globe: Font, Bold s9 c777777
-          Gui, Globe: Add, GroupBox, xm ym w205 h100 Section, Life Scan Area
-          Gui, Globe: Font, Bold c777777
-          Gui, Globe: Add, Text, vGlobe_Life_X1 xs+10 yp+20 , % "X1:" Globe.Life.X1
-          Gui, Globe: Add, Text, vGlobe_Life_Y1 x+5 yp , % "Y1:" Globe.Life.Y1
-          Gui, Globe: Add, Text, vGlobe_Life_X2 xs+10 y+8 , % "X2:" Globe.Life.X2
-          Gui, Globe: Add, Text, vGlobe_Life_Y2 x+5 yp , % "Y2:" Globe.Life.Y2
-          Gui, Globe: Add, Text, xs+10 y+8, Color:
-          Gui, Globe: Font
-          Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Life x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Life.Color.Hex)
-          Gui, Globe: Font, Bold c777777
-          Gui, Globe: Add, Text, x+5 yp+2, Variance:
-          Gui, Globe: Add, Text, x+2 yp w35, % Globe.Life.Color.Variance
-          Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Life x+1 yp hp, % Globe.Life.Color.Variance
-          TempC := Format("0x{1:06X}",Globe.Life.Color.Hex)
-          Gui, Globe: Add, Text, gColorLabel_Life xs+10 y+6 hp w185,
-          Gui, Globe: Add, Progress, vWR_Progress_Color_Life xs+10 yp hp wp c%TempC% BackgroundBlack, 100
-          Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Life h18 xs+115 ys+15, Choose Area
-          Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Life wp hp xp y+5, Show Area
-
-          Gui, Globe: Font, Bold s9 c777777
-          Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Mana Scan Area
-          Gui, Globe: Font, Bold c777777
-          Gui, Globe: Add, Text, vGlobe_Mana_X1 xs+10 yp+20 , % "X1:" Globe.Mana.X1
-          Gui, Globe: Add, Text, vGlobe_Mana_Y1 x+5 yp , % "Y1:" Globe.Mana.Y1
-          Gui, Globe: Add, Text, vGlobe_Mana_X2 xs+10 y+8 , % "X2:" Globe.Mana.X2
-          Gui, Globe: Add, Text, vGlobe_Mana_Y2 x+5 yp , % "Y2:" Globe.Mana.Y2
-          Gui, Globe: Add, Text, xs+10 y+8, Color:
-          Gui, Globe: Font
-          Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Mana.Color.Hex)
-          Gui, Globe: Font, Bold c777777
-          Gui, Globe: Add, Text, x+5 yp+2, Variance:
-          Gui, Globe: Add, Text, x+2 yp w35, % Globe.Mana.Color.Variance
-          Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Mana x+1 yp hp, % Globe.Mana.Color.Variance
-          TempC := Format("0x{1:06X}",Globe.Mana.Color.Hex)
-          Gui, Globe: Add, Text, gColorLabel_Mana xs+10 y+6 hp w185,
-          Gui, Globe: Add, Progress, vWR_Progress_Color_Mana xs+10 yp hp wp c%TempC% BackgroundBlack, 100
-          Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Mana h18 xs+115 ys+15, Choose Area
-          Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Mana wp hp xp y+5, Show Area
-
-          Gui, Globe: Font, Bold s9 c777777
-          Gui, Globe: Add, GroupBox, xm y+60 w205 h100 Section, Energy Shield Scan Area
-          Gui, Globe: Font, Bold c777777
-          Gui, Globe: Add, Text, vGlobe_ES_X1 xs+10 yp+20 , % "X1:" Globe.ES.X1
-          Gui, Globe: Add, Text, vGlobe_ES_Y1 x+5 yp , % "Y1:" Globe.ES.Y1
-          Gui, Globe: Add, Text, vGlobe_ES_X2 xs+10 y+8 , % "X2:" Globe.ES.X2
-          Gui, Globe: Add, Text, vGlobe_ES_Y2 x+5 yp , % "Y2:" Globe.ES.Y2
-          Gui, Globe: Add, Text, xs+10 y+8, Color:
-          Gui, Globe: Font
-          Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_ES x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.ES.Color.Hex)
-          Gui, Globe: Font, Bold c777777
-          Gui, Globe: Add, Text, x+5 yp+2, Variance:
-          Gui, Globe: Add, Text, x+2 yp w35, % Globe.ES.Color.Variance
-          Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_ES x+1 yp hp, % Globe.ES.Color.Variance
-          TempC := Format("0x{1:06X}",Globe.ES.Color.Hex)
-          Gui, Globe: Add, Text, gColorLabel_ES xs+10 y+6 hp w185,
-          Gui, Globe: Add, Progress, vWR_Progress_Color_ES xs+10 yp hp wp c%TempC% BackgroundBlack, 100
-          Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_ES h18 xs+115 ys+15, Choose Area
-          Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_ES wp hp xp y+5, Show Area
-
-          Gui, Globe: Font, Bold s9 c777777
-          Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Eldritch Battery Scan Area
-          Gui, Globe: Font, Bold
-          Gui, Globe: Add, Text, vGlobe_EB_X1 xs+10 yp+20 , % "X1:" Globe.EB.X1
-          Gui, Globe: Add, Text, vGlobe_EB_Y1 x+5 yp , % "Y1:" Globe.EB.Y1
-          Gui, Globe: Add, Text, vGlobe_EB_X2 xs+10 y+8 , % "X2:" Globe.EB.X2
-          Gui, Globe: Add, Text, vGlobe_EB_Y2 x+5 yp , % "Y2:" Globe.EB.Y2
-          Gui, Globe: Add, Text, xs+10 y+8, Color:
-          Gui, Globe: Font
-          Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_EB x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.EB.Color.Hex)
-          Gui, Globe: Font, Bold c777777
-          Gui, Globe: Add, Text, x+5 yp+2, Variance:
-          Gui, Globe: Add, Text, x+2 yp w35, % Globe.EB.Color.Variance
-          Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_EB x+1 yp hp, % Globe.EB.Color.Variance
-          TempC := Format("0x{1:06X}",Globe.EB.Color.Hex)
-          Gui, Globe: Add, Text, gColorLabel_EB xs+10 y+6 hp w185,
-          Gui, Globe: Add, Progress, vWR_Progress_Color_EB xs+10 yp hp wp c%TempC% BackgroundBlack, 100
-          Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_EB h18 xs+115 ys+15, Choose Area
-          Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_EB wp hp xp y+5, Show Area
-
-
-          Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
-          Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Initial Values
-          Gui, Globe: Font, s25 Bold c777777
-          Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
-          Gui, Globe: Add, Text, w220 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
-          Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Mana x+0 yp c1460A6, % "Mana " Player.Percent.Mana "`%"
-        }
-        GlobeActive := True
-        Gui, Globe: show , Center AutoSize, Globe Settings
-      }
-      Else If (Function = "Locate")
-      {
-        LocateType := Var[2]
-        Gui, Hide
-        Loop
-        {
-          MouseGetPos, x, y
-          If (x != oldx || y != oldy)
-            ToolTip, % "-- Locate " LocateType " --`n@ " x "," y "`nPress Ctrl to set"
-          oldx := x, oldy := y
-        } Until GetKeyState("Ctrl")
-        Tooltip
-        %LocateType%X := x, %LocateType%Y := y
-        GuiControl,Inventory: ,% LocateType "X", %x%
-        GuiControl,Inventory: ,% LocateType "Y", %y%
-        MsgBox % x "," y " was captured as the new location for " LocateType
-        Gui, Show
-      }
-      Else if (Function = "Area")
-      {
-        Gui, Submit
-        Grab := LetUserSelectRect()
-        AreaType := Var[2]
-        Globe[AreaType].X1 := Grab.X1, Globe[AreaType].Y1 := Grab.Y1, Globe[AreaType].X2 := Grab.X2, Globe[AreaType].Y2 := Grab.Y2
-        , Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
-        GuiControl, Globe:, Globe_%AreaType%_X1,% "X1:" Grab.X1
-        GuiControl, Globe:, Globe_%AreaType%_Y1,% "Y1:" Grab.Y1
-        GuiControl, Globe:, Globe_%AreaType%_X2,% "X2:" Grab.X2
-        GuiControl, Globe:, Globe_%AreaType%_Y2,% "Y2:" Grab.Y2
-        Gui, Show
-      }
-      Else if (Function = "Show")
-      {
-        Gui, Submit
-        AreaType := Var[2]
-        MouseTip(Globe[AreaType].X1,Globe[AreaType].Y1,Globe[AreaType].Width,Globe[AreaType].Height)
-        Gui, Show
-      }
-      Else if (Function = "Color")
-      {
-        AreaType := Var[2]
-        Element := Var[1]
-        Split := {}
-        Split.hex := Globe[AreaType].Color.Hex
-        Gui, Submit, NoHide
-        If (Element = "UpDown")
-        {
-          Globe[AreaType].Color.Variance := WR_UpDown_Color_%AreaType%
-          Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
-        }
-        Else If (Element = "Edit")
-        {
-          CurPos := 1
-          newhex := ""
-          Loop, 3
-          {
-            RegExMatch(WR_Edit_Color_%AreaType%, "O)(x[0-9A-Fa-f]{6})", m,CurPos)
-            CurPos := m.Pos(0) + m.Len(0) - 1
-            If (m.1 != Split.hex && m.1 != "")
-            {
-              Split.new := m.1
-              ; Break
-            }
-          }
-          If (Split.new != "")
-            m := "0" Split.new
-          Else
-            m := "0" Split.hex
-          Globe[AreaType].Color.Hex := WR_Edit_Color_%AreaType% := Format("0x{1:06X}",m)
-          GuiControl,Globe: , WR_Edit_Color_%AreaType%, % WR_Edit_Color_%AreaType%
-          Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
-          GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
-        }
-      }
-      Else If (Function = "FillMetamorph")
-      {
-        Gui, Submit
-        ValueType := Var[2]
-        Element := Var[1]
-        If (Element = "Btn")
-        {
-          If (ValueType = "Menu")
-          {
-            If (!FillMetamorphInitialized)
-            {
-              FillMetamorphInitialized := True
-              Gui, FillMetamorph: New, -MinimizeBox -Resize
-              Gui, FillMetamorph: Font, s12 c777777 bold
-              Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
-              Gui, FillMetamorph: Font,
-              Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Btn_FillMetamorph_Select w85, Select area
-              Gui, FillMetamorph: Add, Button, x+5 yp gWR_Update vWR_Btn_FillMetamorph_Show wp, Show area
-              Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Save_JSON_FillMetamorph w170, Save to JSON
-            }
-          }
-          Else If (ValueType = "Select" && Obj := LetUserSelectRect())
-          {
-            FillMetamorph := {"X1":Obj.X1
-              ,"Y1":Obj.Y1
-              ,"X2":Obj.X2
-              ,"Y2":Obj.Y2}
-            GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
-          }
-          Else If (ValueType = "Show")
-          {
-            MouseTip(FillMetamorph.X1,FillMetamorph.Y1,FillMetamorph.X2 - FillMetamorph.X1,FillMetamorph.Y2 - FillMetamorph.Y1)
-          }
-          Gui, FillMetamorph: Show
-        }
-      }
-      Else If (Function = "JSON")
-      {
-        ValueType := Var[2]
-        Element := Var[1]
-        If (Element = "Save")
-        {
-          Gui, Submit
-          JSONtext := JSON.Dump(%ValueType%,,2)
-          If FileExist(A_ScriptDir "\save\" ValueType ".json")
-            FileDelete, %A_ScriptDir%\save\%ValueType%.json
-          FileAppend, %JSONtext%, %A_ScriptDir%\save\%ValueType%.json
-          Gui, Show
-        }
-        Else if (Element = "Load")
-        {
-          If FileExist(A_ScriptDir "\save\" ValueType ".json")
-          {
-            FileRead, JSONtext, %A_ScriptDir%\save\%ValueType%.json
-            %ValueType% := JSON.Load(JSONtext)
-          }
-          Else
-          {
-            Notify("Error loading " ValueType " file","",3)
-            Log("Error loading " ValueType " file")
-          }
-        }
-      }
-      Return
-
-      WR_Update:
-      If (A_GuiControl ~= "WR_\w{1,}_")
-      {
-        BtnStr := StrSplit(StrSplit(A_GuiControl, "WR_", " ")[2], "_", " ",3)
-        ; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
-        ; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
-        WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
-      }  
-      Return
-
-
-      ColorLabel_Life:
-      Picker.SetColor(Globe.Life.Color.hex)
-      Return
-      ColorLabel_Mana:
-      Picker.SetColor(Globe.Mana.Color.hex)
-      Return
-      ColorLabel_ES:
-      Picker.SetColor(Globe.ES.Color.hex)
-      Return
-      ColorLabel_EB:
-      Picker.SetColor(Globe.EB.Color.hex)
-      Return
-
-      FillMetamorphGuiClose:
-      FillMetamorphGuiEscape:
-        Gui, Submit
-        Gui, Inventory: Show
-      Return
-
-      InventoryGuiClose:
-      InventoryGuiEscape:
-      StringsGuiClose:
-      StringsGuiEscape:
-      ChatGuiClose:
-      ChatGuiEscape:
-      ControllerGuiClose:
-      ControllerGuiEscape:
-      HotkeysGuiClose:
-      HotkeysGuiEscape:
-        Gui, Submit
-        Gui, 1: show
-      return
-      
-      GlobeGuiClose:
-      GlobeGuiEscape:
-        GlobeActive := False
-        Gui, Submit
-        Gui, 1: show
-      return
+      Gui, Inventory: show , w600 h500, Inventory Settings
     }
+    Else If (Function = "Strings")
+    {
+      Gui, 1: Submit
+      If !Built_Strings
+      {
+        Built_Strings := 1
+        Gui, Strings: New
+        Gui, Strings: +AlwaysOnTop -MinimizeBox
+        ;Save Setting
+        ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
+        
+        Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
+        Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
+        Gui, Strings: Font, Bold cBlack
+        Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Use the dropdown to select from 1080 defaults
+        Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor
+        Gui, Strings: Font,
+
+      Gui, Strings: Tab, General
+        Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
+        Gui, Strings: +Delimiter?
+        Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
+        Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"
+        Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
+        Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
+        Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"
+        Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
+        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
+        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
+        Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
+        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Seed StockPile
+        Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"
+        Gui, Strings: +Delimiter|
+
+      Gui, Strings: Tab, Vendor
+        Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+        Gui, Strings: +Delimiter?
+        Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorLioneyeStr gUpdateStringEdit , %VendorLioneyeStr%??"%1080_BestelStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Forest vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorForestStr gUpdateStringEdit , %VendorForestStr%??"%1080_GreustStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Sarn vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorSarnStr gUpdateStringEdit , %VendorSarnStr%??"%1080_ClarissaStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Highgate vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorHighgateStr gUpdateStringEdit , %VendorHighgateStr%??"%1080_PetarusStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Overseer vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOverseerStr gUpdateStringEdit , %VendorOverseerStr%??"%1080_LaniStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Bridge vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorBridgeStr gUpdateStringEdit , %VendorBridgeStr%??"%1080_HelenaStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Docks vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"
+        Gui, Strings: +Delimiter|
+      }
+      Gui, Strings: show , w640 h525, FindText Strings
+    }
+    Else If (Function = "Chat")
+    {
+      Gui, 1: Submit
+      If !Built_Chat
+      {
+        Built_Chat := 1
+        Gui, Chat: New
+        Gui, Chat: +AlwaysOnTop -MinimizeBox
+        Gui, Chat: Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xm+400 ym                    , Enable chat Hotkeys?
+
+        ;Save Setting
+        Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
+        ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
+        Gui, Chat: Add, Button,      gLaunchSite     x+5           h23,   Website
+
+        Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
+      Gui, Chat: Tab, Commands
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section w60 h85                      ,Modifier
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v1Prefix1, %1Prefix1%
+        Gui, Chat: Add, Edit, y+8    w50 h23 v1Prefix2, %1Prefix2%
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v1Suffix1, %1Suffix1%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix2, %1Suffix2%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix3, %1Suffix3%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix4, %1Suffix4%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix5, %1Suffix5%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix6, %1Suffix6%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix7, %1Suffix7%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix8, %1Suffix8%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix9, %1Suffix9%
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Commands
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        DefaultCommands := [ "/Hideout","/Menagerie","/Delve","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
+        textList=
+        For k, v in DefaultCommands
+          textList .= (!textList ? "" : "|") v
+        Gui, Chat: Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix1Text, %1Suffix1Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix2Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix2Text, %1Suffix2Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix3Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix3Text, %1Suffix3Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix4Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix4Text, %1Suffix4Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix5Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix5Text, %1Suffix5Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix6Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix6Text, %1Suffix6Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix7Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix7Text, %1Suffix7Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix8Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix8Text, %1Suffix8Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix9Text, %textList%
+        GuiControl,Chat: ChooseString, 1Suffix9Text, %1Suffix9Text%
+      Gui, Chat: Tab, Reply Whisper
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section  w60 h85                      ,Modifier
+        Gui, Chat: Font,
+
+        Gui, Chat: Font,s9,Arial
+        Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
+        Gui, Chat: Add, Edit, y+8    w50 h23 v2Prefix2, %2Prefix2%
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v2Suffix1, %2Suffix1%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix2, %2Suffix2%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix3, %2Suffix3%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix4, %2Suffix4%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix5, %2Suffix5%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix6, %2Suffix6%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix7, %2Suffix7%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix8, %2Suffix8%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix9, %2Suffix9%
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Whisper Reply
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        DefaultWhisper := [ "/invite RecipientName","Sure, will invite in a sec.","In a map, will get to you in a minute.","Sorry, going to be a while.","No thank you.","Sold","/afk Sold to RecipientName"]
+        textList=
+        For k, v in DefaultWhisper
+          textList .= (!textList ? "" : "|") v
+        Gui, Chat: Add, ComboBox,   xs+4 ys+20   w290 v2Suffix1Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix1Text, %2Suffix1Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix2Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix2Text, %2Suffix2Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix3Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix3Text, %2Suffix3Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix4Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix4Text, %2Suffix4Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix5Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix5Text, %2Suffix5Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix6Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix6Text, %2Suffix6Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix7Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix7Text, %2Suffix7Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix8Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix8Text, %2Suffix8Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix9Text, %textList%
+        GuiControl,Chat: ChooseString, 2Suffix9Text, %2Suffix9Text%
+      }
+      Gui, Chat: show , w620 h370, Chat Hotkeys
+    }
+    Else If (Function = "Controller")
+    {
+      Gui, 1: Submit
+      If !Built_Controller
+      {
+        Built_Controller := 1
+        Gui, Controller: New
+        Gui, Controller: +AlwaysOnTop -MinimizeBox
+        DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
+        textList= 
+        For k, v in DefaultButtons
+          textList .= (!textList ? "" : "|") v
+        
+        Gui, Controller: Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
+
+        Gui, Controller: Add, Checkbox,  section  xp y+-10          vYesMovementKeys Checked%YesMovementKeys%                     , Use Move Keys?
+        Gui, Controller: Add, Checkbox,             vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                     , Use utility on Move?
+        Gui, Controller: Add, DropDownList,   x+5 yp-5   w40   vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
+
+        Gui, Controller: Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
+        
+        Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,5
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton5, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton5, %hotkeyControllerButton5%
+        Gui, Controller: Add,GroupBox,  xs+360 ys w80 h40                        ,6
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton6, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton6, %hotkeyControllerButton6%
+
+        Gui, Controller: Add,GroupBox, section  xm+65 ym+100 w90 h80                        ,D-Pad
+        Gui, Controller: add,text, xs+15 ys+30, Mouse`nMovement
+
+        Gui, Controller: Add,GroupBox, section xm+165 ym+180 w80 h80                        ,Joystick1
+        Gui, Controller: Add,Checkbox, xs+5 ys+30     Checked%YesTriggerUtilityJoystickKey%      vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
+        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,9 / L3
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton9, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton9, %hotkeyControllerButton9%
+
+        Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80                        ,Joystick2
+        Gui, Controller: Add,Checkbox, xp+5 y+-53     Checked%YesTriggerJoystick2Key%      vYesTriggerJoystick2Key, Use key?
+        Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystick2, LButton|RButton|q|w|e|r|t
+        GuiControl,Controller: ChooseString, hotkeyControllerJoystick2, %hotkeyControllerJoystick2%
+        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,10 / R3
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton10, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton10, %hotkeyControllerButton10%
+
+        Gui, Controller: Add,GroupBox, section xm+140 ym+60 w80 h40                        ,7 / Select
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton7, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton7, %hotkeyControllerButton7%
+        Gui, Controller: Add,GroupBox, xs+245 ys w80 h40                        ,8 / Start
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton8, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton8, %hotkeyControllerButton8%
+
+        Gui, Controller: Add,GroupBox, section xm+65 ym+280 w40 h40                  ,Up
+        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyUp, %hotkeyUp%
+        Gui, Controller: Add,GroupBox, xs ys+80 w40 h40                        ,Down
+        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyDown, %hotkeyDown%
+        Gui, Controller: Add,GroupBox, xs-40 ys+40 w40 h40                      ,Left
+        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyLeft, %hotkeyLeft%
+        Gui, Controller: Add,GroupBox, xs+40 ys+40 w40 h40                      ,Right
+        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyRight, %hotkeyRight%
+
+        Gui, Controller: Add,GroupBox,section xm+465 ym+80 w70 h40                      ,4
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton4, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton4, %hotkeyControllerButton4%
+        Gui, Controller: Add,GroupBox, xs ys+80 w70 h40                      ,1
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton1, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton1, %hotkeyControllerButton1%
+        Gui, Controller: Add,GroupBox, xs-40 ys+40 w70 h40                      ,3
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton3, %hotkeyControllerButton3%
+        Gui, Controller: Add,GroupBox, xs+40 ys+40 w70 h40                      ,2
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton2, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: ChooseString, hotkeyControllerButton2, %hotkeyControllerButton2%
+
+        ;Save Setting
+        Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        ; Gui, Controller: Add, Button,      gloadSaved     x+5           h23,   Load
+        Gui, Controller: Add, Button,      gLaunchSite     x+5           h23,   Website
+      }
+      Gui, Controller: show , w620 h500, Controller Settings
+    }
+    Else if (Function = "Globe")
+    {
+      Gui, 1: Submit
+      Element := Var[1]
+      If (!Built_Globe || Element = "Reset")
+      {
+        If (Element = "Reset")
+        {
+          Gui, Globe: Destroy
+          Globe := Array_DeepClone(Base.Globe)
+        }
+        Built_Globe := 1
+        Gui, Globe: New
+        Gui, Globe: +AlwaysOnTop -MinimizeBox
+        Global Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
+        Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
+        Gui, Globe: Add, Button, xm ym+8 w1 h1
+        Gui, Globe: Font, Bold s9 c777777
+        Gui, Globe: Add, GroupBox, xm ym w205 h100 Section, Life Scan Area
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, vGlobe_Life_X1 xs+10 yp+20 , % "X1:" Globe.Life.X1
+        Gui, Globe: Add, Text, vGlobe_Life_Y1 x+5 yp , % "Y1:" Globe.Life.Y1
+        Gui, Globe: Add, Text, vGlobe_Life_X2 xs+10 y+8 , % "X2:" Globe.Life.X2
+        Gui, Globe: Add, Text, vGlobe_Life_Y2 x+5 yp , % "Y2:" Globe.Life.Y2
+        Gui, Globe: Add, Text, xs+10 y+8, Color:
+        Gui, Globe: Font
+        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Life x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Life.Color.Hex)
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, x+5 yp+2, Variance:
+        Gui, Globe: Add, Text, x+2 yp w35, % Globe.Life.Color.Variance
+        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Life x+1 yp hp, % Globe.Life.Color.Variance
+        TempC := Format("0x{1:06X}",Globe.Life.Color.Hex)
+        Gui, Globe: Add, Text, gColorLabel_Life xs+10 y+6 hp w185,
+        Gui, Globe: Add, Progress, vWR_Progress_Color_Life xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Life h18 xs+115 ys+15, Choose Area
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Life wp hp xp y+5, Show Area
+
+        Gui, Globe: Font, Bold s9 c777777
+        Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Mana Scan Area
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, vGlobe_Mana_X1 xs+10 yp+20 , % "X1:" Globe.Mana.X1
+        Gui, Globe: Add, Text, vGlobe_Mana_Y1 x+5 yp , % "Y1:" Globe.Mana.Y1
+        Gui, Globe: Add, Text, vGlobe_Mana_X2 xs+10 y+8 , % "X2:" Globe.Mana.X2
+        Gui, Globe: Add, Text, vGlobe_Mana_Y2 x+5 yp , % "Y2:" Globe.Mana.Y2
+        Gui, Globe: Add, Text, xs+10 y+8, Color:
+        Gui, Globe: Font
+        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Mana.Color.Hex)
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, x+5 yp+2, Variance:
+        Gui, Globe: Add, Text, x+2 yp w35, % Globe.Mana.Color.Variance
+        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Mana x+1 yp hp, % Globe.Mana.Color.Variance
+        TempC := Format("0x{1:06X}",Globe.Mana.Color.Hex)
+        Gui, Globe: Add, Text, gColorLabel_Mana xs+10 y+6 hp w185,
+        Gui, Globe: Add, Progress, vWR_Progress_Color_Mana xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Mana h18 xs+115 ys+15, Choose Area
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Mana wp hp xp y+5, Show Area
+
+        Gui, Globe: Font, Bold s9 c777777
+        Gui, Globe: Add, GroupBox, xm y+60 w205 h100 Section, Energy Shield Scan Area
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, vGlobe_ES_X1 xs+10 yp+20 , % "X1:" Globe.ES.X1
+        Gui, Globe: Add, Text, vGlobe_ES_Y1 x+5 yp , % "Y1:" Globe.ES.Y1
+        Gui, Globe: Add, Text, vGlobe_ES_X2 xs+10 y+8 , % "X2:" Globe.ES.X2
+        Gui, Globe: Add, Text, vGlobe_ES_Y2 x+5 yp , % "Y2:" Globe.ES.Y2
+        Gui, Globe: Add, Text, xs+10 y+8, Color:
+        Gui, Globe: Font
+        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_ES x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.ES.Color.Hex)
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, x+5 yp+2, Variance:
+        Gui, Globe: Add, Text, x+2 yp w35, % Globe.ES.Color.Variance
+        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_ES x+1 yp hp, % Globe.ES.Color.Variance
+        TempC := Format("0x{1:06X}",Globe.ES.Color.Hex)
+        Gui, Globe: Add, Text, gColorLabel_ES xs+10 y+6 hp w185,
+        Gui, Globe: Add, Progress, vWR_Progress_Color_ES xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_ES h18 xs+115 ys+15, Choose Area
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_ES wp hp xp y+5, Show Area
+
+        Gui, Globe: Font, Bold s9 c777777
+        Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Eldritch Battery Scan Area
+        Gui, Globe: Font, Bold
+        Gui, Globe: Add, Text, vGlobe_EB_X1 xs+10 yp+20 , % "X1:" Globe.EB.X1
+        Gui, Globe: Add, Text, vGlobe_EB_Y1 x+5 yp , % "Y1:" Globe.EB.Y1
+        Gui, Globe: Add, Text, vGlobe_EB_X2 xs+10 y+8 , % "X2:" Globe.EB.X2
+        Gui, Globe: Add, Text, vGlobe_EB_Y2 x+5 yp , % "Y2:" Globe.EB.Y2
+        Gui, Globe: Add, Text, xs+10 y+8, Color:
+        Gui, Globe: Font
+        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_EB x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.EB.Color.Hex)
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, x+5 yp+2, Variance:
+        Gui, Globe: Add, Text, x+2 yp w35, % Globe.EB.Color.Variance
+        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_EB x+1 yp hp, % Globe.EB.Color.Variance
+        TempC := Format("0x{1:06X}",Globe.EB.Color.Hex)
+        Gui, Globe: Add, Text, gColorLabel_EB xs+10 y+6 hp w185,
+        Gui, Globe: Add, Progress, vWR_Progress_Color_EB xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_EB h18 xs+115 ys+15, Choose Area
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_EB wp hp xp y+5, Show Area
+
+
+        Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
+        Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Initial Values
+        Gui, Globe: Font, s25 Bold c777777
+        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
+        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
+        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Mana x+0 yp c1460A6, % "Mana " Player.Percent.Mana "`%"
+      }
+      GlobeActive := True
+      Gui, Globe: show , Center AutoSize, Globe Settings
+    }
+    Else If (Function = "Locate")
+    {
+      LocateType := Var[2]
+      Gui, Hide
+      Loop
+      {
+        MouseGetPos, x, y
+        If (x != oldx || y != oldy)
+          ToolTip, % "-- Locate " LocateType " --`n@ " x "," y "`nPress Ctrl to set"
+        oldx := x, oldy := y
+      } Until GetKeyState("Ctrl")
+      Tooltip
+      %LocateType%X := x, %LocateType%Y := y
+      GuiControl,Inventory: ,% LocateType "X", %x%
+      GuiControl,Inventory: ,% LocateType "Y", %y%
+      MsgBox % x "," y " was captured as the new location for " LocateType
+      Gui, Show
+    }
+    Else if (Function = "Area")
+    {
+      Gui, Submit
+      Grab := LetUserSelectRect()
+      AreaType := Var[2]
+      Globe[AreaType].X1 := Grab.X1, Globe[AreaType].Y1 := Grab.Y1, Globe[AreaType].X2 := Grab.X2, Globe[AreaType].Y2 := Grab.Y2
+      , Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
+      GuiControl, Globe:, Globe_%AreaType%_X1,% "X1:" Grab.X1
+      GuiControl, Globe:, Globe_%AreaType%_Y1,% "Y1:" Grab.Y1
+      GuiControl, Globe:, Globe_%AreaType%_X2,% "X2:" Grab.X2
+      GuiControl, Globe:, Globe_%AreaType%_Y2,% "Y2:" Grab.Y2
+      Gui, Show
+    }
+    Else if (Function = "Show")
+    {
+      Gui, Submit
+      AreaType := Var[2]
+      MouseTip(Globe[AreaType].X1,Globe[AreaType].Y1,Globe[AreaType].Width,Globe[AreaType].Height)
+      Gui, Show
+    }
+    Else if (Function = "Color")
+    {
+      AreaType := Var[2]
+      Element := Var[1]
+      Split := {}
+      Split.hex := Globe[AreaType].Color.Hex
+      Gui, Submit, NoHide
+      If (Element = "UpDown")
+      {
+        Globe[AreaType].Color.Variance := WR_UpDown_Color_%AreaType%
+        Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+      }
+      Else If (Element = "Edit")
+      {
+        CurPos := 1
+        newhex := ""
+        Loop, 3
+        {
+          RegExMatch(WR_Edit_Color_%AreaType%, "O)(x[0-9A-Fa-f]{6})", m,CurPos)
+          CurPos := m.Pos(0) + m.Len(0) - 1
+          If (m.1 != Split.hex && m.1 != "")
+          {
+            Split.new := m.1
+            ; Break
+          }
+        }
+        If (Split.new != "")
+          m := "0" Split.new
+        Else
+          m := "0" Split.hex
+        Globe[AreaType].Color.Hex := WR_Edit_Color_%AreaType% := Format("0x{1:06X}",m)
+        GuiControl,Globe: , WR_Edit_Color_%AreaType%, % WR_Edit_Color_%AreaType%
+        Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+        GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
+      }
+    }
+    Else If (Function = "FillMetamorph")
+    {
+      Gui, Submit
+      ValueType := Var[2]
+      Element := Var[1]
+      If (Element = "Btn")
+      {
+        If (ValueType = "Menu")
+        {
+          If (!FillMetamorphInitialized)
+          {
+            FillMetamorphInitialized := True
+            Gui, FillMetamorph: New, -MinimizeBox -Resize
+            Gui, FillMetamorph: Font, s12 c777777 bold
+            Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
+            Gui, FillMetamorph: Font,
+            Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Btn_FillMetamorph_Select w85, Select area
+            Gui, FillMetamorph: Add, Button, x+5 yp gWR_Update vWR_Btn_FillMetamorph_Show wp, Show area
+            Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Save_JSON_FillMetamorph w170, Save to JSON
+          }
+        }
+        Else If (ValueType = "Select" && Obj := LetUserSelectRect())
+        {
+          FillMetamorph := {"X1":Obj.X1
+            ,"Y1":Obj.Y1
+            ,"X2":Obj.X2
+            ,"Y2":Obj.Y2}
+          GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
+        }
+        Else If (ValueType = "Show")
+        {
+          MouseTip(FillMetamorph.X1,FillMetamorph.Y1,FillMetamorph.X2 - FillMetamorph.X1,FillMetamorph.Y2 - FillMetamorph.Y1)
+        }
+        Gui, FillMetamorph: Show
+      }
+    }
+    Else If (Function = "JSON")
+    {
+      ValueType := Var[2]
+      Element := Var[1]
+      If (Element = "Save")
+      {
+        Gui, Submit
+        JSONtext := JSON.Dump(%ValueType%,,2)
+        If FileExist(A_ScriptDir "\save\" ValueType ".json")
+          FileDelete, %A_ScriptDir%\save\%ValueType%.json
+        FileAppend, %JSONtext%, %A_ScriptDir%\save\%ValueType%.json
+        Gui, Show
+      }
+      Else if (Element = "Load")
+      {
+        If FileExist(A_ScriptDir "\save\" ValueType ".json")
+        {
+          FileRead, JSONtext, %A_ScriptDir%\save\%ValueType%.json
+          %ValueType% := JSON.Load(JSONtext)
+        }
+        Else
+        {
+          Notify("Error loading " ValueType " file","",3)
+          Log("Error loading " ValueType " file")
+        }
+      }
+    }
+    Return
+
+    WR_Update:
+    If (A_GuiControl ~= "WR_\w{1,}_")
+    {
+      BtnStr := StrSplit(StrSplit(A_GuiControl, "WR_", " ")[2], "_", " ",3)
+      ; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
+      ; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
+      WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
+    }  
+    Return
+
+
+    ColorLabel_Life:
+    Picker.SetColor(Globe.Life.Color.hex)
+    Return
+    ColorLabel_Mana:
+    Picker.SetColor(Globe.Mana.Color.hex)
+    Return
+    ColorLabel_ES:
+    Picker.SetColor(Globe.ES.Color.hex)
+    Return
+    ColorLabel_EB:
+    Picker.SetColor(Globe.EB.Color.hex)
+    Return
+
+    FillMetamorphGuiClose:
+    FillMetamorphGuiEscape:
+      Gui, Submit
+      Gui, Inventory: Show
+    Return
+
+    InventoryGuiClose:
+    InventoryGuiEscape:
+    StringsGuiClose:
+    StringsGuiEscape:
+    ChatGuiClose:
+    ChatGuiEscape:
+    ControllerGuiClose:
+    ControllerGuiEscape:
+    HotkeysGuiClose:
+    HotkeysGuiEscape:
+      Gui, Submit
+      Gui, 1: show
+    return
+    
+    GlobeGuiClose:
+    GlobeGuiEscape:
+      GlobeActive := False
+      Gui, Submit
+      Gui, 1: show
+    return
+  }
   ; Debug messages within script
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Ding(Timeout:=500, MultiTooltip:=0 , Message*)
