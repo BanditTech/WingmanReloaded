@@ -3112,7 +3112,7 @@ Return
     If !Object.Count()
     {
       Global RecipeArray
-      Notify("Chaos Recipe","Finished Selling rare sets."
+      Notify("Chaos Recipe","Finished Selling rare sets.`n"
       . "Amulet: " . RecipeArray.Amulet.Count() . "`n"
       . "Ring: " . RecipeArray.Ring.Count() . "`n"
       . "Belt: " . RecipeArray.Belt.Count() . "`n"
