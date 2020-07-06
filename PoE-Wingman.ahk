@@ -3110,7 +3110,20 @@ Return
       VendorRoutineChaos()
     }
     If !Object.Count()
-      Notify("Chaos Recipe","Finished Selling rare sets.",2)
+    {
+      Global RecipeArray
+      Notify("Chaos Recipe","Finished Selling rare sets."
+      . "Amulet: " . RecipeArray.Amulet.Count() . "`n"
+      . "Ring: " . RecipeArray.Ring.Count() . "`n"
+      . "Belt: " . RecipeArray.Belt.Count() . "`n"
+      . "Body: " . RecipeArray.Body.Count() . "`n"
+      . "Boots: " . RecipeArray.Boots.Count() . "`n"
+      . "Gloves: " . RecipeArray.Gloves.Count() . "`n"
+      . "Helmet: " . RecipeArray.Helmet.Count() . "`n"
+      . "Shield: " . RecipeArray.Shield.Count() . "`n"
+      . "One Hand: " . RecipeArray["One Hand"].Count() . "`n"
+      . "Two Hand: " . RecipeArray["Two Hand"].Count() . "`n" )
+    }
     Else
       Notify("Chaos Recipe","There are " Object.Count() " sets of rare items left to vendor.",3)
 
