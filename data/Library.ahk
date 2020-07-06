@@ -4548,12 +4548,12 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
-;-------; Stash grid area NEEDS EDIT 1440
+        ; Stash grid area
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(3440/16)), vY_StashTopL:=GameY + Round(GameH/(1440/160))
-          vX_StashBotR:=GameX + Round(GameW/(3440/650)), vY_StashBotR:=GameY + Round(GameH/(1440/795))
+          vX_StashTopL:=GameX + Round(GameW/(3440/22)), vY_StashTopL:=GameY + Round(GameH/(1440/215))
+          vX_StashBotR:=GameX + Round(GameW/(3440/864)), vY_StashBotR:=GameY + Round(GameH/(1440/1057))
           ; Give pixels for lines between slots
           SlotSpacing:=Round(GameH/(1440/2))
         }
