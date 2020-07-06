@@ -2975,7 +2975,7 @@ Return
   ChaosRecipe(tab){
     If (AccountNameSTR = "")
       AccountNameSTR := POE_RequestAccount().accountName
-    RecipeArray := {}
+    Global RecipeArray := {}
     Object := POE_RequestStash(tab,0)
     For i, content in Object.items
     {
@@ -3048,7 +3048,6 @@ Return
       SendMSG(1,0,scriptTradeMacro)
       exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
     }
-
     Global StashGrid, CurrentTab
     CurrentTab := 0
     Static Object := {}
@@ -3056,7 +3055,18 @@ Return
       Object := ChaosRecipe(StashTabDump)
     If !Object.Count()
     {
-      Notify("Chaos Recipe","No Complete Set",1)
+      Global RecipeArray
+      Notify("Chaos Recipe","No Complete Set`n"
+      . "Amulet: " . RecipeArray.Amulet.Count() . "`n"
+      . "Ring: " . RecipeArray.Ring.Count() . "`n"
+      . "Belt: " . RecipeArray.Belt.Count() . "`n"
+      . "Body: " . RecipeArray.Body.Count() . "`n"
+      . "Boots: " . RecipeArray.Boots.Count() . "`n"
+      . "Gloves: " . RecipeArray.Gloves.Count() . "`n"
+      . "Helmet: " . RecipeArray.Helmet.Count() . "`n"
+      . "Shield: " . RecipeArray.Shield.Count() . "`n"
+      . "One Hand: " . RecipeArray["One Hand"].Count() . "`n"
+      . "Two Hand: " . RecipeArray["Two Hand"].Count() . "`n" )
       Return
     }
     IfWinActive, ahk_group POEGameGroup
@@ -3099,6 +3109,10 @@ Return
       ; Vendor set
       VendorRoutineChaos()
     }
+    If !Object.Count()
+      Notify("Chaos Recipe","Finished Selling rare sets.",2)
+    Else
+      Notify("Chaos Recipe","There are " Object.Count() " sets of rare items left to vendor.",3)
 
     ; Reset in preparation for the next press of this hotkey.
     RunningToggle := False  
