@@ -4224,6 +4224,15 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
+        ; Stash grid area
+        If (!StashImported)
+        {
+          ; Scale the stash area automatically based on aspect ratio
+          vX_StashTopL:=GameX + Round(GameW/(1440/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
+          vX_StashBotR:=GameX + Round(GameW/(1440/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          ; Give pixels for lines between slots
+          SlotSpacing:=Round(GameH/(1080/2))
+        }
         ;Auto Vendor Settings
           ;380,820
         Global VendorAcceptX:=GameX + Round(GameW/(1440/380))
@@ -4375,6 +4384,15 @@
           Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
+        }
+        ; Stash grid area
+        If (!StashImported)
+        {
+          ; Scale the stash area automatically based on aspect ratio
+          vX_StashTopL:=GameX + Round(GameW/(2560/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
+          vX_StashBotR:=GameX + Round(GameW/(2560/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          ; Give pixels for lines between slots
+          SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
         ;380,820
@@ -4530,6 +4548,15 @@
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
         }
+;-------; Stash grid area NEEDS EDIT 1440
+        If (!StashImported)
+        {
+          ; Scale the stash area automatically based on aspect ratio
+          vX_StashTopL:=GameX + Round(GameW/(3440/16)), vY_StashTopL:=GameY + Round(GameH/(1440/160))
+          vX_StashBotR:=GameX + Round(GameW/(3440/650)), vY_StashBotR:=GameY + Round(GameH/(1440/795))
+          ; Give pixels for lines between slots
+          SlotSpacing:=Round(GameH/(1440/2))
+        }
         ;Auto Vendor Settings
         Global VendorAcceptX:=GameX + Round(GameW/(3440/945))
         Global VendorAcceptY:=GameY + Round(GameH/(1440/1090))
@@ -4682,6 +4709,15 @@
           Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
           ; Set the base values for restoring default
           Base.Globe := Array_DeepClone(Globe)
+        }
+        ; Stash grid area
+        If (!StashImported)
+        {
+          ; Scale the stash area automatically based on aspect ratio
+          vX_StashTopL:=GameX + Round(GameW/(3840/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
+          vX_StashBotR:=GameX + Round(GameW/(3840/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          ; Give pixels for lines between slots
+          SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
         ;380,820

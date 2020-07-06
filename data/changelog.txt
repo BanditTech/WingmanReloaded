@@ -7,6 +7,8 @@ There is now automation for Chaos/Regal recipe
 * Will show notification when there are no complete recipe
 * Requires PoESessionID in order to scan from stash API
 
+Added PoESessionID Editbox to the Configuration Tab
+* This will allow the script to use the GGG Stash API
 ---
 
 ## Version .11.0505 - Alpha Branch - July/01/2020
