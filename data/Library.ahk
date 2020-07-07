@@ -2795,7 +2795,7 @@
         Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
         Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
         Gui, Strings: Font, Bold cBlack
-        Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Use the dropdown to select from 1080 defaults
+        Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Match your resolution's height with the number in the string Label
         Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor
         Gui, Strings: Font,
 
