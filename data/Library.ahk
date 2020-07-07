@@ -1163,7 +1163,7 @@
             If This.MatchNinjaDB("UniqueAccessory")
               Return
           }
-          Else If (This.Prop.ItemClass ~= "(Body Armour|Gloves|Boots|Helmet|Shield)")
+          Else If (This.Prop.ItemClass ~= "(Body Armour|Gloves|Boots|Helmet|Shield|Quiver)")
           {
             If This.MatchNinjaDB("UniqueArmour")
               Return
