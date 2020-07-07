@@ -2803,43 +2803,43 @@
         Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
         Gui, Strings: +Delimiter?
         Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
-        Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"
+        Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"?"%1440_HealthBarStr_Alt%"?"%1050_HealthBarStr%"
         Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
         Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
-        Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"?"%1050_SkillUpStr%"?"%768_SkillUpStr%"
         Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
-        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"?"%1440_SellItemsStr%"?"%1050_SellItemsStr%"?"%768_SellItemsStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
-        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
         Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
-        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Seed StockPile
-        Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"?"%1440_SeedStockPileStr%"?"%1050_SeedStockPileStr%"?"%768_SeedStockPileStr%"
         Gui, Strings: +Delimiter|
 
       Gui, Strings: Tab, Vendor
         Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
         Gui, Strings: +Delimiter?
         Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"?"%1050_MasterStr%"
         Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorLioneyeStr gUpdateStringEdit , %VendorLioneyeStr%??"%1080_BestelStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorLioneyeStr gUpdateStringEdit , %VendorLioneyeStr%??"%1080_BestelStr%"?"%1050_BestelStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Forest vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorForestStr gUpdateStringEdit , %VendorForestStr%??"%1080_GreustStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorForestStr gUpdateStringEdit , %VendorForestStr%??"%1080_GreustStr%"?"%1050_GreustStr%"
         Gui, Strings: Add, Text, xs y+15 section, Capture of the Sarn vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorSarnStr gUpdateStringEdit , %VendorSarnStr%??"%1080_ClarissaStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorSarnStr gUpdateStringEdit , %VendorSarnStr%??"%1080_ClarissaStr%"?"%1050_ClarissaStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Highgate vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorHighgateStr gUpdateStringEdit , %VendorHighgateStr%??"%1080_PetarusStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorHighgateStr gUpdateStringEdit , %VendorHighgateStr%??"%1080_PetarusStr%"?"%1050_PetarusStr%"
         Gui, Strings: Add, Text, xs y+15 section, Capture of the Overseer vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOverseerStr gUpdateStringEdit , %VendorOverseerStr%??"%1080_LaniStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOverseerStr gUpdateStringEdit , %VendorOverseerStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Bridge vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorBridgeStr gUpdateStringEdit , %VendorBridgeStr%??"%1080_HelenaStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorBridgeStr gUpdateStringEdit , %VendorBridgeStr%??"%1080_HelenaStr%"?"%1050_HelenaStr%"
         Gui, Strings: Add, Text, xs y+15 section, Capture of the Docks vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
         Gui, Strings: +Delimiter|
       }
       Gui, Strings: show , w640 h525, FindText Strings
@@ -4504,7 +4504,7 @@
         global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
         ;calculate the height of each tab
         global vY_StashTabSize := Round(GameH / ( 1080 / 22))
-      } 
+      }
       Else If (ResolutionScale="Cinematic(43:18)") {
         ;Item Inventory Grid
         Global InventoryGridX := [ Round(GameW/(3440/2579)), Round(GameW/(3440/2649)), Round(GameW/(3440/2719)), Round(GameW/(3440/2789)), Round(GameW/(3440/2860)), Round(GameW/(3440/2930)), Round(GameW/(3440/3000)), Round(GameW/(3440/3070)), Round(GameW/(3440/3140)), Round(GameW/(3440/3211)), Round(GameW/(3440/3281)), Round(GameW/(3440/3351)) ]
@@ -4829,7 +4829,210 @@
         global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
         ;calculate the height of each tab
         global vY_StashTabSize := Round(GameH / ( 1080 / 22))
-      } 
+      }
+      Else If (ResolutionScale="WXGA(16:10)") {
+        ; Item Inventory Grid
+        Global InventoryGridX := [ GameX + Round(GameW/(1680/1051)), GameX + Round(GameW/(1680/1103)), GameX + Round(GameW/(1680/1154)), GameX + Round(GameW/(1680/1205)), GameX + Round(GameW/(1680/1256)), GameX + Round(GameW/(1680/1306)), GameX + Round(GameW/(1680/1358)), GameX + Round(GameW/(1680/1410)), GameX + Round(GameW/(1680/1461)), GameX + Round(GameW/(1680/1512)), GameX + Round(GameW/(1680/1563)), GameX + Round(GameW/(1680/1614)) ]
+        Global InventoryGridY := [ GameY + Round(GameH/(1050/620)), GameY + Round(GameH/(1050/671)), GameY + Round(GameH/(1050/722)), GameY + Round(GameH/(1050/773)), GameY + Round(GameH/(1050/824)) ]  
+ 
+        ; Fill Metamorph
+        If (!FillMetamorphImported)
+        {
+          Global FillMetamorph := {"X1": GameX + Round(GameW/(1680/227)) ; (1680/2)-631
+                      , "Y1": GameY + Round(GameH/(1050/188))
+                      , "X2": GameX + Round(GameW/(1680/632)) ; (1680/2)-215
+                      , "Y2": GameY + Round(GameH/(1050/725))}
+        }
+ 
+        ; Globe areas
+        If (!GlobeImported)
+        {
+          ; Life scan area
+          Globe.Life.X1 := GameX + Round(GameW/(1680/96))
+          Globe.Life.Y1 := GameY + Round(GameH/(1050/854))
+          Globe.Life.X2 := GameX + Round(GameW/(1680/135))
+          Globe.Life.Y2 := GameY + Round(GameH/(1050/1043))
+          Globe.Life.Width := Globe.Life.X2 - Globe.Life.X1
+          Globe.Life.Height := Globe.Life.Y2 - Globe.Life.Y1
+ 
+          ; ES scan area
+          Globe.ES.X1 := GameX + Round(GameW/(1680/116))
+          Globe.ES.Y1 := GameY + Round(GameH/(1050/847))
+          Globe.ES.X2 := GameX + Round(GameW/(1680/212))
+          Globe.ES.Y2 := GameY + Round(GameH/(1050/1049))
+          Globe.ES.Width := Globe.ES.X2 - Globe.ES.X1
+          Globe.ES.Height := Globe.ES.Y2 - Globe.ES.Y1
+ 
+          ; ES for Eldridtch Batterry scan area
+          Globe.EB.X1 := GameX + Round(GameW/(1680/1720))
+          Globe.EB.Y1 := GameY + Round(GameH/(1050/886))
+          Globe.EB.X2 := GameX + Round(GameW/(1680/1800))
+          Globe.EB.Y2 := GameY + Round(GameH/(1050/1064))
+          Globe.EB.Width := Globe.EB.X2 - Globe.EB.X1
+          Globe.EB.Height := Globe.EB.Y2 - Globe.EB.Y1
+ 
+          ; Mana scan area
+          Globe.Mana.X1 := GameX + Round(GameW/(1680/1541))
+          Globe.Mana.Y1 := GameY + Round(GameH/(1050/848))
+          Globe.Mana.X2 := GameX + Round(GameW/(1680/1594))
+          Globe.Mana.Y2 := GameY + Round(GameH/(1050/1049))
+          Globe.Mana.Width := Globe.Mana.X2 - Globe.Mana.X1
+          Globe.Mana.Height := Globe.Mana.Y2 - Globe.Mana.Y1
+ 
+          ; Set the base values for restoring default
+          Base.Globe := Array_DeepClone(Globe)
+        }
+
+        ; Stash grid area
+        If (!StashImported)
+        {
+          ; Scale the stash area automatically based on aspect ratio
+          vX_StashTopL:=GameX + Round(GameW/(1680/16)), vY_StashTopL:=GameY + Round(GameH/(1050/160))
+          vX_StashBotR:=GameX + Round(GameW/(1680/650)), vY_StashBotR:=GameY + Round(GameH/(1050/795))
+          ; Give pixels for lines between slots
+          SlotSpacing:=Round(GameH/(1050/2))
+        }
+
+        ;Auto Vendor Settings
+        ;270,800
+        Global VendorAcceptX:=GameX + Round(GameW/(1680/270))
+        Global VendorAcceptY:=GameY + Round(GameH/(1050/800))
+       
+        ;Detonate Mines
+        Global DetonateDelveX:=GameX + Round(GameW/(1680/1310))
+        Global DetonateX:=GameX + Round(GameW/(1680/1425))
+        Global DetonateY:=GameY + Round(GameH/(1050/880))
+       
+        ;Currency
+        ;Scouring 175,460
+        Global ScouringX:=GameX + Round(GameW/(1680/175))
+        Global ScouringY:=GameY + Round(GameH/(1050/460))      
+       
+        ;Chisel 590,210
+        Global ChiselX:=GameX + Round(GameW/(1680/590))
+        Global ChiselY:=GameY + Round(GameH/(1050/210))
+       
+        ;Alchemy 475,280
+        Global AlchemyX:=GameX + Round(GameW/(1680/475))
+        Global AlchemyY:=GameY + Round(GameH/(1050/280))
+       
+        ;Transmutation 55,280
+        Global TransmutationX:=GameX + Round(GameW/(1680/55))
+        Global TransmutationY:=GameY + Round(GameH/(1050/280))
+       
+        ;Alteration 115,285
+        Global AlterationX:=GameX + Round(GameW/(1680/115))
+        Global AlterationY:=GameY + Round(GameH/(1050/285))
+       
+        ;Augmentation 225,335
+        Global AugmentationX:=GameX + Round(GameW/(1680/225))
+        Global AugmentationY:=GameY + Round(GameH/(1050/335))
+       
+        ;Vaal 225,460
+        Global VaalX:=GameX + Round(GameW/(1680/225))
+        Global VaalY:=GameY + Round(GameH/(1050/460))
+       
+        ;Scrolls in currency tab
+        Global WisdomStockX:=GameX + Round(GameW/(1680/115))
+        Global PortalStockX:=GameX + Round(GameW/(1680/170))
+        Global WPStockY:=GameY + Round(GameH/(1050/215))
+       
+        ;Status Check OnMenu
+        global vX_OnMenu:=GameX + Round(GameW / 2)
+        global vY_OnMenu:=GameY + Round(GameH / (1050 / 54))
+       
+        ;Status Check OnChar
+        global vX_OnChar:=GameX + Round(GameW / (1680 / 36))
+        global vY_OnChar:=GameY + Round(GameH / ( 1050 / 920))
+       
+        ;Status Check OnChat
+        global vX_OnChat:=GameX + Round(GameW / (1680 / 0))
+        global vY_OnChat:=GameY + Round(GameH / ( 1050 / 653))
+       
+        ;Status Check OnInventory
+        global vX_OnInventory:=GameX + Round(GameW / (1680 / 1583))
+        global vY_OnInventory:=GameY + Round(GameH / ( 1050 / 36))
+       
+        ;Status Check OnStash
+        global vX_OnStash:=GameX + Round(GameW / (1680 / 336))
+        global vY_OnStash:=GameY + Round(GameH / ( 1050 / 32))
+       
+        ;Status Check OnVendor
+        global vX_OnVendor:=GameX + Round(GameW / (1680 / 525))
+        global vY_OnVendor:=GameY + Round(GameH / ( 1050 / 120))
+       
+        ;Status Check OnDiv
+        global vX_OnDiv:=GameX + Round(GameW / (1680 / 519))
+        global vY_OnDiv:=GameY + Round(GameH / ( 1050 / 716))
+       
+        ;Status Check OnLeft
+        global vX_OnLeft:=GameX + Round(GameW / (1680 / 252))
+        global vY_OnLeft:=GameY + Round(GameH / ( 1050 / 57))
+       
+        ;Status Check OnDelveChart
+        global vX_OnDelveChart:=GameX + Round(GameW / (1680 / 362))
+        global vY_OnDelveChart:=GameY + Round(GameH / ( 1050 / 84))
+       
+       
+        ;Status Check OnMetamporph
+        global vX_OnMetamorph:=GameX + Round(GameW / (1680 / 850))
+        global vY_OnMetamorph:=GameY + Round(GameH / ( 1050 / 195))
+       
+        ;Status Check OnStockPile ((1680/3)-2)
+        global vX_OnStockPile:=GameX + Round(GameW / (1680 / 552))
+        global vY_OnStockPile:=GameY + Round(GameH / ( 1050 / 592))
+ 
+        ;Life %'s
+        global vX_Life:=GameX + Round(GameW / (1680 / 95))
+        global vY_Life20:=GameY + Round(GameH / ( 1050 / 1034))
+        global vY_Life30:=GameY + Round(GameH / ( 1050 / 1014))
+        global vY_Life40:=GameY + Round(GameH / ( 1050 / 994))
+        global vY_Life50:=GameY + Round(GameH / ( 1050 / 974))
+        global vY_Life60:=GameY + Round(GameH / ( 1050 / 954))
+        global vY_Life70:=GameY + Round(GameH / ( 1050 / 934))
+        global vY_Life80:=GameY + Round(GameH / ( 1050 / 914))
+        global vY_Life90:=GameY + Round(GameH / ( 1050 / 894))
+       
+        ;ES %'s
+        If YesEldritchBattery
+          global vX_ES:=GameX + Round(GameW / (1680 / 1740))
+        Else
+          global vX_ES:=GameX + Round(GameW / (1680 / 180))
+        global vY_ES20:=GameY + Round(GameH / ( 1050 / 1034))
+        global vY_ES30:=GameY + Round(GameH / ( 1050 / 1014))
+        global vY_ES40:=GameY + Round(GameH / ( 1050 / 994))
+        global vY_ES50:=GameY + Round(GameH / ( 1050 / 974))
+        global vY_ES60:=GameY + Round(GameH / ( 1050 / 954))
+        global vY_ES70:=GameY + Round(GameH / ( 1050 / 934))
+        global vY_ES80:=GameY + Round(GameH / ( 1050 / 914))
+        global vY_ES90:=GameY + Round(GameH / ( 1050 / 894))
+       
+        ;Mana
+        global vX_Mana:=GameX + Round(GameW / (1680 / 1825))
+        global vY_Mana10:=GameY + Round(GameH / (1050 / 1054))
+        global vY_Mana90:=GameY + Round(GameH / (1050 / 876))
+        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
+        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+       
+        ;GUI overlay
+        global GuiX:=GameX + Round(GameW / (1680 / -10))
+        global GuiY:=GameY + Round(GameH / (1050 / 1000))
+       
+        ;Divination Y locations
+        Global vY_DivTrade:=GameY + Round(GameH / (1050 / 716))
+        Global vY_DivItem:=GameY + Round(GameH / (1050 / 605))
+       
+        ;Stash tabs menu button
+        global vX_StashTabMenu := GameX + Round(GameW / (1680 / 630))
+        global vY_StashTabMenu := GameY + Round(GameH / ( 1050 / 135    ))
+       
+        ;Stash tabs menu list
+        global vX_StashTabList := GameX + Round(GameW / (1680 / 705))
+        global vY_StashTabList := GameY + Round(GameH / ( 1050 / 140))
+       
+        ;calculate the height of each tab
+        global vY_StashTabSize := Round(GameH / ( 1050 / 19))
+      }
       x_center := GameX + GameW / 2
       compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
       y_center := GameY + GameH / 2 / compensation
