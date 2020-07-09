@@ -356,6 +356,12 @@
             This.Prop.SpecialType := "Offering"
             This.Prop.DefaultSendStash := "FragmentsTab"
           }
+          Else If (InStr(This.Prop.ItemBase, "to the Goddess"))
+          {
+            This.Prop.UberDuberOffering := True
+            This.Prop.SpecialType := "Uber Duber Offering"
+            ; This.Prop.DefaultSendStash := "FragmentsTab"
+          }
           Else If (InStr(This.Prop.ItemBase, "Essence of")
           || InStr(This.Prop.ItemBase, "Remnant of Corruption"))
           {
