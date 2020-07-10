@@ -382,6 +382,15 @@
             This.Prop.Resonator := True
             This.Prop.SpecialType := "Resonator"
             This.Prop.DefaultSendStash := "ResonatorTab"
+            If (InStr(This.Prop.ItemName, "Primitive") || InStr(This.Prop.ItemName, "Potent"))
+              This.Prop.Item_Width := 1
+            Else
+              This.Prop.Item_Width := 2
+            
+            If (InStr(This.Prop.ItemName, "Primitive"))
+              This.Prop.Item_Height := 1
+            Else
+              This.Prop.Item_Height := 2
           }
           Else If (InStr(This.Prop.ItemBase, "Divine Vessel"))
           {
