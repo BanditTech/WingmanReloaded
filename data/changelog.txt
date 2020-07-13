@@ -1,3 +1,27 @@
+## Version .11.0507 - Alpha Branch - July/13/2020
+New Feature - Auto-Dump chaos recipe items
+* Enable to stash up to 10 sets of chaos recipe
+* Will send them to dump tab, for later use with automation
+* Allows dump tab to remain disabled, and only dump needed items
+* First time to scan items will take a second to fetch stash info
+  * Then it re-uses the array until you refresh with Chaos Recipe Hotkey
+
+New default Strings to select from
+* There are some new default strings to select for 1440, 1050, and 768
+  * Big shoutout to these community members who have submit strings
+    * Hillgrove
+    * OMNI
+    * RanOutOfGoodName
+* We can always use any missing resolution samples, so please submit your strings!
+
+Fixes
+* Unique quiver now has ninja pricing info
+* New offerings now have a specialtype 
+* Resonators now properly have width and height
+* Provide readout for Chaos Recipe hotkey to show count
+
+---
+
 ## Version .11.0506 - Alpha Branch - July/05/2020
 There is now automation for Chaos/Regal recipe
 * Assign a hotkey in Keybinds section
@@ -9,6 +33,7 @@ There is now automation for Chaos/Regal recipe
 
 Added PoESessionID Editbox to the Configuration Tab
 * This will allow the script to use the GGG Stash API
+
 ---
 
 ## Version .11.0505 - Alpha Branch - July/01/2020
