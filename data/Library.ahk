@@ -191,6 +191,8 @@
         This.MatchExtenalDB()
         This.FilterDoubleMods()
         This.MatchCraftingBases()
+        This.MatchChaosRegal()
+        This.MatchBase2Slot()
         ; This.FuckingSugoiFreeMate()
       }
       MatchProperties(){
@@ -732,6 +734,85 @@
         }
         This.Prop.AffixCount := temp
         temp:=""
+      }
+      MatchBase2Slot(){
+        If (This.Prop.ItemClass ~= "Body Armour")
+          This.Prop.SlotType := "Body"
+        Else If (This.Prop.ItemClass ~= "Helmet")
+          This.Prop.SlotType := "Helmet"
+        Else If (This.Prop.ItemClass ~= "Gloves")
+          This.Prop.SlotType := "Gloves"
+        Else If (This.Prop.ItemClass ~= "Boots")
+          This.Prop.SlotType := "Boots"
+        Else If (This.Prop.ItemClass ~= "Belt")
+          This.Prop.SlotType := "Belt"
+        Else If (This.Prop.ItemClass ~= "Amulet")
+          This.Prop.SlotType := "Amulet"
+        Else If (This.Prop.ItemClass ~= "Ring")
+          This.Prop.SlotType := "Ring"
+        Else If (This.Prop.ItemClass ~= "(One|Wand|Dagger|Sceptre|Claw)")
+          This.Prop.SlotType := "One Hand"
+        Else If (This.Prop.ItemClass ~= "(Two|Bow|Staff)")
+          This.Prop.SlotType := "Two Hand"
+        Else If (This.Prop.ItemClass ~= "Shield")
+          This.Prop.SlotType := "Shield"
+      }
+      MatchChaosRegal(){
+        If (This.Prop.Rarity_Digit = 3 
+        && This.Prop.ItemClass ~= "(One|Two|Bow|Shield|Wand|Staff|Dagger|Sceptre|Claw|Body Armour|Helmet|Gloves|Boots|Belt|Amulet|Ring)")
+        {
+          If (This.Prop.ItemLevel >= 60 && This.Prop.ItemLevel <= 74)
+            This.Prop.ChaosRecipe := 1
+          Else If (This.Prop.ItemLevel >= 75 && This.Prop.ItemLevel <= 100)
+            This.Prop.RegalRecipe := 1
+        }
+      }
+      StashChaosRecipe(){
+        Global RecipeArray
+        Static RecipeMaxHolding := 10
+        Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
+        Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
+        If !IsObject(RecipeArray)
+        {
+          If !ChaosRecipe(StashTabDump,1)
+          {
+            Notify("Error","Requesting stash information Failed`nCheck your POESESSID",3)
+            Return False
+          }
+        }
+        For k, v in TypeList
+        {
+          If (This.Prop.SlotType = v)
+          {
+            CountValue := (RecipeArray[v].Count()>=0?RecipeArray[v].Count():0)
+            If (v = "Ring")
+              CountValue := CountValue / 2
+            If (CountValue < RecipeMaxHolding)
+            {
+              If OnStash
+                RecipeArray[v].Push(This)
+              Return True
+            }
+            Else
+              Return False
+          }
+        }
+        For k, v in WeaponList
+        {
+          If (This.Prop.SlotType = v)
+          {
+            WeaponCount := ((RecipeArray["One Hand"].Count()>=0?RecipeArray["One Hand"].Count():0)/2) + (RecipeArray["Two Hand"].Count()>=0?RecipeArray["Two Hand"].Count():0) + ((RecipeArray["Shield"].Count()>=0?RecipeArray["Shield"].Count():0)/2)
+            If (WeaponCount < RecipeMaxHolding)
+            {
+              If OnStash
+                RecipeArray[v].Push(This)
+              Return True
+            }
+            Else
+              Return False
+          }
+        }
+        Return False
       }
       MatchAffixes(content:=""){
         ; Do Stuff with info
@@ -1889,6 +1970,8 @@
           sendstash := StashTabCrafting
         Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
           sendstash := StashTabPredictive
+        Else If (YesStashChaosRecipe && This.StashChaosRecipe())
+          sendstash := StashTabDump
         Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
           || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
           && !This.Prop.SpecialType
@@ -2172,34 +2255,8 @@
         This.Prop.Stack_Max := Object.maxStackSize
 
         This.MatchAffixes(This.Data.Blocks.Affix)
-        If (This.Prop.Rarity_Digit = 3 
-        && This.Prop.ItemClass ~= "(One|Two|Bow|Shield|Wand|Staff|Dagger|Sceptre|Claw|Body Armour|Helmet|Gloves|Boots|Belt|Amulet|Ring)")
-        {
-          If (This.Prop.ItemLevel >= 60 && This.Prop.ItemLevel <= 74)
-            This.Prop.ChaosRecipe := 1
-          Else If (This.Prop.ItemLevel >= 75 && This.Prop.ItemLevel <= 100)
-            This.Prop.RegalRecipe := 1
-          If (This.Prop.ItemClass ~= "Body Armour")
-            This.Prop.SlotType := "Body"
-          Else If (This.Prop.ItemClass ~= "Helmet")
-            This.Prop.SlotType := "Helmet"
-          Else If (This.Prop.ItemClass ~= "Gloves")
-            This.Prop.SlotType := "Gloves"
-          Else If (This.Prop.ItemClass ~= "Boots")
-            This.Prop.SlotType := "Boots"
-          Else If (This.Prop.ItemClass ~= "Belt")
-            This.Prop.SlotType := "Belt"
-          Else If (This.Prop.ItemClass ~= "Amulet")
-            This.Prop.SlotType := "Amulet"
-          Else If (This.Prop.ItemClass ~= "Ring")
-            This.Prop.SlotType := "Ring"
-          Else If (This.Prop.ItemClass ~= "(One|Wand|Dagger|Sceptre|Claw)")
-            This.Prop.SlotType := "One Hand"
-          Else If (This.Prop.ItemClass ~= "(Two|Bow|Staff)")
-            This.Prop.SlotType := "Two Hand"
-          Else If (This.Prop.ItemClass ~= "Shield")
-            This.Prop.SlotType := "Shield"
-        }
+        This.MatchChaosRegal()
+        This.MatchBase2Slot()
       }
       MatchBaseType(){
         For k, v in Bases
@@ -2628,9 +2685,10 @@
         Gui, Inventory: Add, Button, gCustomCrafting xs+15 y+5  w150,   Custom Crafting List
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
+        Gui, Inventory: Add, GroupBox,             w180 h80    section    xs   y+10,         Dump Tab
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashChaosRecipe Checked%YesStashChaosRecipe% xs+5 y+8, Enable for Chaos/Regal Recipe
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
