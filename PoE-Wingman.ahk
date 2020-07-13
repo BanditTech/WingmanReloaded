@@ -275,6 +275,7 @@
       YesOHB = Pauses the script when it cannot find the Overhead Health Bar
       YesGlobeScan = Use the new Globe scanning method to determine Life, ES and Mana
       YesStashChaosRecipe = Enable the dump tab automatically for items that can fill missing Chaos Recipe slots
+      ChaosRecipeMaxHolding = Determine how many sets of Chaos Recipe to stash
       ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
       AutoUpdateOff = Enable this to not check for new updates when launching the script
       YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
@@ -652,6 +653,7 @@
     Global YesOHB := True
     Global YesGlobeScan := True
     Global YesStashChaosRecipe := False
+    Global ChaosRecipeMaxHolding := 10
     Global YesFillMetamorph := True
     Global YesPredictivePrice := "Off"
     Global YesPredictivePrice_Percent_Val := 100
@@ -6099,6 +6101,7 @@ Return
       IniRead, YesLootDelve, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve, 1
       IniRead, YesGlobeScan, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan, 1
       IniRead, YesStashChaosRecipe, %A_ScriptDir%\save\Settings.ini, General, YesStashChaosRecipe, 0
+      IniRead, ChaosRecipeMaxHolding, %A_ScriptDir%\save\Settings.ini, General, ChaosRecipeMaxHolding, 10
       IniRead, YesFillMetamorph, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph, 0
       IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
@@ -7141,6 +7144,7 @@ Return
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
       IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
       IniWrite, %YesStashChaosRecipe%, %A_ScriptDir%\save\Settings.ini, General, YesStashChaosRecipe
+      IniWrite, %ChaosRecipeMaxHolding%, %A_ScriptDir%\save\Settings.ini, General, ChaosRecipeMaxHolding
       IniWrite, %ManaThreshold%, %A_ScriptDir%\save\Settings.ini, General, ManaThreshold
 
       ; Overhead Health Bar
@@ -10656,6 +10660,7 @@ Return
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
       IniWrite, %YesGlobeScan%, %A_ScriptDir%\save\Settings.ini, General, YesGlobeScan
       IniWrite, %YesStashChaosRecipe%, %A_ScriptDir%\save\Settings.ini, General, YesStashChaosRecipe
+      IniWrite, %ChaosRecipeMaxHolding%, %A_ScriptDir%\save\Settings.ini, General, ChaosRecipeMaxHolding
 
       ;Automation Settings
       IniWrite, %YesEnableAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation

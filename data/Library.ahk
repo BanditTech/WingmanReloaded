@@ -769,7 +769,6 @@
       }
       StashChaosRecipe(){
         Global RecipeArray
-        Static RecipeMaxHolding := 10
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
         If !IsObject(RecipeArray)
@@ -787,7 +786,7 @@
             CountValue := (RecipeArray[v].Count()>=0?RecipeArray[v].Count():0)
             If (v = "Ring")
               CountValue := CountValue / 2
-            If (CountValue < RecipeMaxHolding)
+            If (CountValue < ChaosRecipeMaxHolding)
             {
               If OnStash
                 RecipeArray[v].Push(This)
@@ -802,7 +801,7 @@
           If (This.Prop.SlotType = v)
           {
             WeaponCount := ((RecipeArray["One Hand"].Count()>=0?RecipeArray["One Hand"].Count():0)/2) + (RecipeArray["Two Hand"].Count()>=0?RecipeArray["Two Hand"].Count():0) + ((RecipeArray["Shield"].Count()>=0?RecipeArray["Shield"].Count():0)/2)
-            If (WeaponCount < RecipeMaxHolding)
+            If (WeaponCount < ChaosRecipeMaxHolding)
             {
               If OnStash
                 RecipeArray[v].Push(This)
@@ -2688,8 +2687,10 @@
         Gui, Inventory: Add, GroupBox,             w180 h80    section    xs   y+10,         Dump Tab
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashChaosRecipe Checked%YesStashChaosRecipe% xs+5 y+8, Enable for Chaos/Regal Recipe
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+8, Skip Jewlers and Chromatics
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashChaosRecipe Checked%YesStashChaosRecipe% xs+5 y+8, Enable for Chaos Recipe
+        Gui, Inventory: Add, Edit, x+-2 yp-3 w35
+        Gui, Inventory: Add, UpDown, Range1-15 x+0 yp hp gUpdateExtra vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jewlers and Chromatics
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab

@@ -1,6 +1,7 @@
 ## Version .11.0507 - Alpha Branch - July/13/2020
 New Feature - Auto-Dump chaos recipe items
-* Enable to stash up to 10 sets of chaos recipe
+* Enable to stash up to 15 sets of chaos recipe
+  * Use the UpDown to adjust the maximum number of sets
 * Will send them to dump tab, for later use with automation
 * Allows dump tab to remain disabled, and only dump needed items
 * First time to scan items will take a second to fetch stash info
