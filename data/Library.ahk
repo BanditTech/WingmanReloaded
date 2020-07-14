@@ -771,6 +771,10 @@
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
+        If This.Prop.Rarity_Digit != 3
+          Return False
+        If (StashDumpSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
+          Return False
         If !IsObject(RecipeArray)
         {
           If !ChaosRecipe(StashTabDump,1)
