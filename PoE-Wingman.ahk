@@ -2617,6 +2617,7 @@ Return
       If !PPServerStatus()
       Notify("PoEPrice.info Offline","",2)
     }
+    VendoredItems := False
     ; Main loop through inventory
     For C, GridX in InventoryGridX
     {
@@ -2707,6 +2708,7 @@ Return
           If ( Item.Prop.SpecialType="" )
           {
             CtrlClick(Grid.X,Grid.Y)
+            VendoredItems := True
             Continue
           }
         }
@@ -2751,7 +2753,7 @@ Return
     If (OnVendor && RunningToggle && YesEnableAutomation)
     {
       ContinueFlag := False
-      If (YesEnableAutoSellConfirmation)
+      If (YesEnableAutoSellConfirmation || !VendoredItems)
       {
         RandomSleep(60,90)
         LeftClick(VendorAcceptX,VendorAcceptY)
