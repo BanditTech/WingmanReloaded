@@ -2708,7 +2708,8 @@ Return
           If ( Item.Prop.SpecialType="" )
           {
             CtrlClick(Grid.X,Grid.Y)
-            VendoredItems := True
+            If !(Item.Prop.Chromatic || Item.Prop.Jeweler)
+              VendoredItems := True
             Continue
           }
         }
