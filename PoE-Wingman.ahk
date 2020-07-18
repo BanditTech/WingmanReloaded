@@ -98,6 +98,8 @@
     . "\+{0,1}"
     . "(\d{1,}\.{0,1}\,{0,1}\d{0,})"
     . "\%{0,1}"
+    Global Controller := {"Btn":{}}
+    Global Controller_Active := 0
     Global Item
     Global WR_Statusbar := "WingmanReloaded Status"
     Global WR_hStatusbar
@@ -3799,6 +3801,12 @@ Return
       Return
     If GamePID
     {
+      If (YesController)
+      {
+        Controller("Refresh")
+        Controller("JoystickL")
+        Controller("JoystickR")
+      }
       If (DebugMessages && YesTimeMS)
         t1 := A_TickCount
       If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
@@ -4774,6 +4782,7 @@ Return
 
   TriggerQuick(Trigger){
     Static LastHeldLB, LastHeldMA, LastHeldSA
+    Global MovementHotkeyActive
     If !(FlaskListQS.Count())
       loop, 5 
         if (SubStr(Trigger,A_Index,1)+0 > 0)
@@ -4784,7 +4793,7 @@ Return
       || (Radiobox4QS && OnCooldown[4])
       || (Radiobox5QS && OnCooldown[5]) )
     { ; If all the flasks are off cooldown, then we are ready to fire one
-      LButtonPressed := GetKeyState("LButton", "P")
+      LButtonPressed := ( MovementHotkeyActive || GetKeyState("LButton", "P") )
       If QSonMainAttack
         MainPressed := MainAttackPressedActive
       If QSonSecondaryAttack

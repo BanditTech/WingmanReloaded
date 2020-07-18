@@ -14240,6 +14240,131 @@ IsLinear(arr, i=0) {
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
+; Controller functions
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  Controller(inputType:="Refresh")
+  {
+    Static __init__ := XInput_Init()
+    Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 3, YAxisMultiplier := .6
+    Global MainAttackPressedActive, MovementHotkeyActive
+    Global Controller, Controller_Active
+    If (inputType = "Refresh")
+    {
+      if State := XInput_GetState(Controller_Active) 
+      {
+        ; LX,LY,RX,RY,LT,RT,A,B,X,Y,LB,RB,L3,R3,BACK,START,UP,DOWN,LEFT,RIGHT
+        Controller.LX             := PercentAxis( State.sThumbLX )
+        Controller.LY             := PercentAxis( State.sThumbLY )
+        Controller.RX             := PercentAxis( State.sThumbRX )
+        Controller.RY             := PercentAxis( State.sThumbRY )
+        Controller.LT             := State.bLeftTrigger
+        Controller.RT             := State.bRightTrigger
+        Controller.Btn.A          := XInputButtonIsDown( "A", State.wButtons )
+        Controller.Btn.B          := XInputButtonIsDown( "B", State.wButtons )
+        Controller.Btn.X          := XInputButtonIsDown( "X", State.wButtons )
+        Controller.Btn.Y          := XInputButtonIsDown( "Y", State.wButtons )
+        Controller.Btn.LB         := XInputButtonIsDown( "LB", State.wButtons )
+        Controller.Btn.RB         := XInputButtonIsDown( "RB", State.wButtons )
+        Controller.Btn.L3         := XInputButtonIsDown( "LStick", State.wButtons )
+        Controller.Btn.R3         := XInputButtonIsDown( "RStick", State.wButtons )
+        Controller.Btn.BACK       := XInputButtonIsDown( "Back", State.wButtons )
+        Controller.Btn.START      := XInputButtonIsDown( "Start", State.wButtons )
+        Controller.Btn.UP         := XInputButtonIsDown( "PovUp", State.wButtons )
+        Controller.Btn.DOWN       := XInputButtonIsDown( "PovDown", State.wButtons )
+        Controller.Btn.LEFT       := XInputButtonIsDown( "PovLeft", State.wButtons )
+        Controller.Btn.RIGHT      := XInputButtonIsDown( "PovRight", State.wButtons )
+      }
+      Else
+      {
+        DetectJoystick()
+      }
+    }
+    Else If (inputType = "JoystickL")
+    {
+      moveX := DeadZone(Controller.LX)
+      moveY := DeadZone(Controller.LY)
+      If (moveX || moveY)
+      {
+        MouseMove,% ScrCenter.X + Controller.LX * JoyMultiplier, % ScrCenter.Y - Controller.LY * JoyMultiplier
+        ++JoyLHoldCount
+        If (!MovementHotkeyActive && JoyLHoldCount > 0)
+        {
+          Click, Down
+          MovementHotkeyActive := True
+        }
+      }
+      Else
+      {
+        If MovementHotkeyActive
+        {
+          Click, Up
+          MovementHotkeyActive := False
+        }
+        JoyLHoldCount := 0
+        Return
+      }
+    }
+    Else If (inputType = "JoystickR")
+    {
+      moveX := DeadZone(Controller.RX)
+      moveY := DeadZone(Controller.RY)
+      If (moveX || moveY)
+      {
+        MouseMove,% ScrCenter.X + Controller.RX * JoyMultiplier, % ScrCenter.Y - Controller.RY * JoyMultiplier
+        ++JoyRHoldCount
+        If (!MainAttackPressedActive && JoyRHoldCount > 0)
+        {
+          Send {RButton Down}
+          MainAttackPressedActive := True
+        }
+      }
+      Else
+      {
+        If MainAttackPressedActive
+        {
+          Send {RButton Up}
+          MainAttackPressedActive := False
+        }
+        JoyRHoldCount := 0
+        Return
+      }
+    }
+    Return
+  }
+  DetectJoystick()
+  {
+    If XInput_GetState(Controller_Active)
+      Return Controller_Active
+    Else
+    {
+      Loop, 4
+      {
+        If XInput_GetState(A_Index)
+        {
+          Return Controller_Active := A_Index
+        }
+      }
+      Return False
+    }
+  }
+  DeadZone(val, deadzone:=10){
+    Return (Abs(val)<deadzone?False:True)
+  }
+  CapRange(var,min:=0,max:=65535){
+    return (var > max ? max : (var < min ? min : var))
+  }
+  PercentAxis(axisPos){
+    If (axisPos = 0)
+      Return False
+    Else If (axisPos > 0)
+      Positive := True
+    Else
+      Positive := False
+    Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,2)
+    Return Percentage 
+  }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
 
 /*  XInput by Lexikos
  *  This version of the script uses objects, so requires AutoHotkey_L.
@@ -14470,6 +14595,33 @@ IsLinear(arr, i=0) {
     global
     if _XInput_hm
       DllCall("FreeLibrary","uint",_XInput_hm), _XInput_hm :=_XInput_GetState :=_XInput_SetState :=_XInput_GetCapabilities :=0
+  }
+
+  ; XInputButtonIsDown functions found - https://autohotkey.com/board/topic/35848-xinput-xbox-360-controller-api/
+  XInputButtonIsDown( ButtonName, bidButtonState )
+  {
+    ; Constants for gamepad buttons
+    Static PovUp     = 0x0001
+    , PovDown   = 0x0002
+    , PovLeft   = 0x0004
+    , PovRight  = 0x0008
+    , Start     = 0x0010
+    , Back    = 0x0020
+    , LStick    = 0x0040
+    , RStick    = 0x0080
+    , LB      = 0x0100
+    , RB      = 0x0200
+    , A       = 0x1000
+    , B       = 0x2000
+    , X       = 0x4000
+    , Y       = 0x8000
+
+    isDown := false  ; If something screws up, we want to return false.
+    If ( bidButtonState & %ButtonName% )
+      isDown := true  ; Return true if bidButtonState matches ButtonName
+    Else isDown := false  ; Return false otherwise
+    
+    Return %isDown%
   }
 
  ; TODO: XInputEnable, 'GetBatteryInformation and 'GetKeystroke.
