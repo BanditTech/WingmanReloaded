@@ -817,9 +817,9 @@
     global InvertYAxis := false
     global JoyMultiplier := 0.30
     global JoyMultiplier2 := 8
-    global hotkeyControllerButtonA,hotkeyControllerButtonB,hotkeyControllerButtonX,hotkeyControllerButtonY,hotkeyControllerButtonLB,hotkeyControllerButtonRB,hotkeyControllerButtonBACK,hotkeyControllerButtonSTART,hotkeyControllerButtonL3,hotkeyControllerButtonR3,hotkeyControllerJoystick2
+    global hotkeyControllerButtonA,hotkeyControllerButtonB,hotkeyControllerButtonX,hotkeyControllerButtonY,hotkeyControllerButtonLB,hotkeyControllerButtonRB,hotkeyControllerButtonBACK,hotkeyControllerButtonSTART,hotkeyControllerButtonL3,hotkeyControllerButtonR3,hotkeyControllerJoystickRight
     global YesTriggerUtilityJoystickKey := 1
-    global YesTriggerJoystick2Key := 1
+    global YesTriggerJoystickRightKey := 1
   ; ~ Hotkeys
   ; Legend:    ! = Alt    ^ = Ctrl    + = Shift 
     global hotkeyOptions:="!F10"
@@ -6819,11 +6819,11 @@ Return
       IniRead, hotkeyControllerButtonL3, %A_ScriptDir%\save\Settings.ini, Controller Keys, L3, Logout
       IniRead, hotkeyControllerButtonR3, %A_ScriptDir%\save\Settings.ini, Controller Keys, R3, QuickPortal
       
-      IniRead, hotkeyControllerJoystick2, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight, RButton
+      IniRead, hotkeyControllerJoystickRight, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight, RButton
 
       IniRead, YesTriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey, 1
       IniRead, YesTriggerUtilityJoystickKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
-      IniRead, YesTriggerJoystick2Key, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystick2Key, 1
+      IniRead, YesTriggerJoystickRightKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystickRightKey, 1
       IniRead, TriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, Controller, TriggerUtilityKey, 1
       IniRead, YesMovementKeys, %A_ScriptDir%\save\Settings.ini, Controller, YesMovementKeys, 0
       IniRead, YesController, %A_ScriptDir%\save\Settings.ini, Controller, YesController, 0
@@ -7497,11 +7497,11 @@ Return
       IniWrite, %hotkeyControllerButtonL3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, L3
       IniWrite, %hotkeyControllerButtonR3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, R3
       
-      IniWrite, %hotkeyControllerJoystick2%, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight
+      IniWrite, %hotkeyControllerJoystickRight%, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight
 
       IniWrite, %YesTriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey
       IniWrite, %YesTriggerUtilityJoystickKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey
-      IniWrite, %YesTriggerJoystick2Key%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystick2Key
+      IniWrite, %YesTriggerJoystickRightKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystickRightKey
       IniWrite, %TriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, TriggerUtilityKey
       IniWrite, %YesMovementKeys%, %A_ScriptDir%\save\Settings.ini, Controller, YesMovementKeys
       IniWrite, %YesController%, %A_ScriptDir%\save\Settings.ini, Controller, YesController

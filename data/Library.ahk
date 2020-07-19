@@ -3145,9 +3145,9 @@
         GuiControl,Controller: Text, hotkeyControllerButtonL3, %hotkeyControllerButtonL3%
 
         Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80                        ,Right Joystick
-        Gui, Controller: Add,Checkbox, xp+5 y+-53     Checked%YesTriggerJoystick2Key%      vYesTriggerJoystick2Key, Use key?
-        Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystick2, LButton|RButton|q|w|e|r|t
-        GuiControl,Controller: Text, hotkeyControllerJoystick2, %hotkeyControllerJoystick2%
+        Gui, Controller: Add,Checkbox, xp+5 y+-53     Checked%YesTriggerJoystickRightKey%      vYesTriggerJoystickRightKey, Use key?
+        Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystickRight, LButton|RButton|q|w|e|r|t
+        GuiControl,Controller: Text, hotkeyControllerJoystickRight, %hotkeyControllerJoystickRight%
         Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,R3
         Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonR3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
         GuiControl,Controller: Text, hotkeyControllerButtonR3, %hotkeyControllerButtonR3%
@@ -14326,19 +14326,21 @@ IsLinear(arr, i=0) {
       moveY := DeadZone(Controller.RY)
       If (moveX || moveY)
       {
-        MouseMove,% ScrCenter.X + Controller.RX * JoyMultiplier, % ScrCenter.Y - Controller.RY * JoyMultiplier
+        MouseMove,% ScrCenter.X + Controller.RX * JoyMultiplier, % ScrCenter.Yadjusted - Controller.RY * JoyMultiplier
         ++JoyRHoldCount
-        If (!MainAttackPressedActive && JoyRHoldCount > 1)
+        If (!MainAttackPressedActive && JoyRHoldCount > 2 && YesTriggerJoystickRightKey)
         {
-          Send {RButton Down}
+          Obj := SplitModsFromKey(hotkeyControllerJoystickRight)
+          Send, % Obj.Mods "{" Obj.Key " down}"
           MainAttackPressedActive := True
         }
       }
       Else
       {
-        If MainAttackPressedActive
+        If (MainAttackPressedActive && YesTriggerJoystickRightKey)
         {
-          Send {RButton Up}
+          Obj := SplitModsFromKey(hotkeyControllerJoystickRight)
+          Send, % Obj.Mods "{" Obj.Key " up}"
           MainAttackPressedActive := False
         }
         JoyRHoldCount := 0
