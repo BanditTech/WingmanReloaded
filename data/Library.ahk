@@ -14244,6 +14244,7 @@ IsLinear(arr, i=0) {
   {
     Static __init__ := XInput_Init()
     Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 4, YAxisMultiplier := .6
+    Static x_POVscale := 5, y_POVscale := 5, HeldCountPOV := 1
     Global MainAttackPressedActive, MovementHotkeyActive, LootVacuumActive
     Global Controller, Controller_Active
     If (inputType = "Main")
@@ -14252,6 +14253,7 @@ IsLinear(arr, i=0) {
       Controller("JoystickL")
       Controller("JoystickR")
       Controller("Buttons")
+      Controller("DPad")
     }
     If (inputType = "Refresh")
     {
@@ -14291,9 +14293,9 @@ IsLinear(arr, i=0) {
       If (moveX || moveY)
       {
         If !GuiStatus("",0)
-          MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/100), % ScrCenter.Y - Controller.LY * (ScrCenter.Y/100)
+          MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/100), % ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/100)
         Else
-          MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/120), % ScrCenter.Y - Controller.LY * (ScrCenter.Y/120)
+          MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/120), % ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/120)
         ++JoyLHoldCount
         If (!MovementHotkeyActive && JoyLHoldCount > 1 && GuiStatus("",0))
         {
@@ -14418,6 +14420,47 @@ IsLinear(arr, i=0) {
             }
           }
         }
+      }
+    }
+    Else If (inputType = "DPad")
+    {
+      if (Controller.Up || Controller.Down || Controller.Left || Controller.Right)
+      {
+        if (Controller.Up) ; Up
+        {
+          y_finalPOV := -y_POVscale-HeldCountPOV
+          newpositionPOV := true
+        }
+        else if (Controller.Down) ; Down
+        {
+          y_finalPOV := +y_POVscale+HeldCountPOV
+          newpositionPOV := true
+        }
+        else
+          y_finalPOV := 0
+        if (Controller.Left) ; Left
+        {
+          x_finalPOV := -x_POVscale-HeldCountPOV
+          newpositionPOV := true
+        }
+        else if (Controller.Right) ; Right
+        {
+          x_finalPOV := +x_POVscale+HeldCountPOV
+          newpositionPOV := true
+        }
+        else
+          x_finalPOV := 0
+        If (newpositionPOV)
+        {
+          HeldCountPOV+=3
+          Sleep, 45
+          MouseMove, %x_finalPOV%, %y_finalPOV%, 0, R
+          newpositionPOV := false
+        }
+      }
+      Else If (HeldCountPOV > 1)
+      {
+        HeldCountPOV := 1
       }
     }
     Return
