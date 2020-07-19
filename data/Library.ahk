@@ -14244,8 +14244,8 @@ IsLinear(arr, i=0) {
   {
     Static __init__ := XInput_Init()
     Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 4, YAxisMultiplier := .6
-    Static x_POVscale := 5, y_POVscale := 5, HeldCountPOV := 1
-    Global MainAttackPressedActive, MovementHotkeyActive, LootVacuumActive
+    Static x_POVscale := 5, y_POVscale := 5, HeldCountPOV := 0
+    Global MainAttackPressedActive, SecondaryAttackPressedActive, MovementHotkeyActive, LootVacuumActive
     Global Controller, Controller_Active
     If (inputType = "Main")
     {
@@ -14386,6 +14386,20 @@ IsLinear(arr, i=0) {
               SetTimer, ItemSortCommand, -1
               State%Key% := 1
             }
+            Else If (hotkeyControllerButton%Key% = hotkeyMainAttack)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " down}"
+              State%Key% := 1
+              MainAttackPressedActive := True
+            }
+            Else If (hotkeyControllerButton%Key% = hotkeySecondaryAttack)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " down}"
+              State%Key% := 1
+              SecondaryAttackPressedActive := True
+            }
             Else
             {
               Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
@@ -14412,6 +14426,20 @@ IsLinear(arr, i=0) {
               State%Key% := 0
             Else If (hotkeyControllerButton%Key% = "ItemSort")
               State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = hotkeyMainAttack)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " up}"
+              State%Key% := 0
+              MainAttackPressedActive := 0
+            }
+            Else If (hotkeyControllerButton%Key% = hotkeySecondaryAttack)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " up}"
+              State%Key% := 0
+              SecondaryAttackPressedActive := 0
+            }
             Else
             {
               Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
@@ -14427,40 +14455,27 @@ IsLinear(arr, i=0) {
       if (Controller.Up || Controller.Down || Controller.Left || Controller.Right)
       {
         if (Controller.Up) ; Up
-        {
-          y_finalPOV := -y_POVscale-HeldCountPOV
-          newpositionPOV := true
-        }
+          y_finalPOV := -y_POVscale-HeldCountPOV*2
         else if (Controller.Down) ; Down
-        {
-          y_finalPOV := +y_POVscale+HeldCountPOV
-          newpositionPOV := true
-        }
+          y_finalPOV := +y_POVscale+HeldCountPOV*2
         else
           y_finalPOV := 0
         if (Controller.Left) ; Left
-        {
-          x_finalPOV := -x_POVscale-HeldCountPOV
-          newpositionPOV := true
-        }
+          x_finalPOV := -x_POVscale-HeldCountPOV*2
         else if (Controller.Right) ; Right
-        {
-          x_finalPOV := +x_POVscale+HeldCountPOV
-          newpositionPOV := true
-        }
+          x_finalPOV := +x_POVscale+HeldCountPOV*2
         else
           x_finalPOV := 0
-        If (newpositionPOV)
+        If (x_finalPOV || y_finalPOV)
         {
-          HeldCountPOV+=3
-          Sleep, 45
           MouseMove, %x_finalPOV%, %y_finalPOV%, 0, R
-          newpositionPOV := false
+          HeldCountPOV+=1
+          Sleep, 100 - (HeldCountPOV * 15 <= 70?HeldCountPOV * 15:70)
         }
       }
       Else If (HeldCountPOV > 1)
       {
-        HeldCountPOV := 1
+        HeldCountPOV := 0
       }
     }
     Return
