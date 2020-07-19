@@ -1,4 +1,4 @@
-## Version .11.0508 - Alpha Branch - July/18/2020
+## Version .11.0508 - Alpha Branch - July/19/2020
 Re-Introduce Controller Support
 * Basic controller support has returned!
 * Now using XInput library for maximum speed
@@ -11,9 +11,11 @@ Partial Automation is now default
 
 BugFixes
 * Combobox should no longer show blank when the contents did not match a list item
-* Batch Vendoring Quality Gems or Flasks now shows notification box instead of tooltips
+* Batch Vendor of Quality Gems or Flasks now shows notification box instead of tooltips
+* Remove Log message for "Cannot find subscript"
+* Parse client logs before starting main logic timer
 
-
+---
 
 ## Version .11.0507 - Alpha Branch - July/13/2020
 New Feature - Auto-Dump chaos recipe items
