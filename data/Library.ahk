@@ -5186,10 +5186,7 @@
       }
       x_center := GameX + GameW / 2
       compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
-      y_center := GameY + GameH / 2 / compensation
-      offset_mod := y_offset / GameH
-      x_offset := GameW * (offset_mod / 1.5 )
-      Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) }
+      Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) ,"Yadjusted" : GameY + GameH / 2 / compensation}
       RescaleRan := True
       Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
 
@@ -14243,12 +14240,19 @@ IsLinear(arr, i=0) {
 
 ; Controller functions
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-  Controller(inputType:="Refresh")
+  Controller(inputType:="Main")
   {
     Static __init__ := XInput_Init()
-    Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 3, YAxisMultiplier := .6
+    Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 4, YAxisMultiplier := .6
     Global MainAttackPressedActive, MovementHotkeyActive, LootVacuumActive
     Global Controller, Controller_Active
+    If (inputType = "Main")
+    {
+      Controller("Refresh")
+      Controller("JoystickL")
+      Controller("JoystickR")
+      Controller("Buttons")
+    }
     If (inputType = "Refresh")
     {
       if State := XInput_GetState(Controller_Active) 
@@ -14286,12 +14290,21 @@ IsLinear(arr, i=0) {
       moveY := DeadZone(Controller.LY)
       If (moveX || moveY)
       {
-        MouseMove,% ScrCenter.X + Controller.LX * JoyMultiplier, % ScrCenter.Y - Controller.LY * JoyMultiplier
+        If !GuiStatus("",0)
+          MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/100), % ScrCenter.Y - Controller.LY * (ScrCenter.Y/100)
+        Else
+          MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/120), % ScrCenter.Y - Controller.LY * (ScrCenter.Y/120)
         ++JoyLHoldCount
-        If (!MovementHotkeyActive && JoyLHoldCount > 0)
+        If (!MovementHotkeyActive && JoyLHoldCount > 1 && GuiStatus("",0))
         {
           Click, Down
           MovementHotkeyActive := True
+        }
+        If (YesTriggerUtilityKey && MovementHotkeyActive
+        && (Abs(Controller.LX) >= 60 || Abs(Controller.LY) >= 70 )
+        && JoyLHoldCount > 3 && GuiStatus("",0))
+        {
+          TriggerUtility(TriggerUtilityKey)
         }
       }
       Else
@@ -14313,7 +14326,7 @@ IsLinear(arr, i=0) {
       {
         MouseMove,% ScrCenter.X + Controller.RX * JoyMultiplier, % ScrCenter.Y - Controller.RY * JoyMultiplier
         ++JoyRHoldCount
-        If (!MainAttackPressedActive && JoyRHoldCount > 0)
+        If (!MainAttackPressedActive && JoyRHoldCount > 1)
         {
           Send {RButton Down}
           MainAttackPressedActive := True

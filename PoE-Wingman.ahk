@@ -2771,6 +2771,8 @@ Return
         CheckTime("Seconds",30,"VendorUI",A_Now)
         While (!CheckTime("Seconds",30,"VendorUI"))
         {
+          If (YesController)
+            Controller()
           Sleep, 100
           GuiStatus()
           If !OnVendor
@@ -2945,6 +2947,8 @@ Return
         CheckTime("Seconds",30,"VendorUI",A_Now)
         While (!CheckTime("Seconds",30,"VendorUI"))
         {
+          If (YesController)
+            Controller()
           Sleep, 100
           GuiStatus()
           If !OnVendor
@@ -3809,12 +3813,7 @@ Return
     If GamePID
     {
       If (YesController)
-      {
-        Controller("Refresh")
-        Controller("JoystickL")
-        Controller("JoystickR")
-        Controller("Buttons")
-      }
+        Controller()
       If (DebugMessages && YesTimeMS)
         t1 := A_TickCount
       If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
@@ -3822,7 +3821,7 @@ Return
         Msg := (OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum)?"All options disabled, pausing":"Error")))
         If CheckTime("seconds",1,"StatusBar1")
           SB_SetText(Msg, 1)
-        If (CheckGamestates || GlobeActive)
+        If (CheckGamestates || GlobeActive || YesController)
         {
           GuiStatus()
           If CheckGamestates
@@ -4863,7 +4862,7 @@ Return
   TriggerUtility(Utility){
     If (OnTown||OnHideout)
       Return
-    If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility%){
+    If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility% || TriggerUtilityKey = Utility){
       key:=KeyUtility%Utility%
       If GameActive
         send, %key%
