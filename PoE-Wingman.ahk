@@ -310,6 +310,7 @@
       YesEnableNextAutomation = Enable next automation after the first selected
       YesEnableSeedAutomation = Enable seed automation to find and deposit at Seed StockPile
       YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
+      YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`n   The vendor is empty`n   The only items are Chromatic or Jeweler
       YesAutoSkillUp = Enable this to Automatically level up skill gems
       YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
       DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
@@ -600,7 +601,7 @@
       , StackRelease_Enable := False
 
   ; Automation Settings
-    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableSeedAutomation,YesEnableAutoSellConfirmation
+    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableSeedAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
 
   ; General
     Global BranchName := "master"
@@ -2758,7 +2759,7 @@ Return
     If (OnVendor && RunningToggle && YesEnableAutomation)
     {
       ContinueFlag := False
-      If (YesEnableAutoSellConfirmation || !VendoredItems)
+      If (YesEnableAutoSellConfirmation || (!VendoredItems && YesEnableAutoSellConfirmationSafe))
       {
         RandomSleep(60,90)
         LeftClick(VendorAcceptX,VendorAcceptY)
@@ -6083,6 +6084,7 @@ Return
       IniRead, YesEnableNextAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation, 0
       IniRead, YesEnableSeedAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableSeedAutomation, 0
       IniRead, YesEnableAutoSellConfirmation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation, 0
+      IniRead, YesEnableAutoSellConfirmationSafe, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmationSafe, 0
       
       ;Stash Tab Management
       IniRead, StashTabCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency, 1
@@ -10624,6 +10626,7 @@ Return
       IniWrite, %YesEnableNextAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation
       IniWrite, %YesEnableSeedAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableSeedAutomation
       IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+      IniWrite, %YesEnableAutoSellConfirmationSafe%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmationSafe
       
       ;Automation Metamorph Settings
       IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph

@@ -4,8 +4,8 @@ Re-Introduce Controller Support
 * Now using XInput library for maximum speed
 * Any standard XBOX mapped controller will function
 
-Partial Automation is now default
-* Vendor window will now auto accept by default for specific situations
+Partial Auto-Confirm Automation is now available
+* Vendor window can now auto accept by default for specific situations
   * Anytime the vendor has not had any items placed inside
   * If the only items sent to the vendor are Chromatic or Jeweler items
 
