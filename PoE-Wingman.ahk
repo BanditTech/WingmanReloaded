@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .11.0507
+  Global VersionNumber := .11.0508
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -816,7 +816,7 @@
     global InvertYAxis := false
     global JoyMultiplier := 0.30
     global JoyMultiplier2 := 8
-    global hotkeyControllerButton1,hotkeyControllerButton2,hotkeyControllerButton3,hotkeyControllerButton4,hotkeyControllerButton5,hotkeyControllerButton6,hotkeyControllerButton7,hotkeyControllerButton8,hotkeyControllerButton9,hotkeyControllerButton10,hotkeyControllerJoystick2
+    global hotkeyControllerButtonA,hotkeyControllerButtonB,hotkeyControllerButtonX,hotkeyControllerButtonY,hotkeyControllerButtonLB,hotkeyControllerButtonRB,hotkeyControllerButtonBACK,hotkeyControllerButtonSTART,hotkeyControllerButtonL3,hotkeyControllerButtonR3,hotkeyControllerJoystick2
     global YesTriggerUtilityJoystickKey := 1
     global YesTriggerJoystick2Key := 1
   ; ~ Hotkeys
@@ -2408,10 +2408,6 @@
   SetTimer, PoEWindowCheck, 1000
   ; Check once an hour to see if we should updated database
   SetTimer, DBUpdateCheck, 360000
-  ; Check for Flask presses
-  SetTimer, TimerPassthrough, 15
-  ; Main Game Timer
-  SetTimer, TGameTick, %Tick%
   ; Log file parser
   If FileExist(ClientLog)
   {
@@ -2424,6 +2420,10 @@
     Log("Client Log not Found",ClientLog)
     SB_SetText("Client.txt file not found", 2)
   }
+  ; Check for Flask presses
+  SetTimer, TimerPassthrough, 15
+  ; Main Game Timer
+  SetTimer, TGameTick, %Tick%
 
 ; Hotkeys to reload or exit script - Hardcoded Hotkeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2732,6 +2732,7 @@ Return
           Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
           CtrlClick(Grid.X,Grid.Y)
           RandomSleep(60,90)
+          VendoredItems := True
         }
       }
     }
@@ -2749,6 +2750,7 @@ Return
           Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
           CtrlClick(Grid.X,Grid.Y)
           RandomSleep(60,90)
+          VendoredItems := True
         }
       }
     }
@@ -3687,6 +3689,7 @@ Return
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   LootScan(Reset:=0){
       Static GreenHex := 0x32DE24, QuestHex := 0x47E635, LV_LastClick := 0
+      Global LootVacuumActive
       If (!ComboHex || Reset)
       {
         ComboHex := Hex2FindText(LootColors,0,0,"",3,3)
@@ -3698,8 +3701,7 @@ Return
       }
       If (A_TickCount - LV_LastClick <= LVdelay)
         Return
-      Pressed := GetKeyState(hotkeyLootScan,"P")
-      If (Pressed&&LootVacuum)
+      If (LootVacuumActive&&LootVacuum)
       {
         If AreaScale
         {
@@ -3709,7 +3711,7 @@ Return
           If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0))
           {
             ScanPx := loot.1.x + 10, ScanPy := loot.1.y + 10, ScanId := loot.1.id
-            If (Pressed := GetKeyState(hotkeyLootScan,"P"))
+            If ( LootVacuumActive )
               GoSub LootScan_Click
             LV_LastClick := A_TickCount
             Return
@@ -3750,23 +3752,27 @@ Return
           MouseGetPos mX, mY
           PixelGetColor, scolor, mX, mY, RGB
           If (indexOf(scolor,LootColors) || CompareHex(scolor,GreenHex,53,1))
-            If (Pressed := GetKeyState(hotkeyLootScan,"P"))
+            If ( LootVacuumActive )
             {
               click %mX%, %mY%
               LV_LastClick := A_TickCount
             }
         }
-        ; Pressed := GetKeyState(hotkeyLootScan,"P")
       }
       Else
-        LootScanActive := False
+        LootVacuumActive := False
     Return
 
     LootScanCommand:
-      If !LootScanActive
+      If !LootVacuumActive
       {
-        LootScanActive:=True
-        LootScan()
+        LootVacuumActive:=True
+      }
+    Return
+    LootScanCommandRelease:
+      If LootVacuumActive
+      {
+        LootVacuumActive:=False
       }
     Return
 
@@ -3806,6 +3812,7 @@ Return
         Controller("Refresh")
         Controller("JoystickL")
         Controller("JoystickR")
+        Controller("Buttons")
       }
       If (DebugMessages && YesTimeMS)
         t1 := A_TickCount
@@ -5936,8 +5943,8 @@ Return
     DetectHiddenWindows On
     if WinExist(script) 
       PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
-    else 
-      Log("Recipient Script Not Found",script) ;Error  information sent to log file
+    ; else 
+    ;   Log("Recipient Script Not Found",script) ;Error  information sent to log file
     DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
     Return
     }
@@ -6630,7 +6637,10 @@ Return
       If hotkeyChaosRecipe
         hotkey,% hotkeyChaosRecipe, VendorChaosRecipe, Off
       If hotkeyLootScan
+      {
         hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+        hotkey, $~%hotkeyLootScan% Up, LootScanCommandRelease, Off
+      }
       If hotkeyPauseMines
         hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
       If hotkeyMainAttack
@@ -6701,7 +6711,10 @@ Return
       If hotkeyChaosRecipe
         hotkey,% hotkeyChaosRecipe, VendorChaosRecipe, On
       If hotkeyLootScan
+      {
         hotkey, $~%hotkeyLootScan%, LootScanCommand, On
+        hotkey, $~%hotkeyLootScan% Up, LootScanCommandRelease, On
+      }
       If hotkeyMainAttack
       {
         hotkey, $~%hotkeyMainAttack%, MainAttackCommand, On
@@ -6794,18 +6807,18 @@ Return
 
 
       ;Controller setup
-      IniRead, hotkeyControllerButton1, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton1, ^LButton
-      IniRead, hotkeyControllerButton2, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton2, %hotkeyLootScan%
-      IniRead, hotkeyControllerButton3, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton3, r
-      IniRead, hotkeyControllerButton4, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton4, %hotkeyCloseAllUI%
-      IniRead, hotkeyControllerButton5, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton5, e
-      IniRead, hotkeyControllerButton6, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton6, RButton
-      IniRead, hotkeyControllerButton7, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton7, ItemSort
-      IniRead, hotkeyControllerButton8, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton8, Tab
-      IniRead, hotkeyControllerButton9, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton9, Logout
-      IniRead, hotkeyControllerButton10, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton10, QuickPortal
+      IniRead, hotkeyControllerButtonA, %A_ScriptDir%\save\Settings.ini, Controller Keys, A, ^LButton
+      IniRead, hotkeyControllerButtonB, %A_ScriptDir%\save\Settings.ini, Controller Keys, B, %hotkeyLootScan%
+      IniRead, hotkeyControllerButtonX, %A_ScriptDir%\save\Settings.ini, Controller Keys, X, r
+      IniRead, hotkeyControllerButtonY, %A_ScriptDir%\save\Settings.ini, Controller Keys, Y, %hotkeyCloseAllUI%
+      IniRead, hotkeyControllerButtonLB, %A_ScriptDir%\save\Settings.ini, Controller Keys, LB, e
+      IniRead, hotkeyControllerButtonRB, %A_ScriptDir%\save\Settings.ini, Controller Keys, RB, RButton
+      IniRead, hotkeyControllerButtonBACK, %A_ScriptDir%\save\Settings.ini, Controller Keys, BACK, ItemSort
+      IniRead, hotkeyControllerButtonSTART, %A_ScriptDir%\save\Settings.ini, Controller Keys, START, Tab
+      IniRead, hotkeyControllerButtonL3, %A_ScriptDir%\save\Settings.ini, Controller Keys, L3, Logout
+      IniRead, hotkeyControllerButtonR3, %A_ScriptDir%\save\Settings.ini, Controller Keys, R3, QuickPortal
       
-      IniRead, hotkeyControllerJoystick2, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyControllerJoystick2, RButton
+      IniRead, hotkeyControllerJoystick2, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight, RButton
 
       IniRead, YesTriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey, 1
       IniRead, YesTriggerUtilityJoystickKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey, 1
@@ -6863,7 +6876,10 @@ Return
       If hotkeyChaosRecipe
         hotkey,% hotkeyChaosRecipe, VendorChaosRecipe, Off
       If hotkeyLootScan
+      {
         hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+        hotkey, $~%hotkeyLootScan% Up, LootScanCommandRelease, Off
+      }
       If hotkeyPauseMines
         hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
       If hotkeyMainAttack
@@ -7469,18 +7485,18 @@ Return
       IniWrite, %stashSuffixTab9%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab9
 
       ;Controller setup
-      IniWrite, %hotkeyControllerButton1%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton1
-      IniWrite, %hotkeyControllerButton2%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton2
-      IniWrite, %hotkeyControllerButton3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton3
-      IniWrite, %hotkeyControllerButton4%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton4
-      IniWrite, %hotkeyControllerButton5%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton5
-      IniWrite, %hotkeyControllerButton6%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton6
-      IniWrite, %hotkeyControllerButton7%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton7
-      IniWrite, %hotkeyControllerButton8%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton8
-      IniWrite, %hotkeyControllerButton9%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton9
-      IniWrite, %hotkeyControllerButton10%, %A_ScriptDir%\save\Settings.ini, Controller Keys, ControllerButton10
+      IniWrite, %hotkeyControllerButtonA%, %A_ScriptDir%\save\Settings.ini, Controller Keys, A
+      IniWrite, %hotkeyControllerButtonB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, B
+      IniWrite, %hotkeyControllerButtonX%, %A_ScriptDir%\save\Settings.ini, Controller Keys, X
+      IniWrite, %hotkeyControllerButtonY%, %A_ScriptDir%\save\Settings.ini, Controller Keys, Y
+      IniWrite, %hotkeyControllerButtonLB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, LB
+      IniWrite, %hotkeyControllerButtonRB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, RB
+      IniWrite, %hotkeyControllerButtonBACK%, %A_ScriptDir%\save\Settings.ini, Controller Keys, BACK
+      IniWrite, %hotkeyControllerButtonSTART%, %A_ScriptDir%\save\Settings.ini, Controller Keys, START
+      IniWrite, %hotkeyControllerButtonL3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, L3
+      IniWrite, %hotkeyControllerButtonR3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, R3
       
-      IniWrite, %hotkeyControllerJoystick2%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyControllerJoystick2
+      IniWrite, %hotkeyControllerJoystick2%, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight
 
       IniWrite, %YesTriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey
       IniWrite, %YesTriggerUtilityJoystickKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey

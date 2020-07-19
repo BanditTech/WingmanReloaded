@@ -3039,23 +3039,23 @@
         For k, v in DefaultCommands
           textList .= (!textList ? "" : "|") v
         Gui, Chat: Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix1Text, %1Suffix1Text%
+        GuiControl,Chat: Text, 1Suffix1Text, %1Suffix1Text%
         Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix2Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix2Text, %1Suffix2Text%
+        GuiControl,Chat: Text, 1Suffix2Text, %1Suffix2Text%
         Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix3Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix3Text, %1Suffix3Text%
+        GuiControl,Chat: Text, 1Suffix3Text, %1Suffix3Text%
         Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix4Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix4Text, %1Suffix4Text%
+        GuiControl,Chat: Text, 1Suffix4Text, %1Suffix4Text%
         Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix5Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix5Text, %1Suffix5Text%
+        GuiControl,Chat: Text, 1Suffix5Text, %1Suffix5Text%
         Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix6Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix6Text, %1Suffix6Text%
+        GuiControl,Chat: Text, 1Suffix6Text, %1Suffix6Text%
         Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix7Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix7Text, %1Suffix7Text%
+        GuiControl,Chat: Text, 1Suffix7Text, %1Suffix7Text%
         Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix8Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix8Text, %1Suffix8Text%
+        GuiControl,Chat: Text, 1Suffix8Text, %1Suffix8Text%
         Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix9Text, %textList%
-        GuiControl,Chat: ChooseString, 1Suffix9Text, %1Suffix9Text%
+        GuiControl,Chat: Text, 1Suffix9Text, %1Suffix9Text%
       Gui, Chat: Tab, Reply Whisper
         Gui, Chat: Font,s9 cBlack Bold Underline, Arial
         Gui, Chat: Add,GroupBox,Section  w60 h85                      ,Modifier
@@ -3086,23 +3086,23 @@
         For k, v in DefaultWhisper
           textList .= (!textList ? "" : "|") v
         Gui, Chat: Add, ComboBox,   xs+4 ys+20   w290 v2Suffix1Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix1Text, %2Suffix1Text%
+        GuiControl,Chat: Text, 2Suffix1Text, %2Suffix1Text%
         Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix2Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix2Text, %2Suffix2Text%
+        GuiControl,Chat: Text, 2Suffix2Text, %2Suffix2Text%
         Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix3Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix3Text, %2Suffix3Text%
+        GuiControl,Chat: Text, 2Suffix3Text, %2Suffix3Text%
         Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix4Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix4Text, %2Suffix4Text%
+        GuiControl,Chat: Text, 2Suffix4Text, %2Suffix4Text%
         Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix5Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix5Text, %2Suffix5Text%
+        GuiControl,Chat: Text, 2Suffix5Text, %2Suffix5Text%
         Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix6Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix6Text, %2Suffix6Text%
+        GuiControl,Chat: Text, 2Suffix6Text, %2Suffix6Text%
         Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix7Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix7Text, %2Suffix7Text%
+        GuiControl,Chat: Text, 2Suffix7Text, %2Suffix7Text%
         Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix8Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix8Text, %2Suffix8Text%
+        GuiControl,Chat: Text, 2Suffix8Text, %2Suffix8Text%
         Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix9Text, %textList%
-        GuiControl,Chat: ChooseString, 2Suffix9Text, %2Suffix9Text%
+        GuiControl,Chat: Text, 2Suffix9Text, %2Suffix9Text%
       }
       Gui, Chat: show , w620 h370, Chat Hotkeys
     }
@@ -3127,36 +3127,36 @@
 
         Gui, Controller: Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
         
-        Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,5
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton5, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton5, %hotkeyControllerButton5%
-        Gui, Controller: Add,GroupBox,  xs+360 ys w80 h40                        ,6
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton6, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton6, %hotkeyControllerButton6%
+        Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,L Bumper
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonLB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonLB, %hotkeyControllerButtonLB%
+        Gui, Controller: Add,GroupBox,  xs+360 ys w80 h40                        ,R Bumper
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonRB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonRB, %hotkeyControllerButtonRB%
 
         Gui, Controller: Add,GroupBox, section  xm+65 ym+100 w90 h80                        ,D-Pad
         Gui, Controller: add,text, xs+15 ys+30, Mouse`nMovement
 
-        Gui, Controller: Add,GroupBox, section xm+165 ym+180 w80 h80                        ,Joystick1
+        Gui, Controller: Add,GroupBox, section xm+165 ym+180 w80 h80                        ,Left Joystick
         Gui, Controller: Add,Checkbox, xs+5 ys+30     Checked%YesTriggerUtilityJoystickKey%      vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
-        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,9 / L3
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton9, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton9, %hotkeyControllerButton9%
+        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,L3
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonL3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonL3, %hotkeyControllerButtonL3%
 
-        Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80                        ,Joystick2
+        Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80                        ,Right Joystick
         Gui, Controller: Add,Checkbox, xp+5 y+-53     Checked%YesTriggerJoystick2Key%      vYesTriggerJoystick2Key, Use key?
         Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystick2, LButton|RButton|q|w|e|r|t
-        GuiControl,Controller: ChooseString, hotkeyControllerJoystick2, %hotkeyControllerJoystick2%
-        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,10 / R3
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton10, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton10, %hotkeyControllerButton10%
+        GuiControl,Controller: Text, hotkeyControllerJoystick2, %hotkeyControllerJoystick2%
+        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,R3
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonR3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonR3, %hotkeyControllerButtonR3%
 
-        Gui, Controller: Add,GroupBox, section xm+140 ym+60 w80 h40                        ,7 / Select
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton7, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton7, %hotkeyControllerButton7%
-        Gui, Controller: Add,GroupBox, xs+245 ys w80 h40                        ,8 / Start
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButton8, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton8, %hotkeyControllerButton8%
+        Gui, Controller: Add,GroupBox, section xm+140 ym+60 w80 h40                        ,Select
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonBACK, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonBACK, %hotkeyControllerButtonBACK%
+        Gui, Controller: Add,GroupBox, xs+245 ys w80 h40                        ,Start
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonSTART, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonSTART, %hotkeyControllerButtonSTART%
 
         Gui, Controller: Add,GroupBox, section xm+65 ym+280 w40 h40                  ,Up
         Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyUp, %hotkeyUp%
@@ -3167,18 +3167,18 @@
         Gui, Controller: Add,GroupBox, xs+40 ys+40 w40 h40                      ,Right
         Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyRight, %hotkeyRight%
 
-        Gui, Controller: Add,GroupBox,section xm+465 ym+80 w70 h40                      ,4
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton4, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton4, %hotkeyControllerButton4%
-        Gui, Controller: Add,GroupBox, xs ys+80 w70 h40                      ,1
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton1, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton1, %hotkeyControllerButton1%
-        Gui, Controller: Add,GroupBox, xs-40 ys+40 w70 h40                      ,3
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton3, %hotkeyControllerButton3%
-        Gui, Controller: Add,GroupBox, xs+40 ys+40 w70 h40                      ,2
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButton2, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: ChooseString, hotkeyControllerButton2, %hotkeyControllerButton2%
+        Gui, Controller: Add,GroupBox,section xm+465 ym+80 w70 h40                      ,Y
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonY, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonY, %hotkeyControllerButtonY%
+        Gui, Controller: Add,GroupBox, xs ys+80 w70 h40                      ,A
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonA, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonA, %hotkeyControllerButtonA%
+        Gui, Controller: Add,GroupBox, xs-40 ys+40 w70 h40                      ,X
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonX, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonX, %hotkeyControllerButtonX%
+        Gui, Controller: Add,GroupBox, xs+40 ys+40 w70 h40                      ,B
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonB, %hotkeyControllerButtonB%
 
         ;Save Setting
         Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -5499,12 +5499,12 @@
     }
     expectC := Round((tQ - overQ) / 40)
     ; Display Tooltips
-    ToolTip,Total Quality:`t %allQ%`%,100,180,15
-    ToolTip,Currency Value:`t %expectC% orbs,100,200,18
-    ToolTip,Groups Quality:`t %tQ%`%,100,220,16
-    ToolTip,Excess Groups Q:`t %overQ%`%,100,240,17
-    ToolTip,Leftover Quality:`t %remainQ%`%,100,260,19
-    SetTimer, RemoveToolTip, -20000
+    Notify("Vendor Result"
+    , "Total Quality:`t" allQ "`%`n"
+    . "Orb Value:`t" expectC " orbs`n"
+    . "Vend Quality:`t" tQ "`%`n"
+    . "Extra Vend Q:`t" overQ "`%`n"
+    . "UnVend Q:`t" remainQ "`%", 10)
     Return GroupList
 
     RebaseTotals:
@@ -14246,7 +14246,7 @@ IsLinear(arr, i=0) {
   {
     Static __init__ := XInput_Init()
     Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 3, YAxisMultiplier := .6
-    Global MainAttackPressedActive, MovementHotkeyActive
+    Global MainAttackPressedActive, MovementHotkeyActive, LootVacuumActive
     Global Controller, Controller_Active
     If (inputType = "Refresh")
     {
@@ -14259,6 +14259,10 @@ IsLinear(arr, i=0) {
         Controller.RY             := PercentAxis( State.sThumbRY )
         Controller.LT             := State.bLeftTrigger
         Controller.RT             := State.bRightTrigger
+        Controller.UP             := XInputButtonIsDown( "PovUp", State.wButtons )
+        Controller.DOWN           := XInputButtonIsDown( "PovDown", State.wButtons )
+        Controller.LEFT           := XInputButtonIsDown( "PovLeft", State.wButtons )
+        Controller.RIGHT          := XInputButtonIsDown( "PovRight", State.wButtons )
         Controller.Btn.A          := XInputButtonIsDown( "A", State.wButtons )
         Controller.Btn.B          := XInputButtonIsDown( "B", State.wButtons )
         Controller.Btn.X          := XInputButtonIsDown( "X", State.wButtons )
@@ -14269,10 +14273,6 @@ IsLinear(arr, i=0) {
         Controller.Btn.R3         := XInputButtonIsDown( "RStick", State.wButtons )
         Controller.Btn.BACK       := XInputButtonIsDown( "Back", State.wButtons )
         Controller.Btn.START      := XInputButtonIsDown( "Start", State.wButtons )
-        Controller.Btn.UP         := XInputButtonIsDown( "PovUp", State.wButtons )
-        Controller.Btn.DOWN       := XInputButtonIsDown( "PovDown", State.wButtons )
-        Controller.Btn.LEFT       := XInputButtonIsDown( "PovLeft", State.wButtons )
-        Controller.Btn.RIGHT      := XInputButtonIsDown( "PovRight", State.wButtons )
       }
       Else
       {
@@ -14329,6 +14329,83 @@ IsLinear(arr, i=0) {
         Return
       }
     }
+    Else If (inputType = "Buttons")
+    {
+      Static StateA := 0, StateB := 0, StateX := 0, StateY := 0, StateLB := 0, StateRB := 0, StateL3 := 0, StateR3 := 0, StateBACK := 0, StateSTART := 0
+      For Key, s in Controller.Btn
+      {
+        If (s != State%Key%)
+        {
+          If (s && State%Key% = 0)
+          {
+            If (hotkeyControllerButton%Key% = hotkeyLootScan && LootVacuum)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " down}"
+              LootVacuumActive := True
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "Logout")
+            {
+              SetTimer, LogoutCommand, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "PopFlasks")
+            {
+              SetTimer, PopFlasks, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "QuickPortal")
+            {
+              SetTimer, QuickPortal, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "GemSwap")
+            {
+              SetTimer, GemSwap, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "ItemSort")
+            {
+              SetTimer, ItemSortCommand, -1
+              State%Key% := 1
+            }
+            Else
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " down}"
+              State%Key% := 1
+            }
+          }
+          Else If (!s && State%Key% = 1)
+          {
+            If (hotkeyControllerButton%Key% = hotkeyLootScan && LootVacuum)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " up}"
+              LootVacuumActive := False
+              State%Key% := 0
+            }
+            Else If (hotkeyControllerButton%Key% = "Logout")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = "PopFlasks")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = "QuickPortal")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = "GemSwap")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = "ItemSort")
+              State%Key% := 0
+            Else
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " up}"
+              State%Key% := 0
+            }
+          }
+        }
+      }
+    }
     Return
   }
   DetectJoystick()
@@ -14362,6 +14439,22 @@ IsLinear(arr, i=0) {
       Positive := False
     Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,2)
     Return Percentage 
+  }
+  IsModifier(Character) {
+    static Modifiers := {"!": 1, "#": 1, "~": 1, "^": 1, "*": 1, "+": 1}
+    return Modifiers.HasKey(Character)
+  }
+  SplitModsFromKey(key){
+    Mods := String := ""
+    for k, Letter in StrSplit(key) {
+      if (IsModifier(Letter)) {
+        Mods .= Letter
+      }
+      else {
+        String .= Letter
+      }
+    }
+    Return {"Mods":Mods, "Key":String }
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 

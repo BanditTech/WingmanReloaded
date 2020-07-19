@@ -1,3 +1,20 @@
+## Version .11.0508 - Alpha Branch - July/18/2020
+Re-Introduce Controller Support
+* Basic controller support has returned!
+* Now using XInput library for maximum speed
+* Any standard XBOX mapped controller will function
+
+Partial Automation is now default
+* Vendor window will now auto accept by default for specific situations
+  * Anytime the vendor has not had any items placed inside
+  * If the only items sent to the vendor are Chromatic or Jeweler items
+
+BugFixes
+* Combobox should no longer show blank when the contents did not match a list item
+* Batch Vendoring Quality Gems or Flasks now shows notification box instead of tooltips
+
+
+
 ## Version .11.0507 - Alpha Branch - July/13/2020
 New Feature - Auto-Dump chaos recipe items
 * Enable to stash up to 15 sets of chaos recipe
