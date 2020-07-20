@@ -627,6 +627,12 @@
               This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
               This.Prop.Weapon_Min_Physical_Dmg := RxMatch1
             }
+            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chaos Damage: " rxNum "-" rxNum ,RxMatch))
+            {
+              This.Prop.Weapon_Avg_Chaos_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
+              This.Prop.Weapon_Max_Chaos_Dmg := RxMatch2
+              This.Prop.Weapon_Min_Chaos_Dmg := RxMatch1
+            }
             If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+",RxMatch))
             {
               This.Prop.Weapon_Avg_Elemental_Dmg := 0
@@ -649,6 +655,23 @@
             {
               This.Prop.Weapon_Range := RxMatch1
             }
+            This.Prop.Weapon_DPS_Total := 0
+            This.Prop.Weapon_DPS_Total_Q20 := 0
+            If (This.Prop.HasKey("Weapon_Avg_Physical_Dmg"))
+              This.Prop.Weapon_DPS_Physical := Round(This.Prop.Weapon_Avg_Physical_Dmg * This.Prop.Weapon_APS,1)
+            If (This.Prop.HasKey("Weapon_Avg_Elemental_Dmg"))
+              This.Prop.Weapon_DPS_Elemental := Round(This.Prop.Weapon_Avg_Elemental_Dmg * This.Prop.Weapon_APS,1)
+            If (This.Prop.HasKey("Weapon_Avg_Chaos_Dmg"))
+              This.Prop.Weapon_DPS_Chaos := Round(This.Prop.Weapon_Avg_Chaos_Dmg * This.Prop.Weapon_APS,1)
+            This.Prop.Weapon_DPS_Total := Round((This.Prop.Weapon_DPS_Physical?This.Prop.Weapon_DPS_Physical:0) + (This.Prop.Weapon_DPS_Elemental?This.Prop.Weapon_DPS_Elemental:0) + (This.Prop.Weapon_DPS_Chaos?This.Prop.Weapon_DPS_Chaos:0),1)
+            If ((This.Prop.Quality?This.Prop.Quality:0) < 20 && This.Prop.HasKey("Weapon_Avg_Physical_Dmg"))
+            {
+              BasePhysDps := (This.Prop.Weapon_Avg_Physical_Dmg * This.Prop.Weapon_APS) / (((This.Prop.Quality?This.Prop.Quality:0) + 100) / 100)
+              Q20DpsPhys := Round(BasePhysDps * (120 / 100),2)
+              This.Prop.Weapon_DPS_Total_Q20 := Round(Q20DpsPhys + (This.Prop.Weapon_DPS_Elemental?This.Prop.Weapon_DPS_Elemental:0) + (This.Prop.Weapon_DPS_Chaos?This.Prop.Weapon_DPS_Chaos:0),1)
+            }
+            Else
+              This.Prop.Weapon_DPS_Total_Q20 := This.Prop.Weapon_DPS_Total
           }
         }
         ;End Prop Block Parser for General Items
