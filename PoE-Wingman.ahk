@@ -2832,7 +2832,7 @@ Return
     ShooMouse(), GuiStatus(), ClearNotifications()
     If !OnVendor
     {
-      MsgBox Not at vendor
+      Notify("Error", "Not at vendor", 2)
       Return
     }
 
@@ -3059,18 +3059,7 @@ Return
       Object := ChaosRecipe(StashTabDump)
     If !Object.Count()
     {
-      Global RecipeArray
-      Notify("Chaos Recipe","No Complete Set`n"
-      . "Amulet: " . RecipeArray.Amulet.Count() . "`n"
-      . "Ring: " . RecipeArray.Ring.Count() . "`n"
-      . "Belt: " . RecipeArray.Belt.Count() . "`n"
-      . "Body: " . RecipeArray.Body.Count() . "`n"
-      . "Boots: " . RecipeArray.Boots.Count() . "`n"
-      . "Gloves: " . RecipeArray.Gloves.Count() . "`n"
-      . "Helmet: " . RecipeArray.Helmet.Count() . "`n"
-      . "Shield: " . RecipeArray.Shield.Count() . "`n"
-      . "One Hand: " . RecipeArray["One Hand"].Count() . "`n"
-      . "Two Hand: " . RecipeArray["Two Hand"].Count() . "`n" )
+      PrintChaosRecipe("No Complete Rare Sets")
       Return
     }
     IfWinActive, ahk_group POEGameGroup
@@ -3115,21 +3104,10 @@ Return
     }
     If !Object.Count()
     {
-      Global RecipeArray
-      Notify("Chaos Recipe","Finished Selling rare sets.`n"
-      . "Amulet: " . RecipeArray.Amulet.Count() . "`n"
-      . "Ring: " . RecipeArray.Ring.Count() . "`n"
-      . "Belt: " . RecipeArray.Belt.Count() . "`n"
-      . "Body: " . RecipeArray.Body.Count() . "`n"
-      . "Boots: " . RecipeArray.Boots.Count() . "`n"
-      . "Gloves: " . RecipeArray.Gloves.Count() . "`n"
-      . "Helmet: " . RecipeArray.Helmet.Count() . "`n"
-      . "Shield: " . RecipeArray.Shield.Count() . "`n"
-      . "One Hand: " . RecipeArray["One Hand"].Count() . "`n"
-      . "Two Hand: " . RecipeArray["Two Hand"].Count() . "`n" )
+      PrintChaosRecipe("Finished Selling Rare Sets")
     }
     Else
-      Notify("Chaos Recipe","There are " Object.Count() " sets of rare items left to vendor.",3)
+      PrintChaosRecipe("There are " Object.Count() " sets of rare items left to vendor.`n", 3)
 
     ; Reset in preparation for the next press of this hotkey.
     RunningToggle := False  
@@ -3138,6 +3116,22 @@ Return
     MouseMove, xx, yy, 0
     If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
       SetTimer, TGameTick, On
+    Return
+  }
+  PrintChaosRecipe(Message:="Current slot totals",Duration:=0)
+  {
+    Global RecipeArray
+    Notify("Chaos Recipe", Message . "`n"
+    . "Amulet: " . (RecipeArray.Amulet.Count()?RecipeArray.Amulet.Count():0) . "`t"
+    . "Ring: " . (RecipeArray.Ring.Count()?RecipeArray.Ring.Count():0) . "`n"
+    . "Belt: " . (RecipeArray.Belt.Count()?RecipeArray.Belt.Count():0) . "`t`t"
+    . "Body: " . (RecipeArray.Body.Count()?RecipeArray.Body.Count():0) . "`n"
+    . "Boots: " . (RecipeArray.Boots.Count()?RecipeArray.Boots.Count():0) . "`t"
+    . "Gloves: " . (RecipeArray.Gloves.Count()?RecipeArray.Gloves.Count():0) . "`n"
+    . "Helmet: " . (RecipeArray.Helmet.Count()?RecipeArray.Helmet.Count():0) . "`t"
+    . "Shield: " . (RecipeArray.Shield.Count()?RecipeArray.Shield.Count():0) . "`n"
+    . "One Hand: " . (RecipeArray["One Hand"].Count()?RecipeArray["One Hand"].Count():0) . "`t"
+    . "Two Hand: " . (RecipeArray["Two Hand"].Count()?RecipeArray["Two Hand"].Count():0) . "`n" (Duration?"," Duration : ""))
     Return
   }
   ; StashRoutine - Does stash functions
@@ -5969,6 +5963,299 @@ Return
     Return
   }
 
+; Controller functions
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Controller(inputType:="Main")
+  {
+    Static __init__ := XInput_Init()
+    Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 4, YAxisMultiplier := .6
+    Static x_POVscale := 5, y_POVscale := 5, HeldCountPOV := 0
+    Global MainAttackPressedActive, SecondaryAttackPressedActive, MovementHotkeyActive, LootVacuumActive
+    Global Controller, Controller_Active
+    If (inputType = "Main")
+    {
+      Controller("Refresh")
+      Controller("JoystickL")
+      Controller("JoystickR")
+      Controller("Buttons")
+      Controller("DPad")
+    }
+    If (inputType = "Refresh")
+    {
+      if State := XInput_GetState(Controller_Active) 
+      {
+        ; LX,LY,RX,RY,LT,RT,A,B,X,Y,LB,RB,L3,R3,BACK,START,UP,DOWN,LEFT,RIGHT
+        Controller.LX             := PercentAxis( State.sThumbLX )
+        Controller.LY             := PercentAxis( State.sThumbLY )
+        Controller.RX             := PercentAxis( State.sThumbRX )
+        Controller.RY             := PercentAxis( State.sThumbRY )
+        Controller.LT             := State.bLeftTrigger
+        Controller.RT             := State.bRightTrigger
+        Controller.UP             := XInputButtonIsDown( "PovUp", State.wButtons )
+        Controller.DOWN           := XInputButtonIsDown( "PovDown", State.wButtons )
+        Controller.LEFT           := XInputButtonIsDown( "PovLeft", State.wButtons )
+        Controller.RIGHT          := XInputButtonIsDown( "PovRight", State.wButtons )
+        Controller.Btn.A          := XInputButtonIsDown( "A", State.wButtons )
+        Controller.Btn.B          := XInputButtonIsDown( "B", State.wButtons )
+        Controller.Btn.X          := XInputButtonIsDown( "X", State.wButtons )
+        Controller.Btn.Y          := XInputButtonIsDown( "Y", State.wButtons )
+        Controller.Btn.LB         := XInputButtonIsDown( "LB", State.wButtons )
+        Controller.Btn.RB         := XInputButtonIsDown( "RB", State.wButtons )
+        Controller.Btn.L3         := XInputButtonIsDown( "LStick", State.wButtons )
+        Controller.Btn.R3         := XInputButtonIsDown( "RStick", State.wButtons )
+        Controller.Btn.BACK       := XInputButtonIsDown( "Back", State.wButtons )
+        Controller.Btn.START      := XInputButtonIsDown( "Start", State.wButtons )
+      }
+      Else
+      {
+        DetectJoystick()
+      }
+    }
+    Else If (inputType = "JoystickL")
+    {
+      moveX := DeadZone(Controller.LX)
+      moveY := DeadZone(Controller.LY)
+      If (moveX || moveY)
+      {
+        If !GuiStatus("",0)
+          MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/100), % ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/100)
+        Else
+          MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/120), % ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/120)
+        ++JoyLHoldCount
+        If (!MovementHotkeyActive && JoyLHoldCount > 1 && GuiStatus("",0))
+        {
+          Click, Down
+          MovementHotkeyActive := True
+        }
+        If (YesTriggerUtilityKey && MovementHotkeyActive
+        && (Abs(Controller.LX) >= 60 || Abs(Controller.LY) >= 70 )
+        && JoyLHoldCount > 3 && GuiStatus("",0))
+        {
+          TriggerUtility(TriggerUtilityKey)
+        }
+      }
+      Else
+      {
+        If MovementHotkeyActive
+        {
+          Click, Up
+          MovementHotkeyActive := False
+        }
+        JoyLHoldCount := 0
+        Return
+      }
+    }
+    Else If (inputType = "JoystickR")
+    {
+      moveX := DeadZone(Controller.RX)
+      moveY := DeadZone(Controller.RY)
+      If (moveX || moveY)
+      {
+        MouseMove,% ScrCenter.X + Controller.RX * JoyMultiplier, % ScrCenter.Yadjusted - Controller.RY * JoyMultiplier
+        ++JoyRHoldCount
+        If (!MainAttackPressedActive && JoyRHoldCount > 2 && YesTriggerJoystickRightKey)
+        {
+          Obj := SplitModsFromKey(hotkeyControllerJoystickRight)
+          Send, % Obj.Mods "{" Obj.Key " down}"
+          MainAttackPressedActive := True
+        }
+      }
+      Else
+      {
+        If (MainAttackPressedActive && YesTriggerJoystickRightKey)
+        {
+          Obj := SplitModsFromKey(hotkeyControllerJoystickRight)
+          Send, % Obj.Mods "{" Obj.Key " up}"
+          MainAttackPressedActive := False
+        }
+        JoyRHoldCount := 0
+        Return
+      }
+    }
+    Else If (inputType = "Buttons")
+    {
+      Static StateA := 0, StateB := 0, StateX := 0, StateY := 0, StateLB := 0, StateRB := 0, StateL3 := 0, StateR3 := 0, StateBACK := 0, StateSTART := 0
+      For Key, s in Controller.Btn
+      {
+        If (s != State%Key%)
+        {
+          If (s && State%Key% = 0)
+          {
+            If (hotkeyControllerButton%Key% = hotkeyLootScan && LootVacuum)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " down}"
+              LootVacuumActive := True
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "Logout")
+            {
+              SetTimer, LogoutCommand, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "PopFlasks")
+            {
+              SetTimer, PopFlasks, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "QuickPortal")
+            {
+              SetTimer, QuickPortal, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "GemSwap")
+            {
+              SetTimer, GemSwap, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = "ItemSort")
+            {
+              SetTimer, ItemSortCommand, -1
+              State%Key% := 1
+            }
+            Else If (hotkeyControllerButton%Key% = hotkeyMainAttack)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " down}"
+              State%Key% := 1
+              MainAttackPressedActive := True
+            }
+            Else If (hotkeyControllerButton%Key% = hotkeySecondaryAttack)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " down}"
+              State%Key% := 1
+              SecondaryAttackPressedActive := True
+            }
+            Else
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " down}"
+              State%Key% := 1
+            }
+          }
+          Else If (!s && State%Key% = 1)
+          {
+            If (hotkeyControllerButton%Key% = hotkeyLootScan && LootVacuum)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " up}"
+              LootVacuumActive := False
+              State%Key% := 0
+            }
+            Else If (hotkeyControllerButton%Key% = "Logout")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = "PopFlasks")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = "QuickPortal")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = "GemSwap")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = "ItemSort")
+              State%Key% := 0
+            Else If (hotkeyControllerButton%Key% = hotkeyMainAttack)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " up}"
+              State%Key% := 0
+              MainAttackPressedActive := 0
+            }
+            Else If (hotkeyControllerButton%Key% = hotkeySecondaryAttack)
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " up}"
+              State%Key% := 0
+              SecondaryAttackPressedActive := 0
+            }
+            Else
+            {
+              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
+              Send, % Obj.Mods "{" Obj.Key " up}"
+              State%Key% := 0
+            }
+          }
+        }
+      }
+    }
+    Else If (inputType = "DPad")
+    {
+      if (Controller.Up || Controller.Down || Controller.Left || Controller.Right)
+      {
+        if (Controller.Up) ; Up
+          y_finalPOV := -y_POVscale-HeldCountPOV*2
+        else if (Controller.Down) ; Down
+          y_finalPOV := +y_POVscale+HeldCountPOV*2
+        else
+          y_finalPOV := 0
+        if (Controller.Left) ; Left
+          x_finalPOV := -x_POVscale-HeldCountPOV*2
+        else if (Controller.Right) ; Right
+          x_finalPOV := +x_POVscale+HeldCountPOV*2
+        else
+          x_finalPOV := 0
+        If (x_finalPOV || y_finalPOV)
+        {
+          MouseMove, %x_finalPOV%, %y_finalPOV%, 0, R
+          HeldCountPOV+=1
+          Sleep, 100 - (HeldCountPOV * 15 <= 70?HeldCountPOV * 15:70)
+        }
+      }
+      Else If (HeldCountPOV > 1)
+      {
+        HeldCountPOV := 0
+      }
+    }
+    Return
+  }
+  DetectJoystick()
+  {
+    If XInput_GetState(Controller_Active)
+      Return Controller_Active
+    Else
+    {
+      Loop, 4
+      {
+        If XInput_GetState(A_Index)
+        {
+          Return Controller_Active := A_Index
+        }
+      }
+      Return False
+    }
+  }
+  DeadZone(val, deadzone:=10){
+    Return (Abs(val)<deadzone?False:True)
+  }
+  CapRange(var,min:=0,max:=65535){
+    return (var > max ? max : (var < min ? min : var))
+  }
+  PercentAxis(axisPos){
+    If (axisPos = 0)
+      Return False
+    Else If (axisPos > 0)
+      Positive := True
+    Else
+      Positive := False
+    Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,2)
+    Return Percentage 
+  }
+  IsModifier(Character) {
+    static Modifiers := {"!": 1, "#": 1, "~": 1, "^": 1, "*": 1, "+": 1}
+    return Modifiers.HasKey(Character)
+  }
+  SplitModsFromKey(key){
+    Mods := String := ""
+    for k, Letter in StrSplit(key) {
+      if (IsModifier(Letter)) {
+        Mods .= Letter
+      }
+      else {
+        String .= Letter
+      }
+    }
+    Return {"Mods":Mods, "Key":String }
+  }
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 ; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages (MISC BACKEND)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   { ; Read, Save, Load - Includes basic hotkey setup
