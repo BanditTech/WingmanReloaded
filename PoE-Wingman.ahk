@@ -7124,6 +7124,7 @@ Return
       IniRead, ForceMatch6Link, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link, 0
       IniRead, ForceMatchGem20, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20, 0
 
+      UnRegisterHotkeys()
       RegisterHotkeys()
       checkActiveType()
       Thread, NoTimers, False    ;End Critical
@@ -7181,65 +7182,7 @@ Return
         hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
       }
 
-      Hotkey If, % fn1
-      If 1Suffix1 != A_Space
-        Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
-      If 1Suffix2 != A_Space
-        Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
-      If 1Suffix3 != A_Space
-        Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
-      If 1Suffix4 != A_Space
-        Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
-      If 1Suffix5 != A_Space
-        Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
-      If 1Suffix6 != A_Space
-        Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
-      If 1Suffix7 != A_Space
-        Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
-      If 1Suffix8 != A_Space
-        Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
-      If 1Suffix9 != A_Space
-        Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
-
-      Hotkey If, % fn2
-      If 2Suffix1 != A_Space
-        Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
-      If 2Suffix2 != A_Space
-        Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
-      If 2Suffix3 != A_Space
-        Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
-      If 2Suffix4 != A_Space
-        Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
-      If 2Suffix5 != A_Space
-        Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
-      If 2Suffix6 != A_Space
-        Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
-      If 2Suffix7 != A_Space
-        Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
-      If 2Suffix8 != A_Space
-        Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
-      If 2Suffix9 != A_Space
-        Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
-
-      Hotkey If, % fn3
-      If stashSuffix1 != A_Space
-        Hotkey, *%stashSuffix1%, FireStashHotkey1, off
-      If stashSuffix2 != A_Space
-        Hotkey, *%stashSuffix2%, FireStashHotkey2, off
-      If stashSuffix3 != A_Space
-        Hotkey, *%stashSuffix3%, FireStashHotkey3, off
-      If stashSuffix4 != A_Space
-        Hotkey, *%stashSuffix4%, FireStashHotkey4, off
-      If stashSuffix5 != A_Space
-        Hotkey, *%stashSuffix5%, FireStashHotkey5, off
-      If stashSuffix6 != A_Space
-        Hotkey, *%stashSuffix6%, FireStashHotkey6, off
-      If stashSuffix7 != A_Space
-        Hotkey, *%stashSuffix7%, FireStashHotkey7, off
-      If stashSuffix8 != A_Space
-        Hotkey, *%stashSuffix8%, FireStashHotkey8, off
-      If stashSuffix9 != A_Space
-        Hotkey, *%stashSuffix9%, FireStashHotkey9, off
+      UnRegisterHotkeys()
 
       hotkey, IfWinActive
       If hotkeyOptions
@@ -7958,104 +7901,77 @@ Return
 
   { ; Hotkeys with modifiers - RegisterHotkeys, 1HotkeyShouldFire, 2HotkeyShouldFire, stashHotkeyShouldFire
 
-    ; RegisterHotkeys - Register Chat and Stash Hotkeys
+    
+    ; Register and UnRegister Hotkeys - Register Chat and Stash Hotkeys
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     RegisterHotkeys() {
       global
-      Hotkey If, % fn1
-        If 1Suffix1 != A_Space
-          Hotkey, *%1Suffix1%, 1FireWhisperHotkey1, off
-        If 1Suffix2 != A_Space
-          Hotkey, *%1Suffix2%, 1FireWhisperHotkey2, off
-        If 1Suffix3 != A_Space
-          Hotkey, *%1Suffix3%, 1FireWhisperHotkey3, off
-        If 1Suffix4 != A_Space
-          Hotkey, *%1Suffix4%, 1FireWhisperHotkey4, off
-        If 1Suffix5 != A_Space
-          Hotkey, *%1Suffix5%, 1FireWhisperHotkey5, off
-        If 1Suffix6 != A_Space
-          Hotkey, *%1Suffix6%, 1FireWhisperHotkey6, off
-        If 1Suffix7 != A_Space
-          Hotkey, *%1Suffix7%, 1FireWhisperHotkey7, off
-        If 1Suffix8 != A_Space
-          Hotkey, *%1Suffix8%, 1FireWhisperHotkey8, off
-        If 1Suffix9 != A_Space
-          Hotkey, *%1Suffix9%, 1FireWhisperHotkey9, off
-
-      Hotkey If, % fn2
-        If 2Suffix1 != A_Space
-          Hotkey, *%2Suffix1%, 2FireWhisperHotkey1, off
-        If 2Suffix2 != A_Space
-          Hotkey, *%2Suffix2%, 2FireWhisperHotkey2, off
-        If 2Suffix3 != A_Space
-          Hotkey, *%2Suffix3%, 2FireWhisperHotkey3, off
-        If 2Suffix4 != A_Space
-          Hotkey, *%2Suffix4%, 2FireWhisperHotkey4, off
-        If 2Suffix5 != A_Space
-          Hotkey, *%2Suffix5%, 2FireWhisperHotkey5, off
-        If 2Suffix6 != A_Space
-          Hotkey, *%2Suffix6%, 2FireWhisperHotkey6, off
-        If 2Suffix7 != A_Space
-          Hotkey, *%2Suffix7%, 2FireWhisperHotkey7, off
-        If 2Suffix8 != A_Space
-          Hotkey, *%2Suffix8%, 2FireWhisperHotkey8, off
-        If 2Suffix9 != A_Space
-          Hotkey, *%2Suffix9%, 2FireWhisperHotkey9, off
-
-      Hotkey If, % fn3
-        If stashSuffix1 != A_Space
-          Hotkey, *%stashSuffix1%, FireStashHotkey1, off
-        If stashSuffix2 != A_Space
-          Hotkey, *%stashSuffix2%, FireStashHotkey2, off
-        If stashSuffix3 != A_Space
-          Hotkey, *%stashSuffix3%, FireStashHotkey3, off
-        If stashSuffix4 != A_Space
-          Hotkey, *%stashSuffix4%, FireStashHotkey4, off
-        If stashSuffix5 != A_Space
-          Hotkey, *%stashSuffix5%, FireStashHotkey5, off
-        If stashSuffix6 != A_Space
-          Hotkey, *%stashSuffix6%, FireStashHotkey6, off
-        If stashSuffix7 != A_Space
-          Hotkey, *%stashSuffix7%, FireStashHotkey7, off
-        If stashSuffix8 != A_Space
-          Hotkey, *%stashSuffix8%, FireStashHotkey8, off
-        If stashSuffix9 != A_Space
-          Hotkey, *%stashSuffix9%, FireStashHotkey9, off
-        If stashReset != A_Space
-          Hotkey, *%stashReset%, FireStashReset, off
-
       Gui Submit, NoHide
+
       fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
       Hotkey If, % fn1
       Loop, 9 {
-        If (1Suffix%A_Index% != A_Space)
+        If 1Suffix%A_Index%
         {
-          keyval := 1Suffix%A_Index%
-          Hotkey, *%keyval%, 1FireWhisperHotkey%A_Index%, On
+          1bind%A_Index% := Func("FireHotkey").Bind("Enter","1",A_Index)
+          Hotkey,% "*" 1Suffix%A_Index%,% 1bind%A_Index%, On
         }
       }
       fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
       Hotkey If, % fn2
       Loop, 9 {
-        If (2Suffix%A_Index% != A_Space)
+        If 2Suffix%A_Index%
         {
-          keyval := 2Suffix%A_Index%
-          Hotkey, *%keyval%, 2FireWhisperHotkey%A_Index%, On
+          2bind%A_Index% := Func("FireHotkey").Bind("CtrlEnter","2",A_Index)
+          Hotkey,% "*" 2Suffix%A_Index%,% 2bind%A_Index%, On
         }
       }
       fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
       Hotkey If, % fn3
       Loop, 9 {
-        If (stashSuffix%A_Index% != A_Space)
+        If stashSuffix%A_Index%
         {
-          keyval := stashSuffix%A_Index%
-          Hotkey, ~*%keyval%, FireStashHotkey%A_Index%, On
+          stashbind%A_Index% := Func("FireHotkey").Bind("Stash","stash", "Tab" A_Index)
+          Hotkey,% "~*" stashSuffix%A_Index%,% stashbind%A_Index%, On
         }
       }
-      If (stashReset != A_Space)
-        Hotkey, ~*%stashReset%, FireStashReset, On
+      If stashReset
+        Hotkey,% "~*" stashReset, FireStashReset, On
       Return
-      }
+    }
+    UnRegisterHotkeys(){
+      global
+      Hotkey If, % fn1
+        Loop, 9
+        {
+          If 1Suffix%A_Index%
+          {
+            1bind%A_Index% := Func("FireHotkey").Bind("Enter","1",A_Index)
+            Hotkey,% "*" 1Suffix%A_Index%,% 1bind%A_Index%, off
+          }
+        }
+      Hotkey If, % fn2
+        Loop, 9
+        {
+          If 2Suffix%A_Index%
+          {
+            2bind%A_Index% := Func("FireHotkey").Bind("CtrlEnter","2",A_Index)
+            Hotkey,% "*" 2Suffix%A_Index%,% 2bind%A_Index%, off
+          }
+        }
+      Hotkey If, % fn3
+        Loop, 9
+        {
+          If stashSuffix%A_Index%
+          {
+            stashbind%A_Index% := Func("FireHotkey").Bind("Stash","stash", "Tab" A_Index)
+            Hotkey,% "*" stashSuffix%A_Index%,% stashbind%A_Index%, off
+          }
+        }
+        If stashReset
+          Hotkey, *%stashReset%, FireStashReset, off
+      Return
+    }
     ; HotkeyShouldFire - Functions to evaluate keystate
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
@@ -8085,7 +8001,7 @@ Return
             }
           } 
         }
-      Else {
+        Else {
           Return False
         }
     }
@@ -8158,277 +8074,36 @@ Return
 
     ; FireHotkey - Functions to Send each hotkey
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1FireWhisperHotkey1() {
+    FireHotkey(func:="CtrlEnter",TypePrefix:="2",SuffixNum:="1"){
+      ; Enter func is Prefix 1, CtrlEnter func is Prefix 2
+      ; Stash func is Prefix stash with SuffixNum of Tab#
       IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix1Text := StrReplace(1Suffix1Text, "CharacterName", CharName, 0, -1)
-        str1Suffix1Text := StrReplace(str1Suffix1Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix1Text := StrReplace(str1Suffix1Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix1Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    1FireWhisperHotkey2() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix2Text := StrReplace(1Suffix2Text, "CharacterName", CharName, 0, -1)
-        str1Suffix2Text := StrReplace(str1Suffix2Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix2Text := StrReplace(str1Suffix2Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix2Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    1FireWhisperHotkey3() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix3Text := StrReplace(1Suffix3Text, "CharacterName", CharName, 0, -1)
-        str1Suffix3Text := StrReplace(str1Suffix3Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix3Text := StrReplace(str1Suffix3Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix3Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    1FireWhisperHotkey4() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix4Text := StrReplace(1Suffix4Text, "CharacterName", CharName, 0, -1)
-        str1Suffix4Text := StrReplace(str1Suffix4Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix4Text := StrReplace(str1Suffix4Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix4Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    1FireWhisperHotkey5() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix5Text := StrReplace(1Suffix5Text, "CharacterName", CharName, 0, -1)
-        str1Suffix5Text := StrReplace(str1Suffix5Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix5Text := StrReplace(str1Suffix5Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix5Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    1FireWhisperHotkey6() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix6Text := StrReplace(1Suffix6Text, "CharacterName", CharName, 0, -1)
-        str1Suffix6Text := StrReplace(str1Suffix6Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix6Text := StrReplace(str1Suffix6Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix6Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    1FireWhisperHotkey7() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix7Text := StrReplace(1Suffix7Text, "CharacterName", CharName, 0, -1)
-        str1Suffix7Text := StrReplace(str1Suffix7Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix7Text := StrReplace(str1Suffix7Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix7Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    1FireWhisperHotkey8() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix8Text := StrReplace(1Suffix8Text, "CharacterName", CharName, 0, -1)
-        str1Suffix8Text := StrReplace(str1Suffix8Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix8Text := StrReplace(str1Suffix8Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix8Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    1FireWhisperHotkey9() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        str1Suffix9Text := StrReplace(1Suffix9Text, "CharacterName", CharName, 0, -1)
-        str1Suffix9Text := StrReplace(str1Suffix9Text, "RecipientName", RecipientName, 0, -1)
-        str1Suffix9Text := StrReplace(str1Suffix9Text, "!", "{!}", 0, -1)
-        Send, {Enter}%str1Suffix9Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    2FireWhisperHotkey1() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix1Text := StrReplace(2Suffix1Text, "CharacterName", CharName, 0, -1)
-        str2Suffix1Text := StrReplace(str2Suffix1Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix1Text := StrReplace(str2Suffix1Text, "!", "{!}", 0, -1)
-        Send, ^{Enter}%str2Suffix1Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    2FireWhisperHotkey2() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix2Text := StrReplace(2Suffix2Text, "CharacterName", CharName, 0, -1)
-        str2Suffix2Text := StrReplace(str2Suffix2Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix2Text := StrReplace(str2Suffix2Text, "!", "{!}", 0, -1)
+      {
+        If (func = "Enter")
+        {
+          tempStr := StrReplace(%TypePrefix%Suffix%SuffixNum%Text, "CharacterName", CharName, 0, -1)
+          tempStr := StrReplace(tempStr, "RecipientName", RecipientName, 0, -1)
+          tempStr := StrReplace(tempStr, "!", "{!}", 0, -1)
+          Send, {Enter}%tempStr%{Enter}
+          ResetChat()
+        }
+        Else If (func = "CtrlEnter")
+        {
+          GrabRecipientName()
+          tempStr := StrReplace(%TypePrefix%Suffix%SuffixNum%Text, "CharacterName", CharName, 0, -1)
+          tempStr := StrReplace(tempStr, "RecipientName", RecipientName, 0, -1)
+          tempStr := StrReplace(tempStr, "!", "{!}", 0, -1)
+          Send, ^{Enter}%tempStr%{Enter}
+          ResetChat()
 
-        Send, ^{Enter}%str2Suffix2Text%{Enter}
-        ResetChat()
+        }
+        Else If (func = "Stash")
+        {
+          MoveStash(%TypePrefix%Suffix%SuffixNum%,1)
+        }
       }
-    return
+      Return
     }
-    2FireWhisperHotkey3() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix3Text := StrReplace(2Suffix3Text, "CharacterName", CharName, 0, -1)
-        str2Suffix3Text := StrReplace(str2Suffix3Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix3Text := StrReplace(str2Suffix3Text, "!", "{!}", 0, -1)
-        Send, ^{Enter}%str2Suffix3Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    2FireWhisperHotkey4() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix4Text := StrReplace(2Suffix4Text, "CharacterName", CharName, 0, -1)
-        str2Suffix4Text := StrReplace(str2Suffix4Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix4Text := StrReplace(str2Suffix4Text, "!", "{!}", 0, -1)
-        Send, ^{Enter}%str2Suffix4Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    2FireWhisperHotkey5() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix5Text := StrReplace(2Suffix5Text, "CharacterName", CharName, 0, -1)
-        str2Suffix5Text := StrReplace(str2Suffix5Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix5Text := StrReplace(str2Suffix5Text, "!", "{!}", 0, -1)
-        Send, ^{Enter}%str2Suffix5Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    2FireWhisperHotkey6() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix6Text := StrReplace(2Suffix6Text, "CharacterName", CharName, 0, -1)
-        str2Suffix6Text := StrReplace(str2Suffix6Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix6Text := StrReplace(str2Suffix6Text, "!", "{!}", 0, -1)
-        Send, ^{Enter}%str2Suffix6Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    2FireWhisperHotkey7() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix7Text := StrReplace(2Suffix7Text, "CharacterName", CharName, 0, -1)
-        str2Suffix7Text := StrReplace(str2Suffix7Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix7Text := StrReplace(str2Suffix7Text, "!", "{!}", 0, -1)
-        Send, ^{Enter}%str2Suffix7Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    2FireWhisperHotkey8() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix8Text := StrReplace(2Suffix8Text, "CharacterName", CharName, 0, -1)
-        str2Suffix8Text := StrReplace(str2Suffix8Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix8Text := StrReplace(str2Suffix8Text, "!", "{!}", 0, -1)
-        Send, ^{Enter}%str2Suffix8Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    2FireWhisperHotkey9() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        GrabRecipientName()
-        str2Suffix9Text := StrReplace(2Suffix9Text, "CharacterName", CharName, 0, -1)
-        str2Suffix9Text := StrReplace(str2Suffix9Text, "RecipientName", RecipientName, 0, -1)
-        str2Suffix9Text := StrReplace(str2Suffix9Text, "!", "{!}", 0, -1)
-        Send, ^{Enter}%str2Suffix9Text%{Enter}
-        ResetChat()
-      }
-    return
-    }
-    FireStashHotkey1() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab1,1)
-      }
-    return
-    }
-    FireStashHotkey2() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab2,1)
-      }
-    return
-    }
-    FireStashHotkey3() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab3,1)
-      }
-    return
-    }
-    FireStashHotkey4() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab4,1)
-      }
-    return
-    }
-    FireStashHotkey5() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab5,1)
-      }
-    return
-    }
-    FireStashHotkey6() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab6,1)
-      }
-    return
-    }
-    FireStashHotkey7() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab7,1)
-      }
-    return
-    }
-    FireStashHotkey8() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab8,1)
-      }
-    return
-    }
-    FireStashHotkey9() {
-      IfWinActive, ahk_group POEGameGroup
-      {  
-        MoveStash(stashSuffixTab9,1)
-      }
-    return
-    }  
     FireStashReset() {
       CurrentTab := 0
     return
