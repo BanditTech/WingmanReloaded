@@ -429,7 +429,7 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "# increased Attack Speed", "Eval": ">=", "Min": "20", "OrFlag": "1" },
   { "#Key": "# increased Critical Strike Chance", "Eval": ">=", "Min": "25", "OrFlag": "1" }
  ],
- "Data": { "OrCount": 2, "StashTab": "13" },
+ "Data": { "OrCount": 2, "StashTab": "2" },
  "Prop": [
   { "#Key": "RarityRare", "Eval": "=", "Min": "1", "OrFlag": "0" },
   { "#Key": "Veiled", "Eval": "=", "Min": "0", "OrFlag": "0" },
@@ -450,7 +450,7 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "# increased Critical Strike Chance", "Eval": ">=", "Min": "25", "OrFlag": "1" },
   { "#Key": "# increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "37", "OrFlag": "1" }
  ],
- "Data": { "OrCount": 2, "StashTab": "13" },
+ "Data": { "OrCount": 2, "StashTab": "2" },
  "Prop": [
   { "#Key": "RarityRare", "Eval": "=", "Min": "1", "OrFlag": "0" },
   { "#Key": "Veiled", "Eval": "=", "Min": "0", "OrFlag": "0" },
@@ -471,7 +471,7 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "Players have a # chance to gain Onslaught on Kill For 4 seconds", "Eval": ">=", "Min": "1", "OrFlag": "1" },
   { "#Key": "# chance to gain Phasing for 4 seconds on Kill", "Eval": ">=", "Min": "1", "OrFlag": "1" }
  ],
- "Data": { "OrCount": 1, "StashTab": "13" },
+ "Data": { "OrCount": 1, "StashTab": "2" },
  "Prop": [
   { "#Key": "ItemClass", "Eval": "~", "Min": "Jewel", "OrFlag": "0" },
   { "#Key": "Veiled", "Eval": "=", "Min": "0", "OrFlag": "0" }
