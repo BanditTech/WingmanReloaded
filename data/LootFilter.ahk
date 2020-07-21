@@ -175,7 +175,15 @@ ExportGroup:
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
   exportArr := LootFilter[GKey]
-  Clipboard := JSON.Dump(exportArr,,1)
+  Contents := JSON.Dump(exportArr,,1)
+  Contents := RegExReplace(Contents, "\,\n   ", ", ")
+  Contents := RegExReplace(Contents, "\n  \}\,\n  ", " },`n  ")
+  Contents := RegExReplace(Contents, "\n  \}\n \]", " }`n ]")
+  Contents := RegExReplace(Contents, "\{\n   """, "{ """)
+  Contents := RegExReplace(Contents, "\,\n  """, ", """)
+  Contents := RegExReplace(Contents, "\{\n  """, "{ """)
+  Contents := RegExReplace(Contents, """\n \}\,", """ },")
+  Clipboard := Contents
   SetTimer, ChangeButtonNamesVar, 10
   MsgBox 262147, Export String,% Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy"
   IfMsgBox, Yes
