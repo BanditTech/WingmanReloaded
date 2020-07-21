@@ -1,3 +1,509 @@
+## Version .11.0508 - Alpha Branch - July/19/2020
+Re-Introduce Controller Support
+* Basic controller support has returned!
+* Now using XInput library for maximum speed
+* Any standard XBOX mapped controller will function
+* Movement Utility will fire when left joystick above 60% threshold
+
+Future Plans for Controller Support
+* Add settings for adjusting Left and right joysticks
+  * Range of motion
+  * % to trigger Utility
+* Give each binding 3 Alternate hotkeys
+  * Binding + Left Trigger
+  * Binding + Right Trigger
+  * Binding + Both Trigger
+
+Partial Auto-Confirm Automation is now available
+* Vendor window can now auto accept by default for specific situations
+  * Anytime the vendor has not had any items placed inside
+  * If the only items sent to the vendor are Chromatic or Jeweler items
+
+BugFixes
+* Combobox should no longer show blank when the contents did not match a list item
+* Batch Vendor of Quality Gems or Flasks now shows notification box instead of tooltips
+* Remove Log message for "Cannot find subscript"
+* Parse client logs before starting main logic timer
+
+---
+
+## Version .11.0507 - Alpha Branch - July/13/2020
+New Feature - Auto-Dump chaos recipe items
+* Enable to stash up to 15 sets of chaos recipe
+  * Use the UpDown to adjust the maximum number of sets
+* Will send them to dump tab, for later use with automation
+* Allows dump tab to remain disabled, and only dump needed items
+* First time to scan items will take a second to fetch stash info
+  * Then it re-uses the array until you refresh with Chaos Recipe Hotkey
+
+New default Strings to select from
+* There are some new default strings to select for 1440, 1050, and 768
+  * Big shoutout to these community members who have submit strings
+    * Hillgrove
+    * OMNI
+    * RanOutOfGoodName
+* We can always use any missing resolution samples, so please submit your strings!
+
+Fixes
+* Unique quiver now has ninja pricing info
+* New offerings now have a specialtype 
+* Resonators now properly have width and height
+* Provide readout for Chaos Recipe hotkey to show count
+
+---
+
+## Version .11.0506 - Alpha Branch - July/05/2020
+There is now automation for Chaos/Regal recipe
+* Assign a hotkey in Keybinds section
+* Pulls items from dump tab
+* Uses automation strings to find stash and vendor
+* Press again when you finish selling your items to get next set
+* Will show notification when there are no complete recipe
+* Requires PoESessionID in order to scan from stash API
+
+Added PoESessionID Editbox to the Configuration Tab
+* This will allow the script to use the GGG Stash API
+
+---
+
+## Version .11.0505 - Alpha Branch - July/01/2020
+CLF affixes have been expanded to support filtering for Cluster Jewels
+* Updating the Affix file will require to manually delete the /Data/WR_Affix.json file
+* Restart the script and it will download the new Affixes
+
+Vulkan display bug now has an inhouse fix
+* The script will fix the POE window to allow for overlays without requiring windowed mode
+  * Allows to return Vulkan display setting to Windowed Fullscreen
+  * The script will automatically apply the fix when it finds the game
+
+Bugfixes
+* Delay added before stashing to Collection and Map tabs
+
+---
+
+## Version .11.0504 - Alpha Branch - June/25/2020
+Seed stockpile now part of inventory logic
+* Enable Seed automation to search for Seed Stockpile after stash
+* Use Id/Vend/Trade key while at stockpile to deposit Harvest items
+  * Disable by unchecking the option in the Inventory Settings
+* Calibrate the Seed Stockpile sample in individual samples panel
+* Like any other automation, edit the string to search in the Strings Settings
+
+Other Additions
+* New standard stash tab filters for delirium items and Blighted Maps
+* New property to easily flag one-hand or two hand items for CLF
+  * Item.Prop.IsOneHanded
+  * Item.Prop.IsTwoHanded
+
+Bugfixes
+* Fix for flickering Overhead Health Bar readout in gamestates
+* Fix for OnChar showing as red text when first opening gamestates
+* Crafting bases were not being flagged as such, it is now fixed
+
+---
+
+## Version .11.0503 - Alpha Branch - June/20/2020
+Several Bugfixes for changes on Alpha
+* Fix for chisel logic while crafting maps
+* Fix for map double affixes in affix count
+* Fix for Quest Item matching
+* Fix for Normal /exit method
+* Fix for veiled flag
+* Fix for crafting bases
+* Fix for Quality and Support flag on gems
+
+Added support for new harvest items
+* Detects seeds as new Seed Specialtype
+* All other harvest items are given generic Harvest Specialtype
+
+---
+
+## Version .11.0502 - Alpha Branch - June/06/2020
+Fix for selecting stash tab number within the CLF
+
+---
+
+## Version .11.0501 - Alpha Branch - May/03/2020
+Transition towards new Item Parsing system
+* old functions have been merged into ItemScan class
+* Item information is compiled into an object
+  * All associated information can be viewed in one place
+  * Ctrl+Shift+Alt+L will open a listing of all information of the current item
+* Item text blocks are now split apart before extracting their information
+  * This allows for much easier logic to determine which section is Affix, Implicit etc.
+* Overall speed of the item parse is MUCH faster, excluding PoEPrices
+* Affix keys are now generated Dynamically
+  * Now the text on the item is what you can use as the Key
+  * Numbers and symbols have been replaced with # symbol
+    * This includes the + or % symbols
+    * This does not include - symbols
+  * Very specific keywords are skipped from converting the number to #
+    * (Number) second
+    * (Number) (Intelligence|Strength|Dexterity)
+    * (Number) Total (Intelligence|Strength|Dexterity)
+    * (Number) Rampage
+    * (Number) Poison
+
+---
+
+## Version .11.05 - Master Branch - April/26/2020
+Assorted Bugfixes and improvements
+
+Merging Alpha changes to master branch
+
+This will be the final master push for this version increment
+
+Alpha branch will soon be updated with a New Item Parsing system
+If you would like to remain on a stable branch switch to master
+
+Hotfix - Force update
+* Primary and secondary attack hotkeys no longer require a flask slot checked
+
+---
+
+## Version .11.0402 - Alpha Branch - April/16/2020
+Tooltips have been added to the Flask Settings menu: 
+* Quicksilver
+* Mana
+* Pop All Flasks
+* Attack Keys
+
+Ignore Slots submenu has been moved to Inventory Settings
+
+Fonts on the main menu headers have been changed to Use Arial
+
+Vendor before Stash will now respect all Stash Management options
+* Determining an items stash tab is now in its own function
+
+Debug for MapCrafting
+* Enabling Debug, will notify (a small box at bottom left on your screen) always when a map need to be reroll with stats before rerolling and after.
+
+---
+
+## Version .11.0401 - Alpha Branch - April/14/2020
+Customize the list of items for each crafting tier
+* Use the Custom Crafting List button to open the editor
+* Find the button at Inventory Settings > Stash Tabs > Crafting Tab
+* Select from the 4 tier lists to add or remove
+* Lets you add any base type in the game
+  * To search click the combo box, press tab then type the name
+  * Press enter or tab again once you find the Base Type
+  * Click "Add T# Base" to add the base type to that tier's list
+* To remove a Base Type, copy and paste or select the name in the combo box
+  * Click "Remove T# Base" to remove a matching name from the list
+* To reset a Tier list, simply click the "Reset T# Base" to go back to default
+* Save Configuration when you are finished
+
+Adjusted the range of Minimum Map Qualities options
+* Item Quantity range is now 1-99
+* Item Rarity range is now 1-54
+* Monster Pack Size range is now 1-45
+
+---
+
+## Version .11.04 - Master Branch - April/12/2020
+Merging Alpha changes to master branch
+* There is a sizable list of improvements
+* I have shortened to some key notes here
+  * For more verbose information, read full alpha patch notes below
+
+New Features:
+* New Types for Stash Tab Management
+  * Catalyst Tab
+  * Vaal Gem Tab
+  * Ninja Priced Tab
+* Automation has been expanded with Vendor before Stash
+  * Search Vendor, Stash, or Both in either order
+* Growing list of recognized map affixes
+* New Crafting bases tier for Jewels (T4)
+* Full control of what maps to skip in inventory
+* Improvements to the Map Crafting function
+  * Include new Undesirable Mod - X% Maximum Player Resistances
+* CLF can now filter for specific damage averages
+
+Refactored:
+* MoveStash function now only uses keyboard
+* Stash Hotkeys and Stash Tabs can now be assigned 1-64
+  * Press Enter when typing into an edit field to save your input
+* Granular settings for Skipping maps in inventory
+  * control the Inventory Area, Type, and Tier to skip
+* Automation Options are now simplified
+  * Search for a Stash or Vendor first then finish with the other
+  * Option to accept vendor trade (Use with extreme caution)
+* Options in the Inventory Settings have been converted to UpDown controls
+  * These load much faster than DropDownList and are easier to use
+* Inventory Settings Stash Tabs panel has been Re-Organized
+  * First column of stash tabs contain the Purchasable Stash types
+
+Bugfixes:
+* Script update logic has been improved to handle errors
+* Fix for OHB Y2 scaled coordinate of scan (for game on second window)
+* Recognizing the Correct Name for Maps on Ninja Database
+* Fix for items being picked up during Wisdom Scroll action
+* Logic for Quicksilver delay fixed to work as intended
+* Fix for Lightning damage being added to total twice
+
+---
+
+## Version .11.0307 - Alpha Branch - April/12/2020
+GUI Changes
+* Replace UpDown for TextBox + UpDown, allowing inserting number or using selectors
+* Reorder Stash Tab Management, now every unique stash (currency tab, fragment tab, divination tab...) will be on first column
+
+Map Crafting
+* Increased delay when crafting to give clip parser more time to identify affix/stats
+
+---
+
+## Version .11.0306 - Alpha Branch - April/12/2020
+Map Tab has been given a section in Stash Tabs
+* Stash BlightedMaps? has been moved here
+* Skipping maps has been given full options
+  * Chose the direction of columns
+  * Chose the column to begin determining to skip
+  * Chose any rarity to skip
+  * Chose the Map Tier to begin skipping
+
+---
+
+## Version .11.0305 - Alpha Branch - April/11/2020
+Map Crafting Settings
+* Include new Undesirable Mod - X% Maximum Player Resistances
+
+Stash Tabs
+* Include Catalyst Tab
+* Include Vaal Gem Tab
+  * Priority for gem Tabs is: Quality > Vaal > Support > Normal
+* Include Ninja Priced Tab
+  * Set minimum value on the right
+
+Changes to Stash Hotkeys
+* Change Stash Hotkeys DropDownList to UpDown
+  * allows for larger range of tabs 1-64
+* Added tooltips to explain the settings
+
+Adjustment to Quicksilver
+* Delay only applies to the first flask fired
+
+Add Damage Averages to CLF
+* Attack or Spell added damage
+* Local added damage (weapons)
+
+Bugfix for Lightning damage being added to total twice
+
+---
+
+## Version .11.0304 - Alpha Branch - April/10/2020
+Major rework to the Automation Section of the Inventory Settings
+* Automation settings have been simplified, please reconfigure your settings
+  * Search Vendor, Stash, or Both in either order
+  * Press [?] button to get more information on possible configurations
+* The Enable Auto Confirm Vendor must be used with care
+  * Please read all information before enabling it
+  * This option should only be used by those who have fully configured CLF
+
+Stash Tabs Rework
+* Improved Visibility and Selection
+* Changed from DropDownList to UpDown Selector
+* Now supports up to 64 tabs
+
+DropDownList Rework
+* Proper selection of the saved DDL value, no longer uses double pipes ||
+
+Other GUI Changes
+* Minor Upgrade on Crafting Tab and Option Tab
+* Split Metamorph Options from Automation
+
+---
+
+## Version .11.0303 - Alpha Branch - April/08/2020
+Map Parser Improved
+* Prop.Map_AtlasRegion is now live, you can use on CLF for filtering map regions (Helpful if you don't have map stash)
+* Prop.ItemBase will work for map bases (Ex: Desert Map, Burial Chambers Map, Tower Map)
+* Ninja DB will work with non unique maps, try pressing Item Info Hotkey and check it out!
+
+Crafting bases
+* New T4 for Crafting Abyss Jewel and Jewel (Mostly for SSF)
+
+Fix for RegExMatch of Map stats
+
+Adjusting delay on MoveStash and WisdomScroll
+* This should help to prevent picking up items
+
+Bugfix for missing Y2 offset for OHB
+* Only affected people with game on secondary monitor
+
+---
+
+## Version .11.0302 - Alpha Branch - April/08/2020  
+Adjustments to Click and Right Click Removed
+* Problems with id/stash/vendor routine and closing inventory.
+
+---
+
+## Version .11.0301 - Alpha Branch - April/08/2020  
+Adjustments to Click and Right Click
+* Separated Down and Up on same line
+
+Refactor MoveStash
+* MoveStash now only uses keyboard
+* This should now allow any number of stash slots
+* Trying out removing the delay between key press
+  * Very fast, need to test accuracy of switching tabs
+
+Add failsafe for update check
+* If 404 error, it sends to log and returns
+* Use RegExMatch to grab only version number
+
+---
+
+## Version .11.03 - master Branch - April/07/2020  
+Merging Alpha changes to master branch
+* Bugfixes and improvements, read notes for details
+
+---
+
+## Version .11.0203 - Alpha Branch - April/06/2020  
+* Improved logic for dealing with Unidentified maps
+  * will respect the option of leaving maps UnID
+  * If UnID but lower than desired rarity, it will force ID
+
+---
+
+## Version .11.0202 - Alpha Branch - April/06/2020  
+Add debugging hotkey for listing all variables of the script
+* Ctrl+Shift+Alt+L
+
+Dan improves the Map crafting again
+* Apply minimum values for quantity, rarity and Monster Pack Size
+* You can stop the crafting loop by pressing the hotkey again
+* Include a enable minimum values for magic map crafting (low tier)
+  * Use this setting with care, magic maps have lower stat max
+
+Bugfix for StartCraft hotkey
+* value will now load and save to the correct INI key
+
+---
+
+## Version .11.0201 - Alpha Branch - April/06/2020  
+Improvements and Bugfixes by the Project Team
+* Crafting routine improved to now use Alterations
+* Bugfix adjustments attempting to fix craft scan not starting
+* Fix for Text being reversed on Physical and Elemental reflect
+
+---
+
+## Version .11.02 - Master Branch - April/05/2020  
+
+Merging Alpha changes to master branch
+
+Make sure to check out the Map crafting function
+Give Feedback on Discord/OC to improve Undesirable Mods list
+
+Scroll down to read full changes from Alpha Notes
+
+---
+
+## Version .11.0101 - Alpha Branch - April/05/2020  
+Major addition by DanMarzola
+* Added a new routine for crafting maps in inventory
+  * Assign the options in the Inventory Settings submenu
+  * Press the hotkey (F2) to begin crafting
+  * Requires an assigned Currency Stash Tab
+* Each Map Tier Range can have different crafting methods
+  * Set the Initial and Ending map tier for each range
+  * Method decides which currency will be used
+  * Scouring will be used when required
+* This function can filter affixes that are Undesirable Mods
+  * Check any of the boxes to reroll maps with that affix
+  * Crafting method will be repeated until no Undesirable Mods
+
+Reverting DPIScale changes
+* The option did not behave as expected
+* Scaling still occurs, there is no way to remove scaling
+
+---
+
+## Version .11.01 - Master Branch - April/04/2020  
+
+Merging Alpha changes to master branch
+
+Scroll down to read alpha notes for changes
+
+---
+
+## Version .11.0002 - Alpha Branch - April/03/2020  
+Few small adjustments
+* Removed DPIScaling from the GUI menus
+* "Hand" added to list of openable containers in Loot Vacuum
+
+---
+
+## Version .11.0001 - Alpha Branch - April/02/2020  
+Bugfix for ControlSend usage in the script
+* When firing flasks, it first confirms an active game
+  * When game is active, we use standard Send
+  * When game is background, we use ControlSend
+* Flasks can still fire in the background
+  * But now they will no longer interrupt other keypresses
+
+Additions by DanMarzola
+* Adjustment for Gem/Item Swap function and Grab Currency
+  * Instead of only allowing 0 to disable, accepts blank edit box
+* Bugfix for script attempting ID'ing corrupted maps
+* Option to skip stashing blighted maps
+
+New addition to Auto-Detonate Mines
+* Cast an ability the moment after detonating
+  * Mainly for Smoke Mine and Flame Dash
+
+---
+
+## Version .11.00 - Release Notes - April/01/2020  
+Merging Alpha changes to master branch
+* New functions added by DanMarzola
+  * quickly apply currency from inventory onto mouse
+    * Assign the location in Inventory Settings
+  * Added a second gem swap slot for two gems at once
+    * These two gem swap slots can also function as item swap
+* Search the CLF filter keys even easier by allowing spaces
+  * "res fir" or "pseu res cold" would both work to find key names
+* Saving and loading the CLF JSON text is now in Human Readable text
+* Bugfixes
+  * Stash tab may need to close and re-open during search for stash function
+
+Major changes since last release:
+Stack Release tool added to utility tab 
+* Searches for a buff icon, then if found searches for the stack capture 
+  * if it finds both it releases the assigned key bind, and represses
+* You can adjust the offset it looks for the stack count 
+  * The area defaults to the bottom left to bottom right of the buff icon
+
+Auto-Detonate Mines has been improved
+* You can now choose the key bound to detonate Mines
+* There are now settings to adjust how to pause auto-detonate
+  * Set any key to bind as the pause hotkey
+  * Adjust the delay it will register a Double Tap
+    * Set to 0 to make it a straight toggle
+
+Predictive Price function has been modified
+* When starting a stash routine, it first confirms PoEPrices.info is online
+
+New Major Feature of the CLF!
+* You can now select OR on any of the selected Prop, Affix or Stats
+* When enabled, the slot becomes mutually Boolean with others with OR
+  * If any match, it is true
+  * If all do not match, it is false
+* Select the minimum number of required OR matches
+* Press tab while a Key input field is selected to search
+  * You can also search for multiple partial words
+* Exporting a group now provides human readable JSON
+
+
+> **For now controller support is not active (the remaining code in GottaGoFast)**
+
+---
+
 ## Version .10.0608 - Release Notes - April/01/2020
 Merging Alpha changes to master branch
 * New functions added by DanMarzola
@@ -723,7 +1229,7 @@ Additions to the Custom Loot Filter
     Added inlfuence types to item parser
         Prop.Influence ~ Elder|Shaper|Hunter|Redeemer|Warlord|Crusader
     Prop.ChaosValue and Prop.ExaltValue added to selectable list
-    Prop.MapTier, Affix.GrantedSkill & Affix.GrantedSkillLevel have been added
+    Prop.Map_Tier, Affix.GrantedSkill & Affix.GrantedSkillLevel have been added
 
 Ninja API Parser adjusted to acount for changes to maps
     Now matches maps based on their tier

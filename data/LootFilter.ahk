@@ -15,296 +15,48 @@
   Global CLFStashTabDefault := 1
   IniRead, CLFStashTabDefault, LootFilter.ini, LootFilter, CLFStashTabDefault , 1
   Global LootFilter := {}
-  Global LootFilterTabs := {}
 
-  Prop := OrderedArray()
-    Prop.ItemName := ""
-    Prop.ItemBase := ""
-    Prop.ItemClass := ""
-    Prop.Influence := ""
-    Prop.SpecialType := ""
-    Prop.CLF_MatchGroup := ""
-    Prop.CLF_SendTab := 0
-    Prop.Ring := False
-    Prop.Amulet := False
-    Prop.Belt := False
-    Prop.Chromatic := False
-    Prop.Jewel := False
-    Prop.ClusterJewel := False
-    Prop.AbyssJewel := False
-    Prop.Essence := False
-    Prop.Incubator := False
-    Prop.Fossil := False
-    Prop.Resonator := False
-    Prop.IsOrgan := ""
-    Prop.IsBeast := False
-    Prop.Jeweler := False
-    Prop.TimelessSplinter := False
-    Prop.BreachSplinter := False
-    Prop.SacrificeFragment := False
-    Prop.MortalFragment := False
-    Prop.GuardianFragment := False
-    Prop.ProphecyFragment := False
-    Prop.Scarab := False
-    Prop.Offering := False
-    Prop.Vessel := False
-    Prop.Incubator := False
-    Prop.Flask := False
-    Prop.Veiled := False
-    Prop.Prophecy := False
-    Prop.Oil := False
-    Prop.ItemLevel := 0
-    Prop.DropLevel := 0
-    Prop.PredictPrice := 0
-    Prop.PredictPriceInfo := ""
-    Prop.ChaosValue := 0
-    Prop.ExaltValue := 0
-    Prop.Rarity := ""
-    Prop.RarityCurrency := False
-    Prop.RarityDivination := False
-    Prop.RarityGem := False
-    Prop.RarityNormal := False
-    Prop.RarityMagic := False
-    Prop.RarityRare := False
-    Prop.RarityUnique := False
-    Prop.Rarity_Digit := 0
-    Prop.QualityAugmented := False
-    Prop.Gem_Sockets := 0
-    Prop.Gem_RawSockets := ""
-    Prop.Gem_Links := 0
-    Prop.IsItem := False
-    Prop.Item_Width := 1
-    Prop.Item_Height := 1
-    Prop.IsWeapon := False
-    Prop.IsMap := False
-    Prop.IsBlightedMap := False
-    Prop.MapTier := 0
-    Prop.Support := False
-    Prop.VaalGem := False
-    Prop.AffixCount := 0
-    Prop.Identified := True
-    Prop.Corrupted := False
-    Prop.DoubleCorrupted := False
-    Prop.Variant := 0
-    Prop.CraftingBase := 0
-    Prop.zz_ItemText := ""
-  textListProp= 
-  For k, v in Prop
-    textListProp .= (!textListProp ? "" : "|") "" k ""
+  FileRead, JSONtext, %A_ScriptDir%/WR_Prop.json
+  temp := JSON.Load(JSONtext)
 
-  Stats := OrderedArray()
-    Stats.MapTier := 0
-    Stats.MapItemQuantity := 0
-    Stats.MapItemRarity := 0
-    Stats.MapMonsterPackSize := 0
-    Stats.Dps := 0
-    Stats.Dps_Q20 := 0
-    Stats.Dps_Phys := 0
-    Stats.Dps_Ele := 0
-    Stats.Dps_Chaos := 0
-    Stats.AttackSpeed := 0
-    Stats.WeaponRange := 0
-    Stats.PhysAvg := 0
-    Stats.ChaosAvg := 0
-    Stats.EleAvg := 0
-    Stats.PhysLo := 0
-    Stats.PhysHi := 0
-    Stats.ChaosLo := 0
-    Stats.ChaosHi := 0
-    Stats.EleLo := 0
-    Stats.EleHi := 0
-    Stats.Quality := 0
-    Stats.GemLevel := 0
-    Stats.Stack := 0
-    Stats.StackMax := 0
-    Stats.RequiredLevel := 0
-    Stats.RequiredStr := 0
-    Stats.RequiredInt := 0
-    Stats.RequiredDex := 0
-    Stats.RatingArmour := 0
-    Stats.RatingEnergyShield := 0
-    Stats.RatingEvasion := 0
-    Stats.RatingBlock := 0
+  textListProp:="" 
+  For k, v in temp
+    textListProp .= (!textListProp ? "" : "|") v
 
-  textListStats= 
-  For k, v in Stats
-    textListStats .= (!textListStats ? "" : "|") "" k ""
+  FileRead, JSONtext, %A_ScriptDir%/WR_Pseudo.json
+  temp := JSON.Load(JSONtext)
 
-  Affix := OrderedArray() 
-    Affix.Implicit := ""
-    Affix.Corruption := ""
-    Affix.Corruption2 := ""
-    Affix.Corruption3 := ""
-    Affix.Corruption4 := ""
-    Affix.Corruption5 := ""
-    Affix.LabEnchant := ""
-    Affix.Annointment := ""
-    Affix.MaximumLife := 0
-    Affix.IncreasedMaximumLife := 0
-    Affix.MaximumEnergyShield := 0
-    Affix.IncreasedEnergyShield := 0
-    Affix.IncreasedMaximumEnergyShield := 0
-    Affix.MaximumMana := 0
-    Affix.IncreasedMaximumMana := 0
-    Affix.IncreasedMovementSpeed := 0
-    Affix.WeaponRange := 0
-    Affix.PseudoTotalResist := 0
-    Affix.PseudoTotalEleResist := 0
-    Affix.PseudoFireResist := 0
-    Affix.PseudoColdResist := 0
-    Affix.PseudoLightningResist := 0
-    Affix.PseudoChaosResist := 0
-    Affix.PseudoTotalAddedStats := 0
-    Affix.PseudoAddedStrength := 0
-    Affix.PseudoAddedDexterity := 0
-    Affix.PseudoAddedIntelligence := 0
-    Affix.PseudoIncreasedArmour := 0
-    Affix.PseudoIncreasedEvasion := 0
-    Affix.PseudoIncreasedEnergyShield := 0
-    Affix.PseudoTotalAddedAvgAttack := 0
-    Affix.PseudoTotalAddedEleAvgAttack := 0
-    Affix.PseudoTotalAddedEleAvgSpell := 0
-    Affix.PseudoIncreasedColdDamage := 0
-    Affix.PseudoIncreasedFireDamage := 0
-    Affix.PseudoIncreasedLightningDamage := 0
-    Affix.AllElementalResistances := 0
-    Affix.ColdLightningResistance := 0
-    Affix.FireColdResistance := 0
-    Affix.FireLightningResistance := 0
-    Affix.ColdResistance := 0
-    Affix.FireResistance := 0
-    Affix.LightningResistance := 0
-    Affix.ChaosResistance := 0
-    Affix.PhysicalDamageAttackAvg:= 0
-    Affix.PhysicalDamageBowAttackAvg:= 0
-    Affix.FireDamageAttackAvg:= 0
-    Affix.FireDamageSpellAvg:= 0
-    Affix.ColdDamageAttackAvg:= 0
-    Affix.ColdDamageSpellAvg:= 0
-    Affix.LightningDamageAttackAvg:= 0
-    Affix.LightningDamageSpellAvg:= 0
-    Affix.ChaosDamageAttackAvg:= 0
-    Affix.PhysicalDamageAvg:= 0
-    Affix.ChaosDamageAvg:= 0
-    Affix.ColdDamageAvg:= 0
-    Affix.FireDamageAvg:= 0
-    Affix.LightningDamageAvg:= 0
-    Affix.AddedLevelGems := 0
-    Affix.AddedLevelMinionGems := 0
-    Affix.AddedLevelMeleeGems := 0
-    Affix.AddedLevelBowGems := 0
-    Affix.AddedLevelFireGems := 0
-    Affix.AddedLevelColdGems := 0
-    Affix.AddedLevelLightningGems := 0
-    Affix.AddedLevelChaosGems := 0
-    Affix.AddedLevelAllPhysicalSpellGems := 0
-    Affix.AddedLevelAllColdSpellGems := 0
-    Affix.AddedLevelAllFireSpellGems := 0
-    Affix.AddedLevelAllLightningSpellGems := 0
-    Affix.AddedLevelAllChaosSpellGems := 0
-    Affix.ChaosDOTMult := 0
-    Affix.ColdDOTMult := 0
-    Affix.SupportGem := ""
-    Affix.SupportGemLevel := 0
-    Affix.SupportGem2 := ""
-    Affix.SupportGem2Level := 0
-    Affix.CountSupportGem := 0
-    Affix.GrantedSkill := 0
-    Affix.GrantedSkillLevel := 0
-    Affix.GainFireToExtraChaos := 0
-    Affix.GainColdToExtraChaos := 0
-    Affix.GainLightningToExtraChaos := 0
-    Affix.GainPhysicalToExtraChaos := 0
-    Affix.GlobalCriticalChance := 0
-    Affix.GlobalCriticalMultiplier := 0
-    Affix.IncreasedAttackSpeed := 0
-    Affix.IncreasedAttackSpeedWithMoveSkill := 0
-    Affix.IncreasedAttackCastSpeed := 0
-    Affix.AddedAccuracy := 0
-    Affix.LifeGainOnAttack := 0
-    Affix.PhysicalLeechLife := 0
-    Affix.PhysicalLeechMana := 0
-    Affix.EnergyShieldRegen := 0
-    Affix.LifeRegeneration := 0
-    Affix.PhysicalDamageReduction := 0
-    Affix.ChanceDoubleDamage := 0
-    Affix.ChanceDodgeAttack := 0
-    Affix.ChanceDodgeSpell := 0
-    Affix.ChanceBlock := 0
-    Affix.ChanceBlockSpell := 0
-    Affix.ChanceFreeze := 0
-    Affix.ChanceShock := 0
-    Affix.ChanceIgnite := 0
-    Affix.ChanceBleed := 0
-    Affix.ChancePoison := 0
-    Affix.AddedArmour := 0
-    Affix.AddedEvasion := 0
-    Affix.AddedAllStats := 0
-    Affix.AddedStrength := 0
-    Affix.AddedDexterity := 0
-    Affix.AddedIntelligence := 0
-    Affix.AddedStrengthDexterity := 0
-    Affix.AddedStrengthIntelligence := 0
-    Affix.AddedDexterityIntelligence := 0
-    Affix.IncreasedStrength := 0
-    Affix.IncreasedDexterity := 0
-    Affix.IncreasedIntelligence := 0
-    Affix.ChanceAvoidElementalAilment := 0
-    Affix.IncreasedColdDamage := 0
-    Affix.IncreasedFireDamage := 0
-    Affix.IncreasedLightningDamage := 0
-    Affix.IncreasedPhysicalDamage := 0
-    Affix.IncreasedSpellDamage := 0
-    Affix.IncreasedChaosDamage := 0
-    Affix.IncreasedMinionDamage := 0
-    Affix.IncreasedDamageWithMoveSkill := 0
-    Affix.IncreasedRarity := 0
-    Affix.IncreasedArmour := 0
-    Affix.IncreasedEvasion := 0
-    Affix.IncreasedArmourEnergyShield := 0
-    Affix.IncreasedArmourEvasion := 0
-    Affix.IncreasedEvasionEnergyShield := 0
-    Affix.IncreasedElementalAttack := 0
-    Affix.IncreasedGlobalAccuracy := 0
-    Affix.IncreasedBurningDamage := 0
-    Affix.IncreasedPoisonDamage := 0
-    Affix.IncreasedBleedDamage := 0
-    Affix.IncreasedCritChance := 0
-    Affix.IncreasedSpellCritChance := 0
-    Affix.IncreasedCastSpeed := 0
-    Affix.IncreasedProjectileSpeed := 0
-    Affix.IncreasedCritChanceOnKill := 0
-    Affix.IncreasedPoisonDuration := 0
-    Affix.IncreasedBleedDuration := 0
-    Affix.IncreasedManaRegeneration := 0
-    Affix.IncreasedLightRadius := 0
-    Affix.IncreasedStunDuration := 0
-    Affix.IncreasedStunBlockRecovery := 0
-    Affix.IncreasedFlaskLifeRecovery := 0
-    Affix.IncreasedFlaskManaRecovery := 0
-    Affix.IncreasedFlaskDuration := 0
-    Affix.IncreasedFlaskChargesGained := 0
-    Affix.ReflectPhysical := 0
-    Affix.BlockManaGain := 0
-    Affix.OnKillLife := 0
-    Affix.OnKillMana := 0
-    Affix.ReducedFlaskChargesUsed := 0
-    Affix.ReducedEnemyStunThreshold := 0
-    Affix.ReducedAttributeRequirement := 0
+  textListAffix:="" 
+  For k, v in temp
+    textListAffix .= (!textListAffix ? "" : "|") v
 
-  textListAffix= 
-  For k, v in Affix
-    textListAffix .= (!textListAffix ? "" : "|") "" k ""
+  FileRead, JSONtext, %A_ScriptDir%/WR_Affix.json
+  temp := JSON.Load(JSONtext)
+
+  For k, v in temp
+    textListAffix .= (!textListAffix ? "" : "|") v
+
+  JSONtext := temp := ""
 
   Eval := [ "<","<=","=","!=",">=",">","~" ]
-  textListEval= 
+  textListEval:="" 
   For k, v in Eval
     textListEval .= (!textListEval ? "" : "|") v
 
+
   StashTabs := [ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
-  textListStashTabs= 
+  textListStashTabs:="" 
   For k, v in StashTabs
     textListStashTabs .= (!textListStashTabs ? "" : "|") v
+
+
+Menu, MyMenuBar, Add, &Load CLF from file, LoadArray
+Menu, MyMenuBar, Add ; with no more options, this is a seperator
+Menu, MyMenuBar, Add, &Save CLF to file, SaveArray
+Menu, MyMenuBar, Add
+Menu, MyMenuBar, Add, Add New Group, AddGroup
+Menu, MyMenuBar, Add 
+Menu, MyMenuBar, Add, Import Group From Clipboard, ImportGroup
 
 LoadArray()
 
@@ -317,87 +69,39 @@ Redraw:
   IniRead, xpos, LootFilter.ini, Settings, xpos, first
   IniRead, ypos, LootFilter.ini, Settings, ypos, first
 
-  Gui, add, button, gAddGroup xs y+20, Add new Group
-  Gui, add, DropDownList, gUpdateStashDefault vCLFStashTabDefault x+10 yp+1 w40, %CLFStashTabDefault%||%textListStashTabs%
+  ; Gui, add, button, gAddGroup xs y+20, Add new Group
+  Gui, add, DropDownList, gUpdateStashDefault vCLFStashTabDefault xs y+20 w40, %CLFStashTabDefault%||%textListStashTabs%
+  Gui, Add, Text, x+5 yp+3 , Assign default stash tab for new or imported groups
   ; Gui, add, button, gPrintout x+10 yp, Print Array
   ;Gui, add, button, gPrintJSON x+10 yp, JSON string
-  Gui, add, button, gLoadArray x+10 yp-1, Load Loot Filter
-  Gui, add, button, gSaveArray x+10 yp, Save Loot Filter
-  Gui, add, button, gImportGroup x+10 yp, Import Loot Filter
+  ; Gui, add, button, gLoadArray x+10 yp-1, Load Loot Filter
+  ; Gui, add, button, gSaveArray x+10 yp, Save Loot Filter
+  ; Gui, add, button, gImportGroup x+10 yp, Import Loot Filter
   ;Gui, add, button, gRefreshGUI x+10 yp, Refresh Menu
   ;Gui, add, button, gTestEval x+10 yp, Test Eval vs 5
-
-  Gui, Add, Text, Section xm ym+52 w1 h1
+  Gui, Menu, MyMenuBar ; Attach MyMenuBar to the GUI
+  Gui, Add, Text, Section xm yp+52 w1 h1
 
   For GKey, Groups in LootFilter
   {
     gkeyarr := StrSplit(GKey, , , 6)
     
-    if (gkeyarr[6] > 9 && gkeyarr[6] < 20) 
-      activeGKeys10 := True
-    else if (gkeyarr[6] > 19 && gkeyarr[6] < 30) 
-      activeGKeys20 := True
-    else if (gkeyarr[6] > 29 && gkeyarr[6] < 40) 
-      activeGKeys30 := True
-    else if (gkeyarr[6] > 39 && gkeyarr[6] < 50) 
-      activeGKeys40 := True
-    else if (gkeyarr[6] > 49 && gkeyarr[6] < 60) 
-      activeGKeys50 := True
-    else if (gkeyarr[6] > 59 && gkeyarr[6] < 70) 
-      activeGKeys60 := True
-    else if (gkeyarr[6] > 69 && gkeyarr[6] < 80) 
-      activeGKeys70 := True
-    else if (gkeyarr[6] > 79 && gkeyarr[6] < 90) 
-      activeGKeys80 := True
-    else if (gkeyarr[6] > 89) 
-      activeGKeys90 := True
+    if (gkeyarr[6] > 99 && gkeyarr[6] < 200) 
+      activeGKeys100 := True
+    else if (gkeyarr[6] > 199 && gkeyarr[6] < 999) 
+      activeGKeys200 := True
   }
 
-  BuildMenu(1,9)
-  if activeGKeys10 
+  BuildMenu(1,99)
+  if activeGKeys100 
   {
   Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(10,19)
+  BuildMenu(100,199)
   }
-  if activeGKeys20 
+  if activeGKeys200 
   {
   Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(20,29)
-  }
-  if activeGKeys30 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(30,39)
-  }
-  if activeGKeys40 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(40,49)
-  }
-  if activeGKeys50 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(50,59)
-  }
-  if activeGKeys60 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(60,69)
-  }
-  if activeGKeys70 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(70,79)
-  }
-  if activeGKeys80 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(80,89)
-  }
-  if activeGKeys90 
-  {
-  Gui, Add, Text, Section x+45 ym+52 w1 h1
-  BuildMenu(90,999)
+  BuildMenu(200,999)
   }
   tooltip
   Gui, +AlwaysOnTop
@@ -440,20 +144,19 @@ Return ""
 }
 
 ImportGroup:
-  
   Gui, Submit, NoHide
   LootFilterEmpty:=0
   Loop, % LootFilter.Count() + 1
   {
     ++LootFilterEmpty
-    groupstr := "Group" LootFilterEmpty
+    groupstr := ReplaceDigit000("Group" LootFilterEmpty)
     if LootFilter.HasKey(groupstr)
       continue
     Else
       break
   }
   LootFilter[groupstr] := JSON.Load(Clipboard)
-  LootFilterTabs[groupstr]:=CLFStashTabDefault
+  LootFilter[groupstr]["Data"]["StashTab"]:=CLFStashTabDefault
   Gui, Destroy
   GoSub, Redraw
 Return
@@ -472,7 +175,15 @@ ExportGroup:
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
   exportArr := LootFilter[GKey]
-  Clipboard := JSON.Dump(exportArr,,1)
+  Contents := JSON.Dump(exportArr,,1)
+  Contents := RegExReplace(Contents, "\,\n   ", ", ")
+  Contents := RegExReplace(Contents, "\n  \}\,\n  ", " },`n  ")
+  Contents := RegExReplace(Contents, "\n  \}\n \]", " }`n ]")
+  Contents := RegExReplace(Contents, "\{\n   """, "{ """)
+  Contents := RegExReplace(Contents, "\,\n  """, ", """)
+  Contents := RegExReplace(Contents, "\{\n  """, "{ """)
+  Contents := RegExReplace(Contents, """\n \}\,", """ },")
+  Clipboard := Contents
   SetTimer, ChangeButtonNamesVar, 10
   MsgBox 262147, Export String,% Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy"
   IfMsgBox, Yes
@@ -495,13 +206,13 @@ AddGroup:
   Loop, % (LootFilter.Count() + 1)
   {
     ++LootFilterEmpty
-    groupstr := "Group" LootFilterEmpty
+    groupstr := ReplaceDigit000("Group" LootFilterEmpty)
     if LootFilter.HasKey(groupstr)
       continue
     Else
       break
   }
-  LootFilter[groupstr] := {"Prop": OrderedArray(), "Stats": OrderedArray(), "Affix": OrderedArray(), "OrCount": 1, "StashTab": CLFStashTabDefault}
+  LootFilter[groupstr] := {"Prop": [], "Affix": [], "Data":{"OrCount": 1, "StashTab": CLFStashTabDefault}}
   Global groupKey := groupstr
   Gui, 2: Destroy
   GoSub, RedrawNewGroup
@@ -516,46 +227,13 @@ FinishAddGroup:
   GoSub, Redraw
 Return
 
-; AddNewDDL:
-;   Gui, Submit, NoHide
-;   StringSplit, buttonstr, A_GuiControl, %A_Space%
-;   SKey := buttonstr3
-;   GKey := buttonstr5
-;   skeyItemsActive := Round(LootFilter[GKey][SKey].Count() / 4)
-;   ++skeyItemsActive
-;   ;msgbox, %skeyItemsActive% %GKey% %SKey%
-
-;   AKey := SKey . skeyItemsActive
-;   ;msgbox %AKey%
-;   LootFilter[GKey][SKey][AKey] := "Blank"
-;   LootFilter[GKey][SKey][AKey . "Eval"] := ">"
-;   LootFilter[GKey][SKey][AKey . "Min"] := 0
-;   LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
-;   SaveWinPos()
-;   Gui, Destroy
-;   GoSub, Redraw
-; Return
 
 AddNewGroupDDL:
   Gui, Submit, NoHide
   StringSplit, buttonstr, A_GuiControl, %A_Space%
   SKey := buttonstr3
   GKey := buttonstr5
-  LootFilterEmpty := 0
-  Loop, % (LootFilter[GKey][SKey].Count() // 4 + 1)
-  {
-    ++LootFilterEmpty
-    AKey := SKey . LootFilterEmpty
-    if LootFilter[GKey][SKey].HasKey(AKey)
-      continue
-    Else
-      break
-  }
-  ; AKey := SKey . (Round(LootFilter[GKey][SKey].Count() / 4) + 1)
-  LootFilter[GKey][SKey][AKey] := "Blank"
-  LootFilter[GKey][SKey][AKey . "Eval"] := ">="
-  LootFilter[GKey][SKey][AKey . "Min"] := 0
-  LootFilter[GKey][SKey][AKey . "OrFlag"] := 0
+  LootFilter[GKey][SKey].Push({"#Key":"Blank","Eval":">=","Min":0,"OrFlag":0})
   SaveWinPos()
   Gui,2: Destroy
   GoSub, RedrawNewGroup
@@ -572,29 +250,26 @@ BuildMenu(Min,Max,AllEdit:=0)
       Continue
     For SKey, selectedItems in Groups
     {
-      If (SKey = "OrCount" || SKey = "StashTab")
+      If (SKey = "Data")
         Continue
-      totalHeight += (((LootFilter[GKey][SKey].Count() / 4) + 1) * 25) + 30
-      Gui, Add, GroupBox,% " section xs y+15 w325 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,%SKey%
+      totalHeight += ((LootFilter[GKey][SKey].Count() + 1) * 25) + 45
+      Gui, Add, GroupBox,% " section xs y+15 w675 h" (LootFilter[GKey][SKey].Count() + 1) * 25 ,%SKey%
+      Gui, Font, Bold s10 cBlack
       For AKey, Val in selectedItems
       {
-        Gui, Font, Bold s10 cBlack
-        If !InStr(AKey, "Eval") && !InStr(AKey, "Min") && !InStr(AKey, "OrFlag")
-          Gui, Add,  Text, w318 xs+5 yp+25 h19, % (LootFilter[GKey][SKey][AKey . "OrFlag"]?"OR ":"") LootFilter[GKey][SKey][AKey] "  " LootFilter[GKey][SKey][AKey . "Eval"] "  " LootFilter[GKey][SKey][AKey . "Min"]
-        Gui, Font,
+        Gui, Add,  Text, w668 xs+5 yp+25 h19, % (LootFilter[GKey][SKey][AKey]["OrFlag"]?"OR ":"") LootFilter[GKey][SKey][AKey]["#Key"] "  " LootFilter[GKey][SKey][AKey]["Eval"] "  " LootFilter[GKey][SKey][AKey]["Min"]
       }
+      Gui, Font,
       Gui, add, button, xs yp+25 w1 h1,
     }
-    Gui, Add, Text, y+15 , % GKey "  Stash Tab: " LootFilter[GKey]["StashTab"] "   OR #: " LootFilter[GKey]["OrCount"] "   "
+    Gui, Add, Text, y+15 , % GKey "  Stash Tab: " LootFilter[GKey]["Data"]["StashTab"] "   OR #: " LootFilter[GKey]["Data"]["OrCount"] "   "
     strLootFilterEdit := "LootFilter_" . GKey . "_Edit"
-    Gui, Add, Button, v%strLootFilterEdit% gEditGroup w60 h21 x+0 yp-3, Edit
+    Gui, Add, Button, v%strLootFilterEdit% gEditGroup w40 h21 x+0 yp-3, Edit
     strLootFilterExport := "LootFilter_" . GKey . "_Export"
     Gui, Add, Button, v%strLootFilterExport% gExportGroup w40 h21 x+5, Export
-    if (gkeyarr < 10 ) 
-      gkeyarr := 0 . gkeyarr
     Gui, Add, Button,gRemGroup x+5 yp-1 ,% "Rem: " gkeyarr
     Gui, Font, Bold s10 cBlack
-    Gui, Add, GroupBox, % "w335 h" . totalHeight - 15 . " xs-3 yp-" . totalHeight - 45, %GKey%
+    Gui, Add, GroupBox, % "w685 h" . totalHeight - 15 . " xs-3 yp-" . totalHeight - 45, %GKey%
     Gui, add, button, x+0 y+20 w1 h1,
     Gui, Font
   }
@@ -606,43 +281,43 @@ BuildNewGroupMenu(GKey)
   Global
   For SKey, selectedItems in LootFilter[GKey]
   {
-    If (SKey = "OrCount" || SKey = "StashTab")
+    If ( SKey = "Data" )
       Continue
-    Gui,2: Add, GroupBox,% " section xs y+18 w37 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,% "  OR"
-    Gui,2: Add, GroupBox,% " x+2 yp w247 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,%SKey%
-    Gui,2: Add, GroupBox,% " x+2 yp w54 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,Eval:
-    Gui,2: Add, GroupBox,% " x+2 yp w254 h" ((LootFilter[GKey][SKey].Count() / 4) + 1) * 25 ,Min:
+    Gui,2: Add, GroupBox,% " section xs y+18 w37 h" (LootFilter[GKey][SKey].Count() + 1) * 25 ,% "  OR"
+    Gui,2: Add, GroupBox,% " x+2 yp w247 h" (LootFilter[GKey][SKey].Count() + 1) * 25 ,%SKey%
+    Gui,2: Add, GroupBox,% " x+2 yp w54 h" (LootFilter[GKey][SKey].Count() + 1) * 25 ,Eval:
+    Gui,2: Add, GroupBox,% " x+2 yp w254 h" (LootFilter[GKey][SKey].Count() + 1) * 25 ,Min:
     For AKey, Val in selectedItems
     {
-      If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
-        Continue
-      strLootFilterGSA := "LootFilter_" . GKey . "_" . SKey . "_" . AKey
-      %strLootFilterGSA% := LootFilter[GKey][SKey][AKey]
-      strLootFilterGSAEval := "LootFilter_" . GKey . "_" . SKey . "_" . AKey . "Eval"
-      %strLootFilterGSAEval% := LootFilter[GKey][SKey][AKey . "Eval"]
-      strLootFilterGSAMin := "LootFilter_" . GKey . "_" . SKey . "_" . AKey . "Min"
-      %strLootFilterGSAMin% := LootFilter[GKey][SKey][AKey . "Min"]
-      strLootFilterGSAOrFlag := "LootFilter_" . GKey . "_" . SKey . "_" . AKey . "OrFlag"
-      %strLootFilterGSAOrFlag% := LootFilter[GKey][SKey][AKey . "OrFlag"]
-      ischecked := LootFilter[GKey][SKey][AKey . "OrFlag"]
+      ; If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
+      ;   Continue
+      strLootFilterGSA := "LootFilter_" GKey "_" SKey "_" AKey "_#Key"
+      %strLootFilterGSA% := LootFilter[GKey][SKey][AKey]["#Key"]
+      strLootFilterGSAEval := "LootFilter_" GKey "_" SKey "_" AKey "_Eval"
+      %strLootFilterGSAEval% := LootFilter[GKey][SKey][AKey]["Eval"]
+      strLootFilterGSAMin := "LootFilter_" GKey "_" SKey "_" AKey "_Min"
+      %strLootFilterGSAMin% := LootFilter[GKey][SKey][AKey]["Min"]
+      strLootFilterGSAOrFlag := "LootFilter_" GKey "_" SKey "_" AKey "_OrFlag"
+      %strLootFilterGSAOrFlag% := LootFilter[GKey][SKey][AKey]["OrFlag"]
+      ischecked := LootFilter[GKey][SKey][AKey]["OrFlag"]
       ;MsgBox % AKey
       Gui,2: Add,  Checkbox, v%strLootFilterGSAOrFlag% gUpdateLootFilterDDL Right checked%ischecked% xs+2 yp+25 ,% ""
-      Gui,2: Add,  ComboBox, v%strLootFilterGSA% gUpdateLootFilterDDL x+9 w240, % LootFilter[GKey][SKey][AKey] "||" textList%SKey%
-      Gui,2: Add, DropDownList, v%strLootFilterGSAEval% gUpdateLootFilterDDL x+9 w50, % LootFilter[GKey][SKey][AKey . "Eval"] "||" textListEval
-      Gui,2: Add, Edit, v%strLootFilterGSAMin% gUpdateLootFilterDDL x+6 w250 h21, % LootFilter[GKey][SKey][AKey . "Min"]
+      Gui,2: Add,  ComboBox, v%strLootFilterGSA% gUpdateLootFilterDDL x+9 w240, % LootFilter[GKey][SKey][AKey]["#Key"] "||" textList%SKey%
+      Gui,2: Add, DropDownList, v%strLootFilterGSAEval% gUpdateLootFilterDDL x+9 w50, % LootFilter[GKey][SKey][AKey]["Eval"] "||" textListEval
+      Gui,2: Add, Edit, v%strLootFilterGSAMin% gUpdateLootFilterDDL x+6 w250 h21, % LootFilter[GKey][SKey][AKey]["Min"]
       %strLootFilterGSAMin%_Remove := False
       Gui,2: Add, Button, v%strLootFilterGSAMin%_Remove gRemoveNewMenuItem x+6 w21 h21, X
     }
     Gui,2: add, button, gAddNewGroupDDL xs yp+25, Add new %SKey% to %GKey%
   }
   strLootFilterGroupStash := "LootFilter_" . GKey . "_StashTab"
-  %strLootFilterGroupStash% := LootFilter[GKey]["StashTab"]
+  %strLootFilterGroupStash% := LootFilter[GKey]["Data"]["StashTab"]
   Gui,2: Add, Text, y+12, %GKey% Stash Tab:
-  Gui,2: Add,  DropDownList, v%strLootFilterGroupStash% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["StashTab"] "||" textListStashTabs
+  Gui,2: Add,  DropDownList, v%strLootFilterGroupStash% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["Data"]["StashTab"] "||" textListStashTabs
   strLootFilterGroupOrCount := "LootFilter_" . GKey . "_OrCount"
-  %strLootFilterGroupOrCount% := LootFilter[GKey]["OrCount"]
+  %strLootFilterGroupOrCount% := LootFilter[GKey]["Data"]["OrCount"]
   Gui,2: Add, Text, x+5 yp+6, Min OR #:
-  Gui,2: Add,  DropDownList, v%strLootFilterGroupOrCount% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["OrCount"] "||1|2|3|4|5|6|7|8|9|10|11|12"
+  Gui,2: Add,  DropDownList, v%strLootFilterGroupOrCount% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["Data"]["OrCount"] "||1|2|3|4|5|6|7|8|9|10|11|12"
   strLootFilterExport := "LootFilter_" . GKey . "_Export"
   Gui,2: Add, Button, v%strLootFilterExport% gExportGroup w60 h21 x+5, Export
 Return
@@ -660,38 +335,7 @@ LoadArray()
   FileRead, JSONtext, LootFilter.json
   LootFilter := JSON.Load(JSONtext)
   If !LootFilter
-    LootFilter:=OrderedArray()
-
-  For GKey, Gval in LootFilter
-  {
-    If !(Gval.HasKey("OrCount"))
-      Gval["OrCount"] := 1
-    For SKey, Sval in Gval
-    {
-      If (SKey = "OrCount" || SKey = "StashTab")
-        Continue
-      For AKey, Aval in Sval
-      {
-        If (InStr(AKey, "Eval") || InStr(AKey, "Min") || InStr(AKey, "OrFlag"))
-          Continue
-        If !(Sval[AKey . "OrFlag"] = 0 || Sval[AKey . "OrFlag"])
-          Sval[AKey . "OrFlag"] := 0
-      }
-    }
-  }
-
-  If FileExist("LootFilterTabs.json")
-  {
-    FileRead, JSONtexttabs, LootFilterTabs.json
-    LootFilterTabs := JSON.Load(JSONtexttabs)
-    If !LootFilterTabs
-      LootFilterTabs:={}
-    For GKey, GTab in LootFilterTabs
-    {
-      LootFilter[GKey].StashTab := GTab
-    }
-  }
-
+    LootFilter:={}
 Return
 }
 
@@ -702,10 +346,6 @@ SaveArray()
   JSONtext := JSON.Dump(LootFilter,,1)
   FileDelete, LootFilter.json
   FileAppend, %JSONtext%, LootFilter.json
-
-  ; JSONtexttabs := JSON.Dump(LootFilterTabs)
-  FileDelete, LootFilterTabs.json
-  ; FileAppend, %JSONtexttabs%, LootFilterTabs.json
   Return
 }
 
@@ -715,7 +355,8 @@ UpdateLootFilterDDL:
   GKey := buttonstr2
   SKey := buttonstr3
   AKey := buttonstr4
-  LootFilter[GKey][SKey][AKey] := %A_GuiControl%
+  EKey := buttonstr5
+  LootFilter[GKey][SKey][AKey][EKey] := %A_GuiControl%
 Return
 
 UpdateGroupInfo:
@@ -723,7 +364,7 @@ UpdateGroupInfo:
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
   IKey := buttonstr3
-  LootFilter[GKey][IKey] := %A_GuiControl%
+  LootFilter[GKey]["Data"][IKey] := %A_GuiControl%
 Return
 
 UpdateStashDefault:
@@ -770,9 +411,9 @@ RemoveNewGroupMenuItem:
   SKey := buttonstr3
   buttonstr4 := RegExReplace(buttonstr4, "Min$", "")
   AKey := buttonstr4
-  LootFilter[GKey][SKey].Remove(AKey . "Min")
-  LootFilter[GKey][SKey].Remove(AKey . "Eval")
-  LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
+  ; LootFilter[GKey][SKey].Remove(AKey . "Min")
+  ; LootFilter[GKey][SKey].Remove(AKey . "Eval")
+  ; LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
   LootFilter[GKey][SKey].Remove(AKey)
   SaveWinPos()
   Gui,2: Destroy
@@ -782,12 +423,10 @@ Return
 RemGroup:
   Gui, Submit, NoHide
   StringSplit, buttonstr, A_GuiControl, %A_Space%
-  if (buttonstr2 < 10)
-    StringTrimLeft, buttonstr2, buttonstr2, 1
   gnumber := buttonstr2
   GKey := "Group" gnumber
+
   LootFilter.Remove(GKey)
-  ; LootFilterTabs.Remove(GKey)
   SaveWinPos()
   Gui, Destroy
   GoSub, Redraw
@@ -978,13 +617,13 @@ OnScroll(wParam, lParam, msg, hwnd)
   
   action := wParam & 0xFFFF
   if action = 0 ; SB_LINEUP
-    new_pos -= SCROLL_STEP
+    new_pos -= SCROLL_STEP * 10
   else if action = 1 ; SB_LINEDOWN
-    new_pos += SCROLL_STEP
+    new_pos += SCROLL_STEP * 10
   else if action = 2 ; SB_PAGEUP
-    new_pos -= NumGet(rect, 12, "int") - SCROLL_STEP
+    new_pos -= NumGet(rect, 12, "int") - SCROLL_STEP * 10
   else if action = 3 ; SB_PAGEDOWN
-    new_pos += NumGet(rect, 12, "int") - SCROLL_STEP
+    new_pos += NumGet(rect, 12, "int") - SCROLL_STEP * 10
   else if (action = 5 || action = 4) ; SB_THUMBTRACK || SB_THUMBPOSITION
     new_pos := wParam>>16
   else if action = 6 ; SB_TOP
@@ -1097,5 +736,9 @@ GuiClose:
   }
   SendMSG( 7, 0)
 ExitApp
+
+ReplaceDigit000(Name:="Group1"){
+  Return "Group" . Format("{1:03i}",StrSplit(Name,," ",6)[6])
+}
 
 #Include %A_ScriptDir%\Library.ahk
