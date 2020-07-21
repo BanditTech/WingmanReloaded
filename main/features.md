@@ -9,15 +9,20 @@
 * Loot Vacuum for picking up items
 * Manage Inventory (ID,Vendor,Stash,Divination)
 * Custom Loot Filter for sorting items to stash tabs
-* Automate going to stash, and then from Stash to vendor
+* Automate going to vendor/stash, then follow up with the second choice
+* Automate sending harvest items to Seed Stockpile
 * Skill-up Gems when they level
 * Cast Portal-Scroll from inventory
-* Swap Gems between two positions
+* Quickly grab currency from your inventory to apply onto chests
+* Swap up to two Gems or items between another position
 * Price information for Currency, Uniques, Maps, Rare Items, and More!
 * Pixel Information and Zoom tool with Coord hotkey
 * Game Controller support to remote stream the game
 * Chat Hotkeys for responding to whispers or sending chat commands
 * Auto-Fill Metamorph panel when opened in field
+* Auto-Stash Chaos/Regal recipe items, and hotkey to auto-vendor sets of items
+* Customizable list of Crafting items to stash
+* Automatically Craft the map items in your inventory
 
    
 
