@@ -1949,7 +1949,7 @@
     Gui, add, button, gWR_Update vWR_Btn_Strings   x+10 yp w110, Strings
     Gui, add, button, gWR_Update vWR_Btn_Chat     xs y+10 w110, Chat
     Gui, add, button, gWR_Update vWR_Btn_Controller x+10 yp w110, Controller
-    Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, C.L.F.
+    Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, Custom Loot Filter
     ;Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
 
     Gui, Font, Bold s9 cBlack, Arial
@@ -2576,13 +2576,15 @@ Return
   {
     If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
     {
-      LeftClick(FindStash.1.1 + 5,FindStash.1.2 + 5)
+      LeftClick(FindStash.1.x,FindStash.1.y)
       Loop, 66
       {
         Sleep, 50
         GuiStatus()
         If OnStash
           Return True
+        Else If ( !Mod(A_Index,20) && (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr)) )
+          LeftClick(FindStash.1.x,FindStash.1.y)
       }
     }
     Return False
@@ -3085,7 +3087,10 @@ Return
       If (!OnStash)
       {
         If !SearchStash()
+        {
+          PrintChaosRecipe("There are " Object.Count() " sets of rare items in stash.`n", 3)
           Return
+        }
       }
       RunningToggle := True
       If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
@@ -3133,7 +3138,7 @@ Return
       SetTimer, TGameTick, On
     Return
   }
-  PrintChaosRecipe(Message:="Current slot totals",Duration:=0)
+  PrintChaosRecipe(Message:="Current slot totals",Duration:="False")
   {
     Global RecipeArray
     Notify("Chaos Recipe", Message . "`n"
@@ -3146,7 +3151,8 @@ Return
     . "Helmet: " . (RecipeArray.Helmet.Count()?RecipeArray.Helmet.Count():0) . "`t"
     . "Shield: " . (RecipeArray.Shield.Count()?RecipeArray.Shield.Count():0) . "`n"
     . "One Hand: " . (RecipeArray["One Hand"].Count()?RecipeArray["One Hand"].Count():0) . "`t"
-    . "Two Hand: " . (RecipeArray["Two Hand"].Count()?RecipeArray["Two Hand"].Count():0) . "`n" (Duration?"," Duration : ""))
+    . "Two Hand: " . (RecipeArray["Two Hand"].Count()?RecipeArray["Two Hand"].Count():0) . "`n"
+    , (Duration != "False" ? Duration : 20))
     Return
   }
   ; StashRoutine - Does stash functions
@@ -3441,12 +3447,12 @@ Return
           Sleep, 120*Latency
           Return True
         }
-        Else If !Mod(A_Index, 30)
+        Else If !Mod(A_Index, 20)
         {
           If (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
             LeftClick(Vendor.1.x, Vendor.1.y)
         }
-        Sleep, 200
+        Sleep, 50
       }
     }
     Return False
