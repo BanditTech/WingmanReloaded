@@ -2489,24 +2489,12 @@
         Gui, Inventory: Add, Text,                   x+33             h152 0x11
         Gui, Inventory: Add, Text,                   x+33             h152 0x11
 
-        IfNotExist, %A_ScriptDir%\data\leagues.json
-        {
-          UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-        }
-        FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-        LeagueIndex := JSON.Load(JSONtext)
-        textList= 
-        For K, V in LeagueIndex
-          textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
         Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
-        Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %textList%
-        GuiControl,Inventory: ChooseString, selectedLeague, %selectedLeague%
-        Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
         Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
         Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
         Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?

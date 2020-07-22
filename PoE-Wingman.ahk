@@ -2018,8 +2018,23 @@
     Gui,Add,Text,              y+5          ,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
     Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
 
+    IfNotExist, %A_ScriptDir%\data\leagues.json
+    {
+      UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+    }
+    FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+    LeagueIndex := JSON.Load(JSONtext)
+    textList= 
+    For K, V in LeagueIndex
+      textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+    Gui,Font, Bold s9 cBlack, Arial
+    Gui, Add, Text, x295 y380, League:
+    Gui,Font,Norm
+    Gui, Add, DropDownList, vselectedLeague x+5 yp-3 w150, %textList%
+    GuiControl, ChooseString, selectedLeague, %selectedLeague%
+    Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 yp-1 , Refresh
 
-    Gui, Add, Text, x295 y400 , PoESessionID
+    Gui, Add, Text, x295 y+5 , PoESessionID
     Gui, Add, Edit, password vPoESessionID  xp y+5  w300 h23, %PoESessionID%
 
 
@@ -3419,14 +3434,19 @@ Return
       Sleep, 60
       Loop, 66
       {
-        If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr))
+        If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0))
         {
           Sleep, 30*Latency
           LeftClick(Sell.1.x,Sell.1.y)
           Sleep, 120*Latency
           Return True
         }
-        Sleep, 100
+        Else If !Mod(A_Index, 30)
+        {
+          If (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+            LeftClick(Vendor.1.x, Vendor.1.y)
+        }
+        Sleep, 200
       }
     }
     Return False
