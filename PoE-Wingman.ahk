@@ -2511,7 +2511,7 @@ Return
           ; This automation use the following Else If (OnStash && YesStash) to entry on Stash Routine
           If !SearchStash()
           {
-            Send {%hotkeyInventory%}
+            SendHotkey(hotkeyInventory)
             RunningToggle := False
             If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
               SetTimer, TGameTick, On
@@ -2520,7 +2520,7 @@ Return
         }
         Else
         {
-          Send {%hotkeyInventory%}
+          SendHotkey(hotkeyInventory)
           RunningToggle := False
           If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
             SetTimer, TGameTick, On
@@ -2802,7 +2802,7 @@ Return
       ; Search Stash and StashRoutine
       If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
       {
-        Send {%hotkeyCloseAllUI%}
+        SendHotkey(hotkeyCloseAllUI)
         RandomSleep(45,90)
         If OnHideout
           Town := "Hideout"
@@ -2978,7 +2978,7 @@ Return
       ; Search Stash and StashRoutine
       If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
       {
-        Send {%hotkeyCloseAllUI%}
+        SendHotkey(hotkeyCloseAllUI)
         RandomSleep(45,90)
         If OnHideout
           Town := "Hideout"
@@ -3113,7 +3113,7 @@ Return
     Object.RemoveAt(1)
 
     ; Close Stash panel
-    Send {%hotkeyCloseAllUI%}
+    SendHotkey(hotkeyCloseAllUI)
     GuiStatus()
     ; Search for Vendor
     If SearchVendor()
@@ -3351,7 +3351,7 @@ Return
       }
       If (YesEnableSeedAutomation&&HarvestCount)
       {
-      Send {%hotkeyCloseAllUI%}
+      SendHotkey(hotkeyCloseAllUI)
       RandomSleep(45,90)
       GuiStatus()
       If (SearchStockPile()){
@@ -3369,7 +3369,7 @@ Return
       ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
       If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
       {
-        Send {%hotkeyCloseAllUI%}
+        SendHotkey(hotkeyCloseAllUI)
         RandomSleep(45,90)
         GuiStatus()
         If SearchVendor()
@@ -3914,12 +3914,9 @@ Return
       {
         If (OnDetonate)
         {
-          If GameActive
-            send, % "{" hotkeyDetonateMines "}"
-          Else
-            controlsend, , % "{" hotkeyDetonateMines "}", %GameStr%
+          SendHotkey(hotkeyDetonateMines)
           If CastOnDetonate
-            Send, % "{" hotkeyCastOnDetonate "}"
+            SendHotkey(hotkeyCastOnDetonate)
           Detonated:=1
           Settimer, TDetonated, -%DetonateMinesDelay%
         }
@@ -4765,10 +4762,7 @@ Return
       if (FLVal > 0) {
         if (OnCooldown[FL]=0) {
           key := keyFlask%FL%
-          If GameActive
-            send, %key%
-          Else
-            controlsend, , %key%, %GameStr%
+          SendHotkey(key)
           ; SendMSG(3, FL)
           OnCooldown[FL]:=1 
           Cooldown:=CooldownFlask%FL%
@@ -4795,10 +4789,7 @@ Return
     {
       FL:=FlaskList.RemoveAt(1)
       key := keyFlask%FL%
-      If GameActive
-        send, %key%
-      Else
-        controlsend, , %key%, %GameStr%
+      SendHotkey(key)
       OnCooldown[FL] := 1 
       Cooldown:=CooldownFlask%FL%
       settimer, TimerFlask%FL%, %Cooldown%
@@ -4862,10 +4853,7 @@ Return
         If (!QFL)
           Return
         key := keyFlask%QFL%
-        If GameActive
-          send, %key%
-        Else
-          controlsend, , %key%, %GameStr%
+        SendHotkey(key)
         settimer, TimerFlask%QFL%, % CooldownFlask%QFL%
         OnCooldown[QFL] := 1
         ; LastHeldLB := LastHeldMA := LastHeldSA := 0
@@ -4885,10 +4873,7 @@ Return
       Return
     If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility% || TriggerUtilityKey = Utility){
       key:=KeyUtility%Utility%
-      If GameActive
-        send, %key%
-      Else
-        controlsend, , %key%, %GameStr%
+      SendHotkey(key)
       ; SendMSG(4, Utility)
       OnCooldownUtility%Utility%:=1
       Cooldown:=CooldownUtility%Utility%
@@ -5113,14 +5098,14 @@ Return
       If (GrabCurrencyPosX && GrabCurrencyPosY)
       {
         If !GuiStatus("OnInventory")
-        {      
-          Send {%hotkeyInventory%} 
+        {
+          SendHotkey(hotkeyInventory)
           RandomSleep(45,45)
         }
         RandomSleep(45,45)
         RightClick(GrabCurrencyPosX, GrabCurrencyPosY)
         RandomSleep(45,45)
-        Send {%hotkeyInventory%} 
+        SendHotkey(hotkeyInventory)
         MouseMove, xx, yy, 0
         BlockInput, MouseMoveOff
       }
@@ -5181,7 +5166,7 @@ Return
           ; Open Inventory if is closed
           If (!OnInventory && OnStash)
           {
-            Send {%hotkeyInventory%}
+            SendHotkey(hotkeyInventory)
             RandomSleep(45,45)
             GuiStatus()
             RandomSleep(45,45)
@@ -5488,8 +5473,8 @@ Return
       RandomSleep(45,45)
 
       If !GuiStatus("OnInventory")
-      {      
-        Send {%hotkeyInventory%} 
+      {
+        SendHotkey(hotkeyInventory)
         RandomSleep(45,45)
       }
       ;First Gem or Item Swap
@@ -5506,14 +5491,14 @@ Return
         RandomSleep(45,45)
         If (AlternateGemOnSecondarySlot && !GemItemToogle)
         {
-          Send {%hotkeyWeaponSwapKey%}
+          SendHotkey(hotkeyWeaponSwapKey)
           RandomSleep(45,45)
         }
         LeftClick(AlternateGemX, AlternateGemY)
         RandomSleep(90,120)
         If (AlternateGemOnSecondarySlot && !GemItemToogle)
         {
-          Send {%hotkeyWeaponSwapKey%}
+          SendHotkey(hotkeyWeaponSwapKey)
           RandomSleep(45,45)
         }
         LeftClick(CurrentGemX, CurrentGemY)
@@ -5533,20 +5518,20 @@ Return
         RandomSleep(45,45)
         If (AlternateGem2OnSecondarySlot && !GemItemToogle2)
         {
-          Send {%hotkeyWeaponSwapKey%}
+          SendHotkey(hotkeyWeaponSwapKey)
           RandomSleep(45,45)
         }
         LeftClick(AlternateGem2X, AlternateGem2Y)
         RandomSleep(90,120)
         If (AlternateGem2OnSecondarySlot && !GemItemToogle2)
         {
-          Send {%hotkeyWeaponSwapKey%}
+          SendHotkey(hotkeyWeaponSwapKey)
           RandomSleep(45,45)
         }
         LeftClick(CurrentGem2X, CurrentGem2Y)
         RandomSleep(90,120)
       }
-      Send {%hotkeyInventory%} 
+      SendHotkey(hotkeyInventory)
       MouseMove, xx, yy, 0
       BlockInput, MouseMoveOff
     return
@@ -5571,12 +5556,12 @@ Return
       
       If !(OnInventory)
       {
-        Send {%hotkeyInventory%}
+        SendHotkey(hotkeyInventory)
         RandomSleep(56,68)
       }
       RightClick(PortalScrollX, PortalScrollY)
 
-      Send {%hotkeyInventory%}
+      SendHotkey(hotkeyInventory)
       If YesClickPortal || ChickenFlag
       {
         Sleep, 75*Latency
@@ -5603,9 +5588,9 @@ Return
         If PopFlasks1
         {
           If YesPopAllExtraKeys 
-            Send %keyFlask1% 
+            SendHotkey(keyFlask1)
           Else
-            Send %KeyFlask1Proper%
+            SendHotkey(KeyFlask1Proper)
           OnCooldown[1]:=1 
           ; SendMSG(3, 1)
           Cooldown:=CooldownFlask1
@@ -5615,9 +5600,9 @@ Return
         If PopFlasks2
         {
           If YesPopAllExtraKeys 
-            Send %keyFlask2% 
+            SendHotkey(keyFlask2) 
           Else
-            Send %KeyFlask2Proper%
+            SendHotkey(KeyFlask2Proper)
           OnCooldown[2]:=1 
           ; SendMSG(3, 2)
           Cooldown:=CooldownFlask2
@@ -5627,9 +5612,9 @@ Return
         If PopFlasks3
         {
           If YesPopAllExtraKeys 
-            Send %keyFlask3% 
+            SendHotkey(keyFlask3) 
           Else
-            Send %KeyFlask3Proper%
+            SendHotkey(KeyFlask3Proper)
           OnCooldown[3]:=1 
           ; SendMSG(3, 3)
           Cooldown:=CooldownFlask3
@@ -5639,9 +5624,9 @@ Return
         If PopFlasks4
         {
           If YesPopAllExtraKeys 
-            Send %keyFlask4% 
+            SendHotkey(keyFlask4) 
           Else
-            Send %KeyFlask4Proper%
+            SendHotkey(KeyFlask4Proper)
           OnCooldown[4]:=1 
           Cooldown:=CooldownFlask4
           ; SendMSG(3, 4)
@@ -5651,9 +5636,9 @@ Return
         If PopFlasks5
         {
           If YesPopAllExtraKeys 
-            Send %keyFlask5% 
+            SendHotkey(keyFlask5) 
           Else
-            Send %KeyFlask5Proper%
+            SendHotkey(KeyFlask5Proper)
           OnCooldown[5]:=1 
           ; SendMSG(3, 5)
           Cooldown:=CooldownFlask5
@@ -6082,8 +6067,7 @@ Return
         ++JoyRHoldCount
         If (!MainAttackPressedActive && JoyRHoldCount > 2 && YesTriggerJoystickRightKey)
         {
-          Obj := SplitModsFromKey(hotkeyControllerJoystickRight)
-          Send, % Obj.Mods "{" Obj.Key " down}"
+          SendHotkey(hotkeyControllerJoystickRight,"down")
           MainAttackPressedActive := True
         }
       }
@@ -6091,8 +6075,7 @@ Return
       {
         If (MainAttackPressedActive && YesTriggerJoystickRightKey)
         {
-          Obj := SplitModsFromKey(hotkeyControllerJoystickRight)
-          Send, % Obj.Mods "{" Obj.Key " up}"
+          SendHotkey(hotkeyControllerJoystickRight,"up")
           MainAttackPressedActive := False
         }
         JoyRHoldCount := 0
@@ -6110,8 +6093,7 @@ Return
           {
             If (hotkeyControllerButton%Key% = hotkeyLootScan && LootVacuum)
             {
-              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
-              Send, % Obj.Mods "{" Obj.Key " down}"
+              SendHotkey(hotkeyControllerButton%Key%,"down")
               LootVacuumActive := True
               State%Key% := 1
             }
@@ -6142,22 +6124,19 @@ Return
             }
             Else If (hotkeyControllerButton%Key% = hotkeyMainAttack)
             {
-              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
-              Send, % Obj.Mods "{" Obj.Key " down}"
+              SendHotkey(hotkeyControllerButton%Key%,"down")
               State%Key% := 1
               MainAttackPressedActive := True
             }
             Else If (hotkeyControllerButton%Key% = hotkeySecondaryAttack)
             {
-              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
-              Send, % Obj.Mods "{" Obj.Key " down}"
+              SendHotkey(hotkeyControllerButton%Key%,"down")
               State%Key% := 1
               SecondaryAttackPressedActive := True
             }
             Else
             {
-              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
-              Send, % Obj.Mods "{" Obj.Key " down}"
+              SendHotkey(hotkeyControllerButton%Key%,"down")
               State%Key% := 1
             }
           }
@@ -6165,8 +6144,7 @@ Return
           {
             If (hotkeyControllerButton%Key% = hotkeyLootScan && LootVacuum)
             {
-              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
-              Send, % Obj.Mods "{" Obj.Key " up}"
+              SendHotkey(hotkeyControllerButton%Key%,"up")
               LootVacuumActive := False
               State%Key% := 0
             }
@@ -6182,22 +6160,19 @@ Return
               State%Key% := 0
             Else If (hotkeyControllerButton%Key% = hotkeyMainAttack)
             {
-              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
-              Send, % Obj.Mods "{" Obj.Key " up}"
+              SendHotkey(hotkeyControllerButton%Key%,"up")
               State%Key% := 0
               MainAttackPressedActive := 0
             }
             Else If (hotkeyControllerButton%Key% = hotkeySecondaryAttack)
             {
-              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
-              Send, % Obj.Mods "{" Obj.Key " up}"
+              SendHotkey(hotkeyControllerButton%Key%,"up")
               State%Key% := 0
               SecondaryAttackPressedActive := 0
             }
             Else
             {
-              Obj := SplitModsFromKey(hotkeyControllerButton%Key%)
-              Send, % Obj.Mods "{" Obj.Key " up}"
+              SendHotkey(hotkeyControllerButton%Key%,"up")
               State%Key% := 0
             }
           }
@@ -6281,6 +6256,13 @@ Return
       }
     }
     Return {"Mods":Mods, "Key":String }
+  }
+  SendHotkey(keyStr:="",hold:=0){
+    Obj := SplitModsFromKey(keyStr)
+    If GameActive
+      Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
+    Else
+      controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 ; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages (MISC BACKEND)

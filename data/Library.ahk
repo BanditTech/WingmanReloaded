@@ -6932,9 +6932,9 @@
       {
         If GetKeyState(StackRelease_Keybind,"P")
         {
-          Send {%StackRelease_Keybind% up}
+          SendHotkey(StackRelease_Keybind,"up")
           Sleep, 10
-          Send {%StackRelease_Keybind% down}
+          SendHotkey(StackRelease_Keybind,"down")
         }
       }
     }
