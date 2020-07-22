@@ -2792,7 +2792,7 @@ Return
             Controller()
           Sleep, 100
           GuiStatus()
-          If !OnVendor
+          If !OnVendor && !FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr )
           {
             ContinueFlag := True
             break
@@ -3113,7 +3113,7 @@ Return
     Object.RemoveAt(1)
 
     ; Close Stash panel
-    Send % hotkeyCloseAllUI
+    Send {%hotkeyCloseAllUI%}
     GuiStatus()
     ; Search for Vendor
     If SearchVendor()
@@ -3869,9 +3869,10 @@ Return
             SB_SetText(Msg, 1)
           If (YesFillMetamorph) 
           {
-            If (OnMetamorph && Metamorph_Filled)
+            If (Metamorph_Filled && (OnMetamorph || FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr )))
               OnScreenMM := A_TickCount
-            Else If (OnMetamorph && !Metamorph_Filled)
+            Else If (OnMetamorph && !Metamorph_Filled 
+            && FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr ) )
             {
               Metamorph_Filled := True
               Metamorph_FillOrgans()
@@ -3904,7 +3905,7 @@ Return
         }
         Else If CheckTime("seconds",1,"StatusBar1")
           SB_SetText("WingmanReloaded Active", 1)
-        If (!OnMetamorph && Metamorph_Filled && ((A_TickCount - OnScreenMM) >= 5000))
+        If (!OnMetamorph && Metamorph_Filled && ((A_TickCount - OnScreenMM) >= 5000) && !FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr ))
           Metamorph_Filled := False
         If CheckGamestates
           DebugGamestates("CheckGamestates")
