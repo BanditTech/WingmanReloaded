@@ -6653,6 +6653,30 @@
     Gui,6:Hide
     return
   }
+  IsModifier(Character) {
+    static Modifiers := {"!": 1, "#": 1, "~": 1, "^": 1, "*": 1, "+": 1}
+    return Modifiers.HasKey(Character)
+  }
+  SplitModsFromKey(key){
+    Mods := String := ""
+    for k, Letter in StrSplit(key) {
+      if (IsModifier(Letter)) {
+        Mods .= Letter
+      }
+      else {
+        String .= Letter
+      }
+    }
+    Return {"Mods":Mods, "Key":String }
+  }
+  SendHotkey(keyStr:="",hold:=0){
+    Obj := SplitModsFromKey(keyStr)
+    If GameActive
+      Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
+    Else
+      controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
+  }
+
   ; UpdateLeagues - Grab the League info from GGG API
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   UpdateLeagues:

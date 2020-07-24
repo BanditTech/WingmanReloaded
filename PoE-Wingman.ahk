@@ -6255,29 +6255,6 @@ Return
     Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,2)
     Return Percentage 
   }
-  IsModifier(Character) {
-    static Modifiers := {"!": 1, "#": 1, "~": 1, "^": 1, "*": 1, "+": 1}
-    return Modifiers.HasKey(Character)
-  }
-  SplitModsFromKey(key){
-    Mods := String := ""
-    for k, Letter in StrSplit(key) {
-      if (IsModifier(Letter)) {
-        Mods .= Letter
-      }
-      else {
-        String .= Letter
-      }
-    }
-    Return {"Mods":Mods, "Key":String }
-  }
-  SendHotkey(keyStr:="",hold:=0){
-    Obj := SplitModsFromKey(keyStr)
-    If GameActive
-      Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
-    Else
-      controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
-  }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 ; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages (MISC BACKEND)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
