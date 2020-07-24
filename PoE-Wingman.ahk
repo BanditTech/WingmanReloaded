@@ -1089,6 +1089,9 @@
     Global SecondaryPressed := 0
   ; Ingame Overlay Transparency
     Global YesInGameOverlay := 0
+    Global overlayT1
+    Global overlayT2
+    Global overlayT3
 
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1341,8 +1344,6 @@
   SB_SetText("Logic Status", 1)
   SB_SetText("Location Status", 2)
   SB_SetText("Percentage not updated", 3)
-
-  iniGeneral := Func("updateINI").Bind("General")
 
   Gui Add, Tab2, vMainGuiTabs x3 y3 w655 h505 -wrap , Flasks|Utility|Configuration|Hotkeys
   ;#######################################################################################################Flasks and Utility Tab
@@ -2432,12 +2433,11 @@
   Gui 2:+LastFound +AlwaysOnTop +ToolWindow -Caption +E0x20
   WinSet, TransColor, 0X130F13
   Gui 2:Font, bold cFFFFFF S9, Trebuchet MS
-  If YesInGameOverlay
-  {
-    Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
-    Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
-    Gui 2:Add, Text, y+0.5 BackgroundTrans vT3, Quicksilver: OFF
-  }
+    Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT1, Quit: OFF
+    Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT2, Flasks: OFF
+    Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT3, Quicksilver: OFF
+
+    ShowHideOverlay()
 
   IfWinExist, ahk_group POEGameGroup
   {
@@ -4746,9 +4746,10 @@ Return
         AutoQuickToggle:="ON" 
       } else AutoQuickToggle:="OFF" 
 
-      GuiControl, 2:, T1, Quit: %AutoQuitToggle%
-      GuiControl, 2:, T2, Flasks: %AutoFlaskToggle%
-      GuiControl, 2:, T3, Quicksilver: %AutoQuickToggle%
+      GuiControl, 2:, overlayT1, Quit: %AutoQuitToggle%
+      GuiControl, 2:, overlayT2, Flasks: %AutoFlaskToggle%
+      GuiControl, 2:, overlayT3, Quicksilver: %AutoQuickToggle%
+      ShowHideOverlay()
       Return
     }
 
@@ -5822,6 +5823,7 @@ Return
       If ((!ToggleExist || newDim) && GameActive) 
       {
         Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
+        ShowHideOverlay()
         ToggleExist := True
         NoGame := False
         If (YesPersistantToggle)
@@ -5855,6 +5857,22 @@ Return
       {
         checkUpdate()
       }
+    }
+    Return
+  }
+  ShowHideOverlay(){
+    Global overlayT1, overlayT2, overlayT3
+    If YesInGameOverlay
+    {
+      GuiControl,2: Show, overlayT1
+      GuiControl,2: Show, overlayT2
+      GuiControl,2: Show, overlayT3
+    }
+    Else
+    {
+      GuiControl,2: Hide, overlayT1
+      GuiControl,2: Hide, overlayT2
+      GuiControl,2: Hide, overlayT3
     }
     Return
   }

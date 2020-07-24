@@ -8,6 +8,7 @@ GUI improvements
 * League Selection has been moved to the main configuration tab
 * Size of the GUI has been increased to fit the growing number of controls
 * Allow to disable the In-Game Overlay
+* Loot Vacuum Settings has been moved into the Additional Settings section
 
 Bugfixes
 * When automation has miss-clicked on vendor or stash nameplate, it will attempt up to 3 tries while it waits
