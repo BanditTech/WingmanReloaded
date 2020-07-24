@@ -1089,9 +1089,6 @@
     Global SecondaryPressed := 0
   ; Ingame Overlay Transparency
     Global YesInGameOverlay := 0
-    Global overlayT1
-    Global overlayT2
-    Global overlayT3
 
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2437,15 +2434,12 @@
     Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT2, Flasks: OFF
     Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT3, Quicksilver: OFF
 
-    ShowHideOverlay()
-
   IfWinExist, ahk_group POEGameGroup
   {
     Rescale()
     Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
+    GuiUpdate()
     ToggleExist := True
-    If (YesPersistantToggle)
-      AutoReset()
     If (ShowOnStart)
       Hotkeys()
   }
@@ -4638,7 +4632,7 @@ Return
       ; SendMSG(3, 5)
     }
   Return
-; Toggle Main Script Timers - AutoQuit, AutoFlask, AutoReset, GuiUpdate
+; Toggle Main Script Timers - AutoQuit, AutoFlask, GuiUpdate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; AutoQuit - Toggle Auto-Quit
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4721,37 +4715,16 @@ Return
       keyheld := 0
     return
   }
-  ; AutoReset - Load Previous Toggle States
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  AutoReset(){
-    IniRead, AutoQuit, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit, 0
-    IniRead, AutoFlask, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoFlask, 0
-    IniRead, AutoQuick, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick, 0
-    GuiUpdate()  
-    return
-    }
 
   ; GuiUpdate - Update Overlay ON OFF states
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiUpdate(){
-      if (AutoFlask) {
-        AutoFlaskToggle:="ON" 
-      } else AutoFlaskToggle:="OFF" 
-      
-      if (AutoQuit) {
-        AutoQuitToggle:="ON" 
-      }else AutoQuitToggle:="OFF" 
-
-      if (AutoQuick) {
-        AutoQuickToggle:="ON" 
-      } else AutoQuickToggle:="OFF" 
-
-      GuiControl, 2:, overlayT1, Quit: %AutoQuitToggle%
-      GuiControl, 2:, overlayT2, Flasks: %AutoFlaskToggle%
-      GuiControl, 2:, overlayT3, Quicksilver: %AutoQuickToggle%
-      ShowHideOverlay()
-      Return
-    }
+    GuiControl, 2:, overlayT1,% "Quit: " (AutoQuit?"ON":"OFF")
+    GuiControl, 2:, overlayT2,% "Flasks: " (AutoFlask?"ON":"OFF")
+    GuiControl, 2:, overlayT3,% "Quicksilver: " (AutoQuick?"ON":"OFF")
+    ShowHideOverlay()
+    Return
+  }
 
 ; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, TriggerFlask, TriggerMana, TriggerUtility
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5823,11 +5796,9 @@ Return
       If ((!ToggleExist || newDim) && GameActive) 
       {
         Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
-        ShowHideOverlay()
+        GuiUpdate()
         ToggleExist := True
         NoGame := False
-        If (YesPersistantToggle)
-          AutoReset()
       }
       Else If (ToggleExist && !GameActive)
       {
@@ -5862,18 +5833,9 @@ Return
   }
   ShowHideOverlay(){
     Global overlayT1, overlayT2, overlayT3
-    If YesInGameOverlay
-    {
-      GuiControl,2: Show, overlayT1
-      GuiControl,2: Show, overlayT2
-      GuiControl,2: Show, overlayT3
-    }
-    Else
-    {
-      GuiControl,2: Hide, overlayT1
-      GuiControl,2: Hide, overlayT2
-      GuiControl,2: Hide, overlayT3
-    }
+    GuiControl,2: Show%YesInGameOverlay%, overlayT1
+    GuiControl,2: Show%YesInGameOverlay%, overlayT2
+    GuiControl,2: Show%YesInGameOverlay%, overlayT3
     Return
   }
 ; DBUpdateCheck - Check if the database should be updated 
@@ -7186,6 +7148,13 @@ Return
       IniRead, ForceMatch6Link, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link, 0
       IniRead, ForceMatchGem20, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20, 0
 
+      If (YesPersistantToggle)
+      {
+        IniRead, AutoQuit, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit, 0
+        IniRead, AutoFlask, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoFlask, 0
+        IniRead, AutoQuick, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick, 0
+      }
+
       UnRegisterHotkeys()
       RegisterHotkeys()
       checkActiveType()
@@ -7818,8 +7787,6 @@ Return
       IniWrite, %scraftingBasesT4%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT4
 
       readFromFile()
-      If (YesPersistantToggle)
-        AutoReset()
       GuiUpdate()
       IfWinExist, ahk_group POEGameGroup
         {
@@ -10669,8 +10636,6 @@ Return
       IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
       IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate
       IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate
-      If (YesPersistantToggle)
-        AutoReset()
       #MaxThreadsPerHotkey, 1
       If hotkeyPauseMines
         hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, On
