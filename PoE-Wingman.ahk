@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .12.00
+  Global VersionNumber := .12.0001
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -1087,7 +1087,8 @@
     Global LButtonPressed := 0
     Global MainPressed := 0
     Global SecondaryPressed := 0
-
+  ; Ingame Overlay Transparency
+    Global YesInGameOverlay := 0
 
 ; ReadFromFile()
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1341,7 +1342,9 @@
   SB_SetText("Location Status", 2)
   SB_SetText("Percentage not updated", 3)
 
-  Gui Add, Tab2, vMainGuiTabs x3 y3 w625 h505 -wrap , Flasks|Utility|Configuration
+  iniGeneral := Func("updateINI").Bind("General")
+
+  Gui Add, Tab2, vMainGuiTabs x3 y3 w655 h505 -wrap , Flasks|Utility|Configuration|Hotkeys
   ;#######################################################################################################Flasks and Utility Tab
   Gui, Tab, Flasks
     Gui, Font,
@@ -1635,7 +1638,7 @@
 
   Gui, Tab, Utility
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,             w605 h311    section    xm+5   y+15,         Utility Management:
+    Gui Add, GroupBox,             w625 h311    section    xm+5   y+15,         Utility Management:
     Gui, Font,
 
     Gui Add, Checkbox, gUpdateUtility  vYesUtility1 +BackgroundTrans Checked%YesUtility1%  Right  ys+45 xs+7  , 1
@@ -1916,22 +1919,12 @@
     Gui Add, Text,           Section          xs   y+10,         Interface Options:
     Gui, Font, 
 
-    Gui Add, Checkbox, gUpdateExtra  vYesOHB Checked%YesOHB%                           , Pause script when OHB missing?
+    Gui Add, Checkbox, gUpdateExtra  vYesOHB Checked%YesOHB%                                , Pause script when OHB missing?
     Gui Add, Checkbox, gUpdateExtra  vYesGlobeScan Checked%YesGlobeScan%                    , Use Globe Scanner?
-    Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                       , Show GUI on startup?
-    Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%             , Persistant Auto-Toggles?
-    Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%                   , Turn off Auto-Update?
-    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90                         , master|Alpha
-    GuiControl, ChooseString, BranchName, %BranchName%
-    Gui, Add, Text,       x+8 yp+3                                   , Update Branch
-    Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs  w90                  , Off|days|hours|minutes
-    GuiControl, ChooseString, ScriptUpdateTimeType, %ScriptUpdateTimeType%
-    Gui Add, Edit, gUpdateExtra  vScriptUpdateTimeInterval  x+5   w40                     , %ScriptUpdateTimeInterval%
-    Gui, Add, Text,       x+8 yp+3                                   , Auto-check Update
-    Gui Add, DropDownList, gUpdateResolutionScale  vResolutionScale     w90   xs              , Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide|WXGA(16:10)
-    GuiControl, ChooseString, ResolutionScale, %ResolutionScale%
-    Gui, Add, Text,       x+8 y+-18                                   , Aspect Ratio
-    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10,  1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+    Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                      , Show GUI on startup?
+    Gui Add, CheckBox, giniGeneral vYesInGameOverlay Checked%YesInGameOverlay%                    , Show In-Game Overlay?
+    Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%      xs        , Persistant Auto-Toggles?
+    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10                                       ,  1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
     GuiControl, ChooseString, Latency, %Latency%
     Gui, Add, Text,                     x+5 yp+3 hp-3              , Latency
     Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
@@ -1940,18 +1933,77 @@
     Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
     GuiControl, ChooseString, ClipLatency, %ClipLatency%
     Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip
-    Gui, Add, Edit,       vClientLog         xs y+10  w144  h21,   %ClientLog%
-    Gui, add, Button, gSelectClientLog x+5 , Locate Logfile
+
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, Text,           Section          xs   y+15,         Additional Settings:
+    Gui Add, Text,           Section          x295   ym+20,         Additional Settings:
     Gui, Font, s8
     Gui, add, button, gWR_Update vWR_Btn_Inventory   xs y+10 w110, Inventory
-    Gui, add, button, gWR_Update vWR_Btn_Strings   x+10 yp w110, Strings
-    Gui, add, button, gWR_Update vWR_Btn_Chat     xs y+10 w110, Chat
-    Gui, add, button, gWR_Update vWR_Btn_Controller x+10 yp w110, Controller
-    Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, Custom Loot Filter
+    Gui, add, button, gWR_Update vWR_Btn_Strings     x+10 yp w110, Strings
+    Gui, add, button, gWR_Update vWR_Btn_Chat        x+10 yp w110, Chat
+    Gui, add, button, gWR_Update vWR_Btn_Controller  xs y+10 w110, Controller
+    Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  x+10 yp w110, Custom Loot Filter
+    Gui, add, Button, gLootColorsMenu  vLootVacuumSettings x+10 yp w110, Loot Vacuum
+
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Font
     ;Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
 
+    Gui,Font, Bold s9 cBlack, Arial
+    Gui,Add,GroupBox,Section xs y+10  w350 h90              ,Update Control
+    Gui,Font,Norm
+
+    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 yp+15           , master|Alpha
+    GuiControl, ChooseString, BranchName                                                  , %BranchName%
+    Gui, Add, Text,       x+8 yp+3                                                        , Update Branch
+    Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs+5 y+10  w90                  , Off|days|hours|minutes
+    GuiControl, ChooseString, ScriptUpdateTimeType                                        , %ScriptUpdateTimeType%
+    Gui Add, Edit, gUpdateExtra  vScriptUpdateTimeInterval  x+5   w40                     , %ScriptUpdateTimeInterval%
+    Gui, Add, Text,       x+8 yp+3                                   , Auto-check Update
+    Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%     xs+5 y+10              , Turn off Auto-Update?
+
+    Gui,Font, Bold s9 cBlack, Arial
+    Gui,Add,GroupBox,Section xs y+10  w350 h140                                                     , Game Setup
+    Gui, Add, Text,          xs+5 yp+20                                                             , Aspect Ratio:
+    Gui,Font,Norm
+
+    Gui Add, DropDownList, gUpdateResolutionScale  vResolutionScale     w160   x+8 yp-3             , Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide|WXGA(16:10)
+    GuiControl, ChooseString, ResolutionScale                                                       , %ResolutionScale%
+
+    Gui,Font, Bold s9 cBlack, Arial
+    Gui, Add, Text,          xs+5 y+10                                                             , POE LogFile:
+    Gui,Font,Norm
+
+    Gui, Add, Edit,       vClientLog         x+5 yp-3  w170  h23                                   ,   %ClientLog%
+    Gui, add, Button, gSelectClientLog hp yp x+5                                                 , Locate
+
+    IfNotExist, %A_ScriptDir%\data\leagues.json
+    {
+      UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
+    }
+    FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+    LeagueIndex := JSON.Load(JSONtext)
+    textList= 
+    For K, V in LeagueIndex
+      textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, Text, xs+5 y+10, League:
+    Gui, Font,Norm
+    Gui, Add, DropDownList, vselectedLeague x+5 yp-3 w150, %textList%
+    GuiControl, ChooseString, selectedLeague, %selectedLeague%
+    Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 yp-1 , Refresh
+
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, Text, xs+5 y+10 , PoESessionID
+    Gui, Font,Norm
+    Gui, Add, Edit, password vPoESessionID  x+5 yp-3  w240, %PoESessionID%
+
+
+    ;Save Setting
+    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+    Gui, Add, Button,      gloadSaved     x+5           h23,   Load
+    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
+
+  Gui, Tab, Hotkeys
     Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,   Section                  x295   ym+25,         Keybinds:
     Gui, Font
@@ -1993,18 +2045,17 @@
     Gui Add, Text,                          y+10,         W-Swap
     Gui Add, Text,                          y+10,         Item Pickup
     Gui Add, Text,                          y+10,         Detonate Mines
+
     Gui,Add,Edit,          xs+140 ys+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyInventory      ,%hotkeyInventory%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyWeaponSwapKey    ,%hotkeyWeaponSwapKey%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyLootScan        ,%hotkeyLootScan%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyDetonateMines    ,%hotkeyDetonateMines%
-    Gui Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%                    y+8 ; Loot Vacuum?
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, Button, gLootColorsMenu  vLootVacuumSettings                  h19  x+0 yp-3, Loot Vacuum Settings
-    Gui, Font
+
+    Gui Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%                          y+8 , Enable Loot Vacuum?
     Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xs y+6 , Pop Flasks Respect CD?
     Gui Add, Checkbox, gUpdateExtra  vYesPopAllExtraKeys Checked%YesPopAllExtraKeys%                  y+8 , Pop Flasks Uses any extra keys?
-    Gui Add, Checkbox, gUpdateExtra  vYesClickPortal Checked%YesClickPortal%                  y+8 , Click portal after opening?
+    Gui Add, Checkbox, gUpdateExtra  vYesClickPortal Checked%YesClickPortal%                          y+8 , Click portal after opening?
     Gui Add, Checkbox,   vYesAutoSkillUp Checked%YesAutoSkillUp%    y+8        , Auto Skill Up?
     Gui Add, Checkbox,   vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%    x+5 yp      , Wait?
 
@@ -2017,26 +2068,6 @@
     Gui,Add,Text,          xs+15 ys+17          ,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
     Gui,Add,Text,              y+5          ,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
     Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
-
-    IfNotExist, %A_ScriptDir%\data\leagues.json
-    {
-      UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-    }
-    FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-    LeagueIndex := JSON.Load(JSONtext)
-    textList= 
-    For K, V in LeagueIndex
-      textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
-    Gui,Font, Bold s9 cBlack, Arial
-    Gui, Add, Text, x295 y380, League:
-    Gui,Font,Norm
-    Gui, Add, DropDownList, vselectedLeague x+5 yp-3 w150, %textList%
-    GuiControl, ChooseString, selectedLeague, %selectedLeague%
-    Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 yp-1 , Refresh
-
-    Gui, Add, Text, x295 y+5 , PoESessionID
-    Gui, Add, Edit, password vPoESessionID  xp y+5  w300 h23, %PoESessionID%
-
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -2400,10 +2431,13 @@
   Gui 2:Color, 0X130F13
   Gui 2:+LastFound +AlwaysOnTop +ToolWindow -Caption +E0x20
   WinSet, TransColor, 0X130F13
-  Gui 2:Font, bold cFFFFFF S10, Trebuchet MS
-  Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
-  Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
-  Gui 2:Add, Text, y+0.5 BackgroundTrans vT3, Quicksilver: OFF
+  Gui 2:Font, bold cFFFFFF S9, Trebuchet MS
+  If YesInGameOverlay
+  {
+    Gui 2:Add, Text, y+0.5 BackgroundTrans vT1, Quit: OFF
+    Gui 2:Add, Text, y+0.5 BackgroundTrans vT2, Flasks: OFF
+    Gui 2:Add, Text, y+0.5 BackgroundTrans vT3, Quicksilver: OFF
+  }
 
   IfWinExist, ahk_group POEGameGroup
   {
@@ -5768,7 +5802,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PoEWindowCheck()
   {
-    Global GamePID, NoGame, GameActive
+    Global GamePID, NoGame, GameActive, YesInGameOverlay
     If (GamePID := WinExist(GameStr))
     {
       GameActive := WinActive(GameStr)
@@ -5796,7 +5830,7 @@ Return
       Else If (ToggleExist && !GameActive)
       {
         ToggleExist := False
-        Gui 2: Show, Hide
+        Gui 2: Show, Hide, StatusOverlay
       }
     } 
     Else 
@@ -5812,7 +5846,7 @@ Return
       }
       If (ToggleExist)
       {
-        Gui 2: Show, Hide
+        Gui 2: Show, Hide, StatusOverlay
         ToggleExist := False
         RescaleRan := False
         NoGame := True
@@ -6350,6 +6384,7 @@ Return
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
       IniRead, CastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate, 0
       IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate, q
+      IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
 
       ;Crafting Map Settings
       IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
@@ -7202,7 +7237,7 @@ Return
       {
         Gui, Submit
         Rescale()
-        Gui 2: Show, x%GuiX% y%GuiY%
+        Gui 2: Show, x%GuiX% y%GuiY%, StatusOverlay
         ToggleExist := True
         WinActivate, ahk_group POEGameGroup
         If (GuiStatus("OnChar") && !YesGlobeScan) {
@@ -10397,6 +10432,16 @@ Return
   }
 
   { ; Gui Update functions - updateCharacterType, UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility, FlaskCheck, UtilityCheck
+    updateINI(type:="General") {
+      Gui, Submit, NoHide
+      IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini,% type,% A_GuiControl
+      Return
+    }
+
+    iniGeneral:
+      updateINI("General")
+    Return
+
     updateCharacterType:
       Gui, Submit, NoHide
       if(RadioLife==1) {

@@ -1,3 +1,19 @@
+## Version .12.0001 - Alpha version - July/23/2020
+Sending hotkeys have been refactored
+* Consistency across all hotkey calls
+* No longer will some keys work or not work with modifiers
+* All keys are interpreted for their modifiers and key
+
+GUI improvements
+* League Selection has been moved to the main configuration tab
+* Size of the GUI has been increased to fit the growing number of controls
+* Allow to disable the In-Game Overlay
+
+Bugfixes
+* When automation has miss-clicked on vendor or stash nameplate, it will attempt up to 3 tries while it waits
+
+---
+
 ## Version .12.00 - Release version - July/20/2020
 Big shoutout to DanMarzola for helping rework the parsing system
 * As a reminder, we welcome anyone to join the Development team!
