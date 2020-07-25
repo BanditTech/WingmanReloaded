@@ -4041,7 +4041,7 @@
     Else 
       Return False
   }
-  CheckXButton()
+  CheckXButton(retObj:=0)
   {
     Global YesXButtonFound
     If GamePID
@@ -4050,7 +4050,10 @@
       {
         YesXButtonFound := True
         Ding(500,6,"XButton Detected")
-        Return True
+        If retObj
+          Return Butt
+        Else
+          Return True
       }
       Else
       {
