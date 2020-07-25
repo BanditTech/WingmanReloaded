@@ -1,3 +1,21 @@
+## Version .12.0002 - Alpha version - July/25/2020
+Controller improvements
+* Opening any panels will convert Right Joystick to Relational Movement
+* Holding a Trigger with Right Joystick toggles Relational Movement
+* Joystick percentages now round to the 4th digit for smoother Movement
+
+New failsafe detection with X Button sample
+* When at Vendors or Inventory it allows for tooltip to obscure sample position
+* It will automatically search for this if a panel was recently detected
+* Uses Global value YesXButtonFound
+* Augments GuiStatus to return false if found
+* Needs to be further implemented into the loops checking for vendor/stash
+
+Bugfixes
+* Library dependencies in the wrong location are fixed
+
+---
+
 ## Version .12.0001 - Alpha version - July/23/2020
 Sending hotkeys have been refactored
 * Consistency across all hotkey calls

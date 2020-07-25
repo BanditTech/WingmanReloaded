@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .12.0001
+  Global VersionNumber := .12.0002
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -5997,7 +5997,7 @@ Return
     Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 4, YAxisMultiplier := .6
     Static x_POVscale := 5, y_POVscale := 5, HeldCountPOV := 0
     Global MainAttackPressedActive, SecondaryAttackPressedActive, MovementHotkeyActive, LootVacuumActive
-    Global Controller, Controller_Active
+    Global Controller, Controller_Active, YesOHBFound
     If (inputType = "Main")
     {
       Controller("Refresh")
@@ -6048,14 +6048,19 @@ Return
         Else
           MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/120), % ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/120)
         ++JoyLHoldCount
-        If (!MovementHotkeyActive && JoyLHoldCount > 1 && GuiStatus("",0))
+        If (!MovementHotkeyActive
+        && JoyLHoldCount > 1
+        && GuiStatus("",0)
+        && ((YesOHB && YesOHBFound) || !YesOHB))
         {
           Click, Down
           MovementHotkeyActive := True
         }
         If (YesTriggerUtilityKey && MovementHotkeyActive
         && (Abs(Controller.LX) >= 60 || Abs(Controller.LY) >= 70 )
-        && JoyLHoldCount > 3 && GuiStatus("",0))
+        && JoyLHoldCount > 3
+        && GuiStatus("",0)
+        && ((YesOHB && YesOHBFound) || !YesOHB) )
         {
           TriggerUtility(TriggerUtilityKey)
         }
@@ -6077,9 +6082,15 @@ Return
       moveY := DeadZone(Controller.RY)
       If (moveX || moveY)
       {
-        MouseMove,% ScrCenter.X + Controller.RX * JoyMultiplier, % ScrCenter.Yadjusted - Controller.RY * JoyMultiplier
+        If (GuiStatus("",0) && ((YesOHB && YesOHBFound) || !YesOHB))
+        && !(Controller.LT || Controller.RT)
+          MouseMove,% ScrCenter.X + Controller.RX * (ScrCenter.X/100), % ScrCenter.Yadjusted - Controller.RY * (ScrCenter.Y/100)
+        Else
+          MouseMove, % Controller.RX, % -Controller.RY,0,R
         ++JoyRHoldCount
         If (!MainAttackPressedActive && JoyRHoldCount > 2 && YesTriggerJoystickRightKey)
+        && (GuiStatus("",0) && ((YesOHB && YesOHBFound) || !YesOHB))
+        && !(Controller.LT || Controller.RT)
         {
           SendHotkey(hotkeyControllerJoystickRight,"down")
           MainAttackPressedActive := True
@@ -6252,7 +6263,7 @@ Return
       Positive := True
     Else
       Positive := False
-    Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,2)
+    Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,4)
     Return Percentage 
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -

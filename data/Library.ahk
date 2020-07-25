@@ -3701,6 +3701,7 @@
   ; GuiStatus - Determine the gamestates by checking for specific pixel colors
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiStatus(Fetch:="",SS:=1){
+    Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnMetamorph, OnStockPile, OnDetonate
     If (SS)
       ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
     If (Fetch="OnDetonate")
@@ -3715,6 +3716,8 @@
       temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
       Return temp
     }
+    If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile)
+      CheckXButton(), xChecked := True
     POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
     POnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat), OnChat := (POnChat=varOnChat?True:False)
     POnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu), OnMenu := (POnMenu=varOnMenu?True:False)
@@ -3730,7 +3733,9 @@
     POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
     Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
-    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile))
+    If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile))
+      CheckXButton()
+    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile) && !YesXButtonFound)
   }
   ; PanelManager - This class manages every gamestate within one place
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4018,17 +4023,42 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CheckOHB()
   {
+    Global YesOHBFound
     If GamePID
     {
-      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
+      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 390)) , 0, 0, HealthBarStr,0))
+      {
+        YesOHBFound := True
         Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
+      }
       Else
       {
         Ding(500,6,"OHB Not Found")
+        YesOHBFound := False
         Return False
       }
     }
     Else 
+      Return False
+  }
+  CheckXButton()
+  {
+    Global YesXButtonFound
+    If GamePID
+    {
+      If (Butt := FindText( GameX, GameY, GameX + GameW, GameY + GameH * .3, 0, 0, XButtonStr, 0, 0 ) )
+      {
+        YesXButtonFound := True
+        Ding(500,6,"XButton Detected")
+        Return True
+      }
+      Else
+      {
+        YesXButtonFound := False
+        Return False
+      }
+    }
+    Else
       Return False
   }
   CheckOHBold()
