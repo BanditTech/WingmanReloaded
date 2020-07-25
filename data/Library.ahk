@@ -4046,7 +4046,7 @@
     Global YesXButtonFound
     If GamePID
     {
-      If (Butt := FindText( GameX, GameY, GameX + GameW, GameY + GameH * .3, 0, 0, XButtonStr, 0, 0 ) )
+      If (Butt := FindText( GameX, GameY, GameX + GameW, GameY + GameH * .3, .08, .15, XButtonStr, 0 ) )
       {
         YesXButtonFound := True
         Ding(500,6,"XButton Detected")
