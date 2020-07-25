@@ -14336,7 +14336,6 @@ IsLinear(arr, i=0) {
     global
     if _XInput_hm
       return
-    
     ;======== CONSTANTS DEFINED IN XINPUT.H ========
     
     ; NOTE: These are based on my outdated copy of the DirectX SDK.
@@ -14376,7 +14375,7 @@ IsLinear(arr, i=0) {
     XINPUT_FLAG_GAMEPAD       := 0x00000001
     
     ;=============== END CONSTANTS =================
-    
+    SetWorkingDir, % A_ScriptDir "\data"
     _XInput_hm := DllCall("LoadLibrary" ,"str",dll)
     
     if !_XInput_hm
