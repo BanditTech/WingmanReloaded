@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .12.0002
+  Global VersionNumber := .12.0003
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -2088,6 +2088,8 @@
     Menu, Tray, Add
     Menu, Tray, Add,         Show Gamestates, ShowDebugGamestates
     Menu, Tray, Add
+    Menu, Tray, add,         Print Object, PromptForObject
+    Menu, Tray, add
     Menu, Tray, Add,         Custom Loot Filter, LaunchLootFilter
     Menu, Tray, Add
     Menu, Tray, Add,         Open FindText interface, ft_Start
@@ -3098,7 +3100,7 @@ Return
       SendMSG(1,0,scriptTradeMacro)
       exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
     }
-    Global StashGrid, CurrentTab
+    Global InvGrid, CurrentTab
     CurrentTab := 0
     Static Object := {}
     If !Object.Count()
@@ -3133,8 +3135,8 @@ Return
       MoveStash(v.Prop.StashTab)
       Sleep, 15
       ; Ctrl+Click to inventory
-      CtrlClick(StashGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
-      , StashGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
+      CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
+      , InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
       Sleep, 30
     }
 
@@ -6053,7 +6055,7 @@ Return
         If (!MovementHotkeyActive
         && JoyLHoldCount > 1
         && GuiStatus("",0)
-        && ((YesOHB && YesOHBFound) || !YesOHB) )
+        && ((YesOHB && (YesOHBFound || OnTown)) || !YesOHB) )
         {
           Click, Down
           MovementHotkeyActive := True
@@ -6084,7 +6086,7 @@ Return
       moveY := DeadZone(Controller.RY)
       If (moveX || moveY)
       {
-        If (GuiStatus("",0) && ((YesOHB && YesOHBFound) || !YesOHB))
+        If (GuiStatus("",0) && ((YesOHB && (YesOHBFound || OnTown)) || !YesOHB))
         && !(Controller.LT || Controller.RT)
           MouseMove,% ScrCenter.X + Controller.RX * (ScrCenter.X/100), % ScrCenter.Yadjusted - Controller.RY * (ScrCenter.Y/100)
         Else
@@ -6278,30 +6280,49 @@ Return
       Positive := True
     Else
       Positive := False
-    Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,4)
+    Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,6)
     Return Percentage 
   }
   SnapToInventoryGrid(Direction:="Left"){
-    Global vX_StashTopL, vY_StashTopL, vX_StashBotR, vY_StashBotR
-      , vX_InvTopL, vY_InvTopL, vX_InvBotR, vY_InvBotR
+    Global InvGrid
     Outside := False
     m := UpdateMousePosition()
-    If InArea(m.X,m.Y,vX_StashTopL,vY_StashTopL,vX_StashBotR,vY_StashBotR)
+    If !(OnStash || OnInventory)
+      Return False
+    If InArea(m.X,m.Y,InvGrid.Corners.Stash.X1,InvGrid.Corners.Stash.Y1,InvGrid.Corners.Stash.X2,InvGrid.Corners.Stash.Y2) && OnStash
     {
       gridArea := "StashQuad"
     }
-    Else If InArea(m.X,m.Y,vX_InvTopL,vY_InvTopL,vX_InvBotR,vY_InvBotR)
+    Else If InArea(m.X,m.Y,InvGrid.Corners.VendorRec.X1,InvGrid.Corners.VendorRec.Y1,InvGrid.Corners.VendorRec.X2,InvGrid.Corners.VendorRec.Y2) && OnVendor
+    {
+      gridArea := "VendorRec"
+    }
+    Else If InArea(m.X,m.Y,InvGrid.Corners.VendorOff.X1,InvGrid.Corners.VendorOff.Y1,InvGrid.Corners.VendorOff.X2,InvGrid.Corners.VendorOff.Y2) && OnVendor
+    {
+      gridArea := "VendorOff"
+    }
+    Else If InArea(m.X,m.Y,InvGrid.Corners.Inventory.X1,InvGrid.Corners.Inventory.Y1,InvGrid.Corners.Inventory.X2,InvGrid.Corners.Inventory.Y2) && OnInventory
     {
       gridArea := "Inventory"
     }
     Else If InArea(m.X,m.Y,GameX,GameY,GameX+GameW/2,GameY+GameH) ; On Left
     {
-      gridArea := "StashQuad"
+      If OnStash
+        gridArea := "StashQuad"
+      Else If OnVendor
+        gridArea := "VendorOff"
+      Else If OnInventory
+        gridArea := "Inventory"
       Outside := True
     }
     Else If InArea(m.X,m.Y,GameX+GameW/2,GameY,GameX+GameW,GameY+GameH) ; On Right
     {
-      gridArea := "Inventory"
+      If OnInventory
+        gridArea := "Inventory"
+      Else If OnStash
+        gridArea := "StashQuad"
+      Else If OnVendor
+        gridArea := "VendorOff"
       Outside := True
     }
     gPos := GridPosition(m.X,m.Y,gridArea)
@@ -6315,30 +6336,45 @@ Return
     return
   }
   MoveToGridPosition(c,r,gridArea:="StashQuad",Direction:="None"){
-    Global StashGrid
+    Global InvGrid
+    If (gridArea = "VendorOff" && r = 1 && Direction = "Up")
+      gridArea := "VendorRec", r := 6
+    Else If ( (gridArea = "VendorOff" || gridArea = "VendorRec") && c = 12 && Direction = "Right")
+      gridArea := "Inventory", c := 0
+    Else If (gridArea = "VendorRec" && r = 5 && Direction = "Down")
+      gridArea := "VendorOff", r := 0
+    Else If (gridArea = "Inventory" && c = 1 && Direction = "Left")
+    {
+      If OnStash
+        gridArea := "StashQuad", c := 25
+      Else If OnVendor
+        gridArea := "VendorOff", c := 13
+    }
+    Else If (gridArea = "StashQuad" && c = 24 && Direction = "Right")
+      gridArea := "Inventory", c := 0, r := (r//5>0?r//5:1)
 
     If (Direction = "Left")
       c := (c-1>0?c-1:c)
     Else If (Direction = "Right")
-      c := (c+1<=StashGrid[gridArea].X.Count()?c+1:c)
+      c := (c+1<=InvGrid[gridArea].X.Count()?c+1:c)
     Else If (Direction = "Up")
       r := (r-1>0?r-1:r)
     Else If (Direction = "Down")
-      r := (r+1<=StashGrid[gridArea].Y.Count()?r+1:r)
+      r := (r+1<=InvGrid[gridArea].Y.Count()?r+1:r)
 
-    MouseMove,% StashGrid[gridArea].X[c],% StashGrid[gridArea].Y[r]
+    MouseMove,% InvGrid[gridArea].X[c],% InvGrid[gridArea].Y[r]
     Return
   }
   GridPosition(x,y,gridArea:="StashQuad"){
-    Global SlotSpacing, SlotRadius, StashGrid
-    sR := SlotSpacing + SlotRadius
-    sRQ := SlotSpacing + SlotRadius//2
+    Global InvGrid
+    sR := InvGrid.SlotSpacing + InvGrid.SlotRadius
+    sRQ := InvGrid.SlotSpacing + InvGrid.SlotRadius//2
     Partial := {}
     Best := {"Distance":-1,"C":1,"R":1}
 
-    For C, xVal in StashGrid[gridArea].X
+    For C, xVal in InvGrid[gridArea].X
     {
-      For R, yVal in StashGrid[gridArea].Y
+      For R, yVal in InvGrid[gridArea].Y
       {
         If (gridArea = "StashQuad")
         {

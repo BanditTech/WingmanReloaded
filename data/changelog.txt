@@ -1,7 +1,35 @@
-## Version .12.0002 - Alpha version - July/25/2020
-More Controller improvements
+## Version .12.0003 - Alpha version - July/26/2020
+Controller improvements
+* DPad now snaps to the inventory grids for w/e panels are open
+  * When pressed outside inventory or stash it finds the closest grid position
+  * When pressed inside a grid area, it will move one slot in the direction pressed
+  * Jump from Inventory to/from Stash by pressing towards the edge
+  * Supports Inventory, Stash (QuadGrid), and Vendor panels
+
+Expansion of the old StashGrid is now InvGrid
+* Expanded to contain the Inventory and Vendor grid
+* Given the corners it calculates each grid area
+* This made working with the controller much easier
+
+New Debug tool for reading object values
+* Right Click option for Print Object in the system tray
+* Input the name of the object to see it as a list of values
+
+Bugfix
 * Stabilize detection of OHB to allow for Syndicate menu in hideout
-* Placeholder function for Inventory Snap with D-Pad
+* OnStash and OnVendor sample position has been moved to prevent tooltips from obscuring it
+  * **Re-sample required for Both OnStash and OnVendor**
+
+Several New functions for Inventory Grid with controller
+* SnapToInventoryGrid
+* MoveToGridPosition
+* GridPosition
+* InArea
+* DistanceTo
+* UpdateMousePosition
+
+Incomplete
+* Grid positions for the inventory and vendor are only finished with Standard aspect ratio
 
 ---
 

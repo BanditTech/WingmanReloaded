@@ -4181,16 +4181,18 @@
   ; Rescale - Rescales values of the script to the user's resolution
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Rescale(){
-    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, StashGrid
-    , vX_StashTopL, vY_StashTopL, vX_StashBotR, vY_StashBotR
-    , vX_InvTopL, vY_InvTopL, vX_InvBotR, vY_InvBotR
-    , SlotSpacing, SlotRadius
+    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid
     If checkActiveType()
     {
       ; Build array framework
-      StashGrid:={"Stash":{"X":{},"Y":{}}
+      InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{}}
+              ,"SlotSpacing": 2
+              ,"SlotRadius": 25
+              ,"Stash":{"X":{},"Y":{}}
               ,"StashQuad":{"X":{},"Y":{}}
-              ,"Inventory":{"X":{},"Y":{}}}
+              ,"Inventory":{"X":{},"Y":{}}
+              ,"VendorRec":{"X":{},"Y":{}}
+              ,"VendorOff":{"X":{},"Y":{}}}
       If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
       {
         WR_Menu("JSON","Load","FillMetamorph")
@@ -4260,18 +4262,35 @@
           Base.Globe := Array_DeepClone(Globe)
         }
         ; Stash grid area
+        ; --------------------------------------------
+        ; ---Needs to be done with all aspect ratio---
+        ; --------------------------------------------
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(1920/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
-          vX_StashBotR:=GameX + Round(GameW/(1920/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
-  ;this needs to be done to all to convert        ; Do the same for Inventory
-          vX_InvTopL:=GameX + Round(GameW/(1920/1270)), vY_InvTopL:=GameY + Round(GameH/(1080/587))
-          vX_InvBotR:=GameX + Round(GameW/(1920/1904)), vY_InvBotR:=GameY + Round(GameH/(1080/851))
-          ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1080/2))
-        }
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1920/16))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1920/650))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          ; Do the same for Inventory
+          InvGrid.Corners.Inventory.X1:=GameX + Round(GameW/(1920/1270))
+          InvGrid.Corners.Inventory.Y1:=GameY + Round(GameH/(1080/587))
+          InvGrid.Corners.Inventory.X2:=GameX + Round(GameW/(1920/1904))
+          InvGrid.Corners.Inventory.Y2:=GameY + Round(GameH/(1080/851))
+          ; Area for Recieving Items
+          InvGrid.Corners.VendorRec.X1:=GameX + Round(GameW/(1920/310))
+          InvGrid.Corners.VendorRec.Y1:=GameY + Round(GameH/(1080/187))
+          InvGrid.Corners.VendorRec.X2:=GameX + Round(GameW/(1920/943))
+          InvGrid.Corners.VendorRec.Y2:=GameY + Round(GameH/(1080/451))
+          ; Area for Offering Items
+          InvGrid.Corners.VendorOff.X1:=GameX + Round(GameW/(1920/310))
+          InvGrid.Corners.VendorOff.Y1:=GameY + Round(GameH/(1080/518))
+          InvGrid.Corners.VendorOff.X2:=GameX + Round(GameW/(1920/943))
+          InvGrid.Corners.VendorOff.Y2:=GameY + Round(GameH/(1080/783))
 
+          ; Give pixels for lines between slots
+          InvGrid.SlotSpacing:=Round(GameH/(1080/2))
+        }
         ;Auto Vendor Settings 380,820
         Global VendorAcceptX:=GameX + Round(GameW/(1920/380))
         Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
@@ -4317,12 +4336,12 @@
         ;Status Check OnInventory
         global vX_OnInventory:=GameX + Round(GameW / (1920 / 1583))
         global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
-        ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (1920 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
-        ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (1920 / 618))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+        ;Status Check OnStash - Edited
+        global vX_OnStash:=GameX + Round(GameW / (1920 / 248))
+        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 896))
+        ;Status Check OnVendor - Edited
+        global vX_OnVendor:=GameX + Round(GameW / (1920 / 956))
+        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 840))
         ;Status Check OnDiv
         global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
         global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
@@ -4430,10 +4449,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(1440/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
-          vX_StashBotR:=GameX + Round(GameW/(1440/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1440/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1440/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1080/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
           ;380,820
@@ -4591,10 +4610,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(2560/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
-          vX_StashBotR:=GameX + Round(GameW/(2560/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(2560/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(2560/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1080/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
         ;380,820
@@ -4754,10 +4773,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(3440/22)), vY_StashTopL:=GameY + Round(GameH/(1440/215))
-          vX_StashBotR:=GameX + Round(GameW/(3440/864)), vY_StashBotR:=GameY + Round(GameH/(1440/1057))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3440/22)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1440/215))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3440/864)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1440/1057))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1440/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1440/2))
         }
         ;Auto Vendor Settings
         Global VendorAcceptX:=GameX + Round(GameW/(3440/945))
@@ -4916,10 +4935,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(3840/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
-          vX_StashBotR:=GameX + Round(GameW/(3840/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3840/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3840/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1080/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
         ;380,820
@@ -5089,10 +5108,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(1680/16)), vY_StashTopL:=GameY + Round(GameH/(1050/160))
-          vX_StashBotR:=GameX + Round(GameW/(1680/650)), vY_StashBotR:=GameY + Round(GameH/(1050/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1680/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1050/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1680/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1050/795))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1050/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1050/2))
         }
 
         ;Auto Vendor Settings
@@ -5240,73 +5259,128 @@
       Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) ,"Yadjusted" : GameY + GameH / 2 / compensation}
       RescaleRan := True
       Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
-
-      ; Calculate space for the Stash grid
-      totalX:=vX_StashBotR - vX_StashTopL, totalY:=vY_StashBotR - vY_StashTopL
-      ; Fill in array with grid locations for 12x12 stash
-      Cnum:=Rnum:=12
-      Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
-      , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
-      SlotRadius := (Cwidth//2 + Rwidth//2) // 2
-      Loop, %Cnum%
-      {
-        If (A_Index = 1) 
-        {
-          PointX:=vX_StashTopL+Cwidth//2
-          PointY:=vY_StashTopL+Rwidth//2
-        } Else {
-          PointX+=Cwidth+SlotSpacing
-          PointY+=Rwidth+SlotSpacing
-        }
-        StashGrid.Stash.X.Push(Round(PointX))
-        StashGrid.Stash.Y.Push(Round(PointY))
-      }
-      ; Fill in array with grid locations for 24x24 stash
-      Cnum:=Rnum:=24
-      Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
-      , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
-      Loop, %Cnum%
-      {
-        If (A_Index = 1) 
-        {
-          PointX:=vX_StashTopL+Cwidth//2
-          PointY:=vY_StashTopL+Rwidth//2
-        } Else {
-          PointX+=Cwidth+SlotSpacing
-          PointY+=Rwidth+SlotSpacing
-        }
-        StashGrid.StashQuad.X.Push(Round(PointX))
-        StashGrid.StashQuad.Y.Push(Round(PointY))
-      }
-      ; Calculate space for the Inventory grid
-      totalX:=vX_InvBotR - vX_InvTopL, totalY:=vY_InvBotR - vY_InvTopL
-      ; Fill in array with grid locations for 12x12 stash
-      Cnum:=12
-      Rnum:=5
-      Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
-      , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
-      Loop, %Cnum%
-      {
-        If (A_Index = 1) 
-        {
-          PointX:=vX_InvTopL+Cwidth//2
-        } Else {
-          PointX+=Cwidth+SlotSpacing
-        }
-        StashGrid.Inventory.X.Push(Round(PointX))
-      }
-      Loop, %Rnum%
-      {
-        If (A_Index = 1) 
-        {
-          PointY:=vY_InvTopL+Rwidth//2
-        } Else {
-          PointY+=Rwidth+SlotSpacing
-        }
-        StashGrid.Inventory.Y.Push(Round(PointY))
-      }
+      BuildGridsFromCorners()
     }
     return
+  }
+  BuildGridsFromCorners(){
+    Global InvGrid
+    ; Calculate space for the Stash grid
+    totalX:=InvGrid.Corners.Stash.X2 - InvGrid.Corners.Stash.X1
+    , totalY:=InvGrid.Corners.Stash.Y2 - InvGrid.Corners.Stash.Y1
+    ; Fill in array with grid locations for 12x12 stash
+    Cnum:=Rnum:=12
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    InvGrid.SlotRadius := (Cwidth//2 + Rwidth//2) // 2
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Stash.X1+Cwidth//2, PointY:=InvGrid.Corners.Stash.Y1+Rwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing, PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.Stash.X.Push(Round(PointX))
+      InvGrid.Stash.Y.Push(Round(PointY))
+    }
+    ; Fill in array with grid locations for 24x24 stash
+    Cnum:=Rnum:=24
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Stash.X1+Cwidth//2, PointY:=InvGrid.Corners.Stash.Y1+Rwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing, PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.StashQuad.X.Push(Round(PointX))
+      InvGrid.StashQuad.Y.Push(Round(PointY))
+    }
+    ; Calculate space for the Inventory grid
+    totalX:=InvGrid.Corners.Inventory.X2 - InvGrid.Corners.Inventory.X1
+    , totalY:=InvGrid.Corners.Inventory.Y2 - InvGrid.Corners.Inventory.Y1
+    ; Fill in array with grid locations for 12x5 Inventory
+    Cnum:=12
+    Rnum:=5
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Inventory.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.Inventory.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.Inventory.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.Inventory.Y.Push(Round(PointY))
+    }
+    ; Calculate space for the Vendor Receive grid
+    totalX:=InvGrid.Corners.VendorRec.X2 - InvGrid.Corners.VendorRec.X1
+    , totalY:=InvGrid.Corners.VendorRec.Y2 - InvGrid.Corners.VendorRec.Y1
+    ; Fill in array with grid locations for 12x5 Receive Area
+    Cnum:=12
+    Rnum:=5
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.VendorRec.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.VendorRec.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.VendorRec.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.VendorRec.Y.Push(Round(PointY))
+    }
+    ; Calculate space for the Vendor Offer grid
+    totalX:=InvGrid.Corners.VendorOff.X2 - InvGrid.Corners.VendorOff.X1
+    , totalY:=InvGrid.Corners.VendorOff.Y2 - InvGrid.Corners.VendorOff.Y1
+    ; Fill in array with grid locations for 12x5 Offer Area
+    Cnum:=12
+    Rnum:=5
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.VendorOff.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.VendorOff.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.VendorOff.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.VendorOff.Y.Push(Round(PointY))
+    }
+  }
+  PromptForObject(){
+    Global
+    Gui, ArrayPrint: New
+    Gui, ArrayPrint: Add, Edit, xm+20 ym+20 w200 h23 vSubmitObjectName
+    Gui, ArrayPrint: Add, Button, wp hp gPrintObj, Submit
+    Gui, ArrayPrint: Show
+    Return
+
+    PrintObj:
+      Gui, Submit, NoHide
+      Gui, ArrayPrint: Destroy
+      Array_Gui(%SubmitObjectName%)
+    Return
   }
   ; Compare two hex colors as their R G B elements, puts all the below together
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
