@@ -1,4 +1,11 @@
 ## Version .12.0002 - Alpha version - July/25/2020
+More Controller improvements
+* Stabilize detection of OHB to allow for Syndicate menu in hideout
+* Placeholder function for Inventory Snap with D-Pad
+
+---
+
+## Version .12.0002 - Alpha version - July/25/2020
 Controller improvements
 * Opening any panels will convert Right Joystick to Relational Movement
 * Holding a Trigger with Right Joystick toggles Relational Movement

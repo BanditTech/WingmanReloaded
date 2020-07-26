@@ -3735,7 +3735,7 @@
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
     If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile))
       CheckXButton()
-    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile) && !YesXButtonFound)
+    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile||YesXButtonFound))
   }
   ; PanelManager - This class manages every gamestate within one place
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4049,7 +4049,7 @@
       If (Butt := FindText( GameX, GameY, GameX + GameW, GameY + GameH * .3, .08, .15, XButtonStr, 0 ) )
       {
         YesXButtonFound := True
-        Ding(500,6,"XButton Detected")
+        Ding(500,7,"XButton Detected")
         If retObj
           Return Butt
         Else
@@ -4182,11 +4182,15 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Rescale(){
     Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, StashGrid
+    , vX_StashTopL, vY_StashTopL, vX_StashBotR, vY_StashBotR
+    , vX_InvTopL, vY_InvTopL, vX_InvBotR, vY_InvBotR
+    , SlotSpacing, SlotRadius
     If checkActiveType()
     {
       ; Build array framework
       StashGrid:={"Stash":{"X":{},"Y":{}}
-              ,"StashQuad":{"X":{},"Y":{}}}
+              ,"StashQuad":{"X":{},"Y":{}}
+              ,"Inventory":{"X":{},"Y":{}}}
       If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
       {
         WR_Menu("JSON","Load","FillMetamorph")
@@ -4261,6 +4265,9 @@
           ; Scale the stash area automatically based on aspect ratio
           vX_StashTopL:=GameX + Round(GameW/(1920/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
           vX_StashBotR:=GameX + Round(GameW/(1920/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+  ;this needs to be done to all to convert        ; Do the same for Inventory
+          vX_InvTopL:=GameX + Round(GameW/(1920/1270)), vY_InvTopL:=GameY + Round(GameH/(1080/587))
+          vX_InvBotR:=GameX + Round(GameW/(1920/1904)), vY_InvBotR:=GameY + Round(GameH/(1080/851))
           ; Give pixels for lines between slots
           SlotSpacing:=Round(GameH/(1080/2))
         }
@@ -5240,6 +5247,7 @@
       Cnum:=Rnum:=12
       Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
       , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
+      SlotRadius := (Cwidth//2 + Rwidth//2) // 2
       Loop, %Cnum%
       {
         If (A_Index = 1) 
@@ -5269,6 +5277,33 @@
         }
         StashGrid.StashQuad.X.Push(Round(PointX))
         StashGrid.StashQuad.Y.Push(Round(PointY))
+      }
+      ; Calculate space for the Inventory grid
+      totalX:=vX_InvBotR - vX_InvTopL, totalY:=vY_InvBotR - vY_InvTopL
+      ; Fill in array with grid locations for 12x12 stash
+      Cnum:=12
+      Rnum:=5
+      Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
+      , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
+      Loop, %Cnum%
+      {
+        If (A_Index = 1) 
+        {
+          PointX:=vX_InvTopL+Cwidth//2
+        } Else {
+          PointX+=Cwidth+SlotSpacing
+        }
+        StashGrid.Inventory.X.Push(Round(PointX))
+      }
+      Loop, %Rnum%
+      {
+        If (A_Index = 1) 
+        {
+          PointY:=vY_InvTopL+Rwidth//2
+        } Else {
+          PointY+=Rwidth+SlotSpacing
+        }
+        StashGrid.Inventory.Y.Push(Round(PointY))
       }
     }
     return

@@ -2527,6 +2527,7 @@ Return
           ; This automation use the following Else If (OnVendor && YesVendor) to entry on Vendor Routine
           If !SearchVendor()
           {
+            SendHotkey(hotkeyInventory)
             RunningToggle := False
             If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
               SetTimer, TGameTick, On
@@ -3872,6 +3873,7 @@ Return
         If (CheckGamestates || GlobeActive || YesController)
         {
           GuiStatus()
+          CheckOHB()
           If CheckGamestates
           DebugGamestates("CheckGamestates")
           If (GlobeActive)
@@ -6051,7 +6053,7 @@ Return
         If (!MovementHotkeyActive
         && JoyLHoldCount > 1
         && GuiStatus("",0)
-        && ((YesOHB && YesOHBFound) || !YesOHB))
+        && ((YesOHB && YesOHBFound) || !YesOHB) )
         {
           Click, Down
           MovementHotkeyActive := True
@@ -6208,23 +6210,36 @@ Return
     {
       if (Controller.Up || Controller.Down || Controller.Left || Controller.Right)
       {
-        if (Controller.Up) ; Up
-          y_finalPOV := -y_POVscale-HeldCountPOV*2
-        else if (Controller.Down) ; Down
-          y_finalPOV := +y_POVscale+HeldCountPOV*2
-        else
-          y_finalPOV := 0
-        if (Controller.Left) ; Left
-          x_finalPOV := -x_POVscale-HeldCountPOV*2
-        else if (Controller.Right) ; Right
-          x_finalPOV := +x_POVscale+HeldCountPOV*2
-        else
-          x_finalPOV := 0
-        If (x_finalPOV || y_finalPOV)
+        If (GuiStatus("",0) && !YesXButtonFound)
         {
-          MouseMove, %x_finalPOV%, %y_finalPOV%, 0, R
-          HeldCountPOV+=1
-          Sleep, 100 - (HeldCountPOV * 15 <= 70?HeldCountPOV * 15:70)
+          if (Controller.Up) ; Up
+            y_finalPOV := -y_POVscale-HeldCountPOV*2
+          else if (Controller.Down) ; Down
+            y_finalPOV := +y_POVscale+HeldCountPOV*2
+          else
+            y_finalPOV := 0
+          if (Controller.Left) ; Left
+            x_finalPOV := -x_POVscale-HeldCountPOV*2
+          else if (Controller.Right) ; Right
+            x_finalPOV := +x_POVscale+HeldCountPOV*2
+          else
+            x_finalPOV := 0
+          If (x_finalPOV || y_finalPOV)
+          {
+            MouseMove, %x_finalPOV%, %y_finalPOV%, 0, R
+            HeldCountPOV+=1
+          }
+        }
+        Else
+        {
+          If Controller.Up
+            SnapToInventoryGrid("Up")
+          If Controller.Down
+            SnapToInventoryGrid("Down")
+          If Controller.Left
+            SnapToInventoryGrid("Left")
+          If Controller.Right
+            SnapToInventoryGrid("Right")
         }
       }
       Else If (HeldCountPOV > 1)
@@ -6266,6 +6281,115 @@ Return
     Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,4)
     Return Percentage 
   }
+  SnapToInventoryGrid(Direction:="Left"){
+    Global vX_StashTopL, vY_StashTopL, vX_StashBotR, vY_StashBotR
+      , vX_InvTopL, vY_InvTopL, vX_InvBotR, vY_InvBotR
+    Outside := False
+    m := UpdateMousePosition()
+    If InArea(m.X,m.Y,vX_StashTopL,vY_StashTopL,vX_StashBotR,vY_StashBotR)
+    {
+      gridArea := "StashQuad"
+    }
+    Else If InArea(m.X,m.Y,vX_InvTopL,vY_InvTopL,vX_InvBotR,vY_InvBotR)
+    {
+      gridArea := "Inventory"
+    }
+    Else If InArea(m.X,m.Y,GameX,GameY,GameX+GameW/2,GameY+GameH) ; On Left
+    {
+      gridArea := "StashQuad"
+      Outside := True
+    }
+    Else If InArea(m.X,m.Y,GameX+GameW/2,GameY,GameX+GameW,GameY+GameH) ; On Right
+    {
+      gridArea := "Inventory"
+      Outside := True
+    }
+    gPos := GridPosition(m.X,m.Y,gridArea)
+
+    If Outside
+    {
+      MoveToGridPosition(gPos.C,gPos.R,gridArea)
+    }
+    Else
+      MoveToGridPosition(gPos.C,gPos.R,gridArea,Direction)
+    return
+  }
+  MoveToGridPosition(c,r,gridArea:="StashQuad",Direction:="None"){
+    Global StashGrid
+
+    If (Direction = "Left")
+      c := (c-1>0?c-1:c)
+    Else If (Direction = "Right")
+      c := (c+1<=StashGrid[gridArea].X.Count()?c+1:c)
+    Else If (Direction = "Up")
+      r := (r-1>0?r-1:r)
+    Else If (Direction = "Down")
+      r := (r+1<=StashGrid[gridArea].Y.Count()?r+1:r)
+
+    MouseMove,% StashGrid[gridArea].X[c],% StashGrid[gridArea].Y[r]
+    Return
+  }
+  GridPosition(x,y,gridArea:="StashQuad"){
+    Global SlotSpacing, SlotRadius, StashGrid
+    sR := SlotSpacing + SlotRadius
+    sRQ := SlotSpacing + SlotRadius//2
+    Partial := {}
+    Best := {"Distance":-1,"C":1,"R":1}
+
+    For C, xVal in StashGrid[gridArea].X
+    {
+      For R, yVal in StashGrid[gridArea].Y
+      {
+        If (gridArea = "StashQuad")
+        {
+          x1:=xVal - sRQ, x2:=xVal + sRQ
+          y1:=yVal - sRQ, y2:=yVal + sRQ
+        }
+        Else
+        {
+          x1:=xVal - sR, x2:=xVal + sR
+          y1:=yVal - sR, y2:=yVal + sR
+        }
+        If InArea(x,y,x1,y1,x2,y2)
+        {
+          ; Notify("Mouse Exact","Grid C" C " R" R )
+          Return {"C":C,"R":R}
+        }
+        Else
+        {
+          tempObj := {}
+          tempObj.Distance := DistanceTo(x,y,xVal,yVal)
+          tempObj.C := C
+          tempObj.R := R
+          Partial.Push(tempObj)
+        }
+      }
+    }
+    For k, match in Partial
+    {
+      If (Best.Distance = -1 || match.Distance <= Best.Distance)
+        Best := match
+    }
+    Partial := ""
+    ; Notify("Mouse Closest",Best.Distance " distance is C" Best.C " R" Best.R)
+    Return Best
+  }
+  InArea(x,y,x1,y1,x2,y2){
+    If ( (x >= x1) && (x <= x2) ) && ( (y >= y1) && (y <= y2) )
+      Return True
+    Else
+      Return False
+  }
+  DistanceTo(x,y,px,py){
+    Return (Abs(x-px) + Abs(y-py))
+  }
+  UpdateMousePosition(){
+    Global mouseX, mouseY, mouseWin, mouseControl
+    MouseGetPos, mouseX, mouseY, mouseWin, mouseControl
+    ; tooltip, % mouseX " , " mouseY " - " mouseWin " : " mouseControl
+    return {"X":mouseX,"Y":mouseY,"hWin":mouseWin,"Ctrl":mouseControl}
+  }
+
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 ; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages (MISC BACKEND)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
