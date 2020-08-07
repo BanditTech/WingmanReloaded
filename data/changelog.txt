@@ -1,3 +1,20 @@
+## Version .12.0004 - Alpha version - August/07/2020
+Bugfixes
+* Stash tabs beyond 32 are now fixed while sorting inventory
+* Black square panel no longer remaining on screen permanently
+  * This was related to timers being blocked from firing during some routines
+
+Community Submissions of Strings
+* 2160 and 1440 have been give a handful more defaults to pick from
+  * 2160 Sell items, Stockpile, Stash, Navali
+  * 1440 X Button, Zana
+
+Findtext Library Update
+* Added GetTextFromScreen function to quickly capture an area as B&W ASCII
+* Soon to be implimented into a "Quick Capture" system
+
+---
+
 ## Version .12.0003 - Alpha version - July/26/2020
 Controller improvements
 * DPad now snaps to the inventory grids for w/e panels are open

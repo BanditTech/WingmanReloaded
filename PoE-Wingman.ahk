@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .12.0003
+  Global VersionNumber := .12.0004
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -499,16 +499,19 @@
       , 1050_HealthBarStr := "|<1050 Overhead Health Bar>0x221415@0.99$104.Tzzzzzzzzzzzzzzzzc"
       , OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 
+      , 2160_SellItemsStr := "|<2160 Sell Items>0xE3D7A6@1.00$71.00000001k3U000000003U70003y000070C000AD0000C0Q000U60000Q0s003040000s1k006000001k3U00A000003U7000M000w070C000s007S0C0Q001s00MC0Q0s001s01UA0s1k001w020Q1k3U001w0A0M3U70001y0M0k70C0000y1rzUC0Q0000y3U00Q0s0000w7000s1k0000wC001k3U0000sQ003U700001ks0070C00003Uk00C0Q000071k00Q0s0000A3k20s1k0040k3k81k3U007z03zU3U70007s01y070C0000000000000000000000000000000000000000000000000000000000000000000000004"
       , 1440_SellItemsStr := "|<1440 Sell Items>*106$71.zzzzzzzzzz7zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy73zzzzzzzzzwC7zzzzzzzzzwSDzkzzzzzzzswTzVzzzzzzzlszz3tzzzzzzXlzy7nzzzzkT7XzwC0T1wM0SD7zsQ0w1kUMQSDzkw7lVk1sswTzVszbXVvllszz3lyD77k3Xlzy7Xw0CDU77XzwD7s0QTTyD7zsSDlzsyzwSDzkwTXzlxyswTzVsz7vXttlszz3lq7b7k3Xlzy7UC0CDUD7XzwDUS0wTlzzzzzzXz7zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
       , 1080_SellItemsStr := "|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
       , 1050_SellItemsStr := "|<1050 Sell Items>*93$71.zzzzzzzzzzzzzzz6DzzzzzzzzzyATzzzzzzy3zwMzlzzzzztXzslznzzzzznjzlXzbbzzzzby3X7zC3Us133sX6DyQC8k033naATwswtXb73UAMztls37CD28slznXWCCQTaTlXzb7bwQszAxX7zCDDMtlAM36DyQ20lnW1sCATwwC3Xb7DxzzzzwzTzzzzzzzzzzzzzzzzzzzzzzzzzzU"
       , 768_SellItemsStr := "|<768 Sell Items>0xE0E0DB@0.52$56.00NU000007U6M600001A1a1a0000kCNUPtnvXr7qM6QyzxhvBa1aNgnQ7zNUNbvAnUw6M6NUnASDZa1aQgn3STNUNvvArn1000A800G"
 
+      , 2160_SeedStockPileStr := "|<2160 Seed Stockpile>#1158@1.00$71.0000000000001w0000000000CT0000000000k6000000000104000000000608000000000A00000000000M00Dz0Ty0zy0s00Q20s41kD1k00s01k03U73s01k03U07073s03U0700C0D3w0700C00Q0C3w0C00Q00s0Q1y0Q00s01k0s1y0s01k03U0k0w1zk3zU701U0w3U0700C0300s700C00Q0601sC00Q00s0A01kQ00s01k0s030s01k03U1U061k03U070300M3U0700C0AA1k700C00Q0kDz0DzUTz0sC07s0Tw0zs1zU000000000000000000000000000000000000000000000000000000000000000000000004"
       , 1440_SeedStockPileStr := "|<1440 Seed Stockpile>*109$71.zUzzzzzzzzzzw0zzzzzzzzzzttzzzzzzzzzzXvU1z3zsTXsz7y01s1z0D7ly7wknXVwQCD7y7zVyDXlwwQTw3z3wT3Xzslzw3y7lz6Dzl7zy3wDXyATzUTzy3sz7wMzz0zzy7lyDslzy8zzyDXwTlVzwEzzwT7wTbXzslznsyDsyD3xllzU3wTsMz03XlzUDsTs3z0D7VzlzzzwzzXzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
-      , 1080_SeedStockPileStr := "|<1080 SeedStockPile>*106$100.kzzzzzzwDzzzzzzzy1zzzzzzUTzzzzzzznbzzzzzwtzznznvvvDs70s3znw0Q3w3740TnSPn3z7qBb7X6QlUTDtzCDw7swSQStbaUwzbwwTsDXnsnzYyPVkS3nlzsSDDXDy7tj73sTD7zlswyAzsDUyAzbwwzzXXnslzYyDtnyTnnzySD7b7yNtn7DtzCTwlsyASCNX70w3UQ3zkDXw7w3b4TDzzzzzznzzxzwzzzs"
-      , 1050_SeedStockPileStr :="|<1050 SeedStockPile>*54$50.zzzzzzzzzzzzzzzzz1zzzzzy3aDzzzzzANr0kA3zniTkA30DwzVwT7llz3wD7lwQTsTVkA37bz3wA30ltzsTX7lwSTz7wlwT77ztaAT7lXzAM70kA1zkDbzzzzzzDzzzzzzzzs"
+      , 1080_SeedStockPileStr := "|<1080 Seed StockPile>*106$100.kzzzzzzwDzzzzzzzy1zzzzzzUTzzzzzzznbzzzzzwtzznznvvvDs70s3znw0Q3w3740TnSPn3z7qBb7X6QlUTDtzCDw7swSQStbaUwzbwwTsDXnsnzYyPVkS3nlzsSDDXDy7tj73sTD7zlswyAzsDUyAzbwwzzXXnslzYyDtnyTnnzySD7b7yNtn7DtzCTwlsyASCNX70w3UQ3zkDXw7w3b4TDzzzzzznzzxzwzzzs"
+      , 1050_SeedStockPileStr :="|<1050 Seed StockPile>*54$50.zzzzzzzzzzzzzzzzz1zzzzzy3aDzzzzzANr0kA3zniTkA30DwzVwT7llz3wD7lwQTsTVkA37bz3wA30ltzsTX7lwSTz7wlwT77ztaAT7lXzAM70kA1zkDbzzzzzzDzzzzzzzzs"
       , 768_SeedStockPileStr := "|<768 Seed Stockpile>#374@0.55$66.D0000D000009U0009U0000MDDDUMTbVxaCAABkA6AnBgDAAAkD6Mu1s3jDAk3aMS1k1gAAk1aML1sFgAAk1aAn5gDDDDUD6DXxi400004020k0U"
 
+      , 2160_StashStr := "|<2160 Stash>116$64.w0zzzzzzzzz00zzzzzzzzsS3zzzzzzzzXyDzzzzzzzwDszzzzzzzzlzrU00zsTzU3zw003z1zs0DzksADw7zXkTzDVyzUDwTUTzy7zyEzly0TzsTzl3z7w0zzVzz47wDs1zy7zssTkTk1zsTzXUzUTk3zVzyT3y0zUDy7zlwDw3zUTsTz7kTwDz1zVzs01zszy7y7zU07zvzsTsTyDsDzzzVzVzlzkzzzy7y7z7z3zwzkzsTszw7Tk03zVzXzsQTU0Ty7yDzUk307zsTlzz3UDVzzzzzzzzVU"
       , 1440_StashStr := "|<1440 Stash>*92$71.Dz0TzzzwzzXxzy5zzzzzzy7vzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUzzzzzzzzzzw0zzzzzzzzzzttzzzzzzzzzzXvU1zDwDXyTz7y01wDk77szy7wknsT7CDtzy7zVzUySQTnzw3z3z0wTszbzw3y7wlsTlzDzy3wDtXsDU0Tzy3szXXs700zzy7lz07sCDtzzyDXy0DwATnzzwT7tyDwMzbznsyDnwPslzDzU3wT7sE3XyTzUDsSTsUD7wzzlzzzzzlzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
       , 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
       , 1050_StashStr := "|<1050 Stash>*102$56.zzzzzzzzzzzUzzzzzzzzn7zzzzzzzwv0DbsQwTzDk1lw3D7zkzXwDBnlzy7syHnwwTzkyDYwD07zz7bv7Vk1zzttw1yAwTzySTCDnD7zn7bbnQnlzw3stwkQwTznzzzzTzzzzzzzzzzzU"
@@ -518,6 +521,7 @@
       , 1050_SkillUpStr := "|<1050 Skill Up>**50$12.HoOkGY2VyzU1yzmX2VGU6U7kU"
       , 768_SkillUpStr := "|<768 Skill Up>#52@0.77$15.3U0W0CQ1nEU340MiO3nUAM0z07s3zkDl4"
 
+      , 1440_XButtonStr := "|<1440 x button>*54$14.01y0zkTyDzrtzwDy1z0TkDy7znxyyDz3zWTk3s"
       , 1080_XButtonStr := "|<1080 X Button>*43$12.0307sDwSDwDs7k7sDwSSwTsDk7U"
       , 1050_XButtonStr := "|<1050 X Button>*56$30.Tzz7zzw0lzzky4zz3znTyDzsDwE7S7sU7r7tU3D/nU0zXn3VzprXlvlbXznnbUzbvbwz7vbwz7vbtzXvrvvvnrrVtlnzVsnvq+MXtuTX/wzzzLyTzwTzDztzzXzXzzs8Dzzz1zzzzzzzU"
       , 768_XButtonStr := "|<768 X Button>#197@0.82$19.0zU1kQ1zb1twlcTgoDKmjBtXCzsCCS7773nb0tn6BdbbaTzlDzksxsCHs1zs0Dk8"
@@ -525,6 +529,7 @@
       , 1080_MasterStr := "|<1080 Master>*100$46.wy1043UDVtZXNiAy7byDbslmCDsyTX78wDXsCAw3sSDVs7U7lsyTUSSTXXty8ntiSDbslDW3sy1XW"
       , 1050_MasterStr := "|<1050 Master>*91$45.zzzzzzzznw81UMDwT00430TVtj7XsntDDswT6T9sT7UMnv7Vsw30S0z7DXs7nXwtwT4QyPbDXsnbn1sw37Dzyzzzzzzzzzzzzw"
 
+      , 2160_NavaliStr := "|<2160 Navali>121$71.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzwDzy7zzzzzzzwDzwDzzzzzzzsDzsTzzzzzzzkTzkzzzzzzzzUTzlzzzzzzzz0TzXzwDsDzky0Tz7zkTsDzVw0TyDzUzkTz3sUTwzy0zkzyDlUTtzwVzUzwTX0Tnzl3zVzkz70zbzW3z3zXyD0zDyC7y3z7wT0yTwQ7y7wTsz0wztwDw7szlz0tzXsTwDXzXz0nz7kTsT7z7z07w00zkQTyDy0Ds01zkszwTy0Tlz1zVnzszy0z7z3zV7ylzy1yDy7z2DxXzy3szw7y0zn7zy7lzwDy1zaDzyDXzsDw7zATzyCDzsTwDwTzzzzzzzzwzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
       , 1080_NavaliStr := "|<1080 Navali>*100$56.TtzzzzzzznyTzzzzzzwTbxxzTjrx3tyCDXnsy0ST3ntsTDk3bkwSS7nw8Nt77D8wz36SNtnmDDks7USBw3nwD1k3mS0Qz3sQwwDbbDkz6TD3ntngDtblswyA38"
       , 1050_NavaliStr := "|<1050 Navali>*102$57.zzzzzzzzzwTbzzzzzzznwzzzzzzzyDbtsySTblkwyD7nXwzC3bkwywDbtmAwbXb9wzCMbYyRtDbtnUxXnDMwzCQ70S9k7btnktlsSQQzCT6TD3bnbtnwntwwyQ7DzzzzzzzzzU"
       , 768_NavaliStr := "|<768 Navali>#254@0.73$39.kk00007600000sln6QMTaC8nX3yllYQMSyPAan3nnswyMSCn7An3koAt3TQ"
@@ -532,6 +537,7 @@
       , 1080_HelenaStr := "|<1080 Helena>*100$62.DlzzzzzzzznwTzzzzzzzwz7zxzzvyzjDlkCDUQT7nnwSPnwrXnsQz7bwzDsQy701tzDny3D8k0S3nw7YHnAz7Vwz3tYw3DltzDnyMC0HwSTnwzb3bYz7bwvDtsntDls70kCTAy8"
       , 1050_HelenaStr := "|<1050 Helena>*95$61.zzzzzzzzzzlwTzzzzzzzwyDzzzzzzzyT70lw3DnwzDXUQy1ntwTbllyT7swy7k0szDXwCSHs0Q3bkCXD9wyC1ns7MbgST77twTi3UDDXXwyDrVnXbllyN7vsntnss70URyNwzzzzzzzzzzs"
 
+      , 1440_ZanaStr := "|<1440 zana>*101$62.k07zzzzzzzw03zzzzzzzzDkzzzzzzzzzwTtzDyTtzzyDwTlz7wTzz3z3wDtz3zzlzUz1yTUzzsTs7kDbs7zwDwlwVtwlzz7zAT4CTATzVzXXlVbXXzkzs0wQNs0zwTy0D7WS0Dy7zDllw7DlzXyHwQTVnwRk00z77sMz6800Tslz6TsXzzzzzzzzzszzzzzzzzzyTzzzzzzzzzDzzzzzzzzzrzzzzzzzzzzs"
       , 1080_ZanaStr := "|<1080 Zana>*100$44.U3zzzzzs0zzzzzyyTrvyzjz7twT7nzXwDXnsTsz3sQy7wTYS3D8yDtbYHnDXy1tYw3lz0CMC0Mznnb3ba01wtsnt02T6TAy8"
       , 1050_ZanaStr := "|<1050 Zana>*106$44.zzzzzzzw0Tzzzzy0DzzzzzzXtyzDnzlwTbnszwz3swy7yDYy7D9z7tDcnmTnylv4xXsz0SsC0wTnXj3b701wvsntU0TCzAyTzzzzzzy"
 
@@ -2003,7 +2009,7 @@
 
   Gui, Tab, Hotkeys
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, Text,   Section                  x295   ym+25,         Keybinds:
+    Gui Add, Text,   Section                  xm+5   ym+25,         Keybinds:
     Gui, Font
     Gui Add, Text,                     xs+65   y+10,         Open this GUI
     Gui Add, Text,                     xs+65   y+10,         Auto-Flask
@@ -2060,7 +2066,7 @@
     ;~ =========================================================================================== Subgroup: Hints
     Gui,Font, Bold s9 cBlack, Arial
     Gui,Add,GroupBox,Section xs  x450 y+10  w120 h80              ,Hotkey Modifiers
-    Gui, Add, Button,      gLaunchHelp vLaunchHelp    xs+108 ys w18 h18 ,   ?
+    Gui, Add, Button,      gLaunchHelp vLaunchHelp     center wp,   Show Key List
     Gui,Font,Norm
     Gui,Font,s8,Arial
     Gui,Add,Text,          xs+15 ys+17          ,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
@@ -2497,7 +2503,7 @@ Return
   ; ItemSortCommand - Sort inventory and determine action
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ItemSortCommand(){
-    Thread, NoTimers, True
+    ; Thread, NoTimers, True
     If RunningToggle  ; This means an underlying thread is already running the loop below.
     {
       RunningToggle := False  ; Signal that thread's loop to stop.
@@ -3198,7 +3204,7 @@ Return
     }
     CurrentTab:=0
     SortFirst := {}
-    Loop 32
+    Loop 64
     {
       SortFirst[A_Index] := {}
     }
@@ -3652,13 +3658,9 @@ Return
           Sleep, 15
         }
         Loop, 64
-        {
           send {Left}
-        }
         Loop % Tab - 1
-        {
           send {Right}
-        }
         CurrentTab:=Tab
         Sleep, 210*Latency
       }
@@ -3667,13 +3669,9 @@ Return
         Loop % Abs(Dif)
         {
           If (Dif > 0)
-          {
             SendInput {Left}
-          }
           Else
-          {
             SendInput {Right}
-          }
         }
         CurrentTab:=Tab
         Sleep, 210*Latency
@@ -5102,7 +5100,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GrabCurrency(){
     GrabCurrencyCommand:
-      Thread, NoTimers, true    ;Critical
+      Critical
       Keywait, Alt
       BlockInput, MouseMove
       MouseGetPos xx, yy
@@ -5130,7 +5128,7 @@ Return
   Crafting()
   {
     StartCraftCommand:
-      Thread, NoTimers, True
+      ; Thread, NoTimers, True
       MouseGetPos xx, yy
       If RunningToggle
       {
@@ -5478,7 +5476,7 @@ Return
   GemSwap()
   {
     GemSwapCommand:
-      Thread, NoTimers, true    ;Critical
+      Critical
       Keywait, Alt
       BlockInput, MouseMove
       MouseGetPos xx, yy
@@ -5555,7 +5553,7 @@ Return
     QuickPortalCommand:
       If (OnTown || OnHideout || OnMines)
         Return
-      Thread, NoTimers, true    ;Critical
+      Critical
       Keywait, Alt
       BlockInput On
       BlockInput MouseMove
@@ -5592,7 +5590,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PopFlasks(){
     PopFlasksCommand:
-      Thread, NoTimers, true    ;Critical
+      Critical
       If PopFlaskRespectCD
         TriggerFlask(TriggerPopFlasks)
       Else 
@@ -5665,7 +5663,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   LogoutCommand(){
     LogoutCommand:
-      Thread, NoTimers, true    ;Critical
+      Critical
       Static LastLogout := 0
       if (RadioCritQuit || (RadioPortalQuit && (OnMines || OnTown || OnHideout))) {
         global POEGameArr
@@ -5867,7 +5865,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MsgMonitor(wParam, lParam, msg)
     {
-    ;Thread, NoTimers, true    ;Critical
+    ;; Thread, NoTimers, True    ;Critical
     If (wParam=1)
       Return
     Else If (wParam=2)
@@ -6432,7 +6430,7 @@ Return
   { ; Read, Save, Load - Includes basic hotkey setup
     readFromFile(){
       global
-      Thread, NoTimers, true    ;Critical
+      Thread, NoTimers, True    ;Critical
 
       LoadArray()
 
@@ -7313,7 +7311,7 @@ Return
     submit(){  
     updateEverything:
       global
-      Thread, NoTimers, true    ;Critical
+      Thread, NoTimers, True    ;Critical
 
       IniWrite, %PoESessionID%, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID
 
@@ -9424,7 +9422,7 @@ Return
   { ; Calibration color sample functions - updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
   ;   updateEmptyColor, updateOnChat, updateOnVendor, updateOnDiv, updateDetonate
     updateOnChar:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       IfWinExist, ahk_group POEGameGroup
       {
@@ -9449,7 +9447,7 @@ Return
     return
 
     updateOnInventory:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       
       IfWinExist, ahk_group POEGameGroup
@@ -9476,7 +9474,7 @@ Return
     return
 
     updateOnMenu:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       
       IfWinExist, ahk_group POEGameGroup
@@ -9503,7 +9501,7 @@ Return
     return
 
     updateOnDelveChart:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       
       IfWinExist, ahk_group POEGameGroup
@@ -9530,7 +9528,7 @@ Return
     return
 
     updateOnMetamorph:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       
       IfWinExist, ahk_group POEGameGroup
@@ -9557,7 +9555,7 @@ Return
     return
 
     updateOnStockPile:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       
       IfWinExist, ahk_group POEGameGroup
@@ -9584,7 +9582,7 @@ Return
     return
 
     updateOnStash:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       IfWinExist, ahk_group POEGameGroup
       {
@@ -9612,7 +9610,7 @@ Return
     return
 
     updateEmptyColor:
-      Thread, NoTimers, true    ;Critical
+      Critical
       Gui, Submit ; , NoHide
 
       IfWinExist, ahk_group POEGameGroup
@@ -9678,7 +9676,7 @@ Return
     return
 
     updateOnChat:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       IfWinExist, ahk_group POEGameGroup
       {
@@ -9704,7 +9702,7 @@ Return
     return
 
     updateOnVendor:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       
       IfWinExist, ahk_group POEGameGroup
@@ -9730,7 +9728,7 @@ Return
     return
 
     updateOnDiv:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       
       IfWinExist, ahk_group POEGameGroup
@@ -9756,7 +9754,7 @@ Return
     return
 
     updateDetonate:
-      Thread, NoTimers, True
+      Critical
       Gui, Submit ; , NoHide
       IfWinExist, ahk_group POEGameGroup
       {
@@ -9784,7 +9782,7 @@ Return
     return
 
     CalibrateOHB:
-      Thread, NoTimers, True
+      Critical
       Gui,1: Submit ; , NoHide
       IfWinExist, ahk_group POEGameGroup
       {
@@ -9845,7 +9843,7 @@ Return
     {
       Global
       StartCalibrationWizard:
-        Thread, NoTimers, true
+        Critical
         Gui, Submit
         Gui, Wizard: New, +LabelWizard +AlwaysOnTop
         Gui, Wizard: Font, Bold
@@ -9877,7 +9875,7 @@ Return
       Return
 
       RunWizard:
-        Thread, NoTimers, True
+        Critical
         PauseTooltips:=1
         Gui, Wizard: Submit
         IfWinExist, ahk_group POEGameGroup
@@ -10302,7 +10300,7 @@ Return
       Return
 
       ResampleLootColor:
-        Thread, NoTimers, True ; Critical
+        ; Thread, NoTimers, True ; Critical
         RemoveToolTip()
         PauseTooltips := 1
         groupNumber := StrSplit(A_GuiControl, A_Space)[2]

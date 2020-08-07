@@ -2970,20 +2970,20 @@
         Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
         Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"?"%1050_SkillUpStr%"?"%768_SkillUpStr%"
         Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
-        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"?"%1440_SellItemsStr%"?"%1050_SellItemsStr%"?"%768_SellItemsStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"?"%2160_SellItemsStr%"?"%1440_SellItemsStr%"?"%1050_SellItemsStr%"?"%768_SellItemsStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
-        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%2160_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
         Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
-        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1440_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Seed StockPile
-        Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"?"%1440_SeedStockPileStr%"?"%1050_SeedStockPileStr%"?"%768_SeedStockPileStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"?"%2160_SeedStockPileStr%"?"%1440_SeedStockPileStr%"?"%1050_SeedStockPileStr%"?"%768_SeedStockPileStr%"
         Gui, Strings: +Delimiter|
 
       Gui, Strings: Tab, Vendor
         Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
         Gui, Strings: +Delimiter?
         Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
         Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"?"%1050_MasterStr%"
         Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
@@ -17928,11 +17928,11 @@ for i,v in ok
   ; Use PicX(Text) to automatically cut into multiple characters
   ; Can't be used in ColorPos mode, because it can cause position errors
 
-  PicX(Text)
+  PicX(Text,ObjMode:=0)
   {
     if !RegExMatch(Text,"\|([^$]+)\$(\d+)\.([\w+/]+)",r)
       return, Text
-    w:=r2, v:=base64tobit(r3), Text:=""
+    w:=r2, v:=base64tobit(r3), Text:="", Obj:=[]
     c:=StrLen(StrReplace(v,"0"))<=StrLen(v)//2 ? "1":"0"
     wz:=RegExReplace(v,".{" w "}","$0`n")
     SetFormat, IntegerFast, d
@@ -17946,9 +17946,17 @@ for i,v in ok
       v:=RegExReplace(wz,"m`n)^(.{" i "}).*","$1")
       wz:=RegExReplace(wz,"m`n)^.{" i "}")
       if (v!="")
-      Text.="|" r1 "$" i "." bit2base64(v)
+      {
+        If ObjMode
+          Obj.Push({"String" : "|" r1 "$" i "." bit2base64(v), "ASCII" : v })
+        Else
+          Text.="|" r1 "$" i "." bit2base64(v)
+      }
     }
-    return, Text
+    If ObjMode
+      Return, Obj
+    Else
+      return, Text
   }
 
   ; Screenshot and retained as the last screenshot.
@@ -18101,6 +18109,72 @@ for i,v in ok
       Sleep, 500
     }
     Gui, _MouseTip_: Destroy
+  }
+
+  GetTextFromScreen(x1, y1, x2, y2, Threshold:=""
+  , ScreenShot:=1, ByRef rx:="", ByRef ry:="")
+  {
+    local
+    SetBatchLines, % (bch:=A_BatchLines)?"-1":"-1"
+    x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
+    , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
+    , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
+    if (w<1 or h<1)
+    {
+      SetBatchLines, %bch%
+      return
+    }
+    ListLines, % (lls:=A_ListLines=0?"Off":"On")?"Off":"Off"
+    GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
+    gc:=[], k:=0
+    Loop, %h% {
+      j:=y+A_Index-1
+      Loop, %w%
+        i:=x+A_Index-1, c:=ScreenShot_GetColor(i,j)
+        , gc[++k]:=(((c>>16)&0xFF)*38+((c>>8)&0xFF)*75+(c&0xFF)*15)>>7
+    }
+    Threshold:=StrReplace(Threshold,"*")
+    if (Threshold="")
+    {
+      pp:=[]
+      Loop, 256
+        pp[A_Index-1]:=0
+      Loop, % w*h
+        pp[gc[A_Index]]++
+      IP:=IS:=0
+      Loop, 256
+        k:=A_Index-1, IP+=k*pp[k], IS+=pp[k]
+      Threshold:=Floor(IP/IS)
+      Loop, 20
+      {
+        LastThreshold:=Threshold
+        IP1:=IS1:=0
+        Loop, % LastThreshold+1
+          k:=A_Index-1, IP1+=k*pp[k], IS1+=pp[k]
+        IP2:=IP-IP1, IS2:=IS-IS1
+        if (IS1!=0 and IS2!=0)
+          Threshold:=Floor((IP1/IS1+IP2/IS2)/2)
+        if (Threshold=LastThreshold)
+          Break
+      }
+    }
+    s:=""
+    Loop, % w*h
+      s.=gc[A_Index]<=Threshold ? "1":"0"
+    ListLines, %lls%
+    ;--------------------
+    w:=Format("{:d}",w), CutUp:=CutDown:=0
+    re1=(^0{%w%}|^1{%w%})
+    re2=(0{%w%}$|1{%w%}$)
+    While RegExMatch(s,re1)
+      s:=RegExReplace(s,re1), CutUp++
+    While RegExMatch(s,re2)
+      s:=RegExReplace(s,re2), CutDown++
+    rx:=x+w//2, ry:=y+CutUp+(h-CutUp-CutDown)//2
+    s:="|<>*" Threshold "$" w "." bit2base64(s)
+    ;--------------------
+    SetBatchLines, %bch%
+    return s
   }
 
 ;===============  FindText Library End  ===================
