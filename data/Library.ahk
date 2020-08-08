@@ -2406,9 +2406,9 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   WR_Menu(Function:="",Var*)
   {
-    Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
+    Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
 
-    Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
+    Global InventoryGuiTabs, CraftingGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
       , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
       , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
       , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
@@ -2428,7 +2428,7 @@
         ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Map Crafting Settings
+        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs
 
       Gui, Inventory: Tab, Options
         Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -2810,137 +2810,102 @@
         Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
         Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
 
-      Gui, Inventory: Tab, Stash Hotkeys
+      }
+      Gui, Inventory: show , w600 h500, Inventory Settings
+    }
+    Else If (Function = "Crafting")
+    {
+      Gui, 1: Submit
+      If !Built_Crafting
+      {
+        Built_Crafting := 1
+        Gui, Crafting: New
+        Gui, Crafting: +AlwaysOnTop -MinimizeBox
+        ;Save Setting
+        Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        ; Gui, Crafting: Add, Button,      gloadSaved     x+5           h23,   Load
+        Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Inventory: Add, Checkbox, xm+5 ym+25  vYesStashKeys Checked%YesStashKeys%                    , Enable stash hotkeys?
+        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting
 
-        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-        Gui, Inventory: Add,GroupBox,Section xp-5 yp+20 w100 h85                      ,Modifier
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s9,Arial
-        Gui, Inventory: Add, Edit, xs+4 ys+20 w90 h23 vstashPrefix1, %stashPrefix1%
-        Gui, Inventory: Add, Edit, y+8    w90 h23 vstashPrefix2, %stashPrefix2%
-
-        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-        Gui, Inventory: Add,GroupBox, xp-5 y+20 w100 h55                      ,Reset Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s9,Arial
-        Gui, Inventory: Add, Edit, xp+4 yp+20 w90 h23 vstashReset, %stashReset%
-
-        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-        Gui, Inventory: Add,GroupBox,Section x+10 ys w100 h275                      ,Keys
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s9,Arial
-        Gui, Inventory: Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
-
-        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-        Gui, Inventory: Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s9,Arial
-        Gui, Inventory: Add, Edit, Number xs+4 ys+20 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
-      Gui, Inventory: Tab, Map Crafting Settings
+      Gui, Crafting: Tab, Map Crafting
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
         MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
         MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
-        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s7
-          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
-          GuiControl,Inventory: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s7
-          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
-          GuiControl,Inventory: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s7
-          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
-          GuiControl,Inventory: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
-          Gui, Inventory: Font,
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
-          Gui, Inventory: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
-          Gui, Inventory: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
-          Gui, Inventory: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
-          Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
-          Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-          Gui, Inventory: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances
-          Gui, Inventory: Font, Bold
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
-          Gui, Inventory: Font, 
-          Gui, Inventory: Font,s8
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Map Crafting
+        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
+        Gui, Crafting: Font,
+        Gui, Crafting: Font,s7
+          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
+          GuiControl,Crafting: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s7
+          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
+          GuiControl,Crafting: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s7
+          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
+          GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
+          Gui, Crafting: Font,
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
+          Gui, Crafting: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
+          Gui, Crafting: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
+          Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
+          Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
+          Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
+          Gui, Crafting: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances
+          Gui, Crafting: Font, Bold
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
+          Gui, Crafting: Font, 
+          Gui, Crafting: Font,s8
 
-          Gui, Inventory: Add, Edit, number limit2 xs+15 yp+18 w40
-          Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
-          Gui, Inventory: Add, Text,         x+10 yp+3        , Item Quantity
+          Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w40
+          Gui, Crafting: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+          Gui, Crafting: Add, Text,         x+10 yp+3        , Item Quantity
 
-          Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
-          Gui, Inventory: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
-          Gui, Inventory: Add, Text,         x+10 yp+3        , Item Rarity
+          Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+          Gui, Crafting: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
+          Gui, Crafting: Add, Text,         x+10 yp+3        , Item Rarity
 
-          Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
-          Gui, Inventory: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
-          Gui, Inventory: Add, Text,         x+10 yp+3        , Monster Pack Size
+          Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+          Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
+          Gui, Crafting: Add, Text,         x+10 yp+3        , Monster Pack Size
 
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
-        Gui, Inventory: Font,
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
+        Gui, Crafting: Font,
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
       }
-      Gui, Inventory: show , w600 h500, Inventory Settings
+      Gui, Crafting: show , w600 h500, Crafting Settings
     }
     Else If (Function = "Strings")
     {
@@ -3014,7 +2979,6 @@
         Built_Chat := 1
         Gui, Chat: New
         Gui, Chat: +AlwaysOnTop -MinimizeBox
-        Gui, Chat: Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xm+400 ym                    , Enable chat Hotkeys?
 
         ;Save Setting
         Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
@@ -3478,6 +3442,8 @@
 
     InventoryGuiClose:
     InventoryGuiEscape:
+    CraftingGuiClose:
+    CraftingGuiEscape:
     StringsGuiClose:
     StringsGuiEscape:
     ChatGuiClose:
@@ -7118,6 +7084,22 @@
     }
     Return PPServerStatus
   }
+
+  String2ASCII(String:="",One:="#",Zero:="."){
+    local
+    s := StrSplit(String, ".")
+    w := StrSplit(s.1, "$").2
+    s := StrSplit(StrReplace(StrReplace(base64tobit(s.2),"1",One),"0",Zero))
+    v := ""
+    For k, c in s
+    {
+      v .= c
+      If !Mod(k,w)
+        v .= "`n"
+    }
+    Return v
+  }
+
   ; Cooldown Timers
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ; TimerFlask - Flask CD Timers

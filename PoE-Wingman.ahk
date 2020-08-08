@@ -1820,7 +1820,7 @@
     Gui, Add, Text,                   x+18        h270 0x11
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,  y+20 xs w240 h150 Section, Stack Release Tool
+    Gui, Add, GroupBox,  y+20 xs w250 h150 Section, Stack Release Tool
     Gui, Font,
     Gui, Add, CheckBox, gUpdateStackRelease vStackRelease_Enable Checked%StackRelease_Enable%  Right x+-65 ys+2 , Enable
     Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffIcon xs+5 ys+19 w150 h21, % StackRelease_BuffIcon
@@ -1828,7 +1828,7 @@
     Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffCount xs+5 y+15 w150 h21, % StackRelease_BuffCount
     Gui, Add, Text, x+4 yp+3, Stack Capture
     Gui, Add, Edit, gUpdateStackRelease vStackRelease_Keybind xs+5 y+15 w150 h21, %StackRelease_Keybind%
-    Gui, Add, Text, x+4 yp+3, Key to release
+    Gui, Add, Text, x+4 yp+3, Key to Re-Press
     Gui, Add, Text, xs+5 y+12, Stack Search Offset - Bottom Edge of Buff Icon
     Gui, Font, Bold s9 cBlack
     Gui, Add, Text, xs+5 y+5, X1:
@@ -1852,7 +1852,7 @@
     Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,     Section  w190 h110        xs+240+7   ys ,         Auto-Detonate Mines
+    Gui, Add, GroupBox,     Section  w190 h110        xs+250+17   ys ,         Auto-Detonate Mines
     Gui, Font,
     Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
     Gui Add, Text, xs+5 y+4, Delay after Detonate
@@ -1920,6 +1920,19 @@
     Gui,SampleInd: +AlwaysOnTop
 
     Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, Text,           Section          xs   y+10,         Automation Settings:
+    Gui, add, button, gWR_Update vWR_Btn_Strings     xs ys+18 w110, Sample Strings
+    Gui, add, Button, gLootColorsMenu  vLootVacuumSettings x+8 yp w110, Loot Vacuum
+    Gui, Font, 
+
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, Text,           Section          xs   y+10,         Item and Inventory Settings:
+    Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, Custom Loot Filter
+    Gui, add, button, gWR_Update vWR_Btn_Inventory   x+10 yp w110, Inventory Sorting
+    Gui, add, button, gWR_Update vWR_Btn_Crafting  xs y+10 w110, Crafting
+    Gui, Font, 
+
+    Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,           Section          xs   y+10,         Interface Options:
     Gui, Font, 
 
@@ -1928,32 +1941,9 @@
     Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                      , Show GUI on startup?
     Gui Add, CheckBox, giniGeneral vYesInGameOverlay Checked%YesInGameOverlay%                    , Show In-Game Overlay?
     Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%      xs        , Persistant Auto-Toggles?
-    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs y+10                                       ,  1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
-    GuiControl, ChooseString, Latency, %Latency%
-    Gui, Add, Text,                     x+5 yp+3 hp-3              , Latency
-    Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
-    GuiControl, ChooseString, ClickLatency, %ClickLatency%
-    Gui, Add, Text,                     x+5 yp+3  hp-3            , Clicks
-    Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
-    GuiControl, ChooseString, ClipLatency, %ClipLatency%
-    Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip
-
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, Text,           Section          x295   ym+20,         Additional Settings:
-    Gui, Font, s8
-    Gui, add, button, gWR_Update vWR_Btn_Inventory   xs y+10 w110, Inventory
-    Gui, add, button, gWR_Update vWR_Btn_Strings     x+10 yp w110, Strings
-    Gui, add, button, gWR_Update vWR_Btn_Chat        x+10 yp w110, Chat
-    Gui, add, button, gWR_Update vWR_Btn_Controller  xs y+10 w110, Controller
-    Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  x+10 yp w110, Custom Loot Filter
-    Gui, add, Button, gLootColorsMenu  vLootVacuumSettings x+10 yp w110, Loot Vacuum
-
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui, Font
-    ;Gui, add, button, gBuildIgnoreMenu vWR_Btn_IgnoreSlot x+10 yp w110, Ignore Slots
 
     Gui,Font, Bold s9 cBlack, Arial
-    Gui,Add,GroupBox,Section xs y+10  w350 h90              ,Update Control
+    Gui,Add,GroupBox,Section x295 ym+20  w350 h90              ,Update Control
     Gui,Font,Norm
 
     Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 yp+15           , master|Alpha
@@ -2001,6 +1991,18 @@
     Gui, Font,Norm
     Gui, Add, Edit, password vPoESessionID  x+5 yp-3  w240, %PoESessionID%
 
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui,Add,GroupBox,Section xs y+10  w350 h55                                                     , Script Latency
+    Gui, Font,Norm
+    Gui, Add, DropDownList, gUpdateExtra vLatency w40 xs+5 yp+20                                       ,  1|1.1|1.2|1.3|1.4|1.5|1.6|1.7|1.8|1.9|2|2.5|3
+    GuiControl, ChooseString, Latency, %Latency%
+    Gui, Add, Text,                     x+5 yp+3 hp-3              , Global Adjust
+    Gui, Add, DropDownList, gUpdateExtra vClickLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
+    GuiControl, ChooseString, ClickLatency, %ClickLatency%
+    Gui, Add, Text,                     x+5 yp+3  hp-3            , Click Adjust
+    Gui, Add, DropDownList, gUpdateExtra vClipLatency w35 x+10 yp-3,  -2|-1|0|1|2|3|4
+    GuiControl, ChooseString, ClipLatency, %ClipLatency%
+    Gui, Add, Text,                     x+5 yp+3  hp-3            , Clip Adjust
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -2009,7 +2011,7 @@
 
   Gui, Tab, Hotkeys
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, Text,   Section                  xm+5   ym+25,         Keybinds:
+    Gui Add, Text,   Section                  xm+5   ym+25,         Script Keybinds:
     Gui, Font
     Gui Add, Text,                     xs+65   y+10,         Open this GUI
     Gui Add, Text,                     xs+65   y+10,         Auto-Flask
@@ -2042,15 +2044,17 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyChaosRecipe       ,%hotkeyChaosRecipe%
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, Text,                     xs+145   ys,         Ingame:
+    Gui, add, button, gWR_Update vWR_Btn_Controller  xs y+15 w110, Controller Keys
+
+    Gui Add, Text,                     xs+175   ys,         Ingame Assigned Keys:
     Gui, Font
-    Gui Add, Text,                     xs+205   y+10,         Close UI
+    Gui Add, Text,                     xs+235   y+10,         Close UI
     Gui Add, Text,                          y+10,         Inventory
     Gui Add, Text,                          y+10,         W-Swap
     Gui Add, Text,                          y+10,         Item Pickup
     Gui Add, Text,                          y+10,         Detonate Mines
 
-    Gui,Add,Edit,          xs+140 ys+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
+    Gui,Add,Edit,          xs+170 ys+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyInventory      ,%hotkeyInventory%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyWeaponSwapKey    ,%hotkeyWeaponSwapKey%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyLootScan        ,%hotkeyLootScan%
@@ -2065,13 +2069,74 @@
 
     ;~ =========================================================================================== Subgroup: Hints
     Gui,Font, Bold s9 cBlack, Arial
-    Gui,Add,GroupBox,Section xs  x450 y+10  w120 h80              ,Hotkey Modifiers
+    Gui,Add,GroupBox,Section xs  y+25  w120 h80              ,Hotkey Modifiers
     Gui, Add, Button,      gLaunchHelp vLaunchHelp     center wp,   Show Key List
     Gui,Font,Norm
     Gui,Font,s8,Arial
     Gui,Add,Text,          xs+15 ys+17          ,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
     Gui,Add,Text,              y+5          ,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
     Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
+
+
+    Gui, Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xs+200 ym+25                    , Enable chat Hotkeys?
+    Gui,Font, Bold s9 cBlack, Arial
+    Gui, add, button, gWR_Update vWR_Btn_Chat        w160, Configure Chat Hotkeys
+    Gui,Font,Norm
+
+    Gui, Add, Checkbox, xs+200 y+15  vYesStashKeys Checked%YesStashKeys%                    , Enable stash hotkeys?
+
+    Gui, Font,s9 cBlack Bold Underline, Arial
+    Gui, Add,GroupBox,Section xp-5 yp+20 w100 h85                      ,Modifier
+    Gui, Font,
+    Gui, Font,s9,Arial
+    Gui, Add, Edit, xs+4 ys+20 w90 h23 vstashPrefix1, %stashPrefix1%
+    Gui, Add, Edit, y+8    w90 h23 vstashPrefix2, %stashPrefix2%
+
+    Gui, Font,s9 cBlack Bold Underline, Arial
+    Gui, Add,GroupBox, xp-5 y+20 w100 h55                      ,Reset Tab
+    Gui, Font,
+    Gui, Font,s9,Arial
+    Gui, Add, Edit, xp+4 yp+20 w90 h23 vstashReset, %stashReset%
+
+    Gui, Font,s9 cBlack Bold Underline, Arial
+    Gui, Add,GroupBox,Section x+10 ys w100 h275                      ,Keys
+    Gui, Font,
+    Gui, Font,s9,Arial
+    Gui, Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
+    Gui, Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
+    Gui, Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
+    Gui, Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
+    Gui, Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
+    Gui, Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
+    Gui, Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
+    Gui, Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
+    Gui, Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
+
+    Gui, Font,s9 cBlack Bold Underline, Arial
+    Gui, Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
+    Gui, Font,
+    Gui, Font,s9,Arial
+    Gui, Add, Edit, Number xs+4 ys+20 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
+    Gui, Add, Edit, Number y+5 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
+    Gui, Add, Edit, Number y+5 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
+    Gui, Add, Edit, Number y+5 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
+    Gui, Add, Edit, Number y+5 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
+    Gui, Add, Edit, Number y+5 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
+    Gui, Add, Edit, Number y+5 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
+    Gui, Add, Edit, Number y+5 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
+    Gui, Add, Edit, Number y+5 w40
+    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
+    
+
+
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
