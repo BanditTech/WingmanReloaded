@@ -9,6 +9,11 @@ Community Submissions of Strings
   * 2160 Sell items, Stockpile, Stash, Navali
   * 1440 X Button, Zana
 
+Improvements to the GUI layout
+* Hotkey tab of the Menu has had Controller, Chat and Stash hokeys moved into it
+* Configuration tab has been re-organized to better group the menu
+* Crafting is a new menu of its own with Map Crafting to start
+
 Findtext Library Update
 * Added GetTextFromScreen function to quickly capture an area as B&W ASCII
 * Soon to be implimented into a "Quick Capture" system
