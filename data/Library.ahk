@@ -516,6 +516,12 @@
             This.Prop.SpecialType := "Heist Marker"
             This.Prop.DefaultSendStash := "HeistTab"
           }
+          Else If (indexOf(This.Prop.ItemBase, HeistGear))
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Gear"
+            This.Prop.DefaultSendStash := "HeistTab"
+          }
         }
         ;End NamePlate Parser
 

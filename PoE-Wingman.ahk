@@ -223,6 +223,17 @@
       , ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
       , ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
     Global FillMetamorph := {}
+    Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven Cloak","Silver Brooch"
+      ,"Golden Brooch","Enamel Brooch","Foliate Brooch","Simple Lockpick","Standard Lockpick","Fine Lockpick"
+      ,"Master Lockpick","Leather Bracers","Studded Bracers","Runed Bracers","Steel Bracers","Crude Sensing Charm"
+      ,"Fine Sensing Charm","Polished Sensing Charm","Thaumaturgical Sensing Charm","Voltaxic Flashpowder"
+      ,"Trarthan Flashpowder","Azurite Flashpowder","Crude Ward","Lustrous Ward","Shining Ward","Thaumaturgical Ward"
+      ,"Essential Keyring","Versatile Keyring","Skeleton Keyring","Grandmaster Keyring","Eelskin Sole","Foxhide Sole"
+      ,"Winged Sole","Silkweave Sole","Basic Disguise Kit","Theatre Disguise Kit","Espionage Disguise Kit"
+      ,"Regicide Disguise Kit","Steel Drill","Flanged Drill","Sulphur Blowtorch","Thaumetic Blowtorch"
+      ,"Rough Sharpening Stone","Standard Sharpening Stone","Fine Sharpening Stone","Obsidian Sharpening Stone"
+      ,"Flanged Arrowhead","Fragmenting Arrowhead","Hollowpoint Arrowhead","Precise Arrowhead","Focal Stone"
+      ,"Conduit Line","Aggregator Charm","Burst Band"]
     ft_ToolTip_Text_Part1=
       (LTrim
       QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
