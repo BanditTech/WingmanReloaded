@@ -504,6 +504,18 @@
               This.Prop.ItemClass := "Beasts"
             }
           }
+          Else If (InStr(This.Prop.ItemBase, "Contract:"))
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Contract"
+            This.Prop.DefaultSendStash := "HeistTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Rogue's Marker"))
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Marker"
+            This.Prop.DefaultSendStash := "HeistTab"
+          }
         }
         ;End NamePlate Parser
 
@@ -17372,27 +17384,27 @@ for i,v in ok
   {
     static id, old, Ptr:=A_PtrSize ? "UPtr" : "UInt"
     if (get)
-    return, id
+      return, id
     if (window_id)
     {
-    id:=window_id, old:=0
-    if (set_exstyle)
-    {
-      WinGet, old, ExStyle, ahk_id %id%
-      WinSet, Transparent, 255, ahk_id %id%
-      Loop, 30
+      id:=window_id, old:=0
+      if (set_exstyle)
       {
-      Sleep, 100
-      WinGet, i, Transparent, ahk_id %id%
+        WinGet, old, ExStyle, ahk_id %id%
+        WinSet, Transparent, 255, ahk_id %id%
+        Loop, 30
+        {
+        Sleep, 100
+        WinGet, i, Transparent, ahk_id %id%
+        }
+        Until (i=255)
       }
-      Until (i=255)
-    }
     }
     else
     {
-    if (old)
-      WinSet, ExStyle, %old%, ahk_id %id%
-    id:=old:=0
+      if (old)
+        WinSet, ExStyle, %old%, ahk_id %id%
+      id:=old:=0
     }
   }
 
@@ -17445,32 +17457,32 @@ for i,v in ok
     }
     if (hBM) and !(w<1 or h<1)
     {
-    win:=DllCall("GetDesktopWindow", Ptr)
-    hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
-    mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
-    oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
-    DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+      win:=DllCall("GetDesktopWindow", Ptr)
+      hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
+      mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
+      oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
+      DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
         , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020) ; |0x40000000)
-  DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
-  if (id:=BindWindow(0,0,1))
-    WinGet, id, ID, ahk_id %id%
-  if (id)
-  {
-    WinGetPos, wx, wy, ww, wh, ahk_id %id%
-    left:=x, right:=x+w-1, up:=y, down:=y+h-1
-    left:=left<wx ? wx:left, right:=right>wx+ww-1 ? wx+ww-1:right
-    up:=up<wy ? wy:up, down:=down>wy+wh-1 ? wy+wh-1:down
-    x:=left, y:=up, w:=right-left+1, h:=down-up+1
-  }
-  if (id) and !(w<1 or h<1)
-  {
-    hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
-    DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
-    , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020) ; |0x40000000)
-    DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
-  }
-    DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
-    DllCall("DeleteDC", Ptr,mDC)
+      DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
+      if (id:=BindWindow(0,0,1))
+        WinGet, id, ID, ahk_id %id%
+      if (id)
+      {
+        WinGetPos, wx, wy, ww, wh, ahk_id %id%
+        left:=x, right:=x+w-1, up:=y, down:=y+h-1
+        left:=left<wx ? wx:left, right:=right>wx+ww-1 ? wx+ww-1:right
+        up:=up<wy ? wy:up, down:=down>wy+wh-1 ? wy+wh-1:down
+        x:=left, y:=up, w:=right-left+1, h:=down-up+1
+      }
+      if (id) and !(w<1 or h<1)
+      {
+        hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
+        DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+        , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020) ; |0x40000000)
+        DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
+      }
+      DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
+      DllCall("DeleteDC", Ptr,mDC)
     }
     Critical, %cri%
     SetBatchLines, %bch%
@@ -18159,4 +18171,21 @@ for i,v in ok
     return s
   }
 
+  GetPicArr(x, y, w, h)
+  {
+    ListLines, % (lls:=A_ListLines=0?"Off":"On") ? "Off":"Off"
+    SetBatchLines, % (bch:=A_BatchLines) ? "-1":"-1"
+    ScreenShot(x, y, x+w-1, y+h-1)
+    arr:=[], i:=1
+    Loop, % h {
+      yy:=y+A_Index-1
+      Loop, % w {
+        xx:=x+A_Index-1
+        , arr[i++]:=ScreenShot_GetColor(xx, yy)
+      }
+    }
+    SetBatchLines, %bch%
+    ListLines, %lls%
+    return arr
+  }
 ;===============  FindText Library End  ===================

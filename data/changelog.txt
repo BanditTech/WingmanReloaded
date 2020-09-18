@@ -1,3 +1,9 @@
+## Version .12.0005 - Alpha version - September/18/2020
+Updates for Heist
+* Adding new item types for Contract and Markers
+
+---
+
 ## Version .12.0004 - Alpha version - August/07/2020
 Bugfixes
 * Stash tabs beyond 32 are now fixed while sorting inventory
