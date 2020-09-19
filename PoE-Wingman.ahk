@@ -274,7 +274,7 @@
       UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
       UpdateOnDelveChartBtn = Calibrate the OnDelveChart Color`rThis color determines if the Delve Chart panel is open`rSample located at the left of the Delve Chart panel
       UpdateOnMetamorphBtn = Calibrate the OnMetamorph Color`rThis color determines if the Metamorph panel is open`rSample located at the i Button of the Metamorph panel
-      UpdateOnStockPileBtn = Calibrate the OnStockPile Color`rThis color determines if the Seed StockPile panel is open`rSample located in the center of the Seed StockPile panel
+      UpdateOnLockerBtn = Calibrate the OnLocker Color`rThis color determines if the Heist Locker panel is open`rSample located in the bottom right of the Heist Locker panel
       UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
       UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
       UpdateOnStashBtn = Calibrate the OnStash/OnLeft Colors`rThese colors determine if the Stash/Left panel is open`rSample is located at the top of the Stash panel
@@ -318,7 +318,7 @@
       YesEnableAutomation = Enable Automation Routines
       FirstAutomationSetting = Start Automation selected option
       YesEnableNextAutomation = Enable next automation after the first selected
-      YesEnableSeedAutomation = Enable seed automation to find and deposit at Seed StockPile
+      YesEnableLockerAutomation = Enable Heist automation to find and deposit at Heist Locker
       YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
       YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`n   The vendor is empty`n   The only items are Chromatic or Jeweler
       YesAutoSkillUp = Enable this to Automatically level up skill gems
@@ -351,7 +351,7 @@
       LaunchHelp = Opens the AutoHotkey List of Keys
       YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
       YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
-      YesSeedStockPile = This option is for the Seed StockPile logic`rEnable to stash Seeds and Equipment when the Seed StockPile panel is open
+      YesHeistLocker = This option is for the Heist Locker logic`rEnable to stash Blueprints and contracts when the Heist Locker panel is open
       YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
       YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
@@ -515,11 +515,7 @@
       , 1050_SellItemsStr := "|<1050 Sell Items>*93$71.zzzzzzzzzzzzzzz6DzzzzzzzzzyATzzzzzzy3zwMzlzzzzztXzslznzzzzznjzlXzbbzzzzby3X7zC3Us133sX6DyQC8k033naATwswtXb73UAMztls37CD28slznXWCCQTaTlXzb7bwQszAxX7zCDDMtlAM36DyQ20lnW1sCATwwC3Xb7DxzzzzwzTzzzzzzzzzzzzzzzzzzzzzzzzzzU"
       , 768_SellItemsStr := "|<768 Sell Items>0xE0E0DB@0.52$56.00NU000007U6M600001A1a1a0000kCNUPtnvXr7qM6QyzxhvBa1aNgnQ7zNUNbvAnUw6M6NUnASDZa1aQgn3STNUNvvArn1000A800G"
 
-      , 2160_SeedStockPileStr := "|<2160 Seed Stockpile>#1158@1.00$71.0000000000001w0000000000CT0000000000k6000000000104000000000608000000000A00000000000M00Dz0Ty0zy0s00Q20s41kD1k00s01k03U73s01k03U07073s03U0700C0D3w0700C00Q0C3w0C00Q00s0Q1y0Q00s01k0s1y0s01k03U0k0w1zk3zU701U0w3U0700C0300s700C00Q0601sC00Q00s0A01kQ00s01k0s030s01k03U1U061k03U070300M3U0700C0AA1k700C00Q0kDz0DzUTz0sC07s0Tw0zs1zU000000000000000000000000000000000000000000000000000000000000000000000004"
-      , 1440_SeedStockPileStr := "|<1440 Seed Stockpile>*109$71.zUzzzzzzzzzzw0zzzzzzzzzzttzzzzzzzzzzXvU1z3zsTXsz7y01s1z0D7ly7wknXVwQCD7y7zVyDXlwwQTw3z3wT3Xzslzw3y7lz6Dzl7zy3wDXyATzUTzy3sz7wMzz0zzy7lyDslzy8zzyDXwTlVzwEzzwT7wTbXzslznsyDsyD3xllzU3wTsMz03XlzUDsTs3z0D7VzlzzzwzzXzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
-      , 1080_SeedStockPileStr := "|<1080 Seed StockPile>*106$100.kzzzzzzwDzzzzzzzy1zzzzzzUTzzzzzzznbzzzzzwtzznznvvvDs70s3znw0Q3w3740TnSPn3z7qBb7X6QlUTDtzCDw7swSQStbaUwzbwwTsDXnsnzYyPVkS3nlzsSDDXDy7tj73sTD7zlswyAzsDUyAzbwwzzXXnslzYyDtnyTnnzySD7b7yNtn7DtzCTwlsyASCNX70w3UQ3zkDXw7w3b4TDzzzzzznzzxzwzzzs"
-      , 1050_SeedStockPileStr :="|<1050 Seed StockPile>*54$50.zzzzzzzzzzzzzzzzz1zzzzzy3aDzzzzzANr0kA3zniTkA30DwzVwT7llz3wD7lwQTsTVkA37bz3wA30ltzsTX7lwSTz7wlwT77ztaAT7lXzAM70kA1zkDbzzzzzzDzzzzzzzzs"
-      , 768_SeedStockPileStr := "|<768 Seed Stockpile>#374@0.55$66.D0000D000009U0009U0000MDDDUMTbVxaCAABkA6AnBgDAAAkD6Mu1s3jDAk3aMS1k1gAAk1aML1sFgAAk1aAn5gDDDDUD6DXxi400004020k0U"
+      , 1080_HeistLockerStr := "|<1080 Locker>*90$59.7zzzzzzzzzDzzzzzzzzyTyTyTDTzzwzkDk4QE60tz6D6AlnANnwSASt7bslbtwNzkTDlXDnsnzVy3XCTblbz1w70QzDX7yFty1tyDCDwXnwFnaASCNXbslUA1y1nX0llzyTzDzzzzy"
 
       , 2160_StashStr := "|<2160 Stash>116$64.w0zzzzzzzzz00zzzzzzzzsS3zzzzzzzzXyDzzzzzzzwDszzzzzzzzlzrU00zsTzU3zw003z1zs0DzksADw7zXkTzDVyzUDwTUTzy7zyEzly0TzsTzl3z7w0zzVzz47wDs1zy7zssTkTk1zsTzXUzUTk3zVzyT3y0zUDy7zlwDw3zUTsTz7kTwDz1zVzs01zszy7y7zU07zvzsTsTyDsDzzzVzVzlzkzzzy7y7z7z3zwzkzsTszw7Tk03zVzXzsQTU0Ty7yDzUk307zsTlzz3UDVzzzzzzzzVU"
       , 1440_StashStr := "|<1440 Stash>*92$71.Dz0TzzzwzzXxzy5zzzzzzy7vzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUzzzzzzzzzzw0zzzzzzzzzzttzzzzzzzzzzXvU1zDwDXyTz7y01wDk77szy7wknsT7CDtzy7zVzUySQTnzw3z3z0wTszbzw3y7wlsTlzDzy3wDtXsDU0Tzy3szXXs700zzy7lz07sCDtzzyDXy0DwATnzzwT7tyDwMzbznsyDnwPslzDzU3wT7sE3XyTzUDsSTsUD7wzzlzzzzzlzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
@@ -601,7 +597,7 @@
       , 1080_DelveStr .= "|<1080 Fossil>*100$50.0Tzzzzzzs3zzzzzzyQyTtyTDDby1s61XXtz6CNaQwyTXlbtzDDUNwMyDnnsCT63UwwyTblsS7DDbswT7lnntyDDsyAwyTVXiPbDCbw1s61nkDzlz7lzzy"
       , 1080_DelveStr .= "|<1080 Resona>*100$62.0Tzzzzzzzzk3zzzzzzzzyQTznzDvyzjb60kD0wT7ltlnAnX7XlsSQQzDlssQy7bDDlwyC3D8s7kQ7DXUHmC1w7knst0s3aDDyASCMC0NVnzl7bb3b6QQzQkltsnsXX0kC0yTAyDzzyDszzzzy"
   ; FindText strings from INI
-    Global StashStr, SeedStockPileStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
+    Global StashStr, HeistLockerStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
     , XButtonStr
     , VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
     , VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
@@ -617,7 +613,7 @@
       , StackRelease_Enable := False
 
   ; Automation Settings
-    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableSeedAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
+    Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableLockerAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
 
   ; General
     Global BranchName := "master"
@@ -642,7 +638,7 @@
     Global LootVacuum := 1
     Global YesVendor := 1
     Global YesStash := 1
-    Global YesSeedStockPile := 1
+    Global YesHeistLocker := 1
     Global YesIdentify := 1
     Global YesDiv := 1
     Global YesMapUnid := 1
@@ -666,7 +662,7 @@
     Global OnLeft := False
     Global OnDelveChart := False
     Global OnMetamorph := False
-    Global OnStockPile := False
+    Global OnLocker := False
     Global RescaleRan := False
     Global ToggleExist := False
     Global YesOHB := True
@@ -888,7 +884,7 @@
     global varOnLeft:=0xB58C4D
     global varOnDelveChart:=0xB58C4D
     global varOnMetamorph:=0xE06718
-    global varOnStockPile:=0x1F2732
+    global varOnLocker:=0xE97724
     Global varOnDetonate := 0x5D4661
 
   ; Life, ES, Mana Colors
@@ -1911,7 +1907,7 @@
     Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn         xs y+3      w110,   OnMenu
     Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn  x+8  yp      w110,   OnDelveChart
     Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn  xs y+3      w110,   OnMetamorph
-    Gui,SampleInd: Add, Button, gupdateOnStockPile vUpdateOnStockPileBtn  x+8  yp      w110,   OnStockPile
+    Gui,SampleInd: Add, Button, gupdateOnLocker vUpdateOnLockerBtn  x+8  yp      w110,   OnLocker
 
 
     Gui,SampleInd: Font, Bold s9 cBlack, Arial
@@ -2399,8 +2395,8 @@
     global vX_OnMetamorph:=785
     global vY_OnMetamorph:=204
     ;638, 600
-    global vX_OnStockPile:=638
-    global vY_OnStockPile:=600
+    global vX_OnLocker:=638
+    global vY_OnLocker:=600
     global vX_Life:=95
     global vY_Life20:=1034
     global vY_Life30:=1014
@@ -2644,8 +2640,8 @@ Return
         StashRoutine()
       Else If (OnVendor && YesVendor)
         VendorRoutine()
-      Else If (OnStockPile && YesSeedStockPile)
-        StockPileRoutine()
+      Else If (OnLocker && YesHeistLocker)
+        LockerRoutine()
       Else If (OnInventory&&YesIdentify)
         IdentifyRoutine()
     }
@@ -2658,19 +2654,19 @@ Return
     Return
   }
 
-  ; Search Seed StockPile
+  ; Search Heist Locker
     ;Client:	638, 600 (recommended)
     ;Color:	1F2732 (Red=1F Green=27 Blue=32)
-  SearchStockPile()
+  SearchLocker()
   {
-    If (FindStock:=FindText(GameX,GameY,GameW,GameH,0,0,SeedStockPileStr))
+    If (FindStock:=FindText(GameX,GameY,GameW,GameH,0,0,HeistLockerStr))
     {
       LeftClick(FindStock.1.1 + 5,FindStock.1.2 + 5)
       Loop, 66
       {
         Sleep, 50
         GuiStatus()
-        If OnStockPile
+        If OnLocker
         {
           Return True
         }
@@ -3120,13 +3116,13 @@ Return
     }
     Return
   }
-  ; StockPileRoutine - Deposit seeds and equipment at the Seed StockPile
+  ; LockerRoutine - Deposit Contracts and Blueprints at the Heist Locker
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  StockPileRoutine(){
+  LockerRoutine(){
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
-    If !OnStockPile
+    If !OnLocker
     {
       Return
     }
@@ -3156,7 +3152,7 @@ Return
         addToBlacklist(C, R)
         If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
           ShooMouse(),GuiStatus(),Continue
-        If (Item.Prop.SpecialType = "Harvest Item")
+        If (Item.Prop.Heist)
         {
           CtrlClick(Grid.X,Grid.Y)
           Sleep, 45 + (15*ClickLatency)
@@ -3279,8 +3275,9 @@ Return
     {
       SortFirst[A_Index] := {}
     }
-    SeedC := {}
-    SeedR := {}
+    HeistC := {}
+    HeistR := {}
+    HeistCount := 0
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse away for Screenshot
     ShooMouse(), ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
@@ -3338,11 +3335,11 @@ Return
             Continue
           Else If (sendstash:=Item.MatchLootFilter())
             Sleep, -1
-          Else If (Item.Prop.SpecialType= "Harvest Item")
+          Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint")
             {
-              SeedC.Push(C)
-              SeedR.Push(R)
-              ++HarvestCount
+              HeistC.Push(C)
+              HeistR.Push(R)
+              ++HeistCount
               Continue
             }
           Else If ( Item.Prop.IsMap && YesSkipMaps
@@ -3457,22 +3454,23 @@ Return
       {
         StockScrolls()
       }
-      If (YesEnableSeedAutomation&&HarvestCount)
+      If (YesEnableLockerAutomation&&HeistCount)
       {
-      SendHotkey(hotkeyCloseAllUI)
-      RandomSleep(45,90)
-      GuiStatus()
-      If (SearchStockPile()){
+        SendHotkey(hotkeyCloseAllUI)
         RandomSleep(45,90)
-        For k, v in SeedC
+        GuiStatus()
+        If (SearchLocker())
         {
-            GridX := InventoryGridX[v]
-            GridY := InventoryGridY[ObjRawGet(SeedR, k)]
-            Grid := RandClick(GridX, GridY)
-            CtrlClick(Grid.X,Grid.Y)
-            RandomSleep(45,45)
+          RandomSleep(45,90)
+          For k, v in HeistC
+          {
+              GridX := InventoryGridX[v]
+              GridY := InventoryGridY[ObjRawGet(HeistR, k)]
+              Grid := RandClick(GridX, GridY)
+              CtrlClick(Grid.X,Grid.Y)
+              RandomSleep(45,45)
+          }
         }
-      }
       }
       ; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
       If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
@@ -3481,7 +3479,7 @@ Return
         RandomSleep(45,90)
         GuiStatus()
         If SearchVendor()
-        VendorRoutine()
+          VendorRoutine()
       }
     }
     Return
@@ -4494,7 +4492,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DebugGamestates(Switch:=""){
     Global
-    Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnStockPile:=-1
+    Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
     Local NewOHB
     If (Switch := "CheckGamestates")
     {
@@ -4504,7 +4502,7 @@ Return
     ShowDebugGamestates:
       ; SetTimer, CheckGamestates, 50
       CheckGamestates := True
-      OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnStockPile:=-1
+      OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
       Gui, Submit
       ; ----------------------------------------------------------------------------------------------------------------------
       Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
@@ -4534,8 +4532,8 @@ Return
       CtlColors.Attach(CTIDOnMetamorph, "", "Green")
       Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnDetonate hwndCTIDOnDetonate, % "OnDetonate"
       CtlColors.Attach(CTIDOnDetonate, "", "Green")
-      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnStockPile hwndCTIDOnStockPile, % "OnStockPile"
-      CtlColors.Attach(CTIDOnStockPile, "", "Green")
+      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnLocker hwndCTIDOnLocker, % "OnLocker"
+      CtlColors.Attach(CTIDOnLocker, "", "Green")
       Gui, States: Add, Button, gCheckPixelGrid xm+5 y+15 w190 , Check Inventory Grid
       ; ----------------------------------------------------------------------------------------------------------------------
       GoSub CheckGamestates
@@ -4656,13 +4654,13 @@ Return
         Else
           CtlColors.Change(CTIDOnMetamorph, "", "Green")
       }
-      If (OnStockPile != OldOnStockPile)
+      If (OnLocker != OldOnLocker)
       {
-        OldOnStockPile := OnStockPile
-        If (OnStockPile)
-          CtlColors.Change(CTIDOnStockPile, "Red", "")
+        OldOnLocker := OnLocker
+        If (OnLocker)
+          CtlColors.Change(CTIDOnLocker, "Red", "")
         Else
-          CtlColors.Change(CTIDOnStockPile, "", "Green")
+          CtlColors.Change(CTIDOnLocker, "", "Green")
       }
     Return
     ; ----------------------------------------------------------------------------------------------------------------------
@@ -6050,7 +6048,7 @@ Return
       IniRead, LootVacuum, %A_ScriptDir%\save\Settings.ini, General, LootVacuum, 0
       IniRead, YesVendor, %A_ScriptDir%\save\Settings.ini, General, YesVendor, 1
       IniRead, YesStash, %A_ScriptDir%\save\Settings.ini, General, YesStash, 1
-      IniRead, YesSeedStockPile, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockPile, 1
+      IniRead, YesHeistLocker, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker, 1
       IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
@@ -6132,7 +6130,7 @@ Return
       IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
       IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, %A_Space%
       IniRead, YesEnableNextAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation, 0
-      IniRead, YesEnableSeedAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableSeedAutomation, 0
+      IniRead, YesEnableLockerAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableLockerAutomation, 0
       IniRead, YesEnableAutoSellConfirmation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation, 0
       IniRead, YesEnableAutoSellConfirmationSafe, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmationSafe, 0
       
@@ -6246,9 +6244,9 @@ Return
       IniRead, StashStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr, %1080_StashStr%
       If StashStr
         StashStr := """" . StashStr . """"
-      IniRead, SeedStockPileStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, SeedStockPileStr, %1080_SeedStockPileStr%
-      If SeedStockPileStr
-        SeedStockPileStr := """" . SeedStockPileStr . """"
+      IniRead, HeistLockerStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, HeistLockerStr, %1080_HeistLockerStr%
+      If HeistLockerStr
+        HeistLockerStr := """" . HeistLockerStr . """"
       IniRead, SkillUpStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr, %1080_SkillUpStr%
       If SkillUpStr
         SkillUpStr := """" . SkillUpStr . """"
@@ -6318,7 +6316,7 @@ Return
       IniRead, varOnLeft, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLeft, 0xB58C4D
       IniRead, varOnDelveChart, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
       IniRead, varOnMetamorph, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph, 0xE06718
-      IniRead, varOnStockPile, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStockPile, 0x1F2732
+      IniRead, varOnLocker, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker, 0x1F2732
       IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
 
       ;Life Triggers
@@ -6987,7 +6985,7 @@ Return
       IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
-      IniWrite, %YesSeedStockPile%, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockPile
+      IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
@@ -7039,7 +7037,7 @@ Return
       IniWrite, %VendorStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr
       IniWrite, %SellItemsStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SellItemsStr
       IniWrite, %StashStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr
-      IniWrite, %SeedStockPileStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SeedStockPileStr
+      IniWrite, %HeistLockerStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, HeistLockerStr
       IniWrite, %SkillUpStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr
 
       ;~ Hotkeys 
@@ -9074,7 +9072,7 @@ Return
       
     return
 
-    updateOnStockPile:
+    updateOnLocker:
       Critical
       Gui, Submit ; , NoHide
       
@@ -9083,19 +9081,19 @@ Return
         Rescale()
         WinActivate, ahk_group POEGameGroup
       } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnStockPile didn't work"
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnLocker didn't work"
         Return
       }
       
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnStockPile := ScreenShot_GetColor(vX_OnStockPile,vY_OnStockPile)
-        IniWrite, %varOnStockPile%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStockPile
+        varOnLocker := ScreenShot_GetColor(vX_OnLocker,vY_OnLocker)
+        IniWrite, %varOnLocker%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker
         readFromFile()
-        MsgBox % "OnStockPile recalibrated!`nTook color hex: " . varOnStockPile . " `nAt coords x: " . vX_OnStockPile . " and y: " . vY_OnStockPile
+        MsgBox % "OnLocker recalibrated!`nTook color hex: " . varOnLocker . " `nAt coords x: " . vX_OnLocker . " and y: " . vY_OnLocker
       }else
-      MsgBox % "PoE Window is not active. `nRecalibrate of OnStockPile didn't work"
+      MsgBox % "PoE Window is not active. `nRecalibrate of OnLocker didn't work"
       
       hotkeys()
       
@@ -10249,7 +10247,7 @@ Return
       IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
-      IniWrite, %YesSeedStockPile%, %A_ScriptDir%\save\Settings.ini, General, YesSeedStockPile
+      IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
@@ -10289,7 +10287,7 @@ Return
       IniWrite, %YesEnableAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation
       IniWrite, %FirstAutomationSetting%, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting
       IniWrite, %YesEnableNextAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation
-      IniWrite, %YesEnableSeedAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableSeedAutomation
+      IniWrite, %YesEnableLockerAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableLockerAutomation
       IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
       IniWrite, %YesEnableAutoSellConfirmationSafe%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmationSafe
       

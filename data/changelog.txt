@@ -1,4 +1,11 @@
 ## Version .12.0006 - Alpha version - September/18/2020
+Seed Stockpile has been removed as it is not returning to core 
+* Luckily the Heist Locker nearly slots into the spot of the Stockpile 1 to 1
+* All settings that affected Stockpile are now settings for Heist Locker
+
+---
+
+## Version .12.0006 - Alpha version - September/18/2020
 More Heist additions
 * Added Heist minion gear list
 * Added Heist Goods you sell to the fence

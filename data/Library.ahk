@@ -2476,7 +2476,7 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSeedStockPile      Checked%YesSeedStockPile%      y+8    , Deposit at Seed StockPile?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesHeistLocker        Checked%YesHeistLocker%        y+8    , Deposit C/B at Heist Locker?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
@@ -2557,7 +2557,7 @@
         GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
         Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
         Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableSeedAutomation Checked%YesEnableSeedAutomation%   xs+5    y+8  , Enable Seed Automation ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableLockerAutomation Checked%YesEnableLockerAutomation%   xs+5    y+8  , Enable Heist Automation ?
         Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
         Gui, Inventory: Add, Checkbox, gUpdateExtra vYesEnableAutoSellConfirmationSafe Checked%YesEnableAutoSellConfirmationSafe%       y+8  , Enable Safe Auto Confirm?
         Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -2980,8 +2980,8 @@
         Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%2160_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
         Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
         Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1440_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Seed StockPile
-        Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"?"%2160_SeedStockPileStr%"?"%1440_SeedStockPileStr%"?"%1050_SeedStockPileStr%"?"%768_SeedStockPileStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Heist Locker
+        Gui, Strings: Add, ComboBox, y+8 w280 vHeistLockerStr gUpdateStringEdit , %HeistLockerStr%??"%1080_HeistLockerStr%"
         Gui, Strings: +Delimiter|
 
       Gui, Strings: Tab, Vendor
@@ -3707,7 +3707,7 @@
   ; GuiStatus - Determine the gamestates by checking for specific pixel colors
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiStatus(Fetch:="",SS:=1){
-    Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnMetamorph, OnStockPile, OnDetonate
+    Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnMetamorph, OnLocker, OnDetonate
     If (SS)
       ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
     If (Fetch="OnDetonate")
@@ -3722,7 +3722,7 @@
       temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
       Return temp
     }
-    If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile)
+    If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker)
       CheckXButton(), xChecked := True
     POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
     POnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat), OnChat := (POnChat=varOnChat?True:False)
@@ -3734,14 +3734,14 @@
     POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
     POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
     POnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
-    POnStockPile := ScreenShot_GetColor(vX_OnStockPile,vY_OnStockPile), OnStockPile := (POnStockPile=varOnStockPile?True:False)
+    POnLocker := ScreenShot_GetColor(vX_OnLocker,vY_OnLocker), OnLocker := (POnLocker=varOnLocker?True:False)
     If OnMines
     POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
     Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
-    If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile))
+    If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
       CheckXButton()
-    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile||YesXButtonFound))
+    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker||YesXButtonFound))
   }
   ; PanelManager - This class manages every gamestate within one place
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4360,9 +4360,9 @@
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / (1920 / 785))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Status Check OnStockPile ((1920/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (1920 / 638))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
+        ;Status Check OnLocker
+        global vX_OnLocker:=GameX + Round(GameW / (1920 / 458))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (1920 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -4685,9 +4685,11 @@
         ;Status Check OnMetamorph
         global vX_OnMetamorph:=GameX + Round(GameW / (2560 / 1105))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Status Check OnStockPile ((2560/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (2560 / 851))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
+        ;Status Check OnLocker
+        global vX_OnLocker:=GameX + Round(GameW / (2560 / 490))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
+
+
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (2560 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -4847,9 +4849,9 @@
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / ( 3440 / 1480))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1440 / 270))
-        ;Status Check OnStockPile ((3440/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (3440 / 1144))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1440 / 800))
+        ;Status Check OnLocker ((3440/3)-2)
+        global vX_OnLocker:=GameX + Round(GameW / (3440 / 600))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1440 / 918))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (3440 / 128))
         global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
@@ -5010,9 +5012,9 @@
         ;Status Check OnMetamorph
         global vX_OnMetamorph:=GameX + Round(GameW / (3840 / 1745))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Status Check OnStockPile ((3840/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (3840 / 1278))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
+        ;Status Check OnLocker ((3840/3)-2)
+        global vX_OnLocker:=GameX + Round(GameW / (3840 / 900))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (3840 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -5200,14 +5202,13 @@
         global vX_OnDelveChart:=GameX + Round(GameW / (1680 / 362))
         global vY_OnDelveChart:=GameY + Round(GameH / ( 1050 / 84))
        
-       
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / (1680 / 850))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1050 / 195))
        
-        ;Status Check OnStockPile ((1680/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (1680 / 552))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1050 / 592))
+        ;Status Check OnLocker ((1680/3)-2)
+        global vX_OnLocker:=GameX + Round(GameW / (1680 / 450))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1050 / 918))
  
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (1680 / 95))
