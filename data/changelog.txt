@@ -1,3 +1,24 @@
+## Version .12.01 - Master version - September/18/2020
+Update for Heist League
+* All heist Items should now properly be tagged as a Heist Specialtype
+* Automation is now available for auto-depositing Blueprint and Contracts
+  * Or simply have the panel open and run inventory sort
+* Currently only configured for standard aspect
+  * Submit your aspect ratio's position of the "i" button to have it added
+  * Also submit your sample of the Heist Locker nameplate (just the word "Locker")
+
+Improvements from previous Alpha versions
+* GUI has been re-arranged to try and organize the settings
+* Hotkeys are more standardized and should no longer require wrap
+* Controller functionality has been tweaked to add L/R trigger functions
+* Controller can now use the DPAD to move between the inventory of all open panels
+* Inventory Grid has been redisigned to use two corners instead of 12x5 grid of positions
+  * If your aspect ratio is not working, submit your inventory coordinates for top left and bottom right
+* Debug tool for viewing script variables
+* OnStash and OnVendor have been moved to a better position to stop Tooltip from blocking sample
+
+---
+
 ## Version .12.0007 - Alpha version - September/18/2020
 Seed Stockpile has been removed as it is not returning to core 
 * Luckily the Heist Locker replaces the functionality of the Stockpile 1 to 1
