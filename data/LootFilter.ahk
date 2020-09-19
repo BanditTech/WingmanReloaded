@@ -170,20 +170,28 @@ ChangeButtonNamesVar:
   ControlSetText, Button2, Duplicate, Export String
 Return
 
+ReformatJSON(String,Spaces:=1)
+{
+  spcStr := ""
+  Loop %Spaces%
+  {
+    spcStr .= " "
+  }
+  String := RegExReplace(String, "\,\n" spcStr "  ", ", ")
+  String := RegExReplace(String, "\n" spcStr " \}\,\n" spcStr " ", " },`n" spcStr " ")
+  String := RegExReplace(String, "\n" spcStr " \}\n" spcStr "\]", " }`n" spcStr "]")
+  String := RegExReplace(String, "\{\n" spcStr "  """, "{ """)
+  String := RegExReplace(String, "\,\n" spcStr " """, ", """)
+  String := RegExReplace(String, "\{\n" spcStr " """, "{ """)
+  String := RegExReplace(String, """\n" spcStr "\}\,", """ },")
+  Return String
+}
+
 ExportGroup:
   Gui, Submit, NoHide
   StringSplit, buttonstr, A_GuiControl, _
   GKey := buttonstr2
-  exportArr := LootFilter[GKey]
-  Contents := JSON.Dump(exportArr,,1)
-  Contents := RegExReplace(Contents, "\,\n   ", ", ")
-  Contents := RegExReplace(Contents, "\n  \}\,\n  ", " },`n  ")
-  Contents := RegExReplace(Contents, "\n  \}\n \]", " }`n ]")
-  Contents := RegExReplace(Contents, "\{\n   """, "{ """)
-  Contents := RegExReplace(Contents, "\,\n  """, ", """)
-  Contents := RegExReplace(Contents, "\{\n  """, "{ """)
-  Contents := RegExReplace(Contents, """\n \}\,", """ },")
-  Clipboard := Contents
+  Clipboard := ReformatJSON(JSON.Dump(LootFilter[GKey],,1),1)
   SetTimer, ChangeButtonNamesVar, 10
   MsgBox 262147, Export String,% Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy"
   IfMsgBox, Yes
@@ -343,7 +351,7 @@ SaveArray()
 {
   SaveArray:
   Gui, Submit, NoHide
-  JSONtext := JSON.Dump(LootFilter,,1)
+  JSONtext := ReformatJSON(JSON.Dump(LootFilter,,1),2)
   FileDelete, LootFilter.json
   FileAppend, %JSONtext%, LootFilter.json
   Return

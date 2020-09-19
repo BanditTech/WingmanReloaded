@@ -504,6 +504,46 @@
               This.Prop.ItemClass := "Beasts"
             }
           }
+          Else If (InStr(This.Prop.ItemBase, "Contract:"))
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Contract"
+            This.Prop.DefaultSendStash := "HeistTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Blueprint:"))
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Blueprint"
+            This.Prop.DefaultSendStash := "HeistTab"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Rogue's Marker"))
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Marker"
+            This.Prop.DefaultSendStash := "HeistTab"
+          }
+          Else If (indexOf(This.Prop.ItemBase, HeistGear))
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Gear"
+            This.Prop.DefaultSendStash := "HeistTab"
+            This.Prop.Item_Width := This.Prop.Item_Height := 2
+          }
+          Else If (This.Prop.RarityMagic && indexOf( StrSplit(This.Prop.ItemBase," ","",2)[2], HeistGear ) )
+          {
+            This.Prop.ItemBase := StrSplit(This.Prop.ItemBase," ","",2)[2]
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Gear"
+            This.Prop.DefaultSendStash := "HeistTab"
+            This.Prop.Item_Width := This.Prop.Item_Height := 2
+          }
+          Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Goods"
+            This.Prop.DefaultSendStash := "HeistTab"
+            This.Prop.Item_Width := This.Prop.Item_Height := 2
+          }
         }
         ;End NamePlate Parser
 
@@ -2406,9 +2446,9 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   WR_Menu(Function:="",Var*)
   {
-    Static Built_Inventory, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
+    Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
 
-    Global InventoryGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
+    Global InventoryGuiTabs, CraftingGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
       , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
       , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
       , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
@@ -2428,7 +2468,7 @@
         ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Stash Hotkeys|Map Crafting Settings
+        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs
 
       Gui, Inventory: Tab, Options
         Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -2436,7 +2476,7 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSeedStockPile      Checked%YesSeedStockPile%      y+8    , Deposit at Seed StockPile?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesHeistLocker        Checked%YesHeistLocker%        y+8    , Deposit C/B at Heist Locker?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
@@ -2489,24 +2529,12 @@
         Gui, Inventory: Add, Text,                   x+33             h152 0x11
         Gui, Inventory: Add, Text,                   x+33             h152 0x11
 
-        IfNotExist, %A_ScriptDir%\data\leagues.json
-        {
-          UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-        }
-        FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-        LeagueIndex := JSON.Load(JSONtext)
-        textList= 
-        For K, V in LeagueIndex
-          textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
         Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
-        Gui, Inventory: Add, DropDownList, vselectedLeague xs+5 y+5 w102, %textList%
-        GuiControl,Inventory: ChooseString, selectedLeague, %selectedLeague%
-        Gui, Inventory: Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 , Refresh
         Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
         Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
         Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
@@ -2529,7 +2557,7 @@
         GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
         Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
         Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableSeedAutomation Checked%YesEnableSeedAutomation%   xs+5    y+8  , Enable Seed Automation ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableLockerAutomation Checked%YesEnableLockerAutomation%   xs+5    y+8  , Enable Heist Automation ?
         Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
         Gui, Inventory: Add, Checkbox, gUpdateExtra vYesEnableAutoSellConfirmationSafe Checked%YesEnableAutoSellConfirmationSafe%       y+8  , Enable Safe Auto Confirm?
         Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -2822,137 +2850,102 @@
         Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
         Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
 
-      Gui, Inventory: Tab, Stash Hotkeys
+      }
+      Gui, Inventory: show , w600 h500, Inventory Settings
+    }
+    Else If (Function = "Crafting")
+    {
+      Gui, 1: Submit
+      If !Built_Crafting
+      {
+        Built_Crafting := 1
+        Gui, Crafting: New
+        Gui, Crafting: +AlwaysOnTop -MinimizeBox
+        ;Save Setting
+        Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        ; Gui, Crafting: Add, Button,      gloadSaved     x+5           h23,   Load
+        Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Inventory: Add, Checkbox, xm+5 ym+25  vYesStashKeys Checked%YesStashKeys%                    , Enable stash hotkeys?
+        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting
 
-        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-        Gui, Inventory: Add,GroupBox,Section xp-5 yp+20 w100 h85                      ,Modifier
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s9,Arial
-        Gui, Inventory: Add, Edit, xs+4 ys+20 w90 h23 vstashPrefix1, %stashPrefix1%
-        Gui, Inventory: Add, Edit, y+8    w90 h23 vstashPrefix2, %stashPrefix2%
-
-        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-        Gui, Inventory: Add,GroupBox, xp-5 y+20 w100 h55                      ,Reset Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s9,Arial
-        Gui, Inventory: Add, Edit, xp+4 yp+20 w90 h23 vstashReset, %stashReset%
-
-        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-        Gui, Inventory: Add,GroupBox,Section x+10 ys w100 h275                      ,Keys
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s9,Arial
-        Gui, Inventory: Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
-        Gui, Inventory: Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
-
-        Gui, Inventory: Font,s9 cBlack Bold Underline, Arial
-        Gui, Inventory: Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s9,Arial
-        Gui, Inventory: Add, Edit, Number xs+4 ys+20 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
-        Gui, Inventory: Add, Edit, Number y+5 w40
-        Gui, Inventory: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
-      Gui, Inventory: Tab, Map Crafting Settings
+      Gui, Crafting: Tab, Map Crafting
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
         MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
         MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, Text,       Section              x12   ym+25,         Map Crafting
-        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
-        Gui, Inventory: Font,
-        Gui, Inventory: Font,s7
-          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
-          GuiControl,Inventory: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s7
-          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
-          GuiControl,Inventory: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s7
-          Gui, Inventory: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Inventory: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Inventory: Add, Text,         xs+105   ys+20       , Method
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
-          Gui, Inventory: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
-          GuiControl,Inventory: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
-          Gui, Inventory: Font,
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
-          Gui, Inventory: Font,
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
-          Gui, Inventory: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
-          Gui, Inventory: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
-          Gui, Inventory: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
-          Gui, Inventory: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
-          Gui, Inventory: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-          Gui, Inventory: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances
-          Gui, Inventory: Font, Bold
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
-          Gui, Inventory: Font, 
-          Gui, Inventory: Font,s8
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Map Crafting
+        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
+        Gui, Crafting: Font,
+        Gui, Crafting: Font,s7
+          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
+          GuiControl,Crafting: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s7
+          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
+          GuiControl,Crafting: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s7
+          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
+          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
+          GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
+          Gui, Crafting: Font,
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
+          Gui, Crafting: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
+          Gui, Crafting: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
+          Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
+          Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
+          Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
+          Gui, Crafting: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances
+          Gui, Crafting: Font, Bold
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
+          Gui, Crafting: Font, 
+          Gui, Crafting: Font,s8
 
-          Gui, Inventory: Add, Edit, number limit2 xs+15 yp+18 w40
-          Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
-          Gui, Inventory: Add, Text,         x+10 yp+3        , Item Quantity
+          Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w40
+          Gui, Crafting: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+          Gui, Crafting: Add, Text,         x+10 yp+3        , Item Quantity
 
-          Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
-          Gui, Inventory: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
-          Gui, Inventory: Add, Text,         x+10 yp+3        , Item Rarity
+          Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+          Gui, Crafting: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
+          Gui, Crafting: Add, Text,         x+10 yp+3        , Item Rarity
 
-          Gui, Inventory: Add, Edit, number limit2 xs+15 y+15 w40
-          Gui, Inventory: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
-          Gui, Inventory: Add, Text,         x+10 yp+3        , Monster Pack Size
+          Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+          Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
+          Gui, Crafting: Add, Text,         x+10 yp+3        , Monster Pack Size
 
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
-        Gui, Inventory: Font,
-          Gui, Inventory: Font,s8
-          Gui, Inventory: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
+        Gui, Crafting: Font,
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
       }
-      Gui, Inventory: show , w600 h500, Inventory Settings
+      Gui, Crafting: show , w600 h500, Crafting Settings
     }
     Else If (Function = "Strings")
     {
@@ -2982,20 +2975,20 @@
         Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
         Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"?"%1050_SkillUpStr%"?"%768_SkillUpStr%"
         Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
-        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"?"%1440_SellItemsStr%"?"%1050_SellItemsStr%"?"%768_SellItemsStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"?"%2160_SellItemsStr%"?"%1440_SellItemsStr%"?"%1050_SellItemsStr%"?"%768_SellItemsStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
-        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%2160_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
         Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
-        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Seed StockPile
-        Gui, Strings: Add, ComboBox, y+8 w280 vSeedStockPileStr gUpdateStringEdit , %SeedStockPileStr%??"%1080_SeedStockPileStr%"?"%1440_SeedStockPileStr%"?"%1050_SeedStockPileStr%"?"%768_SeedStockPileStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1440_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Heist Locker
+        Gui, Strings: Add, ComboBox, y+8 w280 vHeistLockerStr gUpdateStringEdit , %HeistLockerStr%??"%1080_HeistLockerStr%"
         Gui, Strings: +Delimiter|
 
       Gui, Strings: Tab, Vendor
         Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
         Gui, Strings: +Delimiter?
         Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
         Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"?"%1050_MasterStr%"
         Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
@@ -3026,7 +3019,6 @@
         Built_Chat := 1
         Gui, Chat: New
         Gui, Chat: +AlwaysOnTop -MinimizeBox
-        Gui, Chat: Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xm+400 ym                    , Enable chat Hotkeys?
 
         ;Save Setting
         Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
@@ -3490,6 +3482,8 @@
 
     InventoryGuiClose:
     InventoryGuiEscape:
+    CraftingGuiClose:
+    CraftingGuiEscape:
     StringsGuiClose:
     StringsGuiEscape:
     ChatGuiClose:
@@ -3713,6 +3707,7 @@
   ; GuiStatus - Determine the gamestates by checking for specific pixel colors
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiStatus(Fetch:="",SS:=1){
+    Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnMetamorph, OnLocker, OnDetonate
     If (SS)
       ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
     If (Fetch="OnDetonate")
@@ -3727,6 +3722,8 @@
       temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
       Return temp
     }
+    If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker)
+      CheckXButton(), xChecked := True
     POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
     POnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat), OnChat := (POnChat=varOnChat?True:False)
     POnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu), OnMenu := (POnMenu=varOnMenu?True:False)
@@ -3737,12 +3734,14 @@
     POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
     POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
     POnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
-    POnStockPile := ScreenShot_GetColor(vX_OnStockPile,vY_OnStockPile), OnStockPile := (POnStockPile=varOnStockPile?True:False)
+    POnLocker := ScreenShot_GetColor(vX_OnLocker,vY_OnLocker), OnLocker := (POnLocker=varOnLocker?True:False)
     If OnMines
     POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
     Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
-    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnStockPile))
+    If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
+      CheckXButton()
+    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker||YesXButtonFound))
   }
   ; PanelManager - This class manages every gamestate within one place
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4030,17 +4029,45 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CheckOHB()
   {
+    Global YesOHBFound
     If GamePID
     {
-      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
+      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 390)) , 0, 0, HealthBarStr,0))
+      {
+        YesOHBFound := True
         Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
+      }
       Else
       {
         Ding(500,6,"OHB Not Found")
+        YesOHBFound := False
         Return False
       }
     }
     Else 
+      Return False
+  }
+  CheckXButton(retObj:=0)
+  {
+    Global YesXButtonFound
+    If GamePID
+    {
+      If (Butt := FindText( GameX, GameY, GameX + GameW, GameY + GameH * .3, .08, .15, XButtonStr, 0 ) )
+      {
+        YesXButtonFound := True
+        Ding(500,7,"XButton Detected")
+        If retObj
+          Return Butt
+        Else
+          Return True
+      }
+      Else
+      {
+        YesXButtonFound := False
+        Return False
+      }
+    }
+    Else
       Return False
   }
   CheckOHBold()
@@ -4160,12 +4187,18 @@
   ; Rescale - Rescales values of the script to the user's resolution
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Rescale(){
-    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, StashGrid
+    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid
     If checkActiveType()
     {
       ; Build array framework
-      StashGrid:={"Stash":{"X":{},"Y":{}}
-              ,"StashQuad":{"X":{},"Y":{}}}
+      InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{}}
+              ,"SlotSpacing": 2
+              ,"SlotRadius": 25
+              ,"Stash":{"X":{},"Y":{}}
+              ,"StashQuad":{"X":{},"Y":{}}
+              ,"Inventory":{"X":{},"Y":{}}
+              ,"VendorRec":{"X":{},"Y":{}}
+              ,"VendorOff":{"X":{},"Y":{}}}
       If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
       {
         WR_Menu("JSON","Load","FillMetamorph")
@@ -4235,15 +4268,35 @@
           Base.Globe := Array_DeepClone(Globe)
         }
         ; Stash grid area
+        ; --------------------------------------------
+        ; ---Needs to be done with all aspect ratio---
+        ; --------------------------------------------
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(1920/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
-          vX_StashBotR:=GameX + Round(GameW/(1920/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
-          ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1080/2))
-        }
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1920/16))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1920/650))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          ; Do the same for Inventory
+          InvGrid.Corners.Inventory.X1:=GameX + Round(GameW/(1920/1270))
+          InvGrid.Corners.Inventory.Y1:=GameY + Round(GameH/(1080/587))
+          InvGrid.Corners.Inventory.X2:=GameX + Round(GameW/(1920/1904))
+          InvGrid.Corners.Inventory.Y2:=GameY + Round(GameH/(1080/851))
+          ; Area for Recieving Items
+          InvGrid.Corners.VendorRec.X1:=GameX + Round(GameW/(1920/310))
+          InvGrid.Corners.VendorRec.Y1:=GameY + Round(GameH/(1080/187))
+          InvGrid.Corners.VendorRec.X2:=GameX + Round(GameW/(1920/943))
+          InvGrid.Corners.VendorRec.Y2:=GameY + Round(GameH/(1080/451))
+          ; Area for Offering Items
+          InvGrid.Corners.VendorOff.X1:=GameX + Round(GameW/(1920/310))
+          InvGrid.Corners.VendorOff.Y1:=GameY + Round(GameH/(1080/518))
+          InvGrid.Corners.VendorOff.X2:=GameX + Round(GameW/(1920/943))
+          InvGrid.Corners.VendorOff.Y2:=GameY + Round(GameH/(1080/783))
 
+          ; Give pixels for lines between slots
+          InvGrid.SlotSpacing:=Round(GameH/(1080/2))
+        }
         ;Auto Vendor Settings 380,820
         Global VendorAcceptX:=GameX + Round(GameW/(1920/380))
         Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
@@ -4289,12 +4342,12 @@
         ;Status Check OnInventory
         global vX_OnInventory:=GameX + Round(GameW / (1920 / 1583))
         global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
-        ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (1920 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
-        ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (1920 / 618))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+        ;Status Check OnStash - Edited
+        global vX_OnStash:=GameX + Round(GameW / (1920 / 248))
+        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 896))
+        ;Status Check OnVendor - Edited
+        global vX_OnVendor:=GameX + Round(GameW / (1920 / 956))
+        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 840))
         ;Status Check OnDiv
         global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
         global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
@@ -4307,9 +4360,9 @@
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / (1920 / 785))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Status Check OnStockPile ((1920/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (1920 / 638))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
+        ;Status Check OnLocker
+        global vX_OnLocker:=GameX + Round(GameW / (1920 / 458))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (1920 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -4402,10 +4455,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(1440/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
-          vX_StashBotR:=GameX + Round(GameW/(1440/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1440/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1440/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1080/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
           ;380,820
@@ -4563,10 +4616,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(2560/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
-          vX_StashBotR:=GameX + Round(GameW/(2560/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(2560/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(2560/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1080/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
         ;380,820
@@ -4632,9 +4685,11 @@
         ;Status Check OnMetamorph
         global vX_OnMetamorph:=GameX + Round(GameW / (2560 / 1105))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Status Check OnStockPile ((2560/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (2560 / 851))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
+        ;Status Check OnLocker
+        global vX_OnLocker:=GameX + Round(GameW / (2560 / 490))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
+
+
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (2560 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -4726,10 +4781,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(3440/22)), vY_StashTopL:=GameY + Round(GameH/(1440/215))
-          vX_StashBotR:=GameX + Round(GameW/(3440/864)), vY_StashBotR:=GameY + Round(GameH/(1440/1057))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3440/22)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1440/215))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3440/864)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1440/1057))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1440/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1440/2))
         }
         ;Auto Vendor Settings
         Global VendorAcceptX:=GameX + Round(GameW/(3440/945))
@@ -4794,9 +4849,9 @@
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / ( 3440 / 1480))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1440 / 270))
-        ;Status Check OnStockPile ((3440/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (3440 / 1144))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1440 / 800))
+        ;Status Check OnLocker ((3440/3)-2)
+        global vX_OnLocker:=GameX + Round(GameW / (3440 / 600))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1440 / 918))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (3440 / 128))
         global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
@@ -4888,10 +4943,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(3840/16)), vY_StashTopL:=GameY + Round(GameH/(1080/160))
-          vX_StashBotR:=GameX + Round(GameW/(3840/650)), vY_StashBotR:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3840/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3840/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1080/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
         ;380,820
@@ -4957,9 +5012,9 @@
         ;Status Check OnMetamorph
         global vX_OnMetamorph:=GameX + Round(GameW / (3840 / 1745))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Status Check OnStockPile ((3840/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (3840 / 1278))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1080 / 600))
+        ;Status Check OnLocker ((3840/3)-2)
+        global vX_OnLocker:=GameX + Round(GameW / (3840 / 900))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (3840 / 95))
         global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
@@ -5061,10 +5116,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          vX_StashTopL:=GameX + Round(GameW/(1680/16)), vY_StashTopL:=GameY + Round(GameH/(1050/160))
-          vX_StashBotR:=GameX + Round(GameW/(1680/650)), vY_StashBotR:=GameY + Round(GameH/(1050/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1680/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1050/160))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1680/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1050/795))
           ; Give pixels for lines between slots
-          SlotSpacing:=Round(GameH/(1050/2))
+          InvGrid.SlotSpacing:=Round(GameH/(1050/2))
         }
 
         ;Auto Vendor Settings
@@ -5147,14 +5202,13 @@
         global vX_OnDelveChart:=GameX + Round(GameW / (1680 / 362))
         global vY_OnDelveChart:=GameY + Round(GameH / ( 1050 / 84))
        
-       
         ;Status Check OnMetamporph
         global vX_OnMetamorph:=GameX + Round(GameW / (1680 / 850))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1050 / 195))
        
-        ;Status Check OnStockPile ((1680/3)-2)
-        global vX_OnStockPile:=GameX + Round(GameW / (1680 / 552))
-        global vY_OnStockPile:=GameY + Round(GameH / ( 1050 / 592))
+        ;Status Check OnLocker ((1680/3)-2)
+        global vX_OnLocker:=GameX + Round(GameW / (1680 / 450))
+        global vY_OnLocker:=GameY + Round(GameH / ( 1050 / 918))
  
         ;Life %'s
         global vX_Life:=GameX + Round(GameW / (1680 / 95))
@@ -5212,45 +5266,128 @@
       Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) ,"Yadjusted" : GameY + GameH / 2 / compensation}
       RescaleRan := True
       Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
-
-      ; Calculate space for the Stash grid
-      totalX:=vX_StashBotR - vX_StashTopL, totalY:=vY_StashBotR - vY_StashTopL
-      ; Fill in array with grid locations for 12x12 stash
-      Cnum:=Rnum:=12
-      Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
-      , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
-      Loop, %Cnum%
-      {
-        If (A_Index = 1) 
-        {
-          PointX:=vX_StashTopL+Cwidth//2
-          PointY:=vY_StashTopL+Rwidth//2
-        } Else {
-          PointX+=Cwidth+SlotSpacing
-          PointY+=Rwidth+SlotSpacing
-        }
-        StashGrid.Stash.X.Push(Round(PointX))
-        StashGrid.Stash.Y.Push(Round(PointY))
-      }
-      ; Fill in array with grid locations for 24x24 stash
-      Cnum:=Rnum:=24
-      Cwidth:=((totalX-((Cnum-1)*SlotSpacing))/Cnum)
-      , Rwidth:=((totalY-((Rnum-1)*SlotSpacing))/Rnum)
-      Loop, %Cnum%
-      {
-        If (A_Index = 1) 
-        {
-          PointX:=vX_StashTopL+Cwidth//2
-          PointY:=vY_StashTopL+Rwidth//2
-        } Else {
-          PointX+=Cwidth+SlotSpacing
-          PointY+=Rwidth+SlotSpacing
-        }
-        StashGrid.StashQuad.X.Push(Round(PointX))
-        StashGrid.StashQuad.Y.Push(Round(PointY))
-      }
+      BuildGridsFromCorners()
     }
     return
+  }
+  BuildGridsFromCorners(){
+    Global InvGrid
+    ; Calculate space for the Stash grid
+    totalX:=InvGrid.Corners.Stash.X2 - InvGrid.Corners.Stash.X1
+    , totalY:=InvGrid.Corners.Stash.Y2 - InvGrid.Corners.Stash.Y1
+    ; Fill in array with grid locations for 12x12 stash
+    Cnum:=Rnum:=12
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    InvGrid.SlotRadius := (Cwidth//2 + Rwidth//2) // 2
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Stash.X1+Cwidth//2, PointY:=InvGrid.Corners.Stash.Y1+Rwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing, PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.Stash.X.Push(Round(PointX))
+      InvGrid.Stash.Y.Push(Round(PointY))
+    }
+    ; Fill in array with grid locations for 24x24 stash
+    Cnum:=Rnum:=24
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Stash.X1+Cwidth//2, PointY:=InvGrid.Corners.Stash.Y1+Rwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing, PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.StashQuad.X.Push(Round(PointX))
+      InvGrid.StashQuad.Y.Push(Round(PointY))
+    }
+    ; Calculate space for the Inventory grid
+    totalX:=InvGrid.Corners.Inventory.X2 - InvGrid.Corners.Inventory.X1
+    , totalY:=InvGrid.Corners.Inventory.Y2 - InvGrid.Corners.Inventory.Y1
+    ; Fill in array with grid locations for 12x5 Inventory
+    Cnum:=12
+    Rnum:=5
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Inventory.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.Inventory.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.Inventory.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.Inventory.Y.Push(Round(PointY))
+    }
+    ; Calculate space for the Vendor Receive grid
+    totalX:=InvGrid.Corners.VendorRec.X2 - InvGrid.Corners.VendorRec.X1
+    , totalY:=InvGrid.Corners.VendorRec.Y2 - InvGrid.Corners.VendorRec.Y1
+    ; Fill in array with grid locations for 12x5 Receive Area
+    Cnum:=12
+    Rnum:=5
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.VendorRec.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.VendorRec.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.VendorRec.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.VendorRec.Y.Push(Round(PointY))
+    }
+    ; Calculate space for the Vendor Offer grid
+    totalX:=InvGrid.Corners.VendorOff.X2 - InvGrid.Corners.VendorOff.X1
+    , totalY:=InvGrid.Corners.VendorOff.Y2 - InvGrid.Corners.VendorOff.Y1
+    ; Fill in array with grid locations for 12x5 Offer Area
+    Cnum:=12
+    Rnum:=5
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.VendorOff.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.VendorOff.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.VendorOff.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.VendorOff.Y.Push(Round(PointY))
+    }
+  }
+  PromptForObject(){
+    Global
+    Gui, ArrayPrint: New
+    Gui, ArrayPrint: Add, Edit, xm+20 ym+20 w200 h23 vSubmitObjectName
+    Gui, ArrayPrint: Add, Button, wp hp gPrintObj, Submit
+    Gui, ArrayPrint: Show
+    Return
+
+    PrintObj:
+      Gui, Submit, NoHide
+      Gui, ArrayPrint: Destroy
+      Array_Gui(%SubmitObjectName%)
+    Return
   }
   ; Compare two hex colors as their R G B elements, puts all the below together
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -6665,6 +6802,30 @@
     Gui,6:Hide
     return
   }
+  IsModifier(Character) {
+    static Modifiers := {"!": 1, "#": 1, "~": 1, "^": 1, "*": 1, "+": 1}
+    return Modifiers.HasKey(Character)
+  }
+  SplitModsFromKey(key){
+    Mods := String := ""
+    for k, Letter in StrSplit(key) {
+      if (IsModifier(Letter)) {
+        Mods .= Letter
+      }
+      else {
+        String .= Letter
+      }
+    }
+    Return {"Mods":Mods, "Key":String }
+  }
+  SendHotkey(keyStr:="",hold:=0){
+    Obj := SplitModsFromKey(keyStr)
+    If GameActive
+      Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
+    Else
+      controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
+  }
+
   ; UpdateLeagues - Grab the League info from GGG API
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   UpdateLeagues:
@@ -6944,9 +7105,9 @@
       {
         If GetKeyState(StackRelease_Keybind,"P")
         {
-          Send {%StackRelease_Keybind% up}
+          SendHotkey(StackRelease_Keybind,"up")
           Sleep, 10
-          Send {%StackRelease_Keybind% down}
+          SendHotkey(StackRelease_Keybind,"down")
         }
       }
     }
@@ -6964,6 +7125,22 @@
     }
     Return PPServerStatus
   }
+
+  String2ASCII(String:="",One:="#",Zero:="."){
+    local
+    s := StrSplit(String, ".")
+    w := StrSplit(s.1, "$").2
+    s := StrSplit(StrReplace(StrReplace(base64tobit(s.2),"1",One),"0",Zero))
+    v := ""
+    For k, c in s
+    {
+      v .= c
+      If !Mod(k,w)
+        v .= "`n"
+    }
+    Return v
+  }
+
   ; Cooldown Timers
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ; TimerFlask - Flask CD Timers
@@ -14294,7 +14471,6 @@ IsLinear(arr, i=0) {
     global
     if _XInput_hm
       return
-    
     ;======== CONSTANTS DEFINED IN XINPUT.H ========
     
     ; NOTE: These are based on my outdated copy of the DirectX SDK.
@@ -14334,7 +14510,7 @@ IsLinear(arr, i=0) {
     XINPUT_FLAG_GAMEPAD       := 0x00000001
     
     ;=============== END CONSTANTS =================
-    
+    SetWorkingDir, % A_ScriptDir "\data"
     _XInput_hm := DllCall("LoadLibrary" ,"str",dll)
     
     if !_XInput_hm
@@ -17237,27 +17413,27 @@ for i,v in ok
   {
     static id, old, Ptr:=A_PtrSize ? "UPtr" : "UInt"
     if (get)
-    return, id
+      return, id
     if (window_id)
     {
-    id:=window_id, old:=0
-    if (set_exstyle)
-    {
-      WinGet, old, ExStyle, ahk_id %id%
-      WinSet, Transparent, 255, ahk_id %id%
-      Loop, 30
+      id:=window_id, old:=0
+      if (set_exstyle)
       {
-      Sleep, 100
-      WinGet, i, Transparent, ahk_id %id%
+        WinGet, old, ExStyle, ahk_id %id%
+        WinSet, Transparent, 255, ahk_id %id%
+        Loop, 30
+        {
+        Sleep, 100
+        WinGet, i, Transparent, ahk_id %id%
+        }
+        Until (i=255)
       }
-      Until (i=255)
-    }
     }
     else
     {
-    if (old)
-      WinSet, ExStyle, %old%, ahk_id %id%
-    id:=old:=0
+      if (old)
+        WinSet, ExStyle, %old%, ahk_id %id%
+      id:=old:=0
     }
   }
 
@@ -17310,32 +17486,32 @@ for i,v in ok
     }
     if (hBM) and !(w<1 or h<1)
     {
-    win:=DllCall("GetDesktopWindow", Ptr)
-    hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
-    mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
-    oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
-    DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+      win:=DllCall("GetDesktopWindow", Ptr)
+      hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
+      mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
+      oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
+      DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
         , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020) ; |0x40000000)
-  DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
-  if (id:=BindWindow(0,0,1))
-    WinGet, id, ID, ahk_id %id%
-  if (id)
-  {
-    WinGetPos, wx, wy, ww, wh, ahk_id %id%
-    left:=x, right:=x+w-1, up:=y, down:=y+h-1
-    left:=left<wx ? wx:left, right:=right>wx+ww-1 ? wx+ww-1:right
-    up:=up<wy ? wy:up, down:=down>wy+wh-1 ? wy+wh-1:down
-    x:=left, y:=up, w:=right-left+1, h:=down-up+1
-  }
-  if (id) and !(w<1 or h<1)
-  {
-    hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
-    DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
-    , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020) ; |0x40000000)
-    DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
-  }
-    DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
-    DllCall("DeleteDC", Ptr,mDC)
+      DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
+      if (id:=BindWindow(0,0,1))
+        WinGet, id, ID, ahk_id %id%
+      if (id)
+      {
+        WinGetPos, wx, wy, ww, wh, ahk_id %id%
+        left:=x, right:=x+w-1, up:=y, down:=y+h-1
+        left:=left<wx ? wx:left, right:=right>wx+ww-1 ? wx+ww-1:right
+        up:=up<wy ? wy:up, down:=down>wy+wh-1 ? wy+wh-1:down
+        x:=left, y:=up, w:=right-left+1, h:=down-up+1
+      }
+      if (id) and !(w<1 or h<1)
+      {
+        hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
+        DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+        , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020) ; |0x40000000)
+        DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
+      }
+      DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
+      DllCall("DeleteDC", Ptr,mDC)
     }
     Critical, %cri%
     SetBatchLines, %bch%
@@ -17775,11 +17951,11 @@ for i,v in ok
   ; Use PicX(Text) to automatically cut into multiple characters
   ; Can't be used in ColorPos mode, because it can cause position errors
 
-  PicX(Text)
+  PicX(Text,ObjMode:=0)
   {
     if !RegExMatch(Text,"\|([^$]+)\$(\d+)\.([\w+/]+)",r)
       return, Text
-    w:=r2, v:=base64tobit(r3), Text:=""
+    w:=r2, v:=base64tobit(r3), Text:="", Obj:=[]
     c:=StrLen(StrReplace(v,"0"))<=StrLen(v)//2 ? "1":"0"
     wz:=RegExReplace(v,".{" w "}","$0`n")
     SetFormat, IntegerFast, d
@@ -17793,9 +17969,17 @@ for i,v in ok
       v:=RegExReplace(wz,"m`n)^(.{" i "}).*","$1")
       wz:=RegExReplace(wz,"m`n)^.{" i "}")
       if (v!="")
-      Text.="|" r1 "$" i "." bit2base64(v)
+      {
+        If ObjMode
+          Obj.Push({"String" : "|" r1 "$" i "." bit2base64(v), "ASCII" : v })
+        Else
+          Text.="|" r1 "$" i "." bit2base64(v)
+      }
     }
-    return, Text
+    If ObjMode
+      Return, Obj
+    Else
+      return, Text
   }
 
   ; Screenshot and retained as the last screenshot.
@@ -17950,4 +18134,87 @@ for i,v in ok
     Gui, _MouseTip_: Destroy
   }
 
+  GetTextFromScreen(x1, y1, x2, y2, Threshold:=""
+  , ScreenShot:=1, ByRef rx:="", ByRef ry:="")
+  {
+    local
+    SetBatchLines, % (bch:=A_BatchLines)?"-1":"-1"
+    x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
+    , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
+    , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
+    if (w<1 or h<1)
+    {
+      SetBatchLines, %bch%
+      return
+    }
+    ListLines, % (lls:=A_ListLines=0?"Off":"On")?"Off":"Off"
+    GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
+    gc:=[], k:=0
+    Loop, %h% {
+      j:=y+A_Index-1
+      Loop, %w%
+        i:=x+A_Index-1, c:=ScreenShot_GetColor(i,j)
+        , gc[++k]:=(((c>>16)&0xFF)*38+((c>>8)&0xFF)*75+(c&0xFF)*15)>>7
+    }
+    Threshold:=StrReplace(Threshold,"*")
+    if (Threshold="")
+    {
+      pp:=[]
+      Loop, 256
+        pp[A_Index-1]:=0
+      Loop, % w*h
+        pp[gc[A_Index]]++
+      IP:=IS:=0
+      Loop, 256
+        k:=A_Index-1, IP+=k*pp[k], IS+=pp[k]
+      Threshold:=Floor(IP/IS)
+      Loop, 20
+      {
+        LastThreshold:=Threshold
+        IP1:=IS1:=0
+        Loop, % LastThreshold+1
+          k:=A_Index-1, IP1+=k*pp[k], IS1+=pp[k]
+        IP2:=IP-IP1, IS2:=IS-IS1
+        if (IS1!=0 and IS2!=0)
+          Threshold:=Floor((IP1/IS1+IP2/IS2)/2)
+        if (Threshold=LastThreshold)
+          Break
+      }
+    }
+    s:=""
+    Loop, % w*h
+      s.=gc[A_Index]<=Threshold ? "1":"0"
+    ListLines, %lls%
+    ;--------------------
+    w:=Format("{:d}",w), CutUp:=CutDown:=0
+    re1=(^0{%w%}|^1{%w%})
+    re2=(0{%w%}$|1{%w%}$)
+    While RegExMatch(s,re1)
+      s:=RegExReplace(s,re1), CutUp++
+    While RegExMatch(s,re2)
+      s:=RegExReplace(s,re2), CutDown++
+    rx:=x+w//2, ry:=y+CutUp+(h-CutUp-CutDown)//2
+    s:="|<>*" Threshold "$" w "." bit2base64(s)
+    ;--------------------
+    SetBatchLines, %bch%
+    return s
+  }
+
+  GetPicArr(x, y, w, h)
+  {
+    ListLines, % (lls:=A_ListLines=0?"Off":"On") ? "Off":"Off"
+    SetBatchLines, % (bch:=A_BatchLines) ? "-1":"-1"
+    ScreenShot(x, y, x+w-1, y+h-1)
+    arr:=[], i:=1
+    Loop, % h {
+      yy:=y+A_Index-1
+      Loop, % w {
+        xx:=x+A_Index-1
+        , arr[i++]:=ScreenShot_GetColor(xx, yy)
+      }
+    }
+    SetBatchLines, %bch%
+    ListLines, %lls%
+    return arr
+  }
 ;===============  FindText Library End  ===================

@@ -1,3 +1,138 @@
+## Version .12.01 - Master version - September/18/2020
+Update for Heist League
+* All heist Items should now properly be tagged as a Heist Specialtype
+* Automation is now available for auto-depositing Blueprint and Contracts
+  * Or simply have the panel open and run inventory sort
+* Currently only configured for standard aspect
+  * Submit your aspect ratio's position of the "i" button to have it added
+  * Also submit your sample of the Heist Locker nameplate (just the word "Locker")
+
+Improvements from previous Alpha versions
+* GUI has been re-arranged to try and organize the settings
+* Hotkeys are more standardized and should no longer require wrap
+* Controller functionality has been tweaked to add L/R trigger functions
+* Controller can now use the DPAD to move between the inventory of all open panels
+* Inventory Grid has been redisigned to use two corners instead of 12x5 grid of positions
+  * If your aspect ratio is not working, submit your inventory coordinates for top left and bottom right
+* Debug tool for viewing script variables
+* OnStash and OnVendor have been moved to a better position to stop Tooltip from blocking sample
+
+---
+
+## Version .12.0007 - Alpha version - September/18/2020
+Seed Stockpile has been removed as it is not returning to core 
+* Luckily the Heist Locker replaces the functionality of the Stockpile 1 to 1
+* All settings that affected Stockpile are now settings for Heist Locker
+  * Keys for the settings have changed, so please update your inventory sort settings
+
+---
+
+## Version .12.0006 - Alpha version - September/18/2020
+More Heist additions
+* Added Heist minion gear list
+* Added Heist Goods you sell to the fence
+* Added Heist Blueprint
+
+---
+
+## Version .12.0005 - Alpha version - September/18/2020
+Updates for Heist
+* Adding new item types for Contract and Markers
+
+---
+
+## Version .12.0004 - Alpha version - August/07/2020
+Bugfixes
+* Stash tabs beyond 32 are now fixed while sorting inventory
+* Black square panel no longer remaining on screen permanently
+  * This was related to timers being blocked from firing during some routines
+
+Community Submissions of Strings
+* 2160 and 1440 have been give a handful more defaults to pick from
+  * 2160 Sell items, Stockpile, Stash, Navali
+  * 1440 X Button, Zana
+
+Improvements to the GUI layout
+* Hotkey tab of the Menu has had Controller, Chat and Stash hokeys moved into it
+* Configuration tab has been re-organized to better group the menu
+* Crafting is a new menu of its own with Map Crafting to start
+
+Findtext Library Update
+* Added GetTextFromScreen function to quickly capture an area as B&W ASCII
+* Soon to be implimented into a "Quick Capture" system
+
+---
+
+## Version .12.0003 - Alpha version - July/26/2020
+Controller improvements
+* DPad now snaps to the inventory grids for w/e panels are open
+  * When pressed outside inventory or stash it finds the closest grid position
+  * When pressed inside a grid area, it will move one slot in the direction pressed
+  * Jump from Inventory to/from Stash by pressing towards the edge
+  * Supports Inventory, Stash (QuadGrid), and Vendor panels
+
+Expansion of the old StashGrid is now InvGrid
+* Expanded to contain the Inventory and Vendor grid
+* Given the corners it calculates each grid area
+* This made working with the controller much easier
+
+New Debug tool for reading object values
+* Right Click option for Print Object in the system tray
+* Input the name of the object to see it as a list of values
+
+Bugfix
+* Stabilize detection of OHB to allow for Syndicate menu in hideout
+* OnStash and OnVendor sample position has been moved to prevent tooltips from obscuring it
+  * **Re-sample required for Both OnStash and OnVendor**
+
+Several New functions for Inventory Grid with controller
+* SnapToInventoryGrid
+* MoveToGridPosition
+* GridPosition
+* InArea
+* DistanceTo
+* UpdateMousePosition
+
+Incomplete
+* Grid positions for the inventory and vendor are only finished with Standard aspect ratio
+
+---
+
+## Version .12.0002 - Alpha version - July/25/2020
+Controller improvements
+* Opening any panels will convert Right Joystick to Relational Movement
+* Holding a Trigger with Right Joystick toggles Relational Movement
+* Joystick percentages now round to the 4th digit for smoother Movement
+
+New failsafe detection with X Button sample
+* When at Vendors or Inventory it allows for tooltip to obscure sample position
+* It will automatically search for this if a panel was recently detected
+* Uses Global value YesXButtonFound
+* Augments GuiStatus to return false if found
+* Needs to be further implemented into the loops checking for vendor/stash
+
+Bugfixes
+* Library dependencies in the wrong location are fixed
+
+---
+
+## Version .12.0001 - Alpha version - July/23/2020
+Sending hotkeys have been refactored
+* Consistency across all hotkey calls
+* No longer will some keys work or not work with modifiers
+* All keys are interpreted for their modifiers and key
+
+GUI improvements
+* League Selection has been moved to the main configuration tab
+* Size of the GUI has been increased to fit the growing number of controls
+* Allow to disable the In-Game Overlay
+* Loot Vacuum Settings has been moved into the Additional Settings section
+
+Bugfixes
+* When automation has miss-clicked on vendor or stash nameplate, it will attempt up to 3 tries while it waits
+
+---
+
 ## Version .12.00 - Release version - July/20/2020
 Big shoutout to DanMarzola for helping rework the parsing system
 * As a reminder, we welcome anyone to join the Development team!
