@@ -521,6 +521,22 @@
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Gear"
             This.Prop.DefaultSendStash := "HeistTab"
+            This.Prop.Item_Width := This.Prop.Item_Height := 2
+          }
+          Else If (This.Prop.RarityMagic && indexOf( StrSplit(This.Prop.ItemBase," ","",2)[2], HeistGear ) )
+          {
+            This.Prop.ItemBase := StrSplit(This.Prop.ItemBase," ","",2)[2]
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Gear"
+            This.Prop.DefaultSendStash := "HeistTab"
+            This.Prop.Item_Width := This.Prop.Item_Height := 2
+          }
+          Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Goods"
+            This.Prop.DefaultSendStash := "HeistTab"
+            This.Prop.Item_Width := This.Prop.Item_Height := 2
           }
         }
         ;End NamePlate Parser

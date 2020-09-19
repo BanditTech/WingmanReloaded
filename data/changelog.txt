@@ -1,3 +1,10 @@
+## Version .12.0006 - Alpha version - September/18/2020
+More Heist additions
+* Added Heist minion gear list
+* Added Heist Goods you sell to the fence
+
+---
+
 ## Version .12.0005 - Alpha version - September/18/2020
 Updates for Heist
 * Adding new item types for Contract and Markers
