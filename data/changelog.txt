@@ -2,6 +2,7 @@
 More Heist additions
 * Added Heist minion gear list
 * Added Heist Goods you sell to the fence
+* Added Heist Blueprint
 
 ---
 
