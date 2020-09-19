@@ -4346,8 +4346,8 @@
         global vX_OnStash:=GameX + Round(GameW / (1920 / 248))
         global vY_OnStash:=GameY + Round(GameH / ( 1080 / 896))
         ;Status Check OnVendor - Edited
-        global vX_OnVendor:=GameX + Round(GameW / (1920 / 956))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 840))
+        global vX_OnVendor:=GameX + Round(GameW / (1920 / 670))
+        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 125))
         ;Status Check OnDiv
         global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
         global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
