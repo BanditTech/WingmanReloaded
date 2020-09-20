@@ -15606,7 +15606,7 @@ IsLinear(arr, i=0) {
     FetchTab:=FetchTab-1
     encodingError := ""
 
-    postData   := "league=" selectedLeague
+    postData   := "league=" . UriEncode(selectedLeague)
     . "&realm=pc"
     . "&accountName=" AccountNameSTR
     . "&tabs=" . tabs
