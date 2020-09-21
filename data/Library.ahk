@@ -2032,7 +2032,8 @@
             || (YesStashCraftingMagic && This.Prop.RarityMagic)
             || (YesStashCraftingRare && This.Prop.RarityRare))
           && (!YesStashCraftingIlvl 
-            || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) )
+            || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) 
+          && (!This.Prop.Corrupted)  )
           sendstash := StashTabCrafting
         Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
           sendstash := StashTabPredictive
