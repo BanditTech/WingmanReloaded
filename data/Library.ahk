@@ -516,6 +516,12 @@
             This.Prop.SpecialType := "Heist Blueprint"
             This.Prop.DefaultSendStash := "HeistTab"
           }
+          Else If (InStr(This.Prop.ItemBase, "Thief's Trinket"))
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Tricket"
+            This.Prop.DefaultSendStash := "HeistTab"
+          }
           Else If (InStr(This.Prop.ItemBase, "Rogue's Marker"))
           {
             This.Prop.Heist := True
