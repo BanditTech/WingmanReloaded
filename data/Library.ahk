@@ -504,7 +504,7 @@
               This.Prop.ItemClass := "Beasts"
             }
           }
-          Else If (InStr(This.Prop.ItemBase, "Contract:"))
+          Else If (InStr(This.Prop.ItemBase, "Contract:")||RegExMatch(This.Prop.ItemBase, "`am)(.+) Contract",RxMatch))
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Contract"
