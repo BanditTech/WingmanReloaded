@@ -533,7 +533,8 @@
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Gear"
             This.Prop.DefaultSendStash := "HeistTab"
-            This.Prop.Item_Width := This.Prop.Item_Height := 2
+            ;Disable for now, need review Heist Gear List to split what is 1x1 or 2x2
+            ;This.Prop.Item_Width := This.Prop.Item_Height := 2
           }
           Else If (This.Prop.RarityMagic && indexOf( StrSplit(This.Prop.ItemBase," ","",2)[2], HeistGear ) )
           {
