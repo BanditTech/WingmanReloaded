@@ -2843,7 +2843,10 @@
         Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map Options
+        ;Heist Modification Remove at End of League!
+        ;Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map Options
+        Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map/Contract Options
+        ;Heist Modification Remove at End of League!
         Gui, Inventory: Font,
         Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
         GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
