@@ -3335,7 +3335,7 @@ Return
             Continue
           Else If (sendstash:=Item.MatchLootFilter())
             Sleep, -1
-          Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint")
+          Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint" || Item.Prop.SpecialType = "Heist Marker")
             {
               HeistC.Push(C)
               HeistR.Push(R)
