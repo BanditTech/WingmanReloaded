@@ -3339,7 +3339,7 @@ Return
           Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) && ((Item.Prop.RarityNormal && YesSkipMaps_normal) || (Item.Prop.RarityMagic && YesSkipMaps_magic) || (Item.Prop.RarityRare && YesSkipMaps_rare) || (Item.Prop.RarityUnique && YesSkipMaps_unique)))
             Continue
           ;Heist Modification Remove at End of League!  
-          Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint")
+          Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint" || Item.Prop.SpecialType = "Heist Marker")
             {
               HeistC.Push(C)
               HeistR.Push(R)
