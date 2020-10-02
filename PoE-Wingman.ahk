@@ -3340,12 +3340,12 @@ Return
             Continue
           ;Heist Modification Remove at End of League!  
           Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint" || Item.Prop.SpecialType = "Heist Marker")
-            {
-              HeistC.Push(C)
-              HeistR.Push(R)
-              ++HeistCount
-              Continue
-            }
+          {
+            HeistC.Push(C)
+            HeistR.Push(R)
+            ++HeistCount
+            Continue
+          }
           Else If ( Item.Prop.IsMap && YesSkipMaps
           && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
           && ((Item.Prop.RarityNormal && YesSkipMaps_normal) 

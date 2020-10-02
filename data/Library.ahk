@@ -2048,7 +2048,7 @@
           sendstash := StashTabDump
         Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
           || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
-          && !This.Prop.SpecialType
+          ; && !This.Prop.SpecialType
           sendstash := StashTabDump
         Else If (This.Prop.SpecialType)
           Return -1
@@ -2268,9 +2268,7 @@
     class ItemBuild extends ItemScan
     {
       __New(Object,quad){
-        This.Data := {"Blocks":{}}
-        This.Data.Blocks.Affix := ""
-        This.Data.Blocks.FlavorText := ""
+        This.Data := {"Blocks":{"Affix":"","FlavorText":""}}
         This.Pseudo := OrderedArray()
         This.Affix := OrderedArray()
         This.Prop := OrderedArray()
@@ -2283,7 +2281,7 @@
           :(Object.frameType=6?"Divination Card"
           :(Object.frameType>=7?"Unknown":"ERROR"))))))))
         If (Object.frameType >= 0 && Object.frameType <= 3)
-        This.Prop.Rarity_Digit := Object.frameType + 1
+          This.Prop.Rarity_Digit := Object.frameType + 1
 
         For k, v in Object.explicitMods
         {
@@ -2309,7 +2307,7 @@
         }
 
         This.Prop.ItemName := (Object.name!=""?Object.name:Object.typeLine)
-        This.Prop.ItemBase := Object.typeLine
+        This.Prop.ItemBase := StrReplace(Object.typeLine, "Superior ", "")
         This.MatchBaseType()
         This.Prop.ItemLevel := Object.ilvl
         This.Prop.Item_Width := Object.w
@@ -3784,7 +3782,7 @@
       Return This.Active := (Active != "" ? Active : False)
     }
   }
-  ; PanelStatus - This class manages pixel sample and comparison
+  ; PixelStatus - This class manages pixel sample and comparison
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Class PixelStatus
   {
