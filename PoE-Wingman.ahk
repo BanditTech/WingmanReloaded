@@ -4053,12 +4053,6 @@ Return
             If ( TriggerLife90 != "00000" && Player.Percent.Life < 90) 
               TriggerFlask(TriggerLife90)
           }
-          Loop, 10
-            If (YesUtility%A_Index%
-            && YesUtility%A_Index%LifePercent != "Off" 
-            && !OnCooldownUtility%A_Index%
-            && YesUtility%A_Index%LifePercent +0 > Player.Percent.Life )
-              TriggerUtility(A_Index)
         }
 
         if (!RadioLife)
@@ -4088,23 +4082,11 @@ Return
             If ( TriggerES90 != "00000" && Player.Percent.ES < 90) 
               TriggerFlask(TriggerES90)
           }
-          Loop, 10
-            If (YesUtility%A_Index%
-            && YesUtility%A_Index%ESPercent != "Off" 
-            && !OnCooldownUtility%A_Index%
-            && YesUtility%A_Index%ESPercent +0 > Player.Percent.ES )
-              TriggerUtility(A_Index)
         }
         
         If (TriggerMana10!="00000") { ; Mana
           If (Player.Percent.Mana < ManaThreshold)
             TriggerMana(TriggerMana10)
-          Loop, 10
-            If (YesUtility%A_Index%
-            && YesUtility%A_Index%ManaPercent != "Off" 
-            && !OnCooldownUtility%A_Index%
-            && YesUtility%A_Index%ManaPercent +0 > Player.Percent.Mana )
-              TriggerUtility(A_Index)
         }
 
         If (MainAttackPressedActive && AutoFlask)
@@ -4132,31 +4114,34 @@ Return
           }
         }
 
-        If (AutoFlask)
+        If (AutoFlask) ; Trigger Utilities
         {
           Loop, 10
           {
-            If (YesUtility%A_Index%) 
-              && !(OnCooldownUtility%A_Index%) 
-              && !(YesUtility%A_Index%Quicksilver) 
-              && !(YesUtility%A_Index%MainAttack) 
-              && !(YesUtility%A_Index%SecondaryAttack) 
-              && (YesUtility%A_Index%LifePercent="Off") 
-              && (YesUtility%A_Index%ESPercent="Off") 
-              && (YesUtility%A_Index%ManaPercent="Off") 
+            If (YesUtility%A_Index% && !OnCooldownUtility%A_Index%)
             {
-              If !(IconStringUtility%A_Index%)
+              If ( YesUtility%A_Index%ESPercent != "Off" && YesUtility%A_Index%ESPercent +0 > Player.Percent.ES )
                 TriggerUtility(A_Index)
-              Else If (IconStringUtility%A_Index%)
+              Else If  (YesUtility%A_Index%LifePercent != "Off" && YesUtility%A_Index%LifePercent +0 > Player.Percent.Life )
+                TriggerUtility(A_Index)
+              Else If (YesUtility%A_Index%ManaPercent != "Off" && YesUtility%A_Index%ManaPercent +0 > Player.Percent.Mana )
+                TriggerUtility(A_Index)
+              Else If !(YesUtility%A_Index%Quicksilver || YesUtility%A_Index%MainAttack || YesUtility%A_Index%SecondaryAttack) 
+                && (YesUtility%A_Index%LifePercent="Off" && YesUtility%A_Index%ESPercent="Off" && YesUtility%A_Index%ManaPercent="Off") 
               {
-                BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
-                If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
-                {
-                  OnCooldownUtility%A_Index%:=1
-                  SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
-                }
-                Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
+                If !(IconStringUtility%A_Index%)
                   TriggerUtility(A_Index)
+                Else If (IconStringUtility%A_Index%)
+                {
+                  BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
+                  If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
+                  {
+                    OnCooldownUtility%A_Index%:=1
+                    SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
+                  }
+                  Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
+                    TriggerUtility(A_Index)
+                }
               }
             }
           }
@@ -4242,11 +4227,6 @@ Return
     AutoQuitCommand:
       AutoQuit := !AutoQuit
       IniWrite, %AutoQuit%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit
-      ; if ((!AutoFlask) && (!AutoQuit)) {
-      ;   SetTimer TGameTick, Off
-      ; } else if ((AutoFlask) || (AutoQuit)){
-      ;   SetTimer TGameTick, %Tick%
-      ; } 
       GuiUpdate()
     return
     }
