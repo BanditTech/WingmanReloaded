@@ -123,15 +123,6 @@
       return
     }
      ; WisdomScroll - Identify Item at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
-    HasVal(haystack, needle) {
-    for index, value in haystack
-    {
-        if (value = needle)
-            return true
-    }
-    return false
-    }
   ; ItemScan - Parse data from Cliboard Text into Prop and Affix values
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemScan
@@ -2461,6 +2452,7 @@
       , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
       , WR_Btn_FillMetamorph_Area
       , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
+      , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeEnableStashing, ChaosRecipeStashTab 
     If (Function = "Inventory")
     {
       Gui, 1: Submit
@@ -2818,12 +2810,12 @@
         Gui, Inventory: Add, Button, gCustomCrafting xs+15 y+5  w150,   Custom Crafting List
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h80    section    xs   y+10,         Dump Tab
+        Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashChaosRecipe Checked%YesStashChaosRecipe% xs+5 y+8, Enable for Chaos Recipe
-        Gui, Inventory: Add, Edit, x+-2 yp-3 w35
-        Gui, Inventory: Add, UpDown, Range1-15 x+0 yp hp gUpdateExtra vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
+        ; Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashChaosRecipe Checked%YesStashChaosRecipe% xs+5 y+8, Enable for Chaos Recipe
+        ; Gui, Inventory: Add, Edit, x+-2 yp-3 w35
+        ; Gui, Inventory: Add, UpDown, Range1-15 x+0 yp hp gUpdateExtra vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jewlers and Chromatics
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -2875,7 +2867,7 @@
         ; Gui, Crafting: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting
+        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Chaos Recipe
 
       Gui, Crafting: Tab, Map Crafting
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
@@ -2884,8 +2876,8 @@
         Gui, Crafting: Font, Bold s9 cBlack, Arial
         Gui, Crafting: Add, Text,       Section              x12   ym+25,         Map Crafting
         Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
-        Gui, Crafting: Font,
-        Gui, Crafting: Font,s7
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s7
           Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
           Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
           Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
@@ -2950,9 +2942,22 @@
 
           Gui, Crafting: Font, Bold s9 cBlack, Arial
         Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
-        Gui, Crafting: Font,
+          Gui, Crafting: Font,
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+      Gui, Crafting: Tab, Chaos Recipe
+        Gui, Crafting: Add, GroupBox,Section w170 h90 xm+5 ym+25, Chaos Recipe Options
+          Gui, Crafting: Add, Checkbox, vChaosRecipeEnableStashing xs+15 yp+20, Stash Items in Type range
+          Gui, Crafting: Add, Edit, xs+15 yp+20 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTab , %ChaosRecipeStashTab%
+          Gui, Crafting: Add, Text, x+5 yp+3, Assign Stash Tab
+          Gui, Crafting: Add, Edit, xs+15 yp+20 w50 center
+          Gui, Crafting: Add, UpDown, Range1-20 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
+          Gui, Crafting: Add, Text, x+5 yp+3, Max # of each part
+        Gui, Crafting: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Types
+          Gui, Crafting: Add, Radio, xp+15 yp+20 vChaosRecipeTypePure , Pure Chaos 60-74 ilvl
+          Gui, Crafting: Add, Radio, xp yp+20 vChaosRecipeTypeHybrid , Hybrid Chaos 60-100 ilvl
+          Gui, Crafting: Add, Radio, xp yp+20  vChaosRecipeTypeRegal , Pure Regal 75+ ilvl
       }
       Gui, Crafting: show , w600 h500, Crafting Settings
     }
@@ -5526,6 +5531,15 @@
           return index
     }
     Return False
+  }
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
+  HasVal(haystack, needle) {
+    for index, value in haystack
+    {
+      if (value = needle)
+        return true
+    }
+    return false
   }
   ; Transform an array to a comma separated string
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

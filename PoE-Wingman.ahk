@@ -4190,7 +4190,7 @@ Return
     Return
   }
   
-  ; TimerPassthrough - Passthrough Timer
+  ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   TimerPassthrough:
     If ( GetKeyState(KeyFlask1Proper, "P") ) {
@@ -5547,7 +5547,7 @@ Return
     DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
     Return
     }
-; Coord - : Pixel information on Mouse Cursor, provides pixel location and GRB color hex
+; Coord - : Pixel information on Mouse Cursor, provides pixel location and RGB color hex
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Coord(){
     Global Picker
@@ -5556,7 +5556,7 @@ Return
     If (Rect)
     {
       T1 := A_TickCount
-      Ding(10000,-11,"Building an average of area colors`nThis may take some time")
+      Ding(10000,-11,"Building an average of area colors`nThis may take some time, press escape to skip calculation.")
       AvgColor := AverageAreaColor(Rect)
       Ding(100,-11,"")
       Clipboard := "Average Color of Area:  " AvgColor "`n`n" "X1:" Rect.X1 "`tY1:" Rect.Y1 "`tX2:" Rect.X2 "`tY2:" Rect.Y2
