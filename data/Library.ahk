@@ -1416,10 +1416,14 @@
           || RegExMatch(key, "^Stack")
           || RegExMatch(key, "^Weapon"))
           {
+            If indexOf(key,this.MatchedCLF)
+              statText .= "CLF ⭐ "
             statText .= key . ":  " . value . "`n"
           }
           Else
           {
+            If indexOf(key,this.MatchedCLF)
+              propText .= "CLF ⭐ "
             propText .= key . ":  " . value . "`n"
           }
         }
@@ -1430,8 +1434,11 @@
 
         For key, value in This.Affix
         {
-          If (value != 0 && value != "" && value != False)
+          If (value != 0 && value != "" && value != False) {
+            If indexOf(key,this.MatchedCLF)
+              affixText .= "CLF ⭐ "
             affixText .= key . ":  " . value . "`n"
+          }
         }
         GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
       }
@@ -1959,11 +1966,7 @@
         Return
       }
       ItemInfo(){
-        If (This.MatchLootFilter())
-        {
-          This.Prop.CLF_Tab := This.MatchLootFilter()
-          This.Prop.CLF_Group := This.MatchLootFilter(1)
-        }
+        This.MatchLootFilter()
         This.DisplayPSA()
         This.GraphNinjaPrices()
       }
@@ -2059,6 +2062,7 @@
       MatchLootFilter(GroupOut:=0){
         For GKey, Groups in LootFilter
         {
+          this.MatchedCLF := []
           matched := False
           nomatched := False
           ormatched := 0
@@ -2082,6 +2086,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2097,6 +2102,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2112,6 +2118,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2127,6 +2134,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2142,6 +2150,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2157,6 +2166,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2197,6 +2207,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else
                 {
@@ -2211,12 +2222,12 @@
             nomatched := True
           If (matched && !nomatched)
           {
-            If GroupOut
-            Return GKey
-            Else
-            Return LootFilter[GKey]["Data"]["StashTab"]
+            this.Prop.CLF_Tab := LootFilter[GKey]["Data"]["StashTab"]
+            this.Prop.CLF_Group := GKey
+            Return this.Prop.CLF_Tab
           }
         }
+        This.MatchedCLF := False
         Return False
       }
       FilterDoubleMods(){
