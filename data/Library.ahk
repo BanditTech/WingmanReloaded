@@ -525,7 +525,10 @@
             This.Prop.SpecialType := "Heist Gear"
             This.Prop.DefaultSendStash := "HeistTab"
             ;Disable for now, need review Heist Gear List to split what is 1x1 or 2x2
-            ;This.Prop.Item_Width := This.Prop.Item_Height := 2
+            If InStr(This.Prop.ItemBase, "Brooch")
+              This.Prop.Item_Width := This.Prop.Item_Height := 1
+            Else
+              This.Prop.Item_Width := This.Prop.Item_Height := 2
           }
           Else If (This.Prop.RarityMagic && indexOf( StrSplit(This.Prop.ItemBase," ","",2)[2], HeistGear ) )
           {
@@ -541,6 +544,8 @@
             This.Prop.SpecialType := "Heist Goods"
             This.Prop.DefaultSendStash := "HeistTab"
             This.Prop.Item_Width := This.Prop.Item_Height := 2
+            If indexOf(This.Prop.ItemBase, HeistLootLarge)
+              This.Prop.Item_Height := 4
           }
         }
         ;End NamePlate Parser
@@ -1407,10 +1412,14 @@
           || RegExMatch(key, "^Stack")
           || RegExMatch(key, "^Weapon"))
           {
+            If indexOf(key,this.MatchedCLF)
+              statText .= "CLF ⭐ "
             statText .= key . ":  " . value . "`n"
           }
           Else
           {
+            If indexOf(key,this.MatchedCLF)
+              propText .= "CLF ⭐ "
             propText .= key . ":  " . value . "`n"
           }
         }
@@ -1421,8 +1430,11 @@
 
         For key, value in This.Affix
         {
-          If (value != 0 && value != "" && value != False)
+          If (value != 0 && value != "" && value != False) {
+            If indexOf(key,this.MatchedCLF)
+              affixText .= "CLF ⭐ "
             affixText .= key . ":  " . value . "`n"
+          }
         }
         GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
       }
@@ -1950,11 +1962,7 @@
         Return
       }
       ItemInfo(){
-        If (This.MatchLootFilter())
-        {
-          This.Prop.CLF_Tab := This.MatchLootFilter()
-          This.Prop.CLF_Group := This.MatchLootFilter(1)
-        }
+        This.MatchLootFilter()
         This.DisplayPSA()
         This.GraphNinjaPrices()
       }
@@ -2050,6 +2058,7 @@
       MatchLootFilter(GroupOut:=0){
         For GKey, Groups in LootFilter
         {
+          this.MatchedCLF := []
           matched := False
           nomatched := False
           ormatched := 0
@@ -2073,6 +2082,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2088,6 +2098,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2103,6 +2114,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2118,6 +2130,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2133,6 +2146,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2148,6 +2162,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else 
                 {
@@ -2188,6 +2203,7 @@
                   matched := True
                   If orflag
                     ormatched++
+                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
                 }
                 Else
                 {
@@ -2202,12 +2218,12 @@
             nomatched := True
           If (matched && !nomatched)
           {
-            If GroupOut
-            Return GKey
-            Else
-            Return LootFilter[GKey]["Data"]["StashTab"]
+            this.Prop.CLF_Tab := LootFilter[GKey]["Data"]["StashTab"]
+            this.Prop.CLF_Group := GKey
+            Return this.Prop.CLF_Tab
           }
         }
+        This.MatchedCLF := False
         Return False
       }
       FilterDoubleMods(){
