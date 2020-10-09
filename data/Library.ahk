@@ -534,7 +534,10 @@
             This.Prop.SpecialType := "Heist Gear"
             This.Prop.DefaultSendStash := "HeistTab"
             ;Disable for now, need review Heist Gear List to split what is 1x1 or 2x2
-            ;This.Prop.Item_Width := This.Prop.Item_Height := 2
+            If InStr(This.Prop.ItemBase, "Brooch")
+              This.Prop.Item_Width := This.Prop.Item_Height := 1
+            Else
+              This.Prop.Item_Width := This.Prop.Item_Height := 2
           }
           Else If (This.Prop.RarityMagic && indexOf( StrSplit(This.Prop.ItemBase," ","",2)[2], HeistGear ) )
           {
@@ -550,6 +553,8 @@
             This.Prop.SpecialType := "Heist Goods"
             This.Prop.DefaultSendStash := "HeistTab"
             This.Prop.Item_Width := This.Prop.Item_Height := 2
+            If indexOf(This.Prop.ItemBase, HeistLootLarge)
+              This.Prop.Item_Height := 4
           }
         }
         ;End NamePlate Parser
