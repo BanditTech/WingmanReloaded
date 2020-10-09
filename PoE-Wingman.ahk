@@ -113,6 +113,11 @@
     Global GameActive
     Global GamePID
     Global QuestItems
+    Global RegalUnidUntil := 83
+    Global YesChaosUnid := True
+    Global YesRegalUnid := True
+
+
     Global Active_executable := "TempName"
     ; List available database endpoints
     Global apiList := ["Currency"
@@ -2780,7 +2785,11 @@ Return
           ShooMouse(),GuiStatus(),Continue
         If (Item.Affix["Unidentified"]&&YesIdentify)
         {
-          If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
+          If (Item.Prop.ChaosRecipe && YesChaosUnid) || (Item.Prop.RegalRecipe && YesRegalUnid && Item.Prop.ItemLevel < RegalUnidUntil)
+          {
+            ; Do not identify if selected
+          }
+          Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -3357,7 +3366,11 @@ Return
         addToBlacklist(C, R)
         If (Item.Affix["Unidentified"]&&YesIdentify)
         {
-          If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
+          If (Item.Prop.ChaosRecipe && YesChaosUnid) || (Item.Prop.RegalRecipe && YesRegalUnid && Item.Prop.ItemLevel < RegalUnidUntil)
+          {
+            ; Do not identify if selected
+          }
+          Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
@@ -3701,7 +3714,11 @@ Return
         ; Trade full div stacks
         If (Item.Affix["Unidentified"]&&YesIdentify)
         {
-          If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
+          If (Item.Prop.ChaosRecipe && YesChaosUnid) || (Item.Prop.RegalRecipe && YesRegalUnid && Item.Prop.ItemLevel < RegalUnidUntil)
+          {
+            ; Do not identify if selected
+          }
+          Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
