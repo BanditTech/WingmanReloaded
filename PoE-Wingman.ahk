@@ -2835,7 +2835,8 @@ Return
           {
             If Item.MatchStashManagement()
             {
-              Continue
+              If (Item.Prop.SpecialType != "Heist Goods")
+                Continue
             }
           }
           If ( Item.Prop.SpecialType="" || Item.Prop.SpecialType = "Heist Goods" )
