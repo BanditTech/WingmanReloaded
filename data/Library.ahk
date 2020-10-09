@@ -2365,71 +2365,496 @@
       AccountNameSTR := POE_RequestAccount().accountName
     Global RecipeArray := {}
     Object := POE_RequestStash(tab,0)
+    ItemTypes := ChaosRecipeSort(Object)
+    If endAtRefresh
+    {
+      If (ItemTypes)
+        Return True
+      Else
+        Return False
+    }
+    Return ChaosRecipeReturn(ItemTypes)
+  }
+  ChaosRecipeSort(Object){
+    Global RecipeArray
+    Chaos := {}
+    Regal := {}
+    uChaos := {}
+    uRegal := {}
     For i, content in Object.items
     {
       item := new ItemBuild(content,Object.quadLayout)
       ; Array_Gui(item)
-      If (item.Prop.ChaosRecipe || item.Prop.RegalRecipe)
+      If (item.Prop.ChaosRecipe)
       {
-        If !IsObject(RecipeArray[item.Prop.SlotType])
-          RecipeArray[item.Prop.SlotType] := {}
-        RecipeArray[item.Prop.SlotType].Push(item)
+        If !IsObject((item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType])
+          (item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType] := {}
+        (item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType].Push(item)
+      }
+      If (item.Prop.RegalRecipe)
+      {
+        If !IsObject((item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType])
+          (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType] := {}
+        (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType].Push(item)
       }
     }
-    If endAtRefresh
-    {
-      If (i > 0)
-        Return True
-      else
-        Return False
-    }
+    If !(i > 0)
+      Return False
+    RecipeArray := { "Chaos" : Chaos, "uChaos" : uChaos, "Regal" : Regal, "uRegal" : uRegal}
+    Return RecipeArray
+  }
+  ChaosRecipeReturn(Object){
+    PureChaos := False
+    HybridChaos := True
+    PureRegal := False
+
     RecipeSets:={}
-    Loop {
-      ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
-      If (IsObject(RecipeArray.Amulet.1) 
-      && IsObject(RecipeArray.Ring.1) && IsObject(RecipeArray.Ring.2)
-      && IsObject(RecipeArray.Belt.1)
-      && IsObject(RecipeArray.Body.1)
-      && IsObject(RecipeArray.Boots.1)
-      && IsObject(RecipeArray.Gloves.1)
-      && IsObject(RecipeArray.Helmet.1))
-      {
-        Set := {}
-        If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray.Shield.2))
+    types := ["Chaos","Regal","uChaos","uRegal"]
+    If PureChaos{
+      Loop {
+        ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
+        If (IsObject(Object.Chaos.Amulet.1) 
+        && IsObject(Object.Chaos.Ring.1) && IsObject(Object.Chaos.Ring.2)
+        && IsObject(Object.Chaos.Belt.1)
+        && IsObject(Object.Chaos.Body.1)
+        && IsObject(Object.Chaos.Boots.1)
+        && IsObject(Object.Chaos.Gloves.1)
+        && IsObject(Object.Chaos.Helmet.1))
         {
-          Set.Push(RecipeArray.Shield.RemoveAt(1))
-          Set.Push(RecipeArray.Shield.RemoveAt(1))
+          Set := {}
+          If (IsObject(Object.Chaos.Shield.1) && IsObject(Object.Chaos.Shield.2))
+          {
+            Set.Push(Object.Chaos.Shield.RemoveAt(1))
+            Set.Push(Object.Chaos.Shield.RemoveAt(1))
+          }
+          Else If (IsObject(Object.Chaos.Shield.1) && IsObject(Object.Chaos["One Hand"].1))
+          {
+            Set.Push(Object.Chaos.Shield.RemoveAt(1))
+            Set.Push(Object.Chaos["One Hand"].RemoveAt(1))
+          }
+          Else If (IsObject(Object.Chaos["Two Hand"].1))
+          {
+            Set.Push(Object.Chaos["Two Hand"].RemoveAt(1))
+          }
+          Else If (IsObject(Object.Chaos["One Hand"].1) && IsObject(Object.Chaos["One Hand"].2))
+          {
+            Set.Push(Object.Chaos["One Hand"].RemoveAt(1))
+            Set.Push(Object.Chaos["One Hand"].RemoveAt(1))
+          }
+          Else 
+            Break
+          Set.Push(Object.Chaos.Amulet.RemoveAt(1))
+          Set.Push(Object.Chaos.Ring.RemoveAt(1))
+          Set.Push(Object.Chaos.Ring.RemoveAt(1))
+          Set.Push(Object.Chaos.Belt.RemoveAt(1))
+          Set.Push(Object.Chaos.Body.RemoveAt(1))
+          Set.Push(Object.Chaos.Boots.RemoveAt(1))
+          Set.Push(Object.Chaos.Gloves.RemoveAt(1))
+          Set.Push(Object.Chaos.Helmet.RemoveAt(1))
+          RecipeSets.Push(Set)
         }
-        Else If (IsObject(RecipeArray.Shield.1) && IsObject(RecipeArray["One Hand"].1))
+        Else If (IsObject(Object.uChaos.Amulet.1) 
+        && IsObject(Object.uChaos.Ring.1) && IsObject(Object.uChaos.Ring.2)
+        && IsObject(Object.uChaos.Belt.1)
+        && IsObject(Object.uChaos.Body.1)
+        && IsObject(Object.uChaos.Boots.1)
+        && IsObject(Object.uChaos.Gloves.1)
+        && IsObject(Object.uChaos.Helmet.1))
         {
-          Set.Push(RecipeArray.Shield.RemoveAt(1))
-          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
+          Set := {}
+          If (IsObject(Object.uChaos.Shield.1) && IsObject(Object.uChaos.Shield.2))
+          {
+            Set.Push(Object.uChaos.Shield.RemoveAt(1))
+            Set.Push(Object.uChaos.Shield.RemoveAt(1))
+          }
+          Else If (IsObject(Object.uChaos.Shield.1) && IsObject(Object.uChaos["One Hand"].1))
+          {
+            Set.Push(Object.uChaos.Shield.RemoveAt(1))
+            Set.Push(Object.uChaos["One Hand"].RemoveAt(1))
+          }
+          Else If (IsObject(Object.uChaos["Two Hand"].1))
+          {
+            Set.Push(Object.uChaos["Two Hand"].RemoveAt(1))
+          }
+          Else If (IsObject(Object.uChaos["One Hand"].1) && IsObject(Object.uChaos["One Hand"].2))
+          {
+            Set.Push(Object.uChaos["One Hand"].RemoveAt(1))
+            Set.Push(Object.uChaos["One Hand"].RemoveAt(1))
+          }
+          Else 
+            Break
+          Set.Push(Object.uChaos.Amulet.RemoveAt(1))
+          Set.Push(Object.uChaos.Ring.RemoveAt(1))
+          Set.Push(Object.uChaos.Ring.RemoveAt(1))
+          Set.Push(Object.uChaos.Belt.RemoveAt(1))
+          Set.Push(Object.uChaos.Body.RemoveAt(1))
+          Set.Push(Object.uChaos.Boots.RemoveAt(1))
+          Set.Push(Object.uChaos.Gloves.RemoveAt(1))
+          Set.Push(Object.uChaos.Helmet.RemoveAt(1))
+          RecipeSets.Push(Set)
         }
-        Else If (IsObject(RecipeArray["Two Hand"].1))
-        {
-          Set.Push(RecipeArray["Two Hand"].RemoveAt(1))
-        }
-        Else If (IsObject(RecipeArray["One Hand"].1) && IsObject(RecipeArray["One Hand"].2))
-        {
-          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
-          Set.Push(RecipeArray["One Hand"].RemoveAt(1))
-        }
-        Else 
+        Else
           Break
-        Set.Push(RecipeArray.Amulet.RemoveAt(1))
-        Set.Push(RecipeArray.Ring.RemoveAt(1))
-        Set.Push(RecipeArray.Ring.RemoveAt(1))
-        Set.Push(RecipeArray.Belt.RemoveAt(1))
-        Set.Push(RecipeArray.Body.RemoveAt(1))
-        Set.Push(RecipeArray.Boots.RemoveAt(1))
-        Set.Push(RecipeArray.Gloves.RemoveAt(1))
-        Set.Push(RecipeArray.Helmet.RemoveAt(1))
-        RecipeSets.Push(Set)
       }
-      Else
-        Break
+    } Else If (HybridChaos){
+      Loop {
+        ; Hybrid filter for determining at least one chaos item is present, then using up all regal items
+        If ( (IsObject(Object.Chaos.Amulet.1)  || IsObject(Object.Regal.Amulet.1))
+          && (( (IsObject(Object.Chaos.Ring.1)    || IsObject(Object.Regal.Ring.1)) && (IsObject(Object.Chaos.Ring.2) || IsObject(Object.Regal.Ring.2))) || (IsObject(Object.Chaos.Ring.1) && IsObject(Object.Regal.Ring.1)) )
+          && (IsObject(Object.Chaos.Belt.1)    || IsObject(Object.Regal.Belt.1))
+          && (IsObject(Object.Chaos.Body.1)    || IsObject(Object.Regal.Body.1))
+          && (IsObject(Object.Chaos.Boots.1)   || IsObject(Object.Regal.Boots.1))
+          && (IsObject(Object.Chaos.Gloves.1)  || IsObject(Object.Regal.Gloves.1))
+          && (IsObject(Object.Chaos.Helmet.1) || IsObject(Object.Regal.Helmet.1)) )
+          &&  ChaosRecipeConfirm(Object.Chaos)
+        {
+          Set := {}
+          ChaosPresent := False
+          If ((IsObject(Object.Chaos.Shield.1) || IsObject(Object.Regal.Shield.1)) && (IsObject(Object.Chaos.Shield.2) || IsObject(Object.Regal.Shield.2))) 
+          || (IsObject(Object.Chaos.Shield.1) && IsObject(Object.Regal.Shield.1))
+          {
+            If (!ChaosPresent && !IsObject(Object.Chaos.Shield.1)) && IsObject(Object.Regal.Shield.1)
+              Set.Push(Object.Regal.Shield.RemoveAt(1))
+            Else If (IsObject(Object.Chaos.Shield.1))
+              Set.Push(Object.Chaos.Shield.RemoveAt(1)), ChaosPresent := True
+
+            If (!ChaosPresent && !IsObject(Object.Chaos.Shield.1)) && IsObject(Object.Regal.Shield.1)
+              Set.Push(Object.Regal.Shield.RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.Regal.Shield.1) )
+              Set.Push(Object.Regal.Shield.RemoveAt(1))
+            Else If (IsObject(Object.Chaos.Shield.1))
+              Set.Push(Object.Chaos.Shield.RemoveAt(1)), ChaosPresent := True
+          }
+          Else If ((IsObject(Object.Chaos.Shield.1) || IsObject(Object.Regal.Shield.1)) && (IsObject(Object.Chaos["One Hand"].1) || IsObject(Object.Regal["One Hand"].1)))
+          {
+            If (!ChaosPresent && !IsObject(Object.Chaos.Shield.1)) && IsObject(Object.Regal.Shield.1)
+              Set.Push(Object.Regal.Shield.RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.Regal.Shield.1) )
+              Set.Push(Object.Regal.Shield.RemoveAt(1))
+            Else If (IsObject(Object.Chaos.Shield.1))
+              Set.Push(Object.Chaos.Shield.RemoveAt(1)), ChaosPresent := True
+
+            If (!ChaosPresent && !IsObject(Object.Chaos["One Hand"].1)) && IsObject(Object.Regal["One Hand"].1)
+              Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.Regal["One Hand"].1) )
+              Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+            Else If (IsObject(Object.Chaos["One Hand"].1))
+              Set.Push(Object.Chaos["One Hand"].RemoveAt(1)), ChaosPresent := True
+          }
+          Else If (IsObject(Object.Chaos["Two Hand"].1) || IsObject(Object.Regal["Two Hand"].1))
+          {
+            If (!ChaosPresent && !IsObject(Object.Chaos["Two Hand"].1)) && IsObject(Object.Regal["Two Hand"].1)
+              Set.Push(Object.Regal["Two Hand"].RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.Regal["Two Hand"].1) )
+              Set.Push(Object.Regal["Two Hand"].RemoveAt(1))
+            Else If (IsObject(Object.Chaos["Two Hand"].1))
+              Set.Push(Object.Chaos["Two Hand"].RemoveAt(1)), ChaosPresent := True
+          }
+          Else If ((IsObject(Object.Chaos["One Hand"].1) || IsObject(Object.Regal["One Hand"].1)) && (IsObject(Object.Chaos["One Hand"].2) || IsObject(Object.Chaos["One Hand"].2))) 
+          || (IsObject(Object.Chaos["One Hand"].1) && IsObject(Object.Regal["One Hand"].1))
+          {
+            If (!ChaosPresent && !IsObject(Object.Chaos["One Hand"].1)) && IsObject(Object.Regal["One Hand"].1)
+              Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.Regal["One Hand"].1) )
+              Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+            Else If (IsObject(Object.Chaos["One Hand"].1))
+              Set.Push(Object.Chaos["One Hand"].RemoveAt(1)), ChaosPresent := True
+
+            If (!ChaosPresent && !IsObject(Object.Chaos["One Hand"].1)) && IsObject(Object.Regal["One Hand"].1)
+              Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.Regal["One Hand"].1) )
+              Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+            Else If (IsObject(Object.Chaos["One Hand"].1))
+              Set.Push(Object.Chaos["One Hand"].RemoveAt(1)), ChaosPresent := True
+          }
+          Else 
+            Break
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Amulet.1)) && IsObject(Object.Regal.Amulet.1)
+            Set.Push(Object.Regal.Amulet.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Amulet.1) )
+            Set.Push(Object.Regal.Amulet.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Amulet.1))
+            Set.Push(Object.Chaos.Amulet.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Ring.1)) && IsObject(Object.Regal.Ring.1)
+            Set.Push(Object.Regal.Ring.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Ring.1) )
+            Set.Push(Object.Regal.Ring.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Ring.1))
+            Set.Push(Object.Chaos.Ring.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Ring.1)) && IsObject(Object.Regal.Ring.1)
+            Set.Push(Object.Regal.Ring.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Ring.1) )
+            Set.Push(Object.Regal.Ring.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Ring.1))
+            Set.Push(Object.Chaos.Ring.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Belt.1)) && IsObject(Object.Regal.Belt.1)
+            Set.Push(Object.Regal.Belt.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Belt.1) )
+            Set.Push(Object.Regal.Belt.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Belt.1))
+            Set.Push(Object.Chaos.Belt.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Body.1)) && IsObject(Object.Regal.Body.1)
+            Set.Push(Object.Regal.Body.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Body.1) )
+            Set.Push(Object.Regal.Body.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Body.1))
+            Set.Push(Object.Chaos.Body.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Boots.1)) && IsObject(Object.Regal.Boots.1)
+            Set.Push(Object.Regal.Boots.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Boots.1) )
+            Set.Push(Object.Regal.Boots.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Boots.1))
+            Set.Push(Object.Chaos.Boots.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Gloves.1)) && IsObject(Object.Regal.Gloves.1)
+            Set.Push(Object.Regal.Gloves.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Gloves.1) )
+            Set.Push(Object.Regal.Gloves.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Gloves.1))
+            Set.Push(Object.Chaos.Gloves.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Helmet.1)) && IsObject(Object.Regal.Helmet.1)
+            Set.Push(Object.Regal.Helmet.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Helmet.1) )
+            Set.Push(Object.Regal.Helmet.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Helmet.1))
+            Set.Push(Object.Chaos.Helmet.RemoveAt(1)), ChaosPresent := True
+
+          RecipeSets.Push(Set)
+        }
+        Else If ( (IsObject(Object.uChaos.Amulet.1)  || IsObject(Object.uRegal.Amulet.1))
+          && (( (IsObject(Object.uChaos.Ring.1)    || IsObject(Object.uRegal.Ring.1)) && (IsObject(Object.uChaos.Ring.2) || IsObject(Object.uRegal.Ring.2))) || (IsObject(Object.uChaos.Ring.1) && IsObject(Object.uRegal.Ring.1)) )
+          && (IsObject(Object.uChaos.Belt.1)    || IsObject(Object.uRegal.Belt.1))
+          && (IsObject(Object.uChaos.Body.1)    || IsObject(Object.uRegal.Body.1))
+          && (IsObject(Object.uChaos.Boots.1)   || IsObject(Object.uRegal.Boots.1))
+          && (IsObject(Object.uChaos.Gloves.1)  || IsObject(Object.uRegal.Gloves.1))
+          && (IsObject(Object.uChaos.Helmet.1) || IsObject(Object.uRegal.Helmet.1)) )
+          &&  ChaosRecipeConfirm(Object.uChaos)
+        {
+          Set := {}
+          ChaosPresent := False
+          If ((IsObject(Object.uChaos.Shield.1) || IsObject(Object.uRegal.Shield.1)) && (IsObject(Object.uChaos.Shield.2) || IsObject(Object.uRegal.Shield.2))) 
+          || (IsObject(Object.uChaos.Shield.1) && IsObject(Object.uRegal.Shield.1))
+          {
+            If (!ChaosPresent && !IsObject(Object.uChaos.Shield.1)) && IsObject(Object.uRegal.Shield.1)
+              Set.Push(Object.uRegal.Shield.RemoveAt(1))
+            Else If (IsObject(Object.uChaos.Shield.1))
+              Set.Push(Object.uChaos.Shield.RemoveAt(1)), ChaosPresent := True
+
+            If (!ChaosPresent && !IsObject(Object.uChaos.Shield.1)) && IsObject(Object.uRegal.Shield.1)
+              Set.Push(Object.uRegal.Shield.RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.uRegal.Shield.1) )
+              Set.Push(Object.uRegal.Shield.RemoveAt(1))
+            Else If (IsObject(Object.uChaos.Shield.1))
+              Set.Push(Object.uChaos.Shield.RemoveAt(1)), ChaosPresent := True
+          }
+          Else If ((IsObject(Object.uChaos.Shield.1) || IsObject(Object.uRegal.Shield.1)) && (IsObject(Object.uChaos["One Hand"].1) || IsObject(Object.uRegal["One Hand"].1)))
+          {
+            If (!ChaosPresent && !IsObject(Object.uChaos.Shield.1)) && IsObject(Object.uRegal.Shield.1)
+              Set.Push(Object.uRegal.Shield.RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.uRegal.Shield.1) )
+              Set.Push(Object.uRegal.Shield.RemoveAt(1))
+            Else If (IsObject(Object.uChaos.Shield.1))
+              Set.Push(Object.uChaos.Shield.RemoveAt(1)), ChaosPresent := True
+
+            If (!ChaosPresent && !IsObject(Object.uChaos["One Hand"].1)) && IsObject(Object.uRegal["One Hand"].1)
+              Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.uRegal["One Hand"].1) )
+              Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+            Else If (IsObject(Object.uChaos["One Hand"].1))
+              Set.Push(Object.uChaos["One Hand"].RemoveAt(1)), ChaosPresent := True
+          }
+          Else If (IsObject(Object.uChaos["Two Hand"].1) || IsObject(Object.uRegal["Two Hand"].1))
+          {
+            If (!ChaosPresent && !IsObject(Object.uChaos["Two Hand"].1)) && IsObject(Object.uRegal["Two Hand"].1)
+              Set.Push(Object.uRegal["Two Hand"].RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.uRegal["Two Hand"].1) )
+              Set.Push(Object.uRegal["Two Hand"].RemoveAt(1))
+            Else If (IsObject(Object.uChaos["Two Hand"].1))
+              Set.Push(Object.uChaos["Two Hand"].RemoveAt(1)), ChaosPresent := True
+          }
+          Else If ((IsObject(Object.uChaos["One Hand"].1) || IsObject(Object.uRegal["One Hand"].1)) && (IsObject(Object.uChaos["One Hand"].2) || IsObject(Object.uChaos["One Hand"].2))) 
+          || (IsObject(Object.uChaos["One Hand"].1) && IsObject(Object.uRegal["One Hand"].1))
+          {
+            If (!ChaosPresent && !IsObject(Object.uChaos["One Hand"].1)) && IsObject(Object.uRegal["One Hand"].1)
+              Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.uRegal["One Hand"].1) )
+              Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+            Else If (IsObject(Object.uChaos["One Hand"].1))
+              Set.Push(Object.uChaos["One Hand"].RemoveAt(1)), ChaosPresent := True
+
+            If (!ChaosPresent && !IsObject(Object.uChaos["One Hand"].1)) && IsObject(Object.uRegal["One Hand"].1)
+              Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+            Else If (ChaosPresent && IsObject(Object.uRegal["One Hand"].1) )
+              Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+            Else If (IsObject(Object.uChaos["One Hand"].1))
+              Set.Push(Object.uChaos["One Hand"].RemoveAt(1)), ChaosPresent := True
+          }
+          Else 
+            Break
+
+          If (!ChaosPresent && !IsObject(Object.uChaos.Amulet.1)) && IsObject(Object.uRegal.Amulet.1)
+            Set.Push(Object.uRegal.Amulet.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.uRegal.Amulet.1) )
+            Set.Push(Object.uRegal.Amulet.RemoveAt(1))
+          Else If (IsObject(Object.uChaos.Amulet.1))
+            Set.Push(Object.uChaos.Amulet.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.uChaos.Ring.1)) && IsObject(Object.uRegal.Ring.1)
+            Set.Push(Object.uRegal.Ring.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.uRegal.Ring.1) )
+            Set.Push(Object.uRegal.Ring.RemoveAt(1))
+          Else If (IsObject(Object.uChaos.Ring.1))
+            Set.Push(Object.uChaos.Ring.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.uChaos.Ring.1)) && IsObject(Object.uRegal.Ring.1)
+            Set.Push(Object.uRegal.Ring.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.uRegal.Ring.1) )
+            Set.Push(Object.uRegal.Ring.RemoveAt(1))
+          Else If (IsObject(Object.uChaos.Ring.1))
+            Set.Push(Object.uChaos.Ring.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.uChaos.Belt.1)) && IsObject(Object.uRegal.Belt.1)
+            Set.Push(Object.uRegal.Belt.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.uRegal.Belt.1) )
+            Set.Push(Object.uRegal.Belt.RemoveAt(1))
+          Else If (IsObject(Object.uChaos.Belt.1))
+            Set.Push(Object.uChaos.Belt.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.uChaos.Body.1)) && IsObject(Object.uRegal.Body.1)
+            Set.Push(Object.uRegal.Body.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.uRegal.Body.1) )
+            Set.Push(Object.uRegal.Body.RemoveAt(1))
+          Else If (IsObject(Object.uChaos.Body.1))
+            Set.Push(Object.uChaos.Body.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.uChaos.Boots.1)) && IsObject(Object.uRegal.Boots.1)
+            Set.Push(Object.uRegal.Boots.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.uRegal.Boots.1) )
+            Set.Push(Object.uRegal.Boots.RemoveAt(1))
+          Else If (IsObject(Object.uChaos.Boots.1))
+            Set.Push(Object.uChaos.Boots.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.uChaos.Gloves.1)) && IsObject(Object.uRegal.Gloves.1)
+            Set.Push(Object.uRegal.Gloves.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.uRegal.Gloves.1) )
+            Set.Push(Object.uRegal.Gloves.RemoveAt(1))
+          Else If (IsObject(Object.uChaos.Gloves.1))
+            Set.Push(Object.uChaos.Gloves.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.uChaos.Helmet.1)) && IsObject(Object.uRegal.Helmet.1)
+            Set.Push(Object.uRegal.Helmet.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.uRegal.Helmet.1) )
+            Set.Push(Object.uRegal.Helmet.RemoveAt(1))
+          Else If (IsObject(Object.uChaos.Helmet.1))
+            Set.Push(Object.uChaos.Helmet.RemoveAt(1)), ChaosPresent := True
+
+          RecipeSets.Push(Set)
+        }
+        Else
+          Break
+      }
+    } Else If (PureRegal){
+      Loop {
+        ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
+        If (IsObject(Object.Regal.Amulet.1) 
+        && IsObject(Object.Regal.Ring.1) && IsObject(Object.Regal.Ring.2)
+        && IsObject(Object.Regal.Belt.1)
+        && IsObject(Object.Regal.Body.1)
+        && IsObject(Object.Regal.Boots.1)
+        && IsObject(Object.Regal.Gloves.1)
+        && IsObject(Object.Regal.Helmet.1))
+        {
+          Set := {}
+          If (IsObject(Object.Regal.Shield.1) && IsObject(Object.Regal.Shield.2))
+          {
+            Set.Push(Object.Regal.Shield.RemoveAt(1))
+            Set.Push(Object.Regal.Shield.RemoveAt(1))
+          }
+          Else If (IsObject(Object.Regal.Shield.1) && IsObject(Object.Regal["One Hand"].1))
+          {
+            Set.Push(Object.Regal.Shield.RemoveAt(1))
+            Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+          }
+          Else If (IsObject(Object.Regal["Two Hand"].1))
+          {
+            Set.Push(Object.Regal["Two Hand"].RemoveAt(1))
+          }
+          Else If (IsObject(Object.Regal["One Hand"].1) && IsObject(Object.Regal["One Hand"].2))
+          {
+            Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+            Set.Push(Object.Regal["One Hand"].RemoveAt(1))
+          }
+          Else 
+            Break
+          Set.Push(Object.Regal.Amulet.RemoveAt(1))
+          Set.Push(Object.Regal.Ring.RemoveAt(1))
+          Set.Push(Object.Regal.Ring.RemoveAt(1))
+          Set.Push(Object.Regal.Belt.RemoveAt(1))
+          Set.Push(Object.Regal.Body.RemoveAt(1))
+          Set.Push(Object.Regal.Boots.RemoveAt(1))
+          Set.Push(Object.Regal.Gloves.RemoveAt(1))
+          Set.Push(Object.Regal.Helmet.RemoveAt(1))
+          RecipeSets.Push(Set)
+        }
+        Else If (IsObject(Object.uRegal.Amulet.1) 
+        && IsObject(Object.uRegal.Ring.1) && IsObject(Object.uRegal.Ring.2)
+        && IsObject(Object.uRegal.Belt.1)
+        && IsObject(Object.uRegal.Body.1)
+        && IsObject(Object.uRegal.Boots.1)
+        && IsObject(Object.uRegal.Gloves.1)
+        && IsObject(Object.uRegal.Helmet.1))
+        {
+          Set := {}
+          If (IsObject(Object.uRegal.Shield.1) && IsObject(Object.uRegal.Shield.2))
+          {
+            Set.Push(Object.uRegal.Shield.RemoveAt(1))
+            Set.Push(Object.uRegal.Shield.RemoveAt(1))
+          }
+          Else If (IsObject(Object.uRegal.Shield.1) && IsObject(Object.uRegal["One Hand"].1))
+          {
+            Set.Push(Object.uRegal.Shield.RemoveAt(1))
+            Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+          }
+          Else If (IsObject(Object.uRegal["Two Hand"].1))
+          {
+            Set.Push(Object.uRegal["Two Hand"].RemoveAt(1))
+          }
+          Else If (IsObject(Object.uRegal["One Hand"].1) && IsObject(Object.uRegal["One Hand"].2))
+          {
+            Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+            Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
+          }
+          Else 
+            Break
+          Set.Push(Object.uRegal.Amulet.RemoveAt(1))
+          Set.Push(Object.uRegal.Ring.RemoveAt(1))
+          Set.Push(Object.uRegal.Ring.RemoveAt(1))
+          Set.Push(Object.uRegal.Belt.RemoveAt(1))
+          Set.Push(Object.uRegal.Body.RemoveAt(1))
+          Set.Push(Object.uRegal.Boots.RemoveAt(1))
+          Set.Push(Object.uRegal.Gloves.RemoveAt(1))
+          Set.Push(Object.uRegal.Helmet.RemoveAt(1))
+          RecipeSets.Push(Set)
+        }
+        Else
+          Break
+      }
     }
     Return RecipeSets
+  }
+  ChaosRecipeConfirm(Object){
+    For slot, items in Object
+    {
+      return True
+    }
+    Return False
   }
   ; ArrayToString - Make a string from array using | as delimiters
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

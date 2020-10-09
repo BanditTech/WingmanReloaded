@@ -3255,17 +3255,56 @@ Return
   PrintChaosRecipe(Message:="Current slot totals",Duration:="False")
   {
     Global RecipeArray
-    Notify("Chaos Recipe", Message . "`n"
-    . "Amulet: " . (RecipeArray.Amulet.Count()?RecipeArray.Amulet.Count():0) . "`t"
-    . "Ring: " . (RecipeArray.Ring.Count()?RecipeArray.Ring.Count():0) . "`n"
-    . "Belt: " . (RecipeArray.Belt.Count()?RecipeArray.Belt.Count():0) . "`t`t"
-    . "Body: " . (RecipeArray.Body.Count()?RecipeArray.Body.Count():0) . "`n"
-    . "Boots: " . (RecipeArray.Boots.Count()?RecipeArray.Boots.Count():0) . "`t"
-    . "Gloves: " . (RecipeArray.Gloves.Count()?RecipeArray.Gloves.Count():0) . "`n"
-    . "Helmet: " . (RecipeArray.Helmet.Count()?RecipeArray.Helmet.Count():0) . "`t"
-    . "Shield: " . (RecipeArray.Shield.Count()?RecipeArray.Shield.Count():0) . "`n"
-    . "One Hand: " . (RecipeArray["One Hand"].Count()?RecipeArray["One Hand"].Count():0) . "`t"
-    . "Two Hand: " . (RecipeArray["Two Hand"].Count()?RecipeArray["Two Hand"].Count():0) . "`n"
+    ShowUNID := False
+    Tally := {}
+    uTally := {}
+    For Slot, Items in RecipeArray.Chaos
+    {
+      For k, v in Items 
+      {
+        If !Tally[Slot]
+          Tally[Slot] := 0
+        Tally[Slot] += 1
+      }
+    }
+    For Slot, Items in RecipeArray.Regal
+    {
+      For k, v in Items 
+      {
+        If !Tally[Slot]
+          Tally[Slot] := 0
+        Tally[Slot] += 1
+      }
+    }
+    For Slot, Items in RecipeArray.uChaos
+    {
+      For k, v in Items 
+      {
+        If !uTally[Slot]
+          uTally[Slot] := 0
+        uTally[Slot] += 1
+      }
+    }
+    For Slot, Items in RecipeArray.uRegal
+    {
+      For k, v in Items 
+      {
+        If !uTally[Slot]
+          uTally[Slot] := 0
+        uTally[Slot] += 1
+      }
+    }
+    Notify("Chaos Recipe ID/UNID", Message . "`n"
+    . "Amulet: " . (Tally.Amulet?Tally.Amulet:0) . "/" . (uTally.Amulet?uTally.Amulet:0) . "`t"
+    . "Ring: " . (Tally.Ring?Tally.Ring:0) . "/" . (uTally.Ring?uTally.Ring:0) . "`n"
+    . "Belt: " . (Tally.Belt?Tally.Belt:0) . "/" . (uTally.Belt?uTally.Belt:0) . "`t`t"
+    . "Body: " . (Tally.Body?Tally.Body:0) . "/" . (uTally.Body?uTally.Body:0) . "`n"
+    . "Boots: " . (Tally.Boots?Tally.Boots:0) . "/" . (uTally.Boots?uTally.Boots:0) . "`t"
+    . "Gloves: " . (Tally.Gloves?Tally.Gloves:0) . "/" . (uTally.Gloves?uTally.Gloves:0) . "`n"
+    . "Helmet: " . (Tally.Helmet?Tally.Helmet:0) . "/" . (uTally.Helmet?uTally.Helmet:0) . "`t"
+    . "Shield: " . (Tally.Shield?Tally.Shield:0) . "/" . (uTally.Shield?uTally.Shield:0) . "`n"
+    . "One Hand: " . (Tally["One Hand"]?Tally["One Hand"]:0) . "/" . (uTally["One Hand"]?uTally["One Hand"]:0) . "`t"
+    . "Two Hand: " . (Tally["Two Hand"]?Tally["Two Hand"]:0) . "/" . (uTally["Two Hand"]?uTally["Two Hand"]:0) . "`n"
     , (Duration != "False" ? Duration : 20))
     Return
   }
