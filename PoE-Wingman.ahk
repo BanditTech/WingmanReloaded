@@ -9408,7 +9408,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9432,7 +9432,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9456,7 +9456,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 135 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9479,7 +9479,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 130 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9503,7 +9503,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 125 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9547,7 +9547,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 135 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9570,7 +9570,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9595,7 +9595,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9619,7 +9619,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 165 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9646,7 +9646,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9669,7 +9669,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9827,7 +9827,7 @@ Return
         ToolTip,% "Press ""A"" to sample loot background"
           . "`nHold Escape and press ""A"" to cancel"
           , % ScrCenter.X - 115 , % ScrCenter.Y - GameH // 3
-        KeyWait, a, D
+        KeyWait, a, D L
         ToolTip
         KeyWait, a
         If GetKeyState("Escape", "P")
