@@ -190,7 +190,7 @@
     ; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
     ; Create Executable group for gameHotkey, IfWinActive
-    global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
+    global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
     for n, exe in POEGameArr
       GroupAdd, POEGameGroup, ahk_exe %exe%
     Global GameStr := "ahk_exe PathOfExile_x64.exe"
@@ -9464,7 +9464,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9488,7 +9488,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9512,7 +9512,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 135 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9535,7 +9535,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 130 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9559,7 +9559,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 125 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9603,7 +9603,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 135 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9626,7 +9626,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9651,7 +9651,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9675,7 +9675,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 165 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9702,7 +9702,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9725,7 +9725,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9883,7 +9883,7 @@ Return
         ToolTip,% "Press ""A"" to sample loot background"
           . "`nHold Escape and press ""A"" to cancel"
           , % ScrCenter.X - 115 , % ScrCenter.Y - GameH // 3
-        KeyWait, a, D
+        KeyWait, a, D L
         ToolTip
         KeyWait, a
         If GetKeyState("Escape", "P")
