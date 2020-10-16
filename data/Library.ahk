@@ -2933,7 +2933,8 @@
       , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
       , WR_Btn_FillMetamorph_Area
       , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
-      , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeEnableStashing, ChaosRecipeStashTab 
+      , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeEnableStashing, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
+      , ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
     If (Function = "Inventory")
     {
       Gui, 1: Submit
@@ -3427,18 +3428,59 @@
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
       Gui, Crafting: Tab, Chaos Recipe
-        Gui, Crafting: Add, GroupBox,Section w170 h90 xm+5 ym+25, Chaos Recipe Options
+        Gui, Crafting: Add, GroupBox,Section w170 h130 xm+5 ym+25, Chaos Recipe Options
+          Gui, Crafting: Add, Checkbox, vChaosRecipeEnableFunction xs+15 yp+20, Enable Chaos Recipe Logic
           Gui, Crafting: Add, Checkbox, vChaosRecipeEnableStashing xs+15 yp+20, Stash Items in Type range
-          Gui, Crafting: Add, Edit, xs+15 yp+20 w50 center
-          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTab , %ChaosRecipeStashTab%
-          Gui, Crafting: Add, Text, x+5 yp+3, Assign Stash Tab
+          Gui, Crafting: Add, Checkbox, vChaosRecipeEnableUnId xs+15 yp+20, Leave Recipe Rare Un-Id
+          Gui, Crafting: Add, Checkbox, vChaosRecipeAllowDoubleJewellery xs+15 yp+20, Allow 2x Jewellery limit
           Gui, Crafting: Add, Edit, xs+15 yp+20 w50 center
           Gui, Crafting: Add, UpDown, Range1-20 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
           Gui, Crafting: Add, Text, x+5 yp+3, Max # of each part
-        Gui, Crafting: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Types
+        Gui, Crafting: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Type
           Gui, Crafting: Add, Radio, xp+15 yp+20 vChaosRecipeTypePure , Pure Chaos 60-74 ilvl
           Gui, Crafting: Add, Radio, xp yp+20 vChaosRecipeTypeHybrid , Hybrid Chaos 60-100 ilvl
           Gui, Crafting: Add, Radio, xp yp+20  vChaosRecipeTypeRegal , Pure Regal 75+ ilvl
+        Gui, Crafting: Add, GroupBox,Section w285 h90 xs+190 ym+25, Chaos Recipe Stashing
+          Gui, Crafting: Add, Radio, xs+15 yp+20 w250 center, Use Dump Tab
+          Gui, Crafting: Add, Radio, xs+15 yp+20 w250 center, Use Chaos Recipe Tab
+          Gui, Crafting: Add, Radio, xs+15 yp+20 w250 center, Use Seperate Tab for Each Part
+        Gui, Crafting: Add, GroupBox,Section w285 h50 xs y+25, Chaos Recipe Tab
+          Gui, Crafting: Add, Edit, xs+15 yp+20 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTab , %ChaosRecipeStashTab%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for ALL PARTS
+        Gui, Crafting: Add, GroupBox,Section w285 h225 xs y+25, Chaos Recipe Part Tabs
+          Gui, Crafting: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTabWeapon , %ChaosRecipeStashTabWeapon%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for Weapons
+
+          Gui, Crafting: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for Helmets
+
+          Gui, Crafting: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTabArmour , %ChaosRecipeStashTabArmour%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for Armours
+
+          Gui, Crafting: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTabGloves , %ChaosRecipeStashTabGloves%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for Gloves
+
+          Gui, Crafting: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTabBoots , %ChaosRecipeStashTabBoots%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for Boots
+
+          Gui, Crafting: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTabBelt , %ChaosRecipeStashTabBelt%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for Belts
+
+          Gui, Crafting: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTabAmulet , %ChaosRecipeStashTabAmulet%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for Amulets
+
+          Gui, Crafting: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Crafting: Add, UpDown, Range1-64 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
+          Gui, Crafting: Add, Text, x+5 yp+3, Stash Tab for Rings
+
       }
       Gui, Crafting: show , w600 h500, Crafting Settings
     }
