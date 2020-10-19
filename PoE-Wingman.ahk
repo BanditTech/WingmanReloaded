@@ -2582,8 +2582,8 @@
 ; Hotkeys to reload or exit script - Hardcoded Hotkeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   #IfWinActive
-  WR_Menu("Crafting")
-  GuiControl, ChooseString, CraftingGuiTabs, Chaos Recipe
+  WR_Menu("Inventory")
+  GuiControl, ChooseString, InventoryGuiTabs, Chaos Recipe
   ; Return
   !+^L::Array_Gui(Item)
 
