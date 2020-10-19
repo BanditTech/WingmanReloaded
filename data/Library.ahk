@@ -827,9 +827,9 @@
         If (This.Prop.Rarity_Digit = 3 
         && This.Prop.ItemClass ~= "(One|Two|Bow|Shield|Wand|Staff|Dagger|Sceptre|Claw|Body Armour|Helmet|Gloves|Boots|Belt|Amulet|Ring)")
         {
-          If (This.Prop.ItemLevel >= 60 && This.Prop.ItemLevel <= 74)
+          If (This.Prop.ItemLevel >= 60 && This.Prop.ItemLevel <= 74 && (ChaosRecipeTypePure || ChaosRecipeTypeHybrid))
             This.Prop.ChaosRecipe := 1
-          Else If (This.Prop.ItemLevel >= 75 && This.Prop.ItemLevel <= 100)
+          Else If (This.Prop.ItemLevel >= 75 && This.Prop.ItemLevel <= 100 && (ChaosRecipeTypeRegal || ChaosRecipeTypeHybrid))
             This.Prop.RegalRecipe := 1
         }
       }
@@ -840,11 +840,11 @@
         Static HoldDoubleTrinkets := True
         If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60)
           Return False
-        If (StashDumpSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
+        If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
           Return False
         If !IsObject(RecipeArray)
         {
-          If !ChaosRecipe(StashTabDump,1)
+          If !ChaosRecipe(1)
           {
             Notify("Error","Requesting stash information Failed`nCheck your POESESSID",3)
             Return False
@@ -2083,8 +2083,25 @@
           sendstash := StashTabCrafting
         Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
           sendstash := StashTabPredictive
-        Else If (YesStashChaosRecipe && This.StashChaosRecipe())
-          sendstash := StashTabDump
+        Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
+        {
+          If ChaosRecipeStashMethodDump
+            sendstash := StashTabDump
+          Else If ChaosRecipeStashMethodTab
+            sendstash := ChaosRecipeStashTab
+          Else If ChaosRecipeStashMethodSort
+          {
+            If This.Prop.SlotType = "Body"
+              sendstash := ChaosRecipeStashTabArmour
+            Else If (This.Prop.SlotType = "One Hand" || This.Prop.SlotType = "Two Hand" || This.Prop.SlotType = "Shield")
+              sendstash := ChaosRecipeStashTabWeapon
+            Else If This.Prop.SlotType
+            {
+              w := This.Prop.SlotType
+              sendstash := ChaosRecipeStashTab%w%
+            }
+          }
+        }
         Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
           || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
           ; && !This.Prop.SpecialType
@@ -2400,12 +2417,36 @@
       }
     }
   ; Find and retreive Chaos recipe items from a Stash Tab
-  ChaosRecipe(tab, endAtRefresh := 0){
+  ChaosRecipe(endAtRefresh := 0){
     If (AccountNameSTR = "")
       AccountNameSTR := POE_RequestAccount().accountName
     Global RecipeArray := {}
-    Object := POE_RequestStash(tab,0)
-    ItemTypes := ChaosRecipeSort(Object)
+
+    If ChaosRecipeStashMethodDump
+    {
+      Object := POE_RequestStash(StashTabDump,0)
+      ItemTypes := ChaosRecipeSort(Object)
+    }
+    Else If ChaosRecipeStashMethodTab
+    {
+      Object := POE_RequestStash(ChaosRecipeStashTab,0)
+      ItemTypes := ChaosRecipeSort(Object)
+    }
+    Else If ChaosRecipeStashMethodSort
+    {
+      requestedTabs := []
+      for k, part in ["Weapon", "Helmet", "Armour", "Gloves", "Boots", "Belt", "Amulet", "Ring"]
+      {
+        If !indexOf(ChaosRecipeStashTab%part%,requestedTabs)
+        {
+          requestedTabs.Push(ChaosRecipeStashTab%part%)
+          Object := POE_RequestStash(ChaosRecipeStashTab%part%,0)
+          ItemTypes := ChaosRecipeSort(Object,True)
+          Sleep, 300
+        }
+      }
+    }
+    
     If endAtRefresh
     {
       If (ItemTypes)
@@ -2415,7 +2456,7 @@
     }
     Return ChaosRecipeReturn(ItemTypes)
   }
-  ChaosRecipeSort(Object){
+  ChaosRecipeSort(Object,Merge:=False){
     Global RecipeArray
     Chaos := {}
     Regal := {}
@@ -2438,19 +2479,35 @@
         (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType].Push(item)
       }
     }
-    If !(i > 0)
+    If !(i > 0) && !Merge
+    {
       Return False
-    RecipeArray := { "Chaos" : Chaos, "uChaos" : uChaos, "Regal" : Regal, "uRegal" : uRegal}
+    }
+    If Merge
+    {
+      For k, type in ["Chaos","uChaos","Regal","uRegal"]
+      {
+        For slot, itemArr in %type%
+        {
+          If !IsObject(RecipeArray[type])
+            RecipeArray[type] := {}
+          For key, item in itemArr
+          {
+            If !IsObject(RecipeArray[type][slot])
+              RecipeArray[type][slot] := {}
+            RecipeArray[type][slot].Push(item)
+          }
+        }
+      }
+    }
+    Else
+      RecipeArray := { "Chaos" : Chaos, "uChaos" : uChaos, "Regal" : Regal, "uRegal" : uRegal}
     Return RecipeArray
   }
   ChaosRecipeReturn(Object){
-    PureChaos := False
-    HybridChaos := True
-    PureRegal := False
-
     RecipeSets:={}
     types := ["Chaos","Regal","uChaos","uRegal"]
-    If PureChaos{
+    If ChaosRecipeTypePure{
       Loop {
         ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
         If (IsObject(Object.Chaos.Amulet.1) 
@@ -2536,7 +2593,7 @@
         Else
           Break
       }
-    } Else If (HybridChaos){
+    } Else If (ChaosRecipeTypeHybrid){
       Loop {
         ; Hybrid filter for determining at least one chaos item is present, then using up all regal items
         If ( (IsObject(Object.Chaos.Amulet.1)  || IsObject(Object.Regal.Amulet.1))
@@ -2800,7 +2857,7 @@
         Else
           Break
       }
-    } Else If (PureRegal){
+    } Else If (ChaosRecipeTypeRegal){
       Loop {
         ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
         If (IsObject(Object.Regal.Amulet.1) 
@@ -2925,6 +2982,7 @@
   WR_Menu(Function:="",Var*)
   {
     Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
+    , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
 
     Global InventoryGuiTabs, CraftingGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
       , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
@@ -2933,8 +2991,8 @@
       , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
       , WR_Btn_FillMetamorph_Area
       , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
-      , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeEnableStashing, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
-      , ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
+      , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
+      , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
     If (Function = "Inventory")
     {
       Gui, 1: Submit
@@ -3298,7 +3356,7 @@
         ; Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashChaosRecipe Checked%YesStashChaosRecipe% xs+5 y+8, Enable for Chaos Recipe
         ; Gui, Inventory: Add, Edit, x+-2 yp-3 w35
         ; Gui, Inventory: Add, UpDown, Range1-15 x+0 yp hp gUpdateExtra vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jewlers and Chromatics
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweler/Chroma Items
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab
@@ -3334,14 +3392,17 @@
         Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
 
       Gui, Inventory: Tab, Chaos Recipe
-        Gui, Inventory: Add, GroupBox,Section w170 h130 xm+5 ym+25, Chaos Recipe Options
+        Gui, Inventory: Add, GroupBox,Section w170 h155 xm+5 ym+25, Chaos Recipe Options
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+15 yp+20, Enable Chaos Recipe Logic
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableStashing Checked%ChaosRecipeEnableStashing% xs+15 yp+20, Stash Items in Type range
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+20, Leave Recipe Rare Un-Id
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs+15 yp+20, Skip Jeweler/Chroma Items
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs+15 yp+20, Allow 2x Jewellery limit
-          Gui, Inventory: Add, Edit, xs+15 yp+20 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs+15 yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-20 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
           Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+22, Leave Recipe Rare Un-Id
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs+15 yp+20 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range74-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
+          Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
         Gui, Inventory: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Type
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp+15 yp+20 vChaosRecipeTypePure Checked%ChaosRecipeTypePure% , Pure Chaos 60-74 ilvl
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeHybrid Checked%ChaosRecipeTypeHybrid%  , Hybrid Chaos 60-100 ilvl
@@ -3351,39 +3412,39 @@
           Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodTab Checked%ChaosRecipeStashMethodTab%, Use Chaos Recipe Tab
           Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodSort Checked%ChaosRecipeStashMethodSort%, Use Seperate Tab for Each Part
         Gui, Inventory: Add, GroupBox,Section w285 h50 xs y+25, Chaos Recipe Tab
-          Gui, Inventory: Add, Edit, xs+15 yp+20 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabUpDown xs+15 yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTab , %ChaosRecipeStashTab%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for ALL PARTS
         Gui, Inventory: Add, GroupBox,Section w285 h225 xs y+25, Chaos Recipe Part Tabs
-          Gui, Inventory: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabWeaponUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabWeapon , %ChaosRecipeStashTabWeapon%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Weapons
 
-          Gui, Inventory: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabHelmetUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Helmets
 
-          Gui, Inventory: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabArmourUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabArmour , %ChaosRecipeStashTabArmour%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Armours
 
-          Gui, Inventory: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabGlovesUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabGloves , %ChaosRecipeStashTabGloves%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Gloves
 
-          Gui, Inventory: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabBootsUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabBoots , %ChaosRecipeStashTabBoots%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Boots
 
-          Gui, Inventory: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabBeltUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabBelt , %ChaosRecipeStashTabBelt%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Belts
 
-          Gui, Inventory: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabAmuletUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabAmulet , %ChaosRecipeStashTabAmulet%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Amulets
 
-          Gui, Inventory: Add, Edit, xs+15 yp+22 w50 center
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabRingUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Rings
 

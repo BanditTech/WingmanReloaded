@@ -113,10 +113,6 @@
     Global GameActive
     Global GamePID
     Global QuestItems
-    Global RegalUnidUntil := 83
-    Global YesChaosUnid := True
-    Global YesRegalUnid := True
-
 
     Global Active_executable := "TempName"
     ; List available database endpoints
@@ -300,8 +296,6 @@
       ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
       StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
       YesOHB = Pauses the script when it cannot find the Overhead Health Bar
-      ChaosRecipeEnableFunction = Enable/Disable the Chaos Recipe logic which includes all of its settings
-      ChaosRecipeMaxHolding = Determine how many sets of Chaos Recipe to stash
       ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
       AutoUpdateOff = Enable this to not check for new updates when launching the script
       YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
@@ -392,8 +386,32 @@
       UpdateLeaguesBtn = Use this button when there is a new league
       LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
       )
+ 
+
+ 
+ 
       ft_ToolTip_Text_Part2=
       (LTrim
+      ChaosRecipeEnableFunction = Enable/Disable the Chaos Recipe logic which includes all of its settings
+      ChaosRecipeMaxHolding = Determine how many sets of Chaos Recipe to stash
+      ChaosRecipeTypePure = Recipe will affect items which are between 60-74 which have not met other stash/CLF filters`ronly draw items within that range from stash for chaos recipe.
+      ChaosRecipeTypeHybrid = Recipe will affect all rares 60+ which have not met other stash/CLF filters`rRequires at least one lvl 60-74 item to make a recipe set`rPriority is given to regal items.
+      ChaosRecipeTypeRegal = Recipe will affect items which are 75+ which have not met other stash/CLF filters`ronly draw items for regal recipe from stash.
+      ChaosRecipeAllowDoubleJewellery = Belts, Amulets and Rings will be given double allowance of Parts limit
+      ChaosRecipeEnableUnId = Keep items which are within the limits of the recipe settings from being identified.
+      ChaosRecipeStashTabWeapon = Assign the Stash Tab that Weapons will be sorted into.
+      ChaosRecipeStashTabHelmet = Assign the Stash Tab that Helmets will be sorted into.
+      ChaosRecipeStashTabArmour = Assign the Stash Tab that Armours will be sorted into.
+      ChaosRecipeStashTabGloves = Assign the Stash Tab that Gloves will be sorted into.
+      ChaosRecipeStashTabBoots = Assign the Stash Tab that Boots will be sorted into.
+      ChaosRecipeStashTabBelt = Assign the Stash Tab that Belts will be sorted into.
+      ChaosRecipeStashTabAmulet = Assign the Stash Tab that Amulets will be sorted into.
+      ChaosRecipeStashTabRing = Assign the Stash Tab that Rings will be sorted into.
+      ChaosRecipeStashMethodDump = Use the dump tab assigned in stash tab management
+      ChaosRecipeStashMethodTab = Use the tab set below to seperate chaos recipe items
+      ChaosRecipeStashMethodSort = Use seperate tabs for each part of the recipe list
+      ChaosRecipeStashTab = Assign the Stash Tab that All Parts will be sorted into.
+      ChaosRecipeLimitUnId = Items will remain unidentified until this Item Level
       AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
       StashTabCurrency = Assign the Stash tab for Currency items
       StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
@@ -690,8 +708,9 @@
 
     ; Chaos Recipe
     Global ChaosRecipeEnableFunction := False
-    Global ChaosRecipeEnableStashing := True
     Global ChaosRecipeEnableUnId := True
+    Global ChaosRecipeSkipJC := True
+    Global ChaosRecipeLimitUnId := 82
     Global ChaosRecipeAllowDoubleJewellery := True
     Global ChaosRecipeMaxHolding := 10
     Global ChaosRecipeTypePure := 0
@@ -2758,6 +2777,35 @@ Return
     Else
       Return
   }
+  ; Make a more uniform method of checking for identification
+  CheckToIdentify(){
+    If (Item.Affix["Unidentified"]&&YesIdentify)
+    {
+      If ChaosRecipeEnableFunction && ((Item.Prop.ChaosRecipe && (ChaosRecipeTypePure || ChaosRecipeTypeHybrid) && ChaosRecipeEnableUnId) 
+      || (Item.Prop.RegalRecipe && (ChaosRecipeTypeHybrid || ChaosRecipeTypeRegal) && ChaosRecipeEnableUnId && Item.Prop.ItemLevel < ChaosRecipeLimitUnId))
+      {
+        Return False
+      }
+      Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
+      {
+        Return True
+      }
+      Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
+      {
+        Return True
+      }
+      Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+      {
+        Return True
+      }
+      Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
+      {
+        Return True
+      }
+    } 
+    Else
+      Return False
+  }
   ; VendorRoutine - Does vendor functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   VendorRoutine()
@@ -2806,32 +2854,10 @@ Return
         addToBlacklist(C, R)
         If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
           ShooMouse(),GuiStatus(),Continue
-        If (Item.Affix["Unidentified"]&&YesIdentify)
+        If CheckToIdentify()
         {
-          If (Item.Prop.ChaosRecipe && YesChaosUnid) || (Item.Prop.RegalRecipe && YesRegalUnid && Item.Prop.ItemLevel < RegalUnidUntil)
-          {
-            ; Do not identify if selected
-          }
-          Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
+          WisdomScroll(Grid.X,Grid.Y)
+          ClipItem(Grid.X,Grid.Y)
         }
         If (OnVendor&&YesVendor)
         {
@@ -3219,7 +3245,7 @@ Return
     CurrentTab := 0
     Static Object := {}
     If !Object.Count()
-      Object := ChaosRecipe(StashTabDump)
+      Object := ChaosRecipe()
     If !Object.Count()
     {
       PrintChaosRecipe("No Complete Rare Sets")
@@ -3387,32 +3413,10 @@ Return
         
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
-        If (Item.Affix["Unidentified"]&&YesIdentify)
+        If CheckToIdentify()
         {
-          If (Item.Prop.ChaosRecipe && YesChaosUnid) || (Item.Prop.RegalRecipe && YesRegalUnid && Item.Prop.ItemLevel < RegalUnidUntil)
-          {
-            ; Do not identify if selected
-          }
-          Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
+          WisdomScroll(Grid.X,Grid.Y)
+          ClipItem(Grid.X,Grid.Y)
         }
         If (OnStash && YesStash) 
         {
@@ -3734,33 +3738,11 @@ Return
         
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
-        ; Trade full div stacks
-        If (Item.Affix["Unidentified"]&&YesIdentify)
+        ; id if necessary
+        If CheckToIdentify()
         {
-          If (Item.Prop.ChaosRecipe && YesChaosUnid) || (Item.Prop.RegalRecipe && YesRegalUnid && Item.Prop.ItemLevel < RegalUnidUntil)
-          {
-            ; Do not identify if selected
-          }
-          Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
+          WisdomScroll(Grid.X,Grid.Y)
+          ClipItem(Grid.X,Grid.Y)
         }
       }
     }
@@ -6271,8 +6253,9 @@ Return
       
       ; Chaos Recipe Settings
       IniRead, ChaosRecipeEnableFunction, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableFunction, 0
-      IniRead, ChaosRecipeEnableStashing, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableStashing, 1
+      IniRead, ChaosRecipeSkipJC, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSkipJC, 1
       IniRead, ChaosRecipeEnableUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableUnId, 1
+      IniRead, ChaosRecipeLimitUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeLimitUnId, 1
       IniRead, ChaosRecipeAllowDoubleJewellery, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleJewellery, 1
       IniRead, ChaosRecipeMaxHolding, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeMaxHolding, 10
       IniRead, ChaosRecipeTypePure, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypePure, 0
@@ -10176,6 +10159,12 @@ Return
   { ; Gui Update functions - updateCharacterType, UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility, FlaskCheck, UtilityCheck
     SaveINI(type:="General") {
       Gui, Submit, NoHide
+      If A_GuiControl ~= "UpDown"
+      {
+        control := StrReplace(A_GuiControl, "UpDown", "")
+        IniWrite,% %control%, %A_ScriptDir%\save\Settings.ini,% type,% control
+      }
+      Else
       IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini,% type,% A_GuiControl
       Return
     }
