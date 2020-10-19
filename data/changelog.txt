@@ -1,3 +1,39 @@
+## Version .12.02 - Master version - October/19/2020
+Chaos Recipe functionality has been vastly improved
+* Choose from Chaos recipe 60-74, 60-100 or Regal
+  * When using hybrid it will always create Chaos
+    * Prioritizes using Regal items
+    * Set must contain at least 1 60-74 item
+  * Can set for only ilvl 60-74 chaos or 75+ regal
+* Automatically leave recipe items UnIdentified
+  * Can set which item level it will stop leaving UnId
+* Three modes of stash sorting for chaos recipe
+  * Using the dump tab
+  * Using an assigned tab for chaos recipe
+  * Using a tab for each part of the recipe
+  * Depending on your settings it will sort to, and withdraw from the assigned tabs
+* skip Jewelers or Chromatic items from being used in recipe, allowing them to vendor
+* Automatically create sets from either Identified or UnIdentified items
+  * Recipe count displays both Identified and UnIdentified Count
+* Allow jewelry to stash twice as many reserve items for building sets
+
+Several Undocumented changes from the Alpha branch
+* Bugfix for league names containing space
+* Remove corrupted items from crafting bases
+* Fix for Unique Contracts
+* Fix for Heist gear skipping
+* Contracts can be skipped using the Map skip options
+* Rogue markers are auto deposited in Locker
+* Bugfix for Quality UnIdentified Chaos Recipe
+* Utility trigger logic refactored
+* Bases.json file updated to latest version
+* Heist Goods Auto Vendor
+* Fix width and height of Heist Gear items
+* Allow logical keypress during Calibration wizard
+* Added Epic Game Store exe to list of game executables
+
+---
+
 ## Version .12.01 - Master version - September/18/2020
 Update for Heist League
 * All heist Items should now properly be tagged as a Heist Specialtype
