@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .12.01
+  Global VersionNumber := .12.02
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -113,6 +113,7 @@
     Global GameActive
     Global GamePID
     Global QuestItems
+
     Global Active_executable := "TempName"
     ; List available database endpoints
     Global apiList := ["Currency"
@@ -185,7 +186,7 @@
     ; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
     ; Create Executable group for gameHotkey, IfWinActive
-    global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe"]
+    global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
     for n, exe in POEGameArr
       GroupAdd, POEGameGroup, ahk_exe %exe%
     Global GameStr := "ahk_exe PathOfExile_x64.exe"
@@ -223,17 +224,26 @@
       , ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
       , ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
     Global FillMetamorph := {}
-    Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven Cloak","Silver Brooch"
-      ,"Golden Brooch","Enamel Brooch","Foliate Brooch","Simple Lockpick","Standard Lockpick","Fine Lockpick"
-      ,"Master Lockpick","Leather Bracers","Studded Bracers","Runed Bracers","Steel Bracers","Crude Sensing Charm"
-      ,"Fine Sensing Charm","Polished Sensing Charm","Thaumaturgical Sensing Charm","Voltaxic Flashpowder"
-      ,"Trarthan Flashpowder","Azurite Flashpowder","Crude Ward","Lustrous Ward","Shining Ward","Thaumaturgical Ward"
-      ,"Essential Keyring","Versatile Keyring","Skeleton Keyring","Grandmaster Keyring","Eelskin Sole","Foxhide Sole"
-      ,"Winged Sole","Silkweave Sole","Basic Disguise Kit","Theatre Disguise Kit","Espionage Disguise Kit"
-      ,"Regicide Disguise Kit","Steel Drill","Flanged Drill","Sulphur Blowtorch","Thaumetic Blowtorch"
-      ,"Rough Sharpening Stone","Standard Sharpening Stone","Fine Sharpening Stone","Obsidian Sharpening Stone"
-      ,"Flanged Arrowhead","Fragmenting Arrowhead","Hollowpoint Arrowhead","Precise Arrowhead","Focal Stone"
-      ,"Conduit Line","Aggregator Charm","Burst Band"]
+    Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven Cloak"
+
+    ,"Silver Brooch","Golden Brooch","Enamel Brooch","Foliate Brooch"
+
+    ,"Simple Lockpick","Standard Lockpick","Fine Lockpick","Master Lockpick"
+    ,"Leather Bracers","Studded Bracers","Runed Bracers","Steel Bracers"
+    ,"Crude Sensing Charm","Fine Sensing Charm","Polished Sensing Charm","Thaumaturgical Sensing Charm"
+    ,"Voltaxic Flashpowder","Trarthan Flashpowder","Azurite Flashpowder"
+    ,"Crude Ward","Lustrous Ward","Shining Ward","Thaumaturgical Ward"
+    ,"Essential Keyring","Versatile Keyring","Skeleton Keyring","Grandmaster Keyring"
+    ,"Eelskin Sole","Foxhide Sole","Winged Sole","Silkweave Sole"
+    ,"Basic Disguise Kit","Theatre Disguise Kit","Espionage Disguise Kit","Regicide Disguise Kit"
+    ,"Steel Drill","Flanged Drill"
+    ,"Sulphur Blowtorch","Thaumetic Blowtorch"
+
+    ,"Rough Sharpening Stone","Standard Sharpening Stone","Fine Sharpening Stone","Obsidian Sharpening Stone"
+    ,"Flanged Arrowhead","Fragmenting Arrowhead","Hollowpoint Arrowhead","Precise Arrowhead"
+    ,"Focal Stone","Conduit Line","Aggregator Charm","Burst Band"]
+
+    Global HeistLootLarge := ["Essence Burner","Ancient Seal","Blood of Innocence","Dekhara's Resolve","Orbala's Fifth Adventure","Staff of the first Sin Eater","Sword of the Inverse Relic"]
     ft_ToolTip_Text_Part1=
       (LTrim
       QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
@@ -286,8 +296,6 @@
       ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
       StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
       YesOHB = Pauses the script when it cannot find the Overhead Health Bar
-      YesStashChaosRecipe = Enable the dump tab automatically for items that can fill missing Chaos Recipe slots
-      ChaosRecipeMaxHolding = Determine how many sets of Chaos Recipe to stash
       ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
       AutoUpdateOff = Enable this to not check for new updates when launching the script
       YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
@@ -378,8 +386,32 @@
       UpdateLeaguesBtn = Use this button when there is a new league
       LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
       )
+ 
+
+ 
+ 
       ft_ToolTip_Text_Part2=
       (LTrim
+      ChaosRecipeEnableFunction = Enable/Disable the Chaos Recipe logic which includes all of its settings
+      ChaosRecipeMaxHolding = Determine how many sets of Chaos Recipe to stash
+      ChaosRecipeTypePure = Recipe will affect items which are between 60-74 which have not met other stash/CLF filters`ronly draw items within that range from stash for chaos recipe.
+      ChaosRecipeTypeHybrid = Recipe will affect all rares 60+ which have not met other stash/CLF filters`rRequires at least one lvl 60-74 item to make a recipe set`rPriority is given to regal items.
+      ChaosRecipeTypeRegal = Recipe will affect items which are 75+ which have not met other stash/CLF filters`ronly draw items for regal recipe from stash.
+      ChaosRecipeAllowDoubleJewellery = Belts, Amulets and Rings will be given double allowance of Parts limit
+      ChaosRecipeEnableUnId = Keep items which are within the limits of the recipe settings from being identified.
+      ChaosRecipeStashTabWeapon = Assign the Stash Tab that Weapons will be sorted into.
+      ChaosRecipeStashTabHelmet = Assign the Stash Tab that Helmets will be sorted into.
+      ChaosRecipeStashTabArmour = Assign the Stash Tab that Armours will be sorted into.
+      ChaosRecipeStashTabGloves = Assign the Stash Tab that Gloves will be sorted into.
+      ChaosRecipeStashTabBoots = Assign the Stash Tab that Boots will be sorted into.
+      ChaosRecipeStashTabBelt = Assign the Stash Tab that Belts will be sorted into.
+      ChaosRecipeStashTabAmulet = Assign the Stash Tab that Amulets will be sorted into.
+      ChaosRecipeStashTabRing = Assign the Stash Tab that Rings will be sorted into.
+      ChaosRecipeStashMethodDump = Use the dump tab assigned in stash tab management
+      ChaosRecipeStashMethodTab = Use the tab set below to seperate chaos recipe items
+      ChaosRecipeStashMethodSort = Use seperate tabs for each part of the recipe list
+      ChaosRecipeStashTab = Assign the Stash Tab that All Parts will be sorted into.
+      ChaosRecipeLimitUnId = Items will remain unidentified until this Item Level
       AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
       StashTabCurrency = Assign the Stash tab for Currency items
       StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
@@ -666,8 +698,6 @@
     Global RescaleRan := False
     Global ToggleExist := False
     Global YesOHB := True
-    Global YesStashChaosRecipe := False
-    Global ChaosRecipeMaxHolding := 10
     Global YesFillMetamorph := True
     Global YesPredictivePrice := "Off"
     Global YesPredictivePrice_Percent_Val := 100
@@ -675,6 +705,30 @@
     Global GameX, GameY, GameW, GameH, mouseX, mouseY
     Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
     Global CastOnDetonate := 0
+
+    ; Chaos Recipe
+    Global ChaosRecipeEnableFunction := False
+    Global ChaosRecipeEnableUnId := True
+    Global ChaosRecipeSkipJC := True
+    Global ChaosRecipeLimitUnId := 82
+    Global ChaosRecipeAllowDoubleJewellery := True
+    Global ChaosRecipeMaxHolding := 10
+    Global ChaosRecipeTypePure := 0
+    Global ChaosRecipeTypeHybrid := 1
+    Global ChaosRecipeTypeRegal := 0
+    Global ChaosRecipeStashMethodDump := 1
+    Global ChaosRecipeStashMethodTab := 0
+    Global ChaosRecipeStashMethodSort := 0
+    Global ChaosRecipeStashTab := 1
+    Global ChaosRecipeStashTabWeapon := 1
+    Global ChaosRecipeStashTabHelmet := 1
+    Global ChaosRecipeStashTabArmour := 1
+    Global ChaosRecipeStashTabGloves := 1
+    Global ChaosRecipeStashTabBoots := 1
+    Global ChaosRecipeStashTabBelt := 1
+    Global ChaosRecipeStashTabAmulet := 1
+    Global ChaosRecipeStashTabRing := 1
+
 
     ; Loot colors for the vacuum
     Global LootColors := { 1 : 0xF6FEC4
@@ -1941,7 +1995,7 @@
 
     Gui Add, Checkbox, gUpdateExtra  vYesOHB Checked%YesOHB%                                , Pause script when OHB missing?
     Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                      , Show GUI on startup?
-    Gui Add, CheckBox, giniGeneral vYesInGameOverlay Checked%YesInGameOverlay%                    , Show In-Game Overlay?
+    Gui Add, CheckBox, gSaveGeneral vYesInGameOverlay Checked%YesInGameOverlay%                    , Show In-Game Overlay?
     Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%      xs        , Persistant Auto-Toggles?
 
     Gui,Font, Bold s9 cBlack, Arial
@@ -2547,7 +2601,8 @@
 ; Hotkeys to reload or exit script - Hardcoded Hotkeys
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   #IfWinActive
-
+  WR_Menu("Inventory")
+  GuiControl, ChooseString, InventoryGuiTabs, Chaos Recipe
   ; Return
   !+^L::Array_Gui(Item)
 
@@ -2561,6 +2616,7 @@
     ExitApp
     Return
   #IfWinActive, ahk_group POEGameGroup
+
 ; ------------------------------------------------End of AutoExecute Section-----------------------------------------------------------------------------------------------------------
 Return
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
@@ -2721,6 +2777,35 @@ Return
     Else
       Return
   }
+  ; Make a more uniform method of checking for identification
+  CheckToIdentify(){
+    If (Item.Affix["Unidentified"]&&YesIdentify)
+    {
+      If ChaosRecipeEnableFunction && ((Item.Prop.ChaosRecipe && (ChaosRecipeTypePure || ChaosRecipeTypeHybrid) && ChaosRecipeEnableUnId) 
+      || (Item.Prop.RegalRecipe && (ChaosRecipeTypeHybrid || ChaosRecipeTypeRegal) && ChaosRecipeEnableUnId && Item.Prop.ItemLevel < ChaosRecipeLimitUnId))
+      {
+        Return False
+      }
+      Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
+      {
+        Return True
+      }
+      Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
+      {
+        Return True
+      }
+      Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+      {
+        Return True
+      }
+      Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
+      {
+        Return True
+      }
+    } 
+    Else
+      Return False
+  }
   ; VendorRoutine - Does vendor functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   VendorRoutine()
@@ -2769,34 +2854,16 @@ Return
         addToBlacklist(C, R)
         If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
           ShooMouse(),GuiStatus(),Continue
-        If (Item.Affix["Unidentified"]&&YesIdentify)
+        If CheckToIdentify()
         {
-          If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
+          WisdomScroll(Grid.X,Grid.Y)
+          ClipItem(Grid.X,Grid.Y)
         }
         If (OnVendor&&YesVendor)
         {
           If Item.MatchLootFilter()
             Continue
-          If (Item.Prop.RarityCurrency)
+          If (Item.Prop.RarityCurrency && Item.Prop.SpecialType != "Heist Goods")
             Continue
           If (Item.Prop.RarityUnique && (Item.Prop.Ring||Item.Prop.Amulet||Item.Prop.Jewel||Item.Prop.Flask))
             Continue
@@ -2826,10 +2893,11 @@ Return
           {
             If Item.MatchStashManagement()
             {
-              Continue
+              If (Item.Prop.SpecialType != "Heist Goods")
+                Continue
             }
           }
-          If ( Item.Prop.SpecialType="" )
+          If ( Item.Prop.SpecialType="" || Item.Prop.SpecialType = "Heist Goods" )
           {
             CtrlClick(Grid.X,Grid.Y)
             If !(Item.Prop.Chromatic || Item.Prop.Jeweler)
@@ -3177,7 +3245,7 @@ Return
     CurrentTab := 0
     Static Object := {}
     If !Object.Count()
-      Object := ChaosRecipe(StashTabDump)
+      Object := ChaosRecipe()
     If !Object.Count()
     {
       PrintChaosRecipe("No Complete Rare Sets")
@@ -3245,17 +3313,56 @@ Return
   PrintChaosRecipe(Message:="Current slot totals",Duration:="False")
   {
     Global RecipeArray
-    Notify("Chaos Recipe", Message . "`n"
-    . "Amulet: " . (RecipeArray.Amulet.Count()?RecipeArray.Amulet.Count():0) . "`t"
-    . "Ring: " . (RecipeArray.Ring.Count()?RecipeArray.Ring.Count():0) . "`n"
-    . "Belt: " . (RecipeArray.Belt.Count()?RecipeArray.Belt.Count():0) . "`t`t"
-    . "Body: " . (RecipeArray.Body.Count()?RecipeArray.Body.Count():0) . "`n"
-    . "Boots: " . (RecipeArray.Boots.Count()?RecipeArray.Boots.Count():0) . "`t"
-    . "Gloves: " . (RecipeArray.Gloves.Count()?RecipeArray.Gloves.Count():0) . "`n"
-    . "Helmet: " . (RecipeArray.Helmet.Count()?RecipeArray.Helmet.Count():0) . "`t"
-    . "Shield: " . (RecipeArray.Shield.Count()?RecipeArray.Shield.Count():0) . "`n"
-    . "One Hand: " . (RecipeArray["One Hand"].Count()?RecipeArray["One Hand"].Count():0) . "`t"
-    . "Two Hand: " . (RecipeArray["Two Hand"].Count()?RecipeArray["Two Hand"].Count():0) . "`n"
+    ShowUNID := False
+    Tally := {}
+    uTally := {}
+    For Slot, Items in RecipeArray.Chaos
+    {
+      For k, v in Items 
+      {
+        If !Tally[Slot]
+          Tally[Slot] := 0
+        Tally[Slot] += 1
+      }
+    }
+    For Slot, Items in RecipeArray.Regal
+    {
+      For k, v in Items 
+      {
+        If !Tally[Slot]
+          Tally[Slot] := 0
+        Tally[Slot] += 1
+      }
+    }
+    For Slot, Items in RecipeArray.uChaos
+    {
+      For k, v in Items 
+      {
+        If !uTally[Slot]
+          uTally[Slot] := 0
+        uTally[Slot] += 1
+      }
+    }
+    For Slot, Items in RecipeArray.uRegal
+    {
+      For k, v in Items 
+      {
+        If !uTally[Slot]
+          uTally[Slot] := 0
+        uTally[Slot] += 1
+      }
+    }
+    Notify("Chaos Recipe ID/UNID", Message . "`n"
+    . "Amulet: " . (Tally.Amulet?Tally.Amulet:0) . "/" . (uTally.Amulet?uTally.Amulet:0) . "`t"
+    . "Ring: " . (Tally.Ring?Tally.Ring:0) . "/" . (uTally.Ring?uTally.Ring:0) . "`n"
+    . "Belt: " . (Tally.Belt?Tally.Belt:0) . "/" . (uTally.Belt?uTally.Belt:0) . "`t`t"
+    . "Body: " . (Tally.Body?Tally.Body:0) . "/" . (uTally.Body?uTally.Body:0) . "`n"
+    . "Boots: " . (Tally.Boots?Tally.Boots:0) . "/" . (uTally.Boots?uTally.Boots:0) . "`t"
+    . "Gloves: " . (Tally.Gloves?Tally.Gloves:0) . "/" . (uTally.Gloves?uTally.Gloves:0) . "`n"
+    . "Helmet: " . (Tally.Helmet?Tally.Helmet:0) . "/" . (uTally.Helmet?uTally.Helmet:0) . "`t"
+    . "Shield: " . (Tally.Shield?Tally.Shield:0) . "/" . (uTally.Shield?uTally.Shield:0) . "`n"
+    . "One Hand: " . (Tally["One Hand"]?Tally["One Hand"]:0) . "/" . (uTally["One Hand"]?uTally["One Hand"]:0) . "`t"
+    . "Two Hand: " . (Tally["Two Hand"]?Tally["Two Hand"]:0) . "/" . (uTally["Two Hand"]?uTally["Two Hand"]:0) . "`n"
     , (Duration != "False" ? Duration : 20))
     Return
   }
@@ -3306,28 +3413,10 @@ Return
         
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
-        If (Item.Affix["Unidentified"]&&YesIdentify)
+        If CheckToIdentify()
         {
-          If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
+          WisdomScroll(Grid.X,Grid.Y)
+          ClipItem(Grid.X,Grid.Y)
         }
         If (OnStash && YesStash) 
         {
@@ -3335,13 +3424,17 @@ Return
             Continue
           Else If (sendstash:=Item.MatchLootFilter())
             Sleep, -1
-          Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint")
-            {
-              HeistC.Push(C)
-              HeistR.Push(R)
-              ++HeistCount
-              Continue
-            }
+          ;Heist Modification Remove at End of League!  
+          Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) && ((Item.Prop.RarityNormal && YesSkipMaps_normal) || (Item.Prop.RarityMagic && YesSkipMaps_magic) || (Item.Prop.RarityRare && YesSkipMaps_rare) || (Item.Prop.RarityUnique && YesSkipMaps_unique)))
+            Continue
+          ;Heist Modification Remove at End of League!  
+          Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint" || Item.Prop.SpecialType = "Heist Marker")
+          {
+            HeistC.Push(C)
+            HeistR.Push(R)
+            ++HeistCount
+            Continue
+          }
           Else If ( Item.Prop.IsMap && YesSkipMaps
           && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
           && ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
@@ -3645,29 +3738,11 @@ Return
         
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
-        ; Trade full div stacks
-        If (Item.Affix["Unidentified"]&&YesIdentify)
+        ; id if necessary
+        If CheckToIdentify()
         {
-          If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
+          WisdomScroll(Grid.X,Grid.Y)
+          ClipItem(Grid.X,Grid.Y)
         }
       }
     }
@@ -4049,12 +4124,6 @@ Return
             If ( TriggerLife90 != "00000" && Player.Percent.Life < 90) 
               TriggerFlask(TriggerLife90)
           }
-          Loop, 10
-            If (YesUtility%A_Index%
-            && YesUtility%A_Index%LifePercent != "Off" 
-            && !OnCooldownUtility%A_Index%
-            && YesUtility%A_Index%LifePercent +0 > Player.Percent.Life )
-              TriggerUtility(A_Index)
         }
 
         if (!RadioLife)
@@ -4084,23 +4153,11 @@ Return
             If ( TriggerES90 != "00000" && Player.Percent.ES < 90) 
               TriggerFlask(TriggerES90)
           }
-          Loop, 10
-            If (YesUtility%A_Index%
-            && YesUtility%A_Index%ESPercent != "Off" 
-            && !OnCooldownUtility%A_Index%
-            && YesUtility%A_Index%ESPercent +0 > Player.Percent.ES )
-              TriggerUtility(A_Index)
         }
         
         If (TriggerMana10!="00000") { ; Mana
           If (Player.Percent.Mana < ManaThreshold)
             TriggerMana(TriggerMana10)
-          Loop, 10
-            If (YesUtility%A_Index%
-            && YesUtility%A_Index%ManaPercent != "Off" 
-            && !OnCooldownUtility%A_Index%
-            && YesUtility%A_Index%ManaPercent +0 > Player.Percent.Mana )
-              TriggerUtility(A_Index)
         }
 
         If (MainAttackPressedActive && AutoFlask)
@@ -4128,31 +4185,34 @@ Return
           }
         }
 
-        If (AutoFlask)
+        If (AutoFlask) ; Trigger Utilities
         {
           Loop, 10
           {
-            If (YesUtility%A_Index%) 
-              && !(OnCooldownUtility%A_Index%) 
-              && !(YesUtility%A_Index%Quicksilver) 
-              && !(YesUtility%A_Index%MainAttack) 
-              && !(YesUtility%A_Index%SecondaryAttack) 
-              && (YesUtility%A_Index%LifePercent="Off") 
-              && (YesUtility%A_Index%ESPercent="Off") 
-              && (YesUtility%A_Index%ManaPercent="Off") 
+            If (YesUtility%A_Index% && !OnCooldownUtility%A_Index%)
             {
-              If !(IconStringUtility%A_Index%)
+              If ( YesUtility%A_Index%ESPercent != "Off" && YesUtility%A_Index%ESPercent +0 > Player.Percent.ES )
                 TriggerUtility(A_Index)
-              Else If (IconStringUtility%A_Index%)
+              Else If  (YesUtility%A_Index%LifePercent != "Off" && YesUtility%A_Index%LifePercent +0 > Player.Percent.Life )
+                TriggerUtility(A_Index)
+              Else If (YesUtility%A_Index%ManaPercent != "Off" && YesUtility%A_Index%ManaPercent +0 > Player.Percent.Mana )
+                TriggerUtility(A_Index)
+              Else If !(YesUtility%A_Index%Quicksilver || YesUtility%A_Index%MainAttack || YesUtility%A_Index%SecondaryAttack) 
+                && (YesUtility%A_Index%LifePercent="Off" && YesUtility%A_Index%ESPercent="Off" && YesUtility%A_Index%ManaPercent="Off") 
               {
-                BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
-                If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
-                {
-                  OnCooldownUtility%A_Index%:=1
-                  SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
-                }
-                Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
+                If !(IconStringUtility%A_Index%)
                   TriggerUtility(A_Index)
+                Else If (IconStringUtility%A_Index%)
+                {
+                  BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
+                  If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
+                  {
+                    OnCooldownUtility%A_Index%:=1
+                    SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
+                  }
+                  Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
+                    TriggerUtility(A_Index)
+                }
               }
             }
           }
@@ -4201,7 +4261,7 @@ Return
     Return
   }
   
-  ; TimerPassthrough - Passthrough Timer
+  ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   TimerPassthrough:
     If ( GetKeyState(KeyFlask1Proper, "P") ) {
@@ -4238,11 +4298,6 @@ Return
     AutoQuitCommand:
       AutoQuit := !AutoQuit
       IniWrite, %AutoQuit%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit
-      ; if ((!AutoFlask) && (!AutoQuit)) {
-      ;   SetTimer TGameTick, Off
-      ; } else if ((AutoFlask) || (AutoQuit)){
-      ;   SetTimer TGameTick, %Tick%
-      ; } 
       GuiUpdate()
     return
     }
@@ -5563,7 +5618,7 @@ Return
     DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
     Return
     }
-; Coord - : Pixel information on Mouse Cursor, provides pixel location and GRB color hex
+; Coord - : Pixel information on Mouse Cursor, provides pixel location and RGB color hex
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Coord(){
     Global Picker
@@ -5572,7 +5627,7 @@ Return
     If (Rect)
     {
       T1 := A_TickCount
-      Ding(10000,-11,"Building an average of area colors`nThis may take some time")
+      Ding(10000,-11,"Building an average of area colors`nThis may take some time, press escape to skip calculation.")
       AvgColor := AverageAreaColor(Rect)
       Ding(100,-11,"")
       Clipboard := "Average Color of Area:  " AvgColor "`n`n" "X1:" Rect.X1 "`tY1:" Rect.Y1 "`tX2:" Rect.X2 "`tY2:" Rect.Y2
@@ -6096,7 +6151,6 @@ Return
       IniRead, YesLootChests, %A_ScriptDir%\save\Settings.ini, General, YesLootChests, 1
       IniRead, YesLootDelve, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve, 1
       IniRead, YesStashChaosRecipe, %A_ScriptDir%\save\Settings.ini, General, YesStashChaosRecipe, 0
-      IniRead, ChaosRecipeMaxHolding, %A_ScriptDir%\save\Settings.ini, General, ChaosRecipeMaxHolding, 10
       IniRead, YesFillMetamorph, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph, 0
       IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
@@ -6197,6 +6251,30 @@ Return
       IniRead, StashTabYesNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice, 0
       IniRead, StashTabYesNinjaPrice_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price, 5
       
+      ; Chaos Recipe Settings
+      IniRead, ChaosRecipeEnableFunction, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableFunction, 0
+      IniRead, ChaosRecipeSkipJC, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSkipJC, 1
+      IniRead, ChaosRecipeEnableUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableUnId, 1
+      IniRead, ChaosRecipeLimitUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeLimitUnId, 1
+      IniRead, ChaosRecipeAllowDoubleJewellery, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleJewellery, 1
+      IniRead, ChaosRecipeMaxHolding, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeMaxHolding, 10
+      IniRead, ChaosRecipeTypePure, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypePure, 0
+      IniRead, ChaosRecipeTypeHybrid, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeHybrid, 1
+      IniRead, ChaosRecipeTypeRegal, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeRegal, 0
+      IniRead, ChaosRecipeStashMethodDump, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodDump, 1
+      IniRead, ChaosRecipeStashMethodTab, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodTab, 0
+      IniRead, ChaosRecipeStashMethodSort, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodSort, 0
+      IniRead, ChaosRecipeStashTab, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTab, 1
+      IniRead, ChaosRecipeStashTabWeapon, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabWeapon, 1
+      IniRead, ChaosRecipeStashTabHelmet, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabHelmet, 1
+      IniRead, ChaosRecipeStashTabArmour, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabArmour, 1
+      IniRead, ChaosRecipeStashTabGloves, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabGloves, 1
+      IniRead, ChaosRecipeStashTabBoots, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabBoots, 1
+      IniRead, ChaosRecipeStashTabBelt, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabBelt, 1
+      IniRead, ChaosRecipeStashTabAmulet, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabAmulet, 1
+      IniRead, ChaosRecipeStashTabRing, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabRing, 1
+
+
       ;Custom Crafting Bases
       ;loading default list
       sDefaultcraftingBasesT1 := ArrayToString(DefaultcraftingBasesT1)
@@ -7025,8 +7103,6 @@ Return
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
-      IniWrite, %YesStashChaosRecipe%, %A_ScriptDir%\save\Settings.ini, General, YesStashChaosRecipe
-      IniWrite, %ChaosRecipeMaxHolding%, %A_ScriptDir%\save\Settings.ini, General, ChaosRecipeMaxHolding
       IniWrite, %ManaThreshold%, %A_ScriptDir%\save\Settings.ini, General, ManaThreshold
 
       ; Overhead Health Bar
@@ -9414,7 +9490,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9438,7 +9514,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9462,7 +9538,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 135 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9485,7 +9561,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 130 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9509,7 +9585,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 125 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9553,7 +9629,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 135 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9576,7 +9652,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9601,7 +9677,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9625,7 +9701,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 165 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9652,7 +9728,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9675,7 +9751,7 @@ Return
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 150 , % ScrCenter.Y -30
-          KeyWait, a, D
+          KeyWait, a, D L
           ToolTip
           KeyWait, a
           If GetKeyState("Escape", "P")
@@ -9833,7 +9909,7 @@ Return
         ToolTip,% "Press ""A"" to sample loot background"
           . "`nHold Escape and press ""A"" to cancel"
           , % ScrCenter.X - 115 , % ScrCenter.Y - GameH // 3
-        KeyWait, a, D
+        KeyWait, a, D L
         ToolTip
         KeyWait, a
         If GetKeyState("Escape", "P")
@@ -10081,14 +10157,34 @@ Return
   }
 
   { ; Gui Update functions - updateCharacterType, UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility, FlaskCheck, UtilityCheck
-    updateINI(type:="General") {
+    SaveINI(type:="General") {
       Gui, Submit, NoHide
+      If A_GuiControl ~= "UpDown"
+      {
+        control := StrReplace(A_GuiControl, "UpDown", "")
+        IniWrite,% %control%, %A_ScriptDir%\save\Settings.ini,% type,% control
+      }
+      Else
       IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini,% type,% A_GuiControl
       Return
     }
 
-    iniGeneral:
-      updateINI("General")
+    SaveGeneral:
+      SaveINI("General")
+    Return
+
+    SaveChaos:
+      SaveINI("Chaos Recipe")
+    Return
+
+    SaveChaosRadio:
+      Gui, Submit, NoHide
+      IniWrite, %ChaosRecipeTypePure%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypePure
+      IniWrite, %ChaosRecipeTypeHybrid%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeHybrid
+      IniWrite, %ChaosRecipeTypeRegal%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeRegal
+      IniWrite, %ChaosRecipeStashMethodDump%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodDump
+      IniWrite, %ChaosRecipeStashMethodTab%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodTab
+      IniWrite, %ChaosRecipeStashMethodSort%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodSort
     Return
 
     updateCharacterType:
@@ -10280,8 +10376,6 @@ Return
       IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
-      IniWrite, %YesStashChaosRecipe%, %A_ScriptDir%\save\Settings.ini, General, YesStashChaosRecipe
-      IniWrite, %ChaosRecipeMaxHolding%, %A_ScriptDir%\save\Settings.ini, General, ChaosRecipeMaxHolding
 
       ;Automation Settings
       IniWrite, %YesEnableAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation
