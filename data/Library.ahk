@@ -408,6 +408,15 @@
             This.Prop.SpecialType := "Cluster Jewel"
             This.Prop.DefaultSendStash := "ClusterJewelTab"
           }
+          Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Goods"
+            This.Prop.DefaultSendStash := "HeistTab"
+            This.Prop.Item_Width := This.Prop.Item_Height := 2
+            If indexOf(This.Prop.ItemBase, HeistLootLarge)
+              This.Prop.Item_Height := 4
+          }
           Else If (InStr(This.Prop.ItemBase, "Flask"))
           {
             This.Prop.Flask := True
@@ -537,15 +546,6 @@
             This.Prop.SpecialType := "Heist Gear"
             This.Prop.DefaultSendStash := "HeistTab"
             This.Prop.Item_Width := This.Prop.Item_Height := 2
-          }
-          Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
-          {
-            This.Prop.Heist := True
-            This.Prop.SpecialType := "Heist Goods"
-            This.Prop.DefaultSendStash := "HeistTab"
-            This.Prop.Item_Width := This.Prop.Item_Height := 2
-            If indexOf(This.Prop.ItemBase, HeistLootLarge)
-              This.Prop.Item_Height := 4
           }
         }
         ;End NamePlate Parser
@@ -2441,10 +2441,14 @@
         {
           requestedTabs.Push(ChaosRecipeStashTab%part%)
           Object := POE_RequestStash(ChaosRecipeStashTab%part%,0)
-          ItemTypes := ChaosRecipeSort(Object,True)
+          ChaosRecipeSort(Object,True)
           Sleep, 300
         }
       }
+      If RecipeArray.Count()
+        ItemTypes := RecipeArray
+      Else
+        ItemTypes := False
     }
     
     If endAtRefresh
@@ -2726,7 +2730,7 @@
           RecipeSets.Push(Set)
         }
         Else If ( (IsObject(Object.uChaos.Amulet.1)  || IsObject(Object.uRegal.Amulet.1))
-          && (( (IsObject(Object.uChaos.Ring.1)    || IsObject(Object.uRegal.Ring.1)) && (IsObject(Object.uChaos.Ring.2) || IsObject(Object.uRegal.Ring.2))) || (IsObject(Object.uChaos.Ring.1) && IsObject(Object.uRegal.Ring.1)) )
+          && ( ( (IsObject(Object.uChaos.Ring.1)    || IsObject(Object.uRegal.Ring.1)) && (IsObject(Object.uChaos.Ring.2) || IsObject(Object.uRegal.Ring.2))) || (IsObject(Object.uChaos.Ring.1) && IsObject(Object.uRegal.Ring.1)) )
           && (IsObject(Object.uChaos.Belt.1)    || IsObject(Object.uRegal.Belt.1))
           && (IsObject(Object.uChaos.Body.1)    || IsObject(Object.uRegal.Body.1))
           && (IsObject(Object.uChaos.Boots.1)   || IsObject(Object.uRegal.Boots.1))
