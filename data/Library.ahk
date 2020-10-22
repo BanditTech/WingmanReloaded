@@ -2483,7 +2483,7 @@
         (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType].Push(item)
       }
     }
-    If !(i > 0) && !Merge
+    If (!(i > 0) && !Merge)
     {
       Return False
     }
