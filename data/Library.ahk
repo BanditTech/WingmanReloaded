@@ -2730,7 +2730,7 @@
           RecipeSets.Push(Set)
         }
         Else If ( (IsObject(Object.uChaos.Amulet.1)  || IsObject(Object.uRegal.Amulet.1))
-          && (( (IsObject(Object.uChaos.Ring.1)    || IsObject(Object.uRegal.Ring.1)) && (IsObject(Object.uChaos.Ring.2) || IsObject(Object.uRegal.Ring.2))) || (IsObject(Object.uChaos.Ring.1) && IsObject(Object.uRegal.Ring.1)) )
+          && ( ( (IsObject(Object.uChaos.Ring.1)    || IsObject(Object.uRegal.Ring.1)) && (IsObject(Object.uChaos.Ring.2) || IsObject(Object.uRegal.Ring.2))) || (IsObject(Object.uChaos.Ring.1) && IsObject(Object.uRegal.Ring.1)) )
           && (IsObject(Object.uChaos.Belt.1)    || IsObject(Object.uRegal.Belt.1))
           && (IsObject(Object.uChaos.Body.1)    || IsObject(Object.uRegal.Body.1))
           && (IsObject(Object.uChaos.Boots.1)   || IsObject(Object.uRegal.Boots.1))

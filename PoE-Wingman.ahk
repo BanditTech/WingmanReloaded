@@ -3050,28 +3050,10 @@ Return
         addToBlacklist(C, R)
         If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
           ShooMouse(),GuiStatus(),Continue
-        If (Item.Affix["Unidentified"]&&YesIdentify)
+        If CheckToIdentify()
         {
-          If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
+          WisdomScroll(Grid.X,Grid.Y)
+          ClipItem(Grid.X,Grid.Y)
         }
         If (OnVendor&&YesVendor)
         {
