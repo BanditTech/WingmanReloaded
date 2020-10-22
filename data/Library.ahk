@@ -408,6 +408,15 @@
             This.Prop.SpecialType := "Cluster Jewel"
             This.Prop.DefaultSendStash := "ClusterJewelTab"
           }
+          Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
+          {
+            This.Prop.Heist := True
+            This.Prop.SpecialType := "Heist Goods"
+            This.Prop.DefaultSendStash := "HeistTab"
+            This.Prop.Item_Width := This.Prop.Item_Height := 2
+            If indexOf(This.Prop.ItemBase, HeistLootLarge)
+              This.Prop.Item_Height := 4
+          }
           Else If (InStr(This.Prop.ItemBase, "Flask"))
           {
             This.Prop.Flask := True
@@ -537,15 +546,6 @@
             This.Prop.SpecialType := "Heist Gear"
             This.Prop.DefaultSendStash := "HeistTab"
             This.Prop.Item_Width := This.Prop.Item_Height := 2
-          }
-          Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
-          {
-            This.Prop.Heist := True
-            This.Prop.SpecialType := "Heist Goods"
-            This.Prop.DefaultSendStash := "HeistTab"
-            This.Prop.Item_Width := This.Prop.Item_Height := 2
-            If indexOf(This.Prop.ItemBase, HeistLootLarge)
-              This.Prop.Item_Height := 4
           }
         }
         ;End NamePlate Parser
