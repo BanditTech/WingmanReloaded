@@ -2441,10 +2441,14 @@
         {
           requestedTabs.Push(ChaosRecipeStashTab%part%)
           Object := POE_RequestStash(ChaosRecipeStashTab%part%,0)
-          ItemTypes := ChaosRecipeSort(Object,True)
+          ChaosRecipeSort(Object,True)
           Sleep, 300
         }
       }
+      If RecipeArray.Count()
+        ItemTypes := RecipeArray
+      Else
+        ItemTypes := False
     }
     
     If endAtRefresh
