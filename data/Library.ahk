@@ -2483,7 +2483,7 @@
         (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType].Push(item)
       }
     }
-    If !(i > 0) && !Merge
+    If (!(i > 0) && !Merge)
     {
       Return False
     }
@@ -2508,19 +2508,66 @@
       RecipeArray := { "Chaos" : Chaos, "uChaos" : uChaos, "Regal" : Regal, "uRegal" : uRegal}
     Return RecipeArray
   }
+  confirmOneOfEach(Object,id:=True){
+    ; Confirm we have at least one of each armour slot and 2 rings
+    for k, kind in ["Amulet","Ring","Belt","Body","Boots","Gloves","Helmet"]
+    {
+      If ChaosRecipeTypeHybrid
+      {
+        result := getCount(Object[id?"Chaos":"uChaos"][kind]) + getCount(Object[id?"Regal":"uRegal"][kind])
+        If (!result || (kind = "Ring" && result < 2))
+          Return False
+      }
+      Else If ChaosRecipeTypePure
+      {
+        result := getCount(Object[id?"Chaos":"uChaos"][kind])
+        If (!result || (kind = "Ring" && result < 2))
+          Return False
+      }
+      Else If ChaosRecipeTypeRegal
+      {
+        result := getCount(Object[id?"Regal":"uRegal"][kind])
+        If (!result || (kind = "Ring" && result < 2))
+          Return False
+      }
+    }
+
+    ; now lets confirm we have a valid combination of weapons
+    If ChaosRecipeTypeHybrid
+    {
+      2hresult := getCount(Object[id?"Chaos":"uChaos"]["Two Hand"]) + getCount(Object[id?"Regal":"uRegal"]["Two Hand"])
+      1hresult := getCount(Object[id?"Chaos":"uChaos"]["One Hand"]) + getCount(Object[id?"Regal":"uRegal"]["One Hand"])
+      1hresult += getCount(Object[id?"Chaos":"uChaos"]["Shield"]) + getCount(Object[id?"Regal":"uRegal"]["Shield"])
+      If (!2hresult && 1hresult < 2)
+        Return False
+    }
+    Else If ChaosRecipeTypePure
+    {
+      2hresult := getCount(Object[id?"Chaos":"uChaos"]["Two Hand"])
+      1hresult := getCount(Object[id?"Chaos":"uChaos"]["One Hand"])
+      1hresult += getCount(Object[id?"Chaos":"uChaos"]["Shield"])
+      If (!2hresult && 1hresult < 2)
+        Return False
+    }
+    Else If ChaosRecipeTypeRegal
+    {
+      2hresult := getCount(Object[id?"Regal":"uRegal"]["Two Hand"])
+      1hresult := getCount(Object[id?"Regal":"uRegal"]["One Hand"])
+      1hresult += getCount(Object[id?"Regal":"uRegal"]["Shield"])
+      If (!2hresult && 1hresult < 2)
+        Return False
+    }
+
+    ; If we make it this far, all checks have passed
+    Return True
+  }
   ChaosRecipeReturn(Object){
     RecipeSets:={}
     types := ["Chaos","Regal","uChaos","uRegal"]
     If ChaosRecipeTypePure{
       Loop {
         ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
-        If (IsObject(Object.Chaos.Amulet.1) 
-        && IsObject(Object.Chaos.Ring.1) && IsObject(Object.Chaos.Ring.2)
-        && IsObject(Object.Chaos.Belt.1)
-        && IsObject(Object.Chaos.Body.1)
-        && IsObject(Object.Chaos.Boots.1)
-        && IsObject(Object.Chaos.Gloves.1)
-        && IsObject(Object.Chaos.Helmet.1))
+        If confirmOneOfEach(Object,True)
         {
           Set := {}
           If (IsObject(Object.Chaos.Shield.1) && IsObject(Object.Chaos.Shield.2))
@@ -2554,13 +2601,7 @@
           Set.Push(Object.Chaos.Helmet.RemoveAt(1))
           RecipeSets.Push(Set)
         }
-        Else If (IsObject(Object.uChaos.Amulet.1) 
-        && IsObject(Object.uChaos.Ring.1) && IsObject(Object.uChaos.Ring.2)
-        && IsObject(Object.uChaos.Belt.1)
-        && IsObject(Object.uChaos.Body.1)
-        && IsObject(Object.uChaos.Boots.1)
-        && IsObject(Object.uChaos.Gloves.1)
-        && IsObject(Object.uChaos.Helmet.1))
+        Else If confirmOneOfEach(Object,False)
         {
           Set := {}
           If (IsObject(Object.uChaos.Shield.1) && IsObject(Object.uChaos.Shield.2))
@@ -2600,19 +2641,12 @@
     } Else If (ChaosRecipeTypeHybrid){
       Loop {
         ; Hybrid filter for determining at least one chaos item is present, then using up all regal items
-        If ( (IsObject(Object.Chaos.Amulet.1)  || IsObject(Object.Regal.Amulet.1))
-          && (( (IsObject(Object.Chaos.Ring.1)    || IsObject(Object.Regal.Ring.1)) && (IsObject(Object.Chaos.Ring.2) || IsObject(Object.Regal.Ring.2))) || (IsObject(Object.Chaos.Ring.1) && IsObject(Object.Regal.Ring.1)) )
-          && (IsObject(Object.Chaos.Belt.1)    || IsObject(Object.Regal.Belt.1))
-          && (IsObject(Object.Chaos.Body.1)    || IsObject(Object.Regal.Body.1))
-          && (IsObject(Object.Chaos.Boots.1)   || IsObject(Object.Regal.Boots.1))
-          && (IsObject(Object.Chaos.Gloves.1)  || IsObject(Object.Regal.Gloves.1))
-          && (IsObject(Object.Chaos.Helmet.1) || IsObject(Object.Regal.Helmet.1)) )
-          &&  ChaosRecipeConfirm(Object.Chaos)
+        If ( confirmOneOfEach(Object,True) && getCount(Object.Chaos) )
         {
           Set := {}
           ChaosPresent := False
-          If ((IsObject(Object.Chaos.Shield.1) || IsObject(Object.Regal.Shield.1)) && (IsObject(Object.Chaos.Shield.2) || IsObject(Object.Regal.Shield.2))) 
-          || (IsObject(Object.Chaos.Shield.1) && IsObject(Object.Regal.Shield.1))
+          If ( ( (IsObject(Object.Chaos.Shield.1) || IsObject(Object.Regal.Shield.1) ) && ( IsObject(Object.Chaos.Shield.2) || IsObject(Object.Regal.Shield.2) ) ) 
+          || ( IsObject(Object.Chaos.Shield.1) && IsObject(Object.Regal.Shield.1) ) )
           {
             If (!ChaosPresent && !IsObject(Object.Chaos.Shield.1)) && IsObject(Object.Regal.Shield.1)
               Set.Push(Object.Regal.Shield.RemoveAt(1))
@@ -2651,7 +2685,7 @@
             Else If (IsObject(Object.Chaos["Two Hand"].1))
               Set.Push(Object.Chaos["Two Hand"].RemoveAt(1)), ChaosPresent := True
           }
-          Else If ((IsObject(Object.Chaos["One Hand"].1) || IsObject(Object.Regal["One Hand"].1)) && (IsObject(Object.Chaos["One Hand"].2) || IsObject(Object.Chaos["One Hand"].2))) 
+          Else If ((IsObject(Object.Chaos["One Hand"].1) || IsObject(Object.Regal["One Hand"].1)) && (IsObject(Object.Chaos["One Hand"].2) || IsObject(Object.Regal["One Hand"].2))) 
           || (IsObject(Object.Chaos["One Hand"].1) && IsObject(Object.Regal["One Hand"].1))
           {
             If (!ChaosPresent && !IsObject(Object.Chaos["One Hand"].1)) && IsObject(Object.Regal["One Hand"].1)
@@ -2729,14 +2763,7 @@
 
           RecipeSets.Push(Set)
         }
-        Else If ( (IsObject(Object.uChaos.Amulet.1)  || IsObject(Object.uRegal.Amulet.1))
-          && ( ( (IsObject(Object.uChaos.Ring.1)    || IsObject(Object.uRegal.Ring.1)) && (IsObject(Object.uChaos.Ring.2) || IsObject(Object.uRegal.Ring.2))) || (IsObject(Object.uChaos.Ring.1) && IsObject(Object.uRegal.Ring.1)) )
-          && (IsObject(Object.uChaos.Belt.1)    || IsObject(Object.uRegal.Belt.1))
-          && (IsObject(Object.uChaos.Body.1)    || IsObject(Object.uRegal.Body.1))
-          && (IsObject(Object.uChaos.Boots.1)   || IsObject(Object.uRegal.Boots.1))
-          && (IsObject(Object.uChaos.Gloves.1)  || IsObject(Object.uRegal.Gloves.1))
-          && (IsObject(Object.uChaos.Helmet.1) || IsObject(Object.uRegal.Helmet.1)) )
-          &&  ChaosRecipeConfirm(Object.uChaos)
+        Else If ( confirmOneOfEach(Object,False) && getCount(Object.uChaos) )
         {
           Set := {}
           ChaosPresent := False
@@ -2780,7 +2807,7 @@
             Else If (IsObject(Object.uChaos["Two Hand"].1))
               Set.Push(Object.uChaos["Two Hand"].RemoveAt(1)), ChaosPresent := True
           }
-          Else If ((IsObject(Object.uChaos["One Hand"].1) || IsObject(Object.uRegal["One Hand"].1)) && (IsObject(Object.uChaos["One Hand"].2) || IsObject(Object.uChaos["One Hand"].2))) 
+          Else If ((IsObject(Object.uChaos["One Hand"].1) || IsObject(Object.uRegal["One Hand"].1)) && (IsObject(Object.uChaos["One Hand"].2) || IsObject(Object.uRegal["One Hand"].2))) 
           || (IsObject(Object.uChaos["One Hand"].1) && IsObject(Object.uRegal["One Hand"].1))
           {
             If (!ChaosPresent && !IsObject(Object.uChaos["One Hand"].1)) && IsObject(Object.uRegal["One Hand"].1)
@@ -2864,13 +2891,7 @@
     } Else If (ChaosRecipeTypeRegal){
       Loop {
         ; Most basic check for one recipe, no logic to determine if Regal or Chaos set
-        If (IsObject(Object.Regal.Amulet.1) 
-        && IsObject(Object.Regal.Ring.1) && IsObject(Object.Regal.Ring.2)
-        && IsObject(Object.Regal.Belt.1)
-        && IsObject(Object.Regal.Body.1)
-        && IsObject(Object.Regal.Boots.1)
-        && IsObject(Object.Regal.Gloves.1)
-        && IsObject(Object.Regal.Helmet.1))
+        If confirmOneOfEach(Object,True)
         {
           Set := {}
           If (IsObject(Object.Regal.Shield.1) && IsObject(Object.Regal.Shield.2))
@@ -2904,13 +2925,7 @@
           Set.Push(Object.Regal.Helmet.RemoveAt(1))
           RecipeSets.Push(Set)
         }
-        Else If (IsObject(Object.uRegal.Amulet.1) 
-        && IsObject(Object.uRegal.Ring.1) && IsObject(Object.uRegal.Ring.2)
-        && IsObject(Object.uRegal.Belt.1)
-        && IsObject(Object.uRegal.Body.1)
-        && IsObject(Object.uRegal.Boots.1)
-        && IsObject(Object.uRegal.Gloves.1)
-        && IsObject(Object.uRegal.Helmet.1))
+        Else If confirmOneOfEach(Object,False)
         {
           Set := {}
           If (IsObject(Object.uRegal.Shield.1) && IsObject(Object.uRegal.Shield.2))
@@ -2950,12 +2965,18 @@
     }
     Return RecipeSets
   }
-  ChaosRecipeConfirm(Object){
+  getCount(Object,full:=False){
+    c := 0
     For slot, items in Object
     {
-      return True
+      If !full
+        c++
+      Else {
+        for ik, itm in items
+          c++
+      }
     }
-    Return False
+    Return c
   }
   ; ArrayToString - Make a string from array using | as delimiters
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

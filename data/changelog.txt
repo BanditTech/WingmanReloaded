@@ -1,3 +1,12 @@
+## Version .12.03 - Master version - October/23/2020
+Bugfixes
+* One handed items now properly handle hybrid mode
+* Items respect identification settings when in chaos vendor automation
+* Fence items are now parsed before flasks
+* Removed empty tab in crafting GUI
+
+---
+
 ## Version .12.02 - Master version - October/19/2020
 Chaos Recipe functionality has been vastly improved
 * Choose from Chaos recipe 60-74, 60-100 or Regal
