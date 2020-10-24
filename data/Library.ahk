@@ -545,7 +545,10 @@
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Gear"
             This.Prop.DefaultSendStash := "HeistTab"
-            This.Prop.Item_Width := This.Prop.Item_Height := 2
+            If InStr(This.Prop.ItemBase, "Brooch")
+              This.Prop.Item_Width := This.Prop.Item_Height := 1
+            Else
+              This.Prop.Item_Width := This.Prop.Item_Height := 2
           }
         }
         ;End NamePlate Parser
