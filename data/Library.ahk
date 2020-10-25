@@ -3425,7 +3425,7 @@
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs+15 yp+20, Skip Jeweler/Chroma Items
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs+15 yp+20, Allow 2x Jewellery limit
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs+15 yp+20 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-20 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
           Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+22, Leave Recipe Rare Un-Id
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs+15 yp+20 w50 center
