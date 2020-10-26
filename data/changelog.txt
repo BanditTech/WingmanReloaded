@@ -1,3 +1,12 @@
+## Version .12.0301 - Alpha version - October/26/2020
+Bugfixes and Tweaks
+* Brooch items should be given 1 width, 1 height
+* Allow 36 of each part of Chaos Recipe
+* Multi-Key triggers must now separate each key with a space
+  * So to press t, w, and 1 you would type "t w 1" into the key
+  
+---
+
 ## Version .12.03 - Master version - October/23/2020
 Bugfixes
 * One handed items now properly handle hybrid mode
