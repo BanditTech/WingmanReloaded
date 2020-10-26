@@ -7454,11 +7454,13 @@
     Return {"Mods":Mods, "Key":String }
   }
   SendHotkey(keyStr:="",hold:=0){
-    Obj := SplitModsFromKey(keyStr)
-    If GameActive
-      Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
-    Else
-      controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
+    For i, keys in StrSplit(keyStr," "){
+      Obj := SplitModsFromKey(keys)
+      If GameActive
+        Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
+      Else
+        controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
+    }
   }
 
   ; UpdateLeagues - Grab the League info from GGG API
