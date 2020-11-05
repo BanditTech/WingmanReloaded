@@ -1370,7 +1370,7 @@
             If This.MatchNinjaDB("UniqueArmour")
               Return
           }
-          Else If (This.Prop.ItemClass ~= "Flasks")
+          Else If (This.Prop.ItemClass ~= "Flask")
           {
             If This.MatchNinjaDB("UniqueFlask")
               Return
@@ -7285,11 +7285,20 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ScrapeNinjaData(apiString)
   {
+    If(RegExMatch(selectedLeague, "SSF",RxMatch))
+    {
+      selectedLeagueSC := RegExReplace(selectedLeague, "SSF ", "")
+    }
+    Else
+    {
+      selectedLeagueSC :=selectedLeague
+    }
+
     If InStr(apiString, "Fragment")
     {
-      UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+      UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
       If ErrorLevel{
-        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid or an API change
+        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid or an API change
       }
       Else If (ErrorLevel=0){
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
@@ -7302,7 +7311,7 @@
         If RetryDL
         {
           Sleep, 1000
-          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
           FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
           Try {
             holder := JSON.Load(JSONtext)
@@ -7333,9 +7342,9 @@
     }
     Else If InStr(apiString, "Currency")
     {
-      UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+      UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
       if ErrorLevel{
-        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid
       }
       Else if (ErrorLevel=0){
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
@@ -7348,7 +7357,7 @@
         If RetryDL
         {
           Sleep, 1000
-          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
           FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
           Try {
             holder := JSON.Load(JSONtext)
@@ -7391,9 +7400,9 @@
     }
     Else
     {
-      UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+      UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
       if ErrorLevel{
-        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid
       }
       Else if (ErrorLevel=0){
         RetryDL := False
@@ -7407,7 +7416,7 @@
         If RetryDL
         {
           Sleep, 1000
-          UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
           FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
           Try {
             holder := JSON.Load(JSONtext)

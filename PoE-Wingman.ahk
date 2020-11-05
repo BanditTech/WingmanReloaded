@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .12.0301
+  Global VersionNumber := .12.0302
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -3420,8 +3420,10 @@ Return
           && (Item.Prop.Map_Tier >= YesSkipMaps_tier))
             Continue
           Else If (sendstash:=Item.MatchStashManagement()){
+            ;Skip
             If (sendstash == -1)
               Continue
+            ;Affinities
             Else If (sendstash == -2)
               CtrlClick(Grid.X,Grid.Y)
           }

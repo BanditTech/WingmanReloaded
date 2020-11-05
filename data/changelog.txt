@@ -1,3 +1,17 @@
+## Version .12.0302 - Alpha version - November/05/2020
+Affinity
+* Increased Tab Range to 99
+* Rework Stash Tabs
+  * Merged tabs to match Affinity
+  * New Tabs: Blight, Delirium, Metamorph, Delve
+* Added Affinity Settings
+  * Move the slider to Disable Type (WR will skip this type), Assign a Tab (WR will move to stash then Ctrl+Click) or Enable Affinity (Ctrl+Click without moving stash)
+Improvements
+* Select league will use Softcore Version from SSF Leagues (this will enable ninja priced sorting)
+Bugfix
+* Unique Flask now will be properly priced by ninja api
+  
+---
 ## Version .12.0301 - Alpha version - October/26/2020
 Bugfixes and Tweaks
 * Brooch items should be given 1 width, 1 height
