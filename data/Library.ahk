@@ -5477,25 +5477,26 @@
         ;Currency
           ;Scouring 235,631
         Global ScouringX:=GameX + Round(GameW/(3440/235))
-        Global ScouringY:=GameY + Round(GameH/(1440/630))
+        Global ScouringY:=GameY + Round(GameH/(1440/590))
           ;Chisel 810,290
         Global ChiselX:=GameX + Round(GameW/(3440/810))
-        Global ChiselY:=GameY + Round(GameH/(1440/290))
+        Global ChiselY:=GameY + Round(GameH/(1440/250))
           ;Alchemy 655,390
         Global AlchemyX:=GameX + Round(GameW/(3440/655))
-        Global AlchemyY:=GameY + Round(GameH/(1440/390))
+        Global AlchemyY:=GameY + Round(GameH/(1440/350))
           ;Transmutation 80,390
         Global TransmutationX:=GameX + Round(GameW/(3440/80))
-        Global TransmutationY:=GameY + Round(GameH/(1440/390))
+        Global TransmutationY:=GameY + Round(GameH/(1440/350))
           ;Alteration 155, 390
         Global AlterationX:=GameX + Round(GameW/(3440/155))
-        Global AlterationY:=GameY + Round(GameH/(1440/390))
+        Global AlterationY:=GameY + Round(GameH/(1440/350))
           ;Augmentation 310,465
         Global AugmentationX:=GameX + Round(GameW/(3440/310))
-        Global AugmentationY:=GameY + Round(GameH/(1440/465))
+        Global AugmentationY:=GameY + Round(GameH/(1440/425))
           ;Vaal 310, 631
         Global VaalX:=GameX + Round(GameW/(3440/310))
-        Global VaalY:=GameY + Round(GameH/(1440/630))
+        Global VaalY:=GameY + Round(GameH/(1440/590))
+
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(3440/164))
         Global PortalStockX:=GameX + Round(GameW/(3440/228))
@@ -5816,36 +5817,36 @@
         ;Currency
         ;Scouring 175,460
         Global ScouringX:=GameX + Round(GameW/(1680/175))
-        Global ScouringY:=GameY + Round(GameH/(1050/460))      
+        Global ScouringY:=GameY + Round(GameH/(1050/430))      
        
         ;Chisel 590,210
         Global ChiselX:=GameX + Round(GameW/(1680/590))
-        Global ChiselY:=GameY + Round(GameH/(1050/210))
+        Global ChiselY:=GameY + Round(GameH/(1050/180))
        
         ;Alchemy 475,280
         Global AlchemyX:=GameX + Round(GameW/(1680/475))
-        Global AlchemyY:=GameY + Round(GameH/(1050/280))
+        Global AlchemyY:=GameY + Round(GameH/(1050/250))
        
         ;Transmutation 55,280
         Global TransmutationX:=GameX + Round(GameW/(1680/55))
-        Global TransmutationY:=GameY + Round(GameH/(1050/280))
+        Global TransmutationY:=GameY + Round(GameH/(1050/250))
        
         ;Alteration 115,285
         Global AlterationX:=GameX + Round(GameW/(1680/115))
-        Global AlterationY:=GameY + Round(GameH/(1050/285))
+        Global AlterationY:=GameY + Round(GameH/(1050/255))
        
         ;Augmentation 225,335
         Global AugmentationX:=GameX + Round(GameW/(1680/225))
-        Global AugmentationY:=GameY + Round(GameH/(1050/335))
+        Global AugmentationY:=GameY + Round(GameH/(1050/305))
        
         ;Vaal 225,460
         Global VaalX:=GameX + Round(GameW/(1680/225))
-        Global VaalY:=GameY + Round(GameH/(1050/460))
+        Global VaalY:=GameY + Round(GameH/(1050/430))
        
         ;Scrolls in currency tab
         Global WisdomStockX:=GameX + Round(GameW/(1680/115))
         Global PortalStockX:=GameX + Round(GameW/(1680/170))
-        Global WPStockY:=GameY + Round(GameH/(1050/215))
+        Global WPStockY:=GameY + Round(GameH/(1050/185))
        
         ;Status Check OnMenu
         global vX_OnMenu:=GameX + Round(GameW / 2)
