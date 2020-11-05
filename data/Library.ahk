@@ -130,15 +130,21 @@
       for key, val in Lista
       {
         GuiControlGet, CheckBoxState,, %val%
-        If (CheckBoxState = 0)
+        value := Listb[key]
+        If (CheckBoxState == 0)
         { 
-          value := Listb[key]
-          GuiControl, Enable, %value%
+          GuiControl, Disable, %value%
+          GuiControl, , %value%text, Disable Type
         } 
+        Else If (CheckBoxState == 1)
+        {
+          GuiControl, Enable, %value%
+          GuiControl, , %value%text, Assign a Tab
+        }
         Else 
         {
-          value := Listb[key]
           GuiControl, Disable, %value%
+          GuiControl, , %value%text, Enable Affinity
         }
       }
       Return
@@ -2007,9 +2013,9 @@
         Else If (This.Prop.Incubator)
           Return -1
         ;Affinities
-        Else If (This.Prop.IsBlightedMap || This.Prop.Oil)
+        Else If (This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight
         {
-          If StashTabYesBlight
+          If StashTabYesBlight > 1
             sendstash := -2
           Else
             sendstash := StashTabBlight
@@ -3040,7 +3046,7 @@
       , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
       , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
       , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
-      , WR_Btn_FillMetamorph_Area
+      , WR_Btn_FillMetamorph_Area, BlightEditText
       , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
       , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
       , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
@@ -3366,7 +3372,8 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number vBlightEdit  w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabBlight, %StashTabBlight%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut vStashTabYesBlight Checked%StashTabYesBlight% x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesBlight x+5 yp-5 w90 h20, %StashTabYesBlight%
+        Gui, Inventory: Add, Text,  xp yp+22 vBlightEditText, DisabledDisabled
 
         ; Delirium
         Gui, Inventory: Font, Bold s8 cBlack, Arial
