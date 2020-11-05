@@ -1,13 +1,20 @@
 ## Version .12.0302 - Alpha version - November/05/2020
-Affinity
+Affinity Update
 * Increased Tab Range to 99
 * Rework Stash Tabs
   * Merged tabs to match Affinity
   * New Tabs: Blight, Delirium, Metamorph, Delve
 * Added Affinity Settings
   * Move the slider to Disable Type (WR will skip this type), Assign a Tab (WR will move to stash then Ctrl+Click) or Enable Affinity (Ctrl+Click without moving stash)
+
+Warnings for Affinity (More Information on Discord)
+* Do not enable Affinity Auto-Navigation. This will reposition the stash to an unknown position to the script, and it MUST be unchecked.
+* Putting stash tabs into a Stash folder will break the order of your stash tabs, and they are not able to be navigated to properly. If you plan to use Multiple tab chaos recipe, the tabs must be positioned BEFORE any stash folders. (will need more testing on this interaction)
+* Unique Stash Affinity is not recommended to use. Do not enable this affinity, as not only is it bugged to not allow duplicates to be stashed in another tab, but it will prevent you from seperating valuable uniques
+  
 Improvements
 * Select league will use Softcore Version from SSF Leagues (this will enable ninja priced sorting)
+
 Bugfix
 * Unique Flask now will be properly priced by ninja api
   
