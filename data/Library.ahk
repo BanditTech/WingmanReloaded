@@ -125,8 +125,8 @@
      ; WisdomScroll - Identify Item at Coord
 
      GreyOut:
-      Lista := ["StashTabYesBlight","StashTabYesDelirium","StashTabYesDivination","StashTabYesFragment","StashTabYesMetamorph","StashTabYesDelve","StashTabYesEssence","StashTabYesMap"]
-      Listb := ["BlightEdit","DeliriumEdit","DivinationEdit","FragmentEdit","MetamorphEdit","DelveEdit","EssenceEdit","MapEdit"]
+      Lista := ["StashTabYesBlight","StashTabYesDelirium","StashTabYesDivination","StashTabYesFragment","StashTabYesMetamorph","StashTabYesDelve","StashTabYesEssence","StashTabYesMap","StashTabYesCurrency"]
+      Listb := ["BlightEdit","DeliriumEdit","DivinationEdit","FragmentEdit","MetamorphEdit","DelveEdit","EssenceEdit","MapEdit","CurrencyEdit"]
       for key, val in Lista
       {
         GuiControlGet, CheckBoxState,, %val%
@@ -143,7 +143,10 @@
         }
         Else 
         {
-          GuiControl, Disable, %value%
+          if(value !="CurrencyEdit" )
+          {
+            GuiControl, Disable, %value%
+          }
           GuiControl, , %value%text, Enable Affinity
         }
       }
@@ -2020,51 +2023,51 @@
           Else
             sendstash := StashTabBlight
         }
-        Else If (This.Prop.IsMap)
+        Else If (This.Prop.IsMap && StashTabYesMap)
         {
-          If StashTabYesMap
+          If StashTabYesMap > 1
             sendstash := -2
           Else
             sendstash := StashTabMap
         }
-        Else If (This.Prop.Catalyst || This.Prop.IsOrgan != "")
+        Else If (This.Prop.Catalyst || This.Prop.IsOrgan != "") && StashTabYesMetamorph
         {
-          If StashTabYesMetamorph
+          If StashTabYesMetamorph > 1
             sendstash := -2
           Else
             sendstash := StashTabMetamorph
         }
-        Else If (This.Prop.SpecialType="Delirium")
+        Else If (This.Prop.SpecialType="Delirium" && StashTabYesDelirium)
         {
-          If StashTabYesDelirium
+          If StashTabYesDelirium > 1
             sendstash := -2
           Else
             sendstash := StashTabDelirium
         }
-        Else If (This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )
+        Else If (This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
         {
-          If StashTabYesFragment 
+          If StashTabYesFragment > 1 
             sendstash := -2
           Else
             sendstash := StashTabFragment 
         }
-        Else If (This.Prop.RarityDivination)
+        Else If (This.Prop.RarityDivination) && StashTabYesDivination
         {
-          If StashTabYesDivination 
+          If StashTabYesDivination > 1
             sendstash := -2
           Else
             sendstash := StashTabDivination
         }
-        Else If (This.Prop.Essence)
+        Else If (This.Prop.Essence) && StashTabYesEssence
         {
-          If StashTabYesEssence
+          If StashTabYesEssence > 1
             sendstash := -2
           Else
             sendstash := StashTabEssence
         }
-        Else If (This.Prop.Fossil || This.Prop.Resonator)
+        Else If (This.Prop.Fossil || This.Prop.Resonator) && StashTabYesDelve
         {
-          If StashTabYesDelve
+          If StashTabYesDelve > 1
             sendstash := -2
           Else
             sendstash := StashTabDelve
@@ -3046,7 +3049,7 @@
       , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
       , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
       , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
-      , WR_Btn_FillMetamorph_Area, BlightEditText
+      , WR_Btn_FillMetamorph_Area, MapEdit, MapEditText, EssenceEdit ,EssenceEditText, DelveEdit, DelveEditText, CurrencyEdit, CurrencyEditText, MetamorphEdit, MetamorphEditText, FragmentEdit, FragmentEditText, DivinationEdit, DivinationEditText, DeliriumEdit, DeliriumEditText, BlightEdit, BlightEditText, UniqueEdit, UniqueEditText
       , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
       , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
       , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
@@ -3373,7 +3376,7 @@
         Gui, Inventory: Add, Edit, Number vBlightEdit  w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabBlight, %StashTabBlight%
         Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesBlight x+5 yp-5 w90 h20, %StashTabYesBlight%
-        Gui, Inventory: Add, Text,  xp yp+22 vBlightEditText, DisabledDisabled
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vBlightEditText, Disable Type
 
         ; Delirium
         Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -3381,7 +3384,8 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number vDeliriumEdit  w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabDelirium, %StashTabDelirium%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut  vStashTabYesDelirium Checked%StashTabYesDelirium% x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDelirium x+5 yp-5 w90 h20, %StashTabYesDelirium%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDeliriumEditText, Disable Type
 
         ; Divination Card
         Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -3389,7 +3393,8 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number vDivinationEdit  w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabDivination x+0 yp hp ,  %StashTabDivination%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut vStashTabYesDivination Checked%StashTabYesDivination% x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDivination x+5 yp-5 w90 h20, %StashTabYesDivination%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDivinationEditText, Disable Type
 
         ; Fragments
         Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -3397,7 +3402,8 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number vFragmentEdit w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabFragment x+0 yp hp ,  %StashTabFragment%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut vStashTabYesFragment Checked%StashTabYesFragment% x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesFragment x+5 yp-5 w90 h20, %StashTabYesFragment%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vFragmentEditText, Disable Type
 
         ; Metamorph
         Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -3405,7 +3411,8 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number vMetamorphEdit  w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabMetamorph x+0 yp hp , %StashTabMetamorph%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut vStashTabYesMetamorph Checked%StashTabYesMetamorph%  x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesMetamorph x+5 yp-5 w90 h20, %StashTabYesMetamorph%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vMetamorphEditText, Disable Type
 
         ; Currency
         Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -3413,7 +3420,8 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 vCurrencyEdit  xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabCurrency yp hp , %StashTabCurrency%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesCurrency x+5 yp-5 w90 h20, %StashTabYesCurrency%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vCurrencyEditText, Disable Type
 
         ; Delve
         Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -3421,7 +3429,8 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number vDelveEdit  w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabDelve , %StashTabDelve%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut vStashTabYesDelve Checked%StashTabYesDelve% x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDelve x+5 yp-5 w90 h20, %StashTabYesDelve%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDelveEditText, Disable Type
 
         ; Essence
         Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -3429,7 +3438,8 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number vEssenceEdit  w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabEssence x+0 yp hp ,  %StashTabEssence%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut vStashTabYesEssence Checked%StashTabYesEssence% x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesEssence x+5 yp-5 w90 h20, %StashTabYesEssence%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vEssenceEditText, Disable Type
 
         ; Map
         Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -3437,23 +3447,27 @@
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number vMapEdit  w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabMap x+0 yp hp ,  %StashTabMap%
-        Gui, Inventory: Add, Checkbox, gUpdateStash gGreyOut vStashTabYesMap Checked%StashTabYesMap% x+5 yp+4, Enable Affinity
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesMap x+5 yp-5 w90 h20, %StashTabYesMap%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vMapEditText, Disable Type
         
         ; Unique
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Unique
         Gui, Inventory: Font,
-        ; Gui, Inventory: Add, Edit, vEditUnique Number w40 xp+6 yp+17
-        ; GuiControl, Disable, EditUnique
-        ; Gui, Inventory: Add, UpDown, Range1-99 gUpdateStash vStashTabUnique x+0 yp hp ,  %StashTabUnique%
-        ; GuiControl, Disable, StashTabUnique
-        ; Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUnique Checked%StashTabYesUnique% x+5 yp+4, Enable
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUnique Checked%StashTabYesUnique% xp+51 yp+20, Enable Affinity
+        Gui, Inventory: Add, Edit, Number vUniqueEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabUnique x+0 yp hp ,  %StashTabUnique%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesUnique x+5 yp-5 w90 h20, %StashTabYesUnique%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vUniqueEditText, Not Supported
+
+        ;Disable Unique
         GuiControl, Disable, StashTabYesUnique
+        GuiControl, Disable, StashTabUnique
+        GuiControl, Disable, UniqueEdit
+        ;Run GreyOut
         Gosub, GreyOut
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, Section w200 h200 x+15 ys , Intructions:
+        Gui, Inventory: Add, GroupBox, Section w200 h200 x+50 ys , Intructions:
         Gui, Inventory: Font,
         Gui, Inventory: Add, Text, xs+10 yp+20 +Wrap w180, - Enabling Affinity will disable any sort
         Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, like CLF and Ninja Price
