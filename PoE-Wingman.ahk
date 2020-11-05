@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .12.0301
+  Global VersionNumber := .12.03
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -465,10 +465,8 @@
       StashTabYesUniqueRing = Enable to send Unique Ring items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow rings go
       StashTabYesInfluencedItem = Enable to send Influenced items to the assigned tab on the left
       StashTabInfluencedItem = Assign the Stash tab for Influenced items
-      StashTabFossil = Assign the Stash tab for Fossil items
-      StashTabYesFossil = Enable to send Fossil items to the assigned tab on the left
-      StashTabResonator = Assign the Stash tab for Resonator items
-      StashTabYesResonator = Enable to send Resonator items to the assigned tab on the left
+      StashTabDelve = Assign the Stash tab for Delve items
+      StashTabYesDelve = Enable to send Delve items to the assigned tab on the left
       StashTabCrafting = Assign the Stash tab for Crafting items
       StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
       StartMapTier1 = Select Initial Map Tier Range 1
@@ -737,7 +735,6 @@
       , 4 : 0x773838}
     Global YesLootChests := 1
     Global YesLootDelve := 1
-
     global Detonated := 0
     global CurrentTab := 0
     global DebugMessages := 0
@@ -788,60 +785,74 @@
     Global Player := OrderedArray()
     Player.Percent := {"Life":100, "ES":100, "Mana":100}
   ; Inventory
+    ;Affinities
     Global StashTabCurrency := 1
     Global StashTabMap := 1
     Global StashTabDivination := 1
+    Global StashTabMetamorph := 1
+    Global StashTabFragment := 1
+    Global StashTabEssence := 1
+    Global StashTabBlight := 1
+    Global StashTabDelirium := 1
+    Global StashTabDelve := 1
+    Global StashTabUnique := 1
+    ;Edit
+    Global MapEdit
+    Global EssenceEdit
+    Global DelveEdit
+    Global CurrencyEdit
+    Global MetamorphEdit
+    Global FragmentEdit
+    Global DivinationEdit
+    Global DeliriumEdit
+    Global BlightEdit
+
+    ;Unique Special
+    Global StashTabCollection := 1
+    Global StashTabUniqueRing := 1
+    Global StashTabUniqueDump := 1
     Global StashTabGem := 1
     Global StashTabGemVaal := 1
     Global StashTabGemQuality := 1
     Global StashTabFlaskQuality := 1
     Global StashTabLinked := 1
-    Global StashTabCollection := 1
-    Global StashTabUniqueRing := 1
-    Global StashTabUniqueDump := 1
     Global StashTabInfluencedItem := 1
-    Global StashTabFragment := 1
-    Global StashTabEssence := 1
-    Global StashTabOil := 1
-    Global StashTabBlightedMap := 1
-    Global StashTabDelirium := 1
-    Global StashTabFossil := 1
-    Global StashTabResonator := 1
     Global StashTabCrafting := 1
     Global StashTabProphecy := 1
     Global StashTabVeiled := 1
     Global StashTabGemSupport := 1
-    Global StashTabOrgan := 1
     Global StashTabClusterJewel := 1
     Global StashTabDump := 1
-    Global StashTabCatalyst := 1
     Global StashTabPredictive := 1
     Global StashTabNinjaPrice := 1
   ; Checkbox to activate each tab
+    
+        ;Affinities
     Global StashTabYesCurrency := 1
     Global StashTabYesMap := 1
     Global StashTabYesDivination := 1
+    Global StashTabYesMetamorph := 1
+    Global StashTabYesFragment := 1
+    Global StashTabYesEssence := 1
+    Global StashTabYesBlight := 1
+    Global StashTabYesDelirium := 1
+    Global StashTabYesDelve := 1
+    Global StashTabYesUnique := 0
+    ;Unique Special
+    Global StashTabYesCollection := 1
+    Global StashTabYesUniqueRing := 1
+    Global StashTabYesUniqueDump := 1
+    
     Global StashTabYesGem := 1
     Global StashTabYesGemVaal := 1
     Global StashTabYesGemQuality := 1
     Global StashTabYesFlaskQuality := 1
     Global StashTabYesLinked := 1
-    Global StashTabYesCollection := 1
-    Global StashTabYesUniqueRing := 1
-    Global StashTabYesUniqueDump := 1
     Global StashTabYesInfluencedItem := 1
-    Global StashTabYesBlightedMap := 1
-    Global StashTabYesDelirium := 1
-    Global StashTabYesFragment := 1
-    Global StashTabYesEssence := 1
-    Global StashTabYesOil := 1
-    Global StashTabYesFossil := 1
-    Global StashTabYesResonator := 1
     Global StashTabYesCrafting := 1
     Global StashTabYesProphecy := 1
     Global StashTabYesVeiled := 1
     Global StashTabYesGemSupport := 1
-    Global StashTabYesOrgan := 1
     Global StashTabYesClusterJewel := 1
     Global StashTabYesDump := 1
     Global StashDumpInTrial := 1
@@ -3424,8 +3435,10 @@ Return
           && (Item.Prop.Map_Tier >= YesSkipMaps_tier))
             Continue
           Else If (sendstash:=Item.MatchStashManagement()){
-            If (sendstash = -1)
+            If (sendstash == -1)
               Continue
+            Else If (sendstash == -2)
+              CtrlClick(Grid.X,Grid.Y)
           }
           Else
             ++Unstashed
@@ -6183,10 +6196,9 @@ Return
       IniRead, StashTabFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment, 1
       IniRead, StashTabEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence, 1
       IniRead, StashTabOil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil, 1
-      IniRead, StashTabBlightedMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlightedMap, 1
+      IniRead, StashTabBlight, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlight, 1
       IniRead, StashTabDelirium, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium, 1
-      IniRead, StashTabFossil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil, 1
-      IniRead, StashTabResonator, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator, 1
+      IniRead, StashTabDelve, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelve, 1
       IniRead, StashTabCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting, 1
       IniRead, StashTabProphecy, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy, 1
       IniRead, StashTabVeiled, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled, 1
@@ -6211,10 +6223,9 @@ Return
       IniRead, StashTabYesFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment, 1
       IniRead, StashTabYesEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence, 1
       IniRead, StashTabYesOil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil, 1
-      IniRead, StashTabYesBlightedMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlightedMap, 1
+      IniRead, StashTabYesBlight, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlight, 1
       IniRead, StashTabYesDelirium, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium, 1
-      IniRead, StashTabYesFossil, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFossil, 1
-      IniRead, StashTabYesResonator, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesResonator, 1
+      IniRead, StashTabYesDelve, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelve, 1
       IniRead, StashTabYesCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting, 1
       IniRead, StashTabYesProphecy, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy, 1
       IniRead, StashTabYesVeiled, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled, 1
@@ -7331,11 +7342,10 @@ Return
       IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
       IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
       IniWrite, %StashTabOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil
-      IniWrite, %StashTabBlightedMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlightedMap
+      IniWrite, %StashTabBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlight
       IniWrite, %StashTabDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium
       IniWrite, %StashTabYesOrgan%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOrgan
-      IniWrite, %StashTabFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil
-      IniWrite, %StashTabResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator
+      IniWrite, %StashTabDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelve
       IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
       IniWrite, %StashTabProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy
       IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
@@ -7353,13 +7363,12 @@ Return
       IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
       IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
       IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
-      IniWrite, %StashTabYesBlightedMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlightedMap
+      IniWrite, %StashTabYesBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlight
       IniWrite, %StashTabYesDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium
       IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
       IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
       IniWrite, %StashTabYesOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil
-      IniWrite, %StashTabYesFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFossil
-      IniWrite, %StashTabYesResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesResonator
+      IniWrite, %StashTabYesDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelve
       IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
       IniWrite, %StashTabYesProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy
       IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
@@ -10259,11 +10268,10 @@ Return
       IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
       IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
       IniWrite, %StashTabOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOil
-      IniWrite, %StashTabBlightedMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlightedMap
+      IniWrite, %StashTabBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlight
       IniWrite, %StashTabDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium
       IniWrite, %StashTabOrgan%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabOrgan
-      IniWrite, %StashTabFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFossil
-      IniWrite, %StashTabResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabResonator
+      IniWrite, %StashTabDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelve
       IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
       IniWrite, %StashTabProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy
       IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
@@ -10279,14 +10287,13 @@ Return
       IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
       IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
       IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
-      IniWrite, %StashTabYesBlightedMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlightedMap
+      IniWrite, %StashTabYesBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlight
       IniWrite, %StashTabYesDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium
       IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
       IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
       IniWrite, %StashTabYesOil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOil
       IniWrite, %StashTabYesOrgan%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesOrgan
-      IniWrite, %StashTabYesFossil%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFossil
-      IniWrite, %StashTabYesResonator%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesResonator
+      IniWrite, %StashTabYesDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelve
       IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
       IniWrite, %StashTabYesProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy
       IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
