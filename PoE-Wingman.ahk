@@ -655,6 +655,7 @@
     Global QSonMainAttack := 1
     Global QSonSecondaryAttack := 1
     Global YesPersistantToggle := 1
+    Global YesGuiLastPosition := 1
     Global YesSortFirst := 1
     Global YesAutoSkillUp := 1
     Global YesWaitAutoSkillUp := 1
@@ -1993,6 +1994,7 @@
     Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                      , Show GUI on startup?
     Gui Add, CheckBox, gSaveGeneral vYesInGameOverlay Checked%YesInGameOverlay%                    , Show In-Game Overlay?
     Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%      xs        , Persistant Auto-Toggles?
+    Gui Add, Checkbox, gUpdateExtra  vYesGuiLastPosition Checked%YesGuiLastPosition%      xs        , Remember Last GUI Position?
 
     Gui,Font, Bold s9 cBlack, Arial
     Gui,Add,GroupBox,Section x295 ym+20  w350 h90              ,Update Control
@@ -6065,6 +6067,10 @@ Return
       ; Login Information
       IniRead, PoESessionID, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID, %A_Space%
 
+      ; GUI Position
+      IniRead, WinGuiX, %A_ScriptDir%\save\Settings.ini, General, WinGuiX, 0
+      IniRead, WinGuiY, %A_ScriptDir%\save\Settings.ini, General, WinGuiY, 0
+
       ;General settings
       IniRead, BranchName, %A_ScriptDir%\save\Settings.ini, General, BranchName, master
       IniRead, ScriptUpdateTimeInterval, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval, 1
@@ -6103,6 +6109,7 @@ Return
       IniRead, QSonMainAttack, %A_ScriptDir%\save\Settings.ini, General, QSonMainAttack, 0
       IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack, 0
       IniRead, YesPersistantToggle, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle, 0
+      IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
       IniRead, YesPopAllExtraKeys, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys, 0
       IniRead, ManaThreshold, %A_ScriptDir%\save\Settings.ini, General, ManaThreshold, 10
       IniRead, YesEldritchBattery, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery, 0
@@ -6934,6 +6941,11 @@ Return
       Thread, NoTimers, True    ;Critical
 
       IniWrite, %PoESessionID%, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID
+
+      ;GUI Position
+      WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
+      IniWrite, %winguix%, %A_ScriptDir%\save\Settings.ini, General, WinGuiX
+      IniWrite, %winguiy%, %A_ScriptDir%\save\Settings.ini, General, WinGuiY
 
       ;~ hotkeys reset
       hotkey, IfWinActive, ahk_group POEGameGroup
@@ -10334,6 +10346,7 @@ Return
       IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
       IniWrite, %AutoUpdateOff%, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
       IniWrite, %YesPersistantToggle%, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle
+      IniWrite, %YesGuiLastPosition%, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition
       IniWrite, %YesPopAllExtraKeys%, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys
       IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay

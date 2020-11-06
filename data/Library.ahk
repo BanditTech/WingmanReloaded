@@ -7511,7 +7511,14 @@
     global
     if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
       Return
-    Gui, Show, Autosize Center,   WingmanReloaded
+    if(YesGuiLastPosition)
+    {
+      Gui, Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
+    }
+    Else
+    {
+      Gui, Show, Autosize Center,   WingmanReloaded
+    }
     processWarningFound:=0
     Gui,6:Hide
     return
