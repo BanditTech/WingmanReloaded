@@ -1,3 +1,12 @@
+## Version .12.0303 - Alpha version - November/06/2020
+Map Crafting
+* New Mods for HC
+  * You can request another mods in feedback section on Discord
+
+Remember Gui Position
+* A new option in Configuration to Remember GUI Position when reopening, this is a feature for multi monitor users/streamers
+  
+---
 ## Version .12.0302 - Alpha version - November/05/2020
 Affinity Update
 * Increased Tab Range to 99
