@@ -1088,7 +1088,10 @@
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
   
   ; Map Crafting Settings
-    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MinusMPR,MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
+    Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3
+    , CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3
+    , ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MinusMPR,MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
+    , MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
     
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
@@ -5064,6 +5067,7 @@ Return
     antr := Item.Prop.Map_Rarity
     antp := Item.Prop.Map_PackSize
     antq := Item.Prop.Map_Quantity
+    ;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
     While ( (Item.Affix["Monsters have # chance to Avoid Elemental Ailments"] && AvoidAilments) 
     || (Item.Affix["Monsters have a # chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
     || (Item.Affix["Monsters reflect # of Elemental Damage"] && ElementalReflect) 
@@ -5071,6 +5075,12 @@ Return
     || (Item.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
     || (Item.Affix["Cannot Leech Life from Monsters"] && NoLeech)
     || (Item.Affix["-# maximum Player Resistances"] && MinusMPR)
+    || (Item.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
+    || (Item.Affix["Monsters deal # extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
+    || (Item.Affix["Monsters deal # extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
+    || (Item.Affix["Monsters deal # extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
+    || (Item.Affix["Monsters have # increased Critical Strike Chance"] && MICSC)
+    || (Item.Affix["Monsters' skills Chain # additional times"] && MSCAT)
     || (Item.Prop.RarityNormal) 
     || (!MMQIgnore && (Item.Prop.Map_Rarity <= MMapItemRarity 
     || Item.Prop.Map_PackSize <= MMapMonsterPackSize 
@@ -6155,6 +6165,7 @@ Return
       IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1, Disable
       IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2, Disable
       IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3, Disable
+        ;MODS
       IniRead, ElementalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect, 0
       IniRead, PhysicalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect, 0
       IniRead, NoRegen, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen, 0
@@ -6162,6 +6173,11 @@ Return
       IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
       IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
       IniRead, MinusMPR, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR, 0
+      IniRead, MFAProjectiles, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MFAProjectiles, 0
+      IniRead, MDExtraPhysicalDamage, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage, 0
+      IniRead, MICSC, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC, 0
+      IniRead, MSCAT, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MSCAT, 0
+      
       IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
       IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
       IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
@@ -7287,6 +7303,8 @@ Return
       IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1
       IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2
       IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3
+
+        ;MODS
       IniWrite, %ElementalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect
       IniWrite, %PhysicalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect
       IniWrite, %NoRegen%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen
@@ -7294,6 +7312,11 @@ Return
       IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
       IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
       IniWrite, %MinusMPR%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR
+      IniWrite, %MFAProjectiles%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MFAProjectiles
+      IniWrite, %MDExtraPhysicalDamage%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage
+      IniWrite, %MICSC%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC
+      IniWrite, %MSCAT%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MSCAT
+
       IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
       IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
       IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
