@@ -3359,7 +3359,7 @@ Return
     }
     CurrentTab:=0
     SortFirst := {}
-    Loop 64
+    Loop 99
     {
       SortFirst[A_Index] := {}
     }
@@ -3786,7 +3786,7 @@ Return
           Send {Escape}
           Sleep, 15
         }
-        Loop, 64
+        Loop 99
           send {Left}
         Loop % Tab - 1
           send {Right}
