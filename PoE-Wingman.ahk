@@ -113,6 +113,7 @@
     Global GameActive
     Global GamePID
     Global QuestItems
+    Global DelayAction := {}
 
     Global Active_executable := "TempName"
     ; List available database endpoints
@@ -4082,6 +4083,7 @@ Return
           Settimer, TDetonated, -%DetonateMinesDelay%
         }
       }
+      SendDelayAction()
       If (AutoFlask || AutoQuit)
       {
         ScanGlobe()
