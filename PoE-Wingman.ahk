@@ -337,6 +337,7 @@
       YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
       hotkeyOptions = Set your hotkey to open the options GUI
       hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
+      hotkeyTriggerQuicksilver = Set your hotkey to trigger Quicksilver Flasks
       hotkeyAutoQuit = Set your hotkey to turn on and off AutoQuit
       hotkeyLogout = Set your hotkey to Log out of the game
       hotkeyAutoQuicksilver = Set your hotkey to Turn on and off AutoQuicksilver
@@ -916,6 +917,8 @@
     global hotkeyLeft := "A"
     global hotkeyRight := "D"
     global hotkeyCastOnDetonate := "Q"
+    Global hotkeyTriggerQuicksilver := "LButton"
+
   ; Coordinates
     global PortalScrollX:=1825
     global PortalScrollY:=825
@@ -1646,6 +1649,9 @@
     Gui,Font,
     Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Primary Attack
     Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
+
+    Gui Add, Edit,       vhotkeyTriggerQuicksilver  xs+10   y+10   w100 h17,   %hotkeyTriggerQuicksilver%
+    Gui, Add, text, x+5 yp+3 , QS Trigger Key
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,           Section    w324 h176      xs   y+10,         Profile Management:
@@ -4463,7 +4469,7 @@ Return
       || (Radiobox4QS && OnCooldown[4])
       || (Radiobox5QS && OnCooldown[5]) )
     { ; If all the flasks are off cooldown, then we are ready to fire one
-      LButtonPressed := ( MovementHotkeyActive || GetKeyState("LButton", "P") )
+      LButtonPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerQuicksilver, "P") )
       If QSonMainAttack
         MainPressed := MainAttackPressedActive
       If QSonSecondaryAttack
@@ -6788,6 +6794,7 @@ Return
       IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines, d
       IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
       IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
+      IniRead, hotkeyTriggerQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerQuicksilver, LButton
       
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
@@ -7146,6 +7153,7 @@ Return
       IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
       IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
       IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
+      IniWrite, %hotkeyTriggerQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerQuicksilver
       
       ;Utility Keys
       IniWrite, %hotkeyUp%,     %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp
@@ -7639,6 +7647,7 @@ Return
       GuiControl,, TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
       GuiControl,, hotkeyOptions, %hotkeyOptions%
       GuiControl,, hotkeyAutoFlask, %hotkeyAutoFlask%
+      GuiControl,, hotkeyTriggerQuicksilver, %hotkeyTriggerQuicksilver%
       GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
       GuiControl,, hotkeyLogout, %hotkeyLogout%
       GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%

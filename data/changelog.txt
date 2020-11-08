@@ -4,6 +4,8 @@ Delayed keypresses can now be achieved in any keybinding!
 * So for example "1 [300](q) [200](RButton)" would be 300ms to press q, 200ms to press RButton
 * The delay is from the initial trigger event, order is not important
 
+Quicksilver group can be assigned a trigger keybind
+
 ---
 
 ## Version .12.0303 - Alpha version - November/06/2020
