@@ -700,6 +700,9 @@
     Global GameX, GameY, GameW, GameH, mouseX, mouseY
     Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
     Global CastOnDetonate := 0
+    Global WinGuiX := 0
+    Global WinGuiY := 0
+
 
     ; Chaos Recipe
     Global ChaosRecipeEnableFunction := False
