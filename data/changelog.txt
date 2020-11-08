@@ -6,6 +6,13 @@ Delayed keypresses can now be achieved in any keybinding!
 
 Quicksilver group can be assigned a trigger keybind
 
+Fix issue with controller functions occurring when no controllers present
+* This was causing Primary/Secondary attack flask triggers to not function properly
+* It's logic will no longer run if there is no controller active
+
+Organizing the GUI, and pruning clutter menu options
+* Hotkeys have been moved to the Hotkey tab: Primary/Secondary Attack, QuickSilver Trigger hokey
+
 ---
 
 ## Version .12.0303 - Alpha version - November/06/2020

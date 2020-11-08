@@ -357,7 +357,6 @@
       LootVacuum = Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
       LootVacuumSettings = Assign your own loot colors and adjust the AreaScale and delay`rAlso contains options for openable containers
       PopFlaskRespectCD = Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
-      YesPopAllExtraKeys = Enable this option to press any extra keys in each flasks bindings when Popping all Flasks`rIf disabled, it will only fire the primary key assigned to the flask slot.
       LaunchHelp = Opens the AutoHotkey List of Keys
       YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
       YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
@@ -673,7 +672,6 @@
     Global YesMapUnid := 1
     Global YesCLFIgnoreImplicit := 0
     Global YesStashKeys := 1
-    Global YesPopAllExtraKeys := 1
     Global OnHideout := False
     Global OnTown := False
     Global OnMines := False
@@ -1592,7 +1590,7 @@
     Gui Add, GroupBox,       Section            x11   y+6   w257 h58, Attack
 
     Gui,Font
-    Gui Add, Edit,       vhotkeyMainAttack         xs+3   ys+14   w43 h17,   %hotkeyMainAttack%
+    Gui Add, Text,         xs+3   ys+14   w43 h17,   Primary
     Gui Add, Checkbox,     vMainAttackbox1       x75   y+-15   w13 h13
     vFlask=2
     loop 4 {
@@ -1600,7 +1598,7 @@
       vFlask:=vFlask+1
       } 
 
-    Gui Add, Edit,       vhotkeySecondaryAttack     xs+3   y+8   w43 h17,   %hotkeySecondaryAttack%
+    Gui Add, Text,        xs+3   y+8   w43 h17,  Second
     Gui Add, Checkbox,     vSecondaryAttackbox1     x75   y+-15   w13 h13
     vFlask=2
     loop 4 {
@@ -1639,22 +1637,20 @@
     Gui Add, Checkbox, gUpdateExtra  vRelogOnQuit Checked%RelogOnQuit%         xs+5  y+8        , Log back in afterwards?
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,     Section  w257 h66        xs   y+10 ,         Quicksilver Settings
+    Gui Add, GroupBox,     Section  w257 h73        xs   y+10 ,         Quicksilver Settings
     Gui,Font,
-    Gui Add, Text,                     xs+10   ys+16,         Quicksilver Flask Delay (in s):
+    Gui Add, Text,                     xs+10   ys+16,         Quicksilver Flask Delay (in seconds):
     Gui Add, Edit,       vTriggerQuicksilverDelay  x+10   yp   w22 h17,   %TriggerQuicksilverDelay%
     Gui, Font, s8 cBlack
     ;Improve UI later
-    Gui,Add,GroupBox, xs+10 yp+16 w208 h26                      ,Quicksilver on Attack:
+    Gui,Add,GroupBox, xs+10 yp+16 w208 h36                      ,Quicksilver on Attack:
     Gui,Font,
     Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Primary Attack
     Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
-    Gui Add, Edit,       vhotkeyTriggerQuicksilver  xs+10   y+10   w100 h17,   %hotkeyTriggerQuicksilver%
-    Gui, Add, text, x+5 yp+3 , QS Trigger Key
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,           Section    w324 h176      xs   y+10,         Profile Management:
+    Gui, Add, GroupBox,           Section    w324 h176      xs   y+12,         Profile Management:
     Gui, Font
     Gui, Add, Text,                   xs+161   ys+41     h135 0x11
 
@@ -1935,6 +1931,12 @@
     Gui Add, Edit,     gUpdateExtra   vhotkeyCastOnDetonate  h18  x+5  yp-2  w50        , %hotkeyCastOnDetonate% 
     Gui,Font,
 
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,     Section  w190 h40        xs+190+17   ys ,         Auto Level Gems
+    Gui, Font,
+    Gui Add, Checkbox,   vYesAutoSkillUp Checked%YesAutoSkillUp%   xs+10 yp+18        , Enable
+    Gui Add, Checkbox,   vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%    x+5 yp      , Wait for mouse?
+
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
@@ -2080,35 +2082,41 @@
     Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,   Section                  xm+5   ym+25,         Script Keybinds:
     Gui, Font
-    Gui Add, Text,                     xs+65   y+10,         Open this GUI
-    Gui Add, Text,                     xs+65   y+10,         Auto-Flask
-    Gui Add, Text,                     xs+65   y+10,         Auto-Quit
+    Gui Add, Text,                     xs+65   y+8,         Open this GUI
+    Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Flask
+    Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Quit
+    Gui Add, Text,                     xs+65   y+10,         Toggle Auto-QSilver
+    Gui Add, Text,                     xs+65   y+10,         QuickSilver Trigger
+    Gui Add, Text,                     xs+65   y+10,         Primary Attack
+    Gui Add, Text,                     xs+65   y+10,         Secondary Attack
     Gui Add, Text,                     xs+65   y+10,         Logout
-    Gui Add, Text,                     xs+65   y+10,         Auto-QSilver
-    Gui Add, Text,                     xs+65   y+10,         Coord/Pixel         
+    Gui Add, Text,                     xs+65   y+10,         Pop Flasks
     Gui Add, Text,                     xs+65   y+10,         Quick-Portal
     Gui Add, Text,                     xs+65   y+10,         Gem-Swap
-    Gui Add, Text,                     xs+65   y+10,         Start Crafting
     Gui Add, Text,                     xs+65   y+10,         Grab Currency
-    Gui Add, Text,                     xs+65   y+10,         Pop Flasks
-    Gui Add, Text,                     xs+65   y+10,         ID/Vend/Stash
+    Gui Add, Text,                     xs+65   y+10,         Coord/Pixel
+    Gui Add, Text,                     xs+65   y+10,         Inventory Sort
     Gui Add, Text,                     xs+65   y+10,         Item Info
     Gui Add, Text,                     xs+65   y+10,         Chaos Recipe
+    Gui Add, Text,                     xs+65   y+10,         Bulk Craft Maps
 
-    Gui,Add,Edit,  xs ys+20        w60 h19     vhotkeyOptions         ,%hotkeyOptions%
+    Gui,Add,Edit,  xs ys+20        w60 h19   vhotkeyOptions           ,%hotkeyOptions%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuit          ,%hotkeyAutoQuit%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuicksilver   ,%hotkeyAutoQuicksilver%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
+    Gui Add, Edit,           y+4   w60 h19   vhotkeyTriggerQuicksilver,%hotkeyTriggerQuicksilver%
+    Gui Add, Edit,           y+4   w60 h19   vhotkeyMainAttack        ,%hotkeyMainAttack%
+    Gui Add, Edit,           y+4   w60 h19   vhotkeySecondaryAttack   ,%hotkeySecondaryAttack%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyStartCraft        ,%hotkeyStartCraft%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyChaosRecipe       ,%hotkeyChaosRecipe%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyStartCraft        ,%hotkeyStartCraft%
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui, add, button, gWR_Update vWR_Btn_Controller  xs y+15 w110, Controller Keys
@@ -2127,16 +2135,12 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyLootScan        ,%hotkeyLootScan%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyDetonateMines    ,%hotkeyDetonateMines%
 
-    Gui Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%                          y+8 , Enable Loot Vacuum?
-    Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xs y+6 , Pop Flasks Respect CD?
-    Gui Add, Checkbox, gUpdateExtra  vYesPopAllExtraKeys Checked%YesPopAllExtraKeys%                  y+8 , Pop Flasks Uses any extra keys?
+    Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xp y+6 , Pop Flasks Respect CD?
     Gui Add, Checkbox, gUpdateExtra  vYesClickPortal Checked%YesClickPortal%                          y+8 , Click portal after opening?
-    Gui Add, Checkbox,   vYesAutoSkillUp Checked%YesAutoSkillUp%    y+8        , Auto Skill Up?
-    Gui Add, Checkbox,   vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%    x+5 yp      , Wait?
 
     ;~ =========================================================================================== Subgroup: Hints
     Gui,Font, Bold s9 cBlack, Arial
-    Gui,Add,GroupBox,Section xs  y+25  w120 h80              ,Hotkey Modifiers
+    Gui,Add,GroupBox,Section xp  y+25  w120 h80              ,Hotkey Modifiers
     Gui, Add, Button,      gLaunchHelp vLaunchHelp     center wp,   Show Key List
     Gui,Font,Norm
     Gui,Font,s8,Arial
@@ -4260,27 +4264,27 @@ Return
   ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   TimerPassthrough:
-    If ( GetKeyState(KeyFlask1Proper, "P") ) {
+    If ( GetKeyState(StrSplit(KeyFlask1," ")[1], "P") ) {
       OnCooldown[1]:=1
       settimer, TimerFlask1, %CooldownFlask1%
       ; SendMSG(3, 1)
     }
-    If ( GetKeyState(KeyFlask2Proper, "P") ) {
+    If ( GetKeyState(StrSplit(KeyFlask2," ")[1], "P") ) {
       OnCooldown[2]:=1
       settimer, TimerFlask2, %CooldownFlask2%
       ; SendMSG(3, 2)
     }
-    If ( GetKeyState(KeyFlask3Proper, "P") ) {
+    If ( GetKeyState(StrSplit(KeyFlask3," ")[1], "P") ) {
       OnCooldown[3]:=1
       settimer, TimerFlask3, %CooldownFlask3%
       ; SendMSG(3, 3)
     }
-    If ( GetKeyState(KeyFlask4Proper, "P") ) {
+    If ( GetKeyState(StrSplit(KeyFlask4," ")[1], "P") ) {
       OnCooldown[4]:=1
       settimer, TimerFlask4, %CooldownFlask4%
       ; SendMSG(3, 4)
     }
-    If ( GetKeyState(KeyFlask5Proper, "P") ) {
+    If ( GetKeyState(StrSplit(KeyFlask5," ")[1], "P") ) {
       OnCooldown[5]:=1
       settimer, TimerFlask5, %CooldownFlask5%
       ; SendMSG(3, 5)
@@ -5251,10 +5255,7 @@ Return
       {
         If PopFlasks1
         {
-          If YesPopAllExtraKeys 
-            SendHotkey(keyFlask1)
-          Else
-            SendHotkey(KeyFlask1Proper)
+          SendHotkey(keyFlask1)
           OnCooldown[1]:=1 
           ; SendMSG(3, 1)
           Cooldown:=CooldownFlask1
@@ -5263,10 +5264,7 @@ Return
         }
         If PopFlasks2
         {
-          If YesPopAllExtraKeys 
-            SendHotkey(keyFlask2) 
-          Else
-            SendHotkey(KeyFlask2Proper)
+          SendHotkey(keyFlask2) 
           OnCooldown[2]:=1 
           ; SendMSG(3, 2)
           Cooldown:=CooldownFlask2
@@ -5275,10 +5273,7 @@ Return
         }
         If PopFlasks3
         {
-          If YesPopAllExtraKeys 
-            SendHotkey(keyFlask3) 
-          Else
-            SendHotkey(KeyFlask3Proper)
+          SendHotkey(keyFlask3) 
           OnCooldown[3]:=1 
           ; SendMSG(3, 3)
           Cooldown:=CooldownFlask3
@@ -5287,10 +5282,7 @@ Return
         }
         If PopFlasks4
         {
-          If YesPopAllExtraKeys 
-            SendHotkey(keyFlask4) 
-          Else
-            SendHotkey(KeyFlask4Proper)
+          SendHotkey(keyFlask4) 
           OnCooldown[4]:=1 
           Cooldown:=CooldownFlask4
           ; SendMSG(3, 4)
@@ -5299,10 +5291,7 @@ Return
         }
         If PopFlasks5
         {
-          If YesPopAllExtraKeys 
-            SendHotkey(keyFlask5) 
-          Else
-            SendHotkey(KeyFlask5Proper)
+          SendHotkey(keyFlask5) 
           OnCooldown[5]:=1 
           ; SendMSG(3, 5)
           Cooldown:=CooldownFlask5
@@ -5653,7 +5642,8 @@ Return
     Global Controller, Controller_Active, YesOHBFound
     If (inputType = "Main")
     {
-      Controller("Refresh")
+      If !Controller("Refresh")
+        Return False
       Controller("JoystickL")
       Controller("JoystickR")
       Controller("Buttons")
@@ -5687,7 +5677,8 @@ Return
       }
       Else
       {
-        DetectJoystick()
+        If !DetectJoystick()
+          Return False
       }
     }
     Else If (inputType = "JoystickL")
@@ -6131,7 +6122,6 @@ Return
       IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack, 0
       IniRead, YesPersistantToggle, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle, 0
       IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
-      IniRead, YesPopAllExtraKeys, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys, 0
       IniRead, ManaThreshold, %A_ScriptDir%\save\Settings.ini, General, ManaThreshold, 10
       IniRead, YesEldritchBattery, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery, 0
       IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
@@ -7091,7 +7081,6 @@ Return
       IniWrite, %CharName%, %A_ScriptDir%\save\Settings.ini, General, CharName
       IniWrite, %EnableChatHotkeys%, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys
       IniWrite, %YesStashKeys%, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys
-      IniWrite, %YesPopAllExtraKeys%, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys
       IniWrite, %QSonMainAttack%, %A_ScriptDir%\save\Settings.ini, General, QSonMainAttack
       IniWrite, %QSonSecondaryAttack%, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack
       IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery
@@ -9851,9 +9840,11 @@ Return
         Gui, Submit
         gui,LootColors: new, LabelLootColors
         gui,LootColors: -MinimizeBox
-        Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 ym+5,  0|30|40|50|60|70|80|90|100|200|300|400|500
+        Gui LootColors: Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%   xm+5 ym+8 , Enable Loot Vacuum
+        
+        Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 y+8,  0|30|40|50|60|70|80|90|100|200|300|400|500
         GuiControl,LootColors: ChooseString, AreaScale, %AreaScale%
-        Gui,LootColors: Add, Text,                     x+3 yp+5              , AreaScale of search
+        Gui,LootColors: Add, Text,                     x+3 yp+5              , Area around mouse
         Gui,LootColors: Add, DropDownList, gUpdateExtra vLVdelay w45 x+5 yp-5,  0|15|30|45|60|75|90|105|120|135|150|195|300
         GuiControl,LootColors: ChooseString, LVdelay, %LVdelay%
         Gui,LootColors: Add, Text,                     x+3 yp+5              , Delay after click
@@ -10384,7 +10375,6 @@ Return
       IniWrite, %AutoUpdateOff%, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
       IniWrite, %YesPersistantToggle%, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle
       IniWrite, %YesGuiLastPosition%, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition
-      IniWrite, %YesPopAllExtraKeys%, %A_ScriptDir%\save\Settings.ini, General, YesPopAllExtraKeys
       IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
@@ -10747,7 +10737,7 @@ Return
 
     helpCalibration:
       Gui, submit
-      MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- ID/Vend/Stash`nOnStash -- ID/Vend/Stash`nOnDiv -- ID/Vend/Stash`nOnVendor -- ID/Vend/Stash`nEmpty Inventory -- ID/Vend/Stash`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
+      MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- Inventory Sort`nOnStash -- Inventory Sort`nOnDiv -- Inventory Sort`nOnVendor -- Inventory Sort`nEmpty Inventory -- Inventory Sort`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
       Hotkeys()
     Return
 

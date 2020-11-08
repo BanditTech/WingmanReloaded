@@ -3070,7 +3070,7 @@
 
       Gui, Inventory: Tab, Options
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,       Section    w170 h215    xm   ym+25,         ID/Vend/Stash/CLF Options
+        Gui, Inventory: Add, GroupBox,       Section    w170 h215    xm   ym+25,         Inventory Sort/CLF Options
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
