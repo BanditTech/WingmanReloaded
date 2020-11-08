@@ -1,3 +1,11 @@
+## Version .12.0304 - Alpha version - November/08/2020
+Delayed keypresses can now be achieved in any keybinding!
+* To add a delay to a binding, use the format: "[MS-DELAY](KEY-TO-PRESS)"
+* So for example "1 [300](q) [200](RButton)" would be 300ms to press q, 200ms to press RButton
+* The delay is from the initial trigger event, order is not important
+
+---
+
 ## Version .12.0303 - Alpha version - November/06/2020
 Map Crafting
 * New Mods for HC
