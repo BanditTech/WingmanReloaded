@@ -2466,31 +2466,6 @@
     ;638, 600
     global vX_OnLocker:=638
     global vY_OnLocker:=600
-    global vX_Life:=95
-    global vY_Life20:=1034
-    global vY_Life30:=1014
-    global vY_Life40:=994
-    global vY_Life50:=974
-    global vY_Life60:=954
-    global vY_Life70:=934
-    global vY_Life80:=914
-    global vY_Life90:=894
-      
-    global vX_ES:=180
-    global vY_ES20:=1034
-    global vY_ES30:=1014
-    global vY_ES40:=994
-    global vY_ES50:=974
-    global vY_ES60:=954
-    global vY_ES70:=934
-    global vY_ES80:=914
-    global vY_ES90:=894
-    
-    global vX_Mana:=1825
-    global vY_Mana10:=1054
-    global vY_Mana90:=876
-    Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-    Global vY_ManaThreshold:=vY_Mana10 - round(vH_ManaBar * (ManaThreshold / 100))
   
     Global vY_DivTrade:=736
     Global vY_DivItem:=605

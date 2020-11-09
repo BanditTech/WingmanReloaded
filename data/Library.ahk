@@ -5063,35 +5063,7 @@
         ;Status Check OnLocker
         global vX_OnLocker:=GameX + Round(GameW / (1920 / 458))
         global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (1920 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (1920 / 1740))
-        Else
-          global vX_ES:=GameX + Round(GameW / (1920 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (1920 / 1825))
-        global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+
         ;GUI overlay
         global GuiX:=GameX + Round(GameW / (1920 / -10))
         global GuiY:=GameY + Round(GameH / (1080 / 1027))
@@ -5224,35 +5196,6 @@
         ;Status Check OnMetamorph
         global vX_OnMetamorph:=GameX + Round(GameW / (1440 / 545))
         global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (1440 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (1440 / 1260))
-        Else
-          global vX_ES:=GameX + Round(GameW / (1440 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (1440 / 1345))
-        global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
         ;GUI overlay
         global GuiX:=GameX + Round(GameW / (1440 / -10))
         global GuiY:=GameY + Round(GameH / (1080 / 1027))
@@ -5389,36 +5332,6 @@
         global vX_OnLocker:=GameX + Round(GameW / (2560 / 490))
         global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
 
-
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (2560 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (2560 / 2380))
-        Else
-          global vX_ES:=GameX + Round(GameW / (2560 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (2560 / 2465))
-        global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
         ;GUI overlay
         global GuiX:=GameX + Round(GameW / (2560 / -10))
         global GuiY:=GameY + Round(GameH / (1080 / 1027))
@@ -5553,35 +5466,6 @@
         ;Status Check OnLocker ((3440/3)-2)
         global vX_OnLocker:=GameX + Round(GameW / (3440 / 600))
         global vY_OnLocker:=GameY + Round(GameH / ( 1440 / 918))
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (3440 / 128))
-        global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
-        global vY_Life30:=GameY + Round(GameH / ( 1440 / 1356))
-        global vY_Life40:=GameY + Round(GameH / ( 1440 / 1329))
-        global vY_Life50:=GameY + Round(GameH / ( 1440 / 1302))
-        global vY_Life60:=GameY + Round(GameH / ( 1440 / 1275))
-        global vY_Life70:=GameY + Round(GameH / ( 1440 / 1248))
-        global vY_Life80:=GameY + Round(GameH / ( 1440 / 1221))
-        global vY_Life90:=GameY + Round(GameH / ( 1440 / 1194))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (3440 / 3222))
-        Else
-          global vX_ES:=GameX + Round(GameW / (3440 / 225))
-        global vY_ES20:=GameY + Round(GameH / ( 1440 / 1383))
-        global vY_ES30:=GameY + Round(GameH / ( 1440 / 1356))
-        global vY_ES40:=GameY + Round(GameH / ( 1440 / 1329))
-        global vY_ES50:=GameY + Round(GameH / ( 1440 / 1302))
-        global vY_ES60:=GameY + Round(GameH / ( 1440 / 1275))
-        global vY_ES70:=GameY + Round(GameH / ( 1440 / 1248))
-        global vY_ES80:=GameY + Round(GameH / ( 1440 / 1221))
-        global vY_ES90:=GameY + Round(GameH / ( 1440 / 1194))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (3440 / 3314))
-        global vY_Mana10:=GameY + Round(GameH / (1440 / 1409))
-        global vY_Mana90:=GameY + Round(GameH / (1440 / 1165))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
         ;GUI overlay
         global GuiX:=GameX + Round(GameW / (3440 / -10))
         global GuiY:=GameY + Round(GameH / (1440 / 1370))
@@ -5716,35 +5600,6 @@
         ;Status Check OnLocker ((3840/3)-2)
         global vX_OnLocker:=GameX + Round(GameW / (3840 / 900))
         global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (3840 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (3840 / 3660))
-        Else
-          global vX_ES:=GameX + Round(GameW / (3840 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (3840 / 3745))
-        global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
         ;GUI overlay
         global GuiX:=GameX + Round(GameW / (3840 / -10))
         global GuiY:=GameY + Round(GameH / (1080 / 1027))
@@ -5910,39 +5765,7 @@
         ;Status Check OnLocker ((1680/3)-2)
         global vX_OnLocker:=GameX + Round(GameW / (1680 / 450))
         global vY_OnLocker:=GameY + Round(GameH / ( 1050 / 918))
- 
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (1680 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1050 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1050 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1050 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1050 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1050 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1050 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1050 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1050 / 894))
-       
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (1680 / 1740))
-        Else
-          global vX_ES:=GameX + Round(GameW / (1680 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1050 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1050 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1050 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1050 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1050 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1050 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1050 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1050 / 894))
-       
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (1680 / 1825))
-        global vY_Mana10:=GameY + Round(GameH / (1050 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1050 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
-       
+
         ;GUI overlay
         global GuiX:=GameX + Round(GameW / (1680 / -10))
         global GuiY:=GameY + Round(GameH / (1050 / 1000))
