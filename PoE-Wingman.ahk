@@ -219,7 +219,7 @@
     Global BlackList := {}
     Global YesClickPortal := True
     Global RelogOnQuit := True
-    Global MainAttackPressedActive,SecondaryAttackPressedActive
+    Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
     global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
       , ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
       , ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
@@ -4066,10 +4066,13 @@ Return
         If (OnDetonate)
         {
           SendHotkey(hotkeyDetonateMines)
-          If CastOnDetonate
-            SendHotkey(hotkeyCastOnDetonate)
           Detonated:=1
           Settimer, TDetonated, -%DetonateMinesDelay%
+          a := A_TickCount - MainAttackLastRelease
+          If CastOnDetonate&&GetKeyState("LButton","P")&&(a > 1000)
+          {
+            SendHotkey(hotkeyCastOnDetonate)
+          }
         }
       }
       SendDelayAction()
@@ -4374,6 +4377,7 @@ Return
   {
     MainAttackCommandRelease:
     MainAttackPressedActive := False
+    MainAttackLastRelease := A_TickCount
     Return  
   }
   ; SecondaryAttackCommand - Secondary attack Flasks
@@ -10743,31 +10747,7 @@ Return
       }
     Return
   }
-; Dan Race Code
-  ; timer := 0
-  ; XButton1::
-  ; XButton2::
-  ; F1::
-  ; if(!timer)
-  ; {
-  ; Clipboard := "b-g"
-  ; SetTimer, Checker, -800
-  ; timer := 1
-  ; }
-  ; else
-  ; {
-  ; Clipboard := "nn"
-  ; timer:=0
-  ; }
-  ; Send, ^f
-  ; Send, ^v
-  ; return
 
-  ; Checker:
-  ; {
-  ; timer:=0
-  ; }
-  ; return
 
   ; Comment out this line if your script crashes on launch
   #Include, %A_ScriptDir%\data\Library.ahk
