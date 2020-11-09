@@ -1920,7 +1920,7 @@
     Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,     Section  w190 h110        xs+250+17   ys ,         Auto-Detonate Mines
+    Gui, Add, GroupBox,     Section  w190 h110        xs+257   ys ,         Auto-Detonate Mines
     Gui, Font,
     Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
     Gui Add, Text, xs+5 y+4, Delay after Detonate
@@ -1937,10 +1937,10 @@
     Gui,Font,
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,     Section  w190 h40        xs+190+17   ys ,         Auto Level Gems
+    Gui, Add, GroupBox,     Section  w172 h40        xs+197   ys ,         Auto Level Gems
     Gui, Font,
     Gui Add, Checkbox,   vYesAutoSkillUp Checked%YesAutoSkillUp%   xs+10 yp+18        , Enable
-    Gui Add, Checkbox,   vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%    x+5 yp      , Wait for mouse?
+    Gui Add, Checkbox,   vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%    x+5 yp      , Wait for Mouse
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -10743,6 +10743,31 @@ Return
       }
     Return
   }
+; Dan Race Code
+  ; timer := 0
+  ; XButton1::
+  ; XButton2::
+  ; F1::
+  ; if(!timer)
+  ; {
+  ; Clipboard := "b-g"
+  ; SetTimer, Checker, -800
+  ; timer := 1
+  ; }
+  ; else
+  ; {
+  ; Clipboard := "nn"
+  ; timer:=0
+  ; }
+  ; Send, ^f
+  ; Send, ^v
+  ; return
+
+  ; Checker:
+  ; {
+  ; timer:=0
+  ; }
+  ; return
 
   ; Comment out this line if your script crashes on launch
   #Include, %A_ScriptDir%\data\Library.ahk
