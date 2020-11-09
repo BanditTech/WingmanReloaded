@@ -1100,7 +1100,7 @@
   ; Map Crafting Settings
     Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3
     , CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3
-    , ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MinusMPR,MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
+    , ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MinusMPR,LRRLES,MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
     , MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
     
   ; ItemInfo GUI
@@ -5079,6 +5079,7 @@ Return
     || (Item.Affix["Monsters deal # extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
     || (Item.Affix["Monsters have # increased Critical Strike Chance"] && MICSC)
     || (Item.Affix["Monsters' skills Chain # additional times"] && MSCAT)
+    || (Item.Affix["Players have # less Recovery Rate of Life and Energy Shield"] && LRRLES)
     || (Item.Prop.RarityNormal) 
     || (!MMQIgnore && (Item.Prop.Map_Rarity <= MMapItemRarity 
     || Item.Prop.Map_PackSize <= MMapMonsterPackSize 
@@ -6156,7 +6157,7 @@ Return
       IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
       IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
       IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
-      IniRead, MinusMPR, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR, 0
+      IniRead, LRRLES, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, LRRLES, 0    
       IniRead, MFAProjectiles, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MFAProjectiles, 0
       IniRead, MDExtraPhysicalDamage, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage, 0
       IniRead, MICSC, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC, 0
@@ -7295,6 +7296,7 @@ Return
       IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
       IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
       IniWrite, %MinusMPR%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR
+      IniWrite, %LRRLES%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, LRRLES
       IniWrite, %MFAProjectiles%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MFAProjectiles
       IniWrite, %MDExtraPhysicalDamage%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage
       IniWrite, %MICSC%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC

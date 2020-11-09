@@ -3615,11 +3615,13 @@
           Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
           Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
           Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-          Gui, Crafting: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
+          Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players have # Less Recovery Rate of Life and ES
           Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
           Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
           Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
           Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
+          Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
+  
           
           Gui, Crafting: Font, Bold
           Gui, Crafting: Font, Bold s9 cBlack, Arial
