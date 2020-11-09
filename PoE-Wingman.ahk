@@ -387,11 +387,8 @@
       UpdateLeaguesBtn = Use this button when there is a new league
       LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
       )
- 
 
- 
- 
-      ft_ToolTip_Text_Part2=
+    ft_ToolTip_Text_Part2=
       (LTrim
       ChaosRecipeEnableFunction = Enable/Disable the Chaos Recipe logic which includes all of its settings
       ChaosRecipeMaxHolding = Determine how many sets of Chaos Recipe to stash
@@ -466,6 +463,10 @@
       StashTabYesDelve = Enable to send Delve items to the assigned tab on the left
       StashTabCrafting = Assign the Stash tab for Crafting items
       StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
+      )
+
+    ft_ToolTip_Text_Part3=
+      (LTrim
       StartMapTier1 = Select Initial Map Tier Range 1
       StartMapTier2 = Select Initial Map Tier Range 2
       StartMapTier3 = Select Initial Map Tier Range 3
@@ -521,7 +522,13 @@
       hotkeySecondaryAttack = Bind the Secondary Attack for this Character
       )
 
-      ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2
+      ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
+  ; Global Script object
+    Global WR := {"loc":{},"setting":{},"data":{},"sample":{},"string":{}}
+    for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
+    ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
+    ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
+      WR.loc[v] := {}
   ; Login POESESSID
     Global PoESessionID := ""
     Global AccountNameSTR := ""
@@ -924,8 +931,6 @@
     global WisdomScrollY:=825
     global StockPortal:=0
     global StockWisdom:=0
-    global GuiX:=-5
-    global GuiY:=1005
 
   ; Inventory Colors
     global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
@@ -2417,67 +2422,66 @@
     } else {
     Global InventoryGridX := [ 1274, 1326, 1379, 1432, 1484, 1537, 1590, 1642, 1695, 1748, 1800, 1853 ]
     Global InventoryGridY := [ 638, 690, 743, 796, 848 ]  
-    Global DetonateDelveX:=1542
-    Global DetonateX:=1658
-    Global DetonateY:=901
-    Global VendorAcceptX:=380
-    Global VendorAcceptY:=820
-    Global WisdomStockX:=115
-    Global PortalStockX:=175
-    Global WPStockY:=220
-    ;Scouring 175,475
-    Global ScouringX:=175
-    Global ScouringY:=475
-    ;Chisel 605,220
-    Global ChiselX:=605
-    Global ChiselY:=220
-    ;Alchemy 490,290
-    Global AlchemyX:=490
-    Global AlchemyY:=290
-    ;Transmutation 60,290
-    Global TransmutationX:=60
-    Global TransmutationY:=290
-    ;Augmentation 230,340
-    Global AugmentationX:=230
-    Global AugmentationY:=340
-    ;Vaal 230,475
-    Global VaalX:=230
-    Global VaalY:=475
-    global vX_OnMenu:=960
-    global vY_OnMenu:=54
-    global vX_OnChar:=41
-    global vY_OnChar:=915
-    global vX_OnChat:=41
-    global vY_OnChat:=915
-    global vX_OnInventory:=1583
-    global vY_OnInventory:=36
-    global vX_OnStash:=336
-    global vY_OnStash:=32
-    global vX_OnVendor:=618
-    global vY_OnVendor:=88
-    global vX_OnDiv:=618
-    global vY_OnDiv:=135
-    global vX_OnLeft:=252
-    global vY_OnLeft:=57
-    global vX_OnDelveChart:=466
-    global vY_OnDelveChart:=89
-    global vX_OnMetamorph:=785
-    global vY_OnMetamorph:=204
-    ;638, 600
-    global vX_OnLocker:=638
-    global vY_OnLocker:=600
-  
-    Global vY_DivTrade:=736
-    Global vY_DivItem:=605
+    WR.loc.DetonateDelve.X:=1542
+    WR.loc.Detonate.X:=1658
+    WR.loc.Detonate.Y:=901
+    WR.loc.VendorAccept.X:=380
+    WR.loc.VendorAccept.Y:=820
+    ; Scrolls
+    WR.loc.Wisdom.X:=115
+    WR.loc.Portal.X:=175
+    WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=190
+    ; Scouring
+    WR.loc.Scouring.X:=175
+    WR.loc.Scouring.Y:=445
+    ; Chisel
+    WR.loc.Chisel.X:=605
+    WR.loc.Chisel.Y:=190
+    ; Alchemy
+    WR.loc.Alchemy.X:=490
+    WR.loc.Alchemy.Y:=260
+    ; Transmutation
+    WR.loc.Transmutation.X:=60
+    WR.loc.Transmutation.Y:=260
+    ; Augmentation
+    WR.loc.Augmentation.X:=230
+    WR.loc.Augmentation.Y:=310
+    ; Alteration
+    WR.loc.Alteration.X:=120
+    WR.loc.Alteration.Y:=260
+    ; Vaal
+    WR.loc.Vaal.X:=230
+    WR.loc.Vaal.Y:=445
 
-    global vX_StashTabMenu := 640
-    global vY_StashTabMenu := 146
-    global vX_StashTabList := 706
-    global vY_StashTabList := 120
-    global vY_StashTabSize := 22
+    WR.loc.OnMenu.X:=960
+    WR.loc.OnMenu.Y:=54
+    WR.loc.OnChar.X:=41
+    WR.loc.OnChar.Y:=915
+    WR.loc.OnChat.X:=41
+    WR.loc.OnChat.Y:=915
+    WR.loc.OnInventory.X:=1583
+    WR.loc.OnInventory.Y:=36
+    WR.loc.OnStash.X:=336
+    WR.loc.OnStash.Y:=32
+    WR.loc.OnVendor.X:=618
+    WR.loc.OnVendor.Y:=88
+    WR.loc.OnDiv.X:=618
+    WR.loc.OnDiv.Y:=135
+    WR.loc.OnLeft.X:=252
+    WR.loc.OnLeft.Y:=57
+    WR.loc.OnDelveChart.X:=466
+    WR.loc.OnDelveChart.Y:=89
+    WR.loc.OnMetamorph.X:=785
+    WR.loc.OnMetamorph.Y:=204
+    WR.loc.OnLocker.X:=638
+    WR.loc.OnLocker.Y:=600
+    WR.loc.DivTrade.Y:=736
+    WR.loc.DivItem.Y:=605
+
+    WR.loc.Gui.X:=-10
+    WR.loc.Gui.Y:=1027
+
     Global ScrCenter := { X : 960 , Y : 540 }
-    global GuiX:=-10
-    global GuiY:=1027
     }
 
   ;Ignore Slot setup
@@ -2556,7 +2560,7 @@
   IfWinExist, ahk_group POEGameGroup
   {
     Rescale()
-    Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
+    Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y " NA", StatusOverlay
     GuiUpdate()
     ToggleExist := True
     If (ShowOnStart)
@@ -2939,7 +2943,7 @@ Return
       If (YesEnableAutoSellConfirmation || (!VendoredItems && YesEnableAutoSellConfirmationSafe))
       {
         RandomSleep(60,90)
-        LeftClick(VendorAcceptX,VendorAcceptY)
+        LeftClick(WR.loc.VendorAccept.X,WR.loc.VendorAccept.Y)
         RandomSleep(60,90)
         ContinueFlag := True
       }
@@ -3097,7 +3101,7 @@ Return
       If (YesEnableAutoSellConfirmation)
       {
         RandomSleep(60,90)
-        LeftClick(VendorAcceptX,VendorAcceptY)
+        LeftClick(WR.loc.VendorAccept.X,WR.loc.VendorAccept.Y)
         RandomSleep(60,90)
         ContinueFlag := True
       }
@@ -3669,9 +3673,9 @@ Return
           If (Item.Prop.RarityDivination && (Item.Prop.Stack = Item.Prop.StackMax)){
             CtrlClick(Grid.X,Grid.Y)
             RandomSleep(150,200)
-            LeftClick(vX_OnDiv,vY_DivTrade)
+            LeftClick(WR.loc.OnDiv.X,WR.loc.DivTrade.Y)
             Sleep, Abs(ClickLatency*15)
-            CtrlClick(vX_OnDiv,vY_DivItem)
+            CtrlClick(WR.loc.OnDiv.X,WR.loc.DivItem.Y)
             Sleep, Abs(ClickLatency*15)
           }
           Continue
@@ -3821,7 +3825,7 @@ Return
         If (dif>10)
         {
           MoveStash(StashTabCurrency)
-          ShiftClick(WisdomStockX, WPStockY)
+          ShiftClick(WR.loc.Wisdom.X, WR.loc.Wisdom.Y)
           Sleep, 45*Latency
           Send %dif%
           Sleep, 45*Latency
@@ -3843,7 +3847,7 @@ Return
         If (dif>10)
         {
           MoveStash(StashTabCurrency)
-          ShiftClick(PortalStockX, WPStockY)
+          ShiftClick(WR.loc.Portal.X, WR.loc.Portal.Y)
           Sleep, 45*Latency
           Send %dif%
           Sleep, 45*Latency
@@ -4985,7 +4989,7 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ApplyCurrency(cname, x, y)
   {
-    RightClick(%cname%X, %cname%Y)
+    RightClick(WR.loc[cname].X, WR.loc[cname].Y)
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 90*Latency
@@ -5393,13 +5397,13 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PoEWindowCheck()
   {
-    Global GamePID, NoGame, GameActive, YesInGameOverlay
+    Global GamePID, NoGame, GameActive, YesInGameOverlay, WR
     If (GamePID := WinExist(GameStr))
     {
       GameActive := WinActive(GameStr)
       WinGetPos, , , nGameW, nGameH
       newDim := (nGameW != GameW || nGameH != GameH)
-      global GuiX, GuiY, RescaleRan, ToggleExist
+      global RescaleRan, ToggleExist
       If (!GameBound || newDim )
       {
         GameBound := True
@@ -5412,7 +5416,7 @@ Return
         Rescale()
       If ((!ToggleExist || newDim) && GameActive) 
       {
-        Gui 2: Show, x%GuiX% y%GuiY% NA, StatusOverlay
+        Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y " NA", StatusOverlay
         GuiUpdate()
         ToggleExist := True
         NoGame := False
@@ -6627,8 +6631,6 @@ Return
       IniRead, GemItemToogle2, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle2, 0
       
       ;Coordinates
-      IniRead, GuiX, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiX, -10
-      IniRead, GuiY, %A_ScriptDir%\save\Settings.ini, Coordinates, GuiY, 1027
       IniRead, PortalScrollX, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX, 1825
       IniRead, PortalScrollY, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollY, 825
       IniRead, WisdomScrollX, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollX, 1875
@@ -6995,7 +6997,7 @@ Return
       {
         Gui, Submit
         Rescale()
-        Gui 2: Show, x%GuiX% y%GuiY%, StatusOverlay
+        Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y, StatusOverlay
         ToggleExist := True
         WinActivate, ahk_group POEGameGroup
       }
@@ -9010,10 +9012,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar)
+        varOnChar := ScreenShot_GetColor(WR.loc.OnChar.X,WR.loc.OnChar.Y)
         IniWrite, %varOnChar%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChar
         readFromFile()
-        MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . vX_OnChar . " and y: " . vY_OnChar
+        MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . WR.loc.OnChar.X . " and y: " . WR.loc.OnChar.Y
       } else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
       
@@ -9037,10 +9039,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory)
+        varOnInventory := ScreenShot_GetColor(WR.loc.OnInventory.X,WR.loc.OnInventory.Y)
         IniWrite, %varOnInventory%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnInventory
         readFromFile()
-        MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . vX_OnInventory . " and y: " . vY_OnInventory
+        MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . WR.loc.OnInventory.X . " and y: " . WR.loc.OnInventory.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
       
@@ -9064,10 +9066,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu)
+        varOnMenu := ScreenShot_GetColor(WR.loc.OnMenu.X,WR.loc.OnMenu.Y)
         IniWrite, %varOnMenu%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMenu
         readFromFile()
-        MsgBox % "OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . vX_OnMenu . " and y: " . vY_OnMenu
+        MsgBox % "OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . WR.loc.OnMenu.X . " and y: " . WR.loc.OnMenu.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
       
@@ -9091,10 +9093,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart)
+        varOnDelveChart := ScreenShot_GetColor(WR.loc.OnDelveChart.X,WR.loc.OnDelveChart.Y)
         IniWrite, %varOnDelveChart%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart
         readFromFile()
-        MsgBox % "OnDelveChart recalibrated!`nTook color hex: " . varOnDelveChart . " `nAt coords x: " . vX_OnDelveChart . " and y: " . vY_OnDelveChart
+        MsgBox % "OnDelveChart recalibrated!`nTook color hex: " . varOnDelveChart . " `nAt coords x: " . WR.loc.OnDelveChart.X . " and y: " . WR.loc.OnDelveChart.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
       
@@ -9118,10 +9120,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph)
+        varOnMetamorph := ScreenShot_GetColor(WR.loc.OnMetamorph.X,WR.loc.OnMetamorph.Y)
         IniWrite, %varOnMetamorph%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph
         readFromFile()
-        MsgBox % "OnMetamorph recalibrated!`nTook color hex: " . varOnMetamorph . " `nAt coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph
+        MsgBox % "OnMetamorph recalibrated!`nTook color hex: " . varOnMetamorph . " `nAt coords x: " . WR.loc.OnMetamorph.X . " and y: " . WR.loc.OnMetamorph.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
       
@@ -9145,10 +9147,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnLocker := ScreenShot_GetColor(vX_OnLocker,vY_OnLocker)
+        varOnLocker := ScreenShot_GetColor(WR.loc.OnLocker.X,WR.loc.OnLocker.Y)
         IniWrite, %varOnLocker%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker
         readFromFile()
-        MsgBox % "OnLocker recalibrated!`nTook color hex: " . varOnLocker . " `nAt coords x: " . vX_OnLocker . " and y: " . vY_OnLocker
+        MsgBox % "OnLocker recalibrated!`nTook color hex: " . varOnLocker . " `nAt coords x: " . WR.loc.OnLocker.X . " and y: " . WR.loc.OnLocker.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnLocker didn't work"
       
@@ -9170,13 +9172,13 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft)
+        varOnLeft := ScreenShot_GetColor(WR.loc.OnLeft.X,WR.loc.OnLeft.Y)
         IniWrite, %varOnLeft%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLeft
-        varOnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash)
+        varOnStash := ScreenShot_GetColor(WR.loc.OnStash.X,WR.loc.OnStash.Y)
         IniWrite, %varOnStash%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnStash
         readFromFile()
-        MsgBox % "OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . vX_OnStash . " and y: " . vY_OnStash
-          . "`n`nOnLeft recalibrated!`nTook color hex: " . varOnLeft . " `nAt coords x: " . vX_OnLeft . " and y: " . vY_OnLeft
+        MsgBox % "OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . WR.loc.OnStash.X . " and y: " . WR.loc.OnStash.Y
+          . "`n`nOnLeft recalibrated!`nTook color hex: " . varOnLeft . " `nAt coords x: " . WR.loc.OnLeft.X . " and y: " . WR.loc.OnLeft.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnStash/OnLeft didn't work"
       
@@ -9265,10 +9267,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat)
+        varOnChat := ScreenShot_GetColor(WR.loc.OnChat.X,WR.loc.OnChat.Y)
         IniWrite, %varOnChat%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChat
         readFromFile()
-        MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . vX_OnChat . " and y: " . vY_OnChat
+        MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . WR.loc.OnChat.X . " and y: " . WR.loc.OnChat.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
       
@@ -9291,10 +9293,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor)
+        varOnVendor := ScreenShot_GetColor(WR.loc.OnVendor.X,WR.loc.OnVendor.Y)
         IniWrite, %varOnVendor%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnVendor
         readFromFile()
-        MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . vX_OnVendor . " and y: " . vY_OnVendor
+        MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . WR.loc.OnVendor.X . " and y: " . WR.loc.OnVendor.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
       
@@ -9317,10 +9319,10 @@ Return
       
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
-        varOnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv)
+        varOnDiv := ScreenShot_GetColor(WR.loc.OnDiv.X,WR.loc.OnDiv.Y)
         IniWrite, %varOnDiv%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDiv
         readFromFile()
-        MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . vX_OnDiv . " and y: " . vY_OnDiv
+        MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . WR.loc.OnDiv.X . " and y: " . WR.loc.OnDiv.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
       
@@ -9343,12 +9345,12 @@ Return
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         If OnMines
-          varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+          varOnDetonate := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y)
         Else
-          varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+          varOnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
         IniWrite, %varOnDetonate%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate
         readFromFile()
-        MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY
+        MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . (OnMines?WR.loc.DetonateDelve.X:WR.loc.Detonate.X) . " and y: " . WR.loc.Detonate.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
       
@@ -9482,8 +9484,8 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar)
-            SampleTT .= "OnChar      took RGB color hex: " . varOnChar . "  At coords x: " . vX_OnChar . " and y: " . vY_OnChar . "`n"
+            ScreenShot(), varOnChar := ScreenShot_GetColor(WR.loc.OnChar.X,WR.loc.OnChar.Y)
+            SampleTT .= "OnChar      took RGB color hex: " . varOnChar . "  At coords x: " . WR.loc.OnChar.X . " and y: " . WR.loc.OnChar.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
         }
@@ -9506,8 +9508,8 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat)
-            SampleTT .= "OnChat      took RGB color hex: " . varOnChat . "  At coords x: " . vX_OnChat . " and y: " . vY_OnChat . "`n"
+            ScreenShot(), varOnChat := ScreenShot_GetColor(WR.loc.OnChat.X,WR.loc.OnChat.Y)
+            SampleTT .= "OnChat      took RGB color hex: " . varOnChat . "  At coords x: " . WR.loc.OnChat.X . " and y: " . WR.loc.OnChat.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnChat didn't work"
         }
@@ -9530,8 +9532,8 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu)
-            SampleTT .= "OnMenu      took RGB color hex: " . varOnMenu . "  At coords x: " . vX_OnMenu . " and y: " . vY_OnMenu . "`n"
+            ScreenShot(), varOnMenu := ScreenShot_GetColor(WR.loc.OnMenu.X,WR.loc.OnMenu.Y)
+            SampleTT .= "OnMenu      took RGB color hex: " . varOnMenu . "  At coords x: " . WR.loc.OnMenu.X . " and y: " . WR.loc.OnMenu.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
         }
@@ -9553,8 +9555,8 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory)
-            SampleTT .= "OnInventory   took RGB color hex: " . varOnInventory . "  At coords x: " . vX_OnInventory . " and y: " . vY_OnInventory . "`n"
+            ScreenShot(), varOnInventory := ScreenShot_GetColor(WR.loc.OnInventory.X,WR.loc.OnInventory.Y)
+            SampleTT .= "OnInventory   took RGB color hex: " . varOnInventory . "  At coords x: " . WR.loc.OnInventory.X . " and y: " . WR.loc.OnInventory.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
         }
@@ -9621,8 +9623,8 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor)
-            SampleTT .= "OnVendor    took RGB color hex: " . varOnVendor . "  At coords x: " . vX_OnVendor . " and y: " . vY_OnVendor . "`n"
+            ScreenShot(), varOnVendor := ScreenShot_GetColor(WR.loc.OnVendor.X,WR.loc.OnVendor.Y)
+            SampleTT .= "OnVendor    took RGB color hex: " . varOnVendor . "  At coords x: " . WR.loc.OnVendor.X . " and y: " . WR.loc.OnVendor.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
         }
@@ -9644,10 +9646,10 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash)
-            , varOnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft)
-            SampleTT .= "OnStash      took RGB color hex: " . varOnStash . "  At coords x: " . vX_OnStash . " and y: " . vY_OnStash . "`n"
-            SampleTT .= "OnLeft      took RGB color hex: " . varOnLeft . "  At coords x: " . vX_OnLeft . " and y: " . vY_OnLeft . "`n"
+            ScreenShot(), varOnStash := ScreenShot_GetColor(WR.loc.OnStash.X,WR.loc.OnStash.Y)
+            , varOnLeft := ScreenShot_GetColor(WR.loc.OnLeft.X,WR.loc.OnLeft.Y)
+            SampleTT .= "OnStash      took RGB color hex: " . varOnStash . "  At coords x: " . WR.loc.OnStash.X . " and y: " . WR.loc.OnStash.Y . "`n"
+            SampleTT .= "OnLeft      took RGB color hex: " . varOnLeft . "  At coords x: " . WR.loc.OnLeft.X . " and y: " . WR.loc.OnLeft.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnStash/OnLeft didn't work"
         }
@@ -9669,8 +9671,8 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv)
-            SampleTT .= "OnDiv       took RGB color hex: " . varOnDiv . "  At coords x: " . vX_OnDiv . " and y: " . vY_OnDiv . "`n"
+            ScreenShot(), varOnDiv := ScreenShot_GetColor(WR.loc.OnDiv.X,WR.loc.OnDiv.Y)
+            SampleTT .= "OnDiv       took RGB color hex: " . varOnDiv . "  At coords x: " . WR.loc.OnDiv.X . " and y: " . WR.loc.OnDiv.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
         }
@@ -9695,10 +9697,10 @@ Return
           if WinActive(ahk_group POEGameGroup){
             ScreenShot()
             If OnMines
-              varOnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
+              varOnDetonate := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y)
             Else
-              varOnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
-            SampleTT .= "Detonate Mines took RGB color hex: " . varOnDetonate . "  At coords x: " . (OnMines?DetonateDelveX:DetonateX) . " and y: " . DetonateY . "`n"
+              varOnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
+            SampleTT .= "Detonate Mines took RGB color hex: " . varOnDetonate . "  At coords x: " . (OnMines?WR.loc.DetonateDelve.X:WR.loc.Detonate.X) . " and y: " . WR.loc.Detonate.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
         }
@@ -9720,8 +9722,8 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart)
-            SampleTT .= "OnDelveChart       took RGB color hex: " . varOnDelveChart . "  At coords x: " . vX_OnDelveChart . " and y: " . vY_OnDelveChart . "`n"
+            ScreenShot(), varOnDelveChart := ScreenShot_GetColor(WR.loc.OnDelveChart.X,WR.loc.OnDelveChart.Y)
+            SampleTT .= "OnDelveChart       took RGB color hex: " . varOnDelveChart . "  At coords x: " . WR.loc.OnDelveChart.X . " and y: " . WR.loc.OnDelveChart.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
         }
@@ -9743,8 +9745,8 @@ Return
             Exit
           }
           if WinActive(ahk_group POEGameGroup){
-            ScreenShot(), varOnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph)
-            SampleTT .= "OnMetamorph       took RGB color hex: " . varOnMetamorph . "  At coords x: " . vX_OnMetamorph . " and y: " . vY_OnMetamorph . "`n"
+            ScreenShot(), varOnMetamorph := ScreenShot_GetColor(WR.loc.OnMetamorph.X,WR.loc.OnMetamorph.Y)
+            SampleTT .= "OnMetamorph       took RGB color hex: " . varOnMetamorph . "  At coords x: " . WR.loc.OnMetamorph.X . " and y: " . WR.loc.OnMetamorph.Y . "`n"
           } else
           MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
         }

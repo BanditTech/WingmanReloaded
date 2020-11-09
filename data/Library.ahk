@@ -4412,32 +4412,32 @@
       ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
     If (Fetch="OnDetonate")
     {
-      POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+      POnDetonateDelve := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y), POnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
       , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
       Return OnDetonate
     }
     Else If !(Fetch="")
     {
-      P%Fetch% := ScreenShot_GetColor(vX_%Fetch%,vY_%Fetch%)
+      P%Fetch% := ScreenShot_GetColor(WR.loc[Fetch].X,WR.loc[Fetch].Y)
       temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
       Return temp
     }
     If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker)
       CheckXButton(), xChecked := True
-    POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
-    POnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat), OnChat := (POnChat=varOnChat?True:False)
-    POnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu), OnMenu := (POnMenu=varOnMenu?True:False)
-    POnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory), OnInventory := (POnInventory=varOnInventory?True:False)
-    POnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash), OnStash := (POnStash=varOnStash?True:False)
-    POnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor), OnVendor := (POnVendor=varOnVendor?True:False)
-    POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
-    POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
-    POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
-    POnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
-    POnLocker := ScreenShot_GetColor(vX_OnLocker,vY_OnLocker), OnLocker := (POnLocker=varOnLocker?True:False)
+    POnChar := ScreenShot_GetColor(WR.loc.OnChar.X,WR.loc.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
+    POnChat := ScreenShot_GetColor(WR.loc.OnChat.X,WR.loc.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
+    POnMenu := ScreenShot_GetColor(WR.loc.OnMenu.X,WR.loc.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
+    POnInventory := ScreenShot_GetColor(WR.loc.OnInventory.X,WR.loc.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
+    POnStash := ScreenShot_GetColor(WR.loc.OnStash.X,WR.loc.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
+    POnVendor := ScreenShot_GetColor(WR.loc.OnVendor.X,WR.loc.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
+    POnDiv := ScreenShot_GetColor(WR.loc.OnDiv.X,WR.loc.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
+    POnLeft := ScreenShot_GetColor(WR.loc.OnLeft.X,WR.loc.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
+    POnDelveChart := ScreenShot_GetColor(WR.loc.OnDelveChart.X,WR.loc.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+    POnMetamorph := ScreenShot_GetColor(WR.loc.OnMetamorph.X,WR.loc.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
+    POnLocker := ScreenShot_GetColor(WR.loc.OnLocker.X,WR.loc.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
     If OnMines
-    POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
-    Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+    POnDetonate := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y)
+    Else POnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
     If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
       CheckXButton()
@@ -4887,7 +4887,7 @@
   ; Rescale - Rescales values of the script to the user's resolution
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Rescale(){
-    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid
+    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid, WR
     If checkActiveType()
     {
       ; Build array framework
@@ -4998,86 +4998,78 @@
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings 380,820
-        Global VendorAcceptX:=GameX + Round(GameW/(1920/380))
-        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1920/380))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
-        Global DetonateX:=GameX + Round(GameW/(1920/1658))
-        Global DetonateY:=GameY + Round(GameH/(1080/901))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1920/1542))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(1920/1658))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
         ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(1920/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/445))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(1920/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
         ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(1920/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/190))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(1920/605))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
         ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(1920/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(1920/490))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
         ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(1920/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(1920/60))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
         ;Alteration 120,290
-        Global AlterationX:=GameX + Round(GameW/(1920/120))
-        Global AlterationY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
         ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(1920/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/310))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
         ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(1920/230))
-        Global VaalY:=GameY + Round(GameH/(1080/445))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(1920/115))
-        Global PortalStockX:=GameX + Round(GameW/(1920/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/190))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(1920/115))
+        WR.loc.Portal.X:=GameX + Round(GameW/(1920/175))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (1920 / 41))
-        global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (1920 / 41))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (1920 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (1920 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (1920 / 1583))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash - Edited
-        global vX_OnStash:=GameX + Round(GameW / (1920 / 248))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 896))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (1920 / 248))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 896))
         ;Status Check OnVendor - Edited
-        global vX_OnVendor:=GameX + Round(GameW / (1920 / 670))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 125))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (1920 / 618))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (1920 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (1920 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1920 / 466))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamporph
-        global vX_OnMetamorph:=GameX + Round(GameW / (1920 / 785))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1920 / 785))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker
-        global vX_OnLocker:=GameX + Round(GameW / (1920 / 458))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        ;Divination Y locations
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
 
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (1920 / -10))
-        global GuiY:=GameY + Round(GameH / (1080 / 1027))
-        ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-        Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (1920 / 640))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (1920 / 706))
-        global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+        WR.loc.Gui.X:=GameX + Round(GameW / (1920 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
       }
       Else If (ResolutionScale="Classic") {
         ; Item Inventory Grid
@@ -5134,82 +5126,74 @@
         }
         ;Auto Vendor Settings
           ;380,820
-        Global VendorAcceptX:=GameX + Round(GameW/(1440/380))
-        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1440/380))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
-        Global DetonateX:=GameX + Round(GameW/(1440/1178))
-        Global DetonateY:=GameY + Round(GameH/(1080/901))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(1440/1178))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
                 ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(1440/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/445))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(1440/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(1440/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/190))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(1440/605))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(1440/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(1440/490))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(1440/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(1440/60))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        Global AlterationX:=GameX + Round(GameW/(1440/120))
-        Global AlterationY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(1440/120))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(1440/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/310))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(1440/230))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(1440/230))
-        Global VaalY:=GameY + Round(GameH/(1080/445))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(1440/230))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(1440/125))
-        Global PortalStockX:=GameX + Round(GameW/(1440/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/190))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(1440/125))
+        WR.loc.Portal.X:=GameX + Round(GameW/(1440/175))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (1440 / 41))
-        global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (1440 / 41))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (1440 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (1440 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (1440 / 1103))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (1440 / 1103))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (1440 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (1440 / 336))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (1440 / 378))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (1440 / 378))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (1440 / 378))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (1440 / 378))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (1440 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (1440 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1440 / 226))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        global vX_OnMetamorph:=GameX + Round(GameW / (1440 / 545))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1440 / 545))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (1440 / -10))
-        global GuiY:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.Gui.X:=GameX + Round(GameW / (1440 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-        Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (1440 / 640))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (1440 / 706))
-        global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="Cinematic") {
         ; Item Inventory Grid
@@ -5266,86 +5250,78 @@
         }
         ;Auto Vendor Settings
         ;380,820
-        Global VendorAcceptX:=GameX + Round(GameW/(2560/380))
-        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(2560/380))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
-        Global DetonateX:=GameX + Round(GameW/(2560/2298))
-        Global DetonateY:=GameY + Round(GameH/(1080/901))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(2560/2298))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(2560/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/445))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(2560/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(2560/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/190))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(2560/605))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(2560/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(2560/490))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(2560/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(2560/60))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        Global AlterationX:=GameX + Round(GameW/(2560/120))
-        Global AlterationY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(2560/120))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(2560/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/310))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(2560/230))
-        Global VaalY:=GameY + Round(GameH/(1080/445))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(2560/125))
-        Global PortalStockX:=GameX + Round(GameW/(2560/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/190))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(2560/125))
+        WR.loc.Portal.X:=GameX + Round(GameW/(2560/175))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (2560 / 41))
-        global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (2560 / 41))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (2560 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (2560 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (2560 / 2223))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (2560 / 2223))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (2560 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (2560 / 336))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (2560 / 618))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (2560 / 618))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (2560 / 618))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (2560 / 618))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (2560 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (2560 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (2560 / 786))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        global vX_OnMetamorph:=GameX + Round(GameW / (2560 / 1105))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (2560 / 1105))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker
-        global vX_OnLocker:=GameX + Round(GameW / (2560 / 490))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (2560 / 490))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
 
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (2560 / -10))
-        global GuiY:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.Gui.X:=GameX + Round(GameW / (2560 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-        Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (2560 / 640))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (2560 / 706))
-        global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="Cinematic(43:18)") {
         ;Item Inventory Grid
@@ -5400,86 +5376,78 @@
           InvGrid.SlotSpacing:=Round(GameH/(1440/2))
         }
         ;Auto Vendor Settings
-        Global VendorAcceptX:=GameX + Round(GameW/(3440/945))
-        Global VendorAcceptY:=GameY + Round(GameH/(1440/1090))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(3440/945))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1440/1090))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
-        Global DetonateX:=GameX + Round(GameW/(3440/3090))
-        Global DetonateY:=GameY + Round(GameH/(1440/1202))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(3440/3090))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1440/1202))
         ;Currency
           ;Scouring 235,631
-        Global ScouringX:=GameX + Round(GameW/(3440/235))
-        Global ScouringY:=GameY + Round(GameH/(1440/590))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(3440/235))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1440/590))
           ;Chisel 810,290
-        Global ChiselX:=GameX + Round(GameW/(3440/810))
-        Global ChiselY:=GameY + Round(GameH/(1440/250))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(3440/810))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1440/250))
           ;Alchemy 655,390
-        Global AlchemyX:=GameX + Round(GameW/(3440/655))
-        Global AlchemyY:=GameY + Round(GameH/(1440/350))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(3440/655))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1440/350))
           ;Transmutation 80,390
-        Global TransmutationX:=GameX + Round(GameW/(3440/80))
-        Global TransmutationY:=GameY + Round(GameH/(1440/350))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(3440/80))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1440/350))
           ;Alteration 155, 390
-        Global AlterationX:=GameX + Round(GameW/(3440/155))
-        Global AlterationY:=GameY + Round(GameH/(1440/350))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(3440/155))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1440/350))
           ;Augmentation 310,465
-        Global AugmentationX:=GameX + Round(GameW/(3440/310))
-        Global AugmentationY:=GameY + Round(GameH/(1440/425))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(3440/310))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1440/425))
           ;Vaal 310, 631
-        Global VaalX:=GameX + Round(GameW/(3440/310))
-        Global VaalY:=GameY + Round(GameH/(1440/590))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(3440/310))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1440/590))
 
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(3440/164))
-        Global PortalStockX:=GameX + Round(GameW/(3440/228))
-        Global WPStockY:=GameY + Round(GameH/(1440/299))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(3440/164))
+        WR.loc.Portal.X:=GameX + Round(GameW/(3440/228))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1440/299))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1440 / 72))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (3440 / 54))
-        global vY_OnChar:=GameY + Round(GameH / ( 1440 / 1217))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (3440 / 54))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1440 / 1217))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (3440 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1440 / 850))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (3440 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (3440 / 2991))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1440 / 47))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (3440 / 2991))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1440 / 47))
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (3440 / 448))
-        global vY_OnStash:=GameY + Round(GameH / ( 1440 / 42))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (3440 / 448))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1440 / 42))
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (3440 / 1264))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1440 / 146))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (3440 / 822))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1440 / 181))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (3440 / 365))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1440 / 90))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1440 / 90))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (3440 / 1056))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1440 / 118))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (3440 / 1056))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1440 / 118))
         ;Status Check OnMetamporph
-        global vX_OnMetamorph:=GameX + Round(GameW / ( 3440 / 1480))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1440 / 270))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / ( 3440 / 1480))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1440 / 270))
         ;Status Check OnLocker ((3440/3)-2)
-        global vX_OnLocker:=GameX + Round(GameW / (3440 / 600))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1440 / 918))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (3440 / -10))
-        global GuiY:=GameY + Round(GameH / (1440 / 1370))
+        WR.loc.Gui.X:=GameX + Round(GameW / (3440 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1440 / 983))
-        Global vY_DivItem:=GameY + Round(GameH / (1440 / 805))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (3440 / 853))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1440 / 195))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (3440 / 1000))
-        global vY_StashTabList := GameY + Round(GameH / ( 1440 / 160))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1440 / 29))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1440 / 983))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1440 / 805))
       }
       Else If (ResolutionScale="UltraWide") {
         ; Item Inventory Grid
@@ -5535,85 +5503,77 @@
         }
         ;Auto Vendor Settings
         ;380,820
-        Global VendorAcceptX:=GameX + Round(GameW/(3840/380))
-        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(3840/380))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
-        Global DetonateX:=GameX + Round(GameW/(3840/3578))
-        Global DetonateY:=GameY + Round(GameH/(1080/901))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(3840/3462))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(3840/3578))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(3840/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/445))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(3840/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(3840/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/190))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(3840/605))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(3840/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(3840/490))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(3840/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(3840/60))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        Global AlterationX:=GameX + Round(GameW/(3840/120))
-        Global AlterationY:=GameY + Round(GameH/(1080/260))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(3840/120))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(3840/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/310))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(3840/230))
-        Global VaalY:=GameY + Round(GameH/(1080/445))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(3840/125))
-        Global PortalStockX:=GameX + Round(GameW/(3840/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/190))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(3840/125))
+        WR.loc.Portal.X:=GameX + Round(GameW/(3840/175))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (3840 / 41))
-        global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (3840 / 41))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (3840 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (3840 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (3840 / 3503))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (3840 / 3503))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (3840 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (3840 / 336))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (3840 / 1578))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (3840 / 1578))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (3840 / 1578))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (3840 / 1578))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (3840 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (3840 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (3840 / 1426))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        global vX_OnMetamorph:=GameX + Round(GameW / (3840 / 1745))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (3840 / 1745))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker ((3840/3)-2)
-        global vX_OnLocker:=GameX + Round(GameW / (3840 / 900))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (3840 / 900))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (3840 / -10))
-        global GuiY:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.Gui.X:=GameX + Round(GameW / (3840 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-        Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (3840 / 640))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (3840 / 706))
-        global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="WXGA(16:10)") {
         ; Item Inventory Grid
@@ -5680,110 +5640,99 @@
 
         ;Auto Vendor Settings
         ;270,800
-        Global VendorAcceptX:=GameX + Round(GameW/(1680/270))
-        Global VendorAcceptY:=GameY + Round(GameH/(1050/800))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1680/270))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1050/800))
        
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(1680/1310))
-        Global DetonateX:=GameX + Round(GameW/(1680/1425))
-        Global DetonateY:=GameY + Round(GameH/(1050/880))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1680/1310))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(1680/1425))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1050/880))
        
         ;Currency
         ;Scouring 175,460
-        Global ScouringX:=GameX + Round(GameW/(1680/175))
-        Global ScouringY:=GameY + Round(GameH/(1050/430))      
+        WR.loc.Scouring.X:=GameX + Round(GameW/(1680/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1050/430))      
        
         ;Chisel 590,210
-        Global ChiselX:=GameX + Round(GameW/(1680/590))
-        Global ChiselY:=GameY + Round(GameH/(1050/180))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(1680/590))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1050/180))
        
         ;Alchemy 475,280
-        Global AlchemyX:=GameX + Round(GameW/(1680/475))
-        Global AlchemyY:=GameY + Round(GameH/(1050/250))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(1680/475))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1050/250))
        
         ;Transmutation 55,280
-        Global TransmutationX:=GameX + Round(GameW/(1680/55))
-        Global TransmutationY:=GameY + Round(GameH/(1050/250))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(1680/55))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1050/250))
        
         ;Alteration 115,285
-        Global AlterationX:=GameX + Round(GameW/(1680/115))
-        Global AlterationY:=GameY + Round(GameH/(1050/255))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(1680/115))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1050/255))
        
         ;Augmentation 225,335
-        Global AugmentationX:=GameX + Round(GameW/(1680/225))
-        Global AugmentationY:=GameY + Round(GameH/(1050/305))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(1680/225))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1050/305))
        
         ;Vaal 225,460
-        Global VaalX:=GameX + Round(GameW/(1680/225))
-        Global VaalY:=GameY + Round(GameH/(1050/430))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(1680/225))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1050/430))
        
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(1680/115))
-        Global PortalStockX:=GameX + Round(GameW/(1680/170))
-        Global WPStockY:=GameY + Round(GameH/(1050/185))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(1680/115))
+        WR.loc.Portal.X:=GameX + Round(GameW/(1680/170))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1050/185))
        
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1050 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
        
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (1680 / 36))
-        global vY_OnChar:=GameY + Round(GameH / ( 1050 / 920))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (1680 / 36))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1050 / 920))
        
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (1680 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1050 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (1680 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
        
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (1680 / 1583))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1050 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (1680 / 1583))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1050 / 36))
        
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (1680 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1050 / 32))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (1680 / 336))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1050 / 32))
        
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (1680 / 525))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1050 / 120))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (1680 / 525))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1050 / 120))
        
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (1680 / 519))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1050 / 716))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (1680 / 519))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1050 / 716))
        
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (1680 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1050 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (1680 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1050 / 57))
        
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (1680 / 362))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1050 / 84))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1680 / 362))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1050 / 84))
        
         ;Status Check OnMetamporph
-        global vX_OnMetamorph:=GameX + Round(GameW / (1680 / 850))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1050 / 195))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1680 / 850))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1050 / 195))
        
         ;Status Check OnLocker ((1680/3)-2)
-        global vX_OnLocker:=GameX + Round(GameW / (1680 / 450))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1050 / 918))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (1680 / 450))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1050 / 918))
 
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (1680 / -10))
-        global GuiY:=GameY + Round(GameH / (1050 / 1000))
+        WR.loc.Gui.X:=GameX + Round(GameW / (1680 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1050 / 1000))
        
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1050 / 716))
-        Global vY_DivItem:=GameY + Round(GameH / (1050 / 605))
-       
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (1680 / 630))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1050 / 135    ))
-       
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (1680 / 705))
-        global vY_StashTabList := GameY + Round(GameH / ( 1050 / 140))
-       
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1050 / 19))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1050 / 716))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1050 / 605))
       }
       x_center := GameX + GameW / 2
       compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
