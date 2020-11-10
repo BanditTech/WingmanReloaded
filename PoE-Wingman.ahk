@@ -337,7 +337,7 @@
       YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
       hotkeyOptions = Set your hotkey to open the options GUI
       hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
-      hotkeyTriggerQuicksilver = Set your hotkey to trigger Quicksilver Flasks
+      hotkeyTriggerMovement = Set your hotkey to trigger Quicksilver Flasks or Cast on Detonate
       hotkeyAutoQuit = Set your hotkey to turn on and off AutoQuit
       hotkeyLogout = Set your hotkey to Log out of the game
       hotkeyAutoQuicksilver = Set your hotkey to Turn on and off AutoQuicksilver
@@ -922,7 +922,7 @@
     global hotkeyLeft := "A"
     global hotkeyRight := "D"
     global hotkeyCastOnDetonate := "Q"
-    Global hotkeyTriggerQuicksilver := "LButton"
+    Global hotkeyTriggerMovement := "LButton"
 
   ; Coordinates
     global PortalScrollX:=1825
@@ -2091,7 +2091,7 @@
     Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Flask
     Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Quit
     Gui Add, Text,                     xs+65   y+10,         Toggle Auto-QSilver
-    Gui Add, Text,                     xs+65   y+10,         QuickSilver Trigger
+    Gui Add, Text,                     xs+65   y+10,         Movement Trigger
     Gui Add, Text,                     xs+65   y+10,         Primary Attack
     Gui Add, Text,                     xs+65   y+10,         Secondary Attack
     Gui Add, Text,                     xs+65   y+10,         Logout
@@ -2109,7 +2109,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuit          ,%hotkeyAutoQuit%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuicksilver   ,%hotkeyAutoQuicksilver%
-    Gui Add, Edit,           y+4   w60 h19   vhotkeyTriggerQuicksilver,%hotkeyTriggerQuicksilver%
+    Gui Add, Edit,           y+4   w60 h19   vhotkeyTriggerMovement   ,%hotkeyTriggerMovement%
     Gui Add, Edit,           y+4   w60 h19   vhotkeyMainAttack        ,%hotkeyMainAttack%
     Gui Add, Edit,           y+4   w60 h19   vhotkeySecondaryAttack   ,%hotkeySecondaryAttack%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
@@ -4069,7 +4069,7 @@ Return
           Detonated:=1
           Settimer, TDetonated, -%DetonateMinesDelay%
           a := A_TickCount - MainAttackLastRelease
-          If CastOnDetonate&&GetKeyState("LButton","P")&&(a > 1000)
+          If CastOnDetonate&&GetKeyState(hotkeyTriggerMovement,"P")&&(a > 1000)
           {
             SendHotkey(hotkeyCastOnDetonate)
           }
@@ -4456,7 +4456,7 @@ Return
       || (Radiobox4QS && OnCooldown[4])
       || (Radiobox5QS && OnCooldown[5]) )
     { ; If all the flasks are off cooldown, then we are ready to fire one
-      LButtonPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerQuicksilver, "P") )
+      LButtonPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") )
       If QSonMainAttack
         MainPressed := MainAttackPressedActive
       If QSonSecondaryAttack
@@ -6766,7 +6766,7 @@ Return
       IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines, d
       IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
       IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
-      IniRead, hotkeyTriggerQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerQuicksilver, LButton
+      IniRead, hotkeyTriggerMovement, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement, LButton
       
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
@@ -7124,7 +7124,7 @@ Return
       IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
       IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
       IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
-      IniWrite, %hotkeyTriggerQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerQuicksilver
+      IniWrite, %hotkeyTriggerMovement%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement
       
       ;Utility Keys
       IniWrite, %hotkeyUp%,     %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp
@@ -7619,7 +7619,7 @@ Return
       GuiControl,, TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
       GuiControl,, hotkeyOptions, %hotkeyOptions%
       GuiControl,, hotkeyAutoFlask, %hotkeyAutoFlask%
-      GuiControl,, hotkeyTriggerQuicksilver, %hotkeyTriggerQuicksilver%
+      GuiControl,, hotkeyTriggerMovement, %hotkeyTriggerMovement%
       GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
       GuiControl,, hotkeyLogout, %hotkeyLogout%
       GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
@@ -10183,14 +10183,14 @@ Return
       if(RadioLife==1) {
         loop 5 {
           GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
+          GuiControl, Enable, Radiobox%A_Index%Life80
+          GuiControl, Enable, Radiobox%A_Index%Life70
+          GuiControl, Enable, Radiobox%A_Index%Life60
+          GuiControl, Enable, Radiobox%A_Index%Life50
+          GuiControl, Enable, Radiobox%A_Index%Life40
+          GuiControl, Enable, Radiobox%A_Index%Life30
+          GuiControl, Enable, Radiobox%A_Index%Life20
+          GuiControl, Enable, RadioUncheck%A_Index%Life
             
           GuiControl, Disable, Radiobox%A_Index%ES90
           GuiControl, Disable, Radiobox%A_Index%ES80
