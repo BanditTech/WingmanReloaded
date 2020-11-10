@@ -1413,22 +1413,32 @@
 
       Gui, Flask%slot%: Add, GroupBox, section xm+5 ym+5 w570 h380, Flask Slot %slot%
 
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w85 h45, Duration / CD
-      Gui, Flask%slot%: Add, Edit,  center     vCooldownFlask%slot%test  xs+20   yp+16  w64  h17, %  CooldownFlask%slot%
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w100 h45, Duration / CD
+      Gui, Flask%slot%: Add, Edit,  center     vCooldownFlask%slot%test  xs+20   yp+20  w80  h17, %  CooldownFlask%slot%
 
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w85 h45, Keys to Press
-      Gui, Flask%slot%: Add, Edit,    center   vkeyFlask%slot%test       xs+20   yp+16   w64  h17, %   keyFlask%slot%
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Keys to Press
+      Gui, Flask%slot%: Add, Edit,    center   vkeyFlask%slot%test       xs+20   yp+20   w80  h17, %   keyFlask%slot%
 
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w85 h65, Trigger with Attack
-      Gui, Flask%slot%: Add, Checkbox,     vMainAttackbox%slot%test  xs+20   yp+16 , Primary
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h65, Trigger with Attack
+      Gui, Flask%slot%: Add, Checkbox,     vMainAttackbox%slot%test  xs+20   yp+20 , Primary
       GuiControl,Flask%slot%: , MainAttackbox%slot%test,% substr(TriggerMainAttack, slot, 1)
       Gui, Flask%slot%: Add, Checkbox,     vSecondaryAttackbox%slot%test xs+20   y+10 , Secondary
       GuiControl,Flask%slot%: , SecondaryAttackbox%slot%test,% substr(TriggerSecondaryAttack, slot, 1)
 
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w85 h45, Pop All Flasks
-      Gui, Flask%slot%: Add, Checkbox,     vPopFlasks%slot%test  xs+20   yp+16 , Include
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Pop All Flasks
+      Gui, Flask%slot%: Add, Checkbox,     vPopFlasks%slot%test  xs+20   yp+20 , Include
       GuiControl,Flask%slot%: , PopFlasks%slot%test,% substr(TriggerPopFlasks, slot, 1)
 
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Quicksilver Group
+      Gui, Flask%slot%: Add, Checkbox,     vRadiobox%slot%QStest  xs+20   yp+20 , Include
+      GuiControl,Flask%slot%: , Radiobox%slot%QStest,% substr(TriggerQuicksilver, slot, 1)
+
+      Gui, Flask%slot%: Add, GroupBox, Section center xs+120 ys+25 w240 h55, Life Trigger
+      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlaskLife%slot%test   xs+3   yp+15 w235 h30, 50
+      Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, ES Trigger
+      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlaskES%slot%test     xs+3   yp+15 w235 h30, 50
+      Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, Mana Trigger
+      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlaskMana%slot%test   xs+3   yp+15 w235 h30, 50
 
       Gui, Flask%slot%: show, w600 h400
     }
@@ -7017,8 +7027,11 @@ Return
 
       ;GUI Position
       WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
-      IniWrite, %winguix%, %A_ScriptDir%\save\Settings.ini, General, WinGuiX
-      IniWrite, %winguiy%, %A_ScriptDir%\save\Settings.ini, General, WinGuiY
+      If !(WinGuiX = "" || WinGuiY = "")
+      {
+        IniWrite, %winguix%, %A_ScriptDir%\save\Settings.ini, General, WinGuiX
+        IniWrite, %winguiy%, %A_ScriptDir%\save\Settings.ini, General, WinGuiY
+      }
 
       ;~ hotkeys reset
       hotkey, IfWinActive, ahk_group POEGameGroup
