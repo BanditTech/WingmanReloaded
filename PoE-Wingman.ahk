@@ -1956,7 +1956,7 @@
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, Text,             section        x22   y30,         Gamestate Calibration:
     Gui, Font, s8
-    Gui, Add, Button, ghelpCalibration   x+10 ys-4    w20 h20,   ?
+    Gui, Add, Button, ghelpCalibration   x+10 ys-4    h20, %  "? help"
     Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs  ys+20 Section  w110 h25,   Run Wizard
     Gui, Add, Button, gShowDebugGamestates vShowDebugGamestatesBtn  x+8  yp        w110 h25,   Show Gamestates
     ;Update calibration for pixel check
@@ -10719,9 +10719,14 @@ Return
     Return
 
     helpCalibration:
-      Gui, submit
-      MsgBox % "" "Gamestate Calibration Instructions:`n`nThese buttons regrab the gamestate sample color which the script uses to determine whats going on.`n`nEach button references a different pixel on the screen, so make sure the gamestate is true for that button!`n`nRead the tooltip on each button for specific information on that sample.`n`nUse Coord/Debug tool to check if they are working, enable debug mode to use it`n`nDifferent parts of the script have mandatory calibrations:`n`nOnChar -- ALL FUNCTIONS REQUIRE`nOnChat -- Not Mandatory - Pauses Auto-Functions`nOnMenu -- Not Mandatory - Pauses Auto-Functions`nOnInventory -- Inventory Sort`nOnStash -- Inventory Sort`nOnDiv -- Inventory Sort`nOnVendor -- Inventory Sort`nEmpty Inventory -- Inventory Sort`nDetonate Color -- Auto-Mines`nDetonate in Delve -- Auto-Mines"
-      Hotkeys()
+      ; Gui, submit
+      MsgBox, 262144, General Configuration Instructions, % "Use Show Gamestates to observe what panels or game states are considered true or false. Open and close Panels within the game to see their respective status change from green to red. If all status are showing green, the script status should say Wingman Active.`n`n"
+      . "If many are not responding to changes in the game, use the Wizard to calibrate them all at once. Just remember to follow the prompts closely in order to ensure proper calibration.`n`n"
+      . "Sometimes it may be easier to calibrate one sample at a time, and this can be done with the Individual Sample menu.`n`n"
+      . "If the issue is instead with the percentages of Health, ES, and/or Mana, then you will need to Adjust Globes. Use the menu to change the Scan options which the percentages will be shown in real time on the menu.`n`n"
+      . "Use Loot Vacuum to configure picking up loot, this function uses the Item Pickup hotkey bound in game. You must enable the In-Game option to only highlight loot when pressed, then you can calibrate colors within the script.`n`n"
+      . "Sample Strings will allow you to change the image captures that have been saved for use with the script. Replace the default strings with your own, or use the ones available in the dropdown menus which match your resolution height."
+      ; Hotkeys()
     Return
 
     SelectClientLog:
