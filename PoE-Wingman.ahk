@@ -337,7 +337,7 @@
       YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
       hotkeyOptions = Set your hotkey to open the options GUI
       hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
-      hotkeyTriggerQuicksilver = Set your hotkey to trigger Quicksilver Flasks
+      hotkeyTriggerMovement = Set your hotkey to trigger Quicksilver Flasks or Cast on Detonate
       hotkeyAutoQuit = Set your hotkey to turn on and off AutoQuit
       hotkeyLogout = Set your hotkey to Log out of the game
       hotkeyAutoQuicksilver = Set your hotkey to Turn on and off AutoQuicksilver
@@ -922,7 +922,7 @@
     global hotkeyLeft := "A"
     global hotkeyRight := "D"
     global hotkeyCastOnDetonate := "Q"
-    Global hotkeyTriggerQuicksilver := "LButton"
+    Global hotkeyTriggerMovement := "LButton"
 
   ; Coordinates
     global PortalScrollX:=1825
@@ -1399,6 +1399,72 @@
   }
   If needReload
     Reload
+; Build Flask Menu Function
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  FlaskMenu(){
+    Global
+    static Built := {}
+    slot := StrSplit(A_GuiControl, " ")[3]
+
+    If !Built[slot]
+    {
+      Built[slot] := True
+      Gui, Flask%slot%: new, AlwaysOnTop
+
+      Gui, Flask%slot%: Add, GroupBox, section xm+5 ym+5 w570 h380, Flask Slot %slot%
+
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w85 h45, Duration / CD
+      Gui, Flask%slot%: Add, Edit,  center     vCooldownFlask%slot%test  xs+20   yp+16  w64  h17, %  CooldownFlask%slot%
+
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w85 h45, Keys to Press
+      Gui, Flask%slot%: Add, Edit,    center   vkeyFlask%slot%test       xs+20   yp+16   w64  h17, %   keyFlask%slot%
+
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w85 h65, Trigger with Attack
+      Gui, Flask%slot%: Add, Checkbox,     vMainAttackbox%slot%test  xs+20   yp+16 , Primary
+      GuiControl,Flask%slot%: , MainAttackbox%slot%test,% substr(TriggerMainAttack, slot, 1)
+      Gui, Flask%slot%: Add, Checkbox,     vSecondaryAttackbox%slot%test xs+20   y+10 , Secondary
+      GuiControl,Flask%slot%: , SecondaryAttackbox%slot%test,% substr(TriggerSecondaryAttack, slot, 1)
+
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w85 h45, Pop All Flasks
+      Gui, Flask%slot%: Add, Checkbox,     vPopFlasks%slot%test  xs+20   yp+16 , Include
+      GuiControl,Flask%slot%: , PopFlasks%slot%test,% substr(TriggerPopFlasks, slot, 1)
+
+
+      Gui, Flask%slot%: show, w600 h400
+    }
+    Return
+
+    Flask1GuiClose:
+    Flask1GuiEscape:
+      Built[1] := False
+      Gui, Submit, NoHide
+      Gui, Flask1: Destroy
+      Return
+    Flask2GuiClose:
+    Flask2GuiEscape:
+      Built[2] := False
+      Gui, Submit, NoHide
+      Gui, Flask2: Destroy
+      Return
+    Flask3GuiClose:
+    Flask3GuiEscape:
+      Built[3] := False
+      Gui, Submit, NoHide
+      Gui, Flask3: Destroy
+      Return
+    Flask4GuiClose:
+    Flask4GuiEscape:
+      Built[4] := False
+      Gui, Submit, NoHide
+      Gui, Flask4: Destroy
+      Return
+    Flask5GuiClose:
+    Flask5GuiEscape:
+      Built[5] := False
+      Gui, Submit, NoHide
+      Gui, Flask5: Destroy
+      Return
+  }
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Critical
@@ -1701,6 +1767,13 @@
     Gui, Add, Button, greadProfile8 w50 h21, Load 8
     Gui, Add, Button, greadProfile9 w50 h21, Load 9
     Gui, Add, Button, greadProfile10 w50 h21, Load 10
+
+    Gui, Add, Button, gFlaskMenu xs y+26 , Flask Slot 1
+    Gui, Add, Button, gFlaskMenu x+5 yp , Flask Slot 2
+    Gui, Add, Button, gFlaskMenu x+5 yp , Flask Slot 3
+    Gui, Add, Button, gFlaskMenu x+5 yp , Flask Slot 4
+    Gui, Add, Button, gFlaskMenu x+5 yp , Flask Slot 5
+
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -2091,7 +2164,7 @@
     Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Flask
     Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Quit
     Gui Add, Text,                     xs+65   y+10,         Toggle Auto-QSilver
-    Gui Add, Text,                     xs+65   y+10,         QuickSilver Trigger
+    Gui Add, Text,                     xs+65   y+10,         Movement Trigger
     Gui Add, Text,                     xs+65   y+10,         Primary Attack
     Gui Add, Text,                     xs+65   y+10,         Secondary Attack
     Gui Add, Text,                     xs+65   y+10,         Logout
@@ -2109,7 +2182,7 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuit          ,%hotkeyAutoQuit%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuicksilver   ,%hotkeyAutoQuicksilver%
-    Gui Add, Edit,           y+4   w60 h19   vhotkeyTriggerQuicksilver,%hotkeyTriggerQuicksilver%
+    Gui Add, Edit,           y+4   w60 h19   vhotkeyTriggerMovement   ,%hotkeyTriggerMovement%
     Gui Add, Edit,           y+4   w60 h19   vhotkeyMainAttack        ,%hotkeyMainAttack%
     Gui Add, Edit,           y+4   w60 h19   vhotkeySecondaryAttack   ,%hotkeySecondaryAttack%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
@@ -4069,7 +4142,7 @@ Return
           Detonated:=1
           Settimer, TDetonated, -%DetonateMinesDelay%
           a := A_TickCount - MainAttackLastRelease
-          If CastOnDetonate&&GetKeyState("LButton","P")&&(a > 1000)
+          If CastOnDetonate&&GetKeyState(hotkeyTriggerMovement,"P")&&(a > 1000)
           {
             SendHotkey(hotkeyCastOnDetonate)
           }
@@ -4456,7 +4529,7 @@ Return
       || (Radiobox4QS && OnCooldown[4])
       || (Radiobox5QS && OnCooldown[5]) )
     { ; If all the flasks are off cooldown, then we are ready to fire one
-      LButtonPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerQuicksilver, "P") )
+      LButtonPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") )
       If QSonMainAttack
         MainPressed := MainAttackPressedActive
       If QSonSecondaryAttack
@@ -6766,7 +6839,7 @@ Return
       IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines, d
       IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
       IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
-      IniRead, hotkeyTriggerQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerQuicksilver, LButton
+      IniRead, hotkeyTriggerMovement, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement, LButton
       
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
@@ -7124,7 +7197,7 @@ Return
       IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
       IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
       IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
-      IniWrite, %hotkeyTriggerQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerQuicksilver
+      IniWrite, %hotkeyTriggerMovement%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement
       
       ;Utility Keys
       IniWrite, %hotkeyUp%,     %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp
@@ -7619,7 +7692,7 @@ Return
       GuiControl,, TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
       GuiControl,, hotkeyOptions, %hotkeyOptions%
       GuiControl,, hotkeyAutoFlask, %hotkeyAutoFlask%
-      GuiControl,, hotkeyTriggerQuicksilver, %hotkeyTriggerQuicksilver%
+      GuiControl,, hotkeyTriggerMovement, %hotkeyTriggerMovement%
       GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
       GuiControl,, hotkeyLogout, %hotkeyLogout%
       GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
@@ -10183,14 +10256,14 @@ Return
       if(RadioLife==1) {
         loop 5 {
           GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
+          GuiControl, Enable, Radiobox%A_Index%Life80
+          GuiControl, Enable, Radiobox%A_Index%Life70
+          GuiControl, Enable, Radiobox%A_Index%Life60
+          GuiControl, Enable, Radiobox%A_Index%Life50
+          GuiControl, Enable, Radiobox%A_Index%Life40
+          GuiControl, Enable, Radiobox%A_Index%Life30
+          GuiControl, Enable, Radiobox%A_Index%Life20
+          GuiControl, Enable, RadioUncheck%A_Index%Life
             
           GuiControl, Disable, Radiobox%A_Index%ES90
           GuiControl, Disable, Radiobox%A_Index%ES80
