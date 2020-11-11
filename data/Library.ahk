@@ -4975,11 +4975,12 @@
         ; --------------------------------------------
         If (!StashImported)
         {
+
           ; Scale the stash area automatically based on aspect ratio
           InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1920/16))
-          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1920/650))
-          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/127))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1920/649))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/759))
           ; Do the same for Inventory
           InvGrid.Corners.Inventory.X1:=GameX + Round(GameW/(1920/1270))
           InvGrid.Corners.Inventory.Y1:=GameY + Round(GameH/(1080/587))
