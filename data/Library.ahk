@@ -5122,8 +5122,11 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1440/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1440/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1440/16))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/127))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1440/649))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/759))
+
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
@@ -5246,8 +5249,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(2560/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(2560/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(2560/16))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/127))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(2560/649))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/759))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
@@ -5373,8 +5378,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3440/22)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1440/215))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3440/864)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1440/1057))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3440/22))
+          , InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1440/171))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3440/864))
+          , InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1440/1013))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1440/2))
         }
@@ -5499,8 +5506,10 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3840/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3840/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3840/16))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/127))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3840/649))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/759))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
@@ -5635,8 +5644,8 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1680/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1050/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1680/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1050/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1680/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1050/128))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1680/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1050/762))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1050/2))
         }
