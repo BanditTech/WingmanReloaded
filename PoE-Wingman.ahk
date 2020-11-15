@@ -6944,8 +6944,11 @@ Return
 
       ;GUI Position
       WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
-      IniWrite, %winguix%, %A_ScriptDir%\save\Settings.ini, General, WinGuiX
-      IniWrite, %winguiy%, %A_ScriptDir%\save\Settings.ini, General, WinGuiY
+      If !(WinGuiX = "" || WinGuiY = "")
+      {
+        IniWrite, %winguix%, %A_ScriptDir%\save\Settings.ini, General, WinGuiX
+        IniWrite, %winguiy%, %A_ScriptDir%\save\Settings.ini, General, WinGuiY
+      }
 
       ;~ hotkeys reset
       hotkey, IfWinActive, ahk_group POEGameGroup

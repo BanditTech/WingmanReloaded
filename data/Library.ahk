@@ -7302,6 +7302,8 @@
       Return
     if(YesGuiLastPosition)
     {
+      If (WinGuiX = "" || WinGuiY = "")
+        WinGuiX := WinGuiY := 0
       Gui, Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
     }
     Else
