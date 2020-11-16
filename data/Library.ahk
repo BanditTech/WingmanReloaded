@@ -3647,9 +3647,37 @@
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
       Gui, Crafting: Tab, Chance
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Chance Crafting
+        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
+          Gui, Crafting: Font,
+          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
+          Gui, Crafting: Add,Radio, , Use Item Under Cursor
+          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
       Gui, Crafting: Tab, Socket
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Crafting
+        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
+          Gui, Crafting: Font,
+          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
+          Gui, Crafting: Add,Radio, , Use Item Under Cursor
+          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
       Gui, Crafting: Tab, Color
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Coloring
+        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
+          Gui, Crafting: Font,
+          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
+          Gui, Crafting: Add,Radio, , Use Item Under Cursor
+          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
       Gui, Crafting: Tab, Link
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Linking
+        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
+          Gui, Crafting: Font,
+          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
+          Gui, Crafting: Add,Radio, , Use Item Under Cursor
+          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
       }
       Gui, Crafting: show , w600 h500, Crafting Settings
     }
