@@ -1446,26 +1446,23 @@
       ; GuiControl,Flask%slot%: , Flask%slot%QS,% substr(TriggerQuicksilver, slot, 1)
 
       Gui, Flask%slot%: Add, GroupBox, Section center xs+120 ys+25 w240 h55, Life Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlask%slot%Life   xs+3   yp+15 w235 h30, % WR.flask[slot].Life
+      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%Life   xs+3   yp+15 w235 h30, % WR.flask[slot].Life
       Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, ES Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlask%slot%ES     xs+3   yp+15 w235 h30, % WR.flask[slot].ES
+      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%ES     xs+3   yp+15 w235 h30, % WR.flask[slot].ES
       Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, Mana Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlask%slot%Mana   xs+3   yp+15 w235 h30, % WR.flask[slot].Mana
+      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%Mana   xs+3   yp+15 w235 h30, % WR.flask[slot].Mana
 
       Gui, Flask%slot%: show, w600 h400
     }
     Return
 
     FlaskSaveValues:
-      WR.flask[which].CD := Flask%which%CD
-      WR.flask[which].Key := Flask%which%Key
-      WR.flask[which].MainAttack := Flask%which%MainAttack
-      WR.flask[which].SecondaryAttack := Flask%which%SecondaryAttack
-      WR.flask[which].PopAll := Flask%which%PopAll
-      WR.flask[which].QS := Flask%which%QS
-      WR.flask[which].Life := Flask%which%Life
-      WR.flask[which].ES := Flask%which%ES
-      WR.flask[which].Mana := Flask%which%Mana
+      for k, kind in ["CD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "QS", "Life", "ES", "Mana"]
+        WR.flask[which][kind] := Flask%which%%kind%
+  
+      FileDelete, %A_ScriptDir%\data\Flask.json
+      JSONtext := JSON.Dump(WR.flask,,2)
+      FileAppend, %JSONtext%, %A_ScriptDir%\data\Flask.json
       Return
     Flask1GuiClose:
     Flask1GuiEscape:
