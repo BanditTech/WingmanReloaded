@@ -525,11 +525,13 @@
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
   ; Global Script object
-    Global WR := {"loc":{},"setting":{},"data":{},"sample":{},"string":{}}
+    Global WR := {"loc":{},"setting":{},"data":{},"sample":{},"string":{},"flask":{}}
     for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
     ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
     ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
       WR.loc[v] := {}
+    for k, v in [1,2,3,4,5]
+      WR.flask[v] := {"Key":v, "CD":5000, "MainAttack":0, "SecondaryAttack":0, "QS":0, "PopAll":1, "Life":0, "ES":0, "Mana":0}
   ; Login POESESSID
     Global PoESessionID := ""
     Global AccountNameSTR := ""
@@ -1399,13 +1401,23 @@
     FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
     QuestItems := JSON.Load(JSONtext)
   }
+  IfNotExist, %A_ScriptDir%\data\Flask.json
+  {
+    JSONtext := JSON.Dump(WR.flask,,2)
+    FileAppend, %JSONtext%, %A_ScriptDir%\data\Flask.json
+  }
+  Else
+  {
+    FileRead, JSONtext, %A_ScriptDir%\data\Flask.json
+    WR.flask := JSON.Load(JSONtext)
+  }
   If needReload
     Reload
 ; Build Flask Menu Function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   FlaskMenu(){
     Global
-    static Built := {}
+    static Built := {}, which := 1
     slot := StrSplit(A_GuiControl, " ")[3]
 
     If !Built[slot]
@@ -1416,64 +1428,83 @@
       Gui, Flask%slot%: Add, GroupBox, section xm+5 ym+5 w570 h380, Flask Slot %slot%
 
       Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w100 h45, Duration / CD
-      Gui, Flask%slot%: Add, Edit,  center     vCooldownFlask%slot%test  xs+20   yp+20  w80  h17, %  CooldownFlask%slot%
+      Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+20   yp+20  w80  h17, %  WR.flask[slot].CD
 
       Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Keys to Press
-      Gui, Flask%slot%: Add, Edit,    center   vkeyFlask%slot%test       xs+20   yp+20   w80  h17, %   keyFlask%slot%
+      Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+20   yp+20   w80  h17, %   WR.flask[slot].Key
 
       Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h65, Trigger with Attack
-      Gui, Flask%slot%: Add, Checkbox,     vMainAttackbox%slot%test  xs+20   yp+20 , Primary
-      GuiControl,Flask%slot%: , MainAttackbox%slot%test,% substr(TriggerMainAttack, slot, 1)
-      Gui, Flask%slot%: Add, Checkbox,     vSecondaryAttackbox%slot%test xs+20   y+10 , Secondary
-      GuiControl,Flask%slot%: , SecondaryAttackbox%slot%test,% substr(TriggerSecondaryAttack, slot, 1)
+      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttack xs+20 yp+20 Checked" WR.flask[slot].MainAttack, Primary
+      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+20   y+10 Checked" WR.flask[slot].SecondaryAttack, Secondary
 
       Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Pop All Flasks
-      Gui, Flask%slot%: Add, Checkbox,     vPopFlasks%slot%test  xs+20   yp+20 , Include
-      GuiControl,Flask%slot%: , PopFlasks%slot%test,% substr(TriggerPopFlasks, slot, 1)
+      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "PopAll  xs+20   yp+20 Checked" WR.flask[slot].PopAll, Include
+      ; GuiControl,Flask%slot%: , Flask%slot%PopAll,% substr(TriggerPopFlasks, slot, 1)
 
       Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Quicksilver Group
-      Gui, Flask%slot%: Add, Checkbox,     vRadiobox%slot%QStest  xs+20   yp+20 , Include
-      GuiControl,Flask%slot%: , Radiobox%slot%QStest,% substr(TriggerQuicksilver, slot, 1)
+      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "QS xs+20   yp+20 Checked" WR.flask[slot].QS , Include
+      ; GuiControl,Flask%slot%: , Flask%slot%QS,% substr(TriggerQuicksilver, slot, 1)
 
       Gui, Flask%slot%: Add, GroupBox, Section center xs+120 ys+25 w240 h55, Life Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlaskLife%slot%test   xs+3   yp+15 w235 h30, 50
+      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlask%slot%Life   xs+3   yp+15 w235 h30, % WR.flask[slot].Life
       Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, ES Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlaskES%slot%test     xs+3   yp+15 w235 h30, 50
+      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlask%slot%ES     xs+3   yp+15 w235 h30, % WR.flask[slot].ES
       Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, Mana Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlaskMana%slot%test   xs+3   yp+15 w235 h30, 50
+      Gui, Flask%slot%: Add, Slider,   TickInterval5 ToolTip Thick20 vFlask%slot%Mana   xs+3   yp+15 w235 h30, % WR.flask[slot].Mana
 
       Gui, Flask%slot%: show, w600 h400
     }
     Return
 
+    FlaskSaveValues:
+      WR.flask[which].CD := Flask%which%CD
+      WR.flask[which].Key := Flask%which%Key
+      WR.flask[which].MainAttack := Flask%which%MainAttack
+      WR.flask[which].SecondaryAttack := Flask%which%SecondaryAttack
+      WR.flask[which].PopAll := Flask%which%PopAll
+      WR.flask[which].QS := Flask%which%QS
+      WR.flask[which].Life := Flask%which%Life
+      WR.flask[which].ES := Flask%which%ES
+      WR.flask[which].Mana := Flask%which%Mana
+      Return
     Flask1GuiClose:
     Flask1GuiEscape:
       Built[1] := False
       Gui, Submit, NoHide
+      which := 1
+      Gosub, FlaskSaveValues
       Gui, Flask1: Destroy
       Return
     Flask2GuiClose:
     Flask2GuiEscape:
       Built[2] := False
       Gui, Submit, NoHide
+      which := 2
+      Gosub, FlaskSaveValues
       Gui, Flask2: Destroy
       Return
     Flask3GuiClose:
     Flask3GuiEscape:
       Built[3] := False
       Gui, Submit, NoHide
+      which := 3
+      Gosub, FlaskSaveValues
       Gui, Flask3: Destroy
       Return
     Flask4GuiClose:
     Flask4GuiEscape:
       Built[4] := False
       Gui, Submit, NoHide
+      which := 4
+      Gosub, FlaskSaveValues
       Gui, Flask4: Destroy
       Return
     Flask5GuiClose:
     Flask5GuiEscape:
       Built[5] := False
       Gui, Submit, NoHide
+      which := 5
+      Gosub, FlaskSaveValues
       Gui, Flask5: Destroy
       Return
   }

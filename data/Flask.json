@@ -1,0 +1,57 @@
+﻿[
+  {
+    "CD": 5000,
+    "ES": 0,
+    "Key": 1,
+    "Life": 0,
+    "MainAttack": 0,
+    "Mana": 0,
+    "PopAll": 1,
+    "QS": 0,
+    "SecondaryAttack": 0
+  },
+  {
+    "CD": 5000,
+    "ES": 0,
+    "Key": 2,
+    "Life": 0,
+    "MainAttack": 0,
+    "Mana": 0,
+    "PopAll": 1,
+    "QS": 0,
+    "SecondaryAttack": 0
+  },
+  {
+    "CD": 5000,
+    "ES": 0,
+    "Key": 3,
+    "Life": 0,
+    "MainAttack": 0,
+    "Mana": 0,
+    "PopAll": 1,
+    "QS": 0,
+    "SecondaryAttack": 0
+  },
+  {
+    "CD": 5000,
+    "ES": 0,
+    "Key": 4,
+    "Life": 0,
+    "MainAttack": 0,
+    "Mana": 0,
+    "PopAll": 1,
+    "QS": 0,
+    "SecondaryAttack": 0
+  },
+  {
+    "CD": 5000,
+    "ES": 0,
+    "Key": 5,
+    "Life": 0,
+    "MainAttack": 0,
+    "Mana": 0,
+    "PopAll": 1,
+    "QS": 0,
+    "SecondaryAttack": 0
+  }
+]
