@@ -2712,6 +2712,7 @@ Return
       If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
         SetTimer, TGameTick, On
       SendMSG(1,0,scriptTradeMacro)
+      Notify("Aborting Current Process","",2)
       exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
     }
     MouseGetPos xx, yy
@@ -4079,6 +4080,7 @@ Return
       If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
         SetTimer, TGameTick, On
       SendMSG(1,0,scriptTradeMacro)
+      Notify("Aborting Current Process","",2)
       exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
     }
 
@@ -4089,18 +4091,23 @@ Return
       selection := CraftMenu.Show()
       If selection
       {
-        If (selection = "Maps")
-          Notify("Begin Bulk Crafting Maps","",2)
-        Else If (selection = "Socket")
-          Notify("Socketing Selected Item","",2)
-        Else If (selection = "Color")
-          Notify("Coloring Selected Item","",2)
-        Else If (selection = "Link")
-          Notify("Linking Selected Item","",2)
-        Else If (selection = "Chance")
-          Notify("Chance Selected Item until Unique","Either Bulk mode or Scour",2)
-        Else
-          Notify("Result is:",selection,2)
+        If DebugMessages
+        {
+          If (selection = "Maps")
+            Notify("Begin Bulk Crafting Maps","",2)
+          Else If (selection = "Socket")
+            Notify("Socketing Selected Item","",2)
+          Else If (selection = "Color")
+            Notify("Coloring Selected Item","",2)
+          Else If (selection = "Link")
+            Notify("Linking Selected Item","",2)
+          Else If (selection = "Chance")
+            Notify("Chance Selected Item until Unique","Either Bulk mode or Scour",2)
+          Else
+            Notify("Result is:",selection,2)
+        }
+        WinActivate, % GameStr
+        Crafting(selection)
       }
       Else WinActivate, % GameStr
     }
@@ -4893,9 +4900,8 @@ Return
 ;
 ; Crafting - Deal with Crafting requirement conditions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Crafting()
+  Crafting(selection:="Maps")
   {
-    StartCraftCommand:
       ; Thread, NoTimers, True
       MouseGetPos xx, yy
       If RunningToggle
@@ -4906,6 +4912,7 @@ Return
           SetTimer, TGameTick, On
         }
         SendMSG(1,0,scriptTradeMacro)
+        Notify("Aborting Current Process","",2)
       exit
       }
       If GameActive
@@ -4952,7 +4959,19 @@ Return
           If (OnInventory && OnStash)
           {
             RandomSleep(45,45)
+          If (selection = "Maps")
             CraftingMaps()
+          Else If (selection = "Socket")
+            Notify("Logic Coming Soon","",2)
+          Else If (selection = "Color")
+            Notify("Logic Coming Soon","",2)
+          Else If (selection = "Link")
+            Notify("Logic Coming Soon","",2)
+          Else If (selection = "Chance")
+            Notify("Logic Coming Soon","",2)
+          Else
+            Notify("Result is:",selection,2)
+
           }
           Else
           {
@@ -6839,7 +6858,7 @@ Return
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
       If hotkeyStartCraft
-        hotkey,% hotkeyStartCraft, StartCraftCommand, Off
+        hotkey,% hotkeyStartCraft, Crafting, Off
       If hotkeyCraftBasic
         hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
       If hotkeyGrabCurrency
@@ -6917,7 +6936,7 @@ Return
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, On
       If hotkeyStartCraft
-        hotkey,% hotkeyStartCraft, StartCraftCommand, On
+        hotkey,% hotkeyStartCraft, Crafting, On
       If hotkeyCraftBasic
         hotkey,% hotkeyCraftBasic, CraftBasicPopUp, On
       If hotkeyGrabCurrency
@@ -7100,7 +7119,7 @@ Return
       If hotkeyGemSwap
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
       If hotkeyStartCraft
-        hotkey,% hotkeyStartCraft, StartCraftCommand, Off
+        hotkey,% hotkeyStartCraft, Crafting, Off
       If hotkeyCraftBasic
         hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
       If hotkeyGrabCurrency

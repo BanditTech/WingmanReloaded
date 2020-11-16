@@ -3561,7 +3561,7 @@
         ; Gui, Crafting: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting
+        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Chance|Socket|Color|Link
 
       Gui, Crafting: Tab, Map Crafting
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
@@ -3646,6 +3646,10 @@
           Gui, Crafting: Font,
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+      Gui, Crafting: Tab, Chance
+      Gui, Crafting: Tab, Socket
+      Gui, Crafting: Tab, Color
+      Gui, Crafting: Tab, Link
       }
       Gui, Crafting: show , w600 h500, Crafting Settings
     }
