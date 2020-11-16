@@ -4072,13 +4072,36 @@ Return
   }
   CraftBasicPopUp(){
     static _init_ := CraftBasicPopUpBuild()
-    Global CraftMenu
+    Global CraftMenu, RunningToggle
+    If RunningToggle  ; This means an underlying thread is already running the loop below.
+    {
+      RunningToggle := False  ; Signal that thread's loop to stop.
+      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
+        SetTimer, TGameTick, On
+      SendMSG(1,0,scriptTradeMacro)
+      exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
+    }
+
     If !(CraftMenu.Active){
+      MouseGetPos itemx, itemy
       CraftMenu.SetKey(hotkeyCraftBasic)
       ; CraftMenu.SetKeySpecial("Ctrl")
       selection := CraftMenu.Show()
       If selection
-        Notify("Result is:",selection,2)
+      {
+        If (selection = "Maps")
+          Notify("Begin Bulk Crafting Maps","",2)
+        Else If (selection = "Socket")
+          Notify("Socketing Selected Item","",2)
+        Else If (selection = "Color")
+          Notify("Coloring Selected Item","",2)
+        Else If (selection = "Link")
+          Notify("Linking Selected Item","",2)
+        Else If (selection = "Chance")
+          Notify("Chance Selected Item until Unique","Either Bulk mode or Scour",2)
+        Else
+          Notify("Result is:",selection,2)
+      }
       Else WinActivate, % GameStr
     }
   }
