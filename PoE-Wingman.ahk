@@ -345,6 +345,7 @@
       hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
       hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
       hotkeyStartCraft = Set your hotkey to use Crafting Settings functions, as Map Crafting
+      hotkeyCraftBasic = Set your hotkey to use Basic Crafting pop-up, these can be configured in the Crafting Settings.
       hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
       hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
       hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
@@ -908,7 +909,8 @@
     global hotkeyPauseMines:="d"
     global hotkeyQuickPortal:="!q"
     global hotkeyGemSwap:="!e"
-    global hotkeyStartCraft:="F2"
+    global hotkeyStartCraft:="F7"
+    global hotkeyCraftBasic:="F9"
     global hotkeyGrabCurrency:="!a"
     global hotkeyGetMouseCoords:="!o"
     global hotkeyCloseAllUI:="Space"
@@ -2183,10 +2185,11 @@
     Gui Add, Text,                     xs+65   y+10,         Gem-Swap
     Gui Add, Text,                     xs+65   y+10,         Grab Currency
     Gui Add, Text,                     xs+65   y+10,         Coord/Pixel
-    Gui Add, Text,                     xs+65   y+10,         Inventory Sort
     Gui Add, Text,                     xs+65   y+10,         Item Info
-    Gui Add, Text,                     xs+65   y+10,         Chaos Recipe
+    Gui Add, Text,                     xs+65   y+10,         Inventory Sort
     Gui Add, Text,                     xs+65   y+10,         Bulk Craft Maps
+    Gui Add, Text,                     xs+65   y+10,         Chaos Recipe
+    Gui Add, Text,                     xs+65   y+10,         Basic Crafting
 
     Gui,Add,Edit,  xs ys+20        w60 h19   vhotkeyOptions           ,%hotkeyOptions%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
@@ -2201,10 +2204,11 @@
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyChaosRecipe       ,%hotkeyChaosRecipe%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
     Gui,Add,Edit,            y+4   w60 h19   vhotkeyStartCraft        ,%hotkeyStartCraft%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyChaosRecipe       ,%hotkeyChaosRecipe%
+    Gui,Add,Edit,            y+4   w60 h19   vhotkeyCraftBasic        ,%hotkeyCraftBasic%
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui, add, button, gWR_Update vWR_Btn_Controller  xs y+15 w110, Controller Keys
@@ -4052,8 +4056,32 @@ Return
       If (GetKeyState("RButton","P"))
         Click, Right, down
     Return
-    }
+  }
 
+  ; Build crafting popup menu
+  CraftBasicPopUpBuild(){
+    global hotkeyCraftBasic, CraftMenu
+    CraftMenu := new Radial_Menu
+    CraftMenu.SetSections("5")
+    CraftMenu.Add("Chance","Images/Chance.png", "1")
+    CraftMenu.Add("Socket","Images/Jeweller.png", "2")
+    CraftMenu.Add("Color","Images/Chromatic.png", "3")
+    CraftMenu.Add("Link","Images/Fusing.png", "4")
+    CraftMenu.Add("Maps","Images/Maps.png", "5")
+    ; CraftMenu.Add2("Jeweller","Images/Jeweller.png", "4")
+  }
+  CraftBasicPopUp(){
+    static _init_ := CraftBasicPopUpBuild()
+    Global CraftMenu
+    If !(CraftMenu.Active){
+      CraftMenu.SetKey(hotkeyCraftBasic)
+      ; CraftMenu.SetKeySpecial("Ctrl")
+      selection := CraftMenu.Show()
+      If selection
+        Notify("Result is:",selection,2)
+      Else WinActivate, % GameStr
+    }
+  }
 ; Main Script Logic Timers - TGameTick, TimerPassthrough
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; TGameTick - Flask Logic timer
@@ -6789,6 +6817,8 @@ Return
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
       If hotkeyStartCraft
         hotkey,% hotkeyStartCraft, StartCraftCommand, Off
+      If hotkeyCraftBasic
+        hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off  
       If hotkeyGetCoords
@@ -6832,7 +6862,8 @@ Return
       IniRead, hotkeyAutoFlask, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask, !F11
       IniRead, hotkeyAutoQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver, !MButton
       IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
-      IniRead, hotkeyStartCraft, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft, F2
+      IniRead, hotkeyStartCraft, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft, F7
+      IniRead, hotkeyCraftBasic, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic, F9
       IniRead, hotkeyGemSwap, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap, !e
       IniRead, hotkeyGrabCurrency, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency, !a
       IniRead, hotkeyGetMouseCoords, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords, !o
@@ -6864,6 +6895,8 @@ Return
         hotkey,% hotkeyGemSwap, GemSwapCommand, On
       If hotkeyStartCraft
         hotkey,% hotkeyStartCraft, StartCraftCommand, On
+      If hotkeyCraftBasic
+        hotkey,% hotkeyCraftBasic, CraftBasicPopUp, On
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, On
       If hotkeyGetMouseCoords
@@ -7045,6 +7078,8 @@ Return
         hotkey,% hotkeyGemSwap, GemSwapCommand, Off
       If hotkeyStartCraft
         hotkey,% hotkeyStartCraft, StartCraftCommand, Off
+      If hotkeyCraftBasic
+        hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
       If hotkeyGrabCurrency
         hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
       If hotkeyGetCoords
@@ -7195,6 +7230,7 @@ Return
       IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
       IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
       IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft
+      IniWrite, %hotkeyCraftBasic%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic
       IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
       IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
       IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
@@ -7713,6 +7749,7 @@ Return
       GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
       GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
       GuiControl,, hotkeyStartCraft, %hotkeyStartCraft%
+      GuiControl,, hotkeyCraftBasic, %hotkeyCraftBasic%
       GuiControl,, hotkeyGrabCurrency, %hotkeyGrabCurrency%
       GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
       GuiControl,, hotkeyItemSort, %hotkeyItemSort%
