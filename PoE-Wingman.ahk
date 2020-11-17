@@ -86,18 +86,18 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; Extra vars - Not in INI
     Global rxNum := "(?!\+1 )(?!1 (?!to \d))(?!\+1\%)(?!1\%)"
-    . "(?!\d{1,} second)"
-    . "(?!\d{1,} Poisons)"
-    . "(?!\d{1,} Rampage)"
-    . "(?!\d{1,} Dexterity)"
-    . "(?!\d{1,} total Dexterity)"
-    . "(?!\d{1,} Intelligence)"
-    . "(?!\d{1,} total Intelligence)"
-    . "(?!\d{1,} Strength)"
-    . "(?!\d{1,} total Strength)"
-    . "\+{0,1}"
-    . "(\d{1,}\.{0,1}\,{0,1}\d{0,})"
-    . "\%{0,1}"
+      . "(?!\d{1,} second)"
+      . "(?!\d{1,} Poisons)"
+      . "(?!\d{1,} Rampage)"
+      . "(?!\d{1,} Dexterity)"
+      . "(?!\d{1,} total Dexterity)"
+      . "(?!\d{1,} Intelligence)"
+      . "(?!\d{1,} total Intelligence)"
+      . "(?!\d{1,} Strength)"
+      . "(?!\d{1,} total Strength)"
+      . "\+{0,1}"
+      . "(\d{1,}\.{0,1}\,{0,1}\d{0,})"
+      . "\%{0,1}"
     Global Controller := {"Btn":{}}
     Global Controller_Active := 0
     Global Item
@@ -199,21 +199,9 @@
     global CheckGamestates:=False
     Process, Exist
     Global ScriptPID := ErrorLevel
-    global Trigger:=00000
     global AutoQuit:=0 
     global AutoFlask:=0
     global AutoQuick:=0 
-    global OnCooldown:=[0,0,0,0,0]
-    global Radiobox1QS
-    global Radiobox2QS
-    global Radiobox3QS
-    global Radiobox4QS
-    global Radiobox5QS
-    global Radiobox1Mana10
-    global Radiobox2Mana10
-    global Radiobox3Mana10
-    global Radiobox4Mana10
-    global Radiobox5Mana10
     Global LootFilter := {}
     Global IgnoredSlot := {}
     Global BlackList := {}
@@ -227,56 +215,30 @@
     Global FillMetamorph := {}
     Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven Cloak"
 
-    ,"Silver Brooch","Golden Brooch","Enamel Brooch","Foliate Brooch"
+      ,"Silver Brooch","Golden Brooch","Enamel Brooch","Foliate Brooch"
 
-    ,"Simple Lockpick","Standard Lockpick","Fine Lockpick","Master Lockpick"
-    ,"Leather Bracers","Studded Bracers","Runed Bracers","Steel Bracers"
-    ,"Crude Sensing Charm","Fine Sensing Charm","Polished Sensing Charm","Thaumaturgical Sensing Charm"
-    ,"Voltaxic Flashpowder","Trarthan Flashpowder","Azurite Flashpowder"
-    ,"Crude Ward","Lustrous Ward","Shining Ward","Thaumaturgical Ward"
-    ,"Essential Keyring","Versatile Keyring","Skeleton Keyring","Grandmaster Keyring"
-    ,"Eelskin Sole","Foxhide Sole","Winged Sole","Silkweave Sole"
-    ,"Basic Disguise Kit","Theatre Disguise Kit","Espionage Disguise Kit","Regicide Disguise Kit"
-    ,"Steel Drill","Flanged Drill"
-    ,"Sulphur Blowtorch","Thaumetic Blowtorch"
+      ,"Simple Lockpick","Standard Lockpick","Fine Lockpick","Master Lockpick"
+      ,"Leather Bracers","Studded Bracers","Runed Bracers","Steel Bracers"
+      ,"Crude Sensing Charm","Fine Sensing Charm","Polished Sensing Charm","Thaumaturgical Sensing Charm"
+      ,"Voltaxic Flashpowder","Trarthan Flashpowder","Azurite Flashpowder"
+      ,"Crude Ward","Lustrous Ward","Shining Ward","Thaumaturgical Ward"
+      ,"Essential Keyring","Versatile Keyring","Skeleton Keyring","Grandmaster Keyring"
+      ,"Eelskin Sole","Foxhide Sole","Winged Sole","Silkweave Sole"
+      ,"Basic Disguise Kit","Theatre Disguise Kit","Espionage Disguise Kit","Regicide Disguise Kit"
+      ,"Steel Drill","Flanged Drill"
+      ,"Sulphur Blowtorch","Thaumetic Blowtorch"
 
-    ,"Rough Sharpening Stone","Standard Sharpening Stone","Fine Sharpening Stone","Obsidian Sharpening Stone"
-    ,"Flanged Arrowhead","Fragmenting Arrowhead","Hollowpoint Arrowhead","Precise Arrowhead"
-    ,"Focal Stone","Conduit Line","Aggregator Charm","Burst Band"]
+      ,"Rough Sharpening Stone","Standard Sharpening Stone","Fine Sharpening Stone","Obsidian Sharpening Stone"
+      ,"Flanged Arrowhead","Fragmenting Arrowhead","Hollowpoint Arrowhead","Precise Arrowhead"
+      ,"Focal Stone","Conduit Line","Aggregator Charm","Burst Band"]
 
     Global HeistLootLarge := ["Essence Burner","Ancient Seal","Blood of Innocence","Dekhara's Resolve","Orbala's Fifth Adventure","Staff of the first Sin Eater","Sword of the Inverse Relic"]
     ft_ToolTip_Text_Part1=
       (LTrim
       QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
-      ManaThreshold = This value scales the location of the mana sample`rA value of 0 is aproximately 10`% mana`rA value of 100 is approximately 95`% mana
       RadioLife = Samples only Life values
       RadioHybrid = Samples both Life and ES values
       RadioCi = Samples only ES values
-      PopFlasks1 = Enable flask slot 1 when using Pop Flasks hotkey
-      PopFlasks2 = Enable flask slot 2 when using Pop Flasks hotkey
-      PopFlasks3 = Enable flask slot 3 when using Pop Flasks hotkey
-      PopFlasks4 = Enable flask slot 4 when using Pop Flasks hotkey
-      PopFlasks5 = Enable flask slot 5 when using Pop Flasks hotkey
-      Radiobox1QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
-      Radiobox2QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
-      Radiobox3QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
-      Radiobox4QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
-      Radiobox5QS = Enable this flask slot as a QuickSilver`rThis will trigger with Left Mouse or Attack Keys if set.
-      Radiobox1Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
-      Radiobox2Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
-      Radiobox3Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
-      Radiobox4Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
-      Radiobox5Mana10 = Enable this flask slot in the Mana Group`rMana flasks will share a group cooldown, and will fire sequentially
-      MainAttackbox1 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
-      MainAttackbox2 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
-      MainAttackbox3 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
-      MainAttackbox4 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
-      MainAttackbox5 = Enable this flask slot to trigger with Primary Attack Key`rBind the key on the left
-      SecondaryAttackbox1 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
-      SecondaryAttackbox2 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
-      SecondaryAttackbox3 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
-      SecondaryAttackbox4 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
-      SecondaryAttackbox5 = Enable this flask slot to trigger with Secondary Attack Key`rBind the key on the left
       DetonateMines = Enable this to automatically Detonate Mines when placed`rDouble tap the D key to pause until next manual detonate
       DetonateMinesDelay = Delay for this long after detonating
       YesEldritchBattery = Enable this to sample the energy shield on the mana globe instead
@@ -519,19 +481,29 @@
       stashSuffixTab7 = Assign the Stash Tab for the 7th Stash Hotkey slot
       stashSuffixTab8 = Assign the Stash Tab for the 8th Stash Hotkey slot
       stashSuffixTab9 = Assign the Stash Tab for the 9th Stash Hotkey slot
-      hotkeyMainAttack = Bind the Primary Attack for this Character
+      hotkeyMainAttack = Bind the Main Attack for this Character
       hotkeySecondaryAttack = Bind the Secondary Attack for this Character
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
   ; Global Script object
-    Global WR := {"loc":{},"setting":{},"data":{},"sample":{},"string":{},"flask":{}}
+    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"setting":{},"data":{},"sample":{},"string":{}}
     for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
     ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
     ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
       WR.loc[v] := {}
-    for k, v in [1,2,3,4,5]
-      WR.flask[v] := {"Key":v, "CD":5000, "MainAttack":0, "SecondaryAttack":0, "QS":0, "PopAll":1, "Life":0, "ES":0, "Mana":0}
+    for k, v in ["1","2","3","4","5"]
+      WR.Flask[v] := {"Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0, "Group":Chr(A_Index+96), "Slot":A_Index}
+    WR.cdExpires.Group := {}
+    for k, v in ["a","b","c","d","e","Mana","Life","QuickSilver","Defense"]
+      WR.cdExpires.Group[v] := A_TickCount
+    WR.cdExpires.Flask := {}
+    for k, v in ["1","2","3","4","5"]
+      WR.cdExpires.Flask[v] := A_TickCount
+    WR.cdExpires.Utility := {}
+    for k, v in ["1","2","3","4","5","6","7","8","9","10"]
+      WR.cdExpires.Utility[v] := A_TickCount
+    
   ; Login POESESSID
     Global PoESessionID := ""
     Global AccountNameSTR := ""
@@ -952,10 +924,6 @@
     global varOnLocker:=0xE97724
     Global varOnDetonate := 0x5D4661
 
-  ; Life, ES, Mana Colors
-    global ManaThreshold
-
-
   ; Grab Currency
     global GrabCurrencyPosX:=1877
     global GrabCurrencyPosY:=772
@@ -976,59 +944,10 @@
     global AlternateGem2OnSecondarySlot:=0
     global GemItemToogle2:=0
 
-  ; Attack Triggers
-    global TriggerMainAttack:=00000
-    global TriggerSecondaryAttack:=00000
-    Global MainAttackbox1,MainAttackbox2,MainAttackbox3,MainAttackbox4,MainAttackbox5
-    Global SecondaryAttackbox1,SecondaryAttackbox2,SecondaryAttackbox3,SecondaryAttackbox4,SecondaryAttackbox5
-
   ; CharacterTypeCheck
     global Life:=1
     global Hybrid:=0
     global Ci:=0
-
-  ; Life Triggers
-    global TriggerLife20:=00000
-    global TriggerLife30:=00000
-    global TriggerLife40:=00000
-    global TriggerLife50:=00000
-    global TriggerLife60:=00000
-    global TriggerLife70:=00000
-    global TriggerLife80:=00000
-    global TriggerLife90:=00000
-    global DisableLife:=11111
-    global Radiobox1Life20, Radiobox2Life20, Radiobox3Life20, Radiobox4Life20, Radiobox5Life20
-    global Radiobox1Life30, Radiobox2Life30, Radiobox3Life30, Radiobox4Life30, Radiobox5Life30
-    global Radiobox1Life40, Radiobox2Life40, Radiobox3Life40, Radiobox4Life40, Radiobox5Life40
-    global Radiobox1Life50, Radiobox2Life50, Radiobox3Life50, Radiobox4Life50, Radiobox5Life50
-    global Radiobox1Life60, Radiobox2Life60, Radiobox3Life60, Radiobox4Life60, Radiobox5Life60
-    global Radiobox1Life70, Radiobox2Life70, Radiobox3Life70, Radiobox4Life70, Radiobox5Life70
-    global Radiobox1Life80, Radiobox2Life80, Radiobox3Life80, Radiobox4Life80, Radiobox5Life80
-    global Radiobox1Life90, Radiobox2Life90, Radiobox3Life90, Radiobox4Life90, Radiobox5Life90
-    global RadioUncheck1Life, RadioUncheck2Life, RadioUncheck3Life, RadioUncheck4Life, RadioUncheck5Life
-  ; ES Triggers
-    Global YesEldritchBattery := 1
-    global TriggerES20:=00000
-    global TriggerES30:=00000
-    global TriggerES40:=00000
-    global TriggerES50:=00000
-    global TriggerES60:=00000
-    global TriggerES70:=00000
-    global TriggerES80:=00000
-    global TriggerES90:=00000
-    global DisableES:=11111
-    global Radiobox1ES20, Radiobox2ES20, Radiobox3ES20, Radiobox4ES20, Radiobox5ES20
-    global Radiobox1ES30, Radiobox2ES30, Radiobox3ES30, Radiobox4ES30, Radiobox5ES30
-    global Radiobox1ES40, Radiobox2ES40, Radiobox3ES40, Radiobox4ES40, Radiobox5ES40
-    global Radiobox1ES50, Radiobox2ES50, Radiobox3ES50, Radiobox4ES50, Radiobox5ES50
-    global Radiobox1ES60, Radiobox2ES60, Radiobox3ES60, Radiobox4ES60, Radiobox5ES60
-    global Radiobox1ES70, Radiobox2ES70, Radiobox3ES70, Radiobox4ES70, Radiobox5ES70
-    global Radiobox1ES80, Radiobox2ES80, Radiobox3ES80, Radiobox4ES80, Radiobox5ES80
-    global Radiobox1ES90, Radiobox2ES90, Radiobox3ES90, Radiobox4ES90, Radiobox5ES90
-    global RadioUncheck1ES, RadioUncheck2ES, RadioUncheck3ES, RadioUncheck4ES, RadioUncheck5ES
-
-  ; Mana Triggers
-    global TriggerMana10:=00000
 
   ; AutoQuit
     global QuitBelow, RadioCritQuit, RadioNormalQuit, RadioPortalQuit
@@ -1064,31 +983,13 @@
   ; Utility Icons
     global IconStringUtility1, IconStringUtility2, IconStringUtility3, IconStringUtility4, IconStringUtility5
       , IconStringUtility6, IconStringUtility7, IconStringUtility8, IconStringUtility9, IconStringUtility10
-  ; Flask Cooldowns
-    global CooldownFlask1:=5000
-    global CooldownFlask2:=5000
-    global CooldownFlask3:=5000
-    global CooldownFlask4:=5000
-    global CooldownFlask5:=5000
-    global Cooldown:=5000
-  ; Flask hotkeys
-    global keyFlask1:=1
-    global keyFlask2:=2
-    global keyFlask3:=3
-    global keyFlask4:=4
-    global keyFlask5:=5
-    Global KeyFlask1Proper,KeyFlask2Proper,KeyFlask3Proper,KeyFlask4Proper,KeyFlask5Proper
 
   ; Quicksilver
     global TriggerQuicksilverDelay=0.8
-    global TriggerQuicksilver=00000
-  ; PopFlasks
-    global PopFlasks1=1
-    global PopFlasks2=1
-    global PopFlasks3=1
-    global PopFlasks4=1
-    global PopFlasks5=1
-    global TriggerPopFlasks=11111
+    Global FlaskListQS := []
+    Global MovementPressed := 0
+    Global MainPressed := 0
+    Global SecondaryPressed := 0
   ; Chat Hotkeys, and stash hotkeys
     Global CharName := "ReplaceWithCharName"
     Global RecipientName := "NothingYet"
@@ -1159,11 +1060,6 @@
     global graphHeight := 221
     Global ForceMatch6Link := False
     Global ForceMatchGem20 := False
-  ; Quicksilver globals
-    Global FlaskListQS := []
-    Global LButtonPressed := 0
-    Global MainPressed := 0
-    Global SecondaryPressed := 0
   ; Ingame Overlay Transparency
     Global YesInGameOverlay := 0
 
@@ -1401,15 +1297,15 @@
     FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
     QuestItems := JSON.Load(JSONtext)
   }
-  IfNotExist, %A_ScriptDir%\data\Flask.json
+  IfNotExist, %A_ScriptDir%\save\Flask.json
   {
-    JSONtext := JSON.Dump(WR.flask,,2)
-    FileAppend, %JSONtext%, %A_ScriptDir%\data\Flask.json
+    JSONtext := JSON.Dump(WR.Flask,,2)
+    FileAppend, %JSONtext%, %A_ScriptDir%\save\Flask.json
   }
   Else
   {
-    FileRead, JSONtext, %A_ScriptDir%\data\Flask.json
-    WR.flask := JSON.Load(JSONtext)
+    FileRead, JSONtext, %A_ScriptDir%\save\Flask.json
+    WR.Flask := JSON.Load(JSONtext)
   }
   If needReload
     Reload
@@ -1418,51 +1314,56 @@
   FlaskMenu(){
     Global
     static Built := {}, which := 1
-    slot := StrSplit(A_GuiControl, " ")[3]
+    RegExMatch(A_GuiControl, "\d+", slot)
 
     If !Built[slot]
     {
       Built[slot] := True
       Gui, Flask%slot%: new, AlwaysOnTop
 
-      Gui, Flask%slot%: Add, GroupBox, section xm+5 ym+5 w570 h380, Flask Slot %slot%
+      Gui, Flask%slot%: Add, GroupBox, section xm ym w500 h260, Flask Slot %slot%
 
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w100 h45, Duration / CD
-      Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+20   yp+20  w80  h17, %  WR.flask[slot].CD
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w100 h45, Cooldown
+      Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+20   yp+20  w80  h17, %  WR.Flask[slot].CD
 
       Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Keys to Press
-      Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+20   yp+20   w80  h17, %   WR.flask[slot].Key
+      Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+20   yp+20   w80  h17, %   WR.Flask[slot].Key
 
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h65, Trigger with Attack
-      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttack xs+20 yp+20 Checked" WR.flask[slot].MainAttack, Primary
-      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+20   y+10 Checked" WR.flask[slot].SecondaryAttack, Secondary
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h55, CD Group
+      Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+20 yp+20 w80" , a|b|c|d|e|Mana|Life|QuickSilver|Defense
+      GuiControl,Flask%slot%: ChooseString, Flask%slot%Group,% WR.Flask[slot].Group
 
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Pop All Flasks
-      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "PopAll  xs+20   yp+20 Checked" WR.flask[slot].PopAll, Include
-      ; GuiControl,Flask%slot%: , Flask%slot%PopAll,% substr(TriggerPopFlasks, slot, 1)
+      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+20 w100 h55, Group Cooldown
+      Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%GroupCD  xs+20   yp+20  w80  h17, %  WR.Flask[slot].GroupCD
 
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Quicksilver Group
-      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "QS xs+20   yp+20 Checked" WR.flask[slot].QS , Include
-      ; GuiControl,Flask%slot%: , Flask%slot%QS,% substr(TriggerQuicksilver, slot, 1)
+      Gui, Flask%slot%: Add, GroupBox, Section center x+30 ys+25 w100 h45, Pop All Flasks
+      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "PopAll  xs+10   yp+20 Checked" WR.Flask[slot].PopAll, Include
 
-      Gui, Flask%slot%: Add, GroupBox, Section center xs+120 ys+25 w240 h55, Life Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%Life   xs+3   yp+15 w235 h30, % WR.flask[slot].Life
+      Gui, Flask%slot%: Add, GroupBox, center xs y+15 w100 h45, Trigger on Move
+      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Move xs+10   yp+20 Checked" WR.Flask[slot].Move , Enable
+
+      Gui, Flask%slot%: Add, GroupBox, center xs y+15 w100 h65, Trigger with Attack
+      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttack xs+10 yp+20 Checked" WR.Flask[slot].MainAttack, Main
+      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+10 Checked" WR.Flask[slot].SecondaryAttack, Secondary
+
+      Gui, Flask%slot%: Add, GroupBox, Section center x+35 ys w240 h55, Life Trigger
+      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%Life   xs+3   yp+15 w235 h30, % WR.Flask[slot].Life
       Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, ES Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%ES     xs+3   yp+15 w235 h30, % WR.flask[slot].ES
+      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%ES     xs+3   yp+15 w235 h30, % WR.Flask[slot].ES
       Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, Mana Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%Mana   xs+3   yp+15 w235 h30, % WR.flask[slot].Mana
+      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%Mana   xs+3   yp+15 w235 h30, % WR.Flask[slot].Mana
 
-      Gui, Flask%slot%: show, w600 h400
+      Gui, Flask%slot%: show, w520 h280
     }
     Return
 
     FlaskSaveValues:
-      for k, kind in ["CD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "QS", "Life", "ES", "Mana"]
-        WR.flask[which][kind] := Flask%which%%kind%
+      for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Life", "ES", "Mana", "Group"]
+        WR.Flask[which][kind] := Flask%which%%kind%
   
-      FileDelete, %A_ScriptDir%\data\Flask.json
-      JSONtext := JSON.Dump(WR.flask,,2)
-      FileAppend, %JSONtext%, %A_ScriptDir%\data\Flask.json
+      FileDelete, %A_ScriptDir%\save\Flask.json
+      JSONtext := JSON.Dump(WR.Flask,,2)
+      FileAppend, %JSONtext%, %A_ScriptDir%\save\Flask.json
       Return
     Flask1GuiClose:
     Flask1GuiEscape:
@@ -1529,209 +1430,23 @@
     Gui Add, GroupBox,         Section    w260 h40        xp+5   y+2,         Character Type:
     Gui, Font,
     Gui, Font, cRed
-    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+8 ys+20 gUpdateCharacterType,   Life
+    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+8 ys+20,   Life
     Gui, Font, cPurple
-    Gui Add, Radio,     vRadioHybrid Checked%RadioHybrid%         x+8 gUpdateCharacterType,   Hybrid
+    Gui Add, Radio,     vRadioHybrid Checked%RadioHybrid%         x+8,   Hybrid
     Gui, Font, cBlue
-    Gui Add, Radio,     vRadioCi Checked%RadioCi%           x+8 gUpdateCharacterType,   ES
+    Gui Add, Radio,     vRadioCi Checked%RadioCi%           x+8,   ES
     Gui Add, Checkbox, gUpdateEldritchBattery  vYesEldritchBattery Checked%YesEldritchBattery%         x+8          , Eldritch Battery
     Gui, Font
     ; Flask GUI
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,        Section    w260 h410 xs y+8  , Flask Settings
+    Gui Add, GroupBox,        Section    w260 h55 xs y+8  , Flask Settings
     Gui, Font
-    Gui Add, Text,                     xs+55   ys+15,       Flask 1
-    Gui Add, Text,                     x+8,                 Flask 2
-    Gui Add, Text,                     x+7,                 Flask 3
-    Gui Add, Text,                     x+8,                 Flask 4
-    Gui Add, Text,                     x+7,                 Flask 5
+    Gui, Add, Button, gFlaskMenu xs+5 yp+22 , Flask 1
+    Loop 4
+    Gui, Add, Button, gFlaskMenu x+5 yp , % "Flask " A_Index + 1
 
-    Gui Add, Text,       Section            x12   y+5,         Duration:
-    Gui Add, Edit,       vCooldownFlask1       x63   ys-2   w34  h17,   %CooldownFlask1%
-    Gui Add, Edit,       vCooldownFlask2       x+8       w34  h17,   %CooldownFlask2%
-    Gui Add, Edit,       vCooldownFlask3       x+7       w34  h17,   %CooldownFlask3%
-    Gui Add, Edit,       vCooldownFlask4       x+8       w34  h17,   %CooldownFlask4%
-    Gui Add, Edit,       vCooldownFlask5       x+7       w34  h17,   %CooldownFlask5%
-
-    Gui Add, Text,       Section        x13   y+5, %          "  IG Key:"
-    Gui Add, Edit,       vkeyFlask1       x63   ys-2   w34  h17,   %keyFlask1%
-    Gui Add, Edit,       vkeyFlask2       x+8       w34  h17,   %keyFlask2%
-    Gui Add, Edit,       vkeyFlask3       x+7       w34  h17,   %keyFlask3%
-    Gui Add, Edit,       vkeyFlask4       x+8       w34  h17,   %keyFlask4%
-    Gui Add, Edit,       vkeyFlask5       x+7       w34  h17,   %keyFlask5%
-
-    Gui, Font, cRed
-    Gui Add, Text,      Section              x62     y+5,         Life
-    Gui Add, Text,                    x+25,             Life
-    Gui Add, Text,                    x+24,             Life
-    Gui Add, Text,                    x+24,             Life
-    Gui Add, Text,                    x+24,             Life
-    Gui, Font
-    Gui Add, Text,                    x80     ys,       |
-    Gui Add, Text,                    x+40,             |
-    Gui Add, Text,                    x+39,             |
-    Gui Add, Text,                    x+39,             |
-    Gui Add, Text,                    x+39,             |
-    Gui, Font, cBlue
-    Gui Add, Text,                    x83     ys,        ES
-    Gui Add, Text,                    x+28,             ES
-    Gui Add, Text,                    x+27,             ES
-    Gui Add, Text,                    x+27,             ES
-    Gui Add, Text,                    x+27,             ES
-    Gui, Font
-
-    Gui Add, Text,       Section              x23   y+5,         < 90`%:
-    Gui Add, Text,                         y+5,         < 80`%:
-    Gui Add, Text,                         y+5,         < 70`%:
-    Gui Add, Text,                         y+5,         < 60`%:
-    Gui Add, Text,                         y+5,         < 50`%:
-    Gui Add, Text,                         y+5,         < 40`%:
-    Gui Add, Text,                         y+5,         < 30`%:
-    Gui Add, Text,                         y+5,         < 20`%:
-    Gui Add, Text,                     x17    y+5,         Disable:
-
-    loop 5 
-      {
-      Gui Add, Radio, Group   vRadiobox%A_Index%Life90 gFlaskCheck    x+12  ys    w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%Life80 gFlaskCheck        y+5   w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%Life70 gFlaskCheck        y+5   w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%Life60 gFlaskCheck        y+5   w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%Life50 gFlaskCheck        y+5   w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%Life40 gFlaskCheck        y+5   w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%Life30 gFlaskCheck        y+5   w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%Life20 gFlaskCheck        y+5   w13 h13
-      Gui Add, Radio,     vRadioUncheck%A_Index%Life           y+5   w13 h13
-      
-      Gui Add, Radio, Group   vRadiobox%A_Index%ES90 gFlaskCheck      x+3   ys    w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%ES80 gFlaskCheck          y+5    w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%ES70 gFlaskCheck          y+5    w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%ES60 gFlaskCheck          y+5    w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%ES50 gFlaskCheck          y+5    w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%ES40 gFlaskCheck          y+5    w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%ES30 gFlaskCheck          y+5    w13 h13
-      Gui Add, Radio,     vRadiobox%A_Index%ES20 gFlaskCheck          y+5    w13 h13
-      Gui Add, Radio,     vRadioUncheck%A_Index%ES           y+5   w13 h13
-      }
-    Loop, 5 {
-      valueLife20 := substr(TriggerLife20, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
-      valueLife30 := substr(TriggerLife30, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
-      valueLife40 := substr(TriggerLife40, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
-      valueLife50 := substr(TriggerLife50, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
-      valueLife60 := substr(TriggerLife60, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
-      valueLife70 := substr(TriggerLife70, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
-      valueLife80 := substr(TriggerLife80, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
-      valueLife90 := substr(TriggerLife90, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
-      valueDisableLife := substr(DisableLife, (A_Index), 1)
-      GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
-      valueES20 := substr(TriggerES20, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%ES20, %valueES20%
-      valueES30 := substr(TriggerES30, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%ES30, %valueES30%
-      valueES40 := substr(TriggerES40, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%ES40, %valueES40%
-      valueES50 := substr(TriggerES50, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%ES50, %valueES50%
-      valueES60 := substr(TriggerES60, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%ES60, %valueES60%
-      valueES70 := substr(TriggerES70, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%ES70, %valueES70%
-      valueES80 := substr(TriggerES80, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%ES80, %valueES80%
-      valueES90 := substr(TriggerES90, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%ES90, %valueES90%
-      valueDisableES := substr(DisableES, (A_Index), 1)
-      GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
-      }  
-    Gui,Font,cBlack
-    Gui Add, GroupBox,           Section  w257 h28       x11   y+5,
-    Gui Add, Text,     Center      xp+5   yp+0,         Quick`nSilvers:
-
-    ;Gui Add, GroupBox,     w257 h26                xp-5   yp-9, 
-    Gui,Font
-    Gui Add, CheckBox, Group   vRadiobox1QS     gUtilityCheck    xs+64   ys+10   w13 h13
-    vFlask=2
-    loop 4 {
-      Gui Add, CheckBox, Group   vRadiobox%vFlask%QS    gUtilityCheck  x+28     w13 h13
-      vFlask:=vFlask+1
-      }
-
-    Gui,Font,cBlack
-    Gui Add, GroupBox,   Section  w257 h40                 x11   y+6, Mana `%
-    Gui,Font
-    Gui, Add, Edit, number limit2 xs+5 ys+15 w35
-    Gui, Add, UpDown, vManaThreshold Range0-100, %ManaThreshold%
-    Gui Add, CheckBox,     vRadiobox1Mana10   gUtilityCheck    xs+64    ys+18   w13 h13
-    vFlask=2
-    loop 4 {
-      Gui Add, CheckBox,     vRadiobox%vFlask%Mana10 gUtilityCheck    x+28   w13 h13
-      vFlask:=vFlask+1
-      }
-    Loop, 5 {  
-      valueMana10 := substr(TriggerMana10, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
-      valueQuicksilver := substr(TriggerQuicksilver, (A_Index), 1)
-      GuiControl, , Radiobox%A_Index%QS, %valueQuicksilver%
-      }
-    Gui,Font,cBlack
-    Gui Add, GroupBox,   Section  w257 h30                 x11   y+8,
-    Gui Add, Text,   center xp+5 yp+0, Pop All`nFlasks:
-    Gui,Font
-    Gui Add, CheckBox, Group   vPopFlasks1    xs+64   ys+12   w13 h13
-    Pop=2
-    loop 4 {
-      Gui Add, CheckBox, Group   vPopFlasks%Pop%   x+28     w13 h13
-      Pop:=Pop+1
-      }
-
-    Loop, 5 {  
-      valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
-      GuiControl, , PopFlasks%A_Index%, %valuePopFlasks%
-      }
-
-
-    Gui, Font, s8 cBlack
-    Gui Add, GroupBox,       Section            x11   y+6   w257 h58, Attack
-
-    Gui,Font
-    Gui Add, Text,         xs+3   ys+14   w43 h17,   Primary
-    Gui Add, Checkbox,     vMainAttackbox1       x75   y+-15   w13 h13
-    vFlask=2
-    loop 4 {
-      Gui Add, Checkbox,     vMainAttackbox%vFlask%     x+28       w13 h13
-      vFlask:=vFlask+1
-      } 
-
-    Gui Add, Text,        xs+3   y+8   w43 h17,  Second
-    Gui Add, Checkbox,     vSecondaryAttackbox1     x75   y+-15   w13 h13
-    vFlask=2
-    loop 4 {
-      Gui Add, Checkbox,     vSecondaryAttackbox%vFlask% x+28       w13 h13
-      vFlask:=vFlask+1
-      }
-    Loop, 5 {  
-      valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
-      GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
-      valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
-      GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
-      }
-
-    ;Vertical Grey Lines
-    Gui, Add, Text,                   x59   y84    h396 0x11
-    Gui, Add, Text,                   x+33         h396 0x11
-    Gui, Add, Text,                   x+34         h396 0x11
-    Gui, Add, Text,                   x+33         h396 0x11
-    Gui, Add, Text,                   x+34         h396 0x11
-    Gui, Add, Text,                   x+33         h396 0x11
     ;Middle Vertical Lines
-    Gui, Add, Text,                   x+5   y23    w1  h483 0x7
+    Gui, Add, Text,                   x279   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
 
@@ -1748,15 +1463,15 @@
     Gui Add, Checkbox, gUpdateExtra  vRelogOnQuit Checked%RelogOnQuit%         xs+5  y+8        , Log back in afterwards?
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,     Section  w257 h73        xs   y+10 ,         Quicksilver Settings
+    Gui Add, GroupBox,     Section  w257 h73        xs   y+10 ,         Movement Settings
     Gui,Font,
-    Gui Add, Text,                     xs+10   ys+16,         Quicksilver Flask Delay (in seconds):
+    Gui Add, Text,                     xs+10   ys+16,         Movement Flask Delay (in seconds):
     Gui Add, Edit,       vTriggerQuicksilverDelay  x+10   yp   w22 h17,   %TriggerQuicksilverDelay%
     Gui, Font, s8 cBlack
     ;Improve UI later
-    Gui,Add,GroupBox, xs+10 yp+16 w208 h36                      ,Quicksilver on Attack:
+    Gui,Add,GroupBox, xs+10 yp+16 w208 h36                      ,Trigger Movement on Attack:
     Gui,Font,
-    Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Primary Attack
+    Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Main Attack
     Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
 
 
@@ -1778,11 +1493,11 @@
     Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
     Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
 
-    Gui, Add, Edit, gUpdateProfileText1 vProfileText1 x+1 ys+43 w50 h19, %ProfileText1%
-    Gui, Add, Edit, gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
-    Gui, Add, Edit, gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
-    Gui, Add, Edit, gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
-    Gui, Add, Edit, gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
+    Gui, Add, Edit,   gUpdateProfileText1 vProfileText1 x+1 ys+43 w50 h19, %ProfileText1%
+    Gui, Add, Edit,   gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
+    Gui, Add, Edit,   gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
+    Gui, Add, Edit,   gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
+    Gui, Add, Edit,   gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
 
     Gui, Add, Button, greadProfile1 x+1 ys+42 w50 h21, Load 1
     Gui, Add, Button, greadProfile2 w50 h21, Load 2
@@ -1796,23 +1511,17 @@
     Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
     Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
 
-    Gui, Add, Edit, gUpdateProfileText6 vProfileText6 y+8 x+1 ys+43 w50 h19, %ProfileText6%
-    Gui, Add, Edit, gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
-    Gui, Add, Edit, gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
-    Gui, Add, Edit, gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
-    Gui, Add, Edit, gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
+    Gui, Add, Edit,   gUpdateProfileText6 vProfileText6 y+8 x+1 ys+43 w50 h19, %ProfileText6%
+    Gui, Add, Edit,   gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
+    Gui, Add, Edit,   gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
+    Gui, Add, Edit,   gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
+    Gui, Add, Edit,   gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
 
     Gui, Add, Button, greadProfile6 x+1 ys+42 w50 h21, Load 6
     Gui, Add, Button, greadProfile7 w50 h21, Load 7
     Gui, Add, Button, greadProfile8 w50 h21, Load 8
     Gui, Add, Button, greadProfile9 w50 h21, Load 9
     Gui, Add, Button, greadProfile10 w50 h21, Load 10
-
-    Gui, Add, Button, gFlaskMenu xs y+26 , Flask Slot 1
-    Gui, Add, Button, gFlaskMenu x+5 yp , Flask Slot 2
-    Gui, Add, Button, gFlaskMenu x+5 yp , Flask Slot 3
-    Gui, Add, Button, gFlaskMenu x+5 yp , Flask Slot 4
-    Gui, Add, Button, gFlaskMenu x+5 yp , Flask Slot 5
 
 
     ;Save Setting
@@ -2205,7 +1914,7 @@
     Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Quit
     Gui Add, Text,                     xs+65   y+10,         Toggle Auto-QSilver
     Gui Add, Text,                     xs+65   y+10,         Movement Trigger
-    Gui Add, Text,                     xs+65   y+10,         Primary Attack
+    Gui Add, Text,                     xs+65   y+10,         Main Attack
     Gui Add, Text,                     xs+65   y+10,         Secondary Attack
     Gui Add, Text,                     xs+65   y+10,         Logout
     Gui Add, Text,                     xs+65   y+10,         Pop Flasks
@@ -2363,76 +2072,6 @@
     Menu, Tray, add,         Reload This Script, RELOAD  
     Menu, Tray, add
     Menu, Tray, add,         Exit, QuitNow ; added exit script option
-
-    if(RadioLife==1) {
-      loop 5 {
-        GuiControl, Enable, Radiobox%A_Index%Life90
-          GuiControl, Enable, Radiobox%A_Index%Life80
-          GuiControl, Enable, Radiobox%A_Index%Life70
-          GuiControl, Enable, Radiobox%A_Index%Life60
-          GuiControl, Enable, Radiobox%A_Index%Life50
-          GuiControl, Enable, Radiobox%A_Index%Life40
-          GuiControl, Enable, Radiobox%A_Index%Life30
-          GuiControl, Enable, Radiobox%A_Index%Life20
-          GuiControl, Enable, RadioUncheck%A_Index%Life
-          
-        GuiControl, Disable, Radiobox%A_Index%ES90
-        GuiControl, Disable, Radiobox%A_Index%ES80
-        GuiControl, Disable, Radiobox%A_Index%ES70
-        GuiControl, Disable, Radiobox%A_Index%ES60
-        GuiControl, Disable, Radiobox%A_Index%ES50
-        GuiControl, Disable, Radiobox%A_Index%ES40
-        GuiControl, Disable, Radiobox%A_Index%ES30
-        GuiControl, Disable, Radiobox%A_Index%ES20
-        GuiControl, Disable, RadioUncheck%A_Index%ES
-        }
-      }
-    else if(RadioHybrid==1) {
-      loop 5 {
-        GuiControl, Enable, Radiobox%A_Index%Life90
-          GuiControl, Enable, Radiobox%A_Index%Life80
-          GuiControl, Enable, Radiobox%A_Index%Life70
-          GuiControl, Enable, Radiobox%A_Index%Life60
-          GuiControl, Enable, Radiobox%A_Index%Life50
-          GuiControl, Enable, Radiobox%A_Index%Life40
-          GuiControl, Enable, Radiobox%A_Index%Life30
-          GuiControl, Enable, Radiobox%A_Index%Life20
-          GuiControl, Enable, RadioUncheck%A_Index%Life
-          
-        GuiControl, Enable, Radiobox%A_Index%ES90
-        GuiControl, Enable, Radiobox%A_Index%ES80
-        GuiControl, Enable, Radiobox%A_Index%ES70
-        GuiControl, Enable, Radiobox%A_Index%ES60
-        GuiControl, Enable, Radiobox%A_Index%ES50
-        GuiControl, Enable, Radiobox%A_Index%ES40
-        GuiControl, Enable, Radiobox%A_Index%ES30
-        GuiControl, Enable, Radiobox%A_Index%ES20
-        GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-      }
-    else if(RadioCi==1) {
-      loop 5 {
-        GuiControl, Disable, Radiobox%A_Index%Life90
-          GuiControl, Disable, Radiobox%A_Index%Life80
-          GuiControl, Disable, Radiobox%A_Index%Life70
-          GuiControl, Disable, Radiobox%A_Index%Life60
-          GuiControl, Disable, Radiobox%A_Index%Life50
-          GuiControl, Disable, Radiobox%A_Index%Life40
-          GuiControl, Disable, Radiobox%A_Index%Life30
-          GuiControl, Disable, Radiobox%A_Index%Life20
-          GuiControl, Disable, RadioUncheck%A_Index%Life
-          
-        GuiControl, Enable, Radiobox%A_Index%ES90
-        GuiControl, Enable, Radiobox%A_Index%ES80
-        GuiControl, Enable, Radiobox%A_Index%ES70
-        GuiControl, Enable, Radiobox%A_Index%ES60
-        GuiControl, Enable, Radiobox%A_Index%ES50
-        GuiControl, Enable, Radiobox%A_Index%ES40
-        GuiControl, Enable, Radiobox%A_Index%ES30
-        GuiControl, Enable, Radiobox%A_Index%ES20
-        GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-      }
 
     Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
     Gui, ItemInfo: Margin, 10, 10
@@ -4248,91 +3887,62 @@ Return
       If (AutoFlask || AutoQuit)
       {
         ScanGlobe()
-        if (!RadioCi) 
-        { ; Life
+        if (!RadioCi) { ; Life
           if (AutoQuit && Player.Percent.Life < QuitBelow)
           {
             LogoutCommand()
             Exit
           }
-
-          If (AutoFlask && DisableLife != "11111" )
-          {
-            If ( TriggerLife20 != "00000" && Player.Percent.Life < 20) 
-              TriggerFlask(TriggerLife20)
-            If ( TriggerLife30 != "00000" && Player.Percent.Life < 30) 
-              TriggerFlask(TriggerLife30)
-            If ( TriggerLife40 != "00000" && Player.Percent.Life < 40) 
-              TriggerFlask(TriggerLife40)
-            If ( TriggerLife50 != "00000" && Player.Percent.Life < 50) 
-              TriggerFlask(TriggerLife50)
-            If ( TriggerLife60 != "00000" && Player.Percent.Life < 60) 
-              TriggerFlask(TriggerLife60)
-            If ( TriggerLife70 != "00000" && Player.Percent.Life < 70) 
-              TriggerFlask(TriggerLife70)
-            If ( TriggerLife80 != "00000" && Player.Percent.Life < 80) 
-              TriggerFlask(TriggerLife80)
-            If ( TriggerLife90 != "00000" && Player.Percent.Life < 90) 
-              TriggerFlask(TriggerLife90)
-          }
-        }
-
-        if (!RadioLife)
-        { ; Energy Shield
-          if ( AutoQuit && RadioCi && Player.Percent.ES < QuitBelow)
+        } Else { ; Energy Shield
+          if ( AutoQuit && Player.Percent.ES < QuitBelow)
           {
             LogoutCommand()
             Exit
           }
-
-          If (AutoFlask && DisableES != "11111" )
-          {
-            If ( TriggerES20 != "00000" && Player.Percent.ES < 20) 
-              TriggerFlask(TriggerES20)
-            If ( TriggerES30 != "00000" && Player.Percent.ES < 30) 
-              TriggerFlask(TriggerES30)
-            If ( TriggerES40 != "00000" && Player.Percent.ES < 40) 
-              TriggerFlask(TriggerES40)
-            If ( TriggerES50 != "00000" && Player.Percent.ES < 50) 
-              TriggerFlask(TriggerES50)
-            If ( TriggerES60 != "00000" && Player.Percent.ES < 60) 
-              TriggerFlask(TriggerES60)
-            If ( TriggerES70 != "00000" && Player.Percent.ES < 70) 
-              TriggerFlask(TriggerES70)
-            If ( TriggerES80 != "00000" && Player.Percent.ES < 80) 
-              TriggerFlask(TriggerES80)
-            If ( TriggerES90 != "00000" && Player.Percent.ES < 90) 
-              TriggerFlask(TriggerES90)
-          }
         }
-        
-        If (TriggerMana10!="00000") { ; Mana
-          If (Player.Percent.Mana < ManaThreshold)
-            TriggerMana(TriggerMana10)
+        If (AutoFlask)
+        {
+          Loop 5
+          {
+            If (WR.cdExpires.Flask[A_Index] < A_TickCount)
+            {
+              If(WR.Flask[A_Index].Life && WR.Flask[A_Index].Life > Player.Percent.Life)
+              {
+                Trigger(WR.Flask[A_Index],"Flask")
+                Continue
+              }
+              If(WR.Flask[A_Index].ES && WR.Flask[A_Index].ES > Player.Percent.ES)
+              {
+                Trigger(WR.Flask[A_Index],"Flask")
+                Continue
+              }
+              If(WR.Flask[A_Index].Mana && WR.Flask[A_Index].Mana > Player.Percent.Mana)
+              {
+                Trigger(WR.Flask[A_Index],"Flask")
+                Continue
+              }
+            }
+          }
         }
 
         If (MainAttackPressedActive && AutoFlask)
         {
-          If (TriggerMainAttack > 0)
-            TriggerFlask(TriggerMainAttack)
+          Loop 5
+            If (WR.Flask[A_Index].MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
+              Trigger(WR.Flask[A_Index],"Flask")
           Loop, 10
-          {
             If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%MainAttack)
-            {
               TriggerUtility(A_Index)
-            }
-          }
         }
         If (SecondaryAttackPressedActive && AutoFlask)
         {
-          If (TriggerSecondaryAttack > 0)
-            TriggerFlask(TriggerSecondaryAttack)
+          Loop 5
+            If (WR.Flask[A_Index].SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
+              Trigger(WR.Flask[A_Index],"Flask")
           Loop, 10
           {
             If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%SecondaryAttack)
-            {
               TriggerUtility(A_Index)
-            }
           }
         }
 
@@ -4371,15 +3981,12 @@ Return
       }
       If (AutoQuick)
       {
-        If ( Radiobox1QS > 0 || Radiobox2QS > 0 || Radiobox3QS > 0 || Radiobox4QS > 0 || Radiobox5QS > 0 )
-        {
-          TriggerQuick(TriggerQuicksilver)
-        }
+        Loop 5
+          If WR.Flask[A_Index].Move
+            Trigger(WR.Flask[A_Index],"Flask")
       }
       If (StackRelease_Enable)
-      {
         StackRelease()
-      }
       If LootVacuum
         LootScan()
       AutoSkillUp()
@@ -4415,31 +4022,9 @@ Return
   ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   TimerPassthrough:
-    If ( GetKeyState(StrSplit(KeyFlask1," ")[1], "P") ) {
-      OnCooldown[1]:=1
-      settimer, TimerFlask1, %CooldownFlask1%
-      ; SendMSG(3, 1)
-    }
-    If ( GetKeyState(StrSplit(KeyFlask2," ")[1], "P") ) {
-      OnCooldown[2]:=1
-      settimer, TimerFlask2, %CooldownFlask2%
-      ; SendMSG(3, 2)
-    }
-    If ( GetKeyState(StrSplit(KeyFlask3," ")[1], "P") ) {
-      OnCooldown[3]:=1
-      settimer, TimerFlask3, %CooldownFlask3%
-      ; SendMSG(3, 3)
-    }
-    If ( GetKeyState(StrSplit(KeyFlask4," ")[1], "P") ) {
-      OnCooldown[4]:=1
-      settimer, TimerFlask4, %CooldownFlask4%
-      ; SendMSG(3, 4)
-    }
-    If ( GetKeyState(StrSplit(KeyFlask5," ")[1], "P") ) {
-      OnCooldown[5]:=1
-      settimer, TimerFlask5, %CooldownFlask5%
-      ; SendMSG(3, 5)
-    }
+    Loop 5
+      If GetKeyState(StrSplit(WR.Flask[A_Index].Key," ")[1], "P")
+        WR.cdExpires.Flask[A_Index]:=A_TickCount + WR.Flask[A_Index].CD
   Return
 ; Toggle Main Script Timers - AutoQuit, AutoFlask, GuiUpdate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4530,7 +4115,7 @@ Return
     Return
   }
 
-; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, TriggerFlask, TriggerMana, TriggerUtility
+; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, Trigger, TriggerUtility
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; MainAttackCommand - Main attack Flasks
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4565,115 +4150,76 @@ Return
     SecondaryAttackPressedActive := False
     Return  
   }
-
-  ; TriggerFlask - Flask Trigger check
+  
+  ; Trigger - Generic Trigger for flasks or utility
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  TriggerFlask(Trigger){
-    FL:=1
-    loop 5 {
-      FLVal:=SubStr(Trigger,FL,1)+0
-      if (FLVal > 0) {
-        if (OnCooldown[FL]=0) {
-          key := keyFlask%FL%
-          SendHotkey(key)
-          ; SendMSG(3, FL)
-          OnCooldown[FL]:=1 
-          Cooldown:=CooldownFlask%FL%
-          settimer, TimerFlask%FL%, %Cooldown%
-          RandomSleep(15,60)      
-        }
-      }
-      ++FL
-    }
-    Return
-  }
-  ; TriggerMana - Trigger Mana Flasks Sequentially
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  TriggerMana(Trigger){
-    If (!FlaskList.Count()) 
-      loop, 5 
-        if (SubStr(Trigger,A_Index,1)+0 > 0) 
-          FlaskList.Push(A_Index)
-    If !( (Radiobox1Mana10 && OnCooldown[1])
-      || (Radiobox2Mana10 && OnCooldown[2])
-      || (Radiobox3Mana10 && OnCooldown[3])
-      || (Radiobox4Mana10 && OnCooldown[4])
-      || (Radiobox5Mana10 && OnCooldown[5]) )
-    {
-      FL:=FlaskList.RemoveAt(1)
-      key := keyFlask%FL%
-      SendHotkey(key)
-      OnCooldown[FL] := 1 
-      Cooldown:=CooldownFlask%FL%
-      settimer, TimerFlask%FL%, %Cooldown%
-      ; SendMSG(3, FL)
-      RandomSleep(23,59)
-    }
-    Return
-  }
-
-  TriggerQuick(Trigger){
+  Trigger(obj,type:="Flask"){
+    Static ActionList := {}
     Static LastHeldLB, LastHeldMA, LastHeldSA
     Global MovementHotkeyActive
-    If !(FlaskListQS.Count())
-      loop, 5 
-        if (SubStr(Trigger,A_Index,1)+0 > 0)
-          FlaskListQS.Push(A_Index)
-    If !( (Radiobox1QS && OnCooldown[1])
-      || (Radiobox2QS && OnCooldown[2])
-      || (Radiobox3QS && OnCooldown[3])
-      || (Radiobox4QS && OnCooldown[4])
-      || (Radiobox5QS && OnCooldown[5]) )
-    { ; If all the flasks are off cooldown, then we are ready to fire one
-      LButtonPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") )
-      If QSonMainAttack
-        MainPressed := MainAttackPressedActive
-      If QSonSecondaryAttack
-        SecondaryPressed := SecondaryAttackPressedActive
-      If (TriggerQuicksilverDelay > 0)
+    If !IsObject(ActionList[obj.Group])
+      ActionList[obj.Group] := {}
+    If !ActionList[obj.Group].Count()
+    {
+      loop % (type="Flask"?5:10)
+        if (WR[type][A_Index].Group = obj.Group 
+        && WR.cdExpires[type][A_Index] < A_TickCount 
+        && !indexOf(A_Index,ActionList[obj.Group])) 
+          ActionList[obj.Group].Push(A_Index)
+    } Else If (WR.cdExpires[type][obj.Slot] < A_TickCount 
+    && !indexOf(A_Index,ActionList[obj.Group]))
+      ActionList[obj.Group].Push(obj.Slot)
+    For k, v in ActionList[obj.Group]
+    {
+      If (WR.cdExpires[type][v] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
       {
-        delay := TriggerQuicksilverDelay * 1000
-        If (!LastHeldLB && LButtonPressed)
-          LastHeldLB := A_TickCount
-        Else If (LastHeldLB && !LButtonPressed)
-          LastHeldLB := False
-        If (LButtonPressed && A_TickCount - LastHeldLB < delay )
-          Return
-        
-        If QSonMainAttack
+        If WR[type][v].Move
         {
-          If (!LastHeldMA && MainAttackPressedActive)
-            LastHeldMA := A_TickCount
-          Else If (LastHeldMA && !MainAttackPressedActive)
-            LastHeldMA := False
-          If (MainAttackPressedActive && A_TickCount - LastHeldMA < delay )
-            Return
-        }
+          MovementPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") )
+          If (TriggerQuicksilverDelay > 0)
+          {
+            delay := TriggerQuicksilverDelay * 1000
+            If (!LastHeldLB && MovementPressed)
+              LastHeldLB := A_TickCount
+            Else If (LastHeldLB && !MovementPressed)
+              LastHeldLB := False
+            If (MovementPressed && A_TickCount - LastHeldLB < delay )
+              Continue
+            
+            If QSonMainAttack
+            {
+              If (!LastHeldMA && MainAttackPressedActive)
+                LastHeldMA := A_TickCount
+              Else If (LastHeldMA && !MainAttackPressedActive)
+                LastHeldMA := False
+              If (MainAttackPressedActive && A_TickCount - LastHeldMA < delay )
+                Continue
+            }
 
-        If QSonSecondaryAttack
-        {
-          If (!LastHeldSA && SecondaryAttackPressedActive)
-            LastHeldSA := A_TickCount
-          Else If (LastHeldSA && !SecondaryAttackPressedActive)
-            LastHeldSA := False
-          If (SecondaryAttackPressedActive && A_TickCount - LastHeldSA < delay )
-            Return
+            If QSonSecondaryAttack
+            {
+              If (!LastHeldSA && SecondaryAttackPressedActive)
+                LastHeldSA := A_TickCount
+              Else If (LastHeldSA && !SecondaryAttackPressedActive)
+                LastHeldSA := False
+              If (SecondaryAttackPressedActive && A_TickCount - LastHeldSA < delay )
+                Continue
+            }
+          }
+          if !(MovementPressed 
+            || (MainAttackPressedActive && QSonMainAttack) 
+            || (SecondaryAttackPressedActive && QSonSecondaryAttack) )
+            Continue
         }
-      }
-      if (LButtonPressed || (MainAttackPressedActive && QSonMainAttack) || (SecondaryAttackPressedActive && QSonSecondaryAttack) ) 
-      {
-        QFL := FlaskListQS.RemoveAt(1)
-        If (!QFL)
-          Return
-        key := keyFlask%QFL%
-        SendHotkey(key)
-        settimer, TimerFlask%QFL%, % CooldownFlask%QFL%
-        OnCooldown[QFL] := 1
-        ; LastHeldLB := LastHeldMA := LastHeldSA := 0
-        ; SendMSG(3, QFL)
-        Loop, 10
-          If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver)
-            TriggerUtility(A_Index)
+        SendHotkey(WR[type][v].Key)
+        WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD 
+        WR.cdExpires[type][v] := A_TickCount + WR[type][v].CD 
+        ActionList[obj.Group].RemoveAt(k)
+        If (WR[type][v].Move && WR[type][v].Group = "QuickSilver")
+          Loop, 10
+            If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver)
+              TriggerUtility(A_Index)
+        Return
       }
     }
     Return
@@ -5415,52 +4961,24 @@ Return
     PopFlasksCommand:
       Critical
       If PopFlaskRespectCD
-        TriggerFlask(TriggerPopFlasks)
-      Else 
       {
-        If PopFlasks1
+        Loop 5
         {
-          SendHotkey(keyFlask1)
-          OnCooldown[1]:=1 
-          ; SendMSG(3, 1)
-          Cooldown:=CooldownFlask1
-          settimer, TimerFlask1, %Cooldown%
-          RandomSleep(-99,99)
+          If WR.Flask[A_Index].PopAll
+            Trigger(WR.Flask[A_Index])
         }
-        If PopFlasks2
+      }
+      Else
+      {
+        Loop 5
         {
-          SendHotkey(keyFlask2) 
-          OnCooldown[2]:=1 
-          ; SendMSG(3, 2)
-          Cooldown:=CooldownFlask2
-          settimer, TimerFlask2, %Cooldown%
-          RandomSleep(-99,99)
-        }
-        If PopFlasks3
-        {
-          SendHotkey(keyFlask3) 
-          OnCooldown[3]:=1 
-          ; SendMSG(3, 3)
-          Cooldown:=CooldownFlask3
-          settimer, TimerFlask3, %Cooldown%
-          RandomSleep(-99,99)
-        }
-        If PopFlasks4
-        {
-          SendHotkey(keyFlask4) 
-          OnCooldown[4]:=1 
-          Cooldown:=CooldownFlask4
-          ; SendMSG(3, 4)
-          settimer, TimerFlask4, %Cooldown%
-          RandomSleep(-99,99)
-        }
-        If PopFlasks5
-        {
-          SendHotkey(keyFlask5) 
-          OnCooldown[5]:=1 
-          ; SendMSG(3, 5)
-          Cooldown:=CooldownFlask5
-          settimer, TimerFlask5, %Cooldown%
+          If WR.Flask[A_Index].PopAll
+          {
+            SendHotkey(WR.Flask[A_Index].Key)
+            WR.cdExpires.Flask[A_Index]:=A_TickCount + WR.Flask[A_Index].CD
+            WR.cdExpires.Group[WR.Flask[A_Index].Group] := A_TickCount + WR.Flask[A_Index].GroupCD
+            RandomSleep(-99,99)
+          }
         }
       }
       Thread, NoTimers, False    ;End Critical
@@ -6287,7 +5805,6 @@ Return
       IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack, 0
       IniRead, YesPersistantToggle, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle, 0
       IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
-      IniRead, ManaThreshold, %A_ScriptDir%\save\Settings.ini, General, ManaThreshold, 10
       IniRead, YesEldritchBattery, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery, 0
       IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
       IniRead, YesStashT2, %A_ScriptDir%\save\Settings.ini, General, YesStashT2, 1
@@ -6560,75 +6077,6 @@ Return
       IniRead, varOnLocker, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker, 0x1F2732
       IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
 
-      ;Life Triggers
-      IniRead, TriggerLife20, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife20, 00000
-      IniRead, TriggerLife30, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife30, 00000
-      IniRead, TriggerLife40, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife40, 00000
-      IniRead, TriggerLife50, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife50, 00000
-      IniRead, TriggerLife60, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife60, 00000
-      IniRead, TriggerLife70, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife70, 00000
-      IniRead, TriggerLife80, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife80, 00000
-      IniRead, TriggerLife90, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife90, 00000
-      IniRead, DisableLife, %A_ScriptDir%\save\Settings.ini, Life Triggers, DisableLife, 11111
-      Loop, 5 {
-        valueLife20 := substr(TriggerLife20, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life20, %valueLife20%
-        valueLife30 := substr(TriggerLife30, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life30, %valueLife30%
-        valueLife40 := substr(TriggerLife40, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life40, %valueLife40%
-        valueLife50 := substr(TriggerLife50, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life50, %valueLife50%
-        valueLife60 := substr(TriggerLife60, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life60, %valueLife60%
-        valueLife70 := substr(TriggerLife70, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life70, %valueLife70%
-        valueLife80 := substr(TriggerLife80, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life80, %valueLife80%
-        valueLife90 := substr(TriggerLife90, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Life90, %valueLife90%
-        valueDisableLife := substr(DisableLife, (A_Index), 1)
-        GuiControl, , RadioUncheck%A_Index%Life, %valueDisableLife%
-        }
-      
-      ;ES Triggers
-      IniRead, TriggerES20, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES20, 00000
-      IniRead, TriggerES30, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES30, 00000
-      IniRead, TriggerES40, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES40, 00000
-      IniRead, TriggerES50, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES50, 00000
-      IniRead, TriggerES60, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES60, 00000
-      IniRead, TriggerES70, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES70, 00000
-      IniRead, TriggerES80, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES80, 00000
-      IniRead, TriggerES90, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES90, 00000
-      IniRead, DisableES, %A_ScriptDir%\save\Settings.ini, ES Triggers, DisableES, 11111
-      Loop, 5 {
-        valueES20 := substr(TriggerES20, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES20, %valueES20%
-        valueES30 := substr(TriggerES30, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES30, %valueES30%
-        valueES40 := substr(TriggerES40, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES40, %valueES40%
-        valueES50 := substr(TriggerES50, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES50, %valueES50%
-        valueES60 := substr(TriggerES60, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES60, %valueES60%
-        valueES70 := substr(TriggerES70, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES70, %valueES70%
-        valueES80 := substr(TriggerES80, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES80, %valueES80%
-        valueES90 := substr(TriggerES90, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%ES90, %valueES90%
-        valueDisableES := substr(DisableES, (A_Index), 1)
-        GuiControl, , RadioUncheck%A_Index%ES, %valueDisableES%
-      }  
-      
-      ;Mana Triggers
-      IniRead, TriggerMana10, %A_ScriptDir%\save\Settings.ini, Mana Triggers, TriggerMana10, 00000
-      Loop, 5 {  
-        valueMana10 := substr(TriggerMana10, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%Mana10, %valueMana10%
-      }
-      
       ;Utility Buttons
       IniRead, YesUtility1, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1, 0
       IniRead, YesUtility2, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2, 0
@@ -6774,28 +6222,7 @@ Return
       IniRead, hotkeyDown,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyDown,  s
       IniRead, hotkeyLeft,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyLeft,  a
       IniRead, hotkeyRight,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight, d
-      
-      ;Flask Cooldowns
-      IniRead, CooldownFlask1, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask1, 4800
-      IniRead, CooldownFlask2, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask2, 4800
-      IniRead, CooldownFlask3, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask3, 4800
-      IniRead, CooldownFlask4, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask4, 4800
-      IniRead, CooldownFlask5, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask5, 4800
-
-      ;Flask Keys
-      IniRead, keyFlask1, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask1, 1
-      IniRead, keyFlask2, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask2, 2
-      IniRead, keyFlask3, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask3, 3
-      IniRead, keyFlask4, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask4, 4
-      IniRead, keyFlask5, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask5, 5
-      
-      Loop 5
-      {
-        key := keyFlask%A_Index%
-        str := StrSplit(key, " ", ,2)
-        KeyFlask%A_Index%Proper := str[1]
-      }
-
+            
       ;Grab Currency From Inventory
       IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 1877
       IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 772
@@ -6825,30 +6252,8 @@ Return
       IniRead, StockWisdom, %A_ScriptDir%\save\Settings.ini, Coordinates, StockWisdom, 0
       
       
-      ;Attack Flasks
-      IniRead, TriggerMainAttack, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerMainAttack, 00000
-      IniRead, TriggerSecondaryAttack, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerSecondaryAttack, 00000
-      Loop, 5{  
-        valueMainAttack := substr(TriggerMainAttack, (A_Index), 1)
-        GuiControl, , MainAttackbox%A_Index%, %valueMainAttack%
-        valueSecondaryAttack := substr(TriggerSecondaryAttack, (A_Index), 1)
-        GuiControl, , SecondaryAttackbox%A_Index%, %valueSecondaryAttack%
-      }
-      
       ;Quicksilver
       IniRead, TriggerQuicksilverDelay, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
-      IniRead, TriggerQuicksilver, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilver, 00000
-      Loop, 5 {  
-        Radiobox%A_Index%QS := substr(TriggerQuicksilver, (A_Index), 1)
-        GuiControl, , Radiobox%A_Index%QS, % Radiobox%A_Index%QS
-      }
-      
-      ;Pop Flasks
-      IniRead, TriggerPopFlasks, %A_ScriptDir%\save\Settings.ini, PopFlasks, TriggerPopFlasks, 11111
-      Loop, 5 {  
-        valuePopFlasks := substr(TriggerPopFlasks, (A_Index), 1)
-        GuiControl, , PopFlasks%A_Index%, %valuePopFlasks%
-      }
       
       ;CharacterTypeCheck
       IniRead, RadioLife, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Life, 1
@@ -7199,31 +6604,6 @@ Return
       }
 
       Gui, Submit, NoHide
-      ;Life Flasks
-      IniWrite, %Radiobox1Life20%%Radiobox2Life20%%Radiobox3Life20%%Radiobox4Life20%%Radiobox5Life20%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife20
-      IniWrite, %Radiobox1Life30%%Radiobox2Life30%%Radiobox3Life30%%Radiobox4Life30%%Radiobox5Life30%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife30
-      IniWrite, %Radiobox1Life40%%Radiobox2Life40%%Radiobox3Life40%%Radiobox4Life40%%Radiobox5Life40%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife40
-      IniWrite, %Radiobox1Life50%%Radiobox2Life50%%Radiobox3Life50%%Radiobox4Life50%%Radiobox5Life50%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife50
-      IniWrite, %Radiobox1Life60%%Radiobox2Life60%%Radiobox3Life60%%Radiobox4Life60%%Radiobox5Life60%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife60
-      IniWrite, %Radiobox1Life70%%Radiobox2Life70%%Radiobox3Life70%%Radiobox4Life70%%Radiobox5Life70%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife70
-      IniWrite, %Radiobox1Life80%%Radiobox2Life80%%Radiobox3Life80%%Radiobox4Life80%%Radiobox5Life80%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife80
-      IniWrite, %Radiobox1Life90%%Radiobox2Life90%%Radiobox3Life90%%Radiobox4Life90%%Radiobox5Life90%, %A_ScriptDir%\save\Settings.ini, Life Triggers, TriggerLife90
-      IniWrite, %RadioUncheck1Life%%RadioUncheck2Life%%RadioUncheck3Life%%RadioUncheck4Life%%RadioUncheck5Life%, %A_ScriptDir%\save\Settings.ini, Life Triggers, DisableLife
-        
-      
-      ;ES Flasks
-      IniWrite, %Radiobox1ES20%%Radiobox2ES20%%Radiobox3ES20%%Radiobox4ES20%%Radiobox5ES20%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES20
-      IniWrite, %Radiobox1ES30%%Radiobox2ES30%%Radiobox3ES30%%Radiobox4ES30%%Radiobox5ES30%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES30
-      IniWrite, %Radiobox1ES40%%Radiobox2ES40%%Radiobox3ES40%%Radiobox4ES40%%Radiobox5ES40%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES40
-      IniWrite, %Radiobox1ES50%%Radiobox2ES50%%Radiobox3ES50%%Radiobox4ES50%%Radiobox5ES50%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES50
-      IniWrite, %Radiobox1ES60%%Radiobox2ES60%%Radiobox3ES60%%Radiobox4ES60%%Radiobox5ES60%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES60
-      IniWrite, %Radiobox1ES70%%Radiobox2ES70%%Radiobox3ES70%%Radiobox4ES70%%Radiobox5ES70%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES70
-      IniWrite, %Radiobox1ES80%%Radiobox2ES80%%Radiobox3ES80%%Radiobox4ES80%%Radiobox5ES80%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES80
-      IniWrite, %Radiobox1ES90%%Radiobox2ES90%%Radiobox3ES90%%Radiobox4ES90%%Radiobox5ES90%, %A_ScriptDir%\save\Settings.ini, ES Triggers, TriggerES90
-      IniWrite, %RadioUncheck1ES%%RadioUncheck2ES%%RadioUncheck3ES%%RadioUncheck4ES%%RadioUncheck5ES%, %A_ScriptDir%\save\Settings.ini, ES Triggers, DisableES
-      ;Mana Flasks
-      IniWrite, %Radiobox1Mana10%%Radiobox2Mana10%%Radiobox3Mana10%%Radiobox4Mana10%%Radiobox5Mana10%, %A_ScriptDir%\save\Settings.ini, Mana Triggers, TriggerMana10
-      
 
       ;Bandit Extra options
       IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
@@ -7279,7 +6659,6 @@ Return
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
-      IniWrite, %ManaThreshold%, %A_ScriptDir%\save\Settings.ini, General, ManaThreshold
 
       ; Overhead Health Bar
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
@@ -7450,21 +6829,7 @@ Return
       IniWrite, %IconStringUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility8
       IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility9
       IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10
-      
-      ;Flask Cooldowns
-      IniWrite, %CooldownFlask1%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask1
-      IniWrite, %CooldownFlask2%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask2
-      IniWrite, %CooldownFlask3%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask3
-      IniWrite, %CooldownFlask4%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask4
-      IniWrite, %CooldownFlask5%, %A_ScriptDir%\save\Settings.ini, Flask Cooldowns, CooldownFlask5  
 
-      ;Flask Keys
-      IniWrite, %keyFlask1%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask1
-      IniWrite, %keyFlask2%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask2
-      IniWrite, %keyFlask3%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask3
-      IniWrite, %keyFlask4%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask4
-      IniWrite, %keyFlask5%, %A_ScriptDir%\save\Settings.ini, Flask Keys, keyFlask5  
-      
       ;Grab Currency
       IniWrite, %GrabCurrencyPosX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX
       IniWrite, %GrabCurrencyPosY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY
@@ -7576,16 +6941,8 @@ Return
       IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
       IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
 
-      ;Attack Flasks
-      IniWrite, %MainAttackbox1%%MainAttackbox2%%MainAttackbox3%%MainAttackbox4%%MainAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerMainAttack
-      IniWrite, %SecondaryAttackbox1%%SecondaryAttackbox2%%SecondaryAttackbox3%%SecondaryAttackbox4%%SecondaryAttackbox5%, %A_ScriptDir%\save\Settings.ini, Attack Triggers, TriggerSecondaryAttack
-      
-      ;Quicksilver Flasks
+      ;Quicksilver
       IniWrite, %TriggerQuicksilverDelay%, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilverDelay
-      IniWrite, %Radiobox1QS%%Radiobox2QS%%Radiobox3QS%%Radiobox4QS%%Radiobox5QS%, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilver
-      
-      ;Pop Flasks
-      IniWrite, %PopFlasks1%%PopFlasks2%%PopFlasks3%%PopFlasks4%%PopFlasks5%, %A_ScriptDir%\save\Settings.ini, PopFlasks, TriggerPopFlasks
       
       ;CharacterTypeCheck
       IniWrite, %RadioLife%, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Life
@@ -7720,86 +7077,8 @@ Return
     loadSaved:
       readFromFile()
       ;Update UI
-      if(RadioLife==1) {
-        loop 5 {
-          GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Disable, Radiobox%A_Index%ES90
-          GuiControl, Disable, Radiobox%A_Index%ES80
-          GuiControl, Disable, Radiobox%A_Index%ES70
-          GuiControl, Disable, Radiobox%A_Index%ES60
-          GuiControl, Disable, Radiobox%A_Index%ES50
-          GuiControl, Disable, Radiobox%A_Index%ES40
-          GuiControl, Disable, Radiobox%A_Index%ES30
-          GuiControl, Disable, Radiobox%A_Index%ES20
-          GuiControl, Disable, RadioUncheck%A_Index%ES
-        }
-      }
-      else if(RadioHybrid==1) {
-        loop 5 {
-          GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Enable, Radiobox%A_Index%ES90
-          GuiControl, Enable, Radiobox%A_Index%ES80
-          GuiControl, Enable, Radiobox%A_Index%ES70
-          GuiControl, Enable, Radiobox%A_Index%ES60
-          GuiControl, Enable, Radiobox%A_Index%ES50
-          GuiControl, Enable, Radiobox%A_Index%ES40
-          GuiControl, Enable, Radiobox%A_Index%ES30
-          GuiControl, Enable, Radiobox%A_Index%ES20
-          GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-      }
-      else if(RadioCi==1) {
-        loop 5 {
-          GuiControl, Disable, Radiobox%A_Index%Life90
-            GuiControl, Disable, Radiobox%A_Index%Life80
-            GuiControl, Disable, Radiobox%A_Index%Life70
-            GuiControl, Disable, Radiobox%A_Index%Life60
-            GuiControl, Disable, Radiobox%A_Index%Life50
-            GuiControl, Disable, Radiobox%A_Index%Life40
-            GuiControl, Disable, Radiobox%A_Index%Life30
-            GuiControl, Disable, Radiobox%A_Index%Life20
-            GuiControl, Disable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Enable, Radiobox%A_Index%ES90
-          GuiControl, Enable, Radiobox%A_Index%ES80
-          GuiControl, Enable, Radiobox%A_Index%ES70
-          GuiControl, Enable, Radiobox%A_Index%ES60
-          GuiControl, Enable, Radiobox%A_Index%ES50
-          GuiControl, Enable, Radiobox%A_Index%ES40
-          GuiControl, Enable, Radiobox%A_Index%ES30
-          GuiControl, Enable, Radiobox%A_Index%ES20
-          GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-      }
+
       GuiControl,, QuitBelow, %QuitBelow%
-      GuiControl,, CooldownFlask1, %CooldownFlask1%
-      GuiControl,, CooldownFlask2, %CooldownFlask2%
-      GuiControl,, CooldownFlask3, %CooldownFlask3%
-      GuiControl,, CooldownFlask4, %CooldownFlask4%
-      GuiControl,, CooldownFlask5, %CooldownFlask5%
-      GuiControl,, keyFlask1, %keyFlask1%
-      GuiControl,, keyFlask2, %keyFlask2%
-      GuiControl,, keyFlask3, %keyFlask3%
-      GuiControl,, keyFlask4, %keyFlask4%
-      GuiControl,, keyFlask5, %keyFlask5%
       GuiControl,, RadioNormalQuit, %RadioNormalQuit%
       GuiControl,, RadioCritQuit, %RadioCritQuit%
       GuiControl,, RadioPortalQuit, %RadioPortalQuit%
@@ -8065,157 +7344,7 @@ Return
     submitProfile(Profile){  
       global
       Gui, Submit, NoHide
-      
-      ;Life Flasks
-      
-      IniWrite, %Radiobox1Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life20
-      IniWrite, %Radiobox2Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life20
-      IniWrite, %Radiobox3Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life20
-      IniWrite, %Radiobox4Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life20
-      IniWrite, %Radiobox5Life20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life20
 
-      IniWrite, %Radiobox1Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life30
-      IniWrite, %Radiobox2Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life30
-      IniWrite, %Radiobox3Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life30
-      IniWrite, %Radiobox4Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life30
-      IniWrite, %Radiobox5Life30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life30
-
-      IniWrite, %Radiobox1Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life40
-      IniWrite, %Radiobox2Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life40
-      IniWrite, %Radiobox3Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life40
-      IniWrite, %Radiobox4Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life40
-      IniWrite, %Radiobox5Life40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life40
-
-      IniWrite, %Radiobox1Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life50
-      IniWrite, %Radiobox2Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life50
-      IniWrite, %Radiobox3Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life50
-      IniWrite, %Radiobox4Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life50
-      IniWrite, %Radiobox5Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life50
-
-      IniWrite, %Radiobox1Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life50
-      IniWrite, %Radiobox2Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life50
-      IniWrite, %Radiobox3Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life50
-      IniWrite, %Radiobox4Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life50
-      IniWrite, %Radiobox5Life50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life50
-
-      IniWrite, %Radiobox1Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life60
-      IniWrite, %Radiobox2Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life60
-      IniWrite, %Radiobox3Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life60
-      IniWrite, %Radiobox4Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life60
-      IniWrite, %Radiobox5Life60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life60
-
-      IniWrite, %Radiobox1Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life70
-      IniWrite, %Radiobox2Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life70
-      IniWrite, %Radiobox3Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life70
-      IniWrite, %Radiobox4Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life70
-      IniWrite, %Radiobox5Life70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life70
-
-      IniWrite, %Radiobox1Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life80
-      IniWrite, %Radiobox2Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life80
-      IniWrite, %Radiobox3Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life80
-      IniWrite, %Radiobox4Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life80
-      IniWrite, %Radiobox5Life80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life80
-
-      IniWrite, %Radiobox1Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life90
-      IniWrite, %Radiobox2Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life90
-      IniWrite, %Radiobox3Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life90
-      IniWrite, %Radiobox4Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life90
-      IniWrite, %Radiobox5Life90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life90
-
-      IniWrite, %RadioUncheck1Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck1Life
-      IniWrite, %RadioUncheck2Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck2Life
-      IniWrite, %RadioUncheck3Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck3Life
-      IniWrite, %RadioUncheck4Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck4Life
-      IniWrite, %RadioUncheck5Life%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck5Life
-      
-      ;ES Flasks
-      IniWrite, %Radiobox1ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES20
-      IniWrite, %Radiobox2ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES20
-      IniWrite, %Radiobox3ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES20
-      IniWrite, %Radiobox4ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES20
-      IniWrite, %Radiobox5ES20%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES20
-      
-      IniWrite, %Radiobox1ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES30
-      IniWrite, %Radiobox2ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES30
-      IniWrite, %Radiobox3ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES30
-      IniWrite, %Radiobox4ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES30
-      IniWrite, %Radiobox5ES30%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES30
-      
-      IniWrite, %Radiobox1ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES40
-      IniWrite, %Radiobox2ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES40
-      IniWrite, %Radiobox3ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES40
-      IniWrite, %Radiobox4ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES40
-      IniWrite, %Radiobox5ES40%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES40
-      
-      IniWrite, %Radiobox1ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES50
-      IniWrite, %Radiobox2ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES50
-      IniWrite, %Radiobox3ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES50
-      IniWrite, %Radiobox4ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES50
-      IniWrite, %Radiobox5ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES50
-      
-      IniWrite, %Radiobox1ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES50
-      IniWrite, %Radiobox2ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES50
-      IniWrite, %Radiobox3ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES50
-      IniWrite, %Radiobox4ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES50
-      IniWrite, %Radiobox5ES50%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES50
-      
-      IniWrite, %Radiobox1ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES60
-      IniWrite, %Radiobox2ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES60
-      IniWrite, %Radiobox3ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES60
-      IniWrite, %Radiobox4ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES60
-      IniWrite, %Radiobox5ES60%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES60
-      
-      IniWrite, %Radiobox1ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES70
-      IniWrite, %Radiobox2ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES70
-      IniWrite, %Radiobox3ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES70
-      IniWrite, %Radiobox4ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES70
-      IniWrite, %Radiobox5ES70%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES70
-      
-      IniWrite, %Radiobox1ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES80
-      IniWrite, %Radiobox2ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES80
-      IniWrite, %Radiobox3ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES80
-      IniWrite, %Radiobox4ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES80
-      IniWrite, %Radiobox5ES80%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES80
-      
-      IniWrite, %Radiobox1ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES90
-      IniWrite, %Radiobox2ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES90
-      IniWrite, %Radiobox3ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES90
-      IniWrite, %Radiobox4ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES90
-      IniWrite, %Radiobox5ES90%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES90
-      
-      IniWrite, %RadioUncheck1ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck1ES
-      IniWrite, %RadioUncheck2ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck2ES
-      IniWrite, %RadioUncheck3ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck3ES
-      IniWrite, %RadioUncheck4ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck4ES
-      IniWrite, %RadioUncheck5ES%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck5ES
-      
-      ;Mana Flasks
-      IniWrite, %Radiobox1Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Mana10
-      IniWrite, %Radiobox2Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Mana10
-      IniWrite, %Radiobox3Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Mana10
-      IniWrite, %Radiobox4Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Mana10
-      IniWrite, %Radiobox5Mana10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Mana10
-      
-      ;Flask Cooldowns
-      IniWrite, %CooldownFlask1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask1
-      IniWrite, %CooldownFlask2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask2
-      IniWrite, %CooldownFlask3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask3
-      IniWrite, %CooldownFlask4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask4
-      IniWrite, %CooldownFlask5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask5  
-      
-      ;Attack Flasks
-      IniWrite, %MainAttackbox1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox1
-      IniWrite, %MainAttackbox2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox2
-      IniWrite, %MainAttackbox3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox3
-      IniWrite, %MainAttackbox4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox4
-      IniWrite, %MainAttackbox5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox5
-      
-      IniWrite, %SecondaryAttackbox1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox1
-      IniWrite, %SecondaryAttackbox2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox2
-      IniWrite, %SecondaryAttackbox3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox3
-      IniWrite, %SecondaryAttackbox4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox4
-      IniWrite, %SecondaryAttackbox5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox5
-      
       ;Attack Keys
       IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttack
       IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttack
@@ -8226,11 +7355,6 @@ Return
       
       ;Quicksilver Flasks
       IniWrite, %TriggerQuicksilverDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, TriggerQuicksilverDelay
-      IniWrite, %Radiobox1QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot1
-      IniWrite, %Radiobox2QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot2
-      IniWrite, %Radiobox3QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot3
-      IniWrite, %Radiobox4QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot4
-      IniWrite, %Radiobox5QS%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot5
       
       ;CharacterTypeCheck
       IniWrite, %RadioLife%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Life
@@ -8247,9 +7371,6 @@ Return
 
       ;EldritchBattery
       IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesEldritchBattery
-
-      ;ManaThreshold
-      IniWrite, %ManaThreshold%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, ManaThreshold
 
       ;AutoQuit
       IniWrite, %QuitBelow%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuitBelow
@@ -8363,13 +7484,6 @@ Return
       IniWrite, %IconStringUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility8
       IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility9
       IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility10
-
-      ;Pop Flasks Keys
-      IniWrite, %PopFlasks1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks1
-      IniWrite, %PopFlasks2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks2
-      IniWrite, %PopFlasks3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks3
-      IniWrite, %PopFlasks4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks4
-      IniWrite, %PopFlasks5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks5
       
     return
     }
@@ -8418,275 +7532,6 @@ Return
   { ; Read Profiles
     readProfile(Profile){  
       global
-      ;Life Flasks
-      IniRead, Radiobox1Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life20, 0
-      GuiControl, , Radiobox1Life20, %Radiobox1Life20%
-      IniRead, Radiobox2Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life20, 0
-      GuiControl, , Radiobox2Life20, %Radiobox2Life20%
-      IniRead, Radiobox3Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life20, 0
-      GuiControl, , Radiobox3Life20, %Radiobox3Life20%
-      IniRead, Radiobox4Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life20, 0
-      GuiControl, , Radiobox4Life20, %Radiobox4Life20%
-      IniRead, Radiobox5Life20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life20, 0
-      GuiControl, , Radiobox5Life20, %Radiobox5Life20%
-
-      IniRead, Radiobox1Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life30, 0
-      GuiControl, , Radiobox1Life30, %Radiobox1Life30%
-      IniRead, Radiobox2Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life30, 0
-      GuiControl, , Radiobox2Life30, %Radiobox2Life30%
-      IniRead, Radiobox3Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life30, 0
-      GuiControl, , Radiobox3Life30, %Radiobox3Life30%
-      IniRead, Radiobox4Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life30, 0
-      GuiControl, , Radiobox4Life30, %Radiobox4Life30%
-      IniRead, Radiobox5Life30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life30, 0
-      GuiControl, , Radiobox5Life30, %Radiobox5Life30%
-
-      IniRead, Radiobox1Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life40, 0
-      GuiControl, , Radiobox1Life40, %Radiobox1Life40%
-      IniRead, Radiobox2Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life40, 0
-      GuiControl, , Radiobox2Life40, %Radiobox2Life40%
-      IniRead, Radiobox3Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life40, 0
-      GuiControl, , Radiobox3Life40, %Radiobox3Life40%
-      IniRead, Radiobox4Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life40, 0
-      GuiControl, , Radiobox4Life40, %Radiobox4Life40%
-      IniRead, Radiobox5Life40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life40, 0
-      GuiControl, , Radiobox5Life40, %Radiobox5Life40%
-
-      IniRead, Radiobox1Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life50, 0
-      GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-      IniRead, Radiobox2Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life50, 0
-      GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-      IniRead, Radiobox3Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life50, 0
-      GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-      IniRead, Radiobox4Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life50, 0
-      GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-      IniRead, Radiobox5Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life50, 0
-      GuiControl, , Radiobox5Life50, %Radiobox5Life50%
-
-      IniRead, Radiobox1Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life50, 0
-      GuiControl, , Radiobox1Life50, %Radiobox1Life50%
-      IniRead, Radiobox2Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life50, 0
-      GuiControl, , Radiobox2Life50, %Radiobox2Life50%
-      IniRead, Radiobox3Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life50, 0
-      GuiControl, , Radiobox3Life50, %Radiobox3Life50%
-      IniRead, Radiobox4Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life50, 0
-      GuiControl, , Radiobox4Life50, %Radiobox4Life50%
-      IniRead, Radiobox5Life50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life50, 0
-      GuiControl, , Radiobox5Life50, %Radiobox5Life50%
-
-      IniRead, Radiobox1Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life60, 0
-      GuiControl, , Radiobox1Life60, %Radiobox1Life60%
-      IniRead, Radiobox2Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life60, 0
-      GuiControl, , Radiobox2Life60, %Radiobox2Life60%
-      IniRead, Radiobox3Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life60, 0
-      GuiControl, , Radiobox3Life60, %Radiobox3Life60%
-      IniRead, Radiobox4Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life60, 0
-      GuiControl, , Radiobox4Life60, %Radiobox4Life60%
-      IniRead, Radiobox5Life60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life60, 0
-      GuiControl, , Radiobox5Life60, %Radiobox5Life60%
-
-      IniRead, Radiobox1Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life70, 0
-      GuiControl, , Radiobox1Life70, %Radiobox1Life70%
-      IniRead, Radiobox2Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life70, 0
-      GuiControl, , Radiobox2Life70, %Radiobox2Life70%
-      IniRead, Radiobox3Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life70, 0
-      GuiControl, , Radiobox3Life70, %Radiobox3Life70%
-      IniRead, Radiobox4Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life70, 0
-      GuiControl, , Radiobox4Life70, %Radiobox4Life70%
-      IniRead, Radiobox5Life70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life70, 0
-      GuiControl, , Radiobox5Life70, %Radiobox5Life70%
-
-      IniRead, Radiobox1Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life80, 0
-      GuiControl, , Radiobox1Life80, %Radiobox1Life80%
-      IniRead, Radiobox2Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life80, 0
-      GuiControl, , Radiobox2Life80, %Radiobox2Life80%
-      IniRead, Radiobox3Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life80, 0
-      GuiControl, , Radiobox3Life80, %Radiobox3Life80%
-      IniRead, Radiobox4Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life80, 0
-      GuiControl, , Radiobox4Life80, %Radiobox4Life80%
-      IniRead, Radiobox5Life80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life80, 0
-      GuiControl, , Radiobox5Life80, %Radiobox5Life80%
-
-      IniRead, Radiobox1Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Life90, 0
-      GuiControl, , Radiobox1Life90, %Radiobox1Life90%
-      IniRead, Radiobox2Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Life90, 0
-      GuiControl, , Radiobox2Life90, %Radiobox2Life90%
-      IniRead, Radiobox3Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Life90, 0
-      GuiControl, , Radiobox3Life90, %Radiobox3Life90%
-      IniRead, Radiobox4Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Life90, 0
-      GuiControl, , Radiobox4Life90, %Radiobox4Life90%
-      IniRead, Radiobox5Life90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Life90, 0
-      GuiControl, , Radiobox5Life90, %Radiobox5Life90%
-
-      IniRead, RadioUncheck1Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck1Life, 1
-      GuiControl, , RadioUncheck1Life, %RadioUncheck1Life%
-      IniRead, RadioUncheck2Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck2Life, 1
-      GuiControl, , RadioUncheck2Life, %RadioUncheck2Life%
-      IniRead, RadioUncheck3Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck3Life, 1
-      GuiControl, , RadioUncheck3Life, %RadioUncheck3Life%
-      IniRead, RadioUncheck4Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck4Life, 1
-      GuiControl, , RadioUncheck4Life, %RadioUncheck4Life%
-      IniRead, RadioUncheck5Life, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck5Life, 1
-      GuiControl, , RadioUncheck5Life, %RadioUncheck5Life%
-      
-      ;ES Flasks
-      IniRead, Radiobox1ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES20, 0
-      GuiControl, , Radiobox1ES20, %Radiobox1ES20%
-      IniRead, Radiobox2ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES20, 0
-      GuiControl, , Radiobox2ES20, %Radiobox2ES20%
-      IniRead, Radiobox3ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES20, 0
-      GuiControl, , Radiobox3ES20, %Radiobox3ES20%
-      IniRead, Radiobox4ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES20, 0
-      GuiControl, , Radiobox4ES20, %Radiobox4ES20%
-      IniRead, Radiobox5ES20, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES20, 0
-      GuiControl, , Radiobox5ES20, %Radiobox5ES20%
-      
-      IniRead, Radiobox1ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES30, 0
-      GuiControl, , Radiobox1ES30, %Radiobox1ES30%
-      IniRead, Radiobox2ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES30, 0
-      GuiControl, , Radiobox2ES30, %Radiobox2ES30%
-      IniRead, Radiobox3ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES30, 0
-      GuiControl, , Radiobox3ES30, %Radiobox3ES30%
-      IniRead, Radiobox4ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES30, 0
-      GuiControl, , Radiobox4ES30, %Radiobox4ES30%
-      IniRead, Radiobox5ES30, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES30, 0
-      GuiControl, , Radiobox5ES30, %Radiobox5ES30%
-      
-      IniRead, Radiobox1ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES40, 0
-      GuiControl, , Radiobox1ES40, %Radiobox1ES40%
-      IniRead, Radiobox2ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES40, 0
-      GuiControl, , Radiobox2ES40, %Radiobox2ES40%
-      IniRead, Radiobox3ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES40, 0
-      GuiControl, , Radiobox3ES40, %Radiobox3ES40%
-      IniRead, Radiobox4ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES40, 0
-      GuiControl, , Radiobox4ES40, %Radiobox4ES40%
-      IniRead, Radiobox5ES40, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES40, 0
-      GuiControl, , Radiobox5ES40, %Radiobox5ES40%
-      
-      IniRead, Radiobox1ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES50, 0
-      GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-      IniRead, Radiobox2ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES50, 0
-      GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-      IniRead, Radiobox3ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES50, 0
-      GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-      IniRead, Radiobox4ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES50, 0
-      GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-      IniRead, Radiobox5ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES50, 0
-      GuiControl, , Radiobox5ES50, %Radiobox5ES50%
-      
-      IniRead, Radiobox1ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES50, 0
-      GuiControl, , Radiobox1ES50, %Radiobox1ES50%
-      IniRead, Radiobox2ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES50, 0
-      GuiControl, , Radiobox2ES50, %Radiobox2ES50%
-      IniRead, Radiobox3ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES50, 0
-      GuiControl, , Radiobox3ES50, %Radiobox3ES50%
-      IniRead, Radiobox4ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES50, 0
-      GuiControl, , Radiobox4ES50, %Radiobox4ES50%
-      IniRead, Radiobox5ES50, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES50, 0
-      GuiControl, , Radiobox5ES50, %Radiobox5ES50%
-      
-      IniRead, Radiobox1ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES60, 0
-      GuiControl, , Radiobox1ES60, %Radiobox1ES60%
-      IniRead, Radiobox2ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES60, 0
-      GuiControl, , Radiobox2ES60, %Radiobox2ES60%
-      IniRead, Radiobox3ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES60, 0
-      GuiControl, , Radiobox3ES60, %Radiobox3ES60%
-      IniRead, Radiobox4ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES60, 0
-      GuiControl, , Radiobox4ES60, %Radiobox4ES60%
-      IniRead, Radiobox5ES60, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES60, 0
-      GuiControl, , Radiobox5ES60, %Radiobox5ES60%
-      
-      IniRead, Radiobox1ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES70, 0
-      GuiControl, , Radiobox1ES70, %Radiobox1ES70%
-      IniRead, Radiobox2ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES70, 0
-      GuiControl, , Radiobox2ES70, %Radiobox2ES70%
-      IniRead, Radiobox3ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES70, 0
-      GuiControl, , Radiobox3ES70, %Radiobox3ES70%
-      IniRead, Radiobox4ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES70, 0
-      GuiControl, , Radiobox4ES70, %Radiobox4ES70%
-      IniRead, Radiobox5ES70, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES70, 0
-      GuiControl, , Radiobox5ES70, %Radiobox5ES70%
-      
-      IniRead, Radiobox1ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES80, 0
-      GuiControl, , Radiobox1ES80, %Radiobox1ES80%
-      IniRead, Radiobox2ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES80, 0
-      GuiControl, , Radiobox2ES80, %Radiobox2ES80%
-      IniRead, Radiobox3ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES80, 0
-      GuiControl, , Radiobox3ES80, %Radiobox3ES80%
-      IniRead, Radiobox4ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES80, 0
-      GuiControl, , Radiobox4ES80, %Radiobox4ES80%
-      IniRead, Radiobox5ES80, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES80, 0
-      GuiControl, , Radiobox5ES80, %Radiobox5ES80%
-      
-      IniRead, Radiobox1ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1ES90, 0
-      GuiControl, , Radiobox1ES90, %Radiobox1ES90%
-      IniRead, Radiobox2ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2ES90, 0
-      GuiControl, , Radiobox2ES90, %Radiobox2ES90%
-      IniRead, Radiobox3ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3ES90, 0
-      GuiControl, , Radiobox3ES90, %Radiobox3ES90%
-      IniRead, Radiobox4ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4ES90, 0
-      GuiControl, , Radiobox4ES90, %Radiobox4ES90%
-      IniRead, Radiobox5ES90, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5ES90, 0
-      GuiControl, , Radiobox5ES90, %Radiobox5ES90%
-      
-      IniRead, RadioUncheck1ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck1ES, 1
-      GuiControl, , RadioUncheck1ES, %RadioUncheck1ES%
-      IniRead, RadioUncheck2ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck2ES, 1
-      GuiControl, , RadioUncheck2ES, %RadioUncheck2ES%
-      IniRead, RadioUncheck3ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck3ES, 1
-      GuiControl, , RadioUncheck3ES, %RadioUncheck3ES%
-      IniRead, RadioUncheck4ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck4ES, 1
-      GuiControl, , RadioUncheck4ES, %RadioUncheck4ES%
-      IniRead, RadioUncheck5ES, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, RadioUncheck5ES, 1
-      GuiControl, , RadioUncheck5ES, %RadioUncheck5ES%
-      
-      ;Mana Flasks
-      IniRead, Radiobox1Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox1Mana10, 0
-      GuiControl, , Radiobox1Mana10, %Radiobox1Mana10%
-      IniRead, Radiobox2Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox2Mana10, 0
-      GuiControl, , Radiobox2Mana10, %Radiobox2Mana10%
-      IniRead, Radiobox3Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox3Mana10, 0
-      GuiControl, , Radiobox3Mana10, %Radiobox3Mana10%
-      IniRead, Radiobox4Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox4Mana10, 0
-      GuiControl, , Radiobox4Mana10, %Radiobox4Mana10%
-      IniRead, Radiobox5Mana10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Radiobox5Mana10, 0
-      GuiControl, , Radiobox5Mana10, %Radiobox5Mana10%
-      
-      ;Flask Cooldowns
-      IniRead, CooldownFlask1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask1, 4800
-      GuiControl, , CooldownFlask1, %CooldownFlask1%
-      IniRead, CooldownFlask2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask2, 4800
-      GuiControl, , CooldownFlask2, %CooldownFlask2%
-      IniRead, CooldownFlask3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask3, 4800
-      GuiControl, , CooldownFlask3, %CooldownFlask3%
-      IniRead, CooldownFlask4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask4, 4800
-      GuiControl, , CooldownFlask4, %CooldownFlask4%
-      IniRead, CooldownFlask5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownFlask5  , 4800
-      GuiControl, , CooldownFlask5, %CooldownFlask5%
-      
-      ;Attack Flasks
-      IniRead, MainAttackbox1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox1, 0
-      GuiControl, , MainAttackbox1, %MainAttackbox1%
-      IniRead, MainAttackbox2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox2, 0
-      GuiControl, , MainAttackbox2, %MainAttackbox2%
-      IniRead, MainAttackbox3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox3, 0
-      GuiControl, , MainAttackbox3, %MainAttackbox3%
-      IniRead, MainAttackbox4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox4, 0
-      GuiControl, , MainAttackbox4, %MainAttackbox4%
-      IniRead, MainAttackbox5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttackbox5, 0
-      GuiControl, , MainAttackbox5, %MainAttackbox5%
-      
-      IniRead, SecondaryAttackbox1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox1, 0
-      GuiControl, , SecondaryAttackbox1, %SecondaryAttackbox1%
-      IniRead, SecondaryAttackbox2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox2, 0
-      GuiControl, , SecondaryAttackbox2, %SecondaryAttackbox2%
-      IniRead, SecondaryAttackbox3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox3, 0
-      GuiControl, , SecondaryAttackbox3, %SecondaryAttackbox3%
-      IniRead, SecondaryAttackbox4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox4, 0
-      GuiControl, , SecondaryAttackbox4, %SecondaryAttackbox4%
-      IniRead, SecondaryAttackbox5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttackbox5, 0
-      GuiControl, , SecondaryAttackbox5, %SecondaryAttackbox5%
-      
       ;Attack Keys
       IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttack, RButton
       GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
@@ -8698,21 +7543,7 @@ Return
       GuiControl, , QSonMainAttack, %QSonMainAttack%
       IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonSecondaryAttack, 0
       GuiControl, , QSonSecondaryAttack, %QSonSecondaryAttack%
-      
-      ;Quicksilver Flasks
-      IniRead, TriggerQuicksilverDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, TriggerQuicksilverDelay, .5
-      GuiControl, , TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
-      IniRead, Radiobox1QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot1, 0
-      GuiControl, , Radiobox1QS, %Radiobox1QS%
-      IniRead, Radiobox2QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot2, 0
-      GuiControl, , Radiobox2QS, %Radiobox2QS%
-      IniRead, Radiobox3QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot3, 0
-      GuiControl, , Radiobox3QS, %Radiobox3QS%
-      IniRead, Radiobox4QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot4, 0
-      GuiControl, , Radiobox4QS, %Radiobox4QS%
-      IniRead, Radiobox5QS, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuicksilverSlot5, 0
-      GuiControl, , Radiobox5QS, %Radiobox5QS%
-      
+
       ;CharacterTypeCheck
       IniRead, RadioLife, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Life, 1
       GuiControl, , RadioLife, %RadioLife%
@@ -8738,10 +7569,6 @@ Return
       ;EldritchBattery
       IniRead, YesEldritchBattery, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesEldritchBattery, 0
       GuiControl, , YesEldritchBattery, %YesEldritchBattery%
-
-      ;ManaThreshold
-      IniRead, ManaThreshold, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, ManaThreshold, 0
-      GuiControl, , ManaThreshold, %ManaThreshold%
 
       ;AutoQuit
       IniRead, QuitBelow, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuitBelow, 20
@@ -8968,88 +7795,6 @@ Return
         IconStringUtility10 := """" . IconStringUtility10 . """"
       GuiControl, , IconStringUtility10, %IconStringUtility10%
 
-      ;Pop Flasks Keys
-      IniRead, PopFlasks1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks1, 1
-      GuiControl, , PopFlasks1, %PopFlasks1%
-      IniRead, PopFlasks2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks2, 1
-      GuiControl, , PopFlasks2, %PopFlasks2%
-      IniRead, PopFlasks3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks3, 1
-      GuiControl, , PopFlasks3, %PopFlasks3%
-      IniRead, PopFlasks4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks4, 1
-      GuiControl, , PopFlasks4, %PopFlasks4%
-      IniRead, PopFlasks5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PopFlasks5, 1
-      GuiControl, , PopFlasks5, %PopFlasks5%
-
-      ;Update UI
-      if (RadioLife=1) {
-        loop 5 {
-          GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Disable, Radiobox%A_Index%ES90
-          GuiControl, Disable, Radiobox%A_Index%ES80
-          GuiControl, Disable, Radiobox%A_Index%ES70
-          GuiControl, Disable, Radiobox%A_Index%ES60
-          GuiControl, Disable, Radiobox%A_Index%ES50
-          GuiControl, Disable, Radiobox%A_Index%ES40
-          GuiControl, Disable, Radiobox%A_Index%ES30
-          GuiControl, Disable, Radiobox%A_Index%ES20
-          GuiControl, Disable, RadioUncheck%A_Index%ES
-        }
-      }
-      else if (RadioHybrid=1) {
-        loop 5 {
-          GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Enable, Radiobox%A_Index%ES90
-          GuiControl, Enable, Radiobox%A_Index%ES80
-          GuiControl, Enable, Radiobox%A_Index%ES70
-          GuiControl, Enable, Radiobox%A_Index%ES60
-          GuiControl, Enable, Radiobox%A_Index%ES50
-          GuiControl, Enable, Radiobox%A_Index%ES40
-          GuiControl, Enable, Radiobox%A_Index%ES30
-          GuiControl, Enable, Radiobox%A_Index%ES20
-          GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-      }
-      else if (RadioCi=1) {
-        loop 5 {
-          GuiControl, Disable, Radiobox%A_Index%Life90
-            GuiControl, Disable, Radiobox%A_Index%Life80
-            GuiControl, Disable, Radiobox%A_Index%Life70
-            GuiControl, Disable, Radiobox%A_Index%Life60
-            GuiControl, Disable, Radiobox%A_Index%Life50
-            GuiControl, Disable, Radiobox%A_Index%Life40
-            GuiControl, Disable, Radiobox%A_Index%Life30
-            GuiControl, Disable, Radiobox%A_Index%Life20
-            GuiControl, Disable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Enable, Radiobox%A_Index%ES90
-          GuiControl, Enable, Radiobox%A_Index%ES80
-          GuiControl, Enable, Radiobox%A_Index%ES70
-          GuiControl, Enable, Radiobox%A_Index%ES60
-          GuiControl, Enable, Radiobox%A_Index%ES50
-          GuiControl, Enable, Radiobox%A_Index%ES40
-          GuiControl, Enable, Radiobox%A_Index%ES30
-          GuiControl, Enable, Radiobox%A_Index%ES20
-          GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-      }
     return  
     }
 
@@ -10340,7 +9085,7 @@ Return
     }
   }
 
-  { ; Gui Update functions - updateCharacterType, UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility, FlaskCheck, UtilityCheck
+  { ; Gui Update functions - UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility
     SaveINI(type:="General") {
       Gui, Submit, NoHide
       If A_GuiControl ~= "UpDown"
@@ -10370,79 +9115,6 @@ Return
       IniWrite, %ChaosRecipeStashMethodTab%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodTab
       IniWrite, %ChaosRecipeStashMethodSort%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodSort
     Return
-
-    updateCharacterType:
-      Gui, Submit, NoHide
-      if(RadioLife==1) {
-        loop 5 {
-          GuiControl, Enable, Radiobox%A_Index%Life90
-          GuiControl, Enable, Radiobox%A_Index%Life80
-          GuiControl, Enable, Radiobox%A_Index%Life70
-          GuiControl, Enable, Radiobox%A_Index%Life60
-          GuiControl, Enable, Radiobox%A_Index%Life50
-          GuiControl, Enable, Radiobox%A_Index%Life40
-          GuiControl, Enable, Radiobox%A_Index%Life30
-          GuiControl, Enable, Radiobox%A_Index%Life20
-          GuiControl, Enable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Disable, Radiobox%A_Index%ES90
-          GuiControl, Disable, Radiobox%A_Index%ES80
-          GuiControl, Disable, Radiobox%A_Index%ES70
-          GuiControl, Disable, Radiobox%A_Index%ES60
-          GuiControl, Disable, Radiobox%A_Index%ES50
-          GuiControl, Disable, Radiobox%A_Index%ES40
-          GuiControl, Disable, Radiobox%A_Index%ES30
-          GuiControl, Disable, Radiobox%A_Index%ES20
-          GuiControl, Disable, RadioUncheck%A_Index%ES
-        }
-      }
-      else if(RadioHybrid==1) {
-        loop 5 {
-          GuiControl, Enable, Radiobox%A_Index%Life90
-            GuiControl, Enable, Radiobox%A_Index%Life80
-            GuiControl, Enable, Radiobox%A_Index%Life70
-            GuiControl, Enable, Radiobox%A_Index%Life60
-            GuiControl, Enable, Radiobox%A_Index%Life50
-            GuiControl, Enable, Radiobox%A_Index%Life40
-            GuiControl, Enable, Radiobox%A_Index%Life30
-            GuiControl, Enable, Radiobox%A_Index%Life20
-            GuiControl, Enable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Enable, Radiobox%A_Index%ES90
-          GuiControl, Enable, Radiobox%A_Index%ES80
-          GuiControl, Enable, Radiobox%A_Index%ES70
-          GuiControl, Enable, Radiobox%A_Index%ES60
-          GuiControl, Enable, Radiobox%A_Index%ES50
-          GuiControl, Enable, Radiobox%A_Index%ES40
-          GuiControl, Enable, Radiobox%A_Index%ES30
-          GuiControl, Enable, Radiobox%A_Index%ES20
-          GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-      }
-      else if(RadioCi==1) {
-        loop 5 {
-          GuiControl, Disable, Radiobox%A_Index%Life90
-            GuiControl, Disable, Radiobox%A_Index%Life80
-            GuiControl, Disable, Radiobox%A_Index%Life70
-            GuiControl, Disable, Radiobox%A_Index%Life60
-            GuiControl, Disable, Radiobox%A_Index%Life50
-            GuiControl, Disable, Radiobox%A_Index%Life40
-            GuiControl, Disable, Radiobox%A_Index%Life30
-            GuiControl, Disable, Radiobox%A_Index%Life20
-            GuiControl, Disable, RadioUncheck%A_Index%Life
-            
-          GuiControl, Enable, Radiobox%A_Index%ES90
-          GuiControl, Enable, Radiobox%A_Index%ES80
-          GuiControl, Enable, Radiobox%A_Index%ES70
-          GuiControl, Enable, Radiobox%A_Index%ES60
-          GuiControl, Enable, Radiobox%A_Index%ES50
-          GuiControl, Enable, Radiobox%A_Index%ES40
-          GuiControl, Enable, Radiobox%A_Index%ES30
-          GuiControl, Enable, Radiobox%A_Index%ES20
-          GuiControl, Enable, RadioUncheck%A_Index%ES
-        }
-      }
-    return
 
     UpdateStash:
       ; Gui, Submit, NoHide
@@ -10751,70 +9423,6 @@ Return
       IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10
       
       ; SendMSG(1, 0)
-    Return
-
-    FlaskCheck:
-      Gui, Submit, NoHide
-      loop 5 {
-        if(Radiobox%A_Index%Life90==1) || (Radiobox%A_Index%ES90==1) {
-          GuiControl,, Radiobox%A_Index%QS, 0
-          GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life80==1) || (Radiobox%A_Index%ES80==1) {
-          GuiControl,, Radiobox%A_Index%QS, 0
-          GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life70==1) || (Radiobox%A_Index%ES70==1) {
-          GuiControl,, Radiobox%A_Index%QS, 0
-          GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life60==1) || (Radiobox%A_Index%ES60==1) {
-          GuiControl,, Radiobox%A_Index%QS, 0
-          GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life50==1) || (Radiobox%A_Index%ES50==1) {
-          GuiControl,, Radiobox%A_Index%QS, 0
-          GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life40==1) || (Radiobox%A_Index%ES40==1) {
-          GuiControl,, Radiobox%A_Index%QS, 0
-          GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life30==1) || (Radiobox%A_Index%ES30==1) {
-          GuiControl,, Radiobox%A_Index%QS, 0
-          GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-        if(Radiobox%A_Index%Life20==1) || (Radiobox%A_Index%ES20==1) {
-          GuiControl,, Radiobox%A_Index%QS, 0
-          GuiControl,, Radiobox%A_Index%Mana10, 0
-        }
-      }
-    return
-
-    UtilityCheck:
-      Gui, Submit, NoHide
-      loop 5 {
-        if(Radiobox%A_Index%QS==1) || (Radiobox%A_Index%Mana10==1) {
-          GuiControl,, Radiobox%A_Index%Life90, 0
-          GuiControl,, Radiobox%A_Index%Life80, 0
-          GuiControl,, Radiobox%A_Index%Life70, 0
-          GuiControl,, Radiobox%A_Index%Life60, 0
-          GuiControl,, Radiobox%A_Index%Life50, 0
-          GuiControl,, Radiobox%A_Index%Life40, 0
-          GuiControl,, Radiobox%A_Index%Life30, 0
-          GuiControl,, Radiobox%A_Index%Life20, 0
-          GuiControl,, RadioUncheck%A_Index%Life, 1
-          GuiControl,, Radiobox%A_Index%ES90, 0
-          GuiControl,, Radiobox%A_Index%ES80, 0
-          GuiControl,, Radiobox%A_Index%ES70, 0
-          GuiControl,, Radiobox%A_Index%ES60, 0
-          GuiControl,, Radiobox%A_Index%ES50, 0
-          GuiControl,, Radiobox%A_Index%ES40, 0
-          GuiControl,, Radiobox%A_Index%ES30, 0
-          GuiControl,, Radiobox%A_Index%ES20, 0
-          GuiControl,, RadioUncheck%A_Index%ES, 1
-          }
-        }
     Return
   }
 
