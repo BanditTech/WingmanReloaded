@@ -495,7 +495,7 @@
     for k, v in ["1","2","3","4","5"]
       WR.Flask[v] := {"Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0, "Group":Chr(A_Index+96), "Slot":A_Index}
     for k, v in ["1","2","3","4","5","6","7","8","9","10"]
-      WR.Utility[v] := {"Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "Icon":"", "IconShown":"0", "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index}
+      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index}
     WR.cdExpires.Group := {}
     for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
       WR.cdExpires.Group[v] := A_TickCount
@@ -1220,33 +1220,6 @@
        Log("data","pass", "WR_Affix.json")
     }
   }
-  IfNotExist, %A_ScriptDir%\data\Migrate OLD CLF.ahk
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Migrate OLD CLF.ahk, %A_ScriptDir%\data\Migrate OLD CLF.ahk
-    if ErrorLevel {
-      Log("data","uhoh", "Migrate OLD CLF.ahk")
-      MsgBox, Error ED02 : There was a problem downloading Migrate OLD CLF.ahk
-    }
-    Else if (ErrorLevel=0){
-      Log("data","pass", "Migrate OLD CLF.ahk")
-      IfExist, %A_ScriptDir%\save\LootFilter.json
-      {
-        MsgBox, 4, Migrate OLD CLF detected, % ""
-        . "The script has detected you are updating from an older version`n"
-        . "The script has downloaded a migration tool to the DATA folder`n"
-        . "`n"
-        . "Click YES to migrate common CLF keys to their new format`n"
-        . "`n"
-        . "Click NO to Continue`n"
-        . "`n"
-        . "You will not receive this prompt again."
-        IfMsgBox Yes
-        {
-          Run, %A_ScriptDir%\data\Migrate OLD CLF.ahk
-        }
-      }
-    }
-  }
   IfNotExist, %A_ScriptDir%\data\Bases.json
   {
     UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
@@ -1430,9 +1403,13 @@
       Built[slot] := True
       Gui, Utility%slot%: new, AlwaysOnTop
 
-      Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h280, Utility Slot %slot%
+      Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h325, Utility Slot %slot%
 
-      Gui, Utility%slot%: Add, GroupBox, Section center xs+10 yp+25 w110 h45, Cooldown
+      Gui, Utility%slot%: Add, GroupBox, Section center xs+10 yp+20 w110 h65, Enable Utility
+      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Enable xs+10   yp+20 Checked" WR.Utility[slot].Enable , Enable
+      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "OnCD xs+10   y+8 Checked" WR.Utility[slot].OnCD , Cast on CD
+
+      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h45, Cooldown
       Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%CD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].CD
 
       Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h45, Keys to Press
@@ -1445,15 +1422,15 @@
       Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h55, Group Cooldown
       Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
 
-      Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w110 h45, Trigger on Move
+      Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w110 h45, Pop All Flasks
+      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "PopAll xs+10   yp+20 Checked" WR.Utility[slot].PopAll , Include
+
+      Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h45, Trigger on Move
       Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Move xs+10   yp+20 Checked" WR.Utility[slot].Move , Enable
 
       Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h65, Trigger with Attack
       Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttack xs+10 yp+20 Checked" WR.Utility[slot].MainAttack, Main
       Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+10 Checked" WR.Utility[slot].SecondaryAttack, Secondary
-
-      Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h45, Missing Icon
-      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown xs+10   yp+20 Checked" WR.Utility[slot].IconShown , Invert to Shown
 
       Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w240 h55, Life Trigger
       Gui, Utility%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vUtility%slot%Life   xs+3   yp+15 w235 h30, % WR.Utility[slot].Life
@@ -1462,15 +1439,23 @@
       Gui, Utility%slot%: Add, GroupBox, center xs y+15 w240 h55, Mana Trigger
       Gui, Utility%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vUtility%slot%Mana   xs+3   yp+15 w235 h30, % WR.Utility[slot].Mana
 
-      Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+15 w360 h65, Icon Sample String
+      Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+15 w360 h100, Trigger when Sample String not found
       Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
 
-      Gui, Utility%slot%: show, w520 h300
+      Gui, Utility%slot%: Add, Text, xs+10  y+8 , Search Area:
+      Gui, Utility%slot%: Add, Radio, % "vUtility" slot "IconSearch  x+10   yp-4 h22 Checked" (WR.Utility[slot].IconSearch==1?1:0), Buff Area
+      Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==2?1:0), DeBuff Area
+      Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==3?1:0), Custom
+      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown xs+10   y+5 hp Checked" WR.Utility[slot].IconShown , Invert to Shown
+      Gui, Utility%slot%: Add, Button, x+10 yp, Show Utility %slot% Area
+      Gui, Utility%slot%: Add, Button, x+10 yp wp, Set Utility %slot% Area
+      Utility%slot%IconArea := WR.Utility[slot].IconArea
+      Gui, Utility%slot%: show, w520 h340
     }
     Return
 
     UtilitySaveValues:
-      for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "Icon", "IconShown", "Move", "Life", "ES", "Mana", "Group"]
+      for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Life", "ES", "Mana", "Group"]
         WR.Utility[which][kind] := Utility%which%%kind%
   
       FileDelete, %A_ScriptDir%\save\Utility.json
@@ -1636,7 +1621,7 @@
     Gui Add, GroupBox,     Section  w265 h85        xs   y+14 ,         Movement Settings
     Gui,Font,
     Gui Add, Text,                     xs+10   ys+20,         Movement Trigger Delay (in seconds):
-    Gui Add, Edit,       vTriggerQuicksilverDelay  x+10   yp   w22 h17,   %TriggerQuicksilverDelay%
+    Gui Add, Edit,       vTriggerQuicksilverDelay  x+10 Center  yp   w55 h17,   %TriggerQuicksilverDelay%
     Gui, Font, s8 cBlack
     ;Improve UI later
     Gui,Add,GroupBox, xs+10 y+1 w245 h40    center                  , Movement Triggers with Attack Keys
@@ -1649,6 +1634,38 @@
     Gui, Add, Text,                   x279   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,  Center   Section  w350 h250        x+15   ym+20 ,    Game Logic States
+    Gui,Font,
+    Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar hwndMainMenuIDOnChar, % "Character Active"
+    CtlColors.Attach(MainMenuIDOnChar, "Lime", "")
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnOHB hwndMainMenuIDOnOHB, % "Overhead Health Bar"
+    CtlColors.Attach(MainMenuIDOnOHB, "Lime", "")
+    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnChat hwndMainMenuIDOnChat, % "Chat Open"
+    CtlColors.Attach(MainMenuIDOnChat, "", "Green")
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnInventory hwndMainMenuIDOnInventory, % "Inventory Open"
+    CtlColors.Attach(MainMenuIDOnInventory, "", "Green")
+    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnDiv hwndMainMenuIDOnDiv, % "Div Trade Open"
+    CtlColors.Attach(MainMenuIDOnDiv, "", "Green")
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnStash hwndMainMenuIDOnStash, % "Stash Open"
+    CtlColors.Attach(MainMenuIDOnStash, "", "Green")
+    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnMenu hwndMainMenuIDOnMenu, % "Talent Menu Open"
+    CtlColors.Attach(MainMenuIDOnMenu, "", "Green")
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnVendor hwndMainMenuIDOnVendor, % "Vendor Trade Open"
+    CtlColors.Attach(MainMenuIDOnVendor, "", "Green")
+    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnDelveChart hwndMainMenuIDOnDelveChart, % "Delve Chart Open"
+    CtlColors.Attach(MainMenuIDOnDelveChart, "", "Green")
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnLeft hwndMainMenuIDOnLeft, % "Left Panel Open"
+    CtlColors.Attach(MainMenuIDOnLeft, "", "Green")
+    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnMetamorph hwndMainMenuIDOnMetamorph, % "Map Metamorph Open"
+    CtlColors.Attach(MainMenuIDOnMetamorph, "", "Green")
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnDetonate hwndMainMenuIDOnDetonate, % "Detonate Shown"
+    CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
+    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnLocker hwndMainMenuIDOnLocker, % "League Stash Open"
+    CtlColors.Attach(MainMenuIDOnLocker, "", "Green")
+    Gui, Add, Button, gCheckPixelGrid xs y+15 w190 , Check Inventory Grid
+
+
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gloadSaved     x+5           h23,   Load
@@ -1656,186 +1673,186 @@
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
   Gui, Tab, Tools
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,             w625 h311    section    xm+5   y+15,         Utility Management:
-    Gui, Font,
+    ; Gui, Font, Bold s9 cBlack, Arial
+    ; Gui Add, GroupBox,             w625 h311    section    xm+5   y+15,         Utility Management:
+    ; Gui, Font,
 
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility1 +BackgroundTrans Checked%YesUtility1%  Right  ys+45 xs+7  , 1
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility2 +BackgroundTrans Checked%YesUtility2%  Right  y+12    , 2
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility3 +BackgroundTrans Checked%YesUtility3%  Right  y+12    , 3
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility4 +BackgroundTrans Checked%YesUtility4%  Right  y+12    , 4
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility5 +BackgroundTrans Checked%YesUtility5%  Right  y+12    , 5
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility6 +BackgroundTrans Checked%YesUtility6%  Right  y+12    , 6
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility7 +BackgroundTrans Checked%YesUtility7%  Right  y+12    , 7
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility8 +BackgroundTrans Checked%YesUtility8%  Right  y+12    , 8
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility9 +BackgroundTrans Checked%YesUtility9%  Right  y+12    , 9
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility10 +BackgroundTrans Checked%YesUtility10% Right  y+12 xp-6    , 10
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1 +BackgroundTrans Checked%YesUtility1%  Right  ys+45 xs+7  , 1
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2 +BackgroundTrans Checked%YesUtility2%  Right  y+12    , 2
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3 +BackgroundTrans Checked%YesUtility3%  Right  y+12    , 3
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4 +BackgroundTrans Checked%YesUtility4%  Right  y+12    , 4
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5 +BackgroundTrans Checked%YesUtility5%  Right  y+12    , 5
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6 +BackgroundTrans Checked%YesUtility6%  Right  y+12    , 6
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7 +BackgroundTrans Checked%YesUtility7%  Right  y+12    , 7
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8 +BackgroundTrans Checked%YesUtility8%  Right  y+12    , 8
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9 +BackgroundTrans Checked%YesUtility9%  Right  y+12    , 9
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10 +BackgroundTrans Checked%YesUtility10% Right  y+12 xp-6    , 10
 
-    Gui,Add,Edit,      gUpdateUtility  x+10 ys+42   w40 h19   vCooldownUtility1        ,%CooldownUtility1%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility2        ,%CooldownUtility2%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility3        ,%CooldownUtility3%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility4        ,%CooldownUtility4%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility5        ,%CooldownUtility5%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility6        ,%CooldownUtility6%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility7        ,%CooldownUtility7%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility8        ,%CooldownUtility8%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility9        ,%CooldownUtility9%
-    Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility10        ,%CooldownUtility10%
+    ; Gui,Add,Edit,      gUpdateUtility  x+10 ys+42   w40 h19   vCooldownUtility1        ,%CooldownUtility1%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility2        ,%CooldownUtility2%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility3        ,%CooldownUtility3%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility4        ,%CooldownUtility4%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility5        ,%CooldownUtility5%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility6        ,%CooldownUtility6%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility7        ,%CooldownUtility7%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility8        ,%CooldownUtility8%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility9        ,%CooldownUtility9%
+    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility10        ,%CooldownUtility10%
 
-    Gui,Add,Edit,      x+12  ys+42   w40 h19 gUpdateUtility  vKeyUtility1        ,%KeyUtility1%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility2        ,%KeyUtility2%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility3        ,%KeyUtility3%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility4        ,%KeyUtility4%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility5        ,%KeyUtility5%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility6        ,%KeyUtility6%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility7        ,%KeyUtility7%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility8        ,%KeyUtility8%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility9        ,%KeyUtility9%
-    Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility10        ,%KeyUtility10%
+    ; Gui,Add,Edit,      x+12  ys+42   w40 h19 gUpdateUtility  vKeyUtility1        ,%KeyUtility1%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility2        ,%KeyUtility2%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility3        ,%KeyUtility3%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility4        ,%KeyUtility4%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility5        ,%KeyUtility5%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility6        ,%KeyUtility6%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility7        ,%KeyUtility7%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility8        ,%KeyUtility8%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility9        ,%KeyUtility9%
+    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility10        ,%KeyUtility10%
 
-    Gui,Add,Edit,      x+11  ys+42   w60 h19 gUpdateUtility  vIconStringUtility1        ,%IconStringUtility1%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility2        ,%IconStringUtility2%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility3        ,%IconStringUtility3%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility4        ,%IconStringUtility4%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility5        ,%IconStringUtility5%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility6        ,%IconStringUtility6%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility7        ,%IconStringUtility7%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility8        ,%IconStringUtility8%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility9        ,%IconStringUtility9%
-    Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility10      ,%IconStringUtility10%
+    ; Gui,Add,Edit,      x+11  ys+42   w60 h19 gUpdateUtility  vIconStringUtility1        ,%IconStringUtility1%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility2        ,%IconStringUtility2%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility3        ,%IconStringUtility3%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility4        ,%IconStringUtility4%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility5        ,%IconStringUtility5%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility6        ,%IconStringUtility6%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility7        ,%IconStringUtility7%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility8        ,%IconStringUtility8%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility9        ,%IconStringUtility9%
+    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility10      ,%IconStringUtility10%
 
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility1InverseBuff +BackgroundTrans Checked%YesUtility1InverseBuff%  x+7 ys+45, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility2InverseBuff +BackgroundTrans Checked%YesUtility2InverseBuff%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility3InverseBuff +BackgroundTrans Checked%YesUtility3InverseBuff%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility4InverseBuff +BackgroundTrans Checked%YesUtility4InverseBuff%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility5InverseBuff +BackgroundTrans Checked%YesUtility5InverseBuff%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility6InverseBuff +BackgroundTrans Checked%YesUtility6InverseBuff%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility7InverseBuff +BackgroundTrans Checked%YesUtility7InverseBuff%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility8InverseBuff +BackgroundTrans Checked%YesUtility8InverseBuff%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility9InverseBuff +BackgroundTrans Checked%YesUtility9InverseBuff%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility10InverseBuff +BackgroundTrans Checked%YesUtility10InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1InverseBuff +BackgroundTrans Checked%YesUtility1InverseBuff%  x+7 ys+45, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2InverseBuff +BackgroundTrans Checked%YesUtility2InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3InverseBuff +BackgroundTrans Checked%YesUtility3InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4InverseBuff +BackgroundTrans Checked%YesUtility4InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5InverseBuff +BackgroundTrans Checked%YesUtility5InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6InverseBuff +BackgroundTrans Checked%YesUtility6InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7InverseBuff +BackgroundTrans Checked%YesUtility7InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8InverseBuff +BackgroundTrans Checked%YesUtility8InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9InverseBuff +BackgroundTrans Checked%YesUtility9InverseBuff%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10InverseBuff +BackgroundTrans Checked%YesUtility10InverseBuff%    y+12, %A_Space%
 
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%  x+17 ys+45, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility2Quicksilver +BackgroundTrans Checked%YesUtility2Quicksilver%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility3Quicksilver +BackgroundTrans Checked%YesUtility3Quicksilver%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility4Quicksilver +BackgroundTrans Checked%YesUtility4Quicksilver%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility5Quicksilver +BackgroundTrans Checked%YesUtility5Quicksilver%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility6Quicksilver +BackgroundTrans Checked%YesUtility6Quicksilver%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility7Quicksilver +BackgroundTrans Checked%YesUtility7Quicksilver%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility8Quicksilver +BackgroundTrans Checked%YesUtility8Quicksilver%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility9Quicksilver +BackgroundTrans Checked%YesUtility9Quicksilver%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility10Quicksilver +BackgroundTrans Checked%YesUtility10Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%  x+17 ys+45, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2Quicksilver +BackgroundTrans Checked%YesUtility2Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3Quicksilver +BackgroundTrans Checked%YesUtility3Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4Quicksilver +BackgroundTrans Checked%YesUtility4Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5Quicksilver +BackgroundTrans Checked%YesUtility5Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6Quicksilver +BackgroundTrans Checked%YesUtility6Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7Quicksilver +BackgroundTrans Checked%YesUtility7Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8Quicksilver +BackgroundTrans Checked%YesUtility8Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9Quicksilver +BackgroundTrans Checked%YesUtility9Quicksilver%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10Quicksilver +BackgroundTrans Checked%YesUtility10Quicksilver%    y+12, %A_Space%
 
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility1MainAttack +BackgroundTrans Checked%YesUtility1MainAttack%  x+17 ys+45, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility2MainAttack +BackgroundTrans Checked%YesUtility2MainAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility3MainAttack +BackgroundTrans Checked%YesUtility3MainAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility4MainAttack +BackgroundTrans Checked%YesUtility4MainAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility5MainAttack +BackgroundTrans Checked%YesUtility5MainAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility6MainAttack +BackgroundTrans Checked%YesUtility6MainAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility7MainAttack +BackgroundTrans Checked%YesUtility7MainAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility8MainAttack +BackgroundTrans Checked%YesUtility8MainAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility9MainAttack +BackgroundTrans Checked%YesUtility9MainAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility10MainAttack +BackgroundTrans Checked%YesUtility10MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1MainAttack +BackgroundTrans Checked%YesUtility1MainAttack%  x+17 ys+45, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2MainAttack +BackgroundTrans Checked%YesUtility2MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3MainAttack +BackgroundTrans Checked%YesUtility3MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4MainAttack +BackgroundTrans Checked%YesUtility4MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5MainAttack +BackgroundTrans Checked%YesUtility5MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6MainAttack +BackgroundTrans Checked%YesUtility6MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7MainAttack +BackgroundTrans Checked%YesUtility7MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8MainAttack +BackgroundTrans Checked%YesUtility8MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9MainAttack +BackgroundTrans Checked%YesUtility9MainAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10MainAttack +BackgroundTrans Checked%YesUtility10MainAttack%    y+12, %A_Space%
 
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility1SecondaryAttack +BackgroundTrans Checked%YesUtility1SecondaryAttack%  x+12 ys+45, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility2SecondaryAttack +BackgroundTrans Checked%YesUtility2SecondaryAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility3SecondaryAttack +BackgroundTrans Checked%YesUtility3SecondaryAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility4SecondaryAttack +BackgroundTrans Checked%YesUtility4SecondaryAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility5SecondaryAttack +BackgroundTrans Checked%YesUtility5SecondaryAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility6SecondaryAttack +BackgroundTrans Checked%YesUtility6SecondaryAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility7SecondaryAttack +BackgroundTrans Checked%YesUtility7SecondaryAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility8SecondaryAttack +BackgroundTrans Checked%YesUtility8SecondaryAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility9SecondaryAttack +BackgroundTrans Checked%YesUtility9SecondaryAttack%    y+12, %A_Space%
-    Gui Add, Checkbox, gUpdateUtility  vYesUtility10SecondaryAttack +BackgroundTrans Checked%YesUtility10SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1SecondaryAttack +BackgroundTrans Checked%YesUtility1SecondaryAttack%  x+12 ys+45, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2SecondaryAttack +BackgroundTrans Checked%YesUtility2SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3SecondaryAttack +BackgroundTrans Checked%YesUtility3SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4SecondaryAttack +BackgroundTrans Checked%YesUtility4SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5SecondaryAttack +BackgroundTrans Checked%YesUtility5SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6SecondaryAttack +BackgroundTrans Checked%YesUtility6SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7SecondaryAttack +BackgroundTrans Checked%YesUtility7SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8SecondaryAttack +BackgroundTrans Checked%YesUtility8SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9SecondaryAttack +BackgroundTrans Checked%YesUtility9SecondaryAttack%    y+12, %A_Space%
+    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10SecondaryAttack +BackgroundTrans Checked%YesUtility10SecondaryAttack%    y+12, %A_Space%
 
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1LifePercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
-    GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
-    GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
-    GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
-    GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
-    GuiControl, ChooseString, YesUtility6LifePercent, %YesUtility6LifePercent%
-    GuiControl, ChooseString, YesUtility7LifePercent, %YesUtility7LifePercent%
-    GuiControl, ChooseString, YesUtility8LifePercent, %YesUtility8LifePercent%
-    GuiControl, ChooseString, YesUtility9LifePercent, %YesUtility9LifePercent%
-    GuiControl, ChooseString, YesUtility10LifePercent, %YesUtility10LifePercent%
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1LifePercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
+    ; GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
+    ; GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
+    ; GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
+    ; GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
+    ; GuiControl, ChooseString, YesUtility6LifePercent, %YesUtility6LifePercent%
+    ; GuiControl, ChooseString, YesUtility7LifePercent, %YesUtility7LifePercent%
+    ; GuiControl, ChooseString, YesUtility8LifePercent, %YesUtility8LifePercent%
+    ; GuiControl, ChooseString, YesUtility9LifePercent, %YesUtility9LifePercent%
+    ; GuiControl, ChooseString, YesUtility10LifePercent, %YesUtility10LifePercent%
       
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1ESPercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-    GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
-    GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
-    GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
-    GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
-    GuiControl, ChooseString, YesUtility6ESPercent, %YesUtility6ESPercent%
-    GuiControl, ChooseString, YesUtility7ESPercent, %YesUtility7ESPercent%
-    GuiControl, ChooseString, YesUtility8ESPercent, %YesUtility8ESPercent%
-    GuiControl, ChooseString, YesUtility9ESPercent, %YesUtility9ESPercent%
-    GuiControl, ChooseString, YesUtility10ESPercent, %YesUtility10ESPercent%
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1ESPercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
+    ; GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
+    ; GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
+    ; GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
+    ; GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
+    ; GuiControl, ChooseString, YesUtility6ESPercent, %YesUtility6ESPercent%
+    ; GuiControl, ChooseString, YesUtility7ESPercent, %YesUtility7ESPercent%
+    ; GuiControl, ChooseString, YesUtility8ESPercent, %YesUtility8ESPercent%
+    ; GuiControl, ChooseString, YesUtility9ESPercent, %YesUtility9ESPercent%
+    ; GuiControl, ChooseString, YesUtility10ESPercent, %YesUtility10ESPercent%
       
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1ManaPercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    GuiControl, ChooseString, YesUtility1ManaPercent, %YesUtility1ManaPercent%
-    GuiControl, ChooseString, YesUtility2ManaPercent, %YesUtility2ManaPercent%
-    GuiControl, ChooseString, YesUtility3ManaPercent, %YesUtility3ManaPercent%
-    GuiControl, ChooseString, YesUtility4ManaPercent, %YesUtility4ManaPercent%
-    GuiControl, ChooseString, YesUtility5ManaPercent, %YesUtility5ManaPercent%
-    GuiControl, ChooseString, YesUtility6ManaPercent, %YesUtility6ManaPercent%
-    GuiControl, ChooseString, YesUtility7ManaPercent, %YesUtility7ManaPercent%
-    GuiControl, ChooseString, YesUtility8ManaPercent, %YesUtility8ManaPercent%
-    GuiControl, ChooseString, YesUtility9ManaPercent, %YesUtility9ManaPercent%
-    GuiControl, ChooseString, YesUtility10ManaPercent, %YesUtility10ManaPercent%
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1ManaPercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
+    ; GuiControl, ChooseString, YesUtility1ManaPercent, %YesUtility1ManaPercent%
+    ; GuiControl, ChooseString, YesUtility2ManaPercent, %YesUtility2ManaPercent%
+    ; GuiControl, ChooseString, YesUtility3ManaPercent, %YesUtility3ManaPercent%
+    ; GuiControl, ChooseString, YesUtility4ManaPercent, %YesUtility4ManaPercent%
+    ; GuiControl, ChooseString, YesUtility5ManaPercent, %YesUtility5ManaPercent%
+    ; GuiControl, ChooseString, YesUtility6ManaPercent, %YesUtility6ManaPercent%
+    ; GuiControl, ChooseString, YesUtility7ManaPercent, %YesUtility7ManaPercent%
+    ; GuiControl, ChooseString, YesUtility8ManaPercent, %YesUtility8ManaPercent%
+    ; GuiControl, ChooseString, YesUtility9ManaPercent, %YesUtility9ManaPercent%
+    ; GuiControl, ChooseString, YesUtility10ManaPercent, %YesUtility10ManaPercent%
 
-    Gui Add, Text,                     xs+11   ys+25,   ON:
-    Gui, Add, Text,                   x+9   ys+25     h270 0x11
-    Gui Add, Text,                     x+12   ,   CD:
-    Gui, Add, Text,                   x+13        h270 0x11
-    Gui Add, Text,                     x+10   ,   Key:
-    Gui, Add, Text,                   x+14        h270 0x11
-    Gui Add, Text,                     x+14   ,   Icon:
-    ; Gui, Add, Text,                   x+25        h270 0x11
-    Gui Add, Text,                     x+15   ,   Show:
-    Gui, Add, Text,                   x+7        h270 0x11
-    Gui Add, Text,                     x+8   ,   QS:
-    Gui, Add, Text,                   x+8        h270 0x11
-    Gui Add, Text,                     x+9   ,   Pri:
-    ; Gui, Add, Text,                   x+11        h270 0x11
-    Gui Add, Text,                     x+17   ,   Sec:
-    Gui, Add, Text,                   x+12        h270 0x11
-    Gui Add, Text,                     x+13   ,   Life:
-    Gui, Add, Text,                   x+21        h270 0x11
-    Gui Add, Text,                     x+14   ,   ES:
-    Gui, Add, Text,                   x+17        h270 0x11
-    Gui Add, Text,                     x+9   ,   Mana:
-    Gui, Add, Text,                   x+18        h270 0x11
+    ; Gui Add, Text,                     xs+11   ys+25,   ON:
+    ; Gui, Add, Text,                   x+9   ys+25     h270 0x11
+    ; Gui Add, Text,                     x+12   ,   CD:
+    ; Gui, Add, Text,                   x+13        h270 0x11
+    ; Gui Add, Text,                     x+10   ,   Key:
+    ; Gui, Add, Text,                   x+14        h270 0x11
+    ; Gui Add, Text,                     x+14   ,   Icon:
+    ; ; Gui, Add, Text,                   x+25        h270 0x11
+    ; Gui Add, Text,                     x+15   ,   Show:
+    ; Gui, Add, Text,                   x+7        h270 0x11
+    ; Gui Add, Text,                     x+8   ,   QS:
+    ; Gui, Add, Text,                   x+8        h270 0x11
+    ; Gui Add, Text,                     x+9   ,   Pri:
+    ; ; Gui, Add, Text,                   x+11        h270 0x11
+    ; Gui Add, Text,                     x+17   ,   Sec:
+    ; Gui, Add, Text,                   x+12        h270 0x11
+    ; Gui Add, Text,                     x+13   ,   Life:
+    ; Gui, Add, Text,                   x+21        h270 0x11
+    ; Gui Add, Text,                     x+14   ,   ES:
+    ; Gui, Add, Text,                   x+17        h270 0x11
+    ; Gui Add, Text,                     x+9   ,   Mana:
+    ; Gui, Add, Text,                   x+18        h270 0x11
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,  y+20 xs w250 h150 Section, Channeling Stack Re-Press
+    Gui, Add, GroupBox,  xm+10 ym+25 w250 h150 Section, Channeling Stack Re-Press
     Gui, Font,
     Gui, Add, CheckBox, gUpdateStackRelease vStackRelease_Enable Checked%StackRelease_Enable%  Right x+-65 ys+2 , Enable
     Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffIcon xs+5 ys+19 w150 h21, % StackRelease_BuffIcon
