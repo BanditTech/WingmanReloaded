@@ -494,8 +494,10 @@
       WR.loc[v] := {}
     for k, v in ["1","2","3","4","5"]
       WR.Flask[v] := {"Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0, "Group":Chr(A_Index+96), "Slot":A_Index}
+    for k, v in ["1","2","3","4","5","6","7","8","9","10"]
+      WR.Utility[v] := {"Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "Icon":"", "IconShown":"0", "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index}
     WR.cdExpires.Group := {}
-    for k, v in ["a","b","c","d","e","Mana","Life","QuickSilver","Defense"]
+    for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
       WR.cdExpires.Group[v] := A_TickCount
     WR.cdExpires.Flask := {}
     for k, v in ["1","2","3","4","5"]
@@ -1307,6 +1309,16 @@
     FileRead, JSONtext, %A_ScriptDir%\save\Flask.json
     WR.Flask := JSON.Load(JSONtext)
   }
+  IfNotExist, %A_ScriptDir%\save\Utility.json
+  {
+    JSONtext := JSON.Dump(WR.Utility,,2)
+    FileAppend, %JSONtext%, %A_ScriptDir%\save\Utility.json
+  }
+  Else
+  {
+    FileRead, JSONtext, %A_ScriptDir%\save\Utility.json
+    WR.Utility := JSON.Load(JSONtext)
+  }
   If needReload
     Reload
 ; Build Flask Menu Function
@@ -1330,7 +1342,7 @@
       Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+20   yp+20   w80  h17, %   WR.Flask[slot].Key
 
       Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h55, CD Group
-      Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+20 yp+20 w80" , a|b|c|d|e|Mana|Life|QuickSilver|Defense
+      Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+20 yp+20 w80" , a|b|c|d|e|Mana|Life|ES|QuickSilver|Defense
       GuiControl,Flask%slot%: ChooseString, Flask%slot%Group,% WR.Flask[slot].Group
 
       Gui, Flask%slot%: Add, GroupBox, center xs+10 y+20 w100 h55, Group Cooldown
@@ -1339,10 +1351,10 @@
       Gui, Flask%slot%: Add, GroupBox, Section center x+30 ys+25 w100 h45, Pop All Flasks
       Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "PopAll  xs+10   yp+20 Checked" WR.Flask[slot].PopAll, Include
 
-      Gui, Flask%slot%: Add, GroupBox, center xs y+15 w100 h45, Trigger on Move
+      Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h45, Trigger on Move
       Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Move xs+10   yp+20 Checked" WR.Flask[slot].Move , Enable
 
-      Gui, Flask%slot%: Add, GroupBox, center xs y+15 w100 h65, Trigger with Attack
+      Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h65, Trigger with Attack
       Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttack xs+10 yp+20 Checked" WR.Flask[slot].MainAttack, Main
       Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+10 Checked" WR.Flask[slot].SecondaryAttack, Secondary
 
@@ -1406,6 +1418,146 @@
       Gui, Flask5: Destroy
       Return
   }
+; Build Utility Menu Function
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  UtilityMenu(){
+    Global
+    static Built := {}, which := 1
+    RegExMatch(A_GuiControl, "\d+", slot)
+
+    If !Built[slot]
+    {
+      Built[slot] := True
+      Gui, Utility%slot%: new, AlwaysOnTop
+
+      Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h280, Utility Slot %slot%
+
+      Gui, Utility%slot%: Add, GroupBox, Section center xs+10 yp+25 w110 h45, Cooldown
+      Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%CD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].CD
+
+      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h45, Keys to Press
+      Gui, Utility%slot%: Add, Edit,    center   vUtility%slot%Key       xs+10   yp+20   w80  h17, %   WR.Utility[slot].Key
+
+      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h55, CD Group
+      Gui, Utility%slot%: Add, DropDownList, % "vUtility" slot "Group xs+10 yp+20 w80" , u1|u2|u3|u4|u5|u6|u7|u8|u9|u10|Mana|Life|ES|QuickSilver|Defense
+      GuiControl,Utility%slot%: ChooseString, Utility%slot%Group,% WR.Utility[slot].Group
+
+      Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h55, Group Cooldown
+      Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
+
+      Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w110 h45, Trigger on Move
+      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Move xs+10   yp+20 Checked" WR.Utility[slot].Move , Enable
+
+      Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h65, Trigger with Attack
+      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttack xs+10 yp+20 Checked" WR.Utility[slot].MainAttack, Main
+      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+10 Checked" WR.Utility[slot].SecondaryAttack, Secondary
+
+      Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h45, Missing Icon
+      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown xs+10   yp+20 Checked" WR.Utility[slot].IconShown , Invert to Shown
+
+      Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w240 h55, Life Trigger
+      Gui, Utility%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vUtility%slot%Life   xs+3   yp+15 w235 h30, % WR.Utility[slot].Life
+      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w240 h55, ES Trigger
+      Gui, Utility%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vUtility%slot%ES     xs+3   yp+15 w235 h30, % WR.Utility[slot].ES
+      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w240 h55, Mana Trigger
+      Gui, Utility%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vUtility%slot%Mana   xs+3   yp+15 w235 h30, % WR.Utility[slot].Mana
+
+      Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+15 w360 h65, Icon Sample String
+      Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
+
+      Gui, Utility%slot%: show, w520 h300
+    }
+    Return
+
+    UtilitySaveValues:
+      for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "Icon", "IconShown", "Move", "Life", "ES", "Mana", "Group"]
+        WR.Utility[which][kind] := Utility%which%%kind%
+  
+      FileDelete, %A_ScriptDir%\save\Utility.json
+      JSONtext := JSON.Dump(WR.Utility,,2)
+      FileAppend, %JSONtext%, %A_ScriptDir%\save\Utility.json
+      Return
+    Utility1GuiClose:
+    Utility1GuiEscape:
+      Built[1] := False
+      Gui, Submit, NoHide
+      which := 1
+      Gosub, UtilitySaveValues
+      Gui, Utility1: Destroy
+      Return
+    Utility2GuiClose:
+    Utility2GuiEscape:
+      Built[2] := False
+      Gui, Submit, NoHide
+      which := 2
+      Gosub, UtilitySaveValues
+      Gui, Utility2: Destroy
+      Return
+    Utility3GuiClose:
+    Utility3GuiEscape:
+      Built[3] := False
+      Gui, Submit, NoHide
+      which := 3
+      Gosub, UtilitySaveValues
+      Gui, Utility3: Destroy
+      Return
+    Utility4GuiClose:
+    Utility4GuiEscape:
+      Built[4] := False
+      Gui, Submit, NoHide
+      which := 4
+      Gosub, UtilitySaveValues
+      Gui, Utility4: Destroy
+      Return
+    Utility5GuiClose:
+    Utility5GuiEscape:
+      Built[5] := False
+      Gui, Submit, NoHide
+      which := 5
+      Gosub, UtilitySaveValues
+      Gui, Utility5: Destroy
+      Return
+    Utility6GuiClose:
+    Utility6GuiEscape:
+      Built[6] := False
+      Gui, Submit, NoHide
+      which := 6
+      Gosub, UtilitySaveValues
+      Gui, Utility6: Destroy
+      Return
+    Utility7GuiClose:
+    Utility7GuiEscape:
+      Built[7] := False
+      Gui, Submit, NoHide
+      which := 7
+      Gosub, UtilitySaveValues
+      Gui, Utility7: Destroy
+      Return
+    Utility8GuiClose:
+    Utility8GuiEscape:
+      Built[8] := False
+      Gui, Submit, NoHide
+      which := 8
+      Gosub, UtilitySaveValues
+      Gui, Utility8: Destroy
+      Return
+    Utility9GuiClose:
+    Utility9GuiEscape:
+      Built[9] := False
+      Gui, Submit, NoHide
+      which := 9
+      Gosub, UtilitySaveValues
+      Gui, Utility9: Destroy
+      Return
+    Utility10GuiClose:
+    Utility10GuiEscape:
+      Built[10] := False
+      Gui, Submit, NoHide
+      which := 10
+      Gosub, UtilitySaveValues
+      Gui, Utility10: Destroy
+      Return
+  }
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Critical
@@ -1422,107 +1574,80 @@
   SB_SetText("Location Status", 2)
   SB_SetText("Percentage not updated", 3)
 
-  Gui Add, Tab2, vMainGuiTabs x3 y3 w655 h505 -wrap , Flasks|Utility|Configuration|Hotkeys
+  Gui Add, Tab2, vMainGuiTabs x3 y3 w655 h505 -wrap , Main|Tools|Configuration|Hotkeys
   ;#######################################################################################################Flasks and Utility Tab
-  Gui, Tab, Flasks
+  Gui, Tab, Main
     Gui, Font,
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,         Section    w260 h40        xp+5   y+2,         Character Type:
+    Gui Add, GroupBox,         Section    w265 h40        xp+5   y+2,         Character Type:
     Gui, Font,
     Gui, Font, cRed
-    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+8 ys+20,   Life
+    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+10 ys+20,   Life
     Gui, Font, cPurple
-    Gui Add, Radio,     vRadioHybrid Checked%RadioHybrid%         x+8,   Hybrid
+    Gui Add, Radio,     vRadioHybrid Checked%RadioHybrid%         x+10,   Hybrid
     Gui, Font, cBlue
-    Gui Add, Radio,     vRadioCi Checked%RadioCi%           x+8,   ES
+    Gui Add, Radio,     vRadioCi Checked%RadioCi%           x+10,   ES
     Gui Add, Checkbox, gUpdateEldritchBattery  vYesEldritchBattery Checked%YesEldritchBattery%         x+8          , Eldritch Battery
     Gui, Font
-    ; Flask GUI
+    ; Auto-Quit
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,        Section    w260 h55 xs y+8  , Flask Settings
+    Gui, Add, GroupBox,     Section  w265 h66        xs   y+10 ,         Auto-Quit Settings
+    Gui, Font,
+    Gui Add, Text,                     xs+10   yp+22,         Quit via:
+    Gui, Add, Radio, Group  vRadioCritQuit  Checked%RadioCritQuit%          x+8    y+-13,      Disconnect
+    Gui, Add, Radio,     vRadioPortalQuit Checked%RadioPortalQuit%      x+8  ,        Portal
+    Gui, Add, Radio,     vRadioNormalQuit Checked%RadioNormalQuit%      x+8  ,        /exit
+    Gui Add, Slider, vQuitBelow     NoTicks Thick20 TickInterval10 ToolTip     h21 w160 xs+5 y+3,  % QuitBelow
+    Gui Add, Checkbox, gUpdateExtra  vRelogOnQuit Checked%RelogOnQuit%         x+5  yp+7        , Log back in
+
+    ; Flask
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,        Section    w265 h55 xs y+10  , Flask Settings
     Gui, Font
-    Gui, Add, Button, gFlaskMenu xs+5 yp+22 , Flask 1
-    Loop 4
-    Gui, Add, Button, gFlaskMenu x+5 yp , % "Flask " A_Index + 1
+    Loop 5
+    Gui, Add, Button, % "gFlaskMenu W46 -wrap " ((A_Index==1||A_Index==6)?"xs+5 yp+22":"x+5 yp") , Flask %A_Index%
+
+    ; Utility
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,        Section    w265 h95 xs y+14  , Utility Settings
+    Gui, Font
+    Loop 10
+    Gui, Add, Button, % "gUtilityMenu W46 -wrap " (A_Index==1?"xs+5 yp+22":A_Index==6?"xs+5 y+16":"x+5 yp") , Utility %A_Index%
+    
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,           Section    w265 h50      xs   y+14,         Flask Profile:
+    Gui, Font
+    ProfileMenuFlaskText := "Options|In The|Menu"
+    Gui, Add, ComboBox,  vProfileMenuFlaskText xs+10 ys+20 w115, %ProfileMenuFlaskText%
+    Gui, Add, Button,  x+1 yp hp w40 , Save
+    Gui, Add, Button,  x+1 yp hp w40 , Load
+    Gui, Add, Button,  x+1 yp hp w50 , Remove
+
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,           Section    w265 h50      xs   y+14,         Utility Profile:
+    Gui, Font
+    ProfileMenuUtilityText := "Options|In The|Menu"
+    Gui, Add, ComboBox,  vProfileMenuUtilityText xs+10 ys+20 w115, %ProfileMenuUtilityText%
+    Gui, Add, Button,  x+1 yp hp w40 , Save
+    Gui, Add, Button,  x+1 yp hp w40 , Load
+    Gui, Add, Button,  x+1 yp hp w50 , Remove
+
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,     Section  w265 h85        xs   y+14 ,         Movement Settings
+    Gui,Font,
+    Gui Add, Text,                     xs+10   ys+20,         Movement Trigger Delay (in seconds):
+    Gui Add, Edit,       vTriggerQuicksilverDelay  x+10   yp   w22 h17,   %TriggerQuicksilverDelay%
+    Gui, Font, s8 cBlack
+    ;Improve UI later
+    Gui,Add,GroupBox, xs+10 y+1 w245 h40    center                  , Movement Triggers with Attack Keys
+    Gui,Font,
+    Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+25 yp+20 , Main Attack
+    Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+20 , Secondary Attack
+
 
     ;Middle Vertical Lines
     Gui, Add, Text,                   x279   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
-
-
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,     Section  w227 h66        x292   y30 ,         Auto-Quit Settings
-    Gui, Font,
-    ;Gui Add, Text,                       x292   y30,         Auto-Quit:
-    Gui Add, DropDownList, vQuitBelow          h19 w37 r10 xs+5 ys+20,             10|20|30|40|50|60|70|80|90
-    GuiControl, ChooseString, QuitBelow, %QuitBelow%
-    Gui Add, Text,                     x+5   yp+3,         Quit via:
-    Gui, Add, Radio, Group  vRadioCritQuit  Checked%RadioCritQuit%          x+1    y+-13,      D/C
-    Gui, Add, Radio,     vRadioPortalQuit Checked%RadioPortalQuit%      x+1  ,        Portal
-    Gui, Add, Radio,     vRadioNormalQuit Checked%RadioNormalQuit%      x+1  ,        /exit
-    Gui Add, Checkbox, gUpdateExtra  vRelogOnQuit Checked%RelogOnQuit%         xs+5  y+8        , Log back in afterwards?
-
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,     Section  w257 h73        xs   y+10 ,         Movement Settings
-    Gui,Font,
-    Gui Add, Text,                     xs+10   ys+16,         Movement Flask Delay (in seconds):
-    Gui Add, Edit,       vTriggerQuicksilverDelay  x+10   yp   w22 h17,   %TriggerQuicksilverDelay%
-    Gui, Font, s8 cBlack
-    ;Improve UI later
-    Gui,Add,GroupBox, xs+10 yp+16 w208 h36                      ,Trigger Movement on Attack:
-    Gui,Font,
-    Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+5 yp+15 , Main Attack
-    Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+0 , Secondary Attack
-
-
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,           Section    w324 h176      xs   y+12,         Profile Management:
-    Gui, Font
-    Gui, Add, Text,                   xs+161   ys+41     h135 0x11
-
-
-    ;Gui,Font,s9 cBlack Bold Underline
-    ;Gui,Add,GroupBox, xs+5 ys+10 w190 h35                      ,
-    Gui,Add,text, xs+10 ys+18                       ,Character Name:
-    ;Gui,Font,
-    Gui, Add, Edit, vCharName x+5 yp-2 w150 h19, %CharName%
-
-    Gui, Add, Button, gsubmitProfile1 xs+4 ys+42 w50 h21, Save 1
-    Gui, Add, Button, gsubmitProfile2 w50 h21, Save 2
-    Gui, Add, Button, gsubmitProfile3 w50 h21, Save 3
-    Gui, Add, Button, gsubmitProfile4 w50 h21, Save 4
-    Gui, Add, Button, gsubmitProfile5 w50 h21, Save 5
-
-    Gui, Add, Edit,   gUpdateProfileText1 vProfileText1 x+1 ys+43 w50 h19, %ProfileText1%
-    Gui, Add, Edit,   gUpdateProfileText2 vProfileText2 y+8 w50 h19, %ProfileText2%
-    Gui, Add, Edit,   gUpdateProfileText3 vProfileText3 y+8 w50 h19, %ProfileText3%
-    Gui, Add, Edit,   gUpdateProfileText4 vProfileText4 y+8 w50 h19, %ProfileText4%
-    Gui, Add, Edit,   gUpdateProfileText5 vProfileText5 y+8 w50 h19, %ProfileText5%
-
-    Gui, Add, Button, greadProfile1 x+1 ys+42 w50 h21, Load 1
-    Gui, Add, Button, greadProfile2 w50 h21, Load 2
-    Gui, Add, Button, greadProfile3 w50 h21, Load 3
-    Gui, Add, Button, greadProfile4 w50 h21, Load 4
-    Gui, Add, Button, greadProfile5 w50 h21, Load 5
-
-    Gui, Add, Button, gsubmitProfile6 x+10 ys+42 w50 h21, Save 6
-    Gui, Add, Button, gsubmitProfile7 w50 h21, Save 7
-    Gui, Add, Button, gsubmitProfile8 w50 h21, Save 8
-    Gui, Add, Button, gsubmitProfile9 w50 h21, Save 9
-    Gui, Add, Button, gsubmitProfile10 w50 h21, Save 10
-
-    Gui, Add, Edit,   gUpdateProfileText6 vProfileText6 y+8 x+1 ys+43 w50 h19, %ProfileText6%
-    Gui, Add, Edit,   gUpdateProfileText7 vProfileText7 y+8 w50 h19, %ProfileText7%
-    Gui, Add, Edit,   gUpdateProfileText8 vProfileText8 y+8 w50 h19, %ProfileText8%
-    Gui, Add, Edit,   gUpdateProfileText9 vProfileText9 y+8 w50 h19, %ProfileText9%
-    Gui, Add, Edit,   gUpdateProfileText10 vProfileText10 y+8 w50 h19, %ProfileText10%
-
-    Gui, Add, Button, greadProfile6 x+1 ys+42 w50 h21, Load 6
-    Gui, Add, Button, greadProfile7 w50 h21, Load 7
-    Gui, Add, Button, greadProfile8 w50 h21, Load 8
-    Gui, Add, Button, greadProfile9 w50 h21, Load 9
-    Gui, Add, Button, greadProfile10 w50 h21, Load 10
-
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -1530,7 +1655,7 @@
     Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
-  Gui, Tab, Utility
+  Gui, Tab, Tools
     Gui, Font, Bold s9 cBlack, Arial
     Gui Add, GroupBox,             w625 h311    section    xm+5   y+15,         Utility Management:
     Gui, Font,
@@ -1710,7 +1835,7 @@
     Gui, Add, Text,                   x+18        h270 0x11
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,  y+20 xs w250 h150 Section, Stack Release Tool
+    Gui, Add, GroupBox,  y+20 xs w250 h150 Section, Channeling Stack Re-Press
     Gui, Font,
     Gui, Add, CheckBox, gUpdateStackRelease vStackRelease_Enable Checked%StackRelease_Enable%  Right x+-65 ys+2 , Enable
     Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffIcon xs+5 ys+19 w150 h21, % StackRelease_BuffIcon
