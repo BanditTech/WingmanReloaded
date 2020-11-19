@@ -3888,16 +3888,13 @@ Return
                 Trigger(WR.Utility[A_Index],"Utility")
               Else If (WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana )
                 Trigger(WR.Utility[A_Index],"Utility")
-              Else If !(WR.Utility[A_Index].Move ) 
+              Else If (WR.Utility[A_Index].Icon)
               {
-                If (WR.Utility[A_Index].Icon)
-                {
-                  BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
-                  If (!WR.Utility[A_Index].IconShow && BuffIcon) || (WR.Utility[A_Index].IconShow && !BuffIcon)
-                    WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
-                  Else If (WR.Utility[A_Index].IconShow && BuffIcon) || (!WR.Utility[A_Index].IconShow && !BuffIcon)
-                    Trigger(WR.Utility[A_Index],"Utility")
-                }
+                BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
+                If (!WR.Utility[A_Index].IconShow && BuffIcon) || (WR.Utility[A_Index].IconShow && !BuffIcon)
+                  WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
+                Else If (WR.Utility[A_Index].IconShow && BuffIcon) || (!WR.Utility[A_Index].IconShow && !BuffIcon)
+                  Trigger(WR.Utility[A_Index],"Utility")
               }
             }
           }
@@ -3905,9 +3902,15 @@ Return
       }
       If (AutoQuick)
       {
-        Loop 5
-          If WR.Flask[A_Index].Move
-            Trigger(WR.Flask[A_Index],"Flask")
+        If (MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") || (MainAttackPressedActive && QSonMainAttack) || (SecondaryAttackPressedActive && QSonSecondaryAttack))
+        {
+          Loop 5
+            If WR.Flask[A_Index].Move
+              Trigger(WR.Flask[A_Index],"Flask")
+          Loop 10
+            If WR.Utility[A_Index].Move
+              Trigger(WR.Utility[A_Index],"Utility")
+        }
       }
       If (StackRelease_Enable)
         StackRelease()
@@ -4039,7 +4042,7 @@ Return
     Return
   }
 
-; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, Trigger, TriggerUtility
+; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, Trigger
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; MainAttackCommand - Main attack Flasks
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4088,17 +4091,20 @@ Return
       loop % (type="Flask"?5:10)
         if (WR[type][A_Index].Group = obj.Group 
         && WR.cdExpires[type][A_Index] < A_TickCount 
-        && !indexOf(A_Index,ActionList[obj.Group])) 
-          ActionList[obj.Group].Push(A_Index)
+        && !indexOf(type . " " . A_Index,ActionList[obj.Group])) 
+          ActionList[obj.Group].Push(type . " " . A_Index)
     } Else If (WR.cdExpires[type][obj.Slot] < A_TickCount 
-    && !indexOf(A_Index,ActionList[obj.Group]))
-      ActionList[obj.Group].Push(obj.Slot)
+    && !indexOf(A_Index,ActionList[obj.Group]))4
+      ActionList[obj.Group].Push(type . " " . obj.Slot)
     For k, v in ActionList[obj.Group]
     {
+      type := StrSplit(v, " ")[1], v := StrSplit(v, " ")[2]
       If (WR.cdExpires[type][v] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
       {
-        If WR[type][v].Move
+        If (WR[type][v].Move)
         {
+          If !GameActive
+            Return
           MovementPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") )
           If (TriggerQuicksilverDelay > 0)
           {
@@ -4139,9 +4145,9 @@ Return
         WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD 
         WR.cdExpires[type][v] := A_TickCount + WR[type][v].CD 
         ActionList[obj.Group].RemoveAt(k)
-        If (WR[type][v].Move && WR[type][v].Group = "QuickSilver")
+        If (WR[type][v].Group = "QuickSilver")
           Loop, 10
-            If (WR.Utility[A_Index].Enable && WR.Utility[A_Index].Move)
+            If (WR.Utility[A_Index].Enable && WR.Utility[A_Index].QS)
               Trigger(WR.Utility[A_Index],"Utility")
         Return
       }
