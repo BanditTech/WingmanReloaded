@@ -256,7 +256,6 @@
       UpdateDetonateBtn = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rWill determine if you are in mines and change sample location`rLocated above mana flask on the right
       CalibrateOHBBtn = Calibrate the life color of the Overhead Health Bar`rMake sure the OHB is visible
       ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
-      ShowDebugGamestatesBtn = Open the Gamestate panel which shows you what the script is able to detect`rRed means its not active, green is active
       StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
       YesOHB = Pauses the script when it cannot find the Overhead Health Bar
       ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
@@ -447,11 +446,6 @@
       AvoidPBB = Select this if your build can't run maps with this mod
       MinusMPR = Select this if your build can't run maps with this mod
       YesNinjaDatabase = Enable to Update Ninja Database and load at start
-      YesUtility1InverseBuff = Fire instead only when buff icon is present
-      YesUtility2InverseBuff = Fire instead only when buff icon is present
-      YesUtility3InverseBuff = Fire instead only when buff icon is present
-      YesUtility4InverseBuff = Fire instead only when buff icon is present
-      YesUtility5InverseBuff = Fire instead only when buff icon is present
       WR_Btn_Inventory = Open the settings related to the inventory
       WR_Btn_Strings = Open the settings related to the FindText Strings
       WR_Btn_Chat = Open the settings related to the Chat Hotkeys
@@ -957,35 +951,6 @@
   ; Character Type
     global RadioCi, RadioHybrid, RadioLife
     
-  ; Utility Buttons
-    global YesUtility1, YesUtility2, YesUtility3, YesUtility4, YesUtility5
-      , YesUtility6, YesUtility7, YesUtility8, YesUtility9, YesUtility10
-    global YesUtility1Quicksilver, YesUtility2Quicksilver, YesUtility3Quicksilver, YesUtility4Quicksilver, YesUtility5Quicksilver
-      , YesUtility6Quicksilver, YesUtility7Quicksilver, YesUtility8Quicksilver, YesUtility9Quicksilver, YesUtility10Quicksilver
-    global YesUtility1InverseBuff, YesUtility2InverseBuff, YesUtility3InverseBuff, YesUtility4InverseBuff, YesUtility5InverseBuff
-      , YesUtility6InverseBuff, YesUtility7InverseBuff, YesUtility8InverseBuff, YesUtility9InverseBuff, YesUtility10InverseBuff
-    global YesUtility1LifePercent, YesUtility2LifePercent, YesUtility3LifePercent, YesUtility4LifePercent, YesUtility5LifePercent
-      , YesUtility6LifePercent, YesUtility7LifePercent, YesUtility8LifePercent, YesUtility9LifePercent, YesUtility10LifePercent
-    global YesUtility1ESPercent, YesUtility2ESPercent, YesUtility3ESPercent, YesUtility4ESPercent, YesUtility5ESPercent
-      , YesUtility6ESPercent, YesUtility7ESPercent, YesUtility8ESPercent, YesUtility9ESPercent, YesUtility10ESPercent
-    global YesUtility1ManaPercent, YesUtility2ManaPercent, YesUtility3ManaPercent, YesUtility4ManaPercent, YesUtility5ManaPercent
-      , YesUtility6ManaPercent, YesUtility7ManaPercent, YesUtility8ManaPercent, YesUtility9ManaPercent, YesUtility10ManaPercent
-    global YesUtility1MainAttack, YesUtility2MainAttack, YesUtility3MainAttack, YesUtility4MainAttack, YesUtility5MainAttack
-      , YesUtility6MainAttack, YesUtility7MainAttack, YesUtility8MainAttack, YesUtility9MainAttack, YesUtility10MainAttack
-    global YesUtility1SecondaryAttack, YesUtility2SecondaryAttack, YesUtility3SecondaryAttack, YesUtility4SecondaryAttack, YesUtility5SecondaryAttack
-      , YesUtility6SecondaryAttack, YesUtility7SecondaryAttack, YesUtility8SecondaryAttack, YesUtility9SecondaryAttack, YesUtility10SecondaryAttack
-  ; Utility Cooldowns
-    global CooldownUtility1, CooldownUtility2, CooldownUtility3, CooldownUtility4, CooldownUtility5
-      , CooldownUtility6, CooldownUtility7, CooldownUtility8, CooldownUtility9, CooldownUtility10
-    global OnCooldownUtility1 := 0, OnCooldownUtility2 := 0, OnCooldownUtility3 := 0, OnCooldownUtility4 := 0, OnCooldownUtility5 := 0
-      , OnCooldownUtility6 := 0, OnCooldownUtility7 := 0, OnCooldownUtility8 := 0, OnCooldownUtility9 := 0, OnCooldownUtility10 := 0
-  ; Utility Keys
-    global KeyUtility1, KeyUtility2, KeyUtility3, KeyUtility4, KeyUtility5
-      , KeyUtility6, KeyUtility7, KeyUtility8, KeyUtility9, KeyUtility10
-  ; Utility Icons
-    global IconStringUtility1, IconStringUtility2, IconStringUtility3, IconStringUtility4, IconStringUtility5
-      , IconStringUtility6, IconStringUtility7, IconStringUtility8, IconStringUtility9, IconStringUtility10
-
   ; Quicksilver
     global TriggerQuicksilverDelay=0.8
     Global FlaskListQS := []
@@ -1559,7 +1524,7 @@
   SB_SetText("Location Status", 2)
   SB_SetText("Percentage not updated", 3)
 
-  Gui Add, Tab2, vMainGuiTabs x3 y3 w655 h505 -wrap , Main|Tools|Configuration|Hotkeys
+  Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Tools|Configuration|Hotkeys
   ;#######################################################################################################Flasks and Utility Tab
   Gui, Tab, Main
     Gui, Font,
@@ -1631,11 +1596,11 @@
 
 
     ;Middle Vertical Lines
-    Gui, Add, Text,                   x279   y23    w1  h483 0x7
+    Gui, Add, Text,                   xm+279   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,  Center   Section  w350 h250        x+15   ym+20 ,    Game Logic States
+    Gui Add, GroupBox,  Center   Section  w350 h230        x+15   ym+20 ,    Game Logic States
     Gui,Font,
     Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar hwndMainMenuIDOnChar, % "Character Active"
     CtlColors.Attach(MainMenuIDOnChar, "Lime", "")
@@ -1663,8 +1628,17 @@
     CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnLocker hwndMainMenuIDOnLocker, % "League Stash Open"
     CtlColors.Attach(MainMenuIDOnLocker, "", "Green")
-    Gui, Add, Button, gCheckPixelGrid xs y+15 w190 , Check Inventory Grid
 
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h90 ,         Gamestate Calibration:
+    Gui, Font, s8
+    Gui, Add, Button, ghelpCalibration   xp+250 ys-4    h20, %  "? help"
+    Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs+10  ys+20 w105 h25,   Run Wizard
+    Gui, Add, Button, gShowSampleInd vShowSampleIndBtn    x+8 yp     wp,   Individual Sample
+    Gui, Add, Button, gWR_Update vWR_Btn_Globe         x+8 yp       wp,   Adjust Globes
+    Gui, Add, Button, gWR_Update vWR_Btn_Locations         xs+10  y+10      wp,   Adjust Locations
+    Gui, Add, Button, gCheckPixelGrid x+8 yp wp , Inventory Grid
+    Gui, Font
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -1673,184 +1647,6 @@
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
   Gui, Tab, Tools
-    ; Gui, Font, Bold s9 cBlack, Arial
-    ; Gui Add, GroupBox,             w625 h311    section    xm+5   y+15,         Utility Management:
-    ; Gui, Font,
-
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1 +BackgroundTrans Checked%YesUtility1%  Right  ys+45 xs+7  , 1
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2 +BackgroundTrans Checked%YesUtility2%  Right  y+12    , 2
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3 +BackgroundTrans Checked%YesUtility3%  Right  y+12    , 3
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4 +BackgroundTrans Checked%YesUtility4%  Right  y+12    , 4
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5 +BackgroundTrans Checked%YesUtility5%  Right  y+12    , 5
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6 +BackgroundTrans Checked%YesUtility6%  Right  y+12    , 6
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7 +BackgroundTrans Checked%YesUtility7%  Right  y+12    , 7
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8 +BackgroundTrans Checked%YesUtility8%  Right  y+12    , 8
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9 +BackgroundTrans Checked%YesUtility9%  Right  y+12    , 9
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10 +BackgroundTrans Checked%YesUtility10% Right  y+12 xp-6    , 10
-
-    ; Gui,Add,Edit,      gUpdateUtility  x+10 ys+42   w40 h19   vCooldownUtility1        ,%CooldownUtility1%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility2        ,%CooldownUtility2%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility3        ,%CooldownUtility3%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility4        ,%CooldownUtility4%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility5        ,%CooldownUtility5%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility6        ,%CooldownUtility6%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility7        ,%CooldownUtility7%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility8        ,%CooldownUtility8%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility9        ,%CooldownUtility9%
-    ; Gui,Add,Edit,      gUpdateUtility         w40 h19   vCooldownUtility10        ,%CooldownUtility10%
-
-    ; Gui,Add,Edit,      x+12  ys+42   w40 h19 gUpdateUtility  vKeyUtility1        ,%KeyUtility1%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility2        ,%KeyUtility2%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility3        ,%KeyUtility3%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility4        ,%KeyUtility4%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility5        ,%KeyUtility5%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility6        ,%KeyUtility6%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility7        ,%KeyUtility7%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility8        ,%KeyUtility8%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility9        ,%KeyUtility9%
-    ; Gui,Add,Edit,               w40 h19 gUpdateUtility  vKeyUtility10        ,%KeyUtility10%
-
-    ; Gui,Add,Edit,      x+11  ys+42   w60 h19 gUpdateUtility  vIconStringUtility1        ,%IconStringUtility1%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility2        ,%IconStringUtility2%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility3        ,%IconStringUtility3%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility4        ,%IconStringUtility4%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility5        ,%IconStringUtility5%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility6        ,%IconStringUtility6%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility7        ,%IconStringUtility7%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility8        ,%IconStringUtility8%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility9        ,%IconStringUtility9%
-    ; Gui,Add,Edit,               w60 h19 gUpdateUtility  vIconStringUtility10      ,%IconStringUtility10%
-
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1InverseBuff +BackgroundTrans Checked%YesUtility1InverseBuff%  x+7 ys+45, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2InverseBuff +BackgroundTrans Checked%YesUtility2InverseBuff%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3InverseBuff +BackgroundTrans Checked%YesUtility3InverseBuff%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4InverseBuff +BackgroundTrans Checked%YesUtility4InverseBuff%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5InverseBuff +BackgroundTrans Checked%YesUtility5InverseBuff%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6InverseBuff +BackgroundTrans Checked%YesUtility6InverseBuff%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7InverseBuff +BackgroundTrans Checked%YesUtility7InverseBuff%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8InverseBuff +BackgroundTrans Checked%YesUtility8InverseBuff%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9InverseBuff +BackgroundTrans Checked%YesUtility9InverseBuff%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10InverseBuff +BackgroundTrans Checked%YesUtility10InverseBuff%    y+12, %A_Space%
-
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1Quicksilver +BackgroundTrans Checked%YesUtility1Quicksilver%  x+17 ys+45, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2Quicksilver +BackgroundTrans Checked%YesUtility2Quicksilver%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3Quicksilver +BackgroundTrans Checked%YesUtility3Quicksilver%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4Quicksilver +BackgroundTrans Checked%YesUtility4Quicksilver%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5Quicksilver +BackgroundTrans Checked%YesUtility5Quicksilver%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6Quicksilver +BackgroundTrans Checked%YesUtility6Quicksilver%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7Quicksilver +BackgroundTrans Checked%YesUtility7Quicksilver%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8Quicksilver +BackgroundTrans Checked%YesUtility8Quicksilver%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9Quicksilver +BackgroundTrans Checked%YesUtility9Quicksilver%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10Quicksilver +BackgroundTrans Checked%YesUtility10Quicksilver%    y+12, %A_Space%
-
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1MainAttack +BackgroundTrans Checked%YesUtility1MainAttack%  x+17 ys+45, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2MainAttack +BackgroundTrans Checked%YesUtility2MainAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3MainAttack +BackgroundTrans Checked%YesUtility3MainAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4MainAttack +BackgroundTrans Checked%YesUtility4MainAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5MainAttack +BackgroundTrans Checked%YesUtility5MainAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6MainAttack +BackgroundTrans Checked%YesUtility6MainAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7MainAttack +BackgroundTrans Checked%YesUtility7MainAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8MainAttack +BackgroundTrans Checked%YesUtility8MainAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9MainAttack +BackgroundTrans Checked%YesUtility9MainAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10MainAttack +BackgroundTrans Checked%YesUtility10MainAttack%    y+12, %A_Space%
-
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility1SecondaryAttack +BackgroundTrans Checked%YesUtility1SecondaryAttack%  x+12 ys+45, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility2SecondaryAttack +BackgroundTrans Checked%YesUtility2SecondaryAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility3SecondaryAttack +BackgroundTrans Checked%YesUtility3SecondaryAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility4SecondaryAttack +BackgroundTrans Checked%YesUtility4SecondaryAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility5SecondaryAttack +BackgroundTrans Checked%YesUtility5SecondaryAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility6SecondaryAttack +BackgroundTrans Checked%YesUtility6SecondaryAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility7SecondaryAttack +BackgroundTrans Checked%YesUtility7SecondaryAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility8SecondaryAttack +BackgroundTrans Checked%YesUtility8SecondaryAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility9SecondaryAttack +BackgroundTrans Checked%YesUtility9SecondaryAttack%    y+12, %A_Space%
-    ; Gui Add, Checkbox, gUpdateUtility  vYesUtility10SecondaryAttack +BackgroundTrans Checked%YesUtility10SecondaryAttack%    y+12, %A_Space%
-
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1LifePercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10LifePercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
-    ; GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
-    ; GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
-    ; GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
-    ; GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
-    ; GuiControl, ChooseString, YesUtility6LifePercent, %YesUtility6LifePercent%
-    ; GuiControl, ChooseString, YesUtility7LifePercent, %YesUtility7LifePercent%
-    ; GuiControl, ChooseString, YesUtility8LifePercent, %YesUtility8LifePercent%
-    ; GuiControl, ChooseString, YesUtility9LifePercent, %YesUtility9LifePercent%
-    ; GuiControl, ChooseString, YesUtility10LifePercent, %YesUtility10LifePercent%
-      
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1ESPercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10ESPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-    ; GuiControl, ChooseString, YesUtility2ESPercent, %YesUtility2ESPercent%
-    ; GuiControl, ChooseString, YesUtility3ESPercent, %YesUtility3ESPercent%
-    ; GuiControl, ChooseString, YesUtility4ESPercent, %YesUtility4ESPercent%
-    ; GuiControl, ChooseString, YesUtility5ESPercent, %YesUtility5ESPercent%
-    ; GuiControl, ChooseString, YesUtility6ESPercent, %YesUtility6ESPercent%
-    ; GuiControl, ChooseString, YesUtility7ESPercent, %YesUtility7ESPercent%
-    ; GuiControl, ChooseString, YesUtility8ESPercent, %YesUtility8ESPercent%
-    ; GuiControl, ChooseString, YesUtility9ESPercent, %YesUtility9ESPercent%
-    ; GuiControl, ChooseString, YesUtility10ESPercent, %YesUtility10ESPercent%
-      
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility1ManaPercent h16 w40 x+17   ys+42,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility2ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility3ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility4ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility5ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility6ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility7ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility8ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility9ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; Gui, Add, DropDownList, R10 gUpdateUtility vYesUtility10ManaPercent h16 w40      y+4,  Off|10|20|30|40|50|60|70|80|90
-    ; GuiControl, ChooseString, YesUtility1ManaPercent, %YesUtility1ManaPercent%
-    ; GuiControl, ChooseString, YesUtility2ManaPercent, %YesUtility2ManaPercent%
-    ; GuiControl, ChooseString, YesUtility3ManaPercent, %YesUtility3ManaPercent%
-    ; GuiControl, ChooseString, YesUtility4ManaPercent, %YesUtility4ManaPercent%
-    ; GuiControl, ChooseString, YesUtility5ManaPercent, %YesUtility5ManaPercent%
-    ; GuiControl, ChooseString, YesUtility6ManaPercent, %YesUtility6ManaPercent%
-    ; GuiControl, ChooseString, YesUtility7ManaPercent, %YesUtility7ManaPercent%
-    ; GuiControl, ChooseString, YesUtility8ManaPercent, %YesUtility8ManaPercent%
-    ; GuiControl, ChooseString, YesUtility9ManaPercent, %YesUtility9ManaPercent%
-    ; GuiControl, ChooseString, YesUtility10ManaPercent, %YesUtility10ManaPercent%
-
-    ; Gui Add, Text,                     xs+11   ys+25,   ON:
-    ; Gui, Add, Text,                   x+9   ys+25     h270 0x11
-    ; Gui Add, Text,                     x+12   ,   CD:
-    ; Gui, Add, Text,                   x+13        h270 0x11
-    ; Gui Add, Text,                     x+10   ,   Key:
-    ; Gui, Add, Text,                   x+14        h270 0x11
-    ; Gui Add, Text,                     x+14   ,   Icon:
-    ; ; Gui, Add, Text,                   x+25        h270 0x11
-    ; Gui Add, Text,                     x+15   ,   Show:
-    ; Gui, Add, Text,                   x+7        h270 0x11
-    ; Gui Add, Text,                     x+8   ,   QS:
-    ; Gui, Add, Text,                   x+8        h270 0x11
-    ; Gui Add, Text,                     x+9   ,   Pri:
-    ; ; Gui, Add, Text,                   x+11        h270 0x11
-    ; Gui Add, Text,                     x+17   ,   Sec:
-    ; Gui, Add, Text,                   x+12        h270 0x11
-    ; Gui Add, Text,                     x+13   ,   Life:
-    ; Gui, Add, Text,                   x+21        h270 0x11
-    ; Gui Add, Text,                     x+14   ,   ES:
-    ; Gui, Add, Text,                   x+17        h270 0x11
-    ; Gui Add, Text,                     x+9   ,   Mana:
-    ; Gui, Add, Text,                   x+18        h270 0x11
-
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,  xm+10 ym+25 w250 h150 Section, Channeling Stack Re-Press
     Gui, Font,
@@ -1918,47 +1714,8 @@
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, Text,             section        x22   y30,         Gamestate Calibration:
-    Gui, Font, s8
-    Gui, Add, Button, ghelpCalibration   x+10 ys-4    h20, %  "? help"
-    Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs  ys+20 Section  w110 h25,   Run Wizard
-    Gui, Add, Button, gShowDebugGamestates vShowDebugGamestatesBtn  x+8  yp        w110 h25,   Show Gamestates
-    ;Update calibration for pixel check
-    Gui, Add, Button, gShowSampleInd vShowSampleIndBtn    xs  ys+35      w110,   Individual Sample
-    Gui, Add, Button, gWR_Update vWR_Btn_Globe         x+8 ys+35       w110,   Adjust Globes
-    Gui, Font
-
-
-    Gui,SampleInd: Font, Bold s9 cBlack, Arial
-    Gui,SampleInd: Add, Text,         section            xm   ym+5,         Gamestate Calibration:
-    Gui,SampleInd: Font
-
-    Gui,SampleInd: Add, Button, gupdateOnChar vUpdateOnCharBtn         xs y+3      w110,   OnChar
-    Gui,SampleInd: Add, Button, gupdateOnInventory vUpdateOnInventoryBtn  x+8  yp      w110,   OnInventory
-    Gui,SampleInd: Add, Button, gupdateOnChat vUpdateOnChatBtn         xs y+3      w110,   OnChat
-    Gui,SampleInd: Add, Button, gupdateOnStash vUpdateOnStashBtn       x+8  yp      w110,   OnStash/OnLeft
-    Gui,SampleInd: Add, Button, gupdateOnDiv vUpdateOnDivBtn         xs y+3      w110,   OnDiv
-    Gui,SampleInd: Add, Button, gupdateOnVendor vUpdateOnVendorBtn       x+8  yp      w110,   OnVendor
-    Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn         xs y+3      w110,   OnMenu
-    Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn  x+8  yp      w110,   OnDelveChart
-    Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn  xs y+3      w110,   OnMetamorph
-    Gui,SampleInd: Add, Button, gupdateOnLocker vUpdateOnLockerBtn  x+8  yp      w110,   OnLocker
-
-
-    Gui,SampleInd: Font, Bold s9 cBlack, Arial
-    Gui,SampleInd: Add, Text,         section            xm   y+10,         Inventory Calibration:
-    Gui,SampleInd: Font
-    Gui,SampleInd: Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20         w110,   Empty Inventory
-
-    Gui,SampleInd: Font, Bold s9 cBlack, Arial
-    Gui,SampleInd: Add, Text,         section            xm   y+10,         AutoDetonate Calibration:
-    Gui,SampleInd: Font
-    Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn     xs ys+20          w110,   OnDetonate
-
-    Gui,SampleInd: +AlwaysOnTop
-
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, Text,           Section          xs   y+10,         Automation Settings:
+    Gui Add, Text,           Section          x22   y30,         Automation Settings:
+    Gui, Add, Button, ghelpAutomationSetting   x+10 ys-4    h20, %  "? help"
     Gui, add, button, gWR_Update vWR_Btn_Strings     xs ys+18 w110, Sample Strings
     Gui, add, Button, gLootColorsMenu  vLootVacuumSettings x+8 yp w110, Loot Vacuum
     Gui, Font, 
@@ -2199,8 +1956,6 @@
     Menu, Tray, Add
     Menu, Tray, Add,         Run Calibration Wizard, StartCalibrationWizard
     Menu, Tray, Add
-    Menu, Tray, Add,         Show Gamestates, ShowDebugGamestates
-    Menu, Tray, Add
     Menu, Tray, add,         Print Object, PromptForObject
     Menu, Tray, add
     Menu, Tray, Add,         Custom Loot Filter, LaunchLootFilter
@@ -2306,6 +2061,34 @@
       GuiControl, Hide, YesLocation
       GuiControl, Hide, YesLocation_t
     }
+  Gui,SampleInd: Font, Bold s9 cBlack, Arial
+  Gui,SampleInd: Add, Text,         section            xm   ym+5,         Gamestate Calibration:
+    Gui,SampleInd: Font
+
+    Gui,SampleInd: Add, Button, gupdateOnChar vUpdateOnCharBtn         xs y+3      w110,   OnChar
+    Gui,SampleInd: Add, Button, gupdateOnInventory vUpdateOnInventoryBtn  x+8  yp      w110,   OnInventory
+    Gui,SampleInd: Add, Button, gupdateOnChat vUpdateOnChatBtn         xs y+3      w110,   OnChat
+    Gui,SampleInd: Add, Button, gupdateOnStash vUpdateOnStashBtn       x+8  yp      w110,   OnStash/OnLeft
+    Gui,SampleInd: Add, Button, gupdateOnDiv vUpdateOnDivBtn         xs y+3      w110,   OnDiv
+    Gui,SampleInd: Add, Button, gupdateOnVendor vUpdateOnVendorBtn       x+8  yp      w110,   OnVendor
+    Gui,SampleInd: Add, Button, gupdateOnMenu vUpdateOnMenuBtn         xs y+3      w110,   OnMenu
+    Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn  x+8  yp      w110,   OnDelveChart
+    Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn  xs y+3      w110,   OnMetamorph
+    Gui,SampleInd: Add, Button, gupdateOnLocker vUpdateOnLockerBtn  x+8  yp      w110,   OnLocker
+
+
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
+    Gui,SampleInd: Add, Text,         section            xm   y+10,         Inventory Calibration:
+    Gui,SampleInd: Font
+    Gui,SampleInd: Add, Button, gupdateEmptyColor vUdateEmptyInvSlotColorBtn xs ys+20         w110,   Empty Inventory
+
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
+    Gui,SampleInd: Add, Text,         section            xm   y+10,         AutoDetonate Calibration:
+    Gui,SampleInd: Font
+    Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn     xs ys+20          w110,   OnDetonate
+
+    Gui,SampleInd: +AlwaysOnTop
+
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3944,9 +3727,10 @@ Return
         If (CheckGamestates || GlobeActive || YesController)
         {
           GuiStatus()
-          CheckOHB()
           If CheckGamestates
-          DebugGamestates("CheckGamestates")
+            mainmenuGameLogicState()
+          Else
+            CheckOHB()
           If (GlobeActive)
             ScanGlobe()
         }
@@ -3982,7 +3766,7 @@ Return
           }
           If CheckGamestates
           {
-            DebugGamestates("CheckGamestates")
+            mainmenuGameLogicState()
           }
           If (DebugMessages && YesTimeMS)
             If ((t1-LastPauseMessage) > 100)
@@ -4002,6 +3786,8 @@ Return
               Ding(600,2,"Script paused while no OHB")
               LastPauseMessage := A_TickCount
             }
+          If CheckGamestates
+            mainmenuGameLogicState()
           Exit
         }
         Else If CheckTime("seconds",1,"StatusBar1")
@@ -4009,7 +3795,7 @@ Return
         If (!OnMetamorph && Metamorph_Filled && ((A_TickCount - OnScreenMM) >= 5000) && !FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr ))
           Metamorph_Filled := False
         If CheckGamestates
-          DebugGamestates("CheckGamestates")
+          mainmenuGameLogicState()
       }
       If (DetonateMines&&!Detonated)
       {
@@ -4073,8 +3859,8 @@ Return
             If (WR.Flask[A_Index].MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
               Trigger(WR.Flask[A_Index],"Flask")
           Loop, 10
-            If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%MainAttack)
-              TriggerUtility(A_Index)
+            If (WR.Utility[A_Index].Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility[A_Index].MainAttack)
+              Trigger(WR.Utility[A_Index],"Utility")
         }
         If (SecondaryAttackPressedActive && AutoFlask)
         {
@@ -4083,8 +3869,8 @@ Return
               Trigger(WR.Flask[A_Index],"Flask")
           Loop, 10
           {
-            If (YesUtility%A_Index%) && !(OnCooldownUtility%A_Index%) && (YesUtility%A_Index%SecondaryAttack)
-              TriggerUtility(A_Index)
+            If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility[A_Index].SecondaryAttack)
+              Trigger(WR.Utility[A_Index],"Utility")
           }
         }
 
@@ -4092,29 +3878,25 @@ Return
         {
           Loop, 10
           {
-            If (YesUtility%A_Index% && !OnCooldownUtility%A_Index%)
+            If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount)
             {
-              If ( YesUtility%A_Index%ESPercent != "Off" && YesUtility%A_Index%ESPercent +0 > Player.Percent.ES )
-                TriggerUtility(A_Index)
-              Else If  (YesUtility%A_Index%LifePercent != "Off" && YesUtility%A_Index%LifePercent +0 > Player.Percent.Life )
-                TriggerUtility(A_Index)
-              Else If (YesUtility%A_Index%ManaPercent != "Off" && YesUtility%A_Index%ManaPercent +0 > Player.Percent.Mana )
-                TriggerUtility(A_Index)
-              Else If !(YesUtility%A_Index%Quicksilver || YesUtility%A_Index%MainAttack || YesUtility%A_Index%SecondaryAttack) 
-                && (YesUtility%A_Index%LifePercent="Off" && YesUtility%A_Index%ESPercent="Off" && YesUtility%A_Index%ManaPercent="Off") 
+              If ( WR.Utility[A_Index].OnCD )
+                Trigger(WR.Utility[A_Index],"Utility")
+              Else If ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
+                Trigger(WR.Utility[A_Index],"Utility")
+              Else If  (WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
+                Trigger(WR.Utility[A_Index],"Utility")
+              Else If (WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana )
+                Trigger(WR.Utility[A_Index],"Utility")
+              Else If !(WR.Utility[A_Index].Move ) 
               {
-                If !(IconStringUtility%A_Index%)
-                  TriggerUtility(A_Index)
-                Else If (IconStringUtility%A_Index%)
+                If (WR.Utility[A_Index].Icon)
                 {
                   BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
-                  If (!YesUtility%A_Index%InverseBuff && BuffIcon) || (YesUtility%A_Index%InverseBuff && !BuffIcon)
-                  {
-                    OnCooldownUtility%A_Index%:=1
-                    SetTimer, TimerUtility%A_Index%, % (YesUtility%A_Index%InverseBuff ? 150 : CooldownUtility%A_Index%)
-                  }
-                  Else If (YesUtility%A_Index%InverseBuff && BuffIcon) || (!YesUtility%A_Index%InverseBuff && !BuffIcon)
-                    TriggerUtility(A_Index)
+                  If (!WR.Utility[A_Index].IconShow && BuffIcon) || (WR.Utility[A_Index].IconShow && !BuffIcon)
+                    WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
+                  Else If (WR.Utility[A_Index].IconShow && BuffIcon) || (!WR.Utility[A_Index].IconShow && !BuffIcon)
+                    Trigger(WR.Utility[A_Index],"Utility")
                 }
               }
             }
@@ -4359,206 +4141,125 @@ Return
         ActionList[obj.Group].RemoveAt(k)
         If (WR[type][v].Move && WR[type][v].Group = "QuickSilver")
           Loop, 10
-            If (YesUtility%A_Index% && YesUtility%A_Index%Quicksilver)
-              TriggerUtility(A_Index)
+            If (WR.Utility[A_Index].Enable && WR.Utility[A_Index].Move)
+              Trigger(WR.Utility[A_Index],"Utility")
         Return
       }
     }
     Return
   }
 
-  ; TriggerUtility - Trigger named Utility
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  TriggerUtility(Utility){
-    If (OnTown||OnHideout)
-      Return
-    If (!OnCooldownUtility%Utility%)&&(YesUtility%Utility% || TriggerUtilityKey = Utility){
-      key:=KeyUtility%Utility%
-      SendHotkey(key)
-      ; SendMSG(4, Utility)
-      OnCooldownUtility%Utility%:=1
-      Cooldown:=CooldownUtility%Utility%
-      SetTimer, TimerUtility%Utility%, %Cooldown%
-    }
-    Return
-  } 
-
-; DebugGamestates - Show a GUI which will update based on the state of the game
+; mainmenuGameLogicState - Update information in main menu regarding game logic states
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  DebugGamestates(Switch:=""){
-    Global
+  mainmenuGameLogicState(){
     Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
     Local NewOHB
-    If (Switch := "CheckGamestates")
+    If (OnChar != OldOnChar)
     {
-      GoSub CheckGamestates
-      Return
+      OldOnChar := OnChar
+      If OnChar
+        CtlColors.Change(MainMenuIDOnChar, "Lime", "")
+      Else
+        CtlColors.Change(MainMenuIDOnChar, "Red", "")
     }
-    ShowDebugGamestates:
-      ; SetTimer, CheckGamestates, 50
-      CheckGamestates := True
-      OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
-      Gui, Submit
-      ; ----------------------------------------------------------------------------------------------------------------------
-      Gui, States: New, +LabelStates +AlwaysOnTop -MinimizeBox
-      Gui, States: Margin, 10, 10
-      ; ----------------------------------------------------------------------------------------------------------------------
-      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChar hwndCTIDOnChar, % "OnChar"
-      CtlColors.Attach(CTIDOnChar, "Lime", "")
-      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnOHB hwndCTIDOnOHB, % "Overhead Health Bar"
-      CtlColors.Attach(CTIDOnOHB, "Lime", "")
-      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnChat hwndCTIDOnChat, % "OnChat"
-      CtlColors.Attach(CTIDOnChat, "", "Green")
-      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnInventory hwndCTIDOnInventory, % "OnInventory"
-      CtlColors.Attach(CTIDOnInventory, "", "Green")
-      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnDiv hwndCTIDOnDiv, % "OnDiv"
-      CtlColors.Attach(CTIDOnDiv, "", "Green")
-      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnStash hwndCTIDOnStash, % "OnStash"
-      CtlColors.Attach(CTIDOnStash, "", "Green")
-      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnMenu hwndCTIDOnMenu, % "OnMenu"
-      CtlColors.Attach(CTIDOnMenu, "", "Green")
-      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnVendor hwndCTIDOnVendor, % "OnVendor"
-      CtlColors.Attach(CTIDOnVendor, "", "Green")
-      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnDelveChart hwndCTIDOnDelveChart, % "OnDelveChart"
-      CtlColors.Attach(CTIDOnDelveChart, "", "Green")
-      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnLeft hwndCTIDOnLeft, % "OnLeft"
-      CtlColors.Attach(CTIDOnLeft, "", "Green")
-      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnMetamorph hwndCTIDOnMetamorph, % "OnMetamorph"
-      CtlColors.Attach(CTIDOnMetamorph, "", "Green")
-      Gui, States: Add, Text, x+5 yp w110 Center h20 0x200 vCTOnDetonate hwndCTIDOnDetonate, % "OnDetonate"
-      CtlColors.Attach(CTIDOnDetonate, "", "Green")
-      Gui, States: Add, Text, xm+5 y+10 w110 Center h20 0x200 vCTOnLocker hwndCTIDOnLocker, % "OnLocker"
-      CtlColors.Attach(CTIDOnLocker, "", "Green")
-      Gui, States: Add, Button, gCheckPixelGrid xm+5 y+15 w190 , Check Inventory Grid
-      ; ----------------------------------------------------------------------------------------------------------------------
-      GoSub CheckGamestates
-      Gui, States: Show ,  , Check Gamestates
+    If ((NewOHB := (CheckOHB()?1:0)) != OldOHB)
+    {
+      OldOHB := NewOHB
+      If NewOHB
+        CtlColors.Change(MainMenuIDOnOHB, "Lime", "")
+      Else
+        CtlColors.Change(MainMenuIDOnOHB, "Red", "")
+    }
+    If (OnInventory != OldOnInventory)
+    {
+      OldOnInventory := OnInventory
+      If (OnInventory)
+        CtlColors.Change(MainMenuIDOnInventory, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnInventory, "", "Green")
+    }
+    If (OnChat != OldOnChat)
+    {
+      OldOnChat := OnChat
+      If OnChat
+        CtlColors.Change(MainMenuIDOnChat, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnChat, "", "Green")
+    }
+    If (OnStash != OldOnStash)
+    {
+      OldOnStash := OnStash
+      If (OnStash)
+        CtlColors.Change(MainMenuIDOnStash, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnStash, "", "Green")
+    }
+    If (OnDiv != OldOnDiv)
+    {
+      OldOnDiv := OnDiv
+      If (OnDiv)
+        CtlColors.Change(MainMenuIDOnDiv, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDiv, "", "Green")
+    }
+    If (OnLeft != OldOnLeft)
+    {
+      OldOnLeft := OnLeft
+      If (OnLeft)
+        CtlColors.Change(MainMenuIDOnLeft, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnLeft, "", "Green")
+    }
+    If (OnDelveChart != OldOnDelveChart)
+    {
+      OldOnDelveChart := OnDelveChart
+      If (OnDelveChart)
+        CtlColors.Change(MainMenuIDOnDelveChart, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
+    }
+    If (OnVendor != OldOnVendor)
+    {
+      OldOnVendor := OnVendor
+      If (OnVendor)
+        CtlColors.Change(MainMenuIDOnVendor, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnVendor, "", "Green")
+    }
+    If (OnDetonate != OldOnDetonate)
+    {
+      OldOnDetonate := OnDetonate
+      If (OnDetonate)
+        CtlColors.Change(MainMenuIDOnDetonate, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
+    }
+    If (OnMenu != OldOnMenu)
+    {
+      OldOnMenu := OnMenu
+      If (OnMenu)
+        CtlColors.Change(MainMenuIDOnMenu, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnMenu, "", "Green")
+    }
+    If (OnMetamorph != OldOnMetamorph)
+    {
+      OldOnMetamorph := OnMetamorph
+      If (OnMetamorph)
+        CtlColors.Change(MainMenuIDOnMetamorph, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnMetamorph, "", "Green")
+    }
+    If (OnLocker != OldOnLocker)
+    {
+      OldOnLocker := OnLocker
+      If (OnLocker)
+        CtlColors.Change(MainMenuIDOnLocker, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnLocker, "", "Green")
+    }
     Return
-    ; ----------------------------------------------------------------------------------------------------------------------
-    StatesClose:
-    StatesEscape:
-      Gui, States: Destroy
-      SetTimer, CheckGamestates, Delete
-      CtlColors.Free()
-      Gui, 1: Show
-      CheckGamestates := False
-    Return
-    ; ----------------------------------------------------------------------------------------------------------------------
-    StatesSize:
-      If (A_EventInfo != 1) {
-        Gui, %A_Gui%:+LastFound
-        WinSet, ReDraw
-      }
-    Return
-    ; ----------------------------------------------------------------------------------------------------------------------
-    CheckGamestates:
-      ; GuiStatus()
-      If (OnChar != OldOnChar)
-      {
-        OldOnChar := OnChar
-        If OnChar
-          CtlColors.Change(CTIDOnChar, "Lime", "")
-        Else
-          CtlColors.Change(CTIDOnChar, "Red", "")
-      }
-      If ((NewOHB := (CheckOHB()?1:0)) != OldOHB)
-      {
-        OldOHB := NewOHB
-        If NewOHB
-          CtlColors.Change(CTIDOnOHB, "Lime", "")
-        Else
-          CtlColors.Change(CTIDOnOHB, "Red", "")
-      }
-      If (OnInventory != OldOnInventory)
-      {
-        OldOnInventory := OnInventory
-        If (OnInventory)
-          CtlColors.Change(CTIDOnInventory, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnInventory, "", "Green")
-      }
-      If (OnChat != OldOnChat)
-      {
-        OldOnChat := OnChat
-        If OnChat
-          CtlColors.Change(CTIDOnChat, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnChat, "", "Green")
-      }
-      If (OnStash != OldOnStash)
-      {
-        OldOnStash := OnStash
-        If (OnStash)
-          CtlColors.Change(CTIDOnStash, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnStash, "", "Green")
-      }
-      If (OnDiv != OldOnDiv)
-      {
-        OldOnDiv := OnDiv
-        If (OnDiv)
-          CtlColors.Change(CTIDOnDiv, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnDiv, "", "Green")
-      }
-      If (OnLeft != OldOnLeft)
-      {
-        OldOnLeft := OnLeft
-        If (OnLeft)
-          CtlColors.Change(CTIDOnLeft, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnLeft, "", "Green")
-      }
-      If (OnDelveChart != OldOnDelveChart)
-      {
-        OldOnDelveChart := OnDelveChart
-        If (OnDelveChart)
-          CtlColors.Change(CTIDOnDelveChart, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnDelveChart, "", "Green")
-      }
-      If (OnVendor != OldOnVendor)
-      {
-        OldOnVendor := OnVendor
-        If (OnVendor)
-          CtlColors.Change(CTIDOnVendor, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnVendor, "", "Green")
-      }
-      If (OnDetonate != OldOnDetonate)
-      {
-        OldOnDetonate := OnDetonate
-        If (OnDetonate)
-          CtlColors.Change(CTIDOnDetonate, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnDetonate, "", "Green")
-      }
-      If (OnMenu != OldOnMenu)
-      {
-        OldOnMenu := OnMenu
-        If (OnMenu)
-          CtlColors.Change(CTIDOnMenu, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnMenu, "", "Green")
-      }
-      If (OnMetamorph != OldOnMetamorph)
-      {
-        OldOnMetamorph := OnMetamorph
-        If (OnMetamorph)
-          CtlColors.Change(CTIDOnMetamorph, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnMetamorph, "", "Green")
-      }
-      If (OnLocker != OldOnLocker)
-      {
-        OldOnLocker := OnLocker
-        If (OnLocker)
-          CtlColors.Change(CTIDOnLocker, "Red", "")
-        Else
-          CtlColors.Change(CTIDOnLocker, "", "Green")
-      }
-    Return
-    ; ----------------------------------------------------------------------------------------------------------------------
+
     CheckPixelGrid:
       ;Check if inventory is open
       Gui, States: Hide
@@ -4583,10 +4284,7 @@ Return
       MsgBox %TT%  
       Gui, States: Show
     Return
-    ; ----------------------------------------------------------------------------------------------------------------------
   }
-
-;
 ; GrabCurrency - Get currency fast to use on a white/blue/rare strongbox
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GrabCurrency(){
@@ -4613,7 +4311,6 @@ Return
   return
   }
 
-;
 ; Crafting - Deal with Crafting requirement conditions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Crafting(selection:="Maps")
@@ -4639,7 +4336,7 @@ Return
         GuiStatus()
         If (!OnChar) 
         {
-          MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
+          MsgBox %  "You do not appear to be in game.`nLikely need to calibrate Character Active"
           RunningToggle := False
           If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
             SetTimer, TGameTick, On
@@ -4708,7 +4405,6 @@ Return
     Return
   }
 
-;
 ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CraftingMaps()
@@ -4857,7 +4553,6 @@ Return
     }
     Return False
   }
-;
 ; ApplyCurrency - Using cname = currency name string and x, y as apply position
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ApplyCurrency(cname, x, y)
@@ -4871,7 +4566,6 @@ Return
     return
   }
 
-;
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MapRoll(Method, x, y)
@@ -4981,7 +4675,6 @@ Return
     return
   }
   
-; 
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GemSwap()
@@ -5531,7 +5224,7 @@ Return
         && GuiStatus("",0)
         && ((YesOHB && YesOHBFound) || !YesOHB) )
         {
-          TriggerUtility(TriggerUtilityKey)
+          Trigger(WR.Utility[TriggerUtilityKey],"Utility")
         }
       }
       Else
@@ -8092,7 +7785,7 @@ Return
         Rescale()
         WinActivate, ahk_group POEGameGroup
       } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OnChar didn't work"
+        MsgBox % "PoE Window does not exist. `nRecalibrate of Character Active didn't work"
         Return
       }
       
@@ -8101,9 +7794,9 @@ Return
         varOnChar := ScreenShot_GetColor(WR.loc.OnChar.X,WR.loc.OnChar.Y)
         IniWrite, %varOnChar%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChar
         readFromFile()
-        MsgBox % "OnChar recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . WR.loc.OnChar.X . " and y: " . WR.loc.OnChar.Y
+        MsgBox % "Character Active recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . WR.loc.OnChar.X . " and y: " . WR.loc.OnChar.Y
       } else
-      MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
+      MsgBox % "PoE Window is not active. `nRecalibrate of Character Active didn't work"
       
       hotkeys()
       
@@ -8510,31 +8203,31 @@ Return
         Gui, Submit
         Gui, Wizard: New, +LabelWizard +AlwaysOnTop
         Gui, Wizard: Font, Bold
-        Gui, Wizard: Add, GroupBox, x10 y9 w460 h270 , Select which calibrations to run
+        Gui, Wizard: Add, GroupBox, x10 y9 w500 h270 , Select which calibrations to run
         Gui, Wizard: Font
-        Gui, Wizard: Add, Text, x22 y29 w170 h200 , % "Enable the checkboxes to choose which calibration to perform"
+        Gui, Wizard: Add, Text, x22 y29 w180 h200 , % "Enable the checkboxes to choose which calibration to perform"
           . "`n`nFollow the instructions in the tooltip that will appear in the screen center"
           . "`n`nFor best results, start the wizard in the hideout with your inventory emptied"
           . "`n`nPress the ""A"" button when your gamestate matches the instructions"
           . "`n`nTo cancel the Wizard, Hold Escape then press ""A"""
 
-        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnChar    x222 y39       w100 h20 , OnChar
-        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnChat        xp   y+10      w100 h20 , OnChat
-        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnInventory     xp   y+10      w100 h20 , OnInventory
-        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnVendor      xp   y+10      w100 h20 , OnVendor
-        Gui, Wizard: Add, CheckBox, vCalibrationOnDiv             xp   y+10      w100 h20 , OnDiv
-        Gui, Wizard: Add, CheckBox, vCalibrationOnMetamorph           xp   y+10      w100 h20 , OnMetamorph
+        Gui, Wizard: Add, CheckBox, Section Checked vCalibrationOnChar    x222 y39       w140 h20 , Character Active
+        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnChat        xp   y+10      wp h20 , Chat Open
+        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnInventory     xp   y+10      wp h20 , Inventory Open
+        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnVendor      xp   y+10      wp h20 , Vendor Trade Open
+        Gui, Wizard: Add, CheckBox, vCalibrationOnDiv             xp   y+10      wp h20 , Divination Trade Open
+        Gui, Wizard: Add, CheckBox, vCalibrationOnMetamorph           xp   y+10      wp h20 , Map Metamorph Open
 
-        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu        x342 y39       w100 h20 , OnMenu
-        Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty         xp   y+10      w100 h20 , Empty Inventory
-        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnStash       xp   y+10      w100 h20 , OnStash/OnLeft
-        Gui, Wizard: Add, CheckBox, vCalibrationOnDelveChart        xp   y+10      w100 h20 , OnDelveChart
-        Gui, Wizard: Add, CheckBox, vCalibrationDetonate          xp   y+10      w100 h20 , OnDetonate
+        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu        xp+140 ys       wp h20 , Talent Menu Open
+        Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty         xp   y+10      wp h20 , !EMPTY! Inventory Open
+        Gui, Wizard: Add, CheckBox, Checked vCalibrationOnStash       xp   y+10      wp h20 , Stash Open
+        Gui, Wizard: Add, CheckBox, vCalibrationOnDelveChart        xp   y+10      wp h20 , Delve Chart Open
+        Gui, Wizard: Add, CheckBox, vCalibrationDetonate          xp   y+10      wp h20 , Detonate Shown
 
-        Gui, Wizard: Add, Button, x122 y239 w100 h30 gRunWizard, Run Wizard
-        Gui, Wizard: Add, Button, x252 y239 w100 h30 gWizardClose, Cancel Wizard
+        Gui, Wizard: Add, Button, x100 y240 w160 h30 gRunWizard, Run Wizard
+        Gui, Wizard: Add, Button, x+20 yp wp hp gWizardClose, Cancel Wizard
 
-        Gui, Wizard: Show,% "x"ScrCenter.X - 240 "y"ScrCenter.Y - 150 " h300 w479", Calibration Wizard
+        Gui, Wizard: Show,% "x"ScrCenter.X - 240 "y"ScrCenter.Y - 150 " h300 w529", Calibration Wizard
       Return
 
       RunWizard:
@@ -8554,8 +8247,8 @@ Return
         EmptySampleTT=
         If CalibrationOnChar
         {
-          ToolTip,% "This will sample the OnChar Color"
-            . "`nMake sure you are logged into a character"
+          ToolTip,% "This will sample the Character Active Color"
+            . "`nMake sure you are logged into a character with flasks and abilities clearly visible"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
             , % ScrCenter.X - 115 , % ScrCenter.Y -30
@@ -8571,13 +8264,13 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnChar := ScreenShot_GetColor(WR.loc.OnChar.X,WR.loc.OnChar.Y)
-            SampleTT .= "OnChar      took RGB color hex: " . varOnChar . "  At coords x: " . WR.loc.OnChar.X . " and y: " . WR.loc.OnChar.Y . "`n"
+            SampleTT .= "Character Active took RGB color hex: " . varOnChar . "  At coords x: " . WR.loc.OnChar.X . " and y: " . WR.loc.OnChar.Y . "`n"
           } else
-          MsgBox % "PoE Window is not active. `nRecalibrate of OnChar didn't work"
+          MsgBox % "PoE Window is not active. `nRecalibrate of Character Active didn't work"
         }
         If CalibrationOnChat
         {
-          ToolTip,% "This will sample the OnChat Color"
+          ToolTip,% "This will sample the Chat Open Color"
             . "`nMake sure you have chat panel open"
             . "`nNo other panels can be open on the left"
             . "`nPress ""A"" to sample"
@@ -8595,13 +8288,13 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnChat := ScreenShot_GetColor(WR.loc.OnChat.X,WR.loc.OnChat.Y)
-            SampleTT .= "OnChat      took RGB color hex: " . varOnChat . "  At coords x: " . WR.loc.OnChat.X . " and y: " . WR.loc.OnChat.Y . "`n"
+            SampleTT .= "Chat Open   took RGB color hex: " . varOnChat . "  At coords x: " . WR.loc.OnChat.X . " and y: " . WR.loc.OnChat.Y . "`n"
           } else
-          MsgBox % "PoE Window is not active. `nRecalibrate of OnChat didn't work"
+          MsgBox % "PoE Window is not active. `nRecalibrate of Chat Open didn't work"
         }
         If CalibrationOnMenu
         {
-          ToolTip,% "This will sample the OnMenu Color"
+          ToolTip,% "This will sample the Passive Menu Open Color"
             . "`nMake sure you have the Passive Skills menu open"
             . "`nCan also use Atlas menu to sample"
             . "`nPress ""A"" to sample"
@@ -8619,13 +8312,13 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnMenu := ScreenShot_GetColor(WR.loc.OnMenu.X,WR.loc.OnMenu.Y)
-            SampleTT .= "OnMenu      took RGB color hex: " . varOnMenu . "  At coords x: " . WR.loc.OnMenu.X . " and y: " . WR.loc.OnMenu.Y . "`n"
+            SampleTT .= "Passive Menu Open took RGB color hex: " . varOnMenu . "  At coords x: " . WR.loc.OnMenu.X . " and y: " . WR.loc.OnMenu.Y . "`n"
           } else
-          MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
+          MsgBox % "PoE Window is not active. `nRecalibrate of Passive Menu Open didn't work"
         }
         If CalibrationOnInventory
         {
-          ToolTip,% "This will sample the OnInventory Color"
+          ToolTip,% "This will sample the Inventory Open Color"
             . "`nMake sure you have the Inventory panel open"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
@@ -8642,14 +8335,14 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnInventory := ScreenShot_GetColor(WR.loc.OnInventory.X,WR.loc.OnInventory.Y)
-            SampleTT .= "OnInventory   took RGB color hex: " . varOnInventory . "  At coords x: " . WR.loc.OnInventory.X . " and y: " . WR.loc.OnInventory.Y . "`n"
+            SampleTT .= "Inventory Open took RGB color hex: " . varOnInventory . "  At coords x: " . WR.loc.OnInventory.X . " and y: " . WR.loc.OnInventory.Y . "`n"
           } else
-          MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
+          MsgBox % "PoE Window is not active. `nRecalibrate of Inventory Open didn't work"
         }
         If CalibrationEmpty
         {
           ToolTip,% "This will sample the Empty Inventory Colors"
-            . "`nMake sure you Empty all items from inventory"
+            . "`nNo items can be in your inventory, ALL slots must be empty to calibrate"
             . "`nMake sure you have the Inventory panel open"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
@@ -8693,7 +8386,7 @@ Return
         }
         If CalibrationOnVendor
         {
-          ToolTip,% "This will sample the OnVendor Color"
+          ToolTip,% "This will sample the Vendor Trade Open Color"
             . "`nMake sure you have the Vendor Sell panel open"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
@@ -8710,13 +8403,13 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnVendor := ScreenShot_GetColor(WR.loc.OnVendor.X,WR.loc.OnVendor.Y)
-            SampleTT .= "OnVendor    took RGB color hex: " . varOnVendor . "  At coords x: " . WR.loc.OnVendor.X . " and y: " . WR.loc.OnVendor.Y . "`n"
+            SampleTT .= "Vendor Trade Open took RGB color hex: " . varOnVendor . "  At coords x: " . WR.loc.OnVendor.X . " and y: " . WR.loc.OnVendor.Y . "`n"
           } else
-          MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
+          MsgBox % "PoE Window is not active. `nRecalibrate of Vendor Trade Open didn't work"
         }
         If CalibrationOnStash
         {
-          ToolTip,% "This will sample the OnStash/OnLeft Color"
+          ToolTip,% "This will sample the Stash Open and Left Panel Open Color"
             . "`nMake sure you have the Stash panel open"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
@@ -8734,14 +8427,14 @@ Return
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnStash := ScreenShot_GetColor(WR.loc.OnStash.X,WR.loc.OnStash.Y)
             , varOnLeft := ScreenShot_GetColor(WR.loc.OnLeft.X,WR.loc.OnLeft.Y)
-            SampleTT .= "OnStash      took RGB color hex: " . varOnStash . "  At coords x: " . WR.loc.OnStash.X . " and y: " . WR.loc.OnStash.Y . "`n"
-            SampleTT .= "OnLeft      took RGB color hex: " . varOnLeft . "  At coords x: " . WR.loc.OnLeft.X . " and y: " . WR.loc.OnLeft.Y . "`n"
+            SampleTT .= "Stash Open took RGB color hex: " . varOnStash . "  At coords x: " . WR.loc.OnStash.X . " and y: " . WR.loc.OnStash.Y . "`n"
+            SampleTT .= "Left Panel Open took RGB color hex: " . varOnLeft . "  At coords x: " . WR.loc.OnLeft.X . " and y: " . WR.loc.OnLeft.Y . "`n"
           } else
-          MsgBox % "PoE Window is not active. `nRecalibrate of OnStash/OnLeft didn't work"
+          MsgBox % "PoE Window is not active. `nRecalibrate of Stash Open didn't work"
         }
         If CalibrationOnDiv
         {
-          ToolTip,% "This will sample the OnDiv Color"
+          ToolTip,% "This will sample the Divination Trade Open Color"
             . "`nMake sure you have the Trade Divination panel open"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
@@ -8758,14 +8451,13 @@ Return
           }
           if WinActive(ahk_group POEGameGroup){
             ScreenShot(), varOnDiv := ScreenShot_GetColor(WR.loc.OnDiv.X,WR.loc.OnDiv.Y)
-            SampleTT .= "OnDiv       took RGB color hex: " . varOnDiv . "  At coords x: " . WR.loc.OnDiv.X . " and y: " . WR.loc.OnDiv.Y . "`n"
+            SampleTT .= "Divination Trade Open took RGB color hex: " . varOnDiv . "  At coords x: " . WR.loc.OnDiv.X . " and y: " . WR.loc.OnDiv.Y . "`n"
           } else
-          MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
+          MsgBox % "PoE Window is not active. `nRecalibrate of Divination Trade Open didn't work"
         }
         If CalibrationDetonate
         {
           ToolTip,% "This will sample the Detonate Mines Color"
-            . "`nMake sure you are somewhere other than Delve mines"
             . "`nPlace a mine, and the detonate mines icon should appear"
             . "`nPress ""A"" to sample"
             . "`nHold Escape and press ""A"" to cancel"
@@ -8901,6 +8593,7 @@ Return
         Static LG_Add, LG_Rem
         Global LootColors, LG_Vary
         Gui, Submit
+        CheckGamestates := False
         gui,LootColors: new, LabelLootColors
         gui,LootColors: -MinimizeBox
         Gui LootColors: Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%   xm+5 ym+8 , Enable Loot Vacuum
@@ -9024,7 +8717,7 @@ Return
       LootColorsClose:
       LootColorsEscape:
         Gui, LootColors: Destroy
-        Gui, 1: show
+        hotkeys()
       Return
     }
 
@@ -9435,137 +9128,6 @@ Return
       IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
       IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
     Return
-
-    UpdateUtility:
-      Gui, Submit, NoHide
-      ;Utility Buttons
-      IniWrite, %YesUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1
-      IniWrite, %YesUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2
-      IniWrite, %YesUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3
-      IniWrite, %YesUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4
-      IniWrite, %YesUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5
-      IniWrite, %YesUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6
-      IniWrite, %YesUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7
-      IniWrite, %YesUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8
-      IniWrite, %YesUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9
-      IniWrite, %YesUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10
-
-      IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver
-      IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver
-      IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver
-      IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver
-      IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver
-      IniWrite, %YesUtility6Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6Quicksilver
-      IniWrite, %YesUtility7Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7Quicksilver
-      IniWrite, %YesUtility8Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8Quicksilver
-      IniWrite, %YesUtility9Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9Quicksilver
-      IniWrite, %YesUtility10Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10Quicksilver
-
-      IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff
-      IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff
-      IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff
-      IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff
-      IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff
-      IniWrite, %YesUtility6InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6InverseBuff
-      IniWrite, %YesUtility7InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7InverseBuff
-      IniWrite, %YesUtility8InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8InverseBuff
-      IniWrite, %YesUtility9InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9InverseBuff
-      IniWrite, %YesUtility10InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10InverseBuff
-
-      IniWrite, %YesUtility1MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack
-      IniWrite, %YesUtility2MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack
-      IniWrite, %YesUtility3MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack
-      IniWrite, %YesUtility4MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack
-      IniWrite, %YesUtility5MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack
-      IniWrite, %YesUtility6MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6MainAttack
-      IniWrite, %YesUtility7MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7MainAttack
-      IniWrite, %YesUtility8MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8MainAttack
-      IniWrite, %YesUtility9MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9MainAttack
-      IniWrite, %YesUtility10MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10MainAttack
-      
-      IniWrite, %YesUtility1SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack
-      IniWrite, %YesUtility2SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack
-      IniWrite, %YesUtility3SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack
-      IniWrite, %YesUtility4SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack
-      IniWrite, %YesUtility5SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack
-      IniWrite, %YesUtility6SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6SecondaryAttack
-      IniWrite, %YesUtility7SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7SecondaryAttack
-      IniWrite, %YesUtility8SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8SecondaryAttack
-      IniWrite, %YesUtility9SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9SecondaryAttack
-      IniWrite, %YesUtility10SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10SecondaryAttack
-      
-      ;Utility Percents  
-      IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent
-      IniWrite, %YesUtility2LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2LifePercent
-      IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent
-      IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent
-      IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent
-      IniWrite, %YesUtility6LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6LifePercent
-      IniWrite, %YesUtility7LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7LifePercent
-      IniWrite, %YesUtility8LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8LifePercent
-      IniWrite, %YesUtility9LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9LifePercent
-      IniWrite, %YesUtility10LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10LifePercent
-
-      IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1EsPercent
-      IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2EsPercent
-      IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent
-      IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent
-      IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent
-      IniWrite, %YesUtility6EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6EsPercent
-      IniWrite, %YesUtility7EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7EsPercent
-      IniWrite, %YesUtility8EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8EsPercent
-      IniWrite, %YesUtility9EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9EsPercent
-      IniWrite, %YesUtility10EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10EsPercent
-
-      IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1ManaPercent
-      IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2ManaPercent
-      IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3ManaPercent
-      IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4ManaPercent
-      IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5ManaPercent
-      IniWrite, %YesUtility6ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6ManaPercent
-      IniWrite, %YesUtility7ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7ManaPercent
-      IniWrite, %YesUtility8ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8ManaPercent
-      IniWrite, %YesUtility9ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9ManaPercent
-      IniWrite, %YesUtility10ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10ManaPercent
-      
-      ;Utility Cooldowns
-      IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1
-      IniWrite, %CooldownUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility2
-      IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3
-      IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4
-      IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5
-      IniWrite, %CooldownUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility6
-      IniWrite, %CooldownUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility7
-      IniWrite, %CooldownUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility8
-      IniWrite, %CooldownUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility9
-      IniWrite, %CooldownUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility10
-      
-      ;Utility Keys
-      IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1
-      IniWrite, %KeyUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility2
-      IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3
-      IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4
-      IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5
-      IniWrite, %KeyUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility6
-      IniWrite, %KeyUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility7
-      IniWrite, %KeyUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility8
-      IniWrite, %KeyUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility9
-      IniWrite, %KeyUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility10
-      
-      ;Utility Keys
-      IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1
-      IniWrite, %IconStringUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility2
-      IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3
-      IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4
-      IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5
-      IniWrite, %IconStringUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility6
-      IniWrite, %IconStringUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility7
-      IniWrite, %IconStringUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility8
-      IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility9
-      IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10
-      
-      ; SendMSG(1, 0)
-    Return
   }
 
   { ; Launch Webpages from button
@@ -9589,11 +9151,13 @@ Return
 
     ft_Start:
     Gui, Submit
+    CheckGamestates:= False
     Run, Library.ahk, %A_ScriptDir%\data\
     Return
 
     GuiEscape:
       Gui, Cancel
+      CheckGamestates:= False
     return
 
     ItemInfoEscape:
@@ -9601,75 +9165,16 @@ Return
       Gui, ItemInfo: Hide
     Return
 
-    UpdateProfileText1:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText1, , ProfileText1
-      IniWrite, %ProfileText1%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText1
-    Return
-
-    UpdateProfileText2:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText2, , ProfileText2
-      IniWrite, %ProfileText2%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText2
-    Return
-
-    UpdateProfileText3:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText3, , ProfileText3
-      IniWrite, %ProfileText3%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText3
-    Return
-
-    UpdateProfileText4:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText4, , ProfileText4
-      IniWrite, %ProfileText4%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText4
-    Return
-
-    UpdateProfileText5:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText5, , ProfileText5
-      IniWrite, %ProfileText5%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText5
-    Return
-
-    UpdateProfileText6:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText6, , ProfileText6, 
-      IniWrite, %ProfileText6%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText6
-    Return
-
-    UpdateProfileText7:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText7, , ProfileText7
-      IniWrite, %ProfileText7%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText7
-    Return
-
-    UpdateProfileText8:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText8, , ProfileText8
-      IniWrite, %ProfileText8%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText8
-    Return
-
-    UpdateProfileText9:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText9, , ProfileText9
-      IniWrite, %ProfileText9%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText9
-    Return
-
-    UpdateProfileText10:
-      ;Gui, Submit, NoHide
-      GuiControlGet, ProfileText10, , ProfileText10
-      IniWrite, %ProfileText10%, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText10
-    Return
-
     helpCalibration:
-      ; Gui, submit
-      MsgBox, 262144, General Configuration Instructions, % "Use Show Gamestates to observe what panels or game states are considered true or false. Open and close Panels within the game to see their respective status change from green to red. If all status are showing green, the script status should say Wingman Active.`n`n"
+      MsgBox, 262144, Calibration Tips, % "Use Game Logic States to observe what panels or game states are considered true or false. Open and close Panels within the game to see their respective status change from green to red. If all status are showing green, the script status should say Wingman Active.`n`n"
       . "If many are not responding to changes in the game, use the Wizard to calibrate them all at once. Just remember to follow the prompts closely in order to ensure proper calibration.`n`n"
       . "Sometimes it may be easier to calibrate one sample at a time, and this can be done with the Individual Sample menu.`n`n"
       . "If the issue is instead with the percentages of Health, ES, and/or Mana, then you will need to Adjust Globes. Use the menu to change the Scan options which the percentages will be shown in real time on the menu.`n`n"
-      . "Use Loot Vacuum to configure picking up loot, this function uses the Item Pickup hotkey bound in game. You must enable the In-Game option to only highlight loot when pressed, then you can calibrate colors within the script.`n`n"
+      . "If the issue is with aspect ratio and you have already calculated your ratio manually, use Adjust Locations to enter custom positions."
+    Return
+    helpAutomationSetting:
+      MsgBox, 262144, Automation Tips, % "Use Loot Vacuum to configure picking up loot, this function uses the Item Pickup hotkey bound in game. You must enable the In-Game option to only highlight loot when pressed, then you can calibrate colors within the script.`n`n"
       . "Sample Strings will allow you to change the image captures that have been saved for use with the script. Replace the default strings with your own, or use the ones available in the dropdown menus which match your resolution height."
-      ; Hotkeys()
     Return
 
     SelectClientLog:

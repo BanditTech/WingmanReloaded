@@ -3056,6 +3056,7 @@
     If (Function = "Inventory")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Inventory
       {
         Built_Inventory := 1
@@ -3551,6 +3552,7 @@
     Else If (Function = "Crafting")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Crafting
       {
         Built_Crafting := 1
@@ -3684,6 +3686,7 @@
     Else If (Function = "Strings")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Strings
       {
         Built_Strings := 1
@@ -3748,6 +3751,7 @@
     Else If (Function = "Chat")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Chat
       {
         Built_Chat := 1
@@ -3859,6 +3863,7 @@
     Else If (Function = "Controller")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Controller
       {
         Built_Controller := 1
@@ -3940,6 +3945,7 @@
     Else if (Function = "Globe")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       Element := Var[1]
       If (!Built_Globe || Element = "Reset")
       {
@@ -4228,6 +4234,7 @@
     HotkeysGuiEscape:
       Gui, Submit
       Gui, 1: show
+      CheckGamestates:= True
     return
     
     GlobeGuiClose:
@@ -4235,6 +4242,7 @@
       GlobeActive := False
       Gui, Submit
       Gui, 1: show
+      CheckGamestates:= True
     return
   }
   ; Debug messages within script
@@ -7342,6 +7350,7 @@
     {
       Gui, Show, Autosize Center,   WingmanReloaded
     }
+    CheckGamestates := True
     processWarningFound:=0
     Gui,6:Hide
     return
@@ -7877,7 +7886,8 @@
           baseList .= v["name"]"|"
         }
       }
-      Gui, 1: Submit
+      ; Gui, 1: Submit
+      ; CheckGamestates:= False
       Gui, CustomCrafting: New
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
       Gui, CustomCrafting: Add, Button, default gupdateEverything    x225 y180  w150 h23,   Save Configuration
@@ -17466,14 +17476,6 @@ ft_Gui(cmd)
     Clipboard:=RegExReplace(s,"\R","`r`n")
   Else if (cmd="CopyString")
     Clipboard:= """" copyString """"
-
-  ;----------------------
-  ; if !(!A_IsCompiled and A_LineFile=A_ScriptFullPath)
-  ; {
-  ;   Gui, Hide
-  ;   Gui, 1: Default
-  ;   Hotkeys()
-  ; }
   return
   }
   if (cmd="MySlider1") or (cmd="MySlider2")
