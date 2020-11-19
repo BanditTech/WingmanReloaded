@@ -1295,22 +1295,39 @@
       Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h65, Trigger with Attack
       Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttack xs+10 yp+20 Checked" WR.Flask[slot].MainAttack, Main
       Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+10 Checked" WR.Flask[slot].SecondaryAttack, Secondary
-
-      Gui, Flask%slot%: Add, GroupBox, Section center x+35 ys w240 h55, Life Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%Life   xs+3   yp+15 w235 h30, % WR.Flask[slot].Life
-      Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, ES Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%ES     xs+3   yp+15 w235 h30, % WR.Flask[slot].ES
-      Gui, Flask%slot%: Add, GroupBox, center xs y+15 w240 h55, Mana Trigger
-      Gui, Flask%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vFlask%slot%Mana   xs+3   yp+15 w235 h30, % WR.Flask[slot].Mana
+      
+      backColor := "E0E0E0"
+      Gui, Flask%slot%: Add, GroupBox, Section center x+35 ys w240 h145, Resource Triggers
+      setColor := "Red"
+      Gui, Flask%slot%: Font, s16, Consolas
+      Gui, Flask%slot%: Add, Text, xs+10 ys+13 c%setColor%, L`%
+      Gui, Flask%slot%: Add, Text,% "vFlask" slot "Life hwndFlask" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Life
+      ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%LifeHWND
+      Flask%slot%Life_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
+      setColor := "51DEFF"
+      Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
+      Gui, Flask%slot%: Add, Text,% "vFlask" slot "ES hwndFlask" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].ES
+      ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ESHWND
+      Flask%slot%ES_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
+      setColor := "Blue"
+      Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
+      Gui, Flask%slot%: Add, Text,% "vFlask" slot "Mana hwndFlask" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Mana
+      Gui, Flask%slot%: Font,
+      ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ManaHWND
+      Flask%slot%Mana_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
+      Gui, Flask%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
+      Gui, Flask%slot%: Add, Radio, % "vFlask" slot "Condition  x+5   yp-5 h22 Checked" (WR.Flask[slot].Condition==1?1:0), Any
+      Gui, Flask%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Flask[slot].Condition==2?1:0), All
 
       Gui, Flask%slot%: show, w520 h280
     }
     Return
 
     FlaskSaveValues:
-      for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Life", "ES", "Mana", "Group"]
+      for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition"]
         WR.Flask[which][kind] := Flask%which%%kind%
-  
+      for k, kind in ["Life", "ES", "Mana"]
+        WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
       FileDelete, %A_ScriptDir%\save\Flask.json
       JSONtext := JSON.Dump(WR.Flask,,2)
       FileAppend, %JSONtext%, %A_ScriptDir%\save\Flask.json
@@ -1397,14 +1414,31 @@
       Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttack xs+10 yp+20 Checked" WR.Utility[slot].MainAttack, Main
       Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+10 Checked" WR.Utility[slot].SecondaryAttack, Secondary
 
-      Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w240 h55, Life Trigger
-      Gui, Utility%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vUtility%slot%Life   xs+3   yp+15 w235 h30, % WR.Utility[slot].Life
-      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w240 h55, ES Trigger
-      Gui, Utility%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vUtility%slot%ES     xs+3   yp+15 w235 h30, % WR.Utility[slot].ES
-      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w240 h55, Mana Trigger
-      Gui, Utility%slot%: Add, Slider,   TickInterval10 ToolTip Thick20 vUtility%slot%Mana   xs+3   yp+15 w235 h30, % WR.Utility[slot].Mana
+      backColor := "E0E0E0"
+      Gui, Utility%slot%: Add, GroupBox, Section center x+35 ys w240 h145, Resource Triggers
+      setColor := "Red"
+      Gui, Utility%slot%: Font, s16, Consolas
+      Gui, Utility%slot%: Add, Text, xs+10 ys+13 c%setColor%, L`%
+      Gui, Utility%slot%: Add, Text,% "vUtility" slot "Life hwndUtility" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Life
+      ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%LifeHWND
+      Utility%slot%Life_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Life , backColor , setColor , 1 , "Utility" slot "Life" , 0 , 0 , 1)
+      setColor := "51DEFF"
+      Gui, Utility%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
+      Gui, Utility%slot%: Add, Text,% "vUtility" slot "ES hwndUtility" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].ES
+      ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ESHWND
+      Utility%slot%ES_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].ES , backColor , setColor , 1 , "Utility" slot "ES" , 0 , 0 , 1)
+      setColor := "Blue"
+      Gui, Utility%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
+      Gui, Utility%slot%: Add, Text,% "vUtility" slot "Mana hwndUtility" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Mana
+      Gui, Utility%slot%: Font,
+      ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ManaHWND
+      Utility%slot%Mana_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Mana , backColor , setColor , 1 , "Utility" slot "Mana" , 0 , 0 , 1)
+      Gui, Utility%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
+      Gui, Utility%slot%: Add, Radio, % "vUtility" slot "Condition  x+5   yp-5 h22 Checked" (WR.Utility[slot].Condition==1?1:0), Any
+      Gui, Utility%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Utility[slot].Condition==2?1:0), All
 
-      Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+15 w360 h100, Trigger when Sample String not found
+
+      Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+75 w360 h100, Trigger when Sample String not found
       Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
 
       Gui, Utility%slot%: Add, Text, xs+10  y+8 , Search Area:
@@ -1420,8 +1454,10 @@
     Return
 
     UtilitySaveValues:
-      for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Life", "ES", "Mana", "Group"]
+      for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition"]
         WR.Utility[which][kind] := Utility%which%%kind%
+      for k, kind in ["Life", "ES", "Mana"]
+        WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 
   
       FileDelete, %A_ScriptDir%\save\Utility.json
       JSONtext := JSON.Dump(WR.Utility,,2)

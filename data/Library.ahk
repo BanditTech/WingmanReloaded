@@ -4641,6 +4641,7 @@
       This.Add_pSlider()
     }
     Add_pSlider(){
+      global
       Gui, % This.GUI_NAME ":Add" , Text , % "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd"
       pSlider_Trigger := This.Adjust_pSlider.BIND( THIS ) 
       GUICONTROL +G , %pSliderTriggerhwnd% , % pSlider_Trigger
