@@ -483,12 +483,16 @@
   ; Global Script object
     Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{}}
     WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}
-    WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0", "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
-      , "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0", "channelrepressEnable":"0" , "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs", "Key":"RButton"
-      , "channelrepressIcon":"|<Scourge Arrow>0xFDF100@0.60$40.108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
-      , "channelrepressOffsetX1":"0", "channelrepressOffsetY1":"0", "channelrepressOffsetX2":"0", "channelrepressOffsetY2":"0"
+    WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
+      , "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
+      , "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0"
+      , "channelrepressEnable":"0" , "channelrepressKey":"RButton", "channelrepressOffsetX1":"0", "channelrepressOffsetY1":"0", "channelrepressOffsetX2":"0", "channelrepressOffsetY2":"0"
+        , "channelrepressIcon":"|<Scourge Arrow>0xFDF100@0.60$40.108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
+        , "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs"
       , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseKey":"d", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
-      , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" }
+      , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
+      , "swap1Enable":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
+      , "swap2Enable":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"}
     for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
     ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
     ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
@@ -1243,392 +1247,9 @@
     FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
     QuestItems := JSON.Load(JSONtext)
   }
-  IfNotExist, %A_ScriptDir%\save\Flask.json
-  {
-    JSONtext := JSON.Dump(WR.Flask,,2)
-    FileAppend, %JSONtext%, %A_ScriptDir%\save\Flask.json
-  }
-  Else
-  {
-    FileRead, JSONtext, %A_ScriptDir%\save\Flask.json
-    WR.Flask := JSON.Load(JSONtext)
-  }
-  IfNotExist, %A_ScriptDir%\save\Utility.json
-  {
-    JSONtext := JSON.Dump(WR.Utility,,2)
-    FileAppend, %JSONtext%, %A_ScriptDir%\save\Utility.json
-  }
-  Else
-  {
-    FileRead, JSONtext, %A_ScriptDir%\save\Utility.json
-    WR.Utility := JSON.Load(JSONtext)
-  }
   If needReload
     Reload
-; Build Flask Menu Function
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  FlaskMenu(){
-    Global
-    static Built := {}, which := 1
-    RegExMatch(A_GuiControl, "\d+", slot)
 
-    If !Built[slot]
-    {
-      Built[slot] := True
-      Gui, Flask%slot%: new, AlwaysOnTop
-
-      Gui, Flask%slot%: Add, GroupBox, section xm ym w500 h260, Flask Slot %slot%
-
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w100 h45, Cooldown
-      Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+20   yp+20  w80  h17, %  WR.Flask[slot].CD
-
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Keys to Press
-      Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+20   yp+20   w80  h17, %   WR.Flask[slot].Key
-
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h55, CD Group
-      Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+20 yp+20 w80" , a|b|c|d|e|Mana|Life|ES|QuickSilver|Defense
-      GuiControl,Flask%slot%: ChooseString, Flask%slot%Group,% WR.Flask[slot].Group
-
-      Gui, Flask%slot%: Add, GroupBox, center xs+10 y+20 w100 h55, Group Cooldown
-      Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%GroupCD  xs+20   yp+20  w80  h17, %  WR.Flask[slot].GroupCD
-
-      Gui, Flask%slot%: Add, GroupBox, Section center x+30 ys+25 w100 h45, Pop All Flasks
-      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "PopAll  xs+10   yp+20 Checked" WR.Flask[slot].PopAll, Include
-
-      Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h45, Trigger on Move
-      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Move xs+10   yp+20 Checked" WR.Flask[slot].Move , Enable
-
-      Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h65, Trigger with Attack
-      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttack xs+10 yp+20 Checked" WR.Flask[slot].MainAttack, Main
-      Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+10 Checked" WR.Flask[slot].SecondaryAttack, Secondary
-      
-      backColor := "E0E0E0"
-      Gui, Flask%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
-      setColor := "Red"
-      Gui, Flask%slot%: Font, s16, Consolas
-      Gui, Flask%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
-      Gui, Flask%slot%: Add, Text,% "vFlask" slot "Life hwndFlask" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Life
-      ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%LifeHWND
-      Flask%slot%Life_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
-      setColor := "51DEFF"
-      Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
-      Gui, Flask%slot%: Add, Text,% "vFlask" slot "ES hwndFlask" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].ES
-      ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ESHWND
-      Flask%slot%ES_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
-      setColor := "Blue"
-      Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
-      Gui, Flask%slot%: Add, Text,% "vFlask" slot "Mana hwndFlask" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Mana
-      Gui, Flask%slot%: Font,
-      ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ManaHWND
-      Flask%slot%Mana_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
-      Gui, Flask%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
-      Gui, Flask%slot%: Add, Radio, % "vFlask" slot "Condition  x+5   yp-5 h22 Checked" (WR.Flask[slot].Condition==1?1:0), Any
-      Gui, Flask%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Flask[slot].Condition==2?1:0), All
-
-      Gui, Flask%slot%: show, w520 h280
-    }
-    Return
-
-    FlaskSaveValues:
-      for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition"]
-        WR.Flask[which][kind] := Flask%which%%kind%
-      for k, kind in ["Life", "ES", "Mana"]
-        WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
-      FileDelete, %A_ScriptDir%\save\Flask.json
-      JSONtext := JSON.Dump(WR.Flask,,2)
-      FileAppend, %JSONtext%, %A_ScriptDir%\save\Flask.json
-      Return
-    Flask1GuiClose:
-    Flask1GuiEscape:
-      Built[1] := False
-      Gui, Submit, NoHide
-      which := 1
-      Gosub, FlaskSaveValues
-      Gui, Flask1: Destroy
-      Return
-    Flask2GuiClose:
-    Flask2GuiEscape:
-      Built[2] := False
-      Gui, Submit, NoHide
-      which := 2
-      Gosub, FlaskSaveValues
-      Gui, Flask2: Destroy
-      Return
-    Flask3GuiClose:
-    Flask3GuiEscape:
-      Built[3] := False
-      Gui, Submit, NoHide
-      which := 3
-      Gosub, FlaskSaveValues
-      Gui, Flask3: Destroy
-      Return
-    Flask4GuiClose:
-    Flask4GuiEscape:
-      Built[4] := False
-      Gui, Submit, NoHide
-      which := 4
-      Gosub, FlaskSaveValues
-      Gui, Flask4: Destroy
-      Return
-    Flask5GuiClose:
-    Flask5GuiEscape:
-      Built[5] := False
-      Gui, Submit, NoHide
-      which := 5
-      Gosub, FlaskSaveValues
-      Gui, Flask5: Destroy
-      Return
-  }
-; Build Utility Menu Function
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  UtilityMenu(){
-    Global
-    static Built := {}, which := 1
-    RegExMatch(A_GuiControl, "\d+", slot)
-
-    If !Built[slot]
-    {
-      Built[slot] := True
-      Gui, Utility%slot%: new, AlwaysOnTop
-
-      Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h325, Utility Slot %slot%
-
-      Gui, Utility%slot%: Add, GroupBox, Section center xs+10 yp+20 w110 h65, Enable Utility
-      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Enable xs+10   yp+20 Checked" WR.Utility[slot].Enable , Enable
-      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "OnCD xs+10   y+8 Checked" WR.Utility[slot].OnCD , Cast on CD
-
-      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h45, Cooldown
-      Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%CD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].CD
-
-      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h45, Keys to Press
-      Gui, Utility%slot%: Add, Edit,    center   vUtility%slot%Key       xs+10   yp+20   w80  h17, %   WR.Utility[slot].Key
-
-      Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h55, CD Group
-      Gui, Utility%slot%: Add, DropDownList, % "vUtility" slot "Group xs+10 yp+20 w80" , u1|u2|u3|u4|u5|u6|u7|u8|u9|u10|Mana|Life|ES|QuickSilver|Defense
-      GuiControl,Utility%slot%: ChooseString, Utility%slot%Group,% WR.Utility[slot].Group
-
-      Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h55, Group Cooldown
-      Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
-
-      Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w110 h45, Pop All Flasks
-      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "PopAll xs+10   yp+20 Checked" WR.Utility[slot].PopAll , Include
-
-      Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h45, Trigger on Move
-      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Move xs+10   yp+20 Checked" WR.Utility[slot].Move , Enable
-
-      Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h65, Trigger with Attack
-      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttack xs+10 yp+20 Checked" WR.Utility[slot].MainAttack, Main
-      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+10 Checked" WR.Utility[slot].SecondaryAttack, Secondary
-
-      backColor := "E0E0E0"
-      Gui, Utility%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
-      setColor := "Red"
-      Gui, Utility%slot%: Font, s16, Consolas
-      Gui, Utility%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
-      Gui, Utility%slot%: Add, Text,% "vUtility" slot "Life hwndUtility" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Life
-      ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%LifeHWND
-      Utility%slot%Life_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Life , backColor , setColor , 1 , "Utility" slot "Life" , 0 , 0 , 1)
-      setColor := "51DEFF"
-      Gui, Utility%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
-      Gui, Utility%slot%: Add, Text,% "vUtility" slot "ES hwndUtility" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].ES
-      ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ESHWND
-      Utility%slot%ES_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].ES , backColor , setColor , 1 , "Utility" slot "ES" , 0 , 0 , 1)
-      setColor := "Blue"
-      Gui, Utility%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
-      Gui, Utility%slot%: Add, Text,% "vUtility" slot "Mana hwndUtility" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Mana
-      Gui, Utility%slot%: Font,
-      ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ManaHWND
-      Utility%slot%Mana_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Mana , backColor , setColor , 1 , "Utility" slot "Mana" , 0 , 0 , 1)
-      Gui, Utility%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
-      Gui, Utility%slot%: Add, Radio, % "vUtility" slot "Condition  x+5   yp-5 h22 Checked" (WR.Utility[slot].Condition==1?1:0), Any
-      Gui, Utility%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Utility[slot].Condition==2?1:0), All
-
-
-      Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+55 w360 h100, Trigger when Sample String not found
-      Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
-
-      Gui, Utility%slot%: Add, Text, xs+10  y+8 , Search Area:
-      Gui, Utility%slot%: Add, Radio, % "vUtility" slot "IconSearch  x+10   yp-4 h22 Checked" (WR.Utility[slot].IconSearch==1?1:0), Buff Area
-      Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==2?1:0), DeBuff Area
-      Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==3?1:0), Custom
-      Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown xs+10   y+5 hp Checked" WR.Utility[slot].IconShown , Invert to Shown
-      Gui, Utility%slot%: Add, Button, x+10 yp, Show Utility %slot% Area
-      Gui, Utility%slot%: Add, Button, x+10 yp wp, Set Utility %slot% Area
-      Utility%slot%IconArea := WR.Utility[slot].IconArea
-      Gui, Utility%slot%: show, w520 h340
-    }
-    Return
-
-    UtilitySaveValues:
-      for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition"]
-        WR.Utility[which][kind] := Utility%which%%kind%
-      for k, kind in ["Life", "ES", "Mana"]
-        WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 
-  
-      FileDelete, %A_ScriptDir%\save\Utility.json
-      JSONtext := JSON.Dump(WR.Utility,,2)
-      FileAppend, %JSONtext%, %A_ScriptDir%\save\Utility.json
-      Return
-    Utility1GuiClose:
-    Utility1GuiEscape:
-      Built[1] := False
-      Gui, Submit, NoHide
-      which := 1
-      Gosub, UtilitySaveValues
-      Gui, Utility1: Destroy
-      Return
-    Utility2GuiClose:
-    Utility2GuiEscape:
-      Built[2] := False
-      Gui, Submit, NoHide
-      which := 2
-      Gosub, UtilitySaveValues
-      Gui, Utility2: Destroy
-      Return
-    Utility3GuiClose:
-    Utility3GuiEscape:
-      Built[3] := False
-      Gui, Submit, NoHide
-      which := 3
-      Gosub, UtilitySaveValues
-      Gui, Utility3: Destroy
-      Return
-    Utility4GuiClose:
-    Utility4GuiEscape:
-      Built[4] := False
-      Gui, Submit, NoHide
-      which := 4
-      Gosub, UtilitySaveValues
-      Gui, Utility4: Destroy
-      Return
-    Utility5GuiClose:
-    Utility5GuiEscape:
-      Built[5] := False
-      Gui, Submit, NoHide
-      which := 5
-      Gosub, UtilitySaveValues
-      Gui, Utility5: Destroy
-      Return
-    Utility6GuiClose:
-    Utility6GuiEscape:
-      Built[6] := False
-      Gui, Submit, NoHide
-      which := 6
-      Gosub, UtilitySaveValues
-      Gui, Utility6: Destroy
-      Return
-    Utility7GuiClose:
-    Utility7GuiEscape:
-      Built[7] := False
-      Gui, Submit, NoHide
-      which := 7
-      Gosub, UtilitySaveValues
-      Gui, Utility7: Destroy
-      Return
-    Utility8GuiClose:
-    Utility8GuiEscape:
-      Built[8] := False
-      Gui, Submit, NoHide
-      which := 8
-      Gosub, UtilitySaveValues
-      Gui, Utility8: Destroy
-      Return
-    Utility9GuiClose:
-    Utility9GuiEscape:
-      Built[9] := False
-      Gui, Submit, NoHide
-      which := 9
-      Gosub, UtilitySaveValues
-      Gui, Utility9: Destroy
-      Return
-    Utility10GuiClose:
-    Utility10GuiEscape:
-      Built[10] := False
-      Gui, Submit, NoHide
-      which := 10
-      Gosub, UtilitySaveValues
-      Gui, Utility10: Destroy
-      Return
-  }
-; Settings Save/Load
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Settings(name:="perChar",Action:="Load"){
-    If (Action = "Load"){
-      IfNotExist, %A_ScriptDir%\save\%name%.json
-        Return False
-      FileRead, JSONtext, %A_ScriptDir%\save\%name%.json
-      obj := JSON.Load(JSONtext)
-      For k, v in WR[name]
-        If (IsObject(obj[k]))
-          For l, w in v
-            If (obj[k].HasKey(l)) 
-              WR[name][k][l] := obj[k][l]
-      obj := JSONtext := ""
-    } Else If (Action = "Save"){
-      FileDelete, %A_ScriptDir%\save\%name%.json
-      JSONtext := JSON.Dump(WR[name],,2)
-      FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
-      JSONtext := ""
-    }
-  }
-; Profile Save/Load/Remove
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Profile(){
-    Gui, submit, nohide
-    split := StrSplit(A_GuiControl,"_")
-    Type := split[2]
-    Action := split[3]
-    ControlGetText, name,% ProfileMenu%Type%
-    If (name = "")
-    {
-      MsgBox, 262144, Whoah there clicky fingers, Profile name cannot be blank
-      Return
-    }
-    If FileExist( A_ScriptDir "\save\profiles\" Type "\" name ".json")
-    {
-      ; If indexOf(Action,["Save","Remove"])
-      MsgBox, 262148, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
-      IfMsgBox No
-        Return
-    } Else If (Action != "Save") {
-      MsgBox, 262144, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
-      Return
-    }
-
-    If (Action = "Save")
-    {
-      FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-      JSONtext := JSON.Dump(WR[Type],,2)
-      FileAppend, %JSONtext%, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-    }
-    Else If (Action = "Load")
-    {
-      FileRead, JSONtext, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-      obj := JSON.Load(JSONtext)
-      For k, v in WR[Type]
-        If (IsObject(obj[k]))
-          For l, w in v
-            If (obj[k].HasKey(l)) 
-              WR[Type][k][l] := obj[k][l]
-      Return
-    }
-    Else If (Action = "Remove")
-    {
-      FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-    }
-
-    l := [], s := ""
-    Loop, Files, %A_ScriptDir%\save\profiles\%Type%\*.json
-      l.Push(StrReplace(A_LoopFileName,".json",""))
-    For k, v in l
-      s .=(k=1?"||":"|") v
-    If (s = "")
-      s := "||"
-    GuiControl, , ProfileMenu%Type% , %s%
-    If (Action != "Remove")
-      GuiControl, ChooseString, ProfileMenu%Type% , %name%
-    Return
-  }
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Critical
@@ -4162,40 +3783,6 @@ Return
 
 ; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, Trigger
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ; MainAttackCommand - Main attack Flasks
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  MainAttackCommand()
-  {
-    MainAttackCommand:
-    If (MainAttackPressedActive||OnTown||OnHideout)
-      Return
-    MainAttackPressedActive := True
-    Return  
-  }
-  MainAttackCommandRelease()
-  {
-    MainAttackCommandRelease:
-    MainAttackPressedActive := False
-    MainAttackLastRelease := A_TickCount
-    Return  
-  }
-  ; SecondaryAttackCommand - Secondary attack Flasks
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  SecondaryAttackCommand()
-  {
-    SecondaryAttackCommand:
-    If (SecondaryAttackPressedActive||OnTown||OnHideout)
-      Return
-    SecondaryAttackPressedActive := True
-    Return  
-  }
-  SecondaryAttackCommandRelease()
-  {
-    SecondaryAttackCommandRelease:
-    SecondaryAttackPressedActive := False
-    Return  
-  }
-  
   ; Trigger - Generic Trigger for flasks or utility
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Trigger(obj,type:="Flask"){
@@ -4273,6 +3860,40 @@ Return
     Return
   }
 
+  ; MainAttackCommand - Main attack Flasks
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  MainAttackCommand()
+  {
+    MainAttackCommand:
+    If (MainAttackPressedActive||OnTown||OnHideout)
+      Return
+    MainAttackPressedActive := True
+    Return  
+  }
+  MainAttackCommandRelease()
+  {
+    MainAttackCommandRelease:
+    MainAttackPressedActive := False
+    MainAttackLastRelease := A_TickCount
+    Return  
+  }
+  ; SecondaryAttackCommand - Secondary attack Flasks
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  SecondaryAttackCommand()
+  {
+    SecondaryAttackCommand:
+    If (SecondaryAttackPressedActive||OnTown||OnHideout)
+      Return
+    SecondaryAttackPressedActive := True
+    Return  
+  }
+  SecondaryAttackCommandRelease()
+  {
+    SecondaryAttackCommandRelease:
+    SecondaryAttackPressedActive := False
+    Return  
+  }
+  
 ; mainmenuGameLogicState - Update information in main menu regarding game logic states
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   mainmenuGameLogicState(){
@@ -5717,6 +5338,8 @@ Return
       Thread, NoTimers, True    ;Critical
 
       LoadArray()
+      Settings("Flask","Load")
+      Settings("Utility","Load")
 
       ; Login Information
       IniRead, PoESessionID, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID, %A_Space%
@@ -6491,6 +6114,8 @@ Return
       Thread, NoTimers, True    ;Critical
 
       IniWrite, %PoESessionID%, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID
+      Settings("Flask","Save")
+      Settings("Utility","Save")
 
       ;GUI Position
       WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
@@ -7032,6 +6657,87 @@ Return
       Thread, NoTimers, False    ;End Critical
     return  
     }
+
+    ; Settings Save/Load
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Settings(name:="perChar",Action:="Load"){
+      If (Action = "Load"){
+        IfNotExist, %A_ScriptDir%\save\%name%.json
+          Return False
+        FileRead, JSONtext, %A_ScriptDir%\save\%name%.json
+        obj := JSON.Load(JSONtext)
+        For k, v in WR[name]
+          If (IsObject(obj[k]))
+            For l, w in v
+              If (obj[k].HasKey(l)) 
+                WR[name][k][l] := obj[k][l]
+        obj := JSONtext := ""
+      } Else If (Action = "Save"){
+        FileDelete, %A_ScriptDir%\save\%name%.json
+        JSONtext := JSON.Dump(WR[name],,2)
+        FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
+        JSONtext := ""
+      }
+    }
+    ; Profile Save/Load/Remove
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Profile(){
+      Gui, submit, nohide
+      split := StrSplit(A_GuiControl,"_")
+      Type := split[2]
+      Action := split[3]
+      ControlGetText, name,% ProfileMenu%Type%
+      If (name = "")
+      {
+        MsgBox, 262144, Whoah there clicky fingers, Profile name cannot be blank
+        Return
+      }
+      If FileExist( A_ScriptDir "\save\profiles\" Type "\" name ".json")
+      {
+        ; If indexOf(Action,["Save","Remove"])
+        MsgBox, 262148, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
+        IfMsgBox No
+          Return
+      } Else If (Action != "Save") {
+        MsgBox, 262144, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
+        Return
+      }
+
+      If (Action = "Save")
+      {
+        FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+        JSONtext := JSON.Dump(WR[Type],,2)
+        FileAppend, %JSONtext%, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+      }
+      Else If (Action = "Load")
+      {
+        FileRead, JSONtext, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+        obj := JSON.Load(JSONtext)
+        For k, v in WR[Type]
+          If (IsObject(obj[k]))
+            For l, w in v
+              If (obj[k].HasKey(l)) 
+                WR[Type][k][l] := obj[k][l]
+        Return
+      }
+      Else If (Action = "Remove")
+      {
+        FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+      }
+
+      l := [], s := ""
+      Loop, Files, %A_ScriptDir%\save\profiles\%Type%\*.json
+        l.Push(StrReplace(A_LoopFileName,".json",""))
+      For k, v in l
+        s .=(k=1?"||":"|") v
+      If (s = "")
+        s := "||"
+      GuiControl, , ProfileMenu%Type% , %s%
+      If (Action != "Remove")
+        GuiControl, ChooseString, ProfileMenu%Type% , %name%
+      Return
+    }
+
   }
 
   { ; Hotkeys with modifiers - RegisterHotkeys, 1HotkeyShouldFire, 2HotkeyShouldFire, stashHotkeyShouldFire
@@ -8656,7 +8362,7 @@ Return
     }
   }
 
-  { ; Individual Menus - LootColorsMenu, OHB_Editor, WR_Menu
+  { ; Individual Menus - LootColorsMenu, OHB_Editor, FlaskMenu, UtilityMenu
     LootColorsMenu()
     {
       DrawLootColors:
@@ -8893,6 +8599,329 @@ Return
         Gui, OHB: hide
         Gui, Strings: show
       return
+    }
+
+    ; Build Per Character settings Menu
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    perCharMenu(){
+      Global
+      static Built := False
+
+      If !Built
+      {
+        Built := True
+        Gui, perChar: new, AlwaysOnTop
+
+        Gui, perChar: Add, GroupBox, section xm ym w500 h260, Per Character Settings
+
+        Gui, perChar: show, w520 h280
+      }
+      Return
+
+      perCharSaveValues:
+        for k, kind in ["typeLife", "typeHybrid", "typeES", "typeEldritch"
+        , "quitDC", "quitPortal", "quitExit", "quitBelow", "quitLogBackIn"
+        , "movementDelay", "movementMainAttack", "movementSecondaryAttack"
+        , "channelrepressEnable", "channelrepressIcon", "channelrepressStack", "channelrepressKey", "channelrepressOffsetX1", "channelrepressOffsetY1", "channelrepressOffsetX2", "channelrepressOffsetY2"
+        , "autominesEnable", "autominesBoomDelay", "autominesPauseDoubleTapSpeed", "autominesPauseKey", "autominesSmokeDashEnable", "autominesSmokeDashKey"
+        , "autolevelgemsEnable", "autolevelgemsWait"
+        , "swap1Enable", "swap1Item", "swap1Xa", "swap1Ya", "swap1Xb", "swap1Yb"
+        , "swap2Enable", "swap2Item", "swap2Xa", "swap2Ya", "swap2Xb", "swap2Yb"]
+          WR.perChar.Setting[kind] := %kind%
+        Settings("perChar","Save")
+        Return
+      perCharGuiClose:
+      perCharGuiEscape:
+        Built := False
+        Gui, Submit, NoHide
+        Gosub, perCharSaveValues
+        Gui, perChar: Destroy
+        Return
+    }
+    ; Build Flask Menu
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    FlaskMenu(){
+      Global
+      static Built := {}, which := 1
+      RegExMatch(A_GuiControl, "\d+", slot)
+
+      If !Built[slot]
+      {
+        Built[slot] := True
+        Gui, Flask%slot%: new, AlwaysOnTop
+
+        Gui, Flask%slot%: Add, GroupBox, section xm ym w500 h260, Flask Slot %slot%
+
+        Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w100 h45, Cooldown
+        Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+20   yp+20  w80  h17, %  WR.Flask[slot].CD
+
+        Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Keys to Press
+        Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+20   yp+20   w80  h17, %   WR.Flask[slot].Key
+
+        Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h55, CD Group
+        Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+20 yp+20 w80" , a|b|c|d|e|Mana|Life|ES|QuickSilver|Defense
+        GuiControl,Flask%slot%: ChooseString, Flask%slot%Group,% WR.Flask[slot].Group
+
+        Gui, Flask%slot%: Add, GroupBox, center xs+10 y+20 w100 h55, Group Cooldown
+        Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%GroupCD  xs+20   yp+20  w80  h17, %  WR.Flask[slot].GroupCD
+
+        Gui, Flask%slot%: Add, GroupBox, Section center x+30 ys+25 w100 h45, Pop All Flasks
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "PopAll  xs+10   yp+20 Checked" WR.Flask[slot].PopAll, Include
+
+        Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h45, Trigger on Move
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Move xs+10   yp+20 Checked" WR.Flask[slot].Move , Enable
+
+        Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h65, Trigger with Attack
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttack xs+10 yp+20 Checked" WR.Flask[slot].MainAttack, Main
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+10 Checked" WR.Flask[slot].SecondaryAttack, Secondary
+        
+        backColor := "E0E0E0"
+        Gui, Flask%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
+        setColor := "Red"
+        Gui, Flask%slot%: Font, s16, Consolas
+        Gui, Flask%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
+        Gui, Flask%slot%: Add, Text,% "vFlask" slot "Life hwndFlask" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Life
+        ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%LifeHWND
+        Flask%slot%Life_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
+        setColor := "51DEFF"
+        Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
+        Gui, Flask%slot%: Add, Text,% "vFlask" slot "ES hwndFlask" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].ES
+        ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ESHWND
+        Flask%slot%ES_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
+        setColor := "Blue"
+        Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
+        Gui, Flask%slot%: Add, Text,% "vFlask" slot "Mana hwndFlask" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Mana
+        Gui, Flask%slot%: Font,
+        ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ManaHWND
+        Flask%slot%Mana_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
+        Gui, Flask%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
+        Gui, Flask%slot%: Add, Radio, % "vFlask" slot "Condition  x+5   yp-5 h22 Checked" (WR.Flask[slot].Condition==1?1:0), Any
+        Gui, Flask%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Flask[slot].Condition==2?1:0), All
+
+        Gui, Flask%slot%: show, w520 h280
+      }
+      Return
+
+      FlaskSaveValues:
+        for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition"]
+          WR.Flask[which][kind] := Flask%which%%kind%
+        for k, kind in ["Life", "ES", "Mana"]
+          WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
+        FileDelete, %A_ScriptDir%\save\Flask.json
+        JSONtext := JSON.Dump(WR.Flask,,2)
+        FileAppend, %JSONtext%, %A_ScriptDir%\save\Flask.json
+        Return
+      Flask1GuiClose:
+      Flask1GuiEscape:
+        Built[1] := False
+        Gui, Submit, NoHide
+        which := 1
+        Gosub, FlaskSaveValues
+        Gui, Flask1: Destroy
+        Return
+      Flask2GuiClose:
+      Flask2GuiEscape:
+        Built[2] := False
+        Gui, Submit, NoHide
+        which := 2
+        Gosub, FlaskSaveValues
+        Gui, Flask2: Destroy
+        Return
+      Flask3GuiClose:
+      Flask3GuiEscape:
+        Built[3] := False
+        Gui, Submit, NoHide
+        which := 3
+        Gosub, FlaskSaveValues
+        Gui, Flask3: Destroy
+        Return
+      Flask4GuiClose:
+      Flask4GuiEscape:
+        Built[4] := False
+        Gui, Submit, NoHide
+        which := 4
+        Gosub, FlaskSaveValues
+        Gui, Flask4: Destroy
+        Return
+      Flask5GuiClose:
+      Flask5GuiEscape:
+        Built[5] := False
+        Gui, Submit, NoHide
+        which := 5
+        Gosub, FlaskSaveValues
+        Gui, Flask5: Destroy
+        Return
+    }
+    ; Build Utility Menu
+    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    UtilityMenu(){
+      Global
+      static Built := {}, which := 1
+      RegExMatch(A_GuiControl, "\d+", slot)
+
+      If !Built[slot]
+      {
+        Built[slot] := True
+        Gui, Utility%slot%: new, AlwaysOnTop
+
+        Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h325, Utility Slot %slot%
+
+        Gui, Utility%slot%: Add, GroupBox, Section center xs+10 yp+20 w110 h65, Enable Utility
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Enable xs+10   yp+20 Checked" WR.Utility[slot].Enable , Enable
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "OnCD xs+10   y+8 Checked" WR.Utility[slot].OnCD , Cast on CD
+
+        Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h45, Cooldown
+        Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%CD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].CD
+
+        Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h45, Keys to Press
+        Gui, Utility%slot%: Add, Edit,    center   vUtility%slot%Key       xs+10   yp+20   w80  h17, %   WR.Utility[slot].Key
+
+        Gui, Utility%slot%: Add, GroupBox, center xs y+15 w110 h55, CD Group
+        Gui, Utility%slot%: Add, DropDownList, % "vUtility" slot "Group xs+10 yp+20 w80" , u1|u2|u3|u4|u5|u6|u7|u8|u9|u10|Mana|Life|ES|QuickSilver|Defense
+        GuiControl,Utility%slot%: ChooseString, Utility%slot%Group,% WR.Utility[slot].Group
+
+        Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h55, Group Cooldown
+        Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
+
+        Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w110 h45, Pop All Flasks
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "PopAll xs+10   yp+20 Checked" WR.Utility[slot].PopAll , Include
+
+        Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h45, Trigger on Move
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Move xs+10   yp+20 Checked" WR.Utility[slot].Move , Enable
+
+        Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h65, Trigger with Attack
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttack xs+10 yp+20 Checked" WR.Utility[slot].MainAttack, Main
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+10 Checked" WR.Utility[slot].SecondaryAttack, Secondary
+
+        backColor := "E0E0E0"
+        Gui, Utility%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
+        setColor := "Red"
+        Gui, Utility%slot%: Font, s16, Consolas
+        Gui, Utility%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
+        Gui, Utility%slot%: Add, Text,% "vUtility" slot "Life hwndUtility" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Life
+        ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%LifeHWND
+        Utility%slot%Life_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Life , backColor , setColor , 1 , "Utility" slot "Life" , 0 , 0 , 1)
+        setColor := "51DEFF"
+        Gui, Utility%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
+        Gui, Utility%slot%: Add, Text,% "vUtility" slot "ES hwndUtility" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].ES
+        ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ESHWND
+        Utility%slot%ES_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].ES , backColor , setColor , 1 , "Utility" slot "ES" , 0 , 0 , 1)
+        setColor := "Blue"
+        Gui, Utility%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
+        Gui, Utility%slot%: Add, Text,% "vUtility" slot "Mana hwndUtility" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Mana
+        Gui, Utility%slot%: Font,
+        ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ManaHWND
+        Utility%slot%Mana_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Mana , backColor , setColor , 1 , "Utility" slot "Mana" , 0 , 0 , 1)
+        Gui, Utility%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
+        Gui, Utility%slot%: Add, Radio, % "vUtility" slot "Condition  x+5   yp-5 h22 Checked" (WR.Utility[slot].Condition==1?1:0), Any
+        Gui, Utility%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Utility[slot].Condition==2?1:0), All
+
+
+        Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+55 w360 h100, Trigger when Sample String not found
+        Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
+
+        Gui, Utility%slot%: Add, Text, xs+10  y+8 , Search Area:
+        Gui, Utility%slot%: Add, Radio, % "vUtility" slot "IconSearch  x+10   yp-4 h22 Checked" (WR.Utility[slot].IconSearch==1?1:0), Buff Area
+        Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==2?1:0), DeBuff Area
+        Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==3?1:0), Custom
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown xs+10   y+5 hp Checked" WR.Utility[slot].IconShown , Invert to Shown
+        Gui, Utility%slot%: Add, Button, x+10 yp, Show Utility %slot% Area
+        Gui, Utility%slot%: Add, Button, x+10 yp wp, Set Utility %slot% Area
+        Utility%slot%IconArea := WR.Utility[slot].IconArea
+        Gui, Utility%slot%: show, w520 h340
+      }
+      Return
+
+      UtilitySaveValues:
+        for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition"]
+          WR.Utility[which][kind] := Utility%which%%kind%
+        for k, kind in ["Life", "ES", "Mana"]
+          WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 
+    
+        FileDelete, %A_ScriptDir%\save\Utility.json
+        JSONtext := JSON.Dump(WR.Utility,,2)
+        FileAppend, %JSONtext%, %A_ScriptDir%\save\Utility.json
+        Return
+      Utility1GuiClose:
+      Utility1GuiEscape:
+        Built[1] := False
+        Gui, Submit, NoHide
+        which := 1
+        Gosub, UtilitySaveValues
+        Gui, Utility1: Destroy
+        Return
+      Utility2GuiClose:
+      Utility2GuiEscape:
+        Built[2] := False
+        Gui, Submit, NoHide
+        which := 2
+        Gosub, UtilitySaveValues
+        Gui, Utility2: Destroy
+        Return
+      Utility3GuiClose:
+      Utility3GuiEscape:
+        Built[3] := False
+        Gui, Submit, NoHide
+        which := 3
+        Gosub, UtilitySaveValues
+        Gui, Utility3: Destroy
+        Return
+      Utility4GuiClose:
+      Utility4GuiEscape:
+        Built[4] := False
+        Gui, Submit, NoHide
+        which := 4
+        Gosub, UtilitySaveValues
+        Gui, Utility4: Destroy
+        Return
+      Utility5GuiClose:
+      Utility5GuiEscape:
+        Built[5] := False
+        Gui, Submit, NoHide
+        which := 5
+        Gosub, UtilitySaveValues
+        Gui, Utility5: Destroy
+        Return
+      Utility6GuiClose:
+      Utility6GuiEscape:
+        Built[6] := False
+        Gui, Submit, NoHide
+        which := 6
+        Gosub, UtilitySaveValues
+        Gui, Utility6: Destroy
+        Return
+      Utility7GuiClose:
+      Utility7GuiEscape:
+        Built[7] := False
+        Gui, Submit, NoHide
+        which := 7
+        Gosub, UtilitySaveValues
+        Gui, Utility7: Destroy
+        Return
+      Utility8GuiClose:
+      Utility8GuiEscape:
+        Built[8] := False
+        Gui, Submit, NoHide
+        which := 8
+        Gosub, UtilitySaveValues
+        Gui, Utility8: Destroy
+        Return
+      Utility9GuiClose:
+      Utility9GuiEscape:
+        Built[9] := False
+        Gui, Submit, NoHide
+        which := 9
+        Gosub, UtilitySaveValues
+        Gui, Utility9: Destroy
+        Return
+      Utility10GuiClose:
+      Utility10GuiEscape:
+        Built[10] := False
+        Gui, Submit, NoHide
+        which := 10
+        Gosub, UtilitySaveValues
+        Gui, Utility10: Destroy
+        Return
     }
   }
 
