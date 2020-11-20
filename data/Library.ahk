@@ -3064,7 +3064,6 @@
         Gui, Inventory: +AlwaysOnTop -MinimizeBox
         ;Save Setting
         Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
         Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|
@@ -3560,7 +3559,6 @@
         Gui, Crafting: +AlwaysOnTop -MinimizeBox
         ;Save Setting
         Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Crafting: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
         Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Chance|Socket|Color|Link
@@ -3694,7 +3692,6 @@
         Gui, Strings: +AlwaysOnTop -MinimizeBox
         ;Save Setting
         ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
         
         Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
         Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
@@ -3760,7 +3757,6 @@
 
         ;Save Setting
         Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
-        ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Chat: Add, Button,      gLaunchSite     x+5           h23,   Website
 
         Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
@@ -3937,7 +3933,6 @@
 
         ;Save Setting
         Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Controller: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Controller: Add, Button,      gLaunchSite     x+5           h23,   Website
       }
       Gui, Controller: show , w620 h500, Controller Settings

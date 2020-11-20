@@ -114,7 +114,7 @@
     Global GamePID
     Global QuestItems
     Global DelayAction := {}
-
+    Global ProfileMenuFlask,ProfileMenuUtility
     Global Active_executable := "TempName"
     ; List available database endpoints
     Global apiList := ["Currency"
@@ -482,23 +482,23 @@
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
   ; Global Script object
     Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"setting":{},"data":{},"sample":{},"string":{}}
+    WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}
     for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
     ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
     ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
       WR.loc[v] := {}
     for k, v in ["1","2","3","4","5"]
-      WR.Flask[v] := {"Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0, "Group":Chr(A_Index+96), "Slot":A_Index}
+    {
+      WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0, "Group":Chr(A_Index+96), "Slot":A_Index}
+      WR.cdExpires.Flask[v] := A_TickCount
+    }
     for k, v in ["1","2","3","4","5","6","7","8","9","10"]
-      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index}
-    WR.cdExpires.Group := {}
+    {
+      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index}
+      WR.cdExpires.Utility[v] := A_TickCount
+    }
     for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
       WR.cdExpires.Group[v] := A_TickCount
-    WR.cdExpires.Flask := {}
-    for k, v in ["1","2","3","4","5"]
-      WR.cdExpires.Flask[v] := A_TickCount
-    WR.cdExpires.Utility := {}
-    for k, v in ["1","2","3","4","5","6","7","8","9","10"]
-      WR.cdExpires.Utility[v] := A_TickCount
     
   ; Login POESESSID
     Global PoESessionID := ""
@@ -1297,10 +1297,10 @@
       Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+10 Checked" WR.Flask[slot].SecondaryAttack, Secondary
       
       backColor := "E0E0E0"
-      Gui, Flask%slot%: Add, GroupBox, Section center x+35 ys w240 h145, Resource Triggers
+      Gui, Flask%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
       setColor := "Red"
       Gui, Flask%slot%: Font, s16, Consolas
-      Gui, Flask%slot%: Add, Text, xs+10 ys+13 c%setColor%, L`%
+      Gui, Flask%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
       Gui, Flask%slot%: Add, Text,% "vFlask" slot "Life hwndFlask" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Life
       ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%LifeHWND
       Flask%slot%Life_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
@@ -1415,10 +1415,10 @@
       Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+10 Checked" WR.Utility[slot].SecondaryAttack, Secondary
 
       backColor := "E0E0E0"
-      Gui, Utility%slot%: Add, GroupBox, Section center x+35 ys w240 h145, Resource Triggers
+      Gui, Utility%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
       setColor := "Red"
       Gui, Utility%slot%: Font, s16, Consolas
-      Gui, Utility%slot%: Add, Text, xs+10 ys+13 c%setColor%, L`%
+      Gui, Utility%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
       Gui, Utility%slot%: Add, Text,% "vUtility" slot "Life hwndUtility" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Life
       ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%LifeHWND
       Utility%slot%Life_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Life , backColor , setColor , 1 , "Utility" slot "Life" , 0 , 0 , 1)
@@ -1438,7 +1438,7 @@
       Gui, Utility%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Utility[slot].Condition==2?1:0), All
 
 
-      Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+75 w360 h100, Trigger when Sample String not found
+      Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+55 w360 h100, Trigger when Sample String not found
       Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
 
       Gui, Utility%slot%: Add, Text, xs+10  y+8 , Search Area:
@@ -1544,6 +1544,62 @@
       Gui, Utility10: Destroy
       Return
   }
+  Profile(){
+    Gui, submit, nohide
+    split := StrSplit(A_GuiControl,"_")
+    Type := split[2]
+    Action := split[3]
+    ControlGetText, name,% ProfileMenu%Type%
+    If (name = "")
+    {
+      MsgBox, , Whoah there clicky fingers, Profile name cannot be blank
+      Return
+    }
+    If FileExist( A_ScriptDir "\save\profiles\" Type "\" name ".json")
+    {
+      If indexOf(Action,["Save","Remove"])
+        MsgBox, 4, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
+      IfMsgBox No
+        Return
+    } Else If (Action != "Save") {
+      MsgBox,, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
+      Return
+    }
+
+    If (Action = "Save")
+    {
+      FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+      JSONtext := JSON.Dump(WR[Type],,2)
+      FileAppend, %JSONtext%, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+    }
+    Else If (Action = "Load")
+    {
+      FileRead, JSONtext, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+      obj := JSON.Load(JSONtext)
+      For k, v in WR[Type]
+        If (IsObject(obj[k]))
+          For l, w in v
+            If (obj[k].HasKey(l)) 
+              WR[Type][k][l] := obj[k][l]
+      Return
+    }
+    Else If (Action = "Remove")
+    {
+      FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+    }
+
+    l := [], s := ""
+    Loop, Files, %A_ScriptDir%\save\profiles\%Type%\*.json
+      l.Push(StrReplace(A_LoopFileName,".json",""))
+    For k, v in l
+      s .=(k=1?"||":"|") v
+    If (s = "")
+      s := "||"
+    GuiControl, , ProfileMenu%Type% , %s%
+    If (Action != "Remove")
+      GuiControl, ChooseString, ProfileMenu%Type% , %name%
+    Return
+  }
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Critical
@@ -1603,20 +1659,29 @@
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,           Section    w265 h50      xs   y+14,         Flask Profile:
     Gui, Font
-    ProfileMenuFlaskText := "Options|In The|Menu"
-    Gui, Add, ComboBox,  vProfileMenuFlaskText xs+10 ys+20 w115, %ProfileMenuFlaskText%
-    Gui, Add, Button,  x+1 yp hp w40 , Save
-    Gui, Add, Button,  x+1 yp hp w40 , Load
-    Gui, Add, Button,  x+1 yp hp w50 , Remove
+    
+    l := [], s := ""
+    Loop, Files, %A_ScriptDir%\save\profiles\Flask\*.json
+      l.Push(StrReplace(A_LoopFileName,".json",""))
+    For k, v in l
+      s .=(k=1?"":"|") v
+    Gui, Add, ComboBox,  vProfileMenuFlask xs+10 ys+20 w115, %s%
+    Gui, Add, Button, gProfile vMainMenu_Flask_Save x+1 yp hp w40 , Save
+    Gui, Add, Button, gProfile vMainMenu_Flask_Load x+1 yp hp w40 , Load
+    Gui, Add, Button, gProfile vMainMenu_Flask_Remove x+1 yp hp w50 , Remove
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,           Section    w265 h50      xs   y+14,         Utility Profile:
     Gui, Font
-    ProfileMenuUtilityText := "Options|In The|Menu"
-    Gui, Add, ComboBox,  vProfileMenuUtilityText xs+10 ys+20 w115, %ProfileMenuUtilityText%
-    Gui, Add, Button,  x+1 yp hp w40 , Save
-    Gui, Add, Button,  x+1 yp hp w40 , Load
-    Gui, Add, Button,  x+1 yp hp w50 , Remove
+    l := [], s := ""
+    Loop, Files, %A_ScriptDir%\save\profiles\Utility\*.json
+      l.Push(StrReplace(A_LoopFileName,".json",""))
+    For k, v in l
+      s .=(k=1?"":"|") v
+    Gui, Add, ComboBox,  vProfileMenuUtility xs+10 ys+20 w115, %s%
+    Gui, Add, Button, gProfile vMainMenu_Utility_Save x+1 yp hp w40 , Save
+    Gui, Add, Button, gProfile vMainMenu_Utility_Load x+1 yp hp w40 , Load
+    Gui, Add, Button, gProfile vMainMenu_Utility_Remove x+1 yp hp w50 , Remove
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui Add, GroupBox,     Section  w265 h85        xs   y+14 ,         Movement Settings
@@ -1678,7 +1743,6 @@
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-    Gui, Add, Button,      gloadSaved     x+5           h23,   Load
     Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
@@ -1740,7 +1804,6 @@
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-    Gui, Add, Button,      gloadSaved     x+5           h23,   Load
     Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
@@ -1837,7 +1900,6 @@
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-    Gui, Add, Button,      gloadSaved     x+5           h23,   Load
     Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
 
   Gui, Tab, Hotkeys
@@ -1975,7 +2037,6 @@
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-    Gui, Add, Button,      gloadSaved     x+5           h23,   Load
     Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
 
     ForceUpdate := Func("checkUpdate").Bind(True)
@@ -6950,60 +7011,6 @@ Return
       Thread, NoTimers, False    ;End Critical
     return  
     }
-
-    loadSaved:
-      readFromFile()
-      ;Update UI
-
-      GuiControl,, QuitBelow, %QuitBelow%
-      GuiControl,, RadioNormalQuit, %RadioNormalQuit%
-      GuiControl,, RadioCritQuit, %RadioCritQuit%
-      GuiControl,, RadioPortalQuit, %RadioPortalQuit%
-      GuiControl,, RadioLife, %RadioLife%
-      GuiControl,, RadioHybrid, %RadioHybrid%
-      GuiControl,, RadioCi, %RadioCi%
-      GuiControl,, hotkeyMainAttack, %hotkeyMainAttack%
-      GuiControl,, hotkeySecondaryAttack, %hotkeySecondaryAttack%
-      GuiControl,, TriggerQuicksilverDelay, %TriggerQuicksilverDelay%
-      GuiControl,, hotkeyOptions, %hotkeyOptions%
-      GuiControl,, hotkeyAutoFlask, %hotkeyAutoFlask%
-      GuiControl,, hotkeyTriggerMovement, %hotkeyTriggerMovement%
-      GuiControl,, hotkeyAutoQuit, %hotkeyAutoQuit%
-      GuiControl,, hotkeyLogout, %hotkeyLogout%
-      GuiControl,, hotkeyAutoQuicksilver, %hotkeyAutoQuicksilver%
-      GuiControl,, hotkeyGetMouseCoords, %hotkeyGetMouseCoords%
-      GuiControl,, hotkeyQuickPortal, %hotkeyQuickPortal%
-      GuiControl,, hotkeyGemSwap, %hotkeyGemSwap%
-      GuiControl,, hotkeyStartCraft, %hotkeyStartCraft%
-      GuiControl,, hotkeyCraftBasic, %hotkeyCraftBasic%
-      GuiControl,, hotkeyGrabCurrency, %hotkeyGrabCurrency%
-      GuiControl,, hotkeyPopFlasks, %hotkeyPopFlasks%
-      GuiControl,, hotkeyItemSort, %hotkeyItemSort%
-      GuiControl,, hotkeyItemInfo, %hotkeyItemInfo%
-      GuiControl,, hotkeyChaosRecipe, %hotkeyChaosRecipe%
-      GuiControl,, hotkeyCloseAllUI, %hotkeyCloseAllUI%
-      GuiControl,, hotkeyInventory, %hotkeyInventory%
-      GuiControl,, hotkeyWeaponSwapKey, %hotkeyWeaponSwapKey%
-      GuiControl,, hotkeyLootScan, %hotkeyLootScan%
-      GuiControl,, hotkeyDetonateMines, %hotkeyDetonateMines%
-      GuiControl,, hotkeyPauseMines, %hotkeyPauseMines%
-      GuiControl,, PortalScrollX, %PortalScrollX%
-      GuiControl,, PortalScrollY, %PortalScrollY%
-      GuiControl,, WisdomScrollX, %WisdomScrollX%
-      GuiControl,, WisdomScrollY, %WisdomScrollY%
-      GuiControl,, GrabCurrencyPosX, %GrabCurrencyPosX%
-      GuiControl,, GrabCurrencyPosY, %GrabCurrencyPosY%
-      GuiControl,, CurrentGemX, %CurrentGemX%
-      GuiControl,, CurrentGemY, %CurrentGemY%
-      GuiControl,, AlternateGemX, %AlternateGemX%
-      GuiControl,, AlternateGemY, %AlternateGemY%
-      GuiControl,, CurrentGem2X, %CurrentGem2X%
-      GuiControl,, CurrentGem2Y, %CurrentGem2Y%
-      GuiControl,, AlternateGem2X, %AlternateGem2X%
-      GuiControl,, AlternateGem2Y, %AlternateGem2Y%
-      
-      ; SendMSG(1,1)
-    return
   }
 
   { ; Hotkeys with modifiers - RegisterHotkeys, 1HotkeyShouldFire, 2HotkeyShouldFire, stashHotkeyShouldFire
