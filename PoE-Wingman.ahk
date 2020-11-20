@@ -481,8 +481,9 @@
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
   ; Global Script object
-    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"setting":{},"data":{},"sample":{},"string":{}}
+    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"Char":{}}
     WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}
+    WR.Char.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0", "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"}
     for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
     ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
     ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
@@ -1644,41 +1645,33 @@
 
     ; Flask
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,        Section    w265 h55 xs y+10  , Flask Settings
+    Gui Add, GroupBox,        Section    w265 h77 xs y+10  , Flask Settings
     Gui, Font
     Loop 5
-    Gui, Add, Button, % "gFlaskMenu W46 -wrap " ((A_Index==1||A_Index==6)?"xs+5 yp+22":"x+5 yp") , Flask %A_Index%
-
-    ; Utility
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,        Section    w265 h95 xs y+14  , Utility Settings
-    Gui, Font
-    Loop 10
-    Gui, Add, Button, % "gUtilityMenu W46 -wrap " (A_Index==1?"xs+5 yp+22":A_Index==6?"xs+5 y+16":"x+5 yp") , Utility %A_Index%
-    
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,           Section    w265 h50      xs   y+14,         Flask Profile:
-    Gui, Font
-    
+    Gui, Add, Button, % "gFlaskMenu W46 -wrap " ((A_Index==1||A_Index==6)?"xs+6 yp+20":"x+5 yp") , Flask %A_Index%
     l := [], s := ""
     Loop, Files, %A_ScriptDir%\save\profiles\Flask\*.json
       l.Push(StrReplace(A_LoopFileName,".json",""))
     For k, v in l
       s .=(k=1?"":"|") v
-    Gui, Add, ComboBox,  vProfileMenuFlask xs+10 ys+20 w115, %s%
+    Gui, Add, ComboBox,  vProfileMenuFlask xs+6 y+5 w117, %s%
     Gui, Add, Button, gProfile vMainMenu_Flask_Save x+1 yp hp w40 , Save
     Gui, Add, Button, gProfile vMainMenu_Flask_Load x+1 yp hp w40 , Load
     Gui, Add, Button, gProfile vMainMenu_Flask_Remove x+1 yp hp w50 , Remove
 
+    ; Utility
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,           Section    w265 h50      xs   y+14,         Utility Profile:
+    Gui Add, GroupBox,        Section    w265 h105 xs y+14  , Utility Settings
     Gui, Font
+    Loop 10
+    Gui, Add, Button, % "gUtilityMenu W46 -wrap " (A_Index==1?"xs+6 yp+20":A_Index==6?"xs+6 y+5":"x+5 yp") , Utility %A_Index%
+    
     l := [], s := ""
     Loop, Files, %A_ScriptDir%\save\profiles\Utility\*.json
       l.Push(StrReplace(A_LoopFileName,".json",""))
     For k, v in l
       s .=(k=1?"":"|") v
-    Gui, Add, ComboBox,  vProfileMenuUtility xs+10 ys+20 w115, %s%
+    Gui, Add, ComboBox,  vProfileMenuUtility xs+6 y+5 w117, %s%
     Gui, Add, Button, gProfile vMainMenu_Utility_Save x+1 yp hp w40 , Save
     Gui, Add, Button, gProfile vMainMenu_Utility_Load x+1 yp hp w40 , Load
     Gui, Add, Button, gProfile vMainMenu_Utility_Remove x+1 yp hp w50 , Remove
