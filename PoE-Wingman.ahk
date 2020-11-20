@@ -481,9 +481,14 @@
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
   ; Global Script object
-    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"Char":{}}
+    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{}}
     WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}
-    WR.Char.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0", "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"}
+    WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0", "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
+      , "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0", "channelrepressEnable":"0" , "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs", "Key":"RButton"
+      , "channelrepressIcon":"|<Scourge Arrow>0xFDF100@0.60$40.108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
+      , "channelrepressOffsetX1":"0", "channelrepressOffsetY1":"0", "channelrepressOffsetX2":"0", "channelrepressOffsetY2":"0"
+      , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseKey":"d", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
+      , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" }
     for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
     ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
     ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
@@ -1545,6 +1550,29 @@
       Gui, Utility10: Destroy
       Return
   }
+; Settings Save/Load
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Settings(name:="perChar",Action:="Load"){
+    If (Action = "Load"){
+      IfNotExist, %A_ScriptDir%\save\%name%.json
+        Return False
+      FileRead, JSONtext, %A_ScriptDir%\save\%name%.json
+      obj := JSON.Load(JSONtext)
+      For k, v in WR[name]
+        If (IsObject(obj[k]))
+          For l, w in v
+            If (obj[k].HasKey(l)) 
+              WR[name][k][l] := obj[k][l]
+      obj := JSONtext := ""
+    } Else If (Action = "Save"){
+      FileDelete, %A_ScriptDir%\save\%name%.json
+      JSONtext := JSON.Dump(WR[name],,2)
+      FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
+      JSONtext := ""
+    }
+  }
+; Profile Save/Load/Remove
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Profile(){
     Gui, submit, nohide
     split := StrSplit(A_GuiControl,"_")
@@ -1553,17 +1581,17 @@
     ControlGetText, name,% ProfileMenu%Type%
     If (name = "")
     {
-      MsgBox, , Whoah there clicky fingers, Profile name cannot be blank
+      MsgBox, 262144, Whoah there clicky fingers, Profile name cannot be blank
       Return
     }
     If FileExist( A_ScriptDir "\save\profiles\" Type "\" name ".json")
     {
-      If indexOf(Action,["Save","Remove"])
-        MsgBox, 4, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
+      ; If indexOf(Action,["Save","Remove"])
+      MsgBox, 262148, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
       IfMsgBox No
         Return
     } Else If (Action != "Save") {
-      MsgBox,, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
+      MsgBox, 262144, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
       Return
     }
 
