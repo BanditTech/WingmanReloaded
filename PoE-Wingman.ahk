@@ -71,13 +71,19 @@
   else
     Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
   Sleep, -1
-  ; Run "%A_ScriptDir%\GottaGoFast.ahk"
-  ; OnExit("CleanUp")
   
   IfNotExist, %A_ScriptDir%\data
     FileCreateDir, %A_ScriptDir%\data
   IfNotExist, %A_ScriptDir%\save
     FileCreateDir, %A_ScriptDir%\save
+  IfNotExist, %A_ScriptDir%\save\profiles
+    FileCreateDir, %A_ScriptDir%\save\profiles
+  IfNotExist, %A_ScriptDir%\save\profiles\Flask
+    FileCreateDir, %A_ScriptDir%\save\profiles\Flask
+  IfNotExist, %A_ScriptDir%\save\profiles\perChar
+    FileCreateDir, %A_ScriptDir%\save\profiles\perChar
+  IfNotExist, %A_ScriptDir%\save\profiles\Utility
+    FileCreateDir, %A_ScriptDir%\save\profiles\Utility
   IfNotExist, %A_ScriptDir%\temp
     FileCreateDir, %A_ScriptDir%\temp
   
@@ -114,7 +120,7 @@
     Global GamePID
     Global QuestItems
     Global DelayAction := {}
-    Global ProfileMenuFlask,ProfileMenuUtility
+    Global ProfileMenuFlask,ProfileMenuUtility,ProfileMenuperChar
     Global Active_executable := "TempName"
     ; List available database endpoints
     Global apiList := ["Currency"
@@ -183,8 +189,6 @@
     Global craftingBasesT2 := []
     Global craftingBasesT3 := []
     Global craftingBasesT4 := []
-    ; Create a container for the sub-script
-    ; Global scriptGottaGoFast := "GottaGoFast.ahk ahk_exe AutoHotkey.exe"
     Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
     ; Create Executable group for gameHotkey, IfWinActive
     global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
@@ -235,13 +239,6 @@
     Global HeistLootLarge := ["Essence Burner","Ancient Seal","Blood of Innocence","Dekhara's Resolve","Orbala's Fifth Adventure","Staff of the first Sin Eater","Sword of the Inverse Relic"]
     ft_ToolTip_Text_Part1=
       (LTrim
-      QuitBelow = Set the health threshold to logout`rLife and Hybrid character types quit from LIFE`rES character type quit from ENERGY SHIELD
-      RadioLife = Samples only Life values
-      RadioHybrid = Samples both Life and ES values
-      RadioCi = Samples only ES values
-      DetonateMines = Enable this to automatically Detonate Mines when placed`rDouble tap the D key to pause until next manual detonate
-      DetonateMinesDelay = Delay for this long after detonating
-      YesEldritchBattery = Enable this to sample the energy shield on the mana globe instead
       UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
       UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
       UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
@@ -269,18 +266,6 @@
       PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
       WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
       WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-      CurrentGemX = Select the X location for the first Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
-      CurrentGemY = Select the Y location for the first Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
-      AlternateGemX = Select the X location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
-      AlternateGemY = Select the Y location of the first Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 1`rPress Locate to grab positions
-      AlternateGemOnSecondarySlot = Enable this to get your First Alternate Gem from Secondary Weapon Set (Swap Weapons)
-      GemItemToogle = Enable this to use Gem Swap1 as Item Swap1
-      CurrentGem2X = Select the X location for the second Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
-      CurrentGem2Y = Select the Y location for the second Gem or Item Swap`rWriting 0 or nothing in this box will disable this feature!`rPress Locate to grab positions
-      AlternateGem2X = Select the X location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
-      AlternateGem2Y = Select the Y location of the second Gem or Item to swap with`rIf you want to use your Secondary Weapon Set, enable Weapon Swap Gem 2`rPress Locate to grab positions
-      AlternateGem2OnSecondarySlot = Enable this to get your Second Alternate Gem from Secondary Weapon Set (Swap Weapons)
-      GemItemToogle2 = Enable this to use Gem Swap2 as Item Swap2
       GrabCurrencyPosX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       GrabCurrencyPosY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
@@ -491,8 +476,8 @@
         , "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs"
       , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseKey":"d", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
       , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
-      , "swap1Enable":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
-      , "swap2Enable":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"}
+      , "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
+      , "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"}
     for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
     ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
     ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
@@ -641,13 +626,9 @@
     Global ShowOnStart := 0
     Global PopFlaskRespectCD := 1
     Global ResolutionScale := "Standard"
-    Global QSonMainAttack := 1
-    Global QSonSecondaryAttack := 1
     Global YesPersistantToggle := 1
     Global YesGuiLastPosition := 1
     Global YesSortFirst := 1
-    Global YesAutoSkillUp := 1
-    Global YesWaitAutoSkillUp := 1
     Global FlaskList := []
     Global AreaScale := 0
     Global LVdelay := 0
@@ -663,8 +644,6 @@
     Global OnHideout := False
     Global OnTown := False
     Global OnMines := False
-    Global DetonateMines := False
-    Global DetonateMinesDelay := 500
     Global OnDetonate := False
     Global OnDetonateDelve := False
     Global OnMenu := False
@@ -687,7 +666,6 @@
     Global HPerc := 100
     Global GameX, GameY, GameW, GameH, mouseX, mouseY
     Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
-    Global CastOnDetonate := 0
     Global WinGuiX := 0
     Global WinGuiY := 0
 
@@ -949,24 +927,7 @@
     global AlternateGem2Y:=0
     global AlternateGem2OnSecondarySlot:=0
     global GemItemToogle2:=0
-
-  ; CharacterTypeCheck
-    global Life:=1
-    global Hybrid:=0
-    global Ci:=0
-
-  ; AutoQuit
-    global QuitBelow, RadioCritQuit, RadioNormalQuit, RadioPortalQuit
-
-  ; Character Type
-    global RadioCi, RadioHybrid, RadioLife
     
-  ; Quicksilver
-    global TriggerQuicksilverDelay=0.8
-    Global FlaskListQS := []
-    Global MovementPressed := 0
-    Global MainPressed := 0
-    Global SecondaryPressed := 0
   ; Chat Hotkeys, and stash hotkeys
     Global CharName := "ReplaceWithCharName"
     Global RecipientName := "NothingYet"
@@ -1266,35 +1227,28 @@
   SB_SetText("Location Status", 2)
   SB_SetText("Percentage not updated", 3)
 
-  Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Tools|Configuration|Hotkeys
+  Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
   ;#######################################################################################################Flasks and Utility Tab
   Gui, Tab, Main
     Gui, Font,
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,         Section    w265 h40        xp+5   y+2,         Character Type:
+    Gui, Add, GroupBox,         Section    w265 h77        xp+5   y+2,         Per Character Settings
     Gui, Font,
-    Gui, Font, cRed
-    Gui Add, Radio, Group   vRadioLife Checked%RadioLife%           xs+10 ys+20,   Life
-    Gui, Font, cPurple
-    Gui Add, Radio,     vRadioHybrid Checked%RadioHybrid%         x+10,   Hybrid
-    Gui, Font, cBlue
-    Gui Add, Radio,     vRadioCi Checked%RadioCi%           x+10,   ES
-    Gui Add, Checkbox, gUpdateEldritchBattery  vYesEldritchBattery Checked%YesEldritchBattery%         x+8          , Eldritch Battery
-    Gui, Font
-    ; Auto-Quit
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,     Section  w265 h66        xs   y+10 ,         Auto-Quit Settings
-    Gui, Font,
-    Gui Add, Text,                     xs+10   yp+22,         Quit via:
-    Gui, Add, Radio, Group  vRadioCritQuit  Checked%RadioCritQuit%          x+8    y+-13,      Disconnect
-    Gui, Add, Radio,     vRadioPortalQuit Checked%RadioPortalQuit%      x+8  ,        Portal
-    Gui, Add, Radio,     vRadioNormalQuit Checked%RadioNormalQuit%      x+8  ,        /exit
-    Gui Add, Slider, vQuitBelow     NoTicks Thick20 TickInterval10 ToolTip     h21 w160 xs+5 y+3,  % QuitBelow
-    Gui Add, Checkbox, gUpdateExtra  vRelogOnQuit Checked%RelogOnQuit%         x+5  yp+7        , Log back in
+    Gui, Add, Button, gperCharMenu w255 xs+5 ys+20, Configure Character Options
+    l := [], s := ""
+    Loop, Files, %A_ScriptDir%\save\profiles\perChar\*.json
+      l.Push(StrReplace(A_LoopFileName,".json",""))
+    For k, v in l
+      s .=(k=1?"":"|") v
+    Gui, Add, ComboBox,  vProfileMenuperChar xs+6 y+5 w117, %s%
+    Gui, Add, Button, gProfile vMainMenu_perChar_Save x+1 yp hp w40 , Save
+    Gui, Add, Button, gProfile vMainMenu_perChar_Load x+1 yp hp w40 , Load
+    Gui, Add, Button, gProfile vMainMenu_perChar_Remove x+1 yp hp w50 , Remove
+
 
     ; Flask
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,        Section    w265 h77 xs y+10  , Flask Settings
+    Gui, Add, GroupBox,        Section    w265 h77 xs y+14  , Flask Settings
     Gui, Font
     Loop 5
     Gui, Add, Button, % "gFlaskMenu W46 -wrap " ((A_Index==1||A_Index==6)?"xs+6 yp+20":"x+5 yp") , Flask %A_Index%
@@ -1310,7 +1264,7 @@
 
     ; Utility
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,        Section    w265 h105 xs y+14  , Utility Settings
+    Gui, Add, GroupBox,        Section    w265 h105 xs y+14  , Utility Settings
     Gui, Font
     Loop 10
     Gui, Add, Button, % "gUtilityMenu W46 -wrap " (A_Index==1?"xs+6 yp+20":A_Index==6?"xs+6 y+5":"x+5 yp") , Utility %A_Index%
@@ -1325,26 +1279,13 @@
     Gui, Add, Button, gProfile vMainMenu_Utility_Load x+1 yp hp w40 , Load
     Gui, Add, Button, gProfile vMainMenu_Utility_Remove x+1 yp hp w50 , Remove
 
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,     Section  w265 h85        xs   y+14 ,         Movement Settings
-    Gui,Font,
-    Gui Add, Text,                     xs+10   ys+20,         Movement Trigger Delay (in seconds):
-    Gui Add, Edit,       vTriggerQuicksilverDelay  x+10 Center  yp   w55 h17,   %TriggerQuicksilverDelay%
-    Gui, Font, s8 cBlack
-    ;Improve UI later
-    Gui,Add,GroupBox, xs+10 y+1 w245 h40    center                  , Movement Triggers with Attack Keys
-    Gui,Font,
-    Gui, Add, Checkbox, vQSonMainAttack +BackgroundTrans Checked%QSonMainAttack% xp+25 yp+20 , Main Attack
-    Gui, Add, Checkbox, vQSonSecondaryAttack +BackgroundTrans Checked%QSonSecondaryAttack% x+20 , Secondary Attack
-
-
     ;Middle Vertical Lines
     Gui, Add, Text,                   xm+279   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,  Center   Section  w350 h230        x+15   ym+20 ,    Game Logic States
-    Gui,Font,
+    Gui, Add, GroupBox,  Center   Section  w350 h230        x+15   ym+20 ,    Game Logic States
+    Gui, Font,
     Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar hwndMainMenuIDOnChar, % "Character Active"
     CtlColors.Attach(MainMenuIDOnChar, "Lime", "")
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnOHB hwndMainMenuIDOnOHB, % "Overhead Health Bar"
@@ -1388,68 +1329,7 @@
     Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
-  Gui, Tab, Tools
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,  xm+10 ym+25 w250 h150 Section, Channeling Stack Re-Press
-    Gui, Font,
-    Gui, Add, CheckBox, gUpdateStackRelease vStackRelease_Enable Checked%StackRelease_Enable%  Right x+-65 ys+2 , Enable
-    Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffIcon xs+5 ys+19 w150 h21, % StackRelease_BuffIcon
-    Gui, Add, Text, x+4 yp+3, Icon to Find
-    Gui, Add, Edit, gUpdateStringEdit vStackRelease_BuffCount xs+5 y+15 w150 h21, % StackRelease_BuffCount
-    Gui, Add, Text, x+4 yp+3, Stack Capture
-    Gui, Add, Edit, gUpdateStackRelease vStackRelease_Keybind xs+5 y+15 w150 h21, %StackRelease_Keybind%
-    Gui, Add, Text, x+4 yp+3, Key to Re-Press
-    Gui, Add, Text, xs+5 y+12, Stack Search Offset - Bottom Edge of Buff Icon
-    Gui, Font, Bold s9 cBlack
-    Gui, Add, Text, xs+5 y+5, X1:
-    Gui, Font,
-    Gui, Add, Text, x+2 yp w29 hp,
-    Gui, Add, UpDown, gUpdateStackRelease vStackRelease_X1Offset hp center Range-150-150, %StackRelease_X1Offset%
-    Gui, Font, Bold s9 cBlack
-    Gui, Add, Text, x+10 yp, Y1:
-    Gui, Font,
-    Gui, Add, Text, x+2 yp w29 hp,
-    Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y1Offset hp center Range-150-150, %StackRelease_Y1Offset%
-    Gui, Font, Bold s9 cBlack
-    Gui, Add, Text, x+10 yp, X2:
-    Gui, Font,
-    Gui, Add, Text, x+2 yp w29 hp,
-    Gui, Add, UpDown, gUpdateStackRelease vStackRelease_X2Offset hp center Range-150-150, %StackRelease_X2Offset%
-    Gui, Font, Bold s9 cBlack
-    Gui, Add, Text, x+10 yp, Y2:
-    Gui, Font,
-    Gui, Add, Text, x+2 yp w29 hp,
-    Gui, Add, UpDown, gUpdateStackRelease vStackRelease_Y2Offset hp center Range-150-150, %StackRelease_Y2Offset%
-
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,     Section  w190 h110        xs+257   ys ,         Auto-Detonate Mines
-    Gui, Font,
-    Gui Add, Checkbox, gUpdateExtra  vDetonateMines Checked%DetonateMines%     Right    xs+128  ys+2        , Enable
-    Gui Add, Text, xs+5 y+4, Delay after Detonate
-    Gui Add, Edit,     gUpdateExtra   vDetonateMinesDelay  h18  x+5  yp-2  Number Limit w30        , %DetonateMinesDelay% 
-    Gui Add, GroupBox, xs+5 y+1 w160 h37, Pause Mines
-    Gui Add, Text, xp+5 yp+16 , Delay
-    Gui Add, Edit,     gUpdateExtra   vPauseMinesDelay  h18  x+5  yp-2  Number Limit w30        , %PauseMinesDelay% 
-    Gui Add, Text, x+5 yp+2 , Key
-    Gui Add, Edit,     gUpdateExtra   vhotkeyPauseMines  h18  x+5  yp-2  w50        , %hotkeyPauseMines% 
-    Gui Add, GroupBox, xs+5 y+3 w160 h37, Cast on Detonate
-    Gui Add, CheckBox, gUpdateExtra xp+9 yp+16 vCastOnDetonate Checked%CastOnDetonate%, Enable
-    Gui Add, Text, x+9 yp , Key
-    Gui Add, Edit,     gUpdateExtra   vhotkeyCastOnDetonate  h18  x+5  yp-2  w50        , %hotkeyCastOnDetonate% 
-    Gui,Font,
-
-    Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,     Section  w172 h40        xs+197   ys ,         Auto Level Gems
-    Gui, Font,
-    Gui Add, Checkbox,   vYesAutoSkillUp Checked%YesAutoSkillUp%   xs+10 yp+18        , Enable
-    Gui Add, Checkbox,   vYesWaitAutoSkillUp Checked%YesWaitAutoSkillUp%    x+5 yp      , Wait for Mouse
-
-    ;Save Setting
-    Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-    Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
-    Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
-
-    ;#######################################################################################################Configuration Tab
+  ;#######################################################################################################Configuration Tab
   Gui, Tab, Configuration
     Gui, Add, Text,                   x279   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
@@ -5340,6 +5220,7 @@ Return
       LoadArray()
       Settings("Flask","Load")
       Settings("Utility","Load")
+      Settings("perChar","Load")
 
       ; Login Information
       IniRead, PoESessionID, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID, %A_Space%
@@ -5360,9 +5241,6 @@ Return
       IniRead, YesLocation, %A_ScriptDir%\save\Settings.ini, General, YesLocation, 0
       IniRead, ShowPixelGrid, %A_ScriptDir%\save\Settings.ini, General, ShowPixelGrid, 0
       IniRead, ShowItemInfo, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo, 0
-      IniRead, DetonateMines, %A_ScriptDir%\save\Settings.ini, General, DetonateMines, 0
-      IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay, 500
-      IniRead, PauseMinesDelay, %A_ScriptDir%\save\Settings.ini, General, PauseMinesDelay, 250
       IniRead, LootVacuum, %A_ScriptDir%\save\Settings.ini, General, LootVacuum, 0
       IniRead, YesVendor, %A_ScriptDir%\save\Settings.ini, General, YesVendor, 1
       IniRead, YesStash, %A_ScriptDir%\save\Settings.ini, General, YesStash, 1
@@ -5383,11 +5261,8 @@ Return
       IniRead, CharName, %A_ScriptDir%\save\Settings.ini, General, CharName, ReplaceWithCharName
       IniRead, EnableChatHotkeys, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys, 1
       IniRead, YesStashKeys, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys, 1
-      IniRead, QSonMainAttack, %A_ScriptDir%\save\Settings.ini, General, QSonMainAttack, 0
-      IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack, 0
       IniRead, YesPersistantToggle, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle, 0
       IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
-      IniRead, YesEldritchBattery, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery, 0
       IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
       IniRead, YesStashT2, %A_ScriptDir%\save\Settings.ini, General, YesStashT2, 1
       IniRead, YesStashT3, %A_ScriptDir%\save\Settings.ini, General, YesStashT3, 1
@@ -5404,10 +5279,7 @@ Return
       IniRead, YesSkipMaps_rare, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare, 1
       IniRead, YesSkipMaps_unique, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique, 1
       IniRead, YesSkipMaps_tier, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier, 2
-      IniRead, YesAutoSkillUp, %A_ScriptDir%\save\Settings.ini, General, YesAutoSkillUp, 0
-      IniRead, YesWaitAutoSkillUp, %A_ScriptDir%\save\Settings.ini, General, YesWaitAutoSkillUp, 0
       IniRead, YesClickPortal, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal, 0
-      IniRead, RelogOnQuit, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit, 0
       IniRead, AreaScale, %A_ScriptDir%\save\Settings.ini, General, AreaScale, 60
       IniRead, LVdelay, %A_ScriptDir%\save\Settings.ini, General, LVdelay, 30
       IniRead, YesLootChests, %A_ScriptDir%\save\Settings.ini, General, YesLootChests, 1
@@ -5416,8 +5288,6 @@ Return
       IniRead, YesFillMetamorph, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph, 0
       IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
-      IniRead, CastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate, 0
-      IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate, q
       IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
 
       ;Crafting Map Settings
@@ -5620,20 +5490,6 @@ Return
       IniRead, VendorMineStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
       If VendorMineStr
         VendorMineStr := """" . VendorMineStr . """"
-      IniRead, StackRelease_BuffIcon, %A_ScriptDir%\save\Settings.ini, FindText Strings, StackRelease_BuffIcon, %1080_StackRelease_BuffIcon%
-      If StackRelease_BuffIcon
-        StackRelease_BuffIcon := """" . StackRelease_BuffIcon . """"
-      IniRead, StackRelease_BuffCount, %A_ScriptDir%\save\Settings.ini, FindText Strings, StackRelease_BuffCount, %1080_StackRelease_BuffCount%
-      If StackRelease_BuffCount
-        StackRelease_BuffCount := """" . StackRelease_BuffCount . """"
-
-      ; Stack Release settings
-      IniRead, StackRelease_Keybind, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Keybind, RButton
-      IniRead, StackRelease_X1Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X1Offset, 0
-      IniRead, StackRelease_Y1Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y1Offset, 2
-      IniRead, StackRelease_X2Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X2Offset, 0
-      IniRead, StackRelease_Y2Offset, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y2Offset, 15
-      IniRead, StackRelease_Enable, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Enable, 0
 
       ;Inventory Colors
       IniRead, varEmptyInvSlotColor, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
@@ -5658,173 +5514,11 @@ Return
       IniRead, varOnMetamorph, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph, 0xE06718
       IniRead, varOnLocker, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker, 0x1F2732
       IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
-
-      ;Utility Buttons
-      IniRead, YesUtility1, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1, 0
-      IniRead, YesUtility2, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2, 0
-      IniRead, YesUtility3, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3, 0
-      IniRead, YesUtility4, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4, 0
-      IniRead, YesUtility5, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5, 0
-      IniRead, YesUtility6, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6, 0
-      IniRead, YesUtility7, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7, 0
-      IniRead, YesUtility8, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8, 0
-      IniRead, YesUtility9, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9, 0
-      IniRead, YesUtility10, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10, 0
-      IniRead, YesUtility1Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver, 0
-      IniRead, YesUtility2Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver, 0
-      IniRead, YesUtility3Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver, 0
-      IniRead, YesUtility4Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver, 0
-      IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver, 0
-      IniRead, YesUtility6Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6Quicksilver, 0
-      IniRead, YesUtility7Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7Quicksilver, 0
-      IniRead, YesUtility8Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8Quicksilver, 0
-      IniRead, YesUtility9Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9Quicksilver, 0
-      IniRead, YesUtility10Quicksilver, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10Quicksilver, 0
-      IniRead, YesUtility1InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff, 0
-      IniRead, YesUtility2InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff, 0
-      IniRead, YesUtility3InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff, 0
-      IniRead, YesUtility4InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff, 0
-      IniRead, YesUtility5InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff, 0
-      IniRead, YesUtility6InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6InverseBuff, 0
-      IniRead, YesUtility7InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7InverseBuff, 0
-      IniRead, YesUtility8InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8InverseBuff, 0
-      IniRead, YesUtility9InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9InverseBuff, 0
-      IniRead, YesUtility10InverseBuff, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10InverseBuff, 0
-      IniRead, YesUtility1MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack, 0
-      IniRead, YesUtility2MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack, 0
-      IniRead, YesUtility3MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack, 0
-      IniRead, YesUtility4MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack, 0
-      IniRead, YesUtility5MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack, 0
-      IniRead, YesUtility6MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6MainAttack, 0
-      IniRead, YesUtility7MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7MainAttack, 0
-      IniRead, YesUtility8MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8MainAttack, 0
-      IniRead, YesUtility9MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9MainAttack, 0
-      IniRead, YesUtility10MainAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10MainAttack, 0
-      IniRead, YesUtility1SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack, 0
-      IniRead, YesUtility2SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack, 0
-      IniRead, YesUtility3SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack, 0
-      IniRead, YesUtility4SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack, 0
-      IniRead, YesUtility5SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack, 0
-      IniRead, YesUtility6SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6SecondaryAttack, 0
-      IniRead, YesUtility7SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7SecondaryAttack, 0
-      IniRead, YesUtility8SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8SecondaryAttack, 0
-      IniRead, YesUtility9SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9SecondaryAttack, 0
-      IniRead, YesUtility10SecondaryAttack, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10SecondaryAttack, 0
-      
-      ;Utility Percents  
-      IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent, Off
-      IniRead, YesUtility2LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2LifePercent, Off
-      IniRead, YesUtility3LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent, Off
-      IniRead, YesUtility4LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent, Off
-      IniRead, YesUtility5LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent, Off
-      IniRead, YesUtility6LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6LifePercent, Off
-      IniRead, YesUtility7LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7LifePercent, Off
-      IniRead, YesUtility8LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8LifePercent, Off
-      IniRead, YesUtility9LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9LifePercent, Off
-      IniRead, YesUtility10LifePercent, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10LifePercent, Off
-      IniRead, YesUtility1EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility1EsPercent, Off
-      IniRead, YesUtility2EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility2EsPercent, Off
-      IniRead, YesUtility3EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility3EsPercent, Off
-      IniRead, YesUtility4EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility4EsPercent, Off
-      IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility5EsPercent, Off
-      IniRead, YesUtility6EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility6EsPercent, Off
-      IniRead, YesUtility7EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility7EsPercent, Off
-      IniRead, YesUtility8EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility8EsPercent, Off
-      IniRead, YesUtility9EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility9EsPercent, Off
-      IniRead, YesUtility10EsPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility10EsPercent, Off
-      IniRead, YesUtility1ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility1ManaPercent, Off
-      IniRead, YesUtility2ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility2ManaPercent, Off
-      IniRead, YesUtility3ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility3ManaPercent, Off
-      IniRead, YesUtility4ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility4ManaPercent, Off
-      IniRead, YesUtility5ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility5ManaPercent, Off
-      IniRead, YesUtility6ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility6ManaPercent, Off
-      IniRead, YesUtility7ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility7ManaPercent, Off
-      IniRead, YesUtility8ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility8ManaPercent, Off
-      IniRead, YesUtility9ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility9ManaPercent, Off
-      IniRead, YesUtility10ManaPercent, %A_ScriptDir%\save\Settings.ini,   Utility Buttons, YesUtility10ManaPercent, Off
-      
-      ;Utility Cooldowns
-      IniRead, CooldownUtility1, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1, 5000
-      IniRead, CooldownUtility2, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility2, 5000
-      IniRead, CooldownUtility3, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3, 5000
-      IniRead, CooldownUtility4, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4, 5000
-      IniRead, CooldownUtility5, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5, 5000
-      IniRead, CooldownUtility6, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility6, 5000
-      IniRead, CooldownUtility7, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility7, 5000
-      IniRead, CooldownUtility8, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility8, 5000
-      IniRead, CooldownUtility9, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility9, 5000
-      IniRead, CooldownUtility10, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility10, 5000
-      
-      ;Utility Keys
-      IniRead, KeyUtility1, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1, q
-      IniRead, KeyUtility2, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility2, w
-      IniRead, KeyUtility3, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3, e
-      IniRead, KeyUtility4, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4, r
-      IniRead, KeyUtility5, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5, t
-      IniRead, KeyUtility6, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility6, t
-      IniRead, KeyUtility7, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility7, t
-      IniRead, KeyUtility8, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility8, t
-      IniRead, KeyUtility9, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility9, t
-      IniRead, KeyUtility10, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility10, t
-
-      ;Utility Icon Strings
-      IniRead, IconStringUtility1, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1, %A_Space%
-      If IconStringUtility1
-        IconStringUtility1 := """" . IconStringUtility1 . """"
-      IniRead, IconStringUtility2, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility2, %A_Space%
-      If IconStringUtility2
-        IconStringUtility2 := """" . IconStringUtility2 . """"
-      IniRead, IconStringUtility3, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3, %A_Space%
-      If IconStringUtility3
-        IconStringUtility3 := """" . IconStringUtility3 . """"
-      IniRead, IconStringUtility4, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4, %A_Space%
-      If IconStringUtility4
-        IconStringUtility4 := """" . IconStringUtility4 . """"
-      IniRead, IconStringUtility5, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5, %A_Space%
-      If IconStringUtility5
-        IconStringUtility5 := """" . IconStringUtility5 . """"
-      IniRead, IconStringUtility6, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility6, %A_Space%
-      If IconStringUtility6
-        IconStringUtility6 := """" . IconStringUtility6 . """"
-      IniRead, IconStringUtility7, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility7, %A_Space%
-      If IconStringUtility7
-        IconStringUtility7 := """" . IconStringUtility7 . """"
-      IniRead, IconStringUtility8, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility8, %A_Space%
-      If IconStringUtility8
-        IconStringUtility8 := """" . IconStringUtility8 . """"
-      IniRead, IconStringUtility9, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility9, %A_Space%
-      If IconStringUtility9
-        IconStringUtility9 := """" . IconStringUtility9 . """"
-      IniRead, IconStringUtility10, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10, %A_Space%
-      If IconStringUtility10
-        IconStringUtility10 := """" . IconStringUtility10 . """"
-
-      ;Utility Keys
-      IniRead, hotkeyUp,     %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp,   w
-      IniRead, hotkeyDown,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyDown,  s
-      IniRead, hotkeyLeft,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyLeft,  a
-      IniRead, hotkeyRight,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight, d
             
       ;Grab Currency From Inventory
       IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 1877
       IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 772
 
-      ;Gem Swap Gem 1
-      IniRead, CurrentGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX, 1353
-      IniRead, CurrentGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY, 224
-      IniRead, AlternateGemX, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX, 1407
-      IniRead, AlternateGemY, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY, 201
-      IniRead, AlternateGemOnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot, 0
-      IniRead, GemItemToogle, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle, 0
-
-      ;Gem Swap Gem 2
-      IniRead, CurrentGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X, 0
-      IniRead, CurrentGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y, 0
-      IniRead, AlternateGem2X, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X, 0
-      IniRead, AlternateGem2Y, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2Y, 0
-      IniRead, AlternateGem2OnSecondarySlot, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2OnSecondarySlot, 0
-      IniRead, GemItemToogle2, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle2, 0
-      
       ;Coordinates
       IniRead, PortalScrollX, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX, 1825
       IniRead, PortalScrollY, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollY, 825
@@ -5833,33 +5527,6 @@ Return
       IniRead, StockPortal, %A_ScriptDir%\save\Settings.ini, Coordinates, StockPortal, 0
       IniRead, StockWisdom, %A_ScriptDir%\save\Settings.ini, Coordinates, StockWisdom, 0
       
-      
-      ;Quicksilver
-      IniRead, TriggerQuicksilverDelay, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilverDelay, .5
-      
-      ;CharacterTypeCheck
-      IniRead, RadioLife, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Life, 1
-      IniRead, RadioHybrid, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Hybrid, 0
-      IniRead, RadioCi, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Ci, 0
-      
-      ;AutoQuit
-      IniRead, QuitBelow, %A_ScriptDir%\save\Settings.ini, AutoQuit, QuitBelow, 20
-      IniRead, RadioCritQuit, %A_ScriptDir%\save\Settings.ini, AutoQuit, CritQuit, 1
-      IniRead, RadioPortalQuit, %A_ScriptDir%\save\Settings.ini, AutoQuit, PortalQuit, 0
-      IniRead, RadioNormalQuit, %A_ScriptDir%\save\Settings.ini, AutoQuit, NormalQuit, 0
-      
-      ;Profile Editbox
-      Iniread, ProfileText1, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText1, Profile 1
-      Iniread, ProfileText2, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText2, Profile 2
-      Iniread, ProfileText3, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText3, Profile 3
-      Iniread, ProfileText4, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText4, Profile 4
-      Iniread, ProfileText5, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText5, Profile 5
-      Iniread, ProfileText6, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText6, Profile 6
-      Iniread, ProfileText7, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText7, Profile 7
-      Iniread, ProfileText8, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText8, Profile 8
-      Iniread, ProfileText9, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText9, Profile 9
-      Iniread, ProfileText10, %A_ScriptDir%\save\Profiles.ini, Profiles, ProfileText10, Profile 10
-
       ;~ hotkeys reset
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
@@ -6198,9 +5865,6 @@ Return
       IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
       IniWrite, %ShowPixelGrid%, %A_ScriptDir%\save\Settings.ini, General, ShowPixelGrid
       IniWrite, %ShowItemInfo%, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo
-      IniWrite, %DetonateMines%, %A_ScriptDir%\save\Settings.ini, General, DetonateMines
-      IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay
-      IniWrite, %PauseMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, PauseMinesDelay
       IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
@@ -6215,12 +5879,8 @@ Return
       IniWrite, %ClipLatency%, %A_ScriptDir%\save\Settings.ini, General, ClipLatency
       IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
       IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
-      IniWrite, %CharName%, %A_ScriptDir%\save\Settings.ini, General, CharName
       IniWrite, %EnableChatHotkeys%, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys
       IniWrite, %YesStashKeys%, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys
-      IniWrite, %QSonMainAttack%, %A_ScriptDir%\save\Settings.ini, General, QSonMainAttack
-      IniWrite, %QSonSecondaryAttack%, %A_ScriptDir%\save\Settings.ini, General, QSonSecondaryAttack
-      IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery
       IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
       IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
       IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
@@ -6237,12 +5897,9 @@ Return
       IniWrite, %YesSkipMaps_rare%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare
       IniWrite, %YesSkipMaps_unique%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique
       IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
-      IniWrite, %YesAutoSkillUp%, %A_ScriptDir%\save\Settings.ini, General, YesAutoSkillUp
-      IniWrite, %YesWaitAutoSkillUp%, %A_ScriptDir%\save\Settings.ini, General, YesWaitAutoSkillUp
       IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
-      IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
 
       ; Overhead Health Bar
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
@@ -6287,133 +5944,6 @@ Return
       IniWrite, %hotkeyLeft%,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyLeft
       IniWrite, %hotkeyRight%,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight
       
-      ;Utility Buttons
-      IniWrite, %YesUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1
-      IniWrite, %YesUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2
-      IniWrite, %YesUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3
-      IniWrite, %YesUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4
-      IniWrite, %YesUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5
-      IniWrite, %YesUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6
-      IniWrite, %YesUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7
-      IniWrite, %YesUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8
-      IniWrite, %YesUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9
-      IniWrite, %YesUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10
-      IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1Quicksilver
-      IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2Quicksilver
-      IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3Quicksilver
-      IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4Quicksilver
-      IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5Quicksilver
-      IniWrite, %YesUtility6Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6Quicksilver
-      IniWrite, %YesUtility7Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7Quicksilver
-      IniWrite, %YesUtility8Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8Quicksilver
-      IniWrite, %YesUtility9Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9Quicksilver
-      IniWrite, %YesUtility10Quicksilver%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10Quicksilver
-      IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1InverseBuff
-      IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2InverseBuff
-      IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3InverseBuff
-      IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4InverseBuff
-      IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5InverseBuff
-      IniWrite, %YesUtility6InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6InverseBuff
-      IniWrite, %YesUtility7InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7InverseBuff
-      IniWrite, %YesUtility8InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8InverseBuff
-      IniWrite, %YesUtility9InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9InverseBuff
-      IniWrite, %YesUtility10InverseBuff%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10InverseBuff
-      IniWrite, %YesUtility1MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1MainAttack
-      IniWrite, %YesUtility2MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2MainAttack
-      IniWrite, %YesUtility3MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3MainAttack
-      IniWrite, %YesUtility4MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4MainAttack
-      IniWrite, %YesUtility5MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5MainAttack
-      IniWrite, %YesUtility6MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6MainAttack
-      IniWrite, %YesUtility7MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7MainAttack
-      IniWrite, %YesUtility8MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8MainAttack
-      IniWrite, %YesUtility9MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9MainAttack
-      IniWrite, %YesUtility10MainAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10MainAttack
-      IniWrite, %YesUtility1SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1SecondaryAttack
-      IniWrite, %YesUtility2SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2SecondaryAttack
-      IniWrite, %YesUtility3SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3SecondaryAttack
-      IniWrite, %YesUtility4SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4SecondaryAttack
-      IniWrite, %YesUtility5SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5SecondaryAttack
-      IniWrite, %YesUtility6SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6SecondaryAttack
-      IniWrite, %YesUtility7SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7SecondaryAttack
-      IniWrite, %YesUtility8SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8SecondaryAttack
-      IniWrite, %YesUtility9SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9SecondaryAttack
-      IniWrite, %YesUtility10SecondaryAttack%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10SecondaryAttack
-      
-      ;Utility Percents  
-      IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1LifePercent
-      IniWrite, %YesUtility2LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2LifePercent
-      IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3LifePercent
-      IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4LifePercent
-      IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5LifePercent
-      IniWrite, %YesUtility6LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6LifePercent
-      IniWrite, %YesUtility7LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7LifePercent
-      IniWrite, %YesUtility8LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8LifePercent
-      IniWrite, %YesUtility9LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9LifePercent
-      IniWrite, %YesUtility10LifePercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10LifePercent
-      IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1EsPercent
-      IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2EsPercent
-      IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3EsPercent
-      IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4EsPercent
-      IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5EsPercent
-      IniWrite, %YesUtility6EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6EsPercent
-      IniWrite, %YesUtility7EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7EsPercent
-      IniWrite, %YesUtility8EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8EsPercent
-      IniWrite, %YesUtility9EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9EsPercent
-      IniWrite, %YesUtility10EsPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10EsPercent
-      IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility1ManaPercent
-      IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility2ManaPercent
-      IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility3ManaPercent
-      IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility4ManaPercent
-      IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility5ManaPercent
-      IniWrite, %YesUtility6ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility6ManaPercent
-      IniWrite, %YesUtility7ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility7ManaPercent
-      IniWrite, %YesUtility8ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility8ManaPercent
-      IniWrite, %YesUtility9ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility9ManaPercent
-      IniWrite, %YesUtility10ManaPercent%, %A_ScriptDir%\save\Settings.ini, Utility Buttons, YesUtility10ManaPercent
-      
-      ;Utility Cooldowns
-      IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility1
-      IniWrite, %CooldownUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility2
-      IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility3
-      IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility4
-      IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility5
-      IniWrite, %CooldownUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility6
-      IniWrite, %CooldownUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility7
-      IniWrite, %CooldownUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility8
-      IniWrite, %CooldownUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility9
-      IniWrite, %CooldownUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Cooldowns, CooldownUtility10
-      
-      ;StackRelease
-      IniWrite, %StackRelease_Keybind%, %A_ScriptDir%\save\Settings.ini,  StackRelease, StackRelease_Keybind
-      IniWrite, %StackRelease_X1Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X1Offset
-      IniWrite, %StackRelease_Y1Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y1Offset
-      IniWrite, %StackRelease_X2Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_X2Offset
-      IniWrite, %StackRelease_Y2Offset%, %A_ScriptDir%\save\Settings.ini, StackRelease, StackRelease_Y2Offset
-      
-      ;Utility Keys
-      IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility1
-      IniWrite, %KeyUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility2
-      IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility3
-      IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility4
-      IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility5
-      IniWrite, %KeyUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility6
-      IniWrite, %KeyUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility7
-      IniWrite, %KeyUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility8
-      IniWrite, %KeyUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility9
-      IniWrite, %KeyUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Keys, KeyUtility10
-      
-      ;Utility Icon Strings
-      IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility1
-      IniWrite, %IconStringUtility2%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility2
-      IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility3
-      IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility4
-      IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility5
-      IniWrite, %IconStringUtility6%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility6
-      IniWrite, %IconStringUtility7%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility7
-      IniWrite, %IconStringUtility8%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility8
-      IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility9
-      IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Settings.ini, Utility Icons, IconStringUtility10
-
       ;Grab Currency
       IniWrite, %GrabCurrencyPosX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX
       IniWrite, %GrabCurrencyPosY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY
@@ -6447,21 +5977,6 @@ Return
       IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
       IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
       IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
-      
-      ;Gem Swap
-      IniWrite, %CurrentGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemX
-      IniWrite, %CurrentGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGemY
-      IniWrite, %AlternateGemX%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemX
-      IniWrite, %AlternateGemY%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemY
-      IniWrite, %AlternateGemOnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGemOnSecondarySlot
-      IniWrite, %GemItemToogle%, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle
-
-      IniWrite, %CurrentGem2X%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2X
-      IniWrite, %CurrentGem2Y%, %A_ScriptDir%\save\Settings.ini, Gem Swap, CurrentGem2Y
-      IniWrite, %AlternateGem2X%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2X
-      IniWrite, %AlternateGem2Y%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2Y
-      IniWrite, %AlternateGem2OnSecondarySlot%, %A_ScriptDir%\save\Settings.ini, Gem Swap, AlternateGem2OnSecondarySlot
-      IniWrite, %GemItemToogle2%, %A_ScriptDir%\save\Settings.ini, Gem Swap, GemItemToogle2
       
       ;~ Scroll locations
       IniWrite, %PortalScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX
@@ -6524,20 +6039,6 @@ Return
       IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
       IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
       IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
-
-      ;Quicksilver
-      IniWrite, %TriggerQuicksilverDelay%, %A_ScriptDir%\save\Settings.ini, Quicksilver, TriggerQuicksilverDelay
-      
-      ;CharacterTypeCheck
-      IniWrite, %RadioLife%, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Life
-      IniWrite, %RadioHybrid%, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Hybrid  
-      IniWrite, %RadioCi%, %A_ScriptDir%\save\Settings.ini, CharacterTypeCheck, Ci  
-      
-      ;AutoQuit
-      IniWrite, %QuitBelow%, %A_ScriptDir%\save\Settings.ini, AutoQuit, QuitBelow
-      IniWrite, %RadioCritQuit%, %A_ScriptDir%\save\Settings.ini, AutoQuit, CritQuit
-      IniWrite, %RadioPortalQuit%, %A_ScriptDir%\save\Settings.ini, AutoQuit, PortalQuit
-      IniWrite, %RadioNormalQuit%, %A_ScriptDir%\save\Settings.ini, AutoQuit, NormalQuit
 
       ;Chat Hotkeys
       IniWrite, %1Prefix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix1
@@ -8612,9 +8113,123 @@ Return
         Built := True
         Gui, perChar: new, AlwaysOnTop
 
-        Gui, perChar: Add, GroupBox, section xm ym w500 h260, Per Character Settings
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox, xm ym w565 h405, Per Character Settings
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,         Section    w265 h40        xp+10   yp+20,         Character Type:
+        Gui, perChar: Font,
+        Gui, perChar: Font, cRed
+        Gui, perChar: Add, Radio, %   "Group vtypeLife Checked" WR.perChar.Setting.typeLife     " xs+10 ys+20", Life
+        Gui, perChar: Font, cPurple
+        Gui, perChar: Add, Radio, %       "vtypeHybrid Checked" WR.perChar.Setting.typeHybrid   " x+10 yp",     Hybrid
+        Gui, perChar: Font, cBlue
+        Gui, perChar: Add, Radio, %           "vtypeES Checked" WR.perChar.Setting.typeES       " x+10 yp",     ES
+        Gui, perChar: Add, Checkbox, %  "vtypeEldritch Checked" WR.perChar.Setting.typeEldritch " x+8 yp" ,     Eldritch Battery
+        Gui, perChar: Font
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,     Section  w265 h66        xs   y+10 ,         Auto-Quit Settings
+        Gui, perChar: Font,
+        Gui, perChar: Add, Text,                     xs+10   yp+22,         Quit via:
+        Gui, perChar: Add, Radio, % "Group vquitDC        Checked" WR.perChar.Setting.quitDC     " x+8 y+-13",   Disconnect
+        Gui, perChar: Add, Radio,     %   "vquitPortal    Checked" WR.perChar.Setting.quitPortal " x+8 yp"   ,   Portal
+        Gui, perChar: Add, Radio,     %   "vquitExit      Checked" WR.perChar.Setting.quitExit   " x+8 yp"   ,   /exit
+        Gui, perChar: Add, Slider, NoTicks vquitBelow Thick20 TickInterval10 ToolTip h21 w160 xs+5 y+3       , % WR.perChar.Setting.quitBelow
+        Gui, perChar: Add, Checkbox,  %   "vquitLogBackIn Checked" WR.perChar.Setting.LogBackIn  " x+5 yp+7" ,   Log back in
 
-        Gui, perChar: show, w520 h280
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,     Section  w265 h85        xs   y+10 ,         Movement Settings
+        Gui, perChar: Font,
+        Gui, perChar: Add, Text,                     xs+10   ys+20,         Movement Trigger Delay (in seconds):
+        Gui, perChar: Add, Edit,       vmovementDelay  x+10 Center  yp   w55 h17, % WR.perChar.Setting.movementDelay
+        Gui, perChar: Font, s8 cBlack
+        Gui, perChar: Add,GroupBox, xs+10 y+1 w245 h40    center                  , Movement Triggers with Attack Keys
+        Gui, perChar: Font,
+        Gui, perChar: Add, Checkbox, % "vmovementMainAttack +BackgroundTrans Checked" WR.perChar.Setting.movementMainAttack " xp+25 yp+20 ", Main Attack
+        Gui, perChar: Add, Checkbox, % "vmovementSecondaryAttack +BackgroundTrans Checked" WR.perChar.Setting.movementSecondaryAttack " xp+98 yp", Secondary Attack
+
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,     Section  w265 h40        xs   y+15 ,         Auto Level Gems
+        Gui, perChar: Font,
+        Gui, perChar: Add, Checkbox, % "vautolevelgemsEnable Checked" WR.perChar.Setting.autolevelgemsEnable "   xs+35 yp+18"     , Enable
+        Gui, perChar: Add, Checkbox, % "vautolevelgemsWait Checked" WR.perChar.Setting.autolevelgemsWait "    xp+98 yp "  , Wait for Mouse
+
+        ; , "swap1AltWeapon", "swap1Item", "swap1Xa", "swap1Ya", "swap1Xb", "swap1Yb"
+        ; , "swap2AltWeapon", "swap2Item", "swap2Xa", "swap2Ya", "swap2Xb", "swap2Yb"
+
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,     Section  w265 h65        xs   y+10 ,         First Swap Gem/Item
+        Gui, perChar: Font,
+        Gui, perChar: Add, Edit,  center     vswap1Xa         xs+5  yp+20     w34  h17, % WR.perChar.Setting.swap1Xa
+        Gui, perChar: Add, Edit,  center     vswap1Ya           x+3                w34  h17, % WR.perChar.Setting.swap1Ya
+        Gui, perChar: Add, Button,  gWR_Update vWR_Btn_Locate_CurrentGem  x+3   yp  hp , Locate A
+        Gui, perChar: Add, Checkbox, % "vswap1Item Checked" WR.perChar.Setting.swap1Item " x+3  yp+2"               , Use as Item Swap?
+        Gui, perChar: Add, Edit,   center    vswap1Xb         xs+5        y+5   w34  h17,   % WR.perChar.Setting.swap1Xb
+        Gui, perChar: Add, Edit,   center    vswap1Yb         x+3                w34  h17,   % WR.perChar.Setting.swap1Yb
+        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem  x+3   yp    hp , Locate B
+        Gui, perChar: Add, Checkbox, %  "vswap1AltWeapon Checked" WR.perChar.Setting.swap1AltWeapon "  x+3  yp+2"  , Swap Weapon for B?
+
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,     Section  w265 h65        xs   y+10 ,         Second Swap Gem/Item
+        Gui, perChar: Font,
+        Gui, perChar: Add, Edit,   center vswap2Xa xs+5 yp+20   w34  h17,   % WR.perChar.Setting.swap2Xa
+        Gui, perChar: Add, Edit,   center vswap2Ya x+3 w34  hp,   % WR.perChar.Setting.swap2Ya
+        Gui, perChar: Add, Button, gWR_Update vWR_Btn_Locate_CurrentGem2      x+3   yp    hp , Locate A
+        Gui, perChar: Add, Checkbox, % "vswap2Item Checked" WR.perChar.Setting.swap2Item " x+3  yp+2" , Use as Item Swap?
+        Gui, perChar: Add, Edit, center vswap2Xb xs+5 y+5   w34  h17,   % WR.perChar.Setting.swap2Xb
+        Gui, perChar: Add, Edit, center vswap2Yb x+3 w34  hp,   % WR.perChar.Setting.swap2Yb
+        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2      x+3   yp    hp , Locate B
+        Gui, perChar: Add, Checkbox, %  "vswap2AltWeapon Checked" WR.perChar.Setting.swap2AltWeapon "  x+3  yp+2"  , Swap Weapon for B?
+
+
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,  xs+280 ym+20 w265 h150 Section, Channeling Stack Re-Press
+        Gui, perChar: Font,
+        Gui, perChar: Add, CheckBox, % "vchannelrepressEnable Checked" WR.perChar.Setting.channelrepressEnable "  Right x+-65 ys+2 ", Enable
+        Gui, perChar: Add, Edit,  vchannelrepressIcon xs+5 ys+19 w150 h21, % WR.perChar.Setting.channelrepressIcon
+        Gui, perChar: Add, Text, x+4 yp+3, Icon to Find
+        Gui, perChar: Add, Edit,  vchannelrepressStack xs+5 y+15 w150 h21, % WR.perChar.Setting.channelrepressStack
+        Gui, perChar: Add, Text, x+4 yp+3, Stack Digit
+        Gui, perChar: Add, Edit,  vchannelrepressKey xs+5 y+15 w150 h21, % WR.perChar.Setting.channelrepressKey
+        Gui, perChar: Add, Text, x+4 yp+3, Key to Re-Press
+        Gui, perChar: Add, Text, xs+15 y+12, Stack Search Offset - Bottom Edge of Buff Icon
+        Gui, perChar: Font, Bold s9 cBlack
+        Gui, perChar: Add, Text, xs+15 y+5, X1:
+        Gui, perChar: Font,
+        Gui, perChar: Add, Text, x+2 yp w29 hp,
+        Gui, perChar: Add, UpDown,  vchannelrepressOffsetX1 hp center Range-150-150, % WR.perChar.Setting.channelrepressOffsetX1
+        Gui, perChar: Font, Bold s9 cBlack
+        Gui, perChar: Add, Text, x+10 yp, Y1:
+        Gui, perChar: Font,
+        Gui, perChar: Add, Text, x+2 yp w29 hp,
+        Gui, perChar: Add, UpDown,  vchannelrepressOffsetY1 hp center Range-150-150, %  WR.perChar.Setting.channelrepressOffsetY1
+        Gui, perChar: Font, Bold s9 cBlack
+        Gui, perChar: Add, Text, x+10 yp, X2:
+        Gui, perChar: Font,
+        Gui, perChar: Add, Text, x+2 yp w29 hp,
+        Gui, perChar: Add, UpDown,  vchannelrepressOffsetX2 hp center Range-150-150, %  WR.perChar.Setting.channelrepressOffsetX2
+        Gui, perChar: Font, Bold s9 cBlack
+        Gui, perChar: Add, Text, x+10 yp, Y2:
+        Gui, perChar: Font,
+        Gui, perChar: Add, Text, x+2 yp w29 hp,
+        Gui, perChar: Add, UpDown,  vchannelrepressOffsetY2 hp center Range-150-150, %  WR.perChar.Setting.channelrepressOffsetY2
+
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,     Section  w265 h128        xs   y+13 ,         Auto-Detonate Mines
+        Gui, perChar: Font,
+        Gui, perChar: Add, Checkbox, % "vautominesEnable Checked"  WR.perChar.Setting.autominesEnable  " xs+15  ys+23"       , Enable
+        Gui, perChar: Add, Edit,        vautominesBoomDelay  h18  xs+90  yp-2  Number Limit w30        , % WR.perChar.Setting.autominesBoomDelay
+        Gui, perChar: Add, Text, x+5 yp+2, Delay between Detonate
+        Gui, perChar: Add, GroupBox, center xs+5 y+7 w255 h37, Double-Tap to Pause Mines
+        Gui, perChar: Add, Edit,        vautominesPauseDoubleTapSpeed  h18  xp+10 yp+16  Number Limit w30        , % WR.perChar.Setting.autominesPauseDoubleTapSpeed 
+        Gui, perChar: Add, Text, x+5  yp+2 , Double-Tap Speed
+        Gui, perChar: Add, Text, xs+150 yp , Key
+        Gui, perChar: Add, Edit,        vautominesPauseKey  h18  x+5  yp-2  w50        , % WR.perChar.Setting.autominesPauseKey
+        Gui, perChar: Add, GroupBox, center xs+5 y+7 w255 h37, Dash on Detonate
+        Gui, perChar: Add, CheckBox, %  "xp+15 yp+16 vautominesSmokeDashEnable Checked" WR.perChar.Setting.autominesSmokeDashEnable, Enable Smoke-Dash
+        Gui, perChar: Add, Text, xs+150 yp , Key
+        Gui, perChar: Add, Edit,        vautominesSmokeDashKey  h18  x+5  yp-2  w50        , % WR.perChar.Setting.autominesSmokeDashKey
+        Gui, perChar: Font,
+        Gui, perChar: show, w585 h420
       }
       Return
 
@@ -8625,8 +8240,8 @@ Return
         , "channelrepressEnable", "channelrepressIcon", "channelrepressStack", "channelrepressKey", "channelrepressOffsetX1", "channelrepressOffsetY1", "channelrepressOffsetX2", "channelrepressOffsetY2"
         , "autominesEnable", "autominesBoomDelay", "autominesPauseDoubleTapSpeed", "autominesPauseKey", "autominesSmokeDashEnable", "autominesSmokeDashKey"
         , "autolevelgemsEnable", "autolevelgemsWait"
-        , "swap1Enable", "swap1Item", "swap1Xa", "swap1Ya", "swap1Xb", "swap1Yb"
-        , "swap2Enable", "swap2Item", "swap2Xa", "swap2Ya", "swap2Xb", "swap2Yb"]
+        , "swap1AltWeapon", "swap1Item", "swap1Xa", "swap1Ya", "swap1Xb", "swap1Yb"
+        , "swap2AltWeapon", "swap2Item", "swap2Xa", "swap2Ya", "swap2Xb", "swap2Yb"]
           WR.perChar.Setting[kind] := %kind%
         Settings("perChar","Save")
         Return
