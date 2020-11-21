@@ -3106,7 +3106,7 @@
         Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
         Gui, Inventory: Add, Text,                   x+33             h152 0x11
         Gui, Inventory: Add, Text,                   x+33             h152 0x11
-        
+
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
@@ -3856,8 +3856,6 @@
         Gui, Controller: Add, Checkbox,             vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                     , Use utility on Move?
         Gui, Controller: Add, DropDownList,   x+5 yp-5   w40   vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
 
-        Gui, Controller: Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
-        
         Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,L Bumper
         Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonLB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
         GuiControl,Controller: Text, hotkeyControllerButtonLB, %hotkeyControllerButtonLB%
@@ -4136,6 +4134,65 @@
         Gui, FillMetamorph: Show
       }
     }
+    Else If (Function = "hkStash")
+    {
+      Static hkStashBuilt := False
+      If !(hkStashBuilt)
+      {
+        hkStashBuilt := True
+        Gui, hkStash: New, +AlwaysOnTop -MinimizeBox -Resize
+        ;Save Setting
+        Gui, hkStash: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
+        Gui, hkStash: Add, Button,      gLaunchSite     x+5           h23,   Website
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section xm+5 ym+50 w150 h80   center                   ,Binding Modifiers
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, xs+5 ys+20 w140 h23 vstashPrefix1, %stashPrefix1%
+        Gui, hkStash: Add, Edit, y+5    w140 h23 vstashPrefix2, %stashPrefix2%
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section x+25 ym w100 h275                      ,Keys
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, Number xs+4 ys+20 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
+      }
+      
+      Gui, hkStash: Show
+
+    }
     Else If (Function = "JSON")
     {
       ValueType := Var[2]
@@ -4195,6 +4252,8 @@
       Gui, Inventory: Show
     Return
 
+    hkStashGuiClose:
+    hkStashGuiEscape:
     InventoryGuiClose:
     InventoryGuiEscape:
     CraftingGuiClose:
@@ -4838,7 +4897,7 @@
       Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
     Else
       Player.Percent.Life := -1
-    If (YesEldritchBattery)
+    If (WR.perChar.Setting.typeEldritch)
     {
       If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,1))
         Player.Percent.ES := Round(((Globe.EB.Y2 - EB.1.2) / Globe.EB.Height) * 100)
@@ -4879,28 +4938,6 @@
       SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%",3)
     }
     Return
-  }
-  ; GetPercent - Determine the percentage of health
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  GetPercent(CID, PosY, Variance)
-  {
-    Thread, NoTimers, true    ;Critical
-    Global OHB, OHBLHealthHex
-    If !CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(OHB.X+1, PosY)),Variance)
-    {
-      Ding(500,7,"OHB Obscured, Moved, or Dead" )
-      Return HPerc
-    }
-    Else
-    Found := OHB.X + 1
-    Loop 10
-    {
-      pX:= OHB.pX[A_Index]
-      If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
-        Found := pX
-    }
-    Thread, NoTimers, False    ;End Critical
-    Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
   }
   ; Rescale - Rescales values of the script to the user's resolution
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7320,15 +7357,14 @@
     {
       If (WinGuiX = "" || WinGuiY = "")
         WinGuiX := WinGuiY := 0
-      Gui, Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
+      Gui, 1: Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
     }
     Else
     {
-      Gui, Show, Autosize Center,   WingmanReloaded
+      Gui, 1: Show, Autosize Center,   WingmanReloaded
     }
     CheckGamestates := True
     processWarningFound:=0
-    Gui,6:Hide
     return
   }
   IsModifier(Character) {
@@ -7645,15 +7681,15 @@
   ; StackRelease
   StackRelease()
   {
-    if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, StackRelease_BuffIcon,0))
+    if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, WR.perChar.Settings.channelrepressIcon,0))
     {
-      If FindText(buff.1.1 + StackRelease_X1Offset,buff.1.2 + buff.1.4 + StackRelease_Y1Offset,buff.1.1 + buff.1.3 + StackRelease_X2Offset,buff.1.2 + buff.1.4 + StackRelease_Y2Offset, 0, 0, StackRelease_BuffCount,0)
+      If FindText(buff.1.1 + WR.perChar.Setting.channelrepressOffsetX1,buff.1.2 + buff.1.4 + WR.perChar.Setting.channelrepressOffsetY1,buff.1.1 + buff.1.3 + WR.perChar.Setting.channelrepressOffsetX2,buff.1.2 + buff.1.4 + WR.perChar.Setting.channelrepressOffsetY2, 0, 0, WR.perChar.Setting.channelrepressStack,0)
       {
-        If GetKeyState(StackRelease_Keybind,"P")
+        If GetKeyState(WR.perChar.Setting.channelrepressKey,"P")
         {
-          SendHotkey(StackRelease_Keybind,"up")
+          SendHotkey(WR.perChar.Setting.channelrepressKey,"up")
           Sleep, 10
-          SendHotkey(StackRelease_Keybind,"down")
+          SendHotkey(WR.perChar.Setting.channelrepressKey,"down")
         }
       }
     }

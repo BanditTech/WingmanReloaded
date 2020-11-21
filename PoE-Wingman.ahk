@@ -203,14 +203,11 @@
     global CheckGamestates:=False
     Process, Exist
     Global ScriptPID := ErrorLevel
-    global AutoQuit:=0 
-    global AutoFlask:=0
-    global AutoQuick:=0 
+    Global MainMenuIDAutoFlask, MainMenuIDAutoQuit, MainMenuIDAutoMove, MainMenuIDAutoUtility
     Global LootFilter := {}
     Global IgnoredSlot := {}
     Global BlackList := {}
     Global YesClickPortal := True
-    Global RelogOnQuit := True
     Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
     global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
       , ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
@@ -251,13 +248,11 @@
       UpdateOnVendorBtn = Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
       UpdateOnMenuBtn = Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
       UpdateDetonateBtn = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rWill determine if you are in mines and change sample location`rLocated above mana flask on the right
-      CalibrateOHBBtn = Calibrate the life color of the Overhead Health Bar`rMake sure the OHB is visible
       ShowSampleIndBtn = Open the Sample GUI which allows you to recalibrate one at a time
       StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
       YesOHB = Pauses the script when it cannot find the Overhead Health Bar
       ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
       AutoUpdateOff = Enable this to not check for new updates when launching the script
-      YesPersistantToggle = Enable this to have toggles remain after exiting and restarting the script
       ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rCinematic(43:18) is 43:18`rUltraWide is 32:9`rWXGA(16:10) is 16:10 aka 8:5
       Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
       ClickLatency = Use this to modify delay to click actions`rAdd this many multiples of 15ms to each delay
@@ -276,17 +271,16 @@
       YesEnableLockerAutomation = Enable Heist automation to find and deposit at Heist Locker
       YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
       YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`n   The vendor is empty`n   The only items are Chromatic or Jeweler
-      YesAutoSkillUp = Enable this to Automatically level up skill gems
-      YesWaitAutoSkillUp = Enable this to wait for mouse to not be held down before leveling gems
       DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
       YesTimeMS = Enable to show a tooltip when game logic is running
       YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
       hotkeyOptions = Set your hotkey to open the options GUI
-      hotkeyAutoFlask = Set your hotkey to turn on and off AutoFlask
-      hotkeyTriggerMovement = Set your hotkey to trigger Quicksilver Flasks or Cast on Detonate
-      hotkeyAutoQuit = Set your hotkey to turn on and off AutoQuit
+      hotkeyAutoFlask = Set your hotkey to turn on and off Auto-Flask
+      hotkeyAutoQuit = Set your hotkey to turn on and off Auto-Quit
+      hotkeyAutoMove = Set your hotkey to Turn on and off Auto-Move
+      hotkeyAutoUtility = Set your hotkey to Turn on and off Auto-Utility
+      hotkeyTriggerMovement = Set the key to trigger Movement or Smoke-Dash (cast on detonate)
       hotkeyLogout = Set your hotkey to Log out of the game
-      hotkeyAutoQuicksilver = Set your hotkey to Turn on and off AutoQuicksilver
       hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
       hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
       hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
@@ -441,7 +435,6 @@
       WR_Save_JSON_Globe = Save changes to disk`rThese changes will load on script launch
       stashPrefix1 = Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
       stashPrefix2 = Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
-      stashReset = Assign the hotkey to reset the CurrentTab`rThis hotkey will only activate while the Modifier(s) are pressed`rThis hotkey is necessary after moving the tab manually
       stashSuffix1 = Hotkey for the 1st Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
       stashSuffix2 = Hotkey for the 2nd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
       stashSuffix3 = Hotkey for the 3rd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
@@ -466,15 +459,16 @@
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
   ; Global Script object
-    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{}}
+    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{}}
     WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}
+    WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1"}
     WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
       , "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
       , "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0"
-      , "channelrepressEnable":"0" , "channelrepressKey":"RButton", "channelrepressOffsetX1":"0", "channelrepressOffsetY1":"0", "channelrepressOffsetX2":"0", "channelrepressOffsetY2":"0"
+      , "channelrepressEnable":"0" , "channelrepressKey":"RButton", "channelrepressOffsetX1":"0", "channelrepressOffsetY1":"0", "channelrepressOffsetX2":"0", "channelrepressOffsetY2":"20"
         , "channelrepressIcon":"|<Scourge Arrow>0xFDF100@0.60$40.108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
         , "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs"
-      , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseKey":"d", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
+      , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseSingleTap":"2", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
       , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
       , "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
       , "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"}
@@ -489,7 +483,7 @@
     }
     for k, v in ["1","2","3","4","5","6","7","8","9","10"]
     {
-      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index}
+      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index, "QS":"0"}
       WR.cdExpires.Utility[v] := A_TickCount
     }
     for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
@@ -601,16 +595,6 @@
     , XButtonStr
     , VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
     , VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
-  ; StackRelease tool
-    Global 1080_StackRelease_BuffIcon := "|<Blade Flurry Icon>0xD8FAD0@0.81$39.000008001k00US0y0071zzU00E0zs00303zk00A0znw00kTk0S06Tw00Tsvz0003fTk0003Tw0000Lz0000Dzk0001zy0000zrs000DznU003zoQ000zy1k007zUD001zw0s00Tz07U03zk0Q00zw4"
-      , 1080_StackRelease_BuffCount := "|<6>0xFEFEFE@0.81$8.01kUM41gFYN6N3U0U"
-      , StackRelease_BuffIcon , StackRelease_BuffCount
-      , StackRelease_Keybind := "RButton"
-      , StackRelease_X1Offset := 0
-      , StackRelease_Y1Offset := 2
-      , StackRelease_X2Offset := 0
-      , StackRelease_Y2Offset := 15
-      , StackRelease_Enable := False
 
   ; Automation Settings
     Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableLockerAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
@@ -620,13 +604,11 @@
     Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
       , ScriptUpdateTimeInterval, ScriptUpdateTimeType
     Global Latency := 1
-    Global PauseMinesDelay := 250
     Global ClickLatency := 0
     Global ClipLatency := 0
     Global ShowOnStart := 0
     Global PopFlaskRespectCD := 1
     Global ResolutionScale := "Standard"
-    Global YesPersistantToggle := 1
     Global YesGuiLastPosition := 1
     Global YesSortFirst := 1
     Global FlaskList := []
@@ -856,8 +838,9 @@
     global hotkeyOptions:="!F10"
     global hotkeyAutoFlask:="!F11"
     global hotkeyAutoQuit:="!F12"
+    global hotkeyAutoMove:="!MButton"
+    global hotkeyAutoUtility:="!Backspace"
     global hotkeyLogout:="F12"
-    global hotkeyAutoQuicksilver:="!MButton"
     global hotkeyPopFlasks:="CapsLock"
     global hotkeyItemSort:="F6"
     global hotkeyItemInfo:="F5"
@@ -932,7 +915,7 @@
     Global CharName := "ReplaceWithCharName"
     Global RecipientName := "NothingYet"
     Global fn1, fn2, fn3
-    Global 1Prefix1, 1Prefix2, 2Prefix1, 2Prefix2, stashPrefix1, stashPrefix2, stashReset
+    Global 1Prefix1, 1Prefix2, 2Prefix1, 2Prefix2, stashPrefix1, stashPrefix2
     Global 1Suffix1,1Suffix2,1Suffix3,1Suffix4,1Suffix5,1Suffix6,1Suffix7,1Suffix8,1Suffix9
     Global 1Suffix1Text,1Suffix2Text,1Suffix3Text,1Suffix4Text,1Suffix5Text,1Suffix6Text,1Suffix7Text,1Suffix8Text,1Suffix9Text
     Global 2Suffix1,2Suffix2,2Suffix3,2Suffix4,2Suffix5,2Suffix6,2Suffix7,2Suffix8,2Suffix9
@@ -1287,9 +1270,9 @@
     Gui, Add, GroupBox,  Center   Section  w350 h230        x+15   ym+20 ,    Game Logic States
     Gui, Font,
     Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar hwndMainMenuIDOnChar, % "Character Active"
-    CtlColors.Attach(MainMenuIDOnChar, "Lime", "")
+    CtlColors.Attach(MainMenuIDOnChar, "52D165", "")
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnOHB hwndMainMenuIDOnOHB, % "Overhead Health Bar"
-    CtlColors.Attach(MainMenuIDOnOHB, "Lime", "")
+    CtlColors.Attach(MainMenuIDOnOHB, "52D165", "")
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnChat hwndMainMenuIDOnChat, % "Chat Open"
     CtlColors.Attach(MainMenuIDOnChat, "", "Green")
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnInventory hwndMainMenuIDOnInventory, % "Inventory Open"
@@ -1314,7 +1297,7 @@
     CtlColors.Attach(MainMenuIDOnLocker, "", "Green")
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h90 ,         Gamestate Calibration:
+    Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h90 ,         Gamestate Calibration
     Gui, Font, s8
     Gui, Add, Button, ghelpCalibration   xp+250 ys-4    h20, %  "? help"
     Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs+10  ys+20 w105 h25,   Run Wizard
@@ -1323,6 +1306,23 @@
     Gui, Add, Button, gWR_Update vWR_Btn_Locations         xs+10  y+10      wp,   Adjust Locations
     Gui, Add, Button, gCheckPixelGrid x+8 yp wp , Inventory Grid
     Gui, Font
+
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, Add, GroupBox,      Center       section        xs   y+20 w350 h80 ,        Active Functions
+    Gui, Font, s8
+    Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuAutoFlask hwndMainMenuIDAutoFlask, % "Flask Triggers"
+    CtlColors.Attach(MainMenuIDAutoFlask, "52D165", "")
+    Gui, Add, Text, xp yp wp hp gtoggleAutoFlask BackgroundTrans
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuAutoQuit hwndMainMenuIDAutoQuit, % "Quit Trigger"
+    CtlColors.Attach(MainMenuIDAutoQuit, "52D165", "")
+    Gui, Add, Text, xp yp wp hp gtoggleAutoQuit BackgroundTrans
+    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuAutoMove hwndMainMenuIDAutoMove, % "Move Triggers"
+    CtlColors.Attach(MainMenuIDAutoMove, "52D165", "")
+    Gui, Add, Text, xp yp wp hp gtoggleAutoMove BackgroundTrans
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuAutoUtility hwndMainMenuIDAutoUtility, % "Utility Triggers"
+    CtlColors.Attach(MainMenuIDAutoUtility, "52D165", "")
+    Gui, Add, Text, xp yp wp hp gtoggleAutoUtility BackgroundTrans
+
 
     ;Save Setting
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
@@ -1355,7 +1355,6 @@
     Gui Add, Checkbox, gUpdateExtra  vYesOHB Checked%YesOHB%                                , Pause script when OHB missing?
     Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                      , Show GUI on startup?
     Gui Add, CheckBox, gSaveGeneral vYesInGameOverlay Checked%YesInGameOverlay%                    , Show In-Game Overlay?
-    Gui Add, Checkbox, gUpdateExtra  vYesPersistantToggle Checked%YesPersistantToggle%      xs        , Persistant Auto-Toggles?
     Gui Add, Checkbox, gUpdateExtra  vYesGuiLastPosition Checked%YesGuiLastPosition%      xs        , Remember Last GUI Position?
 
     Gui,Font, Bold s9 cBlack, Arial
@@ -1426,135 +1425,101 @@
 
   Gui, Tab, Hotkeys
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, Text,   Section                  xm+5   ym+25,         Script Keybinds:
+    Gui Add, GroupBox,    center w170 h180               xm+5   ym+25,         Main Script Keybinds:
     Gui, Font
-    Gui Add, Text,                     xs+65   y+8,         Open this GUI
-    Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Flask
-    Gui Add, Text,                     xs+65   y+10,         Toggle Auto-Quit
-    Gui Add, Text,                     xs+65   y+10,         Toggle Auto-QSilver
-    Gui Add, Text,                     xs+65   y+10,         Movement Trigger
-    Gui Add, Text,                     xs+65   y+10,         Main Attack
-    Gui Add, Text,                     xs+65   y+10,         Secondary Attack
-    Gui Add, Text,                     xs+65   y+10,         Logout
-    Gui Add, Text,                     xs+65   y+10,         Pop Flasks
-    Gui Add, Text,                     xs+65   y+10,         Quick-Portal
-    Gui Add, Text,                     xs+65   y+10,         Gem-Swap
-    Gui Add, Text,                     xs+65   y+10,         Grab Currency
-    Gui Add, Text,                     xs+65   y+10,         Coord/Pixel
-    Gui Add, Text,                     xs+65   y+10,         Item Info
-    Gui Add, Text,                     xs+65   y+10,         Inventory Sort
-    Gui Add, Text,                     xs+65   y+10,         Bulk Craft Maps
-    Gui Add, Text,                     xs+65   y+10,         Chaos Recipe
-    Gui Add, Text,                     xs+65   y+10,         Basic Crafting
-
-    Gui,Add,Edit,  xs ys+20        w60 h19   vhotkeyOptions           ,%hotkeyOptions%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuit          ,%hotkeyAutoQuit%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyAutoQuicksilver   ,%hotkeyAutoQuicksilver%
-    Gui Add, Edit,           y+4   w60 h19   vhotkeyTriggerMovement   ,%hotkeyTriggerMovement%
-    Gui Add, Edit,           y+4   w60 h19   vhotkeyMainAttack        ,%hotkeyMainAttack%
-    Gui Add, Edit,           y+4   w60 h19   vhotkeySecondaryAttack   ,%hotkeySecondaryAttack%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyStartCraft        ,%hotkeyStartCraft%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyChaosRecipe       ,%hotkeyChaosRecipe%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyCraftBasic        ,%hotkeyCraftBasic%
+    Gui,Add,Edit, section xp+5 yp+20        w60 h19   vhotkeyOptions           ,%hotkeyOptions%
+    Gui Add, Text,                     hp x+5   yp+3,         Open this GUI
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyAutoFlask         ,%hotkeyAutoFlask%
+    Gui Add, Text,                     hp x+5   yp+3,         Toggle Auto-Flask
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyAutoQuit          ,%hotkeyAutoQuit%
+    Gui Add, Text,                     hp x+5   yp+3,         Toggle Auto-Quit
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyAutoMove          ,%hotkeyAutoMove%
+    Gui Add, Text,                     hp x+5   yp+3,         Toggle Auto-Move
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyAutoUtility       ,%hotkeyAutoUtility%
+    Gui Add, Text,                     hp x+5   yp+3,         Toggle Auto-Utility
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyPauseMines       ,%hotkeyPauseMines%
+    Gui Add, Text,                     hp x+5   yp+3,         Pause Detonate
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, add, button, gWR_Update vWR_Btn_Controller  xs y+15 w110, Controller Keys
-
-    Gui Add, Text,                     xs+175   ys,         Ingame Assigned Keys:
+    Gui Add, GroupBox,    center w170 h100               xm+5   y+5,       Trigger Keybinds: 
     Gui, Font
-    Gui Add, Text,                     xs+235   y+10,         Close UI
-    Gui Add, Text,                          y+10,         Inventory
-    Gui Add, Text,                          y+10,         W-Swap
-    Gui Add, Text,                          y+10,         Item Pickup
-    Gui Add, Text,                          y+10,         Detonate Mines
 
-    Gui,Add,Edit,          xs+170 ys+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyInventory      ,%hotkeyInventory%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyWeaponSwapKey    ,%hotkeyWeaponSwapKey%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyLootScan        ,%hotkeyLootScan%
-    Gui,Add,Edit,            y+4   w60 h19   vhotkeyDetonateMines    ,%hotkeyDetonateMines%
+    Gui Add, Edit, xp+5 yp+20   w60 h19   vhotkeyTriggerMovement   ,%hotkeyTriggerMovement%
+    Gui Add, Text,                     hp x+5   yp+3,         Movement Trigger
+    Gui Add, Edit, xs y+5   w60 h19   vhotkeyMainAttack        ,%hotkeyMainAttack%
+    Gui Add, Text,                     hp x+5   yp+3,         Main Attack
+    Gui Add, Edit, xs y+5   w60 h19   vhotkeySecondaryAttack   ,%hotkeySecondaryAttack%
+    Gui Add, Text,                     hp x+5   yp+3,         Secondary Attack
 
-    Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xp y+6 , Pop Flasks Respect CD?
-    Gui Add, Checkbox, gUpdateExtra  vYesClickPortal Checked%YesClickPortal%                          y+8 , Click portal after opening?
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,    center w170 h155               xm+5   y+5,       Ingame Assigned Keys: 
+    Gui, Font
+
+    Gui,Add,Edit, xp+5 yp+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
+    Gui Add, Text, hp x+5   yp+3,         Close UI
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyInventory      ,%hotkeyInventory%
+    Gui Add, Text, hp x+5   yp+3,         Inventory
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyWeaponSwapKey    ,%hotkeyWeaponSwapKey%
+    Gui Add, Text, hp x+5   yp+3,         W-Swap
+    Gui,Add,Edit, xs y+5    w60 h19   vhotkeyLootScan        ,%hotkeyLootScan%
+    Gui Add, Text, hp x+5   yp+3,         Item Pickup
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyDetonateMines    ,%hotkeyDetonateMines%
+    Gui Add, Text, hp x+5   yp+3,         Detonate Mines
+
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui Add, GroupBox,    center w170 h340               xs+175   ym+25,       Tool Keybinds: 
+    Gui, Font
+
+    Gui,Add,Edit, section xp+5 yp+20   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
+    Gui Add, Text,                     hp x+5   yp+3,         Logout
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyPopFlasks         ,%hotkeyPopFlasks%
+    Gui Add, Text,                     hp x+5   yp+3,         Pop Flasks
+    Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xs y+1 , Pop Flasks Respect CD?
+    Gui,Add,Edit, xs y+3   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
+    Gui Add, Text,                     hp x+5   yp+3,         Quick-Portal
+    Gui Add, Checkbox, gUpdateExtra  vYesClickPortal Checked%YesClickPortal%                         xs y+1 , Click portal after opening?
+    Gui,Add,Edit, xs y+3   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
+    Gui Add, Text,                     hp x+5   yp+3,         Gem-Swap
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%
+    Gui Add, Text,                     hp x+5   yp+3,         Grab Currency
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyGetMouseCoords    ,%hotkeyGetMouseCoords%
+    Gui Add, Text,                     hp x+5   yp+3,         Coord/Pixel
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyItemInfo          ,%hotkeyItemInfo%
+    Gui Add, Text,                     hp x+5   yp+3,         Item Info
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyItemSort          ,%hotkeyItemSort%
+    Gui Add, Text,                     hp x+5   yp+3,         Inventory Sort
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyStartCraft        ,%hotkeyStartCraft%
+    Gui Add, Text,                     hp x+5   yp+3,         Bulk Craft Maps
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyChaosRecipe       ,%hotkeyChaosRecipe%
+    Gui Add, Text,                     hp x+5   yp+3,         Chaos Recipe
+    Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCraftBasic        ,%hotkeyCraftBasic%
+    Gui Add, Text,                     hp x+5   yp+3,         Basic Crafting
+
+    Gui, Font
+    Gui, Add, Checkbox, section xs+195 ys vYesController Checked%YesController%,     Enable Controller
+    Gui, Font, Bold s9 cBlack, Arial
+    Gui, add, button, gWR_Update vWR_Btn_Controller  xs y+10 w130, Set Controller Keys
+    Gui, Font
+
+    Gui, Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xs y+20                   , Enable chat Hotkeys?
+    Gui,Font, Bold s9 cBlack, Arial
+    Gui, add, button, gWR_Update vWR_Btn_Chat   xp y+10     w130, Set Chat Hotkeys
+    Gui,Font,
+
+    Gui, Add, Checkbox, xs y+20  vYesStashKeys Checked%YesStashKeys%                    , Enable stash hotkeys?
+    Gui,Font, Bold s9 cBlack, Arial
+    Gui, add, button, gWR_Update vWR_Btn_hkStash   xp y+10     w130, Set Stash Hotkeys
+    Gui,Font,
 
     ;~ =========================================================================================== Subgroup: Hints
     Gui,Font, Bold s9 cBlack, Arial
-    Gui,Add,GroupBox,Section xp  y+25  w120 h80              ,Hotkey Modifiers
-    Gui, Add, Button,      gLaunchHelp vLaunchHelp     center wp,   Show Key List
+    Gui,Add,GroupBox,Section xs  y+25  w130 h80              ,Hotkey Modifiers
+    Gui, Add, Button,      gLaunchHelp vLaunchHelp     center wp,   Show Key Help
     Gui,Font,Norm
     Gui,Font,s8,Arial
     Gui,Add,Text,          xs+15 ys+17          ,!%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%ALT
     Gui,Add,Text,              y+5          ,^%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%CTRL
     Gui,Add,Text,              y+5          ,+%A_Tab%=%A_Space%%A_Space%%A_Space%%A_Space%SHIFT
-
-
-    Gui, Add, Checkbox, gUpdateExtra  vEnableChatHotkeys Checked%EnableChatHotkeys%   xs+200 ym+25                    , Enable chat Hotkeys?
-    Gui,Font, Bold s9 cBlack, Arial
-    Gui, add, button, gWR_Update vWR_Btn_Chat        w160, Configure Chat Hotkeys
-    Gui,Font,Norm
-
-    Gui, Add, Checkbox, xs+200 y+15  vYesStashKeys Checked%YesStashKeys%                    , Enable stash hotkeys?
-
-    Gui, Font,s9 cBlack Bold Underline, Arial
-    Gui, Add,GroupBox,Section xp-5 yp+20 w100 h85                      ,Modifier
-    Gui, Font,
-    Gui, Font,s9,Arial
-    Gui, Add, Edit, xs+4 ys+20 w90 h23 vstashPrefix1, %stashPrefix1%
-    Gui, Add, Edit, y+8    w90 h23 vstashPrefix2, %stashPrefix2%
-
-    Gui, Font,s9 cBlack Bold Underline, Arial
-    Gui, Add,GroupBox, xp-5 y+20 w100 h55                      ,Reset Tab
-    Gui, Font,
-    Gui, Font,s9,Arial
-    Gui, Add, Edit, xp+4 yp+20 w90 h23 vstashReset, %stashReset%
-
-    Gui, Font,s9 cBlack Bold Underline, Arial
-    Gui, Add,GroupBox,Section x+10 ys w100 h275                      ,Keys
-    Gui, Font,
-    Gui, Font,s9,Arial
-    Gui, Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
-    Gui, Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
-    Gui, Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
-    Gui, Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
-    Gui, Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
-    Gui, Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
-    Gui, Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
-    Gui, Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
-    Gui, Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
-
-    Gui, Font,s9 cBlack Bold Underline, Arial
-    Gui, Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
-    Gui, Font,
-    Gui, Font,s9,Arial
-    Gui, Add, Edit, Number xs+4 ys+20 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
-    Gui, Add, Edit, Number y+5 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
-    Gui, Add, Edit, Number y+5 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
-    Gui, Add, Edit, Number y+5 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
-    Gui, Add, Edit, Number y+5 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
-    Gui, Add, Edit, Number y+5 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
-    Gui, Add, Edit, Number y+5 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
-    Gui, Add, Edit, Number y+5 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
-    Gui, Add, Edit, Number y+5 w40
-    Gui, Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
-    
-
 
 
     ;Save Setting
@@ -1589,7 +1554,7 @@
     Menu, Tray, add
     Menu, Tray, add,         Exit, QuitNow ; added exit script option
 
-    Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
+  Gui, ItemInfo: +AlwaysOnTop +LabelItemInfo -MinimizeBox
     Gui, ItemInfo: Margin, 10, 10
     Gui, ItemInfo: Font, Bold s8 c4D7186, Verdana
     Gui, ItemInfo: Add, GroupBox, vGroupBox1 xm+1 y+1  h251 w554 , %GroupBox1%
@@ -1664,23 +1629,8 @@
     Gui, ItemInfo: Add, Edit, VScroll HScroll vItemInfoStatText xp+2 ys+17 w358, %ItemInfoStatText%
     Gui, ItemInfo: Add, GroupBox, x+9 ys  h251 w364 , Item Affixes
     Gui, ItemInfo: Add, Edit, VScroll HScroll vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
-    ;Gui, ItemInfo: Show, AutoSize, % Item.Prop.ItemName " Sparkline"
-    ;Gui, ItemInfo: Hide
-    If (DebugMessages)
-    {
-      GuiControl, Show, YesTimeMS
-      GuiControl, Show, YesTimeMS_t
-      GuiControl, Show, YesLocation
-      GuiControl, Show, YesLocation_t
-    }
-    Else
-    {
-      GuiControl, Hide, YesTimeMS
-      GuiControl, Hide, YesTimeMS_t
-      GuiControl, Hide, YesLocation
-      GuiControl, Hide, YesLocation_t
-    }
-  Gui,SampleInd: Font, Bold s9 cBlack, Arial
+
+    Gui,SampleInd: Font, Bold s9 cBlack, Arial
   Gui,SampleInd: Add, Text,         section            xm   ym+5,         Gamestate Calibration:
     Gui,SampleInd: Font
 
@@ -1707,6 +1657,18 @@
     Gui,SampleInd: Add, Button, gupdateDetonate vUpdateDetonateBtn     xs ys+20          w110,   OnDetonate
 
     Gui,SampleInd: +AlwaysOnTop
+  If (DebugMessages)
+  {
+    GuiControl, Show, YesTimeMS
+    GuiControl, Show, YesTimeMS_t
+    GuiControl, Show, YesLocation
+    GuiControl, Show, YesLocation_t
+  } Else {
+    GuiControl, Hide, YesTimeMS
+    GuiControl, Hide, YesTimeMS_t
+    GuiControl, Hide, YesLocation
+    GuiControl, Hide, YesLocation_t
+  }
 
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
@@ -1852,13 +1814,14 @@
   WinSet, TransColor, 0X130F13
   Gui 2:Font, bold cFFFFFF S9, Trebuchet MS
     Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT1, Quit: OFF
-    Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT2, Flasks: OFF
-    Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT3, Quicksilver: OFF
+    Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT2, Flask: OFF
+    Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT3, Move: OFF
+    Gui 2:Add, Text, y+0.5 BackgroundTrans voverlayT4, Util: OFF
 
   IfWinExist, ahk_group POEGameGroup
   {
     Rescale()
-    Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y " NA", StatusOverlay
+    Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y - 15 " NA", StatusOverlay
     GuiUpdate()
     ToggleExist := True
     If (ShowOnStart)
@@ -1920,8 +1883,7 @@ Return
     If RunningToggle  ; This means an underlying thread is already running the loop below.
     {
       RunningToggle := False  ; Signal that thread's loop to stop.
-      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-        SetTimer, TGameTick, On
+      ResetMainTimer("On")
       SendMSG(1,0,scriptTradeMacro)
       Notify("Aborting Current Process","",2)
       exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
@@ -1930,15 +1892,13 @@ Return
     IfWinActive, ahk_group POEGameGroup
     {
       RunningToggle := True
-      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-        SetTimer, TGameTick, Off
+      ResetMainTimer("Off")
       GuiStatus()
       If (!OnChar) 
       { ;Need to be on Character 
         MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
         RunningToggle := False
-        If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-          SetTimer, TGameTick, On
+        ResetMainTimer("On")
         Return
       } 
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
@@ -1951,8 +1911,7 @@ Return
           {
             SendHotkey(hotkeyInventory)
             RunningToggle := False
-            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-              SetTimer, TGameTick, On
+            ResetMainTimer("On")
             Return
           }
         }
@@ -1964,8 +1923,7 @@ Return
           {
             SendHotkey(hotkeyInventory)
             RunningToggle := False
-            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-              SetTimer, TGameTick, On
+            ResetMainTimer("On")
             Return
           }
         }
@@ -1973,8 +1931,7 @@ Return
         {
           SendHotkey(hotkeyInventory)
           RunningToggle := False
-          If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-            SetTimer, TGameTick, On
+          ResetMainTimer("On")
           Return
         }
       }
@@ -1996,8 +1953,7 @@ Return
     SendMSG(1,0,scriptTradeMacro)
     Sleep, 90*Latency
     MouseMove, xx, yy, 0
-    If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-      SetTimer, TGameTick, On
+    ResetMainTimer("On")
     Return
   }
 
@@ -2509,8 +2465,7 @@ Return
     If RunningToggle  ; This means an underlying thread is already running the loop below.
     {
       RunningToggle := False  ; Signal that thread's loop to stop.
-      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-        SetTimer, TGameTick, On
+      ResetMainTimer("On")
       SendMSG(1,0,scriptTradeMacro)
       exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
     }
@@ -2538,8 +2493,7 @@ Return
         }
       }
       RunningToggle := True
-      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-        SetTimer, TGameTick, Off
+      ResetMainTimer("Off")
     } Else
       Return
 
@@ -2579,9 +2533,12 @@ Return
     SendMSG(1,0,scriptTradeMacro)
     Sleep, 90*Latency
     MouseMove, xx, yy, 0
-    If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-      SetTimer, TGameTick, On
+    ResetMainTimer("On")
     Return
+  }
+  ResetMainTimer(toggle:="On"){
+    If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.perChar.Settings.autominesEnable || WR.perChar.Settings.autolevelgemsEnable || LootVacuum)
+      SetTimer, TGameTick, %toggle%
   }
   PrintChaosRecipe(Message:="Current slot totals",Duration:="False")
   {
@@ -3288,8 +3245,7 @@ Return
     If RunningToggle  ; This means an underlying thread is already running the loop below.
     {
       RunningToggle := False  ; Signal that thread's loop to stop.
-      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-        SetTimer, TGameTick, On
+      ResetMainTimer("On")
       SendMSG(1,0,scriptTradeMacro)
       Notify("Aborting Current Process","",2)
       exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
@@ -3338,9 +3294,9 @@ Return
         Controller()
       If (DebugMessages && YesTimeMS)
         t1 := A_TickCount
-      If (OnTown||OnHideout||!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum))
+      If (OnTown||OnHideout||!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Settings.autominesEnable||WR.perChar.Settings.autolevelgemsEnable||LootVacuum))
       {
-        Msg := (OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(AutoQuit||AutoFlask||DetonateMines||YesAutoSkillUp||LootVacuum)?"All options disabled, pausing":"Error")))
+        Msg := (OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Settings.autominesEnable||WR.perChar.Settings.autolevelgemsEnable||LootVacuum)?"All options disabled, pausing":"Error")))
         If CheckTime("seconds",1,"StatusBar1")
           SB_SetText(Msg, 1)
         If (CheckGamestates || GlobeActive || YesController)
@@ -3416,38 +3372,38 @@ Return
         If CheckGamestates
           mainmenuGameLogicState()
       }
-      If (DetonateMines&&!Detonated)
+      If (WR.perChar.Settings.autominesEnable&&!Detonated)
       {
         If (OnDetonate)
         {
           SendHotkey(hotkeyDetonateMines)
           Detonated:=1
-          Settimer, TDetonated, -%DetonateMinesDelay%
+          Settimer, TDetonated, % "-" WR.perChar.Settings.autominesBoomDelay
           a := A_TickCount - MainAttackLastRelease
-          If CastOnDetonate&&GetKeyState(hotkeyTriggerMovement,"P")&&(a > 1000)
+          If WR.perChar.Settings.autominesSmokeDashEnable&&GetKeyState(hotkeyTriggerMovement,"P")&&(a > 1000)
           {
-            SendHotkey(hotkeyCastOnDetonate)
+            SendHotkey(WR.perChar.Settings.autominesSmokeDashKey)
           }
         }
       }
       SendDelayAction()
-      If (AutoFlask || AutoQuit)
+      If (WR.func.Toggle.Flask || WR.func.Toggle.Quit)
       {
         ScanGlobe()
-        if (!RadioCi) { ; Life
-          if (AutoQuit && Player.Percent.Life < QuitBelow)
+        if (!WR.perChar.Setting.typeES) { ; Life
+          if (WR.func.Toggle.Quit && Player.Percent.Life < WR.perChar.Setting.quitBelow)
           {
             LogoutCommand()
             Exit
           }
         } Else { ; Energy Shield
-          if ( AutoQuit && Player.Percent.ES < QuitBelow)
+          if ( WR.func.Toggle.Quit && Player.Percent.ES < WR.perChar.Setting.quitBelow)
           {
             LogoutCommand()
             Exit
           }
         }
-        If (AutoFlask)
+        If (WR.func.Toggle.Flask)
         {
           Loop 5
           {
@@ -3472,28 +3428,30 @@ Return
           }
         }
 
-        If (MainAttackPressedActive && AutoFlask)
+        If MainAttackPressedActive
         {
-          Loop 5
-            If (WR.Flask[A_Index].MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-              Trigger(WR.Flask[A_Index],"Flask")
-          Loop, 10
-            If (WR.Utility[A_Index].Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility[A_Index].MainAttack)
-              Trigger(WR.Utility[A_Index],"Utility")
+          If WR.func.Toggle.Flask
+            Loop 5
+              If (WR.Flask[A_Index].MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
+                Trigger(WR.Flask[A_Index],"Flask")
+          If WR.func.Toggle.Utility
+            Loop, 10
+              If (WR.Utility[A_Index].Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility[A_Index].MainAttack)
+                Trigger(WR.Utility[A_Index],"Utility")
         }
-        If (SecondaryAttackPressedActive && AutoFlask)
+        If SecondaryAttackPressedActive
         {
-          Loop 5
-            If (WR.Flask[A_Index].SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-              Trigger(WR.Flask[A_Index],"Flask")
-          Loop, 10
-          {
-            If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility[A_Index].SecondaryAttack)
-              Trigger(WR.Utility[A_Index],"Utility")
-          }
+          If WR.func.Toggle.Flask
+            Loop 5
+              If (WR.Flask[A_Index].SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
+                Trigger(WR.Flask[A_Index],"Flask")
+          If WR.func.Toggle.Utility
+            Loop, 10
+              If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility[A_Index].SecondaryAttack)
+                Trigger(WR.Utility[A_Index],"Utility")
         }
 
-        If (AutoFlask) ; Trigger Utilities
+        If (WR.func.Toggle.Utility) ; Trigger Utilities
         {
           Loop, 10
           {
@@ -3519,9 +3477,9 @@ Return
           }
         }
       }
-      If (AutoQuick)
+      If (WR.func.Toggle.Move)
       {
-        If (MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") || (MainAttackPressedActive && QSonMainAttack) || (SecondaryAttackPressedActive && QSonSecondaryAttack))
+        If (MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") || (MainAttackPressedActive && WR.perChar.Settings.movementMainAttack) || (SecondaryAttackPressedActive && WR.perChar.Settings.movementSecondaryAttack))
         {
           Loop 5
             If WR.Flask[A_Index].Move
@@ -3531,7 +3489,7 @@ Return
               Trigger(WR.Utility[A_Index],"Utility")
         }
       }
-      If (StackRelease_Enable)
+      If (WR.perChar.Setting.channelrepressEnable)
         StackRelease()
       If LootVacuum
         LootScan()
@@ -3574,37 +3532,44 @@ Return
   Return
 ; Toggle Main Script Timers - AutoQuit, AutoFlask, GuiUpdate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ; AutoQuit - Toggle Auto-Quit
+  ; AutoQuit - Toggle the scripts quit function on
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  AutoQuit(){
-    AutoQuitCommand:
-      AutoQuit := !AutoQuit
-      IniWrite, %AutoQuit%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit
-      GuiUpdate()
-    return
-    }
-
-  ; AutoFlask - Toggle Auto-Pot
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  AutoFlask(){
-    AutoFlaskCommand:  
-      AutoFlask := !AutoFlask
-      IniWrite, %AutoFlask%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoFlask
-      GuiUpdate()  
-    return
-    }
-  ; AutoQuicksilverCommand - Toggle Auto-Quick
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  AutoQuicksilverCommand:
-    AutoQuick := !AutoQuick  
-    IniWrite, %AutoQuick%, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick
+  toggleAutoQuit(){
+    WR.func.Toggle.Quit := !WR.func.Toggle.Quit
+    Settings("func","Save")
     GuiUpdate()
-  return
+    return
+  }
+
+  ; AutoFlask - Toggle flask usage on
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  toggleAutoFlask(){
+    WR.func.Toggle.Flask := !WR.func.Toggle.Flask
+    Settings("func","Save")
+    GuiUpdate()  
+    return
+  }
+  ; AutoMove - Toggle movement triggers
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  toggleAutoMove(){
+    WR.func.Toggle.Move := !WR.func.Toggle.Move  
+    Settings("func","Save")
+    GuiUpdate()
+    return
+  }
+  ; AutoUtility - Toggle utility triggers
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  toggleAutoUtility(){
+    WR.func.Toggle.Utility := !WR.func.Toggle.Utility  
+    Settings("func","Save")
+    GuiUpdate()
+    return
+  }
   ; Hotkey to pause the detonate mines
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PauseMines(){
     PauseMinesCommand:
-      if !DetonateMines
+      if !WR.perChar.Settings.autominesEnable
       return
       static keyheld := 0
       keyheld++
@@ -3650,14 +3615,18 @@ Return
       keyheld := 0
     return
   }
-
   ; GuiUpdate - Update Overlay ON OFF states
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiUpdate(){
-    GuiControl, 2:, overlayT1,% "Quit: " (AutoQuit?"ON":"OFF")
-    GuiControl, 2:, overlayT2,% "Flasks: " (AutoFlask?"ON":"OFF")
-    GuiControl, 2:, overlayT3,% "Quicksilver: " (AutoQuick?"ON":"OFF")
+    GuiControl, 2:, overlayT1,% "Quit: " (WR.func.Toggle.Quit?"ON":"OFF")
+    GuiControl, 2:, overlayT2,% "Flask: " (WR.func.Toggle.Flask?"ON":"OFF")
+    GuiControl, 2:, overlayT3,% "Move: " (WR.func.Toggle.Move?"ON":"OFF")
+    GuiControl, 2:, overlayT4,% "Util: " (WR.func.Toggle.Utility?"ON":"OFF")
     ShowHideOverlay()
+    CtlColors.Change(MainMenuIDAutoFlask, (WR.func.Toggle.Flask?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoQuit, (WR.func.Toggle.Quit?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoMove, (WR.func.Toggle.Move?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoUtility, (WR.func.Toggle.Utility?"52D165":"E0E0E0"), "")
     Return
   }
 
@@ -3701,7 +3670,7 @@ Return
             If (MovementPressed && A_TickCount - LastHeldLB < delay )
               Continue
             
-            If QSonMainAttack
+            If WR.perChar.Settings.movementMainAttack
             {
               If (!LastHeldMA && MainAttackPressedActive)
                 LastHeldMA := A_TickCount
@@ -3711,7 +3680,7 @@ Return
                 Continue
             }
 
-            If QSonSecondaryAttack
+            If WR.perChar.Settings.movementSecondaryAttack
             {
               If (!LastHeldSA && SecondaryAttackPressedActive)
                 LastHeldSA := A_TickCount
@@ -3722,8 +3691,8 @@ Return
             }
           }
           if !(MovementPressed 
-            || (MainAttackPressedActive && QSonMainAttack) 
-            || (SecondaryAttackPressedActive && QSonSecondaryAttack) )
+            || (MainAttackPressedActive && WR.perChar.Settings.movementMainAttack) 
+            || (SecondaryAttackPressedActive && WR.perChar.Settings.movementSecondaryAttack) )
             Continue
         }
         SendHotkey(WR[type][v].Key)
@@ -3783,7 +3752,7 @@ Return
     {
       OldOnChar := OnChar
       If OnChar
-        CtlColors.Change(MainMenuIDOnChar, "Lime", "")
+        CtlColors.Change(MainMenuIDOnChar, "52D165", "")
       Else
         CtlColors.Change(MainMenuIDOnChar, "Red", "")
     }
@@ -3791,7 +3760,7 @@ Return
     {
       OldOHB := NewOHB
       If NewOHB
-        CtlColors.Change(MainMenuIDOnOHB, "Lime", "")
+        CtlColors.Change(MainMenuIDOnOHB, "52D165", "")
       Else
         CtlColors.Change(MainMenuIDOnOHB, "Red", "")
     }
@@ -3945,10 +3914,7 @@ Return
       If RunningToggle
       {
         RunningToggle := False
-        If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-        {
-          SetTimer, TGameTick, On
-        }
+        ResetMainTimer("On")
         SendMSG(1,0,scriptTradeMacro)
         Notify("Aborting Current Process","",2)
       exit
@@ -3956,15 +3922,13 @@ Return
       If GameActive
       {
         RunningToggle := True
-        If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-          SetTimer, TGameTick, Off
+        ResetMainTimer("Off")
         GuiStatus()
         If (!OnChar) 
         {
           MsgBox %  "You do not appear to be in game.`nLikely need to calibrate Character Active"
           RunningToggle := False
-          If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-            SetTimer, TGameTick, On
+          ResetMainTimer("On")
           Return
         }
         ; Begin Crafting Script
@@ -3976,10 +3940,7 @@ Return
             If !SearchStash()
             {
               RunningToggle := False
-              If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-              {
-                SetTimer, TGameTick, On
-              }
+              ResetMainTimer("On")
               SendMSG(1,0,scriptTradeMacro)
               Return
             }
@@ -4015,8 +3976,7 @@ Return
           {
             ; Exit Routine
             RunningToggle := False
-            If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-              SetTimer, TGameTick, On
+            ResetMainTimer("On")
             SendMSG(1,0,scriptTradeMacro)
             Return
           }
@@ -4024,8 +3984,7 @@ Return
       }
       MouseMove %xx%, %yy%
       RunningToggle := False
-      If (AutoQuit || AutoFlask || DetonateMines || YesAutoSkillUp || LootVacuum)
-        SetTimer, TGameTick, On
+      ResetMainTimer("On")
       SendMSG(1,0,scriptTradeMacro)
     Return
   }
@@ -4451,7 +4410,7 @@ Return
     LogoutCommand:
       Critical
       Static LastLogout := 0
-      if (RadioCritQuit || (RadioPortalQuit && (OnMines || OnTown || OnHideout))) {
+      if (WR.perChar.Setting.quitDC || (WR.perChar.Setting.quitPortal && (OnMines || OnTown || OnHideout))) {
         global POEGameArr
         dc := False
         succ := logout(Active_executable)
@@ -4475,7 +4434,7 @@ Return
         }
         If !dc
           Log("Logout Failed","Could not find game EXE",tt)
-        If RelogOnQuit
+        If WR.perChar.Setting.quitLogBackIn
         {
           RandomSleep(350,350)
           ControlSend,, {Enter}, %GameStr%
@@ -4483,7 +4442,7 @@ Return
           ControlSend,, {Enter}, %GameStr%
         }
       } 
-      Else If RadioPortalQuit
+      Else If WR.perChar.Setting.quitPortal
       {
         If ((A_TickCount - LastLogout) > 10000)
         {
@@ -4493,16 +4452,16 @@ Return
           LastLogout := A_TickCount
         }
       }
-      Else If RadioNormalQuit
+      Else If WR.perChar.Setting.quitExit
       {
         Send, {Enter}/exit{Enter}
-        If RelogOnQuit
+        If WR.perChar.Setting.quitLogBackIn
         {
           RandomSleep(300,400)
           ControlSend,, {Enter}, %GameStr%
         }
       }
-      If (!RadioCi)
+      If (!WR.perChar.Setting.typeES)
         Log("Exit with " . Player.Percent.Life . "`% Life", CurrentLocation)
       Else
         Log("Exit with " . Player.Percent.ES . "`% ES", CurrentLocation)
@@ -4515,11 +4474,11 @@ Return
   AutoSkillUp()
   {
     Static LastCheck:=0
-    If (YesAutoSkillUp && OnChar && (A_TickCount - LastCheck > 200))
+    If (WR.perChar.Settings.autolevelgemsEnable && OnChar && (A_TickCount - LastCheck > 200))
     {
       IfWinActive, ahk_group POEGameGroup 
       {
-        If (YesWaitAutoSkillUp && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
+        If (WR.perChar.Settings.autolevelgemsWait && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
           Return
         LastCheck := A_TickCount
         if (ok:=FindText(GameX + Round(GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr,0))
@@ -4580,7 +4539,7 @@ Return
         Rescale()
       If ((!ToggleExist || newDim) && GameActive) 
       {
-        Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y " NA", StatusOverlay
+        Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y - 15 " NA", StatusOverlay
         GuiUpdate()
         ToggleExist := True
         NoGame := False
@@ -5221,6 +5180,7 @@ Return
       Settings("Flask","Load")
       Settings("Utility","Load")
       Settings("perChar","Load")
+      Settings("func","Load")
 
       ; Login Information
       IniRead, PoESessionID, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID, %A_Space%
@@ -5261,7 +5221,6 @@ Return
       IniRead, CharName, %A_ScriptDir%\save\Settings.ini, General, CharName, ReplaceWithCharName
       IniRead, EnableChatHotkeys, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys, 1
       IniRead, YesStashKeys, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys, 1
-      IniRead, YesPersistantToggle, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle, 0
       IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
       IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
       IniRead, YesStashT2, %A_ScriptDir%\save\Settings.ini, General, YesStashT2, 1
@@ -5530,11 +5489,13 @@ Return
       ;~ hotkeys reset
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
-        hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
+        hotkey,% hotkeyAutoQuit, toggleAutoQuit, Off
       If hotkeyAutoFlask
-        hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
-      If hotkeyAutoQuicksilver
-        hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, Off
+        hotkey,% hotkeyAutoFlask, toggleAutoFlask, Off
+      If hotkeyAutoMove
+        hotkey,%hotkeyAutoMove%, toggleAutoMove, Off
+      If hotkeyAutoUtility
+        hotkey,%hotkeyAutoUtility%, toggleAutoUtility, Off
       If hotkeyQuickPortal
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
@@ -5584,7 +5545,8 @@ Return
       IniRead, hotkeyOptions, %A_ScriptDir%\save\Settings.ini, hotkeys, Options, !F10
       IniRead, hotkeyAutoQuit, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit, !F12
       IniRead, hotkeyAutoFlask, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask, !F11
-      IniRead, hotkeyAutoQuicksilver, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver, !MButton
+      IniRead, hotkeyAutoMove, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoMove, !MButton
+      IniRead, hotkeyAutoUtility, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoUtility, !MButton
       IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
       IniRead, hotkeyStartCraft, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft, F7
       IniRead, hotkeyCraftBasic, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic, F9
@@ -5608,11 +5570,13 @@ Return
       
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
-        hotkey,% hotkeyAutoQuit, AutoQuitCommand, On
+        hotkey,% hotkeyAutoQuit, toggleAutoQuit, On
       If hotkeyAutoFlask
-        hotkey,% hotkeyAutoFlask, AutoFlaskCommand, On
-      If hotkeyAutoQuicksilver
-        hotkey,%hotkeyAutoQuicksilver%, AutoQuicksilverCommand, On
+        hotkey,% hotkeyAutoFlask, toggleAutoFlask, On
+      If hotkeyAutoMove
+        hotkey,%hotkeyAutoMove%, toggleAutoMove, On
+      If hotkeyAutoUtility
+        hotkey,%hotkeyAutoUtility%, toggleAutoUtility, On
       If hotkeyQuickPortal
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, On
       If hotkeyGemSwap
@@ -5707,7 +5671,6 @@ Return
       IniRead, 2Suffix8Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
       IniRead, 2Suffix9Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9Text, No thank you.
 
-      IniRead, stashReset, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashReset, NumpadDot
       IniRead, stashPrefix1, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix1, Numpad0
       IniRead, stashPrefix2, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix2, %A_Space%
       IniRead, stashSuffix1, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix1, Numpad1
@@ -5761,13 +5724,6 @@ Return
       IniRead, ForceMatch6Link, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link, 0
       IniRead, ForceMatchGem20, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20, 0
 
-      If (YesPersistantToggle)
-      {
-        IniRead, AutoQuit, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuit, 0
-        IniRead, AutoFlask, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoFlask, 0
-        IniRead, AutoQuick, %A_ScriptDir%\save\Settings.ini, Previous Toggles, AutoQuick, 0
-      }
-
       UnRegisterHotkeys()
       RegisterHotkeys()
       checkActiveType()
@@ -5783,6 +5739,8 @@ Return
       IniWrite, %PoESessionID%, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID
       Settings("Flask","Save")
       Settings("Utility","Save")
+      Settings("perChar","Save")
+      Settings("func","Save")
 
       ;GUI Position
       WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
@@ -5795,9 +5753,9 @@ Return
       ;~ hotkeys reset
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
-        hotkey,% hotkeyAutoQuit, AutoQuitCommand, Off
+        hotkey,% hotkeyAutoQuit, toggleAutoQuit, Off
       If hotkeyAutoFlask
-        hotkey,% hotkeyAutoFlask, AutoFlaskCommand, Off
+        hotkey,% hotkeyAutoFlask, toggleAutoFlask, Off
       If hotkeyQuickPortal
         hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
       If hotkeyGemSwap
@@ -5849,7 +5807,7 @@ Return
       {
         Gui, Submit
         Rescale()
-        Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y, StatusOverlay
+        Gui 2: Show,% "x" WR.loc.Gui.X " y" WR.loc.Gui.Y - 15, StatusOverlay
         ToggleExist := True
         WinActivate, ahk_group POEGameGroup
       }
@@ -5916,7 +5874,8 @@ Return
       IniWrite, %hotkeyOptions%, %A_ScriptDir%\save\Settings.ini, hotkeys, Options
       IniWrite, %hotkeyAutoQuit%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit
       IniWrite, %hotkeyAutoFlask%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask
-      IniWrite, %hotkeyAutoQuicksilver%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuicksilver
+      IniWrite, %hotkeyAutoMove%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoMove
+      IniWrite, %hotkeyAutoUtility%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoUtility
       IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
       IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
       IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft
@@ -6085,7 +6044,6 @@ Return
       IniWrite, %2Suffix8Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8Text
       IniWrite, %2Suffix9Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9Text
 
-      IniWrite, %stashReset%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashReset
       IniWrite, %stashPrefix1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix1
       IniWrite, %stashPrefix2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix2
       IniWrite, %stashSuffix1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix1
@@ -6277,8 +6235,6 @@ Return
           Hotkey,% "~*" stashSuffix%A_Index%,% stashbind%A_Index%, On
         }
       }
-      If stashReset
-        Hotkey,% "~*" stashReset, FireStashReset, On
       Return
     }
     UnRegisterHotkeys(){
@@ -6310,8 +6266,6 @@ Return
             Hotkey,% "*" stashSuffix%A_Index%,% stashbind%A_Index%, off
           }
         }
-        If stashReset
-          Hotkey, *%stashReset%, FireStashReset, off
       Return
     }
     ; HotkeyShouldFire - Functions to evaluate keystate
@@ -6441,514 +6395,12 @@ Return
         }
         Else If (func = "Stash")
         {
+          CurrentTab := 0
           MoveStash(%TypePrefix%Suffix%SuffixNum%,1)
         }
       }
       Return
     }
-    FireStashReset() {
-      CurrentTab := 0
-    return
-    }  
-  }
-
-  { ; Submit Profiles
-    submitProfile(Profile){  
-      global
-      Gui, Submit, NoHide
-
-      ;Attack Keys
-      IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttack
-      IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttack
-      
-      ;QS on Attack Keys
-      IniWrite, %QSonMainAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonMainAttack
-      IniWrite, %QSonSecondaryAttack%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonSecondaryAttack
-      
-      ;Quicksilver Flasks
-      IniWrite, %TriggerQuicksilverDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, TriggerQuicksilverDelay
-      
-      ;CharacterTypeCheck
-      IniWrite, %RadioLife%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Life
-      IniWrite, %RadioHybrid%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Hybrid  
-      IniWrite, %RadioCi%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Ci  
-      
-      ;AutoMines
-      IniWrite, %DetonateMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines
-      IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CastOnDetonate
-      IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyCastOnDetonate
-      ; IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay
-      ; IniWrite, %PauseMinesDelay%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PauseMinesDelay
-      ; IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyPauseMines
-
-      ;EldritchBattery
-      IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesEldritchBattery
-
-      ;AutoQuit
-      IniWrite, %QuitBelow%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuitBelow
-      IniWrite, %RadioCritQuit%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CritQuit
-      IniWrite, %RadioPortalQuit%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PortalQuit
-      IniWrite, %RadioNormalQuit%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, NormalQuit
-      
-      ;Utility Buttons
-      IniWrite, %YesUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1
-      IniWrite, %YesUtility2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2
-      IniWrite, %YesUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3
-      IniWrite, %YesUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4
-      IniWrite, %YesUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5
-      IniWrite, %YesUtility6%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6
-      IniWrite, %YesUtility7%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7
-      IniWrite, %YesUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8
-      IniWrite, %YesUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9
-      IniWrite, %YesUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10
-
-      IniWrite, %YesUtility1Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1Quicksilver
-      IniWrite, %YesUtility2Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2Quicksilver
-      IniWrite, %YesUtility3Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3Quicksilver
-      IniWrite, %YesUtility4Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4Quicksilver
-      IniWrite, %YesUtility5Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5Quicksilver
-      IniWrite, %YesUtility6Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6Quicksilver
-      IniWrite, %YesUtility7Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7Quicksilver
-      IniWrite, %YesUtility8Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8Quicksilver
-      IniWrite, %YesUtility9Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9Quicksilver
-      IniWrite, %YesUtility10Quicksilver%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10Quicksilver
-
-      IniWrite, %YesUtility1InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1InverseBuff
-      IniWrite, %YesUtility2InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2InverseBuff
-      IniWrite, %YesUtility3InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3InverseBuff
-      IniWrite, %YesUtility4InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4InverseBuff
-      IniWrite, %YesUtility5InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5InverseBuff
-      IniWrite, %YesUtility6InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6InverseBuff
-      IniWrite, %YesUtility7InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7InverseBuff
-      IniWrite, %YesUtility8InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8InverseBuff
-      IniWrite, %YesUtility9InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9InverseBuff
-      IniWrite, %YesUtility10InverseBuff%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10InverseBuff
-      
-      ;Utility Percents  
-      IniWrite, %YesUtility1LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1LifePercent
-      IniWrite, %YesUtility2LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2LifePercent
-      IniWrite, %YesUtility3LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3LifePercent
-      IniWrite, %YesUtility4LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4LifePercent
-      IniWrite, %YesUtility5LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5LifePercent
-      IniWrite, %YesUtility6LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6LifePercent
-      IniWrite, %YesUtility7LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7LifePercent
-      IniWrite, %YesUtility8LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8LifePercent
-      IniWrite, %YesUtility9LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9LifePercent
-      IniWrite, %YesUtility10LifePercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10LifePercent
-
-      IniWrite, %YesUtility1EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1EsPercent
-      IniWrite, %YesUtility2EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2EsPercent
-      IniWrite, %YesUtility3EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3EsPercent
-      IniWrite, %YesUtility4EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4EsPercent
-      IniWrite, %YesUtility5EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5EsPercent
-      IniWrite, %YesUtility6EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6EsPercent
-      IniWrite, %YesUtility7EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7EsPercent
-      IniWrite, %YesUtility8EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8EsPercent
-      IniWrite, %YesUtility9EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9EsPercent
-      IniWrite, %YesUtility10EsPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10EsPercent
-
-      IniWrite, %YesUtility1ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1ManaPercent
-      IniWrite, %YesUtility2ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2ManaPercent
-      IniWrite, %YesUtility3ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3ManaPercent
-      IniWrite, %YesUtility4ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4ManaPercent
-      IniWrite, %YesUtility5ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5ManaPercent
-      IniWrite, %YesUtility6ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6ManaPercent
-      IniWrite, %YesUtility7ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7ManaPercent
-      IniWrite, %YesUtility8ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8ManaPercent
-      IniWrite, %YesUtility9ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9ManaPercent
-      IniWrite, %YesUtility10ManaPercent%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10ManaPercent
-      
-      ;Utility Cooldowns
-      IniWrite, %CooldownUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility1
-      IniWrite, %CooldownUtility2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility2
-      IniWrite, %CooldownUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility3
-      IniWrite, %CooldownUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility4
-      IniWrite, %CooldownUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility5
-      IniWrite, %CooldownUtility6%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility6
-      IniWrite, %CooldownUtility7%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility7
-      IniWrite, %CooldownUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility8
-      IniWrite, %CooldownUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility9
-      IniWrite, %CooldownUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility10
-      
-      ;Character Name
-      IniWrite, %CharName%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CharName
-
-      ;Utility Keys
-      IniWrite, %KeyUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility1
-      IniWrite, %KeyUtility2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility2
-      IniWrite, %KeyUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility3
-      IniWrite, %KeyUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility4
-      IniWrite, %KeyUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility5
-      IniWrite, %KeyUtility6%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility6
-      IniWrite, %KeyUtility7%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility7
-      IniWrite, %KeyUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility8
-      IniWrite, %KeyUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility9
-      IniWrite, %KeyUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility10
-
-      ;Utility Icon Strings
-      IniWrite, %IconStringUtility1%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility1
-      IniWrite, %IconStringUtility2%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility2
-      IniWrite, %IconStringUtility3%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility3
-      IniWrite, %IconStringUtility4%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility4
-      IniWrite, %IconStringUtility5%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility5
-      IniWrite, %IconStringUtility6%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility6
-      IniWrite, %IconStringUtility7%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility7
-      IniWrite, %IconStringUtility8%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility8
-      IniWrite, %IconStringUtility9%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility9
-      IniWrite, %IconStringUtility10%, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility10
-      
-    return
-    }
-
-    submitProfile1:
-      submitProfile(1)
-    Return
-
-    submitProfile2:
-      submitProfile(2)
-    Return
-
-    submitProfile3:
-      submitProfile(3)
-    Return
-
-    submitProfile4:
-      submitProfile(4)
-    Return
-
-    submitProfile5:
-      submitProfile(5)
-    Return
-
-    submitProfile6:
-      submitProfile(6)
-    Return
-
-    submitProfile7:
-      submitProfile(7)
-    Return
-
-    submitProfile8:
-      submitProfile(8)
-    Return
-
-    submitProfile9:
-      submitProfile(9)
-    Return
-
-    submitProfile10:
-      submitProfile(10)
-    Return
-  }
-
-  { ; Read Profiles
-    readProfile(Profile){  
-      global
-      ;Attack Keys
-      IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, MainAttack, RButton
-      GuiControl, , hotkeyMainAttack, %hotkeyMainAttack%
-      IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, SecondaryAttack, w
-      GuiControl, , hotkeySecondaryAttack, %hotkeySecondaryAttack%
-      
-      ;QS on Attack Keys
-      IniRead, QSonMainAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonMainAttack, 0
-      GuiControl, , QSonMainAttack, %QSonMainAttack%
-      IniRead, QSonSecondaryAttack, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QSonSecondaryAttack, 0
-      GuiControl, , QSonSecondaryAttack, %QSonSecondaryAttack%
-
-      ;CharacterTypeCheck
-      IniRead, RadioLife, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Life, 1
-      GuiControl, , RadioLife, %RadioLife%
-      IniRead, RadioHybrid, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Hybrid, 0
-      GuiControl, , RadioHybrid, %RadioHybrid%
-      IniRead, RadioCi, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, Ci, 0
-      GuiControl, , RadioCi, %RadioCi%
-      
-      ;AutoMines
-      IniRead, DetonateMines, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMines, 0
-      GuiControl, , DetonateMines, %DetonateMines%
-      IniRead, CastOnDetonate, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CastOnDetonate, 0
-      GuiControl, , CastOnDetonate, %CastOnDetonate%
-      IniRead, hotkeyCastOnDetonate, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyCastOnDetonate, q
-      GuiControl, , hotkeyCastOnDetonate, %hotkeyCastOnDetonate%
-      ; IniRead, DetonateMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, DetonateMinesDelay, 500
-      ; GuiControl, , DetonateMinesDelay, %DetonateMinesDelay%
-      ; IniRead, PauseMinesDelay, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PauseMinesDelay, 250
-      ; GuiControl, , PauseMinesDelay, %PauseMinesDelay%
-      ; IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, hotkeyPauseMines, d
-      ; GuiControl, , hotkeyPauseMines, %hotkeyPauseMines%
-
-      ;EldritchBattery
-      IniRead, YesEldritchBattery, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesEldritchBattery, 0
-      GuiControl, , YesEldritchBattery, %YesEldritchBattery%
-
-      ;AutoQuit
-      IniRead, QuitBelow, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, QuitBelow, 20
-      GuiControl, , QuitBelow, %QuitBelow%
-      IniRead, RadioCritQuit, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CritQuit, 1
-      GuiControl, , RadioCritQuit, %RadioCritQuit%
-      IniRead, RadioPortalQuit, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, PortalQuit, 0
-      GuiControl, , RadioPortalQuit, %RadioPortalQuit%
-      IniRead, RadioNormalQuit, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, NormalQuit, 0
-      GuiControl, , RadioNormalQuit, %RadioNormalQuit%
-
-
-      ;Utility Buttons
-      IniRead, YesUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1, 0
-      GuiControl, , YesUtility1, %YesUtility1%
-      IniRead, YesUtility2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2, 0
-      GuiControl, , YesUtility2, %YesUtility2%
-      IniRead, YesUtility3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3, 0
-      GuiControl, , YesUtility3, %YesUtility3%
-      IniRead, YesUtility4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4, 0
-      GuiControl, , YesUtility4, %YesUtility4%
-      IniRead, YesUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5, 0
-      GuiControl, , YesUtility5, %YesUtility5%
-      IniRead, YesUtility6, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6, 0
-      GuiControl, , YesUtility6, %YesUtility6%
-      IniRead, YesUtility7, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7, 0
-      GuiControl, , YesUtility7, %YesUtility7%
-      IniRead, YesUtility8, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8, 0
-      GuiControl, , YesUtility8, %YesUtility8%
-      IniRead, YesUtility9, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9, 0
-      GuiControl, , YesUtility9, %YesUtility9%
-      IniRead, YesUtility10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10, 0
-      GuiControl, , YesUtility10, %YesUtility10%
-      IniRead, YesUtility1Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1Quicksilver, 0
-      GuiControl, , YesUtility1Quicksilver, %YesUtility1Quicksilver%
-      IniRead, YesUtility2Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2Quicksilver, 0
-      GuiControl, , YesUtility2Quicksilver, %YesUtility2Quicksilver%
-      IniRead, YesUtility3Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3Quicksilver, 0
-      GuiControl, , YesUtility3Quicksilver, %YesUtility3Quicksilver%
-      IniRead, YesUtility4Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4Quicksilver, 0
-      GuiControl, , YesUtility4Quicksilver, %YesUtility4Quicksilver%
-      IniRead, YesUtility5Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5Quicksilver, 0
-      GuiControl, , YesUtility5Quicksilver, %YesUtility5Quicksilver%
-      IniRead, YesUtility6Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6Quicksilver, 0
-      GuiControl, , YesUtility6Quicksilver, %YesUtility6Quicksilver%
-      IniRead, YesUtility7Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7Quicksilver, 0
-      GuiControl, , YesUtility7Quicksilver, %YesUtility7Quicksilver%
-      IniRead, YesUtility8Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8Quicksilver, 0
-      GuiControl, , YesUtility8Quicksilver, %YesUtility8Quicksilver%
-      IniRead, YesUtility9Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9Quicksilver, 0
-      GuiControl, , YesUtility9Quicksilver, %YesUtility9Quicksilver%
-      IniRead, YesUtility10Quicksilver, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10Quicksilver, 0
-      GuiControl, , YesUtility10Quicksilver, %YesUtility10Quicksilver%
-      IniRead, YesUtility1InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1InverseBuff, 0
-      GuiControl, , YesUtility1InverseBuff, %YesUtility1InverseBuff%
-      IniRead, YesUtility2InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2InverseBuff, 0
-      GuiControl, , YesUtility2InverseBuff, %YesUtility2InverseBuff%
-      IniRead, YesUtility3InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3InverseBuff, 0
-      GuiControl, , YesUtility3InverseBuff, %YesUtility3InverseBuff%
-      IniRead, YesUtility4InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4InverseBuff, 0
-      GuiControl, , YesUtility4InverseBuff, %YesUtility4InverseBuff%
-      IniRead, YesUtility5InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5InverseBuff, 0
-      GuiControl, , YesUtility5InverseBuff, %YesUtility5InverseBuff%
-      IniRead, YesUtility6InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6InverseBuff, 0
-      GuiControl, , YesUtility6InverseBuff, %YesUtility6InverseBuff%
-      IniRead, YesUtility7InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7InverseBuff, 0
-      GuiControl, , YesUtility7InverseBuff, %YesUtility7InverseBuff%
-      IniRead, YesUtility8InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8InverseBuff, 0
-      GuiControl, , YesUtility8InverseBuff, %YesUtility8InverseBuff%
-      IniRead, YesUtility9InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9InverseBuff, 0
-      GuiControl, , YesUtility9InverseBuff, %YesUtility9InverseBuff%
-      IniRead, YesUtility10InverseBuff, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10InverseBuff, 0
-      GuiControl, , YesUtility10InverseBuff, %YesUtility10InverseBuff%
-      
-      ;Utility Percents  
-      IniRead, YesUtility1LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1LifePercent, Off
-      GuiControl, ChooseString, YesUtility1LifePercent, %YesUtility1LifePercent%
-      IniRead, YesUtility2LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2LifePercent, Off
-      GuiControl, ChooseString, YesUtility2LifePercent, %YesUtility2LifePercent%
-      IniRead, YesUtility3LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3LifePercent, Off
-      GuiControl, ChooseString, YesUtility3LifePercent, %YesUtility3LifePercent%
-      IniRead, YesUtility4LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4LifePercent, Off
-      GuiControl, ChooseString, YesUtility4LifePercent, %YesUtility4LifePercent%
-      IniRead, YesUtility5LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5LifePercent, Off
-      GuiControl, ChooseString, YesUtility5LifePercent, %YesUtility5LifePercent%
-      IniRead, YesUtility6LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6LifePercent, Off
-      GuiControl, ChooseString, YesUtility6LifePercent, %YesUtility6LifePercent%
-      IniRead, YesUtility7LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7LifePercent, Off
-      GuiControl, ChooseString, YesUtility7LifePercent, %YesUtility7LifePercent%
-      IniRead, YesUtility8LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8LifePercent, Off
-      GuiControl, ChooseString, YesUtility8LifePercent, %YesUtility8LifePercent%
-      IniRead, YesUtility9LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9LifePercent, Off
-      GuiControl, ChooseString, YesUtility9LifePercent, %YesUtility9LifePercent%
-      IniRead, YesUtility10LifePercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10LifePercent, Off
-      GuiControl, ChooseString, YesUtility10LifePercent, %YesUtility10LifePercent%
-      IniRead, YesUtility1EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1EsPercent, Off
-      GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-      IniRead, YesUtility2EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2EsPercent, Off
-      GuiControl, ChooseString, YesUtility2EsPercent, %YesUtility2EsPercent%
-      IniRead, YesUtility3EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3EsPercent, Off
-      GuiControl, ChooseString, YesUtility3EsPercent, %YesUtility3EsPercent%
-      IniRead, YesUtility4EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4EsPercent, Off
-      GuiControl, ChooseString, YesUtility4EsPercent, %YesUtility4EsPercent%
-      IniRead, YesUtility5EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5EsPercent, Off
-      GuiControl, ChooseString, YesUtility5EsPercent, %YesUtility5EsPercent%
-      IniRead, YesUtility6EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6EsPercent, Off
-      GuiControl, ChooseString, YesUtility6EsPercent, %YesUtility6EsPercent%
-      IniRead, YesUtility7EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7EsPercent, Off
-      GuiControl, ChooseString, YesUtility7EsPercent, %YesUtility7EsPercent%
-      IniRead, YesUtility8EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8EsPercent, Off
-      GuiControl, ChooseString, YesUtility8EsPercent, %YesUtility8EsPercent%
-      IniRead, YesUtility9EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9EsPercent, Off
-      GuiControl, ChooseString, YesUtility9EsPercent, %YesUtility9EsPercent%
-      IniRead, YesUtility10EsPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10EsPercent, Off
-      GuiControl, ChooseString, YesUtility10EsPercent, %YesUtility10EsPercent%
-      IniRead, YesUtility1ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility1ManaPercent, Off
-      GuiControl, ChooseString, YesUtility1ESPercent, %YesUtility1ESPercent%
-      IniRead, YesUtility2ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility2ManaPercent, Off
-      GuiControl, ChooseString, YesUtility2ManaPercent, %YesUtility2ManaPercent%
-      IniRead, YesUtility3ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility3ManaPercent, Off
-      GuiControl, ChooseString, YesUtility3ManaPercent, %YesUtility3ManaPercent%
-      IniRead, YesUtility4ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility4ManaPercent, Off
-      GuiControl, ChooseString, YesUtility4ManaPercent, %YesUtility4ManaPercent%
-      IniRead, YesUtility5ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility5ManaPercent, Off
-      GuiControl, ChooseString, YesUtility5ManaPercent, %YesUtility5ManaPercent%
-      IniRead, YesUtility6ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility6ManaPercent, Off
-      GuiControl, ChooseString, YesUtility6ManaPercent, %YesUtility6ManaPercent%
-      IniRead, YesUtility7ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility7ManaPercent, Off
-      GuiControl, ChooseString, YesUtility7ManaPercent, %YesUtility7ManaPercent%
-      IniRead, YesUtility8ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility8ManaPercent, Off
-      GuiControl, ChooseString, YesUtility8ManaPercent, %YesUtility8ManaPercent%
-      IniRead, YesUtility9ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility9ManaPercent, Off
-      GuiControl, ChooseString, YesUtility9ManaPercent, %YesUtility9ManaPercent%
-      IniRead, YesUtility10ManaPercent, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, YesUtility10ManaPercent, Off
-      GuiControl, ChooseString, YesUtility10ManaPercent, %YesUtility10ManaPercent%
-      
-      ;Utility Cooldowns
-      IniRead, CooldownUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility1, 5000
-      GuiControl, , CooldownUtility1, %CooldownUtility1%
-      IniRead, CooldownUtility2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility2, 5000
-      GuiControl, , CooldownUtility2, %CooldownUtility2%
-      IniRead, CooldownUtility3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility3, 5000
-      GuiControl, , CooldownUtility3, %CooldownUtility3%
-      IniRead, CooldownUtility4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility4, 5000
-      GuiControl, , CooldownUtility4, %CooldownUtility4%
-      IniRead, CooldownUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility5, 5000
-      GuiControl, , CooldownUtility5, %CooldownUtility5%
-      IniRead, CooldownUtility6, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility6, 5000
-      GuiControl, , CooldownUtility6, %CooldownUtility6%
-      IniRead, CooldownUtility7, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility7, 5000
-      GuiControl, , CooldownUtility7, %CooldownUtility7%
-      IniRead, CooldownUtility8, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility8, 5000
-      GuiControl, , CooldownUtility8, %CooldownUtility8%
-      IniRead, CooldownUtility9, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility9, 5000
-      GuiControl, , CooldownUtility9, %CooldownUtility9%
-      IniRead, CooldownUtility10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CooldownUtility10, 5000
-      GuiControl, , CooldownUtility10, %CooldownUtility10%
-      
-      ;Character Name
-      IniRead, CharName, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, CharName, ReplaceWithCharName
-      GuiControl, , CharName, %CharName%
-
-      ;Utility Keys
-      IniRead, KeyUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility1, q
-      GuiControl, , KeyUtility1, %KeyUtility1%
-      IniRead, KeyUtility2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility2, w
-      GuiControl, , KeyUtility2, %KeyUtility2%
-      IniRead, KeyUtility3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility3, e
-      GuiControl, , KeyUtility3, %KeyUtility3%
-      IniRead, KeyUtility4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility4, r
-      GuiControl, , KeyUtility4, %KeyUtility4%
-      IniRead, KeyUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility5, t
-      GuiControl, , KeyUtility5, %KeyUtility5%
-      IniRead, KeyUtility6, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility6, t
-      GuiControl, , KeyUtility6, %KeyUtility6%
-      IniRead, KeyUtility7, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility7, t
-      GuiControl, , KeyUtility7, %KeyUtility7%
-      IniRead, KeyUtility8, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility8, t
-      GuiControl, , KeyUtility8, %KeyUtility8%
-      IniRead, KeyUtility9, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility9, t
-      GuiControl, , KeyUtility9, %KeyUtility9%
-      IniRead, KeyUtility10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, KeyUtility10, t
-      GuiControl, , KeyUtility10, %KeyUtility10%
-
-      ;Utility Icon Strings
-      IniRead, IconStringUtility1, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility1, %A_Space%
-      If IconStringUtility1
-        IconStringUtility1 := """" . IconStringUtility1 . """"
-      GuiControl, , IconStringUtility1, %IconStringUtility1%
-      IniRead, IconStringUtility2, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility2, %A_Space%
-      If IconStringUtility2
-        IconStringUtility2 := """" . IconStringUtility2 . """"
-      GuiControl, , IconStringUtility2, %IconStringUtility2%
-      IniRead, IconStringUtility3, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility3, %A_Space%
-      If IconStringUtility3
-        IconStringUtility3 := """" . IconStringUtility3 . """"
-      GuiControl, , IconStringUtility3, %IconStringUtility3%
-      IniRead, IconStringUtility4, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility4, %A_Space%
-      If IconStringUtility4
-        IconStringUtility4 := """" . IconStringUtility4 . """"
-      GuiControl, , IconStringUtility4, %IconStringUtility4%
-      IniRead, IconStringUtility5, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility5, %A_Space%
-      If IconStringUtility5
-        IconStringUtility5 := """" . IconStringUtility5 . """"
-      GuiControl, , IconStringUtility5, %IconStringUtility5%
-      IniRead, IconStringUtility6, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility6, %A_Space%
-      If IconStringUtility6
-        IconStringUtility6 := """" . IconStringUtility6 . """"
-      GuiControl, , IconStringUtility6, %IconStringUtility6%
-      IniRead, IconStringUtility7, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility7, %A_Space%
-      If IconStringUtility7
-        IconStringUtility7 := """" . IconStringUtility7 . """"
-      GuiControl, , IconStringUtility7, %IconStringUtility7%
-      IniRead, IconStringUtility8, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility8, %A_Space%
-      If IconStringUtility8
-        IconStringUtility8 := """" . IconStringUtility8 . """"
-      GuiControl, , IconStringUtility8, %IconStringUtility8%
-      IniRead, IconStringUtility9, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility9, %A_Space%
-      If IconStringUtility9
-        IconStringUtility9 := """" . IconStringUtility9 . """"
-      GuiControl, , IconStringUtility9, %IconStringUtility9%
-      IniRead, IconStringUtility10, %A_ScriptDir%\save\Profiles.ini, Profile%Profile%, IconStringUtility10, %A_Space%
-      If IconStringUtility10
-        IconStringUtility10 := """" . IconStringUtility10 . """"
-      GuiControl, , IconStringUtility10, %IconStringUtility10%
-
-    return  
-    }
-
-    readProfile1:
-      readProfile(1)
-    Return
-
-    readProfile2:
-      readProfile(2)
-    Return
-
-    readProfile3:
-      readProfile(3)
-    Return
-
-    readProfile4:
-      readProfile(4)
-    Return
-
-    readProfile5:
-      readProfile(5)
-    Return
-
-    readProfile6:
-      readProfile(6)
-    Return
-
-    readProfile7:
-      readProfile(7)
-    Return
-
-    readProfile8:
-      readProfile(8)
-    Return
-
-    readProfile9:
-      readProfile(9)
-    Return
-
-    readProfile10:
-      readProfile(10)
-    Return
   }
 
   { ; Script Update Functions - checkUpdate, runUpdate, dontUpdate
@@ -7409,51 +6861,6 @@ Return
         MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . (OnMines?WR.loc.DetonateDelve.X:WR.loc.Detonate.X) . " and y: " . WR.loc.Detonate.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
-      
-      hotkeys()
-      
-    return
-
-    CalibrateOHB:
-      Critical
-      Gui,1: Submit ; , NoHide
-      IfWinExist, ahk_group POEGameGroup
-      {
-        Rescale()
-        WinActivate, ahk_group POEGameGroup
-      } else {
-        MsgBox % "PoE Window does not exist. `nRecalibrate of OHB didn't work"
-        Return
-      }
-      
-      if WinActive(ahk_group POEGameGroup){
-        Sleep, 500
-        If CheckOHB()
-        {
-          PixelGetColor, OHBLHealthHex, % OHB.X + 1, % OHB.hpY, RGB
-          IniWrite, %OHBLHealthHex%, %A_ScriptDir%\save\Settings.ini, OHB, OHBLHealthHex
-          ; If ((RadioHybrid || RadioCi) && !YesEldritchBattery)
-          ; {
-          ;   PixelGetColor, OHBLESHex, % OHB.X + 1, % OHB.esY, RGB
-          ;   IniWrite, %OHBLESHex%, %A_ScriptDir%\save\Settings.ini, OHB, OHBLESHex
-          ; }
-          ; Else If ((RadioHybrid || RadioCi) && YesEldritchBattery)
-          ; {
-          ;   PixelGetColor, OHBLEBHex, % OHB.X + 1, % OHB.ebY, RGB
-          ;   IniWrite, %OHBLEBHex%, %A_ScriptDir%\save\Settings.ini, OHB, OHBLEBHex
-          ; }
-          readFromFile()
-          MsgBox % "OHB recalibrated!`nTook color hex: " . OHBLHealthHex . " `nAt coords x: " . OHB.X + 1 . " and y: " . OHB.hpY
-          ; . "`n`nTook color hex: " . OHBLESHex . " `nAt coords x: " . OHB.X + 1 . " and y: " . OHB.esY
-          ; . "`n`nTook color hex: " . OHBLEBHex . " `nAt coords x: " . OHB.X + 1 . " and y: " . OHB.ebY
-        }
-        Else
-        {
-          MsgBox % "OHB has not been found!`nMake sure you see the overhead health-bar"
-        }
-        
-      }else
-      MsgBox % "PoE Window is not active. `nRecalibrate of OHB didn't work"
       
       hotkeys()
       
@@ -8214,17 +7621,21 @@ Return
         Gui, perChar: Add, UpDown,  vchannelrepressOffsetY2 hp center Range-150-150, %  WR.perChar.Setting.channelrepressOffsetY2
 
         Gui, perChar: Font, Bold s9 cBlack, Arial
-        Gui, perChar: Add, GroupBox,     Section  w265 h128        xs   y+13 ,         Auto-Detonate Mines
+        Gui, perChar: Add, GroupBox,     Section  w265 h132        xs   y+13 ,         Auto-Detonate Mines
         Gui, perChar: Font,
         Gui, perChar: Add, Checkbox, % "vautominesEnable Checked"  WR.perChar.Setting.autominesEnable  " xs+15  ys+23"       , Enable
         Gui, perChar: Add, Edit,        vautominesBoomDelay  h18  xs+90  yp-2  Number Limit w30        , % WR.perChar.Setting.autominesBoomDelay
         Gui, perChar: Add, Text, x+5 yp+2, Delay between Detonate
-        Gui, perChar: Add, GroupBox, center xs+5 y+7 w255 h37, Double-Tap to Pause Mines
-        Gui, perChar: Add, Edit,        vautominesPauseDoubleTapSpeed  h18  xp+10 yp+16  Number Limit w30        , % WR.perChar.Setting.autominesPauseDoubleTapSpeed 
-        Gui, perChar: Add, Text, x+5  yp+2 , Double-Tap Speed
-        Gui, perChar: Add, Text, xs+150 yp , Key
-        Gui, perChar: Add, Edit,        vautominesPauseKey  h18  x+5  yp-2  w50        , % WR.perChar.Setting.autominesPauseKey
-        Gui, perChar: Add, GroupBox, center xs+5 y+7 w255 h37, Dash on Detonate
+        Gui, perChar: Font, s8 cBlack
+        Gui, perChar: Add, GroupBox, center  xs+5 y+7 w255 h40, Pause Mines Hotkey
+        Gui, perChar: Font,
+        Gui, perChar: Add, Radio,     %   "vautominesPauseSingleTap  h18  xp+10 yp+16  Checked" (WR.perChar.Setting.autominesPauseSingleTap == 1?"1":0)   , Single-Tap
+        Gui, perChar: Add, Radio,     %   "h18  x+1 yp  Checked" (WR.perChar.Setting.autominesPauseSingleTap == 2?"1":0)   , Double-Tap
+        Gui, perChar: Add, Text, x+5  yp+2 , Speed
+        Gui, perChar: Add, Edit,        vautominesPauseDoubleTapSpeed  h18  x+5 yp-2  Number Limit w30        , % WR.perChar.Setting.autominesPauseDoubleTapSpeed 
+        Gui, perChar: Font, s8 cBlack
+        Gui, perChar: Add, GroupBox, center xs+5 y+10 w255 h37, Dash on Detonate
+        Gui, perChar: Font,
         Gui, perChar: Add, CheckBox, %  "xp+15 yp+16 vautominesSmokeDashEnable Checked" WR.perChar.Setting.autominesSmokeDashEnable, Enable Smoke-Dash
         Gui, perChar: Add, Text, xs+150 yp , Key
         Gui, perChar: Add, Edit,        vautominesSmokeDashKey  h18  x+5  yp-2  w50        , % WR.perChar.Setting.autominesSmokeDashKey
@@ -8238,7 +7649,7 @@ Return
         , "quitDC", "quitPortal", "quitExit", "quitBelow", "quitLogBackIn"
         , "movementDelay", "movementMainAttack", "movementSecondaryAttack"
         , "channelrepressEnable", "channelrepressIcon", "channelrepressStack", "channelrepressKey", "channelrepressOffsetX1", "channelrepressOffsetY1", "channelrepressOffsetX2", "channelrepressOffsetY2"
-        , "autominesEnable", "autominesBoomDelay", "autominesPauseDoubleTapSpeed", "autominesPauseKey", "autominesSmokeDashEnable", "autominesSmokeDashKey"
+        , "autominesEnable", "autominesBoomDelay", "autominesPauseDoubleTapSpeed", "autominesPauseSingleTap", "autominesSmokeDashEnable", "autominesSmokeDashKey"
         , "autolevelgemsEnable", "autolevelgemsWait"
         , "swap1AltWeapon", "swap1Item", "swap1Xa", "swap1Ya", "swap1Xb", "swap1Yb"
         , "swap2AltWeapon", "swap2Item", "swap2Xa", "swap2Ya", "swap2Xb", "swap2Yb"]
@@ -8728,17 +8139,11 @@ Return
     Return
 
     UpdateExtra:
-      If hotkeyPauseMines
-        hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
       Gui, Submit, NoHide
       ; Gui, Inventory: Submit, NoHide
       IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
       IniWrite, %ScriptUpdateTimeInterval%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval
       IniWrite, %ScriptUpdateTimeType%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType
-      IniWrite, %DetonateMines%, %A_ScriptDir%\save\Settings.ini, General, DetonateMines
-      IniWrite, %DetonateMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, DetonateMinesDelay
-      IniWrite, %PauseMinesDelay%, %A_ScriptDir%\save\Settings.ini, General, PauseMinesDelay
-      IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
       IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
@@ -8770,7 +8175,6 @@ Return
       IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
       IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
       IniWrite, %AutoUpdateOff%, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
-      IniWrite, %YesPersistantToggle%, %A_ScriptDir%\save\Settings.ini, General, YesPersistantToggle
       IniWrite, %YesGuiLastPosition%, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition
       IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
@@ -8787,21 +8191,8 @@ Return
       ;Automation Metamorph Settings
       IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
-      IniWrite, %RelogOnQuit%, %A_ScriptDir%\save\Settings.ini, General, RelogOnQuit
       IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
       IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
-      IniWrite, %CastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, CastOnDetonate
-      IniWrite, %hotkeyCastOnDetonate%, %A_ScriptDir%\save\Settings.ini, General, hotkeyCastOnDetonate
-      #MaxThreadsPerHotkey, 1
-      If hotkeyPauseMines
-        hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, On
-      #MaxThreadsPerHotkey, 2
-    Return
-
-    UpdateEldritchBattery:
-      Gui, Submit, NoHide
-      IniWrite, %YesEldritchBattery%, %A_ScriptDir%\save\Settings.ini, General, YesEldritchBattery
-      Rescale()
     Return
 
     UpdateStackRelease:
