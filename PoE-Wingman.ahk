@@ -459,7 +459,7 @@
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
   ; Global Script object
-    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{}}
+    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{}}
     WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}
     WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1"}
     WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
@@ -895,22 +895,6 @@
     global GrabCurrencyPosX:=1877
     global GrabCurrencyPosY:=772
 
-  ; First Gem/Item Swap
-    global CurrentGemX:=1483
-    global CurrentGemY:=372
-    global AlternateGemX:=1379 
-    global AlternateGemY:=171
-    global AlternateGemOnSecondarySlot:=0
-    global GemItemToogle:=0
-
-  ; Second Gem/Item Swap
-    global CurrentGem2X:=0
-    global CurrentGem2Y:=0
-    global AlternateGem2X:=0
-    global AlternateGem2Y:=0
-    global AlternateGem2OnSecondarySlot:=0
-    global GemItemToogle2:=0
-    
   ; Chat Hotkeys, and stash hotkeys
     Global CharName := "ReplaceWithCharName"
     Global RecipientName := "NothingYet"
@@ -1147,7 +1131,7 @@
       MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
     }
     Else if (ErrorLevel=0){
-       Log("data","pass", "Bases.json")
+       Log("data","pass", "Downloading Bases.json was a success")
       FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
       Holder := []
       Bases := JSON.Load(JSONtext)
@@ -1166,30 +1150,58 @@
       JSONtext := JSON.Dump(Bases,,2)
       FileDelete, %A_ScriptDir%\data\Bases.json
       FileAppend, %JSONtext%, %A_ScriptDir%\data\Bases.json
+      JSONtext := Holder := k := v := temp := ""
     }
   }
   Else
   {
     FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
     Bases := JSON.Load(JSONtext)
+    JSONtext := ""
   }
   IfNotExist, %A_ScriptDir%\data\Quest.json
   {
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
     if ErrorLevel {
-       Log("data","uhoh", "Quest.json")
+      Log("data","uhoh", "Quest.json")
       MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
     }
     Else if (ErrorLevel=0){
-       Log("data","pass", "Quest.json")
+      Log("data","pass", "Downloading Quest.json was a success")
       FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
       QuestItems := JSON.Load(JSONtext)
+      JSONtext := ""
     }
   }
   Else
   {
     FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
     QuestItems := JSON.Load(JSONtext)
+    JSONtext := ""
+  }
+  IfNotExist, %A_ScriptDir%\data\Uniques.json
+  {
+    UrlDownloadToFile, https://raw.githubusercontent.com/PoE-TradeMacro/POE-TradeMacro/master/data_trade/uniques.json, %A_ScriptDir%\data\Uniques.json
+    if ErrorLevel {
+      Log("data","uhoh", "Uniques.json")
+      MsgBox, Error ED02 : There was a problem downloading Uniques.json from Poe-TradeMacro
+    }
+    Else if (ErrorLevel=0){
+      Log("data","pass", "Downloading Uniques.json was a success") 
+      FileRead, JSONtext, %A_ScriptDir%\data\Uniques.json
+      JSONtext := RegExReplace(JSONtext, """base"":", """ibase"":")
+      WR.data.Uniques := JSON.Load(JSONtext,,True)
+      JSONtext := JSON_Beautify(WR.data.Uniques,"  ",,true)
+      FileDelete, %A_ScriptDir%\data\Uniques.json
+      FileAppend, %JSONtext%, %A_ScriptDir%\data\Uniques.json
+      JSONtext := ""
+    }
+  }
+  Else
+  {
+    FileRead, JSONtext, %A_ScriptDir%\data\Uniques.json
+    WR.data.Uniques := JSON.Load(JSONtext,,True)
+    JSONtext := ""
   }
   If needReload
     Reload
@@ -1361,7 +1373,7 @@
     Gui,Add,GroupBox,Section x295 ym+20  w350 h90              ,Update Control
     Gui,Font,Norm
 
-    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 yp+15           , master|Alpha
+    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 yp+15           , master|Alpha|Slider
     GuiControl, ChooseString, BranchName                                                  , %BranchName%
     Gui, Add, Text,       x+8 yp+3                                                        , Update Branch
     Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs+5 y+10  w90                  , Off|days|hours|minutes
@@ -4276,57 +4288,59 @@ Return
         RandomSleep(45,45)
       }
       ;First Gem or Item Swap
-      If (CurrentGemX && CurrentGemY && AlternateGemX && AlternateGemY) 
+      If (WR.perChar.Setting.swap1Xa && WR.perChar.Setting.swap1Ya 
+      && WR.perChar.Setting.swap1Xb && WR.perChar.Setting.swap1Yb) 
       {
-        If (GemItemToogle)
+        If (WR.perChar.Setting.swap1Item)
         {
-          LeftClick(CurrentGemX, CurrentGemY)
+          LeftClick(WR.perChar.Setting.swap1Xa, WR.perChar.Setting.swap1Ya)
         }
         Else
         {
-          RightClick(CurrentGemX, CurrentGemY)
+          RightClick(WR.perChar.Setting.swap1Xa, WR.perChar.Setting.swap1Ya)
         }
         RandomSleep(45,45)
-        If (AlternateGemOnSecondarySlot && !GemItemToogle)
+        If (AlternateGemOnSecondarySlot && !WR.perChar.Setting.swap1Item)
         {
           SendHotkey(hotkeyWeaponSwapKey)
           RandomSleep(45,45)
         }
-        LeftClick(AlternateGemX, AlternateGemY)
+        LeftClick(WR.perChar.Setting.swap1Xb, WR.perChar.Setting.swap1Yb)
         RandomSleep(90,120)
-        If (AlternateGemOnSecondarySlot && !GemItemToogle)
+        If (AlternateGemOnSecondarySlot && !WR.perChar.Setting.swap1Item)
         {
           SendHotkey(hotkeyWeaponSwapKey)
           RandomSleep(45,45)
         }
-        LeftClick(CurrentGemX, CurrentGemY)
+        LeftClick(WR.perChar.Setting.swap1Xa, WR.perChar.Setting.swap1Ya)
         RandomSleep(90,120)
       }
       ;Second Gem of Item Swap
-      If (CurrentGem2X && CurrentGem2Y && AlternateGem2X && AlternateGem2Y) 
+      If (WR.perChar.Setting.swap2Xa && WR.perChar.Setting.swap2Ya 
+      && WR.perChar.Setting.swap2Xb && WR.perChar.Setting.swap2Yb) 
       {
-        If (GemItemToogle2)
+        If (WR.perChar.Setting.swap2Item)
         {
-          LeftClick(CurrentGem2X, CurrentGem2Y)
+          LeftClick(WR.perChar.Setting.swap2Xa, WR.perChar.Setting.swap2Ya)
         }
         Else
         {
-          RightClick(CurrentGem2X, CurrentGem2Y)
+          RightClick(WR.perChar.Setting.swap2Xa, WR.perChar.Setting.swap2Ya)
         }
         RandomSleep(45,45)
-        If (AlternateGem2OnSecondarySlot && !GemItemToogle2)
+        If (AlternateGem2OnSecondarySlot && !WR.perChar.Setting.swap2Item)
         {
           SendHotkey(hotkeyWeaponSwapKey)
           RandomSleep(45,45)
         }
-        LeftClick(AlternateGem2X, AlternateGem2Y)
+        LeftClick(WR.perChar.Setting.swap2Xb, WR.perChar.Setting.swap2Yb)
         RandomSleep(90,120)
-        If (AlternateGem2OnSecondarySlot && !GemItemToogle2)
+        If (AlternateGem2OnSecondarySlot && !WR.perChar.Setting.swap2Item)
         {
           SendHotkey(hotkeyWeaponSwapKey)
           RandomSleep(45,45)
         }
-        LeftClick(CurrentGem2X, CurrentGem2Y)
+        LeftClick(WR.perChar.Setting.swap2Xa, WR.perChar.Setting.swap2Ya)
         RandomSleep(90,120)
       }
       SendHotkey(hotkeyInventory)
