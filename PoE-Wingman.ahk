@@ -1223,8 +1223,8 @@
   SB_SetText("Percentage not updated", 3)
 
   Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
-  ;#######################################################################################################Flasks and Utility Tab
-  Gui, Tab, Main
+  ; #Main Tab
+    Gui, Tab, Main
     Gui, Font,
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,         Section    w265 h77        xp+5   y+2,         Per Character Settings
@@ -1341,8 +1341,8 @@
     Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
     Gui, Add, Button,      gft_Start     x+5           h23,   Grab Icon
 
-  ;#######################################################################################################Configuration Tab
-  Gui, Tab, Configuration
+  ; #Configuration Tab
+    Gui, Tab, Configuration
     Gui, Add, Text,                   x279   y23    w1  h483 0x7
     Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
@@ -1389,10 +1389,25 @@
 
     Gui Add, DropDownList, gUpdateResolutionScale  vResolutionScale     w160   x+8 yp-3             , Standard|Classic|Cinematic|Cinematic(43:18)|UltraWide|WXGA(16:10)
     GuiControl, ChooseString, ResolutionScale                                                       , %ResolutionScale%
+    Gui, Add, Button, x+5 yp gCheckAspectRatio , Get ratio
 
     Gui,Font, Bold s9 cBlack, Arial
     Gui, Add, Text,          xs+5 y+10                                                             , POE LogFile:
     Gui,Font,Norm
+
+  CheckAspectRatio(){
+    v := GameW/GameH
+    If GamePID
+      MsgBox,262144,Game Aspect Ratio, % v=16/9?"Standard 16:9"
+              :v=12/9?"Classic 12:9 (4:3)"
+              :v=21/9?"Cinematic 21:9"
+              :v=43/18?"Cinematic 21.5:9 (43:18)"
+              :v=32/9?"UltraWide 32:9"
+              :v=16/10?"WXGA 16:10"
+              :"The script does not have a matching aspect ratio"
+    Else
+      MsgBox,262144,Game Aspect Ratio, Open the game to calculate its window ratio
+  }
 
     Gui, Add, Edit,       vClientLog         x+5 yp-3  w170  h23                                   ,   %ClientLog%
     Gui, add, Button, gSelectClientLog hp yp x+5                                                 , Locate
@@ -1435,7 +1450,8 @@
     Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
     Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
 
-  Gui, Tab, Hotkeys
+  ; #Hotkey Tab
+    Gui, Tab, Hotkeys
     Gui, Font, Bold s9 cBlack, Arial
     Gui Add, GroupBox,    center w170 h180               xm+5   ym+25,         Main Script Keybinds:
     Gui, Font
@@ -3505,7 +3521,8 @@ Return
         StackRelease()
       If LootVacuum
         LootScan()
-      AutoSkillUp()
+      If WR.perChar.Settings.autolevelgemsEnable
+        autoLevelGems()
       If (DebugMessages && YesTimeMS)
       {
         If ((t1-LastAverageTimer) > 100)
@@ -4483,9 +4500,9 @@ Return
     return
     }
 
-; AutoSkillUp - Check for gems that are ready to level up, and click them.
+; autoLevelGems - Check for gems that are ready to level up, and click them.
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  AutoSkillUp()
+  autoLevelGems()
   {
     Static LastCheck:=0
     If (WR.perChar.Settings.autolevelgemsEnable && OnChar && (A_TickCount - LastCheck > 200))
@@ -7823,7 +7840,21 @@ Return
         Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h55, Group Cooldown
         Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
 
-        Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w110 h45, Pop All Flasks
+        Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w360 h100, Trigger when Sample String not found
+        Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
+
+        Gui, Utility%slot%: Add, Text, xs+10  y+8 , Search Area:
+        Gui, Utility%slot%: Add, Radio, % "vUtility" slot "IconSearch  x+10   yp-4 h22 Checked" (WR.Utility[slot].IconSearch==1?1:0), Buff Area
+        Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==2?1:0), DeBuff Area
+        Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==3?1:0), Custom
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown xs+10   y+5 hp Checked" WR.Utility[slot].IconShown , Invert to Shown
+        Gui, Utility%slot%: Add, Button, x+10 yp, Show Utility %slot% Area
+        Gui, Utility%slot%: Add, Button, x+10 yp wp, Set Utility %slot% Area
+        Utility%slot%IconArea := WR.Utility[slot].IconArea
+
+
+
+        Gui, Utility%slot%: Add, GroupBox, Section center xs y+15 w110 h45, Pop All Flasks
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "PopAll xs+10   yp+20 Checked" WR.Utility[slot].PopAll , Include
 
         Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h45, Trigger on Move
@@ -7837,17 +7868,17 @@ Return
         Gui, Utility%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
         setColor := "Red"
         Gui, Utility%slot%: Font, s16, Consolas
-        Gui, Utility%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
+        Gui, Utility%slot%: Add, Text, xs+13 ys+18 c%setColor%, L`%
         Gui, Utility%slot%: Add, Text,% "vUtility" slot "Life hwndUtility" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Life
         ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%LifeHWND
         Utility%slot%Life_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Life , backColor , setColor , 1 , "Utility" slot "Life" , 0 , 0 , 1)
         setColor := "51DEFF"
-        Gui, Utility%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
+        Gui, Utility%slot%: Add, Text, xs+13 y+13 c%setColor%, E`%
         Gui, Utility%slot%: Add, Text,% "vUtility" slot "ES hwndUtility" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].ES
         ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ESHWND
         Utility%slot%ES_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].ES , backColor , setColor , 1 , "Utility" slot "ES" , 0 , 0 , 1)
         setColor := "Blue"
-        Gui, Utility%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
+        Gui, Utility%slot%: Add, Text, xs+13 y+13 c%setColor%, M`%
         Gui, Utility%slot%: Add, Text,% "vUtility" slot "Mana hwndUtility" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Mana
         Gui, Utility%slot%: Font,
         ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ManaHWND
@@ -7857,17 +7888,6 @@ Return
         Gui, Utility%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Utility[slot].Condition==2?1:0), All
 
 
-        Gui, Utility%slot%: Add, GroupBox, Section center xs-120 y+55 w360 h100, Trigger when Sample String not found
-        Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
-
-        Gui, Utility%slot%: Add, Text, xs+10  y+8 , Search Area:
-        Gui, Utility%slot%: Add, Radio, % "vUtility" slot "IconSearch  x+10   yp-4 h22 Checked" (WR.Utility[slot].IconSearch==1?1:0), Buff Area
-        Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==2?1:0), DeBuff Area
-        Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==3?1:0), Custom
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown xs+10   y+5 hp Checked" WR.Utility[slot].IconShown , Invert to Shown
-        Gui, Utility%slot%: Add, Button, x+10 yp, Show Utility %slot% Area
-        Gui, Utility%slot%: Add, Button, x+10 yp wp, Set Utility %slot% Area
-        Utility%slot%IconArea := WR.Utility[slot].IconArea
         Gui, Utility%slot%: show, w520 h340
       }
       Return
