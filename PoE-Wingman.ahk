@@ -3333,7 +3333,10 @@ Return
         t1 := A_TickCount
       If (OnTown||OnHideout||!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Settings.autominesEnable||WR.perChar.Settings.autolevelgemsEnable||LootVacuum))
       {
-        Msg := (OnTown?"Script paused in town":(OnHideout?"Script paused in hideout":(!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Settings.autominesEnable||WR.perChar.Settings.autolevelgemsEnable||LootVacuum)?"All options disabled, pausing":"Error")))
+        Msg := (OnTown?"Script paused in town"
+        :(OnHideout?"Script paused in hideout"
+        :(!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Settings.autominesEnable||WR.perChar.Settings.autolevelgemsEnable||LootVacuum)?"All options disabled, pausing"
+        :"Error")))
         If CheckTime("seconds",1,"StatusBar1")
           SB_SetText(Msg, 1)
         If (CheckGamestates || GlobeActive || YesController)
@@ -3400,6 +3403,18 @@ Return
             }
           If CheckGamestates
             mainmenuGameLogicState()
+          Exit
+        }
+        Else If (CheckDialogue())
+        {
+          If CheckTime("seconds",1,"StatusBar1")
+            SB_SetText("Script paused while NPC Dialogue", 1)
+          If (DebugMessages && YesTimeMS)
+            If ((t1-LastPauseMessage) > 100)
+            {
+              Ding(600,2,"Script paused while NPC Dialogue")
+              LastPauseMessage := A_TickCount
+            }
           Exit
         }
         Else If CheckTime("seconds",1,"StatusBar1")
