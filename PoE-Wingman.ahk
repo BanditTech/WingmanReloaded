@@ -189,7 +189,6 @@
     Global craftingBasesT2 := []
     Global craftingBasesT3 := []
     Global craftingBasesT4 := []
-    Global scriptTradeMacro := "_TradeMacroMain.ahk ahk_exe AutoHotkey.exe"
     ; Create Executable group for gameHotkey, IfWinActive
     global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
     for n, exe in POEGameArr
@@ -1917,25 +1916,16 @@ Return
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ItemSortCommand(){
     ; Thread, NoTimers, True
-    If RunningToggle  ; This means an underlying thread is already running the loop below.
-    {
-      RunningToggle := False  ; Signal that thread's loop to stop.
-      ResetMainTimer("On")
-      SendMSG(1,0,scriptTradeMacro)
-      Notify("Aborting Current Process","",2)
-      exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
-    }
+    CheckRunning()
     MouseGetPos xx, yy
     IfWinActive, ahk_group POEGameGroup
     {
-      RunningToggle := True
-      ResetMainTimer("Off")
+      CheckRunning("On")
       GuiStatus()
       If (!OnChar) 
       { ;Need to be on Character 
         MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
-        RunningToggle := False
-        ResetMainTimer("On")
+        CheckRunning("Off")
         Return
       } 
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
@@ -1947,8 +1937,7 @@ Return
           If !SearchVendor()
           {
             SendHotkey(hotkeyInventory)
-            RunningToggle := False
-            ResetMainTimer("On")
+            CheckRunning("Off")
             Return
           }
         }
@@ -1959,22 +1948,19 @@ Return
           If !SearchStash()
           {
             SendHotkey(hotkeyInventory)
-            RunningToggle := False
-            ResetMainTimer("On")
+            CheckRunning("Off")
             Return
           }
         }
         Else
         {
           SendHotkey(hotkeyInventory)
-          RunningToggle := False
-          ResetMainTimer("On")
+          CheckRunning("Off")
           Return
         }
       }
       Sleep, -1
       GuiStatus()
-      SendMSG(1,1,scriptTradeMacro)
       If (OnDiv && YesDiv)
         DivRoutine()
       Else If (OnStash && YesStash)
@@ -1986,12 +1972,28 @@ Return
       Else If (OnInventory&&YesIdentify)
         IdentifyRoutine()
     }
-    RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
-    SendMSG(1,0,scriptTradeMacro)
     Sleep, 90*Latency
     MouseMove, xx, yy, 0
-    ResetMainTimer("On")
+    CheckRunning("Off")
     Return
+  }
+
+  CheckRunning(ret:=false){
+    Global RunningToggle
+    If (RunningToggle && !ret) ; This means an underlying thread is already running the loop below.
+    {
+      RunningToggle := False  ; Signal that thread's loop to stop.
+      ResetMainTimer("On")
+      Notify("Aborting Current Process","",2)
+      exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
+    } Else If (ret=="On") {
+      RunningToggle := True
+      ResetMainTimer("Off")
+    } Else If (ret) {
+      RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+      ResetMainTimer("On")
+      Return
+    }
   }
 
   ; Search Heist Locker
@@ -2499,13 +2501,7 @@ Return
   VendorChaosRecipe()
   {
     ; Ensure we only run one instance, second press of hotkey should stop function
-    If RunningToggle  ; This means an underlying thread is already running the loop below.
-    {
-      RunningToggle := False  ; Signal that thread's loop to stop.
-      ResetMainTimer("On")
-      SendMSG(1,0,scriptTradeMacro)
-      exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
-    }
+    CheckRunning()
     Global InvGrid, CurrentTab
     CurrentTab := 0
     Static Object := {}
@@ -2529,8 +2525,7 @@ Return
           Return
         }
       }
-      RunningToggle := True
-      ResetMainTimer("Off")
+      CheckRunning("On")
     } Else
       Return
 
@@ -2559,18 +2554,13 @@ Return
       VendorRoutineChaos()
     }
     If !Object.Count()
-    {
       PrintChaosRecipe("Finished Selling Rare Sets")
-    }
     Else
       PrintChaosRecipe("There are " Object.Count() " sets of rare items left to vendor.`n", 3)
-
     ; Reset in preparation for the next press of this hotkey.
-    RunningToggle := False  
-    SendMSG(1,0,scriptTradeMacro)
     Sleep, 90*Latency
     MouseMove, xx, yy, 0
-    ResetMainTimer("On")
+    CheckRunning("Off")
     Return
   }
   ResetMainTimer(toggle:="On"){
@@ -3045,12 +3035,8 @@ Return
   ItemInfo(){
     ItemInfoCommand:
     MouseGetPos, Mx, My
-    ; SendMSG(1,1,scriptTradeMacro)
     ClipItem(Mx, My)
-    ; SendMSG(1,0,scriptTradeMacro)
-    ; MsgBox % Array_Print(Item.Data.Ninja)
     Item.ItemInfo()
-    ; MatchNinjaPrice(True)
     Return
   }
   ; MoveStash - Input any digit and it will move to that Stash tab
@@ -3157,13 +3143,11 @@ Return
   ; LootScan - Finds matching colors under the cursor while key pressed
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   LootScan(Reset:=0){
-      Static GreenHex := 0x32DE24, QuestHex := 0x47E635, LV_LastClick := 0
+      Static LV_LastClick := 0
       Global LootVacuumActive
       If (!ComboHex || Reset)
       {
         ComboHex := Hex2FindText(LootColors,0,0,"",3,3)
-        ; ComboHex .= Hex2FindText(QuestHex,2)
-        ; ComboHex .= ChestStr
         ComboHex := """" . ComboHex . """"
         If Reset
           Return
@@ -3190,37 +3174,32 @@ Return
             MouseGetPos mX, mY
             ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
             ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
-            If (loot := FindText(x,y,xx,yy,0,0,DelveStr,0,0))
-            {
-              ScanPx := loot.1.1, ScanPy := loot.1.y
-              , ScanPy += 30
-              If !(loot.Id ~= "cache" || loot.Id ~= "vein")
-                ScanPx += loot.3
-              GoSub LootScan_Click
-              LV_LastClick := A_TickCount
-              Return
-            }
+            loot := FindText(x,y,xx,yy,0,0,DelveStr,0,0)
           }
           Else
           {
             MouseGetPos mX, mY
             ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
             ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
-            If (loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0))
-            {
-              ScanPx := loot.1.1, ScanPy := loot.1.y
-              , ScanPy += 30
-              GoSub LootScan_Click
-              LV_LastClick := A_TickCount
-              Return
-            }
+            loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0)
           }
+          If (loot)
+          {
+            ScanPx := loot.1.1, ScanPy := loot.1.y
+            , ScanPy += 30
+            If (OnMines && !(loot.Id ~= "cache" || loot.Id ~= "vein"))
+              ScanPx += loot.3
+            GoSub LootScan_Click
+            LV_LastClick := A_TickCount
+            Return
+          }
+
         }
         Else
         {
           MouseGetPos mX, mY
           PixelGetColor, scolor, mX, mY, RGB
-          If (indexOf(scolor,LootColors) || CompareHex(scolor,GreenHex,53,1))
+          If (indexOf(scolor,LootColors) )
             If ( LootVacuumActive )
             {
               click %mX%, %mY%
@@ -3264,58 +3243,6 @@ Return
     Return
   }
 
-  ; Build crafting popup menu
-  CraftBasicPopUpBuild(){
-    global hotkeyCraftBasic, CraftMenu
-    CraftMenu := new Radial_Menu
-    CraftMenu.SetSections("5")
-    CraftMenu.Add("Chance","Images/Chance.png", "1")
-    CraftMenu.Add("Socket","Images/Jeweller.png", "2")
-    CraftMenu.Add("Color","Images/Chromatic.png", "3")
-    CraftMenu.Add("Link","Images/Fusing.png", "4")
-    CraftMenu.Add("Maps","Images/Maps.png", "5")
-    ; CraftMenu.Add2("Jeweller","Images/Jeweller.png", "4")
-  }
-  CraftBasicPopUp(){
-    static _init_ := CraftBasicPopUpBuild()
-    Global CraftMenu, RunningToggle
-    If RunningToggle  ; This means an underlying thread is already running the loop below.
-    {
-      RunningToggle := False  ; Signal that thread's loop to stop.
-      ResetMainTimer("On")
-      SendMSG(1,0,scriptTradeMacro)
-      Notify("Aborting Current Process","",2)
-      exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
-    }
-
-    If !(CraftMenu.Active){
-      MouseGetPos itemx, itemy
-      CraftMenu.SetKey(hotkeyCraftBasic)
-      ; CraftMenu.SetKeySpecial("Ctrl")
-      selection := CraftMenu.Show()
-      If selection
-      {
-        If DebugMessages
-        {
-          If (selection = "Maps")
-            Notify("Begin Bulk Crafting Maps","",2)
-          Else If (selection = "Socket")
-            Notify("Socketing Selected Item","",2)
-          Else If (selection = "Color")
-            Notify("Coloring Selected Item","",2)
-          Else If (selection = "Link")
-            Notify("Linking Selected Item","",2)
-          Else If (selection = "Chance")
-            Notify("Chance Selected Item until Unique","Either Bulk mode or Scour",2)
-          Else
-            Notify("Result is:",selection,2)
-        }
-        WinActivate, % GameStr
-        Crafting(selection)
-      }
-      Else WinActivate, % GameStr
-    }
-  }
 ; Main Script Logic Timers - TGameTick, TimerPassthrough
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; TGameTick - Flask Logic timer
@@ -3331,7 +3258,7 @@ Return
         Controller()
       If (DebugMessages && YesTimeMS)
         t1 := A_TickCount
-      If (OnTown||OnHideout||!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Settings.autominesEnable||WR.perChar.Settings.autolevelgemsEnable||LootVacuum))
+      If ( OnTown || OnHideout || !( WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.perChar.Settings.autominesEnable || WR.perChar.Settings.autolevelgemsEnable || LootVacuum ) )
       {
         Msg := (OnTown?"Script paused in town"
         :(OnHideout?"Script paused in hideout"
@@ -3958,103 +3885,101 @@ Return
   return
   }
 
-; Crafting - Deal with Crafting requirement conditions
+; Crafting Section - main routine and all subroutines and popup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Crafting(selection:="Maps")
   {
-      ; Thread, NoTimers, True
-      MouseGetPos xx, yy
-      If RunningToggle
+    ; Thread, NoTimers, True
+    MouseGetPos xx, yy
+    CheckRunning()
+    If GameActive
+    {
+      CheckRunning("On")
+      GuiStatus()
+      If (!OnChar) 
       {
-        RunningToggle := False
-        ResetMainTimer("On")
-        SendMSG(1,0,scriptTradeMacro)
-        Notify("Aborting Current Process","",2)
-      exit
+        MsgBox %  "You do not appear to be in game.`nLikely need to calibrate Character Active"
+        CheckRunning("Off")
+        Return
       }
-      If GameActive
+      ; Begin Crafting Script
+      Else
       {
-        RunningToggle := True
-        ResetMainTimer("Off")
-        GuiStatus()
-        If (!OnChar) 
+        If (!OnStash && YesEnableAutomation)
         {
-          MsgBox %  "You do not appear to be in game.`nLikely need to calibrate Character Active"
-          RunningToggle := False
-          ResetMainTimer("On")
-          Return
-        }
-        ; Begin Crafting Script
-        Else
-        {
-          If (!OnStash && YesEnableAutomation)
+          ; If don't find stash, return
+          If !SearchStash()
           {
-            ; If don't find stash, return
-            If !SearchStash()
-            {
-              RunningToggle := False
-              ResetMainTimer("On")
-              SendMSG(1,0,scriptTradeMacro)
-              Return
-            }
-            Else
-              RandomSleep(90,90)
-          }
-          ; Open Inventory if is closed
-          If (!OnInventory && OnStash)
-          {
-            SendHotkey(hotkeyInventory)
-            RandomSleep(45,45)
-            GuiStatus()
-            RandomSleep(45,45)
-          }
-          If (OnInventory && OnStash)
-          {
-            RandomSleep(45,45)
-          If (selection = "Maps")
-            CraftingMaps()
-          Else If (selection = "Socket")
-            Notify("Logic Coming Soon","",2)
-          Else If (selection = "Color")
-            Notify("Logic Coming Soon","",2)
-          Else If (selection = "Link")
-            Notify("Logic Coming Soon","",2)
-          Else If (selection = "Chance")
-            Notify("Logic Coming Soon","",2)
-          Else
-            Notify("Result is:",selection,2)
-
-          }
-          Else
-          {
-            ; Exit Routine
-            RunningToggle := False
-            ResetMainTimer("On")
-            SendMSG(1,0,scriptTradeMacro)
+            CheckRunning("Off")
             Return
           }
+          Else
+            RandomSleep(90,90)
+        }
+        ; Open Inventory if is closed
+        If (!OnInventory && OnStash)
+        {
+          SendHotkey(hotkeyInventory)
+          RandomSleep(45,45)
+          GuiStatus()
+          RandomSleep(45,45)
+        }
+        If (OnInventory && OnStash)
+        {
+          RandomSleep(45,45)
+          CurrentTab := 0
+          MoveStash(StashTabCurrency)
+          If indexOf(selection,["Maps","Socket","Color","Link","Chance"])
+            Crafting%selection%()
+          Else
+            Notify("Unknown Result is:",selection,2)
+        }
+        Else
+        {
+          ; Exit Routine
+          CheckRunning("Off")
+          Return
         }
       }
-      MouseMove %xx%, %yy%
-      RunningToggle := False
-      ResetMainTimer("On")
-      SendMSG(1,0,scriptTradeMacro)
+    }
+    MouseMove %xx%, %yy%
+    CheckRunning("Off")
     Return
   }
-
-; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ; CraftingChance - Use the settings to apply chance to item(s) until unique
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  CraftingChance(){
+    Global RunningToggle
+    Notify("Chance Logic Coming Soon","",2)
+  }
+  ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  CraftingColor(){
+    Global RunningToggle
+    Notify("Color Logic Coming Soon","",2)
+  }
+  ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  CraftingLink(){
+    Global RunningToggle
+    Notify("Link Logic Coming Soon","",2)
+  }
+  ; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  CraftingSocket(){
+    Global RunningToggle
+    Notify("Socket Logic Coming Soon","",2)
+  }
+  ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CraftingMaps()
   {
     Global RunningToggle
-    CurrentTab := 0
-    MoveStash(StashTabCurrency)
     ; Move mouse away for Screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
     ; Ignore Slot
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Start Scan on Inventory
-    SendMSG(1,1,scriptTradeMacro)
     For C, GridX in InventoryGridX
     {
       If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
@@ -4174,10 +4099,8 @@ Return
         }
       }
     }
-    SendMSG(1,0,scriptTradeMacro)
     Return
   }
-
   getMapCraftingMethod()
   {
     Loop, 3
@@ -4190,11 +4113,56 @@ Return
     }
     Return False
   }
-; ApplyCurrency - Using cname = currency name string and x, y as apply position
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ; Build crafting popup menu
+  CraftBasicPopUpBuild(){
+    global hotkeyCraftBasic, CraftMenu
+    CraftMenu := new Radial_Menu
+    CraftMenu.SetSections("5")
+    CraftMenu.Add("Chance","Images/Chance.png", "1")
+    CraftMenu.Add("Socket","Images/Jeweller.png", "2")
+    CraftMenu.Add("Color","Images/Chromatic.png", "3")
+    CraftMenu.Add("Link","Images/Fusing.png", "4")
+    CraftMenu.Add("Maps","Images/Maps.png", "5")
+    ; CraftMenu.Add2("Jeweller","Images/Jeweller.png", "4")
+  }
+  CraftBasicPopUp(){
+    static _init_ := CraftBasicPopUpBuild()
+    Global CraftMenu, RunningToggle
+    CheckRunning()
+
+    If !(CraftMenu.Active){
+      MouseGetPos itemx, itemy
+      CraftMenu.SetKey(hotkeyCraftBasic)
+      ; CraftMenu.SetKeySpecial("Ctrl")
+      selection := CraftMenu.Show()
+      If selection
+      {
+        If DebugMessages
+        {
+          If (selection = "Maps")
+            Notify("Begin Bulk Crafting Maps","",2)
+          Else If (selection = "Socket")
+            Notify("Socketing Selected Item","",2)
+          Else If (selection = "Color")
+            Notify("Coloring Selected Item","",2)
+          Else If (selection = "Link")
+            Notify("Linking Selected Item","",2)
+          Else If (selection = "Chance")
+            Notify("Chance Selected Item until Unique","Either Bulk mode or Scour",2)
+          Else
+            Notify("Result is:",selection,2)
+        }
+        WinActivate, % GameStr
+        Crafting(selection)
+      }
+      Else WinActivate, % GameStr
+    }
+  }
+  ; ApplyCurrency - Using cname = currency name string and x, y as apply position
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ApplyCurrency(cname, x, y)
   {
-    RightClick(WR.loc[cname].X, WR.loc[cname].Y)
+    RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
     Sleep, 45*Latency
     LeftClick(x,y)
     Sleep, 90*Latency
@@ -4202,9 +4170,8 @@ Return
     Sleep, 45*Latency
     return
   }
-
-; MapRoll - Apply currency/reroll on maps based on select undesireable mods
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
+  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MapRoll(Method, x, y)
   {
     MMQIgnore := False
@@ -4311,7 +4278,6 @@ Return
     }
     return
   }
-  
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GemSwap()
