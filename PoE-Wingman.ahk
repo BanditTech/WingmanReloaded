@@ -467,7 +467,7 @@
     for k, v in []
       WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
     WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}
-    WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1"}
+    WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1","PopAll":"0"}
     WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
       , "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
       , "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0"
@@ -484,12 +484,12 @@
       WR.loc[v] := {}
     for k, v in ["1","2","3","4","5"]
     {
-      WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0, "Group":Chr(A_Index+96), "Slot":A_Index}
+      WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0, "Group":Chr(A_Index+96), "Slot":A_Index, "Type":"Flask"}
       WR.cdExpires.Flask[v] := A_TickCount
     }
     for k, v in ["1","2","3","4","5","6","7","8","9","10"]
     {
-      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index, "QS":"0"}
+      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"}
       WR.cdExpires.Utility[v] := A_TickCount
     }
     for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
@@ -3388,19 +3388,11 @@ Return
           {
             If (WR.cdExpires.Flask[A_Index] < A_TickCount)
             {
-              If(WR.Flask[A_Index].Life && WR.Flask[A_Index].Life > Player.Percent.Life)
+              If ((WR.Flask[A_Index].Life && WR.Flask[A_Index].Life > Player.Percent.Life)
+              || (WR.Flask[A_Index].ES && WR.Flask[A_Index].ES > Player.Percent.ES)
+              || (WR.Flask[A_Index].Mana && WR.Flask[A_Index].Mana > Player.Percent.Mana))
               {
-                Trigger(WR.Flask[A_Index],"Flask")
-                Continue
-              }
-              If(WR.Flask[A_Index].ES && WR.Flask[A_Index].ES > Player.Percent.ES)
-              {
-                Trigger(WR.Flask[A_Index],"Flask")
-                Continue
-              }
-              If(WR.Flask[A_Index].Mana && WR.Flask[A_Index].Mana > Player.Percent.Mana)
-              {
-                Trigger(WR.Flask[A_Index],"Flask")
+                Trigger(WR.Flask[A_Index])
                 Continue
               }
             }
@@ -3412,22 +3404,22 @@ Return
           If WR.func.Toggle.Flask
             Loop 5
               If (WR.Flask[A_Index].MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-                Trigger(WR.Flask[A_Index],"Flask")
+                Trigger(WR.Flask[A_Index])
           If WR.func.Toggle.Utility
             Loop, 10
               If (WR.Utility[A_Index].Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility[A_Index].MainAttack)
-                Trigger(WR.Utility[A_Index],"Utility")
+                Trigger(WR.Utility[A_Index])
         }
         If SecondaryAttackPressedActive
         {
           If WR.func.Toggle.Flask
             Loop 5
               If (WR.Flask[A_Index].SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-                Trigger(WR.Flask[A_Index],"Flask")
+                Trigger(WR.Flask[A_Index])
           If WR.func.Toggle.Utility
             Loop, 10
               If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility[A_Index].SecondaryAttack)
-                Trigger(WR.Utility[A_Index],"Utility")
+                Trigger(WR.Utility[A_Index])
         }
 
         If (WR.func.Toggle.Utility) ; Trigger Utilities
@@ -3437,20 +3429,17 @@ Return
             If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount)
             {
               If ( WR.Utility[A_Index].OnCD )
-                Trigger(WR.Utility[A_Index],"Utility")
-              Else If ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
-                Trigger(WR.Utility[A_Index],"Utility")
-              Else If  (WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
-                Trigger(WR.Utility[A_Index],"Utility")
-              Else If (WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana )
-                Trigger(WR.Utility[A_Index],"Utility")
+              || ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
+              || ( WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
+              || ( WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana )
+                Trigger(WR.Utility[A_Index])
               Else If (WR.Utility[A_Index].Icon)
               {
                 BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
                 If (!WR.Utility[A_Index].IconShow && BuffIcon) || (WR.Utility[A_Index].IconShow && !BuffIcon)
                   WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
                 Else If (WR.Utility[A_Index].IconShow && BuffIcon) || (!WR.Utility[A_Index].IconShow && !BuffIcon)
-                  Trigger(WR.Utility[A_Index],"Utility")
+                  Trigger(WR.Utility[A_Index],True)
               }
             }
           }
@@ -3462,10 +3451,10 @@ Return
         {
           Loop 5
             If WR.Flask[A_Index].Move
-              Trigger(WR.Flask[A_Index],"Flask")
+              Trigger(WR.Flask[A_Index])
           Loop 10
             If WR.Utility[A_Index].Move
-              Trigger(WR.Utility[A_Index],"Utility")
+              Trigger(WR.Utility[A_Index])
         }
       }
       If (WR.perChar.Setting.channelrepressEnable)
@@ -3614,22 +3603,23 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; Trigger - Generic Trigger for flasks or utility
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Trigger(obj,type:="Flask"){
+  Trigger(obj,force:=False){
     Static ActionList := {}
     Static LastHeldLB, LastHeldMA, LastHeldSA
     Global MovementHotkeyActive
     If !IsObject(ActionList[obj.Group])
       ActionList[obj.Group] := {}
-    If !ActionList[obj.Group].Count()
+    If (force && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
+      ActionList[obj.Group].Push(obj.Type . " " . obj.Slot)
+    Else If !ActionList[obj.Group].Count()
     {
-      loop % (type="Flask"?5:10)
-        if (WR[type][A_Index].Group = obj.Group 
-        && WR.cdExpires[type][A_Index] < A_TickCount 
-        && !indexOf(type . " " . A_Index,ActionList[obj.Group])) 
-          ActionList[obj.Group].Push(type . " " . A_Index)
-    } Else If (WR.cdExpires[type][obj.Slot] < A_TickCount 
-    && !indexOf(A_Index,ActionList[obj.Group]))4
-      ActionList[obj.Group].Push(type . " " . obj.Slot)
+      loop % (obj.Type="Flask"?5:10)
+        if (WR[obj.Type][A_Index].Group = obj.Group  && !indexOf(obj.Type . " " . A_Index,ActionList[obj.Group])
+        && ConfirmMatchingTriggers(WR[obj.Type][A_Index]) ) 
+          ActionList[obj.Group].Push(obj.Type . " " . A_Index)
+    } 
+    Else If (!indexOf(obj.Type . " " . obj.Slot,ActionList[obj.Group]) && ConfirmMatchingTriggers(obj))
+      ActionList[obj.Group].Push(obj.Type . " " . obj.Slot)
     For k, v in ActionList[obj.Group]
     {
       type := StrSplit(v, " ")[1], v := StrSplit(v, " ")[2]
@@ -3682,13 +3672,36 @@ Return
         If (WR[type][v].Group = "QuickSilver")
           Loop, 10
             If (WR.Utility[A_Index].Enable && WR.Utility[A_Index].QS)
-              Trigger(WR.Utility[A_Index],"Utility")
+              Trigger(WR.Utility[A_Index],true)
         Return
       }
     }
     Return
   }
-
+  ConfirmMatchingTriggers(obj){
+    If ((obj.Enable || obj.Type = "Flask") && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+    {
+      If (WR.func.Toggle.PopAll && obj.PopAll) ; PopAll trigger
+        Return True
+      If (obj.OnCD)
+        Return True
+      If ( ( WR.func.Toggle[obj.Type] && obj.Condition == 1 ; Any/All Resource Triggers
+        && (obj.Life && obj.Life > Player.Percent.Life) || (obj.ES && obj.ES > Player.Percent.ES) || (obj.Mana && obj.Mana > Player.Percent.Mana) ) 
+        || ( WR.func.Toggle[obj.Type] && obj.Condition == 2 
+        && (!obj.Life || (obj.Life && obj.Life > Player.Percent.Life)) && (!obj.ES || (obj.ES && obj.ES > Player.Percent.ES)) && (!obj.Mana || (obj.Mana && obj.Mana > Player.Percent.Mana)) ) )
+        Return True
+      If (obj.Move && WR.func.Toggle.Move ; Move Triggers
+        && ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P")  
+        || (MainAttackPressedActive && WR.perChar.Settings.movementMainAttack)
+        || (SecondaryAttackPressedActive && WR.perChar.Settings.movementSecondaryAttack)))
+        Return True
+      If (WR.func.Toggle[obj.Type] 
+        && ( (obj.MainAttack && MainAttackPressedActive) ;Attack Triggers
+        || (obj.SecondaryAttack && SecondaryAttackPressedActive) ) )
+        Return True
+    }
+    Return False
+  }
   ; MainAttackCommand - Main attack Flasks
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MainAttackCommand()
@@ -4400,18 +4413,16 @@ Return
   PopFlasks(){
     PopFlasksCommand:
       Critical
+      WR.func.Toggle.PopAll := True
       If PopFlaskRespectCD
       {
         Loop 5
-        {
           If WR.Flask[A_Index].PopAll
             Trigger(WR.Flask[A_Index])
-        }
       }
       Else
       {
         Loop 5
-        {
           If WR.Flask[A_Index].PopAll
           {
             SendHotkey(WR.Flask[A_Index].Key)
@@ -4419,9 +4430,9 @@ Return
             WR.cdExpires.Group[WR.Flask[A_Index].Group] := A_TickCount + WR.Flask[A_Index].GroupCD
             RandomSleep(-99,99)
           }
-        }
       }
-      Thread, NoTimers, False    ;End Critical
+      Critical, Off
+      WR.func.Toggle.PopAll := False
     return
     }
 
@@ -4829,7 +4840,7 @@ Return
         && GuiStatus("",0)
         && ((YesOHB && YesOHBFound) || !YesOHB) )
         {
-          Trigger(WR.Utility[TriggerUtilityKey],"Utility")
+          Trigger(WR.Utility[TriggerUtilityKey])
         }
       }
       Else
@@ -8332,6 +8343,4 @@ Return
     Return
   }
 
-
-  ; Comment out this line if your script crashes on launch
   #Include, %A_ScriptDir%\data\Library.ahk
