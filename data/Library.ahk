@@ -3685,7 +3685,7 @@
       Gui, Strings: Tab, General
         Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
         Gui, Strings: +Delimiter?
-        Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
+        Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 1 pixel bar - Only Adjust if not 1080 Height
         Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"?"%1440_HealthBarStr_Alt%"?"%1050_HealthBarStr%"
         Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
         Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon

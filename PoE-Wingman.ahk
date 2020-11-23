@@ -121,7 +121,7 @@
     WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000"
     , "Group":Chr(A_Index+96), "Slot":A_Index, "Type":"Flask"
     , "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
-    , "debuffCurse":"0", "debuffShock":"0", "debuffBleed":"0", "debuffFreeze":"0", "debuffIgnite":"0", "debuffPoison":"0"}
+    , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
     WR.cdExpires.Flask[v] := A_TickCount
   }
   for k, v in ["1","2","3","4","5","6","7","8","9","10"]
@@ -130,7 +130,7 @@
     , "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"
     , "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Life":0, "ES":0, "Mana":0
     , "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "IconVar0":"0", "IconVar1":"0"
-    , "debuffCurse":"0", "debuffShock":"0", "debuffBleed":"0", "debuffFreeze":"0", "debuffIgnite":"0", "debuffPoison":"0"}
+    , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
     WR.cdExpires.Utility[v] := A_TickCount
   }
   for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
@@ -1920,6 +1920,38 @@
 Return
 ; --------------------------------------------Function Section-----------------------------------------------------------------------------------------------------------------------
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; CheckDebuffs - Search for preset Debuff captures, then fire all flasks and utility that have matching trigger
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  CheckDebuffs(){
+    ; Debuff area
+    If !(searchList := determineDebuffTriggerActive())
+      Return
+    x1:=GameX, y1:=GameY+Round(GameH/(1080/81)), x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/162))
+    For k, debuff in searchList
+    {
+      If (debuffFound := FindText(x1, y1, x2, y2, 0, 0, debuff%debuff%Str,0))
+      {
+        For k, type in ["Flask","Utility"]
+          Loop, % (type="Flask"?5:10)
+            If (WR[type][A_Index][debuff] && WR.func.Toggle[type] && WR.cdExpires[type][A_Index] <= A_TickCount)
+              Trigger(WR[type][A_Index],True)
+      }
+    }
+  }
+  determineDebuffTriggerActive(){
+    active:=[]
+    For k, type in ["Flask","Utility"]
+      Loop, % (type="Flask"?5:10)
+      {
+        slot := A_Index
+        for k, debuff in ["Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
+          If (WR[type][slot][debuff] && !indexOf(debuff,active))
+            active.Push(debuff)
+      }
+    If active.Count()
+      Return active
+    Return False
+  }
 ; Inventory Management Functions - ItemSortCommand, ClipItem, ParseClip, ItemInfo, MatchLootFilter, MatchNinjaPrice, GraphNinjaPrices, MoveStash, StockScrolls, LootScan
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; ItemSortCommand - Sort inventory and determine action
@@ -3388,6 +3420,9 @@ Return
           Exit
         }
 
+        If (WR.func.Toggle.Flask || WR.func.Toggle.Utility) ; Debuff
+          CheckDebuffs()
+
         If (WR.func.Toggle.Flask)
         {
           Loop 5
@@ -3624,6 +3659,8 @@ Return
       ActionList[obj.Group] := {}
     If (force && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
       ActionList[obj.Group].Push(obj.Type . " " . obj.Slot)
+    Else If (!indexOf(obj.Type . " " . obj.Slot,ActionList[obj.Group]) && ConfirmMatchingTriggers(obj))
+      ActionList[obj.Group].Push(obj.Type . " " . obj.Slot)
     Else If !ActionList[obj.Group].Count()
     {
       loop % (obj.Type="Flask"?5:10)
@@ -3631,8 +3668,6 @@ Return
         && ConfirmMatchingTriggers(WR[obj.Type][A_Index]) ) 
           ActionList[obj.Group].Push(obj.Type . " " . A_Index)
     } 
-    Else If (!indexOf(obj.Type . " " . obj.Slot,ActionList[obj.Group]) && ConfirmMatchingTriggers(obj))
-      ActionList[obj.Group].Push(obj.Type . " " . obj.Slot)
     For k, v in ActionList[obj.Group]
     {
       type := StrSplit(v, " ")[1], v := StrSplit(v, " ")[2]
@@ -5462,6 +5497,8 @@ Return
       IniRead, debuffFreezeStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffFreezeStr,% A_Space
       IniRead, debuffIgniteStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffIgniteStr,% A_Space
       IniRead, debuffPoisonStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffPoisonStr,% A_Space
+
+      debuffCurseStr := debuffCurseEleWeakStr . debuffCurseVulnStr . debuffCurseEnfeebleStr . debuffCurseTempChainStr . debuffCurseCondStr . debuffCurseFlamStr . debuffCurseFrostStr . debuffCurseWarMarkStr
 
       ;Inventory Colors
       IniRead, varEmptyInvSlotColor, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
@@ -7706,12 +7743,12 @@ Return
         Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Flask[slot].GroupCD
 
         Gui, Flask%slot%: Add, GroupBox, Section center xs+110 ys w360 h40, Trigger with Debuff
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffCurse  xs+15 w54 yp+20 Checked" WR.Flask[slot].debuffCurse , Curse
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffShock    xp+55 wp    yp Checked" WR.Flask[slot].debuffShock , Shock
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffBleed    xp+55 wp    yp Checked" WR.Flask[slot].debuffBleed , Bleed
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffFreeze   xp+55 wp    yp Checked" WR.Flask[slot].debuffFreeze, Freeze
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffIgnite   xp+55 wp    yp Checked" WR.Flask[slot].debuffIgnite, Ignite
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffPoison   xp+55 wp    yp Checked" WR.Flask[slot].debuffPoison, Poison
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Curse  xs+15 w54 yp+20 Checked"  WR.Flask[slot].Curse , Curse
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Shock    xp+55 wp    yp Checked" WR.Flask[slot].Shock , Shock
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Bleed    xp+55 wp    yp Checked" WR.Flask[slot].Bleed , Bleed
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Freeze   xp+55 wp    yp Checked" WR.Flask[slot].Freeze, Freeze
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Ignite   xp+55 wp    yp Checked" WR.Flask[slot].Ignite, Ignite
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Poison   xp+55 wp    yp Checked" WR.Flask[slot].Poison, Poison
 
 
         Gui, Flask%slot%: Add, GroupBox, Section center xs y+15 w100 h45, Pop All Flasks
@@ -7752,7 +7789,7 @@ Return
       Return
 
       FlaskSaveValues:
-        for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "debuffCurse", "debuffShock", "debuffBleed", "debuffFreeze", "debuffIgnite", "debuffPoison"]
+        for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
           WR.Flask[which][kind] := Flask%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
@@ -7834,12 +7871,12 @@ Return
         Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
 
         Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w360 h40, Trigger with Debuff
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffCurse  xs+15 w54 yp+20 Checked"  WR.Utility[slot].debuffCurse , Curse
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffShock    xp+55 wp    yp Checked" WR.Utility[slot].debuffShock , Shock
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffBleed    xp+55 wp    yp Checked" WR.Utility[slot].debuffBleed , Bleed
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffFreeze   xp+55 wp    yp Checked" WR.Utility[slot].debuffFreeze, Freeze
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffIgnite   xp+55 wp    yp Checked" WR.Utility[slot].debuffIgnite, Ignite
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffPoison   xp+55 wp    yp Checked" WR.Utility[slot].debuffPoison, Poison
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Curse  xs+15 w54 yp+20 Checked"  WR.Utility[slot].Curse , Curse
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Shock    xp+55 wp    yp Checked" WR.Utility[slot].Shock , Shock
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Bleed    xp+55 wp    yp Checked" WR.Utility[slot].Bleed , Bleed
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Freeze   xp+55 wp    yp Checked" WR.Utility[slot].Freeze, Freeze
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Ignite   xp+55 wp    yp Checked" WR.Utility[slot].Ignite, Ignite
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Poison   xp+55 wp    yp Checked" WR.Utility[slot].Poison, Poison
 
         ; Trigger when sample not found
         Gui, Utility%slot%: Add, GroupBox, Section center xs y+10 w360 h120, Trigger when Sample String not found
@@ -7909,7 +7946,7 @@ Return
       Return
 
       UtilitySaveValues:
-        for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "debuffCurse", "debuffShock", "debuffBleed", "debuffFreeze", "debuffIgnite", "debuffPoison"]
+        for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
           WR.Utility[which][kind] := Utility%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 
@@ -8257,6 +8294,8 @@ Return
       IniWrite,% %A_GuiControl%, %A_ScriptDir%\save\Settings.ini, FindText Strings,% A_GuiControl
       If A_GuiControl = HealthBarStr
         OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
+      If InStr(A_GuiControl, "debuffCurse")
+        debuffCurseStr := debuffCurseEleWeakStr . debuffCurseVulnStr . debuffCurseEnfeebleStr . debuffCurseTempChainStr . debuffCurseCondStr . debuffCurseFlamStr . debuffCurseFrostStr . debuffCurseWarMarkStr
     Return
 
     UpdateResolutionScale:
