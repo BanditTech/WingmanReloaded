@@ -17801,7 +17801,7 @@ ft_Gui(cmd)
   If (cmd="Copy")
     Clipboard:=RegExReplace(s,"\R","`r`n")
   Else if (cmd="CopyString")
-    Clipboard:= """" copyString """"
+    Clipboard:= copyString
   return
   }
   if (cmd="MySlider1") or (cmd="MySlider2")

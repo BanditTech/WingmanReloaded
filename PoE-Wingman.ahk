@@ -5430,102 +5430,39 @@ Return
       ;Ascii strings
       IniRead, HealthBarStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, HealthBarStr, %1080_HealthBarStr%
       If HealthBarStr
-      {
-        HealthBarStr := """" . HealthBarStr . """"
         OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
-      }
       IniRead, ChestStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, ChestStr, %1080_ChestStr%
-      If ChestStr
-        ChestStr := """" . ChestStr . """"
       IniRead, DelveStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, DelveStr, %1080_DelveStr%
-      If DelveStr
-        DelveStr := """" . DelveStr . """"
       IniRead, VendorStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr, %1080_MasterStr%
-      If VendorStr
-        VendorStr := """" . VendorStr . """"
       IniRead, SellItemsStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, SellItemsStr, %1080_SellItemsStr%
-      If SellItemsStr
-        SellItemsStr := """" . SellItemsStr . """"
       IniRead, StashStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr, %1080_StashStr%
-      If StashStr
-        StashStr := """" . StashStr . """"
       IniRead, HeistLockerStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, HeistLockerStr, %1080_HeistLockerStr%
-      If HeistLockerStr
-        HeistLockerStr := """" . HeistLockerStr . """"
       IniRead, SkillUpStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr, %1080_SkillUpStr%
-      If SkillUpStr
-        SkillUpStr := """" . SkillUpStr . """"
       IniRead, XButtonStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, XButtonStr, %1080_XButtonStr%
-      If XButtonStr
-        XButtonStr := """" . XButtonStr . """"
       IniRead, VendorLioneyeStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorLioneyeStr, %1080_BestelStr%
-      If VendorLioneyeStr
-        VendorLioneyeStr := """" . VendorLioneyeStr . """"
       IniRead, VendorForestStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorForestStr, %1080_GreustStr%
-      If VendorForestStr
-        VendorForestStr := """" . VendorForestStr . """"
       IniRead, VendorSarnStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorSarnStr, %1080_ClarissaStr%
-      If VendorSarnStr
-        VendorSarnStr := """" . VendorSarnStr . """"
       IniRead, VendorHighgateStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorHighgateStr, %1080_PetarusStr%
-      If VendorHighgateStr
-        VendorHighgateStr := """" . VendorHighgateStr . """"
       IniRead, VendorOverseerStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorOverseerStr, %1080_LaniStr%
-      If VendorOverseerStr
-        VendorOverseerStr := """" . VendorOverseerStr . """"
       IniRead, VendorBridgeStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorBridgeStr, %1080_HelenaStr%
-      If VendorBridgeStr
-        VendorBridgeStr := """" . VendorBridgeStr . """"
       IniRead, VendorDocksStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorDocksStr, %1080_LaniStr%
-      If VendorDocksStr
-        VendorDocksStr := """" . VendorDocksStr . """"
       IniRead, VendorOriathStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorOriathStr, %1080_LaniStr%
-      If VendorOriathStr
-        VendorOriathStr := """" . VendorOriathStr . """"
       IniRead, VendorMineStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
-      If VendorMineStr
-        VendorMineStr := """" . VendorMineStr . """"
 
       ; Debuff Strings
       IniRead, debuffCurseEleWeakStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseEleWeakStr,% A_Space
-      If debuffCurseEleWeakStr
-        debuffCurseEleWeakStr := """" . debuffCurseEleWeakStr . """"
       IniRead, debuffCurseVulnStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseVulnStr,% A_Space
-      If debuffCurseVulnStr
-        debuffCurseVulnStr := """" . debuffCurseVulnStr . """"
       IniRead, debuffCurseEnfeebleStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseEnfeebleStr,% A_Space
-      If debuffCurseEnfeebleStr
-        debuffCurseEnfeebleStr := """" . debuffCurseEnfeebleStr . """"
       IniRead, debuffCurseTempChainStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseTempChainStr,% A_Space
-      If debuffCurseTempChainStr
-        debuffCurseTempChainStr := """" . debuffCurseTempChainStr . """"
       IniRead, debuffCurseCondStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseCondStr,% A_Space
-      If debuffCurseCondStr
-        debuffCurseCondStr := """" . debuffCurseCondStr . """"
       IniRead, debuffCurseFlamStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseFlamStr,% A_Space
-      If debuffCurseFlamStr
-        debuffCurseFlamStr := """" . debuffCurseFlamStr . """"
       IniRead, debuffCurseFrostStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseFrostStr,% A_Space
-      If debuffCurseFrostStr
-        debuffCurseFrostStr := """" . debuffCurseFrostStr . """"
       IniRead, debuffCurseWarMarkStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseWarMarkStr,% A_Space
-      If debuffCurseWarMarkStr
-        debuffCurseWarMarkStr := """" . debuffCurseWarMarkStr . """"
       IniRead, debuffShockStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffShockStr,% A_Space
-      If debuffShockStr
-        debuffShockStr := """" . debuffShockStr . """"
       IniRead, debuffBleedStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffBleedStr,% A_Space
-      If debuffBleedStr
-        debuffBleedStr := """" . debuffBleedStr . """"
       IniRead, debuffFreezeStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffFreezeStr,% A_Space
-      If debuffFreezeStr
-        debuffFreezeStr := """" . debuffFreezeStr . """"
       IniRead, debuffIgniteStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffIgniteStr,% A_Space
-      If debuffIgniteStr
-        debuffIgniteStr := """" . debuffIgniteStr . """"
       IniRead, debuffPoisonStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffPoisonStr,% A_Space
-      If debuffPoisonStr
-        debuffPoisonStr := """" . debuffPoisonStr . """"
 
       ;Inventory Colors
       IniRead, varEmptyInvSlotColor, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
