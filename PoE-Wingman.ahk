@@ -3436,11 +3436,17 @@ Return
                 Trigger(WR.Utility[A_Index])
               Else If (WR.Utility[A_Index].Icon)
               {
-                BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 75 )), 0, 0, IconStringUtility%A_Index%,0)
-                If (!WR.Utility[A_Index].IconShow && BuffIcon) || (WR.Utility[A_Index].IconShow && !BuffIcon)
-                  WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
-                Else If (WR.Utility[A_Index].IconShow && BuffIcon) || (!WR.Utility[A_Index].IconShow && !BuffIcon)
+                If (WR.Utility[A_Index].IconSearch == 1) ; Search Buff Area
+                  BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 81 )), 0, 0, WR.Utility[A_Index].Icon,0)
+                Else If (WR.Utility[A_Index].IconSearch == 2) ; Search Debuff Area
+                  BuffIcon := FindText(GameX, GameY + Round(GameH / ( 1080 / 81 )), GameX + GameW, GameY + Round(GameH / ( 1080 / 162 )), 0, 0, WR.Utility[A_Index].Icon,0)
+                Else If (WR.Utility[A_Index].IconSearch == 3)
+                  BuffIcon := FindText(WR.Utility[A_Index].IconArea.X1, WR.Utility[A_Index].IconArea.Y1, WR.Utility[A_Index].IconArea.X2, WR.Utility[A_Index].IconArea.Y2, 0, 0, WR.Utility[A_Index].Icon,0)
+                
+                If (WR.Utility[A_Index].IconShow && BuffIcon) || (!WR.Utility[A_Index].IconShow && !BuffIcon)
                   Trigger(WR.Utility[A_Index],True)
+                Else
+                  WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
               }
             }
           }
