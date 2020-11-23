@@ -490,7 +490,7 @@
     }
     for k, v in ["1","2","3","4","5","6","7","8","9","10"]
     {
-      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"}
+      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "IconVar0":"0", "IconVar1":"0", "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"}
       WR.cdExpires.Utility[v] := A_TickCount
     }
     for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
@@ -3437,11 +3437,13 @@ Return
               Else If (WR.Utility[A_Index].Icon)
               {
                 If (WR.Utility[A_Index].IconSearch == 1) ; Search Buff Area
-                  BuffIcon := FindText(GameX, GameY, GameX + GameW, GameY + Round(GameH / ( 1080 / 81 )), 0, 0, WR.Utility[A_Index].Icon,0)
+                  x1:=GameX, y1:=GameY, x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/81))
                 Else If (WR.Utility[A_Index].IconSearch == 2) ; Search Debuff Area
-                  BuffIcon := FindText(GameX, GameY + Round(GameH / ( 1080 / 81 )), GameX + GameW, GameY + Round(GameH / ( 1080 / 162 )), 0, 0, WR.Utility[A_Index].Icon,0)
-                Else If (WR.Utility[A_Index].IconSearch == 3)
-                  BuffIcon := FindText(WR.Utility[A_Index].IconArea.X1, WR.Utility[A_Index].IconArea.Y1, WR.Utility[A_Index].IconArea.X2, WR.Utility[A_Index].IconArea.Y2, 0, 0, WR.Utility[A_Index].Icon,0)
+                  x1:=GameX, y1:=GameY+Round(GameH/(1080/81)), x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/162))
+                Else If (WR.Utility[A_Index].IconSearch == 3) ; Custom Icon Area
+                  x1:=WR.Utility[A_Index].IconArea.X1, y1:=WR.Utility[A_Index].IconArea.Y1, x2:=WR.Utility[A_Index].IconArea.X2, y2:=WR.Utility[A_Index].IconArea.Y2
+
+                BuffIcon := FindText(x1, y1, x2, y2, WR.Utility[A_Index].IconVar1, WR.Utility[A_Index].IconVar0, WR.Utility[A_Index].Icon,0)
                 
                 If (WR.Utility[A_Index].IconShow && BuffIcon) || (!WR.Utility[A_Index].IconShow && !BuffIcon)
                   Trigger(WR.Utility[A_Index],True)
@@ -7815,6 +7817,7 @@ Return
       {
         Built[slot] := True
         Gui, Utility%slot%: new, AlwaysOnTop
+        Gui, Utility%slot%: Font, cBlack
 
         Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h325, Utility Slot %slot%
 
@@ -7835,21 +7838,36 @@ Return
         Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h55, Group Cooldown
         Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
 
-        Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w360 h100, Trigger when Sample String not found
-        Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w340  h17, %  WR.Utility[slot].Icon
+        ; Trigger when sample not found
+        Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w360 h120, Trigger when Sample String not found
+        Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w230  h17, %  WR.Utility[slot].Icon
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown x+10 yp hp Checked" WR.Utility[slot].IconShown , Invert to Shown
 
-        Gui, Utility%slot%: Add, Text, xs+10  y+8 , Search Area:
-        Gui, Utility%slot%: Add, Radio, % "vUtility" slot "IconSearch  x+10   yp-4 h22 Checked" (WR.Utility[slot].IconSearch==1?1:0), Buff Area
-        Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==2?1:0), DeBuff Area
-        Gui, Utility%slot%: Add, Radio, %                              " x+9 hp  yp Checked" (WR.Utility[slot].IconSearch==3?1:0), Custom
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown xs+10   y+5 hp Checked" WR.Utility[slot].IconShown , Invert to Shown
-        Gui, Utility%slot%: Add, Button, x+10 yp, Show Utility %slot% Area
-        Gui, Utility%slot%: Add, Button, x+10 yp wp, Set Utility %slot% Area
+
+        Gui, Utility%slot%: Add, Text, xs+10  y+12 , Search Area:
+        Gui, Utility%slot%: Add, Radio, % "vUtility" slot "IconSearch  x+4   yp-4 h22 Checked" (WR.Utility[slot].IconSearch==1?1:0), Buff
+        Gui, Utility%slot%: Add, Radio, %                              " x+3 hp  yp Checked" (WR.Utility[slot].IconSearch==2?1:0), DeBuff
+        Gui, Utility%slot%: Add, Radio, %                              " x+3 hp  yp Checked" (WR.Utility[slot].IconSearch==3?1:0), Custom
+
+
+        Gui, Utility%slot%: Add, Button, x+5 yp hp-2  vUtility%slot%IconArea_Show, Show
+        Gui, Utility%slot%: Add, Button, x+5 yp wp hp vUtility%slot%IconArea_Set, Set
         Utility%slot%IconArea := WR.Utility[slot].IconArea
 
+        Gui, Utility%slot%: Add, GroupBox,  center       xs+10   y+3  w340  h43, Allowed Variance for 1 or 0
+
+        Gui, Utility%slot%: Add, Text,  center       xp+30   yp+20  w70  h18, Variance 1
+        Gui, Utility%slot%: Add, Edit,  center       x+5   yp-2  w50  hp
+        Gui, Utility%slot%: Add, UpDown, range0-100 x+0 yp hp vUtility%slot%IconVar1, %  WR.Utility[slot].IconVar1 * 100
+
+        Gui, Utility%slot%: Add, Text,  center       x+10   yp+2  w70  hp, Variance 0
+        Gui, Utility%slot%: Add, Edit,  center       x+5   yp-2  w50  hp
+        Gui, Utility%slot%: Add, UpDown, range0-100 x+0 yp hp vUtility%slot%IconVar0, %  WR.Utility[slot].IconVar0 * 100
 
 
-        Gui, Utility%slot%: Add, GroupBox, Section center xs y+15 w110 h45, Pop All Flasks
+
+
+        Gui, Utility%slot%: Add, GroupBox, Section center xs y+18 w110 h45, Pop All Flasks
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "PopAll xs+10   yp+20 Checked" WR.Utility[slot].PopAll , Include
 
         Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h45, Trigger on Move
@@ -7892,7 +7910,9 @@ Return
           WR.Utility[which][kind] := Utility%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 
-    
+        for k, kind in ["IconVar1", "IconVar0"]
+          WR.Utility[which][kind] := Round(Utility%which%%kind% / 100,2)
+
         FileDelete, %A_ScriptDir%\save\Utility.json
         JSONtext := JSON.Dump(WR.Utility,,2)
         FileAppend, %JSONtext%, %A_ScriptDir%\save\Utility.json
