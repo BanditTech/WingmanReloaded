@@ -3158,7 +3158,6 @@ Return
       If (!ComboHex || Reset)
       {
         ComboHex := Hex2FindText(LootColors,0,0,"",3,3)
-        ComboHex := """" . ComboHex . """"
         If Reset
           Return
       }
@@ -5295,7 +5294,7 @@ Return
       IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1, Disable
       IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2, Disable
       IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3, Disable
-        ;MODS
+      ;MODS
       IniRead, ElementalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect, 0
       IniRead, PhysicalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect, 0
       IniRead, NoRegen, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen, 0
@@ -7431,7 +7430,7 @@ Return
         Gui, OHB: add, Text, xm , Output String:
         Gui, OHB: add, Button, x+120 yp hp wp vOHB_Test gOHBUpdate, Test String
         Gui, OHB: Font,
-        Gui, OHB: add, edit, xm vOHB_StringEdit gOHBUpdate w480 h25, % """" Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height,OHB_LR_border) """"
+        Gui, OHB: add, edit, xm vOHB_StringEdit gOHBUpdate w480 h25, % Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height,OHB_LR_border)
         Gui, OHB: Font, cBlack s20
         Gui, OHB: add, text, xm y+35, Width:
         Gui, OHB: add, text, x+0 yp w65, %OHB_Width%
@@ -7513,7 +7512,7 @@ Return
           GuiControl,OHB: , OHB_b, % OHB_Split.b
           GuiControl,OHB: +c%OHB_Color%, OHB_Preview
         }
-        GuiControl, , OHB_StringEdit, % """" Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height,OHB_LR_border) """"
+        GuiControl, , OHB_StringEdit, % Hex2FindText(OHB_Color,OHB_Variance,0,"OHB_Bar",OHB_Width,OHB_Height,OHB_LR_border)
       Return
 
       OHBGuiClose:
