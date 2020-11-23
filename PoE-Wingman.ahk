@@ -88,6 +88,53 @@
     FileCreateDir, %A_ScriptDir%\temp
   
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Global Script Object
+; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{}}
+  WR.loc.pixel := {}, WR.loc.area := {}
+  for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy"
+  , "Transmutation", "Augmentation", "Alteration", "Vaal", "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash"
+  , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "DivTrade", "DivItem", "Gui"]
+    WR.loc.pixel[v] := {"X":0,"Y":0}
+  for k, v in []
+    WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
+  WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
+  WR.cdExpires.Binding.Move := ""
+  WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1","PopAll":"0"}
+  WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
+    , "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
+    , "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0"
+    , "channelrepressEnable":"0" , "channelrepressKey":"RButton", "channelrepressOffsetX1":"0", "channelrepressOffsetY1":"0", "channelrepressOffsetX2":"0", "channelrepressOffsetY2":"20"
+    , "channelrepressIcon":"|<Scourge Arrow>0xFDF100@0.60$40"
+      . ".108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
+    , "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs"
+    , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseSingleTap":"2", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
+    , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
+    , "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
+    , "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"}
+  for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
+  ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
+  ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
+    WR.loc[v] := {}
+  for k, v in ["1","2","3","4","5"]
+  {
+    WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000"
+    , "Group":Chr(A_Index+96), "Slot":A_Index, "Type":"Flask"
+    , "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
+    , "debuffCurse":"0", "debuffShock":"0", "debuffBleed":"0", "debuffFreeze":"0", "debuffIgnite":"0", "debuffPoison":"0"}
+    WR.cdExpires.Flask[v] := A_TickCount
+  }
+  for k, v in ["1","2","3","4","5","6","7","8","9","10"]
+  {
+    WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000"
+    , "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"
+    , "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Life":0, "ES":0, "Mana":0
+    , "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "IconVar0":"0", "IconVar1":"0"
+    , "debuffCurse":"0", "debuffShock":"0", "debuffBleed":"0", "debuffFreeze":"0", "debuffIgnite":"0", "debuffPoison":"0"}
+    WR.cdExpires.Utility[v] := A_TickCount
+  }
+  for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
+    WR.cdExpires.Group[v] := A_TickCount
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; Extra vars - Not in INI
@@ -457,44 +504,6 @@
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
-  ; Global Script object
-    Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{}}
-    WR.loc.pixel := {}, WR.loc.area := {}
-    for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy"
-    , "Transmutation", "Augmentation", "Alteration", "Vaal", "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash"
-    , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "DivTrade", "DivItem", "Gui"]
-      WR.loc.pixel[v] := {"X":0,"Y":0}
-    for k, v in []
-      WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
-    WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
-    WR.cdExpires.Binding.Move := ""
-    WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1","PopAll":"0"}
-    WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
-      , "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
-      , "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0"
-      , "channelrepressEnable":"0" , "channelrepressKey":"RButton", "channelrepressOffsetX1":"0", "channelrepressOffsetY1":"0", "channelrepressOffsetX2":"0", "channelrepressOffsetY2":"20"
-        , "channelrepressIcon":"|<Scourge Arrow>0xFDF100@0.60$40.108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
-        , "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs"
-      , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseSingleTap":"2", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
-      , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
-      , "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
-      , "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"}
-    for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
-    ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
-    ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
-      WR.loc[v] := {}
-    for k, v in ["1","2","3","4","5"]
-    {
-      WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0, "Group":Chr(A_Index+96), "Slot":A_Index, "Type":"Flask"}
-      WR.cdExpires.Flask[v] := A_TickCount
-    }
-    for k, v in ["1","2","3","4","5","6","7","8","9","10"]
-    {
-      WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000", "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "IconVar0":"0", "IconVar1":"0", "Life":0, "ES":0, "Mana":0, "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"}
-      WR.cdExpires.Utility[v] := A_TickCount
-    }
-    for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
-      WR.cdExpires.Group[v] := A_TickCount
     
   ; Login POESESSID
     Global PoESessionID := ""
@@ -3246,7 +3255,7 @@ Return
 
 ; Main Script Logic Timers - TGameTick, TimerPassthrough
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ; TGameTick - Flask Logic timer
+  ; TGameTick - Main Logic timer - Coordinates all other functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   TGameTick(GuiCheck:=True){
     Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False, OnScreenMM := 0
@@ -3287,6 +3296,7 @@ Return
         }
         Exit
       }
+
       ; Check what status is your character in the game
       if (GuiCheck)
       {
@@ -3352,6 +3362,7 @@ Return
         If CheckGamestates
           mainmenuGameLogicState()
       }
+
       If (WR.perChar.Setting.autominesEnable&&!Detonated)
       {
         If (OnDetonate)
@@ -3366,23 +3377,18 @@ Return
           }
         }
       }
+
       SendDelayAction()
-      If (WR.func.Toggle.Flask || WR.func.Toggle.Quit)
+
+      If (WR.func.Toggle.Flask || WR.func.Toggle.Quit || WR.func.Toggle.Utility)
       {
         ScanGlobe()
-        if (!WR.perChar.Setting.typeES) { ; Life
-          if (WR.func.Toggle.Quit && Player.Percent.Life < WR.perChar.Setting.quitBelow)
-          {
-            LogoutCommand()
-            Exit
-          }
-        } Else { ; Energy Shield
-          if ( WR.func.Toggle.Quit && Player.Percent.ES < WR.perChar.Setting.quitBelow)
-          {
-            LogoutCommand()
-            Exit
-          }
+        if (WR.func.Toggle.Quit && Player.Percent[!WR.perChar.Setting.typeES?"Life":"ES"] < WR.perChar.Setting.quitBelow)
+        {
+          LogoutCommand()
+          Exit
         }
+
         If (WR.func.Toggle.Flask)
         {
           Loop 5
@@ -3454,6 +3460,7 @@ Return
           }
         }
       }
+
       If (WR.func.Toggle.Move)
       {
         Loop 5
@@ -3463,6 +3470,7 @@ Return
           If WR.Utility[A_Index].Move
             Trigger(WR.Utility[A_Index])
       }
+
       If (WR.perChar.Setting.channelrepressEnable)
         StackRelease()
       If LootVacuum
@@ -5477,6 +5485,47 @@ Return
       IniRead, VendorMineStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
       If VendorMineStr
         VendorMineStr := """" . VendorMineStr . """"
+
+      ; Debuff Strings
+      IniRead, debuffCurseEleWeakStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseEleWeakStr,% A_Space
+      If debuffCurseEleWeakStr
+        debuffCurseEleWeakStr := """" . debuffCurseEleWeakStr . """"
+      IniRead, debuffCurseVulnStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseVulnStr,% A_Space
+      If debuffCurseVulnStr
+        debuffCurseVulnStr := """" . debuffCurseVulnStr . """"
+      IniRead, debuffCurseEnfeebleStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseEnfeebleStr,% A_Space
+      If debuffCurseEnfeebleStr
+        debuffCurseEnfeebleStr := """" . debuffCurseEnfeebleStr . """"
+      IniRead, debuffCurseTempChainStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseTempChainStr,% A_Space
+      If debuffCurseTempChainStr
+        debuffCurseTempChainStr := """" . debuffCurseTempChainStr . """"
+      IniRead, debuffCurseCondStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseCondStr,% A_Space
+      If debuffCurseCondStr
+        debuffCurseCondStr := """" . debuffCurseCondStr . """"
+      IniRead, debuffCurseFlamStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseFlamStr,% A_Space
+      If debuffCurseFlamStr
+        debuffCurseFlamStr := """" . debuffCurseFlamStr . """"
+      IniRead, debuffCurseFrostStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseFrostStr,% A_Space
+      If debuffCurseFrostStr
+        debuffCurseFrostStr := """" . debuffCurseFrostStr . """"
+      IniRead, debuffCurseWarMarkStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffCurseWarMarkStr,% A_Space
+      If debuffCurseWarMarkStr
+        debuffCurseWarMarkStr := """" . debuffCurseWarMarkStr . """"
+      IniRead, debuffShockStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffShockStr,% A_Space
+      If debuffShockStr
+        debuffShockStr := """" . debuffShockStr . """"
+      IniRead, debuffBleedStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffBleedStr,% A_Space
+      If debuffBleedStr
+        debuffBleedStr := """" . debuffBleedStr . """"
+      IniRead, debuffFreezeStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffFreezeStr,% A_Space
+      If debuffFreezeStr
+        debuffFreezeStr := """" . debuffFreezeStr . """"
+      IniRead, debuffIgniteStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffIgniteStr,% A_Space
+      If debuffIgniteStr
+        debuffIgniteStr := """" . debuffIgniteStr . """"
+      IniRead, debuffPoisonStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, debuffPoisonStr,% A_Space
+      If debuffPoisonStr
+        debuffPoisonStr := """" . debuffPoisonStr . """"
 
       ;Inventory Colors
       IniRead, varEmptyInvSlotColor, %A_ScriptDir%\save\Settings.ini, Inventory Colors, EmptyInvSlotColor, 0x000100,0x020402,0x000000,0x020302,0x010101,0x010201,0x060906,0x050905,0x030303,0x020202
@@ -7703,23 +7752,33 @@ Return
       {
         Built[slot] := True
         Gui, Flask%slot%: new, AlwaysOnTop
+        Gui, Flask%slot%: Font, cBlack
 
         Gui, Flask%slot%: Add, GroupBox, section xm ym w500 h260, Flask Slot %slot%
 
-        Gui, Flask%slot%: Add, GroupBox, center xs+10 yp+25 w100 h45, Cooldown
-        Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+20   yp+20  w80  h17, %  WR.Flask[slot].CD
+        Gui, Flask%slot%: Add, GroupBox, section center xs+10 yp+20 w100 h45, Cooldown
+        Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+10   yp+20  w80  h17, %  WR.Flask[slot].CD
 
-        Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h45, Keys to Press
-        Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+20   yp+20   w80  h17, %   WR.Flask[slot].Key
+        Gui, Flask%slot%: Add, GroupBox, center xs y+15 w100 h45, Keys to Press
+        Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+10   yp+20   w80  h17, %   WR.Flask[slot].Key
 
-        Gui, Flask%slot%: Add, GroupBox, center xs+10 y+15 w100 h55, CD Group
-        Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+20 yp+20 w80" , a|b|c|d|e|Mana|Life|ES|QuickSilver|Defense
+        Gui, Flask%slot%: Add, GroupBox, center xs y+15 w100 h55, CD Group
+        Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+10 yp+20 w80" , a|b|c|d|e|Mana|Life|ES|QuickSilver|Defense
         GuiControl,Flask%slot%: ChooseString, Flask%slot%Group,% WR.Flask[slot].Group
 
-        Gui, Flask%slot%: Add, GroupBox, center xs+10 y+20 w100 h55, Group Cooldown
-        Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%GroupCD  xs+20   yp+20  w80  h17, %  WR.Flask[slot].GroupCD
+        Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h55, Group Cooldown
+        Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Flask[slot].GroupCD
 
-        Gui, Flask%slot%: Add, GroupBox, Section center x+30 ys+25 w100 h45, Pop All Flasks
+        Gui, Flask%slot%: Add, GroupBox, Section center xs+110 ys w360 h40, Trigger with Debuff
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffCurse  xs+15 w54 yp+20 Checked" WR.Flask[slot].debuffCurse , Curse
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffShock    xp+55 wp    yp Checked" WR.Flask[slot].debuffShock , Shock
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffBleed    xp+55 wp    yp Checked" WR.Flask[slot].debuffBleed , Bleed
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffFreeze   xp+55 wp    yp Checked" WR.Flask[slot].debuffFreeze, Freeze
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffIgnite   xp+55 wp    yp Checked" WR.Flask[slot].debuffIgnite, Ignite
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "debuffPoison   xp+55 wp    yp Checked" WR.Flask[slot].debuffPoison, Poison
+
+
+        Gui, Flask%slot%: Add, GroupBox, Section center xs y+15 w100 h45, Pop All Flasks
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "PopAll  xs+10   yp+20 Checked" WR.Flask[slot].PopAll, Include
 
         Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h45, Trigger on Move
@@ -7752,12 +7811,12 @@ Return
         Gui, Flask%slot%: Add, Radio, % "vFlask" slot "Condition  x+5   yp-5 h22 Checked" (WR.Flask[slot].Condition==1?1:0), Any
         Gui, Flask%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Flask[slot].Condition==2?1:0), All
 
-        Gui, Flask%slot%: show, w520 h280
+        Gui, Flask%slot%: show, AutoSize
       }
       Return
 
       FlaskSaveValues:
-        for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition"]
+        for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "debuffCurse", "debuffShock", "debuffBleed", "debuffFreeze", "debuffIgnite", "debuffPoison"]
           WR.Flask[which][kind] := Flask%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
@@ -7819,7 +7878,7 @@ Return
         Gui, Utility%slot%: new, AlwaysOnTop
         Gui, Utility%slot%: Font, cBlack
 
-        Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h325, Utility Slot %slot%
+        Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h370, Utility Slot %slot%
 
         Gui, Utility%slot%: Add, GroupBox, Section center xs+10 yp+20 w110 h65, Enable Utility
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Enable xs+10   yp+20 Checked" WR.Utility[slot].Enable , Enable
@@ -7838,8 +7897,16 @@ Return
         Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h55, Group Cooldown
         Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
 
+        Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w360 h40, Trigger with Debuff
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffCurse  xs+15 w54 yp+20 Checked"  WR.Utility[slot].debuffCurse , Curse
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffShock    xp+55 wp    yp Checked" WR.Utility[slot].debuffShock , Shock
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffBleed    xp+55 wp    yp Checked" WR.Utility[slot].debuffBleed , Bleed
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffFreeze   xp+55 wp    yp Checked" WR.Utility[slot].debuffFreeze, Freeze
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffIgnite   xp+55 wp    yp Checked" WR.Utility[slot].debuffIgnite, Ignite
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "debuffPoison   xp+55 wp    yp Checked" WR.Utility[slot].debuffPoison, Poison
+
         ; Trigger when sample not found
-        Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w360 h120, Trigger when Sample String not found
+        Gui, Utility%slot%: Add, GroupBox, Section center xs y+10 w360 h120, Trigger when Sample String not found
         Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%Icon  xs+10   yp+20  w230  h17, %  WR.Utility[slot].Icon
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "IconShown x+10 yp hp Checked" WR.Utility[slot].IconShown , Invert to Shown
 
@@ -7901,12 +7968,12 @@ Return
         Gui, Utility%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Utility[slot].Condition==2?1:0), All
 
 
-        Gui, Utility%slot%: show, w520 h340
+        Gui, Utility%slot%: show, AutoSize
       }
       Return
 
       UtilitySaveValues:
-        for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition"]
+        for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "debuffCurse", "debuffShock", "debuffBleed", "debuffFreeze", "debuffIgnite", "debuffPoison"]
           WR.Utility[which][kind] := Utility%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 

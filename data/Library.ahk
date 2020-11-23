@@ -3053,6 +3053,8 @@
       , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
       , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
       , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
+      , debuffCurseEleWeakStr, debuffCurseVulnStr, debuffCurseEnfeebleStr, debuffCurseTempChainStr, debuffCurseCondStr, debuffCurseFlamStr, debuffCurseFrostStr, debuffCurseWarMarkStr
+      , debuffShockStr, debuffBleedStr, debuffFreezeStr, debuffIgniteStr, debuffPoisonStr
     If (Function = "Inventory")
     {
       Gui, 1: Submit
@@ -3677,7 +3679,7 @@
         Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
         Gui, Strings: Font, Bold cBlack
         Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Match your resolution's height with the number in the string Label
-        Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor
+        Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor|Debuff
         Gui, Strings: Font,
 
       Gui, Strings: Tab, General
@@ -3721,6 +3723,49 @@
         Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
         Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
+        Gui, Strings: +Delimiter|
+      Gui, Strings: Tab, Debuff
+        Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+        Gui, Strings: +Delimiter?
+
+        Gui, Strings: Add, Text, xs+10 ys+25 section, Curse - Elemental Weakness
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEleWeakStr gUpdateStringEdit , %debuffCurseEleWeakStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Vulnerability
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseVulnStr gUpdateStringEdit , %debuffCurseVulnStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Enfeeble
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEnfeebleStr gUpdateStringEdit , %debuffCurseEnfeebleStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Temporal Chains
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseTempChainStr gUpdateStringEdit , %debuffCurseTempChainStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Condutivity
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseCondStr gUpdateStringEdit , %debuffCurseCondStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Flammability
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFlamStr gUpdateStringEdit , %debuffCurseFlamStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Frostbite
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFrostStr gUpdateStringEdit , %debuffCurseFrostStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Warlord's Mark
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseWarMarkStr gUpdateStringEdit , %debuffCurseWarMarkStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Shock
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffShockStr gUpdateStringEdit , %debuffShockStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Bleed
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffBleedStr gUpdateStringEdit , %debuffBleedStr%??"%1080_CurseStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Freeze
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffFreezeStr gUpdateStringEdit , %debuffFreezeStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Ignite
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffIgniteStr gUpdateStringEdit , %debuffIgniteStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Poison
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffPoisonStr gUpdateStringEdit , %debuffPoisonStr%??"%1080_CurseStr%"
+
         Gui, Strings: +Delimiter|
       }
       Gui, Strings: show , w640 h525, FindText Strings
