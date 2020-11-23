@@ -466,7 +466,8 @@
       WR.loc.pixel[v] := {"X":0,"Y":0}
     for k, v in []
       WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
-    WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}
+    WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
+    WR.cdExpires.Binding.Move := ""
     WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1","PopAll":"0"}
     WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
       , "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
@@ -2564,7 +2565,7 @@ Return
     Return
   }
   ResetMainTimer(toggle:="On"){
-    If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.perChar.Settings.autominesEnable || WR.perChar.Settings.autolevelgemsEnable || LootVacuum)
+    If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum)
       SetTimer, TGameTick, %toggle%
   }
   PrintChaosRecipe(Message:="Current slot totals",Duration:="False")
@@ -3258,11 +3259,11 @@ Return
         Controller()
       If (DebugMessages && YesTimeMS)
         t1 := A_TickCount
-      If ( OnTown || OnHideout || !( WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.perChar.Settings.autominesEnable || WR.perChar.Settings.autolevelgemsEnable || LootVacuum ) )
+      If ( OnTown || OnHideout || !( WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum ) )
       {
         Msg := (OnTown?"Script paused in town"
         :(OnHideout?"Script paused in hideout"
-        :(!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Settings.autominesEnable||WR.perChar.Settings.autolevelgemsEnable||LootVacuum)?"All options disabled, pausing"
+        :(!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Setting.autominesEnable||WR.perChar.Setting.autolevelgemsEnable||LootVacuum)?"All options disabled, pausing"
         :"Error")))
         If CheckTime("seconds",1,"StatusBar1")
           SB_SetText(Msg, 1)
@@ -3351,17 +3352,17 @@ Return
         If CheckGamestates
           mainmenuGameLogicState()
       }
-      If (WR.perChar.Settings.autominesEnable&&!Detonated)
+      If (WR.perChar.Setting.autominesEnable&&!Detonated)
       {
         If (OnDetonate)
         {
           SendHotkey(hotkeyDetonateMines)
           Detonated:=1
-          Settimer, TDetonated, % "-" WR.perChar.Settings.autominesBoomDelay
+          Settimer, TDetonated, % "-" WR.perChar.Setting.autominesBoomDelay
           a := A_TickCount - MainAttackLastRelease
-          If WR.perChar.Settings.autominesSmokeDashEnable&&GetKeyState(hotkeyTriggerMovement,"P")&&(a > 1000)
+          If WR.perChar.Setting.autominesSmokeDashEnable&&GetKeyState(hotkeyTriggerMovement,"P")&&(a > 1000)
           {
-            SendHotkey(WR.perChar.Settings.autominesSmokeDashKey)
+            SendHotkey(WR.perChar.Setting.autominesSmokeDashKey)
           }
         }
       }
@@ -3447,21 +3448,18 @@ Return
       }
       If (WR.func.Toggle.Move)
       {
-        If (MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") || (MainAttackPressedActive && WR.perChar.Settings.movementMainAttack) || (SecondaryAttackPressedActive && WR.perChar.Settings.movementSecondaryAttack))
-        {
-          Loop 5
-            If WR.Flask[A_Index].Move
-              Trigger(WR.Flask[A_Index])
-          Loop 10
-            If WR.Utility[A_Index].Move
-              Trigger(WR.Utility[A_Index])
-        }
+        Loop 5
+          If WR.Flask[A_Index].Move
+            Trigger(WR.Flask[A_Index])
+        Loop 10
+          If WR.Utility[A_Index].Move
+            Trigger(WR.Utility[A_Index])
       }
       If (WR.perChar.Setting.channelrepressEnable)
         StackRelease()
       If LootVacuum
         LootScan()
-      If WR.perChar.Settings.autolevelgemsEnable
+      If WR.perChar.Setting.autolevelgemsEnable
         autoLevelGems()
       If (DebugMessages && YesTimeMS)
       {
@@ -3538,7 +3536,7 @@ Return
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PauseMines(){
     PauseMinesCommand:
-      if !WR.perChar.Settings.autominesEnable
+      if !WR.perChar.Setting.autominesEnable
       return
       static keyheld := 0
       keyheld++
@@ -3629,41 +3627,19 @@ Return
         {
           If !GameActive
             Return
-          MovementPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P") )
-          If (TriggerQuicksilverDelay > 0)
+          MovementPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")  
+                          || (MainAttackPressedActive && WR.perChar.Setting.movementMainAttack)
+                          || (SecondaryAttackPressedActive && WR.perChar.Setting.movementSecondaryAttack) )
+          If (MovementPressed)
           {
-            delay := TriggerQuicksilverDelay * 1000
-            If (!LastHeldLB && MovementPressed)
-              LastHeldLB := A_TickCount
-            Else If (LastHeldLB && !MovementPressed)
-              LastHeldLB := False
-            If (MovementPressed && A_TickCount - LastHeldLB < delay )
-              Continue
-            
-            If WR.perChar.Settings.movementMainAttack
-            {
-              If (!LastHeldMA && MainAttackPressedActive)
-                LastHeldMA := A_TickCount
-              Else If (LastHeldMA && !MainAttackPressedActive)
-                LastHeldMA := False
-              If (MainAttackPressedActive && A_TickCount - LastHeldMA < delay )
-                Continue
-            }
-
-            If WR.perChar.Settings.movementSecondaryAttack
-            {
-              If (!LastHeldSA && SecondaryAttackPressedActive)
-                LastHeldSA := A_TickCount
-              Else If (LastHeldSA && !SecondaryAttackPressedActive)
-                LastHeldSA := False
-              If (SecondaryAttackPressedActive && A_TickCount - LastHeldSA < delay )
-                Continue
-            }
+            If (!WR.cdExpires.Binding.Move) ; If we have not had a source pressed before
+              WR.cdExpires.Binding.Move := A_TickCount + ((WR.perChar.Setting.movementDelay+0)*1000)
+          } Else { ; All binding sources were not active
+            If (WR.cdExpires.Binding.Move)
+              WR.cdExpires.Binding.Move := ""
           }
-          if !(MovementPressed 
-            || (MainAttackPressedActive && WR.perChar.Settings.movementMainAttack) 
-            || (SecondaryAttackPressedActive && WR.perChar.Settings.movementSecondaryAttack) )
-            Continue
+          if ( !MovementPressed || (WR.cdExpires.Binding.Move && A_TickCount < WR.cdExpires.Binding.Move) )
+            Return
         }
         SendHotkey(WR[type][v].Key)
         WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD 
@@ -3690,11 +3666,23 @@ Return
         || ( WR.func.Toggle[obj.Type] && obj.Condition == 2 
         && (!obj.Life || (obj.Life && obj.Life > Player.Percent.Life)) && (!obj.ES || (obj.ES && obj.ES > Player.Percent.ES)) && (!obj.Mana || (obj.Mana && obj.Mana > Player.Percent.Mana)) ) )
         Return True
-      If (obj.Move && WR.func.Toggle.Move ; Move Triggers
-        && ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement, "P")  
-        || (MainAttackPressedActive && WR.perChar.Settings.movementMainAttack)
-        || (SecondaryAttackPressedActive && WR.perChar.Settings.movementSecondaryAttack)))
-        Return True
+      If (obj.Move && WR.func.Toggle.Move)
+      { ; Move Triggers
+        If ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")  
+        || (MainAttackPressedActive && WR.perChar.Setting.movementMainAttack)
+        || (SecondaryAttackPressedActive && WR.perChar.Setting.movementSecondaryAttack) )
+        {
+          If !WR.cdExpires.Binding.Move ; If we have not had a source pressed before
+            WR.cdExpires.Binding.Move := A_TickCount + ((WR.perChar.Setting.movementDelay+0)*1000)
+        } Else { ; All binding sources were not active
+          If WR.cdExpires.Binding.Move
+            WR.cdExpires.Binding.Move := ""
+        }
+        If (WR.cdExpires.Binding.Move && WR.cdExpires.Binding.Move <= A_TickCount)
+        {
+          Return True
+        }
+      }
       If (WR.func.Toggle[obj.Type] 
         && ( (obj.MainAttack && MainAttackPressedActive) ;Attack Triggers
         || (obj.SecondaryAttack && SecondaryAttackPressedActive) ) )
@@ -4506,11 +4494,11 @@ Return
   autoLevelGems()
   {
     Static LastCheck:=0
-    If (WR.perChar.Settings.autolevelgemsEnable && OnChar && (A_TickCount - LastCheck > 200))
+    If (WR.perChar.Setting.autolevelgemsEnable && OnChar && (A_TickCount - LastCheck > 200))
     {
       IfWinActive, ahk_group POEGameGroup 
       {
-        If (WR.perChar.Settings.autolevelgemsWait && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
+        If (WR.perChar.Setting.autolevelgemsWait && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
           Return
         LastCheck := A_TickCount
         if (ok:=FindText(GameX + Round(GameW * .93) , GameY + Round(GameH * .17), GameX + GameW , GameY + Round(GameH * .8), 0, 0, SkillUpStr,0))
