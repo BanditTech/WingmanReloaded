@@ -4057,7 +4057,7 @@
     {
       Gui, Submit
       AreaType := Var[2]
-      MouseTip(Globe[AreaType].X1,Globe[AreaType].Y1,Globe[AreaType].Width,Globe[AreaType].Height)
+      MouseTip(Globe[AreaType])
       Gui, Show
     }
     Else if (Function = "Color")
@@ -4117,13 +4117,16 @@
             Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Save_JSON_FillMetamorph w170, Save to JSON
           }
         }
-        Else If (ValueType = "Select" && Obj := LetUserSelectRect())
+        Else If (ValueType = "Select")
         {
-          FillMetamorph := {"X1":Obj.X1
-            ,"Y1":Obj.Y1
-            ,"X2":Obj.X2
-            ,"Y2":Obj.Y2}
-          GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
+          If (Obj := LetUserSelectRect())
+          {
+            FillMetamorph := {"X1":Obj.X1
+              ,"Y1":Obj.Y1
+              ,"X2":Obj.X2
+              ,"Y2":Obj.Y2}
+            GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
+          }
         }
         Else If (ValueType = "Show")
         {
@@ -7509,8 +7512,8 @@
         Gui Zoom:Show, % "w" 2*R+zoom+0 " h" 2*R+zoom+0 " x" A_ScreenWidth//2 - halfside " y0 NA", Magnifier
         WinGet MagnifierID, id,  Magnifier
         WinSet Transparent, 255, Magnifier ; makes the window invisible to magnification
-        WinGet PrintSourceID, ID
-        hdd_frame := DllCall("GetDC", UInt, PrintSourceID)
+        ; WinGet PrintSourceID, ID
+        hdd_frame := DllCall("GetDC", UInt, GamePID)
         hdc_frame := DllCall("GetDC", UInt, MagnifierID)
         Hotkey, IfWinActive
         Hotkey, Up, PushMouse, On
@@ -15565,8 +15568,11 @@ IsLinear(arr, i=0) {
       Gui, Rect%A_Index%: Color, Red
     }
     PauseTooltips := 1
-    If GamePID
+    If (GamePID)
+    {
+      Gui, Submit
       WinActivate, %GameStr%
+    }
     If PixelToo
       Ding(0,-11,"Click and hold left mouse to draw box`nUse arrow keys to move mouse,and mousewheel to zoom`nPress Ctrl to Clipboard the color and X,Y")
     Else
@@ -15616,6 +15622,7 @@ IsLinear(arr, i=0) {
     PauseTooltips := 0
     Ding(1,-11,"")
     DrawZoom("Toggle")
+    Gui, Show
     return { "X1":X1,"Y1":Y1,"X2":X2,"Y2":Y2 }
   
     lusr_update:
@@ -19302,6 +19309,12 @@ for i,v in ok
     {
       VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
       x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
+    }
+    If IsObject(x){
+      w := Abs(x.X2-x.X1)
+      h := Abs(x.Y2-x.Y1)
+      y := (x.Y1<x.Y2?x.Y1:x.Y2)
+      x := (x.X1<x.X2?x.X1:x.X2)
     }
     ; x:=Round(x-10), y:=Round(y-10)
     ;-------------------------

@@ -7568,8 +7568,8 @@ Return
         Gui, Utility%slot%: Add, Radio, %                              " x+3 hp  yp Checked" (WR.Utility[slot].IconSearch==3?1:0), Custom
 
 
-        Gui, Utility%slot%: Add, Button, x+5 yp hp-2  vUtility%slot%IconArea_Show, Show
-        Gui, Utility%slot%: Add, Button, x+5 yp wp hp vUtility%slot%IconArea_Set, Set
+        Gui, Utility%slot%: Add, Button, gUtilityIconArea x+5 yp hp-2  vUtility%slot%IconArea_Show, Show
+        Gui, Utility%slot%: Add, Button, gUtilityIconArea x+5 yp wp hp vUtility%slot%IconArea_Set, Set
         Utility%slot%IconArea := WR.Utility[slot].IconArea
 
         Gui, Utility%slot%: Add, GroupBox,  center       xs+10   y+3  w340  h43, Allowed Variance for 1 or 0
@@ -7621,6 +7621,19 @@ Return
 
         Gui, Utility%slot%: show, AutoSize
       }
+      Return
+      UtilityIconArea:
+        RegExMatch(A_GuiControl, "\d+", slot)
+        action := StrSplit(A_GuiControl, "_")[2]
+        If (action == "Show") {
+          If (Utility%slot%IconArea.X1 != "" && Utility%slot%IconArea.Y1 != "" && Utility%slot%IconArea.X2 != "" && Utility%slot%IconArea.Y2 != "")
+            MouseTip(Utility%slot%IconArea)
+          Else
+            Notify("Custom Area has not been set","",2)
+        } Else If (action == "Set") {
+          Utility%slot%IconArea := LetUserSelectRect()
+          MouseTip(Utility%slot%IconArea)
+        }
       Return
 
       UtilitySaveValues:
