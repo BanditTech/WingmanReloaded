@@ -830,11 +830,10 @@
             This.Prop.RegalRecipe := 1
         }
       }
-      StashChaosRecipe(){
+      StashChaosRecipe(deposit:=true){
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
-        Static HoldDoubleTrinkets := True
         If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60)
           Return False
         If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
@@ -851,18 +850,15 @@
         {
           If (This.Prop.SlotType = v)
           {
-            If This.Affix.Unidentified
-              CountValue := (RecipeArray.uChaos[v].Count()>=0?RecipeArray.uChaos[v].Count():0) + (RecipeArray.uRegal[v].Count()>=0?RecipeArray.uRegal[v].Count():0)
-            Else
-              CountValue := (RecipeArray.Chaos[v].Count()>=0?RecipeArray.Chaos[v].Count():0) + (RecipeArray.Regal[v].Count()>=0?RecipeArray.Regal[v].Count():0)
+            CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
             If (v = "Ring")
               CountValue := CountValue // 2
-            If HoldDoubleTrinkets && IndexOf(v,["Ring","Amulet","Belt"])
+            If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet","Belt"])
               CountValue := CountValue // 2
 
             If (CountValue < ChaosRecipeMaxHolding)
             {
-              If OnStash 
+              If (OnStash && deposit)
               {
                 If This.Affix.Unidentified
                 {
@@ -880,24 +876,20 @@
               Return True
             }
             Else
-              Return False
+              Return "000"
           }
         }
         For k, v in WeaponList
         {
           If (This.Prop.SlotType = v)
           {
-            If This.Affix.Unidentified
-            {
-              WeaponCount := ((RecipeArray.uRegal["One Hand"].Count()>=0?RecipeArray.uRegal["One Hand"].Count():0)/2) + (RecipeArray.uRegal["Two Hand"].Count()>=0?RecipeArray.uRegal["Two Hand"].Count():0) + ((RecipeArray.uRegal["Shield"].Count()>=0?RecipeArray.uRegal["Shield"].Count():0)/2)
-              WeaponCount += ((RecipeArray.uChaos["One Hand"].Count()>=0?RecipeArray.uChaos["One Hand"].Count():0)/2) + (RecipeArray.uChaos["Two Hand"].Count()>=0?RecipeArray.uChaos["Two Hand"].Count():0) + ((RecipeArray.uChaos["Shield"].Count()>=0?RecipeArray.uChaos["Shield"].Count():0)/2)
-            } Else {
-              WeaponCount := ((RecipeArray.Regal["One Hand"].Count()>=0?RecipeArray.Regal["One Hand"].Count():0)/2) + (RecipeArray.Regal["Two Hand"].Count()>=0?RecipeArray.Regal["Two Hand"].Count():0) + ((RecipeArray.Regal["Shield"].Count()>=0?RecipeArray.Regal["Shield"].Count():0)/2)
-              WeaponCount += ((RecipeArray.Chaos["One Hand"].Count()>=0?RecipeArray.Chaos["One Hand"].Count():0)/2) + (RecipeArray.Chaos["Two Hand"].Count()>=0?RecipeArray.Chaos["Two Hand"].Count():0) + ((RecipeArray.Chaos["Shield"].Count()>=0?RecipeArray.Chaos["Shield"].Count():0)/2)
-            }
+            WeaponCount := (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) + retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
+                         + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"]) + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
+                         + retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) + retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"])
+
             If (WeaponCount < ChaosRecipeMaxHolding)
             {
-              If OnStash
+              If (OnStash && deposit)
               {
                 If This.Affix.Unidentified
                 {
@@ -915,7 +907,7 @@
               Return True
             }
             Else
-              Return False
+              Return "000"
           }
         }
         Return False
@@ -3013,6 +3005,9 @@
     }
     Return c
   }
+  retCount(obj){
+    Return (obj.Count()>=0?obj.Count():0) 
+  }
   ; ArrayToString - Make a string from array using | as delimiters
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ArrayToString(Array)
@@ -3053,9 +3048,12 @@
       , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
       , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
       , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
+      , debuffCurseEleWeakStr, debuffCurseVulnStr, debuffCurseEnfeebleStr, debuffCurseTempChainStr, debuffCurseCondStr, debuffCurseFlamStr, debuffCurseFrostStr, debuffCurseWarMarkStr
+      , debuffShockStr, debuffBleedStr, debuffFreezeStr, debuffIgniteStr, debuffPoisonStr
     If (Function = "Inventory")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Inventory
       {
         Built_Inventory := 1
@@ -3063,7 +3061,6 @@
         Gui, Inventory: +AlwaysOnTop -MinimizeBox
         ;Save Setting
         Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
         Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|
@@ -3095,34 +3092,14 @@
         Gui, Inventory: Add, Text,                     xs+10  y+6,         Wisdom Scroll:
         Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
         Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
-        Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem1:
-        Gui, Inventory: Add, Edit,       vCurrentGemX           x+8        y+-15   w34  h17,   %CurrentGemX%
-        Gui, Inventory: Add, Edit,       vCurrentGemY           x+8                w34  h17,   %CurrentGemY%
-        Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem1:
-        Gui, Inventory: Add, Edit,       vAlternateGemX         x+8        y+-15   w34  h17,   %AlternateGemX%
-        Gui, Inventory: Add, Edit,       vAlternateGemY         x+8                w34  h17,   %AlternateGemY%
-        Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem2:
-        Gui, Inventory: Add, Edit,       vCurrentGem2X          x+8        y+-15   w34  h17,   %CurrentGem2X%
-        Gui, Inventory: Add, Edit,       vCurrentGem2Y          x+8                w34  h17,   %CurrentGem2Y%
-        Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem2:
-        Gui, Inventory: Add, Edit,       vAlternateGem2X        x+8        y+-15   w34  h17,   %AlternateGem2X%
-        Gui, Inventory: Add, Edit,       vAlternateGem2Y        x+8                w34  h17,   %AlternateGem2Y%
         Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
         Gui, Inventory: Add, Edit,       vGrabCurrencyPosX        x+8        y+-15   w34  h17,   %GrabCurrencyPosX%
         Gui, Inventory: Add, Edit,       vGrabCurrencyPosY        x+8                w34  h17,   %GrabCurrencyPosY%
         Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
         Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem                                    y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem                                  y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem2                                   y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2                                 y+4    h17            , Locate
         Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
         Gui, Inventory: Add, Checkbox,    vStockPortal                    Checked%StockPortal%                    x+13   ys+33          , Stock Portal?
         Gui, Inventory: Add, Checkbox,    vStockWisdom                    Checked%StockWisdom%                    y+8                   , Stock Wisdom?
-        Gui, Inventory: Add, Checkbox,    vAlternateGemOnSecondarySlot    Checked%AlternateGemOnSecondarySlot%    y+8                   , Weapon Swap Gem1?
-        Gui, Inventory: Add, Checkbox,    vGemItemToogle                  Checked%GemItemToogle%                  y+8                   , Enable Swap Item1?
-        Gui, Inventory: Add, Checkbox,    vAlternateGem2OnSecondarySlot   Checked%AlternateGem2OnSecondarySlot%   y+8                   , Weapon Swap Gem2?
-        Gui, Inventory: Add, Checkbox,    vGemItemToogle2                 Checked%GemItemToogle2%                 y+8                   , Enable Swap Item2?
         Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
         Gui, Inventory: Add, Text,                   x+33             h152 0x11
         Gui, Inventory: Add, Text,                   x+33             h152 0x11
@@ -3551,6 +3528,7 @@
     Else If (Function = "Crafting")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Crafting
       {
         Built_Crafting := 1
@@ -3558,10 +3536,9 @@
         Gui, Crafting: +AlwaysOnTop -MinimizeBox
         ;Save Setting
         Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Crafting: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting
+        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Chance|Socket|Color|Link
 
       Gui, Crafting: Tab, Map Crafting
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
@@ -3646,12 +3623,45 @@
           Gui, Crafting: Font,
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+      Gui, Crafting: Tab, Chance
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Chance Crafting
+        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
+          Gui, Crafting: Font,
+          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
+          Gui, Crafting: Add,Radio, , Use Item Under Cursor
+          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
+      Gui, Crafting: Tab, Socket
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Crafting
+        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
+          Gui, Crafting: Font,
+          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
+          Gui, Crafting: Add,Radio, , Use Item Under Cursor
+          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
+      Gui, Crafting: Tab, Color
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Coloring
+        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
+          Gui, Crafting: Font,
+          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
+          Gui, Crafting: Add,Radio, , Use Item Under Cursor
+          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
+      Gui, Crafting: Tab, Link
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Linking
+        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
+          Gui, Crafting: Font,
+          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
+          Gui, Crafting: Add,Radio, , Use Item Under Cursor
+          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
       }
       Gui, Crafting: show , w600 h500, Crafting Settings
     }
     Else If (Function = "Strings")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Strings
       {
         Built_Strings := 1
@@ -3659,19 +3669,18 @@
         Gui, Strings: +AlwaysOnTop -MinimizeBox
         ;Save Setting
         ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
         
         Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
         Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
         Gui, Strings: Font, Bold cBlack
         Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Match your resolution's height with the number in the string Label
-        Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor
+        Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor|Debuff
         Gui, Strings: Font,
 
       Gui, Strings: Tab, General
         Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
         Gui, Strings: +Delimiter?
-        Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
+        Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 1 pixel bar - Only Adjust if not 1080 Height
         Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"?"%1440_HealthBarStr_Alt%"?"%1050_HealthBarStr%"
         Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
         Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
@@ -3710,12 +3719,56 @@
         Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
         Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
         Gui, Strings: +Delimiter|
+      Gui, Strings: Tab, Debuff
+        Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+        Gui, Strings: +Delimiter?
+
+        Gui, Strings: Add, Text, xs+10 ys+25 section, Curse - Elemental Weakness
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEleWeakStr gUpdateStringEdit , %debuffCurseEleWeakStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Vulnerability
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseVulnStr gUpdateStringEdit , %debuffCurseVulnStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Enfeeble
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEnfeebleStr gUpdateStringEdit , %debuffCurseEnfeebleStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Temporal Chains
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseTempChainStr gUpdateStringEdit , %debuffCurseTempChainStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Condutivity
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseCondStr gUpdateStringEdit , %debuffCurseCondStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Flammability
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFlamStr gUpdateStringEdit , %debuffCurseFlamStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Frostbite
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFrostStr gUpdateStringEdit , %debuffCurseFrostStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Warlord's Mark
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseWarMarkStr gUpdateStringEdit , %debuffCurseWarMarkStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Shock
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffShockStr gUpdateStringEdit , %debuffShockStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Bleed
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffBleedStr gUpdateStringEdit , %debuffBleedStr%??"%1080_CurseStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Freeze
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffFreezeStr gUpdateStringEdit , %debuffFreezeStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Ignite
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffIgniteStr gUpdateStringEdit , %debuffIgniteStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Poison
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffPoisonStr gUpdateStringEdit , %debuffPoisonStr%??"%1080_CurseStr%"
+
+        Gui, Strings: +Delimiter|
       }
       Gui, Strings: show , w640 h525, FindText Strings
     }
     Else If (Function = "Chat")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Chat
       {
         Built_Chat := 1
@@ -3724,7 +3777,6 @@
 
         ;Save Setting
         Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
-        ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Chat: Add, Button,      gLaunchSite     x+5           h23,   Website
 
         Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
@@ -3827,6 +3879,7 @@
     Else If (Function = "Controller")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       If !Built_Controller
       {
         Built_Controller := 1
@@ -3843,8 +3896,6 @@
         Gui, Controller: Add, Checkbox,             vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                     , Use utility on Move?
         Gui, Controller: Add, DropDownList,   x+5 yp-5   w40   vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
 
-        Gui, Controller: Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
-        
         Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,L Bumper
         Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonLB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
         GuiControl,Controller: Text, hotkeyControllerButtonLB, %hotkeyControllerButtonLB%
@@ -3900,7 +3951,6 @@
 
         ;Save Setting
         Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Controller: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Controller: Add, Button,      gLaunchSite     x+5           h23,   Website
       }
       Gui, Controller: show , w620 h500, Controller Settings
@@ -3908,6 +3958,7 @@
     Else if (Function = "Globe")
     {
       Gui, 1: Submit
+      CheckGamestates:= False
       Element := Var[1]
       If (!Built_Globe || Element = "Reset")
       {
@@ -4123,6 +4174,65 @@
         Gui, FillMetamorph: Show
       }
     }
+    Else If (Function = "hkStash")
+    {
+      Static hkStashBuilt := False
+      If !(hkStashBuilt)
+      {
+        hkStashBuilt := True
+        Gui, hkStash: New, +AlwaysOnTop -MinimizeBox -Resize
+        ;Save Setting
+        Gui, hkStash: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
+        Gui, hkStash: Add, Button,      gLaunchSite     x+5           h23,   Website
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section xm+5 ym+50 w150 h80   center                   ,Binding Modifiers
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, xs+5 ys+20 w140 h23 vstashPrefix1, %stashPrefix1%
+        Gui, hkStash: Add, Edit, y+5    w140 h23 vstashPrefix2, %stashPrefix2%
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section x+25 ym w100 h275                      ,Keys
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, Number xs+4 ys+20 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
+      }
+      
+      Gui, hkStash: Show
+
+    }
     Else If (Function = "JSON")
     {
       ValueType := Var[2]
@@ -4182,6 +4292,8 @@
       Gui, Inventory: Show
     Return
 
+    hkStashGuiClose:
+    hkStashGuiEscape:
     InventoryGuiClose:
     InventoryGuiEscape:
     CraftingGuiClose:
@@ -4196,6 +4308,7 @@
     HotkeysGuiEscape:
       Gui, Submit
       Gui, 1: show
+      CheckGamestates:= True
     return
     
     GlobeGuiClose:
@@ -4203,6 +4316,7 @@
       GlobeActive := False
       Gui, Submit
       Gui, 1: show
+      CheckGamestates:= True
     return
   }
   ; Debug messages within script
@@ -4414,7 +4528,7 @@
       ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
     If (Fetch="OnDetonate")
     {
-      POnDetonateDelve := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y), POnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
+      POnDetonateDelve := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y), POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
       , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
       Return OnDetonate
     }
@@ -4426,20 +4540,20 @@
     }
     If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker)
       CheckXButton(), xChecked := True
-    POnChar := ScreenShot_GetColor(WR.loc.OnChar.X,WR.loc.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
-    POnChat := ScreenShot_GetColor(WR.loc.OnChat.X,WR.loc.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
-    POnMenu := ScreenShot_GetColor(WR.loc.OnMenu.X,WR.loc.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
-    POnInventory := ScreenShot_GetColor(WR.loc.OnInventory.X,WR.loc.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
-    POnStash := ScreenShot_GetColor(WR.loc.OnStash.X,WR.loc.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
-    POnVendor := ScreenShot_GetColor(WR.loc.OnVendor.X,WR.loc.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
-    POnDiv := ScreenShot_GetColor(WR.loc.OnDiv.X,WR.loc.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
-    POnLeft := ScreenShot_GetColor(WR.loc.OnLeft.X,WR.loc.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
-    POnDelveChart := ScreenShot_GetColor(WR.loc.OnDelveChart.X,WR.loc.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
-    POnMetamorph := ScreenShot_GetColor(WR.loc.OnMetamorph.X,WR.loc.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
-    POnLocker := ScreenShot_GetColor(WR.loc.OnLocker.X,WR.loc.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
+    POnChar := ScreenShot_GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
+    POnChat := ScreenShot_GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
+    POnMenu := ScreenShot_GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
+    POnInventory := ScreenShot_GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
+    POnStash := ScreenShot_GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
+    POnVendor := ScreenShot_GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
+    POnDiv := ScreenShot_GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
+    POnLeft := ScreenShot_GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
+    POnDelveChart := ScreenShot_GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+    POnMetamorph := ScreenShot_GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
+    POnLocker := ScreenShot_GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
     If OnMines
-    POnDetonate := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y)
-    Else POnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
+    POnDetonate := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
+    Else POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
     If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
       CheckXButton()
@@ -4601,6 +4715,7 @@
       This.Add_pSlider()
     }
     Add_pSlider(){
+      global
       Gui, % This.GUI_NAME ":Add" , Text , % "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd"
       pSlider_Trigger := This.Adjust_pSlider.BIND( THIS ) 
       GUICONTROL +G , %pSliderTriggerhwnd% , % pSlider_Trigger
@@ -4749,6 +4864,18 @@
     Else 
       Return False
   }
+  CheckDialogue()
+  {
+    If GamePID
+    {
+      if (ok:=FindText(GameX + Round((GameW / 2)-100), GameY + Round(GameH / (1080 / 1)), GameX + Round((GameW / 2)+100), GameY + Round(GameH / (1080 / 10)) , 0, 0, "|<NPC Dialogue>0x3B454E@0.97$61.0M4UGdaEQ0zzw1zRIC6zs1RvoECDkk7yDywE7zbzy",0))
+        Return True
+      Else
+        Return False
+    }
+    Else 
+      Return False
+  }
   CheckXButton(retObj:=0)
   {
     Global YesXButtonFound
@@ -4822,7 +4949,7 @@
       Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
     Else
       Player.Percent.Life := -1
-    If (YesEldritchBattery)
+    If (WR.perChar.Setting.typeEldritch)
     {
       If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,1))
         Player.Percent.ES := Round(((Globe.EB.Y2 - EB.1.2) / Globe.EB.Height) * 100)
@@ -4863,28 +4990,6 @@
       SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%",3)
     }
     Return
-  }
-  ; GetPercent - Determine the percentage of health
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  GetPercent(CID, PosY, Variance)
-  {
-    Thread, NoTimers, true    ;Critical
-    Global OHB, OHBLHealthHex
-    If !CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(OHB.X+1, PosY)),Variance)
-    {
-      Ding(500,7,"OHB Obscured, Moved, or Dead" )
-      Return HPerc
-    }
-    Else
-    Found := OHB.X + 1
-    Loop 10
-    {
-      pX:= OHB.pX[A_Index]
-      If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
-        Found := pX
-    }
-    Thread, NoTimers, False    ;End Critical
-    Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
   }
   ; Rescale - Rescales values of the script to the user's resolution
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5001,78 +5106,78 @@
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings 380,820
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1920/380))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1920/380))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1920/1542))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(1920/1658))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1920/1542))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1920/1658))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
         ;Scouring 175,476
-        WR.loc.Scouring.X:=GameX + Round(GameW/(1920/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
         ;Chisel 605,220
-        WR.loc.Chisel.X:=GameX + Round(GameW/(1920/605))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1920/605))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
         ;Alchemy 490,290
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(1920/490))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1920/490))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
         ;Transmutation 60,290
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(1920/60))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1920/60))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
         ;Alteration 120,290
-        WR.loc.Alteration.X:=GameX + Round(GameW/(1920/120))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
         ;Augmentation 230,340
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(1920/230))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
         ;Vaal 230,475
-        WR.loc.Vaal.X:=GameX + Round(GameW/(1920/230))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(1920/115))
-        WR.loc.Portal.X:=GameX + Round(GameW/(1920/175))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/115))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1920/175))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (1920 / 41))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1920 / 41))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (1920 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1920 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash - Edited
-        WR.loc.OnStash.X:=GameX + Round(GameW / (1920 / 248))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 896))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (1920 / 248))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 896))
         ;Status Check OnVendor - Edited
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (1920 / 618))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1920 / 618))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (1920 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (1920 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1920 / 466))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1920 / 466))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamporph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1920 / 785))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1920 / 785))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
 
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (1920 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1920 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
       }
       Else If (ResolutionScale="Classic") {
         ; Item Inventory Grid
@@ -5132,74 +5237,74 @@
         }
         ;Auto Vendor Settings
           ;380,820
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1440/380))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1440/380))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(1440/1178))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1440/1178))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
                 ;Currency
           ;Scouring 175,476
-        WR.loc.Scouring.X:=GameX + Round(GameW/(1440/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1440/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        WR.loc.Chisel.X:=GameX + Round(GameW/(1440/605))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1440/605))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(1440/490))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1440/490))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(1440/60))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1440/60))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        WR.loc.Alteration.X:=GameX + Round(GameW/(1440/120))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1440/120))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(1440/230))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1440/230))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        WR.loc.Vaal.X:=GameX + Round(GameW/(1440/230))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1440/230))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(1440/125))
-        WR.loc.Portal.X:=GameX + Round(GameW/(1440/175))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1440/125))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1440/175))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (1440 / 41))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1440 / 41))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (1440 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1440 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (1440 / 1103))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1440 / 1103))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (1440 / 336))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (1440 / 336))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (1440 / 378))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1440 / 378))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (1440 / 378))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1440 / 378))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (1440 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (1440 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1440 / 226))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1440 / 226))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1440 / 545))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1440 / 545))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (1440 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1440 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="Cinematic") {
         ; Item Inventory Grid
@@ -5258,78 +5363,78 @@
         }
         ;Auto Vendor Settings
         ;380,820
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(2560/380))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(2560/380))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(2560/2298))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(2560/2298))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
-        WR.loc.Scouring.X:=GameX + Round(GameW/(2560/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2560/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        WR.loc.Chisel.X:=GameX + Round(GameW/(2560/605))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(2560/605))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(2560/490))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(2560/490))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(2560/60))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(2560/60))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        WR.loc.Alteration.X:=GameX + Round(GameW/(2560/120))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(2560/120))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(2560/230))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        WR.loc.Vaal.X:=GameX + Round(GameW/(2560/230))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(2560/125))
-        WR.loc.Portal.X:=GameX + Round(GameW/(2560/175))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(2560/125))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(2560/175))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (2560 / 41))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (2560 / 41))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (2560 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (2560 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (2560 / 2223))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (2560 / 2223))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (2560 / 336))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (2560 / 336))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (2560 / 618))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (2560 / 618))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (2560 / 618))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (2560 / 618))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (2560 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (2560 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (2560 / 786))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (2560 / 786))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (2560 / 1105))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (2560 / 1105))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (2560 / 490))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (2560 / 490))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
 
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (2560 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (2560 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="Cinematic(43:18)") {
         ;Item Inventory Grid
@@ -5386,78 +5491,78 @@
           InvGrid.SlotSpacing:=Round(GameH/(1440/2))
         }
         ;Auto Vendor Settings
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(3440/945))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1440/1090))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3440/945))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1440/1090))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(3440/3090))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1440/1202))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3440/3090))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1440/1202))
         ;Currency
           ;Scouring 235,631
-        WR.loc.Scouring.X:=GameX + Round(GameW/(3440/235))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1440/590))
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/235))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1440/590))
           ;Chisel 810,290
-        WR.loc.Chisel.X:=GameX + Round(GameW/(3440/810))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1440/250))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3440/810))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1440/250))
           ;Alchemy 655,390
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(3440/655))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1440/350))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(3440/655))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1440/350))
           ;Transmutation 80,390
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(3440/80))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1440/350))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(3440/80))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1440/350))
           ;Alteration 155, 390
-        WR.loc.Alteration.X:=GameX + Round(GameW/(3440/155))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1440/350))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(3440/155))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1440/350))
           ;Augmentation 310,465
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(3440/310))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1440/425))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(3440/310))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1440/425))
           ;Vaal 310, 631
-        WR.loc.Vaal.X:=GameX + Round(GameW/(3440/310))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1440/590))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(3440/310))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1440/590))
 
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(3440/164))
-        WR.loc.Portal.X:=GameX + Round(GameW/(3440/228))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1440/299))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3440/164))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3440/228))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1440/299))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (3440 / 54))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1440 / 1217))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (3440 / 54))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1440 / 1217))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (3440 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (3440 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (3440 / 2991))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1440 / 47))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (3440 / 2991))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1440 / 47))
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (3440 / 448))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1440 / 42))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (3440 / 448))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1440 / 42))
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1440 / 90))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1440 / 90))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (3440 / 1056))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1440 / 118))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (3440 / 1056))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1440 / 118))
         ;Status Check OnMetamporph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / ( 3440 / 1480))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1440 / 270))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / ( 3440 / 1480))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1440 / 270))
         ;Status Check OnLocker ((3440/3)-2)
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (3440 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3440 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1440 / 983))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1440 / 805))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1440 / 983))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1440 / 805))
       }
       Else If (ResolutionScale="UltraWide") {
         ; Item Inventory Grid
@@ -5515,77 +5620,77 @@
         }
         ;Auto Vendor Settings
         ;380,820
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(3840/380))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3840/380))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(3840/3462))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(3840/3578))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3840/3462))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3840/3578))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
-        WR.loc.Scouring.X:=GameX + Round(GameW/(3840/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3840/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        WR.loc.Chisel.X:=GameX + Round(GameW/(3840/605))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3840/605))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(3840/490))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(3840/490))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(3840/60))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(3840/60))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        WR.loc.Alteration.X:=GameX + Round(GameW/(3840/120))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(3840/120))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(3840/230))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        WR.loc.Vaal.X:=GameX + Round(GameW/(3840/230))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(3840/125))
-        WR.loc.Portal.X:=GameX + Round(GameW/(3840/175))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3840/125))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3840/175))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (3840 / 41))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (3840 / 41))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (3840 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (3840 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (3840 / 3503))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (3840 / 3503))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (3840 / 336))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (3840 / 336))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (3840 / 1578))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3840 / 1578))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (3840 / 1578))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3840 / 1578))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (3840 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (3840 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (3840 / 1426))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (3840 / 1426))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (3840 / 1745))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (3840 / 1745))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker ((3840/3)-2)
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (3840 / 900))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3840 / 900))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (3840 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3840 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="WXGA(16:10)") {
         ; Item Inventory Grid
@@ -5652,99 +5757,99 @@
 
         ;Auto Vendor Settings
         ;270,800
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1680/270))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1050/800))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1680/270))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1050/800))
        
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1680/1310))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(1680/1425))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1050/880))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1680/1310))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1680/1425))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1050/880))
        
         ;Currency
         ;Scouring 175,460
-        WR.loc.Scouring.X:=GameX + Round(GameW/(1680/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1050/430))      
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1680/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1050/430))      
        
         ;Chisel 590,210
-        WR.loc.Chisel.X:=GameX + Round(GameW/(1680/590))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1050/180))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1680/590))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1050/180))
        
         ;Alchemy 475,280
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(1680/475))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1050/250))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1680/475))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1050/250))
        
         ;Transmutation 55,280
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(1680/55))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1050/250))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1680/55))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1050/250))
        
         ;Alteration 115,285
-        WR.loc.Alteration.X:=GameX + Round(GameW/(1680/115))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1050/255))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1680/115))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1050/255))
        
         ;Augmentation 225,335
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(1680/225))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1050/305))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1680/225))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1050/305))
        
         ;Vaal 225,460
-        WR.loc.Vaal.X:=GameX + Round(GameW/(1680/225))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1050/430))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1680/225))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1050/430))
        
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(1680/115))
-        WR.loc.Portal.X:=GameX + Round(GameW/(1680/170))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1050/185))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1680/115))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1680/170))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1050/185))
        
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
        
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (1680 / 36))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1050 / 920))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1680 / 36))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1050 / 920))
        
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (1680 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1680 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
        
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (1680 / 1583))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1050 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1680 / 1583))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1050 / 36))
        
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (1680 / 336))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1050 / 32))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (1680 / 336))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1050 / 32))
        
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (1680 / 525))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1050 / 120))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1680 / 525))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1050 / 120))
        
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (1680 / 519))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1050 / 716))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1680 / 519))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1050 / 716))
        
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (1680 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1050 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (1680 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1050 / 57))
        
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1680 / 362))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1050 / 84))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1680 / 362))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1050 / 84))
        
         ;Status Check OnMetamporph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1680 / 850))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1050 / 195))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1680 / 850))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1050 / 195))
        
         ;Status Check OnLocker ((1680/3)-2)
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (1680 / 450))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1050 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1680 / 450))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1050 / 918))
 
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (1680 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1050 / 1000))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1680 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1050 / 1000))
        
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1050 / 716))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1050 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1050 / 716))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1050 / 605))
       }
       x_center := GameX + GameW / 2
       compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
@@ -7304,14 +7409,14 @@
     {
       If (WinGuiX = "" || WinGuiY = "")
         WinGuiX := WinGuiY := 0
-      Gui, Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
+      Gui, 1: Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
     }
     Else
     {
-      Gui, Show, Autosize Center,   WingmanReloaded
+      Gui, 1: Show, Autosize Center,   WingmanReloaded
     }
+    CheckGamestates := True
     processWarningFound:=0
-    Gui,6:Hide
     return
   }
   IsModifier(Character) {
@@ -7338,7 +7443,7 @@
         Continue
       }
       Obj := SplitModsFromKey(keys)
-      If GameActive
+      If (GameActive := WinActive(GameStr))
         Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
       Else
         controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
@@ -7628,15 +7733,15 @@
   ; StackRelease
   StackRelease()
   {
-    if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, StackRelease_BuffIcon,0))
+    if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, WR.perChar.Setting.channelrepressIcon,0))
     {
-      If FindText(buff.1.1 + StackRelease_X1Offset,buff.1.2 + buff.1.4 + StackRelease_Y1Offset,buff.1.1 + buff.1.3 + StackRelease_X2Offset,buff.1.2 + buff.1.4 + StackRelease_Y2Offset, 0, 0, StackRelease_BuffCount,0)
+      If FindText(buff.1.1 + WR.perChar.Setting.channelrepressOffsetX1,buff.1.2 + buff.1.4 + WR.perChar.Setting.channelrepressOffsetY1,buff.1.1 + buff.1.3 + WR.perChar.Setting.channelrepressOffsetX2,buff.1.2 + buff.1.4 + WR.perChar.Setting.channelrepressOffsetY2, 0, 0, WR.perChar.Setting.channelrepressStack,0)
       {
-        If GetKeyState(StackRelease_Keybind,"P")
+        If GetKeyState(WR.perChar.Setting.channelrepressKey,"P")
         {
-          SendHotkey(StackRelease_Keybind,"up")
+          SendHotkey(WR.perChar.Setting.channelrepressKey,"up")
           Sleep, 10
-          SendHotkey(StackRelease_Keybind,"down")
+          SendHotkey(WR.perChar.Setting.channelrepressKey,"down")
         }
       }
     }
@@ -7845,7 +7950,8 @@
           baseList .= v["name"]"|"
         }
       }
-      Gui, 1: Submit
+      ; Gui, 1: Submit
+      ; CheckGamestates:= False
       Gui, CustomCrafting: New
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
       Gui, CustomCrafting: Add, Button, default gupdateEverything    x225 y180  w150 h23,   Save Configuration
@@ -7957,7 +8063,7 @@ IsLinear(arr, i=0) {
     */
     class Load extends JSON.Functor
     {
-      Call(self, ByRef text, reviver:="")
+      Call(self, ByRef text, reviver:="", ordered:=False)
       {
         this.rev := IsObject(reviver) ? reviver : false
       ; Object keys(and array indices) are temporarily stored in arrays so that
@@ -7996,7 +8102,7 @@ IsLinear(arr, i=0) {
             ; sacrifice readability for minor(actually negligible) performance gain
               (ch == "{")
                 ? ( is_key := true
-                , value := {}
+                , value := (ordered? new OrderedAssociativeArray : {} )
                 , next := object_key_or_object_closing )
               ; ch == "["
                 : ( value := json_array ? new json_array : []
@@ -8245,6 +8351,164 @@ IsLinear(arr, i=0) {
           return (new this).Call(arg, args*)
       }
     }
+  }
+
+  /*
+  *    "JSON_Beautify.ahk" by Joe DF (joedf@users.sourceforge.net)
+  *    ______________________________________________________________________
+  *    "Transform Objects & JSON strings into nice or ugly JSON strings."
+  *    Uses VxE's JSON_FromObj()
+  *    
+  *    Released under The MIT License (MIT)
+  *    ______________________________________________________________________
+  *    
+  */
+
+  JSON_Uglify(JSON) {
+    if IsObject(JSON) {
+      return JSON_FromObj(JSON)
+    } else {
+      if JSON is space
+        return ""
+      StringReplace,JSON,JSON, `n,,A
+      StringReplace,JSON,JSON, `r,,A
+      StringReplace,JSON,JSON, % A_Tab,,A
+      StringReplace,JSON,JSON, % Chr(08),,A
+      StringReplace,JSON,JSON, % Chr(12),,A
+      StringReplace,JSON,JSON, \\, % Chr(1),A  ;watchout for escape sequence '\\', convert to '\1'
+      _JSON:="", in_str:=0, l_char:=""
+      Loop, Parse, JSON
+      {
+        if ( (!in_str) && (asc(A_LoopField)==0x20) )
+          continue
+        if( (asc(A_LoopField)==0x22) && (asc(l_char)!=0x5C) )
+          in_str := !in_str
+        _JSON .= (l_char:=A_LoopField)
+      }
+      StringReplace,_JSON,_JSON, % Chr(1),\\,A  ;convert '\1' back to '\\'
+      return _JSON
+    }
+  }
+
+  JSON_Beautify(JSON, gap:="`t", maxIndent:= 4, boleanVal:=False) {
+    ;fork of http://pastebin.com/xB0fG9py
+    JSON:=JSON_Uglify(JSON)
+    StringReplace,JSON,JSON, \\, % Chr(1),A  ;watchout for escape sequence '\\', convert to '\1'
+    
+    indent:=""
+    
+    if gap is number
+    {
+      i :=0
+      while (i < gap) {
+        indent .= " "
+        i+=1
+      }
+    } else {
+      indent := gap
+    }
+    
+    _JSON:="", in_str:=0, k:=0, l_char:=""
+    
+    Loop, Parse, JSON
+    {
+      if (!in_str) {
+        if ( (A_LoopField=="{") || (A_LoopField=="[") ) {
+          _s:=""
+          Loop % ++k
+            _s.=indent
+          _JSON .= A_LoopField (k<=maxIndent?"`n" _s:(A_LoopField=="{"?" ":""))
+          l_beforeDigit := l_char
+          l_char := A_LoopField
+          continue
+        }
+        else if ( (A_LoopField=="}") || (A_LoopField=="]") ) {
+          _s:=""
+          Loop % --k
+            _s.=indent
+          _JSON .= (k<maxIndent?"`n" _s A_LoopField:(A_LoopField=="}"?" ":"") A_LoopField)
+          l_beforeDigit := l_char
+          l_char := A_LoopField
+          continue
+        }
+        else if ( (A_LoopField==",") ) {
+          _s:=""
+          Loop % k
+            _s.=indent
+          If l_char is digit
+          {
+            If (l_beforeDigit != ":")
+              _JSON .= A_LoopField (k<=maxIndent?"`n" _s:"")
+            Else
+              _JSON .= A_LoopField (k<=maxIndent?"`n" _s:" ")
+          }
+          Else
+            _JSON .= A_LoopField (k<=maxIndent?"`n" _s:" ")
+          l_beforeDigit := l_char
+          l_char := A_LoopField
+          continue
+        }
+      }
+      if( (asc(A_LoopField)==0x22) && (asc(l_char)!=0x5C) )
+        in_str := !in_str
+      If l_char is not digit
+        l_beforeDigit := l_char
+      _JSON .= (l_char:=A_LoopField)
+    }
+    StringReplace,_JSON,_JSON, % Chr(1),\\,A  ;convert '\1' back to '\\'
+    _JSON := RegExReplace(_JSON, "\[[ \n]+\]", "[]")
+    _JSON := RegExReplace(_JSON, "\{[ \n]+\}", "{}")
+    if boleanVal
+      _JSON := RegExReplace(_JSON, """:0([, ])", """:false$1"), _JSON := RegExReplace(_JSON, """:1([, ])", """:true$1")
+    return _JSON
+  }
+
+  ; Copyright © 2013 VxE. All rights reserved.
+
+  ; Serialize an object as JSON-like text OR format a string for inclusion therein.
+  ; NOTE: scientific notation is treated as a string and hexadecimal as a number.
+  ; NOTE: UTF-8 sequences are encoded as-is, NOT as their intended codepoint.
+  json_fromObj( obj ) {
+
+    If IsObject( obj )
+    {
+      isarray := 0 ; an empty object could be an array... but it ain't, says I
+      for key in obj
+        if ( key != ++isarray )
+        {
+          isarray := 0
+          Break
+        }
+
+      for key, val in obj
+        str .= ( A_Index = 1 ? "" : "," ) ( isarray ? "" : json_fromObj( key ) ":" ) json_fromObj( val )
+
+      return isarray ? "[" str "]" : "{" str "}"
+    }
+    else if obj IS NUMBER
+      return obj
+    ;	else if obj IN null,true,false ; AutoHotkey does not natively distinguish these
+    ;		return obj
+
+    ; Encode control characters, starting with backslash.
+    StringReplace, obj, obj, \, \\, A
+    StringReplace, obj, obj, % Chr(08), \b, A
+    StringReplace, obj, obj, % A_Tab, \t, A
+    StringReplace, obj, obj, `n, \n, A
+    StringReplace, obj, obj, % Chr(12), \f, A
+    StringReplace, obj, obj, `r, \r, A
+    StringReplace, obj, obj, ", \", A
+    StringReplace, obj, obj, /, \/, A
+    While RegexMatch( obj, "[^\x20-\x7e]", key )
+    {
+      str := Asc( key )
+      val := "\u" . Chr( ( ( str >> 12 ) & 15 ) + ( ( ( str >> 12 ) & 15 ) < 10 ? 48 : 55 ) )
+          . Chr( ( ( str >> 8 ) & 15 ) + ( ( ( str >> 8 ) & 15 ) < 10 ? 48 : 55 ) )
+          . Chr( ( ( str >> 4 ) & 15 ) + ( ( ( str >> 4 ) & 15 ) < 10 ? 48 : 55 ) )
+          . Chr( ( str & 15 ) + ( ( str & 15 ) < 10 ? 48 : 55 ) )
+      StringReplace, obj, obj, % key, % val, A
+    }
+    return """" obj """"
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -10962,6 +11226,44 @@ IsLinear(arr, i=0) {
     
     return String
   }
+
+  Gdip_GetPointsSection(X_Center,Y_Center,R_1,R_2,Sections,Offset,Section = "1"){
+    Section := Section -1
+    SectionAngle := 2*3.141592653589793/Sections
+    R_2_Min := 4*Offset/Sin(SectionAngle)
+    R_2 := R_2 > R_2_Min ? R_2 : R_2_Min
+    SweepAngle := ACos((R_1*cos(SectionAngle/2)+Offset*sin(SectionAngle/2))/R_1)*2
+    SweepAngle_2 := ACos((R_2*cos(SectionAngle/2)+Offset*sin(SectionAngle/2))/R_2)*2	
+    
+    Loop_Sections := round(R_1*SweepAngle)
+    StartAngle := -SweepAngle/2 + SectionAngle*(Section)
+    loop, %Loop_Sections% {
+      Angle := StartAngle + (A_Index-1)*SweepAngle/(Loop_Sections-1)
+      X_Arc := round(X_Center + R_1*cos(Angle))
+      Y_Arc := round(Y_Center + R_1*sin(Angle))
+      if (A_Index = 1){
+        Points := X_Arc "," Y_Arc
+        X_Arc_Start := X_Arc
+        Y_Arc_Start := Y_Arc
+        continue
+      }
+      Points .= "|" X_Arc "," Y_Arc
+    }
+    
+    Loop_Sections := round(R_2*SweepAngle_2)
+    StartAngle_2 := SweepAngle_2/2 + SectionAngle*(Section)
+    loop, %Loop_Sections% {
+      Angle := StartAngle_2 - (A_Index-1)*SweepAngle_2/(Loop_Sections-1)
+      X_Arc := round(X_Center + R_2*cos(Angle))
+      Y_Arc := round(Y_Center + R_2*sin(Angle))
+      Points .= "|" X_Arc "," Y_Arc
+    }
+    
+    Points .= "|" X_Arc_Start "," Y_Arc_Start
+    
+    return Points
+  }
+
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
@@ -12806,6 +13108,372 @@ IsLinear(arr, i=0) {
   Return DllCall( "CopyImage", "Ptr",hBM, "Int",0, "Int",ResizeW, "Int",ResizeH, "Int",LR_Flag2, "UPtr" )
   }  
 
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
+/* Radial_Menu - Displays Menu encircling Mouse, which can contain icons.
+ ; Created by ahk_user @ 2019
+ ; Creates radial Mouse menu
+ ; V1.00046
+ ; Changes
+ ; Add function accepts HBitmap or files
+ ; Requires Gdip_GetPointsSection()
+ */
+
+  Class Radial_Menu{
+    static Sections, Sect_Name, Sect_Img
+    __New(){
+      This.Sections := "4"
+      This.RM_Key := "F9"
+      This.IconSize := 70
+    }
+    
+    SetSections(Sections){
+      This.Sections := Sections
+    }
+    SetKey(RM_Key){
+      This.RM_Key := RM_Key
+    }
+    SetKeySpecial(RM_Key2){
+      This.RM_Key2 := RM_Key2
+    }
+    
+    Add(SectionName,SectionImg,ArcNr){
+      if (This.Sections < ArcNr){
+        This.Sections := ArcNr
+      }
+      This.Sect_Name[ArcNr] := SectionName
+      This.Sect_Img[ArcNr] := SectionImg
+    }
+    Add2(SectionName2,SectionImg2,ArcNr){
+      if (This.Sections < ArcNr){
+        This.Sections := ArcNr
+      }
+      This.Sect_Name2[ArcNr] := SectionName2
+      This.Sect_Img2[ArcNr] := SectionImg2
+    }
+    
+    Show(){
+      static
+      This.Active := True
+      SectName := ""
+      CoordMode, Mouse, Window
+      MouseGetPos, X_Center, Y_Center
+      WinGetPos, X_Win, Y_Win,,, A
+      R_1 := 100
+      R_2 := R_1*0.2
+      Offset := 2
+      R_3 := R_1+Offset*2+10
+      
+      X_Gui := X_Center - R_3 + X_Win
+      Y_Gui := Y_Center - R_3 + Y_Win
+      Height_Gui := R_3*2
+      Width_Gui := R_3*2
+      
+      Width := R_3*2
+      height := R_3*2
+      
+      if WinExist("RM_Menu"){
+        Gui, 69: Destroy
+      }
+      
+      ; Start gdi+
+      If !pToken := Gdip_Startup(){
+        MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
+        ExitApp
+      }
+      OnExit("ExitFunc")
+      
+      ; Create a layered window (+E0x80000 : must be used for UpdateLayeredWindow to work!) that is always on top (+AlwaysOnTop), has no taskbar entry or caption
+      Gui, 69: -Caption +E0x80000 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs
+      
+      ; Show the window
+      Gui, 69: Show, NA x%X_Gui% y%Y_Gui% w%Width_Gui% h%Height_Gui%, RM_Menu
+      
+      ; Get a handle to this window we have created in order to update it later
+      hwnd1 := WinExist()
+      
+      MouseGetPos, X_Center, Y_Center
+      ColorBackGround := "111111"
+      ColorLineBackGround := "111111"
+      ColorSelected := "222222"
+      ColorLineSelected := "222222"
+      
+      Loop, % This.Sections { ;Setting Bitmap images of sections
+        if FileExist(This.Sect_Img[A_Index]){
+          pBitmap_%A_Index% := Gdip_CreateBitmapFromFile(This.Sect_Img[A_Index])
+        }
+        else if (This.Sect_Img[A_Index] !=""){
+          pBitmap_%A_Index% := Gdip_CreateBitmapFromHBITMAP(This.Sect_Img[A_Index])
+        }
+        
+        bWidth_%A_Index% := Gdip_GetImageWidth(pBitmap_%A_Index%)
+        bHeight_%A_Index% := Gdip_GetImageHeight(pBitmap_%A_Index%)
+        
+        if FileExist(This.Sect_Img2[A_Index]){
+          pBitmap2_%A_Index% := Gdip_CreateBitmapFromFile(This.Sect_Img2[A_Index])
+        }
+        else if (This.Sect_Img2[A_Index] !=""){
+          pBitmap2_%A_Index% := Gdip_CreateBitmapFromHBITMAP(This.Sect_Img2[A_Index])
+        }
+        bWidth2_%A_Index% := Gdip_GetImageWidth(pBitmap2_%A_Index%)
+        bHeight2_%A_Index% := Gdip_GetImageHeight(pBitmap2_%A_Index%)
+      }
+      
+      Counter := 0
+      loop, % This.Sections { ;Calculating Section Points
+        SectionAngle := 2*3.141592653589793/This.Sections*(A_Index-1)
+        
+        X_Bitmap_%A_Index% := R_3+(R_1-30)*cos(SectionAngle)-8
+        Y_Bitmap_%A_Index% := R_3+(R_1-30)*sin(SectionAngle)-8
+        
+        PointsA_%A_Index% := Gdip_GetPointsSection(R_3,R_3,R_1+Offset*2+10,R_1+Offset*2,This.Sections,Offset,A_Index)
+        Points_%A_Index% := Gdip_GetPointsSection(R_3,R_3,R_1,R_2,This.Sections,Offset,A_Index)
+      }
+      
+      ; Setting brushes and Pens
+      pBrush := Gdip_BrushCreateSolid("0xFF" ColorBackGround)
+      pBrushA := Gdip_BrushCreateSolid("0xFF" ColorSelected)
+      pBrushC := Gdip_BrushCreateSolid("0X01" ColorBackGround)
+      pPen := Gdip_CreatePen("0xFF" ColorLineBackGround, 1)
+      pPenA := Gdip_CreatePen("0xD2" ColorLineSelected, 1)
+      
+      Gdip_SetSmoothingMode(G, 4)
+      
+      RM_KeyState_D := 0
+      Gdip_FillEllipse(G, pBrushC, R_3-R_1, R_3-R_1, 2*R_1, 2*R_1)
+      
+      loop, {
+        RM_KeyState := GetKeyState(This.RM_Key,"P")
+        RM_KeyState2 := GetKeyState(This.RM_Key2,"P")
+        if !WinExist("RM_Menu"){
+          Exit
+        }
+        if (RM_KeyState = 1){
+          RM_KeyState_D := 1
+        }
+        if (RM_KeyState = 0 and RM_KeyState_D = 1){
+          Section_Mouse := RM_GetSection(This.Sections, R_2,X_Center,Y_Center)
+          if (Section_Mouse != 0){
+            break
+          }
+          RM_KeyState_D := 0
+        }
+        if (GetKeyState("LButton")){
+          Section_Mouse := RM_GetSection(This.Sections, R_2,X_Center,Y_Center)
+          if (Section_Mouse != 0){
+            break
+          }
+          if (Section_Mouse = 0){
+            SectName := ""
+            break
+          }
+        }
+        if GetKeyState("Escape"){
+          Section_Mouse := 0 
+          SectName := ""
+          break
+        }
+        
+        MouseGetPos, X_Mouse, Y_Mouse
+        X_Rel := X_Mouse - X_Center
+        Y_Rel := Y_Mouse - Y_Center
+        Center_Distance := Sqrt(X_Rel*X_Rel+Y_Rel*Y_Rel)
+        
+        Section_Mouse := RM_GetSection(This.Sections, R_2,X_Center,Y_Center)
+        
+        if (Center_Distance > R_1){
+          break
+        }
+        if (Section_Mouse = 0){
+          ToolTip
+          SectName := ""
+        }
+        if (Section_Mouse > 0){
+          Counter++
+          SectName_N := This.Sect_Name[Section_Mouse]
+          SectName2 := This.Sect_Name2[Section_Mouse]
+          if (GetKeyState(This.RM_Key2,"P") and SectName2 !=""){
+            SectName_N := This.Sect_Name2[Section_Mouse]
+          }
+          
+          if ((X_Mouse_P != X_Mouse) or (Y_Mouse_P != Y_Mouse) or SectName_N != SectName or Counter > 500) {
+            SectName := SectName_N
+            CoordMode, Mouse, Window
+            MouseGetPos, X_Mouse_P, Y_Mouse_P
+            if (Counter > 500 or SectName_N != SectName){
+              Tooltip %SectName%
+              Counter := 0
+            }
+          }
+        }
+        if (Section_Mouse != Section_Mouse_Prev or A_Index = 1 or RM_KeyState2_Prev != RM_KeyState2){ ; Update GDIP   
+          
+          Gdip_GraphicsClear(G)
+          hbm := CreateDIBSection(Width, Height) ; Create a gdi bitmap with width and height of what we are going to draw into it. This is the entire drawing area for everything
+          hdc := CreateCompatibleDC() ; Get a device context compatible with the screen
+          obm := SelectObject(hdc, hbm) ; Select the bitmap into the device context
+          G := Gdip_GraphicsFromHDC(hdc)	; Get a pointer to the graphics of the bitmap, for use with drawing functions
+          
+          ; Set the smoothing mode to antialias = 4 to make shapes appear smother (only used for vector drawing and filling)
+          Gdip_SetSmoothingMode(G, 4)
+          Gdip_FillEllipse(G, pBrushC, R_3-R_1, R_3-R_1, 2*R_1, 2*R_1)
+          
+          loop, % This.Sections {
+            SectionAngle := 2*3.141592653589793/This.Sections*(A_Index-1)
+            if (This.Sect_Name[A_Index] = ""){
+              continue
+            }
+            If (A_Index = Section_Mouse){
+              Gdip_FillPolygon(G, pBrushA, Points_%A_Index%)
+              Gdip_DrawLines(G, pPenA, Points_%A_Index%)
+              Gdip_FillPolygon(G, pBrushA, PointsA_%A_Index%)
+              Gdip_DrawLines(G, pPenA, PointsA_%A_Index%)
+            } 
+            else {
+              Gdip_FillPolygon(G, pBrush, Points_%A_Index%)
+              Gdip_DrawLines(G, pPen, Points_%A_Index%)
+            }
+            if (GetKeyState(This.RM_Key2,"P") and This.Sect_Name2[A_Index] !=""){
+              Gdip_DrawImage(G, pBitmap2_%A_Index%, X_Bitmap_%A_Index%-This.IconSize//2.5, Y_Bitmap_%A_Index%-This.IconSize//2.5, This.IconSize, This.IconSize*bHeight2_%A_Index%/bWidth2_%A_Index%, 0, 0, bWidth2_%A_Index%, bHeight2_%A_Index%)
+            }
+            else {
+              Gdip_DrawImage(G, pBitmap_%A_Index%, X_Bitmap_%A_Index%-This.IconSize//2.5, Y_Bitmap_%A_Index%-This.IconSize//2.5, This.IconSize, This.IconSize*bHeight_%A_Index%/bWidth_%A_Index%, 0, 0, bWidth_%A_Index%, bHeight_%A_Index%)
+            }
+            if(This.Sect_Img[A_Index]=""){
+              Gdip_TextToGraphics(G, This.Sect_Name[A_Index], "vCenter x" X_Bitmap_%A_Index% -20+8 " y" Y_Bitmap_%A_Index% -20+8 , "", "40", "40")
+            }
+          }
+          
+          ; Update the specified window we have created (hwnd1) with a handle to our bitmap (hdc), specifying the x,y,w,h we want it positioned on our screen
+          ; So this will position our gui at (0,0) with the Width and Height specified earlier
+          UpdateLayeredWindow(hwnd1, hdc, X_Gui, Y_Gui, Width, Height)
+          SelectObject(hdc, obm) ; Select the object back into the hdc
+          DeleteObject(hbm) ; Now the bitmap may be deleted
+          DeleteDC(hdc) ; Also the device context related to the bitmap may be deleted
+          Gdip_DeleteGraphics(G) ; The graphics may now be deleted
+        }
+        RM_KeyState2_Prev := RM_KeyState2
+        Section_Mouse_Prev := Section_Mouse
+      }
+      
+      Tooltip
+      
+      SelectObject(hdc, obm) ; Select the object back into the hdc
+      DeleteObject(hbm) ; Now the bitmap may be deleted
+      DeleteDC(hdc) ; Also the device context related to the bitmap may be deleted
+      Gdip_DeleteGraphics(G) ; The graphics may now be deleted
+      
+      loop, % This.Sections {
+        Gdip_DisposeImage(pBitmap_%A_Index%)
+        Gdip_DisposeImage(pBitmap2_%A_Index%)
+      }
+      
+      Gdip_DeleteBrush(pBrushC)
+      Gdip_DeleteBrush(pBrush)
+      Gdip_DeleteBrush(pBrushA)
+      Gdip_DeletePen(pPen)
+      Gdip_DeletePen(pPenA)
+      Gdip_Shutdown(pToken)
+      Gui, 69: Destroy
+      Section_Mouse := RM_GetSection(This.Sections, R_2,X_Center,Y_Center)
+      if (Section_Mouse = 0){
+        SectName := ""
+      }
+      This.Active := False
+      Return % SectName
+    }
+  }
+
+  RM_GetSection(Sections, R_2,X_Center,Y_Center){
+    CoordMode, Mouse, Window
+    MouseGetPos, X_Mouse, Y_Mouse
+    X_Rel := X_Mouse - X_Center
+    Y_Rel := Y_Mouse - Y_Center 
+    Distance_Center := Sqrt(X_Rel*X_Rel+Y_Rel*Y_Rel)
+    if (X_Rel = 0){ ; (correction to prevent X to be 0)
+      X_Rel = 0.01
+    }
+    if (Y_Rel = 0){ ; (correction to prevent Y to be 0)
+      Y_Rel = 0.01
+    }
+    if (Distance_Center < R_2){
+      Section_Mouse := "0"
+      return Section_Mouse
+    }
+    else if (Distance_Center > R_2){
+      a := X_Rel = 0 ? (Y_Rel = 0 ? 0 : Y_Rel > 0 ? 90 : 270) : atan(Y_Rel/X_Rel)*57.2957795130823209 ; 180/pi
+      Angle := X_Rel < 0 ? 180 + a : a < 0 ? 360 + a : a
+      Section_Mouse := 1+round(Angle/360*Sections)
+      if (Section_Mouse > Sections){
+        Section_Mouse := 1
+      }
+    }
+    return Section_Mouse
+  }
+
+  RM_BuildRM(RM_Name){
+    global RM_File_Settings := A_ScriptDir "\RM_Settings.ini"
+    IniRead, Sections,  %RM_File_Settings%,  %RM_Name%, Sections,  8
+    loop, %Sections% {
+      IniRead, RM_B%A_Index%_Name,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_Name, Name
+      if (RM_B%A_Index%_Name = "Default"){
+        continue
+      }
+      IniRead, RM_B%A_Index%_img,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_img, %A_Space%
+      IniRead, RM_B%A_Index%_Script,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_Script, %A_Space%
+      StringReplace, RM_B%A_Index%_Script,RM_B%A_Index%_Script,`<br`>,`n,all
+      
+      G.Add(RM_B%A_Index%_Name,RM_B%A_Index%_img,A_Index)
+    }
+    G.SetSections(Sections)
+    Result := G.Show()
+    loop, %Sections% {
+      if (Result=RM_B%A_Index%_Name and RM_B%A_Index%_Script = != ""){
+        Script := RM_B%A_Index%_Script
+        Function := RegExMatch(Script,"([^\(]*)\((.*)\)","$1")
+        Var := RegExMatch(Script,"([^\(]*)\((.*)\)","$1")
+        %Function%(Var)
+      }
+    }
+    return Result
+  }
+
+  RM_MenuSettings(RM_Name){
+    RM_File_Settings :=  A_ScriptDir "\RM_Settings.ini"
+    IniRead, Sections,  %RM_File_Settings%,  %RM_Name%, Sections,  8
+    G := new Radial_Menu
+    loop, %Sections% {
+      IniRead, RM_B%A_Index%_Name,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_Name, Name
+      if (RM_B%A_Index%_Name = "Default"){
+        continue
+      }
+      IniRead, RM_B%A_Index%_img,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_img, %A_Space%
+      IniRead, RM_B%A_Index%_Script,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_Script, %A_Space%
+      StringReplace, RM_B%A_Index%_Script,RM_B%A_Index%_Script,`<br`>,`n,all
+      G.Add(RM_B%A_Index%_Name, RM_B%A_Index%_img , A_Index)
+    }
+    G.SetSections(Sections)
+    Result := G.Show()
+    loop, %Sections% {
+      if (RM_B%A_Index%_Name and RM_B%A_Index%_Script){
+        if (Result=RM_B%A_Index%_Name){
+          return RM_B%A_Index%_Script 
+          Exit
+        }
+      }
+    }
+    return Result
+  }
+
+  ExitFunc(){
+    global
+    ; gdi+ may now be shutdown on exiting the program
+    Gdip_Shutdown(pToken)
+    CraftMenu.Active := False
+    return
+  }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
@@ -14875,6 +15543,105 @@ IsLinear(arr, i=0) {
       obj._keys.Insert(k)
     }
     return r
+  }
+
+  Class OrderedAssociativeArray {
+    __New() {
+      ObjRawSet(this, "__Data", {})
+      ObjRawSet(this, "__Order", [])
+    }
+    
+    __Get(args*) {
+      return this.__Data[args*]
+    }
+    
+    __Set(args*) {
+      key := args[1]
+      val := args.Pop()
+      if(args.Length() < 2 && this.__Data.HasKey(key)) {
+        this.Delete(key)
+      }
+      if(!this.__Data.HasKey(key)) {
+        this.__Order.Push(key)
+      }
+      this.__Data[args*] := val
+      return val
+    }
+    
+    InsertAt(pos, key, val) {
+      this.__Order.InsertAt(pos, key)
+      this.__Data[key] := val
+    }
+    
+    RemoveAt(pos) {
+      val := this.__Data[this.__Order[pos]]
+      this.__Data.Delete(this.__Order[pos])
+      this.__Order.RemoveAt(pos)
+      return val
+    }
+    
+    Delete(key) {
+      for i, v in this.__Order {
+        if(key == v) {
+          return this.RemoveAt(i)
+        }
+      }
+    }
+    
+    Length() {
+      return this.__Order.Length()
+    }
+    
+    HasKey(key) {
+      return this.__Data.HasKey(key)
+    }
+    
+    _NewEnum() {
+      return new OrderedAssociativeArray.Enum(this.__Data, this.__Order)
+    }
+    
+    Class Enum {
+      __New(Data, Order) {
+        this.Data := Data
+        this.oEnum := Order._NewEnum()
+      }
+      
+      Next(ByRef key, ByRef val := "") {
+        res := this.oEnum.next(, key)
+        val := this.Data[key]
+        return res
+      }
+    }
+  }
+
+  class testOrder
+  {
+    order := []
+    
+    __Set(k){
+      this.order.push(k)
+    }
+    
+    _NewEnum(){
+      return new this.customEnum(this)
+    }
+    
+    class customEnum
+    {
+      __New(obj){
+        this.obj := obj
+        this.order := obj.order
+      }
+      
+      Next(ByRef k, ByRef v := ""){
+        if (this.order[1]){
+          k := this.order.RemoveAt(1)
+          v := this.obj[k]
+          return true
+        }
+        return false		
+      }
+    }
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -17029,15 +17796,7 @@ ft_Gui(cmd)
   If (cmd="Copy")
     Clipboard:=RegExReplace(s,"\R","`r`n")
   Else if (cmd="CopyString")
-    Clipboard:= """" copyString """"
-
-  ;----------------------
-  ; if !(!A_IsCompiled and A_LineFile=A_ScriptFullPath)
-  ; {
-  ;   Gui, Hide
-  ;   Gui, 1: Default
-  ;   Hotkeys()
-  ; }
+    Clipboard:= copyString
   return
   }
   if (cmd="MySlider1") or (cmd="MySlider2")
