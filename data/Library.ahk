@@ -3079,6 +3079,7 @@
         Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
         Gui, Inventory: Font,
         ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
+        PPx:=Scale_PositionFromDPI(PPx), PPy:=Scale_PositionFromDPI(PPy)
         Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
@@ -12705,6 +12706,8 @@ IsLinear(arr, i=0) {
   ControlGet, Style, Style,,, ahk_id %hCtrl%
   ControlGet, ExStyle, ExStyle,,, ahk_id %hCtrl%
   ControlGetPos,,, CtrlW, CtrlH,, ahk_id %hCtrl% 
+  CtrlW:=Scale_PositionFromDPI(CtrlW), CtrlH:=Scale_PositionFromDPI(CtrlH)
+
   If not ( Class == "Static" and Style = 0x5000010E and ExStyle = 0 and CtrlW > 0 and CtrlH > 0 ) 
     Return 0, ErrorLevel := -1
 
@@ -16321,6 +16324,7 @@ IsLinear(arr, i=0) {
     ApplyGradient( Hwnd, LT := "101010", MB := "0000AA", RB := "00FF00", Vertical := 1 ) {
       Static STM_SETIMAGE := 0x172 
       ControlGetPos,,, W, H,, ahk_id %Hwnd%
+      W:=Scale_PositionFromDPI(W), H:=Scale_PositionFromDPI(H)
       PixelData := Vertical ? LT "|" LT "|" LT "|" MB "|" MB "|" MB "|" RB "|" RB "|" RB : LT "|" MB "|" RB "|" LT "|" MB "|" RB "|" LT "|" MB "|" RB
       hBitmap := this.CreateDIB( PixelData, 3, 3, W, H, True )
       oBitmap := DllCall( "SendMessage", "Ptr",Hwnd, "UInt",STM_SETIMAGE, "Ptr",0, "Ptr",hBitmap )
