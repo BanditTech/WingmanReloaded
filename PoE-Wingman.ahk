@@ -7470,17 +7470,20 @@ Return
         Gui, Flask%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
         Gui, Flask%slot%: Add, Text,% "vFlask" slot "Life hwndFlask" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Life
         ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%LifeHWND
+        x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Flask%slot%Life_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
         setColor := "51DEFF"
         Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
         Gui, Flask%slot%: Add, Text,% "vFlask" slot "ES hwndFlask" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].ES
         ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ESHWND
+        x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Flask%slot%ES_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
         setColor := "Blue"
         Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
         Gui, Flask%slot%: Add, Text,% "vFlask" slot "Mana hwndFlask" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Mana
         Gui, Flask%slot%: Font,
         ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ManaHWND
+        x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Flask%slot%Mana_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
         Gui, Flask%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
         Gui, Flask%slot%: Add, Radio, % "vFlask" slot "Condition  x+5   yp-5 h22 Checked" (WR.Flask[slot].Condition==1?1:0), Any
@@ -7602,17 +7605,20 @@ Return
         Gui, Utility%slot%: Add, Text, xs+13 ys+18 c%setColor%, L`%
         Gui, Utility%slot%: Add, Text,% "vUtility" slot "Life hwndUtility" slot "LifeHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Life
         ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%LifeHWND
+        x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Utility%slot%Life_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Life , backColor , setColor , 1 , "Utility" slot "Life" , 0 , 0 , 1)
         setColor := "51DEFF"
         Gui, Utility%slot%: Add, Text, xs+13 y+13 c%setColor%, E`%
         Gui, Utility%slot%: Add, Text,% "vUtility" slot "ES hwndUtility" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].ES
         ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ESHWND
+        x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Utility%slot%ES_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].ES , backColor , setColor , 1 , "Utility" slot "ES" , 0 , 0 , 1)
         setColor := "Blue"
         Gui, Utility%slot%: Add, Text, xs+13 y+13 c%setColor%, M`%
         Gui, Utility%slot%: Add, Text,% "vUtility" slot "Mana hwndUtility" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Utility[slot].Mana
         Gui, Utility%slot%: Font,
         ControlGetPos, x, y, w, h, ,% "ahk_id " Utility%slot%ManaHWND
+        x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Utility%slot%Mana_Slider := new Progress_Slider("Utility" Slot, "Utility" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Mana , backColor , setColor , 1 , "Utility" slot "Mana" , 0 , 0 , 1)
         Gui, Utility%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
         Gui, Utility%slot%: Add, Radio, % "vUtility" slot "Condition  x+5   yp-5 h22 Checked" (WR.Utility[slot].Condition==1?1:0), Any
@@ -8119,9 +8125,9 @@ Return
     return
 
     ft_Start:
-    Gui, Submit
-    CheckGamestates:= False
-    Run, Library.ahk, %A_ScriptDir%\data\
+      Gui, Submit
+      CheckGamestates:= False
+      Run, Library.ahk, %A_ScriptDir%\data\
     Return
 
     GuiEscape:
@@ -8170,6 +8176,16 @@ Return
         Hotkeys()
       }
     Return
+
+    Get_DpiFactor() {
+      return A_ScreenDPI=96?1:A_ScreenDPI/96
+    }
+    Scale_PositionFromDPI(val){
+      dpif := Get_DpiFactor()
+      If (dpif != 1)
+        val := val / dpif
+      Return val
+    }
 
     SendMSG(wParam:=0, lParam:=0, script:="BlankSubscript.ahk ahk_exe AutoHotkey.exe"){
       DetectHiddenWindows On
