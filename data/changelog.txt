@@ -1,3 +1,18 @@
+## Version .12.04 - Master version - November/24/2020
+Merging preparation of major changes incoming to the Alpha branch
+* Alpha branch will be receiving an update soon which will require a re-download
+
+Undocumented changes from Alpha
+* Fix gui position
+* Scale stash positions for affinity changes
+* Update help button text
+* Old code cleanup
+* cast on detonate now uses movement key to fire
+* add more undesirable map mods
+* add binding for MOVE trigger
+
+---
+
 ## Version .12.0304 - Alpha version - November/08/2020
 Delayed keypresses can now be achieved in any keybinding!
 * To add a delay to a binding, use the format: "[MS-DELAY](KEY-TO-PRESS)"
