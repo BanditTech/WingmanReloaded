@@ -742,7 +742,7 @@ GuiClose:
     IniWrite, %xpos%, LootFilter.ini, Settings, xpos
     IniWrite, %ypos%, LootFilter.ini, Settings, ypos
   }
-  SendMSG( 7, 0)
+  SendMSG(1)
 ExitApp
 
 ReplaceDigit000(Name:="Group1"){

@@ -1956,7 +1956,6 @@ Return
 ; Inventory Management Functions - ItemSortCommand, ClipItem, ParseClip, ItemInfo, MatchLootFilter, MatchNinjaPrice, GraphNinjaPrices, MoveStash, StockScrolls, LootScan
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; ItemSortCommand - Sort inventory and determine action
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ItemSortCommand(){
     ; Thread, NoTimers, True
     CheckRunning()
@@ -2079,7 +2078,6 @@ Return
     Return False
   }
   ; ShooMouse - Move mouse out of the inventory area
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ShooMouse()
   {
     MouseGetPos Checkx, Checky
@@ -2091,7 +2089,6 @@ Return
     }
   }
   ; ClearNotifications - Get rid of overlay messages if any are present
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ClearNotifications()
   {
     If (xBtn := FindText(GameW - 21,InventoryGridY[1] - 60,GameW,InventoryGridY[5] + 10,0.2,0.2,XButtonStr,0))
@@ -2124,7 +2121,6 @@ Return
     Return False
   }
   ; VendorRoutine - Does vendor functions
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   VendorRoutine()
   {
     tQ := 0
@@ -2326,7 +2322,6 @@ Return
     Return
   }
   ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   VendorRoutineChaos()
   {
     tQ := 0
@@ -2484,7 +2479,6 @@ Return
     Return
   }
   ; LockerRoutine - Deposit Contracts and Blueprints at the Heist Locker
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   LockerRoutine(){
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
@@ -2655,7 +2649,6 @@ Return
     Return
   }
   ; StashRoutine - Does stash functions
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StashRoutine()
   {
     Global PPServerStatus
@@ -2950,7 +2943,6 @@ Return
   }
 
   ; DivRoutine - Does divination trading function
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DivRoutine()
   {
     BlackList := Array_DeepClone(IgnoredSlot)
@@ -2999,7 +2991,6 @@ Return
     Return
   }
   ; IdentifyRoutine - Does basic function when not at other windows
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   IdentifyRoutine()
   {
     BlackList := Array_DeepClone(IgnoredSlot)
@@ -3041,7 +3032,6 @@ Return
     Return
   }
   ; ClipItem - Capture Clip at Coord
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ClipItem(x, y){
       BlockInput, MouseMove
       Clipboard := ""
@@ -3062,7 +3052,6 @@ Return
     Return
     }
   ; ItemInfo - Display information about item under cursor
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ItemInfo(){
     ItemInfoCommand:
     MouseGetPos, Mx, My
@@ -3071,7 +3060,6 @@ Return
     Return
   }
   ; MoveStash - Input any digit and it will move to that Stash tab
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MoveStash(Tab,CheckStatus:=0)
   {
     If CheckStatus
@@ -3120,7 +3108,6 @@ Return
     return
   }
   ; StockScrolls - Restock scrolls that have more than 10 missing
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StockScrolls(){
       BlockInput, MouseMove
       If StockWisdom{
@@ -3172,7 +3159,6 @@ Return
     }
 
   ; LootScan - Finds matching colors under the cursor while key pressed
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   LootScan(Reset:=0){
       Static LV_LastClick := 0
       Global LootVacuumActive
@@ -3276,7 +3262,6 @@ Return
 ; Main Script Logic Timers - TGameTick, TimerPassthrough
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; TGameTick - Main Logic timer - Coordinates all other functions
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   TGameTick(GuiCheck:=True){
     Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False, OnScreenMM := 0
     Global GlobeActive, CurrentMessage, NoGame, GamePID
@@ -3530,7 +3515,6 @@ Return
   }
   
   ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   TimerPassthrough:
     Loop 5
       If GetKeyState(StrSplit(WR.Flask[A_Index].Key," ")[1], "P")
@@ -3539,7 +3523,6 @@ Return
 ; Toggle Main Script Timers - AutoQuit, AutoFlask, GuiUpdate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; AutoQuit - Toggle the scripts quit function on
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   toggleAutoQuit(){
     WR.func.Toggle.Quit := !WR.func.Toggle.Quit
     Settings("func","Save")
@@ -3548,7 +3531,6 @@ Return
   }
 
   ; AutoFlask - Toggle flask usage on
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   toggleAutoFlask(){
     WR.func.Toggle.Flask := !WR.func.Toggle.Flask
     Settings("func","Save")
@@ -3556,7 +3538,6 @@ Return
     return
   }
   ; AutoMove - Toggle movement triggers
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   toggleAutoMove(){
     WR.func.Toggle.Move := !WR.func.Toggle.Move  
     Settings("func","Save")
@@ -3564,7 +3545,6 @@ Return
     return
   }
   ; AutoUtility - Toggle utility triggers
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   toggleAutoUtility(){
     WR.func.Toggle.Utility := !WR.func.Toggle.Utility  
     Settings("func","Save")
@@ -3572,7 +3552,6 @@ Return
     return
   }
   ; Hotkey to pause the detonate mines
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PauseMines(){
     PauseMinesCommand:
       if !WR.perChar.Setting.autominesEnable
@@ -3622,7 +3601,6 @@ Return
     return
   }
   ; GuiUpdate - Update Overlay ON OFF states
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiUpdate(){
     GuiControl, 2:, overlayT1,% "Quit: " (WR.func.Toggle.Quit?"ON":"OFF")
     GuiControl, 2:, overlayT2,% "Flask: " (WR.func.Toggle.Flask?"ON":"OFF")
@@ -3639,7 +3617,6 @@ Return
 ; Trigger Abilities or Flasks - MainAttackCommand, SecondaryAttackCommand, Trigger
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; Trigger - Generic Trigger for flasks or utility
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Trigger(obj,force:=False){
     Static ActionList := {}
     Static LastHeldLB, LastHeldMA, LastHeldSA
@@ -3730,7 +3707,6 @@ Return
     Return False
   }
   ; MainAttackCommand - Main attack Flasks
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MainAttackCommand()
   {
     MainAttackCommand:
@@ -3747,7 +3723,6 @@ Return
     Return  
   }
   ; SecondaryAttackCommand - Secondary attack Flasks
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   SecondaryAttackCommand()
   {
     SecondaryAttackCommand:
@@ -3763,142 +3738,6 @@ Return
     Return  
   }
   
-; mainmenuGameLogicState - Update information in main menu regarding game logic states
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  mainmenuGameLogicState(){
-    Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
-    Local NewOHB
-    If (OnChar != OldOnChar)
-    {
-      OldOnChar := OnChar
-      If OnChar
-        CtlColors.Change(MainMenuIDOnChar, "52D165", "")
-      Else
-        CtlColors.Change(MainMenuIDOnChar, "Red", "")
-    }
-    If ((NewOHB := (CheckOHB()?1:0)) != OldOHB)
-    {
-      OldOHB := NewOHB
-      If NewOHB
-        CtlColors.Change(MainMenuIDOnOHB, "52D165", "")
-      Else
-        CtlColors.Change(MainMenuIDOnOHB, "Red", "")
-    }
-    If (OnInventory != OldOnInventory)
-    {
-      OldOnInventory := OnInventory
-      If (OnInventory)
-        CtlColors.Change(MainMenuIDOnInventory, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnInventory, "", "Green")
-    }
-    If (OnChat != OldOnChat)
-    {
-      OldOnChat := OnChat
-      If OnChat
-        CtlColors.Change(MainMenuIDOnChat, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnChat, "", "Green")
-    }
-    If (OnStash != OldOnStash)
-    {
-      OldOnStash := OnStash
-      If (OnStash)
-        CtlColors.Change(MainMenuIDOnStash, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnStash, "", "Green")
-    }
-    If (OnDiv != OldOnDiv)
-    {
-      OldOnDiv := OnDiv
-      If (OnDiv)
-        CtlColors.Change(MainMenuIDOnDiv, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnDiv, "", "Green")
-    }
-    If (OnLeft != OldOnLeft)
-    {
-      OldOnLeft := OnLeft
-      If (OnLeft)
-        CtlColors.Change(MainMenuIDOnLeft, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnLeft, "", "Green")
-    }
-    If (OnDelveChart != OldOnDelveChart)
-    {
-      OldOnDelveChart := OnDelveChart
-      If (OnDelveChart)
-        CtlColors.Change(MainMenuIDOnDelveChart, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
-    }
-    If (OnVendor != OldOnVendor)
-    {
-      OldOnVendor := OnVendor
-      If (OnVendor)
-        CtlColors.Change(MainMenuIDOnVendor, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnVendor, "", "Green")
-    }
-    If (OnDetonate != OldOnDetonate)
-    {
-      OldOnDetonate := OnDetonate
-      If (OnDetonate)
-        CtlColors.Change(MainMenuIDOnDetonate, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
-    }
-    If (OnMenu != OldOnMenu)
-    {
-      OldOnMenu := OnMenu
-      If (OnMenu)
-        CtlColors.Change(MainMenuIDOnMenu, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnMenu, "", "Green")
-    }
-    If (OnMetamorph != OldOnMetamorph)
-    {
-      OldOnMetamorph := OnMetamorph
-      If (OnMetamorph)
-        CtlColors.Change(MainMenuIDOnMetamorph, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnMetamorph, "", "Green")
-    }
-    If (OnLocker != OldOnLocker)
-    {
-      OldOnLocker := OnLocker
-      If (OnLocker)
-        CtlColors.Change(MainMenuIDOnLocker, "Red", "")
-      Else
-        CtlColors.Change(MainMenuIDOnLocker, "", "Green")
-    }
-    Return
-
-    CheckPixelGrid:
-      ;Check if inventory is open
-      Gui, States: Hide
-      if(!OnInventory){
-        TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
-      }else{
-        TT := "Grid information:" . "`n"
-        ScreenShot()
-        For C, GridX in InventoryGridX  
-        {
-          For R, GridY in InventoryGridY
-          {
-            PointColor := ScreenShot_GetColor(GridX,GridY)
-            if (indexOf(PointColor, varEmptyInvSlotColor)) {        
-              TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
-            }else{
-              TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
-            }
-          }
-        }
-      }
-      MsgBox %TT%  
-      Gui, States: Show
-    Return
-  }
 ; GrabCurrency - Get currency fast to use on a white/blue/rare strongbox
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GrabCurrency(){
@@ -3987,31 +3826,26 @@ Return
     Return
   }
   ; CraftingChance - Use the settings to apply chance to item(s) until unique
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CraftingChance(){
     Global RunningToggle
     Notify("Chance Logic Coming Soon","",2)
   }
   ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CraftingColor(){
     Global RunningToggle
     Notify("Color Logic Coming Soon","",2)
   }
   ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CraftingLink(){
     Global RunningToggle
     Notify("Link Logic Coming Soon","",2)
   }
   ; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CraftingSocket(){
     Global RunningToggle
     Notify("Socket Logic Coming Soon","",2)
   }
   ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CraftingMaps()
   {
     Global RunningToggle
@@ -4199,7 +4033,6 @@ Return
     }
   }
   ; ApplyCurrency - Using cname = currency name string and x, y as apply position
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ApplyCurrency(cname, x, y)
   {
     RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
@@ -4211,7 +4044,6 @@ Return
     return
   }
   ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   MapRoll(Method, x, y)
   {
     MMQIgnore := False
@@ -4662,115 +4494,6 @@ Return
     }
     Return
   }
-; MsgMonitor - Receive Messages from other scripts
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  MsgMonitor(wParam, lParam, msg)
-    {
-    ;; Thread, NoTimers, True    ;Critical
-    If (wParam=1)
-      Return
-    Else If (wParam=2)
-      Return
-    Else If (wParam=3) {
-      If (lParam=1){
-        OnCooldown[1]:=1 
-        settimer, TimerFlask1, %CooldownFlask1%
-        return
-        }    
-      If (lParam=2){
-        OnCooldown[2]:=1 
-        settimer, TimerFlask2, %CooldownFlask2%
-        return
-        }    
-      If (lParam=3){
-        OnCooldown[3]:=1 
-        settimer, TimerFlask3, %CooldownFlask3%
-        return
-        }    
-      If (lParam=4){
-        OnCooldown[4]:=1 
-        settimer, TimerFlask4, %CooldownFlask4%
-        return
-        }    
-      If (lParam=5){
-        OnCooldown[5]:=1 
-        settimer, TimerFlask5, %CooldownFlask5%
-        return
-        }    
-      }
-    Else If (wParam=4) {
-      If (lParam=1){
-        OnCooldownUtility1:=1 
-        settimer, TimerUtility1, %CooldownUtility1%
-        return
-        }    
-      If (lParam=2){
-        OnCooldownUtility2:=1 
-        settimer, TimerUtility2, %CooldownUtility2%
-        return
-        }    
-      If (lParam=3){
-        OnCooldownUtility3:=1 
-        settimer, TimerUtility3, %CooldownUtility3%
-        return
-        }    
-      If (lParam=4){
-        OnCooldownUtility4:=1 
-        settimer, TimerUtility4, %CooldownUtility4%
-        return
-        }    
-      If (lParam=5){
-        OnCooldownUtility5:=1 
-        settimer, TimerUtility5, %CooldownUtility5%
-        return
-        }    
-      }
-    Else If (wParam=6) {
-      If (lParam=1){
-        ; hotkeyLogout
-        LogoutCommand()
-        return
-        }    
-      If (lParam=2){
-        ; hotkeyPopFlasks
-        PopFlasks()
-        return
-        }    
-      If (lParam=3){
-        ; hotkeyQuickPortal
-        QuickPortal()
-        return
-        }    
-      If (lParam=4){
-        ; hotkeyGemSwap
-        GemSwap()
-        return
-        }    
-      If (lParam=5){
-        ; hotkeyItemSort
-        ItemSortCommand()
-        return
-        }    
-      }
-    Else If (wParam=7) {
-      ;MsgBox, Ding
-      LoadArray()
-      ;Hotkeys()
-      Return
-    }
-    Return
-    }
-; SendMSG - Send one or two digits to a sub-script 
-; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  SendMSG(wParam:=0, lParam:=0, script:="BlankSubscript.ahk ahk_exe AutoHotkey.exe"){
-    DetectHiddenWindows On
-    if WinExist(script) 
-      PostMessage, 0x5555, wParam, lParam  ; The message is sent  to the "last found window" due to WinExist() above.
-    ; else 
-    ;   Log("Recipient Script Not Found",script) ;Error  information sent to log file
-    DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
-    Return
-    }
 ; Coord - : Pixel information on Mouse Cursor, provides pixel location and RGB color hex
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Coord(){
@@ -5226,8 +4949,6 @@ Return
     ; tooltip, % mouseX " , " mouseY " - " mouseWin " : " mouseControl
     return {"X":mouseX,"Y":mouseY,"hWin":mouseWin,"Ctrl":mouseControl}
   }
-
-; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 ; Configuration handling, ini updates, Hotkey handling, Profiles, Calibration, Ignore list, Loot Filter, Webpages (MISC BACKEND)
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   { ; Read, Save, Load - Includes basic hotkey setup
@@ -6151,13 +5872,11 @@ Return
         {
         WinActivate, ahk_group POEGameGroup
         }
-      ; SendMSG(1)
       Thread, NoTimers, False    ;End Critical
     return  
     }
 
     ; Settings Save/Load
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     Settings(name:="perChar",Action:="Load"){
       If (Action = "Load"){
         IfNotExist, %A_ScriptDir%\save\%name%.json
@@ -6178,7 +5897,6 @@ Return
       }
     }
     ; Profile Save/Load/Remove
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     Profile(){
       Gui, submit, nohide
       split := StrSplit(A_GuiControl,"_")
@@ -6242,7 +5960,6 @@ Return
 
     
     ; Register and UnRegister Hotkeys - Register Chat and Stash Hotkeys
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     RegisterHotkeys() {
       global
       Gui Submit, NoHide
@@ -6308,7 +6025,6 @@ Return
       Return
     }
     ; HotkeyShouldFire - Functions to evaluate keystate
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
       IfWinActive, ahk_group POEGameGroup
         {
@@ -6408,7 +6124,6 @@ Return
     }
 
     ; FireHotkey - Functions to Send each hotkey
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     FireHotkey(func:="CtrlEnter",TypePrefix:="2",SuffixNum:="1"){
       ; Enter func is Prefix 1, CtrlEnter func is Prefix 2
       ; Stash func is Prefix stash with SuffixNum of Tab#
@@ -7549,7 +7264,6 @@ Return
     }
 
     ; Build Per Character settings Menu
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     perCharMenu(){
       Global
       static Built := False
@@ -7704,7 +7418,6 @@ Return
         Return
     }
     ; Build Flask Menu
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     FlaskMenu(){
       Global
       static Built := {}, which := 1
@@ -7805,7 +7518,6 @@ Return
       Return
     }
     ; Build Utility Menu
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     UtilityMenu(){
       Global
       static Built := {}, which := 1
@@ -8237,6 +7949,141 @@ Return
       IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
       IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
     Return
+
+    mainmenuGameLogicState(){
+      Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
+      Local NewOHB
+      If (OnChar != OldOnChar)
+      {
+        OldOnChar := OnChar
+        If OnChar
+          CtlColors.Change(MainMenuIDOnChar, "52D165", "")
+        Else
+          CtlColors.Change(MainMenuIDOnChar, "Red", "")
+      }
+      If ((NewOHB := (CheckOHB()?1:0)) != OldOHB)
+      {
+        OldOHB := NewOHB
+        If NewOHB
+          CtlColors.Change(MainMenuIDOnOHB, "52D165", "")
+        Else
+          CtlColors.Change(MainMenuIDOnOHB, "Red", "")
+      }
+      If (OnInventory != OldOnInventory)
+      {
+        OldOnInventory := OnInventory
+        If (OnInventory)
+          CtlColors.Change(MainMenuIDOnInventory, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnInventory, "", "Green")
+      }
+      If (OnChat != OldOnChat)
+      {
+        OldOnChat := OnChat
+        If OnChat
+          CtlColors.Change(MainMenuIDOnChat, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnChat, "", "Green")
+      }
+      If (OnStash != OldOnStash)
+      {
+        OldOnStash := OnStash
+        If (OnStash)
+          CtlColors.Change(MainMenuIDOnStash, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnStash, "", "Green")
+      }
+      If (OnDiv != OldOnDiv)
+      {
+        OldOnDiv := OnDiv
+        If (OnDiv)
+          CtlColors.Change(MainMenuIDOnDiv, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnDiv, "", "Green")
+      }
+      If (OnLeft != OldOnLeft)
+      {
+        OldOnLeft := OnLeft
+        If (OnLeft)
+          CtlColors.Change(MainMenuIDOnLeft, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnLeft, "", "Green")
+      }
+      If (OnDelveChart != OldOnDelveChart)
+      {
+        OldOnDelveChart := OnDelveChart
+        If (OnDelveChart)
+          CtlColors.Change(MainMenuIDOnDelveChart, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
+      }
+      If (OnVendor != OldOnVendor)
+      {
+        OldOnVendor := OnVendor
+        If (OnVendor)
+          CtlColors.Change(MainMenuIDOnVendor, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnVendor, "", "Green")
+      }
+      If (OnDetonate != OldOnDetonate)
+      {
+        OldOnDetonate := OnDetonate
+        If (OnDetonate)
+          CtlColors.Change(MainMenuIDOnDetonate, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
+      }
+      If (OnMenu != OldOnMenu)
+      {
+        OldOnMenu := OnMenu
+        If (OnMenu)
+          CtlColors.Change(MainMenuIDOnMenu, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnMenu, "", "Green")
+      }
+      If (OnMetamorph != OldOnMetamorph)
+      {
+        OldOnMetamorph := OnMetamorph
+        If (OnMetamorph)
+          CtlColors.Change(MainMenuIDOnMetamorph, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnMetamorph, "", "Green")
+      }
+      If (OnLocker != OldOnLocker)
+      {
+        OldOnLocker := OnLocker
+        If (OnLocker)
+          CtlColors.Change(MainMenuIDOnLocker, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnLocker, "", "Green")
+      }
+      Return
+
+      CheckPixelGrid:
+        ;Check if inventory is open
+        Gui, States: Hide
+        if(!OnInventory){
+          TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+        }else{
+          TT := "Grid information:" . "`n"
+          ScreenShot()
+          For C, GridX in InventoryGridX  
+          {
+            For R, GridY in InventoryGridY
+            {
+              PointColor := ScreenShot_GetColor(GridX,GridY)
+              if (indexOf(PointColor, varEmptyInvSlotColor)) {        
+                TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+              }else{
+                TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
+              }
+            }
+          }
+        }
+        MsgBox %TT%  
+        Gui, States: Show
+      Return
+    }
   }
 
   { ; Launch Webpages from button
@@ -8310,6 +8157,20 @@ Return
         Hotkeys()
       }
     Return
+
+    SendMSG(wParam:=0, lParam:=0, script:="BlankSubscript.ahk ahk_exe AutoHotkey.exe"){
+      DetectHiddenWindows On
+      if WinExist(script) 
+        PostMessage, 0x5555, wParam, lParam
+      DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
+      Return
+    }
+
+    MsgMonitor(wParam, lParam, msg) {
+      If (wParam==1)
+        LoadArray()
+      Return
+    }
   }
 
   #Include, %A_ScriptDir%\data\Library.ahk

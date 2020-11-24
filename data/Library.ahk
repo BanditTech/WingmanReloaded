@@ -8,9 +8,7 @@
 *  Contains all the assorted functions written for Wingman
 */
   ; PoE Click v1.0.1 : Developed by Bandit
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ; SwiftClick - Left Click at Coord with no wait between up and down
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     SwiftClick(x, y){
       MouseMove, x, y  
       Sleep, 30+(ClickLatency*15)
@@ -19,7 +17,6 @@
       return
     }
     ; LeftClick - Left Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     LeftClick(x, y, Old:=0){
       If Old
       Goto OldStyleLeft
@@ -44,7 +41,6 @@
       return
     }
     ; RightClick - Right Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     RightClick(x, y, Old:=0){
       If Old
       Goto OldStyleRight
@@ -71,7 +67,6 @@
       return
     }
     ; ShiftClick - Shift Click +Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ShiftClick(x, y){
       BlockInput, MouseMove
       MouseMove, x, y
@@ -88,7 +83,6 @@
       return
     }
     ; CtrlClick - Ctrl Click ^Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CtrlClick(x, y){
       BlockInput, MouseMove
       MouseMove, x, y
@@ -105,14 +99,12 @@
       return
     }
     ; RandClick - Randomize Click area around middle of cell using Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     RandClick(x, y){
       Random, Rx, x+10, x+30
       Random, Ry, y-30, y-10
       return {"X": Rx, "Y": Ry}
     }
     ; WisdomScroll - Identify Item at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     WisdomScroll(x, y){
       BlockInput, MouseMove
       RightClick(WisdomScrollX,WisdomScrollY)
@@ -152,7 +144,6 @@
       }
       Return
   ; ItemScan - Parse data from Cliboard Text into Prop and Affix values
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemScan
     {
       __New(){
@@ -2355,7 +2346,6 @@
       }
     }
   ; ItemBuild - Create Prop and Affix Values in WR format from GGG Stash API
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemBuild extends ItemScan
     {
       __New(Object,quad){
@@ -3009,7 +2999,6 @@
     Return (obj.Count()>=0?obj.Count():0) 
   }
   ; ArrayToString - Make a string from array using | as delimiters
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ArrayToString(Array)
   {
     for index, element in Array
@@ -3026,14 +3015,12 @@
     return text
   }
   ; StringToArray - Make a array from a string using | as delimiters
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StringToArray(text)
   {
     Array := StrSplit(text,"|")
     return array
   }
   ; WR_Menu - New menu handling method
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   WR_Menu(Function:="",Var*)
   {
     Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
@@ -4320,7 +4307,6 @@
     return
   }
   ; Debug messages within script
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Ding(Timeout:=500, MultiTooltip:=0 , Message*)
   {
     If (!DebugMessages && MultiTooltip >= 0)
@@ -4372,7 +4358,6 @@
     Return
   }
   ; tooltip management
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   RemoveToolTip()
   {
     SetTimer, , Off
@@ -4521,7 +4506,6 @@
     return
   }
   ; GuiStatus - Determine the gamestates by checking for specific pixel colors
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiStatus(Fetch:="",SS:=1){
     Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnMetamorph, OnLocker, OnDetonate
     If (SS)
@@ -4560,7 +4544,6 @@
     Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker||YesXButtonFound))
   }
   ; PanelManager - This class manages every gamestate within one place
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Class PanelManager
   {
     __New(){
@@ -4590,7 +4573,6 @@
     }
   }
   ; PixelStatus - This class manages pixel sample and comparison
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Class PixelStatus
   {
     __New(Name,X,Y,Hex){
@@ -4606,7 +4588,6 @@
     }
   }
   ; ColorPicker - Create a color Picker into any GUI window or stand alone
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   class ColorPicker {
     __New(pGroup_GUI_NAME:="ColorPicker", pGroup_ID:="ColorPicker" , pGroup_X:=10 , pGroup_Y:=30 , pGroup_W:=90 , pGroup_H:=280, pGroup_SideBar:=110, pGroup_Start_Color:="000000"){
       This.GUI_NAME := pGroup_GUI_NAME
@@ -4686,7 +4667,6 @@
     }
   }
   ; Progress_Slider - Class written by Hellbent on AHK forum, adjusted by Bandit
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   class Progress_Slider  {
     __New(pSlider_GUI_NAME , pSlider_Control_ID , pSlider_X , pSlider_Y , pSlider_W , pSlider_H , pSlider_Range_Start , pSlider_Range_End , pSlider_Value:=0 , pSlider_Background_Color := "Black" , pSlider_Top_Color := "Red" , pSlider_Pair_With_Edit := 0 , pSlider_Paired_Edit_ID := "" , pSlider_Use_Tooltip := 0 ,  pSlider_Vertical := 0 , pSlider_Smooth := 1, SaveINISection := ""){
       This.GUI_NAME:=pSlider_GUI_NAME
@@ -4781,7 +4761,6 @@
     }
   }
   ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PredictPrice(Switch:="")
   {
     Static ItemList := []
@@ -4843,7 +4822,6 @@
       Return PriceObj.Price
   }
   ; CheckOHB - Determine the position of the OHB
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CheckOHB()
   {
     Global YesOHBFound
@@ -4940,7 +4918,6 @@
       Return False
   }
   ; ScanGlobe - Determine the percentage of Life, ES and Mana
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ScanGlobe(SS:=0)
   {
     Global Globe, Player, GlobeActive
@@ -4992,7 +4969,6 @@
     Return
   }
   ; Rescale - Rescales values of the script to the user's resolution
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Rescale(){
     Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid, WR
     If checkActiveType()
@@ -5075,9 +5051,7 @@
           Base.Globe := Array_DeepClone(Globe)
         }
         ; Stash grid area
-        ; --------------------------------------------
         ; ---Needs to be done with all aspect ratio---
-        ; --------------------------------------------
         If (!StashImported)
         {
 
@@ -5980,7 +5954,6 @@
     Return
   }
   ; Compare two hex colors as their R G B elements, puts all the below together
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CompareHex(color1, color2, vary:=1, BGR:=0)
   {
     If BGR
@@ -5996,7 +5969,6 @@
     Return CompareRGB(c1,c2,vary)
   }
   ; Convert a color to a pixel findtext string
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2,LR_Border:=0)
   {
     If (Width < 1)
@@ -6034,17 +6006,14 @@
     }
   }
   ; Converts a hex BGR color into its R G B elements
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ToRGBfromBGR(color) {
     return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
   }
   ; Converts a hex RGB color into its R G B elements
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ToRGB(color) {
     return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
   }
   ; Converts R G B elements back to hex
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ToHex(Color) {
     If IsObject(Color)
     {
@@ -6055,7 +6024,6 @@
       Return Format("0x{1:02X}",Color)
   }
   ; Converts a hex BGR color into RGB format or vice versa
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   hexBGRToRGB(color) {
       b := Format("{1:02X}",(color >> 16) & 0xFF)
       g := Format("{1:02X}",(color >> 8) & 0xFF)
@@ -6063,7 +6031,6 @@
     return "0x" . r . g . b
   }
   ; Compares two converted HEX codes as R G B within the variance range (use ToRGB to convert first)
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CompareRGB(c1, c2, vary:=1) {
     rdiff := Abs( c1.r - c2.r )
     gdiff := Abs( c1.g - c2.g )
@@ -6071,7 +6038,6 @@
     return rdiff <= vary && gdiff <= vary && bdiff <= vary
   }
   ; Check if a specific hex value is part of an array within a variance and return the index
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   indexOfHex(var, Arr, fromIndex:=1, vary:=2) {
     for index, value in Arr {
       h1 := ToRGB(value) 
@@ -6084,7 +6050,6 @@
     }
   }
   ; Check if a specific value is part of an array and return the index
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   indexOf(var, Arr, fromIndex:=1) {
     for index, value in Arr {
       if (index < fromIndex){
@@ -6095,7 +6060,6 @@
     }
   }
   ; Check if a specific value is part of an array's array and return the parent index
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   indexOfArr(var, Arr, fromIndex:=1) 
   {
     for index, a in Arr 
@@ -6118,7 +6082,6 @@
     return false
   }
   ; Transform an array to a comma separated string
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   arrToStr(array){
     Str := ""
     For Index, Value In array
@@ -6127,7 +6090,6 @@
     return Str
   }
   ; Transform an array to a comma separated string
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   hexArrToStr(array){
     Str := ""
     For Index, Value In array
@@ -6139,7 +6101,6 @@
     return Str
   }
   ; Function to Replace Nth instance of Needle in Haystack
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StringReplaceN( Haystack, Needle, Replacement="", Instance=1 ) 
   { 
     If !( Instance := 0 | Instance )
@@ -6157,7 +6118,6 @@
     Return HayStack Replacement Needle
   } 
   ; Clamp Value function
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Clamp( Val, Min, Max) {
     If Val < Min
       Val := Min
@@ -6166,7 +6126,6 @@
     Return
   }
   ; ClampGameScreen - Ensure points do not go outside Game Window
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ClampGameScreen(ByRef ValX, ByRef ValY) 
   {
     Global GameWindow
@@ -6181,7 +6140,6 @@
     Return
   }
   ; GroupByFourty - Mathematic function to sort quality into groups of 40
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GroupByFourty(ArrList) {
     GroupList := {}
     tQ := 0
@@ -6776,7 +6734,6 @@
     Return
   }
   ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CompareLocation(cStr:="")
   {
     Static Lang := ""
@@ -6995,7 +6952,6 @@
     Return False
   }
   ; Monitor for changes in log since initialized
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Monitor_GameLogs(Initialize:=0) 
   {
     global ClientLog, CLogFO, CurrentLocation
@@ -7082,7 +7038,6 @@
     }
   }
   ; Tail Function for files
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   LastLine(SomeFileObject) {
     static SEEK_CUR := 1
     static SEEK_END := 2
@@ -7103,7 +7058,6 @@
     Return ; this should never happen
   }
   ; CoolTime - Return a more accurate MS value
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CoolTime() {
     VarSetCapacity(PerformanceCount, 8, 0)
     VarSetCapacity(PerformanceFreq, 8, 0)
@@ -7112,7 +7066,6 @@
     return NumGet(PerformanceCount, 0, "Int64") / NumGet(PerformanceFreq, 0, "Int64")
   }
   ; DaysSince - Check how many days has it been since the last update
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DaysSince()
   {
     Global Date_now, LastDatabaseParseDate, UpdateDatabaseInterval
@@ -7138,7 +7091,6 @@
     }
   }
   ; Provides a call for simpler random sleep timers
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   RandomSleep(min,max){
       Random, r, min, max
       r:=floor(r/Speed)
@@ -7146,13 +7098,11 @@
     return
   }
   ; Reset Chat
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ResetChat(){
     Send {Enter}{Up}{Escape}
     return
   }
   ; Grab Reply whisper recipient
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GrabRecipientName(){
     Clipboard := ""
     Send ^{Enter}^{A}^{C}{Escape}
@@ -7176,7 +7126,6 @@
     Return
   }
   ; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaose Equivalent
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ScrapeNinjaData(apiString)
   {
     If(RegExMatch(selectedLeague, "SSF",RxMatch))
@@ -7362,7 +7311,6 @@
     Return
   }
   ; GetProcessTimes - Show CPU usage as precentage
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GetProcessTimes(PID)  
   {
     static aPIDs := []
@@ -7400,7 +7348,6 @@
     return aPIDs[PID, "usagePrior"] := result 
   }
   ; Hotkeys - Open main menu
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   hotkeys(){
     global
     if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
@@ -7461,7 +7408,6 @@
   }
 
   ; UpdateLeagues - Grab the League info from GGG API
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   UpdateLeagues:
     UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
     FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
@@ -7776,9 +7722,7 @@
   }
 
   ; Cooldown Timers
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ; TimerFlask - Flask CD Timers
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     TimerFlask1:
       OnCooldown[1]:=0
       settimer,TimerFlask1,delete
@@ -7800,7 +7744,6 @@
       settimer,TimerFlask5,delete
     return
     ; TimerUtility - Utility CD Timers
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     TimerUtility1:
       OnCooldownUtility1 := 0
       settimer,TimerUtility1,delete
@@ -7842,13 +7785,11 @@
       settimer,TimerUtility10,delete
     Return
     ; TDetonated - Detonate CD Timer
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     TDetonated:
       Detonated:=0
       ;settimer,TDetonated,delete
     return
   ; Tray Labels
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     WINSPY:
       SplitPath, A_AhkPath, , AHKDIR
       Run, %AHKDIR%\WindowSpy.ahk
@@ -7860,7 +7801,6 @@
       ExitApp
     Return
   ; Wingman GUI Labels
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     helpAutomation:
       Gui, submit
       MsgBox,% "Automation can start from two ways:`n`n"
@@ -7917,7 +7857,6 @@
         IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
     Return
   ; Wingman Crafting Labels - By DanMarzola
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CustomCrafting:
       Global CustomCraftingBase
       textList1 := ""
@@ -13931,7 +13870,6 @@ IsLinear(arr, i=0) {
       Return False
     }
   }
-  ; ----------------------------------------------------------------------------------------------------------------
   __Delete() {
     If This["!Access_Denied!"]
       Return
@@ -15293,7 +15231,6 @@ IsLinear(arr, i=0) {
  */
 
   ; Main function of the LutBot logout method
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   logout(executable){
       global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
       Thread, NoTimers, true    ;Critical
@@ -15405,7 +15342,6 @@ IsLinear(arr, i=0) {
     }
 
   ; Log file function
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Log(var*) 
   {
     print := A_Now
@@ -15417,7 +15353,6 @@ IsLinear(arr, i=0) {
   }
 
   ; checkActiveType - Check for active executable
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   checkActiveType() 
   {
     global Active_executable, GameStr
@@ -17037,7 +16972,6 @@ IsLinear(arr, i=0) {
     Static WSADATAsize := (2 * 2) + 257 + 129 + (2 * 2) + (A_PtrSize - 2) + A_PtrSize
     OrgAddr := Addr
     Result := ""
-    ; -------------------------------------------------------------------------------------------------------------------
     ; Initiate the use of the Winsock 2 DLL
     VarSetCapacity(WSADATA, WSADATAsize, 0)
     If (Err := DllCall("Ws2_32.dll\WSAStartup", "UShort", 0x0202, "Ptr", &WSADATA, "Int")) {
@@ -17061,7 +16995,6 @@ IsLinear(arr, i=0) {
     }
     ; Terminate the use of the Winsock 2 DLL
     DllCall("Ws2_32.dll\WSACleanup")
-    ; -------------------------------------------------------------------------------------------------------------------
     HMOD := DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "UPtr")
     Err := ""
     If (HPORT := DllCall("Iphlpapi.dll\IcmpCreateFile", "UPtr")) { ; open a port
@@ -17081,7 +17014,6 @@ IsLinear(arr, i=0) {
     Else
       Err := "IcmpCreateFile failed to open a port!"
     DllCall("FreeLibrary", "Ptr", HMOD)
-    ; -------------------------------------------------------------------------------------------------------------------
     If (Err) {
       ErrorLevel := Err
       Return ""
