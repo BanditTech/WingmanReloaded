@@ -7785,47 +7785,24 @@ Return
         FileDelete, %A_ScriptDir%\save\Flask.json
         JSONtext := JSON.Dump(WR.Flask,,2)
         FileAppend, %JSONtext%, %A_ScriptDir%\save\Flask.json
-        Return
+      Return
       Flask1GuiClose:
       Flask1GuiEscape:
-        Built[1] := False
-        Gui, Submit, NoHide
-        which := 1
-        Gosub, FlaskSaveValues
-        Gui, Flask1: Destroy
-        Return
       Flask2GuiClose:
       Flask2GuiEscape:
-        Built[2] := False
-        Gui, Submit, NoHide
-        which := 2
-        Gosub, FlaskSaveValues
-        Gui, Flask2: Destroy
-        Return
       Flask3GuiClose:
       Flask3GuiEscape:
-        Built[3] := False
-        Gui, Submit, NoHide
-        which := 3
-        Gosub, FlaskSaveValues
-        Gui, Flask3: Destroy
-        Return
       Flask4GuiClose:
       Flask4GuiEscape:
-        Built[4] := False
-        Gui, Submit, NoHide
-        which := 4
-        Gosub, FlaskSaveValues
-        Gui, Flask4: Destroy
-        Return
       Flask5GuiClose:
       Flask5GuiEscape:
-        Built[5] := False
+        RegExMatch(A_ThisLabel, "\d+", val)
+        Built[val] := False
         Gui, Submit, NoHide
-        which := 5
+        which := val
         Gosub, FlaskSaveValues
-        Gui, Flask5: Destroy
-        Return
+        Gui, Flask%val%: Destroy
+      Return
     }
     ; Build Utility Menu
     ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7945,87 +7922,34 @@ Return
         FileDelete, %A_ScriptDir%\save\Utility.json
         JSONtext := JSON.Dump(WR.Utility,,2)
         FileAppend, %JSONtext%, %A_ScriptDir%\save\Utility.json
-        Return
+      Return
       Utility1GuiClose:
       Utility1GuiEscape:
-        Built[1] := False
-        Gui, Submit, NoHide
-        which := 1
-        Gosub, UtilitySaveValues
-        Gui, Utility1: Destroy
-        Return
       Utility2GuiClose:
       Utility2GuiEscape:
-        Built[2] := False
-        Gui, Submit, NoHide
-        which := 2
-        Gosub, UtilitySaveValues
-        Gui, Utility2: Destroy
-        Return
       Utility3GuiClose:
       Utility3GuiEscape:
-        Built[3] := False
-        Gui, Submit, NoHide
-        which := 3
-        Gosub, UtilitySaveValues
-        Gui, Utility3: Destroy
-        Return
       Utility4GuiClose:
       Utility4GuiEscape:
-        Built[4] := False
-        Gui, Submit, NoHide
-        which := 4
-        Gosub, UtilitySaveValues
-        Gui, Utility4: Destroy
-        Return
       Utility5GuiClose:
       Utility5GuiEscape:
-        Built[5] := False
-        Gui, Submit, NoHide
-        which := 5
-        Gosub, UtilitySaveValues
-        Gui, Utility5: Destroy
-        Return
       Utility6GuiClose:
       Utility6GuiEscape:
-        Built[6] := False
-        Gui, Submit, NoHide
-        which := 6
-        Gosub, UtilitySaveValues
-        Gui, Utility6: Destroy
-        Return
       Utility7GuiClose:
       Utility7GuiEscape:
-        Built[7] := False
-        Gui, Submit, NoHide
-        which := 7
-        Gosub, UtilitySaveValues
-        Gui, Utility7: Destroy
-        Return
       Utility8GuiClose:
       Utility8GuiEscape:
-        Built[8] := False
-        Gui, Submit, NoHide
-        which := 8
-        Gosub, UtilitySaveValues
-        Gui, Utility8: Destroy
-        Return
       Utility9GuiClose:
       Utility9GuiEscape:
-        Built[9] := False
-        Gui, Submit, NoHide
-        which := 9
-        Gosub, UtilitySaveValues
-        Gui, Utility9: Destroy
-        Return
       Utility10GuiClose:
       Utility10GuiEscape:
-        Built[10] := False
+        RegExMatch(A_ThisLabel, "\d+", val)
+        Built[val] := False
         Gui, Submit, NoHide
-        which := 10
+        which := val
         Gosub, UtilitySaveValues
-        Gui, Utility10: Destroy
-        Return
+        Gui, Utility%val%: Destroy
+      Return
     }
   }
 
