@@ -123,6 +123,34 @@
       return
     }
      ; WisdomScroll - Identify Item at Coord
+
+     GreyOut:
+      Lista := ["StashTabYesBlight","StashTabYesDelirium","StashTabYesDivination","StashTabYesFragment","StashTabYesMetamorph","StashTabYesDelve","StashTabYesEssence","StashTabYesMap","StashTabYesCurrency"]
+      Listb := ["BlightEdit","DeliriumEdit","DivinationEdit","FragmentEdit","MetamorphEdit","DelveEdit","EssenceEdit","MapEdit","CurrencyEdit"]
+      for key, val in Lista
+      {
+        GuiControlGet, CheckBoxState,, %val%
+        value := Listb[key]
+        If (CheckBoxState == 0)
+        { 
+          GuiControl, Disable, %value%
+          GuiControl, , %value%text, Disable Type
+        } 
+        Else If (CheckBoxState == 1)
+        {
+          GuiControl, Enable, %value%
+          GuiControl, , %value%text, Assign a Tab
+        }
+        Else 
+        {
+          if(value !="CurrencyEdit" )
+          {
+            GuiControl, Disable, %value%
+          }
+          GuiControl, , %value%text, Enable Affinity
+        }
+      }
+      Return
   ; ItemScan - Parse data from Cliboard Text into Prop and Affix values
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemScan
@@ -195,19 +223,16 @@
           If (InStr(This.Prop.Rarity, "Currency"))
           {
             This.Prop.RarityCurrency := True
-            This.Prop.DefaultSendStash := "CurrencyTab"
           }
           Else If (InStr(This.Prop.Rarity, "Divination Card"))
           {
             This.Prop.RarityDivination := True
             This.Prop.SpecialType := "Divination Card"
-            This.Prop.DefaultSendStash := "DivinationTab"
           }
           Else If (InStr(This.Prop.Rarity, "Gem"))
           {
             This.Prop.RarityGem := True
             This.Prop.SpecialType := "Gem"
-            This.Prop.DefaultSendStash := "GemTab"
           }
           Else If (InStr(This.Prop.Rarity, "Normal"))
           {
@@ -228,7 +253,6 @@
           {
             This.Prop.RarityUnique := True
             This.Prop.Rarity_Digit := 4
-            This.Prop.DefaultSendStash := "CollectionTab"
           }
           ; Fail Safe in case nothing match, to avoid auto-sell
           Else
@@ -267,7 +291,6 @@
             Else
             {
               This.Prop.SpecialType := "Map"
-              This.Prop.DefaultSendStash := "MapTab"
             }
           }
           Else If (This.Prop.ItemBase ~= " Incubator$")
@@ -283,7 +306,6 @@
           {
             This.Prop.TimelessSplinter := True
             This.Prop.SpecialType := "Timeless Splinter"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Simulacrum"))
           {
@@ -299,19 +321,16 @@
           {
             This.Prop.BreachSplinter := True
             This.Prop.SpecialType := "Breach Splinter"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Breachstone"))
           {
             This.Prop.BreachSplinter := True
             This.Prop.SpecialType := "Breachstone"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Sacrifice at"))
           {
             This.Prop.SacrificeFragment := True
             This.Prop.SpecialType := "Sacrifice Fragment"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Mortal Grief") 
           || InStr(This.Prop.ItemBase, "Mortal Hope") 
@@ -320,13 +339,11 @@
           {
             This.Prop.MortalFragment := True
             This.Prop.SpecialType := "Mortal Fragment"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Fragment of"))
           {
             This.Prop.GuardianFragment := True
             This.Prop.SpecialType := "Guardian Fragment"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Volkuur's Key") 
           || InStr(This.Prop.ItemBase, "Eber's Key")
@@ -335,46 +352,39 @@
           {
             This.Prop.ProphecyFragment := True
             This.Prop.SpecialType := "Prophecy Fragment"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Scarab"))
           {
             This.Prop.Scarab := True
             This.Prop.SpecialType := "Scarab"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess"))
           {
             This.Prop.Offering := True
             This.Prop.SpecialType := "Offering"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "to the Goddess"))
           {
             This.Prop.UberDuberOffering := True
             This.Prop.SpecialType := "Uber Duber Offering"
-            ; This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Essence of")
           || InStr(This.Prop.ItemBase, "Remnant of Corruption"))
           {
             This.Prop.Essence := True
             This.Prop.SpecialType := "Essence"
-            This.Prop.DefaultSendStash := "EssenceTab"
           }
           Else If (This.Prop.RarityCurrency 
           && (This.Prop.ItemBase ~= " Fossil$"))
           {
             This.Prop.Fossil := True
             This.Prop.SpecialType := "Fossil"
-            This.Prop.DefaultSendStash := "FossilTab"
           }
           Else If (This.Prop.RarityCurrency 
           && (This.Prop.ItemBase ~= " Resonator$"))
           {
             This.Prop.Resonator := True
             This.Prop.SpecialType := "Resonator"
-            This.Prop.DefaultSendStash := "ResonatorTab"
             If (InStr(This.Prop.ItemName, "Primitive") || InStr(This.Prop.ItemName, "Potent"))
               This.Prop.Item_Width := 1
             Else
@@ -389,7 +399,6 @@
           {
             This.Prop.Vessel := True
             This.Prop.SpecialType := "Divine Vessel"
-            This.Prop.DefaultSendStash := "FragmentsTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Eye Jewel"))
           {
@@ -406,13 +415,11 @@
           {
             This.Prop.ClusterJewel := True
             This.Prop.SpecialType := "Cluster Jewel"
-            This.Prop.DefaultSendStash := "ClusterJewelTab"
           }
           Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Goods"
-            This.Prop.DefaultSendStash := "HeistTab"
             This.Prop.Item_Width := This.Prop.Item_Height := 2
             If indexOf(This.Prop.ItemBase, HeistLootLarge)
               This.Prop.Item_Height := 4
@@ -421,7 +428,6 @@
           {
             This.Prop.Flask := True
             This.Prop.ItemClass := "Flasks"
-            This.Prop.DefaultSendStash := "QualityFlaskTab"
             This.Prop.Item_Width := 1
             This.Prop.Item_Height := 2
           }
@@ -438,7 +444,6 @@
             {
             This.Prop.Oil := True
             This.Prop.SpecialType := "Oil"
-            This.Prop.DefaultSendStash := "OilTab"
             }
           }
           Else If (InStr(This.Prop.ItemBase, "Catalyst"))
@@ -455,7 +460,6 @@
             {
               This.Prop.IsOrgan := "Lung"
               This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
             }
           }
           Else If (InStr(This.Prop.ItemBase, "'s Heart"))
@@ -464,7 +468,6 @@
             {
               This.Prop.IsOrgan := "Heart"
               This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
             }
           }
           Else If (InStr(This.Prop.ItemBase, "'s Brain"))
@@ -473,7 +476,6 @@
             {
               This.Prop.IsOrgan := "Brain"
               This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
             }
           }
           Else If (InStr(This.Prop.ItemBase, "'s Liver"))
@@ -482,7 +484,6 @@
             {
               This.Prop.IsOrgan := "Liver"
               This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
             }
           }
           Else If (InStr(This.Prop.ItemBase, "'s Eye"))
@@ -491,7 +492,6 @@
             {
               This.Prop.IsOrgan := "Eye"
               This.Prop.SpecialType := "Organ"
-              This.Prop.DefaultSendStash := "OrganTab"
             }
           }
           Else If (InStr(This.Prop.ItemBase, " Beast"))
@@ -508,31 +508,26 @@
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Contract"
-            This.Prop.DefaultSendStash := "HeistTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Blueprint:"))
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Blueprint"
-            This.Prop.DefaultSendStash := "HeistTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Thief's Trinket"))
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Tricket"
-            This.Prop.DefaultSendStash := "HeistTab"
           }
           Else If (InStr(This.Prop.ItemBase, "Rogue's Marker"))
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Marker"
-            This.Prop.DefaultSendStash := "HeistTab"
           }
           Else If (indexOf(This.Prop.ItemBase, HeistGear))
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Gear"
-            This.Prop.DefaultSendStash := "HeistTab"
             ;Disable for now, need review Heist Gear List to split what is 1x1 or 2x2
             If InStr(This.Prop.ItemBase, "Brooch")
               This.Prop.Item_Width := This.Prop.Item_Height := 1
@@ -544,8 +539,10 @@
             This.Prop.ItemBase := StrSplit(This.Prop.ItemBase," ","",2)[2]
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Gear"
-            This.Prop.DefaultSendStash := "HeistTab"
-            This.Prop.Item_Width := This.Prop.Item_Height := 2
+            If InStr(This.Prop.ItemBase, "Brooch")
+              This.Prop.Item_Width := This.Prop.Item_Height := 1
+            Else
+              This.Prop.Item_Width := This.Prop.Item_Height := 2
           }
         }
         ;End NamePlate Parser
@@ -1334,7 +1331,7 @@
           If This.MatchNinjaDB("Prophecy")
             Return
         }
-        If (This.Prop.DefaultSendStash = "FragmentsTab" || This.Prop.ItemName ~= "Simulacrum")
+        If (This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment|| This.Prop.ItemName ~= "Simulacrum")
         {
           If This.MatchNinjaDB("Fragment")
             Return
@@ -1373,7 +1370,7 @@
             If This.MatchNinjaDB("UniqueArmour")
               Return
           }
-          Else If (This.Prop.ItemClass ~= "Flasks")
+          Else If (This.Prop.ItemClass ~= "Flask")
           {
             If This.MatchNinjaDB("UniqueFlask")
               Return
@@ -2007,28 +2004,74 @@
         This.GraphNinjaPrices()
       }
       MatchStashManagement(){
-        If (This.Prop.RarityCurrency&&This.Prop.SpecialType=""&&StashTabYesCurrency)
-          sendstash := StashTabCurrency
+        If (This.Prop.RarityCurrency&&This.Prop.SpecialType="")
+        {
+          If StashTabYesCurrency
+            sendstash := -2
+          Else
+            sendstash := StashTabCurrency
+        }
         Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap)
           sendstash := StashTabNinjaPrice
         Else If (This.Prop.Incubator)
           Return -1
-        Else If (This.Prop.IsMap && StashTabYesBlightedMap && This.Prop.IsBlightedMap)
-          sendstash := StashTabBlightedMap
+        ;Affinities
+        Else If (This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight
+        {
+          If StashTabYesBlight > 1
+            sendstash := -2
+          Else
+            sendstash := StashTabBlight
+        }
         Else If (This.Prop.IsMap && StashTabYesMap)
-          sendstash := StashTabMap
-        Else If (StashTabYesCatalyst&&This.Prop.Catalyst)
-          sendstash := StashTabCatalyst
-        Else If (StashTabYesDelirium&&This.Prop.SpecialType="Delirium")
-          sendstash := StashTabDelirium
-        Else If ( StashTabYesFragment 
-          && ( This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab
-          || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment ) )
-          sendstash := StashTabFragment
-        Else If (This.Prop.RarityDivination&&StashTabYesDivination)
-          sendstash := StashTabDivination
-        Else If (This.Prop.IsOrgan != "" && StashTabYesOrgan)
-          sendstash := StashTabOrgan
+        {
+          If StashTabYesMap > 1
+            sendstash := -2
+          Else
+            sendstash := StashTabMap
+        }
+        Else If (This.Prop.Catalyst || This.Prop.IsOrgan != "") && StashTabYesMetamorph
+        {
+          If StashTabYesMetamorph > 1
+            sendstash := -2
+          Else
+            sendstash := StashTabMetamorph
+        }
+        Else If (This.Prop.SpecialType="Delirium" && StashTabYesDelirium)
+        {
+          If StashTabYesDelirium > 1
+            sendstash := -2
+          Else
+            sendstash := StashTabDelirium
+        }
+        Else If (This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
+        {
+          If StashTabYesFragment > 1 
+            sendstash := -2
+          Else
+            sendstash := StashTabFragment 
+        }
+        Else If (This.Prop.RarityDivination) && StashTabYesDivination
+        {
+          If StashTabYesDivination > 1
+            sendstash := -2
+          Else
+            sendstash := StashTabDivination
+        }
+        Else If (This.Prop.Essence) && StashTabYesEssence
+        {
+          If StashTabYesEssence > 1
+            sendstash := -2
+          Else
+            sendstash := StashTabEssence
+        }
+        Else If (This.Prop.Fossil || This.Prop.Resonator) && StashTabYesDelve
+        {
+          If StashTabYesDelve > 1
+            sendstash := -2
+          Else
+            sendstash := StashTabDelve
+        }
         Else If (This.Prop.RarityUnique&&This.Prop.IsOrgan="")
         {
           If (StashTabYesCollection)
@@ -2038,13 +2081,7 @@
           Else If (StashTabYesUniqueDump)
           sendstash := StashTabUniqueDump
         }
-        Else If (This.Prop.Essence&&StashTabYesEssence)
-          sendstash := StashTabEssence
-        Else If (This.Prop.Fossil&&StashTabYesFossil)
-          sendstash := StashTabFossil
-        Else If (This.Prop.Resonator&&StashTabYesResonator)
-          sendstash := StashTabResonator
-        Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality)
+        Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality&&!This.Prop.RarityUnique)
           sendstash := StashTabFlaskQuality
         Else If (This.Prop.RarityGem)
         {
@@ -2063,8 +2100,6 @@
           sendstash := StashTabLinked
         Else If (This.Prop.Prophecy&&StashTabYesProphecy)
           sendstash := StashTabProphecy
-        Else If (This.Prop.Oil&&StashTabYesOil)
-          sendstash := StashTabOil
         Else If (This.Prop.Veiled&&StashTabYesVeiled)
           sendstash := StashTabVeiled
         Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
@@ -3014,7 +3049,7 @@
       , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
       , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
       , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
-      , WR_Btn_FillMetamorph_Area
+      , WR_Btn_FillMetamorph_Area, MapEdit, MapEditText, EssenceEdit ,EssenceEditText, DelveEdit, DelveEditText, CurrencyEdit, CurrencyEditText, MetamorphEdit, MetamorphEditText, FragmentEdit, FragmentEditText, DivinationEdit, DivinationEditText, DeliriumEdit, DeliriumEditText, BlightEdit, BlightEditText, UniqueEdit, UniqueEditText
       , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
       , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
       , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
@@ -3031,11 +3066,11 @@
         ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
         Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Chaos Recipe
+        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|
 
       Gui, Inventory: Tab, Options
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,       Section    w170 h215    xm   ym+25,         ID/Vend/Stash/CLF Options
+        Gui, Inventory: Add, GroupBox,       Section    w170 h215    xm   ym+25,         Inventory Sort/CLF Options
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
@@ -3136,226 +3171,137 @@
         Gui, Inventory: Add, Text,       Section    xm+5   ym+25,Stash Tab Management
         Gui, Inventory: Font,
 
-        ; Keeping Specific Tab first
-
-        ; Currency
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs ys+18 , Currency
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCurrency yp hp , %StashTabCurrency%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCurrency Checked%StashTabYesCurrency%  x+5 yp+4, Enable
-        ; Map
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Map
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabMap x+0 yp hp ,  %StashTabMap%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesMap Checked%StashTabYesMap% x+5 yp+4, Enable
-        
-        ; Divination
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Divination
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDivination x+0 yp hp ,  %StashTabDivination%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDivination Checked%StashTabYesDivination% x+5 yp+4, Enable
-
-        ; Fragments
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Fragment
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabFragment x+0 yp hp ,  %StashTabFragment%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFragment Checked%StashTabYesFragment% x+5 yp+4, Enable
-
-        ; Essence
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Essence
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabEssence x+0 yp hp ,  %StashTabEssence%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesEssence Checked%StashTabYesEssence% x+5 yp+4, Enable
         
         ; Collection
         Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Collection
+        Gui, Inventory: Add, GroupBox, w110 h50 xs ys+18 , Unique Collection
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCollection x+0 yp hp ,  %StashTabCollection%
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabCollection yp hp ,  %StashTabCollection%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% x+5 yp+4, Enable
 
-        ; Fossil
+        ; Unique Dump
         Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Fossil
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Dump
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFossil , %StashTabFossil%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFossil Checked%StashTabYesFossil% x+5 yp+4, Enable
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabUniqueDump , %StashTabUniqueDump%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp+4, Enable
 
-        ; Resonator
+        ; Unique Ring
         Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Resonator
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Ring
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabResonator , %StashTabResonator%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesResonator Checked%StashTabYesResonator% x+5 yp+4, Enable
-        
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabUniqueRing , %StashTabUniqueRing%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% x+5 yp+4, Enable
+  
+        ; Prophecy
+
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Prophecy
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabProphecy x+0 yp hp ,  %StashTabProphecy%
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabProphecy x+0 yp hp ,  %StashTabProphecy%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% x+5 yp+4, Enable
+
+        ; Veiled
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Veiled
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabVeiled x+0 yp hp ,  %StashTabVeiled%
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabVeiled x+0 yp hp ,  %StashTabVeiled%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% x+5 yp+4, Enable
 
-        ; Second column Gui
-        
-        ; Organ
-        
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , Organ
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOrgan x+0 yp hp , %StashTabOrgan%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOrgan Checked%StashTabYesOrgan%  x+5 yp+4, Enable
-
-        ;Catalyst
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Catalyst
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabCatalyst x+0 yp hp ,  %StashTabCatalyst%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCatalyst Checked%StashTabYesCatalyst% x+5 yp+4, Enable
-
-        ; Oil
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Oil
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabOil x+0 yp hp ,  %StashTabOil%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesOil Checked%StashTabYesOil% x+5 yp+4, Enable
-
-        ;BlightedMap
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Blighted Map
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabBlightedMap, %StashTabBlightedMap%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesBlightedMap Checked%StashTabYesBlightedMap% x+5 yp+4, Enable
-
-        ;Delirium
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Delirium
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabDelirium, %StashTabDelirium%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDelirium Checked%StashTabYesDelirium% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Gem
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemQuality , %StashTabGemQuality%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGemSupport , %StashTabGemSupport%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Gem
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabGem , %StashTabGem%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
+        ; Cluster
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Cluster Jewel
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp+4, Enable
-
-        ; Third Column
         
+        ; Second column Gui - GEMS
+
         Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys , Dump
+        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , Gem
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-64 gUpdateStash vStashTabDump x+0 yp hp ,  %StashTabDump%
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabGem , %StashTabGem%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabGemSupport , %StashTabGemSupport%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99  x+0 yp hp gUpdateStash vStashTabGemQuality , %StashTabGemQuality%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Linked
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
+
+        ; Third column Gui - Rare itens
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys , Crafting
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99  x+0 yp hp gUpdateStash vStashTabCrafting , %StashTabCrafting%
+        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
+        
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Dump
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabDump x+0 yp hp ,  %StashTabDump%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% x+5 yp+4, Enable
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Priced Rares
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabPredictive , %StashTabPredictive%
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabPredictive , %StashTabPredictive%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp+4, Enable
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Ninja Priced
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabNinjaPrice , %StashTabNinjaPrice%
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabNinjaPrice , %StashTabNinjaPrice%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Crafting
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabCrafting , %StashTabCrafting%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Ring
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueRing , %StashTabUniqueRing%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Dump
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabUniqueDump , %StashTabUniqueDump%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp+4, Enable
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabInfluencedItem , %StashTabInfluencedItem%
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabInfluencedItem , %StashTabInfluencedItem%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Linked
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-64 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
         Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
 
         ; Crafting Bases
@@ -3416,61 +3362,187 @@
         Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
         Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
 
+
+        ; Affinity
+        Gui, Inventory: Tab, Affinity
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, Text,       Section    xm+5   ym+25, Affinities Management
+        Gui, Inventory: Font,
+
+        ; Blight
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs ys+18 , Blight
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vBlightEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabBlight, %StashTabBlight%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesBlight x+5 yp-5 w90 h20, %StashTabYesBlight%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vBlightEditText, Disable Type
+
+        ; Delirium
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Delirium
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vDeliriumEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabDelirium, %StashTabDelirium%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDelirium x+5 yp-5 w90 h20, %StashTabYesDelirium%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDeliriumEditText, Disable Type
+
+        ; Divination Card
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Divination Card
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vDivinationEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabDivination x+0 yp hp ,  %StashTabDivination%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDivination x+5 yp-5 w90 h20, %StashTabYesDivination%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDivinationEditText, Disable Type
+
+        ; Fragments
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Fragment
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vFragmentEdit w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabFragment x+0 yp hp ,  %StashTabFragment%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesFragment x+5 yp-5 w90 h20, %StashTabYesFragment%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vFragmentEditText, Disable Type
+
+        ; Metamorph
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Metamorph
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vMetamorphEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabMetamorph x+0 yp hp , %StashTabMetamorph%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesMetamorph x+5 yp-5 w90 h20, %StashTabYesMetamorph%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vMetamorphEditText, Disable Type
+
+        ; Currency
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w145 h50 x+15 ys+18 , Currency
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 vCurrencyEdit  xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabCurrency yp hp , %StashTabCurrency%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesCurrency x+5 yp-5 w90 h20, %StashTabYesCurrency%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vCurrencyEditText, Disable Type
+
+        ; Delve
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Delve
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vDelveEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabDelve , %StashTabDelve%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDelve x+5 yp-5 w90 h20, %StashTabYesDelve%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDelveEditText, Disable Type
+
+        ; Essence
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Essence
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vEssenceEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabEssence x+0 yp hp ,  %StashTabEssence%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesEssence x+5 yp-5 w90 h20, %StashTabYesEssence%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vEssenceEditText, Disable Type
+
+        ; Map
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Map
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vMapEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabMap x+0 yp hp ,  %StashTabMap%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesMap x+5 yp-5 w90 h20, %StashTabYesMap%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vMapEditText, Disable Type
+        
+        ; Unique
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Unique
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vUniqueEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabUnique x+0 yp hp ,  %StashTabUnique%
+        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesUnique x+5 yp-5 w90 h20, %StashTabYesUnique%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vUniqueEditText, Not Supported
+
+        ;Disable Unique
+        GuiControl, Disable, StashTabYesUnique
+        GuiControl, Disable, StashTabUnique
+        GuiControl, Disable, UniqueEdit
+        ;Run GreyOut
+        Gosub, GreyOut
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w200 h200 x+50 ys , Intructions:
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Text, xs+10 yp+20 +Wrap w180, - Enabling Affinity will disable any sort
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, like CLF and Ninja Price
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - If you don't play SSF, we recomend 
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, disable Divination Card Affinity
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Unique Affinity is not supported
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - You can enable Currency Affinity 
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, and set the stash for other functions
+
+
       Gui, Inventory: Tab, Chaos Recipe
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,Section w170 h155 xm+5 ym+25, Chaos Recipe Options
+        Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+15 yp+20, Enable Chaos Recipe Logic
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs+15 yp+20, Skip Jeweler/Chroma Items
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs+15 yp+20, Allow 2x Jewellery limit
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs+15 yp+20 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-20 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
           Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+22, Leave Recipe Rare Un-Id
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs+15 yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range74-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
           Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Type
+        Gui, Inventory: Font,
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp+15 yp+20 vChaosRecipeTypePure Checked%ChaosRecipeTypePure% , Pure Chaos 60-74 ilvl
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeHybrid Checked%ChaosRecipeTypeHybrid%  , Hybrid Chaos 60-100 ilvl
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeRegal Checked%ChaosRecipeTypeRegal%  , Pure Regal 75+ ilvl
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,Section w285 h90 xs+190 ym+25, Chaos Recipe Stashing
+        Gui, Inventory: Font,
           Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodDump Checked%ChaosRecipeStashMethodDump%, Use Dump Tab
           Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodTab Checked%ChaosRecipeStashMethodTab%, Use Chaos Recipe Tab
           Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodSort Checked%ChaosRecipeStashMethodSort%, Use Seperate Tab for Each Part
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,Section w285 h50 xs y+25, Chaos Recipe Tab
+          Gui, Inventory: Font,
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabUpDown xs+15 yp+20 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTab , %ChaosRecipeStashTab%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTab , %ChaosRecipeStashTab%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for ALL PARTS
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,Section w285 h225 xs y+25, Chaos Recipe Part Tabs
+        Gui, Inventory: Font,
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabWeaponUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabWeapon , %ChaosRecipeStashTabWeapon%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabWeapon , %ChaosRecipeStashTabWeapon%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Weapons
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabHelmetUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Helmets
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabArmourUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabArmour , %ChaosRecipeStashTabArmour%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabArmour , %ChaosRecipeStashTabArmour%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Armours
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabGlovesUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabGloves , %ChaosRecipeStashTabGloves%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabGloves , %ChaosRecipeStashTabGloves%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Gloves
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabBootsUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabBoots , %ChaosRecipeStashTabBoots%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabBoots , %ChaosRecipeStashTabBoots%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Boots
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabBeltUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabBelt , %ChaosRecipeStashTabBelt%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabBelt , %ChaosRecipeStashTabBelt%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Belts
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabAmuletUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabAmulet , %ChaosRecipeStashTabAmulet%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabAmulet , %ChaosRecipeStashTabAmulet%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Amulets
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabRingUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-64 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Rings
 
       }
@@ -3534,7 +3606,7 @@
           GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
           Gui, Crafting: Font,
           Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w285 h160 xs, Undesireble Mods:
+        Gui, Crafting: Add,GroupBox,Section w580 h160 xs, Undesireble Mods:
           Gui, Crafting: Font,
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
@@ -3543,7 +3615,14 @@
           Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
           Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
           Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-          Gui, Crafting: Add, Checkbox, vMinusMPR xs+5 ys+140 Checked%MinusMPR%, Reduced # Maximum Player Resistances
+          Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players have # Less Recovery Rate of Life and ES
+          Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
+          Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
+          Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
+          Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
+          Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
+  
+          
           Gui, Crafting: Font, Bold
           Gui, Crafting: Font, Bold s9 cBlack, Arial
         Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
@@ -4335,32 +4414,32 @@
       ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
     If (Fetch="OnDetonate")
     {
-      POnDetonateDelve := ScreenShot_GetColor(DetonateDelveX,DetonateY), POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+      POnDetonateDelve := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y), POnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
       , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
       Return OnDetonate
     }
     Else If !(Fetch="")
     {
-      P%Fetch% := ScreenShot_GetColor(vX_%Fetch%,vY_%Fetch%)
+      P%Fetch% := ScreenShot_GetColor(WR.loc[Fetch].X,WR.loc[Fetch].Y)
       temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
       Return temp
     }
     If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker)
       CheckXButton(), xChecked := True
-    POnChar := ScreenShot_GetColor(vX_OnChar,vY_OnChar), OnChar := (POnChar=varOnChar?True:False)
-    POnChat := ScreenShot_GetColor(vX_OnChat,vY_OnChat), OnChat := (POnChat=varOnChat?True:False)
-    POnMenu := ScreenShot_GetColor(vX_OnMenu,vY_OnMenu), OnMenu := (POnMenu=varOnMenu?True:False)
-    POnInventory := ScreenShot_GetColor(vX_OnInventory,vY_OnInventory), OnInventory := (POnInventory=varOnInventory?True:False)
-    POnStash := ScreenShot_GetColor(vX_OnStash,vY_OnStash), OnStash := (POnStash=varOnStash?True:False)
-    POnVendor := ScreenShot_GetColor(vX_OnVendor,vY_OnVendor), OnVendor := (POnVendor=varOnVendor?True:False)
-    POnDiv := ScreenShot_GetColor(vX_OnDiv,vY_OnDiv), OnDiv := (POnDiv=varOnDiv?True:False)
-    POnLeft := ScreenShot_GetColor(vX_OnLeft,vY_OnLeft), OnLeft := (POnLeft=varOnLeft?True:False)
-    POnDelveChart := ScreenShot_GetColor(vX_OnDelveChart,vY_OnDelveChart), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
-    POnMetamorph := ScreenShot_GetColor(vX_OnMetamorph,vY_OnMetamorph), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
-    POnLocker := ScreenShot_GetColor(vX_OnLocker,vY_OnLocker), OnLocker := (POnLocker=varOnLocker?True:False)
+    POnChar := ScreenShot_GetColor(WR.loc.OnChar.X,WR.loc.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
+    POnChat := ScreenShot_GetColor(WR.loc.OnChat.X,WR.loc.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
+    POnMenu := ScreenShot_GetColor(WR.loc.OnMenu.X,WR.loc.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
+    POnInventory := ScreenShot_GetColor(WR.loc.OnInventory.X,WR.loc.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
+    POnStash := ScreenShot_GetColor(WR.loc.OnStash.X,WR.loc.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
+    POnVendor := ScreenShot_GetColor(WR.loc.OnVendor.X,WR.loc.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
+    POnDiv := ScreenShot_GetColor(WR.loc.OnDiv.X,WR.loc.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
+    POnLeft := ScreenShot_GetColor(WR.loc.OnLeft.X,WR.loc.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
+    POnDelveChart := ScreenShot_GetColor(WR.loc.OnDelveChart.X,WR.loc.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+    POnMetamorph := ScreenShot_GetColor(WR.loc.OnMetamorph.X,WR.loc.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
+    POnLocker := ScreenShot_GetColor(WR.loc.OnLocker.X,WR.loc.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
     If OnMines
-    POnDetonate := ScreenShot_GetColor(DetonateDelveX,DetonateY)
-    Else POnDetonate := ScreenShot_GetColor(DetonateX,DetonateY)
+    POnDetonate := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y)
+    Else POnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
     If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
       CheckXButton()
@@ -4810,7 +4889,7 @@
   ; Rescale - Rescales values of the script to the user's resolution
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Rescale(){
-    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid
+    Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid, WR
     If checkActiveType()
     {
       ; Build array framework
@@ -4896,11 +4975,12 @@
         ; --------------------------------------------
         If (!StashImported)
         {
+
           ; Scale the stash area automatically based on aspect ratio
           InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1920/16))
-          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1920/650))
-          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/127))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1920/649))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/759))
           ; Do the same for Inventory
           InvGrid.Corners.Inventory.X1:=GameX + Round(GameW/(1920/1270))
           InvGrid.Corners.Inventory.Y1:=GameY + Round(GameH/(1080/587))
@@ -4921,114 +5001,78 @@
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings 380,820
-        Global VendorAcceptX:=GameX + Round(GameW/(1920/380))
-        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1920/380))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(1920/1542))
-        Global DetonateX:=GameX + Round(GameW/(1920/1658))
-        Global DetonateY:=GameY + Round(GameH/(1080/901))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1920/1542))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(1920/1658))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
         ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(1920/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/475))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(1920/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
         ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(1920/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/220))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(1920/605))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
         ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(1920/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(1920/490))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
         ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(1920/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(1920/60))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
         ;Alteration 120,290
-        Global AlterationX:=GameX + Round(GameW/(1920/120))
-        Global AlterationY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
         ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(1920/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
         ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(1920/230))
-        Global VaalY:=GameY + Round(GameH/(1080/475))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(1920/115))
-        Global PortalStockX:=GameX + Round(GameW/(1920/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/220))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(1920/115))
+        WR.loc.Portal.X:=GameX + Round(GameW/(1920/175))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (1920 / 41))
-        global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (1920 / 41))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (1920 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (1920 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (1920 / 1583))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash - Edited
-        global vX_OnStash:=GameX + Round(GameW / (1920 / 248))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 896))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (1920 / 248))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 896))
         ;Status Check OnVendor - Edited
-        global vX_OnVendor:=GameX + Round(GameW / (1920 / 670))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 125))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (1920 / 618))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (1920 / 618))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (1920 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (1920 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (1920 / 466))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1920 / 466))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamporph
-        global vX_OnMetamorph:=GameX + Round(GameW / (1920 / 785))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1920 / 785))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker
-        global vX_OnLocker:=GameX + Round(GameW / (1920 / 458))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (1920 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (1920 / 1740))
-        Else
-          global vX_ES:=GameX + Round(GameW / (1920 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (1920 / 1825))
-        global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
-        ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (1920 / -10))
-        global GuiY:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-        Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (1920 / 640))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (1920 / 706))
-        global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
+
+        ;GUI overlay
+        WR.loc.Gui.X:=GameX + Round(GameW / (1920 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
       }
       Else If (ResolutionScale="Classic") {
         ; Item Inventory Grid
@@ -5078,118 +5122,84 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1440/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1440/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1440/16))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/127))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1440/649))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/759))
+
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
           ;380,820
-        Global VendorAcceptX:=GameX + Round(GameW/(1440/380))
-        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1440/380))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(1440/1062))
-        Global DetonateX:=GameX + Round(GameW/(1440/1178))
-        Global DetonateY:=GameY + Round(GameH/(1080/901))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(1440/1178))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
                 ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(1440/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/475))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(1440/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(1440/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/220))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(1440/605))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(1440/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(1440/490))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(1440/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(1440/60))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        Global AlterationX:=GameX + Round(GameW/(1440/120))
-        Global AlterationY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(1440/120))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(1440/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(1440/230))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(1440/230))
-        Global VaalY:=GameY + Round(GameH/(1080/475))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(1440/230))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(1440/125))
-        Global PortalStockX:=GameX + Round(GameW/(1440/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/220))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(1440/125))
+        WR.loc.Portal.X:=GameX + Round(GameW/(1440/175))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (1440 / 41))
-        global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (1440 / 41))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (1440 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (1440 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (1440 / 1103))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (1440 / 1103))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (1440 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (1440 / 336))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (1440 / 378))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (1440 / 378))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (1440 / 378))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (1440 / 378))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (1440 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (1440 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (1440 / 226))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1440 / 226))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        global vX_OnMetamorph:=GameX + Round(GameW / (1440 / 545))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (1440 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (1440 / 1260))
-        Else
-          global vX_ES:=GameX + Round(GameW / (1440 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (1440 / 1345))
-        global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1440 / 545))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (1440 / -10))
-        global GuiY:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.Gui.X:=GameX + Round(GameW / (1440 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-        Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (1440 / 640))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (1440 / 706))
-        global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="Cinematic") {
         ; Item Inventory Grid
@@ -5239,123 +5249,87 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(2560/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(2560/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(2560/16))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/127))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(2560/649))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/759))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
         ;380,820
-        Global VendorAcceptX:=GameX + Round(GameW/(2560/380))
-        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(2560/380))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(2560/2185))
-        Global DetonateX:=GameX + Round(GameW/(2560/2298))
-        Global DetonateY:=GameY + Round(GameH/(1080/901))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(2560/2298))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(2560/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/475))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(2560/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(2560/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/220))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(2560/605))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(2560/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(2560/490))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(2560/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(2560/60))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        Global AlterationX:=GameX + Round(GameW/(2560/120))
-        Global AlterationY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(2560/120))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(2560/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(2560/230))
-        Global VaalY:=GameY + Round(GameH/(1080/475))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(2560/125))
-        Global PortalStockX:=GameX + Round(GameW/(2560/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/220))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(2560/125))
+        WR.loc.Portal.X:=GameX + Round(GameW/(2560/175))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (2560 / 41))
-        global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (2560 / 41))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (2560 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (2560 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (2560 / 2223))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (2560 / 2223))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (2560 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (2560 / 336))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (2560 / 618))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (2560 / 618))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (2560 / 618))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (2560 / 618))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (2560 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (2560 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (2560 / 786))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (2560 / 786))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        global vX_OnMetamorph:=GameX + Round(GameW / (2560 / 1105))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (2560 / 1105))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker
-        global vX_OnLocker:=GameX + Round(GameW / (2560 / 490))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (2560 / 490))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
 
-
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (2560 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (2560 / 2380))
-        Else
-          global vX_ES:=GameX + Round(GameW / (2560 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (2560 / 2465))
-        global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (2560 / -10))
-        global GuiY:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.Gui.X:=GameX + Round(GameW / (2560 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-        Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (2560 / 640))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (2560 / 706))
-        global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="Cinematic(43:18)") {
         ;Item Inventory Grid
@@ -5404,120 +5378,86 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3440/22)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1440/215))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3440/864)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1440/1057))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3440/22))
+          , InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1440/171))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3440/864))
+          , InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1440/1013))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1440/2))
         }
         ;Auto Vendor Settings
-        Global VendorAcceptX:=GameX + Round(GameW/(3440/945))
-        Global VendorAcceptY:=GameY + Round(GameH/(1440/1090))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(3440/945))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1440/1090))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(3440/2934))
-        Global DetonateX:=GameX + Round(GameW/(3440/3090))
-        Global DetonateY:=GameY + Round(GameH/(1440/1202))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(3440/3090))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1440/1202))
         ;Currency
           ;Scouring 235,631
-        Global ScouringX:=GameX + Round(GameW/(3440/235))
-        Global ScouringY:=GameY + Round(GameH/(1440/630))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(3440/235))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1440/590))
           ;Chisel 810,290
-        Global ChiselX:=GameX + Round(GameW/(3440/810))
-        Global ChiselY:=GameY + Round(GameH/(1440/290))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(3440/810))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1440/250))
           ;Alchemy 655,390
-        Global AlchemyX:=GameX + Round(GameW/(3440/655))
-        Global AlchemyY:=GameY + Round(GameH/(1440/390))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(3440/655))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1440/350))
           ;Transmutation 80,390
-        Global TransmutationX:=GameX + Round(GameW/(3440/80))
-        Global TransmutationY:=GameY + Round(GameH/(1440/390))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(3440/80))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1440/350))
           ;Alteration 155, 390
-        Global AlterationX:=GameX + Round(GameW/(3440/155))
-        Global AlterationY:=GameY + Round(GameH/(1440/390))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(3440/155))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1440/350))
           ;Augmentation 310,465
-        Global AugmentationX:=GameX + Round(GameW/(3440/310))
-        Global AugmentationY:=GameY + Round(GameH/(1440/465))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(3440/310))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1440/425))
           ;Vaal 310, 631
-        Global VaalX:=GameX + Round(GameW/(3440/310))
-        Global VaalY:=GameY + Round(GameH/(1440/630))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(3440/310))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1440/590))
+
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(3440/164))
-        Global PortalStockX:=GameX + Round(GameW/(3440/228))
-        Global WPStockY:=GameY + Round(GameH/(1440/299))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(3440/164))
+        WR.loc.Portal.X:=GameX + Round(GameW/(3440/228))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1440/299))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1440 / 72))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (3440 / 54))
-        global vY_OnChar:=GameY + Round(GameH / ( 1440 / 1217))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (3440 / 54))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1440 / 1217))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (3440 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1440 / 850))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (3440 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (3440 / 2991))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1440 / 47))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (3440 / 2991))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1440 / 47))
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (3440 / 448))
-        global vY_OnStash:=GameY + Round(GameH / ( 1440 / 42))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (3440 / 448))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1440 / 42))
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (3440 / 1264))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1440 / 146))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (3440 / 822))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1440 / 181))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (3440 / 365))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1440 / 90))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1440 / 90))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (3440 / 1056))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1440 / 118))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (3440 / 1056))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1440 / 118))
         ;Status Check OnMetamporph
-        global vX_OnMetamorph:=GameX + Round(GameW / ( 3440 / 1480))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1440 / 270))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / ( 3440 / 1480))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1440 / 270))
         ;Status Check OnLocker ((3440/3)-2)
-        global vX_OnLocker:=GameX + Round(GameW / (3440 / 600))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1440 / 918))
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (3440 / 128))
-        global vY_Life20:=GameY + Round(GameH / ( 1440 / 1383))
-        global vY_Life30:=GameY + Round(GameH / ( 1440 / 1356))
-        global vY_Life40:=GameY + Round(GameH / ( 1440 / 1329))
-        global vY_Life50:=GameY + Round(GameH / ( 1440 / 1302))
-        global vY_Life60:=GameY + Round(GameH / ( 1440 / 1275))
-        global vY_Life70:=GameY + Round(GameH / ( 1440 / 1248))
-        global vY_Life80:=GameY + Round(GameH / ( 1440 / 1221))
-        global vY_Life90:=GameY + Round(GameH / ( 1440 / 1194))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (3440 / 3222))
-        Else
-          global vX_ES:=GameX + Round(GameW / (3440 / 225))
-        global vY_ES20:=GameY + Round(GameH / ( 1440 / 1383))
-        global vY_ES30:=GameY + Round(GameH / ( 1440 / 1356))
-        global vY_ES40:=GameY + Round(GameH / ( 1440 / 1329))
-        global vY_ES50:=GameY + Round(GameH / ( 1440 / 1302))
-        global vY_ES60:=GameY + Round(GameH / ( 1440 / 1275))
-        global vY_ES70:=GameY + Round(GameH / ( 1440 / 1248))
-        global vY_ES80:=GameY + Round(GameH / ( 1440 / 1221))
-        global vY_ES90:=GameY + Round(GameH / ( 1440 / 1194))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (3440 / 3314))
-        global vY_Mana10:=GameY + Round(GameH / (1440 / 1409))
-        global vY_Mana90:=GameY + Round(GameH / (1440 / 1165))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (3440 / -10))
-        global GuiY:=GameY + Round(GameH / (1440 / 1370))
+        WR.loc.Gui.X:=GameX + Round(GameW / (3440 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1440 / 983))
-        Global vY_DivItem:=GameY + Round(GameH / (1440 / 805))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (3440 / 853))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1440 / 195))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (3440 / 1000))
-        global vY_StashTabList := GameY + Round(GameH / ( 1440 / 160))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1440 / 29))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1440 / 983))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1440 / 805))
       }
       Else If (ResolutionScale="UltraWide") {
         ; Item Inventory Grid
@@ -5566,121 +5506,86 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3840/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3840/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(3840/16))
+          InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1080/127))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(3840/649))
+          InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1080/759))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
         ;Auto Vendor Settings
         ;380,820
-        Global VendorAcceptX:=GameX + Round(GameW/(3840/380))
-        Global VendorAcceptY:=GameY + Round(GameH/(1080/820))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(3840/380))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(3840/3462))
-        Global DetonateX:=GameX + Round(GameW/(3840/3578))
-        Global DetonateY:=GameY + Round(GameH/(1080/901))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(3840/3462))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(3840/3578))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
-        Global ScouringX:=GameX + Round(GameW/(3840/175))
-        Global ScouringY:=GameY + Round(GameH/(1080/475))
+        WR.loc.Scouring.X:=GameX + Round(GameW/(3840/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        Global ChiselX:=GameX + Round(GameW/(3840/605))
-        Global ChiselY:=GameY + Round(GameH/(1080/220))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(3840/605))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        Global AlchemyX:=GameX + Round(GameW/(3840/490))
-        Global AlchemyY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(3840/490))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        Global TransmutationX:=GameX + Round(GameW/(3840/60))
-        Global TransmutationY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(3840/60))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        Global AlterationX:=GameX + Round(GameW/(3840/120))
-        Global AlterationY:=GameY + Round(GameH/(1080/290))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(3840/120))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        Global AugmentationX:=GameX + Round(GameW/(3840/230))
-        Global AugmentationY:=GameY + Round(GameH/(1080/340))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        Global VaalX:=GameX + Round(GameW/(3840/230))
-        Global VaalY:=GameY + Round(GameH/(1080/475))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(3840/125))
-        Global PortalStockX:=GameX + Round(GameW/(3840/175))
-        Global WPStockY:=GameY + Round(GameH/(1080/220))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(3840/125))
+        WR.loc.Portal.X:=GameX + Round(GameW/(3840/175))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (3840 / 41))
-        global vY_OnChar:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (3840 / 41))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (3840 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (3840 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (3840 / 3503))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (3840 / 3503))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (3840 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (3840 / 336))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (3840 / 1578))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (3840 / 1578))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (3840 / 1578))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (3840 / 1578))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (3840 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (3840 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (3840 / 1426))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (3840 / 1426))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        global vX_OnMetamorph:=GameX + Round(GameW / (3840 / 1745))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (3840 / 1745))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker ((3840/3)-2)
-        global vX_OnLocker:=GameX + Round(GameW / (3840 / 900))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1080 / 918))
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (3840 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1080 / 894))
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (3840 / 3660))
-        Else
-          global vX_ES:=GameX + Round(GameW / (3840 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1080 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1080 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1080 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1080 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1080 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1080 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1080 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1080 / 894))
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (3840 / 3745))
-        global vY_Mana10:=GameY + Round(GameH / (1080 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1080 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (3840 / 900))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (3840 / -10))
-        global GuiY:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.Gui.X:=GameX + Round(GameW / (3840 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1080 / 736))
-        Global vY_DivItem:=GameY + Round(GameH / (1080 / 605))
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (3840 / 640))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1080 / 146))
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (3840 / 706))
-        global vY_StashTabList := GameY + Round(GameH / ( 1080 / 120))
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1080 / 22))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="WXGA(16:10)") {
         ; Item Inventory Grid
@@ -5739,150 +5644,107 @@
         If (!StashImported)
         {
           ; Scale the stash area automatically based on aspect ratio
-          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1680/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1050/160))
-          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1680/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1050/795))
+          InvGrid.Corners.Stash.X1:=GameX + Round(GameW/(1680/16)), InvGrid.Corners.Stash.Y1:=GameY + Round(GameH/(1050/128))
+          InvGrid.Corners.Stash.X2:=GameX + Round(GameW/(1680/650)), InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1050/762))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1050/2))
         }
 
         ;Auto Vendor Settings
         ;270,800
-        Global VendorAcceptX:=GameX + Round(GameW/(1680/270))
-        Global VendorAcceptY:=GameY + Round(GameH/(1050/800))
+        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1680/270))
+        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1050/800))
        
         ;Detonate Mines
-        Global DetonateDelveX:=GameX + Round(GameW/(1680/1310))
-        Global DetonateX:=GameX + Round(GameW/(1680/1425))
-        Global DetonateY:=GameY + Round(GameH/(1050/880))
+        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1680/1310))
+        WR.loc.Detonate.X:=GameX + Round(GameW/(1680/1425))
+        WR.loc.Detonate.Y:=GameY + Round(GameH/(1050/880))
        
         ;Currency
         ;Scouring 175,460
-        Global ScouringX:=GameX + Round(GameW/(1680/175))
-        Global ScouringY:=GameY + Round(GameH/(1050/460))      
+        WR.loc.Scouring.X:=GameX + Round(GameW/(1680/175))
+        WR.loc.Scouring.Y:=GameY + Round(GameH/(1050/430))      
        
         ;Chisel 590,210
-        Global ChiselX:=GameX + Round(GameW/(1680/590))
-        Global ChiselY:=GameY + Round(GameH/(1050/210))
+        WR.loc.Chisel.X:=GameX + Round(GameW/(1680/590))
+        WR.loc.Chisel.Y:=GameY + Round(GameH/(1050/180))
        
         ;Alchemy 475,280
-        Global AlchemyX:=GameX + Round(GameW/(1680/475))
-        Global AlchemyY:=GameY + Round(GameH/(1050/280))
+        WR.loc.Alchemy.X:=GameX + Round(GameW/(1680/475))
+        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1050/250))
        
         ;Transmutation 55,280
-        Global TransmutationX:=GameX + Round(GameW/(1680/55))
-        Global TransmutationY:=GameY + Round(GameH/(1050/280))
+        WR.loc.Transmutation.X:=GameX + Round(GameW/(1680/55))
+        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1050/250))
        
         ;Alteration 115,285
-        Global AlterationX:=GameX + Round(GameW/(1680/115))
-        Global AlterationY:=GameY + Round(GameH/(1050/285))
+        WR.loc.Alteration.X:=GameX + Round(GameW/(1680/115))
+        WR.loc.Alteration.Y:=GameY + Round(GameH/(1050/255))
        
         ;Augmentation 225,335
-        Global AugmentationX:=GameX + Round(GameW/(1680/225))
-        Global AugmentationY:=GameY + Round(GameH/(1050/335))
+        WR.loc.Augmentation.X:=GameX + Round(GameW/(1680/225))
+        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1050/305))
        
         ;Vaal 225,460
-        Global VaalX:=GameX + Round(GameW/(1680/225))
-        Global VaalY:=GameY + Round(GameH/(1050/460))
+        WR.loc.Vaal.X:=GameX + Round(GameW/(1680/225))
+        WR.loc.Vaal.Y:=GameY + Round(GameH/(1050/430))
        
         ;Scrolls in currency tab
-        Global WisdomStockX:=GameX + Round(GameW/(1680/115))
-        Global PortalStockX:=GameX + Round(GameW/(1680/170))
-        Global WPStockY:=GameY + Round(GameH/(1050/215))
+        WR.loc.Wisdom.X:=GameX + Round(GameW/(1680/115))
+        WR.loc.Portal.X:=GameX + Round(GameW/(1680/170))
+        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1050/185))
        
         ;Status Check OnMenu
-        global vX_OnMenu:=GameX + Round(GameW / 2)
-        global vY_OnMenu:=GameY + Round(GameH / (1050 / 54))
+        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
        
         ;Status Check OnChar
-        global vX_OnChar:=GameX + Round(GameW / (1680 / 36))
-        global vY_OnChar:=GameY + Round(GameH / ( 1050 / 920))
+        WR.loc.OnChar.X:=GameX + Round(GameW / (1680 / 36))
+        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1050 / 920))
        
         ;Status Check OnChat
-        global vX_OnChat:=GameX + Round(GameW / (1680 / 0))
-        global vY_OnChat:=GameY + Round(GameH / ( 1050 / 653))
+        WR.loc.OnChat.X:=GameX + Round(GameW / (1680 / 0))
+        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
        
         ;Status Check OnInventory
-        global vX_OnInventory:=GameX + Round(GameW / (1680 / 1583))
-        global vY_OnInventory:=GameY + Round(GameH / ( 1050 / 36))
+        WR.loc.OnInventory.X:=GameX + Round(GameW / (1680 / 1583))
+        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1050 / 36))
        
         ;Status Check OnStash
-        global vX_OnStash:=GameX + Round(GameW / (1680 / 336))
-        global vY_OnStash:=GameY + Round(GameH / ( 1050 / 32))
+        WR.loc.OnStash.X:=GameX + Round(GameW / (1680 / 336))
+        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1050 / 32))
        
         ;Status Check OnVendor
-        global vX_OnVendor:=GameX + Round(GameW / (1680 / 525))
-        global vY_OnVendor:=GameY + Round(GameH / ( 1050 / 120))
+        WR.loc.OnVendor.X:=GameX + Round(GameW / (1680 / 525))
+        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1050 / 120))
        
         ;Status Check OnDiv
-        global vX_OnDiv:=GameX + Round(GameW / (1680 / 519))
-        global vY_OnDiv:=GameY + Round(GameH / ( 1050 / 716))
+        WR.loc.OnDiv.X:=GameX + Round(GameW / (1680 / 519))
+        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1050 / 716))
        
         ;Status Check OnLeft
-        global vX_OnLeft:=GameX + Round(GameW / (1680 / 252))
-        global vY_OnLeft:=GameY + Round(GameH / ( 1050 / 57))
+        WR.loc.OnLeft.X:=GameX + Round(GameW / (1680 / 252))
+        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1050 / 57))
        
         ;Status Check OnDelveChart
-        global vX_OnDelveChart:=GameX + Round(GameW / (1680 / 362))
-        global vY_OnDelveChart:=GameY + Round(GameH / ( 1050 / 84))
+        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1680 / 362))
+        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1050 / 84))
        
         ;Status Check OnMetamporph
-        global vX_OnMetamorph:=GameX + Round(GameW / (1680 / 850))
-        global vY_OnMetamorph:=GameY + Round(GameH / ( 1050 / 195))
+        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1680 / 850))
+        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1050 / 195))
        
         ;Status Check OnLocker ((1680/3)-2)
-        global vX_OnLocker:=GameX + Round(GameW / (1680 / 450))
-        global vY_OnLocker:=GameY + Round(GameH / ( 1050 / 918))
- 
-        ;Life %'s
-        global vX_Life:=GameX + Round(GameW / (1680 / 95))
-        global vY_Life20:=GameY + Round(GameH / ( 1050 / 1034))
-        global vY_Life30:=GameY + Round(GameH / ( 1050 / 1014))
-        global vY_Life40:=GameY + Round(GameH / ( 1050 / 994))
-        global vY_Life50:=GameY + Round(GameH / ( 1050 / 974))
-        global vY_Life60:=GameY + Round(GameH / ( 1050 / 954))
-        global vY_Life70:=GameY + Round(GameH / ( 1050 / 934))
-        global vY_Life80:=GameY + Round(GameH / ( 1050 / 914))
-        global vY_Life90:=GameY + Round(GameH / ( 1050 / 894))
-       
-        ;ES %'s
-        If YesEldritchBattery
-          global vX_ES:=GameX + Round(GameW / (1680 / 1740))
-        Else
-          global vX_ES:=GameX + Round(GameW / (1680 / 180))
-        global vY_ES20:=GameY + Round(GameH / ( 1050 / 1034))
-        global vY_ES30:=GameY + Round(GameH / ( 1050 / 1014))
-        global vY_ES40:=GameY + Round(GameH / ( 1050 / 994))
-        global vY_ES50:=GameY + Round(GameH / ( 1050 / 974))
-        global vY_ES60:=GameY + Round(GameH / ( 1050 / 954))
-        global vY_ES70:=GameY + Round(GameH / ( 1050 / 934))
-        global vY_ES80:=GameY + Round(GameH / ( 1050 / 914))
-        global vY_ES90:=GameY + Round(GameH / ( 1050 / 894))
-       
-        ;Mana
-        global vX_Mana:=GameX + Round(GameW / (1680 / 1825))
-        global vY_Mana10:=GameY + Round(GameH / (1050 / 1054))
-        global vY_Mana90:=GameY + Round(GameH / (1050 / 876))
-        Global vH_ManaBar:= vY_Mana10 - vY_Mana90
-        Global vY_ManaThreshold:=vY_Mana10 - Round(vH_ManaBar* (ManaThreshold / 100))
-       
+        WR.loc.OnLocker.X:=GameX + Round(GameW / (1680 / 450))
+        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1050 / 918))
+
         ;GUI overlay
-        global GuiX:=GameX + Round(GameW / (1680 / -10))
-        global GuiY:=GameY + Round(GameH / (1050 / 1000))
+        WR.loc.Gui.X:=GameX + Round(GameW / (1680 / -10))
+        WR.loc.Gui.Y:=GameY + Round(GameH / (1050 / 1000))
        
         ;Divination Y locations
-        Global vY_DivTrade:=GameY + Round(GameH / (1050 / 716))
-        Global vY_DivItem:=GameY + Round(GameH / (1050 / 605))
-       
-        ;Stash tabs menu button
-        global vX_StashTabMenu := GameX + Round(GameW / (1680 / 630))
-        global vY_StashTabMenu := GameY + Round(GameH / ( 1050 / 135    ))
-       
-        ;Stash tabs menu list
-        global vX_StashTabList := GameX + Round(GameW / (1680 / 705))
-        global vY_StashTabList := GameY + Round(GameH / ( 1050 / 140))
-       
-        ;calculate the height of each tab
-        global vY_StashTabSize := Round(GameH / ( 1050 / 19))
+        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1050 / 716))
+        WR.loc.DivItem.Y:=GameY + Round(GameH / (1050 / 605))
       }
       x_center := GameX + GameW / 2
       compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
@@ -7212,11 +7074,20 @@
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ScrapeNinjaData(apiString)
   {
+    If(RegExMatch(selectedLeague, "SSF",RxMatch))
+    {
+      selectedLeagueSC := RegExReplace(selectedLeague, "SSF ", "")
+    }
+    Else
+    {
+      selectedLeagueSC :=selectedLeague
+    }
+
     If InStr(apiString, "Fragment")
     {
-      UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+      UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
       If ErrorLevel{
-        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid or an API change
+        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid or an API change
       }
       Else If (ErrorLevel=0){
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
@@ -7229,7 +7100,7 @@
         If RetryDL
         {
           Sleep, 1000
-          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
           FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
           Try {
             holder := JSON.Load(JSONtext)
@@ -7260,9 +7131,9 @@
     }
     Else If InStr(apiString, "Currency")
     {
-      UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+      UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
       if ErrorLevel{
-        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid
       }
       Else if (ErrorLevel=0){
         FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
@@ -7275,7 +7146,7 @@
         If RetryDL
         {
           Sleep, 1000
-          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
           FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
           Try {
             holder := JSON.Load(JSONtext)
@@ -7318,9 +7189,9 @@
     }
     Else
     {
-      UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+      UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
       if ErrorLevel{
-        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeague% not being valid
+        MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid
       }
       Else if (ErrorLevel=0){
         RetryDL := False
@@ -7334,7 +7205,7 @@
         If RetryDL
         {
           Sleep, 1000
-          UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeague%, %A_ScriptDir%\temp\data_%apiString%.txt
+          UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
           FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
           Try {
             holder := JSON.Load(JSONtext)
@@ -7429,7 +7300,16 @@
     global
     if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
       Return
-    Gui, Show, Autosize Center,   WingmanReloaded
+    if(YesGuiLastPosition)
+    {
+      If (WinGuiX = "" || WinGuiY = "")
+        WinGuiX := WinGuiY := 0
+      Gui, Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
+    }
+    Else
+    {
+      Gui, Show, Autosize Center,   WingmanReloaded
+    }
     processWarningFound:=0
     Gui,6:Hide
     return
@@ -7451,11 +7331,28 @@
     Return {"Mods":Mods, "Key":String }
   }
   SendHotkey(keyStr:="",hold:=0){
-    Obj := SplitModsFromKey(keyStr)
-    If GameActive
-      Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
-    Else
-      controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
+    For i, keys in StrSplit(keyStr," "){
+      If RegExMatch(keys, "O)\[(\d+)\]\(([\d\w]+)\)", DelayKey)
+      {
+        DelayAction.Push({"TriggerAt":A_TickCount+DelayKey[1],"Key":DelayKey[2]})
+        Continue
+      }
+      Obj := SplitModsFromKey(keys)
+      If GameActive
+        Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
+      Else
+        controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
+    }
+  }
+  SendDelayAction(){
+    For k, keys in DelayAction
+    {
+      If (keys.TriggerAt <= A_TickCount)
+      {
+        SendHotkey(keys.Key)
+        DelayAction.Delete(k)
+      }
+    }
   }
 
   ; UpdateLeagues - Grab the League info from GGG API

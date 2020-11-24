@@ -1,3 +1,74 @@
+## Version .12.04 - Master version - November/24/2020
+Merging preparation of major changes incoming to the Alpha branch
+* Alpha branch will be receiving an update soon which will require a re-download
+
+Undocumented changes from Alpha
+* Fix gui position
+* Scale stash positions for affinity changes
+* Update help button text
+* Old code cleanup
+* cast on detonate now uses movement key to fire
+* add more undesirable map mods
+* add binding for MOVE trigger
+
+---
+
+## Version .12.0304 - Alpha version - November/08/2020
+Delayed keypresses can now be achieved in any keybinding!
+* To add a delay to a binding, use the format: "[MS-DELAY](KEY-TO-PRESS)"
+* So for example "1 [300](q) [200](RButton)" would be 300ms to press q, 200ms to press RButton
+* The delay is from the initial trigger event, order is not important
+
+Quicksilver group can be assigned a trigger keybind
+
+Fix issue with controller functions occurring when no controllers present
+* This was causing Primary/Secondary attack flask triggers to not function properly
+* It's logic will no longer run if there is no controller active
+
+Organizing the GUI, and pruning clutter menu options
+* Hotkeys have been moved to the Hotkey tab: Primary/Secondary Attack, QuickSilver Trigger hokey
+
+---
+
+## Version .12.0303 - Alpha version - November/06/2020
+Map Crafting
+* New Mods for HC
+  * You can request another mods in feedback section on Discord
+
+Remember Gui Position
+* A new option in Configuration to Remember GUI Position when reopening, this is a feature for multi monitor users/streamers
+  
+---
+## Version .12.0302 - Alpha version - November/05/2020
+Affinity Update
+* Increased Tab Range to 99
+* Rework Stash Tabs
+  * Merged tabs to match Affinity
+  * New Tabs: Blight, Delirium, Metamorph, Delve
+* Added Affinity Settings
+  * Move the slider to Disable Type (WR will skip this type), Assign a Tab (WR will move to stash then Ctrl+Click) or Enable Affinity (Ctrl+Click without moving stash)
+
+Warnings for Affinity (More Information on Discord)
+* Do not enable Affinity Auto-Navigation. This will reposition the stash to an unknown position to the script, and it MUST be unchecked.
+* Putting stash tabs into a Stash folder will break the order of your stash tabs, and they are not able to be navigated to properly. If you plan to use Multiple tab chaos recipe, the tabs must be positioned BEFORE any stash folders. (will need more testing on this interaction)
+* Unique Stash Affinity is not recommended to use. Do not enable this affinity, as not only is it bugged to not allow duplicates to be stashed in another tab, but it will prevent you from seperating valuable uniques
+  
+Improvements
+* Select league will use Softcore Version from SSF Leagues (this will enable ninja priced sorting)
+
+Bugfix
+* Unique Flask now will be properly priced by ninja api
+  
+---
+## Version .12.0301 - Alpha version - October/26/2020
+Bugfixes and Tweaks
+* Brooch items should be given 1 width, 1 height
+* Allow 36 of each part of Chaos Recipe
+* Multi-Key triggers must now separate each key with a space
+  * So to press t, w, and 1 you would type "t w 1" into the key
+  
+---
+
 ## Version .12.03 - Master version - October/23/2020
 Bugfixes
 * One handed items now properly handle hybrid mode
