@@ -830,11 +830,10 @@
             This.Prop.RegalRecipe := 1
         }
       }
-      StashChaosRecipe(){
+      StashChaosRecipe(deposit:=true){
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
-        Static HoldDoubleTrinkets := True
         If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60)
           Return False
         If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
@@ -851,18 +850,15 @@
         {
           If (This.Prop.SlotType = v)
           {
-            If This.Affix.Unidentified
-              CountValue := (RecipeArray.uChaos[v].Count()>=0?RecipeArray.uChaos[v].Count():0) + (RecipeArray.uRegal[v].Count()>=0?RecipeArray.uRegal[v].Count():0)
-            Else
-              CountValue := (RecipeArray.Chaos[v].Count()>=0?RecipeArray.Chaos[v].Count():0) + (RecipeArray.Regal[v].Count()>=0?RecipeArray.Regal[v].Count():0)
+            CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
             If (v = "Ring")
               CountValue := CountValue // 2
-            If HoldDoubleTrinkets && IndexOf(v,["Ring","Amulet","Belt"])
+            If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet","Belt"])
               CountValue := CountValue // 2
 
             If (CountValue < ChaosRecipeMaxHolding)
             {
-              If OnStash 
+              If (OnStash && deposit)
               {
                 If This.Affix.Unidentified
                 {
@@ -880,24 +876,20 @@
               Return True
             }
             Else
-              Return False
+              Return "000"
           }
         }
         For k, v in WeaponList
         {
           If (This.Prop.SlotType = v)
           {
-            If This.Affix.Unidentified
-            {
-              WeaponCount := ((RecipeArray.uRegal["One Hand"].Count()>=0?RecipeArray.uRegal["One Hand"].Count():0)/2) + (RecipeArray.uRegal["Two Hand"].Count()>=0?RecipeArray.uRegal["Two Hand"].Count():0) + ((RecipeArray.uRegal["Shield"].Count()>=0?RecipeArray.uRegal["Shield"].Count():0)/2)
-              WeaponCount += ((RecipeArray.uChaos["One Hand"].Count()>=0?RecipeArray.uChaos["One Hand"].Count():0)/2) + (RecipeArray.uChaos["Two Hand"].Count()>=0?RecipeArray.uChaos["Two Hand"].Count():0) + ((RecipeArray.uChaos["Shield"].Count()>=0?RecipeArray.uChaos["Shield"].Count():0)/2)
-            } Else {
-              WeaponCount := ((RecipeArray.Regal["One Hand"].Count()>=0?RecipeArray.Regal["One Hand"].Count():0)/2) + (RecipeArray.Regal["Two Hand"].Count()>=0?RecipeArray.Regal["Two Hand"].Count():0) + ((RecipeArray.Regal["Shield"].Count()>=0?RecipeArray.Regal["Shield"].Count():0)/2)
-              WeaponCount += ((RecipeArray.Chaos["One Hand"].Count()>=0?RecipeArray.Chaos["One Hand"].Count():0)/2) + (RecipeArray.Chaos["Two Hand"].Count()>=0?RecipeArray.Chaos["Two Hand"].Count():0) + ((RecipeArray.Chaos["Shield"].Count()>=0?RecipeArray.Chaos["Shield"].Count():0)/2)
-            }
+            WeaponCount := (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) + retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
+                         + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"]) + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
+                         + retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) + retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"])
+
             If (WeaponCount < ChaosRecipeMaxHolding)
             {
-              If OnStash
+              If (OnStash && deposit)
               {
                 If This.Affix.Unidentified
                 {
@@ -915,7 +907,7 @@
               Return True
             }
             Else
-              Return False
+              Return "000"
           }
         }
         Return False
@@ -3012,6 +3004,9 @@
       }
     }
     Return c
+  }
+  retCount(obj){
+    Return (obj.Count()>=0?obj.Count():0) 
   }
   ; ArrayToString - Make a string from array using | as delimiters
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1937,6 +1937,7 @@ Return
               Trigger(WR[type][A_Index],True)
       }
     }
+    Return
   }
   determineDebuffTriggerActive(){
     active:=[]
@@ -2109,27 +2110,16 @@ Return
   CheckToIdentify(){
     If (Item.Affix["Unidentified"]&&YesIdentify)
     {
-      If ChaosRecipeEnableFunction && ((Item.Prop.ChaosRecipe && (ChaosRecipeTypePure || ChaosRecipeTypeHybrid) && ChaosRecipeEnableUnId) 
-      || (Item.Prop.RegalRecipe && (ChaosRecipeTypeHybrid || ChaosRecipeTypeRegal) && ChaosRecipeEnableUnId && Item.Prop.ItemLevel < ChaosRecipeLimitUnId))
-      {
+      If (ChaosRecipeEnableFunction && Item.StashChaosRecipe(false))
         Return False
-      }
-      Else If (Item.Prop.IsMap&&!YesMapUnid&&!Item.Prop.Corrupted)
-      {
+      Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
         Return True
-      }
       Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-      {
         Return True
-      }
       Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-      {
         Return True
-      }
       Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
-      {
         Return True
-      }
     } 
     Else
       Return False
