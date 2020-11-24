@@ -1,15 +1,35 @@
-## Version .12.04 - Master version - November/24/2020
-Merging preparation of major changes incoming to the Alpha branch
-* Alpha branch will be receiving an update soon which will require a re-download
+## Version .13.0000 - Alpha version - November/24/2020
+**THIS BRANCH IS FOR TESTING NEW FEATURES**
+**DO NOT UPDATE UNLESS YOU ARE PREPARED TO CONFIGURE**
 
-Undocumented changes from Alpha
-* Fix gui position
-* Scale stash positions for affinity changes
-* Update help button text
-* Old code cleanup
-* cast on detonate now uses movement key to fire
-* add more undesirable map mods
-* add binding for MOVE trigger
+**[DOWNLOAD ALPHA BRANCH ZIP](https://discordapp.com/channels/681347390367858704/702223799172464853/780783652518101003)**
+**EXTRACT WingmanReloaded-Alpha CONTENTS INTO SCRIPT FOLDER**
+
+Massive changes to the Main menu
+* Alpha changes will require a complete reconfigure of Flask and Utility
+* To fully update from v.12 you will need to download the zip and extract on top
+
+All Changes include: 
+* Flask and Utility tabs are now just Main
+  * Save and Load from any number of Flask, Utility and Per Character profiles
+  * Flasks and Utility CD group is now up to you!
+    * They are also given a group CD for ultimate control!
+    * Overlap groups to make triggers que sharing the group cd
+  * Resource triggers have been given sliders to allow any percentage
+  * Resource triggers are fully customizable now, with ANY or ALL triggers matching
+  * New Debuff trigger type for Curse, Shock, Bleed, Freeze, Ignite, Poison
+    * Requires samples to function, which have been given a new tab in Sample Strings
+  * Reconfigured Quicksilver to generic movement trigger for anything
+  * Utility icon can search in buff, debuff or a custom area 
+  * Utility icon variance can now be adjusted for fuzzy matching
+* Refactored main menu with Gamestates and Function toggles
+* Refactored hotkeys tab with better grouping
+* New hotkey to enable/disable utility
+* New Crafting menu hotkey for choosing basic crafts (not complete)
+* chaos recipe changed to count id/unid together
+* chaos recipe changed to id overflow unid
+* Add data for Uniques for upcoming function Approximate Perfection!
+* removed all unnecessary quotes from FindText strings to make combining easier
 
 ---
 

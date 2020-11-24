@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .12.04
+  Global VersionNumber := .13.0000
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -1389,7 +1389,7 @@
     Gui,Add,GroupBox,Section x295 ym+20  w350 h90              ,Update Control
     Gui,Font,Norm
 
-    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 yp+15           , master|Alpha|Slider
+    Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 yp+15           , master|Alpha
     GuiControl, ChooseString, BranchName                                                  , %BranchName%
     Gui, Add, Text,       x+8 yp+3                                                        , Update Branch
     Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs+5 y+10  w90                  , Off|days|hours|minutes
