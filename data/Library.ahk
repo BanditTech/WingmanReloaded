@@ -17,54 +17,25 @@
       return
     }
     ; LeftClick - Left Click at Coord
-    LeftClick(x, y, Old:=0){
-      If Old
-      Goto OldStyleLeft
-      Else
-      {
-        BlockInput, MouseMove
-        MouseMove, x, y
-        Sleep, 60+(ClickLatency*15)
-        Send {Click}
-        Sleep, 60+(ClickLatency*15)
-        BlockInput, MouseMoveOff
-      }
+    LeftClick(x, y){
+      BlockInput, MouseMove
+      MouseMove, x, y
+      Sleep, 60+(ClickLatency*15)
+      Send {Click}
+      Sleep, 60+(ClickLatency*15)
+      BlockInput, MouseMoveOff
       Return
-      
-      OldStyleLeft:
-        MouseMove, x, y  
-        Sleep, 30*Latency
-        Send {Click, Down x, y }
-        Sleep, 60*Latency
-        Send {Click, Up x, y }
-        Sleep, 30*Latency
-      return
     }
-    ; RightClick - Right Click at Coord
-    RightClick(x, y, Old:=0){
-      If Old
-      Goto OldStyleRight
-      Else
-      {
-        BlockInput, MouseMove
-        MouseMove, x, y
-        Sleep, 60+(ClickLatency*15)
-        Send {Click, Right}
-        Sleep, 60+(ClickLatency*15)
-        BlockInput, MouseMoveOff
-      }
-      Return
 
-      OldStyleRight:
-        BlockInput, MouseMove
-        MouseMove, x, y
-        Sleep, 30*Latency
-        Send {Click, Down x, y, Right}
-        Sleep, 60*Latency
-        Send {Click, Up x, y, Right}
-        Sleep, 30*Latency
-        BlockInput, MouseMoveOff
-      return
+    ; RightClick - Right Click at Coord
+    RightClick(x, y){
+      BlockInput, MouseMove
+      MouseMove, x, y
+      Sleep, 60+(ClickLatency*15)
+      Send {Click, Right}
+      Sleep, 60+(ClickLatency*15)
+      BlockInput, MouseMoveOff
+      Return
     }
     ; ShiftClick - Shift Click +Click at Coord
     ShiftClick(x, y){
