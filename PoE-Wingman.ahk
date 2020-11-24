@@ -2121,8 +2121,7 @@ Return
       Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
         Return True
     } 
-    Else
-      Return False
+    Return False
   }
   ; VendorRoutine - Does vendor functions
   ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
