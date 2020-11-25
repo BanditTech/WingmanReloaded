@@ -944,40 +944,40 @@
           {
             This.AddPseudoAffix("(Pseudo) Total to Maximum Life",k)
           }
-          If (trimKey = "# to Cold Resistance")
+          If (trimKey = "#% to Cold Resistance")
           {
             This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
           }
-          Else If (trimKey = "# to Fire Resistance")
+          Else If (trimKey = "#% to Fire Resistance")
           {
             This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
           }
-          Else If (trimKey = "# to Lightning Resistance")
+          Else If (trimKey = "#% to Lightning Resistance")
           {
             This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
           }
-          Else If (trimKey = "# to Chaos Resistance")
+          Else If (trimKey = "#% to Chaos Resistance")
           {
             This.AddPseudoAffix("(Pseudo) Total to Chaos Resistance",k)
           }
           ; Double Resistances
-          Else If (trimKey = "# to Cold and Lightning Resistances")
+          Else If (trimKey = "#% to Cold and Lightning Resistances")
           {
             This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
             This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
           }
-          Else If (trimKey = "# to Fire and Cold Resistances")
+          Else If (trimKey = "#% to Fire and Cold Resistances")
           {
             This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
             This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
           }
-          Else If (trimKey = "# to Fire and Lightning Resistances")
+          Else If (trimKey = "#% to Fire and Lightning Resistances")
           {
             This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
             This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
           }
           ; All Resistances
-          Else If (trimKey = "# to all Elemental Resistances")
+          Else If (trimKey = "#% to all Elemental Resistances")
           {
             This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
             This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
@@ -1020,34 +1020,34 @@
             This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
           }
           ; Singular Armour Affix
-          Else If (trimKey = "# increased Armour")
+          Else If (trimKey = "#% increased Armour")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
           }
-          Else If (trimKey = "# increased Evasion Rating")
+          Else If (trimKey = "#% increased Evasion Rating")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
           }
-          Else If (trimKey = "# increased Energy Shield")
+          Else If (trimKey = "#% increased Energy Shield")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
           }
-          Else If (trimKey = "# to maximum Energy Shield")
+          Else If (trimKey = "#% to maximum Energy Shield")
           {
             This.AddPseudoAffix("(Pseudo) Total to Maximum Energy Shield",k)
           }
           ; Double Armour Affix
-          Else If (trimKey = "# increased Evasion and Energy Shield")
+          Else If (trimKey = "#% increased Evasion and Energy Shield")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
             This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
           }
-          Else If (trimKey = "# increased Armour and Energy Shield")
+          Else If (trimKey = "#% increased Armour and Energy Shield")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
             This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k) 
           }
-          Else If (trimKey = "# increased Armour and Evasion")
+          Else If (trimKey = "#% increased Armour and Evasion")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
             This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
@@ -1094,23 +1094,23 @@
             This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells",k)
           }
           ; Spell Pseudo
-          Else If (trimKey = "# increased Lightning Damage")
+          Else If (trimKey = "#% increased Lightning Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
           }
-          Else If (trimKey = "# increased Cold Damage")
+          Else If (trimKey = "#% increased Cold Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
           }
-          Else If (trimKey = "# increased Fire Damage")
+          Else If (trimKey = "#% increased Fire Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
           }
-          Else If (trimKey = "# increased Chaos Damage")
+          Else If (trimKey = "#% increased Chaos Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
           }
-          Else If (trimKey = "# increased Spell Damage")
+          Else If (trimKey = "#% increased Spell Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
             This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
@@ -1118,7 +1118,7 @@
             This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
             This.AddPseudoAffix("(Pseudo) Increased Spell Damage",k)
           }
-          Else If (trimKey = "# increased Elemental Damage")
+          Else If (trimKey = "#% increased Elemental Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
             This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
