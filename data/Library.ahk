@@ -4734,6 +4734,7 @@
       while(GetKeyState("LButton")){
         Static LastTT := 0
         MouseGetPos,pSlider_Temp_X,pSlider_Temp_Y
+        pSlider_Temp_X := Scale_PositionFromDPI(pSlider_Temp_X), pSlider_Temp_Y := Scale_PositionFromDPI(pSlider_Temp_Y)
         if(This.Vertical=0)
           This.Slider_Value := Round((pSlider_Temp_X - This.X ) / ( This.W / (This.End_Range - This.Start_Range) )) + This.Start_Range
         else
