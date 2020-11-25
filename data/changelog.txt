@@ -7,10 +7,11 @@ Adjustments to the Parsing backend
 * All lines with multiple values will simply be stored in _Value(N). This lets any specific key be accessed for evaluation.  
 * For non-range lines the first value is stored as the key.
 
-**THIS CHANGE WILL REQUIRE ADJUSTMENT OF CLF FILTERS TO ADD + or % SYMBOLS**
+**THIS CHANGE WILL REQUIRE ADJUSTMENT OF CLF FILTERS TO ADD % SYMBOLS**
 
-so in summary, affix keys for use with CLF will be exactly as they appear  
-all you need to do is replace numbers with #  
+so in summary, affix keys for use with CLF will be almost exactly as they appear  
+all you need to do is replace numbers with #
++100 to some stat would be # to some stat
 Such as 23.045 to 234.645 would be # to #  
 or 234.45-234.234,34-56.56 would be #-#,#-#  
 
