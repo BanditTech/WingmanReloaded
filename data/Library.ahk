@@ -922,7 +922,7 @@
           Return False
       }
       Standardize(str:=""){
-        str := RegExReplace(str, rxNum , "#")
+        str := RegExReplace(str, "\+{0,1}"rxNum , "#")
         str := RegExReplace(str, " (augmented)" , "")
         Return str
       }
