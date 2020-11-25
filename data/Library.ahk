@@ -129,12 +129,12 @@
         ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
         For SectionKey, SVal in This.Data.Sections
         {
-          If (SVal ~= ":" && !(SVal ~= "grant:"))
+          If ((SVal ~= ":" || SVal ~= "Currently has \d+ Charges") && !(SVal ~= "grant:"))
           {
             If (SectionKey = 1 && SVal ~= "Rarity:")
               This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
             Else
-              This.Data.Blocks.Properties .= SVal "`n"
+              This.Data.Blocks.Properties .= SVal "`r`n"
           }
           Else 
           {
@@ -532,27 +532,27 @@
           ;Every Item has a Item Level
         If (This.Prop.Rarity)
         {
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: "rxNum,RxMatch))
           {
             This.Prop.ItemLevel := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: "rxNum,RxMatch))
           {
             This.Prop.Required_Level := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: "rxNum,RxMatch))
           {
             This.Prop.Required_Str := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: "rxNum,RxMatch))
           {
             This.Prop.Required_Dex := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: "rxNum,RxMatch))
           {
             This.Prop.Required_Int := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: "rxNum,RxMatch))
           {
             This.Prop.Sockets_Raw := RxMatch1
             This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
@@ -583,7 +583,7 @@
             }
           }
           ;Generic Props
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
           {
             This.Prop.Quality := RxMatch1
           }
@@ -626,26 +626,27 @@
             If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum ,RxMatch))
             {
               This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
-              This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
               This.Prop.Weapon_Min_Physical_Dmg := RxMatch1
+              This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
             }
             If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chaos Damage: " rxNum "-" rxNum ,RxMatch))
             {
               This.Prop.Weapon_Avg_Chaos_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
-              This.Prop.Weapon_Max_Chaos_Dmg := RxMatch2
               This.Prop.Weapon_Min_Chaos_Dmg := RxMatch1
+              This.Prop.Weapon_Max_Chaos_Dmg := RxMatch2
             }
             If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+",RxMatch))
             {
               This.Prop.Weapon_Avg_Elemental_Dmg := 0
-              This.Prop.Weapon_Max_Elemental_Dmg := 0
               This.Prop.Weapon_Min_Elemental_Dmg := 0
+              This.Prop.Weapon_Max_Elemental_Dmg := 0
               For k, v in StrSplit(RxMatch,",")
               {
                 values := This.MatchLine(v)
-                This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + values.avg)
-                This.Prop.Weapon_Max_Elemental_Dmg += values.max
-                This.Prop.Weapon_Min_Elemental_Dmg += values.min
+                MsgBoxVals(values)
+                This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + (values.1 + values.2) / 2 ) 
+                This.Prop.Weapon_Min_Elemental_Dmg += values.1
+                This.Prop.Weapon_Max_Elemental_Dmg += values.2
               }
               values := ""
             }
@@ -876,23 +877,25 @@
       }
       MatchAffixes(content:=""){
         ; Do Stuff with info
-        Loop, Parse,% content, `n, `r
+        Loop, Parse,% content, `r`n  ; , `r
         {
           If (A_LoopField = "")
             Continue
           key := This.Standardize(A_LoopField)
           If (vals := This.MatchLine(A_LoopField))
           {
-            If (vals.HasKey("avg"))
+            If (vals.Count() >= 2)
             {
-              This.Affix[key "_Avg"] := vals.avg
-              This.Affix[key "_Max"] := vals.max
-              This.Affix[key "_Min"] := vals.min
-            }
-            Else
-            {
+              If (A_LoopField ~= rxNum " to " rxNum || A_LoopField ~= rxNum "-" rxNum)
+                This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+              Else
+                This.Affix[key] := vals[1]
               For k, v in vals
-                This.Affix[ key (k = 1 ? "" : "_value" k) ] := v
+                This.Affix[ key "_value"k ] := v
+            }
+            Else If (vals.Count() == 1)
+            {
+              This.Affix[key] := vals[1]
             }
           }
           Else
@@ -900,24 +903,35 @@
         }
       }
       MatchLine(lineString){
-        If (RegExMatch(lineString, "O)" rxNum " to " rxNum , RxMatch) || RegExMatch(lineString, "O)" rxNum "-" rxNum , RxMatch))
-          Return {"min":RxMatch[1],"max":RxMatch[2],"avg":(Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))}
-        Else If (RegExMatch(lineString, "O)" rxNum " .* " rxNum , RxMatch))
-          Return [ RxMatch[1], RxMatch[2] ]
-        Else If (RegExMatch(lineString, "O)" rxNum , RxMatch))
-          Return [ RxMatch[1] ]
+        ; If (RegExMatch(lineString, "O)" rxNum " to " rxNum , RxMatch) || RegExMatch(lineString, "O)" rxNum "-" rxNum , RxMatch))
+        ;   Return {"min":RxMatch[1],"max":RxMatch[2],"avg":(Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))}
+        ; Else If (RegExMatch(lineString, "O)" rxNum " .* " rxNum , RxMatch))
+        ;   Return [ RxMatch[1], RxMatch[2] ]
+        ; Else 
+        If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , RxMatch))
+        {
+          ret := {}
+          Loop % RxMatch.Count()
+          {
+            If RxMatch[A_Index] != ""
+              ret.push(RxMatch[A_Index])
+          }
+          Return ret
+        }
         Else
           Return False
       }
       Standardize(str:=""){
-        Return RegExReplace(str, rxNum , "#")
+        str := RegExReplace(str, rxNum , "#")
+        str := RegExReplace(str, " (augmented)" , "")
+        Return str
       }
       MatchPseudoAffix(){
         for k, v in This.Affix
         {
           ; Standardize implicit and crafted for Pseudo sums
           ; Implicits can be disable being merge into Pseudos checking YesCLFIgnoreImplicit
-          If ((RegExMatch(k, "`am) \((.*)\)$", RxMatch) || RegExMatch(k, "`am) \((.*)\)_Avg$", RxMatch)) && YesCLFIgnoreImplicit)	
+          If (RegExMatch(k, "`am) \((.*)\)$", RxMatch) && YesCLFIgnoreImplicit)	
           {
             If (RxMatch1 != "crafted")
             {
@@ -925,7 +939,6 @@
             }
           }
           trimKey := RegExReplace(k," \(.*\)$","")
-          trimKey := RegExReplace(trimKey," \(.*\)_Avg$","_Avg")
           ; Singular Resistances
           If (trimKey = "# to maximum Life")
           {
@@ -1040,45 +1053,45 @@
             This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
           }
           ; Damage Mods
-          Else If (trimKey = "Adds # to # Physical Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Physical Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Physical Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Physical Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Spells",k)
           }
-          Else If (trimKey = "Adds # to # Cold Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Cold Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Cold Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Cold Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Spells",k)
           }
-          Else If (trimKey = "Adds # to # Fire Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Fire Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Fire Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Fire Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Spells",k)
           }
-          Else If (trimKey = "Adds # to # Lightning Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Lightning Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Lightning Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Lightning Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Spells",k)
           }
-          Else If (trimKey = "Adds # to # Chaos Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Chaos Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Chaos Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Chaos Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells",k)
           }
           ; Spell Pseudo
           Else If (trimKey = "# increased Lightning Damage")
@@ -1148,13 +1161,13 @@
         }
         aux:=""
         ; Total Flat Elemental Spell Damage
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Cold Damage to Spells_Avg","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Fire Damage to Spells_Avg","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Lightning Damage to Spells_Avg","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells","(Pseudo) Add Cold Damage to Spells","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells","(Pseudo) Add Fire Damage to Spells","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells","(Pseudo) Add Lightning Damage to Spells","Pseudo")
         ; Total Flat Elemental Atack Dmg
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Cold Damage to Attacks_Avg","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Fire Damage to Attacks_Avg","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Lightning Damage to Attacks_Avg","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks","(Pseudo) Add Cold Damage to Attacks","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks","(Pseudo) Add Fire Damage to Attacks","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks","(Pseudo) Add Lightning Damage to Attacks","Pseudo")
         ; Merge
         This.MergePseudoInAffixs()
       }
@@ -2404,6 +2417,38 @@
         }
       }
     }
+  ; Make a MsgBox Printout of an array
+  MsgBoxVals(obj,indent:=0){
+    txt := ""
+    Loop % indent
+      spacing .= " "
+    If IsObject(obj)
+    {
+      For k, v in obj
+      {
+        txt .= (k==1&&!indent?"":"`n") spacing
+        txt .= "Key:`t"k "`t"
+            . "Val:`t" (IsObject(v)?"OBJECT":v)
+        If IsObject(v)
+        txt .= MsgBoxVals(v,indent+1)
+      }
+    } Else {
+      txt := obj
+    }
+    If indent
+      Return txt
+    Else
+      MsgBox % txt
+  }
+  Get_DpiFactor() {
+    return A_ScreenDPI=96?1:A_ScreenDPI/96
+  }
+  Scale_PositionFromDPI(val){
+    dpif := Get_DpiFactor()
+    If (dpif != 1)
+      val := val / dpif
+    Return val
+  }
   ; Find and retreive Chaos recipe items from a Stash Tab
   ChaosRecipe(endAtRefresh := 0){
     If (AccountNameSTR = "")
@@ -7895,7 +7940,7 @@
     Return
     AddCustomCraftingBase:
       Gui, Submit, nohide
-      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
       If (CustomCraftingBase = "" || IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%))
         Return
       craftingBasesT%RxMatch1%.Push(CustomCraftingBase)
@@ -7906,7 +7951,7 @@
     Return
     RemoveCustomCraftingBase:
       Gui, Submit, nohide
-      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
       If (CustomCraftingBase = "" || !IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%))
         Return
       For k, v in craftingBasesT%RxMatch1%
@@ -7919,7 +7964,7 @@
       Gui, Show
     Return
     ResetCustomCraftingBase:
-      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
       craftingBasesT%RxMatch1% := DefaultcraftingBasesT%RxMatch1%.Clone()
       textList := ""
       For k, v in craftingBasesT%RxMatch1%
@@ -7974,6 +8019,7 @@ IsLinear(arr, i=0) {
     *   text  [in, ByRef] - JSON formatted string
     *   reviver   [in, opt] - function object, similar to JavaScript's
     *               JSON.parse() 'reviver' parameter
+    *   Ordered           - add to ordered array
     */
     class Load extends JSON.Functor
     {
@@ -15269,16 +15315,16 @@ IsLinear(arr, i=0) {
         
         result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
         
-        num := NumGet(&TcpTable,0,"UInt")
+        tcpNum := NumGet(&TcpTable,0,"UInt")
         
-        IfEqual, num, 0
+        IfEqual, tcpNum, 0
         {
-          Log("ED11",num,l,executable)
+          Log("ED11",tcpNum,l,executable)
           return False
         }
         
         out := 0
-        Loop %num%
+        Loop %tcpNum%
         {
           cutby := a_index - 1
           cutby*= 24

@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .13.0000
+  Global VersionNumber := .13.0001
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -119,7 +119,7 @@
   for k, v in ["1","2","3","4","5"]
   {
     WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000"
-    , "Group":Chr(A_Index+96), "Slot":A_Index, "Type":"Flask"
+    , "Group":"f"A_Index, "Slot":A_Index, "Type":"Flask"
     , "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
     , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
     WR.cdExpires.Flask[v] := A_TickCount
@@ -133,24 +133,12 @@
     , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
     WR.cdExpires.Utility[v] := A_TickCount
   }
-  for k, v in ["a","b","c","d","e","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
+  for k, v in ["f1","f2","f3","f4","f5","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
     WR.cdExpires.Group[v] := A_TickCount
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; Extra vars - Not in INI
-    Global rxNum := "(?!\+1 )(?!1 (?!to \d))(?!\+1\%)(?!1\%)"
-      . "(?!\d{1,} second)"
-      . "(?!\d{1,} Poisons)"
-      . "(?!\d{1,} Rampage)"
-      . "(?!\d{1,} Dexterity)"
-      . "(?!\d{1,} total Dexterity)"
-      . "(?!\d{1,} Intelligence)"
-      . "(?!\d{1,} total Intelligence)"
-      . "(?!\d{1,} Strength)"
-      . "(?!\d{1,} total Strength)"
-      . "\+{0,1}"
-      . "(\d{1,}\.{0,1}\,{0,1}\d{0,})"
-      . "\%{0,1}"
+    Global rxNum := "(\d{1,}\.{0,1}\d{0,})"
     Global Controller := {"Btn":{}}
     Global Controller_Active := 0
     Global Item
@@ -161,7 +149,6 @@
     Global Enchantment  := []
     Global Corruption := []
     Global Bases
-    Global num := "\+{0,1}(\d{1,}\.{0,1}\d{0,})\%{0,1}" 
     Global Date_now
     Global GameActive
     Global GamePID
@@ -1222,6 +1209,8 @@
   If needReload
     Reload
 
+
+
 ; MAIN Gui Section
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Critical
@@ -1717,6 +1706,8 @@
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ;~  END of Wingman Gui Settings
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Extra Autorun Code Section
+  ; RefreshStatsList()
 ;~  Grab Ninja Database, Start Scaling resolution values, and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ;Begin scaling resolution values
@@ -3565,15 +3556,13 @@ Return
       If ErrorLevel = 1 ; If not released, just exit out
         Exit
       keyheld := 0
-      If PauseMinesDelay <= 50
-      {
+      If (WR.perChar.Setting.autominesPauseSingleTap == 1)
         pauseToggle := !pauseToggle
-      }
-      else if (A_PriorHotkey <> "$~" . hotkeyPauseMines || A_TimeSincePriorHotkey > PauseMinesDelay)
+      else if (A_PriorHotkey <> "$~" . hotkeyPauseMines || A_TimeSincePriorHotkey > WR.perChar.Setting.autominesPauseDoubleTapSpeed)
       {    ;This is a not a double tap
         pauseToggle := false
       }
-      else if (A_TimeSincePriorHotkey > 50 && A_TimeSincePriorHotkey < PauseMinesDelay)
+      else if (A_TimeSincePriorHotkey > 50 && A_TimeSincePriorHotkey < WR.perChar.Setting.autominesPauseDoubleTapSpeed)
       {    ;This is a double tap that works if within range 25-set value
         pauseToggle := true
       }
@@ -4467,10 +4456,11 @@ Return
     Return
   }
   ShowHideOverlay(){
-    Global overlayT1, overlayT2, overlayT3
+    Global overlayT1, overlayT2, overlayT3, overlayT4
     GuiControl,2: Show%YesInGameOverlay%, overlayT1
     GuiControl,2: Show%YesInGameOverlay%, overlayT2
     GuiControl,2: Show%YesInGameOverlay%, overlayT3
+    GuiControl,2: Show%YesInGameOverlay%, overlayT4
     Return
   }
 ; DBUpdateCheck - Check if the database should be updated 
@@ -7438,7 +7428,7 @@ Return
         Gui, Flask%slot%: Add, Edit,    center   vFlask%slot%Key       xs+10   yp+20   w80  h17, %   WR.Flask[slot].Key
 
         Gui, Flask%slot%: Add, GroupBox, center xs y+15 w100 h55, CD Group
-        Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+10 yp+20 w80" , a|b|c|d|e|Mana|Life|ES|QuickSilver|Defense
+        Gui, Flask%slot%: Add, DropDownList, % "vFlask" slot "Group xs+10 yp+20 w80" , f1|f2|f3|f4|f5|Mana|Life|ES|QuickSilver|Defense
         GuiControl,Flask%slot%: ChooseString, Flask%slot%Group,% WR.Flask[slot].Group
 
         Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h55, Group Cooldown
@@ -8177,16 +8167,6 @@ Return
       }
     Return
 
-    Get_DpiFactor() {
-      return A_ScreenDPI=96?1:A_ScreenDPI/96
-    }
-    Scale_PositionFromDPI(val){
-      dpif := Get_DpiFactor()
-      If (dpif != 1)
-        val := val / dpif
-      Return val
-    }
-
     SendMSG(wParam:=0, lParam:=0, script:="BlankSubscript.ahk ahk_exe AutoHotkey.exe"){
       DetectHiddenWindows On
       if WinExist(script) 
@@ -8199,6 +8179,32 @@ Return
       If (wParam==1)
         LoadArray()
       Return
+    }
+
+    RefreshStatsList(){
+      UrlDownloadToFile, https://www.pathofexile.com/api/trade/data/stats, %A_ScriptDir%\data\GGG_Stats.json
+      FileRead, JSONtext, %A_ScriptDir%\data\GGG_Stats.json
+      result := JSON.Load(JSONtext,,1).result
+      ExpandList := {}
+      for Ck, Cv in result
+      {
+        ExpandList[Cv.label] := []
+        For k, v in Cv.entries
+        {
+          v.text := RegExReplace(v.text, rxNum, "#")
+          If InStr(v.text,"`n")
+          {
+            tlist := []
+            For k, t in StrSplit(v.text,"`n")
+              tlist.Push(t)
+            v.text := tlist
+          }
+        }
+      }
+      JSONtext := JSON_Beautify(result," ",3)
+      FileDelete, %A_ScriptDir%\data\GGG_Stats.json
+      FileAppend, %JSONtext%, %A_ScriptDir%\data\GGG_Stats.json
+      JSONtext := ""
     }
   }
 
