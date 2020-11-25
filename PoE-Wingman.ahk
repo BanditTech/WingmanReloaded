@@ -8185,10 +8185,9 @@ Return
       UrlDownloadToFile, https://www.pathofexile.com/api/trade/data/stats, %A_ScriptDir%\data\GGG_Stats.json
       FileRead, JSONtext, %A_ScriptDir%\data\GGG_Stats.json
       result := JSON.Load(JSONtext,,1).result
-      ExpandList := {}
+      AffixKeyList := []
       for Ck, Cv in result
       {
-        ExpandList[Cv.label] := []
         For k, v in Cv.entries
         {
           v.text := RegExReplace(v.text, rxNum, "#")
@@ -8199,11 +8198,29 @@ Return
               tlist.Push(t)
             v.text := tlist
           }
+          If indexOf(Cv.label,["Explicit","Implicit","Enchant"])
+          {
+            If IsObject(v.text)
+            {
+              for i, t in v.text
+                If !indexOf(t,AffixKeyList)
+                  AffixKeyList.Push(t)
+            } Else {
+              If !indexOf(v.text,AffixKeyList)
+                AffixKeyList.Push(v.text)
+            }
+          }
         }
       }
+      MsgBoxVals(AffixKeyList)
+      
       JSONtext := JSON_Beautify(result," ",3)
       FileDelete, %A_ScriptDir%\data\GGG_Stats.json
       FileAppend, %JSONtext%, %A_ScriptDir%\data\GGG_Stats.json
+
+      JSONtext := JSON_Beautify(AffixKeyList," ",3)
+      FileDelete, %A_ScriptDir%\data\WR_Affix.json
+      FileAppend, %JSONtext%, %A_ScriptDir%\data\WR_Affix.json
       JSONtext := ""
     }
   }
