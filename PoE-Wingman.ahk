@@ -3864,17 +3864,7 @@ Return
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
           }
-          Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
-          {
-            WisdomScroll(Grid.X,Grid.Y)
-            ClipItem(Grid.X,Grid.Y)
-          }
-          Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
+          Else If CheckToIdentify()
           {
             WisdomScroll(Grid.X,Grid.Y)
             ClipItem(Grid.X,Grid.Y)
