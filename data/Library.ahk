@@ -2339,10 +2339,11 @@
               This.Prop.UniquePercentageError := "Stat mismatch or not within range"
             Return
           }
-          Else
-            This.Prop.UniquePercentageError := "Item does not exist within DB"
         }
+        If !match
         Log("Unique Mod Database Missing",This.Prop.ItemName,This.Prop.ItemBase,"`nItem.Affix : "JSON_Beautify(This.Affix,,1))
+        , This.Prop.UniquePercentageError := "Item does not exist within DB"
+
       }
       ValidateUniqueModKeys(unique,key){
         If (This.Prop.ItemName = unique.name)
