@@ -1,4 +1,18 @@
-## Version .13.0001 - Alpha version - November/24/2020
+## Version .13.0002 - Alpha version - November/27/2020
+Epic new function to determine Affix perfection of Unique Items
+* If the item has a matching entry in the DB, it will create a perfection percentage
+* Thanks to the wonderful team behind PoE.Watch we can now price this data point!
+
+Item's are verified against their stat range, and any issues are printed out to the log file  
+
+If you see a message that there was a mismatch, look in the log for the information about the item
+
+Bugfix
+* Fix the map affix parse
+
+---
+
+## Version .13.0001 - Alpha version - November/25/2020
 Adjustments to the Parsing backend
 * The old method of selective replacement of keys was confusing. It is better to have one standard method, ALL numbers are replaced.
 * Now we can match with every possible combination with the most generic solution.  
