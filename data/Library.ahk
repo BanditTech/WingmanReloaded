@@ -2334,11 +2334,20 @@
             {
               tally += value
             }
-            This.Prop.UniquePercentage := Round((tally / This.Data.Percentage.Count()),2)
+            This.Prop.UniquePercentage := This.Data.Percentage.Count()?(Round((tally / This.Data.Percentage.Count()),2)) : 100
             If (match = "mismatch") ; Item is a mismatch
               This.Prop.UniquePercentageError := "Stat/Range mismatch"
-            If (match = "nodata") ; Item has no explicit data
+            else If (match = "nodata") ; Item has no explicit data
               This.Prop.UniquePercentageError := "Item DB has no explicits"
+            If unique.pricePerfect
+            {
+              perccalc := This.percval(This.Prop.UniquePercentage,[unique.mean,unique.pricePerfect]) * (This.Prop.UniquePercentage/100) * (This.Prop.UniquePercentage/100) * (This.Prop.UniquePercentage/100)
+              This.Prop.UniquePerfectValue := perccalc >= unique.mean ? perccalc : unique.mean
+              This.Prop.UniquePerfectMaxVal := unique.pricePerfect
+            } Else {
+              This.Prop.UniquePerfectValue := 0
+              This.Prop.UniquePerfectMaxVal := 0
+            }
             Return
           }
         }
@@ -2357,46 +2366,46 @@
           {
             for k, mod in unique.explicits
             {
-              for kv, digi in mod.ranges
-              {
-                If digi.1 > digi.2
-                {
-                  swap := mod.ranges[kv][1]
-                  mod.ranges[kv][1] := mod.ranges[kv][2]
-                  mod.ranges[kv][2] := swap
-                }
-              }
               If !This.Affix[mod.key]
                 UniqueMisMatchMods .= "`n  [ " mod.key " ]"
               Else If !mod.isvar
-                This.Data.Percentage[mod.key] := 100
+                continue
+                ; This.Data.Percentage[mod.key] := ""
               Else If (mod.ranges.Count() == 1 && mod.text ~= "\d[ a-zA-Z%]*\(\d+-\d+\)")
               {
                 If (This.Affix[mod.key "_Value2"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.1.2)
+                || (This.Affix[mod.key "_Value2"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.1.2)
                 {
-                  This.Data.Percentage[mod.key] := This.Affix[mod.key] / mod.ranges.1.2 * 100
+                  This.Data.Percentage[mod.key] := This.perc(This.Affix[mod.key "_Value2"],mod.ranges.1)
                 }
                 Else
-                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range1"
               }
               Else If (mod.ranges.Count() == 1)
               {
                 If (This.Affix[mod.key] >= mod.ranges.1.1 && This.Affix[mod.key] <= mod.ranges.1.2)
+                || (This.Affix[mod.key] <= mod.ranges.1.1 && This.Affix[mod.key] >= mod.ranges.1.2)
                 {
-                  This.Data.Percentage[mod.key] := This.Affix[mod.key] / mod.ranges.1.2 * 100
+                  This.Data.Percentage[mod.key] := This.perc(This.Affix[mod.key], mod.ranges.1)
                 }
                 Else
-                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range2"
               }
               Else If (mod.ranges.Count() == 2)
               {
-                If (This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
-                && (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2)
+                If ((This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
+                  && (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2))
+                || ((This.Affix[mod.key "_Value1"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] >= mod.ranges.1.2)
+                  && (This.Affix[mod.key "_Value2"] <= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.2.2))
+                || ((This.Affix[mod.key "_Value1"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] >= mod.ranges.1.2)
+                  && (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2))
+                || ((This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
+                  && (This.Affix[mod.key "_Value2"] <= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.2.2))
                 {
-                  This.Data.Percentage[mod.key] := ( This.Affix[mod.key "_Value1"] / mod.ranges.1.2 + This.Affix[mod.key "_Value1"] / mod.ranges.1.2 ) / 2 * 100
+                  This.Data.Percentage[mod.key] := ( This.perc(This.Affix[mod.key "_Value1"], mod.ranges.1) + This.perc(This.Affix[mod.key "_Value2"], mod.ranges.2) ) / 2
                 }
                 Else
-                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range3"
               }
             }
           } Else
@@ -2408,6 +2417,12 @@
           Return "mismatch"
         } Else 
           Return False
+      }
+      perc(value,range){
+        Return abs(((value - range.1) * 100) / (range.2 - range.1))
+      }
+      percval(perc,range){
+        Return ((perc * (range.2 - range.1) / 100) + range.1)
       }
     }
   ; ItemBuild - Create Prop and Affix Values in WR format from GGG Stash API
