@@ -129,7 +129,7 @@
         ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
         For SectionKey, SVal in This.Data.Sections
         {
-          If ((SVal ~= ":" || SVal ~= "Currently has \d+ Charges") && !(SVal ~= "grant:"))
+          If ((SVal ~= ":" || SVal ~= "Currently has \d+ Charges") && !(SVal ~= "grant:") && !(SVal ~= "slot:"))
           {
             If (SectionKey = 1 && SVal ~= "Rarity:")
               This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
@@ -168,6 +168,8 @@
         This.MatchAffixes(This.Data.Blocks.Influence)
         This.MatchAffixes(This.Data.Blocks.ClusterImplicit)
         This.MatchProperties()
+        If This.Prop.Rarity_Digit == 4
+          This.ApproximatePerfection()
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
         This.FilterDoubleMods()
@@ -643,7 +645,6 @@
               For k, v in StrSplit(RxMatch,",")
               {
                 values := This.MatchLine(v)
-                MsgBoxVals(values)
                 This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + (values.1 + values.2) / 2 ) 
                 This.Prop.Weapon_Min_Elemental_Dmg += values.1
                 This.Prop.Weapon_Max_Elemental_Dmg += values.2
@@ -903,11 +904,6 @@
         }
       }
       MatchLine(lineString){
-        ; If (RegExMatch(lineString, "O)" rxNum " to " rxNum , RxMatch) || RegExMatch(lineString, "O)" rxNum "-" rxNum , RxMatch))
-        ;   Return {"min":RxMatch[1],"max":RxMatch[2],"avg":(Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))}
-        ; Else If (RegExMatch(lineString, "O)" rxNum " .* " rxNum , RxMatch))
-        ;   Return [ RxMatch[1], RxMatch[2] ]
-        ; Else 
         If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , RxMatch))
         {
           ret := {}
@@ -922,7 +918,7 @@
           Return False
       }
       Standardize(str:=""){
-        str := RegExReplace(str, "\+{0,1}"rxNum , "#")
+        str := RegExReplace(str, "\+?"rxNum , "#")
         str := RegExReplace(str, " (augmented)" , "")
         Return str
       }
@@ -2327,6 +2323,75 @@
         {
           This.Prop.CraftingBase := "T4"
         }
+      }
+      ApproximatePerfection(){
+        For ku, unique in WR.data.Perfect
+        {
+          If (match := This.ValidateUniqueModKeys(unique,ku))
+          {
+            tally := 0
+            For k, value in This.Data.Percentage
+            {
+              tally += value
+            }
+            This.Prop.UniquePercentage := Round((tally / This.Data.Percentage.Count()),2)
+            If (match = "mismatch") ; Item is a mismatch
+              This.Prop.UniquePercentageError := "Stat mismatch or not within range"
+            Return
+          }
+          Else
+            This.Prop.UniquePercentageError := "Item does not exist within DB"
+        }
+        Log("Unique Mod Database Missing",This.Prop.ItemName,This.Prop.ItemBase,"`nItem.Affix : "JSON_Beautify(This.Affix,,1))
+      }
+      ValidateUniqueModKeys(unique,key){
+        If (This.Prop.ItemName = unique.name)
+        {
+          UniqueMatchingKey := True
+          UniqueMisMatchMods := ""
+          This.Data.Percentage := {}
+          for k, mod in unique.explicits
+          {
+            If !This.Affix[mod.key]
+              UniqueMisMatchMods .= "`n  [ " mod.key " ]"
+            Else If !mod.isvar
+              Continue
+            Else If (mod.ranges.Count() == 1 && mod.text ~= "\d[ a-zA-Z%]*\(\d+-\d+\)")
+            {
+              If (This.Affix[mod.key "_Value2"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.1.2)
+              {
+                This.Data.Percentage[mod.key] := This.Affix[mod.key] / mod.ranges.1.2 * 100
+              }
+              Else
+                UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
+            }
+            Else If (mod.ranges.Count() == 1)
+            {
+              If (This.Affix[mod.key] >= mod.ranges.1.1 && This.Affix[mod.key] <= mod.ranges.1.2)
+              {
+                This.Data.Percentage[mod.key] := This.Affix[mod.key] / mod.ranges.1.2 * 100
+              }
+              Else
+                UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
+            }
+            Else If (mod.ranges.Count() == 2)
+            {
+              If (This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
+              && (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2)
+              {
+                This.Data.Percentage[mod.key] := ( This.Affix[mod.key "_Value1"] / mod.ranges.1.2 + This.Affix[mod.key "_Value1"] / mod.ranges.1.2 ) / 2 * 100
+              }
+              Else
+                UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
+            }
+          }
+          If !UniqueMisMatchMods
+            Return key
+          Else
+            Log("Unique Mod Database Mismatch",This.Prop.ItemName,This.Prop.ItemBase,"`nKeys which are mismatched:"UniqueMisMatchMods,"`nItem.Affix : "JSON_Beautify(This.Affix,,1),"`nWR.data.Uniques["key "] : "JSON_Beautify(unique,,2))
+          Return "mismatch"
+        } Else 
+          Return False
       }
     }
   ; ItemBuild - Create Prop and Affix Values in WR format from GGG Stash API
@@ -17140,26 +17205,30 @@ IsLinear(arr, i=0) {
   ;--------------------------------------------------------------------------------
     GuiControlGet, userInput,, % CBMatchingGUI.hEdit
     userInputArr := StrSplit(RTrim(userInput), " ")
-    choicesList := CBMatchingGUI.parentCBList
+    ; choicesList := CBMatchingGUI.parentCBList
     MatchCount := MatchList := MisMatchList := 0
     matchArr := {}
     ;--Find in list
     for k, v in userInputArr
     {
-      If (InStr(choicesList, v))
+      If (v = "")
+        Continue
+      If (InStr(CBMatchingGUI.parentCBList, v))
         MatchList := True
       else
         MisMatchList := True
     }
     if (MatchList && !MisMatchList) {
-
-      Loop, Parse, choicesList, "`n"
+      ; Loop, Parse, choicesList, "`n"
+      For index, choice in StrSplit(CBMatchingGUI.parentCBList,"`n"," `r")
       {
+        if choice = ""
+          continue
         MatchString := MisMatchString := 0
         posArr := {}
         for k, v in userInputArr
         {
-          If (FoundPos := InStr(A_LoopField, v))
+          If (FoundPos := InStr(choice, v))
           {
             MatchString := True
             posArr.Push(FoundPos)
@@ -17174,23 +17243,16 @@ IsLinear(arr, i=0) {
             If (v = 1 && A_Index = 1)
               atStart := True
           }
-          If !IndexOf(A_LoopField,matchArr)
+          If !IndexOf(choice,matchArr)
           {
             If (atStart)
-              MatchesAtStart .= "`n"A_LoopField
+              MatchesAtStart .= "`n"choice
             else
-              MatchesAnywhere .= "`n"A_LoopField
+              MatchesAnywhere .= "`n"choice
             MatchCount++
-            matchArr.Push(A_LoopField)
+            matchArr.Push(choice)
           }
         }
-        Else if (FoundPos := InStr(A_LoopField, userInput)) {
-          if (FoundPos = 1)
-            MatchesAtStart .= "`n"A_LoopField
-          else
-            MatchesAnywhere .= "`n"A_LoopField             
-          MatchCount++
-        } 
       }
       Matches := MatchesAtStart . MatchesAnywhere ; Ordered Match list
       GuiControl,, % CBMatchingGUI.hLB, %Matches%

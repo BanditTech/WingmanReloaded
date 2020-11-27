@@ -328,7 +328,7 @@ BuildNewGroupMenu(GKey)
   Gui,2: Add,  DropDownList, v%strLootFilterGroupOrCount% gUpdateGroupInfo w40 x+5 yp-6, % LootFilter[GKey]["Data"]["OrCount"] "||1|2|3|4|5|6|7|8|9|10|11|12"
   strLootFilterExport := "LootFilter_" . GKey . "_Export"
   Gui,2: Add, Button, v%strLootFilterExport% gExportGroup w60 h21 x+5, Export
-Return
+  Return
 }
 
 LoadArray:

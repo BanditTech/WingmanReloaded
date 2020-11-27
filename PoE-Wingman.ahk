@@ -138,7 +138,7 @@
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; Extra vars - Not in INI
-    Global rxNum := "(\d{1,}\.{0,1}\d{0,})"
+    Global rxNum := "(\d+\.?\d*)"
     Global Controller := {"Btn":{}}
     Global Controller_Active := 0
     Global Item
@@ -1182,28 +1182,14 @@
     QuestItems := JSON.Load(JSONtext)
     JSONtext := ""
   }
-  IfNotExist, %A_ScriptDir%\data\Uniques.json
+  IfNotExist, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
   {
-    UrlDownloadToFile, https://raw.githubusercontent.com/PoE-TradeMacro/POE-TradeMacro/master/data_trade/uniques.json, %A_ScriptDir%\data\Uniques.json
-    if ErrorLevel {
-      Log("data","uhoh", "Uniques.json")
-      MsgBox, Error ED02 : There was a problem downloading Uniques.json from Poe-TradeMacro
-    }
-    Else if (ErrorLevel=0){
-      Log("data","pass", "Downloading Uniques.json was a success") 
-      FileRead, JSONtext, %A_ScriptDir%\data\Uniques.json
-      JSONtext := RegExReplace(JSONtext, """base"":", """ibase"":")
-      WR.data.Uniques := JSON.Load(JSONtext,,True)
-      JSONtext := JSON_Beautify(WR.data.Uniques,"  ",,true)
-      FileDelete, %A_ScriptDir%\data\Uniques.json
-      FileAppend, %JSONtext%, %A_ScriptDir%\data\Uniques.json
-      JSONtext := ""
-    }
+    RefreshPoeWatchPerfect()
   }
   Else
   {
-    FileRead, JSONtext, %A_ScriptDir%\data\Uniques.json
-    WR.data.Uniques := JSON.Load(JSONtext,,True)
+    FileRead, JSONtext, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+    WR.Data.Perfect := JSON.Load(JSONtext,,1)
     JSONtext := ""
   }
   If needReload
@@ -1708,6 +1694,7 @@
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Extra Autorun Code Section
   ; RefreshStatsList()
+  ; RefreshPoeWatchPerfect()
 ;~  Grab Ninja Database, Start Scaling resolution values, and setup ignore slots
 ;~  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ;Begin scaling resolution values
@@ -8181,11 +8168,98 @@ Return
       Return
     }
 
+    RefreshPoeWatchPerfect(){
+      UrlDownloadToFile, https://api.poe.watch/perfect?league=Heist, %A_ScriptDir%\data\PoE.Watch_PerfectUnique_orig.json
+      FileRead, JSONtext, %A_ScriptDir%\data\PoE.Watch_PerfectUnique_orig.json
+      WR.Data.Perfect := JSON.Load(JSONtext,,1)
+      For ku, itemDB in WR.Data.Perfect
+      {
+        pushto := {}
+        For kt, type in ["implicits","explicits"]
+        {
+          pushto[type] := {}
+          For ki, mod in itemDB[type]
+          {
+            mod := RegExReplace(mod, "1 to \(", "(1-1) to (")
+            replace := new Perfect(mod)
+            WR.Data.Perfect[ku][type][ki] := replace.o
+          }
+        }
+      }
+      JSONtext := JSON_Beautify(WR.Data.Perfect," ",3)
+      FileDelete, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+      FileAppend, %JSONtext%, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+    }
+    Class Perfect {
+      __New(mod){
+        This.o := New OrderedAssociativeArray
+        This.o.isvar := 0
+        This.o.key:=This.Standardize(mod)
+        This.SetVals(mod)
+        This.o.text:=mod
+      }
+      Standardize(str){
+        str := RegExReplace(str, "\+?"rxNum, "#")
+        str := RegExReplace(str, "\(#-#\)", "#",replacecount)
+        str := RegExReplace(str, "\+?#", "#")
+        This.o.isvar := replacecount
+        Return str
+      }
+      GetValues(lineString){
+        values := []
+        position := 1
+        RxMatch:={"Len":[0]}
+        While (position := RegExMatch(lineString, "O`am)"rxNum, RxMatch, position + RxMatch.Len[1]))
+        {
+          If (RxMatch[1] != "")
+            values.push(RxMatch[1])
+        }
+        If values.Count()
+          Return values
+        Else
+          Return False
+      }
+      SetVals(line){
+        If (line = "")
+          Return
+        If (vals := This.GetValues(line))
+        {
+          If (vals.Count() >= 2)
+          {
+            If (line ~= "\d[ a-zA-Z%]*\(\d+-\d+\)")
+              This.o.values := [vals[1]]
+              , This.o.ranges := [[vals[2],vals[3]]]
+              , vals.RemoveAt(1, 3)
+            Else If (line ~= "\("rxNum "-"rxNum "\) to \(" rxNum "-"rxNum "\)")
+              This.o.ranges := [[vals[1],vals[2]],[vals[3],vals[4]]]
+              , vals.RemoveAt(1, 4)
+            Else If (line ~= "\("rxNum "-"rxNum "\)")
+              This.o.ranges := [[vals[1],vals[2]]]
+              , vals.RemoveAt(1, 2)
+            If vals.Count()
+            {
+              If !IsObject(This.values)
+                This.o.values := []
+              For k, v in vals
+                This.o.values.Push(v)
+            }
+          }
+          Else If (vals.Count() == 1)
+          {
+            This.o.values := [vals[1]]
+          }
+        }
+        Else
+          This.o.values := [""]
+      }
+    }
+
     RefreshStatsList(){
       UrlDownloadToFile, https://www.pathofexile.com/api/trade/data/stats, %A_ScriptDir%\data\GGG_Stats.json
       FileRead, JSONtext, %A_ScriptDir%\data\GGG_Stats.json
       result := JSON.Load(JSONtext,,1).result
       AffixKeyList := []
+      EnchantKeyList := []
       for Ck, Cv in result
       {
         For k, v in Cv.entries
@@ -8198,7 +8272,7 @@ Return
               tlist.Push(t)
             v.text := tlist
           }
-          If indexOf(Cv.label,["Explicit","Implicit","Enchant"])
+          If indexOf(Cv.label,["Explicit","Implicit"])
           {
             If IsObject(v.text)
             {
@@ -8210,9 +8284,21 @@ Return
                 AffixKeyList.Push(v.text)
             }
           }
+          If indexOf(Cv.label,["Enchant"])
+          {
+            If IsObject(v.text)
+            {
+              for i, t in v.text
+                If !indexOf(t,EnchantKeyList)
+                  EnchantKeyList.Push(t)
+            } Else {
+              If !indexOf(v.text,EnchantKeyList)
+                EnchantKeyList.Push(v.text)
+            }
+          }
         }
       }
-      MsgBoxVals(AffixKeyList)
+      ; MsgBoxVals(AffixKeyList)
       
       JSONtext := JSON_Beautify(result," ",3)
       FileDelete, %A_ScriptDir%\data\GGG_Stats.json
@@ -8221,6 +8307,10 @@ Return
       JSONtext := JSON_Beautify(AffixKeyList," ",3)
       FileDelete, %A_ScriptDir%\data\WR_Affix.json
       FileAppend, %JSONtext%, %A_ScriptDir%\data\WR_Affix.json
+
+      JSONtext := JSON_Beautify(EnchantKeyList," ",3)
+      FileDelete, %A_ScriptDir%\data\WR_Enchant.json
+      FileAppend, %JSONtext%, %A_ScriptDir%\data\WR_Enchant.json
       JSONtext := ""
     }
   }
