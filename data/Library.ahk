@@ -2336,13 +2336,15 @@
             }
             This.Prop.UniquePercentage := Round((tally / This.Data.Percentage.Count()),2)
             If (match = "mismatch") ; Item is a mismatch
-              This.Prop.UniquePercentageError := "Stat mismatch or not within range"
+              This.Prop.UniquePercentageError := "Stat/Range mismatch"
+            If (match = "nodata") ; Item has no explicit data
+              This.Prop.UniquePercentageError := "Item DB has no explicits"
             Return
           }
         }
         If !match
-        Log("Unique Mod Database Missing",This.Prop.ItemName,This.Prop.ItemBase,"`nItem.Affix : "JSON_Beautify(This.Affix,,1))
-        , This.Prop.UniquePercentageError := "Item does not exist within DB"
+        Log("Unique Mod Database Missing","`t"This.Prop.ItemName,"`t"This.Prop.ItemBase,"`nItem.Affix : "JSON_Beautify(This.Affix,,1))
+        , This.Prop.UniquePercentageError := "Item not in DB"
 
       }
       ValidateUniqueModKeys(unique,key){
@@ -2351,45 +2353,58 @@
           UniqueMatchingKey := True
           UniqueMisMatchMods := ""
           This.Data.Percentage := {}
-          for k, mod in unique.explicits
+          If IsObject(unique.explicits) 
           {
-            If !This.Affix[mod.key]
-              UniqueMisMatchMods .= "`n  [ " mod.key " ]"
-            Else If !mod.isvar
-              Continue
-            Else If (mod.ranges.Count() == 1 && mod.text ~= "\d[ a-zA-Z%]*\(\d+-\d+\)")
+            for k, mod in unique.explicits
             {
-              If (This.Affix[mod.key "_Value2"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.1.2)
+              for kv, digi in mod.ranges
               {
-                This.Data.Percentage[mod.key] := This.Affix[mod.key] / mod.ranges.1.2 * 100
+                If digi.1 > digi.2
+                {
+                  swap := mod.ranges[kv][1]
+                  mod.ranges[kv][1] := mod.ranges[kv][2]
+                  mod.ranges[kv][2] := swap
+                }
               }
-              Else
-                UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
-            }
-            Else If (mod.ranges.Count() == 1)
-            {
-              If (This.Affix[mod.key] >= mod.ranges.1.1 && This.Affix[mod.key] <= mod.ranges.1.2)
+              If !This.Affix[mod.key]
+                UniqueMisMatchMods .= "`n  [ " mod.key " ]"
+              Else If !mod.isvar
+                This.Data.Percentage[mod.key] := 100
+              Else If (mod.ranges.Count() == 1 && mod.text ~= "\d[ a-zA-Z%]*\(\d+-\d+\)")
               {
-                This.Data.Percentage[mod.key] := This.Affix[mod.key] / mod.ranges.1.2 * 100
+                If (This.Affix[mod.key "_Value2"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.1.2)
+                {
+                  This.Data.Percentage[mod.key] := This.Affix[mod.key] / mod.ranges.1.2 * 100
+                }
+                Else
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
               }
-              Else
-                UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
-            }
-            Else If (mod.ranges.Count() == 2)
-            {
-              If (This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
-              && (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2)
+              Else If (mod.ranges.Count() == 1)
               {
-                This.Data.Percentage[mod.key] := ( This.Affix[mod.key "_Value1"] / mod.ranges.1.2 + This.Affix[mod.key "_Value1"] / mod.ranges.1.2 ) / 2 * 100
+                If (This.Affix[mod.key] >= mod.ranges.1.1 && This.Affix[mod.key] <= mod.ranges.1.2)
+                {
+                  This.Data.Percentage[mod.key] := This.Affix[mod.key] / mod.ranges.1.2 * 100
+                }
+                Else
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
               }
-              Else
-                UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
+              Else If (mod.ranges.Count() == 2)
+              {
+                If (This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
+                && (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2)
+                {
+                  This.Data.Percentage[mod.key] := ( This.Affix[mod.key "_Value1"] / mod.ranges.1.2 + This.Affix[mod.key "_Value1"] / mod.ranges.1.2 ) / 2 * 100
+                }
+                Else
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range"
+              }
             }
-          }
+          } Else
+            Return "nodata"
           If !UniqueMisMatchMods
             Return key
           Else
-            Log("Unique Mod Database Mismatch",This.Prop.ItemName,This.Prop.ItemBase,"`nKeys which are mismatched:"UniqueMisMatchMods,"`nItem.Affix : "JSON_Beautify(This.Affix,,1),"`nWR.data.Uniques["key "] : "JSON_Beautify(unique,,2))
+            Log("Unique Mod Database Mismatch","`t"This.Prop.ItemName,"`t"This.Prop.ItemBase,"`nKeys which are mismatched:"UniqueMisMatchMods,"`nItem.Affix : "JSON_Beautify(This.Affix,,1),"`nWR.data.Uniques["key "] : "JSON_Beautify(unique,,2))
           Return "mismatch"
         } Else 
           Return False
