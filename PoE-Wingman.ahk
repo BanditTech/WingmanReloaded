@@ -2342,11 +2342,11 @@ Return
         addToBlacklist(C, R)
         If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
           ShooMouse(),GuiStatus(),Continue
-        If CheckToIdentify()
-        {
-          WisdomScroll(Grid.X,Grid.Y)
-          ClipItem(Grid.X,Grid.Y)
-        }
+        ; If CheckToIdentify()
+        ; {
+        ;   WisdomScroll(Grid.X,Grid.Y)
+        ;   ClipItem(Grid.X,Grid.Y)
+        ; }
         If (OnVendor&&YesVendor)
         {
           If Item.MatchLootFilter()
