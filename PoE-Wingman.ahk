@@ -2810,7 +2810,7 @@ Return
       {
         StockScrolls()
       }
-      If (YesEnableLockerAutomation&&HeistCount)
+      If (YesEnableLockerAutomation && HeistCount && RunningToggle)
       {
         SendHotkey(hotkeyCloseAllUI)
         RandomSleep(45,90)
@@ -2820,11 +2820,13 @@ Return
           RandomSleep(45,90)
           For k, v in HeistC
           {
-              GridX := InventoryGridX[v]
-              GridY := InventoryGridY[ObjRawGet(HeistR, k)]
-              Grid := RandClick(GridX, GridY)
-              CtrlClick(Grid.X,Grid.Y)
-              RandomSleep(45,45)
+            If !RunningToggle
+              Return
+            GridX := InventoryGridX[v]
+            GridY := InventoryGridY[ObjRawGet(HeistR, k)]
+            Grid := RandClick(GridX, GridY)
+            CtrlClick(Grid.X,Grid.Y)
+            RandomSleep(45,45)
           }
         }
       }
