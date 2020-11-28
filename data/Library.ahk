@@ -168,7 +168,7 @@
         This.MatchAffixes(This.Data.Blocks.Influence)
         This.MatchAffixes(This.Data.Blocks.ClusterImplicit)
         This.MatchProperties()
-        If This.Prop.Rarity_Digit == 4
+        If (This.Prop.Rarity_Digit == 4 && !This.Affix["Unidentified"])
           This.ApproximatePerfection()
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
