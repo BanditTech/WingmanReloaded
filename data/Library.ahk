@@ -2343,9 +2343,11 @@
             {
               perccalc := This.percval(This.Prop.UniquePercentage,[unique.mean,unique.pricePerfect]) * (This.Prop.UniquePercentage/100) * (This.Prop.UniquePercentage/100) * (This.Prop.UniquePercentage/100)
               This.Prop.UniquePerfectValue := perccalc >= unique.mean ? perccalc : unique.mean
+              This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
               This.Prop.UniquePerfectMaxVal := unique.pricePerfect
             } Else {
               This.Prop.UniquePerfectValue := 0
+              This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
               This.Prop.UniquePerfectMaxVal := 0
             }
             Return
