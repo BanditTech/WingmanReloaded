@@ -4634,7 +4634,7 @@
     }
     Else If !(Fetch="")
     {
-      P%Fetch% := ScreenShot_GetColor(WR.loc[Fetch].X,WR.loc[Fetch].Y)
+      P%Fetch% := ScreenShot_GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
       temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
       Return temp
     }

@@ -3041,8 +3041,15 @@ Return
   MoveStash(Tab,CheckStatus:=0)
   {
     If CheckStatus
-    GuiStatus("OnStash")
-    If (!OnStash || CurrentTab=Tab)
+    {
+      If !GuiStatus("OnStash")
+      {
+        Notify("Was not able to verify OnStash","",2)
+        Return
+      }
+      CurrentTab := 0
+    }
+    If (CurrentTab==Tab)
       return
     If (CurrentTab!=Tab) 
     {
@@ -6116,7 +6123,6 @@ Return
         }
         Else If (func = "Stash")
         {
-          CurrentTab := 0
           MoveStash(%TypePrefix%Suffix%SuffixNum%,1)
         }
       }
