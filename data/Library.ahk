@@ -7244,7 +7244,7 @@
     Sleep, 60
     Return
   }
-  ; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaose Equivalent
+  ; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaos Equivalent
   ScrapeNinjaData(apiString)
   {
     If(RegExMatch(selectedLeague, "SSF",RxMatch))
