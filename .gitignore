@@ -3,3 +3,4 @@ save/
 temp/
 data/Ninja.json
 data/leagues.json
+.vscode/settings.json
