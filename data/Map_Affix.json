@@ -1,74 +1,3063 @@
 {
- "Prefix":[
-  "Ceremonial",
-  "Antagonist's",
-  "Anarchic",
-  "Skeletal",
-  "Capricious",
-  "Slithering",
-  "Undead",
-  "Emanant",
-  "Feral",
-  "Demonic",
-  "Bipedal",
-  "Solar",
-  "Lunar",
-  "Haunting",
-  "Feasting",
-  "Multifarious",
-  "Abhorrent",
-  "Chaining",
-  "Otherworldly",
-  "Twinned",
-  "Unwavering",
-  "Splitting",
-  "Armoured",
-  "Fecund",
-  "Savage",
-  "Burning",
-  "Freezing",
-  "Shocking",
-  "Fleet",
-  "Punishing",
-  "Mirrored",
-  "Overlord's",
-  "Titan's",
-  "Hexwarded",
-  "Unstoppable",
-  "Conflagrating",
-  "Resistant",
-  "Impervious",
-  "Kirac",
-  "Empowered",
-  "Hexproof"
- ],
- "Suffix":[
-  "of Bloodlines",
-  "of Venom",
-  "of Balance",
-  "of Giants",
-  "of Deadliness",
-  "of Smothering",
-  "of Flames",
-  "of Ice",
-  "of Lightning",
-  "of Desecration",
-  "of Insulation",
-  "of Toughness",
-  "of Drought",
-  "of Skirmishing",
-  "of Rust",
-  "of Miring",
-  "of Impotence",
-  "of Frenzy",
-  "of Endurance",
-  "of Power",
-  "of Stasis",
-  "of Elemental Weakness",
-  "of Vulnerability",
-  "of Enfeeblement",
-  "of Temporal Chains",
-  "of Exposure",
-  "of Congealment"
- ]
+  "Prefix": {
+    "Area contains many Totems": [
+      {
+        "name": "Ceremonial",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Area contains many Totems",
+            "key": "Area contains many Totems"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Kirac",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": 0,
+        "texts": [
+          {
+            "text": "Area contains many Totems",
+            "key": "Area contains many Totems"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Rare Monsters each have a Nemesis Mod<br>#% more Rare Monsters": [
+      {
+        "name": "Antagonist's",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Rare Monsters each have a Nemesis Mod",
+            "key": "Rare Monsters each have a Nemesis Mod"
+          },
+          {
+            "text": "13% more Rare Monsters",
+            "values": [ "13" ],
+            "key": "#% more Rare Monsters"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by # additional Rogue Exiles": [
+      {
+        "name": "Anarchic",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Area is inhabited by 10 additional Rogue Exiles",
+            "values": [ "10" ],
+            "key": "Area is inhabited by # additional Rogue Exiles"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Kirac",
+        "level": "1",
+        "quantity": "15",
+        "rarity": "15",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": 0,
+        "texts": [
+          {
+            "text": "Area is inhabited by 15 additional Rogue Exiles",
+            "values": [ "15" ],
+            "key": "Area is inhabited by # additional Rogue Exiles"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Skeletons": [
+      {
+        "name": "Skeletal",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Skeletons",
+            "key": "Area is inhabited by Skeletons"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Goatmen": [
+      {
+        "name": "Capricious",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Goatmen",
+            "key": "Area is inhabited by Goatmen"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Sea Witches and their Spawn": [
+      {
+        "name": "Slithering",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Sea Witches and their Spawn",
+            "key": "Area is inhabited by Sea Witches and their Spawn"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Undead": [
+      {
+        "name": "Undead",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Undead",
+            "key": "Area is inhabited by Undead"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by ranged monsters": [
+      {
+        "name": "Emanant",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by ranged monsters",
+            "key": "Area is inhabited by ranged monsters"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Animals": [
+      {
+        "name": "Feral",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Animals",
+            "key": "Area is inhabited by Animals"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Demons": [
+      {
+        "name": "Demonic",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Demons",
+            "key": "Area is inhabited by Demons"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Humanoids": [
+      {
+        "name": "Bipedal",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Humanoids",
+            "key": "Area is inhabited by Humanoids"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Solaris fanatics": [
+      {
+        "name": "Solar",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Solaris fanatics",
+            "key": "Area is inhabited by Solaris fanatics"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Lunaris fanatics": [
+      {
+        "name": "Lunar",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Lunaris fanatics",
+            "key": "Area is inhabited by Lunaris fanatics"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Ghosts": [
+      {
+        "name": "Haunting",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Ghosts",
+            "key": "Area is inhabited by Ghosts"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Cultists of Kitava": [
+      {
+        "name": "Feasting",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Cultists of Kitava",
+            "key": "Area is inhabited by Cultists of Kitava"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area has increased monster variety": [
+      {
+        "name": "Multifarious",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Area has increased monster variety",
+            "key": "Area has increased monster variety"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area is inhabited by Abominations": [
+      {
+        "name": "Abhorrent",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [  ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Area is inhabited by Abominations",
+            "key": "Area is inhabited by Abominations"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters' skills Chain # additional times": [
+      {
+        "name": "Chaining",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters' skills Chain 16 additional times",
+            "values": [ "16" ],
+            "key": "Monsters' skills Chain # additional times"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Slaying Enemies close together has a #% chance to attract monsters from Beyond": [
+      {
+        "name": "Otherworldly",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [  ],
+        "weight": "650",
+        "texts": [
+          {
+            "text": "Slaying Enemies close together has a 10% chance to attract monsters from Beyond",
+            "values": [ "10" ],
+            "key": "Slaying Enemies close together has a #% chance to attract monsters from Beyond"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Kirac",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": 0,
+        "texts": [
+          {
+            "text": "Slaying Enemies close together has a 12% chance to attract monsters from Beyond",
+            "values": [ "12" ],
+            "key": "Slaying Enemies close together has a #% chance to attract monsters from Beyond"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Area contains two Unique Bosses": [
+      {
+        "name": "Twinned",
+        "level": "1",
+        "quantity": "19",
+        "rarity": "19",
+        "packsize": "19",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Area contains two Unique Bosses",
+            "key": "Area contains two Unique Bosses"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Kirac",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": 0,
+        "texts": [
+          {
+            "text": "Area contains two Unique Bosses",
+            "key": "Area contains two Unique Bosses"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters fire # additional Projectiles": [
+      {
+        "name": "Splitting",
+        "level": "1",
+        "quantity": "19",
+        "rarity": "19",
+        "packsize": "19",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters fire 19 additional Projectiles",
+            "values": [ "19" ],
+            "key": "Monsters fire # additional Projectiles"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Splitting",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters fire 10 additional Projectiles",
+            "values": [ "10" ],
+            "key": "Monsters fire # additional Projectiles"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters' Action Speed cannot be modified to below base value<br>Monsters cannot be Taunted": [
+      {
+        "name": "Unstoppable",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "speed" ],
+        "weight": "650",
+        "texts": [
+          {
+            "text": "Monsters' Action Speed cannot be modified to below base value",
+            "key": "Monsters' Action Speed cannot be modified to below base value"
+          },
+          {
+            "text": "Monsters cannot be Taunted",
+            "key": "Monsters cannot be Taunted"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "All Monster Damage from Hits always Ignites": [
+      {
+        "name": "Conflagrating",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "elemental", "fire", "ailment" ],
+        "weight": "650",
+        "texts": [
+          {
+            "text": "All Monster Damage from Hits always Ignites",
+            "key": "All Monster Damage from Hits always Ignites"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters cannot be Stunned<br>#% more Monster Life": [
+      {
+        "name": "Unwavering",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "resource", "life" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters cannot be Stunned",
+            "key": "Monsters cannot be Stunned"
+          },
+          {
+            "text": "13% more Monster Life",
+            "values": [ "13" ],
+            "key": "#% more Monster Life"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% Monster Physical Damage Reduction": [
+      {
+        "name": "Armoured",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "physical" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "13% Monster Physical Damage Reduction",
+            "values": [ "13" ],
+            "key": "#% Monster Physical Damage Reduction"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Armoured",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "10% Monster Physical Damage Reduction",
+            "values": [ "10" ],
+            "key": "#% Monster Physical Damage Reduction"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% more Monster Life": [
+      {
+        "name": "Fecund",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "resource", "life" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "13% more Monster Life",
+            "values": [ "13" ],
+            "key": "#% more Monster Life"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Fecund",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "resource", "life" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "10% more Monster Life",
+            "values": [ "10" ],
+            "key": "#% more Monster Life"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% increased Monster Damage": [
+      {
+        "name": "Savage",
+        "level": "1",
+        "quantity": "19",
+        "rarity": "19",
+        "packsize": "19",
+        "tags": [ "damage" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "19% increased Monster Damage",
+            "values": [ "19" ],
+            "key": "#% increased Monster Damage"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Savage",
+        "level": "1",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "damage" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "15% increased Monster Damage",
+            "values": [ "15" ],
+            "key": "#% increased Monster Damage"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters deal #% extra Physical Damage as Fire": [
+      {
+        "name": "Burning",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "fire" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters deal 16% extra Physical Damage as Fire",
+            "values": [ "16" ],
+            "key": "Monsters deal #% extra Physical Damage as Fire"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters deal #% extra Physical Damage as Cold": [
+      {
+        "name": "Freezing",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "cold" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters deal 16% extra Physical Damage as Cold",
+            "values": [ "16" ],
+            "key": "Monsters deal #% extra Physical Damage as Cold"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters deal #% extra Physical Damage as Lightning": [
+      {
+        "name": "Shocking",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "lightning" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters deal 16% extra Physical Damage as Lightning",
+            "values": [ "16" ],
+            "key": "Monsters deal #% extra Physical Damage as Lightning"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% increased Monster Movement Speed<br>#% increased Monster Attack Speed<br>#% increased Monster Cast Speed": [
+      {
+        "name": "Fleet",
+        "level": "1",
+        "quantity": "19",
+        "rarity": "19",
+        "packsize": "19",
+        "tags": [ "attack", "caster", "speed" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "19% increased Monster Movement Speed",
+            "values": [ "19" ],
+            "key": "#% increased Monster Movement Speed"
+          },
+          {
+            "text": "19% increased Monster Attack Speed",
+            "values": [ "19" ],
+            "key": "#% increased Monster Attack Speed"
+          },
+          {
+            "text": "19% increased Monster Cast Speed",
+            "values": [ "19" ],
+            "key": "#% increased Monster Cast Speed"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Fleet",
+        "level": "1",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "attack", "caster", "speed" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "15% increased Monster Movement Speed",
+            "values": [ "15" ],
+            "key": "#% increased Monster Movement Speed"
+          },
+          {
+            "text": "15% increased Monster Attack Speed",
+            "values": [ "15" ],
+            "key": "#% increased Monster Attack Speed"
+          },
+          {
+            "text": "15% increased Monster Cast Speed",
+            "values": [ "15" ],
+            "key": "#% increased Monster Cast Speed"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters reflect #% of Physical Damage": [
+      {
+        "name": "Punishing",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "physical_damage", "damage", "physical" ],
+        "weight": "600",
+        "texts": [
+          {
+            "text": "Monsters reflect 10% of Physical Damage",
+            "values": [ "10" ],
+            "key": "Monsters reflect #% of Physical Damage"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Punishing",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical_damage", "damage", "physical" ],
+        "weight": "400",
+        "texts": [
+          {
+            "text": "Monsters reflect 12% of Physical Damage",
+            "values": [ "12" ],
+            "key": "Monsters reflect #% of Physical Damage"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters reflect #% of Elemental Damage": [
+      {
+        "name": "Mirrored",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "elemental_damage", "damage", "elemental" ],
+        "weight": "600",
+        "texts": [
+          {
+            "text": "Monsters reflect 10% of Elemental Damage",
+            "values": [ "10" ],
+            "key": "Monsters reflect #% of Elemental Damage"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Mirrored",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental_damage", "damage", "elemental" ],
+        "weight": "400",
+        "texts": [
+          {
+            "text": "Monsters reflect 12% of Elemental Damage",
+            "values": [ "12" ],
+            "key": "Monsters reflect #% of Elemental Damage"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Unique Boss deals #% increased Damage<br>Unique Boss has #% increased Attack and Cast Speed": [
+      {
+        "name": "Overlord's",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "attack", "caster", "speed" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Unique Boss deals 16% increased Damage",
+            "values": [ "16" ],
+            "key": "Unique Boss deals #% increased Damage"
+          },
+          {
+            "text": "Unique Boss has 16% increased Attack and Cast Speed",
+            "values": [ "16" ],
+            "key": "Unique Boss has #% increased Attack and Cast Speed"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Overlord's",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "attack", "caster", "speed" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Unique Boss deals 12% increased Damage",
+            "values": [ "12" ],
+            "key": "Unique Boss deals #% increased Damage"
+          },
+          {
+            "text": "Unique Boss has 12% increased Attack and Cast Speed",
+            "values": [ "12" ],
+            "key": "Unique Boss has #% increased Attack and Cast Speed"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Unique Boss has #% increased Life<br>Unique Boss has #% increased Area of Effect": [
+      {
+        "name": "Titan's",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "resource", "life" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Unique Boss has 13% increased Life",
+            "values": [ "13" ],
+            "key": "Unique Boss has #% increased Life"
+          },
+          {
+            "text": "Unique Boss has 13% increased Area of Effect",
+            "values": [ "13" ],
+            "key": "Unique Boss has #% increased Area of Effect"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% less effect of Curses on Monsters": [
+      {
+        "name": "Hexwarded",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "13% less effect of Curses on Monsters",
+            "values": [ "13" ],
+            "key": "#% less effect of Curses on Monsters"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% Monster Chaos Resistance<br>#% Monster Elemental Resistance": [
+      {
+        "name": "Resistant",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "elemental", "chaos", "resistance" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "13% Monster Chaos Resistance",
+            "values": [ "13" ],
+            "key": "#% Monster Chaos Resistance"
+          },
+          {
+            "text": "13% Monster Elemental Resistance",
+            "values": [ "13" ],
+            "key": "#% Monster Elemental Resistance"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters have a #% chance to avoid Poison, Blind, and Bleeding": [
+      {
+        "name": "Impervious",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "bleed", "poison", "physical", "chaos", "attack", "ailment" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters have a 10% chance to avoid Poison, Blind, and Bleeding",
+            "values": [ "10" ],
+            "key": "Monsters have a #% chance to avoid Poison, Blind, and Bleeding"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters have a #% chance to cause Elemental Ailments on Hit": [
+      {
+        "name": "Empowered",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "elemental", "fire", "cold", "lightning", "ailment" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters have a 13% chance to cause Elemental Ailments on Hit",
+            "values": [ "13" ],
+            "key": "Monsters have a #% chance to cause Elemental Ailments on Hit"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>#% more Monster Life": [
+      {
+        "name": "Fecund",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "resource", "life", "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "10% more Monster Life",
+            "values": [ "10" ],
+            "key": "#% more Monster Life"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Monsters fire # additional Projectiles": [
+      {
+        "name": "Splitting",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Monsters fire 10 additional Projectiles",
+            "values": [ "10" ],
+            "key": "Monsters fire # additional Projectiles"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% Monster Fire Resistance": [
+      {
+        "name": "Incombustible",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental", "fire", "resistance" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "10% Monster Fire Resistance",
+            "values": [ "10" ],
+            "key": "#% Monster Fire Resistance"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% Monster Lightning Resistance": [
+      {
+        "name": "Grounded",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental", "lightning", "resistance" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "10% Monster Lightning Resistance",
+            "values": [ "10" ],
+            "key": "#% Monster Lightning Resistance"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% Monster Cold Resistance": [
+      {
+        "name": "Molten",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental", "cold", "resistance" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "10% Monster Cold Resistance",
+            "values": [ "10" ],
+            "key": "#% Monster Cold Resistance"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>#% Monster Physical Damage Reduction": [
+      {
+        "name": "Armoured",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "10% Monster Physical Damage Reduction",
+            "values": [ "10" ],
+            "key": "#% Monster Physical Damage Reduction"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>#% increased Monster Damage": [
+      {
+        "name": "Savage",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "damage", "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional pack of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "15% increased Monster Damage",
+            "values": [ "15" ],
+            "key": "#% increased Monster Damage"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% of Monster Damage is Converted to Fire<br>Monsters deal #% extra Physical Damage as Fire": [
+      {
+        "name": "Burning",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "fire" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "12% of Monster Damage is Converted to Fire",
+            "values": [ "12" ],
+            "key": "#% of Monster Damage is Converted to Fire"
+          },
+          {
+            "text": "Monsters deal 12% extra Physical Damage as Fire",
+            "values": [ "12" ],
+            "key": "Monsters deal #% extra Physical Damage as Fire"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% of Monster Damage is Converted to Cold<br>Monsters deal #% extra Physical Damage as Cold": [
+      {
+        "name": "Freezing",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "cold" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "12% of Monster Damage is Converted to Cold",
+            "values": [ "12" ],
+            "key": "#% of Monster Damage is Converted to Cold"
+          },
+          {
+            "text": "Monsters deal 12% extra Physical Damage as Cold",
+            "values": [ "12" ],
+            "key": "Monsters deal #% extra Physical Damage as Cold"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "#% of Monster Damage is Converted to Lightning<br>Monsters deal #% extra Physical Damage as Lightning": [
+      {
+        "name": "Shocking",
+        "level": "1",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "lightning" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "12% of Monster Damage is Converted to Lightning",
+            "values": [ "12" ],
+            "key": "#% of Monster Damage is Converted to Lightning"
+          },
+          {
+            "text": "Monsters deal 12% extra Physical Damage as Lightning",
+            "values": [ "12" ],
+            "key": "Monsters deal #% extra Physical Damage as Lightning"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>#% of Monster Damage is Converted to Fire<br>Monsters deal #% extra Physical Damage as Fire": [
+      {
+        "name": "Burning",
+        "level": "69",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "fire", "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 12% chance to drop Corrupted in Area",
+            "values": [ "12" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 12 additional pack of Corrupted Vaal Monsters",
+            "values": [ "12" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "12% of Monster Damage is Converted to Fire",
+            "values": [ "12" ],
+            "key": "#% of Monster Damage is Converted to Fire"
+          },
+          {
+            "text": "Monsters deal 12% extra Physical Damage as Fire",
+            "values": [ "12" ],
+            "key": "Monsters deal #% extra Physical Damage as Fire"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>#% of Monster Damage is Converted to Cold<br>Monsters deal #% extra Physical Damage as Cold": [
+      {
+        "name": "Freezing",
+        "level": "69",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "cold", "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 12% chance to drop Corrupted in Area",
+            "values": [ "12" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 12 additional pack of Corrupted Vaal Monsters",
+            "values": [ "12" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "12% of Monster Damage is Converted to Cold",
+            "values": [ "12" ],
+            "key": "#% of Monster Damage is Converted to Cold"
+          },
+          {
+            "text": "Monsters deal 12% extra Physical Damage as Cold",
+            "values": [ "12" ],
+            "key": "Monsters deal #% extra Physical Damage as Cold"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>#% of Monster Damage is Converted to Lightning<br>Monsters deal #% extra Physical Damage as Lightning": [
+      {
+        "name": "Shocking",
+        "level": "69",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "physical_damage", "elemental_damage", "damage", "physical", "elemental", "lightning", "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 12% chance to drop Corrupted in Area",
+            "values": [ "12" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 12 additional pack of Corrupted Vaal Monsters",
+            "values": [ "12" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "12% of Monster Damage is Converted to Lightning",
+            "values": [ "12" ],
+            "key": "#% of Monster Damage is Converted to Lightning"
+          },
+          {
+            "text": "Monsters deal 12% extra Physical Damage as Lightning",
+            "values": [ "12" ],
+            "key": "Monsters deal #% extra Physical Damage as Lightning"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional packs of Corrupted Vaal Monsters<br>#% increased Monster Movement Speed<br>#% increased Monster Attack Speed<br>#% increased Monster Cast Speed": [
+      {
+        "name": "Fleet",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "attack", "caster", "speed", "vaal" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional packs of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional packs of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "15% increased Monster Movement Speed",
+            "values": [ "15" ],
+            "key": "#% increased Monster Movement Speed"
+          },
+          {
+            "text": "15% increased Monster Attack Speed",
+            "values": [ "15" ],
+            "key": "#% increased Monster Attack Speed"
+          },
+          {
+            "text": "15% increased Monster Cast Speed",
+            "values": [ "15" ],
+            "key": "#% increased Monster Cast Speed"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Unique Boss deals #% increased Damage<br>Unique Boss has #% increased Attack and Cast Speed": [
+      {
+        "name": "Overlord's",
+        "level": "69",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "attack", "caster", "speed" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 12% chance to drop Corrupted in Area",
+            "values": [ "12" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 12 additional pack of Corrupted Vaal Monsters",
+            "values": [ "12" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Unique Boss deals 12% increased Damage",
+            "values": [ "12" ],
+            "key": "Unique Boss deals #% increased Damage"
+          },
+          {
+            "text": "Unique Boss has 12% increased Attack and Cast Speed",
+            "values": [ "12" ],
+            "key": "Unique Boss has #% increased Attack and Cast Speed"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters cannot be Stunned": [
+      {
+        "name": "Unwavering",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters cannot be Stunned",
+            "key": "Monsters cannot be Stunned"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Monsters cannot be Stunned": [
+      {
+        "name": "Unwavering",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Monsters cannot be Stunned",
+            "key": "Monsters cannot be Stunned"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Monsters are Hexproof": [
+      {
+        "name": "Hexproof",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "600",
+        "texts": [
+          {
+            "text": "Monsters are Hexproof",
+            "key": "Monsters are Hexproof"
+          }
+        ],
+        "type": "Prefix"
+      },
+      {
+        "name": "Hexproof",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "caster", "curse" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters are Hexproof",
+            "key": "Monsters are Hexproof"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Monsters are Hexproof": [
+      {
+        "name": "Hexproof",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "caster", "vaal", "curse" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Monsters are Hexproof",
+            "key": "Monsters are Hexproof"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Area contains many Totems": [
+      {
+        "name": "Ceremonial",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Area contains many Totems",
+            "key": "Area contains many Totems"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Monsters have #% increased Area of Effect": [
+      {
+        "name": "Giant",
+        "level": "69",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 12% chance to drop Corrupted in Area",
+            "values": [ "12" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 12 additional pack of Corrupted Vaal Monsters",
+            "values": [ "12" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Monsters have 12% increased Area of Effect",
+            "values": [ "12" ],
+            "key": "Monsters have #% increased Area of Effect"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional packs of Corrupted Vaal Monsters<br>Monsters have #% increased Critical Strike Chance<br>#% to Monster Critical Strike Multiplier": [
+      {
+        "name": "Deadly",
+        "level": "69",
+        "quantity": "18",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "damage", "critical", "vaal" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Found Items have a 18% chance to drop Corrupted in Area",
+            "values": [ "18" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 18 additional packs of Corrupted Vaal Monsters",
+            "values": [ "18" ],
+            "key": "Area contains # additional packs of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Monsters have 18% increased Critical Strike Chance",
+            "values": [ "18" ],
+            "key": "Monsters have #% increased Critical Strike Chance"
+          },
+          {
+            "text": "18% to Monster Critical Strike Multiplier",
+            "values": [ "18" ],
+            "key": "#% to Monster Critical Strike Multiplier"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>#% Monster Chaos Resistance<br>#% Monster Elemental Resistance": [
+      {
+        "name": "Resistant",
+        "level": "69",
+        "quantity": "12",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental", "chaos", "resistance" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Found Items have a 12% chance to drop Corrupted in Area",
+            "values": [ "12" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 12 additional pack of Corrupted Vaal Monsters",
+            "values": [ "12" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "12% Monster Chaos Resistance",
+            "values": [ "12" ],
+            "key": "#% Monster Chaos Resistance"
+          },
+          {
+            "text": "12% Monster Elemental Resistance",
+            "values": [ "12" ],
+            "key": "#% Monster Elemental Resistance"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Area contains two Unique Bosses": [
+      {
+        "name": "Twinned",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional pack of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Area contains two Unique Bosses",
+            "key": "Area contains two Unique Bosses"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Rare Monsters each have a Nemesis Mod<br>#% more Rare Monsters": [
+      {
+        "name": "Antagonist's",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Rare Monsters each have a Nemesis Mod",
+            "key": "Rare Monsters each have a Nemesis Mod"
+          },
+          {
+            "text": "10% more Rare Monsters",
+            "values": [ "10" ],
+            "key": "#% more Rare Monsters"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional packs of Corrupted Vaal Monsters<br>All Monster Damage from Hits always Ignites": [
+      {
+        "name": "Conflagrating",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental", "fire", "ailment" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional packs of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional packs of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "All Monster Damage from Hits always Ignites",
+            "key": "All Monster Damage from Hits always Ignites"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional packs of Corrupted Vaal Monsters": [
+      {
+        "name": "Packed",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "200",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional packs of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional packs of Corrupted Vaal Monsters"
+          }
+        ],
+        "type": "Prefix"
+      }
+    ]
+  },
+  "Suffix": {
+    "Magic Monster Packs each have a Bloodline Mod<br>#% more Magic Monsters": [
+      {
+        "name": "of Bloodlines",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Magic Monster Packs each have a Bloodline Mod",
+            "key": "Magic Monster Packs each have a Bloodline Mod"
+          },
+          {
+            "text": "10% more Magic Monsters",
+            "values": [ "10" ],
+            "key": "#% more Magic Monsters"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Monsters Poison on Hit": [
+      {
+        "name": "of Venom",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "poison", "chaos", "ailment" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Monsters Poison on Hit",
+            "key": "Monsters Poison on Hit"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players have Elemental Equilibrium": [
+      {
+        "name": "of Balance",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "elemental_damage", "damage", "elemental" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Players have Elemental Equilibrium",
+            "key": "Players have Elemental Equilibrium"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players have Point Blank": [
+      {
+        "name": "of Skirmishing",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "damage", "attack" ],
+        "weight": "650",
+        "texts": [
+          {
+            "text": "Players have Point Blank",
+            "key": "Players have Point Blank"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Monsters gain a Frenzy Charge on Hit": [
+      {
+        "name": "of Frenzy",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "frenzy_charge" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters gain a Frenzy Charge on Hit",
+            "key": "Monsters gain a Frenzy Charge on Hit"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Monsters gain an Endurance Charge on Hit": [
+      {
+        "name": "of Endurance",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "endurance_charge" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters gain an Endurance Charge on Hit",
+            "key": "Monsters gain an Endurance Charge on Hit"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Monsters gain a Power Charge on Hit": [
+      {
+        "name": "of Power",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "power_charge" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters gain a Power Charge on Hit",
+            "key": "Monsters gain a Power Charge on Hit"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Bloodstained Fossil": [
+      {
+        "name": "of Power",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Bloodstained Fossil",
+            "key": "Bloodstained Fossil"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Experimentation",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Bloodstained Fossil",
+            "key": "Bloodstained Fossil"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "#% increased Experience gain<br>Found Items have a #% chance to drop Corrupted in Area<br>Area is inhabited by the Vaal": [
+      {
+        "name": "of Power",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "0% increased Experience gain",
+            "values": [ "0" ],
+            "key": "#% increased Experience gain"
+          },
+          {
+            "text": "Found Items have a 0% chance to drop Corrupted in Area",
+            "values": [ "0" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area is inhabited by the Vaal",
+            "key": "Area is inhabited by the Vaal"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Experimentation",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "0% increased Experience gain",
+            "values": [ "0" ],
+            "key": "#% increased Experience gain"
+          },
+          {
+            "text": "Found Items have a 0% chance to drop Corrupted in Area",
+            "values": [ "0" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area is inhabited by the Vaal",
+            "key": "Area is inhabited by the Vaal"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Monsters have #% increased Area of Effect": [
+      {
+        "name": "of Giants",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters have 13% increased Area of Effect",
+            "values": [ "13" ],
+            "key": "Monsters have #% increased Area of Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Monsters have #% increased Critical Strike Chance<br>#% to Monster Critical Strike Multiplier": [
+      {
+        "name": "of Deadliness",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "damage", "critical" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters have 16% increased Critical Strike Chance",
+            "values": [ "16" ],
+            "key": "Monsters have #% increased Critical Strike Chance"
+          },
+          {
+            "text": "16% to Monster Critical Strike Multiplier",
+            "values": [ "16" ],
+            "key": "#% to Monster Critical Strike Multiplier"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players have #% less Recovery Rate of Life and Energy Shield": [
+      {
+        "name": "of Smothering",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "energy_shield", "resource", "life", "defences" ],
+        "weight": "750",
+        "texts": [
+          {
+            "text": "Players have 16% less Recovery Rate of Life and Energy Shield",
+            "values": [ "16" ],
+            "key": "Players have #% less Recovery Rate of Life and Energy Shield"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Smothering",
+        "level": "1",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "energy_shield", "resource", "life", "defences" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Players have 15% less Recovery Rate of Life and Energy Shield",
+            "values": [ "15" ],
+            "key": "Players have #% less Recovery Rate of Life and Energy Shield"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Area has patches of Burning Ground": [
+      {
+        "name": "of Flames",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "elemental_damage", "damage", "elemental", "fire" ],
+        "weight": "250",
+        "texts": [
+          {
+            "text": "Area has patches of Burning Ground",
+            "key": "Area has patches of Burning Ground"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Area has patches of Chilled Ground": [
+      {
+        "name": "of Ice",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [  ],
+        "weight": "250",
+        "texts": [
+          {
+            "text": "Area has patches of Chilled Ground",
+            "key": "Area has patches of Chilled Ground"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Area has patches of Shocked Ground which increase Damage taken by #%": [
+      {
+        "name": "of Lightning",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [  ],
+        "weight": "250",
+        "texts": [
+          {
+            "text": "Area has patches of Shocked Ground which increase Damage taken by 10%",
+            "values": [ "10" ],
+            "key": "Area has patches of Shocked Ground which increase Damage taken by #%"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Area has patches of desecrated ground": [
+      {
+        "name": "of Desecration",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "damage", "chaos" ],
+        "weight": "250",
+        "texts": [
+          {
+            "text": "Area has patches of desecrated ground",
+            "key": "Area has patches of desecrated ground"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Monsters have #% chance to Avoid Elemental Ailments": [
+      {
+        "name": "of Insulation",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "elemental", "fire", "cold", "lightning", "ailment" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters have 10% chance to Avoid Elemental Ailments",
+            "values": [ "10" ],
+            "key": "Monsters have #% chance to Avoid Elemental Ailments"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Monsters take #% reduced Extra Damage from Critical Strikes": [
+      {
+        "name": "of Toughness",
+        "level": "1",
+        "quantity": "10",
+        "rarity": "10",
+        "packsize": "10",
+        "tags": [ "damage", "critical" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Monsters take 10% reduced Extra Damage from Critical Strikes",
+            "values": [ "10" ],
+            "key": "Monsters take #% reduced Extra Damage from Critical Strikes"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players gain #% reduced Flask Charges": [
+      {
+        "name": "of Drought",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Players gain 13% reduced Flask Charges",
+            "values": [ "13" ],
+            "key": "Players gain #% reduced Flask Charges"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players have #% reduced Chance to Block<br>Players have #% less Armour": [
+      {
+        "name": "of Rust",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "armour", "block", "defences" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Players have 13% reduced Chance to Block",
+            "values": [ "13" ],
+            "key": "Players have #% reduced Chance to Block"
+          },
+          {
+            "text": "Players have 13% less Armour",
+            "values": [ "13" ],
+            "key": "Players have #% less Armour"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Player chance to Dodge is Unlucky<br>Monsters have #% increased Accuracy Rating": [
+      {
+        "name": "of Miring",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "dodge", "attack" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Player chance to Dodge is Unlucky",
+            "key": "Player chance to Dodge is Unlucky"
+          },
+          {
+            "text": "Monsters have 13% increased Accuracy Rating",
+            "values": [ "13" ],
+            "key": "Monsters have #% increased Accuracy Rating"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players have #% less Area of Effect": [
+      {
+        "name": "of Impotence",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Players have 13% less Area of Effect",
+            "values": [ "13" ],
+            "key": "Players have #% less Area of Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players cannot Regenerate Life, Mana or Energy Shield": [
+      {
+        "name": "of Stasis",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "energy_shield", "resource", "life", "mana", "defences" ],
+        "weight": "300",
+        "texts": [
+          {
+            "text": "Players cannot Regenerate Life, Mana or Energy Shield",
+            "key": "Players cannot Regenerate Life, Mana or Energy Shield"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Stasis",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [ "energy_shield", "resource", "life", "mana", "defences" ],
+        "weight": "600",
+        "texts": [
+          {
+            "text": "Players cannot Regenerate Life, Mana or Energy Shield",
+            "key": "Players cannot Regenerate Life, Mana or Energy Shield"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players are Cursed with Elemental Weakness, with #% increased Effect": [
+      {
+        "name": "of Elemental Weakness",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "850",
+        "texts": [
+          {
+            "text": "Players are Cursed with Elemental Weakness, with 13% increased Effect",
+            "values": [ "13" ],
+            "key": "Players are Cursed with Elemental Weakness, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Elemental Weakness",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Players are Cursed with Elemental Weakness, with 13% increased Effect",
+            "values": [ "13" ],
+            "key": "Players are Cursed with Elemental Weakness, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players are Cursed with Vulnerability, with #% increased Effect": [
+      {
+        "name": "of Vulnerability",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "850",
+        "texts": [
+          {
+            "text": "Players are Cursed with Vulnerability, with 13% increased Effect",
+            "values": [ "13" ],
+            "key": "Players are Cursed with Vulnerability, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Vulnerability",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Players are Cursed with Vulnerability, with 13% increased Effect",
+            "values": [ "13" ],
+            "key": "Players are Cursed with Vulnerability, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players are Cursed with Enfeeble, with #% increased Effect": [
+      {
+        "name": "of Enfeeblement",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "850",
+        "texts": [
+          {
+            "text": "Players are Cursed with Enfeeble, with 13% increased Effect",
+            "values": [ "13" ],
+            "key": "Players are Cursed with Enfeeble, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Enfeeblement",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Players are Cursed with Enfeeble, with 13% increased Effect",
+            "values": [ "13" ],
+            "key": "Players are Cursed with Enfeeble, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Players are Cursed with Temporal Chains, with #% increased Effect": [
+      {
+        "name": "of Temporal Chains",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "850",
+        "texts": [
+          {
+            "text": "Players are Cursed with Temporal Chains, with 13% increased Effect",
+            "values": [ "13" ],
+            "key": "Players are Cursed with Temporal Chains, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Temporal Chains",
+        "level": "1",
+        "quantity": "13",
+        "rarity": "13",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Players are Cursed with Temporal Chains, with 13% increased Effect",
+            "values": [ "13" ],
+            "key": "Players are Cursed with Temporal Chains, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "#% maximum Player Resistances": [
+      {
+        "name": "of Exposure",
+        "level": "1",
+        "quantity": "19",
+        "rarity": "19",
+        "packsize": "19",
+        "tags": [ "elemental", "resistance" ],
+        "weight": "600",
+        "texts": [
+          {
+            "text": "19% maximum Player Resistances",
+            "values": [ "19" ],
+            "key": "#% maximum Player Resistances"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Exposure",
+        "level": "1",
+        "quantity": "18",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental", "resistance" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "18% maximum Player Resistances",
+            "values": [ "18" ],
+            "key": "#% maximum Player Resistances"
+          }
+        ],
+        "type": "Suffix"
+      },
+      {
+        "name": "of Exposure",
+        "level": "1",
+        "quantity": "19",
+        "rarity": "19",
+        "packsize": "19",
+        "tags": [ "elemental", "resistance" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "19% maximum Player Resistances",
+            "values": [ "19" ],
+            "key": "#% maximum Player Resistances"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional packs of Corrupted Vaal Monsters<br>Players have #% less Recovery Rate of Life and Energy Shield": [
+      {
+        "name": "of Smothering",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "energy_shield", "resource", "life", "defences", "vaal" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional packs of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional packs of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Players have 15% less Recovery Rate of Life and Energy Shield",
+            "values": [ "15" ],
+            "key": "Players have #% less Recovery Rate of Life and Energy Shield"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Monsters Poison on Hit": [
+      {
+        "name": "of Venom",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "poison", "chaos", "ailment", "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Monsters Poison on Hit",
+            "key": "Monsters Poison on Hit"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional packs of Corrupted Vaal Monsters<br>#% maximum Player Resistances": [
+      {
+        "name": "of Exposure",
+        "level": "69",
+        "quantity": "18",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental", "resistance", "vaal" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Found Items have a 18% chance to drop Corrupted in Area",
+            "values": [ "18" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 18 additional packs of Corrupted Vaal Monsters",
+            "values": [ "18" ],
+            "key": "Area contains # additional packs of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "18% maximum Player Resistances",
+            "values": [ "18" ],
+            "key": "#% maximum Player Resistances"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Players have Elemental Equilibrium": [
+      {
+        "name": "of Balance",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "elemental_damage", "damage", "elemental", "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Players have Elemental Equilibrium",
+            "key": "Players have Elemental Equilibrium"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Magic Monster Packs each have a Bloodline Mod<br>#% more Magic Monsters": [
+      {
+        "name": "of Bloodlines",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "1000",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Magic Monster Packs each have a Bloodline Mod",
+            "key": "Magic Monster Packs each have a Bloodline Mod"
+          },
+          {
+            "text": "10% more Magic Monsters",
+            "values": [ "10" ],
+            "key": "#% more Magic Monsters"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Players are Cursed with Elemental Weakness, with #% increased Effect": [
+      {
+        "name": "of Elemental Weakness",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional pack of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Players are Cursed with Elemental Weakness, with 15% increased Effect",
+            "values": [ "15" ],
+            "key": "Players are Cursed with Elemental Weakness, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Players are Cursed with Vulnerability, with #% increased Effect": [
+      {
+        "name": "of Vulnerability",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional pack of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Players are Cursed with Vulnerability, with 15% increased Effect",
+            "values": [ "15" ],
+            "key": "Players are Cursed with Vulnerability, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Players are Cursed with Enfeeble, with #% increased Effect": [
+      {
+        "name": "of Enfeeblement",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional pack of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Players are Cursed with Enfeeble, with 15% increased Effect",
+            "values": [ "15" ],
+            "key": "Players are Cursed with Enfeeble, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Players are Cursed with Temporal Chains, with #% increased Effect": [
+      {
+        "name": "of Temporal Chains",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "caster", "curse" ],
+        "weight": "800",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional pack of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Players are Cursed with Temporal Chains, with 15% increased Effect",
+            "values": [ "15" ],
+            "key": "Players are Cursed with Temporal Chains, with #% increased Effect"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters": [
+      {
+        "name": "of Corruption",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [  ],
+        "weight": "200",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Area has patches of desecrated ground": [
+      {
+        "name": "of Desecration",
+        "level": "69",
+        "quantity": "15",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "damage", "chaos" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Found Items have a 15% chance to drop Corrupted in Area",
+            "values": [ "15" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 15 additional pack of Corrupted Vaal Monsters",
+            "values": [ "15" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Area has patches of desecrated ground",
+            "key": "Area has patches of desecrated ground"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Sacrifice Fragment": [
+      {
+        "name": "of Sacrifice",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "300",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Sacrifice Fragment",
+            "key": "Vaal Vessel contains an additional Sacrifice Fragment"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Vaal Gem with Experience": [
+      {
+        "name": "of Thaumaturgy",
+        "level": "74",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "150",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Vaal Gem with Experience",
+            "key": "Vaal Vessel contains an additional Vaal Gem with Experience"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Corrupted Unique Item with two Implicit Modifiers": [
+      {
+        "name": "of the Locus",
+        "level": "74",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "50",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Corrupted Unique Item with two Implicit Modifiers",
+            "key": "Vaal Vessel contains an additional Corrupted Unique Item with two Implicit Modifiers"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Corrupted Unique Item": [
+      {
+        "name": "of Dark Blessings",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "200",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Corrupted Unique Item",
+            "key": "Vaal Vessel contains an additional Corrupted Unique Item"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Fossil": [
+      {
+        "name": "of Excavation",
+        "level": "74",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "225",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Fossil",
+            "key": "Vaal Vessel contains an additional Fossil"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Prophecy": [
+      {
+        "name": "of Prophecy",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "300",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Prophecy",
+            "key": "Vaal Vessel contains an additional Prophecy"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Divination Card that give Corrupted Items": [
+      {
+        "name": "of Divination",
+        "level": "74",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "225",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Divination Card that give Corrupted Items",
+            "key": "Vaal Vessel contains an additional Divination Card that give Corrupted Items"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Rare Item with an Incursion Modifier": [
+      {
+        "name": "of Atzoatl",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "300",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Rare Item with an Incursion Modifier",
+            "key": "Vaal Vessel contains an additional Rare Item with an Incursion Modifier"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Found Items have a #% chance to drop Corrupted in Area<br>Area contains # additional pack of Corrupted Vaal Monsters<br>Vaal Vessel contains an additional Vaal Orb": [
+      {
+        "name": "of Experimentation",
+        "level": "69",
+        "quantity": "10",
+        "rarity": "12",
+        "packsize": "13",
+        "tags": [ "vaal" ],
+        "weight": "500",
+        "texts": [
+          {
+            "text": "Found Items have a 10% chance to drop Corrupted in Area",
+            "values": [ "10" ],
+            "key": "Found Items have a #% chance to drop Corrupted in Area"
+          },
+          {
+            "text": "Area contains 10 additional pack of Corrupted Vaal Monsters",
+            "values": [ "10" ],
+            "key": "Area contains # additional pack of Corrupted Vaal Monsters"
+          },
+          {
+            "text": "Vaal Vessel contains an additional Vaal Orb",
+            "key": "Vaal Vessel contains an additional Vaal Orb"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ],
+    "Cannot Leech Life from Monsters<br>Cannot Leech Mana from Monsters": [
+      {
+        "name": "of Congealment",
+        "level": "1",
+        "quantity": "16",
+        "rarity": "16",
+        "packsize": "16",
+        "tags": [  ],
+        "weight": "100",
+        "texts": [
+          {
+            "text": "Cannot Leech Life from Monsters",
+            "key": "Cannot Leech Life from Monsters"
+          },
+          {
+            "text": "Cannot Leech Mana from Monsters",
+            "key": "Cannot Leech Mana from Monsters"
+          }
+        ],
+        "type": "Suffix"
+      }
+    ]
+  }
 }
