@@ -172,7 +172,8 @@
           This.ApproximatePerfection()
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
-        This.FilterDoubleMods()
+        This.FilterDoubleMapMods()
+        This.FilterDoubleAffix()
         This.MatchCraftingBases()
         This.MatchChaosRegal()
         This.MatchBase2Slot()
@@ -2281,30 +2282,72 @@
         This.MatchedCLF := False
         Return False
       }
-      FilterDoubleMods(){
-        If (This.Affix["Rare Monsters each have a Nemesis Mod"] && This.Affix["# more Rare Monsters"])
+      FilterDoubleMapMods(){
+        If (This.Affix["Rare Monsters each have a Nemesis Mod"] && This.Affix["#% more Rare Monsters"])
           This.Prop.AffixCount -= 1
         If (This.Affix["Monsters' Action Speed cannot be modified to below base value"] && This.Affix["Monsters cannot be Taunted"])
           This.Prop.AffixCount -= 1
-        If (This.Affix["Monsters cannot be Stunned"] && This.Affix["# more Monster Life"])
+        If (This.Affix["Monsters cannot be Stunned"] && This.Affix["#% more Monster Life"])
           This.Prop.AffixCount -= 1
-        If (This.Affix["# increased Monster Movement Speed"] && This.Affix["# increased Monster Attack Speed"] && This.Affix["# increased Monster Cast Speed"])
+        If (This.Affix["#% increased Monster Movement Speed"] && This.Affix["#% increased Monster Attack Speed"] && This.Affix["#% increased Monster Cast Speed"])
           This.Prop.AffixCount -= 2
-        If (This.Affix["Unique Boss deals # increased Damage"] && This.Affix["Unique Boss has # increased Attack and Cast Speed"])
+        If (This.Affix["Unique Boss deals #% increased Damage"] && This.Affix["Unique Boss has #% increased Attack and Cast Speed"])
           This.Prop.AffixCount -= 1
-        If (This.Affix["Unique Boss has # increased Life"] && This.Affix["Unique Boss has # increased Area of Effect"])
+        If (This.Affix["Unique Boss has #% increased Life"] && This.Affix["Unique Boss has #% increased Area of Effect"])
           This.Prop.AffixCount -= 1
-        If (This.Affix["# Monster Chaos Resistance"] && This.Affix["# Monster Elemental Resistance"])
+        If (This.Affix["#% Monster Chaos Resistance"] && This.Affix["#% Monster Elemental Resistance"])
           This.Prop.AffixCount -= 1
-        If (This.Affix["Magic Monster Packs each have a Bloodline Mod"] && This.Affix["# more Magic Monsters"])
+        If (This.Affix["Magic Monster Packs each have a Bloodline Mod"] && This.Affix["#% more Magic Monsters"])
           This.Prop.AffixCount -= 1
-        If (This.Affix["Monsters have # increased Critical Strike Chance"] && This.Affix["# to Monster Critical Strike Multiplier"])
+        If (This.Affix["Monsters have #% increased Critical Strike Chance"] && This.Affix["#% to Monster Critical Strike Multiplier"])
           This.Prop.AffixCount -= 1
-        If (This.Affix["Players have # reduced Chance to Block"] && This.Affix["Players have # less Armour"])
+        If (This.Affix["Players have #% reduced Chance to Block"] && This.Affix["Players have #% less Armour"])
           This.Prop.AffixCount -= 1
-        If (This.Affix["Player chance to Dodge is Unlucky"] && This.Affix["Monsters have # increased Accuracy Rating"])
+        If (This.Affix["Player chance to Dodge is Unlucky"] && This.Affix["Monsters have #% increased Accuracy Rating"])
           This.Prop.AffixCount -= 1
         Return
+      }
+      FilterDoubleAffix(){
+        foundList = []
+        Backup := Array_DeepClone(This.Affix)
+        For k, affix in WR.data.DoubleAffix
+        {
+          For k, mod in affix["mods"]
+          {
+            If (!This.Affix.HasKey(mod["key"]) && !indexOf(mod["key"],foundList))
+              Continue 2
+          }
+          For k, mod in affix["mods"]
+          {
+            If (mod.ranges.Count() = 1)
+            {
+              If !((This.Affix[mod["key"]] >= mod.ranges.1.1 && This.Affix[mod["key"]] <= mod.ranges.1.2)
+              || (This.Affix[mod["key"]] <= mod.ranges.1.1 && This.Affix[mod["key"]] >= mod.ranges.1.2))
+              {
+                ; notify(mod["key"] " " mod["ranges"].1.1 " " mod["ranges"].1.2,"",10)
+                Continue 2
+              } 
+            }Else If (mod.ranges.Count() >= 2)
+            {
+              If !((This.Affix[mod["key"] "_Value1" ] >= mod.ranges.1.1 && This.Affix[mod["key"] "_Value1" ] <= mod.ranges.1.2)
+              || (This.Affix[mod["key"] "_Value1" ] <= mod.ranges.1.1 && This.Affix[mod["key"] "_Value1" ] >= mod.ranges.1.2))
+              {
+                ; notify(mod["key"] " " mod["ranges"].1.1 " " mod["ranges"].1.2,"",10)
+                Continue 2
+              } 
+              If !((This.Affix[mod["key"] "_Value2" ] >= mod.ranges.2.1 && This.Affix[mod["key"] "_Value2" ] <= mod.ranges.2.2)
+              || (This.Affix[mod["key"] "_Value2" ] <= mod.ranges.2.1 && This.Affix[mod["key"] "_Value2" ] >= mod.ranges.2.2))
+                ; notify(mod["key"] " " mod["ranges"].2.1 " " mod["ranges"].2.2,"",10)
+                Continue 2
+            }
+          }
+          For k, mod in affix["mods"]
+          {
+            foundList.Push(mod["key"])
+            notify("Found Double",mod["key"],5)
+          }
+          This.Prop.AffixCount -= affix["mods"].Count() - 1
+        }
       }
       MatchCraftingBases(){
         If(HasVal(craftingBasesT1,This.Prop.ItemBase))
