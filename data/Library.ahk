@@ -2344,7 +2344,7 @@
           For k, mod in affix["mods"]
           {
             foundList.Push(mod["key"])
-            notify("Found Double",mod["key"],5)
+            ; notify("Found Double",mod["key"],5)
           }
           This.Prop.AffixCount -= affix["mods"].Count() - 1
         }
