@@ -173,6 +173,8 @@
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
         This.FilterDoubleMapMods()
+        This.RemoveCraftFromAffixCount()
+        This.countSuffixPrefix()
         This.FilterDoubleAffix()
         This.MatchCraftingBases()
         This.MatchChaosRegal()
@@ -1434,6 +1436,13 @@
           If (value != 0 && value != "" && value != False) {
             If indexOf(key,this.MatchedCLF)
               affixText .= "CLF ⭐ "
+            For k, v in This.StoredMatches
+              if (v.key == key)
+              {
+                affixText .= v.a " ✔ "
+                break 1
+              }
+            ; If indexOf(key,this.MatchedPreSuff)
             affixText .= key . ":  " . value . "`n"
           }
         }
@@ -2308,46 +2317,114 @@
         Return
       }
       FilterDoubleAffix(){
-        foundList = []
-        Backup := Array_DeepClone(This.Affix)
-        For k, affix in WR.data.DoubleAffix
-        {
-          For k, mod in affix["mods"]
+        matchkeys := []
+        This.DoubleAffixes := {}
+        For compare, v in This.Affix {
+          If InStr(compare,"_")
+            Continue
+          For k, affixlist in WR.data.Affix[compare]
           {
-            If (!This.Affix.HasKey(mod["key"]) && !indexOf(mod["key"],foundList))
-              Continue 2
+            if (affixlist.Count() = 1)
+              continue 1
+            listkey := affixlist.1.a
+            for k, affix in affixlist
+            {
+              if !(This.Affix.HasKey(affix.key))
+                continue 2
+              else
+                listkey .= " "affix.text
+            }
+            possible := []
+            for k, affix in affixlist
+            {
+              If (indexOf(affix["text"],matchkeys) || indexOf(affix["text"],possible))
+                Continue 2
+              If This.inRange(affix["key"],affix,This.Affix)
+                possible.Push(affix["text"])
+            }
+            if possible.Count() == affixlist.Count()
+            {
+              for k, key in possible
+                matchkeys.Push(key)
+              This.DoubleAffixes.push(listkey)
+              This.Prop.AffixCount -= affixlist.Count() - 1
+              This.Prop.Hybrid := True
+            }
+            possible := ""
           }
-          For k, mod in affix["mods"]
+        }
+      }
+      countSuffixPrefix(){
+        MatchedPreSuff := []
+        This.StoredMatches := {}
+        For compare, v in This.Affix {
+          If InStr(compare,"_")
+            Continue
+          For k, affixlist in WR.data.Affix[compare]
           {
-            If (mod.ranges.Count() = 1)
+            listkey := affixlist.1.a
+            for k, affix in affixlist
             {
-              If !((This.Affix[mod["key"]] >= mod.ranges.1.1 && This.Affix[mod["key"]] <= mod.ranges.1.2)
-              || (This.Affix[mod["key"]] <= mod.ranges.1.1 && This.Affix[mod["key"]] >= mod.ranges.1.2))
-              {
-                ; notify(mod["key"] " " mod["ranges"].1.1 " " mod["ranges"].1.2,"",10)
-                Continue 2
-              } 
-            }Else If (mod.ranges.Count() >= 2)
+              if !(This.Affix.HasKey(affix.key))
+                continue 2
+              else
+                listkey .= " "affix.text
+            }
+            possible := [], possiblekey := []
+            for k, affix in affixlist
             {
-              If !((This.Affix[mod["key"] "_Value1" ] >= mod.ranges.1.1 && This.Affix[mod["key"] "_Value1" ] <= mod.ranges.1.2)
-              || (This.Affix[mod["key"] "_Value1" ] <= mod.ranges.1.1 && This.Affix[mod["key"] "_Value1" ] >= mod.ranges.1.2))
+              If (indexOf(affix.key,MatchedPreSuff) || indexOf(affix.key,possiblekey))
+                Continue 2
+              If This.inRange(affix["key"],affix,This.Affix)
+                possible.Push(affix), possiblekey.Push(affix.key)
+            }
+            if (possiblekey.Count() == affixlist.Count())
+            {
+              If (possible.1.a == "S")
               {
-                ; notify(mod["key"] " " mod["ranges"].1.1 " " mod["ranges"].1.2,"",10)
-                Continue 2
-              } 
-              If !((This.Affix[mod["key"] "_Value2" ] >= mod.ranges.2.1 && This.Affix[mod["key"] "_Value2" ] <= mod.ranges.2.2)
-              || (This.Affix[mod["key"] "_Value2" ] <= mod.ranges.2.1 && This.Affix[mod["key"] "_Value2" ] >= mod.ranges.2.2))
-                ; notify(mod["key"] " " mod["ranges"].2.1 " " mod["ranges"].2.2,"",10)
-                Continue 2
+                If !This.Prop.CountSuffix
+                  This.Prop.CountSuffix := 0
+                This.Prop.CountSuffix++
+              }
+              Else If (possible.1.a == "P")
+              {
+                If !This.Prop.CountPrefix
+                  This.Prop.CountPrefix := 0
+                This.Prop.CountPrefix++
+              }
+              for k, mod in possible
+                MatchedPreSuff.Push(mod.key)
+              This.StoredMatches.Push(listkey)
             }
           }
-          For k, mod in affix["mods"]
-          {
-            foundList.Push(mod["key"])
-            ; notify("Found Double",mod["key"],5)
-          }
-          This.Prop.AffixCount -= affix["mods"].Count() - 1
         }
+      }
+      inRange(key,obj,base){
+        If (obj.ranges.Count() = 1) {
+          If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
+          || (base[key] <= obj.ranges.1.1 && base[key] >= obj.ranges.1.2))
+            Return False
+        } Else If (obj.ranges.Count() >= 2) {
+          for k, v in obj.ranges
+          {
+            If !((base[key "_Value" k] >= v.1 && base[key "_Value" k] <= v.2)
+            || (base[key "_Value" k] <= v.1 && base[key "_Value" k] >= v.2))
+              Return False
+          }
+        } Else If (obj.values.Count() = 1) {
+          If !(base[key] == obj.values.1 )
+            Return False
+        } Else If (obj.values.Count() >= 2) {
+          for k, v in obj.values
+            If !(base[key "_Value" k] == v )
+              Return False
+        }
+        Return True
+      }
+      RemoveCraftFromAffixCount(){
+        for k, v in This.Affix
+          if InStr(k,"(crafted)")
+            This.Prop.AffixCount--
       }
       MatchCraftingBases(){
         If(HasVal(craftingBasesT1,This.Prop.ItemBase))

@@ -1192,34 +1192,36 @@
     WR.Data.Perfect := JSON.Load(JSONtext,,1)
     JSONtext := ""
   }
-  IfNotExist, %A_ScriptDir%\data\Affix_Equip.json
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_Equip.json, %A_ScriptDir%\data\Affix_Equip.json
-  }
-  Else
-  {
-    FileRead, JSONtext, %A_ScriptDir%\data\Affix_Equip.json
-    WR.Data.Affix := JSON.Load(JSONtext,,1)
-    JSONtext := ""
-  }
+  ; IfNotExist, %A_ScriptDir%\data\Affix_Equip.json
+  ; {
+  ;   UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_Equip.json, %A_ScriptDir%\data\Affix_Equip.json
+  ; }
+  ; Else
+  ; {
+  ;   FileRead, JSONtext, %A_ScriptDir%\data\Affix_Equip.json
+  ;   WR.Data.Affix := JSON.Load(JSONtext,,1)
+  ;   JSONtext := ""
+  ; }
   IfNotExist, %A_ScriptDir%\data\Affix_List.json
   {
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_List.json, %A_ScriptDir%\data\Affix_List.json
-  }
-  Else
-  {
+    FileRead, JSONtext, %A_ScriptDir%\data\Affix_List.json
+    WR.Data.AffixList := JSON.Load(JSONtext,,1)
+    JSONtext := ""
+  } Else {
     FileRead, JSONtext, %A_ScriptDir%\data\Affix_List.json
     WR.Data.AffixList := JSON.Load(JSONtext,,1)
     JSONtext := ""
   }
-  IfNotExist, %A_ScriptDir%\data\Affix_List_Double.json
+  IfNotExist, %A_ScriptDir%\data\Affix_Lines.json
   {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_List_Double.json, %A_ScriptDir%\data\Affix_List_Double.json
-  }
-  Else
-  {
-    FileRead, JSONtext, %A_ScriptDir%\data\Affix_List_Double.json
-    WR.Data.DoubleAffix := JSON.Load(JSONtext,,1)
+    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_Lines.json, %A_ScriptDir%\data\Affix_Lines.json
+    FileRead, JSONtext, %A_ScriptDir%\data\Affix_Lines.json
+    WR.Data.Affix := JSON.Load(JSONtext,,1)
+    JSONtext := ""  
+  } Else {
+    FileRead, JSONtext, %A_ScriptDir%\data\Affix_Lines.json
+    WR.Data.Affix := JSON.Load(JSONtext,,1)
     JSONtext := ""
   }
   If needReload
