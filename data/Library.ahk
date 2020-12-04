@@ -1416,13 +1416,13 @@
           || RegExMatch(key, "^Weapon"))
           {
             If indexOf(key,this.MatchedCLF)
-              statText .= "CLF ⭐ "
+              statText .= "CLF⭐"
             statText .= key . ":  " . value . "`n"
           }
           Else
           {
             If indexOf(key,this.MatchedCLF)
-              propText .= "CLF ⭐ "
+              propText .= "CLF⭐"
             propText .= key . ":  " . value . "`n"
           }
         }
@@ -1434,14 +1434,41 @@
         For key, value in This.Affix
         {
           If (value != 0 && value != "" && value != False) {
+            foundit := False
             If indexOf(key,this.MatchedCLF)
-              affixText .= "CLF ⭐ "
+              affixText .= "CLF⭐"
             For k, v in This.StoredMatches
-              if (v.key == key)
+            {
+              texts := StrSplit(v,"`n")
+              For k, vv in texts
               {
-                affixText .= v.a " ✔ "
-                break 1
+                if k == 1
+                  continue
+                if (vv == key)
+                {
+                  foundit := True
+                  affixText .= texts.1 "✔"
+                  break 2
+                }
               }
+            }
+            For k, v in This.DoubleAffixes
+            {
+              texts := StrSplit(v,"`n")
+              For k, vv in texts
+              {
+                if k == 1
+                  continue
+                if (vv == key)
+                {
+                  foundit := True
+                  affixText .= "✔"
+                  break 2
+                }
+              }
+            }
+            If !foundit && !InStr(key, "_") && !RegExMatch(key, "\(.+\)") && !RegExMatch(key, " Item$")
+              affixText .= "⁉"
             ; If indexOf(key,this.MatchedPreSuff)
             affixText .= key . ":  " . value . "`n"
           }
@@ -2332,7 +2359,7 @@
               if !(This.Affix.HasKey(affix.key))
                 continue 2
               else
-                listkey .= " "affix.text
+                listkey .= "`n"affix.key
             }
             possible := []
             for k, affix in affixlist
@@ -2368,7 +2395,7 @@
               if !(This.Affix.HasKey(affix.key))
                 continue 2
               else
-                listkey .= " "affix.text
+                listkey .= "`n"affix.key
             }
             possible := [], possiblekey := []
             for k, affix in affixlist

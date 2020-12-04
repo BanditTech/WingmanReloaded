@@ -1202,17 +1202,17 @@
   ;   WR.Data.Affix := JSON.Load(JSONtext,,1)
   ;   JSONtext := ""
   ; }
-  IfNotExist, %A_ScriptDir%\data\Affix_List.json
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_List.json, %A_ScriptDir%\data\Affix_List.json
-    FileRead, JSONtext, %A_ScriptDir%\data\Affix_List.json
-    WR.Data.AffixList := JSON.Load(JSONtext,,1)
-    JSONtext := ""
-  } Else {
-    FileRead, JSONtext, %A_ScriptDir%\data\Affix_List.json
-    WR.Data.AffixList := JSON.Load(JSONtext,,1)
-    JSONtext := ""
-  }
+  ; IfNotExist, %A_ScriptDir%\data\Affix_List.json
+  ; {
+  ;   UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_List.json, %A_ScriptDir%\data\Affix_List.json
+  ;   FileRead, JSONtext, %A_ScriptDir%\data\Affix_List.json
+  ;   WR.Data.AffixList := JSON.Load(JSONtext,,1)
+  ;   JSONtext := ""
+  ; } Else {
+  ;   FileRead, JSONtext, %A_ScriptDir%\data\Affix_List.json
+  ;   WR.Data.AffixList := JSON.Load(JSONtext,,1)
+  ;   JSONtext := ""
+  ; }
   IfNotExist, %A_ScriptDir%\data\Affix_Lines.json
   {
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_Lines.json, %A_ScriptDir%\data\Affix_Lines.json
