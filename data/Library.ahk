@@ -3424,15 +3424,6 @@
         Gui, Inventory: Add, Text,       Section    xm+5   ym+25,Stash Tab Management
         Gui, Inventory: Font,
 
-        
-        ; Collection
-        ; Gui, Inventory: Font, Bold s8 cBlack, Arial
-        ; Gui, Inventory: Add, GroupBox, w110 h50 xs ys+18 , Unique Collection
-        ; Gui, Inventory: Font,
-        ; Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        ; Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabCollection yp hp ,  %StashTabCollection%
-        ; Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesCollection Checked%StashTabYesCollection% x+5 yp+4, Enable
-
         ; Prophecy
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial

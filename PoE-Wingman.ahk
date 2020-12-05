@@ -393,8 +393,8 @@
       StashTabYesFragment = Enable to send Fragment items to the assigned tab on the left
       StashTabDivination = Assign the Stash tab for Divination items
       StashTabYesDivination = Enable to send Divination items to the assigned tab on the left
-      StashTabCollection = Assign the Stash tab for Collection items`rThis is where Uniques will first be attempted to stash
-      StashTabYesCollection = Enable to send Collection items to the assigned tab on the left`rThis is where Uniques will first be attempted to stash
+      StashTabUnique = Assign the Stash tab for Collection items`rThis is where Uniques will first be attempted to stash
+      StashTabYesUnique = Enable to send Collection items to the assigned tab on the left`rThis is where Uniques will first be attempted to stash
       StashTabEssence = Assign the Stash tab for Essence items
       StashTabYesEssence = Enable to send Essence items to the assigned tab on the left
       StashTabProphecy = Assign the Stash tab for Prophecy items
@@ -783,7 +783,6 @@
     Global StashTabYesDelve := 0
     Global StashTabYesUnique := 0
     ;Unique Special
-    Global StashTabYesCollection := 1
     Global StashTabYesUniqueRing := 1
     Global StashTabYesUniqueDump := 1
     
@@ -2747,7 +2746,7 @@ Return
               CtrlClick(Grid.X,Grid.Y)
               If (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
               {
-                Sleep, 200*Latency
+                Sleep, 250*Latency
                 ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
                 if (indexOfHex(Pitem, varEmptyInvSlotColor))
                   Continue
@@ -2767,7 +2766,7 @@ Return
               RandomSleep(45,45)
               CtrlShiftClick(Grid.X,Grid.Y)
               ; Check if we need to send to alternate stash for uniques
-              If (sendstash = StashTabCollection || sendstash = StashTabUniqueRing )
+              If (sendstash = StashTabUnique || sendstash = StashTabUniqueRing )
               && (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
               {
                 If (StashTabYesUniqueRing && Item.Prop.Ring 
@@ -2821,7 +2820,7 @@ Return
             CtrlShiftClick(Grid.X,Grid.Y)
             Sleep, 45*Latency
             ; Check for unique items
-            If (Tab = StashTabCollection || Tab = StashTabUniqueRing )
+            If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
             && (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
             {
               If (StashTabYesUniqueRing && Item.Prop.Ring 
@@ -3133,7 +3132,7 @@ Return
     {
       Sleep, 500*Latency
     }
-    Else If (Tab == StashTabCollection)
+    Else If (Tab == StashTabUnique)
     {
       Sleep, 500*Latency
     }
@@ -5094,7 +5093,6 @@ Return
       IniRead, StashTabGemQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemQuality, 1
       IniRead, StashTabFlaskQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlaskQuality, 1
       IniRead, StashTabLinked, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked, 1
-      IniRead, StashTabCollection, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCollection, 1
       IniRead, StashTabUnique, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUnique, 1
       IniRead, StashTabUniqueRing, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing, 1
       IniRead, StashTabUniqueDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump, 1
@@ -5121,7 +5119,6 @@ Return
       IniRead, StashTabYesGemSupport, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemSupport, 1
       IniRead, StashTabYesFlaskQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlaskQuality, 1
       IniRead, StashTabYesLinked, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked, 1
-      IniRead, StashTabYesCollection, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCollection, 1
       IniRead, StashTabYesUnique, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUnique, 1
       IniRead, StashTabYesUniqueRing, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing, 1
       IniRead, StashTabYesUniqueDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump, 1
@@ -5740,7 +5737,7 @@ Return
       IniWrite, %StashTabGemQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemQuality
       IniWrite, %StashTabFlaskQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlaskQuality
       IniWrite, %StashTabLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked
-      IniWrite, %StashTabCollection%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCollection
+      IniWrite, %StashTabUnique%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUnique
       IniWrite, %StashTabUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing
       IniWrite, %StashTabUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump
       IniWrite, %StashTabInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem
