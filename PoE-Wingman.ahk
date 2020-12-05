@@ -735,7 +735,7 @@
   ; Player
     Global Player := OrderedArray()
     Player.Percent := {"Life":100, "ES":100, "Mana":100}
-  ; Inventory
+  ; Stash Tabs
     ;Affinities
     Global StashTabCurrency := 1
     Global StashTabMap := 1
@@ -749,7 +749,10 @@
     Global StashTabUnique := 1
 
     ;Unique Special
-    Global StashTabCollection := 1
+    Global StashTabYesUniquePercentage := 0
+    Global StashTabUniquePercentage := 70
+    Global StashTabYesUniqueRingAll := 0
+    Global StashTabYesUniqueDumpAll := 0
     Global StashTabUniqueRing := 1
     Global StashTabUniqueDump := 1
     Global StashTabGem := 1
@@ -2740,7 +2743,17 @@ Return
               Continue
             ;Affinities
             Else If (sendstash == -2)
+            {
               CtrlClick(Grid.X,Grid.Y)
+              If (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
+              {
+                Sleep, 200*Latency
+                ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+                if (indexOfHex(Pitem, varEmptyInvSlotColor))
+                  Continue
+                SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({"C":C,"R":R,"Item":Item})
+              }
+            }
           }
           Else
             ++Unstashed
@@ -2752,7 +2765,7 @@ Return
             {
               MoveStash(sendstash)
               RandomSleep(45,45)
-              CtrlClick(Grid.X,Grid.Y)
+              CtrlShiftClick(Grid.X,Grid.Y)
               ; Check if we need to send to alternate stash for uniques
               If (sendstash = StashTabCollection || sendstash = StashTabUniqueRing )
               && (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
@@ -2766,7 +2779,7 @@ Return
                     Continue
                   MoveStash(StashTabUniqueRing)
                   RandomSleep(45,45)
-                  CtrlClick(Grid.X,Grid.Y)
+                  CtrlShiftClick(Grid.X,Grid.Y)
                 }
                 If (StashTabYesUniqueDump)
                 {
@@ -2776,7 +2789,7 @@ Return
                     Continue
                   MoveStash(StashTabUniqueDump)
                   RandomSleep(45,45)
-                  CtrlClick(Grid.X,Grid.Y)
+                  CtrlShiftClick(Grid.X,Grid.Y)
                 }
               }
             }
@@ -2805,7 +2818,7 @@ Return
             GridY := InventoryGridY[R]
             Grid := RandClick(GridX, GridY)
             Sleep, 15*Latency
-            CtrlClick(Grid.X,Grid.Y)
+            CtrlShiftClick(Grid.X,Grid.Y)
             Sleep, 45*Latency
             ; Check for unique items
             If (Tab = StashTabCollection || Tab = StashTabUniqueRing )
@@ -2821,7 +2834,7 @@ Return
                   Continue
                 MoveStash(StashTabUniqueRing)
                 RandomSleep(45,45)
-                CtrlClick(Grid.X,Grid.Y)
+                CtrlShiftClick(Grid.X,Grid.Y)
               }
               If (StashTabYesUniqueDump)
               {
@@ -2832,7 +2845,7 @@ Return
                   Continue
                 MoveStash(StashTabUniqueDump)
                 RandomSleep(45,45)
-                CtrlClick(Grid.X,Grid.Y)
+                CtrlShiftClick(Grid.X,Grid.Y)
               }
             }
           }
@@ -5082,6 +5095,7 @@ Return
       IniRead, StashTabFlaskQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlaskQuality, 1
       IniRead, StashTabLinked, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked, 1
       IniRead, StashTabCollection, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCollection, 1
+      IniRead, StashTabUnique, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUnique, 1
       IniRead, StashTabUniqueRing, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing, 1
       IniRead, StashTabUniqueDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump, 1
       IniRead, StashTabInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem, 1 
@@ -5108,9 +5122,14 @@ Return
       IniRead, StashTabYesFlaskQuality, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlaskQuality, 1
       IniRead, StashTabYesLinked, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked, 1
       IniRead, StashTabYesCollection, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCollection, 1
+      IniRead, StashTabYesUnique, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUnique, 1
       IniRead, StashTabYesUniqueRing, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing, 1
       IniRead, StashTabYesUniqueDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump, 1
       IniRead, StashTabYesInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem, 1
+      IniRead, StashTabYesUniquePercentage, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniquePercentage, 0
+      IniRead, StashTabUniquePercentage, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniquePercentage, 70
+      IniRead, StashTabYesUniqueRingAll, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRingAll, 0
+      IniRead, StashTabYesUniqueDumpAll, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDumpAll, 0
       IniRead, StashTabYesFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment, 0
       IniRead, StashTabYesEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence, 0
       IniRead, StashTabYesBlight, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlight, 0
@@ -5744,7 +5763,7 @@ Return
       IniWrite, %StashTabYesGemSupport%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemSupport
       IniWrite, %StashTabYesFlaskQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlaskQuality
       IniWrite, %StashTabYesLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked
-      IniWrite, %StashTabYesCollection%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCollection
+      IniWrite, %StashTabYesUnique%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUnique
       IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
       IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
       IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
@@ -7806,6 +7825,11 @@ Return
       SaveINI("Chaos Recipe")
     Return
 
+    SaveStashTabs:
+      SaveINI("Stash Tab")
+      GreyOutAffinity()
+    Return
+
     SaveChaosRadio:
       Gui, Submit, NoHide
       IniWrite, %ChaosRecipeTypePure%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypePure
@@ -7814,68 +7838,6 @@ Return
       IniWrite, %ChaosRecipeStashMethodDump%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodDump
       IniWrite, %ChaosRecipeStashMethodTab%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodTab
       IniWrite, %ChaosRecipeStashMethodSort%, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashMethodSort
-    Return
-
-    UpdateStash:
-      ; Gui, Submit, NoHide
-      Gui, Inventory: Submit, NoHide
-      ;Stash Tab Management
-      IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
-      IniWrite, %StashTabMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap
-      IniWrite, %StashTabDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDivination
-      IniWrite, %StashTabGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem
-      IniWrite, %StashTabGemSupport%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemSupport
-      IniWrite, %StashTabGemQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemQuality
-      IniWrite, %StashTabFlaskQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlaskQuality
-      IniWrite, %StashTabLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked
-      IniWrite, %StashTabCollection%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCollection
-      IniWrite, %StashTabUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing
-      IniWrite, %StashTabUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump
-      IniWrite, %StashTabInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem
-      IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
-      IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
-      IniWrite, %StashTabBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlight
-      IniWrite, %StashTabDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium
-      IniWrite, %StashTabMetamorph%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMetamorph
-      IniWrite, %StashTabDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelve
-      IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
-      IniWrite, %StashTabProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy
-      IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
-      IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
-      IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
-      IniWrite, %StashTabYesDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination
-      IniWrite, %StashTabYesGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem
-      IniWrite, %StashTabYesGemSupport%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemSupport
-      IniWrite, %StashTabYesGemQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemQuality
-      IniWrite, %StashTabYesFlaskQuality%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlaskQuality
-      IniWrite, %StashTabYesLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked
-      IniWrite, %StashTabYesCollection%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCollection
-      IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
-      IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
-      IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
-      IniWrite, %StashTabYesBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlight
-      IniWrite, %StashTabYesDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium
-      IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
-      IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
-      IniWrite, %StashTabYesMetamorph%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMetamorph
-      IniWrite, %StashTabYesDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelve
-      IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
-      IniWrite, %StashTabYesProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesProphecy
-      IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
-      IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
-      IniWrite, %StashTabYesClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel
-      IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
-      IniWrite, %StashTabYesDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDump
-      IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial
-      IniWrite, %StashDumpSkipJC%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpSkipJC
-      IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
-      IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
-      IniWrite, %StashTabYesPredictive_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive_Price
-      IniWrite, %StashTabGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemVaal
-      IniWrite, %StashTabYesGemVaal%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGemVaal
-      IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
-      IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
-      IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
     Return
 
     UpdateExtra:
