@@ -3641,19 +3641,19 @@ Return
     If !IsObject(ActionList[obj.Group])
       ActionList[obj.Group] := {}
     If (force && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
-      ActionList[obj.Group].Push(obj.Type . " " . obj.Slot)
-    Else If (!indexOf(obj.Type . " " . obj.Slot,ActionList[obj.Group]) && ConfirmMatchingTriggers(obj))
-      ActionList[obj.Group].Push(obj.Type . " " . obj.Slot)
+      ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Force")
+    Else If ( !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) && ConfirmMatchingTriggers(obj))
+      ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Check")
     Else If !ActionList[obj.Group].Count()
     {
       loop % (obj.Type="Flask"?5:10)
-        if (WR[obj.Type][A_Index].Group = obj.Group  && !indexOf(obj.Type . " " . A_Index,ActionList[obj.Group])
-        && ConfirmMatchingTriggers(WR[obj.Type][A_Index]) ) 
-          ActionList[obj.Group].Push(obj.Type . " " . A_Index)
+        if (WR[obj.Type][A_Index].Group = obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) ) 
+          ActionList[obj.Group].Push(obj.Type . " " . A_Index . " Check")
     } 
     For k, v in ActionList[obj.Group]
     {
-      type := StrSplit(v, " ")[1], v := StrSplit(v, " ")[2]
+      type := StrSplit(v, " ")[1], recheck := (StrSplit(v, " ")[3] == "Check"?True:False), v := StrSplit(v, " ")[2]
+      If (!recheck || (recheck && ConfirmMatchingTriggers(WR[type][v])))
       If (WR.cdExpires[type][v] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
       {
         If (WR[type][v].Move)
