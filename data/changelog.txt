@@ -1,3 +1,14 @@
+## Version .13.0003 - Alpha version - December/05/2020
+Massive new feature for CLF usage
+* Can now get basic count of Suffix/Prefix
+* Will work on how to figure out combined ones soon!
+
+Unique affinity is now enabled in the script!
+* Expands on previous function with new minimum Percentage
+* Only stash uniques that have affixes rolled above the minimum
+
+---
+
 ## Version .13.0002 - Alpha version - November/27/2020
 Epic new function to determine Affix perfection of Unique Items
 * If the item has a matching entry in the DB, it will create a perfection percentage
