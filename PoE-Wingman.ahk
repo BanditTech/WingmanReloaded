@@ -120,7 +120,7 @@
   {
     WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000"
     , "Group":"f"A_Index, "Slot":A_Index, "Type":"Flask"
-    , "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
+    , "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
     , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
     WR.cdExpires.Flask[v] := A_TickCount
   }
@@ -128,7 +128,7 @@
   {
     WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000"
     , "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"
-    , "MainAttack":"0", "SecondaryAttack":"0", "Move":"0", "PopAll":"0", "Life":0, "ES":0, "Mana":0
+    , "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"0", "Life":0, "ES":0, "Mana":0
     , "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "IconVar0":"0", "IconVar1":"0"
     , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
     WR.cdExpires.Utility[v] := A_TickCount
@@ -3749,6 +3749,10 @@ Return
     MainAttackCommandRelease:
     MainAttackPressedActive := False
     MainAttackLastRelease := A_TickCount
+    For k, types in ["Flask","Utility"]
+      loop % (types="Flask"?5:10)
+        If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+          Trigger(WR[types][A_Index],True)
     Return  
   }
   ; SecondaryAttackCommand - Secondary attack Flasks
@@ -3764,6 +3768,10 @@ Return
   {
     SecondaryAttackCommandRelease:
     SecondaryAttackPressedActive := False
+    For k, types in ["Flask","Utility"]
+      loop % (types="Flask"?5:10)
+        If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+          Trigger(WR[types][A_Index],True)
     Return  
   }
   
@@ -7452,7 +7460,7 @@ Return
         Gui, Flask%slot%: new, AlwaysOnTop
         Gui, Flask%slot%: Font, cBlack
 
-        Gui, Flask%slot%: Add, GroupBox, section xm ym w500 h260, Flask Slot %slot%
+        Gui, Flask%slot%: Add, GroupBox, section xm ym w500 h275, Flask Slot %slot%
 
         Gui, Flask%slot%: Add, GroupBox, section center xs+10 yp+20 w100 h45, Cooldown
         Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+10   yp+20  w80  h17, %  WR.Flask[slot].CD
@@ -7482,12 +7490,14 @@ Return
         Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h45, Trigger on Move
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "Move xs+10   yp+20 Checked" WR.Flask[slot].Move , Enable
 
-        Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h65, Trigger with Attack
+        Gui, Flask%slot%: Add, GroupBox, center xs y+20 w100 h95, Trigger with Attack
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttack xs+10 yp+20 Checked" WR.Flask[slot].MainAttack, Main
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+10 Checked" WR.Flask[slot].SecondaryAttack, Secondary
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttackRelease xs+10 y+5 Checked" WR.Flask[slot].MainAttackRelease, Main Release
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+5 Checked" WR.Flask[slot].SecondaryAttack, Secondary
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttackRelease xs+10   y+5 Checked" WR.Flask[slot].SecondaryAttackRelease, Sec. Release
         
         backColor := "E0E0E0"
-        Gui, Flask%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
+        Gui, Flask%slot%: Add, GroupBox, Section center xs+125 ys w240 h150, Resource Triggers
         setColor := "Red"
         Gui, Flask%slot%: Font, s16, Consolas
         Gui, Flask%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
@@ -7517,7 +7527,7 @@ Return
       Return
 
       FlaskSaveValues:
-        for k, kind in ["CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
+        for k, kind in ["CD", "GroupCD", "Key", "MainAttackRelease", "SecondaryAttackRelease", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
           WR.Flask[which][kind] := Flask%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
@@ -7555,7 +7565,7 @@ Return
         Gui, Utility%slot%: new, AlwaysOnTop
         Gui, Utility%slot%: Font, cBlack
 
-        Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h370, Utility Slot %slot%
+        Gui, Utility%slot%: Add, GroupBox, section xm ym w500 h400, Utility Slot %slot%
 
         Gui, Utility%slot%: Add, GroupBox, Section center xs+10 yp+20 w110 h65, Enable Utility
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Enable xs+10   yp+20 Checked" WR.Utility[slot].Enable , Enable
@@ -7617,12 +7627,14 @@ Return
         Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h45, Trigger on Move
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Move xs+10   yp+20 Checked" WR.Utility[slot].Move , Enable
 
-        Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h65, Trigger with Attack
+        Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h95, Trigger with Attack
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttack xs+10 yp+20 Checked" WR.Utility[slot].MainAttack, Main
-        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+10 Checked" WR.Utility[slot].SecondaryAttack, Secondary
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttackRelease xs+10 y+5 Checked" WR.Utility[slot].MainAttackRelease, Main Release
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+5 Checked" WR.Utility[slot].SecondaryAttack, Secondary
+        Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttackRelease xs+10   y+5 Checked" WR.Utility[slot].SecondaryAttackRelease, Sec. Release
 
         backColor := "E0E0E0"
-        Gui, Utility%slot%: Add, GroupBox, Section center x+35 ys w240 h150, Resource Triggers
+        Gui, Utility%slot%: Add, GroupBox, Section center xs+125 ys w240 h150, Resource Triggers
         setColor := "Red"
         Gui, Utility%slot%: Font, s16, Consolas
         Gui, Utility%slot%: Add, Text, xs+13 ys+18 c%setColor%, L`%
@@ -7666,7 +7678,7 @@ Return
       Return
 
       UtilitySaveValues:
-        for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
+        for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
           WR.Utility[which][kind] := Utility%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 
