@@ -11,7 +11,8 @@ New functionality with Attack bindings
 * Can now cast abilities after releasing the key
 * This makes for easy skill combinations
 * Use delayed cast for maximum effect
-  * To cast Middle mouse after 200ms delay use [200](MButton)
+  * ``` To cast Middle mouse after 200ms delay use [200](MButton) 
+  ```
 
 ---
 
