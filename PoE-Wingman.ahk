@@ -2188,9 +2188,9 @@ Return
         {
           If Item.MatchLootFilter()
             Continue
-          If (Item.Prop.RarityCurrency && Item.Prop.SpecialType != "Heist Goods")
+          If Item.MatchStashManagement()
             Continue
-          If (Item.Prop.RarityUnique && (Item.Prop.Ring||Item.Prop.Amulet||Item.Prop.Jewel||Item.Prop.Flask))
+          If (Item.Prop.RarityCurrency && Item.Prop.SpecialType != "Heist Goods")
             Continue
           If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
           {
@@ -2218,8 +2218,7 @@ Return
           {
             If Item.MatchStashManagement()
             {
-              If (Item.Prop.SpecialType != "Heist Goods")
-                Continue
+              Continue
             }
           }
           If ( Item.Prop.SpecialType="" || Item.Prop.SpecialType = "Heist Goods" )
@@ -7352,11 +7351,11 @@ Return
         Gui, perChar: Font,
         Gui, perChar: Add, Edit,  center     vswap1Xa         xs+5  yp+20     w34  h17, % WR.perChar.Setting.swap1Xa
         Gui, perChar: Add, Edit,  center     vswap1Ya           x+3                w34  h17, % WR.perChar.Setting.swap1Ya
-        Gui, perChar: Add, Button,  gWR_Update vWR_Btn_Locate_CurrentGem  x+3   yp  hp , Locate A
+        Gui, perChar: Add, Button,  gWR_Update vWR_Btn_Locate_swap1a  x+3   yp  hp , Locate A
         Gui, perChar: Add, Checkbox, % "vswap1Item Checked" WR.perChar.Setting.swap1Item " x+3  yp+2"               , Use as Item Swap?
         Gui, perChar: Add, Edit,   center    vswap1Xb         xs+5        y+5   w34  h17,   % WR.perChar.Setting.swap1Xb
         Gui, perChar: Add, Edit,   center    vswap1Yb         x+3                w34  h17,   % WR.perChar.Setting.swap1Yb
-        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem  x+3   yp    hp , Locate B
+        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate_swap1b  x+3   yp    hp , Locate B
         Gui, perChar: Add, Checkbox, %  "vswap1AltWeapon Checked" WR.perChar.Setting.swap1AltWeapon "  x+3  yp+2"  , Swap Weapon for B?
 
         Gui, perChar: Font, Bold s9 cBlack, Arial
@@ -7364,11 +7363,11 @@ Return
         Gui, perChar: Font,
         Gui, perChar: Add, Edit,   center vswap2Xa xs+5 yp+20   w34  h17,   % WR.perChar.Setting.swap2Xa
         Gui, perChar: Add, Edit,   center vswap2Ya x+3 w34  hp,   % WR.perChar.Setting.swap2Ya
-        Gui, perChar: Add, Button, gWR_Update vWR_Btn_Locate_CurrentGem2      x+3   yp    hp , Locate A
+        Gui, perChar: Add, Button, gWR_Update vWR_Btn_Locate_swap2a      x+3   yp    hp , Locate A
         Gui, perChar: Add, Checkbox, % "vswap2Item Checked" WR.perChar.Setting.swap2Item " x+3  yp+2" , Use as Item Swap?
         Gui, perChar: Add, Edit, center vswap2Xb xs+5 y+5   w34  h17,   % WR.perChar.Setting.swap2Xb
         Gui, perChar: Add, Edit, center vswap2Yb x+3 w34  hp,   % WR.perChar.Setting.swap2Yb
-        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2      x+3   yp    hp , Locate B
+        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate_swap2b      x+3   yp    hp , Locate B
         Gui, perChar: Add, Checkbox, %  "vswap2AltWeapon Checked" WR.perChar.Setting.swap2AltWeapon "  x+3  yp+2"  , Swap Weapon for B?
 
 
