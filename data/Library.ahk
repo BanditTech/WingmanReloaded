@@ -169,6 +169,7 @@
         This.MatchChaosRegal()
         This.MatchBase2Slot()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
+        This.Prop.StashReturnVal := This.MatchStashManagement()
         ; This.FuckingSugoiFreeMate()
       }
       MatchProperties(){
