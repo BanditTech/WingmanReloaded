@@ -19,7 +19,7 @@ CD C:
 
 REM Now we run the code you provided
 TASKLIST /fi "IMAGENAME eq %exe_name%" 2>NUL | FIND /I /N "%exe_name%">NUL
-IF NOT "%ERRORLEVEL%"=="0" START %run_as% /user:%local_user% /savecred "cmd /C cd \"%exe_path%\" && Start /high %exe_name% %exe_params%"
+IF NOT "%ERRORLEVEL%"=="0" START %run_as% /user:%local_user% /savecred "cmd /C cd /D \"%exe_path%\" && Start /high %exe_name% %exe_params%"
 
 
 
@@ -42,11 +42,10 @@ SET script_1_path=%scripts_path%\%script_1_subpath%\%script_1_name%
 
 
 REM Script 2
-SET script_2_name=Run_TradeMacro.ahk
-SET script_2_subpath=POE-TradeMacro
-SET script_2_searchString=_TradeMacroMain.ahk ahk_exe AutoHotkey.exe
+SET script_2_name=Awakened PoE Trade.exe
+SET script_2_searchString=ahk_exe %script_2_name%
 REM Build the Path
-SET script_2_path=%scripts_path%\%script_2_subpath%\%script_2_name%
+SET script_2_path=C:\Program Files\Awakened PoE Trade\%script_2_name%
 
 
 REM Script 3
@@ -70,4 +69,4 @@ ECHO If !WinExist^("%script_3_searchString%"^^^)
 ECHO Run %script_3_path%
 ECHO ExitApp
 
-)| AutoHotkey.exe *
+)| "C:\Program Files\AutoHotkey\AutoHotkey.exe" *
