@@ -111,7 +111,8 @@
     , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseSingleTap":"2", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
     , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
     , "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
-    , "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"}
+    , "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"
+    , "profilesYesFlask":"0", "profilesFlask":"", "profilesYesUtility":"0", "profilesUtility":""}
   for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
   ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
   ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
@@ -135,6 +136,12 @@
   }
   for k, v in ["f1","f2","f3","f4","f5","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
     WR.cdExpires.Group[v] := A_TickCount
+; Make Default profiles if they do not exist
+  For k, name in ["perChar","Flask","Utility"]{
+    If !FileExist( A_ScriptDir "\save\profiles\" name "\Default.json")
+      Profile(name,"Save","Default")
+  }
+
 ; Global variables
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; Extra vars - Not in INI
@@ -1261,6 +1268,7 @@
     For k, v in l
       s .=(k=1?"":"|") v
     Gui, Add, ComboBox,  vProfileMenuperChar xs+6 y+5 w117, %s%
+    GuiControl, ChooseString, ProfileMenuperChar,% ProfileMenuperChar
     Gui, Add, Button, gProfile vMainMenu_perChar_Save x+1 yp hp w40 , Save
     Gui, Add, Button, gProfile vMainMenu_perChar_Load x+1 yp hp w40 , Load
     Gui, Add, Button, gProfile vMainMenu_perChar_Remove x+1 yp hp w50 , Remove
@@ -1278,6 +1286,7 @@
     For k, v in l
       s .=(k=1?"":"|") v
     Gui, Add, ComboBox,  vProfileMenuFlask xs+6 y+5 w117, %s%
+    GuiControl, ChooseString, ProfileMenuFlask,% ProfileMenuFlask
     Gui, Add, Button, gProfile vMainMenu_Flask_Save x+1 yp hp w40 , Save
     Gui, Add, Button, gProfile vMainMenu_Flask_Load x+1 yp hp w40 , Load
     Gui, Add, Button, gProfile vMainMenu_Flask_Remove x+1 yp hp w50 , Remove
@@ -1295,6 +1304,7 @@
     For k, v in l
       s .=(k=1?"":"|") v
     Gui, Add, ComboBox,  vProfileMenuUtility xs+6 y+5 w117, %s%
+    GuiControl, ChooseString, ProfileMenuUtility,% ProfileMenuUtility
     Gui, Add, Button, gProfile vMainMenu_Utility_Save x+1 yp hp w40 , Save
     Gui, Add, Button, gProfile vMainMenu_Utility_Load x+1 yp hp w40 , Load
     Gui, Add, Button, gProfile vMainMenu_Utility_Remove x+1 yp hp w50 , Remove
@@ -4989,6 +4999,9 @@ Return
       Settings("perChar","Load")
       Settings("func","Load")
 
+      For k, name in ["perChar","Flask","Utility"]
+        IniRead, ProfileMenu%name%, Settings.ini, Chosen Profile, %name%, % A_Space
+
       ; Login Information
       IniRead, PoESessionID, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID, %A_Space%
 
@@ -5928,12 +5941,20 @@ Return
       }
     }
     ; Profile Save/Load/Remove
-    Profile(){
+    Profile(args*){
       Gui, submit, nohide
-      split := StrSplit(A_GuiControl,"_")
-      Type := split[2]
-      Action := split[3]
-      ControlGetText, name,% ProfileMenu%Type%
+      confirm := False
+      If (!(args) || args[2] = "Normal"){
+        split := StrSplit(A_GuiControl,"_")
+        Type := split[2]
+        Action := split[3]
+        ControlGetText, name,% ProfileMenu%Type%
+        confirm := True
+      } Else {
+        Type := args[1]
+        Action := args[2]
+        name := args[3]
+      }
       If (name = "")
       {
         MsgBox, 262144, Whoah there clicky fingers, Profile name cannot be blank
@@ -5941,10 +5962,12 @@ Return
       }
       If FileExist( A_ScriptDir "\save\profiles\" Type "\" name ".json")
       {
-        ; If indexOf(Action,["Save","Remove"])
-        MsgBox, 262148, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
-        IfMsgBox No
-          Return
+        If confirm
+        {
+          MsgBox, 262148, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
+          IfMsgBox No
+            Return
+        }
       } Else If (Action != "Save") {
         MsgBox, 262144, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
         Return
@@ -5955,6 +5978,7 @@ Return
         FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
         JSONtext := JSON.Dump(WR[Type],,2)
         FileAppend, %JSONtext%, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+        IniWrite, % ProfileMenu%Type%, Settings.ini, Chosen Profile, %Type%
       }
       Else If (Action = "Load")
       {
@@ -5965,6 +5989,16 @@ Return
             For l, w in v
               If (obj[k].HasKey(l)) 
                 WR[Type][k][l] := obj[k][l]
+        If (Type = "perChar"){
+          If WR.perChar.Setting.profilesYesFlask
+            If WR.perChar.Setting.profilesFlask
+              Profile("Flask","Load",WR.perChar.Setting.profilesFlask)
+          If WR.perChar.Setting.profilesYesUtility
+            If WR.perChar.Setting.profilesUtility
+              Profile("Utility","Load",WR.perChar.Setting.profilesUtility)
+        }
+        GuiControl, ChooseString, ProfileMenu%Type%, % name
+        IniWrite, % name, Settings.ini, Chosen Profile, %Type%
         Return
       }
       Else If (Action = "Remove")
@@ -7423,7 +7457,29 @@ Return
         Gui, perChar: Add, Text, xs+150 yp , Key
         Gui, perChar: Add, Edit,        vautominesSmokeDashKey  h18  x+5  yp-2  w50        , % WR.perChar.Setting.autominesSmokeDashKey
         Gui, perChar: Font,
-        Gui, perChar: show, w585 h420
+
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,     Section  w265 h65        xs yp+35,         Load Flask or Utility Profiles
+        Gui, perChar: Font,
+        Gui, perChar: Add, CheckBox, %  "xs+5 ys+20 vprofilesYesFlask Checked" WR.perChar.Setting.profilesYesFlask, Load Flask Profile
+        l := [], s := ""
+        Loop, Files, %A_ScriptDir%\save\profiles\Flask\*.json
+          l.Push(StrReplace(A_LoopFileName,".json",""))
+        For k, v in l
+          s .=(k=1?"":"|") v
+        Gui, perChar: Add, DropDownList, % "vprofilesFlask xp y+5 w120", %s%
+        GuiControl, perChar: ChooseString, profilesFlask, % WR.perChar.Setting.profilesFlask
+
+        Gui, perChar: Add, CheckBox, %  "xs+132 ys+20 vprofilesYesUtility Checked" WR.perChar.Setting.profilesYesUtility, Load Utility Profile
+        l := [], s := ""
+        Loop, Files, %A_ScriptDir%\save\profiles\Utility\*.json
+          l.Push(StrReplace(A_LoopFileName,".json",""))
+        For k, v in l
+          s .=(k=1?"":"|") v
+        Gui, perChar: Add, DropDownList, % "vprofilesUtility xp y+5 w120", %s%
+        GuiControl, perChar: ChooseString, profilesUtility, % WR.perChar.Setting.profilesUtility
+        ;  xm ym w565 h405
+        Gui, perChar: show, AutoSize
       }
       Return
 
@@ -7435,7 +7491,8 @@ Return
         , "autominesEnable", "autominesBoomDelay", "autominesPauseDoubleTapSpeed", "autominesPauseSingleTap", "autominesSmokeDashEnable", "autominesSmokeDashKey"
         , "autolevelgemsEnable", "autolevelgemsWait"
         , "swap1AltWeapon", "swap1Item", "swap1Xa", "swap1Ya", "swap1Xb", "swap1Yb"
-        , "swap2AltWeapon", "swap2Item", "swap2Xa", "swap2Ya", "swap2Xb", "swap2Yb"]
+        , "swap2AltWeapon", "swap2Item", "swap2Xa", "swap2Ya", "swap2Xb", "swap2Yb"
+        , "profilesYesFlask", "profilesFlask", "profilesYesUtility", "profilesUtility"]
           WR.perChar.Setting[kind] := %kind%
         Settings("perChar","Save")
         Return

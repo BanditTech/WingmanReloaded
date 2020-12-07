@@ -2122,11 +2122,11 @@
           sendstash := StashTabPredictive
         Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
         {
-          If ChaosRecipeStashMethodDump
+          If (ChaosRecipeStashMethodDump)
             sendstash := StashTabDump
-          Else If ChaosRecipeStashMethodTab
+          Else If (ChaosRecipeStashMethodTab)
             sendstash := ChaosRecipeStashTab
-          Else If ChaosRecipeStashMethodSort
+          Else If (ChaosRecipeStashMethodSort)
           {
             If This.Prop.SlotType = "Body"
               sendstash := ChaosRecipeStashTabArmour
@@ -2141,7 +2141,6 @@
         }
         Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
           || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
-          ; && !This.Prop.SpecialType
           sendstash := StashTabDump
         Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods")
           Return -1
@@ -5021,7 +5020,8 @@
           if(This.Pair_With_Edit<=2)
           {
             GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value
-            IniWrite, % This.Slider_Value, %A_ScriptDir%\save\Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
+            If (This.SaveINISection)
+              IniWrite, % This.Slider_Value, %A_ScriptDir%\save\Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
           }
           if(This.Pair_With_Edit>=2)
           GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
