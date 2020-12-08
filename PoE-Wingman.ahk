@@ -4141,20 +4141,20 @@ Return
     antp := Item.Prop.Map_PackSize
     antq := Item.Prop.Map_Quantity
     ;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-    While ( (Item.Affix["Monsters have # chance to Avoid Elemental Ailments"] && AvoidAilments) 
-    || (Item.Affix["Monsters have a # chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
-    || (Item.Affix["Monsters reflect # of Elemental Damage"] && ElementalReflect) 
-    || (Item.Affix["Monsters reflect # of Physical Damage"] && PhysicalReflect) 
+    While ( (Item.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
+    || (Item.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
+    || (Item.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
+    || (Item.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
     || (Item.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
     || (Item.Affix["Cannot Leech Life from Monsters"] && NoLeech)
-    || (Item.Affix["-# maximum Player Resistances"] && MinusMPR)
+    || (Item.Affix["-#% maximum Player Resistances"] && MinusMPR)
     || (Item.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
-    || (Item.Affix["Monsters deal # extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
-    || (Item.Affix["Monsters deal # extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
-    || (Item.Affix["Monsters deal # extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
-    || (Item.Affix["Monsters have # increased Critical Strike Chance"] && MICSC)
+    || (Item.Affix["Monsters deal #% extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
+    || (Item.Affix["Monsters deal #% extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
+    || (Item.Affix["Monsters deal #% extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
+    || (Item.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
     || (Item.Affix["Monsters' skills Chain # additional times"] && MSCAT)
-    || (Item.Affix["Players have # less Recovery Rate of Life and Energy Shield"] && LRRLES)
+    || (Item.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
     || (Item.Prop.RarityNormal) 
     || (!MMQIgnore && (Item.Prop.Map_Rarity <= MMapItemRarity 
     || Item.Prop.Map_PackSize <= MMapMonsterPackSize 
@@ -5000,7 +5000,7 @@ Return
       Settings("func","Load")
 
       For k, name in ["perChar","Flask","Utility"]
-        IniRead, ProfileMenu%name%, Settings.ini, Chosen Profile, %name%, % A_Space
+        IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
 
       ; Login Information
       IniRead, PoESessionID, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID, %A_Space%
@@ -5978,7 +5978,7 @@ Return
         FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
         JSONtext := JSON.Dump(WR[Type],,2)
         FileAppend, %JSONtext%, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-        IniWrite, % ProfileMenu%Type%, Settings.ini, Chosen Profile, %Type%
+        IniWrite, % ProfileMenu%Type%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %Type%
       }
       Else If (Action = "Load")
       {
@@ -5998,7 +5998,7 @@ Return
               Profile("Utility","Load",WR.perChar.Setting.profilesUtility)
         }
         GuiControl, ChooseString, ProfileMenu%Type%, % name
-        IniWrite, % name, Settings.ini, Chosen Profile, %Type%
+        IniWrite, % name, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %Type%
         Return
       }
       Else If (Action = "Remove")
