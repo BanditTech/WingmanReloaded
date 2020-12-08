@@ -1,3 +1,18 @@
+## Version .13.0004 - Alpha version - December/07/2020
+Updates to how the profiles are displayed on the main menu
+* Saving or loading a profile will set the active profile for that type
+* On script load, the last used profile text will be shown
+
+Per Character settings now contains sub-profiles
+* Link character settings with Flask/Utility Profiles
+
+Default Profiles are now created
+* If there is no default profile for each type it makes one at script start
+* Feel free to modify the default options to whatever you like
+* If you want to recreate a default profile, remove it and restart script
+
+---
+
 ## Version .13.0003 - Alpha version - December/05/2020
 Massive new feature for CLF usage
 * Can now get basic count of Suffix/Prefix
