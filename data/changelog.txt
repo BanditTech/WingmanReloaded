@@ -6,6 +6,9 @@ New Setting for Inventory Sorting
 Bugfixes
 * fix map affix filtering
 * settings.ini location for main menu profile text
+* Area color sample fixed
+* Loot vacuum checkboxes for chest and delve containers now work
+* global object added for string menu refactor
 
 ---
 
