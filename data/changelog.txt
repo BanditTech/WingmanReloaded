@@ -1,3 +1,14 @@
+## Version .13.0005 - Alpha version - December/09/2020
+New Setting for Inventory Sorting
+* Allow dump to be enabled and still vendor unfiltered Items
+  * Enable to consider Dump Tab items as sellable to vendor
+
+Bugfixes
+* fix map affix filtering
+* settings.ini location for main menu profile text
+
+---
+
 ## Version .13.0004 - Alpha version - December/07/2020
 Updates to how the profiles are displayed on the main menu
 * Saving or loading a profile will set the active profile for that type

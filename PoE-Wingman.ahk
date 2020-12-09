@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .13.0004
+  Global VersionNumber := .13.0005
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -90,7 +90,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{}}
+  Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{},"String":{}}
   WR.loc.pixel := {}, WR.loc.area := {}
   for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy"
   , "Transmutation", "Augmentation", "Alteration", "Vaal", "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash"
@@ -136,6 +136,35 @@
   }
   for k, v in ["f1","f2","f3","f4","f5","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
     WR.cdExpires.Group[v] := A_TickCount
+  WR.String.Debuff :={"EleW":"|<Ele Weakness>0xF6E9FE@0.75$22.01s000s401k005W14vo2LZE3PO05ZykDHblYi/rOMpoVVFH44mYEncH0NE8U11V04A209U40w067005U2i"
+    ,"Vuln":"|<Vulnerability>0xAF1015@0.90$34.0kE7000DAC013xwQ84Drsk0YzzV02xzs0U3rzY60CkSEA1k0s0k4E1k1WV03XX0U03wAC0UDsm000Tl0001zaE007yM000TsU001sU0007kA000zk003bz0020zsQ0k0zXUADvwA11zzVk0Dys0007llU00D0807000U1YM0M00HsME00Dzk003zy0003rEE2"
+    ,"Enfeeble":"|<Enfeeble>0x6A7E25@0.75$24.Ms30BntUDjyk5TzM1Tzc3zzc2zzU2zza2zza2Tza3Tva3zfj7jcT7rYT7sETryFTzzOjzvOjzrCyzbjTzjjSTDzyTTzwDTztKTzmMzz6gDwTjU1xU"
+    ,"TempChains":"|<Temp Chains>0x7442D7@0.75$29.03kA00ttq03vzq0Tnzi1zrzi3zbzA7z7zQzy3yzjs7wzTkjxyzZTnxz0zbvz1yTrznszbzbbzjzgDjDz1zT7w7yTU0Dxzk07vzzV7rzz9VzzwPsTztrwxznbzlzjjVVzTQ01wyc8"
+    ,"Conductivity":"|<Conductivity>0x91CCFE@0.79$23.3z00S7k1k1s203w81ww0DD87ntswSQPjvsFs6wTTyuXXQxy7XP03A7044T0M8j1c37Y0A3k3k0zy2"
+    ,"Flammability":"|<Flammability>0xFDCF61@0.79$18.0zU3UkC0AM0SM1qk7BUDlUP1Xg0iE1vU1aG1sV5kUdkUzMmLAITU"
+    ,"Frostbite":"|<Frostbite>0xE2F6FC@0.79$21.4Tk1C7k70n4U7As1wq0/nU3/A0QdU3kY0q2U7M00xUU7q41AFUMU+203EE0F2044k1US0MU"
+    ,"WMark":""
+    ,"Poison":""
+    ,"Shock":"|<Shock>0xD3F9F0@0.79$21.1qTU9ts7Tb0k2s6073k0ww03bk0Ry07zs0zz07zw0zzU7zw0zz07zk0Dw01w"
+    ,"Bleed":"|<Bleed>0xE41B27@0.79$27.01s000DU0074000zk00430012M008G0010E00040000Y001AU011U00AA001V000A8U03V007s0Q1w03szU07rD00DvwLxzzyzbtbbqTCAXXsvYsP0wS3s51kA"
+    ,"Freeze":"|<Frozen>0xDFEFF3@0.89$14.7UDz3UkrbcFu0C00k0A0H40k0E04l1w0T07U08"
+    ,"Ignite":"|<Ignite>0xFFEC00@0.70$23.0F003y4060M03lk1jXU20L040C0M0A3k0M7U0kD03wD07sy0Dlw0TXw0z7s1zDU1wS03ys03z000Q000A"}
+  WR.String.Vendor:={"Hideout":"|<1080 Navali>*100$56.TtzzzzzzznyTzzzzzzwTbxxzTjrx3tyCDXnsy0ST3ntsTDk3bkwSS7nw8Nt77D8wz36SNtnmDDks7USBw3nwD1k3mS0Qz3sQwwDbbDkz6TD3ntngDtblswyA38|<1080 Zana>*100$44.U3zzzzzs0zzzzzyyTrvyzjz7twT7nzXwDXnsTsz3sQy7wTYS3D8yDtbYHnDXy1tYw3lz0CMC0Mznnb3ba01wtsnt02T6TAy8"
+    ,"Mines":"|<niko>*104$121.7yTzzzzzzzzzzzzzzzzzXyDzzzzzzzzzzzzzzzzzlz7xzDzzzzzzbzzzzrxzsT3wz1043UDz0w3w0Nws4DVwDAgPBlbzCDBylgySO3oy7byDbslz7bbzsyTDD1mSFlz7nwMzblnzwTDbbYtDAwDXsCAznssDyDU3kG9bUT3lwD0ztwQDz7k1sNYnU7lsyTUTwyCTzXtwwwktnnwQTDl7yDDDzlwySSMQHtiSDbslzX7bzsyTDDCS9wET7kAQTsDnzwTDbUTjzzyzzzzzzzTzzzzzzzs"
+    ,"Lioneye":"|<1080 Nessa>*100$48.TtzzzzzzDtzzzzzz7tzzbtzj3tkD1kTD1ttiNaS70ttyTby78NtyDXwXANsD3kwnC9sTVsQ3D1tzlwM1DVtzsy9tDltytiHtDts63UnszzzzjvzzU|<1080 Bestel>*100$54.zzzzzzzzzUzzzzzzzzUTzzzzzzzbDzwzzzyzbC1s80UQTbDBn/6nSTUTDnz7nyTUDDlz7nyTb71sT7kSTb73wD7kyTbbDyD7nyTbbDz77nyTbDDrD7nyRUT0kT7kC1zzzxzzzzzzzzzzzzzzU"
+    ,"Forest":"|<Greust>*87$59.s7zzzzzzzzU7zzzzzzzyDDzzzTjbzsys3UASA201zlbaMyNZX7zX7Dlwnz7Dz6CTXtXyCDaAw7bn1wQSA1sDDbVssyM7nyTDXlkwl7bwyzXXktX7DstrD7k3761s7USDszzzzwznzy"
+    ,"Sarn":"|<1080 Clarissa>*100$73.zzzzzzzzzzzzz3zzzzzzzzzzy0TzzzzzzzzzyDCzxzzvwzDxyDiDwy0sw71wz7zbwD6SQnAwDbzny7X7CTby7nztyFlXb7lyFszwzAsnnkwDAwTyTUQ3twD3USDzDU61wz7lU73vbnn4STlwHnklnXtX7CtiHtw1s1wFlb1kNwTrzzzzzzvyzzzzzzzzzzzzzzy"
+    ,"Highgate":"|<1080 Petarus>*100$69.zzzzzzzzzzzw7zzzzzzzzzzUDzzzzzzzzzwtzzzzTzyzTDb61U3ns3XlkQsthXQD6QTAnb7DwTVslXtbwttzXt76ATATUT1wTAsnntkwDsTXs70yTD3bzDwS0M7ntwQztzXnn4STTlbzDwQyMllniQzs7Xbl770w7zzzzzzzzyTvzzzzzzzzzzzzU"
+    ,"Overseer":"|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"
+    ,"Bridge":"|<1080 Helena>*100$62.DlzzzzzzzznwTzzzzzzzwz7zxzzvyzjDlkCDUQT7nnwSPnwrXnsQz7bwzDsQy701tzDny3D8k0S3nw7YHnAz7Vwz3tYw3DltzDnyMC0HwSTnwzb3bYz7bwvDtsntDls70kCTAy8"
+    ,"Docks":"|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"
+    ,"Oriath":"|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"}
+  WR.String.General:={"OHB":"|<OHB_Bar>0x241814@0.99$106.Tzzzzzzzzzzzzzzzzu"
+    ,"SkillUp":"|<1080 Skill Up>0xAA6204@0.80$9.sz7ss0000sz7sw"
+    ,"SellItems":"|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
+    ,"Stash":"|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
+    ,"Xbutton":"|<1080 X Button>*43$12.0307sDwSDwDs7k7sDwSSwTsDk7U"
+    ,"HeistLocker":"|<1080 Locker>*90$59.7zzzzzzzzzDzzzzzzzzyTyTyTDTzzwzkDk4QE60tz6D6AlnANnwSASt7bslbtwNzkTDlXDnsnzVy3XCTblbz1w70QzDX7yFty1tyDCDwXnwFnaASCNXbslUA1y1nX0llzyTzDzzzzy"}
 ; Make Default profiles if they do not exist
   For k, name in ["perChar","Flask","Utility"]{
     If !FileExist( A_ScriptDir "\save\profiles\" name "\Default.json")
@@ -660,6 +689,7 @@
     Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
     Global WinGuiX := 0
     Global WinGuiY := 0
+    Global YesVendorDumpItems := 0
 
 
     ; Chaos Recipe
@@ -2198,8 +2228,6 @@ Return
         {
           If Item.MatchLootFilter()
             Continue
-          If Item.MatchStashManagement()
-            Continue
           If (Item.Prop.RarityCurrency && Item.Prop.SpecialType != "Heist Goods")
             Continue
           If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
@@ -2223,14 +2251,8 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
-          ; Only need entry this condition if Search Vendor/Vendor is the first option
-          If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
-          {
-            If Item.MatchStashManagement()
-            {
-              Continue
-            }
-          }
+          If (Item.Prop.StashReturnVal && (!YesVendorDumpItems || (YesVendorDumpItems && Item.Prop.StashReturnVal != StashTabDump)))
+            Continue
           If ( Item.Prop.SpecialType="" || Item.Prop.SpecialType = "Heist Goods" )
           {
             CtrlClick(Grid.X,Grid.Y)
@@ -2385,11 +2407,6 @@ Return
         addToBlacklist(C, R)
         If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
           ShooMouse(),GuiStatus(),Continue
-        ; If CheckToIdentify()
-        ; {
-        ;   WisdomScroll(Grid.X,Grid.Y)
-        ;   ClipItem(Grid.X,Grid.Y)
-        ; }
         If (OnVendor&&YesVendor)
         {
           If Item.MatchLootFilter()
@@ -2419,14 +2436,6 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
-          ; Only need entry this condition if Search Vendor/Vendor is the first option
-          ; If (YesEnableAutomation && FirstAutomationSetting=="Search Vendor")
-          ; {
-          ;   If Item.MatchStashManagement()
-          ;   {
-          ;     Continue
-          ;   }
-          ; }
           If ( Item.Prop.SpecialType="" )
           {
             CtrlClick(Grid.X,Grid.Y)
@@ -3225,14 +3234,14 @@ Return
             LV_LastClick := A_TickCount
             Return
           }
-          If OnMines
+          If OnMines && YesLootDelve
           {
             MouseGetPos mX, mY
             ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
             ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
             loot := FindText(x,y,xx,yy,0,0,DelveStr,0,0)
           }
-          Else
+          Else If YesLootChests
           {
             MouseGetPos mX, mY
             ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
@@ -4092,17 +4101,7 @@ Return
         MMQIgnore := True
       }
     }
-    Else If (Method == "Alchemy")
-    {
-      cname := "Alchemy"
-      crname := "Scouring"
-    }
-    Else If (Method == "Chisel+Alchemy")
-    {
-      cname := "Alchemy"
-      crname := "Scouring"
-    }
-    Else If (Method == "Chisel+Alchemy+Vaal")
+    Else If indexOf(Method,["Alchemy","Chisel+Alchemy","Chisel+Alchemy+Vaal"])
     {
       cname := "Alchemy"
       crname := "Scouring"
@@ -4998,6 +4997,7 @@ Return
       Settings("Utility","Load")
       Settings("perChar","Load")
       Settings("func","Load")
+      Settings("String","Load")
 
       For k, name in ["perChar","Flask","Utility"]
         IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
@@ -5068,6 +5068,7 @@ Return
       IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
       IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
+      IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
 
       ;Crafting Map Settings
       IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
@@ -5545,6 +5546,7 @@ Return
       Settings("Utility","Save")
       Settings("perChar","Save")
       Settings("func","Save")
+      Settings("String","Save")
 
       ;GUI Position
       WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
@@ -5662,6 +5664,7 @@ Return
       IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
+      IniWrite, %YesVendorDumpItems%, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems
 
       ; Overhead Health Bar
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
