@@ -4834,6 +4834,9 @@
       CheckXButton()
     Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker||YesXButtonFound))
   }
+  GuiCheck(){
+    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
+  }
   ; PanelManager - This class manages every gamestate within one place
   Class PanelManager
   {

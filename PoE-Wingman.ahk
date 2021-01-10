@@ -3665,6 +3665,8 @@ Return
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ; Trigger - Generic Trigger for flasks or utility
   Trigger(obj,force:=False){
+    If !GuiCheck()
+      Return
     Static ActionList := {}
     Static LastHeldLB, LastHeldMA, LastHeldSA
     Global MovementHotkeyActive
@@ -3767,6 +3769,8 @@ Return
     MainAttackCommandRelease:
     MainAttackPressedActive := False
     MainAttackLastRelease := A_TickCount
+    If (OnTown||OnHideout)
+      Return
     For k, types in ["Flask","Utility"]
       loop % (types="Flask"?5:10)
         If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
@@ -3786,6 +3790,8 @@ Return
   {
     SecondaryAttackCommandRelease:
     SecondaryAttackPressedActive := False
+    If (OnTown||OnHideout)
+      Return
     For k, types in ["Flask","Utility"]
       loop % (types="Flask"?5:10)
         If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
