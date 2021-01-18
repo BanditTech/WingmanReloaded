@@ -2725,8 +2725,8 @@
         Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
         Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
         Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
-        Gui, Inventory: Add, Edit,       vGrabCurrencyPosX        x+8        y+-15   w34  h17,   %GrabCurrencyPosX%
-        Gui, Inventory: Add, Edit,       vGrabCurrencyPosY        x+8                w34  h17,   %GrabCurrencyPosY%
+        Gui, Inventory: Add, Edit,       vGrabCurrencyX        x+8        y+-15   w34  h17,   %GrabCurrencyX%
+        Gui, Inventory: Add, Edit,       vGrabCurrencyY        x+8                w34  h17,   %GrabCurrencyY%
         Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
         Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
         Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
@@ -3694,6 +3694,25 @@
     }
     Else If (Function = "Locate")
     {
+      LocateType := Var[2]
+      Gui, Hide
+      Loop
+      {
+        MouseGetPos, x, y
+        If (x != oldx || y != oldy)
+          ToolTip, % "-- Locate "LocateType " --`n@ " x "," y "`nPress Ctrl to set"
+        oldx := x, oldy := y
+      } Until GetKeyState("Ctrl")
+      Tooltip
+      %LocateType%X := x, %LocateType%Y := y
+      GuiControl, Inventory: ,% LocateType "X", %x%
+      GuiControl, Inventory: ,% LocateType "Y", %y%
+      MsgBox % x "," y " was captured as the new location for "LocateType
+      Gui, Show
+    }
+    Else If (Function = "Locate2")
+    {
+      MsgBoxVals(Var,2)
       ; LocateType := Var[2]
       ending := StrSplit(SubStr(Var[2],-1))
       slot := ending[1], position := ending[2]

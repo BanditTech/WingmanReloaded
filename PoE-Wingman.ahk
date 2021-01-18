@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .13.0005
+  Global VersionNumber := .13.0006
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -330,8 +330,8 @@
       PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
       WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
       WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-      GrabCurrencyPosX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
-      GrabCurrencyPosY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+      GrabCurrencyX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+      GrabCurrencyY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
       StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
       YesEnableAutomation = Enable Automation Routines
@@ -934,8 +934,8 @@
     Global varOnDetonate := 0x5D4661
 
   ; Grab Currency
-    global GrabCurrencyPosX:=1877
-    global GrabCurrencyPosY:=772
+    global GrabCurrencyX:=1877
+    global GrabCurrencyY:=772
 
   ; Chat Hotkeys, and stash hotkeys
     Global CharName := "ReplaceWithCharName"
@@ -3162,45 +3162,47 @@ Return
       If StockWisdom{
         ClipItem(WisdomScrollX, WisdomScrollY)
         dif := (40 - Item.Prop.Stack_Size)
-        If(Item.Prop.ItemBase != "Scroll of Wisdom")
-        {
-          CtrlClick(WisdomScrollX, WisdomScrollY)
-          Sleep, 45*Latency
+        If(Item.Prop.ItemBase != "Scroll of Wisdom" && !(Item.Prop.ItemBase ~= "\w+"))
           dif := 40
-        }
+        Else If(Item.Prop.ItemBase != "Scroll of Wisdom" && (Item.Prop.ItemBase ~= "\w+"))
+          dif := 0
         If (dif>10)
         {
           MoveStash(StashTabCurrency)
-          ShiftClick(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
-          Sleep, 45*Latency
-          Send %dif%
-          Sleep, 45*Latency
-          Send {Enter}
-          Sleep, 60*Latency
-          LeftClick(WisdomScrollX, WisdomScrollY)
-          Sleep, 60*Latency
+          ClipItem(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
+          If (Item.Prop.Stack_Size >= dif){
+            ShiftClick(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
+            Sleep, 45*Latency
+            Send %dif%
+            Sleep, 45*Latency
+            Send {Enter}
+            Sleep, 60*Latency
+            LeftClick(WisdomScrollX, WisdomScrollY)
+            Sleep, 60*Latency
+          }
         }
       }
       If StockPortal{
         ClipItem(PortalScrollX, PortalScrollY)
         dif := (40 - Item.Prop.Stack_Size)
-        If(Item.Prop.ItemBase != "Portal Scroll")
-        {
-          CtrlClick(PortalScrollX, PortalScrollY)
-          Sleep, 45*Latency
+        If(Item.Prop.ItemBase != "Portal Scroll" && !(Item.Prop.ItemBase ~= "\w+"))
           dif := 40
-        }
+        Else If(Item.Prop.ItemBase != "Scroll of Wisdom" && (Item.Prop.ItemBase ~= "\w+"))
+          dif := 0
         If (dif>10)
         {
           MoveStash(StashTabCurrency)
-          ShiftClick(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
-          Sleep, 45*Latency
-          Send %dif%
-          Sleep, 45*Latency
-          Send {Enter}
-          Sleep, 60*Latency
-          LeftClick(PortalScrollX, PortalScrollY)
-          Sleep, 60*Latency
+          ClipItem(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
+          If (Item.Prop.Stack_Size >= dif){
+            ShiftClick(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
+            Sleep, 45*Latency
+            Send %dif%
+            Sleep, 45*Latency
+            Send {Enter}
+            Sleep, 60*Latency
+            LeftClick(PortalScrollX, PortalScrollY)
+            Sleep, 60*Latency
+          }
         }
       }
       BlockInput, MouseMoveOff
@@ -3808,7 +3810,7 @@ Return
       BlockInput, MouseMove
       MouseGetPos xx, yy
       RandomSleep(45,45)
-      If (GrabCurrencyPosX && GrabCurrencyPosY)
+      If (GrabCurrencyX && GrabCurrencyY)
       {
         If !GuiStatus("OnInventory")
         {
@@ -3816,7 +3818,7 @@ Return
           RandomSleep(45,45)
         }
         RandomSleep(45,45)
-        RightClick(GrabCurrencyPosX, GrabCurrencyPosY)
+        RightClick(GrabCurrencyX, GrabCurrencyY)
         RandomSleep(45,45)
         SendHotkey(hotkeyInventory)
         MouseMove, xx, yy, 0
@@ -5286,8 +5288,8 @@ Return
       IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
             
       ;Grab Currency From Inventory
-      IniRead, GrabCurrencyPosX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX, 1877
-      IniRead, GrabCurrencyPosY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY, 772
+      IniRead, GrabCurrencyX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX, 1877
+      IniRead, GrabCurrencyY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY, 772
 
       ;Coordinates
       IniRead, PortalScrollX, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX, 1825
@@ -5717,8 +5719,8 @@ Return
       IniWrite, %hotkeyRight%,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight
       
       ;Grab Currency
-      IniWrite, %GrabCurrencyPosX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosX
-      IniWrite, %GrabCurrencyPosY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyPosY
+      IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
+      IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
 
       ;Crafting Map Settings
       IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
@@ -7394,11 +7396,11 @@ Return
         Gui, perChar: Font,
         Gui, perChar: Add, Edit,  center     vswap1Xa         xs+5  yp+20     w34  h17, % WR.perChar.Setting.swap1Xa
         Gui, perChar: Add, Edit,  center     vswap1Ya           x+3                w34  h17, % WR.perChar.Setting.swap1Ya
-        Gui, perChar: Add, Button,  gWR_Update vWR_Btn_Locate_swap1a  x+3   yp  hp , Locate A
+        Gui, perChar: Add, Button,  gWR_Update vWR_Btn_Locate2_swap1a  x+3   yp  hp , Locate A
         Gui, perChar: Add, Checkbox, % "vswap1Item Checked" WR.perChar.Setting.swap1Item " x+3  yp+2"               , Use as Item Swap?
         Gui, perChar: Add, Edit,   center    vswap1Xb         xs+5        y+5   w34  h17,   % WR.perChar.Setting.swap1Xb
         Gui, perChar: Add, Edit,   center    vswap1Yb         x+3                w34  h17,   % WR.perChar.Setting.swap1Yb
-        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate_swap1b  x+3   yp    hp , Locate B
+        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate2_swap1b  x+3   yp    hp , Locate B
         Gui, perChar: Add, Checkbox, %  "vswap1AltWeapon Checked" WR.perChar.Setting.swap1AltWeapon "  x+3  yp+2"  , Swap Weapon for B?
 
         Gui, perChar: Font, Bold s9 cBlack, Arial
@@ -7406,11 +7408,11 @@ Return
         Gui, perChar: Font,
         Gui, perChar: Add, Edit,   center vswap2Xa xs+5 yp+20   w34  h17,   % WR.perChar.Setting.swap2Xa
         Gui, perChar: Add, Edit,   center vswap2Ya x+3 w34  hp,   % WR.perChar.Setting.swap2Ya
-        Gui, perChar: Add, Button, gWR_Update vWR_Btn_Locate_swap2a      x+3   yp    hp , Locate A
+        Gui, perChar: Add, Button, gWR_Update vWR_Btn_Locate2_swap2a      x+3   yp    hp , Locate A
         Gui, perChar: Add, Checkbox, % "vswap2Item Checked" WR.perChar.Setting.swap2Item " x+3  yp+2" , Use as Item Swap?
         Gui, perChar: Add, Edit, center vswap2Xb xs+5 y+5   w34  h17,   % WR.perChar.Setting.swap2Xb
         Gui, perChar: Add, Edit, center vswap2Yb x+3 w34  hp,   % WR.perChar.Setting.swap2Yb
-        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate_swap2b      x+3   yp    hp , Locate B
+        Gui, perChar: Add, Button,      gWR_Update vWR_Btn_Locate2_swap2b      x+3   yp    hp , Locate B
         Gui, perChar: Add, Checkbox, %  "vswap2AltWeapon Checked" WR.perChar.Setting.swap2AltWeapon "  x+3  yp+2"  , Swap Weapon for B?
 
 

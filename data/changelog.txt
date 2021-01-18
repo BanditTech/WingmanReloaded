@@ -1,3 +1,12 @@
+## Version .13.0006 - Alpha version - January/17/2020
+Bugfixes
+* Location selection for Wisdom, Portal and Grab Currency are fixed
+* Fix issue when restocking scrolls and there are none to grab
+* Fix League name issue for fresh install at start of new league
+* Check gui state when firing triggers to prevent misfire
+
+---
+
 ## Version .13.0005 - Alpha version - December/09/2020
 New Setting for Inventory Sorting
 * Allow dump to be enabled and still vendor unfiltered Items
