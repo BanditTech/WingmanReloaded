@@ -3187,7 +3187,7 @@ Return
         dif := (40 - Item.Prop.Stack_Size)
         If(Item.Prop.ItemBase != "Portal Scroll" && !(Item.Prop.ItemBase ~= "\w+"))
           dif := 40
-        Else If(Item.Prop.ItemBase != "Scroll of Wisdom" && (Item.Prop.ItemBase ~= "\w+"))
+        Else If(Item.Prop.ItemBase != "Portal Scroll" && (Item.Prop.ItemBase ~= "\w+"))
           dif := 0
         If (dif>10)
         {
