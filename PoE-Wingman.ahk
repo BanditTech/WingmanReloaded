@@ -4222,17 +4222,17 @@ Return
           RightClick(WR.perChar.Setting.swap1Xa, WR.perChar.Setting.swap1Ya)
         }
         RandomSleep(45,45)
-        If (AlternateGemOnSecondarySlot && !WR.perChar.Setting.swap1Item)
+        If (WR.perChar.Setting.swap1AltWeapon)
         {
           SendHotkey(hotkeyWeaponSwapKey)
-          RandomSleep(45,45)
+          RandomSleep(90,120)
         }
         LeftClick(WR.perChar.Setting.swap1Xb, WR.perChar.Setting.swap1Yb)
         RandomSleep(90,120)
-        If (AlternateGemOnSecondarySlot && !WR.perChar.Setting.swap1Item)
+        If (WR.perChar.Setting.swap1AltWeapon)
         {
           SendHotkey(hotkeyWeaponSwapKey)
-          RandomSleep(45,45)
+          RandomSleep(90,120)
         }
         LeftClick(WR.perChar.Setting.swap1Xa, WR.perChar.Setting.swap1Ya)
         RandomSleep(90,120)
@@ -4250,17 +4250,17 @@ Return
           RightClick(WR.perChar.Setting.swap2Xa, WR.perChar.Setting.swap2Ya)
         }
         RandomSleep(45,45)
-        If (AlternateGem2OnSecondarySlot && !WR.perChar.Setting.swap2Item)
+        If (WR.perChar.Setting.swap2AltWeapon)
         {
           SendHotkey(hotkeyWeaponSwapKey)
-          RandomSleep(45,45)
+          RandomSleep(90,120)
         }
         LeftClick(WR.perChar.Setting.swap2Xb, WR.perChar.Setting.swap2Yb)
         RandomSleep(90,120)
-        If (AlternateGem2OnSecondarySlot && !WR.perChar.Setting.swap2Item)
+        If (WR.perChar.Setting.swap2AltWeapon)
         {
           SendHotkey(hotkeyWeaponSwapKey)
-          RandomSleep(45,45)
+          RandomSleep(90,120)
         }
         LeftClick(WR.perChar.Setting.swap2Xa, WR.perChar.Setting.swap2Ya)
         RandomSleep(90,120)
