@@ -17175,10 +17175,10 @@ IsLinear(arr, i=0) {
     options  .= "`n" "TimeOut: " reqTimeout
     reqHeaders := []
 
-    reqHeaders.push("Connection: keep-alive")
-    reqHeaders.push("Cache-Control: max-age=0")
-    reqHeaders.push("Accept: */*")
-    reqHeaders.push("Cookie: POESESSID=" . PoESessionID)
+    reqHeaders.push("connection: keep-alive")
+    reqHeaders.push("cache-Control: max-age=0")
+    reqHeaders.push("accept: */*")
+    reqHeaders.push("cookie: "PoECookie)
     
     ; ShowToolTip("Getting price prediction... ")
     retCurl := true
@@ -17227,10 +17227,11 @@ IsLinear(arr, i=0) {
     options  .= "`n" "TimeOut: " reqTimeout
     reqHeaders := []
 
-    reqHeaders.push("Connection: keep-alive")
-    reqHeaders.push("Cache-Control: max-age=0")
-    reqHeaders.push("Accept: */*")
-    reqHeaders.push("Cookie: POESESSID=" . PoESessionID)
+    ; reqHeaders.push("Connection: keep-alive")
+    reqHeaders.push("cache-control: max-age=0")
+    reqHeaders.push("accept: */*")
+    reqHeaders.push("accept-encoding: gzip, deflate, br")
+    reqHeaders.push("cookie: "PoECookie)
     
     ; ShowToolTip("Getting price prediction... ")
     retCurl := true

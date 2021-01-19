@@ -1,3 +1,15 @@
+## Version .13.0007 - Alpha version - January/19/2020
+Bugfixes
+* Fix issue with gem swap not pressing weapon swap key
+* Fix issue with chaos recipe stash request
+
+Chaos Recipe now requires a full Cookie
+* It seems they are not satisfied with simply giving them the POESESSID
+* Copy and paste the entire contents of your cookie into the editbox
+* Save your configuration to apply the change
+
+---
+
 ## Version .13.0006 - Alpha version - January/17/2020
 Bugfixes
 * Location selection for Wisdom, Portal and Grab Currency are fixed

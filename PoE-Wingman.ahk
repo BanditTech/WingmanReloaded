@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .13.0006
+  Global VersionNumber := .13.0007
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -529,7 +529,7 @@
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
     
   ; Login POESESSID
-    Global PoESessionID := ""
+    Global PoECookie := ""
     Global AccountNameSTR := ""
   ; Globals For client.txt file
     Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
@@ -1494,9 +1494,9 @@
     Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 yp-1 , Refresh
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, Text, xs+5 y+10 , PoESessionID
+    Gui, Add, Text, xs+5 y+10 , PoE Cookie
     Gui, Font,Norm
-    Gui, Add, Edit, password vPoESessionID  x+5 yp-3  w240, %PoESessionID%
+    Gui, Add, Edit, password vPoECookie  x+5 yp-3  w240, %PoECookie%
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui,Add,GroupBox,Section xs y+10  w350 h55                                                     , Script Latency
@@ -5011,7 +5011,11 @@ Return
         IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
 
       ; Login Information
-      IniRead, PoESessionID, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID, %A_Space%
+      ; IniRead, PoECookie, %A_ScriptDir%\save\Account.ini, GGG, PoECookie, %A_Space%
+      FileRead, temp, %A_ScriptDir%\save\Cookie.json
+      PoECookie := JSON.Load(temp).Cookie
+      temp := ""
+
 
       ; GUI Position
       IniRead, WinGuiX, %A_ScriptDir%\save\Settings.ini, General, WinGuiX, 0
@@ -5549,7 +5553,7 @@ Return
       global
       Thread, NoTimers, True    ;Critical
 
-      IniWrite, %PoESessionID%, %A_ScriptDir%\save\Account.ini, GGG, PoESessionID
+      ; IniWrite, %PoECookie%, %A_ScriptDir%\save\Account.ini, GGG, PoECookie
       Settings("Flask","Save")
       Settings("Utility","Save")
       Settings("perChar","Save")
@@ -5627,6 +5631,12 @@ Return
       }
 
       Gui, Submit, NoHide
+
+      temp := {"Cookie":PoECookie}
+      t := JSON_Beautify(temp)
+      FileDelete, %A_ScriptDir%\save\Cookie.json
+      FileAppend, % t, %A_ScriptDir%\save\Cookie.json
+      t := temp := ""
 
       ;Bandit Extra options
       IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
