@@ -236,22 +236,7 @@
           If (This.Prop.RarityMagic && This.Prop.ItemBase ~= " of .+")
               This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
           ;Start Parse
-          If (This.Data.Blocks.FlavorText ~= "Map Device")
-          {
-            This.Prop.IsMap := True
-            This.Prop.ItemClass := "Maps"
-            ; Deal with Blighted Map
-            If (InStr(This.Prop.ItemBase, "Blighted"))
-            {
-              This.Prop.IsBlightedMap := True
-              Prop.SpecialType := "Blighted Map"
-            }
-            Else
-            {
-              This.Prop.SpecialType := "Map"
-            }
-          }
-          Else If (This.Prop.ItemBase ~= " Incubator$")
+          If (This.Prop.ItemBase ~= " Incubator$")
           {
             This.Prop.Incubator := True
             This.Prop.SpecialType := "Incubator"
@@ -501,6 +486,21 @@
               This.Prop.Item_Width := This.Prop.Item_Height := 1
             Else
               This.Prop.Item_Width := This.Prop.Item_Height := 2
+          }
+          Else If (This.Data.Blocks.FlavorText ~= "Map Device")
+          {
+            This.Prop.IsMap := True
+            This.Prop.ItemClass := "Maps"
+            ; Deal with Blighted Map
+            If (InStr(This.Prop.ItemBase, "Blighted"))
+            {
+              This.Prop.IsBlightedMap := True
+              Prop.SpecialType := "Blighted Map"
+            }
+            Else
+            {
+              This.Prop.SpecialType := "Map"
+            }
           }
         }
         ;End NamePlate Parser
