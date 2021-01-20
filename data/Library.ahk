@@ -5194,46 +5194,6 @@
     Else
       Return False
   }
-  CheckOHBold()
-  {
-    Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
-    If WinActive(GameStr)
-    {
-      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
-      {
-        ok.1.3 -= 1
-        ok.1.4 += 8
-
-        OHB := { "X" : ok.1.1
-          , "Y" : ok.1.2
-          , "rX" : ok.1.1 + ok.1.3
-          , "W" : ok.1.3
-          , "H" : ok.1.4
-          , "hpY" : ok.1.2 - (ok.1.4 // 2)
-          , "mY" : ok.1.2 + (ok.1.4 // 2)
-          , "esY" : ok.1.2 - 2
-          , "ebY" : ok.1.2 + 2 }
-        OHB["pX"] := { 1 : Round(ok.1.1 + (ok.1.3* 0.10))
-          , 2 : Round(ok.1.1 + (ok.1.3* 0.20))
-          , 3 : Round(ok.1.1 + (ok.1.3* 0.30))
-          , 4 : Round(ok.1.1 + (ok.1.3* 0.40))
-          , 5 : Round(ok.1.1 + (ok.1.3* 0.50))
-          , 6 : Round(ok.1.1 + (ok.1.3* 0.60))
-          , 7 : Round(ok.1.1 + (ok.1.3* 0.70))
-          , 8 : Round(ok.1.1 + (ok.1.3* 0.80))
-          , 9 : Round(ok.1.1 + (ok.1.3* 0.90))
-          , 10 : Round(ok.1.1 + ok.1.3) }
-        Return OHB.X + OHB.Y
-      }
-      Else
-      {
-        Ding(500,6,"OHB Not Found")
-        Return False
-      }
-    }
-    Else 
-      Return False
-  }
   ; ScanGlobe - Determine the percentage of Life, ES and Mana
   ScanGlobe(SS:=0)
   {
