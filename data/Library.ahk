@@ -251,6 +251,12 @@
               This.Prop.SpecialType := "Map"
             }
           }
+          If (This.Prop.ItemBase ~= "Invitation:" && This.Data.Blocks.FlavorText ~= "Map Device")
+          {
+            ; This.Prop.IsMap := True
+            This.Prop.ItemClass := "Maps"
+            This.Prop.SpecialType := "Invitation Map"
+          }
           Else If (This.Prop.ItemBase ~= " Incubator$")
           {
             This.Prop.Incubator := True
