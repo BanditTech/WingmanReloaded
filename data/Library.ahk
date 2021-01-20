@@ -739,6 +739,8 @@
         }
         If (This.Data.Blocks.FlavorText ~= "in the Sacred Grove")
           This.Prop.SpecialType := "Harvest Item"
+        If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
+          This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
 
         ;Get total count of affixes
         temp := 0
@@ -1995,7 +1997,7 @@
         This.GraphNinjaPrices()
       }
       MatchStashManagement(){
-        If (StashTabYesCurrency && This.Prop.RarityCurrency&&This.Prop.SpecialType="")
+        If (StashTabYesCurrency && This.Prop.RarityCurrency&&(This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
         {
           If StashTabYesCurrency > 1
             sendstash := -2

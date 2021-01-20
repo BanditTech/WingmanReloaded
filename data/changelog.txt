@@ -1,3 +1,11 @@
+## Version .13.0008 - Alpha version - January/19/2020
+Bugfixes
+* Fix for ritual type items
+* Currency ritual items will be allowed to stash
+* All ritual items will be blocked from vendor
+
+---
+
 ## Version .13.0007 - Alpha version - January/19/2020
 Bugfixes
 * Fix issue with gem swap not pressing weapon swap key
