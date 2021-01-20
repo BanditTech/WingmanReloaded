@@ -4299,7 +4299,7 @@ Return
       If YesClickPortal || ChickenFlag
       {
         Sleep, 75*Latency
-        SwiftClick(GameX + Round(GameW/2),GameY + Round(GameH/2.427))
+        LeftClick(GameX + Round(GameW/2),GameY + Round(GameH/2.427))
       }
       Else
         MouseMove, xx, yy, 0
