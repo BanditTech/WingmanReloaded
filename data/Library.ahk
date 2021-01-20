@@ -236,7 +236,7 @@
           If (This.Prop.RarityMagic && This.Prop.ItemBase ~= " of .+")
               This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
           ;Start Parse
-          If (This.Prop.ItemBase ~= " Map$")
+          If (This.Data.Blocks.FlavorText ~= "Map Device")
           {
             This.Prop.IsMap := True
             This.Prop.ItemClass := "Maps"
