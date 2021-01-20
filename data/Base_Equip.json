@@ -763,7 +763,7 @@
     { "name": "Regicide Mask", "reqs": { "Level": 52, "Dex": 58, "Int": 58 }, "stat": { "Energy Shield": 28, "Evasion Rating": 141 }, "meta": { "generic": "Armours", "itemclass": "Helmets", "assetname": "HelmetDexInt8", "W": 2, "H": 2 } },
     { "name": "Great Crown", "reqs": { "Level": 53, "Str": 59, "Int": 59 }, "stat": { "Armour": 143, "Energy Shield": 28 }, "meta": { "generic": "Armours", "itemclass": "Helmets", "assetname": "HelmetStrInt7", "W": 2, "H": 2 } },
     { "name": "Necromancer Circlet", "reqs": { "Level": 54, "Int": 112 }, "stat": { "Energy Shield": 52 }, "meta": { "generic": "Armours", "itemclass": "Helmets", "assetname": "HelmetInt8", "W": 2, "H": 2 } },
-    { "name": "Samite Helmet", "reqs": { "Level": 55, "Str": 114 }, "stat": { "Armour": 276 }, "meta": { "generic": "Armours", "itemclass": "Helmets", "assetname": "HelmetStr8", "W": 2, "H": 2 } },
+    { "name": "Samnite Helmet", "reqs": { "Level": 55, "Str": 114 }, "stat": { "Armour": 276 }, "meta": { "generic": "Armours", "itemclass": "Helmets", "assetname": "HelmetStr8", "W": 2, "H": 2 } },
     { "name": "Ursine Pelt", "reqs": { "Level": 55, "Dex": 114 }, "stat": { "Evasion Rating": 276 }, "meta": { "generic": "Armours", "itemclass": "Helmets", "assetname": "HelmetDex7", "W": 2, "H": 2 } },
     { "name": "Harlequin Mask", "reqs": { "Level": 57, "Dex": 64, "Int": 64 }, "stat": { "Energy Shield": 31, "Evasion Rating": 157 }, "meta": { "generic": "Armours", "itemclass": "Helmets", "assetname": "HelmetDexInt9", "W": 2, "H": 2 } },
     { "name": "Fluted Bascinet", "reqs": { "Level": 58, "Str": 64, "Dex": 64 }, "stat": { "Armour": 160, "Evasion Rating": 160 }, "meta": { "generic": "Armours", "itemclass": "Helmets", "assetname": "HelmetStrDex8", "W": 2, "H": 2 } },
