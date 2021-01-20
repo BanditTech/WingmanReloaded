@@ -1,3 +1,10 @@
+## Version .13.0009 - Alpha version - January/20/2020
+Bugfixes
+* Fix socket parse
+* Identified items will not stash for chaos recipe if UNID enabled
+
+---
+
 ## Version .13.0008 - Alpha version - January/19/2020
 Bugfixes
 * Fix for ritual type items
