@@ -1496,7 +1496,7 @@
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, Text, xs+5 y+10 , PoE Cookie
     Gui, Font,Norm
-    Gui, Add, Edit, password vPoECookie  x+5 yp-3  w240, %PoECookie%
+    Gui, Add, Edit, password vPoECookie  x+5 yp-3 r1 -wrap  w240, %PoECookie%
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui,Add,GroupBox,Section xs y+10  w350 h55                                                     , Script Latency
