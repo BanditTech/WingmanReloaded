@@ -5099,7 +5099,7 @@
         {
           If (A_TickCount - WarnedError > 30000 )
           {
-            MsgBox % PriceObj.error_msg
+            Notify(PriceObj.error_msg,"",0,,2)
             WarnedError := A_TickCount
           }
           return
