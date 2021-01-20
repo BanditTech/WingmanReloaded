@@ -3348,6 +3348,8 @@
         Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
         Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Harbour vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorHarbourStr gUpdateStringEdit , %VendorHarbourStr%??"%1080_FenceStr%"
         Gui, Strings: +Delimiter|
       Gui, Strings: Tab, Debuff
         Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
@@ -7022,7 +7024,8 @@
                 , "Overseer's Tower" :    [ "Overseer's Tower"    , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"   , "La Torre del Capataz"  , "Torre do Capataz"    , "堅守高塔"  , "감시탑에" ]
                 , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"     , "El Campamento del Puente", "Acampamento da Ponte"  , "橋墩營地"  , "다리 야영지에" ]
                 , "Oriath Docks" :      [ "Oriath Docks"      , "Les Docks d'Oriath"   , "Die Docks von Oriath"  , "Доки Ориата"       , "Las Dársenas de Oriath"  , "Docas de Oriath"     , "奧瑞亞港口"  , "오리아스 부두에" ]
-                , "Oriath" :        [ "Oriath"                                   , "Ориат"                                     , "奧瑞亞"    , "오리아스에" ] }
+                , "Oriath" :        [ "Oriath"                                   , "Ориат"                                     , "奧瑞亞"    , "오리아스에" ]
+                , "The Rogue Harbour" :        [ "The Rogue Harbour"] }
     Static LangString :=  { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"   , "German" : " : Ihr habt '"
                 , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
     If (cStr="Town")
