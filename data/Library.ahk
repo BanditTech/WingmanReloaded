@@ -548,7 +548,7 @@
           {
             This.Prop.Required_Int := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: "rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: ([\w- ]+)",RxMatch))
           {
             This.Prop.Sockets_Raw := RxMatch1
             This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
@@ -794,7 +794,8 @@
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
-        If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60 || (!This.Affix.Unidentified && ChaosRecipeEnableUnId))
+        If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60 || (!This.Affix.Unidentified && ChaosRecipeEnableUnId)
+        || (This.Prop.Jeweler))
           Return False
         If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
           Return False
