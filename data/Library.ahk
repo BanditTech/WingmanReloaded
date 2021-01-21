@@ -7022,16 +7022,16 @@
   CompareLocation(cStr:="")
   {
     Static Lang := ""
-    ;                             English / Thai         French         German           Russian             Spanish        Portuguese        Chinese      Korean
-    Static ClientTowns :=  { "Lioneye's Watch" :    [ "Lioneye's Watch"     , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"    , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"    , "獅眼守望"  , "라이온아이 초소에" ]
-                , "The Forest Encampment" : [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"     , "Лесной лагерь"     , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"  , "숲 야영지에" ]
-                , "The Sarn Encampment" :   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"  , "Лагерь Сарна"      , "El Campamento de Sarn"   , "Acampamento de Sarn"   , "薩恩營地"  , "사안 야영지에" ]
-                , "Highgate" :        [ "Highgate"        , "Hautevoie"        , "Hohenpforte"       , "Македы"        , "Atalaya"                       , "統治者之殿"  , "하이게이트에" ]
-                , "Overseer's Tower" :    [ "Overseer's Tower"    , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"   , "La Torre del Capataz"  , "Torre do Capataz"    , "堅守高塔"  , "감시탑에" ]
-                , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"     , "El Campamento del Puente", "Acampamento da Ponte"  , "橋墩營地"  , "다리 야영지에" ]
-                , "Oriath Docks" :      [ "Oriath Docks"      , "Les Docks d'Oriath"   , "Die Docks von Oriath"  , "Доки Ориата"       , "Las Dársenas de Oriath"  , "Docas de Oriath"     , "奧瑞亞港口"  , "오리아스 부두에" ]
-                , "Oriath" :        [ "Oriath"                                   , "Ориат"                                     , "奧瑞亞"    , "오리아스에" ]
-                , "The Rogue Harbour" :        [ "The Rogue Harbour"] }
+    ;                                                     English / Thai                French                 German                  Russian                     Spanish                   Portuguese               Chinese             Korean
+    Static ClientTowns :=  { "Lioneye's Watch" :    [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"    , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"       , "라이온아이 초소에" ]
+                        , "The Forest Encampment" : [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"       , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"       , "숲 야영지에" ]
+                        , "The Sarn Encampment" :   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"  , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"       , "사안 야영지에" ]
+                        , "Highgate" :              [ "Highgate"              , "Hautevoie"              , "Hohenpforte"         , "Македы"                , "Atalaya"                                             , "統治者之殿"     , "하이게이트에" ]
+                        , "Overseer's Tower" :      [ "Overseer's Tower"      , "La Tour du Superviseur","Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"       , "감시탑에" ]
+                        , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"       , "다리 야영지에" ]
+                        , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath", "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"     , "오리아스 부두에" ]
+                        , "Oriath" :                [ "Oriath"                                                                   , "Ориат"                                                                         , "奧瑞亞"         , "오리아스에" ]
+                        , "The Rogue Harbour" :     [ "The Rogue Harbour","ท่าเรือโจร","Le Port des Malfaiteurs", "Der Hafen der Abtrünnigen", "Разбойничья гавань", "El Puerto de los renegados","O Porto dos Renegados","도둑 항구에"] }
     Static LangString :=  { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"   , "German" : " : Ihr habt '"
                 , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
     If (cStr="Town")
