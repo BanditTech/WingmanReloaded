@@ -5104,6 +5104,8 @@
       }
       If !FoundMatch
       {
+        if (Item.Prop.Rarity_Digit <= 1)
+          return
         PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
         if (PriceObj.error)
         {
