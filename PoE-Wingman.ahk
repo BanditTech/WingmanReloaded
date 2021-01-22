@@ -2253,7 +2253,8 @@ Return
             SortGem.Push({"C":C,"R":R,"Q":Q})
             Continue
           }
-          If (Item.Prop.StashReturnVal && (!YesVendorDumpItems || (YesVendorDumpItems && Item.Prop.StashReturnVal != StashTabDump)))
+          If (Item.Prop.StashReturnVal && Item.Prop.StashReturnVal != StashTabDump)
+          || (Item.Prop.StashReturnVal && (!YesVendorDumpItems && Item.Prop.StashReturnVal = StashTabDump))
             Continue
           If ( Item.Prop.SpecialType="" || Item.Prop.SpecialType = "Heist Goods" )
           {
