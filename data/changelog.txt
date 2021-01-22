@@ -1,3 +1,14 @@
+## Version .13.0010 - Alpha version - January/21/2020
+Bugfixes
+* fix portal click on open for -2 click latency
+* add rogue harbour to towns and all translations
+* Add vendor to rogue harbour, and default 1080 sample
+* Add rule for Invitations to not vendor
+* fix to respect stash rules at vendor
+* Do not attempt to price normal/magic items
+
+---
+
 ## Version .13.0009 - Alpha version - January/20/2020
 Bugfixes
 * Fix socket parse
