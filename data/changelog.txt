@@ -6,6 +6,7 @@ Bugfixes
 * Add rule for Invitations to not vendor
 * fix to respect stash rules at vendor
 * Do not attempt to price normal/magic items
+* fix movement trigger with attack
 
 ---
 
