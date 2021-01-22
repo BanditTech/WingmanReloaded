@@ -3475,22 +3475,22 @@ Return
           If WR.func.Toggle.Flask
             Loop 5
               If (WR.Flask[A_Index].MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-                Trigger(WR.Flask[A_Index])
+                Trigger(WR.Flask[A_Index],true)
           If WR.func.Toggle.Utility
             Loop, 10
               If (WR.Utility[A_Index].Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility[A_Index].MainAttack)
-                Trigger(WR.Utility[A_Index])
+                Trigger(WR.Utility[A_Index],true)
         }
         If SecondaryAttackPressedActive
         {
           If WR.func.Toggle.Flask
             Loop 5
               If (WR.Flask[A_Index].SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-                Trigger(WR.Flask[A_Index])
+                Trigger(WR.Flask[A_Index],true)
           If WR.func.Toggle.Utility
             Loop, 10
               If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility[A_Index].SecondaryAttack)
-                Trigger(WR.Utility[A_Index])
+                Trigger(WR.Utility[A_Index],true)
         }
 
         If (WR.func.Toggle.Utility) ; Trigger Utilities
@@ -3695,7 +3695,7 @@ Return
       If (!recheck || (recheck && ConfirmMatchingTriggers(WR[type][v])))
       If (WR.cdExpires[type][v] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
       {
-        If (WR[type][v].Move)
+        If (WR[type][v].Move && !force)
         {
           If !GameActive
             Return
