@@ -1484,10 +1484,15 @@
       UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
     }
     FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
+    Try {
     LeagueIndex := JSON.Load(JSONtext)
+    } Catch e {
+      MsgBox, 262144, Error loading leagues, % e
+      LeagueIndex := [{"id":"Standard"}]
+    }
     textList= 
     For K, V in LeagueIndex
-      textList .= (!textList ? "" : "|") LeagueIndex[K]["id"]
+      textList .= (!textList ? "" : "|") V["id"]
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, Text, xs+5 y+10, League:
     Gui, Font,Norm
@@ -1886,13 +1891,15 @@
         Load_BarControl(0,"Initializing",1)
         For k, apiKey in apiList
         {
-          Load_BarControl(k/l*100,"Downloading " k " of " l " (" apiKey ")")
+          Load_BarControl(k/l*90,"Downloading " k " of " l " (" apiKey ")")
           Sleep, -1
           ScrapeNinjaData(apiKey)
         }
         JSONtext := JSON.Dump(Ninja,,2)
         FileDelete, %A_ScriptDir%\data\Ninja.json
         FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+        Load_BarControl(95,"Downloading Perfect Prices")
+        RefreshPoeWatchPerfect()
         IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
         LastDatabaseParseDate := Date_now
         Load_BarControl(100,"Database Updated",-1)
