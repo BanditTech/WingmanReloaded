@@ -8260,8 +8260,8 @@ Return
     }
 
     RefreshPoeWatchPerfect(){
-      UrlDownloadToFile, https://api.poe.watch/perfect?league=Heist, %A_ScriptDir%\data\PoE.Watch_PerfectUnique_orig.json
-      FileRead, JSONtext, %A_ScriptDir%\data\PoE.Watch_PerfectUnique_orig.json
+      UrlDownloadToFile, https://api.poe.watch/perfect?league=%selectedLeague%, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_orig.json
+      FileRead, JSONtext, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_orig.json
       WR.Data.Perfect := JSON.Load(JSONtext,,1)
       For ku, itemDB in WR.Data.Perfect
       {
