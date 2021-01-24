@@ -1,4 +1,4 @@
-## Version .13.0010 - Alpha version - January/24/2020
+## Version .13.0011 - Alpha version - January/24/2020
 Full implimentation
 * Perfect prices are now updated with ninja
 * Unique Affinity settings contains the option to filter based on stats
