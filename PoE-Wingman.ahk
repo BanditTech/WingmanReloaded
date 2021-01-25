@@ -94,7 +94,7 @@
   WR.loc.pixel := {}, WR.loc.area := {}
   for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy"
   , "Transmutation", "Augmentation", "Alteration", "Vaal", "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash"
-  , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "OnRitual" "DivTrade", "DivItem", "Gui"]
+  , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "OnRitual", "DivTrade", "DivItem", "Gui"]
     WR.loc.pixel[v] := {"X":0,"Y":0}
   for k, v in []
     WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
