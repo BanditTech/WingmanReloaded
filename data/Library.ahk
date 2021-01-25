@@ -6269,6 +6269,56 @@
       }
     }
   }
+  Class Overlay {
+    __New(winName,InsertText,positionObj,backgroundColor:="aa000000",textColor:="bbffffff",setFont:="Arial"){
+      This.pToken := Gdip_Startup()
+      If !This.pToken{
+        MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
+        return
+      }
+      OnExit(ObjBindMethod(This, "close"))
+      This.text := InsertText
+      This.label := winName
+      This.positions := positionObj
+      Gui,% This.label ": -Caption +E0x80000 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs"
+      Gui,% This.label ": Show", NA
+      This.hWND := WinExist()
+      This.color := backgroundColor
+      This.font := setFont
+      This.make()
+      This.setText()
+      This.finalize()
+    }
+    make(){
+      This.hbm := CreateDIBSection(This.positions.W, This.positions.H)
+      This.hdc := CreateCompatibleDC()
+      This.obm := SelectObject(This.hdc, This.hbm)
+      This.G := Gdip_GraphicsFromHDC(This.hdc)
+      Gdip_SetSmoothingMode(This.G, 4)
+      This.pBrush := Gdip_BrushCreateSolid("0x"This.color)
+      Gdip_FillRoundedRectangle(This.G, This.pBrush, 0, 0, This.positions.W, This.positions.H, 20)
+      Gdip_DeleteBrush(This.pBrush)
+    }
+    setText(){
+      If !Gdip_FontFamilyCreate(This.font)
+      {
+        MsgBox, 48, Font error!, The font you have specified does not exist on the system
+        Return "Error Loading Font"
+      }
+      Options = x10p y30p w80p Centre cbbffffff r1 s20
+      Gdip_TextToGraphics(This.G, This.text, Options, This.font, This.positions.W, This.positions.H)
+    }
+    finalize(){
+      UpdateLayeredWindow(This.hWND, This.hdc, This.positions.X, This.positions.Y, This.positions.W, This.positions.H)
+      SelectObject(This.hdc, This.obm)
+      DeleteObject(This.hbm)
+      DeleteDC(This.hdc)
+      Gdip_DeleteGraphics(This.G)
+    }
+    close(){
+      Gdip_Shutdown(This.pToken)
+    }
+  }
   PromptForObject(){
     Global
     Gui, ArrayPrint: New
