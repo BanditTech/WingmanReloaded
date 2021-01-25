@@ -6262,8 +6262,13 @@
   }
   ScanRitual(mode){
     Global InvGrid
+    Static gridpanels := ""
     Static pricepoint := 10
     If (mode = "make") {
+      If IsObject(gridpanels)
+      {
+        ScanRitual("break")
+      }
       gridpanels := {}
       For R, x in InvGrid.Ritual.X
       {
@@ -6283,6 +6288,7 @@
       {
         v.close()
       }
+      gridpanels := ""
     }
     Return
   }
