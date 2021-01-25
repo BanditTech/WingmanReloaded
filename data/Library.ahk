@@ -5263,9 +5263,10 @@
     If checkActiveType()
     {
       ; Build array framework
-      InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{}}
+      InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{},"Ritual":{}}
               ,"SlotSpacing": 2
               ,"SlotRadius": 25
+              ,"Ritual":{"X":{},"Y":{}}
               ,"Stash":{"X":{},"Y":{}}
               ,"StashQuad":{"X":{},"Y":{}}
               ,"Inventory":{"X":{},"Y":{}}
@@ -6261,8 +6262,8 @@
       InvGrid.Ritual.Y.Push(Round(PointY))
     }
   }
-  ScanRitual(mode){
-    Global InvGrid
+  ScanRitual(mode:=""){
+    Global InvGrid, RunningToggle, BlackList
     Static gridpanels := ""
     Static pricepoint := 10
     If (mode = "make") {
@@ -6270,12 +6271,25 @@
       {
         ScanRitual("break")
       }
-      gridpanels := {}
+      ; MsgBox, Inside
+      ; Add blacklist
+      gridpanels := {}, BlackList := {}
       For R, x in InvGrid.Ritual.X
       {
+        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+          Break
         For C, y in InvGrid.Ritual.Y
         {
+          If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+            Break
+          If BlackList[C][R]
+            Continue
+          ; MsgBox, Inside Loop
           ClipItem(x,y)
+          addToBlacklist(C, R)
+          If !(Item.Prop.ItemBase ~= "\w")
+            Continue
+          
           If Item.Prop.Stack_Size >= 2
             Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
           displayText := Item.Prop.ChaosValue?Item.Prop.ChaosValue:Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0")
@@ -6284,6 +6298,7 @@
           gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, "aa" ColorPercent(percentageScore))
         }
       }
+      ScanRitual("Begin to scan for panel closing")
     } Else If (mode = "break") {
       for k, v in gridpanels
       {
@@ -6291,8 +6306,10 @@
       }
       gridpanels := ""
     } Else {
-      If !OnRitual && !OnInventory
+      If (!OnRitual && !OnInventory)
         ScanRitual("break")
+      Else
+        SetTimer,% A_ThisFunc, 100
     }
     Return
   }

@@ -2074,7 +2074,6 @@ Return
         DivRoutine()
       Else If (OnRitual && YesRitual){
         ScanRitual("make")
-        SetTimer,% ScanRitual, 100
       }
       Else If (OnStash && YesStash)
         StashRoutine()
