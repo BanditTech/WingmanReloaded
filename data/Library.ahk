@@ -6273,13 +6273,13 @@
       }
       ; MsgBox, Inside
       ; Add blacklist
-      gridpanels := {}, BlackList := []
+      gridpanels := {}, BlackList := {}
       ScanRitual("Begin to scan for panel closing")
-      For R, x in InvGrid.Ritual.X
+      For C, x in InvGrid.Ritual.X
       {
         If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
           Break
-        For C, y in InvGrid.Ritual.Y
+        For R, y in InvGrid.Ritual.Y
         {
           If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
             Break
