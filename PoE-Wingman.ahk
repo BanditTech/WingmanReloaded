@@ -1375,6 +1375,8 @@
     CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnLocker hwndMainMenuIDOnLocker, % "League Stash Open"
     CtlColors.Attach(MainMenuIDOnLocker, "", "Green")
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnRitual hwndMainMenuIDOnRitual, % "Ritual Open"
+    CtlColors.Attach(MainMenuIDOnRitual, "", "Green")
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h90 ,         Gamestate Calibration
@@ -8067,7 +8069,8 @@ Return
     Return
 
     mainmenuGameLogicState(){
-      Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
+      Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1
+      , OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1, OldOnRitual:=-1
       Local NewOHB
       If (OnChar != OldOnChar)
       {
@@ -8172,6 +8175,14 @@ Return
           CtlColors.Change(MainMenuIDOnLocker, "Red", "")
         Else
           CtlColors.Change(MainMenuIDOnLocker, "", "Green")
+      }
+      If (OnRitual != OldOnRitual)
+      {
+        OldOnRitual := OnRitual
+        If (OnRitual)
+          CtlColors.Change(MainMenuIDOnRitual, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnRitual, "", "Green")
       }
       Return
 
