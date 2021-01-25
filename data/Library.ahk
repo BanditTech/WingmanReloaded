@@ -6136,6 +6136,7 @@
     Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
     , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
     InvGrid.SlotRadius := (Cwidth//2 + Rwidth//2) // 2
+    InvGrid.SlotSize := (Cwidth + Rwidth) // 2
     Loop, %Cnum%
     {
       If (A_Index = 1) 
@@ -6253,6 +6254,19 @@
       Else
         PointY+=Rwidth+InvGrid.SlotSpacing
       InvGrid.Ritual.Y.Push(Round(PointY))
+    }
+  }
+  ScanRitual(){
+    Global InvGrid
+    For R, x in InvGrid.Ritual.X
+    {
+      For C, y in InvGrid.Ritual.Y
+      {
+        ClipItem(x,y)
+        If Item.Prop.Stack_Size >= 2
+          Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
+        ; Put Overlay Function Here
+      }
     }
   }
   PromptForObject(){
