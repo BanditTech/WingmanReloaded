@@ -2764,6 +2764,11 @@
         ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
         PPx:=Scale_PositionFromDPI(PPx), PPy:=Scale_PositionFromDPI(PPy)
         Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
+
+        Gui, Inventory: Add, Text, xs+5 y+11 , Price Ritual Rares?
+        Gui, Inventory: Add, DropDownList, gUpdateExtra vYesRitualPrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
+        GuiControl,Inventory: ChooseString, YesRitualPrice, %YesRitualPrice%
+
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
         AutomationList := "Search Stash|Search Vendor"
@@ -5093,7 +5098,7 @@
     Static ItemList := []
     Static WarnedError := 0
     FoundMatch := False
-    If (Item.Prop.Rarity_Digit = 3 && (Item.Prop.SpecialType = "" || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && YesPredictivePrice != "Off")
+    If (Item.Prop.Rarity_Digit = 3 && (Item.Prop.SpecialType = "" || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
     {
       For k, obj in ItemList
       {
@@ -5119,7 +5124,13 @@
           return
         }
         PriceObj.Clip_Contents := Clip_Contents
-        If (YesPredictivePrice = "Low")
+        If (OnRitual && YesRitualPrice = "Low")
+          Price := SelectedPrice := PriceObj.min
+        Else If (OnRitual && YesRitualPrice = "Avg")
+          Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
+        Else If (OnRitual && YesRitualPrice = "High")
+          Price := SelectedPrice := PriceObj.max
+        Else If (YesPredictivePrice = "Low")
           Price := SelectedPrice := PriceObj.min
         Else If (YesPredictivePrice = "Avg")
           Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
