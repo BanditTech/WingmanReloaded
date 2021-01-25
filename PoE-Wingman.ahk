@@ -1748,6 +1748,7 @@
     Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn  x+8  yp      w110,   OnDelveChart
     Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn  xs y+3      w110,   OnMetamorph
     Gui,SampleInd: Add, Button, gupdateOnLocker vUpdateOnLockerBtn  x+8  yp      w110,   OnLocker
+    Gui,SampleInd: Add, Button, gupdateOnRitual vUpdateOnRitualBtn  xs y+3      w110,   OnRitual
 
 
     Gui,SampleInd: Font, Bold s9 cBlack, Arial
@@ -2072,7 +2073,7 @@ Return
         DivRoutine()
       Else If (OnRitual && YesRitual){
         ScanRitual("make")
-        SetTimer, ScanRitual, 100
+        SetTimer,% ScanRitual, 100
       }
       Else If (OnStash && YesStash)
         StashRoutine()
