@@ -6258,6 +6258,7 @@
   }
   ScanRitual(){
     Global InvGrid
+    gridpanels := {}
     For R, x in InvGrid.Ritual.X
     {
       For C, y in InvGrid.Ritual.Y
@@ -6265,9 +6266,22 @@
         ClipItem(x,y)
         If Item.Prop.Stack_Size >= 2
           Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
-        ; Put Overlay Function Here
+        ; Finalize with colors based on value
+        gridpanels[R C] := new Overlay("panel"R C, Item.Prop.ChaosValue
+                                      , {"X":(x-InvGrid.SlotRadius)
+                                      ,"Y":(y-InvGrid.SlotRadius)
+                                      ,"W":(Item.Prop.Item_Width * InvGrid.SlotSize)
+                                      ,"H":(Item.Prop.Item_Height * InvGrid.SlotSize)})
       }
     }
+    Return
+
+    cleanupRitualPanels:
+      for k, v in gridpanels
+      {
+        v.close()
+      }
+    Return
   }
   Class Overlay {
     __New(winName,InsertText,positionObj,backgroundColor:="aa000000",textColor:="bbffffff",setFont:="Arial"){
