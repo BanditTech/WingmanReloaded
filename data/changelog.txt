@@ -1,6 +1,6 @@
 ## Version .13.0011 - Alpha version - January/24/2020
 Full implimentation
-* Perfect prices are now updated with ninja
+* Perfect prices from PoE.Watch are updated alongside Poe.ninja DB update
 * Unique Affinity settings contains the option to filter based on stats
 
 ## Version .13.0010 - Alpha version - January/21/2020
