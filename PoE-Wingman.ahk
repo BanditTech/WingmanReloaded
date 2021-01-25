@@ -7863,9 +7863,15 @@ Return
         addNum := A_Index - 1
         addR := R + addNum
         addC := C + 1
+        If !IsObject(BlackList[C])
+          BlackList[C] := []
         BlackList[C][addR] := True
         If Item.Prop.Item_Width = 2
+        {
+          If !IsObject(BlackList[addC])
+            BlackList[addC] := []
           BlackList[addC][addR] := True
+        }
       }
     }
 

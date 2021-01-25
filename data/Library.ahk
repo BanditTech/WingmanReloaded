@@ -6273,7 +6273,8 @@
       }
       ; MsgBox, Inside
       ; Add blacklist
-      gridpanels := {}, BlackList := {}
+      gridpanels := {}, BlackList := []
+      ScanRitual("Begin to scan for panel closing")
       For R, x in InvGrid.Ritual.X
       {
         If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
@@ -6288,17 +6289,21 @@
           ClipItem(x,y)
           addToBlacklist(C, R)
           If !(Item.Prop.ItemBase ~= "\w")
+          {
+            Empty += 1
+            If Empty > 5
+              Return
             Continue
+          }
           
           If Item.Prop.Stack_Size >= 2
             Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
           displayText := Item.Prop.ChaosValue?Item.Prop.ChaosValue:Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0")
           percentageScore := Item.Prop.ChaosValue?((Item.Prop.ChaosValue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
           posObj := {"X":x-InvGrid.SlotRadius,"Y":y-InvGrid.SlotRadius,"W":Item.Prop.Item_Width * InvGrid.SlotSize,"H":Item.Prop.Item_Height * InvGrid.SlotSize}
-          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, "aa" ColorPercent(percentageScore))
+          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, "aa" LTrim(ColorPercent(percentageScore),"0x"))
         }
       }
-      ScanRitual("Begin to scan for panel closing")
     } Else If (mode = "break") {
       for k, v in gridpanels
       {
