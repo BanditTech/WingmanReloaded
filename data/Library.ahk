@@ -17611,7 +17611,11 @@ IsLinear(arr, i=0) {
   }
 ;--------------------------------------------------------------------------------
 
-
+ColorPercent(percent){
+  Static ColorRange := ColorRange("0xff0000","0x00ff00")
+  Static ColorCount := ColorRange.Length()
+  Return ColorRange[Round(ColorCount * ((percent>100?100:percent<1?1:percent) / 100))]
+}
 
 ;-------------------------------------------------------------------------------
 ColorRange(c1,c2){ ; Create a list of colors between two https://www.autohotkey.com/boards/viewtopic.php?t=29205
