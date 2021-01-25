@@ -17612,6 +17612,50 @@ IsLinear(arr, i=0) {
 ;--------------------------------------------------------------------------------
 
 
+
+;-------------------------------------------------------------------------------
+ColorRange(c1,c2){ ; Create a list of colors between two https://www.autohotkey.com/boards/viewtopic.php?t=29205
+  Color1 := new Color(c1)
+  Color2 := new Color(c2)
+  ColorList := []
+
+  ;-----------------------------------
+  ; color distance for each color individually
+  ; this distance may be positive or negative
+  ;-----------------------------------
+  Distance_R := Color2.R - Color1.R
+  Distance_G := Color2.G - Color1.G
+  Distance_B := Color2.B - Color1.B
+
+
+  ;-----------------------------------
+  ; MCD is maximum color distance
+  ; MCD deals only with absolute values
+  ;-----------------------------------
+  MCD := max(Abs(Distance_R), Abs(Distance_G), Abs(Distance_B))
+
+  ;-----------------------------------
+  ; list all gradient colors between Color1 and Color2
+  ;-----------------------------------
+  ColorList.Push(Color1.RGB) ; start at Color1
+  Loop, % MCD - 1
+      ColorList.Push("0x" . Format("{:02X}", Color1.R + A_Index / MCD * Distance_R) . Format("{:02X}", Color1.G + A_Index / MCD * Distance_G) . Format("{:02X}", Color1.B + A_Index / MCD * Distance_B))
+  ColorList.Push(Color2.RGB) ; stop at Color2
+  Return ColorList
+;-------------------------------------------------------------------------------
+}
+
+
+;-------------------------------------------------------------------------------
+max(Max, n*) { ; return the greatest of all values
+;-------------------------------------------------------------------------------
+    For each, Value in n
+        If (Value > Max)
+            Max := Value
+
+    Return, Max
+}
+
 ;===============================================================================
 class Color { ; from AHK help file
 ;===============================================================================
