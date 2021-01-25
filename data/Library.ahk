@@ -2713,6 +2713,7 @@
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesHeistLocker        Checked%YesHeistLocker%        y+8    , Deposit C/B at Heist Locker?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesRitual             Checked%YesRitual%             y+8    , Scan Ritual?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid            Checked%YesMapUnid%            y+8    , Leave Map Un-ID?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
@@ -6289,6 +6290,9 @@
         v.close()
       }
       gridpanels := ""
+    } Else {
+      If !OnRitual && !OnInventory
+        ScanRitual("break")
     }
     Return
   }

@@ -661,6 +661,7 @@
     Global YesHeistLocker := 1
     Global YesIdentify := 1
     Global YesDiv := 1
+    Global YesRitual := 1
     Global YesMapUnid := 1
     Global YesCLFIgnoreImplicit := 0
     Global YesStashKeys := 1
@@ -2069,6 +2070,10 @@ Return
       GuiStatus()
       If (OnDiv && YesDiv)
         DivRoutine()
+      Else If (OnRitual && YesRitual){
+        ScanRitual("make")
+        SetTimer, ScanRitual, 100
+      }
       Else If (OnStash && YesStash)
         StashRoutine()
       Else If (OnVendor && YesVendor)
@@ -5054,6 +5059,7 @@ Return
       IniRead, YesHeistLocker, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker, 1
       IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
+      IniRead, YesRitual, %A_ScriptDir%\save\Settings.ini, General, YesRitual, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
       IniRead, YesCLFIgnoreImplicit, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit, 0 
       IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
@@ -5670,6 +5676,7 @@ Return
       IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
+      IniWrite, %YesRitual%, %A_ScriptDir%\save\Settings.ini, General, YesRitual
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
       IniWrite, %YesCLFIgnoreImplicit%, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
@@ -7999,6 +8006,7 @@ Return
       IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
+      IniWrite, %YesRitual%, %A_ScriptDir%\save\Settings.ini, General, YesRitual
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
       IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
