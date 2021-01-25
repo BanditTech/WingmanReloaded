@@ -681,6 +681,7 @@
     Global OnDelveChart := False
     Global OnMetamorph := False
     Global OnLocker := False
+    Global OnRitual := False
     Global RescaleRan := False
     Global ToggleExist := False
     Global YesOHB := True

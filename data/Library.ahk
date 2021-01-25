@@ -6358,7 +6358,10 @@
     PrintObj:
       Gui, Submit, NoHide
       Gui, ArrayPrint: Destroy
-      Array_Gui(%SubmitObjectName%)
+      If IsObject(SubmitObjectName) 
+        Array_Gui(%SubmitObjectName%)
+      Else
+      MsgBox % %SubmitObjectName%
     Return
   }
   ; Compare two hex colors as their R G B elements, puts all the below together
