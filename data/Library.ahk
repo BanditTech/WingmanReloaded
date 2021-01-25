@@ -6275,19 +6275,19 @@
       ; Add blacklist
       gridpanels := {}, BlackList := {}
       ScanRitual("Begin to scan for panel closing")
-      For C, x in InvGrid.Ritual.X
+      For R, x in InvGrid.Ritual.X
       {
         If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
           Break
-        For R, y in InvGrid.Ritual.Y
+        For C, y in InvGrid.Ritual.Y
         {
           If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
             Break
-          If BlackList[C][R]
+          If BlackList[R][C]
             Continue
           ; MsgBox, Inside Loop
           ClipItem(x,y)
-          addToBlacklist(C, R)
+          addToBlacklist(R, C)
           If !(Item.Prop.ItemBase ~= "\w")
           {
             Empty += 1
