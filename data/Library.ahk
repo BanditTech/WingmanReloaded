@@ -6280,7 +6280,7 @@
       This.text := InsertText
       This.label := winName
       This.positions := positionObj
-      Gui,% This.label ": -Caption +E0x80000 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs"
+      Gui,% This.label ": -Caption +E0x80020 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs"
       Gui,% This.label ": Show", NA
       This.hWND := WinExist()
       This.color := backgroundColor
@@ -6317,6 +6317,7 @@
     }
     close(){
       Gdip_Shutdown(This.pToken)
+      Gui,% This.label ": Destroy" 
     }
   }
   PromptForObject(){
