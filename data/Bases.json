@@ -21210,6 +21210,903 @@
     ]
   },
   {
+    "domain": "undefined",
+    "drop_level": 75,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Simulacrum",
+    "tags": [
+      "affliction_splinter",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Chayula's Breachstone",
+    "tags": [
+      "breachstone",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Chayula's Charged Breachstone",
+    "tags": [
+      "breachstone2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Chayula's Enriched Breachstone",
+    "tags": [
+      "breachstone3",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Chayula's Pure Breachstone",
+    "tags": [
+      "breachstone4",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Tul's Breachstone",
+    "tags": [
+      "breachstone",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Tul's Charged Breachstone",
+    "tags": [
+      "breachstone2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Tul's Enriched Breachstone",
+    "tags": [
+      "breachstone3",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Tul's Pure Breachstone",
+    "tags": [
+      "breachstone4",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Xoph's Breachstone",
+    "tags": [
+      "breachstone",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Xoph's Charged Breachstone",
+    "tags": [
+      "breachstone2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Xoph's Enriched Breachstone",
+    "tags": [
+      "breachstone3",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Xoph's Pure Breachstone",
+    "tags": [
+      "breachstone4",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 72,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Esh's Breachstone",
+    "tags": [
+      "breachstone",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 72,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Esh's Charged Breachstone",
+    "tags": [
+      "breachstone2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 72,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Esh's Enriched Breachstone",
+    "tags": [
+      "breachstone3",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 72,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Esh's Pure Breachstone",
+    "tags": [
+      "breachstone4",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 76,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Uul-Netol's Breachstone",
+    "tags": [
+      "breachstone",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 76,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Uul-Netol's Charged Breachstone",
+    "tags": [
+      "breachstone2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 76,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Uul-Netol's Enriched Breachstone",
+    "tags": [
+      "breachstone3",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 76,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Uul-Netol's Pure Breachstone",
+    "tags": [
+      "breachstone4",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of Enslavement",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of Eradication",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of Constriction",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of Purification",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Key to Decay",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Divine Vessel",
+    "tags": [
+      "high_level_map",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 75,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Timeless Eternal Emblem",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 75,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Timeless Karui Emblem",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 75,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Timeless Maraketh Emblem",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 75,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Timeless Templar Emblem",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 75,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Timeless Vaal Emblem",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Offering to the Goddess",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Dedication to the Goddess",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gift to the Goddess",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Tribute to the Goddess",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Eber's Key",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Yriel's Key",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Inya's Key",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Volkuur's Key",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "item_class": "MapFragment",
+    "name": "Pale Court Set",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 84,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of the Phoenix",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 84,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of the Minotaur",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 84,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of the Chimera",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 84,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of the Hydra",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "item_class": "MapFragment",
+    "name": "Key to the Crucible",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of Terror",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of Emptiness",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of Shape",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of Knowledge",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Maddening Object",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacrifice at Midnight",
+    "tags": [
+      "atziri1",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 36,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacrifice at Dawn",
+    "tags": [
+      "atziri1",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 36,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacrifice at Noon",
+    "tags": [
+      "atziri1",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 36,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacrifice at Dusk",
+    "tags": [
+      "atziri1",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Mortal Rage",
+    "tags": [
+      "atziri2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Mortal Hope",
+    "tags": [
+      "atziri2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Mortal Ignorance",
+    "tags": [
+      "atziri2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Mortal Grief",
+    "tags": [
+      "atziri2",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "item_class": "MapFragment",
+    "name": "Sacrifice Set",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "item_class": "MapFragment",
+    "name": "Mortal Set",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 68,
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Divine Vessel",
+    "tags": [
+      "high_level_map",
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Eber's Key",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Yriel's Key",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Inya's Key",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Volkuur's Key",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 84,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of the Phoenix",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 84,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of the Minotaur",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 84,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of the Chimera",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 84,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fragment of the Hydra",
+    "tags": [
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 60,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacrifice at Midnight",
+    "tags": [
+      "atziri1",
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 36,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacrifice at Dawn",
+    "tags": [
+      "atziri1",
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 36,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacrifice at Noon",
+    "tags": [
+      "atziri1",
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 36,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacrifice at Dusk",
+    "tags": [
+      "atziri1",
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Mortal Rage",
+    "tags": [
+      "atziri2",
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Mortal Hope",
+    "tags": [
+      "atziri2",
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Mortal Ignorance",
+    "tags": [
+      "atziri2",
+      "default"
+    ]
+  },
+  {
+    "domain": "map_device",
+    "drop_level": 70,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Mortal Grief",
+    "tags": [
+      "atziri2",
+      "default"
+    ]
+  },
+  {
     "domain": "area",
     "drop_level": 77,
     "inventory_height": 1,
@@ -29064,6 +29961,726 @@
     "tags": [
       "not_for_sale",
       "ring",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Bestiary Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Bestiary Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Bestiary Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Bestiary Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Farric Lure",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Saqawine Lure",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Fenumal Lure",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Craicic Lure",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Breach Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Breach Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Breach Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Breach Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Divination Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Divination Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Divination Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Divination Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Elder Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Elder Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Elder Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Elder Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Harbinger Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Harbinger Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Harbinger Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Harbinger Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Legion Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Legion Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Legion Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Legion Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Cartography Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Cartography Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Cartography Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Cartography Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Metamorph Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Metamorph Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Metamorph Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Metamorph Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Perandus Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Perandus Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Perandus Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Perandus Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Shaper Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Shaper Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Shaper Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Shaper Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Ambush Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Ambush Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Ambush Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Ambush Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Sulphite Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Sulphite Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Sulphite Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Sulphite Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Torment Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Torment Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Torment Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Torment Scarab",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Reliquary Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Reliquary Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Reliquary Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Reliquary Scarab",
+    "tags": [
+      "jewelled_scarab",
       "default"
     ]
   },
