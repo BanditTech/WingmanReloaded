@@ -6256,35 +6256,35 @@
       InvGrid.Ritual.Y.Push(Round(PointY))
     }
   }
-  ScanRitual(){
+  ScanRitual(mode){
     Global InvGrid
     Static pricepoint := 10
-    gridpanels := {}
-    For R, x in InvGrid.Ritual.X
-    {
-      For C, y in InvGrid.Ritual.Y
+    If (mode = "make") {
+      gridpanels := {}
+      For R, x in InvGrid.Ritual.X
       {
-        ClipItem(x,y)
-        If Item.Prop.Stack_Size >= 2
-          Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
-        displayText := Item.Prop.ChaosValue?Item.Prop.ChaosValue:Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0")
-        percentageScore := Item.Prop.ChaosValue?(Item.Prop.ChaosValue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
-        gridpanels[R C] := new Overlay("panel"R C
-                                      , displayText
-                                      , {"X":(x-InvGrid.SlotRadius)
-                                        ,"Y":(y-InvGrid.SlotRadius)
-                                        ,"W":(Item.Prop.Item_Width * InvGrid.SlotSize)
-                                        ,"H":(Item.Prop.Item_Height * InvGrid.SlotSize)}
-                                      , "aa" ColorPercent(percentageScore)
+        For C, y in InvGrid.Ritual.Y
+        {
+          ClipItem(x,y)
+          If Item.Prop.Stack_Size >= 2
+            Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
+          displayText := Item.Prop.ChaosValue?Item.Prop.ChaosValue:Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0")
+          percentageScore := Item.Prop.ChaosValue?(Item.Prop.ChaosValue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
+          gridpanels[R C] := new Overlay("panel"R C
+                                        , displayText
+                                        , {"X":(x-InvGrid.SlotRadius)
+                                          ,"Y":(y-InvGrid.SlotRadius)
+                                          ,"W":(Item.Prop.Item_Width * InvGrid.SlotSize)
+                                          ,"H":(Item.Prop.Item_Height * InvGrid.SlotSize)}
+                                        , "aa" ColorPercent(percentageScore)
+        }
       }
-    }
-    Return
-
-    cleanupRitualPanels:
+    } Else If (mode = "break") {
       for k, v in gridpanels
       {
         v.close()
       }
+    }
     Return
   }
   Class Overlay {
