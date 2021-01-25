@@ -5362,6 +5362,11 @@
           InvGrid.Corners.VendorOff.Y1:=GameY + Round(GameH/(1080/518))
           InvGrid.Corners.VendorOff.X2:=GameX + Round(GameW/(1920/943))
           InvGrid.Corners.VendorOff.Y2:=GameY + Round(GameH/(1080/783))
+          ; Area for Ritual Items
+          InvGrid.Corners.Ritual.X1:=GameX + Round(GameW/(1920/308))
+          InvGrid.Corners.Ritual.Y1:=GameY + Round(GameH/(1080/268))
+          InvGrid.Corners.Ritual.X2:=GameX + Round(GameW/(1920/938))
+          InvGrid.Corners.Ritual.Y2:=GameY + Round(GameH/(1080/792))
 
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
@@ -6224,6 +6229,30 @@
       Else
         PointY+=Rwidth+InvGrid.SlotSpacing
       InvGrid.VendorOff.Y.Push(Round(PointY))
+    }
+    ; Calculate space for the Vendor Offer grid
+    totalX:=InvGrid.Corners.Ritual.X2 - InvGrid.Corners.Ritual.X1
+    , totalY:=InvGrid.Corners.Ritual.Y2 - InvGrid.Corners.Ritual.Y1
+    ; Fill in array with grid locations for 12x10 Offer Area
+    Cnum:=12
+    Rnum:=10
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Ritual.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.Ritual.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.Ritual.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.Ritual.Y.Push(Round(PointY))
     }
   }
   PromptForObject(){
