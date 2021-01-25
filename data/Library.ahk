@@ -4855,6 +4855,7 @@
     POnDelveChart := ScreenShot_GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
     POnMetamorph := ScreenShot_GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
     POnLocker := ScreenShot_GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
+    POnRitual := ScreenShot_GetColor(WR.loc.pixel.OnRitual.X,WR.loc.pixel.OnRitual.Y), OnRitual := (POnRitual=varOnRitual?True:False)
     If OnMines
     POnDetonate := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
     Else POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
@@ -5437,6 +5438,9 @@
         ;Status Check OnLocker
         WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
         WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        ;Status Check OnRitual
+        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (1920 / 610))
+        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1080 / 107))
         ;Divination Y locations
         WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
         WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))

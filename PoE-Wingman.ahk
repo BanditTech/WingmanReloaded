@@ -94,7 +94,7 @@
   WR.loc.pixel := {}, WR.loc.area := {}
   for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy"
   , "Transmutation", "Augmentation", "Alteration", "Vaal", "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash"
-  , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "DivTrade", "DivItem", "Gui"]
+  , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "OnRitual" "DivTrade", "DivItem", "Gui"]
     WR.loc.pixel[v] := {"X":0,"Y":0}
   for k, v in []
     WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
@@ -933,6 +933,7 @@
     global varOnDelveChart:=0xB58C4D
     global varOnMetamorph:=0xE06718
     global varOnLocker:=0xE97724
+    global varOnRitual:=0xD3B57C
     Global varOnDetonate := 0x5D4661
 
   ; Grab Currency
@@ -5302,6 +5303,7 @@ Return
       IniRead, varOnDelveChart, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
       IniRead, varOnMetamorph, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph, 0xE06718
       IniRead, varOnLocker, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker, 0x1F2732
+      IniRead, varOnRitual, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnRitual, 0xD3B57C
       IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
             
       ;Grab Currency From Inventory
@@ -6513,6 +6515,33 @@ Return
         MsgBox % "OnLocker recalibrated!`nTook color hex: " . varOnLocker . " `nAt coords x: " . WR.loc.pixel.OnLocker.X . " and y: " . WR.loc.pixel.OnLocker.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnLocker didn't work"
+      
+      hotkeys()
+      
+    return
+
+    updateOnRitual:
+      Critical
+      Gui, Submit ; , NoHide
+      
+      IfWinExist, ahk_group POEGameGroup
+      {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+      } else {
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnRitual didn't work"
+        Return
+      }
+      
+      
+      if WinActive(ahk_group POEGameGroup){
+        ScreenShot()
+        varOnRitual := ScreenShot_GetColor(WR.loc.pixel.OnRitual.X,WR.loc.pixel.OnRitual.Y)
+        IniWrite, %varOnRitual%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnRitual
+        readFromFile()
+        MsgBox % "OnRitual recalibrated!`nTook color hex: " . varOnRitual . " `nAt coords x: " . WR.loc.pixel.OnRitual.X . " and y: " . WR.loc.pixel.OnRitual.Y
+      }else
+      MsgBox % "PoE Window is not active. `nRecalibrate of OnRitual didn't work"
       
       hotkeys()
       
