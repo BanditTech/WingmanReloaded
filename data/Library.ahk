@@ -169,6 +169,8 @@
         This.MatchChaosRegal()
         This.MatchBase2Slot()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
+        If (StashTabYesPredictive || (OnRitual && YesRitualPrice != "Off"))
+          This.Prop.PredictPrice := PredictPrice()
         This.Prop.StashReturnVal := This.MatchStashManagement()
         ; This.FuckingSugoiFreeMate()
       }
@@ -2126,8 +2128,9 @@
             || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) 
           && (!This.Prop.Corrupted)  )
           sendstash := StashTabCrafting
-        Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
+        Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictivePrice >= StashTabYesPredictive_Price) || (This.Prop.PredictivePrice && OnRitual)) ){
           sendstash := StashTabPredictive
+        }
         Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
         {
           If (ChaosRecipeStashMethodDump)
@@ -5098,7 +5101,7 @@
     Static ItemList := []
     Static WarnedError := 0
     FoundMatch := False
-    If (Item.Prop.Rarity_Digit = 3 && (Item.Prop.SpecialType = "" || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
+    If (Item.Prop.Rarity_Digit = 3 && (!Item.Prop.SpecialType || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
     {
       For k, obj in ItemList
       {
@@ -5149,10 +5152,10 @@
       }
     }
     Else
-      Return 0
+      Return "000"
 
     If !(PriceObj.max > 0)
-      Return 0
+      Return "0000"
 
     If (Switch = "Obj")
       Return PriceObj
@@ -6272,9 +6275,15 @@
     }
   }
   ScanRitual(mode:=""){
-    Global InvGrid, RunningToggle, BlackList
+    Global InvGrid, RunningToggle, BlackList, PPServerStatus
     Static gridpanels := ""
     Static pricepoint := 10
+    If (YesRitualPrice != "off")
+    {
+      If !PPServerStatus()
+      Notify("PoEPrice.info Offline","",2)
+    }
+
     If (mode = "make") {
       If IsObject(gridpanels)
       {
@@ -16879,8 +16888,8 @@ IsLinear(arr, i=0) {
     response := Curl_Download(url, postData, reqHeaders, options, false, false, false, "", "", true, retCurl)
     
     ; debugout := RegExReplace("""" A_ScriptDir "\lib\" retCurl, "curl", "curl.exe""")
-    ; FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
-    ; FileAppend, %debugout%, %A_ScriptDir%\temp\poeprices_request.txt
+    FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
+    FileAppend, %retCurl%, %A_ScriptDir%\temp\poeprices_request.txt
     
     
     ; If (TradeOpts.Debug) {
@@ -16904,13 +16913,17 @@ IsLinear(arr, i=0) {
       responseObj := {}
     }
 
-    ; If (TradeOpts.Debug) {
-    ;   arr := {}
-    ;   arr.RawItemData := RawItemData
-    ;   arr.EncodedItemata := EncodedItemData
-    ;   arr.League := TradeGlobals.Get("LeagueName")
-    ;   TradeFunc_LogPoePricesRequest(arr, request, "poe_prices_debug_log.txt")
-    ; }
+    If (1) {
+      arr := {}
+      arr.aReturn := responseObj
+      arr.RawItemData := RawItemData
+      arr.EncodedItemata := EncodedItemData
+      arr.League := selectedLeague
+      FileDelete, %A_ScriptDir%\temp\poeprices_return.json
+      FileAppend,% json_fromObj(arr), %A_ScriptDir%\temp\poeprices_return.json
+
+      ; TradeFunc_LogPoePricesRequest(arr, request, "poe_prices_debug_log.txt")
+    }
 
     ; responseObj.added := {}
     ; responseObj.added.encodedData := EncodedItemData
