@@ -169,7 +169,7 @@
         This.MatchChaosRegal()
         This.MatchBase2Slot()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
-        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3)
+        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified)
           This.Prop.PredictPrice := PredictPrice()
         This.Prop.StashReturnVal := This.MatchStashManagement()
         ; This.FuckingSugoiFreeMate()
