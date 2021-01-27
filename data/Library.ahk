@@ -169,7 +169,7 @@
         This.MatchChaosRegal()
         This.MatchBase2Slot()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
-        If (StashTabYesPredictive || (OnRitual && YesRitualPrice != "Off"))
+        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3)
           This.Prop.PredictPrice := PredictPrice()
         This.Prop.StashReturnVal := This.MatchStashManagement()
         ; This.FuckingSugoiFreeMate()
@@ -5101,6 +5101,8 @@
     Static ItemList := []
     Static WarnedError := 0
     FoundMatch := False
+    If (Item.Prop.Rarity_Digit != 3 || Item.Affix.Unidentified)
+      Return 0
     If (Item.Prop.Rarity_Digit = 3 && (!Item.Prop.SpecialType || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
     {
       For k, obj in ItemList
