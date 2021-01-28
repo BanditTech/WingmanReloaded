@@ -8260,6 +8260,7 @@ Return
     }
 
     RefreshPoeWatchPerfect(){
+      Global selectedLeague
       RequestURL := "https://api.poe.watch/perfect?league=" selectedLeague
       FileDelete, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_Request.txt
       FileAppend, %JSONtext%, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_Request.txt
