@@ -6280,7 +6280,7 @@
     Global InvGrid, RunningToggle, BlackList, PPServerStatus
     Static gridpanels := ""
     Static pricepoint := 10
-    If (YesRitualPrice != "off")
+    If (YesRitualPrice != "off" && YesRitual)
     {
       If !PPServerStatus()
       Notify("PoEPrice.info Offline","",2)
