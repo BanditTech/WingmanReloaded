@@ -8262,24 +8262,30 @@ Return
     RefreshPoeWatchPerfect(){
       UrlDownloadToFile, https://api.poe.watch/perfect?league=%selectedLeague%, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_orig.json
       FileRead, JSONtext, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_orig.json
-      WR.Data.Perfect := JSON.Load(JSONtext,,1)
-      For ku, itemDB in WR.Data.Perfect
-      {
-        pushto := {}
-        For kt, type in ["implicits","explicits"]
+      Try {
+        WR.Data.Perfect := JSON.Load(JSONtext,,1)
+        For ku, itemDB in WR.Data.Perfect
         {
-          pushto[type] := {}
-          For ki, mod in itemDB[type]
+          pushto := {}
+          For kt, type in ["implicits","explicits"]
           {
-            mod := RegExReplace(mod, "1 to \(", "(1-1) to (")
-            replace := new Perfect(mod)
-            WR.Data.Perfect[ku][type][ki] := replace.o
+            pushto[type] := {}
+            For ki, mod in itemDB[type]
+            {
+              mod := RegExReplace(mod, "1 to \(", "(1-1) to (")
+              replace := new Perfect(mod)
+              WR.Data.Perfect[ku][type][ki] := replace.o
+            }
           }
         }
+        JSONtext := JSON_Beautify(WR.Data.Perfect," ",3)
+        FileDelete, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+        FileAppend, %JSONtext%, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+
+      } Catch e {
+        MsgBox There was an Error while Loading Perfect Price `n`n%e%
+        WR.Data.Perfect := {}
       }
-      JSONtext := JSON_Beautify(WR.Data.Perfect," ",3)
-      FileDelete, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
-      FileAppend, %JSONtext%, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
     }
     Class Perfect {
       __New(mod){
