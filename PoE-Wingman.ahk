@@ -8260,7 +8260,10 @@ Return
     }
 
     RefreshPoeWatchPerfect(){
-      UrlDownloadToFile, https://api.poe.watch/perfect?league=%selectedLeague%, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_orig.json
+      RequestURL := "https://api.poe.watch/perfect?league=" selectedLeague
+      FileDelete, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_Request.txt
+      FileAppend, %JSONtext%, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_Request.txt
+      UrlDownloadToFile, %RequestURL%, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_orig.json
       FileRead, JSONtext, %A_ScriptDir%\temp\PoE.Watch_PerfectUnique_orig.json
       Try {
         WR.Data.Perfect := JSON.Load(JSONtext,,1)
