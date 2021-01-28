@@ -192,6 +192,7 @@
     Global DelayAction := {}
     Global ProfileMenuFlask,ProfileMenuUtility,ProfileMenuperChar
     Global Active_executable := "TempName"
+    Global selectedLeague := "Standard"
     ; List available database endpoints
     Global apiList := ["Currency"
       , "Fragment"
