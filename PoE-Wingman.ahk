@@ -4176,9 +4176,9 @@ Return
     || (Item.Affix["Monsters' skills Chain # additional times"] && MSCAT)
     || (Item.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
     || (Item.Prop.RarityNormal) 
-    || (!MMQIgnore && (Item.Prop.Map_Rarity <= MMapItemRarity 
-    || Item.Prop.Map_PackSize <= MMapMonsterPackSize 
-    || Item.Prop.Map_Quantity <= MMapItemQuantity)) )
+    || (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
+    || Item.Prop.Map_PackSize < MMapMonsterPackSize 
+    || Item.Prop.Map_Quantity < MMapItemQuantity)) )
     && !Item.Affix["Unidentified"]
     {
       If (!RunningToggle)
