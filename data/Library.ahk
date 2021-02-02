@@ -5455,12 +5455,11 @@
         WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
         WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
         ;Status Check OnRitual
-        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (1920 / 610))
-        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1080 / 107))
+        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (1920 / 617))
+        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1080 / 108))
         ;Divination Y locations
         WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
         WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
-
         ;GUI overlay
         WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1920 / -10))
         WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
