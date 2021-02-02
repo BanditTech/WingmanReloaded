@@ -2333,14 +2333,14 @@ Return
       }
       Else If (FirstAutomationSetting=="Search Vendor")
       {
-        CheckTime("Seconds",30,"VendorUI",A_Now)
-        While (!CheckTime("Seconds",30,"VendorUI"))
+        CheckTime("Seconds",120,"VendorUI",A_Now)
+        While (!CheckTime("Seconds",120,"VendorUI"))
         {
           If (YesController)
             Controller()
           Sleep, 100
           GuiStatus()
-          If !OnVendor && !FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr )
+          If !OnVendor && !OnInventory
           {
             ContinueFlag := True
             break
@@ -2477,14 +2477,14 @@ Return
       }
       Else If (FirstAutomationSetting=="Search Vendor")
       {
-        CheckTime("Seconds",30,"VendorUI",A_Now)
-        While (!CheckTime("Seconds",30,"VendorUI"))
+        CheckTime("Seconds",120,"VendorUI",A_Now)
+        While (!CheckTime("Seconds",120,"VendorUI"))
         {
           If (YesController)
             Controller()
           Sleep, 100
           GuiStatus()
-          If !OnVendor
+          If !OnVendor && !OnInventory
           {
             ContinueFlag := True
             break
