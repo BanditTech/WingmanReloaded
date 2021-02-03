@@ -1,5 +1,13 @@
-## Version .13.00xx - Alpha version - January/24/2020
-Ritual Scan Branch
+## Version .13.0012 - Alpha version - February/03/2020
+Merging the Ritual Scan Branch into alpha
+* This still needs some tuning to get the coloring working
+* Option to scan ritual added to inventory Sorting
+* Calibration added for ritual window
+* Status added to Gamestates
+* Currently displays Chaos value overlayed with just a digit
+* If it matches CLF it will show group number as well
+* Press inventory sort while ritual window is open to scan
+
 
 ## Version .13.0011 - Alpha version - January/24/2020
 Full implimentation
