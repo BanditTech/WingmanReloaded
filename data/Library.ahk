@@ -2674,6 +2674,43 @@
         }
       }
     }
+  ; ClipItem - Capture Clip at Coord
+  ClipItem(x, y){
+      BlockInput, MouseMove
+      Clipboard := ""
+      Sleep, 45+(ClipLatency*15)
+      MouseMove %x%, %y%
+      Sleep, 45+(ClipLatency>0?ClipLatency*15:0)
+      Send ^c
+      ClipWait, 0.1
+      If ErrorLevel
+      {
+        Sleep, 15
+        Send ^c
+        ClipWait, 0.1
+      }
+      Clip_Contents := Clipboard
+      Item := new ItemScan
+      BlockInput, MouseMoveOff
+    Return
+    }
+  addToBlacklist(C, R){
+    Loop % Item.Prop.Item_Height
+    {
+      addNum := A_Index - 1
+      addR := R + addNum
+      addC := C + 1
+      If !IsObject(BlackList[C])
+        BlackList[C] := []
+      BlackList[C][addR] := True
+      If Item.Prop.Item_Width = 2
+      {
+        If !IsObject(BlackList[addC])
+          BlackList[addC] := []
+        BlackList[addC][addR] := True
+      }
+    }
+  }
   ; WR_Menu - New menu handling method
   WR_Menu(Function:="",Var*)
   {
