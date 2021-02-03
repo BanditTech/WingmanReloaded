@@ -94,7 +94,7 @@
   WR.loc.pixel := {}, WR.loc.area := {}
   for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy"
   , "Transmutation", "Augmentation", "Alteration", "Vaal", "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash"
-  , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "DivTrade", "DivItem", "Gui"]
+  , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "OnRitual", "DivTrade", "DivItem", "Gui"]
     WR.loc.pixel[v] := {"X":0,"Y":0}
   for k, v in []
     WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
@@ -662,6 +662,7 @@
     Global YesHeistLocker := 1
     Global YesIdentify := 1
     Global YesDiv := 1
+    Global YesRitual := 1
     Global YesMapUnid := 1
     Global YesCLFIgnoreImplicit := 0
     Global YesStashKeys := 1
@@ -681,12 +682,14 @@
     Global OnDelveChart := False
     Global OnMetamorph := False
     Global OnLocker := False
+    Global OnRitual := False
     Global RescaleRan := False
     Global ToggleExist := False
     Global YesOHB := True
     Global YesFillMetamorph := True
     Global YesPredictivePrice := "Off"
     Global YesPredictivePrice_Percent_Val := 100
+    Global YesRitualPrice := "Off"
     Global HPerc := 100
     Global GameX, GameY, GameW, GameH, mouseX, mouseY
     Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
@@ -934,6 +937,7 @@
     global varOnDelveChart:=0xB58C4D
     global varOnMetamorph:=0xE06718
     global varOnLocker:=0xE97724
+    global varOnRitual:=0xD3B57C
     Global varOnDetonate := 0x5D4661
 
   ; Grab Currency
@@ -1375,6 +1379,8 @@
     CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnLocker hwndMainMenuIDOnLocker, % "League Stash Open"
     CtlColors.Attach(MainMenuIDOnLocker, "", "Green")
+    Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnRitual hwndMainMenuIDOnRitual, % "Ritual Open"
+    CtlColors.Attach(MainMenuIDOnRitual, "", "Green")
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h90 ,         Gamestate Calibration
@@ -1745,6 +1751,7 @@
     Gui,SampleInd: Add, Button, gupdateOnDelveChart vUpdateOnDelveChartBtn  x+8  yp      w110,   OnDelveChart
     Gui,SampleInd: Add, Button, gupdateOnMetamorph vUpdateOnMetamorphBtn  xs y+3      w110,   OnMetamorph
     Gui,SampleInd: Add, Button, gupdateOnLocker vUpdateOnLockerBtn  x+8  yp      w110,   OnLocker
+    Gui,SampleInd: Add, Button, gupdateOnRitual vUpdateOnRitualBtn  xs y+3      w110,   OnRitual
 
 
     Gui,SampleInd: Font, Bold s9 cBlack, Arial
@@ -2067,6 +2074,9 @@ Return
       GuiStatus()
       If (OnDiv && YesDiv)
         DivRoutine()
+      Else If (OnRitual && YesRitual){
+        ScanRitual("make")
+      }
       Else If (OnStash && YesStash)
         StashRoutine()
       Else If (OnVendor && YesVendor)
@@ -2324,14 +2334,14 @@ Return
       }
       Else If (FirstAutomationSetting=="Search Vendor")
       {
-        CheckTime("Seconds",30,"VendorUI",A_Now)
-        While (!CheckTime("Seconds",30,"VendorUI"))
+        CheckTime("Seconds",120,"VendorUI",A_Now)
+        While (!CheckTime("Seconds",120,"VendorUI"))
         {
           If (YesController)
             Controller()
           Sleep, 100
           GuiStatus()
-          If !OnVendor && !FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr )
+          If !OnVendor && !OnInventory
           {
             ContinueFlag := True
             break
@@ -2468,14 +2478,14 @@ Return
       }
       Else If (FirstAutomationSetting=="Search Vendor")
       {
-        CheckTime("Seconds",30,"VendorUI",A_Now)
-        While (!CheckTime("Seconds",30,"VendorUI"))
+        CheckTime("Seconds",120,"VendorUI",A_Now)
+        While (!CheckTime("Seconds",120,"VendorUI"))
         {
           If (YesController)
             Controller()
           Sleep, 100
           GuiStatus()
-          If !OnVendor
+          If !OnVendor && !OnInventory
           {
             ContinueFlag := True
             break
@@ -2952,7 +2962,8 @@ Return
         Return
     }
     Sleep, 45*Latency
-    If (FirstAutomationSetting == "Search Stash")
+    Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
+    If (FirstAutomationSetting == "Search Stash" && !Vendor)
     {
       If (Town = "The Sarn Encampment")
       {
@@ -2972,8 +2983,16 @@ Return
         Sleep, 800
         ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
       }
+      Else If (Town = "The Rogue Harbour")
+      {
+        LeftClick(GameX + GameW//3, GameY + GameH//1.3)
+        Sleep, 800
+        ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+      }
     }
-    if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+    If (!Vendor)
+      Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
+    if (Vendor)
     {
       LeftClick(Vendor.1.x, Vendor.1.y)
       Sleep, 60
@@ -5052,6 +5071,7 @@ Return
       IniRead, YesHeistLocker, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker, 1
       IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
+      IniRead, YesRitual, %A_ScriptDir%\save\Settings.ini, General, YesRitual, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
       IniRead, YesCLFIgnoreImplicit, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit, 0 
       IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
@@ -5092,6 +5112,7 @@ Return
       IniRead, YesFillMetamorph, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph, 0
       IniRead, YesPredictivePrice, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice, Off
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
+      IniRead, YesRitualPrice, %A_ScriptDir%\save\Settings.ini, General, YesRitualPrice, Off
       IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
       IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
 
@@ -5303,6 +5324,7 @@ Return
       IniRead, varOnDelveChart, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart, 0xE5B93F
       IniRead, varOnMetamorph, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph, 0xE06718
       IniRead, varOnLocker, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker, 0x1F2732
+      IniRead, varOnRitual, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnRitual, 0xD3B57C
       IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
             
       ;Grab Currency From Inventory
@@ -5667,6 +5689,7 @@ Return
       IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
+      IniWrite, %YesRitual%, %A_ScriptDir%\save\Settings.ini, General, YesRitual
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
       IniWrite, %YesCLFIgnoreImplicit%, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
@@ -6514,6 +6537,33 @@ Return
         MsgBox % "OnLocker recalibrated!`nTook color hex: " . varOnLocker . " `nAt coords x: " . WR.loc.pixel.OnLocker.X . " and y: " . WR.loc.pixel.OnLocker.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnLocker didn't work"
+      
+      hotkeys()
+      
+    return
+
+    updateOnRitual:
+      Critical
+      Gui, Submit ; , NoHide
+      
+      IfWinExist, ahk_group POEGameGroup
+      {
+        Rescale()
+        WinActivate, ahk_group POEGameGroup
+      } else {
+        MsgBox % "PoE Window does not exist. `nRecalibrate of OnRitual didn't work"
+        Return
+      }
+      
+      
+      if WinActive(ahk_group POEGameGroup){
+        ScreenShot()
+        varOnRitual := ScreenShot_GetColor(WR.loc.pixel.OnRitual.X,WR.loc.pixel.OnRitual.Y)
+        IniWrite, %varOnRitual%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnRitual
+        readFromFile()
+        MsgBox % "OnRitual recalibrated!`nTook color hex: " . varOnRitual . " `nAt coords x: " . WR.loc.pixel.OnRitual.X . " and y: " . WR.loc.pixel.OnRitual.Y
+      }else
+      MsgBox % "PoE Window is not active. `nRecalibrate of OnRitual didn't work"
       
       hotkeys()
       
@@ -7825,9 +7875,15 @@ Return
         addNum := A_Index - 1
         addR := R + addNum
         addC := C + 1
+        If !IsObject(BlackList[C])
+          BlackList[C] := []
         BlackList[C][addR] := True
         If Item.Prop.Item_Width = 2
+        {
+          If !IsObject(BlackList[addC])
+            BlackList[addC] := []
           BlackList[addC][addR] := True
+        }
       }
     }
 
@@ -7960,6 +8016,7 @@ Return
       IniWrite, %YesStashCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl
       IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
       IniWrite, %YesPredictivePrice%, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice
+      IniWrite, %YesRitualPrice%, %A_ScriptDir%\save\Settings.ini, General, YesRitualPrice
       IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
       IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
       IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
@@ -7969,6 +8026,7 @@ Return
       IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
       IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
       IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
+      IniWrite, %YesRitual%, %A_ScriptDir%\save\Settings.ini, General, YesRitual
       IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
       IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
       IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
@@ -8039,7 +8097,8 @@ Return
     Return
 
     mainmenuGameLogicState(){
-      Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1, OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
+      Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1
+      , OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1, OldOnRitual:=-1
       Local NewOHB
       If (OnChar != OldOnChar)
       {
@@ -8144,6 +8203,14 @@ Return
           CtlColors.Change(MainMenuIDOnLocker, "Red", "")
         Else
           CtlColors.Change(MainMenuIDOnLocker, "", "Green")
+      }
+      If (OnRitual != OldOnRitual)
+      {
+        OldOnRitual := OnRitual
+        If (OnRitual)
+          CtlColors.Change(MainMenuIDOnRitual, "Red", "")
+        Else
+          CtlColors.Change(MainMenuIDOnRitual, "", "Green")
       }
       Return
 

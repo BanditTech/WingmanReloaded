@@ -97,7 +97,7 @@
       RightClick(WisdomScrollX,WisdomScrollY)
       Sleep, 30+Abs(ClickLatency*15)
       LeftClick(x,y)
-      Sleep, 15+Abs(ClickLatency*15)
+      Sleep, 45+Abs(ClickLatency*15)
       BlockInput, MouseMoveOff
       return
     }
@@ -169,6 +169,8 @@
         This.MatchChaosRegal()
         This.MatchBase2Slot()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
+        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified)
+          This.Prop.PredictPrice := PredictPrice()
         This.Prop.StashReturnVal := This.MatchStashManagement()
         ; This.FuckingSugoiFreeMate()
       }
@@ -2126,8 +2128,9 @@
             || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) 
           && (!This.Prop.Corrupted)  )
           sendstash := StashTabCrafting
-        Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
+        Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictivePrice >= StashTabYesPredictive_Price) || (This.Prop.PredictivePrice && OnRitual)) ){
           sendstash := StashTabPredictive
+        }
         Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
         {
           If (ChaosRecipeStashMethodDump)
@@ -2713,6 +2716,7 @@
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesHeistLocker        Checked%YesHeistLocker%        y+8    , Deposit C/B at Heist Locker?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesRitual             Checked%YesRitual%             y+8    , Scan Ritual?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid            Checked%YesMapUnid%            y+8    , Leave Map Un-ID?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
@@ -2763,6 +2767,11 @@
         ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
         PPx:=Scale_PositionFromDPI(PPx), PPy:=Scale_PositionFromDPI(PPy)
         Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
+
+        Gui, Inventory: Add, Text, xs+5 y+11 , Price Ritual Rares?
+        Gui, Inventory: Add, DropDownList, gUpdateExtra vYesRitualPrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
+        GuiControl,Inventory: ChooseString, YesRitualPrice, %YesRitualPrice%
+
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
         AutomationList := "Search Stash|Search Vendor"
@@ -4855,6 +4864,7 @@
     POnDelveChart := ScreenShot_GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
     POnMetamorph := ScreenShot_GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
     POnLocker := ScreenShot_GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
+    POnRitual := ScreenShot_GetColor(WR.loc.pixel.OnRitual.X,WR.loc.pixel.OnRitual.Y), OnRitual := (POnRitual=varOnRitual?True:False)
     If OnMines
     POnDetonate := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
     Else POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
@@ -5091,7 +5101,9 @@
     Static ItemList := []
     Static WarnedError := 0
     FoundMatch := False
-    If (Item.Prop.Rarity_Digit = 3 && (Item.Prop.SpecialType = "" || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && YesPredictivePrice != "Off")
+    If (Item.Prop.Rarity_Digit != 3 || Item.Affix.Unidentified)
+      Return 0
+    If (Item.Prop.Rarity_Digit = 3 && (!Item.Prop.SpecialType || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
     {
       For k, obj in ItemList
       {
@@ -5104,8 +5116,6 @@
       }
       If !FoundMatch
       {
-        if (Item.Prop.Rarity_Digit <= 2)
-          return
         PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
         if (PriceObj.error)
         {
@@ -5117,7 +5127,13 @@
           return
         }
         PriceObj.Clip_Contents := Clip_Contents
-        If (YesPredictivePrice = "Low")
+        If (OnRitual && YesRitualPrice = "Low")
+          Price := SelectedPrice := PriceObj.min
+        Else If (OnRitual && YesRitualPrice = "Avg")
+          Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
+        Else If (OnRitual && YesRitualPrice = "High")
+          Price := SelectedPrice := PriceObj.max
+        Else If (YesPredictivePrice = "Low")
           Price := SelectedPrice := PriceObj.min
         Else If (YesPredictivePrice = "Avg")
           Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
@@ -5138,10 +5154,10 @@
       }
     }
     Else
-      Return 0
+      Return "000"
 
     If !(PriceObj.max > 0)
-      Return 0
+      Return "0000"
 
     If (Switch = "Obj")
       Return PriceObj
@@ -5261,9 +5277,10 @@
     If checkActiveType()
     {
       ; Build array framework
-      InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{}}
+      InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{},"Ritual":{}}
               ,"SlotSpacing": 2
               ,"SlotRadius": 25
+              ,"Ritual":{"X":{},"Y":{}}
               ,"Stash":{"X":{},"Y":{}}
               ,"StashQuad":{"X":{},"Y":{}}
               ,"Inventory":{"X":{},"Y":{}}
@@ -5362,6 +5379,11 @@
           InvGrid.Corners.VendorOff.Y1:=GameY + Round(GameH/(1080/518))
           InvGrid.Corners.VendorOff.X2:=GameX + Round(GameW/(1920/943))
           InvGrid.Corners.VendorOff.Y2:=GameY + Round(GameH/(1080/783))
+          ; Area for Ritual Items
+          InvGrid.Corners.Ritual.X1:=GameX + Round(GameW/(1920/308))
+          InvGrid.Corners.Ritual.Y1:=GameY + Round(GameH/(1080/268))
+          InvGrid.Corners.Ritual.X2:=GameX + Round(GameW/(1920/938))
+          InvGrid.Corners.Ritual.Y2:=GameY + Round(GameH/(1080/792))
 
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
@@ -5432,10 +5454,12 @@
         ;Status Check OnLocker
         WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
         WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        ;Status Check OnRitual
+        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (1920 / 617))
+        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1080 / 108))
         ;Divination Y locations
         WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
         WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
-
         ;GUI overlay
         WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1920 / -10))
         WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
@@ -6131,6 +6155,7 @@
     Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
     , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
     InvGrid.SlotRadius := (Cwidth//2 + Rwidth//2) // 2
+    InvGrid.SlotSize := (Cwidth + Rwidth) // 2
     Loop, %Cnum%
     {
       If (A_Index = 1) 
@@ -6225,6 +6250,150 @@
         PointY+=Rwidth+InvGrid.SlotSpacing
       InvGrid.VendorOff.Y.Push(Round(PointY))
     }
+    ; Calculate space for the Vendor Offer grid
+    totalX:=InvGrid.Corners.Ritual.X2 - InvGrid.Corners.Ritual.X1
+    , totalY:=InvGrid.Corners.Ritual.Y2 - InvGrid.Corners.Ritual.Y1
+    ; Fill in array with grid locations for 12x10 Offer Area
+    Cnum:=12
+    Rnum:=10
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Ritual.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.Ritual.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.Ritual.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.Ritual.Y.Push(Round(PointY))
+    }
+  }
+  ScanRitual(mode:=""){
+    Global InvGrid, RunningToggle, BlackList, PPServerStatus
+    Static gridpanels := ""
+    Static pricepoint := 10
+    If (YesRitualPrice != "off" && YesRitual)
+    {
+      If !PPServerStatus()
+      Notify("PoEPrice.info Offline","",2)
+    }
+
+    If (mode = "make") {
+      If IsObject(gridpanels) {
+        ScanRitual("break")
+      }
+      ; MsgBox, Inside
+      ; Add blacklist
+      gridpanels := {}, BlackList := {}
+      ScanRitual("Begin to scan for panel closing")
+      For R, x in InvGrid.Ritual.X
+      {
+        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+          Break
+        For C, y in InvGrid.Ritual.Y
+        {
+          If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+            Break
+          If BlackList[R][C]
+            Continue
+          ; MsgBox, Inside Loop
+          ClipItem(x,y)
+          addToBlacklist(R, C)
+          If !(Item.Prop.ItemBase ~= "\w")
+          {
+            Empty += 1
+            If Empty > 5
+              Return
+            Continue
+          }
+          
+          If Item.Prop.Stack_Size >= 2
+            Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
+          cvalue := Item.Prop.UniquePerfectValue?Item.Prop.UniquePerfectValue
+            : Item.Prop.ChaosValue?Item.Prop.ChaosValue
+            : Item.Prop.PredictPrice?Item.Prop.PredictPrice
+            : 0
+          cvalue := Format("{:.2g}", cvalue)
+          displayText := Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0") (cvalue?"`n" cvalue:"") 
+            : cvalue? cvalue : ""
+
+          percentageScore := cvalue?((cvalue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
+
+          posObj := {"X":x-InvGrid.SlotRadius,"Y":y-InvGrid.SlotRadius,"W":Item.Prop.Item_Width * InvGrid.SlotSize,"H":Item.Prop.Item_Height * InvGrid.SlotSize}
+          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, "aa" LTrim(ColorPercent(percentageScore),"0x"))
+        }
+      }
+    } Else If (mode = "break") {
+      for k, v in gridpanels
+      {
+        v.close()
+      }
+      gridpanels := ""
+    } Else {
+      If (!OnRitual && !OnInventory)
+        ScanRitual("break")
+      Else
+        SetTimer,% A_ThisFunc, 100
+    }
+    Return
+  }
+  Class Overlay {
+    __New(winName,InsertText,positionObj,backgroundColor:="aa000000",textColor:="bbffffff",setFont:="Arial"){
+      This.pToken := Gdip_Startup()
+      If !This.pToken{
+        MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
+        return
+      }
+      OnExit(ObjBindMethod(This, "close"))
+      This.text := InsertText
+      This.label := winName
+      This.positions := positionObj
+      Gui,% This.label ": -Caption +E0x80020 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs"
+      Gui,% This.label ": Show", NA
+      This.hWND := WinExist()
+      This.color := backgroundColor
+      This.font := setFont
+      This.make()
+      This.setText()
+      This.finalize()
+    }
+    make(){
+      This.hbm := CreateDIBSection(This.positions.W, This.positions.H)
+      This.hdc := CreateCompatibleDC()
+      This.obm := SelectObject(This.hdc, This.hbm)
+      This.G := Gdip_GraphicsFromHDC(This.hdc)
+      Gdip_SetSmoothingMode(This.G, 4)
+      This.pBrush := Gdip_BrushCreateSolid("0x"This.color)
+      Gdip_FillRoundedRectangle(This.G, This.pBrush, 0, 0, This.positions.W, This.positions.H, 20)
+      Gdip_DeleteBrush(This.pBrush)
+    }
+    setText(){
+      If !Gdip_FontFamilyCreate(This.font)
+      {
+        MsgBox, 48, Font error!, The font you have specified does not exist on the system
+        Return "Error Loading Font"
+      }
+      Options = x10p y30p w80p Centre cbbffffff r1 s20
+      Gdip_TextToGraphics(This.G, This.text, Options, This.font, This.positions.W, This.positions.H)
+    }
+    finalize(){
+      UpdateLayeredWindow(This.hWND, This.hdc, This.positions.X, This.positions.Y, This.positions.W, This.positions.H)
+      SelectObject(This.hdc, This.obm)
+      DeleteObject(This.hbm)
+      DeleteDC(This.hdc)
+      Gdip_DeleteGraphics(This.G)
+    }
+    close(){
+      Gdip_Shutdown(This.pToken)
+      Gui,% This.label ": Destroy" 
+    }
   }
   PromptForObject(){
     Global
@@ -6237,7 +6406,10 @@
     PrintObj:
       Gui, Submit, NoHide
       Gui, ArrayPrint: Destroy
-      Array_Gui(%SubmitObjectName%)
+      If IsObject(SubmitObjectName) 
+        Array_Gui(%SubmitObjectName%)
+      Else
+      MsgBox % %SubmitObjectName%
     Return
   }
   ; Compare two hex colors as their R G B elements, puts all the below together
@@ -16724,8 +16896,8 @@ IsLinear(arr, i=0) {
     response := Curl_Download(url, postData, reqHeaders, options, false, false, false, "", "", true, retCurl)
     
     ; debugout := RegExReplace("""" A_ScriptDir "\lib\" retCurl, "curl", "curl.exe""")
-    ; FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
-    ; FileAppend, %debugout%, %A_ScriptDir%\temp\poeprices_request.txt
+    FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
+    FileAppend, %retCurl%, %A_ScriptDir%\temp\poeprices_request.txt
     
     
     ; If (TradeOpts.Debug) {
@@ -16749,13 +16921,17 @@ IsLinear(arr, i=0) {
       responseObj := {}
     }
 
-    ; If (TradeOpts.Debug) {
-    ;   arr := {}
-    ;   arr.RawItemData := RawItemData
-    ;   arr.EncodedItemata := EncodedItemData
-    ;   arr.League := TradeGlobals.Get("LeagueName")
-    ;   TradeFunc_LogPoePricesRequest(arr, request, "poe_prices_debug_log.txt")
-    ; }
+    If (1) {
+      arr := {}
+      arr.aReturn := responseObj
+      arr.RawItemData := RawItemData
+      arr.EncodedItemata := EncodedItemData
+      arr.League := selectedLeague
+      FileDelete, %A_ScriptDir%\temp\poeprices_return.json
+      FileAppend,% json_fromObj(arr), %A_ScriptDir%\temp\poeprices_return.json
+
+      ; TradeFunc_LogPoePricesRequest(arr, request, "poe_prices_debug_log.txt")
+    }
 
     ; responseObj.added := {}
     ; responseObj.added.encodedData := EncodedItemData
@@ -17503,8 +17679,100 @@ IsLinear(arr, i=0) {
   }
 ;--------------------------------------------------------------------------------
 
+ColorPercent(percent){
+  Static ColorRange := ColorRange("0xff0000","0x00ff00")
+  Static ColorCount := ColorRange.Length()
+  Return ColorRange[Round(ColorCount * ((percent>100?100:percent<1?1:percent) / 100))]
+}
+
+;-------------------------------------------------------------------------------
+ColorRange(c1,c2){ ; Create a list of colors between two https://www.autohotkey.com/boards/viewtopic.php?t=29205
+  Color1 := new Color(c1)
+  Color2 := new Color(c2)
+  ColorList := []
+
+  ;-----------------------------------
+  ; color distance for each color individually
+  ; this distance may be positive or negative
+  ;-----------------------------------
+  Distance_R := Color2.R - Color1.R
+  Distance_G := Color2.G - Color1.G
+  Distance_B := Color2.B - Color1.B
 
 
+  ;-----------------------------------
+  ; MCD is maximum color distance
+  ; MCD deals only with absolute values
+  ;-----------------------------------
+  MCD := max(Abs(Distance_R), Abs(Distance_G), Abs(Distance_B))
+
+  ;-----------------------------------
+  ; list all gradient colors between Color1 and Color2
+  ;-----------------------------------
+  ColorList.Push(Color1.RGB) ; start at Color1
+  Loop, % MCD - 1
+      ColorList.Push("0x" . Format("{:02X}", Color1.R + A_Index / MCD * Distance_R) . Format("{:02X}", Color1.G + A_Index / MCD * Distance_G) . Format("{:02X}", Color1.B + A_Index / MCD * Distance_B))
+  ColorList.Push(Color2.RGB) ; stop at Color2
+  Return ColorList
+;-------------------------------------------------------------------------------
+}
+
+
+;-------------------------------------------------------------------------------
+max(Max, n*) { ; return the greatest of all values
+;-------------------------------------------------------------------------------
+    For each, Value in n
+        If (Value > Max)
+            Max := Value
+
+    Return, Max
+}
+
+;===============================================================================
+class Color { ; from AHK help file
+;===============================================================================
+
+    ; class variable
+    static Shift := {R:16, G:8, B:0}
+
+
+    ;---------------------------------------------------------------------------
+    __New(anyRGB) { ; constructor
+    ;---------------------------------------------------------------------------
+        this.RGB := anyRGB
+    }
+
+
+    ;---------------------------------------------------------------------------
+    __Get(Name) { ; get
+    ;---------------------------------------------------------------------------
+        If (Shift := Color.Shift[Name]) != ""
+            Return, (this.RGB >> Shift) & 0xFF
+    }
+
+
+    ;---------------------------------------------------------------------------
+    __Set(Name, Value) { ; set
+    ;---------------------------------------------------------------------------
+        If (Shift := Color.Shift[Name]) != "" {
+            Value &= 0xFF
+            this.RGB := (Value << Shift) | (this.RGB & ~(0xFF << Shift))
+            Return, Value
+        }
+    }
+
+
+    ;---------------------------------------------------------------------------
+    RGB[] { ; dynamic property
+    ;---------------------------------------------------------------------------
+        Get { ; return it in hex format
+            Return, Format("0x{:06X}", this._RGB)
+        }
+        Set { ; redirect RGB to _RGB
+            Return, this._RGB := Value
+        }
+    }
+}
 
 
 /* FindText - Capture screen image into text and then find it

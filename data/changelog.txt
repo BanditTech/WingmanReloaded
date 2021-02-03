@@ -1,3 +1,6 @@
+## Version .13.00xx - Alpha version - January/24/2020
+Ritual Scan Branch
+
 ## Version .13.0011 - Alpha version - January/24/2020
 Full implimentation
 * Perfect prices from PoE.Watch are updated alongside Poe.ninja DB update
