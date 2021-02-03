@@ -8,11 +8,22 @@ Merging the Ritual Scan Branch into alpha
 * If it matches CLF it will show group number as well
 * Press inventory sort while ritual window is open to scan
 
+Predictive Price can now be used in CLF
+
+Bugfixes
+* Fix for Stash first scan, when trying to move to vendor in Rogue Harbour
+* Fix for Pause while awaiting vendor confirmation
+  * This will now wait up to two minutes for both windows to close
+* Map crafting quality evaluation is now using <,> rather than <=,>=
+
+---
 
 ## Version .13.0011 - Alpha version - January/24/2020
 Full implimentation
 * Perfect prices from PoE.Watch are updated alongside Poe.ninja DB update
 * Unique Affinity settings contains the option to filter based on stats
+
+---
 
 ## Version .13.0010 - Alpha version - January/21/2020
 Bugfixes
