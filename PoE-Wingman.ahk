@@ -2961,7 +2961,8 @@ Return
         Return
     }
     Sleep, 45*Latency
-    If (FirstAutomationSetting == "Search Stash")
+    Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
+    If (FirstAutomationSetting == "Search Stash" && !Vendor)
     {
       If (Town = "The Sarn Encampment")
       {
@@ -2981,8 +2982,16 @@ Return
         Sleep, 800
         ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
       }
+      Else If (Town = "The Rogue Harbour")
+      {
+        LeftClick(GameX + GameW//3, GameY + GameH//1.3)
+        Sleep, 800
+        ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+      }
     }
-    if (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+    If (!Vendor)
+      Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
+    if (Vendor)
     {
       LeftClick(Vendor.1.x, Vendor.1.y)
       Sleep, 60
