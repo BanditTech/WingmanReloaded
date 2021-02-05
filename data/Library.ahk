@@ -6357,9 +6357,9 @@
             : Item.Prop.ChaosValue?Item.Prop.ChaosValue
             : Item.Prop.PredictPrice?Item.Prop.PredictPrice
             : 0
-          cvalue := Format("{:.2g}", cvalue)
-          displayText := Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0") (cvalue?"`n" cvalue:"") 
-            : cvalue? cvalue : ""
+          cvalue := Ltrim(Format("{:.2g}", cvalue),"0")
+          displayText := Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0") (cvalue?"`n" SubStr(cvalue,1):"") 
+            : cvalue? SubStr(cvalue,1) : ""
 
           percentageScore := cvalue?((cvalue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
 
