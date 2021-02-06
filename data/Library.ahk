@@ -5811,6 +5811,11 @@
           , InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1440/1013))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1440/2))
+          ; Area for Ritual Items
+          InvGrid.Corners.Ritual.X1:=GameX + Round(GameW/(3440/848))
+          InvGrid.Corners.Ritual.Y1:=GameY + Round(GameH/(1440/355))
+          InvGrid.Corners.Ritual.X2:=GameX + Round(GameW/(3440/1692))
+          InvGrid.Corners.Ritual.Y2:=GameY + Round(GameH/(1440/1058))
         }
         ;Auto Vendor Settings
         WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3440/945))
@@ -5879,6 +5884,9 @@
         ;Status Check OnLocker ((3440/3)-2)
         WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
         WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
+        ;Status Check OnRitual
+        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (3440 / 1269))
+        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1440 / 205))
         ;GUI overlay
         WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3440 / -10))
         WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
