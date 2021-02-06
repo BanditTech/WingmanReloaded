@@ -6374,7 +6374,7 @@
           posObj := {"X":x-InvGrid.SlotRadius,"Y":y-InvGrid.SlotRadius,"W":Item.Prop.Item_Width * InvGrid.SlotSize,"H":Item.Prop.Item_Height * InvGrid.SlotSize}
           ; MsgBox % ColorPercent(percentageScore)
           ; WinActivate, % GameStr
-          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, "55" LTrim(LTrim(ColorPercent(percentageScore),"0"),"x"))
+          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, (percentageScore<=40?"22":"aa") LTrim(LTrim(ColorPercent(percentageScore),"0"),"x"))
         }
       }
     } Else If (mode = "break") {
