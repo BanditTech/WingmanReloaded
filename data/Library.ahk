@@ -6323,7 +6323,7 @@
   ScanRitual(mode:=""){
     Global InvGrid, RunningToggle, BlackList, PPServerStatus
     Static gridpanels := ""
-    Static pricepoint := 10
+    Static pricepoint := 5
     If (YesRitualPrice != "off" && YesRitual)
     {
       If !PPServerStatus()
@@ -6374,7 +6374,7 @@
           posObj := {"X":x-InvGrid.SlotRadius,"Y":y-InvGrid.SlotRadius,"W":Item.Prop.Item_Width * InvGrid.SlotSize,"H":Item.Prop.Item_Height * InvGrid.SlotSize}
           ; MsgBox % ColorPercent(percentageScore)
           ; WinActivate, % GameStr
-          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, (percentageScore<=40?"22":"aa") LTrim(LTrim(ColorPercent(percentageScore),"0"),"x"))
+          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj,"22000000", "ff" LTrim(LTrim(ColorPercent(percentageScore),"0"),"x"))
         }
       }
     } Else If (mode = "break") {
@@ -6406,6 +6406,7 @@
       Gui,% This.label ": Show", NA
       This.hWND := WinExist()
       This.color := backgroundColor
+      This.tcolor := textColor
       This.font := setFont
       This.make()
       This.setText()
@@ -6427,7 +6428,7 @@
         MsgBox, 48, Font error!, The font you have specified does not exist on the system
         Return "Error Loading Font"
       }
-      Options = x10p y30p w80p Centre cbbffffff r1 s20
+      Options := "x10p y30p w80p Centre c" This.tcolor " r2 s20"
       Gdip_TextToGraphics(This.G, This.text, Options, This.font, This.positions.W, This.positions.H)
     }
     finalize(){
