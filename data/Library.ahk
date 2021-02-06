@@ -6351,7 +6351,7 @@
           ; MsgBox, Inside Loop
           ClipItem(x,y)
           addToBlacklist(R, C)
-          If !(Item.Prop.ItemBase ~= "\w")
+          If !(Item.Prop.ItemName ~= "\w")
           {
             Empty += 1
             If Empty > 5
