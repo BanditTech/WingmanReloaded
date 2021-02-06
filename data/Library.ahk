@@ -6364,6 +6364,7 @@
           cvalue := Item.Prop.UniquePerfectValue?Item.Prop.UniquePerfectValue
             : Item.Prop.ChaosValue?Item.Prop.ChaosValue
             : Item.Prop.PredictPrice?Item.Prop.PredictPrice
+            : Item.Prop.ItemName = "Chaos Orb" ? Item.Prop.Stack_Size * 1
             : 0
           cvalue := Ltrim(Format("{:.2g}", cvalue),"0")
           displayText := Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0") (cvalue?"`n" SubStr(cvalue,1):"") 
