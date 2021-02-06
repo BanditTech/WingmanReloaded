@@ -17778,7 +17778,6 @@ ColorRange(c1,c2){ ; Create a list of colors between two https://www.autohotkey.
   Loop, % MCD - 1
       ColorList.Push("0x" . Format("{:02X}", Color1.R + A_Index / MCD * Distance_R) . Format("{:02X}", Color1.G + A_Index / MCD * Distance_G) . Format("{:02X}", Color1.B + A_Index / MCD * Distance_B))
   ColorList.Push(Color2.RGB) ; stop at Color2
-  MsgBox % "MCD: " MCD "   List: " ColorList.Count()
   Return ColorList
 ;-------------------------------------------------------------------------------
 }
