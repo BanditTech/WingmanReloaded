@@ -6364,7 +6364,9 @@
           percentageScore := cvalue?((cvalue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
 
           posObj := {"X":x-InvGrid.SlotRadius,"Y":y-InvGrid.SlotRadius,"W":Item.Prop.Item_Width * InvGrid.SlotSize,"H":Item.Prop.Item_Height * InvGrid.SlotSize}
-          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, "aa" LTrim(ColorPercent(percentageScore),"0x"))
+          ; MsgBox % ColorPercent(percentageScore)
+          ; WinActivate, % GameStr
+          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj, "55" LTrim(LTrim(ColorPercent(percentageScore),"0"),"x"))
         }
       }
     } Else If (mode = "break") {
@@ -17717,17 +17719,35 @@ IsLinear(arr, i=0) {
 ;--------------------------------------------------------------------------------
 
 ColorPercent(percent){
-  Static ColorRange := ColorRange("0xff0000","0x00ff00")
-  Static ColorCount := ColorRange.Length()
-  Return ColorRange[Round(ColorCount * ((percent>100?100:percent<1?1:percent) / 100))]
+	Local key
+  Static ColorRange := ""
+  Static ColorCount := ""
+  If !IsObject(ColorRange)
+		ColorRange := ColorRange("0xff0000","0x00ff00")
+	If !ColorCount
+		ColorCount := ColorRange.Length()
+  percent := percent>100?100
+    :percent<1?1
+    :percent
+	key := percent!=1 ? Round(ColorCount * ((Percent) / 100)) : 1
+	; MsgBox % key
+  Return ColorRange[key]
 }
 
 ;-------------------------------------------------------------------------------
 ColorRange(c1,c2){ ; Create a list of colors between two https://www.autohotkey.com/boards/viewtopic.php?t=29205
-  Color1 := new Color(c1)
-  Color2 := new Color(c2)
-  ColorList := []
+  Color2 := {RGB:c2
+  ,R:((c2 >> 16) & 0xFF)
+  ,G:((c2 >> 8) & 0xFF)
+  ,B:((c2 >> 0) & 0xFF)}
 
+  Color1 := {RGB:c1
+  ,R:((c1 >> 16) & 0xFF)
+  ,G:((c1 >> 8) & 0xFF)
+  ,B:((c1 >> 0) & 0xFF)}
+  ColorList := []
+  If !IsObject(Color1) || !IsObject(Color2)
+    MsgBox % "Color objects are not initialized: One-" IsObject(Color1) " - " c1 " Two-" IsObject(Color2) " - " c2
   ;-----------------------------------
   ; color distance for each color individually
   ; this distance may be positive or negative
@@ -17750,6 +17770,7 @@ ColorRange(c1,c2){ ; Create a list of colors between two https://www.autohotkey.
   Loop, % MCD - 1
       ColorList.Push("0x" . Format("{:02X}", Color1.R + A_Index / MCD * Distance_R) . Format("{:02X}", Color1.G + A_Index / MCD * Distance_G) . Format("{:02X}", Color1.B + A_Index / MCD * Distance_B))
   ColorList.Push(Color2.RGB) ; stop at Color2
+  MsgBox % "MCD: " MCD "   List: " ColorList.Count()
   Return ColorList
 ;-------------------------------------------------------------------------------
 }
@@ -17763,52 +17784,6 @@ max(Max, n*) { ; return the greatest of all values
             Max := Value
 
     Return, Max
-}
-
-;===============================================================================
-class Color { ; from AHK help file
-;===============================================================================
-
-    ; class variable
-    static Shift := {R:16, G:8, B:0}
-
-
-    ;---------------------------------------------------------------------------
-    __New(anyRGB) { ; constructor
-    ;---------------------------------------------------------------------------
-        this.RGB := anyRGB
-    }
-
-
-    ;---------------------------------------------------------------------------
-    __Get(Name) { ; get
-    ;---------------------------------------------------------------------------
-        If (Shift := Color.Shift[Name]) != ""
-            Return, (this.RGB >> Shift) & 0xFF
-    }
-
-
-    ;---------------------------------------------------------------------------
-    __Set(Name, Value) { ; set
-    ;---------------------------------------------------------------------------
-        If (Shift := Color.Shift[Name]) != "" {
-            Value &= 0xFF
-            this.RGB := (Value << Shift) | (this.RGB & ~(0xFF << Shift))
-            Return, Value
-        }
-    }
-
-
-    ;---------------------------------------------------------------------------
-    RGB[] { ; dynamic property
-    ;---------------------------------------------------------------------------
-        Get { ; return it in hex format
-            Return, Format("0x{:06X}", this._RGB)
-        }
-        Set { ; redirect RGB to _RGB
-            Return, this._RGB := Value
-        }
-    }
 }
 
 
