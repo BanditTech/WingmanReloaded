@@ -1,4 +1,4 @@
-﻿if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
 {
   ft_Gui("Show")
   Return
@@ -272,6 +272,15 @@
           {
             This.Prop.TimelessSplinter := True
             This.Prop.SpecialType := "Timeless Splinter"
+          }
+          Else If (InStr(This.Prop.ItemBase, "Timeless Karui Emblem") 
+          || InStr(This.Prop.ItemBase, "Timeless Eternal Emblem") 
+          || InStr(This.Prop.ItemBase, "Timeless Vaal Emblem") 
+          || InStr(This.Prop.ItemBase, "Timeless Templar Emblem") 
+          || InStr(This.Prop.ItemBase, "Timeless Maraketh Emblem"))
+          {
+            This.Prop.TimelessEmblem := True
+            This.Prop.SpecialType := "Timeless Emblem"
           }
           Else If (InStr(This.Prop.ItemBase, "Simulacrum"))
           {
@@ -1298,7 +1307,7 @@
           If This.MatchNinjaDB("Prophecy")
             Return
         }
-        If (This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment|| This.Prop.ItemName ~= "Simulacrum")
+        If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment|| This.Prop.ItemName ~= "Simulacrum")
         {
           If This.MatchNinjaDB("Fragment")
             Return
@@ -2045,7 +2054,7 @@
           Else
             sendstash := StashTabDelirium
         }
-        Else If (This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
+        Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
         {
           If StashTabYesFragment > 1 
             sendstash := -2
