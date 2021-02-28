@@ -2177,9 +2177,9 @@ Return
   }
   ; Make a more uniform method of checking for identification
   CheckToIdentify(){
-    If (Item.Affix["Unidentified"]&&YesIdentify)
+    If (Item.Affix["Unidentified"] && YesIdentify)
     {
-      If (ChaosRecipeEnableFunction && Item.StashChaosRecipe(false))
+      If (ChaosRecipeEnableFunction && Item.StashChaosRecipe(false) && ChaosRecipeEnableUnId)
         Return False
       Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
         Return True
@@ -5649,7 +5649,7 @@ Return
 
       Gui, Submit, NoHide
 
-      temp := {"Cookie":PoECookie}
+      temp := {"Cookie":"POESESSID="PoECookie}
       t := JSON_Beautify(temp)
       FileDelete, %A_ScriptDir%\save\Cookie.json
       FileAppend, % t, %A_ScriptDir%\save\Cookie.json
