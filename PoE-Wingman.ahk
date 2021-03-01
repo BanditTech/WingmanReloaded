@@ -1,13 +1,13 @@
 ; Contains all the pre-setup for the script
   Global VersionNumber := .13.0012
-  #IfWinActive Path of Exile 
+  #IfWinActive Path of Exile
   #NoEnv
   #MaxHotkeysPerInterval 99000000
   #HotkeyInterval 99000000
   #KeyHistory 0
   #SingleInstance force
-  #Warn UseEnv 
-  #Persistent 
+  #Warn UseEnv
+  #Persistent
   #InstallMouseHook
   #InstallKeybdHook
   #MaxThreadsPerHotkey 2
@@ -36,7 +36,7 @@
       Run, "https://www.autohotkey.com/download/"
       ExitApp
     }
-    Else 
+    Else
       ExitApp
   }
 
@@ -46,7 +46,7 @@
   OnMessage(0x200, Func("ShowToolTip"))  ; WM_MOUSEMOVE
 
   SetTitleMatchMode 2
-  SetWorkingDir %A_ScriptDir%  
+  SetWorkingDir %A_ScriptDir%
   Thread, interrupt, 0
   I_Icon = %A_ScriptDir%\data\WR.ico
   IfExist, %I_Icon%
@@ -61,7 +61,7 @@
   OpenProcessToken := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "OpenProcessToken", "Ptr")
   LookupPrivilegeValue := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "LookupPrivilegeValue", "Ptr")
   AdjustTokenPrivileges := DllCall("GetProcAddress", Ptr, DllCall("LoadLibrary", Str, "Advapi32.dll", "Ptr"), Astr, "AdjustTokenPrivileges", "Ptr")
-  
+
   ; CleanUp()
   ;REMEMBER TO ENABLE IF PUSHING TO ALPHA/MASTER!!!
   ; Rerun as admin if not already admin, required to disconnect client
@@ -71,7 +71,7 @@
   else
     Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
   Sleep, -1
-  
+
   IfNotExist, %A_ScriptDir%\data
     FileCreateDir, %A_ScriptDir%\data
   IfNotExist, %A_ScriptDir%\save
@@ -86,7 +86,7 @@
     FileCreateDir, %A_ScriptDir%\save\profiles\Utility
   IfNotExist, %A_ScriptDir%\temp
     FileCreateDir, %A_ScriptDir%\temp
-  
+
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -109,7 +109,7 @@
       . ".108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
     , "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs"
     , "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseSingleTap":"2", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
-    , "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
+    , "autolevelgemsEnable":"0", "autolevelgemsWait":"0"
     , "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
     , "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"
     , "profilesYesFlask":"0", "profilesFlask":"", "profilesYesUtility":"0", "profilesUtility":""}
@@ -334,7 +334,7 @@
       GrabCurrencyX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       GrabCurrencyY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
       StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
-      StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
+      StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
       YesEnableAutomation = Enable Automation Routines
       FirstAutomationSetting = Start Automation selected option
       YesEnableNextAutomation = Enable next automation after the first selected
@@ -439,7 +439,7 @@
       StashTabVeiled = Assign the Stash tab for Veiled items
       StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
       StashTabNinjaPrice = Assign the Stash tab for Ninja Priced items
-      StashTabYesNinjaPrice = Enable to send Ninja Priced items to the assigned tab on the left`rChaos Value must be at or above threshold 
+      StashTabYesNinjaPrice = Enable to send Ninja Priced items to the assigned tab on the left`rChaos Value must be at or above threshold
       StashTabYesNinjaPrice_Price = Assign the minimum value in chaos to send to Ninja Priced Tab
       StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
       StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
@@ -451,7 +451,7 @@
       StashDumpInTrial = Enables dump tab for all unsorted items when in Aspirant's Trial
       StashDumpSkipJC = Do not stash Jewler or Chromatic items when dumping
       StashTabGemSupport = Assign the Stash tab for Support Gem items
-      StashTabYesGemSupport = Enable to send Support Gem items to the assigned tab on the left  
+      StashTabYesGemSupport = Enable to send Support Gem items to the assigned tab on the left
       StashTabMetamorph = Assign the Stash tab for Metamorph items
       StashTabYesMetamorph = Enable to send Metamorph items to the assigned tab on the left
       StashTabGem = Assign the Stash tab for Normal Gem items
@@ -528,7 +528,7 @@
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
-    
+
   ; Login POESESSID
     Global PoECookie := ""
     Global AccountNameSTR := ""
@@ -813,7 +813,7 @@
     Global StashTabPredictive := 1
     Global StashTabNinjaPrice := 1
   ; Checkbox to activate each tab
-    
+
         ;Affinities
     Global StashTabYesCurrency := 0
     Global StashTabYesMap := 0
@@ -828,7 +828,7 @@
     ;Unique Special
     Global StashTabYesUniqueRing := 1
     Global StashTabYesUniqueDump := 1
-    
+
     Global StashTabYesGem := 1
     Global StashTabYesGemVaal := 1
     Global StashTabYesGemQuality := 1
@@ -882,7 +882,7 @@
     global YesTriggerUtilityJoystickKey := 1
     global YesTriggerJoystickRightKey := 1
   ; ~ Hotkeys
-  ; Legend:    ! = Alt    ^ = Ctrl    + = Shift 
+  ; Legend:    ! = Alt    ^ = Ctrl    + = Shift
     global hotkeyOptions:="!F10"
     global hotkeyAutoFlask:="!F11"
     global hotkeyAutoQuit:="!F12"
@@ -955,16 +955,16 @@
     Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
     Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
     Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
-  
+
   ; Map Crafting Settings
     Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3
     , CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3
     , ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MinusMPR,LRRLES,MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
     , MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
-    
+
   ; ItemInfo GUI
-    Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
-    Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21, 
+    Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21,
+    Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21,
     Global PComment1 := "LongDataTextNameSpace"
     Global PData1 := "000.000"
     Global PComment2 := "LongDataTextNameSpace"
@@ -1264,7 +1264,7 @@
     UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_Lines.json, %A_ScriptDir%\data\Affix_Lines.json
     FileRead, JSONtext, %A_ScriptDir%\data\Affix_Lines.json
     WR.Data.Affix := JSON.Load(JSONtext,,1)
-    JSONtext := ""  
+    JSONtext := ""
   } Else {
     FileRead, JSONtext, %A_ScriptDir%\data\Affix_Lines.json
     WR.Data.Affix := JSON.Load(JSONtext,,1)
@@ -1334,7 +1334,7 @@
     Gui, Font
     Loop 10
     Gui, Add, Button, % "gUtilityMenu W46 -wrap " (A_Index==1?"xs+6 yp+20":A_Index==6?"xs+6 y+5":"x+5 yp") , Utility %A_Index%
-    
+
     l := [], s := ""
     Loop, Files, %A_ScriptDir%\save\profiles\Utility\*.json
       l.Push(StrReplace(A_LoopFileName,".json",""))
@@ -1425,18 +1425,18 @@
     Gui, Add, Button, ghelpAutomationSetting   x+10 ys-4    h20, %  "? help"
     Gui, add, button, gWR_Update vWR_Btn_Strings     xs ys+18 w110, Sample Strings
     Gui, add, Button, gLootColorsMenu  vLootVacuumSettings x+8 yp w110, Loot Vacuum
-    Gui, Font, 
+    Gui, Font,
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,           Section          xs   y+10,         Item and Inventory Settings:
     Gui, add, button, gLaunchLootFilter vWR_Btn_CLF  xs y+10 w110, Custom Loot Filter
     Gui, add, button, gWR_Update vWR_Btn_Inventory   x+10 yp w110, Inventory Sorting
     Gui, add, button, gWR_Update vWR_Btn_Crafting  xs y+10 w110, Crafting
-    Gui, Font, 
+    Gui, Font,
 
     Gui, Font, Bold s9 cBlack, Arial
     Gui Add, Text,           Section          xs   y+10,         Interface Options:
-    Gui, Font, 
+    Gui, Font,
 
     Gui Add, Checkbox, gUpdateExtra  vYesOHB Checked%YesOHB%                                , Pause script when OHB missing?
     Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                      , Show GUI on startup?
@@ -1497,7 +1497,7 @@
       MsgBox, 262144, Error loading leagues, % e
       LeagueIndex := [{"id":"Standard"}]
     }
-    textList= 
+    textList=
     For K, V in LeagueIndex
       textList .= (!textList ? "" : "|") V["id"]
     Gui, Font, Bold s9 cBlack, Arial
@@ -1548,7 +1548,7 @@
     Gui Add, Text,                     hp x+5   yp+3,         Pause Detonate
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,    center w170 h100               xm+5   y+5,       Trigger Keybinds: 
+    Gui Add, GroupBox,    center w170 h100               xm+5   y+5,       Trigger Keybinds:
     Gui, Font
 
     Gui Add, Edit, xp+5 yp+20   w60 h19   vhotkeyTriggerMovement   ,%hotkeyTriggerMovement%
@@ -1559,7 +1559,7 @@
     Gui Add, Text,                     hp x+5   yp+3,         Secondary Attack
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,    center w170 h155               xm+5   y+5,       Ingame Assigned Keys: 
+    Gui Add, GroupBox,    center w170 h155               xm+5   y+5,       Ingame Assigned Keys:
     Gui, Font
 
     Gui,Add,Edit, xp+5 yp+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
@@ -1574,7 +1574,7 @@
     Gui Add, Text, hp x+5   yp+3,         Detonate Mines
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui Add, GroupBox,    center w170 h340               xs+175   ym+25,       Tool Keybinds: 
+    Gui Add, GroupBox,    center w170 h340               xs+175   ym+25,       Tool Keybinds:
     Gui, Font
 
     Gui,Add,Edit, section xp+5 yp+20   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
@@ -1657,7 +1657,7 @@
     Menu, Tray, Add
     Menu, Tray, add,         Force Update, %ForceUpdate%
     Menu, Tray, add
-    Menu, Tray, add,         Reload This Script, RELOAD  
+    Menu, Tray, add,         Reload This Script, RELOAD
     Menu, Tray, add
     Menu, Tray, add,         Exit, QuitNow ; added exit script option
 
@@ -1666,9 +1666,9 @@
     Gui, ItemInfo: Font, Bold s8 c4D7186, Verdana
     Gui, ItemInfo: Add, GroupBox, vGroupBox1 xm+1 y+1  h251 w554 , %GroupBox1%
     Gui, ItemInfo: Add, Text, xp+3 yp+20 Section h1 w1 , ""
-    Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
+    Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times
     {
-      addY := y + 10 
+      addY := y + 10
       Gui, ItemInfo: Add, Text, vPercentText1G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
     }
 
@@ -1697,9 +1697,9 @@
 
     Gui, ItemInfo: Add, GroupBox, vGroupBox2 x+15 ys-21  h251 w554 , %GroupBox2%
     Gui, ItemInfo: Add, Text, xp+3 ys Section h1 w1 , ""
-    Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times 
+    Loop, % 21 + ( Y := 15 ) - 15 ; Loop 21 times
     {
-      addY := y + 10 
+      addY := y + 10
       Gui, ItemInfo: Add, Text, vPercentText2G%A_Index% xs+10 y%addY% w70 h10 0x200 Right, % Abs( 125 - ( Y += 10 ) ) "`%"
     }
     Gui, ItemInfo: Add, Text, % "x+5 ys w" (graphWidth + 2) " h" (graphHeight + 2) " 0x1000" ; SS_SUNKEN := 0x1000
@@ -1726,8 +1726,8 @@
     Gui, ItemInfo: Add, Text, x+8 vSData10, %SData10%
 
     global hBM := CreateDIB( "E9F5F8|E9F5F8|AFAFAF|AFAFAF|E9F5F8|E9F5F8", 2, 3, graphWidth, graphHeight, 0)
-    global pGraph1 := XGraph( hGraph1, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
-    global pGraph2 := XGraph( hGraph2, hBM, 21, "1,10,0,10", 0xFF0000, 2 ) 
+    global pGraph1 := XGraph( hGraph1, hBM, 21, "1,10,0,10", 0xFF0000, 2 )
+    global pGraph2 := XGraph( hGraph2, hBM, 21, "1,10,0,10", 0xFF0000, 2 )
 
 
     Gui, ItemInfo: Add, GroupBox, Section xm+1 y+30  h251 w364 , Item Properties
@@ -1870,7 +1870,7 @@
       }
     }
     SaveIgnoreArray()
-  } 
+  }
   Else
     LoadIgnoreArray()
 
@@ -2033,14 +2033,14 @@ Return
     {
       CheckRunning("On")
       GuiStatus()
-      If (!OnChar) 
-      { ;Need to be on Character 
+      If (!OnChar)
+      { ;Need to be on Character
         MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
         CheckRunning("Off")
         Return
-      } 
+      }
       Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
-      { 
+      {
         ; First Automation Entry
         If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
         {
@@ -2126,7 +2126,7 @@ Return
         {
           Return True
         }
-          
+
       }
     }
     Return False
@@ -2183,13 +2183,13 @@ Return
         Return False
       Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
         Return True
-      Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
+      Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) )
         Return True
       Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
         Return True
       Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
         Return True
-    } 
+    }
     Return False
   }
   ; VendorRoutine - Does vendor functions
@@ -2225,12 +2225,12 @@ Return
           Continue
         Grid := RandClick(GridX, GridY)
         If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-        {   
+        {
           Ding(500,11,"Hit Scroll")
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-        } 
+        }
         PointColor := ScreenShot_GetColor(GridX,GridY)
-        
+
         If indexOf(PointColor, varEmptyInvSlotColor) {
           ;Seems to be an empty slot, no need to clip item info
           Continue
@@ -2253,8 +2253,8 @@ Return
           If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
           {
             If (Item.Prop.Quality >= 20)
-              Q := 40 
-            Else 
+              Q := 40
+            Else
               Q := Item.Prop.Quality
             tQ += Q
             SortFlask.Push({"C":C,"R":R,"Q":Q})
@@ -2263,8 +2263,8 @@ Return
           If ( Item.Prop.RarityGem && ( Item.Prop.Quality > 0 ))
           {
             If Item.Prop.Quality >= 20
-              Continue 
-            Else 
+              Continue
+            Else
               Q := Item.Prop.Quality
             Q := Item.Prop.Quality
             tGQ += Q
@@ -2414,12 +2414,12 @@ Return
           Continue
         Grid := RandClick(GridX, GridY)
         If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-        {   
+        {
           Ding(500,11,"Hit Scroll")
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-        } 
+        }
         PointColor := ScreenShot_GetColor(GridX,GridY)
-        
+
         If indexOf(PointColor, varEmptyInvSlotColor) {
           ;Seems to be an empty slot, no need to clip item info
           Continue
@@ -2439,8 +2439,8 @@ Return
           If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
           {
             If (Item.Prop.Quality >= 20)
-              Q := 40 
-            Else 
+              Q := 40
+            Else
               Q := Item.Prop.Quality
             tQ += Q
             SortFlask.Push({"C":C,"R":R,"Q":Q})
@@ -2449,8 +2449,8 @@ Return
           If ( Item.Prop.RarityGem && ( Item.Prop.Quality > 0 ))
           {
             If Item.Prop.Quality >= 20
-              Continue 
-            Else 
+              Continue
+            Else
               Q := Item.Prop.Quality
             Q := Item.Prop.Quality
             tGQ += Q
@@ -2551,10 +2551,10 @@ Return
           Continue
         Grid := RandClick(GridX, GridY)
         If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-        {   
+        {
           Ding(500,11,"Hit Scroll")
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-        } 
+        }
         PointColor := ScreenShot_GetColor(GridX,GridY)
         If indexOf(PointColor, varEmptyInvSlotColor) {
           ;Seems to be an empty slot, no need to clip item info
@@ -2651,7 +2651,7 @@ Return
     uTally := {}
     For Slot, Items in RecipeArray.Chaos
     {
-      For k, v in Items 
+      For k, v in Items
       {
         If !Tally[Slot]
           Tally[Slot] := 0
@@ -2660,7 +2660,7 @@ Return
     }
     For Slot, Items in RecipeArray.Regal
     {
-      For k, v in Items 
+      For k, v in Items
       {
         If !Tally[Slot]
           Tally[Slot] := 0
@@ -2669,7 +2669,7 @@ Return
     }
     For Slot, Items in RecipeArray.uChaos
     {
-      For k, v in Items 
+      For k, v in Items
       {
         If !uTally[Slot]
           uTally[Slot] := 0
@@ -2678,7 +2678,7 @@ Return
     }
     For Slot, Items in RecipeArray.uRegal
     {
-      For k, v in Items 
+      For k, v in Items
       {
         If !uTally[Slot]
           uTally[Slot] := 0
@@ -2733,16 +2733,16 @@ Return
           Continue
         Grid := RandClick(GridX, GridY)
         If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-        {   
+        {
           Ding(500,11,"Hit Scroll")
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-        } 
+        }
         PointColor := ScreenShot_GetColor(GridX,GridY)
         If indexOf(PointColor, varEmptyInvSlotColor) {
           ;Seems to be an empty slot, no need to clip item info
           Continue
         }
-        
+
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
         If CheckToIdentify()
@@ -2750,16 +2750,16 @@ Return
           WisdomScroll(Grid.X,Grid.Y)
           ClipItem(Grid.X,Grid.Y)
         }
-        If (OnStash && YesStash) 
+        If (OnStash && YesStash)
         {
           If (Item.Prop.SpecialType = "Quest Item")
             Continue
           Else If (sendstash:=Item.MatchLootFilter())
             Sleep, -1
-          ;Heist Modification Remove at End of League!  
+          ;Heist Modification Remove at End of League!
           Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) && ((Item.Prop.RarityNormal && YesSkipMaps_normal) || (Item.Prop.RarityMagic && YesSkipMaps_magic) || (Item.Prop.RarityRare && YesSkipMaps_rare) || (Item.Prop.RarityUnique && YesSkipMaps_unique)))
             Continue
-          ;Heist Modification Remove at End of League!  
+          ;Heist Modification Remove at End of League!
           Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint" || Item.Prop.SpecialType = "Heist Marker")
           {
             HeistC.Push(C)
@@ -2769,10 +2769,10 @@ Return
           }
           Else If ( Item.Prop.IsMap && YesSkipMaps
           && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
-          && ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
-            || (Item.Prop.RarityMagic && YesSkipMaps_magic) 
-            || (Item.Prop.RarityRare && YesSkipMaps_rare) 
-            || (Item.Prop.RarityUnique && YesSkipMaps_unique)) 
+          && ((Item.Prop.RarityNormal && YesSkipMaps_normal)
+            || (Item.Prop.RarityMagic && YesSkipMaps_magic)
+            || (Item.Prop.RarityRare && YesSkipMaps_rare)
+            || (Item.Prop.RarityUnique && YesSkipMaps_unique))
           && (Item.Prop.Map_Tier >= YesSkipMaps_tier))
             Continue
           Else If (sendstash:=Item.MatchStashManagement()){
@@ -2808,7 +2808,7 @@ Return
               If (sendstash = StashTabUnique || sendstash = StashTabUniqueRing )
               && (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
               {
-                If (StashTabYesUniqueRing && Item.Prop.Ring 
+                If (StashTabYesUniqueRing && Item.Prop.Ring
                 && sendstash != StashTabUniqueRing)
                 {
                   Sleep, 200*Latency
@@ -2862,7 +2862,7 @@ Return
             If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
             && (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
             {
-              If (StashTabYesUniqueRing && Item.Prop.Ring 
+              If (StashTabYesUniqueRing && Item.Prop.Ring
               && Tab != StashTabUniqueRing)
               {
                 Sleep, 200*Latency
@@ -3034,21 +3034,21 @@ Return
           Continue
         Grid := RandClick(GridX, GridY)
         If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-        {   
+        {
           Ding(500,11,"Hit Scroll")
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-        } 
+        }
         PointColor := ScreenShot_GetColor(GridX,GridY)
-        
+
         If indexOf(PointColor, varEmptyInvSlotColor) {
           ;Seems to be an empty slot, no need to clip item info
           Continue
         }
-        
+
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
         ; Trade full div stacks
-        If (OnDiv && YesDiv) 
+        If (OnDiv && YesDiv)
         {
           If (Item.Prop.RarityDivination && (Item.Prop.Stack = Item.Prop.StackMax)){
             CtrlClick(Grid.X,Grid.Y)
@@ -3082,17 +3082,17 @@ Return
           Continue
         Grid := RandClick(GridX, GridY)
         If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-        {   
+        {
           Ding(500,11,"Hit Scroll")
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-        } 
+        }
         PointColor := ScreenShot_GetColor(GridX,GridY)
-        
+
         If indexOf(PointColor, varEmptyInvSlotColor) {
           ;Seems to be an empty slot, no need to clip item info
           Continue
         }
-        
+
         ClipItem(Grid.X,Grid.Y)
         addToBlacklist(C, R)
         ; id if necessary
@@ -3127,7 +3127,7 @@ Return
     }
     If (CurrentTab==Tab)
       return
-    If (CurrentTab!=Tab) 
+    If (CurrentTab!=Tab)
     {
       Sleep, 60*Latency
       Dif:=(CurrentTab-Tab)
@@ -3373,11 +3373,11 @@ Return
           Msg := "Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(OnMetamorph?"Metamorph is Open":(YesXButtonFound?"X Button is Detected":"Error")))))))))))
           If CheckTime("seconds",1,"StatusBar1")
             SB_SetText(Msg, 1)
-          If (YesFillMetamorph) 
+          If (YesFillMetamorph)
           {
             If (Metamorph_Filled && (OnMetamorph || FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr )))
               OnScreenMM := A_TickCount
-            Else If (OnMetamorph && !Metamorph_Filled 
+            Else If (OnMetamorph && !Metamorph_Filled
             && FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr ) )
             {
               Metamorph_Filled := True
@@ -3521,7 +3521,7 @@ Return
                   x1:=WR.Utility[A_Index].IconArea.X1, y1:=WR.Utility[A_Index].IconArea.Y1, x2:=WR.Utility[A_Index].IconArea.X2, y2:=WR.Utility[A_Index].IconArea.Y2
 
                 BuffIcon := FindText(x1, y1, x2, y2, WR.Utility[A_Index].IconVar1, WR.Utility[A_Index].IconVar0, WR.Utility[A_Index].Icon,0)
-                
+
                 If ((WR.Utility[A_Index].IconShown && BuffIcon) || (!WR.Utility[A_Index].IconShown && !BuffIcon))
                   Trigger(WR.Utility[A_Index],True)
                 Else
@@ -3573,10 +3573,10 @@ Return
         SB_SetText("No game found", 1)
       If CheckTime("seconds",5,"StatusBar3")
         SB_SetText("No game found", 3)
-    } 
+    }
     Return
   }
-  
+
   ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
   TimerPassthrough:
     Loop 5
@@ -3597,19 +3597,19 @@ Return
   toggleAutoFlask(){
     WR.func.Toggle.Flask := !WR.func.Toggle.Flask
     Settings("func","Save")
-    GuiUpdate()  
+    GuiUpdate()
     return
   }
   ; AutoMove - Toggle movement triggers
   toggleAutoMove(){
-    WR.func.Toggle.Move := !WR.func.Toggle.Move  
+    WR.func.Toggle.Move := !WR.func.Toggle.Move
     Settings("func","Save")
     GuiUpdate()
     return
   }
   ; AutoUtility - Toggle utility triggers
   toggleAutoUtility(){
-    WR.func.Toggle.Utility := !WR.func.Toggle.Utility  
+    WR.func.Toggle.Utility := !WR.func.Toggle.Utility
     Settings("func","Save")
     GuiUpdate()
     return
@@ -3693,9 +3693,9 @@ Return
     Else If !ActionList[obj.Group].Count()
     {
       loop % (obj.Type="Flask"?5:10)
-        if (WR[obj.Type][A_Index].Group = obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) ) 
+        if (WR[obj.Type][A_Index].Group = obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) )
           ActionList[obj.Group].Push(obj.Type . " " . A_Index . " Check")
-    } 
+    }
     For k, v in ActionList[obj.Group]
     {
       type := StrSplit(v, " ")[1], recheck := (StrSplit(v, " ")[3] == "Check"?True:False), v := StrSplit(v, " ")[2]
@@ -3706,7 +3706,7 @@ Return
         {
           If !GameActive
             Return
-          MovementPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")  
+          MovementPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")
                           || (MainAttackPressedActive && WR.perChar.Setting.movementMainAttack)
                           || (SecondaryAttackPressedActive && WR.perChar.Setting.movementSecondaryAttack) )
           If (MovementPressed)
@@ -3721,8 +3721,8 @@ Return
             Return
         }
         SendHotkey(WR[type][v].Key)
-        WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD 
-        WR.cdExpires[type][v] := A_TickCount + WR[type][v].CD 
+        WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD
+        WR.cdExpires[type][v] := A_TickCount + WR[type][v].CD
         ActionList[obj.Group].RemoveAt(k)
         If (WR[type][v].Group = "QuickSilver")
           Loop, 10
@@ -3741,13 +3741,13 @@ Return
       If (obj.OnCD)
         Return True
       If ( ( WR.func.Toggle[obj.Type] && obj.Condition == 1 ; Any/All Resource Triggers
-        && (obj.Life && obj.Life > Player.Percent.Life) || (obj.ES && obj.ES > Player.Percent.ES) || (obj.Mana && obj.Mana > Player.Percent.Mana) ) 
-        || ( WR.func.Toggle[obj.Type] && obj.Condition == 2 
+        && (obj.Life && obj.Life > Player.Percent.Life) || (obj.ES && obj.ES > Player.Percent.ES) || (obj.Mana && obj.Mana > Player.Percent.Mana) )
+        || ( WR.func.Toggle[obj.Type] && obj.Condition == 2
         && (!obj.Life || (obj.Life && obj.Life > Player.Percent.Life)) && (!obj.ES || (obj.ES && obj.ES > Player.Percent.ES)) && (!obj.Mana || (obj.Mana && obj.Mana > Player.Percent.Mana)) ) )
         Return True
       If (obj.Move && WR.func.Toggle.Move)
       { ; Move Triggers
-        If ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")  
+        If ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")
         || (MainAttackPressedActive && WR.perChar.Setting.movementMainAttack)
         || (SecondaryAttackPressedActive && WR.perChar.Setting.movementSecondaryAttack) )
         {
@@ -3762,7 +3762,7 @@ Return
           Return True
         }
       }
-      If (WR.func.Toggle[obj.Type] 
+      If (WR.func.Toggle[obj.Type]
         && ( (obj.MainAttack && MainAttackPressedActive) ;Attack Triggers
         || (obj.SecondaryAttack && SecondaryAttackPressedActive) ) )
         Return True
@@ -3776,7 +3776,7 @@ Return
     If (MainAttackPressedActive||OnTown||OnHideout)
       Return
     MainAttackPressedActive := True
-    Return  
+    Return
   }
   MainAttackCommandRelease()
   {
@@ -3789,7 +3789,7 @@ Return
       loop % (types="Flask"?5:10)
         If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
           Trigger(WR[types][A_Index],True)
-    Return  
+    Return
   }
   ; SecondaryAttackCommand - Secondary attack Flasks
   SecondaryAttackCommand()
@@ -3798,7 +3798,7 @@ Return
     If (SecondaryAttackPressedActive||OnTown||OnHideout)
       Return
     SecondaryAttackPressedActive := True
-    Return  
+    Return
   }
   SecondaryAttackCommandRelease()
   {
@@ -3810,9 +3810,9 @@ Return
       loop % (types="Flask"?5:10)
         If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
           Trigger(WR[types][A_Index],True)
-    Return  
+    Return
   }
-  
+
 ; GrabCurrency - Get currency fast to use on a white/blue/rare strongbox
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GrabCurrency(){
@@ -3850,7 +3850,7 @@ Return
     {
       CheckRunning("On")
       GuiStatus()
-      If (!OnChar) 
+      If (!OnChar)
       {
         MsgBox %  "You do not appear to be in game.`nLikely need to calibrate Character Active"
         CheckRunning("Off")
@@ -3941,12 +3941,12 @@ Return
           Continue
         Grid := RandClick(GridX, GridY)
         If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-        {   
+        {
           Ding(500,11,"Hit Scroll")
           Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-        } 
+        }
         PointColor := ScreenShot_GetColor(GridX,GridY)
-        If indexOf(PointColor, varEmptyInvSlotColor) 
+        If indexOf(PointColor, varEmptyInvSlotColor)
         {
           ;Seems to be an empty slot, no need to clip item info
           Continue
@@ -3970,7 +3970,7 @@ Return
           }
         }
         ;Crafting Map Script
-        If (Item.Prop.IsMap && !Item.Prop.IsBlightedMap && !Item.Prop.Corrupted && !Item.Prop.RarityUnique) 
+        If (Item.Prop.IsMap && !Item.Prop.IsBlightedMap && !Item.Prop.Corrupted && !Item.Prop.RarityUnique)
         {
           ;Check all 3 ranges tier with same logic
           i = 0
@@ -3981,8 +3981,8 @@ Return
             {
               If (!Item.Prop.RarityNormal)
               {
-                If ((Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
-                || (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) 
+                If ((Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation")
+                || (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy"))
                 || (Item.Prop.RarityRare && Item.Prop.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
                 {
                   MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
@@ -3998,7 +3998,7 @@ Return
                 If (Item.Prop.Map_Quality <= 20)
                 {
                   numberChisel := (20 - Item.Prop.Map_Quality)//5
-                }  
+                }
                 Else
                 {
                   numberChisel := 0
@@ -4044,9 +4044,9 @@ Return
   {
     Loop, 3
     {
-      If ( EndMapTier%A_Index% >= StartMapTier%A_Index% 
-      && CraftingMapMethod%A_Index% != "Disable" 
-      && Item.Prop.Map_Tier >= StartMapTier%A_Index% 
+      If ( EndMapTier%A_Index% >= StartMapTier%A_Index%
+      && CraftingMapMethod%A_Index% != "Disable"
+      && Item.Prop.Map_Tier >= StartMapTier%A_Index%
       && Item.Prop.Map_Tier <= EndMapTier%A_Index% )
         Return CraftingMapMethod%A_Index%
     }
@@ -4160,11 +4160,11 @@ Return
     antp := Item.Prop.Map_PackSize
     antq := Item.Prop.Map_Quantity
     ;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-    While ( (Item.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
-    || (Item.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
-    || (Item.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
-    || (Item.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
-    || (Item.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
+    While ( (Item.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments)
+    || (Item.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB)
+    || (Item.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect)
+    || (Item.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect)
+    || (Item.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen)
     || (Item.Affix["Cannot Leech Life from Monsters"] && NoLeech)
     || (Item.Affix["-#% maximum Player Resistances"] && MinusMPR)
     || (Item.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
@@ -4174,9 +4174,9 @@ Return
     || (Item.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
     || (Item.Affix["Monsters' skills Chain # additional times"] && MSCAT)
     || (Item.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
-    || (Item.Prop.RarityNormal) 
-    || (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
-    || Item.Prop.Map_PackSize < MMapMonsterPackSize 
+    || (Item.Prop.RarityNormal)
+    || (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity
+    || Item.Prop.Map_PackSize < MMapMonsterPackSize
     || Item.Prop.Map_Quantity < MMapItemQuantity)) )
     && !Item.Affix["Unidentified"]
     {
@@ -4222,8 +4222,8 @@ Return
         RandomSleep(45,45)
       }
       ;First Gem or Item Swap
-      If (WR.perChar.Setting.swap1Xa && WR.perChar.Setting.swap1Ya 
-      && WR.perChar.Setting.swap1Xb && WR.perChar.Setting.swap1Yb) 
+      If (WR.perChar.Setting.swap1Xa && WR.perChar.Setting.swap1Ya
+      && WR.perChar.Setting.swap1Xb && WR.perChar.Setting.swap1Yb)
       {
         If (WR.perChar.Setting.swap1Item)
         {
@@ -4250,8 +4250,8 @@ Return
         RandomSleep(90,120)
       }
       ;Second Gem of Item Swap
-      If (WR.perChar.Setting.swap2Xa && WR.perChar.Setting.swap2Ya 
-      && WR.perChar.Setting.swap2Xb && WR.perChar.Setting.swap2Yb) 
+      If (WR.perChar.Setting.swap2Xa && WR.perChar.Setting.swap2Ya
+      && WR.perChar.Setting.swap2Xb && WR.perChar.Setting.swap2Yb)
       {
         If (WR.perChar.Setting.swap2Item)
         {
@@ -4299,7 +4299,7 @@ Return
         Click, Right, up
       MouseGetPos xx, yy
       RandomSleep(53,87)
-      
+
       If !(OnInventory)
       {
         SendHotkey(hotkeyInventory)
@@ -4387,7 +4387,7 @@ Return
           RandomSleep(750,750)
           ControlSend,, {Enter}, %GameStr%
         }
-      } 
+      }
       Else If WR.perChar.Setting.quitPortal
       {
         If ((A_TickCount - LastLogout) > 10000)
@@ -4422,7 +4422,7 @@ Return
     Static LastCheck:=0
     If (WR.perChar.Setting.autolevelgemsEnable && OnChar && (A_TickCount - LastCheck > 200))
     {
-      IfWinActive, ahk_group POEGameGroup 
+      IfWinActive, ahk_group POEGameGroup
       {
         If (WR.perChar.Setting.autolevelgemsWait && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
           Return
@@ -4462,7 +4462,7 @@ Return
     }
     Return
   }
-; PoEWindowCheck - Check for the game window. 
+; PoEWindowCheck - Check for the game window.
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   PoEWindowCheck()
   {
@@ -4483,7 +4483,7 @@ Return
       }
       If (!RescaleRan || newDim)
         Rescale()
-      If ((!ToggleExist || newDim) && GameActive) 
+      If ((!ToggleExist || newDim) && GameActive)
       {
         Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA", StatusOverlay
         GuiUpdate()
@@ -4495,8 +4495,8 @@ Return
         ToggleExist := False
         Gui 2: Show, Hide, StatusOverlay
       }
-    } 
-    Else 
+    }
+    Else
     {
       If CheckTime("seconds",5,"CheckActiveType")
         CheckActiveType()
@@ -4529,15 +4529,15 @@ Return
     GuiControl,2: Show%YesInGameOverlay%, overlayT4
     Return
   }
-; DBUpdateCheck - Check if the database should be updated 
+; DBUpdateCheck - Check if the database should be updated
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DBUpdateCheck()
   {
     Global Date_now, LastDatabaseParseDate
-    IfWinExist, ahk_group POEGameGroup 
+    IfWinExist, ahk_group POEGameGroup
     {
       Return
-    } 
+    }
     Else If (YesNinjaDatabase && DaysSince())
     {
       For k, apiKey in apiList
@@ -4566,7 +4566,7 @@ Return
       Notify(Clipboard, "`nThis information has been placed in the clipboard`nCalculation Took " (T1 := A_TickCount - T1) " MS for " (T_Area := ((Rect.X2 - Rect.X1) * (Rect.Y2 - Rect.Y1))) " Pixels`n" Round(T1 / T_Area,3) " MS per pixel",5)
       Picker.SetColor(AvgColor)
     }
-    Else 
+    Else
       Ding(3000,-11,Clipboard "`nColor and Location copied to Clipboard")
     Return
   }
@@ -4591,7 +4591,7 @@ Return
     }
     If (inputType = "Refresh")
     {
-      if State := XInput_GetState(Controller_Active) 
+      if State := XInput_GetState(Controller_Active)
       {
         ; LX,LY,RX,RY,LT,RT,A,B,X,Y,LB,RB,L3,R3,BACK,START,UP,DOWN,LEFT,RIGHT
         Controller.LX             := PercentAxis( State.sThumbLX )
@@ -4861,7 +4861,7 @@ Return
     Else
       Positive := False
     Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,6)
-    Return Percentage 
+    Return Percentage
   }
   SnapToInventoryGrid(Direction:="Left"){
     Global InvGrid
@@ -5053,7 +5053,7 @@ Return
       IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
       IniRead, YesRitual, %A_ScriptDir%\save\Settings.ini, General, YesRitual, 1
       IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 1
-      IniRead, YesCLFIgnoreImplicit, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit, 0 
+      IniRead, YesCLFIgnoreImplicit, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit, 0
       IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
       IniRead, Latency, %A_ScriptDir%\save\Settings.ini, General, Latency, 1
       IniRead, ClickLatency, %A_ScriptDir%\save\Settings.ini, General, ClickLatency, 0
@@ -5114,12 +5114,12 @@ Return
       IniRead, MinusMPR, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR, 0
       IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
       IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
-      IniRead, LRRLES, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, LRRLES, 0    
+      IniRead, LRRLES, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, LRRLES, 0
       IniRead, MFAProjectiles, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MFAProjectiles, 0
       IniRead, MDExtraPhysicalDamage, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage, 0
       IniRead, MICSC, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC, 0
       IniRead, MSCAT, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MSCAT, 0
-      
+
       IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
       IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
       IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
@@ -5132,7 +5132,7 @@ Return
       IniRead, YesEnableLockerAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableLockerAutomation, 0
       IniRead, YesEnableAutoSellConfirmation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation, 0
       IniRead, YesEnableAutoSellConfirmationSafe, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmationSafe, 0
-      
+
       ;Stash Tab Management
       IniRead, StashTabCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency, 1
       IniRead, StashTabMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap, 1
@@ -5144,7 +5144,7 @@ Return
       IniRead, StashTabUnique, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUnique, 1
       IniRead, StashTabUniqueRing, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing, 1
       IniRead, StashTabUniqueDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump, 1
-      IniRead, StashTabInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem, 1 
+      IniRead, StashTabInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem, 1
       IniRead, StashTabFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment, 1
       IniRead, StashTabEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence, 1
       IniRead, StashTabBlight, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlight, 1
@@ -5193,7 +5193,7 @@ Return
       IniRead, StashTabNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice, 1
       IniRead, StashTabYesNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice, 0
       IniRead, StashTabYesNinjaPrice_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price, 5
-      
+
       ; Chaos Recipe Settings
       IniRead, ChaosRecipeEnableFunction, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableFunction, 0
       IniRead, ChaosRecipeSkipJC, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSkipJC, 1
@@ -5233,13 +5233,13 @@ Return
       craftingBasesT2 := StringToArray(craftingBasesT2)
       craftingBasesT3 := StringToArray(craftingBasesT3)
       craftingBasesT4 := StringToArray(craftingBasesT4)
-      
+
       ;Settings for the Client Log file location
       IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
-      
+
       ;Settings for the Overhead Health Bar
       IniRead, YesOHB, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB, 1
-      
+
       ;OHB Colors
       IniRead, OHBLHealthHex, %A_ScriptDir%\save\Settings.ini, OHB, OHBLHealthHex, 0x19A631
 
@@ -5307,7 +5307,7 @@ Return
       IniRead, varOnLocker, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker, 0x1F2732
       IniRead, varOnRitual, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnRitual, 0xD3B57C
       IniRead, varOnDetonate, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate, 0x5D4661
-            
+
       ;Grab Currency From Inventory
       IniRead, GrabCurrencyX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX, 1877
       IniRead, GrabCurrencyY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY, 772
@@ -5319,7 +5319,7 @@ Return
       IniRead, WisdomScrollY, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollY, 825
       IniRead, StockPortal, %A_ScriptDir%\save\Settings.ini, Coordinates, StockPortal, 0
       IniRead, StockWisdom, %A_ScriptDir%\save\Settings.ini, Coordinates, StockWisdom, 0
-      
+
       ;~ hotkeys reset
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
@@ -5339,7 +5339,7 @@ Return
       If hotkeyCraftBasic
         hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
       If hotkeyGrabCurrency
-        hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off  
+        hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
       If hotkeyGetCoords
         hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
       If hotkeyPopFlasks
@@ -5374,7 +5374,7 @@ Return
       If hotkeyOptions
         hotkey,% hotkeyOptions, optionsCommand, Off
       hotkey, IfWinActive, ahk_group POEGameGroup
-        
+
       ;~ hotkeys iniread
       IniRead, hotkeyOptions, %A_ScriptDir%\save\Settings.ini, hotkeys, Options, !F10
       IniRead, hotkeyAutoQuit, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit, !F12
@@ -5401,7 +5401,7 @@ Return
       IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
       IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
       IniRead, hotkeyTriggerMovement, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement, LButton
-      
+
       hotkey, IfWinActive, ahk_group POEGameGroup
       If hotkeyAutoQuit
         hotkey,% hotkeyAutoQuit, toggleAutoQuit, On
@@ -5448,7 +5448,7 @@ Return
         hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, On
         hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, On
       }
-      
+
       #MaxThreadsPerHotkey, 1
       If hotkeyPauseMines
         hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, On
@@ -5460,7 +5460,7 @@ Return
         hotkey,!F10, optionsCommand, On
         msgbox You dont have set the GUI hotkey!`nPlease hit Alt+F10 to open up the GUI and set your hotkey.
         }
-      
+
       IniRead, 1Prefix1, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix1, a
       IniRead, 1Prefix2, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix2, %A_Space%
       IniRead, 1Suffix1, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1, 1
@@ -5494,7 +5494,7 @@ Return
       IniRead, 2Suffix7, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7, 7
       IniRead, 2Suffix8, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8, 8
       IniRead, 2Suffix9, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9, 9
-      
+
       IniRead, 2Suffix1Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1Text, Sure, will invite in a sec.
       IniRead, 2Suffix2Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2Text, In a map, will get to you in a minute.
       IniRead, 2Suffix3Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3Text, Still Interested?
@@ -5516,7 +5516,7 @@ Return
       IniRead, stashSuffix7, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix7, Numpad7
       IniRead, stashSuffix8, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix8, Numpad8
       IniRead, stashSuffix9, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix9, Numpad9
-      
+
       IniRead, stashSuffixTab1, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab1, 1
       IniRead, stashSuffixTab2, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab2, 2
       IniRead, stashSuffixTab3, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab3, 3
@@ -5539,7 +5539,7 @@ Return
       IniRead, hotkeyControllerButtonSTART, %A_ScriptDir%\save\Settings.ini, Controller Keys, START, Tab
       IniRead, hotkeyControllerButtonL3, %A_ScriptDir%\save\Settings.ini, Controller Keys, L3, Logout
       IniRead, hotkeyControllerButtonR3, %A_ScriptDir%\save\Settings.ini, Controller Keys, R3, QuickPortal
-      
+
       IniRead, hotkeyControllerJoystickRight, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight, RButton
 
       IniRead, YesTriggerUtilityKey, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey, 1
@@ -5565,7 +5565,7 @@ Return
     Return
     }
 
-    submit(){  
+    submit(){
     updateEverything:
       global
       Thread, NoTimers, True    ;Critical
@@ -5637,8 +5637,8 @@ Return
       If hotkeyOptions
         hotkey,% hotkeyOptions, optionsCommand, Off
       hotkey, IfWinActive, ahk_group POEGameGroup
-        
-      IfWinExist, ahk_group POEGameGroup 
+
+      IfWinExist, ahk_group POEGameGroup
       {
         Gui, Submit
         Rescale()
@@ -5649,7 +5649,7 @@ Return
 
       Gui, Submit, NoHide
 
-      temp := {"Cookie":"POESESSID="PoECookie}
+      temp := {"Cookie":PoECookie}
       t := JSON_Beautify(temp)
       FileDelete, %A_ScriptDir%\save\Cookie.json
       FileAppend, % t, %A_ScriptDir%\save\Cookie.json
@@ -5713,7 +5713,7 @@ Return
       IniWrite, %HeistLockerStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, HeistLockerStr
       IniWrite, %SkillUpStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr
 
-      ;~ Hotkeys 
+      ;~ Hotkeys
       IniWrite, %hotkeyOptions%, %A_ScriptDir%\save\Settings.ini, hotkeys, Options
       IniWrite, %hotkeyAutoQuit%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit
       IniWrite, %hotkeyAutoFlask%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask
@@ -5723,7 +5723,7 @@ Return
       IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
       IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft
       IniWrite, %hotkeyCraftBasic%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic
-      IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
+      IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency
       IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
       IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
       IniWrite, %hotkeyLogout%, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout
@@ -5739,13 +5739,13 @@ Return
       IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
       IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
       IniWrite, %hotkeyTriggerMovement%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement
-      
+
       ;Utility Keys
       IniWrite, %hotkeyUp%,     %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp
       IniWrite, %hotkeyDown%,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyDown
       IniWrite, %hotkeyLeft%,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyLeft
       IniWrite, %hotkeyRight%,   %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight
-      
+
       ;Grab Currency
       IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
       IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
@@ -5779,7 +5779,7 @@ Return
       IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
       IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
       IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
-      
+
       ;~ Scroll locations
       IniWrite, %PortalScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX
       IniWrite, %PortalScrollY%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollY
@@ -5787,7 +5787,7 @@ Return
       IniWrite, %WisdomScrollY%, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollY
       IniWrite, %StockPortal%, %A_ScriptDir%\save\Settings.ini, Coordinates, StockPortal
       IniWrite, %StockWisdom%, %A_ScriptDir%\save\Settings.ini, Coordinates, StockWisdom
-      
+
       ;Stash Tab Management
       IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
       IniWrite, %StashTabMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap
@@ -5876,7 +5876,7 @@ Return
       IniWrite, %2Suffix7%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7
       IniWrite, %2Suffix8%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8
       IniWrite, %2Suffix9%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9
-      
+
       IniWrite, %2Suffix1Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1Text
       IniWrite, %2Suffix2Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2Text
       IniWrite, %2Suffix3Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3Text
@@ -5898,7 +5898,7 @@ Return
       IniWrite, %stashSuffix7%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix7
       IniWrite, %stashSuffix8%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix8
       IniWrite, %stashSuffix9%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix9
-      
+
       IniWrite, %stashSuffixTab1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab1
       IniWrite, %stashSuffixTab2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab2
       IniWrite, %stashSuffixTab3%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab3
@@ -5920,7 +5920,7 @@ Return
       IniWrite, %hotkeyControllerButtonSTART%, %A_ScriptDir%\save\Settings.ini, Controller Keys, START
       IniWrite, %hotkeyControllerButtonL3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, L3
       IniWrite, %hotkeyControllerButtonR3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, R3
-      
+
       IniWrite, %hotkeyControllerJoystickRight%, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight
 
       IniWrite, %YesTriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey
@@ -5956,7 +5956,7 @@ Return
         WinActivate, ahk_group POEGameGroup
         }
       Thread, NoTimers, False    ;End Critical
-    return  
+    return
     }
 
     ; Settings Save/Load
@@ -5969,7 +5969,7 @@ Return
         For k, v in WR[name]
           If (IsObject(obj[k]))
             For l, w in v
-              If (obj[k].HasKey(l)) 
+              If (obj[k].HasKey(l))
                 WR[name][k][l] := obj[k][l]
         obj := JSONtext := ""
       } Else If (Action = "Save"){
@@ -6026,7 +6026,7 @@ Return
         For k, v in WR[Type]
           If (IsObject(obj[k]))
             For l, w in v
-              If (obj[k].HasKey(l)) 
+              If (obj[k].HasKey(l))
                 WR[Type][k][l] := obj[k][l]
         If (Type = "perChar"){
           If WR.perChar.Setting.profilesYesFlask
@@ -6062,7 +6062,7 @@ Return
 
   { ; Hotkeys with modifiers - RegisterHotkeys, 1HotkeyShouldFire, 2HotkeyShouldFire, stashHotkeyShouldFire
 
-    
+
     ; Register and UnRegister Hotkeys - Register Chat and Stash Hotkeys
     RegisterHotkeys() {
       global
@@ -6140,13 +6140,13 @@ Return
               return False
             }
           Else If ( 1Prefix1 && !1Prefix2 ) {
-            If ( GetKeyState(1Prefix1) ) 
+            If ( GetKeyState(1Prefix1) )
               return True
             Else
               return False
             }
           Else If ( !1Prefix1 && 1Prefix2 ) {
-            If ( GetKeyState(1Prefix2) ) 
+            If ( GetKeyState(1Prefix2) )
               return True
             Else
               return False
@@ -6154,7 +6154,7 @@ Return
           Else If ( !1Prefix1 && !1Prefix2 ) {
             return True
             }
-          } 
+          }
         }
         Else {
           Return False
@@ -6171,13 +6171,13 @@ Return
               return False
             }
           Else If ( 2Prefix1 && !2Prefix2 ) {
-            If ( GetKeyState(2Prefix1) ) 
+            If ( GetKeyState(2Prefix1) )
               return True
             Else
               return False
             }
           Else If ( !2Prefix1 && 2Prefix2 ) {
-            If ( GetKeyState(2Prefix2) ) 
+            If ( GetKeyState(2Prefix2) )
               return True
             Else
               return False
@@ -6187,7 +6187,7 @@ Return
             }
           }
         Else
-          Return False 
+          Return False
         }
       Else {
           Return False
@@ -6204,13 +6204,13 @@ Return
               return False
             }
           Else If ( stashPrefix1 && !stashPrefix2 ) {
-            If ( GetKeyState(stashPrefix1) ) 
+            If ( GetKeyState(stashPrefix1) )
               return True
             Else
               return False
             }
           Else If ( !stashPrefix1 && stashPrefix2 ) {
-            If ( GetKeyState(stashPrefix2) ) 
+            If ( GetKeyState(stashPrefix2) )
               return True
             Else
               return False
@@ -6220,7 +6220,7 @@ Return
             }
         }
         Else
-          Return False 
+          Return False
       }
       Else {
           Return False
@@ -6264,7 +6264,7 @@ Return
     checkUpdate(force:=False)
     {
       Global BranchName
-      If (!AutoUpdateOff || force) 
+      If (!AutoUpdateOff || force)
       {
         UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/version.html, %A_ScriptDir%\temp\version.html
         FileRead, newestVersion, %A_ScriptDir%\temp\version.html
@@ -6275,14 +6275,14 @@ Return
         }
         If RegExMatch(newestVersion, "[.0-9]+", matchVersion)
           newestVersion := matchVersion
-        if ( VersionNumber < newestVersion || force) 
+        if ( VersionNumber < newestVersion || force)
         {
           UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/changelog.txt, %A_ScriptDir%\temp\changelog.txt
           FileRead, changelog, %A_ScriptDir%\temp\changelog.txt
           Gui, Update: +AlwaysOnTop
           Gui, Update:Add, Button, x0 y0 h1 w1, a
           Gui, Update:Add, Text,, Update Available.`nYoure running version %VersionNumber%. The newest is version %newestVersion%`n
-          Gui, Update:Add, Edit, w600 h200 +ReadOnly, %changelog% 
+          Gui, Update:Add, Edit, w600 h200 +ReadOnly, %changelog%
           Gui, Update:Add, Button, x70 section default grunUpdate, Update to the Newest Version!
           Gui, Update:Add, Button, x+35 ys gLaunchDonate, Support the Project
           Gui, Update:Add, Button, x+35 ys gdontUpdate, Turn off Auto-Update
@@ -6358,7 +6358,7 @@ Return
       IniWrite, 1, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
       MsgBox, Auto-Updates have been disabled.`nCheck back on the forum for more information!`nTo resume updates, uncheck the box in config page.
       Gui, 4:Destroy
-    return  
+    return
   }
 
   { ; Calibration color sample functions - updateOnChar, updateOnInventory, updateOnMenu, updateOnStash,
@@ -6374,7 +6374,7 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of Character Active didn't work"
         Return
       }
-      
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnChar := ScreenShot_GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y)
@@ -6383,15 +6383,15 @@ Return
         MsgBox % "Character Active recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . WR.loc.pixel.OnChar.X . " and y: " . WR.loc.pixel.OnChar.Y
       } else
       MsgBox % "PoE Window is not active. `nRecalibrate of Character Active didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnInventory:
       Critical
       Gui, Submit ; , NoHide
-      
+
       IfWinExist, ahk_group POEGameGroup
       {
         Rescale()
@@ -6400,8 +6400,8 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnInventory didn't work"
         Return
       }
-      
-      
+
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnInventory := ScreenShot_GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y)
@@ -6410,15 +6410,15 @@ Return
         MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . WR.loc.pixel.OnInventory.X . " and y: " . WR.loc.pixel.OnInventory.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnMenu:
       Critical
       Gui, Submit ; , NoHide
-      
+
       IfWinExist, ahk_group POEGameGroup
       {
         Rescale()
@@ -6427,8 +6427,8 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnMenu didn't work"
         Return
       }
-      
-      
+
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnMenu := ScreenShot_GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y)
@@ -6437,15 +6437,15 @@ Return
         MsgBox % "OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . WR.loc.pixel.OnMenu.X . " and y: " . WR.loc.pixel.OnMenu.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnDelveChart:
       Critical
       Gui, Submit ; , NoHide
-      
+
       IfWinExist, ahk_group POEGameGroup
       {
         Rescale()
@@ -6454,8 +6454,8 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnDelveChart didn't work"
         Return
       }
-      
-      
+
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnDelveChart := ScreenShot_GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y)
@@ -6464,15 +6464,15 @@ Return
         MsgBox % "OnDelveChart recalibrated!`nTook color hex: " . varOnDelveChart . " `nAt coords x: " . WR.loc.pixel.OnDelveChart.X . " and y: " . WR.loc.pixel.OnDelveChart.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnMetamorph:
       Critical
       Gui, Submit ; , NoHide
-      
+
       IfWinExist, ahk_group POEGameGroup
       {
         Rescale()
@@ -6481,8 +6481,8 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnMetamorph didn't work"
         Return
       }
-      
-      
+
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnMetamorph := ScreenShot_GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y)
@@ -6491,15 +6491,15 @@ Return
         MsgBox % "OnMetamorph recalibrated!`nTook color hex: " . varOnMetamorph . " `nAt coords x: " . WR.loc.pixel.OnMetamorph.X . " and y: " . WR.loc.pixel.OnMetamorph.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnLocker:
       Critical
       Gui, Submit ; , NoHide
-      
+
       IfWinExist, ahk_group POEGameGroup
       {
         Rescale()
@@ -6508,8 +6508,8 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnLocker didn't work"
         Return
       }
-      
-      
+
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnLocker := ScreenShot_GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y)
@@ -6518,15 +6518,15 @@ Return
         MsgBox % "OnLocker recalibrated!`nTook color hex: " . varOnLocker . " `nAt coords x: " . WR.loc.pixel.OnLocker.X . " and y: " . WR.loc.pixel.OnLocker.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnLocker didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnRitual:
       Critical
       Gui, Submit ; , NoHide
-      
+
       IfWinExist, ahk_group POEGameGroup
       {
         Rescale()
@@ -6535,8 +6535,8 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnRitual didn't work"
         Return
       }
-      
-      
+
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnRitual := ScreenShot_GetColor(WR.loc.pixel.OnRitual.X,WR.loc.pixel.OnRitual.Y)
@@ -6545,9 +6545,9 @@ Return
         MsgBox % "OnRitual recalibrated!`nTook color hex: " . varOnRitual . " `nAt coords x: " . WR.loc.pixel.OnRitual.X . " and y: " . WR.loc.pixel.OnRitual.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnRitual didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnStash:
@@ -6561,7 +6561,7 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnStash/OnLeft didn't work"
         Return
       }
-      
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnLeft := ScreenShot_GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y)
@@ -6573,9 +6573,9 @@ Return
           . "`n`nOnLeft recalibrated!`nTook color hex: " . varOnLeft . " `nAt coords x: " . WR.loc.pixel.OnLeft.X . " and y: " . WR.loc.pixel.OnLeft.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnStash/OnLeft didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateEmptyColor:
@@ -6655,8 +6655,8 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnChat didn't work"
         Return
       }
-      
-      
+
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnChat := ScreenShot_GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y)
@@ -6665,15 +6665,15 @@ Return
         MsgBox % "OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . WR.loc.pixel.OnChat.X . " and y: " . WR.loc.pixel.OnChat.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnVendor:
       Critical
       Gui, Submit ; , NoHide
-      
+
       IfWinExist, ahk_group POEGameGroup
       {
         Rescale()
@@ -6682,7 +6682,7 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnVendor didn't work"
         Return
       }
-      
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnVendor := ScreenShot_GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y)
@@ -6691,15 +6691,15 @@ Return
         MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . WR.loc.pixel.OnVendor.X . " and y: " . WR.loc.pixel.OnVendor.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateOnDiv:
       Critical
       Gui, Submit ; , NoHide
-      
+
       IfWinExist, ahk_group POEGameGroup
       {
         Rescale()
@@ -6708,7 +6708,7 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnDiv didn't work"
         Return
       }
-      
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         varOnDiv := ScreenShot_GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y)
@@ -6717,9 +6717,9 @@ Return
         MsgBox % "OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . WR.loc.pixel.OnDiv.X . " and y: " . WR.loc.pixel.OnDiv.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     updateDetonate:
@@ -6733,7 +6733,7 @@ Return
         MsgBox % "PoE Window does not exist. `nRecalibrate of OnDetonate didn't work"
         Return
       }
-      
+
       if WinActive(ahk_group POEGameGroup){
         ScreenShot()
         If OnMines
@@ -6745,9 +6745,9 @@ Return
         MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . (OnMines?WR.loc.pixel.DetonateDelve.X:WR.loc.pixel.Detonate.X) . " and y: " . WR.loc.pixel.Detonate.Y
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
-      
+
       hotkeys()
-      
+
     return
 
     ShowSampleInd:
@@ -6928,7 +6928,7 @@ Return
           if WinActive(ahk_group POEGameGroup){
             varEmptyInvSlotColor := []
             ScreenShot()
-            For c, GridX in InventoryGridX  
+            For c, GridX in InventoryGridX
             {
               For r, GridY in InventoryGridY
               {
@@ -7118,7 +7118,7 @@ Return
 
       SaveWizardResults:
         If CalibrationOnChar
-          IniWrite, %varOnChar%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChar    
+          IniWrite, %varOnChar%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChar
         If CalibrationOnChat
           IniWrite, %varOnChat%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnChat
         If CalibrationOnMenu
@@ -7165,7 +7165,7 @@ Return
         gui,LootColors: new, LabelLootColors
         gui,LootColors: -MinimizeBox
         Gui LootColors: Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%   xm+5 ym+8 , Enable Loot Vacuum
-        
+
         Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 y+8,  0|30|40|50|60|70|80|90|100|200|300|400|500
         GuiControl,LootColors: ChooseString, AreaScale, %AreaScale%
         Gui,LootColors: Add, Text,                     x+3 yp+5              , Area around mouse
@@ -7346,7 +7346,7 @@ Return
           }
           If (Bar:=FindText(GameX + Round((GameW / 2)-(OHB_Width/2 + 1)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2 + 1)+(OHB_Width/2)), Round(GameH / (1080 / 370)) , 0, 0, OHB_StringEdit))
           {
-            MsgBox, 262144, String Found, OHB string was found!`nMake sure the highlighted matched area is the entire width of the healthbar`nThe red and blue flashing boxes should go to the very inner edge`n`nIf you are done, copy the string into the String Tab 
+            MsgBox, 262144, String Found, OHB string was found!`nMake sure the highlighted matched area is the entire width of the healthbar`nThe red and blue flashing boxes should go to the very inner edge`n`nIf you are done, copy the string into the String Tab
             MouseTip(Bar.1.1, Bar.1.2, (Bar.1.3<2?2:Bar.1.3), (Bar.1.4<2?2:Bar.1.4))
             OHB_Editor()
           }
@@ -7515,7 +7515,7 @@ Return
         Gui, perChar: Add, Radio,     %   "vautominesPauseSingleTap  h18  xp+10 yp+16  Checked" (WR.perChar.Setting.autominesPauseSingleTap == 1?"1":0)   , Single-Tap
         Gui, perChar: Add, Radio,     %   "h18  x+1 yp  Checked" (WR.perChar.Setting.autominesPauseSingleTap == 2?"1":0)   , Double-Tap
         Gui, perChar: Add, Text, x+5  yp+2 , Speed
-        Gui, perChar: Add, Edit,        vautominesPauseDoubleTapSpeed  h18  x+5 yp-2  Number Limit w30        , % WR.perChar.Setting.autominesPauseDoubleTapSpeed 
+        Gui, perChar: Add, Edit,        vautominesPauseDoubleTapSpeed  h18  x+5 yp-2  Number Limit w30        , % WR.perChar.Setting.autominesPauseDoubleTapSpeed
         Gui, perChar: Font, s8 cBlack
         Gui, perChar: Add, GroupBox, center xs+5 y+10 w255 h37, Dash on Detonate
         Gui, perChar: Font,
@@ -7617,7 +7617,7 @@ Return
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "MainAttackRelease xs+10 y+5 Checked" WR.Flask[slot].MainAttackRelease, Main Release
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+5 Checked" WR.Flask[slot].SecondaryAttack, Secondary
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttackRelease xs+10   y+5 Checked" WR.Flask[slot].SecondaryAttackRelease, Sec. Release
-        
+
         backColor := "E0E0E0"
         Gui, Flask%slot%: Add, GroupBox, Section center xs+125 ys w240 h150, Resource Triggers
         setColor := "Red"
@@ -7652,7 +7652,7 @@ Return
         for k, kind in ["CD", "GroupCD", "Key", "MainAttackRelease", "SecondaryAttackRelease", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
           WR.Flask[which][kind] := Flask%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
-          WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
+          WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value
         FileDelete, %A_ScriptDir%\save\Flask.json
         JSONtext := JSON.Dump(WR.Flask,,2)
         FileAppend, %JSONtext%, %A_ScriptDir%\save\Flask.json
@@ -7803,7 +7803,7 @@ Return
         for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
           WR.Utility[which][kind] := Utility%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
-          WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 
+          WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value
         for k, kind in ["IconVar1", "IconVar0"]
           WR.Utility[which][kind] := Round(Utility%which%%kind% / 100,2)
 
@@ -8010,7 +8010,7 @@ Return
       IniWrite, %YesEnableLockerAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableLockerAutomation
       IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
       IniWrite, %YesEnableAutoSellConfirmationSafe%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmationSafe
-      
+
       ;Automation Metamorph Settings
       IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
@@ -8185,12 +8185,12 @@ Return
         }else{
           TT := "Grid information:" . "`n"
           ScreenShot()
-          For C, GridX in InventoryGridX  
+          For C, GridX in InventoryGridX
           {
             For R, GridY in InventoryGridY
             {
               PointColor := ScreenShot_GetColor(GridX,GridY)
-              if (indexOf(PointColor, varEmptyInvSlotColor)) {        
+              if (indexOf(PointColor, varEmptyInvSlotColor)) {
                 TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
               }else{
                 TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
@@ -8198,7 +8198,7 @@ Return
             }
           }
         }
-        MsgBox %TT%  
+        MsgBox %TT%
         Gui, States: Show
       Return
     }
@@ -8278,7 +8278,7 @@ Return
 
     SendMSG(wParam:=0, lParam:=0, script:="BlankSubscript.ahk ahk_exe AutoHotkey.exe"){
       DetectHiddenWindows On
-      if WinExist(script) 
+      if WinExist(script)
         PostMessage, 0x5555, wParam, lParam
       DetectHiddenWindows Off  ; Must not be turned off until after PostMessage.
       Return
@@ -8431,7 +8431,7 @@ Return
         }
       }
       ; MsgBoxVals(AffixKeyList)
-      
+
       JSONtext := JSON_Beautify(result," ",3)
       FileDelete, %A_ScriptDir%\data\GGG_Stats.json
       FileAppend, %JSONtext%, %A_ScriptDir%\data\GGG_Stats.json
