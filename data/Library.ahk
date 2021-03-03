@@ -2137,7 +2137,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
             || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) 
           && (!This.Prop.Corrupted)  )
           sendstash := StashTabCrafting
-        Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictivePrice >= StashTabYesPredictive_Price) || (This.Prop.PredictivePrice && OnRitual)) ){
+        Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictPrice >= StashTabYesPredictive_Price) || (This.Prop.PredictPrice && OnRitual)) ){
           sendstash := StashTabPredictive
         }
         Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
