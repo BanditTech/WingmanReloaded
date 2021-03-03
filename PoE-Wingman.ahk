@@ -8314,7 +8314,10 @@ Return
           }
         }
         JSONtext := JSON_Beautify(WR.Data.Perfect," ",3)
-        FileDelete, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+        If FileExist( A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
+        {
+          FileDelete, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+        }
         FileAppend, %JSONtext%, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
 
       } Catch e {
