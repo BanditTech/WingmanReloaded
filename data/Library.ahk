@@ -169,10 +169,80 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         This.MatchChaosRegal()
         This.MatchBase2Slot()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
-        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified)
-          This.Prop.PredictPrice := PredictPrice()
+        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified){
+          This.Prop.PredictPrice := This.PredictPrice()
+        }
         This.Prop.StashReturnVal := This.MatchStashManagement()
         ; This.FuckingSugoiFreeMate()
+      }
+      ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
+      PredictPrice(Switch:="")
+      {
+        Static ItemList := []
+        Static WarnedError := 0
+        FoundMatch := False
+        If (This.Prop.Rarity_Digit != 3 || This.Affix.Unidentified)
+          Return 0
+        If (This.Prop.Rarity_Digit = 3 && (!This.Prop.SpecialType || This.Prop.SpecialType = "6Link" || This.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
+        {
+          For k, obj in ItemList
+          {
+            If (obj.Clip_Contents = Clip_Contents)
+            {
+              FoundMatch := True
+              PriceObj := obj
+              Break
+            }
+          }
+          If !FoundMatch
+          {
+            PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
+            if (PriceObj.error)
+            {
+              If (A_TickCount - WarnedError > 30000 )
+              {
+                Notify(PriceObj.error_msg, "", 10)
+                WarnedError := A_TickCount
+              }
+              return
+            }
+            PriceObj.Clip_Contents := Clip_Contents
+            If (OnRitual && YesRitualPrice = "Low")
+              Price := SelectedPrice := PriceObj.min
+            Else If (OnRitual && YesRitualPrice = "Avg")
+              Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
+            Else If (OnRitual && YesRitualPrice = "High")
+              Price := SelectedPrice := PriceObj.max
+            Else If (YesPredictivePrice = "Low")
+              Price := SelectedPrice := PriceObj.min
+            Else If (YesPredictivePrice = "Avg")
+              Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
+            Else If (YesPredictivePrice = "High")
+              Price := SelectedPrice := PriceObj.max
+
+            Price := Price * (YesPredictivePrice_Percent_Val / 100)
+            PriceObj.Avg := (PriceObj.min + PriceObj.max) / 2
+            PriceObj.Price := Price
+
+            tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " <<  " Format("{1:0.3g}", PriceObj.Avg ) "  >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
+              . "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
+            For k, reason in PriceObj.pred_explanation
+              tt .= "`n" Round(reason.2 * 100) "`% " reason.1
+            tt.= "`nEnd Of Predicive Price Information"
+            PriceObj.tt := tt
+            ItemList.Push(PriceObj)
+          }
+        }
+        Else
+          Return "000"
+
+        If !(PriceObj.max > 0)
+          Return "0000"
+
+        If (Switch = "Obj")
+          Return PriceObj
+        Else
+          Return PriceObj.Price
       }
       MatchProperties(){
         ;Start NamePlate Parser
@@ -5141,75 +5211,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
       }
     }
   }
-  ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
-  PredictPrice(Switch:="")
-  {
-    Static ItemList := []
-    Static WarnedError := 0
-    FoundMatch := False
-    If (Item.Prop.Rarity_Digit != 3 || Item.Affix.Unidentified)
-      Return 0
-    If (Item.Prop.Rarity_Digit = 3 && (!Item.Prop.SpecialType || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
-    {
-      For k, obj in ItemList
-      {
-        If (obj.Clip_Contents = Clip_Contents)
-        {
-          FoundMatch := True
-          PriceObj := obj
-          Break
-        }
-      }
-      If !FoundMatch
-      {
-        PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
-        if (PriceObj.error)
-        {
-          If (A_TickCount - WarnedError > 30000 )
-          {
-            Notify(PriceObj.error_msg, "", 10)
-            WarnedError := A_TickCount
-          }
-          return
-        }
-        PriceObj.Clip_Contents := Clip_Contents
-        If (OnRitual && YesRitualPrice = "Low")
-          Price := SelectedPrice := PriceObj.min
-        Else If (OnRitual && YesRitualPrice = "Avg")
-          Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
-        Else If (OnRitual && YesRitualPrice = "High")
-          Price := SelectedPrice := PriceObj.max
-        Else If (YesPredictivePrice = "Low")
-          Price := SelectedPrice := PriceObj.min
-        Else If (YesPredictivePrice = "Avg")
-          Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
-        Else If (YesPredictivePrice = "High")
-          Price := SelectedPrice := PriceObj.max
-
-        Price := Price * (YesPredictivePrice_Percent_Val / 100)
-        PriceObj.Avg := (PriceObj.min + PriceObj.max) / 2
-        PriceObj.Price := Price
-
-        tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " <<  " Format("{1:0.3g}", PriceObj.Avg ) "  >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
-          . "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
-        For k, reason in PriceObj.pred_explanation
-          tt .= "`n" Round(reason.2 * 100) "`% " reason.1
-        tt.= "`nEnd Of Predicive Price Information"
-        PriceObj.tt := tt
-        ItemList.Push(PriceObj)
-      }
-    }
-    Else
-      Return "000"
-
-    If !(PriceObj.max > 0)
-      Return "0000"
-
-    If (Switch = "Obj")
-      Return PriceObj
-    Else
-      Return PriceObj.Price
-  }
+  
   ; CheckOHB - Determine the position of the OHB
   CheckOHB()
   {
