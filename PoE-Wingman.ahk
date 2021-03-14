@@ -2177,9 +2177,9 @@ Return
   }
   ; Make a more uniform method of checking for identification
   CheckToIdentify(){
-    If (Item.Affix["Unidentified"]&&YesIdentify)
+    If (Item.Affix["Unidentified"] && YesIdentify)
     {
-      If (ChaosRecipeEnableFunction && Item.StashChaosRecipe(false))
+      If (ChaosRecipeEnableFunction && Item.StashChaosRecipe(false) && ChaosRecipeEnableUnId)
         Return False
       Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
         Return True
@@ -8315,7 +8315,10 @@ Return
           }
         }
         JSONtext := JSON_Beautify(WR.Data.Perfect," ",3)
-        FileDelete, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+        If FileExist( A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
+        {
+          FileDelete, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
+        }
         FileAppend, %JSONtext%, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
 
       } Catch e {
