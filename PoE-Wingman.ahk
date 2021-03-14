@@ -4614,6 +4614,7 @@ Return
         Controller.Btn.R3         := XInputButtonIsDown( "RStick", State.wButtons )
         Controller.Btn.BACK       := XInputButtonIsDown( "Back", State.wButtons )
         Controller.Btn.START      := XInputButtonIsDown( "Start", State.wButtons )
+        Return True
       }
       Else
       {
