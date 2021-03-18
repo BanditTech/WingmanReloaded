@@ -1,3 +1,15 @@
+## Version .13.0013 - Alpha version - March/18/2020
+Improvements to Main Menu
+* Game Logic States now allows to click directly on the sample status to recalibrate
+* Individual samples menu has been removed
+* Clicking Inventory status will also prompt for empty slot calibration
+* Adjust Locations button disabled until I am ready to finish it
+
+Bugfixes
+* Fix for controller support
+
+---
+
 ## Version .13.0012 - Alpha version - February/03/2020
 Merging the Ritual Scan Branch into alpha
 * This still needs some tuning to get the coloring working

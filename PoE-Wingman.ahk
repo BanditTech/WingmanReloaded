@@ -1,5 +1,5 @@
 ; Contains all the pre-setup for the script
-  Global VersionNumber := .13.0012
+  Global VersionNumber := .13.0013
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -1355,41 +1355,55 @@
     Gui, Font,
     Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar hwndMainMenuIDOnChar, % "Character Active"
     CtlColors.Attach(MainMenuIDOnChar, "52D165", "")
+		Gui, Add, Text, xp yp wp hp gupdateOnChar BackgroundTrans
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnOHB hwndMainMenuIDOnOHB, % "Overhead Health Bar"
     CtlColors.Attach(MainMenuIDOnOHB, "52D165", "")
+		; Gui, Add, Text, xp yp wp hp gupdateOnOHB BackgroundTrans
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnChat hwndMainMenuIDOnChat, % "Chat Open"
     CtlColors.Attach(MainMenuIDOnChat, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnChat BackgroundTrans
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnInventory hwndMainMenuIDOnInventory, % "Inventory Open"
     CtlColors.Attach(MainMenuIDOnInventory, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnInventory BackgroundTrans
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnDiv hwndMainMenuIDOnDiv, % "Div Trade Open"
     CtlColors.Attach(MainMenuIDOnDiv, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnDiv BackgroundTrans
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnStash hwndMainMenuIDOnStash, % "Stash Open"
     CtlColors.Attach(MainMenuIDOnStash, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnStash BackgroundTrans
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnMenu hwndMainMenuIDOnMenu, % "Talent Menu Open"
     CtlColors.Attach(MainMenuIDOnMenu, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnMenu BackgroundTrans
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnVendor hwndMainMenuIDOnVendor, % "Vendor Trade Open"
     CtlColors.Attach(MainMenuIDOnVendor, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnVendor BackgroundTrans
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnDelveChart hwndMainMenuIDOnDelveChart, % "Delve Chart Open"
     CtlColors.Attach(MainMenuIDOnDelveChart, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnDelveChart BackgroundTrans
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnLeft hwndMainMenuIDOnLeft, % "Left Panel Open"
     CtlColors.Attach(MainMenuIDOnLeft, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnStash BackgroundTrans
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnMetamorph hwndMainMenuIDOnMetamorph, % "Map Metamorph Open"
     CtlColors.Attach(MainMenuIDOnMetamorph, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnMetamorph BackgroundTrans
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnDetonate hwndMainMenuIDOnDetonate, % "Detonate Shown"
     CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateDetonate BackgroundTrans
     Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnLocker hwndMainMenuIDOnLocker, % "League Stash Open"
     CtlColors.Attach(MainMenuIDOnLocker, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnLocker BackgroundTrans
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnRitual hwndMainMenuIDOnRitual, % "Ritual Open"
     CtlColors.Attach(MainMenuIDOnRitual, "", "Green")
+		Gui, Add, Text, xp yp wp hp gupdateOnRitual BackgroundTrans
 
     Gui, Font, Bold s9 cBlack, Arial
-    Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h90 ,         Gamestate Calibration
+    Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h60 ,         Gamestate Calibration
     Gui, Font, s8
     Gui, Add, Button, ghelpCalibration   xp+250 ys-4    h20, %  "? help"
     Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs+10  ys+20 w105 h25,   Run Wizard
-    Gui, Add, Button, gShowSampleInd vShowSampleIndBtn    x+8 yp     wp,   Individual Sample
+    ; Gui, Add, Button, gShowSampleInd vShowSampleIndBtn    x+8 yp     wp,   Individual Sample
     Gui, Add, Button, gWR_Update vWR_Btn_Globe         x+8 yp       wp,   Adjust Globes
-    Gui, Add, Button, gWR_Update vWR_Btn_Locations         xs+10  y+10      wp,   Adjust Locations
+    ; Gui, Add, Button, gWR_Update vWR_Btn_Locations         xs+10  y+10      wp,   Adjust Locations
     Gui, Add, Button, gCheckPixelGrid x+8 yp wp , Inventory Grid
     Gui, Font
 
@@ -6409,6 +6423,7 @@ Return
         IniWrite, %varOnInventory%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnInventory
         readFromFile()
         MsgBox % "OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . WR.loc.pixel.OnInventory.X . " and y: " . WR.loc.pixel.OnInventory.Y
+        GoSub, updateEmptyColor
       }else
       MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
       
