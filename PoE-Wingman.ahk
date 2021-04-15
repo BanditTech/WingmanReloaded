@@ -3945,21 +3945,30 @@ Return
 
       ; Desired := SettingObject
       This.Desired := Desired
-      
+
       Return This
     }
     Logic(){
       If (This.Type = "Chance"){
-        If Item.Rarity = "Unique"
+        If Item.Prop.Rarity = "Unique"
           Return True
         Else
           Return False
       } Else If (This.Type = "Color"){
-
+        If This.Colormatch()
+          Return True
+        Else
+          Return False
       } Else If (This.Type = "Link"){
-
+        If Item.Prop.Sockets_Link >= This.Desired.Links
+          Return True
+        Else
+          Return False
       } Else If (This.Type = "Socket"){
-
+        If Item.Prop.Sockets_Num >= This.Desired.Sockets
+          Return True
+        Else
+          Return False
       }
     }
     IRepeat(){
