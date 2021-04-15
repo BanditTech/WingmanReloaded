@@ -3934,6 +3934,19 @@ Return
     Global RunningToggle
     Notify("Socket Logic Coming Soon","",2)
   }
+
+  Class Craft {
+    __New(Type,Method){
+      ; Type := "Chance","Color","Link","Socket"
+      This.Type := Type
+
+      ; Method := "cursor","currency","bulk"
+      This.Method := Method
+      Return This
+    }
+  }
+
+
   ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
   CraftingMaps()
   {
@@ -4088,6 +4101,8 @@ Return
       CraftMenu.SetKey(hotkeyCraftBasic)
       ; CraftMenu.SetKeySpecial("Ctrl")
       selection := CraftMenu.Show()
+      MouseMove %itemx%, %itemy%
+
       If selection
       {
         If DebugMessages
