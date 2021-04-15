@@ -3936,14 +3936,48 @@ Return
   }
 
   Class Craft {
-    __New(Type,Method){
+    __New(Type,Method,Desired){
       ; Type := "Chance","Color","Link","Socket"
       This.Type := Type
 
       ; Method := "cursor","currency","bulk"
       This.Method := Method
+
+      ; Desired := SettingObject
+      This.Desired := Desired
+      
       Return This
     }
+    Logic(){
+      If (This.Type = "Chance"){
+        If Item.Rarity = "Unique"
+          Return True
+        Else
+          Return False
+      } Else If (This.Type = "Color"){
+
+      } Else If (This.Type = "Link"){
+
+      } Else If (This.Type = "Socket"){
+
+      }
+    }
+    IRepeat(){
+      If (This.Method ~= "bulk")
+        Return True
+      Else
+        Return False
+    }
+    ApplyCurrency(cname, x, y){
+      RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
+      Sleep, 45*Latency
+      LeftClick(x,y)
+      Sleep, 90*Latency
+      ClipItem(x,y)
+      Sleep, 45*Latency
+      return
+    }
+
   }
 
 

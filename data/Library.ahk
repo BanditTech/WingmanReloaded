@@ -2757,6 +2757,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
   ClipItem(x, y){
       BlockInput, MouseMove
       Clipboard := ""
+      Item := ""
       Sleep, 45+(ClipLatency*15)
       MouseMove %x%, %y%
       Sleep, 45+(ClipLatency>0?ClipLatency*15:0)
