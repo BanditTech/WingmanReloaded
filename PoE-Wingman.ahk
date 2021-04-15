@@ -1,4 +1,4 @@
-; Contains all the pre-setup for the script
+﻿; Contains all the pre-setup for the script
   Global VersionNumber := .13.0013
   #IfWinActive Path of Exile 
   #NoEnv
@@ -3940,13 +3940,39 @@ Return
       ; Type := "Chance","Color","Link","Socket"
       This.Type := Type
 
-      ; Method := "cursor","currency","bulk"
+      ; Method := "cursor","stash","bulk"
       This.Method := Method
 
       ; Desired := SettingObject
       This.Desired := Desired
 
+      If (This.Method = "bulk") {
+        ; add for expansion of this feature later
+        This.Target := "inventory"
+      } Else {
+        If (This.Method = "stash")
+          This.Target := WR.Loc.Pixel["Currency Craft Slot"]
+        Else If (This.Method = "cursor"){
+          MouseGetPos, xx, yy
+          This.Target := {X:xx, Y:yy}
+        }
+      }
+
       Return This
+    }
+    Validate(){
+      If (This.Desired.Links > Item.Prop.Sockets_Num)
+      || (!Item.Prop.SlotType && indexOf(This.Type,["Color","Link","Socket"]))
+      || (Item.Prop.ItemLevel < 2 && This.Desired.Sockets >= 3)
+      || (Item.Prop.ItemLevel < 25 && This.Desired.Sockets >= 4)
+      || (Item.Prop.ItemLevel < 35 && This.Desired.Sockets >= 5)
+      || (Item.Prop.ItemLevel < 50 && This.Desired.Sockets >= 6)
+        Return False
+      Else
+        Return True
+    }
+    Initiate(){
+      
     }
     Logic(){
       If (This.Type = "Chance"){
@@ -3970,12 +3996,6 @@ Return
         Else
           Return False
       }
-    }
-    IRepeat(){
-      If (This.Method ~= "bulk")
-        Return True
-      Else
-        Return False
     }
     ApplyCurrency(cname, x, y){
       RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)

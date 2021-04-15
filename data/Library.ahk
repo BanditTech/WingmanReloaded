@@ -1,4 +1,4 @@
-if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+﻿if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
 {
   ft_Gui("Show")
   Return
