@@ -1,3 +1,14 @@
+## Version .13.0014 - Alpha version - April/16/2020
+Ultimatum is here, and it forced a bit of changes to how we deal with the parser. 
+* Basic changes required to add Item Class from clip contents
+* More changes will come to this once the servers stabilize
+
+Backend Work being done on the crafting functions
+* Designed a new class for encapsulating the crafting functions
+* Logic and validation portions are mostly finished
+
+---
+
 ## Version .13.0013 - Alpha version - March/18/2020
 Improvements to Main Menu
 * Game Logic States now allows to click directly on the sample status to recalibrate
