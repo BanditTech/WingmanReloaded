@@ -3946,6 +3946,7 @@ Return
       ; Desired := SettingObject
       This.Desired := Desired
 
+      ; Determine target object
       If (This.Method = "bulk") {
         ; add for expansion of this feature later
         This.Target := "inventory"
@@ -3958,6 +3959,9 @@ Return
         }
       }
 
+      ; Begin the specified crafting routine
+      This.Initiate()
+
       Return This
     }
     Validate(){
@@ -3967,12 +3971,18 @@ Return
       || (Item.Prop.ItemLevel < 25 && This.Desired.Sockets >= 4)
       || (Item.Prop.ItemLevel < 35 && This.Desired.Sockets >= 5)
       || (Item.Prop.ItemLevel < 50 && This.Desired.Sockets >= 6)
+      || (This.Desired.Sockets > 4 && !IndexOf(Item.Prop.SlotType,["Two Hand","Body"]))
+      || (This.Desired.Sockets > 3 && IndexOf(Item.Prop.SlotType,["One Hand"]))
         Return False
       Else
         Return True
     }
     Initiate(){
-      
+      If (This.Method = "bulk") {
+
+      } Else {
+        This.Looping(This.Target.X,This.Target.Y)
+      }
     }
     Logic(){
       If (This.Type = "Chance"){
@@ -4006,7 +4016,12 @@ Return
       Sleep, 45*Latency
       return
     }
-
+    Looping(x,y){
+      ClipItem(x,y)
+      While !This.Logic() && This.Validate() {
+        ClipItem(x,y)
+      }
+    }
   }
 
 
