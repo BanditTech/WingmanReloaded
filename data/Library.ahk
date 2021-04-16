@@ -249,6 +249,8 @@
         If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
         {
           This.Prop.Rarity := RxMatch1
+          If RegExMatch(This.Data.Blocks.NamePlate, "`am)Item Class: (.+)", RxMatch)
+            This.Prop.ItemClass := RxMatch1
           ;Prop Rarity Comparator
           If (InStr(This.Prop.Rarity, "Currency"))
           {
@@ -289,14 +291,14 @@
           {
             This.Prop.SpecialType := This.Prop.Rarity
           }
-          ; 3 Lines in NamePlate => Rarity / Item Name/ Item Base
-          If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)`r`n(.+)",RxMatch))
+          ; 4 Lines in NamePlate => Rarity / Item Name/ Item Base
+          If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)",RxMatch))
           {
             This.Prop.ItemName := RxMatch1
             This.Prop.ItemBase := RxMatch2
           }
-          ; 2 Lines in NamePlate => Rarity / Item Base
-          Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)",RxMatch))
+          ; 3 Lines in NamePlate => Rarity / Item Base
+          Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)",RxMatch))
           {
             This.Prop.ItemName := RxMatch1
             This.Prop.ItemBase := RxMatch1
